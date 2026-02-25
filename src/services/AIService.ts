@@ -30,16 +30,6 @@ export class AIService {
         this.webLlmEngine = await CreateMLCEngine(modelId, {
           initProgressCallback: (progress) => {
             this.initProgressCallback?.(`Cargando modelo GPU: ${progress.text}`, progress.progress * 100);
-          },
-          appConfig: {
-            model_list: [
-              {
-                model: "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
-                model_id: modelId,
-                // Revertimos a v0_2_48 porque v0_2_81 no existe en el repositorio de binarios aún
-                model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
-              }
-            ]
           }
         });
         this.isReady = true;
