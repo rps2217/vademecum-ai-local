@@ -26,13 +26,19 @@ export class AIService {
         this.initProgressCallback?.('Iniciando WebLLM (GPU)...', 0);
         
         // Usamos Llama 3.2 1B, que es ultra ligero (~1GB VRAM) y evita el error GPUDeviceLost (OOM)
-        this.webLlmEngine = await CreateMLCEngine('Llama-3.2-1B-Instruct-q4f16_1-MLC', {
+        const modelId = 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
+        this.webLlmEngine = await CreateMLCEngine(modelId, {
           initProgressCallback: (progress) => {
             this.initProgressCallback?.(`Cargando modelo GPU: ${progress.text}`, progress.progress * 100);
           },
-          // Forzamos el límite de invocaciones para compatibilidad con GPUs integradas o limitadas
           appConfig: {
-            model_list: [], // Se llena automáticamente por la librería
+            model_list: [
+              {
+                model: "https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC",
+                model_id: modelId,
+                model_lib: "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_48/Llama-3.2-1B-Instruct-q4f16_1-ctx4k_cs1k-webgpu.wasm",
+              }
+            ]
           }
         });
         this.isReady = true;
