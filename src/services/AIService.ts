@@ -25,9 +25,8 @@ export class AIService {
       if (hardware.aiModelTier === 'HIGH') {
         this.initProgressCallback?.('Iniciando WebLLM (GPU)...', 0);
         
-        // Usamos un modelo cuantizado pequeño para la demostración (Llama-3-8B es muy pesado para un iframe)
-        // En producción se usaría 'Llama-3-8B-Instruct-q4f32_1-MLC'
-        this.webLlmEngine = await CreateMLCEngine('Llama-3-8B-Instruct-q4f16_1-MLC', {
+        // Usamos Llama 3.2 1B, que es ultra ligero (~1GB VRAM) y evita el error GPUDeviceLost (OOM)
+        this.webLlmEngine = await CreateMLCEngine('Llama-3.2-1B-Instruct-q4f16_1-MLC', {
           initProgressCallback: (progress) => {
             this.initProgressCallback?.(`Cargando modelo GPU: ${progress.text}`, progress.progress * 100);
           }
