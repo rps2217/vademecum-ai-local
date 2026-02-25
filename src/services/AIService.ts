@@ -22,20 +22,34 @@ export class AIService {
     this.isInitializing = true;
 
     try {
-      if (hardware.aiModelTier === 'HIGH') {
-        this.initProgressCallback?.('Iniciando WebLLM (GPU)...', 0);
-        
-        // Usamos Llama 3.2 1B, que es ultra ligero (~1GB VRAM) y evita el error GPUDeviceLost (OOM)
-        const modelId = 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
-        this.webLlmEngine = await CreateMLCEngine(modelId, {
-          initProgressCallback: (progress) => {
-            this.initProgressCallback?.(`Cargando modelo GPU: ${progress.text}`, progress.progress * 100);
-          }
-        });
-        this.isReady = true;
-        this.initProgressCallback?.('WebLLM Listo', 100);
+      let gpuSuccess = false;
 
-      } else if (hardware.aiModelTier === 'LOW') {
+      if (hardware.aiModelTier === 'HIGH') {
+        try {
+          this.initProgressCallback?.('Iniciando WebLLM (GPU)...', 0);
+          
+          // Usamos la versión q4f32_1 que es más compatible (no requiere extensión f16)
+          // aunque consume un poco más de memoria, funciona en más dispositivos.
+          const modelId = 'Llama-3.2-1B-Instruct-q4f32_1-MLC';
+          
+          this.webLlmEngine = await CreateMLCEngine(modelId, {
+            initProgressCallback: (progress) => {
+              this.initProgressCallback?.(`Cargando modelo GPU: ${progress.text}`, progress.progress * 100);
+            }
+          });
+          
+          this.isReady = true;
+          gpuSuccess = true;
+          this.initProgressCallback?.('WebLLM Listo', 100);
+        } catch (gpuError) {
+          console.warn('Error iniciando WebLLM (GPU). Intentando fallback a CPU...', gpuError);
+          this.initProgressCallback?.('GPU no compatible. Cambiando a modo CPU...', 0);
+          // No retornamos, dejamos que continúe al bloque siguiente para intentar CPU
+        }
+      }
+
+      // Si no era HIGH o si falló la inicialización de GPU (gpuSuccess false), intentamos CPU
+      if (!gpuSuccess && (hardware.aiModelTier === 'LOW' || hardware.aiModelTier === 'HIGH')) {
         this.initProgressCallback?.('Iniciando Transformers.js (CPU)...', 0);
         
         // Modelo ligero para CPU
@@ -48,7 +62,7 @@ export class AIService {
         });
         this.isReady = true;
         this.initProgressCallback?.('Transformers.js Listo', 100);
-      } else {
+      } else if (!gpuSuccess && hardware.aiModelTier === 'NONE') {
         this.initProgressCallback?.('Hardware no compatible con IA Local. Usando modo Simulación.', 100);
       }
     } catch (error) {
