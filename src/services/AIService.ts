@@ -59,6 +59,63 @@ export class AIService {
     }
   }
 
+  static async extractProductData(rawText: string, url: string): Promise<Product | null> {
+    if (!this.webLlmEngine) {
+      console.warn('[AIService] WebLLM no está inicializado. No se puede extraer datos en este dispositivo.');
+      return null;
+    }
+
+    const prompt = `Analiza el siguiente texto extraído de la ficha técnica de un medicamento y devuelve ÚNICAMENTE un objeto JSON válido con esta estructura exacta:
+{
+  "sku": "string (ej: MED-001)",
+  "nombre_comercial": "string",
+  "descripcion": "string (resumen breve)",
+  "principios_activos": ["string"],
+  "posologia": "string",
+  "indicaciones": ["string"],
+  "advertencias": "string",
+  "tags_ia": ["string (5 palabras clave)"],
+  "apto_embarazo": "SI" o "NO" o "PRECAUCION",
+  "apto_lactancia": "SI" o "NO" o "PRECAUCION",
+  "apto_pediatria": "SI" o "NO" o "PRECAUCION",
+  "apto_diabeticos": "SI" o "NO" o "PRECAUCION",
+  "apto_hipertensos": "SI" o "NO" o "PRECAUCION",
+  "apto_celiacos": "SI" o "NO" o "PRECAUCION",
+  "sugerencia_complementaria": "string (consejo breve)"
+}
+
+Reglas:
+- Devuelve SOLO el JSON, sin bloques de código markdown (\`\`\`).
+- Si no encuentras un dato, usa "No especificado" o un array vacío.
+- Para los campos "apto_*", usa estrictamente "SI", "NO" o "PRECAUCION".
+
+Texto a analizar:
+${rawText.substring(0, 2500)}
+`;
+
+    try {
+      const response = await this.webLlmEngine.chat.completions.create({
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.1, // Baja temperatura para JSON determinista
+      });
+
+      let content = response.choices[0].message.content || '{}';
+      // Limpiar markdown residual si el modelo lo incluye por error
+      content = content.replace(/```json/g, '').replace(/```/g, '').trim();
+      
+      const data = JSON.parse(content);
+      
+      // Asegurar campos requeridos
+      data.vectores = [];
+      data.skus_relacionados = [];
+      
+      return data as Product;
+    } catch (e) {
+      console.error('[AIService] Error estructurando producto:', e);
+      return null;
+    }
+  }
+
   static async analyze(query: string, products: Product[]): Promise<string> {
     const context = products.map(p => 
       `Medicamento: ${p.nombre_comercial}\n` +

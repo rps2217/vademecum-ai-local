@@ -1,14 +1,31 @@
 import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
 import { useHardwareDetection } from './hooks/useHardwareDetection';
 import { SearchModule } from './modules/search/SearchModule';
-import { Activity, ShieldCheck, Cpu } from 'lucide-react';
+import { Activity, ShieldCheck, Cpu, DownloadCloud } from 'lucide-react';
+import { WebScraperManager } from './services/WebScraperManager';
+import { ScraperProgress } from './components/scraper/ScraperProgress';
 
 function Dashboard() {
   const { hardware } = useHardwareDetection();
 
+  const handleStartBackgroundSync = () => {
+    WebScraperManager.startBackgroundSync();
+  };
+
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      <header className="mb-12 text-center">
+      <header className="mb-12 text-center relative">
+        <div className="absolute right-0 top-0">
+          <button
+            onClick={handleStartBackgroundSync}
+            className="hidden md:flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-700 rounded-xl text-sm font-medium transition-colors border border-slate-200 hover:border-indigo-200 shadow-sm"
+            title="Extraer nuevos productos desde la web en segundo plano"
+          >
+            <DownloadCloud className="w-4 h-4" />
+            Auto-Scraping Web
+          </button>
+        </div>
+
         <div className="inline-flex items-center justify-center p-3 bg-indigo-100 rounded-2xl mb-6">
           <Activity className="w-8 h-8 text-indigo-600" />
         </div>
@@ -90,6 +107,8 @@ function Dashboard() {
           )}
         </div>
       </div>
+
+      <ScraperProgress />
     </div>
   );
 }
