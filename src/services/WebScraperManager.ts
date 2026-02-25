@@ -1,5 +1,6 @@
 import { AIService } from './AIService';
 import { getDB } from '../core/database/db';
+import { HardwareProfile } from '../core/types/hardware.types';
 
 export type ScraperStatus = 'idle' | 'fetching_urls' | 'processing_products' | 'done' | 'error';
 
@@ -27,14 +28,9 @@ export class WebScraperManager {
     }
   }
 
-  static async startBackgroundSync() {
+  static async startBackgroundSync(hardware?: HardwareProfile) {
     if (this.status !== 'idle' && this.status !== 'done' && this.status !== 'error') {
       console.warn('El scraper ya está en ejecución.');
-      return;
-    }
-
-    if (!AIService.getStatus().isReady) {
-      this.notify('Esperando a que la IA Local se inicialice...');
       return;
     }
 
@@ -43,6 +39,28 @@ export class WebScraperManager {
     this.processedCount = 0;
     this.totalCount = 0;
     this.notify('Iniciando sincronización en segundo plano...');
+
+    if (!AIService.getStatus().isReady) {
+      this.notify('Inicializando motor de IA Local para estructurar datos...');
+      try {
+        AIService.setProgressCallback((text, progress) => {
+          this.notify(`IA Local: ${text} (${Math.round(progress)}%)`);
+        });
+        
+        await AIService.initialize(hardware || {
+          memoryGB: 8,
+          hasGPU: false,
+          gpuName: '',
+          logicalProcessors: 4,
+          aiModelTier: 'LOW'
+        });
+      } catch (error) {
+        console.error('Error inicializando IA para scraper:', error);
+        this.status = 'error';
+        this.notify('Error al inicializar la IA Local.');
+        return;
+      }
+    }
 
     if (!this.worker) {
       this.worker = new Worker(new URL('../workers/scraper.worker.ts', import.meta.url), { type: 'module' });

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
+import { useHardwareDetection } from './hooks/useHardwareDetection';
 import { SearchModule } from './modules/search/SearchModule';
 import { DatabaseModule } from './modules/database/DatabaseModule';
 import { SettingsModule } from './modules/settings/SettingsModule';
@@ -11,9 +12,10 @@ import { FloatingTray } from './components/tray/FloatingTray';
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState<'search' | 'database' | 'settings'>('search');
+  const { hardware } = useHardwareDetection();
 
   const handleStartBackgroundSync = () => {
-    WebScraperManager.startBackgroundSync();
+    WebScraperManager.startBackgroundSync(hardware || undefined);
   };
 
   return (
