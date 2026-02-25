@@ -1,12 +1,16 @@
+import React, { useState } from 'react';
 import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
-import { useHardwareDetection } from './hooks/useHardwareDetection';
 import { SearchModule } from './modules/search/SearchModule';
-import { Activity, ShieldCheck, Cpu, DownloadCloud } from 'lucide-react';
+import { DatabaseModule } from './modules/database/DatabaseModule';
+import { SettingsModule } from './modules/settings/SettingsModule';
+import { Activity, DownloadCloud, Search, Database, Settings } from 'lucide-react';
 import { WebScraperManager } from './services/WebScraperManager';
 import { ScraperProgress } from './components/scraper/ScraperProgress';
+import { TrayProvider } from './context/TrayContext';
+import { FloatingTray } from './components/tray/FloatingTray';
 
 function Dashboard() {
-  const { hardware } = useHardwareDetection();
+  const [activeTab, setActiveTab] = useState<'search' | 'database' | 'settings'>('search');
 
   const handleStartBackgroundSync = () => {
     WebScraperManager.startBackgroundSync();
@@ -14,7 +18,7 @@ function Dashboard() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      <header className="mb-12 text-center relative">
+      <header className="mb-8 text-center relative">
         <div className="absolute right-0 top-0">
           <button
             onClick={handleStartBackgroundSync}
@@ -37,78 +41,48 @@ function Dashboard() {
         </p>
       </header>
 
-      {/* Módulo Principal de Búsqueda */}
-      <div className="mb-16">
-        <SearchModule />
+      {/* Navegación Principal */}
+      <div className="flex justify-center mb-12">
+        <div className="inline-flex bg-slate-100 p-1.5 rounded-2xl">
+          <button
+            onClick={() => setActiveTab('search')}
+            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              activeTab === 'search' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
+            }`}
+          >
+            <Search className="w-4 h-4" />
+            Buscador
+          </button>
+          <button
+            onClick={() => setActiveTab('database')}
+            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              activeTab === 'database' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
+            }`}
+          >
+            <Database className="w-4 h-4" />
+            Base de Datos
+          </button>
+          <button
+            onClick={() => setActiveTab('settings')}
+            className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              activeTab === 'settings' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
+            }`}
+          >
+            <Settings className="w-4 h-4" />
+            Configuración
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {/* Tarjeta de Estado del Sistema */}
-        <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-          <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <div className="p-2 bg-emerald-100 rounded-lg">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
-            </div>
-            Estado del Sistema
-          </h2>
-          
-          <div className="space-y-4 text-sm">
-            <div className="flex justify-between items-center py-3 border-b border-slate-100">
-              <span className="text-slate-500 font-medium">Base de Datos</span>
-              <span className="font-semibold text-slate-900 bg-slate-100 px-3 py-1 rounded-full">IndexedDB (Lista)</span>
-            </div>
-            <div className="flex justify-between items-center py-3 border-b border-slate-100">
-              <span className="text-slate-500 font-medium">Modo de Operación</span>
-              <span className="font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Local-First (Offline)</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Tarjeta de Perfil de Hardware */}
-        <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-          <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <div className="p-2 bg-indigo-100 rounded-lg">
-              <Cpu className="w-5 h-5 text-indigo-600" />
-            </div>
-            Perfil de Hardware (IA)
-          </h2>
-          
-          {hardware ? (
-            <div className="space-y-4 text-sm">
-              <div className="flex justify-between items-center py-3 border-b border-slate-100">
-                <span className="text-slate-500 font-medium">Memoria RAM Estimada</span>
-                <span className="font-semibold text-slate-900">{hardware.memoryGB} GB</span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-slate-100">
-                <span className="text-slate-500 font-medium">Aceleración GPU</span>
-                <span className="font-semibold text-slate-900">
-                  {hardware.hasGPU ? `Sí (${hardware.gpuName})` : 'No detectada'}
-                </span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-slate-100">
-                <span className="text-slate-500 font-medium">Motor de IA Asignado</span>
-                <span className={`font-semibold px-3 py-1 rounded-full border ${
-                  hardware.aiModelTier === 'HIGH' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' :
-                  hardware.aiModelTier === 'LOW' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                  'bg-slate-50 text-slate-700 border-slate-200'
-                }`}>
-                  {hardware.aiModelTier === 'HIGH' ? 'WebLLM (GPU)' : 
-                   hardware.aiModelTier === 'LOW' ? 'Transformers.js (CPU)' : 'Sin IA Local'}
-                </span>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center h-32 text-sm text-slate-500">
-              <div className="animate-pulse flex flex-col items-center gap-2">
-                <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-                Cargando perfil...
-              </div>
-            </div>
-          )}
-        </div>
+      {/* Contenido Dinámico */}
+      <div className="mb-16">
+        {activeTab === 'search' && <SearchModule />}
+        {activeTab === 'database' && <DatabaseModule />}
+        {activeTab === 'settings' && <SettingsModule />}
       </div>
 
       <ScraperProgress />
+      <FloatingTray />
     </div>
   );
 }
@@ -116,7 +90,9 @@ function Dashboard() {
 export default function App() {
   return (
     <AppBootstrapper>
-      <Dashboard />
+      <TrayProvider>
+        <Dashboard />
+      </TrayProvider>
     </AppBootstrapper>
   );
 }

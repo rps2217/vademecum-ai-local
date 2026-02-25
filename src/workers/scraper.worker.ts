@@ -1,6 +1,24 @@
 // Worker para extraer HTML en segundo plano sin bloquear la UI
 const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
 
+// Función auxiliar para reintentos con exponential backoff
+async function fetchWithRetry(url: string, maxRetries = 3): Promise<string> {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const res = await fetch(CORS_PROXY + encodeURIComponent(url) + `&t=${Date.now()}`);
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return await res.text();
+    } catch (error) {
+      if (i === maxRetries - 1) throw error;
+      // Esperar 2s, 4s, 8s...
+      const delay = Math.pow(2, i) * 2000;
+      self.postMessage({ type: 'LOG', message: `Reintentando conexión (${i + 1}/${maxRetries})...` });
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  throw new Error('Max retries reached');
+}
+
 self.onmessage = async (e) => {
   const { type, payload } = e.data;
 
@@ -9,26 +27,20 @@ self.onmessage = async (e) => {
       const url = payload.url;
       self.postMessage({ type: 'LOG', message: `Explorando categoría...` });
       
-      const res = await fetch(CORS_PROXY + encodeURIComponent(url) + `&t=${Date.now()}`);
-      if (!res.ok) throw new Error('Error de red al acceder a la categoría');
-      
-      const html = await res.text();
+      const html = await fetchWithRetry(url);
       self.postMessage({ type: 'CATEGORY_HTML', payload: { html, url } });
     } catch (error: any) {
-      self.postMessage({ type: 'ERROR', message: error.message });
+      self.postMessage({ type: 'ERROR', message: `Fallo al acceder a categoría: ${error.message}` });
     }
   } 
   
   else if (type === 'FETCH_PRODUCT') {
     try {
       const url = payload.url;
-      const res = await fetch(CORS_PROXY + encodeURIComponent(url) + `&t=${Date.now()}`);
-      if (!res.ok) throw new Error('Error de red al acceder al producto');
-      
-      const html = await res.text();
+      const html = await fetchWithRetry(url);
       self.postMessage({ type: 'PRODUCT_HTML', payload: { html, url } });
     } catch (error: any) {
-      self.postMessage({ type: 'ERROR', message: error.message });
+      self.postMessage({ type: 'ERROR', message: `Fallo al acceder al producto: ${error.message}` });
     }
   }
 };

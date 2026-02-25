@@ -70,7 +70,7 @@ export class WebScraperManager {
         }
       }
       else if (type === 'CATEGORY_HTML') {
-        this.handleCategoryHtml(payload.html);
+        await this.handleCategoryHtml(payload.html);
       }
       else if (type === 'PRODUCT_HTML') {
         await this.handleProductHtml(payload.html, payload.url);
@@ -78,7 +78,7 @@ export class WebScraperManager {
     };
   }
 
-  private static handleCategoryHtml(html: string) {
+  private static async handleCategoryHtml(html: string) {
     this.notify('Extrayendo URLs de productos...');
     
     // Usar DOMParser nativo del navegador para extraer URLs
@@ -88,25 +88,47 @@ export class WebScraperManager {
     // Selectores comunes en e-commerce (ajustar según el sitio)
     const links = doc.querySelectorAll('a.product-item-link, .vtex-product-summary-2-x-clearLink');
     
+    const extractedUrls: string[] = [];
     links.forEach(link => {
       const href = link.getAttribute('href');
       if (href) {
         const fullUrl = href.startsWith('http') ? href : `https://www.farmaciasknop.com${href}`;
-        if (!this.productQueue.includes(fullUrl)) {
-          this.productQueue.push(fullUrl);
+        if (!extractedUrls.includes(fullUrl)) {
+          extractedUrls.push(fullUrl);
         }
       }
     });
+
+    // Filtrar URLs que ya existen en la base de datos
+    try {
+      const db = await getDB();
+      const existingProducts = await db.getAll('products');
+      
+      // Extraemos todas las URLs que ya hemos procesado
+      const existingUrls = existingProducts
+        .map(p => p.source_url)
+        .filter(Boolean) as string[];
+      
+      this.productQueue = extractedUrls.filter(url => !existingUrls.includes(url));
+      
+      if (existingUrls.length > 0) {
+         this.notify(`Filtrando... ${existingUrls.length} productos ya existen en la base de datos local.`);
+      }
+
+    } catch (e) {
+      console.error('Error verificando DB:', e);
+      this.productQueue = extractedUrls;
+    }
 
     this.totalCount = this.productQueue.length;
     
     if (this.totalCount > 0) {
       this.status = 'processing_products';
-      this.notify(`Se encontraron ${this.totalCount} productos. Iniciando IA...`);
+      this.notify(`Se encontraron ${this.totalCount} productos NUEVOS. Iniciando IA...`);
       this.processNextProduct();
     } else {
       this.status = 'done';
-      this.notify('No se encontraron productos nuevos.');
+      this.notify('No se encontraron productos nuevos. Catálogo actualizado.');
     }
   }
 
@@ -140,6 +162,9 @@ export class WebScraperManager {
 
     if (structuredProduct) {
       try {
+        // Guardar la URL de origen para evitar re-scraping futuro
+        structuredProduct.source_url = url;
+        
         // Guardar en IndexedDB
         const db = await getDB();
         await db.put('products', structuredProduct);

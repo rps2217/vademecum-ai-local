@@ -117,15 +117,41 @@ ${rawText.substring(0, 2500)}
 
   static async analyze(query: string, products: Product[]): Promise<string> {
     const context = products.map(p => 
-      `Medicamento: ${p.nombre_comercial}\n` +
-      `Principios Activos: ${p.principios_activos.join(', ')}\n` +
-      `Indicaciones: ${p.indicaciones.join(', ')}\n` +
-      `Advertencias: ${p.advertencias}\n` +
-      `Sugerencia: ${p.sugerencia_complementaria}`
-    ).join('\n\n---\n\n');
+      `MEDICAMENTO: ${p.nombre_comercial}\n` +
+      `- Principios Activos: ${p.principios_activos.join(', ')}\n` +
+      `- Indicaciones: ${p.indicaciones.join(', ')}\n` +
+      `- Advertencias y Contraindicaciones: ${p.advertencias}\n` +
+      `- Sugerencia Complementaria: ${p.sugerencia_complementaria}`
+    ).join('\n\n');
 
-    const systemPrompt = "Eres un asistente farmacéutico experto. Responde a la consulta basándote ESTRICTAMENTE en la información proporcionada de los medicamentos. Si hay múltiples medicamentos, presta especial atención a posibles interacciones, duplicidad terapéutica o contraindicaciones cruzadas. Sé conciso y profesional.";
-    const userPrompt = `Contexto de los medicamentos:\n${context}\n\nConsulta del farmacéutico: ${query}`;
+    const isPolypharmacy = products.length > 1;
+
+    const systemPrompt = `Eres un Farmacéutico Clínico Experto. Tu tarea es analizar la información proporcionada y responder a la consulta del usuario.
+    
+REGLAS ESTRICTAS:
+1. Basa tu análisis ÚNICAMENTE en los medicamentos proporcionados en el contexto. No inventes interacciones que no estén documentadas o no se deriven lógicamente de los principios activos.
+2. Si hay múltiples medicamentos (polifarmacia), tu prioridad absoluta es identificar:
+   - Interacciones farmacológicas (ej. inhibición enzimática, sinergia tóxica).
+   - Duplicidad terapéutica (ej. dos medicamentos para el mismo síntoma).
+   - Contraindicaciones cruzadas.
+3. Utiliza un tono profesional, directo y clínico.
+4. Formatea tu respuesta usando Markdown para facilitar la lectura rápida.
+
+ESTRUCTURA OBLIGATORIA DE TU RESPUESTA (Usa estos encabezados exactos si aplica):
+${isPolypharmacy ? `
+### 🔴 Alertas Críticas
+(Interacciones graves o contraindicaciones absolutas. Si no hay, escribe "No se detectaron alertas críticas evidentes".)
+
+### 🟡 Precauciones y Duplicidades
+(Interacciones moderadas, duplicidad de efectos, o ajustes sugeridos.)
+
+### 🟢 Perfil de Seguridad
+(Aspectos seguros o sinergias positivas.)
+` : ''}
+### 📝 Recomendación Clínica
+(Respuesta directa a la consulta del usuario y consejos de dispensación/toma para el paciente.)`;
+
+    const userPrompt = `CONTEXTO DE LOS MEDICAMENTOS:\n${context}\n\nCONSULTA DEL USUARIO: ${query}`;
 
     try {
       if (this.webLlmEngine) {
@@ -134,7 +160,7 @@ ${rawText.substring(0, 2500)}
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userPrompt }
           ],
-          temperature: 0.2,
+          temperature: 0.2, // Baja temperatura para respuestas clínicas precisas
         });
         return reply.choices[0].message.content || 'No se pudo generar una respuesta.';
       }
@@ -145,7 +171,7 @@ ${rawText.substring(0, 2500)}
           { role: 'user', content: userPrompt }
         ];
         const text = this.transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
-        const result = await this.transformersPipeline(text, { max_new_tokens: 256, temperature: 0.2 });
+        const result = await this.transformersPipeline(text, { max_new_tokens: 512, temperature: 0.2 });
         
         // Extraer solo la respuesta del asistente
         const generatedText = result[0].generated_text;
@@ -159,11 +185,8 @@ ${rawText.substring(0, 2500)}
     // Fallback / Mock si falla la carga o no hay hardware soportado
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Generar una respuesta simulada inteligente basada en el contexto
     const productNames = products.map(p => p.nombre_comercial).join(' y ');
-    const warnings = products.map(p => p.advertencias).join(' Además, ');
-    
-    return `[Modo Simulación - IA Local Offline]\n\nHe analizado la consulta sobre ${productNames}.\n\nBasado en el vademécum:\n- Tenga en cuenta las siguientes advertencias: ${warnings}.\n- Asegúrese de revisar las contraindicaciones específicas para el paciente antes de la dispensación.`;
+    return `### 🔴 Alertas Críticas\n[Modo Simulación] No se puede garantizar un análisis preciso sin el motor de IA local.\n\n### 📝 Recomendación Clínica\nHe recibido la consulta sobre **${productNames}**. Por favor, revise manualmente las advertencias de cada prospecto antes de la dispensación.`;
   }
 
   static getStatus() {

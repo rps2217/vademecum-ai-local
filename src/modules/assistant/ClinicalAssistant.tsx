@@ -3,7 +3,7 @@ import { Product } from '../../core/types/product.types';
 import { AIService } from '../../services/AIService';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { Send, Bot, User, Loader2, Sparkles, AlertCircle } from 'lucide-react';
-import { Input } from '../../components/ui/input';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   id: string;
@@ -115,11 +115,17 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
               {msg.role === 'user' ? <User className="w-4 h-4" /> : 
                msg.role === 'system' ? <AlertCircle className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
             </div>
-            <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
+            <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
               msg.role === 'user' ? 'bg-slate-800 text-white rounded-tr-none' : 
               msg.role === 'system' ? 'bg-red-50 text-red-800 border border-red-200 rounded-tl-none' : 'bg-white border border-slate-200 text-slate-700 rounded-tl-none shadow-sm'
             }`}>
-              <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+              {msg.role === 'user' ? (
+                <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
+              ) : (
+                <div className="prose prose-sm prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-p:leading-relaxed prose-li:marker:text-indigo-500">
+                  <ReactMarkdown>{msg.content}</ReactMarkdown>
+                </div>
+              )}
             </div>
           </div>
         ))}

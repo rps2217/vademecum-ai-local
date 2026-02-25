@@ -26,4 +26,7 @@ export interface Product {
   // Sinergia
   sugerencia_complementaria: string;
   skus_relacionados: string[];
+  
+  // Metadatos del Scraper
+  source_url?: string;
 }

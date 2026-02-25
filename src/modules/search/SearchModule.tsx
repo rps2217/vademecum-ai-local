@@ -1,31 +1,23 @@
 import React, { useState } from 'react';
 import { useProductSearch } from '../../hooks/useProductSearch';
 import { ProductCard } from '../../components/product/ProductCard';
-import { Input } from '../../components/ui/input';
-import { Search, Loader2, Database, Sparkles, X } from 'lucide-react';
+import { Search, Loader2, Database, Sparkles } from 'lucide-react';
 import { Product } from '../../core/types/product.types';
 import { ProductDetailModal } from '../product/ProductDetailModal';
-import { PrescriptionAnalysisModal } from '../product/PrescriptionAnalysisModal';
+import { useTray } from '../../context/TrayContext';
 
 export const SearchModule: React.FC = () => {
   const { query, setQuery, results, isSearching } = useProductSearch();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   
-  // Estado para la "Bandeja" de medicamentos
-  const [tray, setTray] = useState<Product[]>([]);
-  const [isAnalysisModalOpen, setIsAnalysisModalOpen] = useState(false);
+  const { toggleProduct, isInTray } = useTray();
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
   };
 
   const handleAddToTray = (product: Product) => {
-    setTray(prev => {
-      if (prev.find(p => p.sku === product.sku)) {
-        return prev.filter(p => p.sku !== product.sku); // Toggle off
-      }
-      return [...prev, product]; // Toggle on
-    });
+    toggleProduct(product);
   };
 
   return (
@@ -78,7 +70,7 @@ export const SearchModule: React.FC = () => {
                   product={product} 
                   onViewDetail={handleProductClick}
                   onAddToTray={handleAddToTray}
-                  isInTray={tray.some(p => p.sku === product.sku)}
+                  isInTray={isInTray(product.sku)}
                 />
               ))}
             </div>
@@ -96,52 +88,11 @@ export const SearchModule: React.FC = () => {
         )}
       </div>
 
-      {/* Bandeja Flotante de Análisis */}
-      {tray.length > 0 && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-2xl border border-slate-200 p-2 flex items-center gap-4 z-40 animate-in slide-in-from-bottom-10">
-          <div className="flex items-center gap-2 px-4">
-            <div className="flex -space-x-2">
-              {tray.map(p => (
-                <div key={p.sku} className="w-8 h-8 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-xs font-bold text-indigo-700" title={p.nombre_comercial}>
-                  {p.nombre_comercial.substring(0, 2).toUpperCase()}
-                </div>
-              ))}
-            </div>
-            <span className="text-sm font-medium text-slate-700 ml-2">
-              {tray.length} medicamento{tray.length > 1 ? 's' : ''}
-            </span>
-          </div>
-          <button
-            onClick={() => setIsAnalysisModalOpen(true)}
-            disabled={tray.length < 2}
-            className="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            <Sparkles className="w-4 h-4" />
-            {tray.length < 2 ? 'Selecciona otro para comparar' : 'Analizar Interacciones'}
-          </button>
-          <button
-            onClick={() => setTray([])}
-            className="p-2.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors mr-1"
-            title="Limpiar selección"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      )}
-
       {/* Modal de Detalle Individual */}
       {selectedProduct && (
         <ProductDetailModal 
           product={selectedProduct} 
           onClose={() => setSelectedProduct(null)} 
-        />
-      )}
-
-      {/* Modal de Análisis Cruzado (Múltiples) */}
-      {isAnalysisModalOpen && (
-        <PrescriptionAnalysisModal
-          products={tray}
-          onClose={() => setIsAnalysisModalOpen(false)}
         />
       )}
     </div>
