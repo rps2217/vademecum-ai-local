@@ -1,18 +1,27 @@
 // Worker para extraer HTML en segundo plano sin bloquear la UI
-const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+const CORS_PROXIES = [
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?',
+  'https://thingproxy.freeboard.io/fetch/'
+];
 
-// Función auxiliar para reintentos con exponential backoff
+// Función auxiliar para reintentos con exponential backoff y rotación de proxies
 async function fetchWithRetry(url: string, maxRetries = 3): Promise<string> {
   for (let i = 0; i < maxRetries; i++) {
+    // Rotar proxies en cada intento
+    const proxy = CORS_PROXIES[i % CORS_PROXIES.length];
+    const targetUrl = proxy + encodeURIComponent(url);
+    
     try {
-      const res = await fetch(CORS_PROXY + encodeURIComponent(url) + `&t=${Date.now()}`);
+      const res = await fetch(targetUrl);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return await res.text();
     } catch (error) {
       if (i === maxRetries - 1) throw error;
+      
       // Esperar 2s, 4s, 8s...
-      const delay = Math.pow(2, i) * 2000;
-      self.postMessage({ type: 'LOG', message: `Reintentando conexión (${i + 1}/${maxRetries})...` });
+      const delay = Math.pow(2, i) * 1000;
+      self.postMessage({ type: 'LOG', message: `Reintentando con proxy alternativo (${i + 1}/${maxRetries})...` });
       await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
