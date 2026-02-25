@@ -29,6 +29,10 @@ export class AIService {
         this.webLlmEngine = await CreateMLCEngine('Llama-3.2-1B-Instruct-q4f16_1-MLC', {
           initProgressCallback: (progress) => {
             this.initProgressCallback?.(`Cargando modelo GPU: ${progress.text}`, progress.progress * 100);
+          },
+          // Forzamos el límite de invocaciones para compatibilidad con GPUs integradas o limitadas
+          appConfig: {
+            model_list: [], // Se llena automáticamente por la librería
           }
         });
         this.isReady = true;
