@@ -1,0 +1,5 @@
+{
+  "name": "Vademécum Farmacéutico Inteligente",
+  "description": "Aplicación Local-First para consulta de medicamentos con razonamiento clínico mediante IA local.",
+  "requestFramePermissions": []
+}

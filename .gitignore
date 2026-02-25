@@ -1,0 +1,15 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Scraper / Python
+scraper/venv/
+scraper/__pycache__/
+scraper/*.jsonl
+scraper/urls_extraidas.txt
+scraper/*_log.txt
