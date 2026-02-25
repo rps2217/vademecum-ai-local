@@ -32,11 +32,18 @@ export class AIService {
           // aunque consume un poco más de memoria, funciona en más dispositivos.
           const modelId = 'Llama-3.2-1B-Instruct-q4f32_1-MLC';
           
-          this.webLlmEngine = await CreateMLCEngine(modelId, {
+          // Race condition: si la GPU tarda demasiado (ej. compilando shaders), forzamos fallback
+          const initPromise = CreateMLCEngine(modelId, {
             initProgressCallback: (progress) => {
               this.initProgressCallback?.(`Cargando modelo GPU: ${progress.text}`, progress.progress * 100);
             }
           });
+
+          const timeoutPromise = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('GPU Initialization Timeout')), 30000)
+          );
+
+          this.webLlmEngine = await Promise.race([initPromise, timeoutPromise]) as MLCEngine;
           
           this.isReady = true;
           gpuSuccess = true;
