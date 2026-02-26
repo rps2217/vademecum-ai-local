@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
 import { SearchModule } from './modules/search/SearchModule';
 import { DatabaseModule } from './modules/database/DatabaseModule';
@@ -10,6 +10,7 @@ import { TrayProvider } from './context/TrayContext';
 import { FloatingTray } from './components/tray/FloatingTray';
 import { SplashScreen } from './components/SplashScreen';
 import { HardwareProfile } from './core/types/hardware.types';
+import { AIService } from './services/AIService';
 
 interface DashboardProps {
   hardware: HardwareProfile;
@@ -17,6 +18,12 @@ interface DashboardProps {
 
 function Dashboard({ hardware }: DashboardProps) {
   const [activeTab, setActiveTab] = useState<'search' | 'database' | 'settings'>('search');
+
+  useEffect(() => {
+    if (hardware) {
+      AIService.initialize(hardware);
+    }
+  }, [hardware]);
 
   const handleStartBackgroundSync = () => {
     WebScraperManager.startBackgroundSync(hardware);
