@@ -17,7 +17,6 @@ export const SystemDiagnostics: React.FC = () => {
   const [tests, setTests] = useState<TestResult[]>([
     { id: 'db', name: 'Base de Datos (IndexedDB)', status: 'pending' },
     { id: 'ai', name: 'Motor de IA (Inferencia)', status: 'pending' },
-    { id: 'scraper', name: 'Conectividad Web (Proxies)', status: 'pending' },
   ]);
 
   const updateTest = (id: string, updates: Partial<TestResult>) => {
@@ -109,40 +108,10 @@ export const SystemDiagnostics: React.FC = () => {
       updateTest('ai', { status: 'error', message: 'Fallo crítico de IA', details: e.message });
     }
 
-    // 3. Test Web Scraper (Connectivity)
-    updateTest('scraper', { status: 'running', message: 'Probando proxies CORS...' });
-    try {
-      const worker = new Worker(new URL('../../workers/scraper.worker.ts', import.meta.url), { type: 'module' });
-      
-      const result = await new Promise<{ success: boolean, message: string }>((resolve, reject) => {
-        const timeout = setTimeout(() => {
-          worker.terminate();
-          reject(new Error('Timeout: Los proxies tardaron demasiado en responder.'));
-        }, 15000); // 15s timeout
-
-        worker.onmessage = (e) => {
-          const { type, payload } = e.data;
-          if (type === 'TEST_RESULT') {
-            clearTimeout(timeout);
-            resolve(payload);
-          }
-        };
-
-        worker.postMessage({ type: 'TEST_CONNECTION' });
-      });
-
-      worker.terminate();
-
-      if (result.success) {
-        updateTest('scraper', { status: 'success', message: result.message });
-      } else {
-        throw new Error(result.message);
-      }
-
-    } catch (e: any) {
-      updateTest('scraper', { status: 'error', message: 'Fallo de conectividad', details: e.message });
-    }
-
+    // 3. Test Web Scraper (Connectivity) - ELIMINADO POR OBSOLESCENCIA
+    // El scraping web directo desde el cliente es inestable debido a CORS y proxies.
+    // Se reemplaza por un módulo de Importación Asistida por IA.
+    
     setIsRunning(false);
   };
 
@@ -205,6 +174,15 @@ export const SystemDiagnostics: React.FC = () => {
                 {test.details && (
                   <div className="mt-2 p-2 bg-red-500/5 border border-red-500/10 rounded text-xs text-red-300 font-mono break-all">
                     {test.details}
+                    {test.id === 'ai' && test.status === 'error' && (
+                        <button 
+                            onClick={(e) => { e.stopPropagation(); handlePurgeCache(); }}
+                            className="mt-2 w-full py-1.5 bg-red-600 hover:bg-red-500 text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-2"
+                        >
+                            <Trash2 className="w-3 h-3" />
+                            REPARAR MODELOS DAÑADOS
+                        </button>
+                    )}
                   </div>
                 )}
               </div>

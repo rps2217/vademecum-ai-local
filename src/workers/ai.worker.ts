@@ -47,15 +47,42 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
 
 async function purgeCache() {
   try {
-    // Intentar borrar caché de Transformers.js
+    console.log('[Worker] Iniciando purga completa de caché...');
+
+    // 1. Borrar TODO el Cache Storage (Nuclear option)
+    // Esto es necesario porque los nombres de caché pueden variar o estar corruptos
     if ('caches' in self) {
       const keys = await caches.keys();
       for (const key of keys) {
-        if (key.includes('transformers') || key.includes('onnx')) {
-          await caches.delete(key);
-        }
+        console.log(`[Worker] Borrando caché: ${key}`);
+        await caches.delete(key);
       }
     }
+
+    // 2. Borrar bases de datos IndexedDB específicas de IA
+    try {
+        if (self.indexedDB && self.indexedDB.databases) {
+            const dbs = await self.indexedDB.databases();
+            for (const db of dbs) {
+                if (db.name) {
+                    // Borrar DBs de Transformers.js, WebLLM y ONNX
+                    if (db.name.includes('transformers') || 
+                        db.name.includes('onnx') || 
+                        db.name.includes('webllm') ||
+                        db.name.includes('model') // Catch-all para modelos
+                    ) {
+                        console.log(`[Worker] Borrando DB: ${db.name}`);
+                        const req = self.indexedDB.deleteDatabase(db.name);
+                        req.onsuccess = () => console.log(`[Worker] DB ${db.name} borrada.`);
+                        req.onerror = () => console.error(`[Worker] Error borrando DB ${db.name}`);
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('[Worker] No se pudo listar/borrar IndexedDB:', e);
+    }
+
     self.postMessage({ type: 'PURGE_COMPLETE', success: true });
   } catch (e: any) {
     self.postMessage({ type: 'PURGE_COMPLETE', success: false, error: e.message });
@@ -140,7 +167,8 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       } catch (cpuError: any) {
         // Manejo específico del error "offset is out of bounds"
         if (cpuError.message && cpuError.message.includes('offset is out of bounds')) {
-           throw new Error('Error de memoria o caché corrupta. Por favor recarga la página.');
+           // Lanzamos un error muy específico para que la UI sepa qué sugerir
+           throw new Error('CORRUPTED_CACHE: El modelo descargado está dañado. Por favor usa el botón "Reinstalar Modelos".');
         }
         throw cpuError;
       } finally {
