@@ -313,6 +313,62 @@ ${isPolypharmacy ? `
     return `### 🔴 Alertas Críticas\n[Modo Simulación] No se puede garantizar un análisis preciso sin el motor de IA local.\n\n### 📝 Recomendación Clínica\nHe recibido la consulta sobre **${productNames}**. Por favor, revise manualmente las advertencias de cada prospecto antes de la dispensación.`;
   }
 
+  static async runHealthCheck(): Promise<{ ok: boolean; engine: string; response?: string; error?: string }> {
+    if (!this.isReady) {
+      return { ok: false, engine: 'Ninguno', error: 'El servicio no está listo (isReady = false). Intente recargar.' };
+    }
+
+    try {
+      if (this.webLlmEngine) {
+        const start = performance.now();
+        // Test simple para GPU
+        const reply = await this.webLlmEngine.chat.completions.create({
+          messages: [{ role: 'user', content: 'Responde solo con la palabra: FUNCIONAL' }],
+          temperature: 0.1,
+          max_tokens: 10
+        });
+        const duration = Math.round(performance.now() - start);
+        const content = reply.choices[0].message.content || '';
+        
+        if (content.length > 0) {
+            return { 
+                ok: true, 
+                engine: `WebLLM (GPU) - Latencia: ${duration}ms`, 
+                response: content 
+            };
+        }
+      } 
+      
+      if (this.transformersPipeline) {
+        const start = performance.now();
+        // Test simple para CPU
+        const messages = [{ role: 'user', content: 'Di "FUNCIONAL"' }];
+        const prompt = this.transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
+        
+        const output = await this.transformersPipeline(prompt, { 
+          max_new_tokens: 10,
+          do_sample: false 
+        });
+        
+        const duration = Math.round(performance.now() - start);
+        const text = output[0].generated_text;
+        const response = text.split('<|assistant|>')[1]?.trim() || text;
+
+        if (response.length > 0) {
+            return { 
+                ok: true, 
+                engine: `Transformers.js (CPU) - Latencia: ${duration}ms`, 
+                response: response 
+            };
+        }
+      }
+
+      return { ok: false, engine: 'Ninguno', error: 'Motor instanciado pero no generó respuesta.' };
+    } catch (e: any) {
+      return { ok: false, engine: 'Error Crítico', error: e.message };
+    }
+  }
+
   static getStatus() {
     return {
       isReady: this.isReady,

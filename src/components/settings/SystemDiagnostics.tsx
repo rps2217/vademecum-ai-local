@@ -69,26 +69,22 @@ export const SystemDiagnostics: React.FC = () => {
       updateTest('db', { status: 'error', message: 'Fallo en base de datos', details: e.message });
     }
 
-    // 2. Test AI Engine
-    updateTest('ai', { status: 'running', message: 'Enviando prompt de prueba...' });
+    // 2. Test AI Engine (Health Check)
+    updateTest('ai', { status: 'running', message: 'Verificando integridad del modelo...' });
     try {
-      if (!AIService.getStatus().isReady) {
-        throw new Error('El motor de IA no está inicializado.');
-      }
+      const health = await AIService.runHealthCheck();
       
-      // Simple prompt to test inference
-      const response = await AIService.extractProductData(
-        "Producto: Paracetamol 500mg. Indicación: Dolor de cabeza.", 
-        "http://test.com"
-      );
-      
-      if (response && response.nombre_comercial) {
-        updateTest('ai', { status: 'success', message: 'Inferencia completada exitosamente.' });
+      if (health.ok) {
+        updateTest('ai', { 
+            status: 'success', 
+            message: `Modelo Operativo: ${health.engine}`,
+            details: `Respuesta de prueba: "${health.response}"`
+        });
       } else {
-        throw new Error('La IA no devolvió una estructura válida.');
+        throw new Error(health.error || 'El modelo no respondió correctamente.');
       }
     } catch (e: any) {
-      updateTest('ai', { status: 'error', message: 'Fallo en motor de IA', details: e.message });
+      updateTest('ai', { status: 'error', message: 'Fallo crítico de IA', details: e.message });
     }
 
     // 3. Test Web Scraper (Connectivity)
