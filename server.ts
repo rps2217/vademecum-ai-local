@@ -10,6 +10,17 @@ async function startServer() {
   // Middleware para parsear JSON
   app.use(express.json());
 
+  // Logger middleware
+  app.use((req, res, next) => {
+    console.log(`[Server] ${req.method} ${req.url}`);
+    next();
+  });
+
+  // Test Route
+  app.get('/api/test', (req, res) => {
+    res.json({ message: 'Server is alive' });
+  });
+
   // API Route: Scraper Proxy
   app.get('/api/scrape', async (req, res) => {
     const { url } = req.query;

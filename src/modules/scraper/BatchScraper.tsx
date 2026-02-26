@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Search, Loader2, CheckCircle, AlertCircle, Save, Sparkles, Copy, Trash2, Link, Play, Pause, X } from 'lucide-react';
+import { Globe, Search, Loader2, CheckCircle, AlertCircle, Save, Sparkles, Copy, Trash2, Link, Play, Pause, X, Activity } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { Product } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
@@ -195,6 +195,21 @@ export const BatchScraper: React.FC = () => {
             >
                 {isScanning ? <Loader2 className="w-5 h-5 animate-spin" /> : <Globe className="w-5 h-5" />}
                 Escanear Página
+            </button>
+            <button 
+                onClick={async () => {
+                    try {
+                        const res = await fetch('/api/test');
+                        const data = await res.json();
+                        alert(`Conexión exitosa: ${data.message}`);
+                    } catch (e: any) {
+                        alert(`Error de conexión: ${e.message}`);
+                    }
+                }}
+                className="px-4 py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
+                title="Probar conexión con el servidor"
+            >
+                <Activity className="w-5 h-5" />
             </button>
         </div>
         {error && (
