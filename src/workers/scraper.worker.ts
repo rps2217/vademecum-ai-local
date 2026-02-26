@@ -57,4 +57,21 @@ self.onmessage = async (e) => {
       self.postMessage({ type: 'ERROR', message: `Fallo al acceder al producto: ${error.message}` });
     }
   }
+
+  else if (type === 'TEST_CONNECTION') {
+    try {
+      // Intentamos conectar a una URL simple y confiable a través del proxy
+      // Usamos google.com porque es rápido y siempre está arriba
+      const testUrl = 'https://www.google.com'; 
+      const html = await fetchWithRetry(testUrl, 3); // Solo 3 intentos para el test
+      
+      if (html && html.length > 0) {
+        self.postMessage({ type: 'TEST_RESULT', payload: { success: true, message: 'Conexión a través de proxy exitosa.' } });
+      } else {
+        throw new Error('Respuesta vacía');
+      }
+    } catch (error: any) {
+      self.postMessage({ type: 'TEST_RESULT', payload: { success: false, message: `Fallo en prueba de conexión: ${error.message}` } });
+    }
+  }
 };

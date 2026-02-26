@@ -28,12 +28,12 @@ export const SearchModule: React.FC = () => {
           {isSearching ? (
             <Loader2 className="h-5 w-5 text-indigo-500 animate-spin" />
           ) : (
-            <Search className="h-5 w-5 text-slate-400" />
+            <Search className="h-5 w-5 text-slate-500" />
           )}
         </div>
         <input
           type="text"
-          className="block w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl text-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all placeholder:text-slate-400"
+          className="block w-full pl-12 pr-4 py-4 bg-slate-900 border border-slate-800 rounded-2xl text-lg text-white shadow-sm focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all placeholder:text-slate-600"
           placeholder="Buscar por nombre, principio activo, indicación o síntoma..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -41,7 +41,7 @@ export const SearchModule: React.FC = () => {
         
         {/* Indicador de IA (Visual) */}
         <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-medium border border-indigo-100">
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-medium border border-indigo-500/20">
             <Sparkles className="w-3 h-3" />
             Búsqueda Semántica
           </div>
@@ -51,16 +51,16 @@ export const SearchModule: React.FC = () => {
       {/* Resultados */}
       <div className="mt-6">
         {query.trim() === '' ? (
-          <div className="text-center py-20 bg-white rounded-3xl border border-slate-200 border-dashed">
-            <Database className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-slate-900">Vademécum Local Listo</h3>
+          <div className="text-center py-20 bg-slate-900/30 rounded-3xl border border-slate-800 border-dashed">
+            <Database className="w-12 h-12 text-slate-700 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-slate-200">Vademécum Local Listo</h3>
             <p className="text-slate-500 mt-2 max-w-md mx-auto">
               Comienza a escribir para buscar medicamentos. La búsqueda se realiza 100% en tu dispositivo, sin necesidad de conexión a internet.
             </p>
           </div>
         ) : results.length > 0 ? (
           <div>
-            <p className="text-sm text-slate-500 mb-4 font-medium px-2">
+            <p className="text-sm text-slate-400 mb-4 font-medium px-2">
               Se encontraron {results.length} resultados para "{query}"
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -77,9 +77,9 @@ export const SearchModule: React.FC = () => {
           </div>
         ) : (
           !isSearching && (
-            <div className="text-center py-20 bg-white rounded-3xl border border-slate-200">
-              <Search className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-slate-900">No se encontraron resultados</h3>
+            <div className="text-center py-20 bg-slate-900/30 rounded-3xl border border-slate-800">
+              <Search className="w-12 h-12 text-slate-700 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-slate-200">No se encontraron resultados</h3>
               <p className="text-slate-500 mt-2">
                 Intenta con otros términos o verifica la ortografía.
               </p>

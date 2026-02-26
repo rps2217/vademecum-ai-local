@@ -64,23 +64,35 @@ export class AIService {
       if (!gpuSuccess && (hardware.aiModelTier === 'LOW' || hardware.aiModelTier === 'HIGH')) {
         this.initProgressCallback?.('Iniciando Transformers.js (CPU)...', 0);
         
-        // Modelo ligero para CPU
-        this.transformersPipeline = await pipeline('text-generation', 'Xenova/TinyLlama-1.1B-Chat-v1.0', {
-          progress_callback: (progress: any) => {
-            if (progress.status === 'progress') {
-              // Evitar NaN si el servidor no envía content-length (común en algunos entornos)
-              const percent = (progress.total && progress.total > 0) 
-                ? (progress.loaded / progress.total) * 100 
-                : 0;
-              
-              const text = progress.total 
-                ? `Cargando modelo CPU: ${progress.file}` 
-                : `Descargando recursos CPU: ${progress.file}...`;
+        // Supprimir advertencias de content-length del CDN de HuggingFace para mantener la consola limpia
+        const originalWarn = console.warn;
+        console.warn = (...args) => {
+          if (args[0] && typeof args[0] === 'string' && args[0].includes('content-length')) return;
+          originalWarn.apply(console, args);
+        };
 
-              this.initProgressCallback?.(text, percent);
+        try {
+          // Modelo ligero para CPU
+          this.transformersPipeline = await pipeline('text-generation', 'Xenova/TinyLlama-1.1B-Chat-v1.0', {
+            progress_callback: (progress: any) => {
+              if (progress.status === 'progress') {
+                // Evitar NaN si el servidor no envía content-length (común en algunos entornos)
+                const percent = (progress.total && progress.total > 0) 
+                  ? (progress.loaded / progress.total) * 100 
+                  : 0;
+                
+                const text = progress.total 
+                  ? `Cargando modelo CPU: ${progress.file}` 
+                  : `Descargando recursos CPU: ${progress.file}...`;
+
+                this.initProgressCallback?.(text, percent);
+              }
             }
-          }
-        });
+          });
+        } finally {
+          console.warn = originalWarn;
+        }
+        
         this.isReady = true;
         this.initProgressCallback?.('Transformers.js Listo', 100);
       } else if (!gpuSuccess && hardware.aiModelTier === 'NONE') {
