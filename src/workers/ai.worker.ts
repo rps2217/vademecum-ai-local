@@ -146,9 +146,9 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       };
 
       try {
-        // CAMBIO: Usamos un modelo más ligero y estable (LaMini-Flan-T5) en lugar de TinyLlama
-        // Esto reduce drásticamente la probabilidad de corrupción de memoria
-        transformersPipeline = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-248M', {
+        // CAMBIO: Usamos Qwen1.5-0.5B-Chat. Es mucho más inteligente que T5 y TinyLlama
+        // y tiene un tamaño muy contenido (~350MB).
+        transformersPipeline = await pipeline('text-generation', 'Xenova/Qwen1.5-0.5B-Chat', {
           progress_callback: (progress: any) => {
             if (progress.status === 'progress') {
                const percent = (progress.total && progress.total > 0) 
@@ -156,7 +156,7 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
                   : 0;
                self.postMessage({ 
                  type: 'PROGRESS', 
-                 text: progress.file ? `Descargando modelo ligero: ${progress.file}` : 'Descargando...', 
+                 text: progress.file ? `Descargando Motor Inteligente: ${progress.file}` : 'Descargando...', 
                  progress: percent 
                });
             }
@@ -164,7 +164,7 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
         });
         
         isReady = true;
-        self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: 'Transformers.js (CPU - Lite)' });
+        self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: 'Qwen 0.5B (Inteligencia Local)' });
 
       } catch (cpuError: any) {
         // AUTO-REPARACIÓN: Si detectamos corrupción, borramos caché y reintentamos
@@ -224,13 +224,18 @@ Responde SOLO con este JSON:
       });
       content = response.choices[0].message.content || '{}';
     } else if (transformersPipeline) {
-      const promptText = `Extract JSON from text: ${prompt}`;
+      const messages = [
+        { role: 'system', content: 'Extract JSON from medicine text. Respond ONLY with JSON.' },
+        { role: 'user', content: prompt }
+      ];
+      const promptText = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
       const result = await transformersPipeline(promptText, { 
         max_new_tokens: 512, 
         temperature: 0.1,
         do_sample: false
       });
-      content = result[0].generated_text;
+      const genText = result[0].generated_text;
+      content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
     }
 
     self.postMessage({ type: 'EXTRACT_RESULT', payload: { content, url } });
@@ -263,9 +268,14 @@ REGLAS:
             });
             reply = response.choices[0].message.content || '';
         } else if (transformersPipeline) {
-            const promptText = `Analyze clinical context: ${userPrompt}`;
+            const messages = [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userPrompt }
+            ];
+            const promptText = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
             const result = await transformersPipeline(promptText, { max_new_tokens: 512, temperature: 0.2 });
-            reply = result[0].generated_text;
+            const genText = result[0].generated_text;
+            reply = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
         }
         
         self.postMessage({ type: 'ANALYZE_RESULT', payload: reply });
@@ -294,14 +304,15 @@ async function runHealthCheck() {
             });
             response = reply.choices[0].message.content || '';
         } else if (transformersPipeline) {
-            // Simplificamos para modelos Seq2Seq (T5) que no usan chat templates
-            const prompt = 'Responde solo con la palabra: FUNCIONAL';
+            const messages = [{ role: 'user', content: 'Di la palabra: FUNCIONAL' }];
+            const prompt = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
             const output = await transformersPipeline(prompt, { 
                 max_new_tokens: 10, 
                 do_sample: false,
                 temperature: 0.1
             });
-            response = output[0].generated_text?.trim() || '';
+            const text = output[0].generated_text;
+            response = text.split('<|im_start|>assistant\n')[1]?.trim() || text;
         }
 
         const duration = Math.round(performance.now() - start);
