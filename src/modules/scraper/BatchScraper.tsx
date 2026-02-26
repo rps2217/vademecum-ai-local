@@ -37,22 +37,56 @@ export const BatchScraper: React.FC = () => {
     
     try {
       const response = await fetch(`/api/scrape?url=${encodeURIComponent(categoryUrl)}`);
+      
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        console.error("Respuesta no-JSON del servidor:", text);
+        throw new Error(`Error del servidor (No JSON): ${text.substring(0, 100)}...`);
+      }
+
       const data = await response.json();
       
       if (data.success && data.links) {
-        // Filtrar enlaces irrelevantes (heurística simple)
+        // Filtrar enlaces irrelevantes (heurística más estricta)
         const relevantLinks = data.links.filter((l: any) => {
-            const text = l.text.toLowerCase();
-            const href = l.href.toLowerCase();
-            // Excluir enlaces comunes de navegación
-            if (text.length < 3) return false;
-            if (['inicio', 'home', 'contacto', 'login', 'registro', 'carrito', 'mapa', 'política', 'aviso'].some(k => text.includes(k))) return false;
-            if (href === categoryUrl) return false; // Excluir self
+            const text = l.text.toLowerCase().trim();
+            const href = l.href.toLowerCase().trim();
+            
+            // 1. Excluir palabras clave de navegación comunes
+            const forbiddenKeywords = [
+                'inicio', 'home', 'portada', 'contacto', 'login', 'registro', 
+                'carrito', 'mapa', 'política', 'aviso', 'términos', 'condiciones', 
+                'ayuda', 'faq', 'blog', 'nosotros', 'quienes', 'sucursales', 
+                'tiendas', 'mi cuenta', 'ver más', 'leer más', 'click aquí'
+            ];
+            if (forbiddenKeywords.some(k => text === k || text.includes(k))) return false;
+            
+            // 2. Excluir si el texto es muy corto o solo números
+            if (text.length < 4 || /^\d+$/.test(text)) return false;
+            
+            // 3. Excluir si es la misma URL de categoría
+            if (href === categoryUrl || href === categoryUrl + '/') return false;
+            
+            // 4. Excluir si es la raíz del dominio (Home)
+            try {
+                const urlObj = new URL(l.href);
+                // Si no tiene ruta o la ruta es solo '/', es la portada
+                if (urlObj.pathname === '/' || urlObj.pathname === '') return false;
+                
+                // Excluir dominios externos si los hay (por seguridad)
+                const categoryDomain = new URL(categoryUrl).hostname;
+                if (urlObj.hostname !== categoryDomain) return false;
+            } catch(e) { return false; }
+
             return true;
         }).map((l: any) => ({ ...l, status: 'pending' }));
 
-        setLinks(relevantLinks);
-        if (relevantLinks.length === 0) setError('No se encontraron enlaces de productos válidos en esta página.');
+        // Eliminar duplicados de URL en la lista
+        const uniqueLinks = Array.from(new Map(relevantLinks.map(item => [item.href, item])).values()) as ScrapedLink[];
+
+        setLinks(uniqueLinks);
+        if (uniqueLinks.length === 0) setError('No se encontraron enlaces de productos válidos en esta página.');
       } else {
         throw new Error(data.error || 'Error al escanear la categoría.');
       }

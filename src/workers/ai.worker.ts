@@ -146,7 +146,9 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       };
 
       try {
-        transformersPipeline = await pipeline('text-generation', 'Xenova/TinyLlama-1.1B-Chat-v1.0', {
+        // CAMBIO: Usamos un modelo más ligero y estable (LaMini-Flan-T5) en lugar de TinyLlama
+        // Esto reduce drásticamente la probabilidad de corrupción de memoria
+        transformersPipeline = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-248M', {
           progress_callback: (progress: any) => {
             if (progress.status === 'progress') {
                const percent = (progress.total && progress.total > 0) 
@@ -154,7 +156,7 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
                   : 0;
                self.postMessage({ 
                  type: 'PROGRESS', 
-                 text: progress.file ? `Cargando CPU: ${progress.file}` : 'Descargando...', 
+                 text: progress.file ? `Descargando modelo ligero: ${progress.file}` : 'Descargando...', 
                  progress: percent 
                });
             }
@@ -162,13 +164,14 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
         });
         
         isReady = true;
-        self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: 'Transformers.js (CPU)' });
+        self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: 'Transformers.js (CPU - Lite)' });
 
       } catch (cpuError: any) {
-        // Manejo específico del error "offset is out of bounds"
+        // AUTO-REPARACIÓN: Si detectamos corrupción, borramos caché y reintentamos
         if (cpuError.message && cpuError.message.includes('offset is out of bounds')) {
-           // Lanzamos un error muy específico para que la UI sepa qué sugerir
-           throw new Error('CORRUPTED_CACHE: El modelo descargado está dañado. Por favor usa el botón "Reinstalar Modelos".');
+           console.error('[Worker] Detectada corrupción de caché. Iniciando auto-reparación...');
+           await purgeCache();
+           throw new Error('CORRUPTED_CACHE_AUTO_FIXED: Se ha detectado un archivo dañado. La caché ha sido borrada. Por favor, recarga la página para descargar el modelo limpio.');
         }
         throw cpuError;
       } finally {
@@ -221,19 +224,13 @@ Responde SOLO con este JSON:
       });
       content = response.choices[0].message.content || '{}';
     } else if (transformersPipeline) {
-      const messages = [
-        { role: 'system', content: 'Tu tarea es extraer datos de medicamentos en formato JSON. No expliques nada, solo JSON.' },
-        { role: 'user', content: prompt }
-      ];
-      const promptText = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
+      const promptText = `Extract JSON from text: ${prompt}`;
       const result = await transformersPipeline(promptText, { 
         max_new_tokens: 512, 
         temperature: 0.1,
-        do_sample: false,
-        top_k: 1
+        do_sample: false
       });
-      const genText = result[0].generated_text;
-      content = genText.split('<|assistant|>')[1]?.trim() || genText;
+      content = result[0].generated_text;
     }
 
     self.postMessage({ type: 'EXTRACT_RESULT', payload: { content, url } });
@@ -266,14 +263,9 @@ REGLAS:
             });
             reply = response.choices[0].message.content || '';
         } else if (transformersPipeline) {
-            const messages = [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: userPrompt }
-            ];
-            const text = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
-            const result = await transformersPipeline(text, { max_new_tokens: 512, temperature: 0.2 });
-            const genText = result[0].generated_text;
-            reply = genText.split('<|assistant|>')[1]?.trim() || genText;
+            const promptText = `Analyze clinical context: ${userPrompt}`;
+            const result = await transformersPipeline(promptText, { max_new_tokens: 512, temperature: 0.2 });
+            reply = result[0].generated_text;
         }
         
         self.postMessage({ type: 'ANALYZE_RESULT', payload: reply });
