@@ -21,7 +21,8 @@ function Dashboard({ hardware }: DashboardProps) {
 
   useEffect(() => {
     if (hardware) {
-      AIService.initialize(hardware);
+      // Solo configuramos el perfil de hardware, NO iniciamos el motor pesado.
+      AIService.configure(hardware);
     }
   }, [hardware]);
 

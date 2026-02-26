@@ -1,5 +1,5 @@
 import { HardwareProfile } from '../core/types/hardware.types';
-import { Product } from '../core/types/product.types';
+import { Product, SafetyStatus } from '../core/types/product.types';
 
 export class AIService {
   private static worker: Worker | null = null;
@@ -7,49 +7,84 @@ export class AIService {
   private static isReady = false;
   private static initProgressCallback: ((text: string, progress: number) => void) | null = null;
   private static engineName = 'Ninguno';
+  private static hardware: HardwareProfile | null = null;
 
   static setProgressCallback(cb: (text: string, progress: number) => void) {
     this.initProgressCallback = cb;
   }
 
-  static async initialize(hardware: HardwareProfile) {
-    if (this.isInitializing || this.isReady) return;
+  // Configurar hardware pero NO iniciar el motor
+  static configure(hardware: HardwareProfile) {
+    this.hardware = hardware;
+  }
+
+  // Iniciar el motor explícitamente (Lazy Load)
+  static async startEngine(): Promise<boolean> {
+    if (this.isReady) return true;
+    if (this.isInitializing) return false; // Ya está en proceso
+    if (!this.hardware) throw new Error('Hardware no configurado. Llame a AIService.configure() primero.');
+
     this.isInitializing = true;
+    this.initProgressCallback?.('Iniciando Worker de IA...', 0);
 
-    // Crear Worker
-    this.worker = new Worker(new URL('../workers/ai.worker.ts', import.meta.url), { type: 'module' });
+    return new Promise((resolve) => {
+      try {
+        this.worker = new Worker(new URL('../workers/ai.worker.ts', import.meta.url), { type: 'module' });
 
-    this.worker.onmessage = (e) => {
-      const { type, payload, text, progress, success, engine, error } = e.data;
+        this.worker.onmessage = (e) => {
+          const { type, text, progress, success, engine, error } = e.data;
 
-      switch (type) {
-        case 'PROGRESS':
-          this.initProgressCallback?.(text, progress);
-          break;
-        case 'INIT_COMPLETE':
-          this.isInitializing = false;
-          if (success) {
-            this.isReady = true;
-            this.engineName = engine;
-            this.initProgressCallback?.(`${engine} Listo`, 100);
-          } else {
-            console.error('Fallo inicialización IA:', error);
-            this.initProgressCallback?.(`Error: ${error}`, 0);
+          switch (type) {
+            case 'PROGRESS':
+              this.initProgressCallback?.(text, progress);
+              break;
+            case 'INIT_COMPLETE':
+              this.isInitializing = false;
+              if (success) {
+                this.isReady = true;
+                this.engineName = engine;
+                this.initProgressCallback?.(`${engine} Listo`, 100);
+                resolve(true);
+              } else {
+                console.error('Fallo inicialización IA:', error);
+                this.initProgressCallback?.(`Error: ${error}`, 0);
+                this.worker?.terminate();
+                this.worker = null;
+                resolve(false);
+              }
+              break;
+            case 'ERROR':
+              console.error('Error en Worker IA:', error);
+              break;
           }
-          break;
-        case 'ERROR':
-          console.error('Error en Worker IA:', error);
-          break;
-      }
-    };
+        };
 
-    this.worker.postMessage({ type: 'INIT', payload: { hardwareTier: hardware.aiModelTier } });
+        this.worker.postMessage({ type: 'INIT', payload: { hardwareTier: this.hardware.aiModelTier } });
+      } catch (e) {
+        console.error('Error creando Worker:', e);
+        this.isInitializing = false;
+        resolve(false);
+      }
+    });
+  }
+
+  // Método para detener el motor y liberar memoria
+  static stopEngine() {
+    if (this.worker) {
+      this.worker.terminate();
+      this.worker = null;
+    }
+    this.isReady = false;
+    this.isInitializing = false;
+    this.engineName = 'Ninguno';
   }
 
   static async extractProductData(rawText: string, url: string): Promise<Product | null> {
+    // Si el motor NO está listo, usamos el modo "Lite" (Regex/Heurística) inmediatamente
+    // Esto evita bloqueos y permite funcionalidad básica siempre.
     if (!this.worker || !this.isReady) {
-      console.warn('[AIService] Worker no listo.');
-      return null;
+        console.warn('[AIService] Motor IA apagado. Usando modo Lite (Regex).');
+        return this.extractDataLite(rawText, url);
     }
 
     return new Promise((resolve) => {
@@ -59,8 +94,9 @@ export class AIService {
           this.worker?.removeEventListener('message', handler);
           
           if (error) {
-            console.error('[AIService] Error extracción:', error);
-            resolve(null);
+            console.error('[AIService] Error extracción IA:', error);
+            // Fallback a Lite si la IA falla
+            resolve(this.extractDataLite(rawText, url));
             return;
           }
 
@@ -81,32 +117,9 @@ export class AIService {
 
             // Si no hay datos válidos del modelo, usar Regex (Fallback)
             if (!data || !data.nombre_comercial) {
-                console.log('[AIService] Aplicando extracción por Regex al texto:', rawText);
-                const nombreMatch = rawText.match(/Producto:\s*([^.]+)/i) || rawText.match(/Nombre:\s*([^.]+)/i);
-                const indicacionMatch = rawText.match(/Indicación:\s*([^.]+)/i) || rawText.match(/Para:\s*([^.]+)/i);
-                
-                if (nombreMatch) {
-                    data = {
-                        sku: "REC-" + Date.now().toString().slice(-4),
-                        nombre_comercial: nombreMatch[1].trim(),
-                        principios_activos: [],
-                        indicaciones: indicacionMatch ? [indicacionMatch[1].trim()] : [],
-                        advertencias: "Datos extraídos parcialmente por heurística",
-                        posologia: "Consultar prospecto",
-                        descripcion: "Extracción automática",
-                        tags_ia: ["extracción_manual"],
-                        apto_embarazo: "PRECAUCION",
-                        apto_lactancia: "PRECAUCION",
-                        apto_pediatria: "PRECAUCION",
-                        apto_diabeticos: "PRECAUCION",
-                        apto_hipertensos: "PRECAUCION",
-                        apto_celiacos: "PRECAUCION",
-                        sugerencia_complementaria: "Verificar datos manualmente"
-                    };
-                }
+                resolve(this.extractDataLite(rawText, url));
+                return;
             }
-
-            if (!data) throw new Error('No se pudo generar JSON.');
 
             data.vectores = [];
             data.skus_relacionados = [];
@@ -116,7 +129,7 @@ export class AIService {
 
           } catch (err) {
             console.error(err);
-            resolve(null);
+            resolve(this.extractDataLite(rawText, url));
           }
         }
       };
@@ -125,8 +138,40 @@ export class AIService {
     });
   }
 
+  // Método privado para extracción ligera (Regex/Heurística)
+  // Garantiza que la app funcione incluso en un Nokia 3310 (metafóricamente)
+  private static extractDataLite(rawText: string, url: string): Product {
+    console.log('[AIService] Ejecutando extracción Lite (Regex)...');
+    const nombreMatch = rawText.match(/Producto:\s*([^.]+)/i) || rawText.match(/Nombre:\s*([^.]+)/i);
+    const indicacionMatch = rawText.match(/Indicación:\s*([^.]+)/i) || rawText.match(/Para:\s*([^.]+)/i);
+    
+    return {
+        sku: "LITE-" + Date.now().toString().slice(-6),
+        nombre_comercial: nombreMatch ? nombreMatch[1].trim() : "Producto Desconocido",
+        principios_activos: [],
+        indicaciones: indicacionMatch ? [indicacionMatch[1].trim()] : [],
+        advertencias: "Datos extraídos en modo Lite (sin IA)",
+        posologia: "Consultar prospecto",
+        descripcion: "Extracción automática básica",
+        tags_ia: ["modo_lite"],
+        apto_embarazo: SafetyStatus.PRECAUCION,
+        apto_lactancia: SafetyStatus.PRECAUCION,
+        apto_pediatria: SafetyStatus.PRECAUCION,
+        apto_diabeticos: SafetyStatus.PRECAUCION,
+        apto_hipertensos: SafetyStatus.PRECAUCION,
+        apto_celiacos: SafetyStatus.PRECAUCION,
+        sugerencia_complementaria: "Verificar datos manualmente",
+        vectores: [],
+        skus_relacionados: [],
+        source_url: url
+    };
+  }
+
   static async analyze(query: string, products: Product[]): Promise<string> {
-    if (!this.worker || !this.isReady) return 'IA no disponible.';
+    if (!this.worker || !this.isReady) {
+        const productNames = products.map(p => p.nombre_comercial).join(' y ');
+        return `### ⚡ Modo Lite (Sin IA)\nEl motor de IA no está activo. Mostrando información básica.\n\n**Productos:** ${productNames}\n\nPor favor, active el motor de IA en Configuración para un análisis clínico profundo.`;
+    }
 
     const context = products.map(p => 
       `MEDICAMENTO: ${p.nombre_comercial}\n` +

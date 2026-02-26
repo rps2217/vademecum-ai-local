@@ -85,8 +85,15 @@ export const SystemDiagnostics: React.FC = () => {
     }
 
     // 2. Test AI Engine (Health Check)
-    updateTest('ai', { status: 'running', message: 'Verificando integridad del modelo...' });
+    updateTest('ai', { status: 'running', message: 'Verificando estado del motor...' });
     try {
+      // Intentar iniciar el motor si no está listo
+      const isStarted = await AIService.startEngine();
+      
+      if (!isStarted) {
+         throw new Error('No se pudo iniciar el motor de IA.');
+      }
+
       const health = await AIService.runHealthCheck();
       
       if (health.ok) {

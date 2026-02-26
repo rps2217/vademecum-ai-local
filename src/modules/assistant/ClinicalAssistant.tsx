@@ -50,9 +50,11 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
         if (progress === 100) setIsAiReady(true);
       });
 
-      await AIService.initialize(hardware);
+      // Intentar iniciar el motor si no está listo
+      await AIService.startEngine();
+      
       const status = AIService.getStatus();
-      setIsAiReady(status.isReady || status.engine === 'Simulación');
+      setIsAiReady(status.isReady);
     };
 
     initAI();

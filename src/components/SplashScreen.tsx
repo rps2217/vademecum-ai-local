@@ -97,32 +97,14 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         return;
       }
 
-      // 3. AI Engine Initialization
-      updateStep('ai_engine', { status: 'loading', detail: 'Preparando entorno...' });
+      // 3. AI Engine Initialization (SKIPPED FOR LAZY LOADING)
+      updateStep('ai_engine', { status: 'success', detail: 'Modo diferido activado' });
       
-      // Setup progress callback
-      AIService.setProgressCallback((text, progress) => {
-        updateStep('ai_engine', { 
-            status: 'loading', 
-            detail: text,
-            progress: progress
-        });
-      });
+      // Final delay before completing
+      setTimeout(() => {
+          onComplete(currentHardware);
+      }, 500);
 
-      try {
-        await AIService.initialize(currentHardware);
-        updateStep('ai_engine', { status: 'success', detail: 'Motor IA cargado correctamente' });
-        
-        // Final delay before completing
-        setTimeout(() => {
-            onComplete(currentHardware);
-        }, 1000);
-
-      } catch (e) {
-        updateStep('ai_engine', { status: 'error', detail: 'Fallo al cargar IA' });
-        // Even if AI fails, we might want to let them in with limited features?
-        // For now, let's stop here or provide a "Continue anyway" button (implemented in UI below)
-      }
     };
 
     runInitialization();
