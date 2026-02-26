@@ -144,20 +144,42 @@ Responde SOLO con este JSON:
         });
         content = response.choices[0].message.content || '{}';
       } else if (this.transformersPipeline) {
-        // Modo CPU (TinyLlama)
+        // Modo CPU (TinyLlama) - Prompt optimizado con one-shot learning
         const messages = [
-          { role: 'system', content: 'Eres un asistente que solo habla en JSON.' },
-          { role: 'user', content: prompt }
+          { role: 'system', content: 'Tu tarea es extraer datos de medicamentos en formato JSON. No expliques nada, solo JSON.' },
+          { role: 'user', content: `Texto: "Producto: Ibuprofeno 400mg. Indicación: Dolor e inflamación."
+JSON:
+{
+  "sku": "IBU-400",
+  "nombre_comercial": "Ibuprofeno",
+  "descripcion": "Antiinflamatorio no esteroideo",
+  "principios_activos": ["Ibuprofeno"],
+  "posologia": "1 comprimido cada 8 horas",
+  "indicaciones": ["Dolor", "Inflamación"],
+  "advertencias": "Tomar con alimentos",
+  "tags_ia": ["dolor", "inflamacion"],
+  "apto_embarazo": "NO",
+  "apto_lactancia": "PRECAUCION",
+  "apto_pediatria": "SI",
+  "apto_diabeticos": "SI",
+  "apto_hipertensos": "PRECAUCION",
+  "apto_celiacos": "SI",
+  "sugerencia_complementaria": "No exceder dosis"
+}
+
+Texto: "${rawText.substring(0, 800)}"
+JSON:` }
         ];
+
         const promptText = this.transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
         const result = await this.transformersPipeline(promptText, { 
-          max_new_tokens: 512, 
+          max_new_tokens: 400, 
           temperature: 0.1,
-          do_sample: false // Determinista para mejor JSON
+          do_sample: false,
+          top_k: 1
         });
         
         const generatedText = result[0].generated_text;
-        // Extraer la parte después del prompt si es necesario, o buscar el primer {
         content = generatedText.split('<|assistant|>')[1]?.trim() || generatedText;
       }
 
@@ -165,6 +187,27 @@ Responde SOLO con este JSON:
       const jsonMatch = content.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         content = jsonMatch[0];
+      } else {
+        // Fallback de emergencia si no hay JSON: Intentar construir algo básico con Regex
+        console.warn('[AIService] Falló la generación de JSON puro. Intentando recuperación heurística.');
+        const nombreMatch = rawText.match(/Producto:\s*([^.]+)/i) || rawText.match(/Nombre:\s*([^.]+)/i);
+        if (nombreMatch) {
+            content = JSON.stringify({
+                sku: "REC-" + Date.now().toString().slice(-4),
+                nombre_comercial: nombreMatch[1].trim(),
+                principios_activos: [],
+                indicaciones: [],
+                advertencias: "Datos extraídos parcialmente",
+                tags_ia: [],
+                apto_embarazo: "PRECAUCION",
+                apto_lactancia: "PRECAUCION",
+                apto_pediatria: "PRECAUCION",
+                apto_diabeticos: "PRECAUCION",
+                apto_hipertensos: "PRECAUCION",
+                apto_celiacos: "PRECAUCION",
+                sugerencia_complementaria: ""
+            });
+        }
       }
 
       // Limpiar markdown residual
