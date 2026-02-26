@@ -167,6 +167,21 @@ export class AIService {
     });
   }
 
+  static async purgeCache(): Promise<boolean> {
+    if (!this.worker) return false;
+    
+    return new Promise((resolve) => {
+      const handler = (e: MessageEvent) => {
+        if (e.data.type === 'PURGE_COMPLETE') {
+          this.worker?.removeEventListener('message', handler);
+          resolve(e.data.success);
+        }
+      };
+      this.worker?.addEventListener('message', handler);
+      this.worker?.postMessage({ type: 'PURGE_CACHE' });
+    });
+  }
+
   static getStatus() {
     return {
       isReady: this.isReady,

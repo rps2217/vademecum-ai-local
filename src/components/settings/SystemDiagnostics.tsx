@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Activity, Database, Globe, Brain, CheckCircle, XCircle, Loader2, Play } from 'lucide-react';
+import { Activity, Database, Globe, Brain, CheckCircle, XCircle, Loader2, Play, Trash2 } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { getDB } from '../../core/database/db';
 import { SafetyStatus } from '../../core/types/product.types';
@@ -22,6 +22,21 @@ export const SystemDiagnostics: React.FC = () => {
 
   const updateTest = (id: string, updates: Partial<TestResult>) => {
     setTests(prev => prev.map(t => t.id === id ? { ...t, ...updates } : t));
+  };
+
+  const handlePurgeCache = async () => {
+    if (confirm('¿Estás seguro? Esto borrará los modelos de IA descargados y forzará una nueva descarga limpia. Úsalo si tienes errores de "offset" o corrupción.')) {
+      setIsRunning(true);
+      try {
+        await AIService.purgeCache();
+        alert('Caché borrada. Por favor recarga la página para descargar los modelos nuevamente.');
+        window.location.reload();
+      } catch (e) {
+        alert('Error borrando caché.');
+      } finally {
+        setIsRunning(false);
+      }
+    }
   };
 
   const runDiagnostics = async () => {
@@ -134,18 +149,30 @@ export const SystemDiagnostics: React.FC = () => {
           Diagnóstico del Sistema
         </h2>
         
-        <button
-          onClick={runDiagnostics}
-          disabled={isRunning}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
-            isRunning 
-              ? 'bg-slate-800 text-slate-500 cursor-not-allowed' 
-              : 'bg-indigo-600 text-white hover:bg-indigo-500'
-          }`}
-        >
-          {isRunning ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
-          {isRunning ? 'Ejecutando...' : 'Ejecutar Pruebas'}
-        </button>
+        <div className="flex gap-2">
+            <button
+            onClick={handlePurgeCache}
+            disabled={isRunning}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors border border-red-500/20"
+            title="Borrar modelos corruptos y descargar de nuevo"
+            >
+            <Trash2 className="w-4 h-4" />
+            Reinstalar Modelos
+            </button>
+
+            <button
+            onClick={runDiagnostics}
+            disabled={isRunning}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
+                isRunning 
+                ? 'bg-slate-800 text-slate-500 cursor-not-allowed' 
+                : 'bg-indigo-600 text-white hover:bg-indigo-500'
+            }`}
+            >
+            {isRunning ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
+            {isRunning ? 'Ejecutando...' : 'Ejecutar Pruebas'}
+            </button>
+        </div>
       </div>
 
       <div className="space-y-4">

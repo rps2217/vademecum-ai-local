@@ -16,7 +16,8 @@ type WorkerMessage =
   | { type: 'INIT'; payload: { hardwareTier: 'HIGH' | 'LOW' | 'NONE' } }
   | { type: 'EXTRACT'; payload: { text: string; url: string } }
   | { type: 'ANALYZE'; payload: { query: string; context: string } }
-  | { type: 'HEALTH_CHECK' };
+  | { type: 'HEALTH_CHECK' }
+  | { type: 'PURGE_CACHE' };
 
 self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
   const msg = e.data;
@@ -35,11 +36,31 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
       case 'HEALTH_CHECK':
         await runHealthCheck();
         break;
+      case 'PURGE_CACHE':
+        await purgeCache();
+        break;
     }
   } catch (error: any) {
     self.postMessage({ type: 'ERROR', error: error.message || String(error) });
   }
 };
+
+async function purgeCache() {
+  try {
+    // Intentar borrar caché de Transformers.js
+    if ('caches' in self) {
+      const keys = await caches.keys();
+      for (const key of keys) {
+        if (key.includes('transformers') || key.includes('onnx')) {
+          await caches.delete(key);
+        }
+      }
+    }
+    self.postMessage({ type: 'PURGE_COMPLETE', success: true });
+  } catch (e: any) {
+    self.postMessage({ type: 'PURGE_COMPLETE', success: false, error: e.message });
+  }
+}
 
 async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
   if (isInitializing || isReady) {
