@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, Search, Loader2, CheckCircle, AlertCircle, Save, Sparkles, Copy, Trash2, Link, Play, Pause, X, Activity } from 'lucide-react';
 import { AIService } from '../../services/AIService';
-import { Product } from '../../core/types/product.types';
+import { Product, SafetyStatus } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 
@@ -116,13 +116,48 @@ export const BatchScraper: React.FC = () => {
 
         if (!data.success) throw new Error(data.error);
 
-        // 2. AI Extraction
-        setAiStatus({ text: `Analizando: ${link.text}...`, progress: 50 });
+        // 2. Extraction (Structured or AI)
+        let product: Product | null = null;
         
-        // Asegurar motor encendido (lazy load)
-        await AIService.startEngine();
-        
-        const product = await AIService.extractProductData(data.text, link.href);
+        if (data.productData) {
+            setAiStatus({ text: `Usando datos estructurados para: ${link.text}...`, progress: 50 });
+            // Mapear datos de VTEX al formato de Product
+            product = {
+                sku: data.productData.sku || "VTEX-" + Date.now().toString().slice(-6),
+                nombre_comercial: data.productData.name || link.text,
+                descripcion: data.productData.description || "Sin descripción",
+                principios_activos: [], // VTEX no suele tener esto estructurado fácilmente
+                posologia: "Consultar prospecto",
+                indicaciones: [],
+                advertencias: "Datos extraídos de fuente estructurada",
+                tags_ia: ["vtex_direct"],
+                apto_embarazo: SafetyStatus.PRECAUCION,
+                apto_lactancia: SafetyStatus.PRECAUCION,
+                apto_pediatria: SafetyStatus.PRECAUCION,
+                apto_diabeticos: SafetyStatus.PRECAUCION,
+                apto_hipertensos: SafetyStatus.PRECAUCION,
+                apto_celiacos: SafetyStatus.PRECAUCION,
+                sugerencia_complementaria: "Verificar datos manualmente",
+                vectores: [],
+                skus_relacionados: [],
+                source_url: link.href
+            };
+            
+            // Si faltan datos clave, podemos intentar completarlos con la IA de todos modos
+            if (!product.descripcion || product.descripcion.length < 50) {
+                setAiStatus({ text: `Completando con IA: ${link.text}...`, progress: 70 });
+                await AIService.startEngine();
+                const aiProduct = await AIService.extractProductData(data.text, link.href);
+                if (aiProduct) {
+                    product = { ...product, ...aiProduct, sku: product.sku }; // Mantener SKU original
+                }
+            }
+        } else {
+            setAiStatus({ text: `Analizando con IA: ${link.text}...`, progress: 50 });
+            // Asegurar motor encendido (lazy load)
+            await AIService.startEngine();
+            product = await AIService.extractProductData(data.text, link.href);
+        }
 
         if (product && product.nombre_comercial !== 'Producto Desconocido') {
             // 3. Save to DB
@@ -212,6 +247,18 @@ export const BatchScraper: React.FC = () => {
                 <Activity className="w-5 h-5" />
             </button>
         </div>
+        
+        {/* Status Indicators */}
+        <div className="mt-4 flex flex-wrap gap-4">
+            {links.length > 0 && (
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-xs font-medium">
+                    <CheckCircle className="w-3.5 h-3.5" />
+                    {links.length} enlaces encontrados
+                </div>
+            )}
+            {/* Aquí podríamos añadir un indicador de VTEX si el servidor lo devuelve */}
+        </div>
+
         {error && (
             <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
