@@ -68,7 +68,16 @@ export class AIService {
         this.transformersPipeline = await pipeline('text-generation', 'Xenova/TinyLlama-1.1B-Chat-v1.0', {
           progress_callback: (progress: any) => {
             if (progress.status === 'progress') {
-              this.initProgressCallback?.(`Cargando modelo CPU: ${progress.file}`, (progress.loaded / progress.total) * 100);
+              // Evitar NaN si el servidor no envía content-length (común en algunos entornos)
+              const percent = (progress.total && progress.total > 0) 
+                ? (progress.loaded / progress.total) * 100 
+                : 0;
+              
+              const text = progress.total 
+                ? `Cargando modelo CPU: ${progress.file}` 
+                : `Descargando recursos CPU: ${progress.file}...`;
+
+              this.initProgressCallback?.(text, percent);
             }
           }
         });
