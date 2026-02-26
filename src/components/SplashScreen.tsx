@@ -62,7 +62,12 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         let aiModelTier: 'HIGH' | 'LOW' | 'NONE' = 'NONE';
         const supportsWebGPU = 'gpu' in navigator;
         
-        if (supportsWebGPU && hasGPU && memoryGB >= 6) {
+        // Detección más conservadora para evitar crasheos en GPUs integradas
+        const isIntegrated = gpuName.toLowerCase().includes('intel') || gpuName.toLowerCase().includes('uhd') || gpuName.toLowerCase().includes('iris');
+        
+        // Requerimos 8GB de RAM para GPU (High Tier) para estar seguros, 
+        // o 6GB si es una GPU dedicada (no Intel integrada)
+        if (supportsWebGPU && hasGPU && ((memoryGB >= 8) || (memoryGB >= 6 && !isIntegrated))) {
              aiModelTier = 'HIGH';
         } else if (memoryGB >= 4) {
              aiModelTier = 'LOW';
@@ -73,7 +78,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         
         updateStep('hardware', { 
             status: 'success', 
-            detail: `${aiModelTier === 'HIGH' ? 'GPU Detectada' : 'Modo CPU'} • ${memoryGB}GB RAM` 
+            detail: `${aiModelTier === 'HIGH' ? 'GPU Detectada (Modo Rápido)' : 'Modo Compatibilidad (CPU)'} • ${memoryGB}GB RAM` 
         });
 
       } catch (e) {

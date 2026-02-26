@@ -51,7 +51,12 @@ export class AIService {
         } catch (gpuError) {
           console.warn('Error iniciando WebLLM (GPU). Intentando fallback a CPU...', gpuError);
           this.initProgressCallback?.('GPU no compatible. Cambiando a modo CPU...', 0);
-          // No retornamos, dejamos que continúe al bloque siguiente para intentar CPU
+          
+          // Limpiar cualquier referencia residual
+          this.webLlmEngine = null;
+          
+          // Esperar 2 segundos para que el navegador se recupere del posible crash de contexto WebGL/GPU
+          await new Promise(resolve => setTimeout(resolve, 2000));
         }
       }
 
