@@ -60,18 +60,30 @@ self.onmessage = async (e) => {
 
   else if (type === 'TEST_CONNECTION') {
     try {
-      // Intentamos conectar a una URL simple y confiable a través del proxy
-      // Usamos google.com porque es rápido y siempre está arriba
+      self.postMessage({ type: 'LOG', message: 'Verificando acceso a internet...' });
+      
+      // 1. Prueba de Internet Directa (CORS-friendly URL)
+      try {
+        const directCheck = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        if (!directCheck.ok) throw new Error('Fallo acceso directo');
+        self.postMessage({ type: 'LOG', message: 'Internet Directo: OK' });
+      } catch (e) {
+        throw new Error('No hay conexión a internet directa. Verifique su red.');
+      }
+
+      self.postMessage({ type: 'LOG', message: 'Probando proxies CORS...' });
+      
+      // 2. Prueba de Proxies (Target: Google)
       const testUrl = 'https://www.google.com'; 
-      const html = await fetchWithRetry(testUrl, 3); // Solo 3 intentos para el test
+      const html = await fetchWithRetry(testUrl, 3); // 3 intentos
       
       if (html && html.length > 0) {
-        self.postMessage({ type: 'TEST_RESULT', payload: { success: true, message: 'Conexión a través de proxy exitosa.' } });
+        self.postMessage({ type: 'TEST_RESULT', payload: { success: true, message: 'Conexión a internet y Proxies operativos.' } });
       } else {
-        throw new Error('Respuesta vacía');
+        throw new Error('Respuesta vacía de los proxies');
       }
     } catch (error: any) {
-      self.postMessage({ type: 'TEST_RESULT', payload: { success: false, message: `Fallo en prueba de conexión: ${error.message}` } });
+      self.postMessage({ type: 'TEST_RESULT', payload: { success: false, message: `Fallo: ${error.message}` } });
     }
   }
 };

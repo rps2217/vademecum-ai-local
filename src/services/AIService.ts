@@ -107,54 +107,75 @@ export class AIService {
   }
 
   static async extractProductData(rawText: string, url: string): Promise<Product | null> {
-    if (!this.webLlmEngine) {
-      console.warn('[AIService] WebLLM no está inicializado. No se puede extraer datos en este dispositivo.');
+    if (!this.webLlmEngine && !this.transformersPipeline) {
+      console.warn('[AIService] Motor de IA no inicializado.');
       return null;
     }
 
-    const prompt = `Analiza el siguiente texto extraído de la ficha técnica de un medicamento y devuelve ÚNICAMENTE un objeto JSON válido con esta estructura exacta:
+    const prompt = `Analiza el texto y extrae datos del medicamento en JSON.
+Texto: ${rawText.substring(0, 1500)}
+
+Responde SOLO con este JSON:
 {
-  "sku": "string (ej: MED-001)",
-  "nombre_comercial": "string",
-  "descripcion": "string (resumen breve)",
-  "principios_activos": ["string"],
-  "posologia": "string",
-  "indicaciones": ["string"],
-  "advertencias": "string",
-  "tags_ia": ["string (5 palabras clave)"],
-  "apto_embarazo": "SI" o "NO" o "PRECAUCION",
-  "apto_lactancia": "SI" o "NO" o "PRECAUCION",
-  "apto_pediatria": "SI" o "NO" o "PRECAUCION",
-  "apto_diabeticos": "SI" o "NO" o "PRECAUCION",
-  "apto_hipertensos": "SI" o "NO" o "PRECAUCION",
-  "apto_celiacos": "SI" o "NO" o "PRECAUCION",
-  "sugerencia_complementaria": "string (consejo breve)"
-}
-
-Reglas:
-- Devuelve SOLO el JSON, sin bloques de código markdown (\`\`\`).
-- Si no encuentras un dato, usa "No especificado" o un array vacío.
-- Para los campos "apto_*", usa estrictamente "SI", "NO" o "PRECAUCION".
-
-Texto a analizar:
-${rawText.substring(0, 2500)}
-`;
+  "sku": "SKU o ID",
+  "nombre_comercial": "Nombre",
+  "descripcion": "Breve descripcion",
+  "principios_activos": ["Principio 1", "Principio 2"],
+  "posologia": "Dosis",
+  "indicaciones": ["Indicacion 1"],
+  "advertencias": "Advertencias",
+  "tags_ia": ["tag1", "tag2"],
+  "apto_embarazo": "SI/NO/PRECAUCION",
+  "apto_lactancia": "SI/NO/PRECAUCION",
+  "apto_pediatria": "SI/NO/PRECAUCION",
+  "apto_diabeticos": "SI/NO/PRECAUCION",
+  "apto_hipertensos": "SI/NO/PRECAUCION",
+  "apto_celiacos": "SI/NO/PRECAUCION",
+  "sugerencia_complementaria": "Consejo"
+}`;
 
     try {
-      const response = await this.webLlmEngine.chat.completions.create({
-        messages: [{ role: 'user', content: prompt }],
-        temperature: 0.1, // Baja temperatura para JSON determinista
-      });
+      let content = '';
 
-      let content = response.choices[0].message.content || '{}';
-      // Limpiar markdown residual si el modelo lo incluye por error
+      if (this.webLlmEngine) {
+        const response = await this.webLlmEngine.chat.completions.create({
+          messages: [{ role: 'user', content: prompt }],
+          temperature: 0.1,
+        });
+        content = response.choices[0].message.content || '{}';
+      } else if (this.transformersPipeline) {
+        // Modo CPU (TinyLlama)
+        const messages = [
+          { role: 'system', content: 'Eres un asistente que solo habla en JSON.' },
+          { role: 'user', content: prompt }
+        ];
+        const promptText = this.transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
+        const result = await this.transformersPipeline(promptText, { 
+          max_new_tokens: 512, 
+          temperature: 0.1,
+          do_sample: false // Determinista para mejor JSON
+        });
+        
+        const generatedText = result[0].generated_text;
+        // Extraer la parte después del prompt si es necesario, o buscar el primer {
+        content = generatedText.split('<|assistant|>')[1]?.trim() || generatedText;
+      }
+
+      // Limpieza agresiva para encontrar el JSON
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        content = jsonMatch[0];
+      }
+
+      // Limpiar markdown residual
       content = content.replace(/```json/g, '').replace(/```/g, '').trim();
       
       const data = JSON.parse(content);
       
-      // Asegurar campos requeridos
+      // Asegurar campos requeridos y valores por defecto
       data.vectores = [];
       data.skus_relacionados = [];
+      data.source_url = url;
       
       return data as Product;
     } catch (e) {
