@@ -40,26 +40,9 @@ export class WebScraperManager {
     this.totalCount = 0;
     this.notify('Iniciando sincronización en segundo plano...');
 
+    // La IA ya debería estar inicializada por el SplashScreen
     if (!AIService.getStatus().isReady) {
-      this.notify('Inicializando motor de IA Local para estructurar datos...');
-      try {
-        AIService.setProgressCallback((text, progress) => {
-          this.notify(`IA Local: ${text} (${Math.round(progress)}%)`);
-        });
-        
-        await AIService.initialize(hardware || {
-          memoryGB: 8,
-          hasGPU: false,
-          gpuName: '',
-          logicalProcessors: 4,
-          aiModelTier: 'LOW'
-        });
-      } catch (error) {
-        console.error('Error inicializando IA para scraper:', error);
-        this.status = 'error';
-        this.notify('Error al inicializar la IA Local.');
-        return;
-      }
+      this.notify('Advertencia: El motor de IA no está listo. Los productos podrían no estructurarse correctamente.');
     }
 
     if (!this.worker) {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
-import { useHardwareDetection } from './hooks/useHardwareDetection';
 import { SearchModule } from './modules/search/SearchModule';
 import { DatabaseModule } from './modules/database/DatabaseModule';
 import { SettingsModule } from './modules/settings/SettingsModule';
@@ -9,13 +8,18 @@ import { WebScraperManager } from './services/WebScraperManager';
 import { ScraperProgress } from './components/scraper/ScraperProgress';
 import { TrayProvider } from './context/TrayContext';
 import { FloatingTray } from './components/tray/FloatingTray';
+import { SplashScreen } from './components/SplashScreen';
+import { HardwareProfile } from './core/types/hardware.types';
 
-function Dashboard() {
+interface DashboardProps {
+  hardware: HardwareProfile;
+}
+
+function Dashboard({ hardware }: DashboardProps) {
   const [activeTab, setActiveTab] = useState<'search' | 'database' | 'settings'>('search');
-  const { hardware } = useHardwareDetection();
 
   const handleStartBackgroundSync = () => {
-    WebScraperManager.startBackgroundSync(hardware || undefined);
+    WebScraperManager.startBackgroundSync(hardware);
   };
 
   return (
@@ -90,10 +94,24 @@ function Dashboard() {
 }
 
 export default function App() {
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [hardware, setHardware] = useState<HardwareProfile | null>(null);
+
+  if (!isInitialized) {
+    return (
+      <SplashScreen 
+        onComplete={(detectedHardware) => {
+          setHardware(detectedHardware);
+          setIsInitialized(true);
+        }} 
+      />
+    );
+  }
+
   return (
     <AppBootstrapper>
       <TrayProvider>
-        <Dashboard />
+        <Dashboard hardware={hardware!} />
       </TrayProvider>
     </AppBootstrapper>
   );
