@@ -294,11 +294,14 @@ async function runHealthCheck() {
             });
             response = reply.choices[0].message.content || '';
         } else if (transformersPipeline) {
-            const messages = [{ role: 'user', content: 'Di "FUNCIONAL"' }];
-            const prompt = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
-            const output = await transformersPipeline(prompt, { max_new_tokens: 10, do_sample: false });
-            const text = output[0].generated_text;
-            response = text.split('<|assistant|>')[1]?.trim() || text;
+            // Simplificamos para modelos Seq2Seq (T5) que no usan chat templates
+            const prompt = 'Responde solo con la palabra: FUNCIONAL';
+            const output = await transformersPipeline(prompt, { 
+                max_new_tokens: 10, 
+                do_sample: false,
+                temperature: 0.1
+            });
+            response = output[0].generated_text?.trim() || '';
         }
 
         const duration = Math.round(performance.now() - start);
