@@ -184,36 +184,48 @@ JSON:` }
       }
 
       // Limpieza agresiva para encontrar el JSON
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        content = jsonMatch[0];
-      } else {
-        // Fallback de emergencia si no hay JSON: Intentar construir algo básico con Regex
-        console.warn('[AIService] Falló la generación de JSON puro. Intentando recuperación heurística.');
+      let data: any = null;
+      
+      try {
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          const cleanContent = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+          data = JSON.parse(cleanContent);
+        }
+      } catch (jsonError) {
+        console.warn('[AIService] JSON del modelo inválido. Iniciando fallback heurístico.');
+      }
+
+      // Si no hay datos válidos del modelo, usar Regex (Fallback)
+      if (!data || !data.nombre_comercial) {
+        console.log('[AIService] Aplicando extracción por Regex al texto:', rawText);
         const nombreMatch = rawText.match(/Producto:\s*([^.]+)/i) || rawText.match(/Nombre:\s*([^.]+)/i);
+        const indicacionMatch = rawText.match(/Indicación:\s*([^.]+)/i) || rawText.match(/Para:\s*([^.]+)/i);
+        
         if (nombreMatch) {
-            content = JSON.stringify({
+            data = {
                 sku: "REC-" + Date.now().toString().slice(-4),
                 nombre_comercial: nombreMatch[1].trim(),
                 principios_activos: [],
-                indicaciones: [],
-                advertencias: "Datos extraídos parcialmente",
-                tags_ia: [],
+                indicaciones: indicacionMatch ? [indicacionMatch[1].trim()] : [],
+                advertencias: "Datos extraídos parcialmente por heurística",
+                posologia: "Consultar prospecto",
+                descripcion: "Extracción automática",
+                tags_ia: ["extracción_manual"],
                 apto_embarazo: "PRECAUCION",
                 apto_lactancia: "PRECAUCION",
                 apto_pediatria: "PRECAUCION",
                 apto_diabeticos: "PRECAUCION",
                 apto_hipertensos: "PRECAUCION",
                 apto_celiacos: "PRECAUCION",
-                sugerencia_complementaria: ""
-            });
+                sugerencia_complementaria: "Verificar datos manualmente"
+            };
         }
       }
 
-      // Limpiar markdown residual
-      content = content.replace(/```json/g, '').replace(/```/g, '').trim();
-      
-      const data = JSON.parse(content);
+      if (!data) {
+        throw new Error('No se pudo generar JSON ni extraer datos por Regex.');
+      }
       
       // Asegurar campos requeridos y valores por defecto
       data.vectores = [];
