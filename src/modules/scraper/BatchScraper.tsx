@@ -57,8 +57,15 @@ export const BatchScraper: React.FC = () => {
         try {
             const res = await fetch(bridgeUrl);
             if (!res.ok) {
-              const errorData = await res.json().catch(() => ({ error: 'Error desconocido' }));
-              throw new Error(errorData.error || `HTTP ${res.status}`);
+              let errorMsg = `HTTP ${res.status}`;
+              try {
+                const errorData = await res.json();
+                errorMsg = errorData.error || errorMsg;
+              } catch(e) {
+                const textData = await res.text();
+                errorMsg = textData || errorMsg;
+              }
+              throw new Error(errorMsg);
             }
             html = await res.text();
         } catch (fetchErr: any) {
@@ -148,8 +155,15 @@ export const BatchScraper: React.FC = () => {
             try {
                 const res = await fetch(bridgeUrl);
                 if (!res.ok) {
-                    const errorData = await res.json().catch(() => ({ error: 'Error desconocido' }));
-                    throw new Error(errorData.error || `HTTP ${res.status}`);
+                    let errorMsg = `HTTP ${res.status}`;
+                    try {
+                      const errorData = await res.json();
+                      errorMsg = errorData.error || errorMsg;
+                    } catch(e) {
+                      const textData = await res.text();
+                      errorMsg = textData || errorMsg;
+                    }
+                    throw new Error(errorMsg);
                 }
                 html = await res.text();
                 if (!html.startsWith('Error')) data = { success: true, markdown: html };
