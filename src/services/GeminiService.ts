@@ -6,7 +6,8 @@ export class GeminiService {
 
   private static getAI() {
     if (!this.ai) {
-      const apiKey = process.env.GEMINI_API_KEY;
+      // Intentar obtener la key tanto de process.env (si estuviera disponible) como de import.meta.env
+      const apiKey = process.env.GEMINI_API_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
       if (!apiKey) {
         throw new Error("GEMINI_API_KEY no configurada en el entorno.");
       }
