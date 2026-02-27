@@ -253,12 +253,14 @@ export const BatchScraper: React.FC = () => {
             <button 
                 onClick={async () => {
                     try {
-                        const res = await fetch('/health');
+                        const url = `/health?t=${Date.now()}`;
+                        console.log(`Fetching health from: ${url}`);
+                        const res = await fetch(url);
                         const contentType = res.headers.get('content-type');
                         
                         if (!res.ok) {
                             const text = await res.text();
-                            throw new Error(`Error ${res.status}: ${text.substring(0, 50)}...`);
+                            throw new Error(`Error ${res.status} en ${url}: ${text.substring(0, 50)}...`);
                         }
 
                         if (!contentType || !contentType.includes('application/json')) {

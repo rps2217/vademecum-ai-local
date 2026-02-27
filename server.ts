@@ -3,8 +3,17 @@ import { createServer as createViteServer } from 'vite';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import TurndownService from 'turndown';
+import fs from 'fs';
+
+const LOG_FILE = 'server_debug.log';
+function log(msg: string) {
+  const entry = `[${new Date().toISOString()}] ${msg}\n`;
+  fs.appendFileSync(LOG_FILE, entry);
+  console.log(msg);
+}
 
 async function startServer() {
+  fs.writeFileSync(LOG_FILE, '--- Server Starting ---\n');
   const app = express();
   const PORT = 3000;
 
@@ -15,19 +24,19 @@ async function startServer() {
 
   app.use(express.json());
 
-  // 1. Logging middleware - Catch everything
+  // 1. Logging middleware
   app.use((req, res, next) => {
     const start = Date.now();
     res.on('finish', () => {
       const duration = Date.now() - start;
-      console.log(`[Server] ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+      log(`${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
     });
     next();
   });
 
   // 2. Root health check
   app.get('/health', (req, res) => {
-    console.log('[Server] Health check hit');
+    log('Health check hit');
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
@@ -35,25 +44,25 @@ async function startServer() {
   const apiRouter = express.Router();
 
   apiRouter.use((req, res, next) => {
-    console.log(`[API Router] Incoming: ${req.method} ${req.url}`);
+    log(`[API Router] Incoming: ${req.method} ${req.url}`);
     next();
   });
 
   apiRouter.get('/test', (req, res) => {
-    console.log('[API] Hit /test');
+    log('[API] Hit /test');
     res.json({ success: true, message: 'Backend is active' });
   });
 
   apiRouter.get('/scrape', async (req, res) => {
     const { url } = req.query;
-    console.log(`[API] Hit /scrape with url: ${url}`);
+    log(`[API] Hit /scrape with url: ${url}`);
     if (!url || typeof url !== 'string') return res.status(400).json({ error: 'URL required' });
 
     try {
       // Detección de Shopify
       if (url.includes('/collections/') && !url.endsWith('.json')) {
         const jsonUrl = url.split('?')[0] + '/products.json';
-        console.log(`[API] Detectada posible colección Shopify, probando: ${jsonUrl}`);
+        log(`[API] Detectada posible colección Shopify, probando: ${jsonUrl}`);
         try {
           const shopifyRes = await axios.get(jsonUrl, { 
             headers: { 
@@ -66,7 +75,7 @@ async function startServer() {
               text: p.title,
               href: new URL(`/products/${p.handle}`, url).href
             }));
-            console.log(`[API] Shopify JSON success: ${shopifyLinks.length} links`);
+            log(`[API] Shopify JSON success: ${shopifyLinks.length} links`);
             return res.json({ 
               success: true, 
               markdown: `## Colección Shopify: ${url}\nSe han detectado ${shopifyLinks.length} productos vía API JSON.`, 
@@ -75,11 +84,11 @@ async function startServer() {
             });
           }
         } catch (e: any) {
-          console.log(`[API] Falló intento JSON Shopify (${e.message}), procediendo con HTML normal`);
+          log(`[API] Falló intento JSON Shopify (${e.message}), procediendo con HTML normal`);
         }
       }
 
-      console.log(`[API] Fetching HTML from: ${url}`);
+      log(`[API] Fetching HTML from: ${url}`);
       const response = await axios.get(url, {
         headers: { 
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -91,7 +100,7 @@ async function startServer() {
         timeout: 10000 
       });
       
-      console.log(`[API] HTML fetched, size: ${response.data.length}`);
+      log(`[API] HTML fetched, size: ${response.data.length}`);
       const $ = cheerio.load(response.data);
       
       // 1. Detectar si es un sitio VTEX
@@ -197,7 +206,7 @@ async function startServer() {
         productData: structuredProduct
       });
     } catch (error: any) {
-      console.error(`[API] Error scraping ${url}:`, error.message);
+      log(`[API] Error scraping ${url}: ${error.message}`);
       res.status(500).json({ success: false, error: error.message });
     }
   });
@@ -207,14 +216,14 @@ async function startServer() {
   // 4. Unmatched request logging
   app.use((req, res, next) => {
     if (!req.url.startsWith('/@vite') && !req.url.startsWith('/src')) {
-      console.log(`[Server] Unmatched request: ${req.method} ${req.url}`);
+      log(`Unmatched request: ${req.method} ${req.url}`);
     }
     next();
   });
 
   // 5. Global Error Handler
   app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    console.error('[Global Error Handler]', err);
+    log(`[Global Error Handler] ${err.message}`);
     if (res.headersSent) return next(err);
     res.status(500).json({ 
       success: false, 
@@ -223,24 +232,31 @@ async function startServer() {
     });
   });
 
-  // 6. Vite middleware
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: 'spa',
-  });
-  app.use(vite.middlewares);
-
+  // 6. Start listening first
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server listening on port ${PORT}`);
+    log(`Server listening on port ${PORT}`);
   });
+
+  // 7. Vite middleware (load asynchronously)
+  try {
+    log('Initializing Vite middleware...');
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+    log('Vite middleware loaded successfully');
+  } catch (e: any) {
+    log(`Failed to load Vite middleware: ${e.message}`);
+  }
 }
 
 process.on('unhandledRejection', (reason, promise) => {
-  console.error('[Unhandled Rejection] at:', promise, 'reason:', reason);
+  log(`[Unhandled Rejection] reason: ${reason}`);
 });
 
 process.on('uncaughtException', (err) => {
-  console.error('[Uncaught Exception] thrown:', err);
+  log(`[Uncaught Exception] thrown: ${err.message}`);
 });
 
 startServer().catch(console.error);
