@@ -22,7 +22,11 @@ async function startServer() {
 
   // Logging middleware
   app.use((req, res, next) => {
-    console.log(`[Server] ${req.method} ${req.url}`);
+    const start = Date.now();
+    res.on('finish', () => {
+      const duration = Date.now() - start;
+      console.log(`[Server] ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+    });
     next();
   });
 
@@ -39,13 +43,45 @@ async function startServer() {
     if (!url || typeof url !== 'string') return res.status(400).json({ error: 'URL required' });
 
     try {
-      const response = await axios.get(url, {
+      // Detección de Shopify (muy común en farmacias como Knop)
+      let targetUrl = url;
+      if (url.includes('/collections/') && !url.endsWith('.json')) {
+        // Intentar obtener la versión JSON si es una colección de Shopify
+        const jsonUrl = url.split('?')[0] + '/products.json';
+        console.log(`[API] Detectada posible colección Shopify, probando: ${jsonUrl}`);
+        try {
+          const shopifyRes = await axios.get(jsonUrl, { 
+            headers: { 
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            },
+            timeout: 5000 
+          });
+          if (shopifyRes.data && shopifyRes.data.products) {
+            const shopifyLinks = shopifyRes.data.products.map((p: any) => ({
+              text: p.title,
+              href: new URL(`/products/${p.handle}`, url).href
+            }));
+            return res.json({ 
+              success: true, 
+              markdown: `## Colección Shopify: ${url}\nSe han detectado ${shopifyLinks.length} productos vía API JSON.`, 
+              links: shopifyLinks,
+              isShopify: true
+            });
+          }
+        } catch (e) {
+          console.log('[API] Falló intento JSON Shopify, procediendo con HTML normal');
+        }
+      }
+
+      const response = await axios.get(targetUrl, {
         headers: { 
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-          'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8'
+          'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
         },
-        timeout: 15000
+        timeout: 10000 // Reducido a 10s para no agotar el tiempo del proxy
       });
       
       const $ = cheerio.load(response.data);
@@ -160,6 +196,17 @@ async function startServer() {
 
   app.use('/api', apiRouter);
 
+  // Global Error Handler
+  app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.error('[Global Error Handler]', err);
+    if (res.headersSent) return next(err);
+    res.status(500).json({ 
+      success: false, 
+      error: err.message || 'Internal Server Error',
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
+  });
+
   const vite = await createViteServer({
     server: { middlewareMode: true },
     appType: 'spa',
@@ -170,5 +217,13 @@ async function startServer() {
     console.log(`Server listening on port ${PORT}`);
   });
 }
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('[Unhandled Rejection] at:', promise, 'reason:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('[Uncaught Exception] thrown:', err);
+});
 
 startServer().catch(console.error);
