@@ -98,8 +98,10 @@ export const BatchScraper: React.FC = () => {
           // Analizar con Gemini
           addLog(`Analizando estructura médica con IA...`, 'info');
           const prompt = `Extrae la información médica de este producto farmacéutico a partir del siguiente HTML.
+          Busca específicamente el SKU, Código de referencia, ID de producto o similar (suele estar cerca del precio o del título).
           Devuelve un JSON estricto con esta estructura:
           {
+            "sku": "SKU o Código del producto (si no encuentras uno explícito, déjalo vacío)",
             "nombre_comercial": "Nombre comercial y presentación",
             "descripcion": "Descripción breve del producto",
             "principios_activos": ["principio activo 1", "principio activo 2"],
@@ -115,16 +117,20 @@ export const BatchScraper: React.FC = () => {
             "apto_celiacos": "SI" o "NO" o "PRECAUCION",
             "sugerencia_complementaria": "Sugerencia de producto complementario"
           }
-          HTML: ${prodData.html.substring(0, 15000)}`;
+          HTML: ${prodData.html.substring(0, 20000)}`;
           
           const jsonStr = await GeminiService.generateJSON(prompt);
           const productData = JSON.parse(jsonStr);
 
           if (!productData.nombre_comercial) throw new Error("La IA no pudo identificar el producto.");
 
+          // Intentar usar el SKU real, si no, generar uno
+          const realSku = productData.sku && String(productData.sku).trim().length > 1 ? String(productData.sku).trim() : null;
+          const finalSku = realSku || 'SCR-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 1000);
+
           // Crear objeto Product completo
           const newProduct: Product = {
-            sku: 'SCR-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 1000),
+            sku: finalSku,
             nombre_comercial: productData.nombre_comercial,
             descripcion: productData.descripcion || 'Sin descripción',
             principios_activos: productData.principios_activos || [],
