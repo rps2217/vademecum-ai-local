@@ -24,6 +24,13 @@ async function startServer() {
 
   app.use(express.json());
 
+  // 0. Immediate health check for proxy
+  app.get('/healthz', (req, res) => res.send('ok'));
+  app.get('/health', (req, res) => {
+    log('Health check hit');
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  });
+
   // 1. Logging middleware
   app.use((req, res, next) => {
     const start = Date.now();
@@ -32,12 +39,6 @@ async function startServer() {
       log(`${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
     });
     next();
-  });
-
-  // 2. Root health check
-  app.get('/health', (req, res) => {
-    log('Health check hit');
-    res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
   // 3. API Router
@@ -232,8 +233,8 @@ async function startServer() {
     });
   });
 
-  // 6. Start listening first
-  app.listen(PORT, '0.0.0.0', () => {
+  // 6. Start listening
+  const server = app.listen(PORT, '0.0.0.0', () => {
     log(`Server listening on port ${PORT}`);
   });
 

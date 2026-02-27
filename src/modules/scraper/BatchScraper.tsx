@@ -271,7 +271,9 @@ export const BatchScraper: React.FC = () => {
                         const data = await res.json();
                         alert(`Conexión exitosa: ${data.status} (${data.timestamp})`);
                     } catch (e: any) {
-                        alert(`Error de conexión: ${e.message}`);
+                        if (confirm(`Error de conexión: ${e.message}\n\n¿Deseas recargar la página para limpiar la conexión?`)) {
+                            window.location.reload();
+                        }
                     }
                 }}
                 className="px-4 py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
