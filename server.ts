@@ -9,12 +9,22 @@ async function startServer() {
 
   app.use(express.json());
 
-  app.get('/api/test', (req, res) => {
+  // Logging middleware
+  app.use((req, res, next) => {
+    console.log(`[Server] ${req.method} ${req.url}`);
+    next();
+  });
+
+  const apiRouter = express.Router();
+
+  apiRouter.get('/test', (req, res) => {
+    console.log('[API] Hit /test');
     res.json({ success: true, message: 'Backend is active' });
   });
 
-  app.get('/api/scrape', async (req, res) => {
+  apiRouter.get('/scrape', async (req, res) => {
     const { url } = req.query;
+    console.log(`[API] Hit /scrape with url: ${url}`);
     if (!url || typeof url !== 'string') return res.status(400).json({ error: 'URL required' });
 
     try {
@@ -139,10 +149,12 @@ async function startServer() {
         productData: structuredProduct
       });
     } catch (error: any) {
-      console.error(`Error scraping ${url}:`, error.message);
+      console.error(`[API] Error scraping ${url}:`, error.message);
       res.status(500).json({ success: false, error: error.message });
     }
   });
+
+  app.use('/api', apiRouter);
 
   const vite = await createViteServer({
     server: { middlewareMode: true },
