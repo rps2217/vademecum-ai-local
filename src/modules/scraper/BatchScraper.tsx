@@ -44,26 +44,19 @@ export const BatchScraper: React.FC = () => {
       let linksFound: any[] = [];
 
       if (gasProxyUrl.trim()) {
-        // MODO GAS: Saltamos el servidor totalmente para el fetch
-        logStatus('Consultando vía Google Apps Script...');
+        // MODO GAS: Usamos el puente del servidor para evitar CORS/NetworkError
+        logStatus('Consultando vía Google (Puente Servidor)...');
         
-        // Limpiar la URL de GAS (quitar parámetros si existen)
         const cleanGasUrl = gasProxyUrl.split('?')[0];
-        const proxyUrl = `${cleanGasUrl}?url=${encodeURIComponent(categoryUrl)}`;
+        const bridgeUrl = `/api/gas-bridge?gasUrl=${encodeURIComponent(cleanGasUrl)}&targetUrl=${encodeURIComponent(categoryUrl)}`;
         
         try {
-            const res = await fetch(proxyUrl, {
-                method: 'GET',
-                mode: 'cors',
-                credentials: 'omit',
-                redirect: 'follow'
-            });
-            
-            if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            const res = await fetch(bridgeUrl);
+            if (!res.ok) throw new Error(`Error en el puente: ${res.status}`);
             html = await res.text();
         } catch (fetchErr: any) {
-            console.error("[GAS Proxy Error]", fetchErr);
-            throw new Error(`Error de conexión con Google: Asegúrate de que el script esté implementado para "Cualquiera" (Anyone) y que hayas aceptado los permisos.`);
+            console.error("[GAS Bridge Error]", fetchErr);
+            throw new Error(`Error de conexión: El servidor no pudo alcanzar tu script de Google. Verifica la URL.`);
         }
         
         if (html.startsWith('Error')) throw new Error(html);
@@ -141,21 +134,16 @@ export const BatchScraper: React.FC = () => {
         let method: 'vtex' | 'gemini' | 'local' | 'search' = 'local';
 
         if (gasProxyUrl.trim()) {
-            // MODO GAS: Fetch vía Google
+            // MODO GAS: Usamos el puente del servidor
             const cleanGasUrl = gasProxyUrl.split('?')[0];
-            const proxyUrl = `${cleanGasUrl}?url=${encodeURIComponent(link.href)}`;
+            const bridgeUrl = `/api/gas-bridge?gasUrl=${encodeURIComponent(cleanGasUrl)}&targetUrl=${encodeURIComponent(link.href)}`;
             
             try {
-                const res = await fetch(proxyUrl, {
-                    method: 'GET',
-                    mode: 'cors',
-                    credentials: 'omit',
-                    redirect: 'follow'
-                });
+                const res = await fetch(bridgeUrl);
                 html = await res.text();
                 if (!html.startsWith('Error')) data = { success: true, markdown: html };
             } catch (e) {
-                console.warn(`[GAS Proxy] Falló fetch para ${link.href}`);
+                console.warn(`[GAS Bridge] Falló fetch para ${link.href}`);
             }
         } else {
             // MODO NORMAL
@@ -277,10 +265,21 @@ export const BatchScraper: React.FC = () => {
                 type="text"
                 value={gasProxyUrl}
                 onChange={(e) => setGasProxyUrl(e.target.value)}
-                placeholder="URL de tu Google Apps Script (opcional para saltar errores 404)"
+                placeholder="URL de tu Google Apps Script (https://script.google.com/.../exec)"
                 className="flex-1 bg-transparent border-none text-xs text-slate-300 focus:ring-0 placeholder:text-slate-600"
             />
-            {gasProxyUrl && <CheckCircle className="w-4 h-4 text-emerald-500" />}
+            {gasProxyUrl && (
+                <div className="flex gap-2">
+                    <button 
+                        onClick={() => window.open(`${gasProxyUrl}?url=https://google.com`, '_blank')}
+                        className="text-[10px] px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded border border-slate-700 transition-colors"
+                        title="Probar script en pestaña nueva"
+                    >
+                        Probar Script
+                    </button>
+                    <CheckCircle className="w-4 h-4 text-emerald-500" />
+                </div>
+            )}
         </div>
 
         <div className="flex flex-col md:flex-row gap-4">

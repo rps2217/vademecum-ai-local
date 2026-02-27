@@ -24,20 +24,36 @@ async function startServer() {
 
   app.use(express.json());
 
-  // 0. Immediate health check for proxy
-  app.get('/healthz', (req, res) => res.send('ok'));
+  // 0. Health checks
   app.get('/health', (req, res) => {
-    log('Health check hit');
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // 1. Logging middleware
+  // 1. GAS Proxy Bridge (Server-side to avoid CORS/NetworkError)
+  app.get('/api/gas-bridge', async (req, res) => {
+    const { gasUrl, targetUrl } = req.query;
+    if (!gasUrl || !targetUrl) return res.status(400).json({ error: 'Missing parameters' });
+    
+    try {
+      log(`[GAS Bridge] Fetching via Google: ${targetUrl}`);
+      const response = await axios.get(`${gasUrl}?url=${encodeURIComponent(targetUrl as string)}`, {
+        timeout: 15000
+      });
+      res.send(response.data);
+    } catch (error: any) {
+      log(`[GAS Bridge] Error: ${error.message}`);
+      res.status(500).send(`Error en el puente de Google: ${error.message}`);
+    }
+  });
+
+  // 2. Logging middleware
   app.use((req, res, next) => {
-    const start = Date.now();
-    res.on('finish', () => {
-      const duration = Date.now() - start;
-      log(`${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
-    });
+    if (!req.url.startsWith('/@vite') && !req.url.startsWith('/src')) {
+      const start = Date.now();
+      res.on('finish', () => {
+        log(`${req.method} ${req.url} - ${res.statusCode} (${Date.now() - start}ms)`);
+      });
+    }
     next();
   });
 
