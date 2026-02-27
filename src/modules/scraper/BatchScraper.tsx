@@ -52,6 +52,7 @@ export const BatchScraper: React.FC = () => {
         logStatus('Consultando vía Google (Puente Servidor)...');
         
         const cleanGasUrl = gasProxyUrl.split('?')[0];
+        // Asegurar que la ruta comience con /api/
         const bridgeUrl = `/api/gas-bridge?gasUrl=${encodeURIComponent(cleanGasUrl)}&targetUrl=${encodeURIComponent(categoryUrl)}`;
         
         try {
@@ -151,6 +152,7 @@ export const BatchScraper: React.FC = () => {
         if (gasProxyUrl.trim()) {
             // MODO GAS: Usamos el puente del servidor
             const cleanGasUrl = gasProxyUrl.split('?')[0];
+            // Asegurar que la ruta comience con /api/
             const bridgeUrl = `/api/gas-bridge?gasUrl=${encodeURIComponent(cleanGasUrl)}&targetUrl=${encodeURIComponent(link.href)}`;
             
             try {
