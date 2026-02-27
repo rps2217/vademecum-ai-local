@@ -17,8 +17,12 @@ interface ScrapedLink {
 export const BatchScraper: React.FC = () => {
   const { hardware } = useHardwareDetection();
   const [categoryUrl, setCategoryUrl] = useState('');
-  const [gasProxyUrl, setGasProxyUrl] = useState('');
+  const [gasProxyUrl, setGasProxyUrl] = useState(() => localStorage.getItem('gas_proxy_url') || '');
   const [isScanning, setIsScanning] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('gas_proxy_url', gasProxyUrl);
+  }, [gasProxyUrl]);
   const [useSearchMode, setUseSearchMode] = useState(false);
   const [links, setLinks] = useState<ScrapedLink[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
