@@ -100,46 +100,53 @@ export const BatchScraper: React.FC = () => {
           const prompt = `Extrae la información médica de este producto farmacéutico a partir del siguiente HTML.
           Devuelve un JSON estricto con esta estructura:
           {
-            "name": "Nombre comercial y presentación",
-            "activePrinciple": "Principio activo principal",
-            "therapeuticClass": "Clase terapéutica (ej: Analgésico, Antibiótico)",
-            "indications": ["indicación 1", "indicación 2"],
-            "contraindications": ["contraindicación 1", "contraindicación 2"],
-            "dosage": "Dosis recomendada general",
-            "sideEffects": ["efecto 1", "efecto 2"],
-            "warnings": ["advertencia 1", "advertencia 2"],
-            "safetyStatus": "safe" o "caution" o "danger"
+            "nombre_comercial": "Nombre comercial y presentación",
+            "descripcion": "Descripción breve del producto",
+            "principios_activos": ["principio activo 1", "principio activo 2"],
+            "posologia": "Dosis recomendada general",
+            "indicaciones": ["indicación 1", "indicación 2"],
+            "advertencias": "Advertencias y contraindicaciones",
+            "tags_ia": ["etiqueta 1", "etiqueta 2"],
+            "apto_embarazo": "SI" o "NO" o "PRECAUCION",
+            "apto_lactancia": "SI" o "NO" o "PRECAUCION",
+            "apto_pediatria": "SI" o "NO" o "PRECAUCION",
+            "apto_diabeticos": "SI" o "NO" o "PRECAUCION",
+            "apto_hipertensos": "SI" o "NO" o "PRECAUCION",
+            "apto_celiacos": "SI" o "NO" o "PRECAUCION",
+            "sugerencia_complementaria": "Sugerencia de producto complementario"
           }
           HTML: ${prodData.html.substring(0, 15000)}`;
           
           const jsonStr = await GeminiService.generateJSON(prompt);
           const productData = JSON.parse(jsonStr);
 
-          if (!productData.name) throw new Error("La IA no pudo identificar el producto.");
+          if (!productData.nombre_comercial) throw new Error("La IA no pudo identificar el producto.");
 
           // Crear objeto Product completo
           const newProduct: Product = {
-            id: crypto.randomUUID(),
             sku: 'SCR-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 1000),
-            name: productData.name,
-            activePrinciple: productData.activePrinciple || 'No especificado',
-            therapeuticClass: productData.therapeuticClass || 'General',
-            indications: productData.indications || [],
-            contraindications: productData.contraindications || [],
-            dosage: productData.dosage || 'Consultar al médico',
-            sideEffects: productData.sideEffects || [],
-            warnings: productData.warnings || [],
-            safetyStatus: (productData.safetyStatus as SafetyStatus) || 'caution',
-            interactions: [],
-            pregnancyCategory: 'C',
-            prescriptionRequired: false,
-            sourceUrl: link,
-            lastUpdated: new Date().toISOString()
+            nombre_comercial: productData.nombre_comercial,
+            descripcion: productData.descripcion || 'Sin descripción',
+            principios_activos: productData.principios_activos || [],
+            posologia: productData.posologia || 'Consultar al médico',
+            indicaciones: productData.indicaciones || [],
+            advertencias: productData.advertencias || 'Sin advertencias específicas',
+            tags_ia: productData.tags_ia || [],
+            vectores: [],
+            apto_embarazo: (productData.apto_embarazo as SafetyStatus) || SafetyStatus.PRECAUCION,
+            apto_lactancia: (productData.apto_lactancia as SafetyStatus) || SafetyStatus.PRECAUCION,
+            apto_pediatria: (productData.apto_pediatria as SafetyStatus) || SafetyStatus.PRECAUCION,
+            apto_diabeticos: (productData.apto_diabeticos as SafetyStatus) || SafetyStatus.PRECAUCION,
+            apto_hipertensos: (productData.apto_hipertensos as SafetyStatus) || SafetyStatus.PRECAUCION,
+            apto_celiacos: (productData.apto_celiacos as SafetyStatus) || SafetyStatus.PRECAUCION,
+            sugerencia_complementaria: productData.sugerencia_complementaria || '',
+            skus_relacionados: [],
+            source_url: link
           };
 
           // 1. Guardar en Base de Datos Local (IndexedDB)
           await db.put('products', newProduct);
-          addLog(`💾 Guardado en base de datos local: ${newProduct.name}`, 'info');
+          addLog(`💾 Guardado en base de datos local: ${newProduct.nombre_comercial}`, 'info');
 
           // 2. Guardar en Google Sheets (Nube)
           addLog(`☁️ Guardando en Google Sheets...`, 'info');
@@ -151,7 +158,7 @@ export const BatchScraper: React.FC = () => {
           
           const saveData = await saveRes.json();
           if (saveData.success) {
-            addLog(`✅ Sincronizado exitosamente: ${newProduct.name}`, 'success');
+            addLog(`✅ Sincronizado exitosamente: ${newProduct.nombre_comercial}`, 'success');
           } else {
             throw new Error(saveData.error);
           }

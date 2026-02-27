@@ -1,4 +1,4 @@
-import { Product } from '../core/types/product.types';
+import { Product, SafetyStatus } from '../core/types/product.types';
 import { getDB } from '../core/database/db';
 
 export class GoogleSyncService {
@@ -63,24 +63,51 @@ export class GoogleSyncService {
         throw new Error(`HTTP Error: ${response.status}`);
       }
 
-      const products: Product[] = await response.json();
+      const rawProducts: any[] = await response.json();
 
-      if (!Array.isArray(products)) {
+      if (!Array.isArray(rawProducts)) {
         throw new Error('Formato de respuesta inválido desde Google Sheets.');
       }
 
-      if (products.length === 0) {
+      if (rawProducts.length === 0) {
         return { success: true, message: 'La base de datos en la nube está vacía.', count: 0 };
       }
 
       const db = await getDB();
       const tx = db.transaction('products', 'readwrite');
       
-      // Opcional: Limpiar la base de datos local antes de restaurar
-      // await tx.objectStore('products').clear();
-
       let count = 0;
-      for (const product of products) {
+      for (const raw of rawProducts) {
+        // Mapear cabeceras antiguas a la nueva interfaz si es necesario
+        const mapSafety = (val: any): SafetyStatus => {
+          if (!val) return SafetyStatus.PRECAUCION;
+          const s = String(val).toUpperCase();
+          if (s === 'SAFE' || s === 'SI' || s === 'SÍ') return SafetyStatus.SI;
+          if (s === 'DANGER' || s === 'NO') return SafetyStatus.NO;
+          return SafetyStatus.PRECAUCION;
+        };
+
+        const product: Product = {
+          sku: raw.sku || raw.id || `MIG-${Date.now()}-${count}`,
+          nombre_comercial: raw.nombre_comercial || raw.name || raw.Nombre || 'Producto sin nombre',
+          descripcion: raw.descripcion || raw.description || '',
+          principios_activos: raw.principios_activos || (raw.activePrinciple ? [raw.activePrinciple] : []) || (raw['Principio Activo'] ? [raw['Principio Activo']] : []),
+          posologia: raw.posologia || raw.dosage || raw.Dosis || '',
+          indicaciones: raw.indicaciones || raw.indications || (raw.Indicaciones ? raw.Indicaciones.split(',') : []),
+          advertencias: raw.advertencias || raw.warnings || raw.Advertencias || '',
+          tags_ia: raw.tags_ia || [],
+          vectores: raw.vectores || [],
+          apto_embarazo: mapSafety(raw.apto_embarazo || raw.safetyStatus || raw.Seguridad),
+          apto_lactancia: mapSafety(raw.apto_lactancia),
+          apto_pediatria: mapSafety(raw.apto_pediatria),
+          apto_diabeticos: mapSafety(raw.apto_diabeticos),
+          apto_hipertensos: mapSafety(raw.apto_hipertensos),
+          apto_celiacos: mapSafety(raw.apto_celiacos),
+          sugerencia_complementaria: raw.sugerencia_complementaria || '',
+          skus_relacionados: raw.skus_relacionados || [],
+          source_url: raw.source_url || raw.sourceUrl || raw.URL || ''
+        };
+
         await tx.objectStore('products').put(product);
         count++;
       }
@@ -196,7 +223,7 @@ export class GoogleSyncService {
 
 function doGet(e) {
   // 1. Proxy para Web Scraping (Bypassa CORS)
-  if (e.parameter.action === 'scrape') {
+  if (e && e.parameter && e.parameter.action === 'scrape') {
     try {
       var response = UrlFetchApp.fetch(e.parameter.url, { muteHttpExceptions: true });
       return ContentService.createTextOutput(JSON.stringify({ 
@@ -224,8 +251,14 @@ function doGet(e) {
     
     for (var i = 1; i < data.length; i++) {
       var obj = {};
+      var isEmptyRow = true;
+      
       for (var j = 0; j < headers.length; j++) {
         var val = data[i][j];
+        if (val !== "" && val !== null && val !== undefined) {
+          isEmptyRow = false;
+        }
+        
         // Intentar parsear JSON strings (arrays/objetos)
         try {
           if (typeof val === 'string' && (val.startsWith('[') || val.startsWith('{'))) {
@@ -234,7 +267,10 @@ function doGet(e) {
         } catch(err) {}
         obj[headers[j]] = val;
       }
-      products.push(obj);
+      
+      if (!isEmptyRow) {
+        products.push(obj);
+      }
     }
     
     return ContentService.createTextOutput(JSON.stringify(products))
