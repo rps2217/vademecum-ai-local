@@ -251,7 +251,9 @@ export const BatchScraper: React.FC = () => {
                 </div>
 
                 <ol className="list-decimal pl-5 space-y-2" start={4}>
-                  <li>Haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
+                  <li><strong>¡IMPORTANTE - AUTORIZACIÓN!:</strong> Antes de implementar, selecciona la función <code>doGet</code> en el menú superior y haz clic en <strong>Ejecutar</strong>.</li>
+                  <li>Google te pedirá permisos. Haz clic en <strong>Revisar permisos</strong> &gt; Elige tu cuenta &gt; <strong>Configuración avanzada</strong> &gt; <strong>Ir a Proyecto (no seguro)</strong> &gt; <strong>Permitir</strong>.</li>
+                  <li>Ahora sí, haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
                   <li>Tipo: <strong>Aplicación web</strong>.</li>
                   <li>Acceso: <strong>Cualquier persona</strong>.</li>
                   <li>Copia la <strong>URL de la aplicación web</strong> y pégala abajo.</li>
