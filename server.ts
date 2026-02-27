@@ -29,23 +29,6 @@ async function startServer() {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // 1. GAS Proxy Bridge (Server-side to avoid CORS/NetworkError)
-  app.get('/api/gas-bridge', async (req, res) => {
-    const { gasUrl, targetUrl } = req.query;
-    if (!gasUrl || !targetUrl) return res.status(400).json({ error: 'Missing parameters' });
-    
-    try {
-      log(`[GAS Bridge] Fetching via Google: ${targetUrl}`);
-      const response = await axios.get(`${gasUrl}?url=${encodeURIComponent(targetUrl as string)}`, {
-        timeout: 15000
-      });
-      res.send(response.data);
-    } catch (error: any) {
-      log(`[GAS Bridge] Error: ${error.message}`);
-      res.status(500).send(`Error en el puente de Google: ${error.message}`);
-    }
-  });
-
   // 2. Logging middleware
   app.use((req, res, next) => {
     if (!req.url.startsWith('/@vite') && !req.url.startsWith('/src')) {
@@ -68,6 +51,35 @@ async function startServer() {
   apiRouter.get('/test', (req, res) => {
     log('[API] Hit /test');
     res.json({ success: true, message: 'Backend is active' });
+  });
+
+  // GAS Proxy Bridge (Server-side to avoid CORS/NetworkError)
+  apiRouter.get('/gas-bridge', async (req, res) => {
+    const { gasUrl, targetUrl } = req.query;
+    log(`[API] Hit /gas-bridge. gasUrl: ${gasUrl}, targetUrl: ${targetUrl}`);
+    
+    if (!gasUrl || !targetUrl) {
+      log('[API] Missing parameters in gas-bridge');
+      return res.status(400).json({ error: 'Missing parameters' });
+    }
+    
+    try {
+      log(`[GAS Bridge] Fetching via Google: ${targetUrl}`);
+      const response = await axios.get(`${gasUrl}?url=${encodeURIComponent(targetUrl as string)}`, {
+        timeout: 20000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+      });
+      log(`[GAS Bridge] Success! Data length: ${JSON.stringify(response.data).length}`);
+      res.send(response.data);
+    } catch (error: any) {
+      log(`[GAS Bridge] Error: ${error.message}`);
+      res.status(500).json({ 
+        error: `Error en el puente de Google: ${error.message}`,
+        details: error.response?.data || 'No details'
+      });
+    }
   });
 
   apiRouter.get('/scrape', async (req, res) => {

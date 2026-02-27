@@ -56,11 +56,14 @@ export const BatchScraper: React.FC = () => {
         
         try {
             const res = await fetch(bridgeUrl);
-            if (!res.ok) throw new Error(`Error en el puente: ${res.status}`);
+            if (!res.ok) {
+              const errorData = await res.json().catch(() => ({ error: 'Error desconocido' }));
+              throw new Error(errorData.error || `HTTP ${res.status}`);
+            }
             html = await res.text();
         } catch (fetchErr: any) {
             console.error("[GAS Bridge Error]", fetchErr);
-            throw new Error(`Error de conexión: El servidor no pudo alcanzar tu script de Google. Verifica la URL.`);
+            throw new Error(`Error de conexión: ${fetchErr.message}`);
         }
         
         if (html.startsWith('Error')) throw new Error(html);
@@ -144,10 +147,14 @@ export const BatchScraper: React.FC = () => {
             
             try {
                 const res = await fetch(bridgeUrl);
+                if (!res.ok) {
+                    const errorData = await res.json().catch(() => ({ error: 'Error desconocido' }));
+                    throw new Error(errorData.error || `HTTP ${res.status}`);
+                }
                 html = await res.text();
                 if (!html.startsWith('Error')) data = { success: true, markdown: html };
-            } catch (e) {
-                console.warn(`[GAS Bridge] Falló fetch para ${link.href}`);
+            } catch (e: any) {
+                console.warn(`[GAS Bridge] Falló fetch para ${link.href}: ${e.message}`);
             }
         } else {
             // MODO NORMAL
