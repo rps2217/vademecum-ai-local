@@ -56,18 +56,19 @@ export const BatchScraper: React.FC = () => {
         
         try {
             const res = await fetch(bridgeUrl);
+            const responseText = await res.text();
+            
             if (!res.ok) {
               let errorMsg = `HTTP ${res.status}`;
               try {
-                const errorData = await res.json();
+                const errorData = JSON.parse(responseText);
                 errorMsg = errorData.error || errorMsg;
               } catch(e) {
-                const textData = await res.text();
-                errorMsg = textData || errorMsg;
+                errorMsg = responseText || errorMsg;
               }
               throw new Error(errorMsg);
             }
-            html = await res.text();
+            html = responseText;
         } catch (fetchErr: any) {
             console.error("[GAS Bridge Error]", fetchErr);
             throw new Error(`Error de conexión: ${fetchErr.message}`);
@@ -154,18 +155,19 @@ export const BatchScraper: React.FC = () => {
             
             try {
                 const res = await fetch(bridgeUrl);
+                const responseText = await res.text();
+                
                 if (!res.ok) {
                     let errorMsg = `HTTP ${res.status}`;
                     try {
-                      const errorData = await res.json();
+                      const errorData = JSON.parse(responseText);
                       errorMsg = errorData.error || errorMsg;
                     } catch(e) {
-                      const textData = await res.text();
-                      errorMsg = textData || errorMsg;
+                      errorMsg = responseText || errorMsg;
                     }
                     throw new Error(errorMsg);
                 }
-                html = await res.text();
+                html = responseText;
                 if (!html.startsWith('Error')) data = { success: true, markdown: html };
             } catch (e: any) {
                 console.warn(`[GAS Bridge] Falló fetch para ${link.href}: ${e.message}`);
