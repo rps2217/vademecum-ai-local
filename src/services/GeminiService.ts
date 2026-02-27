@@ -6,8 +6,9 @@ export class GeminiService {
 
   private static getAI() {
     if (!this.ai) {
-      // Intentar obtener la key tanto de process.env (si estuviera disponible) como de import.meta.env
-      const apiKey = process.env.GEMINI_API_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
+      // En la plataforma AI Studio, la key SIEMPRE está en process.env.GEMINI_API_KEY
+      // incluso en el código del cliente (es inyectada por el bundler)
+      const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
         throw new Error("GEMINI_API_KEY no configurada en el entorno.");
       }
