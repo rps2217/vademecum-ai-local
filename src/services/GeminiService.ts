@@ -15,6 +15,91 @@ export class GeminiService {
     return this.ai;
   }
 
+  static async searchAndExtractProduct(productName: string, targetUrl?: string): Promise<Product | null> {
+    try {
+      const ai = this.getAI();
+      
+      const prompt = `Busca información detallada sobre el producto farmacéutico: "${productName}".
+      ${targetUrl ? `Enfócate en la información de este sitio si es posible: ${targetUrl}` : ''}
+      
+      Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+          tools: [{ googleSearch: {} }],
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              sku: { type: Type.STRING },
+              nombre_comercial: { type: Type.STRING },
+              descripcion: { type: Type.STRING },
+              principios_activos: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              posologia: { type: Type.STRING },
+              indicaciones: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              advertencias: { type: Type.STRING },
+              tags_ia: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_diabeticos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_hipertensos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_celiacos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              sugerencia_complementaria: { type: Type.STRING }
+            },
+            required: ["nombre_comercial"]
+          }
+        }
+      });
+
+      const data = JSON.parse(response.text || "{}");
+      if (!data.nombre_comercial) return null;
+
+      const mapSafety = (val: string): SafetyStatus => {
+        const v = String(val).toUpperCase();
+        if (v === 'SI') return SafetyStatus.SI;
+        if (v === 'NO') return SafetyStatus.NO;
+        return SafetyStatus.PRECAUCION;
+      };
+
+      return {
+        sku: data.sku || "SEARCH-" + Date.now().toString().slice(-6),
+        nombre_comercial: data.nombre_comercial,
+        descripcion: data.descripcion || "",
+        principios_activos: data.principios_activos || [],
+        posologia: data.posologia || "Consultar prospecto",
+        indicaciones: data.indicaciones || [],
+        advertencias: data.advertencias || "",
+        tags_ia: [...(data.tags_ia || []), "google_search_grounding"],
+        vectores: [],
+        apto_embarazo: mapSafety(data.apto_embarazo),
+        apto_lactancia: mapSafety(data.apto_lactancia),
+        apto_pediatria: mapSafety(data.apto_pediatria),
+        apto_diabeticos: mapSafety(data.apto_diabeticos),
+        apto_hipertensos: mapSafety(data.apto_hipertensos),
+        apto_celiacos: mapSafety(data.apto_celiacos),
+        sugerencia_complementaria: data.sugerencia_complementaria || "",
+        skus_relacionados: [],
+        source_url: targetUrl || "google_search"
+      };
+
+    } catch (error) {
+      console.error("[GeminiService] Error en búsqueda y extracción:", error);
+      return null;
+    }
+  }
+
   static async extractProductFromMarkdown(markdown: string, url: string): Promise<Product | null> {
     try {
       const ai = this.getAI();

@@ -11,13 +11,14 @@ interface ScrapedLink {
   href: string;
   status: 'pending' | 'processing' | 'success' | 'error' | 'skipped';
   productName?: string;
-  method?: 'vtex' | 'gemini' | 'local';
+  method?: 'vtex' | 'gemini' | 'local' | 'search';
 }
 
 export const BatchScraper: React.FC = () => {
   const { hardware } = useHardwareDetection();
   const [categoryUrl, setCategoryUrl] = useState('');
   const [isScanning, setIsScanning] = useState(false);
+  const [useSearchMode, setUseSearchMode] = useState(false);
   const [links, setLinks] = useState<ScrapedLink[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processedCount, setProcessedCount] = useState(0);
@@ -102,67 +103,80 @@ export const BatchScraper: React.FC = () => {
     try {
         // 1. Fetch Product Page (Markdown)
         setAiStatus({ text: `Descargando: ${link.text}...`, progress: 10 });
-        const response = await fetch(`/api/scrape?url=${encodeURIComponent(link.href)}`);
-        const data = await response.json();
-
-        if (!data.success) throw new Error(data.error);
-
-        // 2. Extraction Strategy
-        let product: Product | null = null;
-        let method: 'vtex' | 'gemini' | 'local' = 'local';
         
-        if (data.productData) {
-            setAiStatus({ text: `Usando datos estructurados para: ${link.text}...`, progress: 50 });
-            method = 'vtex';
-            product = {
-                sku: data.productData.sku || "VTEX-" + Date.now().toString().slice(-6),
-                nombre_comercial: data.productData.name || link.text,
-                descripcion: data.productData.description || "Sin descripción",
-                principios_activos: [],
-                posologia: "Consultar prospecto",
-                indicaciones: [],
-                advertencias: "Datos extraídos de fuente estructurada",
-                tags_ia: ["vtex_direct"],
-                apto_embarazo: SafetyStatus.PRECAUCION,
-                apto_lactancia: SafetyStatus.PRECAUCION,
-                apto_pediatria: SafetyStatus.PRECAUCION,
-                apto_diabeticos: SafetyStatus.PRECAUCION,
-                apto_hipertensos: SafetyStatus.PRECAUCION,
-                apto_celiacos: SafetyStatus.PRECAUCION,
-                sugerencia_complementaria: "Verificar datos manualmente",
-                vectores: [],
-                skus_relacionados: [],
-                source_url: link.href
-            };
-            
-            // Si faltan datos clave, usar Gemini para completar
-            if (!product.descripcion || product.descripcion.length < 100) {
-                setAiStatus({ text: `Completando con Gemini: ${link.text}...`, progress: 70 });
-                const geminiProduct = await GeminiService.extractProductFromMarkdown(data.markdown, link.href);
-                if (geminiProduct) {
-                    product = { ...product, ...geminiProduct, sku: product.sku };
-                    method = 'gemini';
-                }
-            }
-        } else {
-            // Intentar Gemini primero (Alta Precisión)
-            setAiStatus({ text: `Extrayendo con Gemini (Alta Precisión): ${link.text}...`, progress: 50 });
-            product = await GeminiService.extractProductFromMarkdown(data.markdown, link.href);
-            
-            if (product) {
-              method = 'gemini';
-            } else {
-              // Fallback a Local AI
-              setAiStatus({ text: `Iniciando IA Local...`, progress: 60 });
-              
-              // Suscribirse al progreso de la IA local para mostrarlo en el scraper
-              AIService.setProgressCallback((text, progress) => {
-                setAiStatus({ text: `IA Local: ${text}`, progress: 60 + (progress * 0.4) });
-              });
+        let data: any = { success: false };
+        let product: Product | null = null;
+        let method: 'vtex' | 'gemini' | 'local' | 'search' = 'local';
 
-              await AIService.startEngine();
-              product = await AIService.extractProductData(data.markdown, link.href);
-              method = 'local';
+        try {
+            const response = await fetch(`/api/scrape?url=${encodeURIComponent(link.href)}`);
+            data = await response.json();
+        } catch (fetchError) {
+            console.warn(`[Scraper] Falló scraping directo para ${link.href}, intentando búsqueda...`);
+        }
+
+        if (!data.success || useSearchMode) {
+            // ESTRATEGIA: Google Search Grounding (Evita bloqueos de scraping)
+            setAiStatus({ text: `Usando Google Search para: ${link.text}...`, progress: 40 });
+            product = await GeminiService.searchAndExtractProduct(link.text, link.href);
+            if (product) method = 'search';
+        }
+
+        if (!product && data.success) {
+            // 2. Extraction Strategy (Normal)
+            if (data.productData) {
+                setAiStatus({ text: `Usando datos estructurados para: ${link.text}...`, progress: 50 });
+                method = 'vtex';
+                product = {
+                    sku: data.productData.sku || "VTEX-" + Date.now().toString().slice(-6),
+                    nombre_comercial: data.productData.name || link.text,
+                    descripcion: data.productData.description || "Sin descripción",
+                    principios_activos: [],
+                    posologia: "Consultar prospecto",
+                    indicaciones: [],
+                    advertencias: "Datos extraídos de fuente estructurada",
+                    tags_ia: ["vtex_direct"],
+                    apto_embarazo: SafetyStatus.PRECAUCION,
+                    apto_lactancia: SafetyStatus.PRECAUCION,
+                    apto_pediatria: SafetyStatus.PRECAUCION,
+                    apto_diabeticos: SafetyStatus.PRECAUCION,
+                    apto_hipertensos: SafetyStatus.PRECAUCION,
+                    apto_celiacos: SafetyStatus.PRECAUCION,
+                    sugerencia_complementaria: "Verificar datos manualmente",
+                    vectores: [],
+                    skus_relacionados: [],
+                    source_url: link.href
+                };
+                
+                // Si faltan datos clave, usar Gemini para completar
+                if (!product.descripcion || product.descripcion.length < 100) {
+                    setAiStatus({ text: `Completando con Gemini: ${link.text}...`, progress: 70 });
+                    const geminiProduct = await GeminiService.extractProductFromMarkdown(data.markdown, link.href);
+                    if (geminiProduct) {
+                        product = { ...product, ...geminiProduct, sku: product.sku };
+                        method = 'gemini';
+                    }
+                }
+            } else {
+                // Intentar Gemini primero (Alta Precisión)
+                setAiStatus({ text: `Extrayendo con Gemini (Alta Precisión): ${link.text}...`, progress: 50 });
+                product = await GeminiService.extractProductFromMarkdown(data.markdown, link.href);
+                
+                if (product) {
+                  method = 'gemini';
+                } else {
+                  // Fallback a Local AI
+                  setAiStatus({ text: `Iniciando IA Local...`, progress: 60 });
+                  
+                  // Suscribirse al progreso de la IA local para mostrarlo en el scraper
+                  AIService.setProgressCallback((text, progress) => {
+                    setAiStatus({ text: `IA Local: ${text}`, progress: 60 + (progress * 0.4) });
+                  });
+
+                  await AIService.startEngine();
+                  product = await AIService.extractProductData(data.markdown, link.href);
+                  method = 'local';
+                }
             }
         }
 
@@ -284,7 +298,24 @@ export const BatchScraper: React.FC = () => {
         </div>
         
         {/* Status Indicators */}
-        <div className="mt-4 flex flex-wrap gap-4">
+        <div className="mt-4 flex flex-wrap gap-4 items-center">
+            <label className="flex items-center gap-2 cursor-pointer group">
+                <div className={`relative w-10 h-5 rounded-full transition-colors ${useSearchMode ? 'bg-indigo-600' : 'bg-slate-700'}`}>
+                    <input 
+                        type="checkbox" 
+                        className="sr-only" 
+                        checked={useSearchMode}
+                        onChange={(e) => setUseSearchMode(e.target.checked)}
+                    />
+                    <div className={`absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform ${useSearchMode ? 'translate-x-5' : ''}`} />
+                </div>
+                <span className="text-xs font-medium text-slate-300 group-hover:text-white transition-colors">
+                    Modo Búsqueda (Google Search Grounding)
+                </span>
+            </label>
+
+            <div className="h-4 w-px bg-slate-800 mx-2" />
+
             {links.length > 0 && (
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-xs font-medium">
                     <CheckCircle className="w-3.5 h-3.5" />
@@ -348,6 +379,7 @@ export const BatchScraper: React.FC = () => {
                                         <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-bold uppercase tracking-wider ${
                                           link.method === 'vtex' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
                                           link.method === 'gemini' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
+                                          link.method === 'search' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
                                           'bg-slate-700 text-slate-400'
                                         }`}>
                                           {link.method}
