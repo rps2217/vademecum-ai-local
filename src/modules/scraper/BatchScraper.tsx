@@ -1,56 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Globe, Database, Play, Square, FileCode2, CheckCircle, AlertCircle, ChevronDown, ChevronUp, Terminal } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
-
-const GAS_SCRIPT = `function doGet(e) {
-  if (e.parameter.action === 'scrape') {
-    try {
-      var response = UrlFetchApp.fetch(e.parameter.url, { muteHttpExceptions: true });
-      return ContentService.createTextOutput(JSON.stringify({ 
-        success: true, 
-        html: response.getContentText() 
-      })).setMimeType(ContentService.MimeType.JSON);
-    } catch (err) {
-      return ContentService.createTextOutput(JSON.stringify({ success: false, error: err.toString() }))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-  }
-  return ContentService.createTextOutput("API Activa");
-}
-
-function doPost(e) {
-  try {
-    var data = JSON.parse(e.postData.contents);
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Fecha', 'Nombre', 'Principio Activo', 'Clase', 'Indicaciones', 'Dosis', 'Efectos Secundarios', 'Advertencias', 'Seguridad', 'URL']);
-      sheet.getRange("A1:J1").setFontWeight("bold").setBackground("#f3f4f6");
-    }
-    
-    sheet.appendRow([
-      new Date().toISOString(),
-      data.name || '',
-      data.activePrinciple || '',
-      data.therapeuticClass || '',
-      (data.indications || []).join(', '),
-      data.dosage || '',
-      (data.sideEffects || []).join(', '),
-      (data.warnings || []).join(', '),
-      data.safetyStatus || '',
-      data.sourceUrl || ''
-    ]);
-    
-    return ContentService.createTextOutput(JSON.stringify({ success: true }))
-      .setMimeType(ContentService.MimeType.JSON);
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ success: false, error: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}`;
+import { GoogleSyncService } from '../../services/GoogleSyncService';
+import { Product, SafetyStatus } from '../../core/types/product.types';
+import { getDB } from '../../core/database/db';
 
 export const BatchScraper: React.FC = () => {
-  const [gasUrl, setGasUrl] = useState(() => localStorage.getItem('gas_sheets_url') || '');
+  const [gasUrl, setGasUrl] = useState(() => GoogleSyncService.getGasUrl());
   const [targetUrl, setTargetUrl] = useState('');
   const [logs, setLogs] = useState<{time: string, text: string, type: 'info'|'success'|'error'}[]>([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -60,7 +16,7 @@ export const BatchScraper: React.FC = () => {
   const logsEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    localStorage.setItem('gas_sheets_url', gasUrl);
+    GoogleSyncService.setGasUrl(gasUrl);
   }, [gasUrl]);
 
   useEffect(() => {
@@ -117,6 +73,8 @@ export const BatchScraper: React.FC = () => {
       
       addLog(`Se encontraron ${links.length} productos potenciales.`, 'success');
 
+      const db = await getDB();
+
       // 3. Procesar cada enlace
       for (let i = 0; i < links.length; i++) {
         if (!isRunningRef.current) {
@@ -142,34 +100,58 @@ export const BatchScraper: React.FC = () => {
           const prompt = `Extrae la información médica de este producto farmacéutico a partir del siguiente HTML.
           Devuelve un JSON estricto con esta estructura:
           {
-            "name": "Nombre del producto",
-            "activePrinciple": "Principio activo",
-            "therapeuticClass": "Clase terapéutica",
-            "indications": ["indicacion 1"],
-            "dosage": "Dosis",
-            "sideEffects": ["efecto 1"],
-            "warnings": ["advertencia 1"],
+            "name": "Nombre comercial y presentación",
+            "activePrinciple": "Principio activo principal",
+            "therapeuticClass": "Clase terapéutica (ej: Analgésico, Antibiótico)",
+            "indications": ["indicación 1", "indicación 2"],
+            "contraindications": ["contraindicación 1", "contraindicación 2"],
+            "dosage": "Dosis recomendada general",
+            "sideEffects": ["efecto 1", "efecto 2"],
+            "warnings": ["advertencia 1", "advertencia 2"],
             "safetyStatus": "safe" o "caution" o "danger"
           }
           HTML: ${prodData.html.substring(0, 15000)}`;
           
           const jsonStr = await GeminiService.generateJSON(prompt);
-          const productInfo = JSON.parse(jsonStr);
-          productInfo.sourceUrl = link;
+          const productData = JSON.parse(jsonStr);
 
-          if (!productInfo.name) throw new Error("La IA no pudo identificar el producto.");
+          if (!productData.name) throw new Error("La IA no pudo identificar el producto.");
 
-          // Guardar en Google Sheets
-          addLog(`Guardando "${productInfo.name}" en Google Sheets...`, 'info');
+          // Crear objeto Product completo
+          const newProduct: Product = {
+            id: crypto.randomUUID(),
+            sku: 'SCR-' + Date.now().toString().slice(-6) + '-' + Math.floor(Math.random() * 1000),
+            name: productData.name,
+            activePrinciple: productData.activePrinciple || 'No especificado',
+            therapeuticClass: productData.therapeuticClass || 'General',
+            indications: productData.indications || [],
+            contraindications: productData.contraindications || [],
+            dosage: productData.dosage || 'Consultar al médico',
+            sideEffects: productData.sideEffects || [],
+            warnings: productData.warnings || [],
+            safetyStatus: (productData.safetyStatus as SafetyStatus) || 'caution',
+            interactions: [],
+            pregnancyCategory: 'C',
+            prescriptionRequired: false,
+            sourceUrl: link,
+            lastUpdated: new Date().toISOString()
+          };
+
+          // 1. Guardar en Base de Datos Local (IndexedDB)
+          await db.put('products', newProduct);
+          addLog(`💾 Guardado en base de datos local: ${newProduct.name}`, 'info');
+
+          // 2. Guardar en Google Sheets (Nube)
+          addLog(`☁️ Guardando en Google Sheets...`, 'info');
           const saveRes = await fetch(gasUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // text/plain evita el preflight CORS
-            body: JSON.stringify(productInfo)
+            body: JSON.stringify([newProduct]) // Enviamos como array para que el Super Script lo entienda
           });
           
           const saveData = await saveRes.json();
           if (saveData.success) {
-            addLog(`✅ Guardado exitosamente: ${productInfo.name}`, 'success');
+            addLog(`✅ Sincronizado exitosamente: ${newProduct.name}`, 'success');
           } else {
             throw new Error(saveData.error);
           }
@@ -197,6 +179,8 @@ export const BatchScraper: React.FC = () => {
     addLog('Deteniendo proceso...', 'info');
   };
 
+  const gasScriptTemplate = GoogleSyncService.getGasScriptTemplate();
+
   return (
     <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header className="space-y-2">
@@ -207,7 +191,7 @@ export const BatchScraper: React.FC = () => {
           <h1 className="text-3xl font-bold text-white">Google Sheets Scraper</h1>
         </div>
         <p className="text-slate-400 text-lg">
-          Extrae datos de farmacias y guárdalos directamente en Google Sheets. Funciona en Vercel y Localhost sin problemas de CORS.
+          Extrae datos de farmacias y guárdalos directamente en Google Sheets y en tu base de datos local al mismo tiempo.
         </p>
       </header>
 
@@ -224,26 +208,26 @@ export const BatchScraper: React.FC = () => {
             >
               <div className="flex items-center gap-2 font-medium text-slate-200">
                 <FileCode2 className="w-5 h-5 text-indigo-400" />
-                Instrucciones de Configuración
+                Instrucciones del Super Script
               </div>
               {showInstructions ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
             </button>
             
             {showInstructions && (
               <div className="p-5 space-y-4 text-sm text-slate-300">
-                <p>Para saltar los bloqueos de Vercel y guardar datos, usaremos Google Apps Script como puente y base de datos.</p>
+                <p>Hemos unificado el sistema. Ahora necesitas un único "Super Script" en tu Google Sheet que hará de puente para el scraper y de base de datos para la aplicación.</p>
                 <ol className="list-decimal pl-5 space-y-2">
-                  <li>Crea un nuevo <a href="https://sheets.new" target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">Google Sheet</a>.</li>
+                  <li>Abre tu <a href="https://sheets.new" target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">Google Sheet</a> principal.</li>
                   <li>Ve a <strong>Extensiones &gt; Apps Script</strong>.</li>
-                  <li>Borra el código que haya y pega este:</li>
+                  <li>Borra el código que haya y pega este nuevo Super Script:</li>
                 </ol>
                 
                 <div className="relative group">
                   <pre className="bg-slate-950 p-4 rounded-xl overflow-x-auto text-[11px] font-mono text-slate-400 border border-slate-800 max-h-48 custom-scrollbar">
-                    {GAS_SCRIPT}
+                    {gasScriptTemplate}
                   </pre>
                   <button 
-                    onClick={() => navigator.clipboard.writeText(GAS_SCRIPT)}
+                    onClick={() => navigator.clipboard.writeText(gasScriptTemplate)}
                     className="absolute top-2 right-2 p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     Copiar
@@ -251,11 +235,9 @@ export const BatchScraper: React.FC = () => {
                 </div>
 
                 <ol className="list-decimal pl-5 space-y-2" start={4}>
-                  <li><strong>¡IMPORTANTE - AUTORIZACIÓN!:</strong> Antes de implementar, selecciona la función <code>doGet</code> en el menú superior y haz clic en <strong>Ejecutar</strong>.</li>
-                  <li>Google te pedirá permisos. Haz clic en <strong>Revisar permisos</strong> &gt; Elige tu cuenta &gt; <strong>Configuración avanzada</strong> &gt; <strong>Ir a Proyecto (no seguro)</strong> &gt; <strong>Permitir</strong>.</li>
-                  <li>Ahora sí, haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
-                  <li>Tipo: <strong>Aplicación web</strong>.</li>
-                  <li>Acceso: <strong>Cualquier persona</strong>.</li>
+                  <li><strong>¡IMPORTANTE - AUTORIZACIÓN!:</strong> Selecciona la función <code>doGet</code> arriba y haz clic en <strong>Ejecutar</strong>. Da los permisos (Avanzado &gt; Ir a Proyecto no seguro).</li>
+                  <li>Haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
+                  <li>Tipo: <strong>Aplicación web</strong>. Acceso: <strong>Cualquier persona</strong>.</li>
                   <li>Copia la <strong>URL de la aplicación web</strong> y pégala abajo.</li>
                 </ol>
               </div>
@@ -266,7 +248,7 @@ export const BatchScraper: React.FC = () => {
           <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 space-y-5">
             <div className="space-y-2">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                1. URL de Google Apps Script
+                1. URL del Super Script (Google Apps Script)
               </label>
               <input 
                 type="url"
@@ -303,7 +285,7 @@ export const BatchScraper: React.FC = () => {
                 disabled={!gasUrl || !targetUrl}
                 className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-800 disabled:text-slate-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-500/20"
               >
-                <Play className="w-5 h-5" /> Iniciar Scraping a Sheets
+                <Play className="w-5 h-5" /> Iniciar Scraping y Sincronizar
               </button>
             )}
           </div>
