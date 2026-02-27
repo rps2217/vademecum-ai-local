@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Search, Loader2, CheckCircle, AlertCircle, Save, Sparkles, Copy, Trash2, Link, Play, Pause, X, Activity } from 'lucide-react';
+import { FileText, Search, Loader2, CheckCircle, AlertCircle, Sparkles, Copy, Play, Globe } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { GeminiService } from '../../services/GeminiService';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 
-interface ScrapedLink {
-  text: string;
-  href: string;
-  status: 'pending' | 'processing' | 'success' | 'error' | 'skipped';
-  productName?: string;
-  method?: 'vtex' | 'gemini' | 'local' | 'search';
+interface ExtractedProduct {
+  name: string;
+  status: 'pending' | 'processing' | 'success' | 'error';
+  details?: Partial<Product>;
+  errorMsg?: string;
 }
+
+type InputMode = 'paste' | 'list' | 'url' | 'search';
 
 export const BatchScraper: React.FC = () => {
   const { hardware } = useHardwareDetection();
-  const [categoryUrl, setCategoryUrl] = useState('');
-  const [gasProxyUrl, setGasProxyUrl] = useState(() => localStorage.getItem('gas_proxy_url') || '');
-  const [isScanning, setIsScanning] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem('gas_proxy_url', gasProxyUrl);
-  }, [gasProxyUrl]);
-  const [useSearchMode, setUseSearchMode] = useState(false);
-  const [links, setLinks] = useState<ScrapedLink[]>([]);
+  const [mode, setMode] = useState<InputMode>('url');
+  const [inputText, setInputText] = useState('');
+  const [isExtracting, setIsExtracting] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  
+  const [products, setProducts] = useState<ExtractedProduct[]>([]);
   const [processedCount, setProcessedCount] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [aiStatus, setAiStatus] = useState<{ text: string; progress: number }>({ text: '', progress: 0 });
@@ -36,495 +33,335 @@ export const BatchScraper: React.FC = () => {
     }
   }, [hardware]);
 
-  const handleScan = async () => {
-    if (!categoryUrl.trim()) return;
+  const logStatus = (text: string, progress: number = 0) => {
+    setAiStatus({ text, progress });
+  };
+
+  // Paso 1: Extraer nombres de productos del texto pegado o de la lista
+  const handleExtractNames = async () => {
+    if (!inputText.trim()) return;
     
-    setIsScanning(true);
+    setIsExtracting(true);
     setError(null);
-    setLinks([]);
+    setProducts([]);
+    logStatus('Analizando con IA...', 20);
     
     try {
-      let html = '';
-      let linksFound: any[] = [];
+      let extractedNames: string[] = [];
 
-      if (gasProxyUrl.trim()) {
-        // MODO GAS: Usamos el puente del servidor para evitar CORS/NetworkError
-        logStatus('Consultando vía Google (Puente Servidor)...');
-        
-        const cleanGasUrl = gasProxyUrl.split('?')[0];
-        // Asegurar que la ruta comience con /api/
-        const bridgeUrl = `/api/gas-bridge?gasUrl=${encodeURIComponent(cleanGasUrl)}&targetUrl=${encodeURIComponent(categoryUrl)}`;
-        
-        try {
-            const res = await fetch(bridgeUrl);
-            const responseText = await res.text();
-            
-            if (!res.ok) {
-              let errorMsg = `HTTP ${res.status}`;
-              try {
-                const errorData = JSON.parse(responseText);
-                errorMsg = errorData.error || errorMsg;
-              } catch(e) {
-                errorMsg = responseText || errorMsg;
-              }
-              throw new Error(errorMsg);
-            }
-            html = responseText;
-        } catch (fetchErr: any) {
-            console.error("[GAS Bridge Error]", fetchErr);
-            throw new Error(`Error de conexión: ${fetchErr.message}`);
-        }
-        
-        if (html.startsWith('Error')) throw new Error(html);
-        
-        // Parsear enlaces en el cliente
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const anchors = doc.querySelectorAll('a');
-        
-        anchors.forEach(a => {
-          const href = a.getAttribute('href');
-          const text = a.textContent?.trim();
-          if (href && text && !href.startsWith('#')) {
-            try {
-              const fullUrl = new URL(href, categoryUrl).href;
-              linksFound.push({ text, href: fullUrl });
-            } catch(e) {}
-          }
-        });
+      if (mode === 'list') {
+        extractedNames = inputText.split('\n')
+          .map(line => line.trim())
+          .filter(line => line.length > 3);
+      } else if (mode === 'url') {
+        logStatus('Visitando URL con IA...', 40);
+        extractedNames = await GeminiService.extractProductNamesFromUrl(inputText.trim());
+      } else if (mode === 'search') {
+        logStatus('Buscando en Google con IA...', 40);
+        extractedNames = await GeminiService.extractProductNamesFromSearch(inputText.trim());
       } else {
-        // MODO NORMAL: Vía servidor local
-        const response = await fetch(`/api/scrape?url=${encodeURIComponent(categoryUrl)}`);
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new Error("El servidor no respondió correctamente. Prueba usando el Proxy de Google Apps Script arriba.");
-        }
-        const data = await response.json();
-        if (!data.success) throw new Error(data.error);
-        linksFound = data.links;
+        // paste mode
+        const prompt = `
+          Extrae una lista de nombres de medicamentos o productos de farmacia del siguiente texto.
+          El texto fue copiado y pegado de una página web de farmacia.
+          Ignora menús, precios, textos legales, y otra basura.
+          Devuelve ÚNICAMENTE los nombres de los productos, uno por línea.
+          No incluyas viñetas, números ni texto adicional.
+          
+          Texto:
+          ${inputText.substring(0, 15000)}
+        `;
+        
+        const response = await GeminiService.generateText(prompt);
+        extractedNames = response.split('\n')
+          .map(line => line.replace(/^[-\*\d\.\s]+/, '').trim())
+          .filter(line => line.length > 3 && !line.toLowerCase().includes('precio') && !line.toLowerCase().includes('agregar'));
+      }
+
+      if (extractedNames.length === 0) {
+        throw new Error("No se encontraron productos válidos. Intenta con otra búsqueda o URL.");
+      }
+
+      // Eliminar duplicados
+      const uniqueNames = [...new Set(extractedNames)];
+      
+      setProducts(uniqueNames.map(name => ({
+        name,
+        status: 'pending'
+      })));
+      
+      logStatus(`¡Se encontraron ${uniqueNames.length} productos!`, 100);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Error al extraer productos.');
+      logStatus('Error en la extracción', 0);
+    } finally {
+      setIsExtracting(false);
+    }
+  };
+
+  // Paso 2: Procesar cada producto usando Google Search Grounding
+  const handleProcessProducts = async () => {
+    if (products.length === 0) return;
+    
+    setIsProcessing(true);
+    setError(null);
+    setProcessedCount(0);
+    
+    const db = await getDB();
+    const updatedProducts = [...products];
+
+    for (let i = 0; i < updatedProducts.length; i++) {
+      if (updatedProducts[i].status === 'success') continue;
+      
+      updatedProducts[i].status = 'processing';
+      setProducts([...updatedProducts]);
+      logStatus(`Buscando información de: ${updatedProducts[i].name}...`, Math.round((i / updatedProducts.length) * 100));
+
+      try {
+        // Usamos Gemini con Google Search Grounding para obtener la info real del medicamento
+        const prompt = `
+          Busca información médica real y actualizada sobre el medicamento o producto farmacéutico: "${updatedProducts[i].name}".
+          Devuelve un objeto JSON estricto con la siguiente estructura. No incluyas markdown, solo el JSON puro.
+          
+          {
+            "name": "Nombre comercial y presentación",
+            "activePrinciple": "Principio activo principal",
+            "therapeuticClass": "Clase terapéutica (ej: Analgésico, Antibiótico)",
+            "indications": ["indicación 1", "indicación 2"],
+            "contraindications": ["contraindicación 1", "contraindicación 2"],
+            "dosage": "Dosis recomendada general",
+            "sideEffects": ["efecto 1", "efecto 2"],
+            "warnings": ["advertencia 1", "advertencia 2"],
+            "safetyStatus": "safe" | "caution" | "danger"
+          }
+        `;
+
+        const jsonResponse = await GeminiService.generateJSON(prompt);
+        const productData = JSON.parse(jsonResponse);
+
+        const newProduct: Product = {
+          id: crypto.randomUUID(),
+          name: productData.name || updatedProducts[i].name,
+          activePrinciple: productData.activePrinciple || 'No especificado',
+          therapeuticClass: productData.therapeuticClass || 'General',
+          indications: productData.indications || [],
+          contraindications: productData.contraindications || [],
+          dosage: productData.dosage || 'Consultar al médico',
+          sideEffects: productData.sideEffects || [],
+          warnings: productData.warnings || [],
+          safetyStatus: (productData.safetyStatus as SafetyStatus) || 'caution',
+          interactions: [],
+          pregnancyCategory: 'C',
+          prescriptionRequired: false,
+          sourceUrl: 'https://google.com/search?q=' + encodeURIComponent(updatedProducts[i].name),
+          lastUpdated: new Date().toISOString()
+        };
+
+        await db.put('products', newProduct);
+        
+        updatedProducts[i].status = 'success';
+        updatedProducts[i].details = newProduct;
+        setProcessedCount(prev => prev + 1);
+
+        // Pequeña pausa para no saturar la API
+        await new Promise(r => setTimeout(r, 1500));
+
+      } catch (err: any) {
+        console.error(`Error procesando ${updatedProducts[i].name}:`, err);
+        updatedProducts[i].status = 'error';
+        updatedProducts[i].errorMsg = err.message;
       }
       
-      if (linksFound.length > 0) {
-        // Filtrar enlaces irrelevantes (mismo filtro que antes)
-        const relevantLinks = linksFound.filter((l: any) => {
-            const text = l.text.toLowerCase().trim();
-            const forbiddenKeywords = ['inicio', 'home', 'contacto', 'login', 'carrito', 'ayuda', 'nosotros', 'mi cuenta', 'ver más'];
-            if (forbiddenKeywords.some(k => text === k || text.includes(k))) return false;
-            if (text.length < 4) return false;
-            return true;
-        }).map((l: any) => ({ ...l, status: 'pending' }));
-
-        const uniqueLinks = Array.from(new Map(relevantLinks.map(item => [item.href, item])).values()) as ScrapedLink[];
-        setLinks(uniqueLinks);
-      } else {
-        throw new Error('No se encontraron enlaces de productos.');
-      }
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setIsScanning(false);
-    }
-  };
-
-  const logStatus = (text: string) => {
-    setAiStatus(prev => ({ ...prev, text }));
-  };
-
-  const processNextLink = async () => {
-    const nextIndex = links.findIndex(l => l.status === 'pending');
-    if (nextIndex === -1 || !isProcessing) {
-        setIsProcessing(false);
-        return;
+      setProducts([...updatedProducts]);
     }
 
-    setLinks(prev => prev.map((l, i) => i === nextIndex ? { ...l, status: 'processing' } : l));
-    const link = links[nextIndex];
-
-    try {
-        // 1. Fetch Product Page
-        setAiStatus({ text: `Descargando: ${link.text}...`, progress: 10 });
-        
-        let html = '';
-        let data: any = { success: false };
-        let product: Product | null = null;
-        let method: 'vtex' | 'gemini' | 'local' | 'search' = 'local';
-
-        if (gasProxyUrl.trim()) {
-            // MODO GAS: Usamos el puente del servidor
-            const cleanGasUrl = gasProxyUrl.split('?')[0];
-            // Asegurar que la ruta comience con /api/
-            const bridgeUrl = `/api/gas-bridge?gasUrl=${encodeURIComponent(cleanGasUrl)}&targetUrl=${encodeURIComponent(link.href)}`;
-            
-            try {
-                const res = await fetch(bridgeUrl);
-                const responseText = await res.text();
-                
-                if (!res.ok) {
-                    let errorMsg = `HTTP ${res.status}`;
-                    try {
-                      const errorData = JSON.parse(responseText);
-                      errorMsg = errorData.error || errorMsg;
-                    } catch(e) {
-                      errorMsg = responseText || errorMsg;
-                    }
-                    throw new Error(errorMsg);
-                }
-                html = responseText;
-                if (!html.startsWith('Error')) data = { success: true, markdown: html };
-            } catch (e: any) {
-                console.warn(`[GAS Bridge] Falló fetch para ${link.href}: ${e.message}`);
-            }
-        } else {
-            // MODO NORMAL
-            try {
-                const response = await fetch(`/api/scrape?url=${encodeURIComponent(link.href)}`);
-                data = await response.json();
-                html = data.markdown || '';
-            } catch (e) {}
-        }
-
-        if (!data.success || useSearchMode) {
-            // ESTRATEGIA: Google Search Grounding
-            setAiStatus({ text: `Usando Google Search para: ${link.text}...`, progress: 40 });
-            product = await GeminiService.searchAndExtractProduct(link.text, link.href);
-            if (product) method = 'search';
-        }
-
-        if (!product && (data.success || html)) {
-            // 2. Extraction Strategy
-            if (data.productData) {
-                // ... (resto de la lógica VTEX se mantiene igual)
-                setAiStatus({ text: `Usando datos estructurados para: ${link.text}...`, progress: 50 });
-                method = 'vtex';
-                product = {
-                    sku: data.productData.sku || "VTEX-" + Date.now().toString().slice(-6),
-                    nombre_comercial: data.productData.name || link.text,
-                    descripcion: data.productData.description || "Sin descripción",
-                    principios_activos: [],
-                    posologia: "Consultar prospecto",
-                    indicaciones: [],
-                    advertencias: "Datos extraídos de fuente estructurada",
-                    tags_ia: ["vtex_direct"],
-                    apto_embarazo: SafetyStatus.PRECAUCION,
-                    apto_lactancia: SafetyStatus.PRECAUCION,
-                    apto_pediatria: SafetyStatus.PRECAUCION,
-                    apto_diabeticos: SafetyStatus.PRECAUCION,
-                    apto_hipertensos: SafetyStatus.PRECAUCION,
-                    apto_celiacos: SafetyStatus.PRECAUCION,
-                    sugerencia_complementaria: "Verificar datos manualmente",
-                    vectores: [],
-                    skus_relacionados: [],
-                    source_url: link.href
-                };
-            } else {
-                // Intentar Gemini con el HTML obtenido
-                setAiStatus({ text: `Extrayendo con Gemini: ${link.text}...`, progress: 50 });
-                product = await GeminiService.extractProductFromMarkdown(html, link.href);
-                if (product) method = 'gemini';
-            }
-        }
-
-        if (product && product.nombre_comercial !== 'Producto Desconocido') {
-            // 3. Generate Embedding for Semantic Search
-            setAiStatus({ text: `Generando firma semántica: ${link.text}...`, progress: 90 });
-            await AIService.startEngine();
-            const embedding = await AIService.generateEmbedding(`${product.nombre_comercial} ${product.principios_activos.join(' ')} ${product.indicaciones.join(' ')}`);
-            product.vectores = embedding;
-
-            // 4. Save to DB
-            const db = await getDB();
-            const existing = await db.get('products', product.sku);
-            if (!existing) {
-                await db.put('products', product);
-                setLinks(prev => prev.map((l, i) => i === nextIndex ? { 
-                  ...l, 
-                  status: 'success', 
-                  productName: product!.nombre_comercial,
-                  method: method
-                } : l));
-                setProcessedCount(c => c + 1);
-            } else {
-                setLinks(prev => prev.map((l, i) => i === nextIndex ? { ...l, status: 'skipped', productName: 'Duplicado' } : l));
-            }
-        } else {
-            throw new Error('Datos insuficientes');
-        }
-
-    } catch (e) {
-        console.error(e);
-        setLinks(prev => prev.map((l, i) => i === nextIndex ? { ...l, status: 'error' } : l));
-    }
-
-    if (isProcessing) {
-      setTimeout(() => processNextLink(), 1000);
-    }
-  };
-
-  const handleStartBatch = () => {
-    setIsProcessing(true);
-    processNextLink();
-  };
-
-  const handleStopBatch = () => {
     setIsProcessing(false);
-  };
-
-  const handleRemoveLink = (index: number) => {
-    setLinks(prev => prev.filter((_, i) => i !== index));
+    logStatus('¡Proceso completado!', 100);
   };
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
-      <header className="text-center space-y-2">
-        <div className="inline-flex items-center justify-center p-3 bg-indigo-500/10 rounded-2xl mb-4">
-          <Globe className="w-8 h-8 text-indigo-400" />
+    <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <header className="text-center space-y-4">
+        <div className="inline-flex items-center justify-center p-3 bg-indigo-500/10 rounded-2xl mb-2">
+          <Sparkles className="w-8 h-8 text-indigo-400" />
         </div>
-        <h2 className="text-3xl font-bold text-white">Scraper Masivo Inteligente</h2>
-        <p className="text-slate-400 max-w-2xl mx-auto">
-          Introduce la URL de una categoría o listado de productos. El sistema detectará los enlaces y extraerá la información automáticamente usando IA local.
+        <h1 className="text-4xl font-bold tracking-tight text-white">
+          Vademécum IA <span className="text-indigo-400">Builder</span>
+        </h1>
+        <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+          Olvida los errores de red. Pega texto de cualquier farmacia o una lista de medicamentos. La IA extraerá los nombres y buscará toda la información médica automáticamente en Google para poblar tu base de datos.
         </p>
       </header>
 
-      {/* URL Input */}
+      {/* Input Section */}
       <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-lg space-y-6">
-        {/* GAS Proxy Config - More Visible */}
-        <div className="space-y-2">
-            <label className="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
-                <Link className="w-3 h-3" />
-                Configuración de Puente Google (Evita Error 404)
-            </label>
-            <div className="flex items-center gap-3 p-1 bg-slate-950 border border-slate-700 rounded-xl focus-within:border-indigo-500 transition-colors">
-                <input 
-                    type="text"
-                    value={gasProxyUrl}
-                    onChange={(e) => setGasProxyUrl(e.target.value)}
-                    placeholder="Pega aquí la URL de tu Google Apps Script (ej: https://script.google.com/.../exec)"
-                    className="flex-1 bg-transparent border-none text-sm text-slate-200 py-3 px-4 focus:ring-0 placeholder:text-slate-600"
-                />
-                <div className="flex items-center gap-2 pr-2">
-                    <button 
-                        onClick={() => {
-                            if (!gasProxyUrl) return alert("Primero pega la URL de tu script de Google.");
-                            window.open(`${gasProxyUrl}?url=https://google.com`, '_blank');
-                        }}
-                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                            gasProxyUrl 
-                            ? 'bg-indigo-600 text-white hover:bg-indigo-500' 
-                            : 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                        }`}
-                    >
-                        Probar Script
-                    </button>
-                    {gasProxyUrl && <CheckCircle className="w-5 h-5 text-emerald-500" />}
-                </div>
-            </div>
-            <p className="text-[10px] text-slate-500 px-2">
-                Esta URL es necesaria para saltar las restricciones de red de la plataforma.
-            </p>
-        </div>
-
-        <div className="h-px bg-slate-800" />
-
-        <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1 relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Search className="w-5 h-5 text-slate-500" />
-                </div>
-                <input 
-                    type="url" 
-                    value={categoryUrl}
-                    onChange={(e) => setCategoryUrl(e.target.value)}
-                    placeholder="https://ejemplo.com/categoria/antibioticos"
-                    className="w-full pl-12 pr-4 py-4 bg-slate-950 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
-                />
-            </div>
-            <button 
-                onClick={handleScan}
-                disabled={isScanning || !categoryUrl}
-                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/20 whitespace-nowrap"
-            >
-                {isScanning ? <Loader2 className="w-5 h-5 animate-spin" /> : <Globe className="w-5 h-5" />}
-                Escanear Página
-            </button>
-            <button 
-                onClick={async () => {
-                    try {
-                        const url = `/health?t=${Date.now()}`;
-                        console.log(`Fetching health from: ${url}`);
-                        const res = await fetch(url);
-                        const contentType = res.headers.get('content-type');
-                        
-                        if (!res.ok) {
-                            const text = await res.text();
-                            throw new Error(`Error ${res.status} en ${url}: ${text.substring(0, 50)}...`);
-                        }
-
-                        if (!contentType || !contentType.includes('application/json')) {
-                            const text = await res.text();
-                            throw new Error(`Respuesta no es JSON (${contentType}): ${text.substring(0, 50)}...`);
-                        }
-
-                        const data = await res.json();
-                        alert(`Conexión exitosa: ${data.status} (${data.timestamp})`);
-                    } catch (e: any) {
-                        if (confirm(`Error de conexión: ${e.message}\n\n¿Deseas recargar la página para limpiar la conexión?`)) {
-                            window.location.reload();
-                        }
-                    }
-                }}
-                className="px-4 py-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-medium transition-all flex items-center justify-center gap-2"
-                title="Probar conexión con el servidor"
-            >
-                <Activity className="w-5 h-5" />
-            </button>
-        </div>
         
-        {/* Status Indicators */}
-        <div className="mt-4 flex flex-wrap gap-4 items-center">
-            <label className="flex items-center gap-2 cursor-pointer group">
-                <div className={`relative w-10 h-5 rounded-full transition-colors ${useSearchMode ? 'bg-indigo-600' : 'bg-slate-700'}`}>
-                    <input 
-                        type="checkbox" 
-                        className="sr-only" 
-                        checked={useSearchMode}
-                        onChange={(e) => setUseSearchMode(e.target.checked)}
-                    />
-                    <div className={`absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform ${useSearchMode ? 'translate-x-5' : ''}`} />
-                </div>
-                <span className="text-xs font-medium text-slate-300 group-hover:text-white transition-colors">
-                    Modo Búsqueda (Google Search Grounding)
-                </span>
+        {/* Tabs */}
+        <div className="flex flex-wrap gap-2 p-1 bg-slate-950 rounded-xl border border-slate-800 w-fit">
+            <button
+                onClick={() => setMode('url')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    mode === 'url' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+            >
+                <Globe className="w-4 h-4" />
+                Escanear URL
+            </button>
+            <button
+                onClick={() => setMode('search')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    mode === 'search' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+            >
+                <Search className="w-4 h-4" />
+                Búsqueda Libre
+            </button>
+            <button
+                onClick={() => setMode('paste')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    mode === 'paste' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+            >
+                <Copy className="w-4 h-4" />
+                Pegar Texto
+            </button>
+            <button
+                onClick={() => setMode('list')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    mode === 'list' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+            >
+                <FileText className="w-4 h-4" />
+                Lista Manual
+            </button>
+        </div>
+
+        <div className="space-y-4">
+            <label className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                {mode === 'url' && '1. Ingresa la URL de la categoría de la farmacia (ej: https://farmaciaknop.com/medicamentos):'}
+                {mode === 'search' && '1. Ingresa qué tipo de medicamentos quieres buscar (ej: "Antibióticos en Chile" o "Medicamentos para la alergia"):'}
+                {mode === 'paste' && '1. Ve a la página de la farmacia, presiona Ctrl+A, Ctrl+C y pega aquí (Ctrl+V):'}
+                {mode === 'list' && '1. Escribe o pega una lista de medicamentos (uno por línea):'}
             </label>
-
-            <div className="h-4 w-px bg-slate-800 mx-2" />
-
-            {links.length > 0 && (
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-xs font-medium">
-                    <CheckCircle className="w-3.5 h-3.5" />
-                    {links.length} enlaces encontrados
-                </div>
+            
+            {mode === 'url' || mode === 'search' ? (
+              <input 
+                type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                placeholder={mode === 'url' ? "https://..." : "Ej: Medicamentos para el dolor de cabeza..."}
+                className="w-full p-4 bg-slate-950 border border-slate-700 rounded-xl text-slate-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-mono text-sm"
+              />
+            ) : (
+              <textarea 
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                  placeholder={mode === 'paste' ? "Pega aquí todo el texto de la página web..." : "Paracetamol 500mg\nIbuprofeno 400mg\nAmoxicilina..."}
+                  className="w-full h-48 p-4 bg-slate-950 border border-slate-700 rounded-xl text-slate-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-mono text-sm resize-y"
+              />
             )}
-            {/* Aquí podríamos añadir un indicador de VTEX si el servidor lo devuelve */}
+            
+            <button 
+                onClick={handleExtractNames}
+                disabled={isExtracting || !inputText.trim()}
+                className="w-full md:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 text-white rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg shadow-indigo-500/20"
+            >
+                {isExtracting ? (
+                    <><Loader2 className="w-5 h-5 animate-spin" /> Analizando...</>
+                ) : (
+                    <><Search className="w-5 h-5" /> Extraer Medicamentos</>
+                )}
+            </button>
         </div>
 
         {error && (
-            <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <p>{error}</p>
-            </div>
+          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3 text-red-400">
+            <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+            <p className="text-sm">{error}</p>
+          </div>
         )}
       </div>
 
-      {/* Results Area */}
-      {links.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* List of Links */}
-            <div className="lg:col-span-2 space-y-4">
-                <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                        <Link className="w-5 h-5 text-indigo-400" />
-                        Enlaces Detectados ({links.length})
-                    </h3>
-                    <div className="flex gap-2">
-                        {!isProcessing ? (
-                            <button 
-                                onClick={handleStartBatch}
-                                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-bold flex items-center gap-2 transition-colors"
-                            >
-                                <Play className="w-4 h-4" /> Iniciar Proceso
-                            </button>
-                        ) : (
-                            <button 
-                                onClick={handleStopBatch}
-                                className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-sm font-bold flex items-center gap-2 transition-colors"
-                            >
-                                <Pause className="w-4 h-4" /> Pausar
-                            </button>
-                        )}
-                    </div>
-                </div>
-
-                <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden max-h-[600px] overflow-y-auto">
-                    {links.map((link, idx) => (
-                        <div key={idx} className={`p-4 border-b border-slate-800 flex items-center justify-between hover:bg-slate-800/50 transition-colors ${
-                            link.status === 'processing' ? 'bg-indigo-500/10 border-l-4 border-l-indigo-500' : 
-                            link.status === 'success' ? 'bg-emerald-500/5 border-l-4 border-l-emerald-500' :
-                            link.status === 'error' ? 'bg-red-500/5 border-l-4 border-l-red-500' : ''
-                        }`}>
-                            <div className="flex-1 min-w-0 mr-4">
-                                <p className="text-sm font-medium text-slate-200 truncate">{link.text}</p>
-                                <p className="text-xs text-slate-500 truncate">{link.href}</p>
-                                {link.productName && (
-                                    <div className="flex items-center gap-2 mt-1">
-                                      <p className="text-xs text-emerald-400 font-medium">Detectado: {link.productName}</p>
-                                      {link.method && (
-                                        <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-bold uppercase tracking-wider ${
-                                          link.method === 'vtex' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
-                                          link.method === 'gemini' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
-                                          link.method === 'search' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
-                                          'bg-slate-700 text-slate-400'
-                                        }`}>
-                                          {link.method}
-                                        </span>
-                                      )}
-                                    </div>
-                                )}
-                            </div>
-                            <div className="flex items-center gap-3">
-                                {link.status === 'pending' && <span className="text-xs text-slate-500">Pendiente</span>}
-                                {link.status === 'processing' && <Loader2 className="w-4 h-4 text-indigo-400 animate-spin" />}
-                                {link.status === 'success' && <CheckCircle className="w-5 h-5 text-emerald-500" />}
-                                {link.status === 'error' && <AlertCircle className="w-5 h-5 text-red-500" />}
-                                {link.status === 'skipped' && <span className="text-xs text-amber-500">Omitido</span>}
-                                
-                                {link.status === 'pending' && (
-                                    <button onClick={() => handleRemoveLink(idx)} className="p-1 hover:bg-slate-700 rounded text-slate-500 hover:text-red-400">
-                                        <X className="w-4 h-4" />
-                                    </button>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+      {/* Results Section */}
+      {products.length > 0 && (
+        <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-lg space-y-6 animate-in fade-in slide-in-from-bottom-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                <FileText className="w-5 h-5 text-indigo-400" />
+                Productos Encontrados ({products.length})
+              </h2>
+              <p className="text-sm text-slate-400 mt-1">
+                Paso 2: La IA buscará la información médica de cada uno en Google.
+              </p>
             </div>
+            
+            <button
+              onClick={handleProcessProducts}
+              disabled={isProcessing || products.every(p => p.status === 'success')}
+              className="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-800 disabled:text-slate-500 text-white rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/20"
+            >
+              {isProcessing ? (
+                <><Loader2 className="w-5 h-5 animate-spin" /> Procesando...</>
+              ) : (
+                <><Play className="w-5 h-5" /> Iniciar Búsqueda IA</>
+              )}
+            </button>
+          </div>
 
-            {/* Status Panel */}
-            <div className="space-y-6">
-                <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 sticky top-8">
-                    <h3 className="text-lg font-semibold text-white mb-4">Estado del Proceso</h3>
-                    
-                    <div className="space-y-4">
-                        <div className="flex justify-between text-sm">
-                            <span className="text-slate-400">Procesados</span>
-                            <span className="text-white font-mono">{processedCount} / {links.length}</span>
-                        </div>
-                        <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-                            <div 
-                                className="bg-indigo-500 h-full transition-all duration-500"
-                                style={{ width: `${(processedCount / links.length) * 100}%` }}
-                            />
-                        </div>
-
-                        {isProcessing && (
-                            <div className="p-4 bg-indigo-500/10 rounded-xl border border-indigo-500/20 animate-pulse">
-                                <div className="flex items-center gap-2 text-indigo-400 mb-2">
-                                    <Sparkles className="w-4 h-4" />
-                                    <span className="text-xs font-bold uppercase tracking-wider">IA Trabajando</span>
-                                </div>
-                                <p className="text-sm text-slate-300">{aiStatus.text}</p>
-                            </div>
-                        )}
-
-                        {!isProcessing && processedCount > 0 && (
-                            <div className="p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
-                                <p className="text-sm text-emerald-400 font-medium text-center">
-                                    Proceso completado o pausado.
-                                </p>
-                            </div>
-                        )}
-                    </div>
-                </div>
+          {/* Progress Bar */}
+          {(isProcessing || processedCount > 0) && (
+            <div className="space-y-2 p-4 bg-slate-950 rounded-xl border border-slate-800">
+              <div className="flex justify-between text-xs font-medium text-slate-400">
+                <span>{aiStatus.text}</span>
+                <span>{processedCount} / {products.length} completados</span>
+              </div>
+              <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-indigo-500 transition-all duration-300 ease-out"
+                  style={{ width: `${(processedCount / products.length) * 100}%` }}
+                />
+              </div>
             </div>
+          )}
+
+          {/* Product List */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+            {products.map((product, idx) => (
+              <div 
+                key={idx}
+                className={`p-3 rounded-xl border flex items-start gap-3 transition-colors ${
+                  product.status === 'success' ? 'bg-emerald-500/5 border-emerald-500/20' :
+                  product.status === 'error' ? 'bg-red-500/5 border-red-500/20' :
+                  product.status === 'processing' ? 'bg-indigo-500/5 border-indigo-500/20' :
+                  'bg-slate-950 border-slate-800'
+                }`}
+              >
+                <div className="mt-0.5">
+                  {product.status === 'success' && <CheckCircle className="w-4 h-4 text-emerald-500" />}
+                  {product.status === 'error' && <AlertCircle className="w-4 h-4 text-red-500" />}
+                  {product.status === 'processing' && <Loader2 className="w-4 h-4 text-indigo-400 animate-spin" />}
+                  {product.status === 'pending' && <div className="w-4 h-4 rounded-full border-2 border-slate-700" />}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-slate-200 truncate" title={product.name}>
+                    {product.name}
+                  </p>
+                  {product.status === 'success' && product.details && (
+                    <p className="text-[10px] text-emerald-400 mt-1 truncate">
+                      {product.details.activePrinciple} • Guardado en BD
+                    </p>
+                  )}
+                  {product.status === 'error' && (
+                    <p className="text-[10px] text-red-400 mt-1 line-clamp-2">
+                      {product.errorMsg}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

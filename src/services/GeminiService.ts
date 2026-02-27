@@ -185,4 +185,88 @@ export class GeminiService {
       return null;
     }
   }
+
+  static async extractProductNamesFromUrl(url: string): Promise<string[]> {
+    try {
+      const ai = this.getAI();
+      const prompt = `Visita la siguiente página web de farmacia y extrae una lista de todos los nombres de medicamentos o productos farmacéuticos que aparezcan en ella.
+      Ignora menús, precios, textos legales y otra basura.
+      Devuelve ÚNICAMENTE los nombres de los productos, uno por línea.
+      No incluyas viñetas, números ni texto adicional.
+      
+      Página: ${url}`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+          tools: [{ urlContext: {} }]
+        }
+      });
+
+      const text = response.text || "";
+      return text.split('\n')
+        .map(line => line.replace(/^[-\*\d\.\s]+/, '').trim())
+        .filter(line => line.length > 3 && !line.toLowerCase().includes('precio') && !line.toLowerCase().includes('agregar'));
+    } catch (error: any) {
+      console.error("[GeminiService] Error en extractProductNamesFromUrl:", error);
+      throw new Error(`Error al leer la URL con IA: ${error.message}`);
+    }
+  }
+
+  static async extractProductNamesFromSearch(query: string): Promise<string[]> {
+    try {
+      const ai = this.getAI();
+      const prompt = `Busca en la web y recopila una lista de medicamentos o productos farmacéuticos relacionados con la siguiente búsqueda: "${query}".
+      Devuelve ÚNICAMENTE los nombres de los productos comerciales, uno por línea.
+      No incluyas viñetas, números, explicaciones ni texto adicional.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+          tools: [{ googleSearch: {} }]
+        }
+      });
+
+      const text = response.text || "";
+      return text.split('\n')
+        .map(line => line.replace(/^[-\*\d\.\s]+/, '').trim())
+        .filter(line => line.length > 3 && !line.toLowerCase().includes('precio') && !line.toLowerCase().includes('agregar'));
+    } catch (error: any) {
+      console.error("[GeminiService] Error en extractProductNamesFromSearch:", error);
+      throw new Error(`Error en la búsqueda con IA: ${error.message}`);
+    }
+  }
+
+  static async generateText(prompt: string): Promise<string> {
+    try {
+      const ai = this.getAI();
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+      });
+      return response.text || "";
+    } catch (error) {
+      console.error("[GeminiService] Error en generateText:", error);
+      throw error;
+    }
+  }
+
+  static async generateJSON(prompt: string): Promise<string> {
+    try {
+      const ai = this.getAI();
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json"
+        }
+      });
+      return response.text || "{}";
+    } catch (error) {
+      console.error("[GeminiService] Error en generateJSON:", error);
+      throw error;
+    }
+  }
 }
