@@ -153,7 +153,13 @@ export const BatchScraper: React.FC = () => {
               method = 'gemini';
             } else {
               // Fallback a Local AI
-              setAiStatus({ text: `Fallback a IA Local: ${link.text}...`, progress: 80 });
+              setAiStatus({ text: `Iniciando IA Local...`, progress: 60 });
+              
+              // Suscribirse al progreso de la IA local para mostrarlo en el scraper
+              AIService.setProgressCallback((text, progress) => {
+                setAiStatus({ text: `IA Local: ${text}`, progress: 60 + (progress * 0.4) });
+              });
+
               await AIService.startEngine();
               product = await AIService.extractProductData(data.markdown, link.href);
               method = 'local';

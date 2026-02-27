@@ -10,6 +10,7 @@ import { SplashScreen } from './components/SplashScreen';
 import { HardwareProfile } from './core/types/hardware.types';
 import { AIService } from './services/AIService';
 import { BatchScraper } from './modules/scraper/BatchScraper';
+import { AIStatusIndicator } from './components/AIStatusIndicator';
 
 interface DashboardProps {
   hardware: HardwareProfile;
@@ -99,6 +100,7 @@ function Dashboard({ hardware }: DashboardProps) {
         </div>
 
         <FloatingTray />
+        <AIStatusIndicator />
       </div>
     </div>
   );

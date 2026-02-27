@@ -14,6 +14,7 @@ interface TestResult {
 
 export const SystemDiagnostics: React.FC = () => {
   const [isRunning, setIsRunning] = useState(false);
+  const [aiProgress, setAiProgress] = useState({ text: '', progress: 0 });
   const [tests, setTests] = useState<TestResult[]>([
     { id: 'db', name: 'Base de Datos (IndexedDB)', status: 'pending' },
     { id: 'ai', name: 'Motor de IA (Inferencia)', status: 'pending' },
@@ -61,7 +62,6 @@ export const SystemDiagnostics: React.FC = () => {
         tags_ia: [],
         vectores: [],
         
-        // Safety Status
         apto_embarazo: SafetyStatus.NO,
         apto_lactancia: SafetyStatus.NO,
         apto_pediatria: SafetyStatus.NO,
@@ -69,7 +69,6 @@ export const SystemDiagnostics: React.FC = () => {
         apto_hipertensos: SafetyStatus.NO,
         apto_celiacos: SafetyStatus.NO,
         
-        // Sinergia
         sugerencia_complementaria: '',
         skus_relacionados: [],
         
@@ -84,7 +83,14 @@ export const SystemDiagnostics: React.FC = () => {
     }
 
     // 2. Test AI Engine (Health Check)
-    updateTest('ai', { status: 'running', message: 'Verificando estado del motor...' });
+    updateTest('ai', { status: 'running', message: 'Iniciando motor de IA...' });
+    
+    // Configurar callback de progreso para el diagnóstico
+    AIService.setProgressCallback((text, progress) => {
+      setAiProgress({ text, progress });
+      updateTest('ai', { message: text });
+    });
+
     try {
       // Intentar iniciar el motor si no está listo
       const isStarted = await AIService.startEngine();
@@ -93,6 +99,7 @@ export const SystemDiagnostics: React.FC = () => {
          throw new Error('No se pudo iniciar el motor de IA.');
       }
 
+      updateTest('ai', { message: 'Ejecutando prueba de inferencia...' });
       const health = await AIService.runHealthCheck();
       
       if (health.ok) {
@@ -106,11 +113,9 @@ export const SystemDiagnostics: React.FC = () => {
       }
     } catch (e: any) {
       updateTest('ai', { status: 'error', message: 'Fallo crítico de IA', details: e.message });
+    } finally {
+      setAiProgress({ text: '', progress: 0 });
     }
-
-    // 3. Test Web Scraper (Connectivity) - ELIMINADO POR OBSOLESCENCIA
-    // El scraping web directo desde el cliente es inestable debido a CORS y proxies.
-    // Se reemplaza por un módulo de Importación Asistida por IA.
     
     setIsRunning(false);
   };
@@ -153,45 +158,62 @@ export const SystemDiagnostics: React.FC = () => {
 
       <div className="space-y-4">
         {tests.map((test) => (
-          <div key={test.id} className="bg-slate-950/50 border border-slate-800 rounded-xl p-4 flex items-start justify-between">
-            <div className="flex items-start gap-4">
-              <div className={`mt-1 p-1.5 rounded-full ${
-                test.status === 'pending' ? 'bg-slate-800 text-slate-500' :
-                test.status === 'running' ? 'bg-indigo-500/10 text-indigo-400 animate-pulse' :
-                test.status === 'success' ? 'bg-emerald-500/10 text-emerald-400' :
-                'bg-red-500/10 text-red-400'
-              }`}>
-                {test.id === 'db' && <Database className="w-4 h-4" />}
-                {test.id === 'ai' && <Brain className="w-4 h-4" />}
-                {test.id === 'scraper' && <Globe className="w-4 h-4" />}
-              </div>
-              
-              <div>
-                <h3 className="text-sm font-medium text-slate-200">{test.name}</h3>
-                <p className="text-xs text-slate-400 mt-1">
-                  {test.message || 'Esperando ejecución...'}
-                </p>
-                {test.details && (
-                  <div className="mt-2 p-2 bg-red-500/5 border border-red-500/10 rounded text-xs text-red-300 font-mono break-all">
-                    {test.details}
-                    {test.id === 'ai' && test.status === 'error' && (
-                        <button 
-                            onClick={(e) => { e.stopPropagation(); handlePurgeCache(); }}
-                            className="mt-2 w-full py-1.5 bg-red-600 hover:bg-red-500 text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-2"
-                        >
-                            <Trash2 className="w-3 h-3" />
-                            REPARAR MODELOS DAÑADOS
-                        </button>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
+          <div key={test.id} className="bg-slate-950/50 border border-slate-800 rounded-xl p-4">
+            <div className="flex items-start justify-between">
+              <div className="flex items-start gap-4">
+                <div className={`mt-1 p-1.5 rounded-full ${
+                  test.status === 'pending' ? 'bg-slate-800 text-slate-500' :
+                  test.status === 'running' ? 'bg-indigo-500/10 text-indigo-400 animate-pulse' :
+                  test.status === 'success' ? 'bg-emerald-500/10 text-emerald-400' :
+                  'bg-red-500/10 text-red-400'
+                }`}>
+                  {test.id === 'db' && <Database className="w-4 h-4" />}
+                  {test.id === 'ai' && <Brain className="w-4 h-4" />}
+                </div>
+                
+                <div className="flex-1">
+                  <h3 className="text-sm font-medium text-slate-200">{test.name}</h3>
+                  <p className="text-xs text-slate-400 mt-1">
+                    {test.message || 'Esperando ejecución...'}
+                  </p>
+                  
+                  {test.id === 'ai' && test.status === 'running' && aiProgress.progress > 0 && (
+                    <div className="mt-3 space-y-1.5">
+                      <div className="flex justify-between text-[10px] text-slate-500 font-medium">
+                        <span>{aiProgress.text}</span>
+                        <span>{Math.round(aiProgress.progress)}%</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-indigo-500 transition-all duration-300"
+                          style={{ width: `${aiProgress.progress}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
 
-            <div className="flex items-center">
-              {test.status === 'running' && <Loader2 className="w-5 h-5 text-indigo-500 animate-spin" />}
-              {test.status === 'success' && <CheckCircle className="w-5 h-5 text-emerald-500" />}
-              {test.status === 'error' && <XCircle className="w-5 h-5 text-red-500" />}
+                  {test.details && (
+                    <div className="mt-2 p-2 bg-red-500/5 border border-red-500/10 rounded text-xs text-red-300 font-mono break-all">
+                      {test.details}
+                      {test.id === 'ai' && test.status === 'error' && (
+                          <button 
+                              onClick={(e) => { e.stopPropagation(); handlePurgeCache(); }}
+                              className="mt-2 w-full py-1.5 bg-red-600 hover:bg-red-500 text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-2"
+                          >
+                              <Trash2 className="w-3 h-3" />
+                              REPARAR MODELOS DAÑADOS
+                          </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-center ml-4">
+                {test.status === 'running' && <Loader2 className="w-5 h-5 text-indigo-500 animate-spin" />}
+                {test.status === 'success' && <CheckCircle className="w-5 h-5 text-emerald-500" />}
+                {test.status === 'error' && <XCircle className="w-5 h-5 text-red-500" />}
+              </div>
             </div>
           </div>
         ))}

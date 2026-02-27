@@ -136,12 +136,12 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
     }
 
     // 2. Cargar Pipeline de Embeddings (Siempre necesario para RAG)
-    self.postMessage({ type: 'PROGRESS', text: 'Cargando Motor Semántico (Embeddings)...', progress: 20 });
+    self.postMessage({ type: 'PROGRESS', text: '[1/3] Cargando Motor Semántico (Embeddings)...', progress: 20 });
     embeddingPipeline = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
 
     // 3. Intentar CPU (Transformers.js)
     if (!gpuSuccess && (tier === 'LOW' || tier === 'HIGH')) {
-      self.postMessage({ type: 'PROGRESS', text: 'Iniciando Transformers.js (CPU)...', progress: 40 });
+      self.postMessage({ type: 'PROGRESS', text: '[2/3] Iniciando Motor de Inferencia (CPU)...', progress: 40 });
 
       // Suppress warnings
       const originalWarn = console.warn;
@@ -159,9 +159,13 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
                   : 0;
                self.postMessage({ 
                  type: 'PROGRESS', 
-                 text: progress.file ? `Descargando Motor Inteligente: ${progress.file}` : 'Descargando...', 
+                 text: progress.file ? `[DESCARGA] ${progress.file} (${Math.round(percent)}%)` : 'Descargando archivos del modelo...', 
                  progress: 40 + (percent * 0.5) 
                });
+            } else if (progress.status === 'init') {
+               self.postMessage({ type: 'PROGRESS', text: '[INSTALACIÓN] Inicializando pesos del modelo...', progress: 90 });
+            } else if (progress.status === 'ready') {
+               self.postMessage({ type: 'PROGRESS', text: '[ACTIVACIÓN] Motor listo para inferencia.', progress: 95 });
             }
           }
         });

@@ -8,6 +8,7 @@ export class AIService {
   private static initProgressCallback: ((text: string, progress: number) => void) | null = null;
   private static engineName = 'Ninguno';
   private static hardware: HardwareProfile | null = null;
+  private static lastProgress = { text: '', progress: 0 };
 
   static setProgressCallback(cb: (text: string, progress: number) => void) {
     this.initProgressCallback = cb;
@@ -25,7 +26,8 @@ export class AIService {
     if (!this.hardware) throw new Error('Hardware no configurado. Llame a AIService.configure() primero.');
 
     this.isInitializing = true;
-    this.initProgressCallback?.('Iniciando Worker de IA...', 0);
+    this.lastProgress = { text: 'Iniciando Worker de IA...', progress: 0 };
+    this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
 
     return new Promise((resolve) => {
       try {
@@ -36,6 +38,7 @@ export class AIService {
 
           switch (type) {
             case 'PROGRESS':
+              this.lastProgress = { text, progress };
               this.initProgressCallback?.(text, progress);
               break;
             case 'INIT_COMPLETE':
@@ -43,11 +46,13 @@ export class AIService {
               if (success) {
                 this.isReady = true;
                 this.engineName = engine;
-                this.initProgressCallback?.(`${engine} Listo`, 100);
+                this.lastProgress = { text: `${engine} Listo`, progress: 100 };
+                this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
                 resolve(true);
               } else {
                 console.error('Fallo inicialización IA:', error);
-                this.initProgressCallback?.(`Error: ${error}`, 0);
+                this.lastProgress = { text: `Error: ${error}`, progress: 0 };
+                this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
                 this.worker?.terminate();
                 this.worker = null;
                 resolve(false);
@@ -77,6 +82,7 @@ export class AIService {
     this.isReady = false;
     this.isInitializing = false;
     this.engineName = 'Ninguno';
+    this.lastProgress = { text: '', progress: 0 };
   }
 
   static async extractProductData(rawText: string, url: string): Promise<Product | null> {
@@ -255,7 +261,8 @@ export class AIService {
     return {
       isReady: this.isReady,
       isInitializing: this.isInitializing,
-      engine: this.engineName
+      engine: this.engineName,
+      lastProgress: this.lastProgress
     };
   }
 }
