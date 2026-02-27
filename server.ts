@@ -234,22 +234,24 @@ async function startServer() {
   });
 
   // 6. Start listening
-  const server = app.listen(PORT, '0.0.0.0', () => {
+  app.listen(PORT, '0.0.0.0', () => {
     log(`Server listening on port ${PORT}`);
+    
+    // 7. Initialize Vite asynchronously AFTER listening
+    setTimeout(async () => {
+      try {
+        log('Initializing Vite middleware...');
+        const vite = await createViteServer({
+          server: { middlewareMode: true },
+          appType: 'spa',
+        });
+        app.use(vite.middlewares);
+        log('Vite middleware loaded successfully');
+      } catch (e: any) {
+        log(`Failed to load Vite middleware: ${e.message}`);
+      }
+    }, 100);
   });
-
-  // 7. Vite middleware (load asynchronously)
-  try {
-    log('Initializing Vite middleware...');
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: 'spa',
-    });
-    app.use(vite.middlewares);
-    log('Vite middleware loaded successfully');
-  } catch (e: any) {
-    log(`Failed to load Vite middleware: ${e.message}`);
-  }
 }
 
 process.on('unhandledRejection', (reason, promise) => {
