@@ -253,7 +253,7 @@ export const BatchScraper: React.FC = () => {
             <button 
                 onClick={async () => {
                     try {
-                        const res = await fetch('/api/test');
+                        const res = await fetch('/health');
                         const contentType = res.headers.get('content-type');
                         
                         if (!res.ok) {
@@ -267,7 +267,7 @@ export const BatchScraper: React.FC = () => {
                         }
 
                         const data = await res.json();
-                        alert(`Conexión exitosa: ${data.message}`);
+                        alert(`Conexión exitosa: ${data.status} (${data.timestamp})`);
                     } catch (e: any) {
                         alert(`Error de conexión: ${e.message}`);
                     }

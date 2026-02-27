@@ -15,12 +15,7 @@ async function startServer() {
 
   app.use(express.json());
 
-  // Root health check
-  app.get('/health', (req, res) => {
-    res.json({ status: 'ok', timestamp: new Date().toISOString() });
-  });
-
-  // Logging middleware
+  // 1. Logging middleware - Catch everything
   app.use((req, res, next) => {
     const start = Date.now();
     res.on('finish', () => {
@@ -30,7 +25,19 @@ async function startServer() {
     next();
   });
 
+  // 2. Root health check
+  app.get('/health', (req, res) => {
+    console.log('[Server] Health check hit');
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  });
+
+  // 3. API Router
   const apiRouter = express.Router();
+
+  apiRouter.use((req, res, next) => {
+    console.log(`[API Router] Incoming: ${req.method} ${req.url}`);
+    next();
+  });
 
   apiRouter.get('/test', (req, res) => {
     console.log('[API] Hit /test');
@@ -43,10 +50,8 @@ async function startServer() {
     if (!url || typeof url !== 'string') return res.status(400).json({ error: 'URL required' });
 
     try {
-      // Detección de Shopify (muy común en farmacias como Knop)
-      let targetUrl = url;
+      // Detección de Shopify
       if (url.includes('/collections/') && !url.endsWith('.json')) {
-        // Intentar obtener la versión JSON si es una colección de Shopify
         const jsonUrl = url.split('?')[0] + '/products.json';
         console.log(`[API] Detectada posible colección Shopify, probando: ${jsonUrl}`);
         try {
@@ -61,6 +66,7 @@ async function startServer() {
               text: p.title,
               href: new URL(`/products/${p.handle}`, url).href
             }));
+            console.log(`[API] Shopify JSON success: ${shopifyLinks.length} links`);
             return res.json({ 
               success: true, 
               markdown: `## Colección Shopify: ${url}\nSe han detectado ${shopifyLinks.length} productos vía API JSON.`, 
@@ -68,12 +74,13 @@ async function startServer() {
               isShopify: true
             });
           }
-        } catch (e) {
-          console.log('[API] Falló intento JSON Shopify, procediendo con HTML normal');
+        } catch (e: any) {
+          console.log(`[API] Falló intento JSON Shopify (${e.message}), procediendo con HTML normal`);
         }
       }
 
-      const response = await axios.get(targetUrl, {
+      console.log(`[API] Fetching HTML from: ${url}`);
+      const response = await axios.get(url, {
         headers: { 
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
@@ -81,9 +88,10 @@ async function startServer() {
           'Cache-Control': 'no-cache',
           'Pragma': 'no-cache'
         },
-        timeout: 10000 // Reducido a 10s para no agotar el tiempo del proxy
+        timeout: 10000 
       });
       
+      console.log(`[API] HTML fetched, size: ${response.data.length}`);
       const $ = cheerio.load(response.data);
       
       // 1. Detectar si es un sitio VTEX
@@ -196,7 +204,15 @@ async function startServer() {
 
   app.use('/api', apiRouter);
 
-  // Global Error Handler
+  // 4. Unmatched request logging
+  app.use((req, res, next) => {
+    if (!req.url.startsWith('/@vite') && !req.url.startsWith('/src')) {
+      console.log(`[Server] Unmatched request: ${req.method} ${req.url}`);
+    }
+    next();
+  });
+
+  // 5. Global Error Handler
   app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
     console.error('[Global Error Handler]', err);
     if (res.headersSent) return next(err);
@@ -207,6 +223,7 @@ async function startServer() {
     });
   });
 
+  // 6. Vite middleware
   const vite = await createViteServer({
     server: { middlewareMode: true },
     appType: 'spa',
