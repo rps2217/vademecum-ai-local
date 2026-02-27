@@ -46,9 +46,25 @@ export const BatchScraper: React.FC = () => {
       if (gasProxyUrl.trim()) {
         // MODO GAS: Saltamos el servidor totalmente para el fetch
         logStatus('Consultando vía Google Apps Script...');
-        const proxyUrl = `${gasProxyUrl}?url=${encodeURIComponent(categoryUrl)}`;
-        const res = await fetch(proxyUrl);
-        html = await res.text();
+        
+        // Limpiar la URL de GAS (quitar parámetros si existen)
+        const cleanGasUrl = gasProxyUrl.split('?')[0];
+        const proxyUrl = `${cleanGasUrl}?url=${encodeURIComponent(categoryUrl)}`;
+        
+        try {
+            const res = await fetch(proxyUrl, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'omit',
+                redirect: 'follow'
+            });
+            
+            if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            html = await res.text();
+        } catch (fetchErr: any) {
+            console.error("[GAS Proxy Error]", fetchErr);
+            throw new Error(`Error de conexión con Google: Asegúrate de que el script esté implementado para "Cualquiera" (Anyone) y que hayas aceptado los permisos.`);
+        }
         
         if (html.startsWith('Error')) throw new Error(html);
         
@@ -126,10 +142,21 @@ export const BatchScraper: React.FC = () => {
 
         if (gasProxyUrl.trim()) {
             // MODO GAS: Fetch vía Google
-            const proxyUrl = `${gasProxyUrl}?url=${encodeURIComponent(link.href)}`;
-            const res = await fetch(proxyUrl);
-            html = await res.text();
-            if (!html.startsWith('Error')) data = { success: true, markdown: html };
+            const cleanGasUrl = gasProxyUrl.split('?')[0];
+            const proxyUrl = `${cleanGasUrl}?url=${encodeURIComponent(link.href)}`;
+            
+            try {
+                const res = await fetch(proxyUrl, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit',
+                    redirect: 'follow'
+                });
+                html = await res.text();
+                if (!html.startsWith('Error')) data = { success: true, markdown: html };
+            } catch (e) {
+                console.warn(`[GAS Proxy] Falló fetch para ${link.href}`);
+            }
         } else {
             // MODO NORMAL
             try {
