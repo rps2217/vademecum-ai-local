@@ -1,0 +1,103 @@
+import { GoogleGenAI, Type } from "@google/genai";
+import { Product, SafetyStatus } from "../core/types/product.types";
+
+export class GeminiService {
+  private static ai: GoogleGenAI | null = null;
+
+  private static getAI() {
+    if (!this.ai) {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("GEMINI_API_KEY no configurada en el entorno.");
+      }
+      this.ai = new GoogleGenAI({ apiKey });
+    }
+    return this.ai;
+  }
+
+  static async extractProductFromMarkdown(markdown: string, url: string): Promise<Product | null> {
+    try {
+      const ai = this.getAI();
+      
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: `Analiza el siguiente contenido en Markdown de una página de farmacia y extrae la información del medicamento en formato JSON.
+        
+        CONTENIDO:
+        ${markdown.substring(0, 10000)}
+        
+        URL: ${url}`,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              sku: { type: Type.STRING },
+              nombre_comercial: { type: Type.STRING },
+              descripcion: { type: Type.STRING },
+              principios_activos: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              posologia: { type: Type.STRING },
+              indicaciones: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              advertencias: { type: Type.STRING },
+              tags_ia: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_diabeticos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_hipertensos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_celiacos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              sugerencia_complementaria: { type: Type.STRING }
+            },
+            required: ["nombre_comercial", "sku"]
+          }
+        }
+      });
+
+      const data = JSON.parse(response.text || "{}");
+      
+      if (!data.nombre_comercial) return null;
+
+      // Mapear strings a SafetyStatus enum
+      const mapSafety = (val: string): SafetyStatus => {
+        const v = String(val).toUpperCase();
+        if (v === 'SI') return SafetyStatus.SI;
+        if (v === 'NO') return SafetyStatus.NO;
+        return SafetyStatus.PRECAUCION;
+      };
+
+      return {
+        sku: data.sku || "GEM-" + Date.now().toString().slice(-6),
+        nombre_comercial: data.nombre_comercial,
+        descripcion: data.descripcion || "",
+        principios_activos: data.principios_activos || [],
+        posologia: data.posologia || "Consultar prospecto",
+        indicaciones: data.indicaciones || [],
+        advertencias: data.advertencias || "",
+        tags_ia: data.tags_ia || ["gemini_extracted"],
+        vectores: [],
+        apto_embarazo: mapSafety(data.apto_embarazo),
+        apto_lactancia: mapSafety(data.apto_lactancia),
+        apto_pediatria: mapSafety(data.apto_pediatria),
+        apto_diabeticos: mapSafety(data.apto_diabeticos),
+        apto_hipertensos: mapSafety(data.apto_hipertensos),
+        apto_celiacos: mapSafety(data.apto_celiacos),
+        sugerencia_complementaria: data.sugerencia_complementaria || "",
+        skus_relacionados: [],
+        source_url: url
+      };
+
+    } catch (error) {
+      console.error("[GeminiService] Error en extracción:", error);
+      return null;
+    }
+  }
+}

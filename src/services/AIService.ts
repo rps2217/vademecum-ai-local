@@ -167,6 +167,30 @@ export class AIService {
     };
   }
 
+  static async generateEmbedding(text: string): Promise<number[]> {
+    if (!this.worker || !this.isReady) {
+      // Fallback a vector vacío si no hay motor
+      return new Array(384).fill(0);
+    }
+
+    return new Promise((resolve) => {
+      const handler = (e: MessageEvent) => {
+        const { type, payload, error } = e.data;
+        if (type === 'EMBED_RESULT' || type === 'ERROR') {
+          this.worker?.removeEventListener('message', handler);
+          if (error) {
+            console.error('[AIService] Error embedding:', error);
+            resolve(new Array(384).fill(0));
+          } else {
+            resolve(payload);
+          }
+        }
+      };
+      this.worker?.addEventListener('message', handler);
+      this.worker?.postMessage({ type: 'EMBED', payload: { text } });
+    });
+  }
+
   static async analyze(query: string, products: Product[]): Promise<string> {
     if (!this.worker || !this.isReady) {
         const productNames = products.map(p => p.nombre_comercial).join(' y ');

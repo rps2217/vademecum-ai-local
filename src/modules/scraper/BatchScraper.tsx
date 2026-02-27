@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, Search, Loader2, CheckCircle, AlertCircle, Save, Sparkles, Copy, Trash2, Link, Play, Pause, X, Activity } from 'lucide-react';
 import { AIService } from '../../services/AIService';
+import { GeminiService } from '../../services/GeminiService';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
@@ -10,6 +11,7 @@ interface ScrapedLink {
   href: string;
   status: 'pending' | 'processing' | 'success' | 'error' | 'skipped';
   productName?: string;
+  method?: 'vtex' | 'gemini' | 'local';
 }
 
 export const BatchScraper: React.FC = () => {
@@ -48,33 +50,24 @@ export const BatchScraper: React.FC = () => {
       const data = await response.json();
       
       if (data.success && data.links) {
-        // Filtrar enlaces irrelevantes (heurística más estricta)
+        // Filtrar enlaces irrelevantes
         const relevantLinks = data.links.filter((l: any) => {
             const text = l.text.toLowerCase().trim();
             const href = l.href.toLowerCase().trim();
             
-            // 1. Excluir palabras clave de navegación comunes
             const forbiddenKeywords = [
                 'inicio', 'home', 'portada', 'contacto', 'login', 'registro', 
                 'carrito', 'mapa', 'política', 'aviso', 'términos', 'condiciones', 
                 'ayuda', 'faq', 'blog', 'nosotros', 'quienes', 'sucursales', 
-                'tiendas', 'mi cuenta', 'ver más', 'leer más', 'click aquí'
+                'tiendas', 'mi cuenta', 'ver más', 'leer más', 'click aquí', 'despacho'
             ];
             if (forbiddenKeywords.some(k => text === k || text.includes(k))) return false;
-            
-            // 2. Excluir si el texto es muy corto o solo números
             if (text.length < 4 || /^\d+$/.test(text)) return false;
-            
-            // 3. Excluir si es la misma URL de categoría
             if (href === categoryUrl || href === categoryUrl + '/') return false;
             
-            // 4. Excluir si es la raíz del dominio (Home)
             try {
                 const urlObj = new URL(l.href);
-                // Si no tiene ruta o la ruta es solo '/', es la portada
                 if (urlObj.pathname === '/' || urlObj.pathname === '') return false;
-                
-                // Excluir dominios externos si los hay (por seguridad)
                 const categoryDomain = new URL(categoryUrl).hostname;
                 if (urlObj.hostname !== categoryDomain) return false;
             } catch(e) { return false; }
@@ -82,16 +75,15 @@ export const BatchScraper: React.FC = () => {
             return true;
         }).map((l: any) => ({ ...l, status: 'pending' }));
 
-        // Eliminar duplicados de URL en la lista
         const uniqueLinks = Array.from(new Map(relevantLinks.map(item => [item.href, item])).values()) as ScrapedLink[];
 
         setLinks(uniqueLinks);
-        if (uniqueLinks.length === 0) setError('No se encontraron enlaces de productos válidos en esta página.');
+        if (uniqueLinks.length === 0) setError('No se encontraron enlaces de productos válidos.');
       } else {
         throw new Error(data.error || 'Error al escanear la categoría.');
       }
     } catch (err: any) {
-      setError(err.message || 'Error de conexión con el servidor de scraping.');
+      setError(err.message || 'Error de conexión con el servidor.');
     } finally {
       setIsScanning(false);
     }
@@ -99,34 +91,34 @@ export const BatchScraper: React.FC = () => {
 
   const processNextLink = async () => {
     const nextIndex = links.findIndex(l => l.status === 'pending');
-    if (nextIndex === -1) {
+    if (nextIndex === -1 || !isProcessing) {
         setIsProcessing(false);
         return;
     }
 
-    // Marcar como procesando
     setLinks(prev => prev.map((l, i) => i === nextIndex ? { ...l, status: 'processing' } : l));
     const link = links[nextIndex];
 
     try {
-        // 1. Fetch Product Page
+        // 1. Fetch Product Page (Markdown)
         setAiStatus({ text: `Descargando: ${link.text}...`, progress: 10 });
         const response = await fetch(`/api/scrape?url=${encodeURIComponent(link.href)}`);
         const data = await response.json();
 
         if (!data.success) throw new Error(data.error);
 
-        // 2. Extraction (Structured or AI)
+        // 2. Extraction Strategy
         let product: Product | null = null;
+        let method: 'vtex' | 'gemini' | 'local' = 'local';
         
         if (data.productData) {
             setAiStatus({ text: `Usando datos estructurados para: ${link.text}...`, progress: 50 });
-            // Mapear datos de VTEX al formato de Product
+            method = 'vtex';
             product = {
                 sku: data.productData.sku || "VTEX-" + Date.now().toString().slice(-6),
                 nombre_comercial: data.productData.name || link.text,
                 descripcion: data.productData.description || "Sin descripción",
-                principios_activos: [], // VTEX no suele tener esto estructurado fácilmente
+                principios_activos: [],
                 posologia: "Consultar prospecto",
                 indicaciones: [],
                 advertencias: "Datos extraídos de fuente estructurada",
@@ -143,30 +135,49 @@ export const BatchScraper: React.FC = () => {
                 source_url: link.href
             };
             
-            // Si faltan datos clave, podemos intentar completarlos con la IA de todos modos
-            if (!product.descripcion || product.descripcion.length < 50) {
-                setAiStatus({ text: `Completando con IA: ${link.text}...`, progress: 70 });
-                await AIService.startEngine();
-                const aiProduct = await AIService.extractProductData(data.text, link.href);
-                if (aiProduct) {
-                    product = { ...product, ...aiProduct, sku: product.sku }; // Mantener SKU original
+            // Si faltan datos clave, usar Gemini para completar
+            if (!product.descripcion || product.descripcion.length < 100) {
+                setAiStatus({ text: `Completando con Gemini: ${link.text}...`, progress: 70 });
+                const geminiProduct = await GeminiService.extractProductFromMarkdown(data.markdown, link.href);
+                if (geminiProduct) {
+                    product = { ...product, ...geminiProduct, sku: product.sku };
+                    method = 'gemini';
                 }
             }
         } else {
-            setAiStatus({ text: `Analizando con IA: ${link.text}...`, progress: 50 });
-            // Asegurar motor encendido (lazy load)
-            await AIService.startEngine();
-            product = await AIService.extractProductData(data.text, link.href);
+            // Intentar Gemini primero (Alta Precisión)
+            setAiStatus({ text: `Extrayendo con Gemini (Alta Precisión): ${link.text}...`, progress: 50 });
+            product = await GeminiService.extractProductFromMarkdown(data.markdown, link.href);
+            
+            if (product) {
+              method = 'gemini';
+            } else {
+              // Fallback a Local AI
+              setAiStatus({ text: `Fallback a IA Local: ${link.text}...`, progress: 80 });
+              await AIService.startEngine();
+              product = await AIService.extractProductData(data.markdown, link.href);
+              method = 'local';
+            }
         }
 
         if (product && product.nombre_comercial !== 'Producto Desconocido') {
-            // 3. Save to DB
+            // 3. Generate Embedding for Semantic Search
+            setAiStatus({ text: `Generando firma semántica: ${link.text}...`, progress: 90 });
+            await AIService.startEngine();
+            const embedding = await AIService.generateEmbedding(`${product.nombre_comercial} ${product.principios_activos.join(' ')} ${product.indicaciones.join(' ')}`);
+            product.vectores = embedding;
+
+            // 4. Save to DB
             const db = await getDB();
-            // Evitar duplicados por SKU o Nombre
             const existing = await db.get('products', product.sku);
             if (!existing) {
                 await db.put('products', product);
-                setLinks(prev => prev.map((l, i) => i === nextIndex ? { ...l, status: 'success', productName: product.nombre_comercial } : l));
+                setLinks(prev => prev.map((l, i) => i === nextIndex ? { 
+                  ...l, 
+                  status: 'success', 
+                  productName: product!.nombre_comercial,
+                  method: method
+                } : l));
                 setProcessedCount(c => c + 1);
             } else {
                 setLinks(prev => prev.map((l, i) => i === nextIndex ? { ...l, status: 'skipped', productName: 'Duplicado' } : l));
@@ -176,11 +187,13 @@ export const BatchScraper: React.FC = () => {
         }
 
     } catch (e) {
+        console.error(e);
         setLinks(prev => prev.map((l, i) => i === nextIndex ? { ...l, status: 'error' } : l));
     }
 
-    // Continuar con el siguiente (recursivo con pequeño delay para no saturar)
-    setTimeout(() => processNextLink(), 1000);
+    if (isProcessing) {
+      setTimeout(() => processNextLink(), 1000);
+    }
   };
 
   const handleStartBatch = () => {
@@ -307,7 +320,18 @@ export const BatchScraper: React.FC = () => {
                                 <p className="text-sm font-medium text-slate-200 truncate">{link.text}</p>
                                 <p className="text-xs text-slate-500 truncate">{link.href}</p>
                                 {link.productName && (
-                                    <p className="text-xs text-emerald-400 mt-1 font-medium">Detectado: {link.productName}</p>
+                                    <div className="flex items-center gap-2 mt-1">
+                                      <p className="text-xs text-emerald-400 font-medium">Detectado: {link.productName}</p>
+                                      {link.method && (
+                                        <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-bold uppercase tracking-wider ${
+                                          link.method === 'vtex' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                                          link.method === 'gemini' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
+                                          'bg-slate-700 text-slate-400'
+                                        }`}>
+                                          {link.method}
+                                        </span>
+                                      )}
+                                    </div>
                                 )}
                             </div>
                             <div className="flex items-center gap-3">

@@ -2,10 +2,16 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import TurndownService from 'turndown';
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
+
+  const turndownService = new TurndownService({
+    headingStyle: 'atx',
+    codeBlockStyle: 'fenced'
+  });
 
   app.use(express.json());
 
@@ -39,7 +45,7 @@ async function startServer() {
       
       const $ = cheerio.load(response.data);
       
-      // 1. Detectar si es un sitio VTEX (común en farmacias chilenas como Knop)
+      // 1. Detectar si es un sitio VTEX
       let vtexData: any = null;
       let structuredProduct: any = null;
       
@@ -50,7 +56,6 @@ async function startServer() {
             const jsonStr = content.split('__STATE__ = ')[1].split(';')[0];
             vtexData = JSON.parse(jsonStr);
             
-            // Intentar encontrar el objeto de producto en el estado de VTEX
             const productKey = Object.keys(vtexData).find(k => k.startsWith('Product:'));
             if (productKey) {
               const p = vtexData[productKey];
@@ -68,11 +73,10 @@ async function startServer() {
         }
       });
 
-      // 2. Extraer enlaces de productos (Mejorado para VTEX y General)
+      // 2. Extraer enlaces de productos
       const links: any[] = [];
       const seenHrefs = new Set<string>();
 
-      // Si tenemos datos de VTEX, podemos buscar enlaces en el estado también
       if (vtexData) {
         Object.keys(vtexData).forEach(key => {
           if (key.startsWith('Product:')) {
@@ -89,9 +93,8 @@ async function startServer() {
         });
       }
 
-      // Selectores específicos para productos en VTEX y otros comunes
       const productSelectors = [
-        'a[href*="/p"]', // Común en VTEX
+        'a[href*="/p"]',
         'a.vtex-product-summary-2-x-clearLink',
         'a.product-item-link',
         '.product-item a',
@@ -103,7 +106,6 @@ async function startServer() {
         const href = $(el).attr('href');
         let text = $(el).text().trim();
         
-        // Si el texto está vacío, buscar dentro (ej: nombre del producto)
         if (!text) {
           text = $(el).find('[class*="productBrand"], [class*="name"], h3').text().trim();
         }
@@ -119,33 +121,30 @@ async function startServer() {
         }
       });
 
-      // 3. Limpiar el cuerpo para la IA (Eliminar ruido)
-      $('script, style, nav, footer, header, iframe, noscript').remove();
+      // 3. Limpiar y convertir a Markdown para la IA
+      $('script, style, nav, footer, header, iframe, noscript, .vtex-menu-2-x-menuContainer').remove();
       
-      // Priorizar el contenedor principal si existe
-      const mainContent = $('main, #main-content, .product-details, .vtex-store-components-3-x-productBrandContainer').text();
-      let bodyText = mainContent || $('body').text();
+      const mainContent = $('main, #main-content, .product-details, .vtex-store-components-3-x-productBrandContainer, .vtex-flex-layout-0-x-flexRowContent--product-main').html();
+      const htmlToConvert = mainContent || $('body').html() || '';
       
-      // Si tenemos datos estructurados, los añadimos al principio para que la IA los vea primero
+      let markdown = turndownService.turndown(htmlToConvert);
+      
+      // Si tenemos datos estructurados, los añadimos al principio
       if (structuredProduct) {
-        bodyText = `DATOS ESTRUCTURADOS DEL PRODUCTO:\n` +
-                   `Nombre: ${structuredProduct.name}\n` +
-                   `Marca: ${structuredProduct.brand}\n` +
-                   `SKU: ${structuredProduct.sku}\n` +
-                   `Descripción: ${structuredProduct.description}\n` +
-                   `Categorías: ${structuredProduct.categories?.join(', ')}\n\n` +
-                   `CONTENIDO ADICIONAL:\n` + bodyText;
+        markdown = `## DATOS ESTRUCTURADOS DEL PRODUCTO\n` +
+                   `- **Nombre:** ${structuredProduct.name}\n` +
+                   `- **Marca:** ${structuredProduct.brand}\n` +
+                   `- **SKU:** ${structuredProduct.sku}\n` +
+                   `- **Descripción:** ${structuredProduct.description}\n` +
+                   `- **Categorías:** ${structuredProduct.categories?.join(', ')}\n\n` +
+                   `## CONTENIDO DE LA PÁGINA\n` + markdown;
       }
       
-      // Limpieza de espacios excesivos
-      const cleanText = bodyText.replace(/\s+/g, ' ').trim().substring(0, 10000);
-
       res.json({ 
         success: true, 
-        text: cleanText, 
+        markdown: markdown.substring(0, 15000), 
         links,
         isVtex: !!vtexData,
-        vtexInfo: vtexData ? "Datos estructurados detectados" : null,
         productData: structuredProduct
       });
     } catch (error: any) {

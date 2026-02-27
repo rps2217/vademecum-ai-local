@@ -8,6 +8,7 @@ env.useBrowserCache = true;
 // Estado del Worker
 let webLlmEngine: MLCEngine | null = null;
 let transformersPipeline: any = null;
+let embeddingPipeline: any = null;
 let isInitializing = false;
 let isReady = false;
 
@@ -15,6 +16,7 @@ let isReady = false;
 type WorkerMessage = 
   | { type: 'INIT'; payload: { hardwareTier: 'HIGH' | 'LOW' | 'NONE' } }
   | { type: 'EXTRACT'; payload: { text: string; url: string } }
+  | { type: 'EMBED'; payload: { text: string } }
   | { type: 'ANALYZE'; payload: { query: string; context: string } }
   | { type: 'HEALTH_CHECK' }
   | { type: 'PURGE_CACHE' };
@@ -29,6 +31,9 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         break;
       case 'EXTRACT':
         await extractData(msg.payload.text, msg.payload.url);
+        break;
+      case 'EMBED':
+        await generateEmbedding(msg.payload.text);
         break;
       case 'ANALYZE':
         await analyzeText(msg.payload.query, msg.payload.context);
@@ -123,10 +128,6 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
 
         webLlmEngine = await Promise.race([initPromise, timeoutPromise]) as MLCEngine;
         gpuSuccess = true;
-        isReady = true;
-        self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: 'WebLLM (GPU)' });
-        return;
-
       } catch (e) {
         console.warn('Fallo GPU, cayendo a CPU...', e);
         self.postMessage({ type: 'PROGRESS', text: 'GPU no disponible. Cambiando a CPU...', progress: 0 });
@@ -134,9 +135,13 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       }
     }
 
-    // 2. Intentar CPU (Transformers.js)
+    // 2. Cargar Pipeline de Embeddings (Siempre necesario para RAG)
+    self.postMessage({ type: 'PROGRESS', text: 'Cargando Motor Semántico (Embeddings)...', progress: 20 });
+    embeddingPipeline = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+
+    // 3. Intentar CPU (Transformers.js)
     if (!gpuSuccess && (tier === 'LOW' || tier === 'HIGH')) {
-      self.postMessage({ type: 'PROGRESS', text: 'Iniciando Transformers.js (CPU)...', progress: 10 });
+      self.postMessage({ type: 'PROGRESS', text: 'Iniciando Transformers.js (CPU)...', progress: 40 });
 
       // Suppress warnings
       const originalWarn = console.warn;
@@ -146,8 +151,6 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       };
 
       try {
-        // CAMBIO: Usamos Qwen1.5-0.5B-Chat. Es mucho más inteligente que T5 y TinyLlama
-        // y tiene un tamaño muy contenido (~350MB).
         transformersPipeline = await pipeline('text-generation', 'Xenova/Qwen1.5-0.5B-Chat', {
           progress_callback: (progress: any) => {
             if (progress.status === 'progress') {
@@ -157,14 +160,14 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
                self.postMessage({ 
                  type: 'PROGRESS', 
                  text: progress.file ? `Descargando Motor Inteligente: ${progress.file}` : 'Descargando...', 
-                 progress: percent 
+                 progress: 40 + (percent * 0.5) 
                });
             }
           }
         });
         
         isReady = true;
-        self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: 'Qwen 0.5B (Inteligencia Local)' });
+        self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: getEngineName() });
 
       } catch (cpuError: any) {
         // AUTO-REPARACIÓN: Si detectamos corrupción, borramos caché y reintentamos
@@ -177,6 +180,9 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       } finally {
         console.warn = originalWarn;
       }
+    } else if (gpuSuccess) {
+      isReady = true;
+      self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: getEngineName() });
     } else {
       // Tier NONE o fallo total
       self.postMessage({ type: 'INIT_COMPLETE', success: false, error: 'Hardware no compatible' });
@@ -240,6 +246,18 @@ Responde SOLO con este JSON:
 
     self.postMessage({ type: 'EXTRACT_RESULT', payload: { content, url } });
 
+  } catch (e: any) {
+    self.postMessage({ type: 'ERROR', error: e.message });
+  }
+}
+
+async function generateEmbedding(text: string) {
+  if (!embeddingPipeline) throw new Error('Motor semántico no listo');
+  
+  try {
+    const output = await embeddingPipeline(text, { pooling: 'mean', normalize: true });
+    const embedding = Array.from(output.data as Float32Array);
+    self.postMessage({ type: 'EMBED_RESULT', payload: embedding });
   } catch (e: any) {
     self.postMessage({ type: 'ERROR', error: e.message });
   }
