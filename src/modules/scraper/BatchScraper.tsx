@@ -257,30 +257,44 @@ export const BatchScraper: React.FC = () => {
       </header>
 
       {/* URL Input */}
-      <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-lg space-y-4">
-        {/* GAS Proxy Config */}
-        <div className="flex items-center gap-3 p-3 bg-indigo-500/5 border border-indigo-500/10 rounded-xl">
-            <Link className="w-4 h-4 text-indigo-400" />
-            <input 
-                type="text"
-                value={gasProxyUrl}
-                onChange={(e) => setGasProxyUrl(e.target.value)}
-                placeholder="URL de tu Google Apps Script (https://script.google.com/.../exec)"
-                className="flex-1 bg-transparent border-none text-xs text-slate-300 focus:ring-0 placeholder:text-slate-600"
-            />
-            {gasProxyUrl && (
-                <div className="flex gap-2">
+      <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 shadow-lg space-y-6">
+        {/* GAS Proxy Config - More Visible */}
+        <div className="space-y-2">
+            <label className="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
+                <Link className="w-3 h-3" />
+                Configuración de Puente Google (Evita Error 404)
+            </label>
+            <div className="flex items-center gap-3 p-1 bg-slate-950 border border-slate-700 rounded-xl focus-within:border-indigo-500 transition-colors">
+                <input 
+                    type="text"
+                    value={gasProxyUrl}
+                    onChange={(e) => setGasProxyUrl(e.target.value)}
+                    placeholder="Pega aquí la URL de tu Google Apps Script (ej: https://script.google.com/.../exec)"
+                    className="flex-1 bg-transparent border-none text-sm text-slate-200 py-3 px-4 focus:ring-0 placeholder:text-slate-600"
+                />
+                <div className="flex items-center gap-2 pr-2">
                     <button 
-                        onClick={() => window.open(`${gasProxyUrl}?url=https://google.com`, '_blank')}
-                        className="text-[10px] px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded border border-slate-700 transition-colors"
-                        title="Probar script en pestaña nueva"
+                        onClick={() => {
+                            if (!gasProxyUrl) return alert("Primero pega la URL de tu script de Google.");
+                            window.open(`${gasProxyUrl}?url=https://google.com`, '_blank');
+                        }}
+                        className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                            gasProxyUrl 
+                            ? 'bg-indigo-600 text-white hover:bg-indigo-500' 
+                            : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                        }`}
                     >
                         Probar Script
                     </button>
-                    <CheckCircle className="w-4 h-4 text-emerald-500" />
+                    {gasProxyUrl && <CheckCircle className="w-5 h-5 text-emerald-500" />}
                 </div>
-            )}
+            </div>
+            <p className="text-[10px] text-slate-500 px-2">
+                Esta URL es necesaria para saltar las restricciones de red de la plataforma.
+            </p>
         </div>
+
+        <div className="h-px bg-slate-800" />
 
         <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
