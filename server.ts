@@ -15,6 +15,11 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Root health check
+  app.get('/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  });
+
   // Logging middleware
   app.use((req, res, next) => {
     console.log(`[Server] ${req.method} ${req.url}`);

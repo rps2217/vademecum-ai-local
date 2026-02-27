@@ -254,6 +254,18 @@ export const BatchScraper: React.FC = () => {
                 onClick={async () => {
                     try {
                         const res = await fetch('/api/test');
+                        const contentType = res.headers.get('content-type');
+                        
+                        if (!res.ok) {
+                            const text = await res.text();
+                            throw new Error(`Error ${res.status}: ${text.substring(0, 50)}...`);
+                        }
+
+                        if (!contentType || !contentType.includes('application/json')) {
+                            const text = await res.text();
+                            throw new Error(`Respuesta no es JSON (${contentType}): ${text.substring(0, 50)}...`);
+                        }
+
                         const data = await res.json();
                         alert(`Conexión exitosa: ${data.message}`);
                     } catch (e: any) {
