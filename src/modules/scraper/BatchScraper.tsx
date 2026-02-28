@@ -41,15 +41,15 @@ export const BatchScraper: React.FC = () => {
     try {
       // 1. Obtener HTML de la categoría
       addLog(`Conectando a: ${targetUrl}`, 'info');
-      const catRes = await fetch(`${gasUrl}?action=scrape&url=${encodeURIComponent(targetUrl)}`);
+      const catRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
       const catData = await catRes.json();
       
-      if (!catData.success) throw new Error(`Error del proxy: ${catData.error}`);
+      if (!catData.contents) throw new Error(`Error del proxy: No se pudo obtener el contenido`);
       addLog('Página descargada correctamente. Buscando productos...', 'success');
 
       // 2. Extraer enlaces
       const parser = new DOMParser();
-      const doc = parser.parseFromString(catData.html, 'text/html');
+      const doc = parser.parseFromString(catData.contents, 'text/html');
       const anchors = Array.from(doc.querySelectorAll('a'));
       
       let links = anchors
@@ -89,18 +89,18 @@ export const BatchScraper: React.FC = () => {
         
         try {
           // Descargar HTML del producto
-          const prodRes = await fetch(`${gasUrl}?action=scrape&url=${encodeURIComponent(link)}`);
+          const prodRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(link)}`);
           const prodData = await prodRes.json();
           
-          if (!prodData.success) {
-            addLog(`Error al descargar HTML: ${prodData.error}`, 'error');
+          if (!prodData.contents) {
+            addLog(`Error al descargar HTML del producto`, 'error');
             continue;
           }
 
           // --- SISTEMA HÍBRIDO AVANZADO: Extracción Quirúrgica + Limpieza ---
           addLog(`Extrayendo metadatos exactos y limpiando página...`, 'info');
           const parser = new DOMParser();
-          const doc = parser.parseFromString(prodData.html, 'text/html');
+          const doc = parser.parseFromString(prodData.contents, 'text/html');
           
           // 1. Buscar el "Santo Grial" del e-commerce: LD-JSON (Schema.org)
           // Esto nos da el SKU real y el nombre exacto sin que la IA tenga que adivinarlo
