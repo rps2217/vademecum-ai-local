@@ -4,15 +4,16 @@
   "description": "Scraper masivo profesional para farmacias",
   "main": "index.js",
   "scripts": {
-    "scrape": "ts-node scripts/scraper_local.ts",
-    "process": "ts-node scripts/processor_ia.ts"
+    "scrape": "ts-node scraper_local.ts",
+    "process": "ts-node processor_ia.ts"
   },
   "dependencies": {
-    "@google/genai": "^0.1.1",
+    "@google/generative-ai": "^0.2.1",
     "playwright": "^1.41.2"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.19"
   }
 }

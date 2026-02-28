@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // ============================================================================
 // CONFIGURACIÓN DEL PROCESADOR IA
 // ============================================================================
 const INPUT_FILE = path.join(process.cwd(), 'knop_raw_data.json');
 const OUTPUT_FILE = path.join(process.cwd(), 'knop_processed_data.json');
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'TU_API_KEY_AQUI'; // ¡Pon tu API Key aquí si lo corres localmente!
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'TU_API_KEY_AQUI'; // ¡Pon tu API Key aquí!
 
 // ============================================================================
 // INTERFACES
@@ -63,7 +63,8 @@ async function runProcessor() {
     console.log(`🔄 Retomando proceso: ${processedData.length} productos ya procesados.`);
   }
 
-  const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+  const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   // Filtrar los que ya procesamos
   const pendingData = rawData.filter(raw => !processedData.some(p => p.source_url === raw.url));
@@ -103,15 +104,14 @@ async function runProcessor() {
         "sugerencia_complementaria": "Sugerencia de producto complementario"
       }`;
 
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: prompt,
-        config: {
+      const response = await model.generateContent({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
           responseMimeType: "application/json"
         }
       });
 
-      const jsonStr = response.text || "{}";
+      const jsonStr = response.response.text() || "{}";
       const productData = JSON.parse(jsonStr);
 
       const processedProduct: ProcessedProduct = {
