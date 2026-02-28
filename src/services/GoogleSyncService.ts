@@ -155,6 +155,18 @@ export class GoogleSyncService {
       skuIndex = headers.indexOf('sku');
     } else {
       headers = existingData[0];
+      
+      // Auto-completar columnas faltantes basadas en el nuevo JSON
+      var productKeys = Object.keys(products[0]);
+      var headersModified = false;
+      for (var k = 0; k < productKeys.length; k++) {
+        if (headers.indexOf(productKeys[k]) === -1) {
+          headers.push(productKeys[k]);
+          sheet.getRange(1, headers.length).setValue(productKeys[k]);
+          headersModified = true;
+        }
+      }
+
       skuIndex = headers.indexOf('sku');
       
       // Si por alguna razón no hay columna SKU, la agregamos
