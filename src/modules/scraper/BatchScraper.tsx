@@ -53,18 +53,20 @@ export const BatchScraper: React.FC = () => {
       const anchors = Array.from(doc.querySelectorAll('a'));
       
       let links = anchors
-        .map(a => a.href)
-        .filter(href => href && href.startsWith('http'))
-        // Heurística básica para detectar productos (ajustable según la farmacia)
-        .filter(href => href.includes('/p/') || href.includes('/producto/') || href.match(/\d{4,}/) || href.includes('-p-'));
+        .map(a => a.getAttribute('href')) // Usar getAttribute para obtener la ruta relativa real, no la resuelta por el navegador
+        .filter(href => href && !href.startsWith('#') && !href.startsWith('javascript:') && !href.includes('cdn-cgi')) // Ignorar basura y cloudflare
+        .map(href => {
+          try {
+            // Resolver la URL relativa contra la URL objetivo real (Farmacias Knop)
+            return new URL(href!, targetUrl).href;
+          } catch { 
+            return ''; 
+          }
+        })
+        .filter(href => href !== '')
+        // Heurística mejorada para detectar productos (incluye Shopify /products/)
+        .filter(href => href.includes('/p/') || href.includes('/producto/') || href.includes('/products/') || href.match(/\d{4,}/) || href.includes('-p-'));
       
-      // Limpiar URLs relativas que el DOMParser resolvió mal si la base no estaba
-      links = links.map(link => {
-        try {
-          return new URL(link, targetUrl).href;
-        } catch { return link; }
-      });
-
       links = [...new Set(links)]; // Únicos
       
       if (links.length === 0) {
