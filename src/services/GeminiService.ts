@@ -48,7 +48,7 @@ export class GeminiService {
       Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-2.5-flash",
         contents: prompt,
         config: {
           tools: [{ googleSearch: {} }],
@@ -128,7 +128,7 @@ export class GeminiService {
       const ai = this.getAI();
       
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-2.5-flash",
         contents: `Analiza el siguiente contenido en Markdown de una página de farmacia y extrae la información del medicamento en formato JSON.
         
         CONTENIDO:
@@ -220,7 +220,7 @@ export class GeminiService {
       Página: ${url}`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-2.5-flash",
         contents: prompt,
         config: {
           tools: [{ urlContext: {} }]
@@ -245,7 +245,7 @@ export class GeminiService {
       No incluyas viñetas, números, explicaciones ni texto adicional.`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-2.5-flash",
         contents: prompt,
         config: {
           tools: [{ googleSearch: {} }]
@@ -266,7 +266,7 @@ export class GeminiService {
     try {
       const ai = this.getAI();
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-2.5-flash",
         contents: prompt,
       });
       return response.text || "";
