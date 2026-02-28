@@ -97,13 +97,75 @@ export const BatchScraper: React.FC = () => {
             continue;
           }
 
-          // Analizar con Gemini
+          // --- SISTEMA HÍBRIDO AVANZADO: Extracción Quirúrgica + Limpieza ---
+          addLog(`Extrayendo metadatos exactos y limpiando página...`, 'info');
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(prodData.html, 'text/html');
+          
+          // 1. Buscar el "Santo Grial" del e-commerce: LD-JSON (Schema.org)
+          // Esto nos da el SKU real y el nombre exacto sin que la IA tenga que adivinarlo
+          let exactSku = '';
+          let exactName = '';
+          let exactBrand = '';
+          
+          doc.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+            try {
+              const data = JSON.parse(script.textContent || '{}');
+              // A veces es un array de schemas, a veces un objeto
+              const schemas = Array.isArray(data) ? data : [data];
+              schemas.forEach(schema => {
+                if (schema['@type'] === 'Product') {
+                  if (schema.sku) exactSku = schema.sku;
+                  if (schema.name) exactName = schema.name;
+                  if (schema.brand && schema.brand.name) exactBrand = schema.brand.name;
+                }
+              });
+            } catch (e) { /* Ignorar errores de parseo JSON */ }
+          });
+
+          // 2. Si no hay LD-JSON, buscar en selectores clásicos de Shopify/Knop
+          if (!exactName) {
+            const h1 = doc.querySelector('h1');
+            if (h1) exactName = h1.textContent?.trim() || '';
+          }
+          if (!exactSku) {
+            const skuEl = doc.querySelector('.sku, [data-sku], [itemprop="sku"], .product-single__sku');
+            if (skuEl) exactSku = skuEl.textContent?.trim() || '';
+          }
+
+          // 3. Eliminar basura visual, menús y código innecesario
+          const elementsToRemove = [
+            'script', 'style', 'nav', 'footer', 'header', 'noscript', 'iframe', 'svg', 
+            '.menu', '.sidebar', '#shopify-section-header', '#shopify-section-footer',
+            '[role="navigation"]', '.cart', '.checkout', '.related-products', '.product-recommendations'
+          ];
+          elementsToRemove.forEach(selector => {
+            doc.querySelectorAll(selector).forEach(el => el.remove());
+          });
+
+          // 4. Enfocar en el contenido principal (Descripción, Tabs de ingredientes, etc.)
+          // Farmacias Knop usa mucho .rte (Rich Text Editor) y .tabs
+          const mainContent = doc.querySelector('.product-single__description') || doc.querySelector('.rte') || doc.querySelector('main') || doc.body;
+          
+          // 5. Extraer solo el texto limpio
+          let cleanText = mainContent.textContent || mainContent.innerText || '';
+          cleanText = cleanText.replace(/\s+/g, ' ').trim(); // Quitar saltos de línea y espacios extra
+
+          // Analizar con Gemini (ahora recibe datos pre-digeridos y texto limpio)
           addLog(`Analizando estructura médica con IA...`, 'info');
-          const prompt = `Extrae la información médica de este producto farmacéutico a partir del siguiente HTML.
-          Busca específicamente el SKU, Código de referencia, ID de producto o similar (suele estar cerca del precio o del título).
-          Devuelve un JSON estricto con esta estructura:
+          const prompt = `Actúa como un experto farmacólogo. Extrae la información médica de este producto a partir de los siguientes datos extraídos de su página web.
+          
+          DATOS EXACTOS EXTRAÍDOS POR SCRIPT:
+          - Nombre Comercial: ${exactName || 'No encontrado, búscalo en el texto'}
+          - SKU / Código: ${exactSku || 'No encontrado, búscalo en el texto'}
+          - Marca: ${exactBrand || 'No encontrada'}
+
+          TEXTO DE LA DESCRIPCIÓN DEL PRODUCTO:
+          ${cleanText.substring(0, 8000)}
+
+          Devuelve un JSON estricto con esta estructura. Usa los "DATOS EXACTOS" si están disponibles, y usa el "TEXTO" para deducir el resto (posología, advertencias, etc.):
           {
-            "sku": "SKU o Código del producto (si no encuentras uno explícito, déjalo vacío)",
+            "sku": "SKU o Código del producto",
             "nombre_comercial": "Nombre comercial y presentación",
             "descripcion": "Descripción breve del producto",
             "principios_activos": ["principio activo 1", "principio activo 2"],
@@ -118,8 +180,7 @@ export const BatchScraper: React.FC = () => {
             "apto_hipertensos": "SI" o "NO" o "PRECAUCION",
             "apto_celiacos": "SI" o "NO" o "PRECAUCION",
             "sugerencia_complementaria": "Sugerencia de producto complementario"
-          }
-          HTML: ${prodData.html.substring(0, 20000)}`;
+          }`;
           
           const jsonStr = await GeminiService.generateJSON(prompt);
           const productData = JSON.parse(jsonStr);
