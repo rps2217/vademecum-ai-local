@@ -236,8 +236,9 @@ export const BatchScraper: React.FC = () => {
           addLog(`❌ Error en producto: ${err.message}`, 'error');
         }
         
-        // Pausa para no saturar los límites de Google Apps Script / Gemini (15 RPM)
-        await new Promise(r => setTimeout(r, 5000));
+        // Pausa estricta para no saturar los límites de Gemini (15 RPM = 1 cada 4 segundos, usamos 10s para estar seguros)
+        addLog(`Esperando 10 segundos para no saturar la cuota de IA...`, 'info');
+        await new Promise(r => setTimeout(r, 10000));
       }
       
       addLog('🎉 Proceso de scraping finalizado.', 'success');

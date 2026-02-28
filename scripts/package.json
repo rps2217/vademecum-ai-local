@@ -1,0 +1,18 @@
+{
+  "name": "farmacia-scraper-pro",
+  "version": "1.0.0",
+  "description": "Scraper masivo profesional para farmacias",
+  "main": "index.js",
+  "scripts": {
+    "scrape": "ts-node scripts/scraper_local.ts",
+    "process": "ts-node scripts/processor_ia.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^0.1.1",
+    "playwright": "^1.41.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
