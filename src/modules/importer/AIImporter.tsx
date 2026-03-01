@@ -4,6 +4,7 @@ import { AIService } from '../../services/AIService';
 import { Product } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
+import { formatArrayToString } from '../../utils/formatters';
 
 export const AIImporter: React.FC = () => {
   const { hardware } = useHardwareDetection();
@@ -213,18 +214,20 @@ Contraindicaciones: Hipersensibilidad..."
                 <div>
                   <span className="text-slate-500 text-xs uppercase tracking-wider font-bold">Principios Activos</span>
                   <div className="flex flex-wrap gap-2 mt-1">
-                    {result.principios_activos.map((pa, i) => (
-                      <span key={i} className="px-2 py-1 bg-slate-800 rounded text-xs">{pa}</span>
-                    ))}
+                    {(Array.isArray(result.principios_activos) ? result.principios_activos : []).map((pa, i) => {
+                      const text = typeof pa === 'object' && pa !== null ? (pa.nombre || pa.tipo || JSON.stringify(pa)) : String(pa);
+                      return <span key={i} className="px-2 py-1 bg-slate-800 rounded text-xs">{text}</span>;
+                    })}
                   </div>
                 </div>
 
                 <div>
                   <span className="text-slate-500 text-xs uppercase tracking-wider font-bold">Indicaciones</span>
                   <ul className="list-disc list-inside mt-1 text-slate-300 space-y-1">
-                    {result.indicaciones.map((ind, i) => (
-                      <li key={i}>{ind}</li>
-                    ))}
+                    {(Array.isArray(result.indicaciones) ? result.indicaciones : []).map((ind, i) => {
+                      const text = typeof ind === 'object' && ind !== null ? (ind.nombre || ind.tipo || ind.indicacion || JSON.stringify(ind)) : String(ind);
+                      return <li key={i}>{text}</li>;
+                    })}
                   </ul>
                 </div>
 

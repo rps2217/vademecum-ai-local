@@ -2,6 +2,7 @@ import React from 'react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { Badge } from '../ui/badge';
 import { AlertTriangle, CheckCircle2, Info, Plus, Check } from 'lucide-react';
+import { formatArrayToString } from '../../utils/formatters';
 
 interface ProductCardProps {
   product: Product;
@@ -39,7 +40,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
             {product.nombre_comercial}
           </h3>
           <p className="text-sm text-slate-400 line-clamp-1">
-            {(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(', ')}
+            {formatArrayToString(product.principios_activos, ', ')}
           </p>
         </div>
         <Badge variant="outline" className="text-[10px] uppercase tracking-wider bg-slate-800 text-slate-400 border-slate-700 shrink-0 ml-2">
@@ -49,7 +50,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
 
       <div className="mb-4 flex-1 cursor-pointer" onClick={() => onViewDetail?.(product)}>
         <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">
-          {(Array.isArray(product.indicaciones) ? product.indicaciones : []).join(' • ')}
+          {formatArrayToString(product.indicaciones, ' • ')}
         </p>
       </div>
 

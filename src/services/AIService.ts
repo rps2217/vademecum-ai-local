@@ -1,5 +1,6 @@
 import { HardwareProfile } from '../core/types/hardware.types';
 import { Product, SafetyStatus } from '../core/types/product.types';
+import { formatArrayToString } from '../utils/formatters';
 
 export class AIService {
   private static worker: Worker | null = null;
@@ -205,8 +206,8 @@ export class AIService {
 
     const context = products.map(p => 
       `MEDICAMENTO: ${p.nombre_comercial}\n` +
-      `- Principios Activos: ${(Array.isArray(p.principios_activos) ? p.principios_activos : []).join(', ')}\n` +
-      `- Indicaciones: ${(Array.isArray(p.indicaciones) ? p.indicaciones : []).join(', ')}\n` +
+      `- Principios Activos: ${formatArrayToString(p.principios_activos, ', ')}\n` +
+      `- Indicaciones: ${formatArrayToString(p.indicaciones, ', ')}\n` +
       `- Advertencias: ${p.advertencias}\n`
     ).join('\n\n');
 

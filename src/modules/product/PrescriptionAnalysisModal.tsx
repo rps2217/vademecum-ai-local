@@ -2,6 +2,7 @@ import React from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
 import { X, AlertTriangle, Pill, ShieldAlert } from 'lucide-react';
+import { formatArrayToString } from '../../utils/formatters';
 
 interface PrescriptionAnalysisModalProps {
   products: Product[];
@@ -42,7 +43,7 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900">{product.nombre_comercial}</h4>
-                    <p className="text-xs text-slate-500 mb-2">{(product.principios_activos || []).join(', ')}</p>
+                    <p className="text-xs text-slate-500 mb-2">{formatArrayToString(product.principios_activos, ', ')}</p>
                     
                     {product.advertencias && (
                       <div className="flex items-start gap-1.5 text-amber-700 bg-amber-50 p-2 rounded-lg text-xs">

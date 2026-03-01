@@ -3,6 +3,7 @@ import { Product } from '../../core/types/product.types';
 import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
 import { X, Info, AlertTriangle, CheckCircle2, Tag } from 'lucide-react';
 import { Badge } from '../../components/ui/badge';
+import { formatArrayToString } from '../../utils/formatters';
 
 interface ProductDetailModalProps {
   product: Product;
@@ -26,7 +27,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 {product.nombre_comercial}
               </h2>
               <p className="text-lg text-indigo-400 font-medium mt-1">
-                {(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(', ')}
+                {formatArrayToString(product.principios_activos, ', ')}
               </p>
             </div>
             <button 
@@ -68,7 +69,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Indicaciones
               </h3>
               <ul className="list-disc list-inside text-slate-300 space-y-1">
-                {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => <li key={i}>{ind}</li>)}
+                {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
+                  const text = typeof ind === 'object' && ind !== null ? (ind.nombre || ind.tipo || ind.indicacion || JSON.stringify(ind)) : String(ind);
+                  return <li key={i}>{text}</li>;
+                })}
               </ul>
             </section>
 

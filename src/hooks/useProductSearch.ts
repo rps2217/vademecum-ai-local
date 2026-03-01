@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Product } from '../core/types/product.types';
 import { getDB } from '../core/database/db';
 import { AIService } from '../services/AIService';
+import { formatArrayToString } from '../utils/formatters';
 
 // Índice en memoria para búsquedas ultra-rápidas
 interface SearchIndexItem {
@@ -45,9 +46,9 @@ export const useProductSearch = () => {
           vector: product.vectores,
           searchableText: `
             ${product.nombre_comercial || ''} 
-            ${(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(' ')} 
-            ${(Array.isArray(product.indicaciones) ? product.indicaciones : []).join(' ')}
-            ${Array.isArray(product.tags_ia) ? product.tags_ia.join(' ') : ''}
+            ${formatArrayToString(product.principios_activos, ' ')} 
+            ${formatArrayToString(product.indicaciones, ' ')}
+            ${formatArrayToString(product.tags_ia, ' ')}
           `.toLowerCase()
         }));
         

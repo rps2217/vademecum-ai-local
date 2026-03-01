@@ -232,9 +232,14 @@ export const DatabaseModule: React.FC = () => {
                     <td className="px-6 py-4 font-medium text-white">{product.nombre_comercial || 'Sin nombre'}</td>
                     <td className="px-6 py-4 text-slate-300">
                       <div className="flex flex-wrap gap-1">
-                        {safePrincipios.slice(0, 2).map((pa, i) => (
-                          <span key={i} className="px-2 py-0.5 bg-slate-800 rounded text-xs text-slate-300">{pa}</span>
-                        ))}
+                        {safePrincipios.slice(0, 2).map((pa, i) => {
+                          const text = typeof pa === 'object' && pa !== null ? (pa.tipo || pa.nombre || JSON.stringify(pa)) : String(pa);
+                          return (
+                            <span key={i} className="px-2 py-0.5 bg-slate-800 rounded text-xs text-slate-300">
+                              {text}
+                            </span>
+                          );
+                        })}
                         {safePrincipios.length > 2 && (
                           <span className="px-2 py-0.5 bg-slate-800 rounded text-xs text-slate-300">+{safePrincipios.length - 2}</span>
                         )}
