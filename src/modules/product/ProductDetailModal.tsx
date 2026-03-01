@@ -1,23 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
-import { X, Info, AlertTriangle, CheckCircle2, Tag } from 'lucide-react';
+import { X, Info, AlertTriangle, CheckCircle2, Tag, RefreshCw, Loader2 } from 'lucide-react';
 import { Badge } from '../../components/ui/badge';
 import { formatArrayToString } from '../../utils/formatters';
+import { GeminiService } from '../../services/GeminiService';
+import { getDB } from '../../core/database/db';
 
 interface ProductDetailModalProps {
   product: Product;
   onClose: () => void;
   onTagClick?: (tag: string) => void;
+  onUpdate?: (updatedProduct: Product) => void;
 }
 
-export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose, onTagClick }) => {
+export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product: initialProduct, onClose, onTagClick, onUpdate }) => {
+  const [product, setProduct] = useState<Product>(initialProduct);
+  const [isReanalyzing, setIsReanalyzing] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleReanalyze = async () => {
+    setIsReanalyzing(true);
+    setIsSuccess(false);
+    try {
+      const updatedProduct = await GeminiService.reanalyzeProduct(product);
+      if (updatedProduct) {
+        const db = await getDB();
+        await db.put('products', updatedProduct);
+        setProduct(updatedProduct);
+        if (onUpdate) onUpdate(updatedProduct);
+        setIsSuccess(true);
+        setTimeout(() => setIsSuccess(false), 3000);
+      } else {
+        alert('No se pudo reanalizar el producto.');
+      }
+    } catch (error) {
+      console.error('Error reanalizando:', error);
+      alert('Ocurrió un error al reanalizar el producto.');
+    } finally {
+      setIsReanalyzing(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
       <div className="bg-slate-900 rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl shadow-indigo-500/10 animate-in zoom-in-95 duration-200 border border-slate-800">
         
         {/* Columna Izquierda: Detalles del Producto */}
-        <div className="w-full md:w-1/2 p-8 overflow-y-auto border-r border-slate-800">
+        <div className="w-full md:w-1/2 p-8 overflow-y-auto border-r border-slate-800 relative">
           <div className="flex justify-between items-start mb-6">
             <div>
               <Badge variant="outline" className="mb-2 bg-slate-800 text-slate-400 border-slate-700">
@@ -30,12 +60,22 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 {formatArrayToString(product.principios_activos, ', ')}
               </p>
             </div>
-            <button 
-              onClick={onClose}
-              className="p-2 rounded-full hover:bg-slate-800 text-slate-400 transition-colors md:hidden"
-            >
-              <X className="w-6 h-6" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={handleReanalyze}
+                disabled={isReanalyzing}
+                title="Re-analizar y completar con IA"
+                className={`p-2 rounded-full transition-colors disabled:opacity-50 ${isSuccess ? 'text-emerald-400 hover:bg-emerald-500/10' : 'text-indigo-400 hover:bg-slate-800'}`}
+              >
+                {isReanalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-5 h-5" /> : <RefreshCw className="w-5 h-5" />}
+              </button>
+              <button 
+                onClick={onClose}
+                className="p-2 rounded-full hover:bg-slate-800 text-slate-400 transition-colors md:hidden"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
           </div>
 
           <div className="space-y-6">

@@ -123,6 +123,103 @@ export class GeminiService {
     }
   }
 
+  static async reanalyzeProduct(product: Product): Promise<Product | null> {
+    try {
+      const ai = this.getAI();
+      
+      const prompt = `Re-analiza y completa la información de este producto farmacéutico.
+      
+      DATOS ACTUALES:
+      - Nombre: ${product.nombre_comercial}
+      - SKU: ${product.sku}
+      - Descripción actual: ${product.descripcion}
+      - Principios Activos: ${(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(', ')}
+      - Indicaciones: ${(Array.isArray(product.indicaciones) ? product.indicaciones : []).join(', ')}
+      - Advertencias: ${product.advertencias}
+      - URL de origen: ${product.source_url || 'No disponible'}
+      
+      TAREA:
+      1. Busca información oficial y actualizada sobre este medicamento (usa la URL de origen si está disponible, o busca por su nombre comercial y principios activos).
+      2. Completa los campos vacíos o incompletos (especialmente advertencias, posología, y restricciones para embarazo/lactancia/etc).
+      3. Genera etiquetas (tags_ia) útiles para búsqueda clínica (ej. "analgésico", "AINE", "hepatotóxico").
+      4. Devuelve el JSON completo actualizado. Mantén el SKU original.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+        config: {
+          tools: [{ googleSearch: {} }],
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              sku: { type: Type.STRING },
+              nombre_comercial: { type: Type.STRING },
+              descripcion: { type: Type.STRING },
+              principios_activos: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              posologia: { type: Type.STRING },
+              indicaciones: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              advertencias: { type: Type.STRING },
+              tags_ia: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_diabeticos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_hipertensos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              apto_celiacos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+              sugerencia_complementaria: { type: Type.STRING }
+            },
+            required: ["nombre_comercial", "sku"]
+          }
+        }
+      });
+
+      const data = JSON.parse(response.text || "{}");
+      if (!data.nombre_comercial) return null;
+
+      const mapSafety = (val: string): SafetyStatus => {
+        const v = String(val).toUpperCase();
+        if (v === 'SI') return SafetyStatus.SI;
+        if (v === 'NO') return SafetyStatus.NO;
+        return SafetyStatus.PRECAUCION;
+      };
+
+      return {
+        sku: data.sku || product.sku,
+        nombre_comercial: data.nombre_comercial,
+        descripcion: data.descripcion || product.descripcion,
+        principios_activos: data.principios_activos || product.principios_activos,
+        posologia: data.posologia || product.posologia,
+        indicaciones: data.indicaciones || product.indicaciones,
+        advertencias: data.advertencias || product.advertencias,
+        tags_ia: [...new Set([...(data.tags_ia || []), ...(product.tags_ia || []), "reanalizado_ia"])],
+        vectores: product.vectores || [], // Keep original vectors, they will be updated by AIService if needed
+        apto_embarazo: mapSafety(data.apto_embarazo),
+        apto_lactancia: mapSafety(data.apto_lactancia),
+        apto_pediatria: mapSafety(data.apto_pediatria),
+        apto_diabeticos: mapSafety(data.apto_diabeticos),
+        apto_hipertensos: mapSafety(data.apto_hipertensos),
+        apto_celiacos: mapSafety(data.apto_celiacos),
+        sugerencia_complementaria: data.sugerencia_complementaria || product.sugerencia_complementaria,
+        skus_relacionados: product.skus_relacionados || [],
+        source_url: product.source_url
+      };
+
+    } catch (error) {
+      console.error("[GeminiService] Error en reanálisis:", error);
+      return null;
+    }
+  }
+
   static async extractProductFromMarkdown(markdown: string, url: string): Promise<Product | null> {
     try {
       const ai = this.getAI();
