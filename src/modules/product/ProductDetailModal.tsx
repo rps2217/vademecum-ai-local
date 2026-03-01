@@ -66,16 +66,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-slate-950/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="bg-slate-900 w-full max-w-5xl h-full rounded-[2rem] shadow-2xl shadow-indigo-500/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
+      <div className="bg-slate-900 w-full h-full rounded-[2rem] shadow-2xl shadow-indigo-500/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
         
         {/* Columna Izquierda: Detalles del Producto */}
-        <div className="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto border-r border-slate-800 relative bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+        <div className="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto border-r border-slate-800 relative bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           <div className="flex justify-between items-start mb-8">
             <div className="flex-1">
               <Badge variant="outline" className="mb-3 bg-slate-800 text-slate-400 border-slate-700 px-3 py-1">
                 {product.sku}
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
                 {product.nombre_comercial}
               </h2>
               <p className="text-xl text-indigo-400 font-medium mt-2">
@@ -104,7 +104,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-10">
             {/* Perfil de Seguridad (Semáforo) */}
             <section className="space-y-4">
               <div className="flex items-center justify-between">
@@ -165,7 +165,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
               </section>
             )}
 
-            <section className="space-y-3">
+            <section className="space-y-4">
               <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
                 <Info className="w-4 h-4" /> Descripción
               </h3>
@@ -209,17 +209,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         </div>
 
         {/* Columna Derecha: Asistente Clínico */}
-        <div className="w-full md:w-1/2 bg-slate-950/30 p-6 md:p-8 flex flex-col relative">
+        <div className="w-full md:w-2/5 bg-slate-950/30 p-6 md:p-10 flex flex-col relative">
           <button 
             onClick={onClose}
-            className="absolute top-6 right-6 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-400 transition-all border border-slate-700/50 hidden md:flex items-center justify-center z-10"
+            className="absolute top-8 right-8 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-400 transition-all border border-slate-700/50 hidden md:flex items-center justify-center z-10"
             title="Cerrar panel"
           >
             <X className="w-5 h-5" />
           </button>
           
-          <div className="mb-6 pr-12">
-            <h3 className="text-xl font-bold text-white mb-1">Análisis Clínico IA</h3>
+          <div className="mb-8 pr-12">
+            <h3 className="text-2xl font-bold text-white mb-1">Análisis Clínico IA</h3>
             <p className="text-sm text-slate-500">Consulta interacciones, dudas o farmacocinética.</p>
           </div>
           
