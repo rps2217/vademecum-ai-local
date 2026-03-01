@@ -1,5 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Product, SafetyStatus } from "../core/types/product.types";
+import { formatArrayToString } from "../utils/formatters";
 
 export class GeminiService {
   private static ai: GoogleGenAI | null = null;
@@ -387,6 +388,129 @@ export class GeminiService {
     } catch (error) {
       console.error("[GeminiService] Error en generateJSON:", error);
       throw error;
+    }
+  }
+
+  static async analyzeSynergy(mainProduct: Product, relatedProducts: Product[]): Promise<{
+    sugerencia_complementaria: string;
+    skus_relacionados: string[];
+    explicacion_clinica: string;
+  }> {
+    try {
+      const ai = this.getAI();
+      
+      const prompt = `Analiza la relación clínica entre el producto principal y los productos relacionados encontrados en la base de datos local.
+      
+      PRODUCTO PRINCIPAL:
+      - Nombre: ${mainProduct.nombre_comercial}
+      - Principios Activos: ${formatArrayToString(mainProduct.principios_activos, ', ')}
+      - Indicaciones: ${formatArrayToString(mainProduct.indicaciones, ', ')}
+      
+      PRODUCTOS RELACIONADOS (CANDIDATOS):
+      ${relatedProducts.map(p => `- [${p.sku}] ${p.nombre_comercial}: ${formatArrayToString(p.indicaciones, ', ')}`).join('\n')}
+      
+      TAREA:
+      1. Identifica qué productos de la lista de candidatos podrían ser COMPLEMENTARIOS (ayudan a tratar la misma dolencia o síntomas asociados sin interactuar negativamente).
+      2. Identifica qué productos son SIMILARES (atacan la misma patología).
+      3. Proporciona una explicación clínica breve de por qué se sugieren estos productos.
+      4. Devuelve un JSON con:
+         - sugerencia_complementaria: Un texto breve sugiriendo el uso conjunto si aplica.
+         - skus_relacionados: Los SKUs de los productos que realmente tienen una relación clínica útil.
+         - explicacion_clinica: Una explicación de la sinergia encontrada.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              sugerencia_complementaria: { type: Type.STRING },
+              skus_relacionados: { 
+                type: Type.ARRAY,
+                items: { type: Type.STRING }
+              },
+              explicacion_clinica: { type: Type.STRING }
+            },
+            required: ["explicacion_clinica", "skus_relacionados"]
+          }
+        }
+      });
+
+      return JSON.parse(response.text || "{}");
+    } catch (error) {
+      console.error("[GeminiService] Error en analyzeSynergy:", error);
+      return {
+        sugerencia_complementaria: "",
+        skus_relacionados: [],
+        explicacion_clinica: "No se pudo realizar el análisis de sinergia en este momento."
+      };
+    }
+  }
+
+  static async analyzeInteractions(products: Product[]): Promise<{
+    riesgo_total: 'BAJO' | 'MEDIO' | 'ALTO' | 'CRITICO';
+    interacciones: {
+      productos: string[];
+      gravedad: 'LEVE' | 'MODERADA' | 'GRAVE';
+      descripcion: string;
+      recomendacion: string;
+    }[];
+    resumen_clinico: string;
+  }> {
+    try {
+      const ai = this.getAI();
+      
+      const prompt = `Realiza un análisis profundo de interacciones medicamentosas para la siguiente lista de productos.
+      
+      PRODUCTOS:
+      ${products.map(p => `- ${p.nombre_comercial} (${formatArrayToString(p.principios_activos, ', ')})`).join('\n')}
+      
+      TAREA:
+      1. Identifica interacciones entre los principios activos de estos productos.
+      2. Clasifica el riesgo total de la combinación.
+      3. Detalla cada interacción encontrada con su gravedad, descripción y recomendación clínica.
+      4. Proporciona un resumen clínico ejecutivo.
+      5. Devuelve un JSON estructurado.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              riesgo_total: { type: Type.STRING, enum: ['BAJO', 'MEDIO', 'ALTO', 'CRITICO'] },
+              interacciones: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    productos: { type: Type.ARRAY, items: { type: Type.STRING } },
+                    gravedad: { type: Type.STRING, enum: ['LEVE', 'MODERADA', 'GRAVE'] },
+                    descripcion: { type: Type.STRING },
+                    recomendacion: { type: Type.STRING }
+                  },
+                  required: ["productos", "gravedad", "descripcion", "recomendacion"]
+                }
+              },
+              resumen_clinico: { type: Type.STRING }
+            },
+            required: ["riesgo_total", "interacciones", "resumen_clinico"]
+          }
+        }
+      });
+
+      return JSON.parse(response.text || "{}");
+    } catch (error) {
+      console.error("[GeminiService] Error en analyzeInteractions:", error);
+      return {
+        riesgo_total: 'BAJO',
+        interacciones: [],
+        resumen_clinico: "No se pudo realizar el análisis automático de interacciones."
+      };
     }
   }
 }

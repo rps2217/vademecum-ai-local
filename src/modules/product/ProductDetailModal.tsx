@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
-import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
-import { X, Info, AlertTriangle, CheckCircle2, Tag, RefreshCw, Loader2, Baby, Heart, ShieldCheck, Activity, Droplets, Wheat } from 'lucide-react';
+import { ClinicalSynergy } from './ClinicalSynergy';
+import { X, Info, AlertTriangle, CheckCircle2, Tag, RefreshCw, Loader2, Baby, Heart, ShieldCheck, Activity, Droplets, Wheat, Sparkles } from 'lucide-react';
 import { Badge } from '../../components/ui/badge';
 import { formatArrayToString } from '../../utils/formatters';
 import { GeminiService } from '../../services/GeminiService';
@@ -42,6 +42,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
     }
   };
 
+  const handleProductClick = (newProduct: Product) => {
+    setProduct(newProduct);
+    // Scroll to top of the left column
+    const leftCol = document.getElementById('product-detail-left-col');
+    if (leftCol) leftCol.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const getSafetyConfig = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI:
@@ -69,7 +76,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
       <div className="bg-slate-900 w-full h-full rounded-[2rem] shadow-2xl shadow-indigo-500/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
         
         {/* Columna Izquierda: Detalles del Producto */}
-        <div className="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto border-r border-slate-800 relative bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+        <div id="product-detail-left-col" className="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto border-r border-slate-800 relative bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           <div className="flex justify-between items-start mb-8">
             <div className="flex-1">
               <Badge variant="outline" className="mb-3 bg-slate-800 text-slate-400 border-slate-700 px-3 py-1">
@@ -208,8 +215,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
           </div>
         </div>
 
-        {/* Columna Derecha: Asistente Clínico */}
-        <div className="w-full md:w-2/5 bg-slate-950/30 p-6 md:p-10 flex flex-col relative">
+        {/* Columna Derecha: Sinergia Clínica IA */}
+        <div className="w-full md:w-2/5 bg-slate-950/30 p-6 md:p-10 flex flex-col relative overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           <button 
             onClick={onClose}
             className="absolute top-8 right-8 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-400 transition-all border border-slate-700/50 hidden md:flex items-center justify-center z-10"
@@ -219,12 +226,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
           </button>
           
           <div className="mb-8 pr-12">
-            <h3 className="text-2xl font-bold text-white mb-1">Análisis Clínico IA</h3>
-            <p className="text-sm text-slate-500">Consulta interacciones, dudas o farmacocinética.</p>
+            <h3 className="text-2xl font-bold text-white mb-1 flex items-center gap-2">
+              <Sparkles className="w-6 h-6 text-indigo-400" />
+              Sinergia Clínica
+            </h3>
+            <p className="text-sm text-slate-500">Relaciones inteligentes entre productos de tu Vademécum.</p>
           </div>
           
-          <div className="flex-1 min-h-0">
-            <ClinicalAssistant contextProducts={[product]} />
+          <div className="flex-1">
+            <ClinicalSynergy 
+              product={product} 
+              onProductClick={handleProductClick}
+            />
           </div>
         </div>
 
