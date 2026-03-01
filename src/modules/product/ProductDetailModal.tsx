@@ -1,15 +1,16 @@
 import React from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
-import { X, Info, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { X, Info, AlertTriangle, CheckCircle2, Tag } from 'lucide-react';
 import { Badge } from '../../components/ui/badge';
 
 interface ProductDetailModalProps {
   product: Product;
   onClose: () => void;
+  onTagClick?: (tag: string) => void;
 }
 
-export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose }) => {
+export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose, onTagClick }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
       <div className="bg-slate-900 rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl shadow-indigo-500/10 animate-in zoom-in-95 duration-200 border border-slate-800">
@@ -37,6 +38,24 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           </div>
 
           <div className="space-y-6">
+            {/* Tags IA */}
+            {product.tags_ia && product.tags_ia.length > 0 && (
+              <section>
+                <div className="flex flex-wrap gap-2">
+                  {product.tags_ia.map(tag => (
+                    <button
+                      key={tag}
+                      onClick={() => onTagClick?.(tag)}
+                      className="px-3 py-1 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 rounded-lg text-xs font-medium tracking-wide border border-indigo-500/20 transition-colors flex items-center gap-1"
+                    >
+                      <Tag className="w-3 h-3" />
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
+
             <section>
               <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center gap-2">
                 <Info className="w-4 h-4 text-slate-500" /> Descripción

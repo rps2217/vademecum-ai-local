@@ -8,9 +8,10 @@ interface ProductCardProps {
   onViewDetail?: (product: Product) => void;
   onAddToTray?: (product: Product) => void;
   isInTray?: boolean;
+  onTagClick?: (tag: string) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail, onAddToTray, isInTray }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail, onAddToTray, isInTray, onTagClick }) => {
   const getSafetyIcon = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI: return <CheckCircle2 className="w-3 h-3 text-emerald-500" />;
@@ -70,14 +71,31 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
 
       {/* Tags IA */}
       {product.tags_ia && product.tags_ia.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-1.5 cursor-pointer" onClick={() => onViewDetail?.(product)}>
+        <div className="mt-4 flex flex-wrap gap-1.5">
           {product.tags_ia.slice(0, 3).map(tag => (
-            <span key={tag} className="px-2 py-0.5 bg-indigo-500/10 text-indigo-400 rounded text-[10px] font-medium tracking-wide border border-indigo-500/20">
+            <button 
+              key={tag} 
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onTagClick) {
+                  onTagClick(tag);
+                } else {
+                  onViewDetail?.(product);
+                }
+              }}
+              className="px-2 py-0.5 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 rounded text-[10px] font-medium tracking-wide border border-indigo-500/20 transition-colors"
+            >
               #{tag}
-            </span>
+            </button>
           ))}
           {product.tags_ia.length > 3 && (
-            <span className="px-2 py-0.5 bg-slate-800 text-slate-500 rounded text-[10px] font-medium border border-slate-700">
+            <span 
+              className="px-2 py-0.5 bg-slate-800 text-slate-500 rounded text-[10px] font-medium border border-slate-700 cursor-pointer hover:bg-slate-700 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                onViewDetail?.(product);
+              }}
+            >
               +{product.tags_ia.length - 3}
             </span>
           )}

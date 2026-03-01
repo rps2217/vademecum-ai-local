@@ -105,13 +105,20 @@ async function runProcessor() {
       }`;
 
       const response = await model.generateContent({
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        generationConfig: {
-          responseMimeType: "application/json"
-        }
+        contents: [{ role: "user", parts: [{ text: prompt }] }]
       });
 
-      const jsonStr = response.response.text() || "{}";
+      let jsonStr = response.response.text() || "{}";
+      
+      // Limpieza extrema: buscar el primer '{' y el último '}'
+      // Esto ignora cualquier texto o comilla Markdown que Gemini ponga antes o después
+      const firstBrace = jsonStr.indexOf('{');
+      const lastBrace = jsonStr.lastIndexOf('}');
+      
+      if (firstBrace !== -1 && lastBrace !== -1) {
+        jsonStr = jsonStr.substring(firstBrace, lastBrace + 1);
+      }
+      
       const productData = JSON.parse(jsonStr);
 
       const processedProduct: ProcessedProduct = {

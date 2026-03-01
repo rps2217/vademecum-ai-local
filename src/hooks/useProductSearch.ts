@@ -28,6 +28,7 @@ export const useProductSearch = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [availableTags, setAvailableTags] = useState<{tag: string, count: number}[]>([]);
   const searchIndex = useRef<SearchIndexItem[]>([]);
   const isIndexLoaded = useRef(false);
 
@@ -46,10 +47,30 @@ export const useProductSearch = () => {
             ${product.nombre_comercial} 
             ${product.principios_activos.join(' ')} 
             ${product.indicaciones.join(' ')}
-            ${product.tags_ia.join(' ')}
+            ${product.tags_ia ? product.tags_ia.join(' ') : ''}
           `.toLowerCase()
         }));
         
+        // Extraer tags únicos y contarlos (Motor de Etiquetas Dinámico)
+        const tagCounts: Record<string, number> = {};
+        allProducts.forEach(p => {
+          if (p.tags_ia && Array.isArray(p.tags_ia)) {
+            p.tags_ia.forEach(tag => {
+              const cleanTag = tag.trim().toLowerCase();
+              if (cleanTag) {
+                tagCounts[cleanTag] = (tagCounts[cleanTag] || 0) + 1;
+              }
+            });
+          }
+        });
+        
+        // Convertir a array, ordenar por frecuencia y tomar los top 30
+        const sortedTags = Object.entries(tagCounts)
+          .map(([tag, count]) => ({ tag, count }))
+          .sort((a, b) => b.count - a.count)
+          .slice(0, 30);
+          
+        setAvailableTags(sortedTags);
         isIndexLoaded.current = true;
       } catch (error) {
         console.error('Error cargando índice de búsqueda:', error);
@@ -57,6 +78,10 @@ export const useProductSearch = () => {
     };
 
     loadIndex();
+
+    // Escuchar cambios en la base de datos para re-indexar automáticamente
+    window.addEventListener('db_updated', loadIndex);
+    return () => window.removeEventListener('db_updated', loadIndex);
   }, []);
 
   useEffect(() => {
@@ -121,5 +146,5 @@ export const useProductSearch = () => {
     return () => clearTimeout(timeoutId);
   }, [query]);
 
-  return { query, setQuery, results, isSearching };
+  return { query, setQuery, results, isSearching, availableTags };
 };

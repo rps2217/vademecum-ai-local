@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { getDB } from '../../core/database/db';
 import { Product } from '../../core/types/product.types';
-import { Database, Trash2, RefreshCw, ExternalLink, CloudUpload, CloudDownload } from 'lucide-react';
+import { Database, Trash2, RefreshCw, ExternalLink, CloudUpload, CloudDownload, FileUp } from 'lucide-react';
 import { GoogleSyncService } from '../../services/GoogleSyncService';
 
 export const DatabaseModule: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const loadData = async () => {
     setIsLoading(true);
@@ -15,6 +16,8 @@ export const DatabaseModule: React.FC = () => {
       const db = await getDB();
       const allProducts = await db.getAll('products');
       setProducts(allProducts);
+      // Notificar a toda la app que la base de datos cambió (para actualizar tags, índices, etc.)
+      window.dispatchEvent(new Event('db_updated'));
     } catch (error) {
       console.error('Error cargando base de datos:', error);
     } finally {
@@ -25,6 +28,55 @@ export const DatabaseModule: React.FC = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const content = e.target?.result as string;
+        const importedData = JSON.parse(content);
+        
+        if (!Array.isArray(importedData)) {
+          alert('El archivo JSON debe contener un arreglo de productos.');
+          return;
+        }
+
+        setSyncStatus(`Importando ${importedData.length} productos a la base local...`);
+        
+        const db = await getDB();
+        const tx = db.transaction('products', 'readwrite');
+        const store = tx.objectStore('products');
+        
+        let importedCount = 0;
+        for (const product of importedData) {
+          // Validación básica para asegurar que es un producto válido
+          if (product.sku && product.nombre_comercial) {
+            await store.put(product);
+            importedCount++;
+          }
+        }
+        
+        await tx.done;
+        
+        setSyncStatus(`¡Se importaron ${importedCount} productos exitosamente! Ahora puedes "Respaldar".`);
+        await loadData();
+        
+        setTimeout(() => setSyncStatus(null), 5000);
+      } catch (error) {
+        console.error('Error parseando JSON:', error);
+        alert('Error al leer el archivo JSON. Asegúrate de que el formato sea correcto.');
+      }
+      
+      // Reset input para permitir subir el mismo archivo de nuevo si es necesario
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    };
+    reader.readAsText(file);
+  };
 
   const handleDelete = async (sku: string) => {
     if (!confirm('¿Estás seguro de eliminar este producto de la base de datos local?')) return;
@@ -89,6 +141,21 @@ export const DatabaseModule: React.FC = () => {
         </div>
         
         <div className="flex flex-wrap gap-3">
+          <input 
+            type="file" 
+            accept=".json" 
+            ref={fileInputRef} 
+            onChange={handleFileUpload} 
+            className="hidden" 
+          />
+          <button 
+            onClick={() => fileInputRef.current?.click()}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-xl hover:bg-blue-500/20 transition-colors text-sm font-medium"
+            title="Importar archivo JSON desde tu PC"
+          >
+            <FileUp className="w-4 h-4" />
+            Importar JSON
+          </button>
           <button 
             onClick={handleRestore}
             className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-xl hover:bg-emerald-500/20 transition-colors text-sm font-medium"
