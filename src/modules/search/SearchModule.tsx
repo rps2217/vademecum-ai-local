@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useProductSearch } from '../../hooks/useProductSearch';
 import { ProductCard } from '../../components/product/ProductCard';
-import { Search, Loader2, Database, Sparkles, Tag } from 'lucide-react';
+import { Search, Loader2, Database, Sparkles, Tag, CheckCircle2, AlertTriangle, Info } from 'lucide-react';
 import { Product } from '../../core/types/product.types';
 import { ProductDetailModal } from '../product/ProductDetailModal';
 import { useTray } from '../../context/TrayContext';
@@ -26,9 +26,9 @@ export const SearchModule: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto pb-20">
+    <div className="w-full max-w-5xl mx-auto pb-20 px-4">
       {/* Barra de Búsqueda Principal */}
-      <div className="relative mb-8">
+      <div className="relative mb-6">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           {isSearching ? (
             <Loader2 className="h-5 w-5 text-indigo-500 animate-spin" />
@@ -50,6 +50,23 @@ export const SearchModule: React.FC = () => {
             <Sparkles className="w-3 h-3" />
             Búsqueda Semántica
           </div>
+        </div>
+      </div>
+
+      {/* Leyenda de Seguridad (Semáforo) */}
+      <div className="mb-8 flex flex-wrap items-center justify-center gap-6 py-3 px-6 bg-slate-900/50 rounded-2xl border border-slate-800/50 text-[11px] uppercase tracking-widest font-bold">
+        <span className="text-slate-500 mr-2">Leyenda de Seguridad:</span>
+        <div className="flex items-center gap-2 text-emerald-400">
+          <CheckCircle2 className="w-3.5 h-3.5" />
+          <span>Apto / Seguro</span>
+        </div>
+        <div className="flex items-center gap-2 text-amber-400">
+          <Info className="w-3.5 h-3.5" />
+          <span>Precaución / Consultar</span>
+        </div>
+        <div className="flex items-center gap-2 text-red-400">
+          <AlertTriangle className="w-3.5 h-3.5" />
+          <span>No Apto / Riesgo</span>
         </div>
       </div>
 
