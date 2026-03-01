@@ -4,6 +4,7 @@ import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
 import { X, AlertTriangle, Pill, ShieldAlert, Loader2, CheckCircle2, Info, AlertCircle, Sparkles } from 'lucide-react';
 import { formatArrayToString } from '../../utils/formatters';
 import { GeminiService } from '../../services/GeminiService';
+import { OllamaService } from '../../services/OllamaService';
 
 interface PrescriptionAnalysisModalProps {
   products: Product[];
@@ -27,7 +28,22 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
     const runAnalysis = async () => {
       setIsAnalyzing(true);
       try {
-        const result = await GeminiService.analyzeInteractions(products);
+        let result;
+        const isOllamaAvailable = await OllamaService.isAvailable();
+        
+        if (isOllamaAvailable) {
+          console.log('[PrescriptionAnalysis] Usando Ollama para análisis...');
+          try {
+            result = await OllamaService.analyzeInteractions(products);
+          } catch (e) {
+            console.warn('[PrescriptionAnalysis] Fallo Ollama, intentando Gemini...');
+          }
+        }
+
+        if (!result) {
+          result = await GeminiService.analyzeInteractions(products);
+        }
+        
         setAnalysis(result);
       } catch (error) {
         console.error("Error en auto-análisis:", error);

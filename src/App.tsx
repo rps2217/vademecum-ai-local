@@ -3,7 +3,7 @@ import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
 import { SearchModule } from './modules/search/SearchModule';
 import { DatabaseModule } from './modules/database/DatabaseModule';
 import { SettingsModule } from './modules/settings/SettingsModule';
-import { Activity, DownloadCloud, Search, Database, Settings, FileText, Globe } from 'lucide-react';
+import { Activity, DownloadCloud, Search, Database, Settings, FileText, Globe, Monitor } from 'lucide-react';
 import { TrayProvider } from './context/TrayContext';
 import { FloatingTray } from './components/tray/FloatingTray';
 import { SplashScreen } from './components/SplashScreen';
@@ -11,13 +11,14 @@ import { HardwareProfile } from './core/types/hardware.types';
 import { AIService } from './services/AIService';
 import { BatchScraper } from './modules/scraper/BatchScraper';
 import { AIStatusIndicator } from './components/AIStatusIndicator';
+import { SetupModule } from './modules/setup/SetupModule';
 
 interface DashboardProps {
   hardware: HardwareProfile;
 }
 
 function Dashboard({ hardware }: DashboardProps) {
-  const [activeTab, setActiveTab] = useState<'search' | 'database' | 'scraper' | 'settings'>('search');
+  const [activeTab, setActiveTab] = useState<'search' | 'database' | 'scraper' | 'setup' | 'settings'>('search');
 
   useEffect(() => {
     if (hardware) {
@@ -78,6 +79,17 @@ function Dashboard({ hardware }: DashboardProps) {
               Scraper Masivo
             </button>
             <button
+              onClick={() => setActiveTab('setup')}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
+                activeTab === 'setup' 
+                  ? 'bg-slate-800 text-indigo-400 shadow-lg shadow-indigo-500/10 border border-slate-700' 
+                  : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800/50'
+              }`}
+            >
+              <Monitor className="w-4 h-4" />
+              Instalación PC
+            </button>
+            <button
               onClick={() => setActiveTab('settings')}
               className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
                 activeTab === 'settings' 
@@ -96,6 +108,7 @@ function Dashboard({ hardware }: DashboardProps) {
           {activeTab === 'search' && <SearchModule />}
           {activeTab === 'database' && <DatabaseModule />}
           {activeTab === 'scraper' && <BatchScraper />}
+          {activeTab === 'setup' && <SetupModule />}
           {activeTab === 'settings' && <SettingsModule />}
         </div>
 

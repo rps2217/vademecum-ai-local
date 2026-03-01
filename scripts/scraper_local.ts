@@ -5,9 +5,15 @@ import { chromium } from 'playwright';
 // ============================================================================
 // CONFIGURACIÓN DEL SCRAPER
 // ============================================================================
-const TARGET_URL = 'https://www.farmaciasknop.com/collections/suplementos';
+const COLLECTIONS = [
+  'https://www.farmaciasknop.com/collections/suplementos',
+  'https://www.farmaciasknop.com/collections/medicamentos-naturales',
+  'https://www.farmaciasknop.com/collections/homeopatia',
+  'https://www.farmaciasknop.com/collections/fitoterapia',
+  'https://www.farmaciasknop.com/collections/alimentos-saludables'
+];
 const OUTPUT_FILE = path.join(process.cwd(), 'knop_raw_data.json');
-const MAX_PAGES = 3; // Cuántas páginas de paginación quieres recorrer (pon 999 para todas)
+const MAX_PAGES_PER_COLLECTION = 20; // Aumentado para cubrir más catálogo
 
 // ============================================================================
 // INTERFACES
@@ -25,11 +31,10 @@ interface RawProduct {
 // MOTOR DE SCRAPING (PLAYWRIGHT)
 // ============================================================================
 async function runScraper() {
-  console.log(`🚀 Iniciando Scraper Masivo Profesional...`);
-  console.log(`🎯 Objetivo: ${TARGET_URL}`);
+  console.log(`🚀 Iniciando Scraper Masivo Multicanal...`);
+  console.log(`📂 Archivo de salida: ${OUTPUT_FILE}`);
   console.log(`--------------------------------------------------`);
 
-  // 1. Iniciar navegador invisible (Headless)
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -37,57 +42,90 @@ async function runScraper() {
   const page = await context.newPage();
 
   const allProductLinks: Set<string> = new Set();
-  let currentPage = 1;
-  let currentUrl = TARGET_URL;
+  const scrapedData: RawProduct[] = [];
+
+  // 0. Cargar datos previos para no repetir trabajo (RESUME)
+  if (fs.existsSync(OUTPUT_FILE)) {
+    try {
+      const existingData = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf-8'));
+      if (Array.isArray(existingData)) {
+        existingData.forEach(item => scrapedData.push(item));
+        console.log(`🔄 Retomando proceso: ${scrapedData.length} productos ya en disco.`);
+      }
+    } catch (e) {
+      console.warn('⚠️ No se pudo cargar el archivo previo, empezando de cero.');
+    }
+  }
 
   try {
     // ========================================================================
-    // FASE 1: RECOLECCIÓN DE ENLACES (PAGINACIÓN)
+    // FASE 1: RECOLECCIÓN DE ENLACES (MULTIPLE COLLECTIONS + PAGINACIÓN)
     // ========================================================================
-    console.log(`\n[FASE 1] Recolectando enlaces de productos...`);
+    console.log(`\n[FASE 1] Recolectando enlaces de todas las colecciones...`);
     
-    while (currentPage <= MAX_PAGES) {
-      console.log(`📄 Escaneando página ${currentPage}: ${currentUrl}`);
-      await page.goto(currentUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      
-      // Extraer todos los enlaces de productos en la página actual
-      const links = await page.evaluate(() => {
-        const anchors = Array.from(document.querySelectorAll('a'));
-        return anchors
-          .map(a => a.getAttribute('href'))
-          .filter(href => href && href.includes('/products/'))
-          .map(href => href!.startsWith('http') ? href : `https://www.farmaciasknop.com${href}`);
-      });
+    for (const collectionUrl of COLLECTIONS) {
+      let currentPage = 1;
+      let currentUrl = collectionUrl;
+      console.log(`\n📂 Explorando Colección: ${collectionUrl}`);
 
-      links.forEach(link => allProductLinks.add(link!));
-      console.log(`   ✅ Encontrados ${links.length} productos (Total acumulado: ${allProductLinks.size})`);
+      while (currentPage <= MAX_PAGES_PER_COLLECTION) {
+        console.log(`   📄 Página ${currentPage}: ${currentUrl}`);
+        try {
+          await page.goto(currentUrl, { waitUntil: 'domcontentloaded', timeout: 45000 });
+          
+          // Extraer enlaces de productos
+          const links = await page.evaluate(() => {
+            const anchors = Array.from(document.querySelectorAll('a'));
+            return anchors
+              .map(a => a.getAttribute('href'))
+              .filter(href => href && href.includes('/products/'))
+              .map(href => href!.split('?')[0]) // Limpiar parámetros de tracking
+              .map(href => href!.startsWith('http') ? href : `https://www.farmaciasknop.com${href}`);
+          });
 
-      // Buscar el botón de "Siguiente página"
-      // Nota: Los selectores de paginación varían por tienda. Este es genérico para Shopify/Knop.
-      const nextButtonHref = await page.evaluate(() => {
-        const nextBtn = document.querySelector('.pagination__next, a[rel="next"], .next a');
-        return nextBtn ? nextBtn.getAttribute('href') : null;
-      });
+          const initialSize = allProductLinks.size;
+          links.forEach(link => {
+            // Solo añadir si no lo hemos scrapeado ya en sesiones previas
+            if (!scrapedData.some(d => d.url === link)) {
+              allProductLinks.add(link!);
+            }
+          });
+          
+          const newLinks = allProductLinks.size - initialSize;
+          console.log(`      ✅ Encontrados ${links.length} enlaces (${newLinks} nuevos para procesar)`);
 
-      if (nextButtonHref) {
-        currentUrl = nextButtonHref.startsWith('http') ? nextButtonHref : `https://www.farmaciasknop.com${nextButtonHref}`;
-        currentPage++;
-        // Pequeña pausa para no saturar el servidor de Knop
-        await new Promise(r => setTimeout(r, 2000));
-      } else {
-        console.log(`   🛑 No hay más páginas. Fin de la paginación.`);
-        break;
+          // Buscar el botón de "Siguiente página"
+          const nextButtonHref = await page.evaluate(() => {
+            // Selectores comunes en Shopify
+            const nextBtn = document.querySelector('.pagination__next, a[rel="next"], .next a, .pagination a:last-child');
+            if (nextBtn && (nextBtn.textContent?.includes('Sig') || nextBtn.getAttribute('rel') === 'next')) {
+              return nextBtn.getAttribute('href');
+            }
+            return null;
+          });
+
+          if (nextButtonHref && nextButtonHref !== currentUrl) {
+            currentUrl = nextButtonHref.startsWith('http') ? nextButtonHref : `https://www.farmaciasknop.com${nextButtonHref}`;
+            currentPage++;
+            await new Promise(r => setTimeout(r, 1500));
+          } else {
+            console.log(`      🛑 Fin de la colección.`);
+            break;
+          }
+        } catch (err: any) {
+          console.error(`      ❌ Error en página ${currentPage}: ${err.message}`);
+          break;
+        }
       }
     }
 
     const linksArray = Array.from(allProductLinks);
-    console.log(`\n📊 Total de productos a extraer: ${linksArray.length}`);
+    console.log(`\n📊 Total de nuevos productos a extraer: ${linksArray.length}`);
 
     // ========================================================================
-    // FASE 2: EXTRACCIÓN QUIRÚRGICA (PRODUCTO POR PRODUCTO)
+    // FASE 2: EXTRACCIÓN QUIRÚRGICA
     // ========================================================================
-    console.log(`\n[FASE 2] Extrayendo datos crudos de cada producto...`);
-    const scrapedData: RawProduct[] = [];
+    console.log(`\n[FASE 2] Extrayendo datos de cada producto...`);
 
     for (let i = 0; i < linksArray.length; i++) {
       const link = linksArray[i];
@@ -96,13 +134,12 @@ async function runScraper() {
       try {
         await page.goto(link, { waitUntil: 'domcontentloaded', timeout: 30000 });
         
-        // Ejecutar script dentro del contexto de la página web
         const productData = await page.evaluate(() => {
           let exactSku = '';
           let exactName = '';
           let exactBrand = '';
           
-          // 1. Buscar LD-JSON (Schema.org)
+          // 1. LD-JSON
           document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
             try {
               const data = JSON.parse(script.textContent || '{}');
@@ -114,32 +151,18 @@ async function runScraper() {
                   if (schema.brand && schema.brand.name) exactBrand = schema.brand.name;
                 }
               });
-            } catch (e) { /* Ignorar */ }
+            } catch (e) {}
           });
 
-          // 2. Selectores de respaldo
-          if (!exactName) {
-            const h1 = document.querySelector('h1');
-            if (h1) exactName = h1.textContent?.trim() || '';
-          }
-          if (!exactSku) {
-            const skuEl = document.querySelector('.sku, [data-sku], [itemprop="sku"], .product-single__sku');
-            if (skuEl) exactSku = skuEl.textContent?.trim() || '';
-          }
+          if (!exactName) exactName = document.querySelector('h1')?.textContent?.trim() || '';
+          if (!exactSku) exactSku = document.querySelector('.sku, [data-sku], .product-single__sku')?.textContent?.trim() || '';
 
-          // 3. Limpieza de basura visual
-          const elementsToRemove = [
-            'script', 'style', 'nav', 'footer', 'header', 'noscript', 'iframe', 'svg', 
-            '.menu', '.sidebar', '#shopify-section-header', '#shopify-section-footer',
-            '[role="navigation"]', '.cart', '.checkout', '.related-products', '.product-recommendations'
-          ];
-          elementsToRemove.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => el.remove());
-          });
+          // Limpieza
+          const elementsToRemove = ['script', 'style', 'nav', 'footer', 'header', 'noscript', 'iframe', 'svg'];
+          elementsToRemove.forEach(s => document.querySelectorAll(s).forEach(el => el.remove()));
 
-          // 4. Extraer texto limpio del contenedor principal
           const mainContent = document.querySelector('.product-single__description') || document.querySelector('.rte') || document.querySelector('main') || document.body;
-          let cleanText = mainContent.textContent || mainContent.innerText || '';
+          let cleanText = mainContent.textContent || '';
           cleanText = cleanText.replace(/\s+/g, ' ').trim();
 
           return { exactSku, exactName, exactBrand, cleanText };
@@ -154,30 +177,25 @@ async function runScraper() {
           scrapedAt: new Date().toISOString()
         });
 
-        console.log(`   ✅ Extraído: ${productData.exactName || 'Sin Nombre'} (SKU: ${productData.exactSku || 'N/A'})`);
+        console.log(`   ✅ OK: ${productData.exactName}`);
         
-        // Guardar progreso cada 10 productos por si se corta la conexión
-        if ((i + 1) % 10 === 0) {
+        if ((i + 1) % 5 === 0) {
           fs.writeFileSync(OUTPUT_FILE, JSON.stringify(scrapedData, null, 2));
-          console.log(`   💾 Progreso guardado en disco (${i + 1} productos).`);
         }
 
-        // Pausa de 1 segundo para no ser bloqueados por el servidor de Knop
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 800));
 
       } catch (err: any) {
-        console.error(`   ❌ Error extrayendo ${link}: ${err.message}`);
+        console.error(`   ❌ Error en ${link}: ${err.message}`);
       }
     }
 
-    // Guardado final
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(scrapedData, null, 2));
-    console.log(`\n🎉 SCRAPING FINALIZADO CON ÉXITO.`);
-    console.log(`📁 Archivo guardado en: ${OUTPUT_FILE}`);
-    console.log(`📊 Total extraído: ${scrapedData.length} productos.`);
+    console.log(`\n🎉 PROCESO COMPLETADO.`);
+    console.log(`📊 Total final: ${scrapedData.length} productos.`);
 
   } catch (error) {
-    console.error(`\n❌ Error crítico en el scraper:`, error);
+    console.error(`\n❌ Error crítico:`, error);
   } finally {
     await browser.close();
   }
