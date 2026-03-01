@@ -1,6 +1,7 @@
 import { HardwareProfile } from '../core/types/hardware.types';
 import { Product, SafetyStatus } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
+import { SynergyBackgroundService } from './SynergyBackgroundService';
 
 export class AIService {
   private static worker: Worker | null = null;
@@ -22,7 +23,10 @@ export class AIService {
 
   // Iniciar el motor explícitamente (Lazy Load)
   static async startEngine(): Promise<boolean> {
-    if (this.isReady) return true;
+    if (this.isReady) {
+      SynergyBackgroundService.start();
+      return true;
+    }
     if (this.isInitializing) return false; // Ya está en proceso
     if (!this.hardware) throw new Error('Hardware no configurado. Llame a AIService.configure() primero.');
 
@@ -49,6 +53,10 @@ export class AIService {
                 this.engineName = engine;
                 this.lastProgress = { text: `${engine} Listo`, progress: 100 };
                 this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
+                
+                // Iniciar motor de sinergia en segundo plano
+                SynergyBackgroundService.start();
+                
                 resolve(true);
               } else {
                 console.error('Fallo inicialización IA:', error);
@@ -170,6 +178,7 @@ export class AIService {
         sugerencia_complementaria: "Verificar datos manualmente",
         vectores: [],
         skus_relacionados: [],
+        synergy_analyzed: false,
         source_url: url
     };
   }

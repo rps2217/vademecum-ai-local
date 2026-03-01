@@ -115,6 +115,7 @@ export class GeminiService {
         apto_celiacos: mapSafety(data.apto_celiacos),
         sugerencia_complementaria: data.sugerencia_complementaria || "",
         skus_relacionados: [],
+        synergy_analyzed: false,
         source_url: targetUrl || "google_search"
       };
 
@@ -212,6 +213,7 @@ export class GeminiService {
         apto_celiacos: mapSafety(data.apto_celiacos),
         sugerencia_complementaria: data.sugerencia_complementaria || product.sugerencia_complementaria,
         skus_relacionados: product.skus_relacionados || [],
+        synergy_analyzed: false,
         source_url: product.source_url
       };
 
@@ -298,6 +300,7 @@ export class GeminiService {
         apto_celiacos: mapSafety(data.apto_celiacos),
         sugerencia_complementaria: data.sugerencia_complementaria || "",
         skus_relacionados: [],
+        synergy_analyzed: false,
         source_url: url
       };
 
