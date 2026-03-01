@@ -222,17 +222,21 @@ export const DatabaseModule: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800">
-                {products.map((product) => (
-                  <tr key={product.sku} className="hover:bg-slate-800/50 transition-colors">
-                    <td className="px-6 py-4 font-mono text-xs text-slate-500">{product.sku}</td>
-                    <td className="px-6 py-4 font-medium text-white">{product.nombre_comercial}</td>
+                {products.map((product, index) => {
+                  if (!product) return null;
+                  const safePrincipios = Array.isArray(product.principios_activos) ? product.principios_activos : [];
+                  
+                  return (
+                  <tr key={product.sku || `fallback-${index}`} className="hover:bg-slate-800/50 transition-colors">
+                    <td className="px-6 py-4 font-mono text-xs text-slate-500">{product.sku || 'N/A'}</td>
+                    <td className="px-6 py-4 font-medium text-white">{product.nombre_comercial || 'Sin nombre'}</td>
                     <td className="px-6 py-4 text-slate-300">
                       <div className="flex flex-wrap gap-1">
-                        {product.principios_activos.slice(0, 2).map((pa, i) => (
+                        {safePrincipios.slice(0, 2).map((pa, i) => (
                           <span key={i} className="px-2 py-0.5 bg-slate-800 rounded text-xs text-slate-300">{pa}</span>
                         ))}
-                        {product.principios_activos.length > 2 && (
-                          <span className="px-2 py-0.5 bg-slate-800 rounded text-xs text-slate-300">+{product.principios_activos.length - 2}</span>
+                        {safePrincipios.length > 2 && (
+                          <span className="px-2 py-0.5 bg-slate-800 rounded text-xs text-slate-300">+{safePrincipios.length - 2}</span>
                         )}
                       </div>
                     </td>
@@ -247,7 +251,7 @@ export const DatabaseModule: React.FC = () => {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button 
-                        onClick={() => handleDelete(product.sku)}
+                        onClick={() => product.sku && handleDelete(product.sku)}
                         className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
                         title="Eliminar registro"
                       >
@@ -255,7 +259,7 @@ export const DatabaseModule: React.FC = () => {
                       </button>
                     </td>
                   </tr>
-                ))}
+                )})}
               </tbody>
             </table>
           </div>

@@ -26,7 +26,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 {product.nombre_comercial}
               </h2>
               <p className="text-lg text-indigo-400 font-medium mt-1">
-                {product.principios_activos.join(', ')}
+                {(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(', ')}
               </p>
             </div>
             <button 
@@ -39,7 +39,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
           <div className="space-y-6">
             {/* Tags IA */}
-            {product.tags_ia && product.tags_ia.length > 0 && (
+            {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
               <section>
                 <div className="flex flex-wrap gap-2">
                   {product.tags_ia.map(tag => (
@@ -68,7 +68,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Indicaciones
               </h3>
               <ul className="list-disc list-inside text-slate-300 space-y-1">
-                {product.indicaciones.map((ind, i) => <li key={i}>{ind}</li>)}
+                {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => <li key={i}>{ind}</li>)}
               </ul>
             </section>
 

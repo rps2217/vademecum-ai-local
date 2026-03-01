@@ -42,7 +42,7 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900">{product.nombre_comercial}</h4>
-                    <p className="text-xs text-slate-500 mb-2">{product.principios_activos.join(', ')}</p>
+                    <p className="text-xs text-slate-500 mb-2">{(product.principios_activos || []).join(', ')}</p>
                     
                     {product.advertencias && (
                       <div className="flex items-start gap-1.5 text-amber-700 bg-amber-50 p-2 rounded-lg text-xs">

@@ -44,10 +44,10 @@ export const useProductSearch = () => {
           product,
           vector: product.vectores,
           searchableText: `
-            ${product.nombre_comercial} 
-            ${product.principios_activos.join(' ')} 
-            ${product.indicaciones.join(' ')}
-            ${product.tags_ia ? product.tags_ia.join(' ') : ''}
+            ${product.nombre_comercial || ''} 
+            ${(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(' ')} 
+            ${(Array.isArray(product.indicaciones) ? product.indicaciones : []).join(' ')}
+            ${Array.isArray(product.tags_ia) ? product.tags_ia.join(' ') : ''}
           `.toLowerCase()
         }));
         

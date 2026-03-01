@@ -205,8 +205,8 @@ export class AIService {
 
     const context = products.map(p => 
       `MEDICAMENTO: ${p.nombre_comercial}\n` +
-      `- Principios Activos: ${p.principios_activos.join(', ')}\n` +
-      `- Indicaciones: ${p.indicaciones.join(', ')}\n` +
+      `- Principios Activos: ${(Array.isArray(p.principios_activos) ? p.principios_activos : []).join(', ')}\n` +
+      `- Indicaciones: ${(Array.isArray(p.indicaciones) ? p.indicaciones : []).join(', ')}\n` +
       `- Advertencias: ${p.advertencias}\n`
     ).join('\n\n');
 

@@ -148,7 +148,7 @@ export const BatchScraper: React.FC = () => {
           const mainContent = doc.querySelector('.product-single__description') || doc.querySelector('.rte') || doc.querySelector('main') || doc.body;
           
           // 5. Extraer solo el texto limpio
-          let cleanText = mainContent.textContent || mainContent.innerText || '';
+          let cleanText = mainContent.textContent || (mainContent as HTMLElement).innerText || '';
           cleanText = cleanText.replace(/\s+/g, ' ').trim(); // Quitar saltos de línea y espacios extra
 
           // Analizar con Gemini (ahora recibe datos pre-digeridos y texto limpio)

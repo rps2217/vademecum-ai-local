@@ -39,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
             {product.nombre_comercial}
           </h3>
           <p className="text-sm text-slate-400 line-clamp-1">
-            {product.principios_activos.join(', ')}
+            {(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(', ')}
           </p>
         </div>
         <Badge variant="outline" className="text-[10px] uppercase tracking-wider bg-slate-800 text-slate-400 border-slate-700 shrink-0 ml-2">
@@ -49,7 +49,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
 
       <div className="mb-4 flex-1 cursor-pointer" onClick={() => onViewDetail?.(product)}>
         <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">
-          {product.indicaciones.join(' • ')}
+          {(Array.isArray(product.indicaciones) ? product.indicaciones : []).join(' • ')}
         </p>
       </div>
 
@@ -70,7 +70,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
       </div>
 
       {/* Tags IA */}
-      {product.tags_ia && product.tags_ia.length > 0 && (
+      {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-1.5">
           {product.tags_ia.slice(0, 3).map(tag => (
             <button 
