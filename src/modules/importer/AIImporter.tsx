@@ -215,7 +215,8 @@ Contraindicaciones: Hipersensibilidad..."
                   <span className="text-slate-500 text-xs uppercase tracking-wider font-bold">Principios Activos</span>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {(Array.isArray(result.principios_activos) ? result.principios_activos : []).map((pa, i) => {
-                      const text = typeof pa === 'object' && pa !== null ? (pa.nombre || pa.tipo || JSON.stringify(pa)) : String(pa);
+                      if (!pa) return null;
+                      const text = typeof pa === 'object' ? ((pa as any).nombre || (pa as any).tipo || JSON.stringify(pa)) : String(pa);
                       return <span key={i} className="px-2 py-1 bg-slate-800 rounded text-xs">{text}</span>;
                     })}
                   </div>
@@ -225,7 +226,8 @@ Contraindicaciones: Hipersensibilidad..."
                   <span className="text-slate-500 text-xs uppercase tracking-wider font-bold">Indicaciones</span>
                   <ul className="list-disc list-inside mt-1 text-slate-300 space-y-1">
                     {(Array.isArray(result.indicaciones) ? result.indicaciones : []).map((ind, i) => {
-                      const text = typeof ind === 'object' && ind !== null ? (ind.nombre || ind.tipo || ind.indicacion || JSON.stringify(ind)) : String(ind);
+                      if (!ind) return null;
+                      const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
                       return <li key={i}>{text}</li>;
                     })}
                   </ul>

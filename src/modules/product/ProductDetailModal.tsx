@@ -43,42 +43,46 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-      <div className="bg-slate-900 rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl shadow-indigo-500/10 animate-in zoom-in-95 duration-200 border border-slate-800">
+    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-slate-950/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="bg-slate-900 w-full max-w-5xl h-full rounded-[2rem] shadow-2xl shadow-indigo-500/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
         
         {/* Columna Izquierda: Detalles del Producto */}
-        <div className="w-full md:w-1/2 p-8 overflow-y-auto border-r border-slate-800 relative">
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <Badge variant="outline" className="mb-2 bg-slate-800 text-slate-400 border-slate-700">
+        <div className="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto border-r border-slate-800 relative bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+          <div className="flex justify-between items-start mb-8">
+            <div className="flex-1">
+              <Badge variant="outline" className="mb-3 bg-slate-800 text-slate-400 border-slate-700 px-3 py-1">
                 {product.sku}
               </Badge>
-              <h2 className="text-3xl font-bold text-white tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
                 {product.nombre_comercial}
               </h2>
-              <p className="text-lg text-indigo-400 font-medium mt-1">
+              <p className="text-xl text-indigo-400 font-medium mt-2">
                 {formatArrayToString(product.principios_activos, ', ')}
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3 ml-4">
               <button 
                 onClick={handleReanalyze}
                 disabled={isReanalyzing}
                 title="Re-analizar y completar con IA"
-                className={`p-2 rounded-full transition-colors disabled:opacity-50 ${isSuccess ? 'text-emerald-400 hover:bg-emerald-500/10' : 'text-indigo-400 hover:bg-slate-800'}`}
+                className={`p-2.5 rounded-xl transition-all disabled:opacity-50 border ${
+                  isSuccess 
+                    ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' 
+                    : 'text-indigo-400 border-slate-700 bg-slate-800 hover:bg-slate-700'
+                }`}
               >
                 {isReanalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-5 h-5" /> : <RefreshCw className="w-5 h-5" />}
               </button>
               <button 
                 onClick={onClose}
-                className="p-2 rounded-full hover:bg-slate-800 text-slate-400 transition-colors md:hidden"
+                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Tags IA */}
             {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
               <section>
@@ -87,9 +91,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                     <button
                       key={tag}
                       onClick={() => onTagClick?.(tag)}
-                      className="px-3 py-1 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 rounded-lg text-xs font-medium tracking-wide border border-indigo-500/20 transition-colors flex items-center gap-1"
+                      className="px-3 py-1.5 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 rounded-xl text-xs font-semibold tracking-wide border border-indigo-500/20 transition-all flex items-center gap-1.5"
                     >
-                      <Tag className="w-3 h-3" />
+                      <Tag className="w-3.5 h-3.5" />
                       {tag}
                     </button>
                   ))}
@@ -97,37 +101,43 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
               </section>
             )}
 
-            <section>
-              <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center gap-2">
-                <Info className="w-4 h-4 text-slate-500" /> Descripción
+            <section className="space-y-3">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                <Info className="w-4 h-4" /> Descripción
               </h3>
-              <p className="text-slate-300 leading-relaxed">{product.descripcion}</p>
+              <p className="text-slate-300 leading-relaxed text-lg">{product.descripcion}</p>
             </section>
 
-            <section>
-              <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-2 flex items-center gap-2">
+            <section className="space-y-3">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Indicaciones
               </h3>
-              <ul className="list-disc list-inside text-slate-300 space-y-1">
+              <ul className="grid grid-cols-1 gap-2">
                 {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
-                  const text = typeof ind === 'object' && ind !== null ? (ind.nombre || ind.tipo || ind.indicacion || JSON.stringify(ind)) : String(ind);
-                  return <li key={i}>{text}</li>;
+                  if (!ind) return null;
+                  const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
+                  return (
+                    <li key={i} className="flex items-start gap-3 text-slate-300 bg-slate-800/30 p-3 rounded-xl border border-slate-800/50">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0" />
+                      <span className="text-sm">{text}</span>
+                    </li>
+                  );
                 })}
               </ul>
             </section>
 
-            <section className="bg-amber-500/10 rounded-2xl p-5 border border-amber-500/20">
-              <h3 className="text-sm font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-500" /> Advertencias
+            <section className="bg-amber-500/5 rounded-2xl p-6 border border-amber-500/10 space-y-3">
+              <h3 className="text-xs font-bold text-amber-500 uppercase tracking-[0.2em] flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4" /> Advertencias Críticas
               </h3>
-              <p className="text-amber-200 leading-relaxed text-sm">{product.advertencias}</p>
+              <p className="text-amber-200/80 leading-relaxed text-sm font-medium">{product.advertencias}</p>
             </section>
 
-            <section>
-              <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider mb-3">
-                Posología Recomendada
+            <section className="space-y-3">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">
+                Posología y Administración
               </h3>
-              <div className="bg-slate-800 rounded-xl p-4 border border-slate-700 text-slate-300 font-medium">
+              <div className="bg-indigo-500/5 rounded-2xl p-5 border border-indigo-500/10 text-indigo-100 font-medium leading-relaxed">
                 {product.posologia}
               </div>
             </section>
@@ -135,20 +145,21 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         </div>
 
         {/* Columna Derecha: Asistente Clínico */}
-        <div className="w-full md:w-1/2 bg-slate-950/50 p-6 flex flex-col relative">
+        <div className="w-full md:w-1/2 bg-slate-950/30 p-6 md:p-8 flex flex-col relative">
           <button 
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-800 text-slate-400 transition-colors hidden md:block z-10"
+            className="absolute top-6 right-6 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-400 transition-all border border-slate-700/50 hidden md:flex items-center justify-center z-10"
+            title="Cerrar panel"
           >
             <X className="w-5 h-5" />
           </button>
           
-          <div className="mb-4">
-            <h3 className="text-lg font-bold text-white">Análisis Clínico</h3>
-            <p className="text-sm text-slate-400">Consulta interacciones o dudas sobre este medicamento.</p>
+          <div className="mb-6 pr-12">
+            <h3 className="text-xl font-bold text-white mb-1">Análisis Clínico IA</h3>
+            <p className="text-sm text-slate-500">Consulta interacciones, dudas o farmacocinética.</p>
           </div>
           
-          <div className="flex-1">
+          <div className="flex-1 min-h-0">
             <ClinicalAssistant contextProducts={[product]} />
           </div>
         </div>
