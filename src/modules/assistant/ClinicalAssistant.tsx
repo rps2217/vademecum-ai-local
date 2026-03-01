@@ -33,6 +33,7 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
   const [isTyping, setIsTyping] = useState(false);
   const [aiStatus, setAiStatus] = useState<{ text: string; progress: number }>({ text: 'Inicializando motor de IA...', progress: 0 });
   const [isAiReady, setIsAiReady] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll al último mensaje
@@ -40,25 +41,42 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Inicializar IA cuando el componente se monta
+  // Verificar estado inicial sin forzar arranque
   useEffect(() => {
-    if (!hardware) return;
-
-    const initAI = async () => {
+    const status = AIService.getStatus();
+    setIsAiReady(status.isReady);
+    setIsInitializing(status.isInitializing);
+    if (status.isInitializing) {
+      setAiStatus(status.lastProgress);
+      // Si ya se estaba inicializando en otro lado, suscribirse al progreso
       AIService.setProgressCallback((text, progress) => {
         setAiStatus({ text, progress });
-        if (progress === 100) setIsAiReady(true);
+        if (progress === 100) {
+          setIsAiReady(true);
+          setIsInitializing(false);
+        }
       });
+    }
+  }, []);
 
-      // Intentar iniciar el motor si no está listo
-      await AIService.startEngine();
-      
-      const status = AIService.getStatus();
-      setIsAiReady(status.isReady);
-    };
+  const handleActivateAI = async () => {
+    if (!hardware || isInitializing || isAiReady) return;
+    
+    setIsInitializing(true);
+    AIService.setProgressCallback((text, progress) => {
+      setAiStatus({ text, progress });
+      if (progress === 100) {
+        setIsAiReady(true);
+        setIsInitializing(false);
+      }
+    });
 
-    initAI();
-  }, [hardware]);
+    await AIService.startEngine();
+    
+    const status = AIService.getStatus();
+    setIsAiReady(status.isReady);
+    setIsInitializing(false);
+  };
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,16 +116,44 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
         </div>
         
         {/* Barra de Progreso de Inicialización */}
-        {!isAiReady && (
+        {!isAiReady && isInitializing && (
           <div className="flex items-center gap-2 text-xs text-indigo-700 font-medium">
             <Loader2 className="w-3 h-3 animate-spin" />
             <span className="truncate max-w-[150px]">{aiStatus.text}</span>
           </div>
         )}
+        {!isAiReady && !isInitializing && (
+          <button 
+            onClick={handleActivateAI}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium transition-colors shadow-sm"
+          >
+            <Bot className="w-3.5 h-3.5" />
+            Activar IA
+          </button>
+        )}
       </div>
 
       {/* Área de Mensajes */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 relative">
+        {!isAiReady && !isInitializing && (
+          <div className="absolute inset-0 z-10 bg-white/80 backdrop-blur-[1px] flex flex-col items-center justify-center p-6 text-center">
+            <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4">
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <h4 className="text-lg font-bold text-slate-800 mb-2">Asistente Clínico Inactivo</h4>
+            <p className="text-sm text-slate-500 max-w-xs mb-6">
+              Activa el motor de Inteligencia Artificial para analizar interacciones, posología y contraindicaciones de este medicamento.
+            </p>
+            <button 
+              onClick={handleActivateAI}
+              className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-medium transition-colors shadow-sm"
+            >
+              <Bot className="w-4 h-4" />
+              Iniciar Motor de IA
+            </button>
+          </div>
+        )}
+
         {messages.map((msg) => (
           <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
             <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
