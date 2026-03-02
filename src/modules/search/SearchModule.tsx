@@ -39,7 +39,7 @@ export const SearchModule: React.FC = () => {
         <input
           type="text"
           className="block w-full pl-12 pr-4 py-4 bg-slate-900 border border-slate-800 rounded-2xl text-lg text-white shadow-sm focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all placeholder:text-slate-600"
-          placeholder="Buscar por nombre, principio activo, indicación o síntoma..."
+          placeholder="Buscar por SKU, nombre, principio activo, indicación o síntoma..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

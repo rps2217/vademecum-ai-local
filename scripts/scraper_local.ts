@@ -7,10 +7,13 @@ import { chromium } from 'playwright';
 // ============================================================================
 const COLLECTIONS = [
   'https://www.farmaciasknop.com/collections/suplementos',
-  'https://www.farmaciasknop.com/collections/medicamentos-naturales',
-  'https://www.farmaciasknop.com/collections/homeopatia',
-  'https://www.farmaciasknop.com/collections/fitoterapia',
-  'https://www.farmaciasknop.com/collections/alimentos-saludables'
+  'https://www.farmaciasknop.com/collections/medicamento-natural',
+  'https://www.farmaciasknop.com/collections/cuidado-personal',
+  'https://www.farmaciasknop.com/collections/belleza-natural',
+  'https://www.farmaciasknop.com/collections/alimentacion-saludable',
+  'https://www.farmaciasknop.com/collections/infantil-y-maternidad',
+  'https://www.farmaciasknop.com/collections/aromaterapia-y-terapia-floral',
+  'https://www.farmaciasknop.com/collections/mascotas'
 ];
 const OUTPUT_FILE = path.join(process.cwd(), 'knop_raw_data.json');
 const MAX_PAGES_PER_COLLECTION = 20; // Aumentado para cubrir más catálogo

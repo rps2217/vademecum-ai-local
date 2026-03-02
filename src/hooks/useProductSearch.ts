@@ -45,6 +45,7 @@ export const useProductSearch = () => {
           product,
           vector: product.vectores,
           searchableText: `
+            ${product.sku || ''}
             ${product.nombre_comercial || ''} 
             ${formatArrayToString(product.principios_activos, ' ')} 
             ${formatArrayToString(product.indicaciones, ' ')}
