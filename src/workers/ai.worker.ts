@@ -188,8 +188,14 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       isReady = true;
       self.postMessage({ type: 'INIT_COMPLETE', success: true, engine: getEngineName() });
     } else {
-      // Tier NONE o fallo total
-      self.postMessage({ type: 'INIT_COMPLETE', success: false, error: 'Hardware no compatible' });
+      // Fallback final: Si el tier es NONE pero el hardware parece capaz, intentamos CPU
+      if (tier === 'NONE') {
+        console.warn('[Worker] Tier NONE detectado, pero intentando fallback a CPU...');
+        // Reutilizamos la lógica de tier LOW
+        await initializeAI('LOW');
+      } else {
+        self.postMessage({ type: 'INIT_COMPLETE', success: false, error: 'Hardware no compatible para IA Local' });
+      }
     }
 
   } catch (error: any) {

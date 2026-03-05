@@ -62,14 +62,28 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         let aiModelTier: 'HIGH' | 'LOW' | 'NONE' = 'NONE';
         const supportsWebGPU = 'gpu' in navigator;
         
-        // Detección más conservadora para evitar crasheos en GPUs integradas
-        const isIntegrated = gpuName.toLowerCase().includes('intel') || gpuName.toLowerCase().includes('uhd') || gpuName.toLowerCase().includes('iris');
+        // Detección de Apple Silicon (M1, M2, M3, M4)
+        const isAppleSilicon = gpuName.toLowerCase().includes('apple') || 
+                              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 0) ||
+                              (navigator.userAgent.includes('Macintosh') && logicalProcessors > 8);
+
+        // Detección de GPUs dedicadas (NVIDIA/AMD - Comunes en Windows)
+        const isDedicatedGPU = gpuName.toLowerCase().includes('nvidia') || 
+                               gpuName.toLowerCase().includes('radeon') ||
+                               gpuName.toLowerCase().includes('geforce');
+
+        // Detección de GPUs integradas lentas (Intel)
+        const isSlowIntegrated = (gpuName.toLowerCase().includes('intel') || 
+                                 gpuName.toLowerCase().includes('uhd') || 
+                                 gpuName.toLowerCase().includes('iris')) && !isAppleSilicon && !isDedicatedGPU;
         
-        // Requerimos 8GB de RAM para GPU (High Tier) para estar seguros, 
-        // o 6GB si es una GPU dedicada (no Intel integrada)
-        if (supportsWebGPU && hasGPU && ((memoryGB >= 8) || (memoryGB >= 6 && !isIntegrated))) {
+        // REGLAS DE TIERING UNIVERSALES:
+        // 1. HIGH (GPU): Requiere WebGPU y hardware potente (Apple Silicon, GPU dedicada o 8GB+ RAM)
+        if (supportsWebGPU && hasGPU && (isAppleSilicon || isDedicatedGPU || (memoryGB >= 8))) {
              aiModelTier = 'HIGH';
-        } else if (memoryGB >= 4) {
+        } 
+        // 2. LOW (CPU): Baseline para cualquier equipo moderno con al menos 2GB de RAM detectada
+        else if (memoryGB >= 2 || isAppleSilicon || logicalProcessors >= 4) {
              aiModelTier = 'LOW';
         }
 
@@ -78,7 +92,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         
         updateStep('hardware', { 
             status: 'success', 
-            detail: `${aiModelTier === 'HIGH' ? 'GPU Detectada (Modo Rápido)' : 'Modo Compatibilidad (CPU)'} • ${memoryGB}GB RAM` 
+            detail: `${aiModelTier === 'HIGH' ? 'GPU Detectada (Modo Rápido)' : aiModelTier === 'LOW' ? 'Modo Compatibilidad (CPU)' : 'IA Desactivada'} • ${memoryGB}GB RAM` 
         });
 
       } catch (e) {

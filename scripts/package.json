@@ -4,8 +4,8 @@
   "description": "Scraper masivo profesional para farmacias",
   "main": "index.js",
   "scripts": {
-    "scrape": "npx ts-node scraper_local.ts",
-    "process": "npx ts-node processor_ia.ts"
+    "scrape": "npx ts-node --skip-project scraper_local.ts",
+    "process": "npx ts-node --skip-project processor_ia.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.2.1",

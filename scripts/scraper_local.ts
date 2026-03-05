@@ -26,6 +26,13 @@ interface RawProduct {
   exactName: string;
   exactSku: string;
   exactBrand: string;
+  presentation: string;
+  benefits: string;
+  usage: string;
+  storage: string;
+  warnings: string;
+  precautions: string;
+  ingredients: string;
   cleanText: string;
   scrapedAt: string;
 }
@@ -128,7 +135,7 @@ async function runScraper() {
     // ========================================================================
     // FASE 2: EXTRACCIÓN QUIRÚRGICA
     // ========================================================================
-    console.log(`\n[FASE 2] Extrayendo datos de cada producto...`);
+    console.log(`\n[FASE 2] Extrayendo datos de cada producto (Modo Quirúrgico)...`);
 
     for (let i = 0; i < linksArray.length; i++) {
       const link = linksArray[i];
@@ -142,7 +149,7 @@ async function runScraper() {
           let exactName = '';
           let exactBrand = '';
           
-          // 1. LD-JSON
+          // 1. LD-JSON (Confiable para datos base)
           document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
             try {
               const data = JSON.parse(script.textContent || '{}');
@@ -160,15 +167,48 @@ async function runScraper() {
           if (!exactName) exactName = document.querySelector('h1')?.textContent?.trim() || '';
           if (!exactSku) exactSku = document.querySelector('.sku, [data-sku], .product-single__sku')?.textContent?.trim() || '';
 
-          // Limpieza
+          // 2. Extracción Quirúrgica por Patrones de Texto
+          const findByPattern = (label: string) => {
+            // Buscamos en todo el cuerpo del texto patrones como "Etiqueta: Valor"
+            const bodyText = document.body.innerText;
+            const regex = new RegExp(`${label}:?\\s*([^\\n]+)`, 'i');
+            const match = bodyText.match(regex);
+            return match ? match[1].trim() : '';
+          };
+
+          // Intentamos buscar en contenedores específicos de descripción si existen
+          const descriptionArea = document.querySelector('.product-single__description, .rte, main') || document.body;
+          const areaText = (descriptionArea as HTMLElement).innerText;
+
+          const getField = (label: string) => {
+            const regex = new RegExp(`${label}:?\\s*([^\\n]+)`, 'i');
+            const match = areaText.match(regex);
+            return match ? match[1].trim() : '';
+          };
+
+          const surgicalFields = {
+            presentation: getField('Presentación'),
+            benefits: getField('Beneficios del Producto'),
+            usage: getField('Modo de uso'),
+            storage: getField('Almacenamiento'),
+            warnings: getField('Advertencias'),
+            precautions: getField('Precauciones'),
+            ingredients: getField('Ingredientes')
+          };
+
+          // 3. Limpieza de texto general (como respaldo)
           const elementsToRemove = ['script', 'style', 'nav', 'footer', 'header', 'noscript', 'iframe', 'svg'];
-          elementsToRemove.forEach(s => document.querySelectorAll(s).forEach(el => el.remove()));
+          const clonedBody = document.body.cloneNode(true) as HTMLElement;
+          elementsToRemove.forEach(s => clonedBody.querySelectorAll(s).forEach(el => el.remove()));
+          let cleanText = clonedBody.innerText.replace(/\s+/g, ' ').trim();
 
-          const mainContent = document.querySelector('.product-single__description') || document.querySelector('.rte') || document.querySelector('main') || document.body;
-          let cleanText = mainContent.textContent || '';
-          cleanText = cleanText.replace(/\s+/g, ' ').trim();
-
-          return { exactSku, exactName, exactBrand, cleanText };
+          return { 
+            exactSku, 
+            exactName, 
+            exactBrand, 
+            ...surgicalFields,
+            cleanText 
+          };
         });
 
         scrapedData.push({
@@ -176,11 +216,19 @@ async function runScraper() {
           exactName: productData.exactName,
           exactSku: productData.exactSku,
           exactBrand: productData.exactBrand,
+          presentation: productData.presentation,
+          benefits: productData.benefits,
+          usage: productData.usage,
+          storage: productData.storage,
+          warnings: productData.warnings,
+          precautions: productData.precautions,
+          ingredients: productData.ingredients,
           cleanText: productData.cleanText,
           scrapedAt: new Date().toISOString()
         });
 
         console.log(`   ✅ OK: ${productData.exactName}`);
+        if (productData.ingredients) console.log(`      🧪 Detectado: ${productData.ingredients.substring(0, 40)}...`);
         
         if ((i + 1) % 5 === 0) {
           fs.writeFileSync(OUTPUT_FILE, JSON.stringify(scrapedData, null, 2));

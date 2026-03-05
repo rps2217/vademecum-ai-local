@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // ============================================================================
-// CONFIGURACIÓN DEL PROCESADOR IA
+// CONFIGURACIÓN DEL PROCESADOR IA (LOCAL OLLAMA)
 // ============================================================================
 const INPUT_FILE = path.join(process.cwd(), 'knop_raw_data.json');
 const OUTPUT_FILE = path.join(process.cwd(), 'knop_processed_data.json');
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'TU_API_KEY_AQUI'; // ¡Pon tu API Key aquí!
+const OLLAMA_URL = 'http://127.0.0.1:11434/api/generate'; 
+const OLLAMA_MODEL = 'llama3.1'; 
 
 // ============================================================================
 // INTERFACES
@@ -17,6 +17,13 @@ interface RawProduct {
   exactName: string;
   exactSku: string;
   exactBrand: string;
+  presentation: string;
+  benefits: string;
+  usage: string;
+  storage: string;
+  warnings: string;
+  precautions: string;
+  ingredients: string;
   cleanText: string;
   scrapedAt: string;
 }
@@ -41,11 +48,13 @@ interface ProcessedProduct {
 }
 
 // ============================================================================
-// MOTOR DE PROCESAMIENTO IA (GEMINI)
+// MOTOR DE PROCESAMIENTO IA (LOCAL OLLAMA)
 // ============================================================================
 async function runProcessor() {
-  console.log(`🧠 Iniciando Procesador IA Masivo...`);
+  console.log(`🧠 Iniciando Procesador IA LOCAL (Ollama)...`);
   console.log(`📂 Leyendo archivo: ${INPUT_FILE}`);
+  console.log(`🤖 Usando modelo: ${OLLAMA_MODEL}`);
+  console.log(`❄️ Pausa de enfriamiento: 3 segundos entre productos`);
   console.log(`--------------------------------------------------`);
 
   if (!fs.existsSync(INPUT_FILE)) {
@@ -56,65 +65,86 @@ async function runProcessor() {
   const rawData: RawProduct[] = JSON.parse(fs.readFileSync(INPUT_FILE, 'utf-8'));
   const processedData: ProcessedProduct[] = [];
   
-  // Si ya hay un archivo procesado, cargarlo para continuar desde donde nos quedamos
   if (fs.existsSync(OUTPUT_FILE)) {
-    const existingData = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf-8'));
-    processedData.push(...existingData);
-    console.log(`🔄 Retomando proceso: ${processedData.length} productos ya procesados.`);
+    try {
+      const existingData = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf-8'));
+      processedData.push(...existingData);
+      console.log(`🔄 Retomando proceso: ${processedData.length} productos ya procesados.`);
+    } catch (e) {
+      console.warn('⚠️ Error leyendo archivo procesado previo.');
+    }
   }
 
-  const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
-  // Filtrar los que ya procesamos
   const pendingData = rawData.filter(raw => !processedData.some(p => p.source_url === raw.url));
   console.log(`📊 Productos pendientes por procesar: ${pendingData.length}`);
 
   for (let i = 0; i < pendingData.length; i++) {
     const item = pendingData[i];
-    console.log(`[${i + 1}/${pendingData.length}] ⏳ Analizando: ${item.exactName || item.url}`);
+    console.log(`[${i + 1}/${pendingData.length}] ⏳ Analizando localmente: ${item.exactName || item.url}`);
 
     try {
-      const prompt = `Actúa como un experto farmacólogo. Extrae la información médica de este producto a partir de los siguientes datos extraídos de su página web.
+      const prompt = `Actúa como un experto farmacólogo. Extrae la información médica de este producto.
       
-      DATOS EXACTOS EXTRAÍDOS POR SCRIPT:
-      - Nombre Comercial: ${item.exactName || 'No encontrado, búscalo en el texto'}
-      - SKU / Código: ${item.exactSku || 'No encontrado, búscalo en el texto'}
-      - Marca: ${item.exactBrand || 'No encontrada'}
+      DATOS EXTRAÍDOS QUIRÚRGICAMENTE:
+      - Nombre: ${item.exactName}
+      - Marca: ${item.exactBrand}
+      - Presentación: ${item.presentation || 'No detectada'}
+      - Beneficios: ${item.benefits || 'No detectados'}
+      - Modo de Uso: ${item.usage || 'No detectado'}
+      - Ingredientes/Composición: ${item.ingredients || 'No detectados'}
+      - Advertencias: ${item.warnings || 'No detectadas'}
+      - Precauciones: ${item.precautions || 'No detectadas'}
 
-      TEXTO DE LA DESCRIPCIÓN DEL PRODUCTO:
-      ${item.cleanText.substring(0, 8000)}
+      TEXTO ADICIONAL (Respaldo):
+      ${item.cleanText.substring(0, 3000)}
 
-      Devuelve un JSON estricto con esta estructura. Usa los "DATOS EXACTOS" si están disponibles, y usa el "TEXTO" para deducir el resto (posología, advertencias, etc.):
+      Responde ÚNICAMENTE con un objeto JSON válido con esta estructura exacta:
       {
-        "sku": "SKU o Código del producto",
-        "nombre_comercial": "Nombre comercial y presentación",
-        "descripcion": "Descripción breve del producto",
-        "principios_activos": ["principio activo 1", "principio activo 2"],
-        "posologia": "Dosis recomendada general",
-        "indicaciones": ["indicación 1", "indicación 2"],
-        "advertencias": "Advertencias y contraindicaciones",
-        "tags_ia": ["etiqueta 1", "etiqueta 2"],
-        "apto_embarazo": "SI" o "NO" o "PRECAUCION",
-        "apto_lactancia": "SI" o "NO" o "PRECAUCION",
-        "apto_pediatria": "SI" o "NO" o "PRECAUCION",
-        "apto_diabeticos": "SI" o "NO" o "PRECAUCION",
-        "apto_hipertensos": "SI" o "NO" o "PRECAUCION",
-        "apto_celiacos": "SI" o "NO" o "PRECAUCION",
-        "sugerencia_complementaria": "Sugerencia de producto complementario"
+        "sku": "SKU",
+        "nombre_comercial": "Nombre",
+        "descripcion": "Descripción",
+        "principios_activos": ["A", "B"],
+        "posologia": "Dosis",
+        "indicaciones": ["I1", "I2"],
+        "advertencias": "Advertencias",
+        "tags_ia": ["T1", "T2"],
+        "apto_embarazo": "SI/NO/PRECAUCION",
+        "apto_lactancia": "SI/NO/PRECAUCION",
+        "apto_pediatria": "SI/NO/PRECAUCION",
+        "apto_diabeticos": "SI/NO/PRECAUCION",
+        "apto_hipertensos": "SI/NO/PRECAUCION",
+        "apto_celiacos": "SI/NO/PRECAUCION",
+        "sugerencia_complementaria": "Sugerencia"
       }`;
 
-      const response = await model.generateContent({
-        contents: [{ role: "user", parts: [{ text: prompt }] }]
+      const response = await fetch(OLLAMA_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: OLLAMA_MODEL,
+          prompt: prompt,
+          stream: false,
+          format: 'json',
+          options: {
+            temperature: 0.1,
+            num_ctx: 4096
+          }
+        })
       });
 
-      let jsonStr = response.response.text() || "{}";
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Ollama API Error (${response.status}): ${errorText}`);
+      }
       
-      // Limpieza extrema: buscar el primer '{' y el último '}'
-      // Esto ignora cualquier texto o comilla Markdown que Gemini ponga antes o después
+      const data: any = await response.json();
+      let jsonStr = data.response || "";
+      
+      if (!jsonStr) throw new Error("Ollama devolvió una respuesta vacía.");
+
+      // Limpieza de posibles caracteres extraños
       const firstBrace = jsonStr.indexOf('{');
       const lastBrace = jsonStr.lastIndexOf('}');
-      
       if (firstBrace !== -1 && lastBrace !== -1) {
         jsonStr = jsonStr.substring(firstBrace, lastBrace + 1);
       }
@@ -125,11 +155,11 @@ async function runProcessor() {
         sku: productData.sku || item.exactSku || `SCR-${Date.now().toString().slice(-6)}`,
         nombre_comercial: productData.nombre_comercial || item.exactName || 'Desconocido',
         descripcion: productData.descripcion || '',
-        principios_activos: productData.principios_activos || [],
+        principios_activos: Array.isArray(productData.principios_activos) ? productData.principios_activos : [],
         posologia: productData.posologia || 'Consultar al médico',
-        indicaciones: productData.indicaciones || [],
+        indicaciones: Array.isArray(productData.indicaciones) ? productData.indicaciones : [],
         advertencias: productData.advertencias || 'Sin advertencias específicas',
-        tags_ia: productData.tags_ia || [],
+        tags_ia: Array.isArray(productData.tags_ia) ? productData.tags_ia : [],
         apto_embarazo: productData.apto_embarazo || 'PRECAUCION',
         apto_lactancia: productData.apto_lactancia || 'PRECAUCION',
         apto_pediatria: productData.apto_pediatria || 'PRECAUCION',
@@ -143,25 +173,22 @@ async function runProcessor() {
       processedData.push(processedProduct);
       console.log(`   ✅ Procesado: ${processedProduct.nombre_comercial}`);
 
-      // Guardar progreso en cada iteración por si se corta
       fs.writeFileSync(OUTPUT_FILE, JSON.stringify(processedData, null, 2));
-
-      // Pausa estricta para no saturar los límites de Gemini (15 RPM = 1 cada 4 segundos)
-      // Usamos 5 segundos para estar seguros. Como esto corre en tu PC, no importa si tarda horas.
-      await new Promise(r => setTimeout(r, 5000));
+      
+      // Pausa de enfriamiento para Mac M4
+      await new Promise(r => setTimeout(r, 3000));
 
     } catch (err: any) {
       console.error(`   ❌ Error procesando ${item.url}: ${err.message}`);
-      // Si hay error de cuota (429), pausar más tiempo
-      if (err.message.includes('429') || err.message.includes('quota')) {
-        console.log(`   ⚠️ Límite de cuota alcanzado. Pausando 60 segundos...`);
-        await new Promise(r => setTimeout(r, 60000));
+      if (err.message.includes('ECONNREFUSED')) {
+        console.error("   🛑 ¡Ollama no parece estar corriendo! Asegúrate de ejecutar 'ollama serve'.");
+        break;
       }
+      await new Promise(r => setTimeout(r, 2000));
     }
   }
 
-  console.log(`\n🎉 PROCESAMIENTO FINALIZADO CON ÉXITO.`);
-  console.log(`📁 Archivo final guardado en: ${OUTPUT_FILE}`);
+  console.log(`\n🎉 PROCESAMIENTO FINALIZADO.`);
   console.log(`📊 Total procesado: ${processedData.length} productos.`);
 }
 
