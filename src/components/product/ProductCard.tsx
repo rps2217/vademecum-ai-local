@@ -12,7 +12,7 @@ interface ProductCardProps {
   onTagClick?: (tag: string) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail, onAddToTray, isInTray, onTagClick }) => {
+export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onViewDetail, onAddToTray, isInTray, onTagClick }) => {
   const getSafetyIcon = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI: return <CheckCircle2 className="w-3 h-3 text-emerald-500" />;
@@ -129,4 +129,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
       </div>
     </div>
   );
-};
+});
+
+ProductCard.displayName = 'ProductCard';

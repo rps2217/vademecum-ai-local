@@ -1,12 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { getDB } from '../../core/database/db';
 import { Product } from '../../core/types/product.types';
-import { Database, Trash2, RefreshCw, ExternalLink, FileUp } from 'lucide-react';
+import { Database, Trash2, RefreshCw, ExternalLink, FileUp, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const ITEMS_PER_PAGE = 50;
 
 export const DatabaseModule: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const loadData = async () => {
@@ -93,11 +96,18 @@ export const DatabaseModule: React.FC = () => {
     try {
       const db = await getDB();
       await db.clear('products');
+      setCurrentPage(1);
       await loadData();
     } catch (error) {
       console.error('Error limpiando base de datos:', error);
     }
   };
+
+  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+  const currentProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return products.slice(start, start + ITEMS_PER_PAGE);
+  }, [products, currentPage]);
 
   return (
     <div className="w-full max-w-5xl mx-auto pb-20 animate-in fade-in duration-300">
@@ -177,7 +187,7 @@ export const DatabaseModule: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800">
-                {products.map((product, index) => {
+                {currentProducts.map((product, index) => {
                   if (!product) return null;
                   const safePrincipios = Array.isArray(product.principios_activos) ? product.principios_activos : [];
                   
@@ -223,6 +233,33 @@ export const DatabaseModule: React.FC = () => {
                 )})}
               </tbody>
             </table>
+          </div>
+        )}
+        
+        {!isLoading && products.length > 0 && (
+          <div className="p-4 border-t border-slate-800 bg-slate-950/50 flex items-center justify-between">
+            <span className="text-sm text-slate-400">
+              Mostrando {((currentPage - 1) * ITEMS_PER_PAGE) + 1} - {Math.min(currentPage * ITEMS_PER_PAGE, products.length)} de {products.length}
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="p-1.5 rounded-lg border border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-white disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-slate-400 transition-colors"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <span className="text-sm font-medium text-slate-300 px-2">
+                Página {currentPage} de {totalPages}
+              </span>
+              <button
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="p-1.5 rounded-lg border border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-white disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-slate-400 transition-colors"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         )}
       </div>
