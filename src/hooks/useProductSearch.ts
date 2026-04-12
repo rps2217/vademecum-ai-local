@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Product, SafetyStatus } from '../core/types/product.types';
 import { getDB } from '../core/database/db';
 import { AIService } from '../services/AIService';
-import { TagIntelligenceService } from '../services/TagIntelligenceService';
-import { FirebaseSyncService } from '../services/FirebaseSyncService';
 import { formatArrayToString } from '../utils/formatters';
 
 // Índice en memoria para búsquedas ultra-rápidas
@@ -53,7 +51,6 @@ export const useProductSearch = () => {
   useEffect(() => {
     const loadIndex = async () => {
       try {
-        await TagIntelligenceService.init();
         const db = await getDB();
         const allProducts = await db.getAll('products');
         
@@ -75,17 +72,17 @@ export const useProductSearch = () => {
         // Extraer tags únicos y contarlos (Motor de Etiquetas Dinámico)
         const tagCounts: Record<string, number> = {};
         
-        // Procesar todos los tags de todos los productos
-        for (const p of allProducts) {
+        // Procesar todos los tags de todos los productos (Sin normalización externa)
+        allProducts.forEach(p => {
           if (p.tags_ia && Array.isArray(p.tags_ia)) {
-            for (const tag of p.tags_ia) {
-              const cleanTag = await TagIntelligenceService.normalizeTag(tag);
+            p.tags_ia.forEach(tag => {
+              const cleanTag = tag.trim();
               if (cleanTag) {
                 tagCounts[cleanTag] = (tagCounts[cleanTag] || 0) + 1;
               }
-            }
+            });
           }
-        }
+        });
         
         // Convertir a array, ordenar por frecuencia y tomar los top 60
         const sortedTags = Object.entries(tagCounts)
@@ -121,14 +118,10 @@ export const useProductSearch = () => {
 
     loadIndex();
 
-    // Sincronizar etiquetas en tiempo real
-    const unsubscribeTags = FirebaseSyncService.startTagSync();
-
     // Escuchar cambios en la base de datos para re-indexar automáticamente
     window.addEventListener('db_updated', loadIndex);
     return () => {
       window.removeEventListener('db_updated', loadIndex);
-      unsubscribeTags();
     };
   }, []);
 

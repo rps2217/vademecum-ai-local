@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Sparkles, Loader2, AlertCircle, MessageSquare } from 'lucide-react';
 import { AIService } from '../../../services/AIService';
-import { Product } from '../../core/types/product.types';
+import { Product } from '../../../core/types/product.types';
 import ReactMarkdown from 'react-markdown';
 
 interface AIAnalysisModalProps {
