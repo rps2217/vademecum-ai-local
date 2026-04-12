@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Brain, Loader2, CheckCircle2, AlertCircle, Cpu } from 'lucide-react';
+import { Brain, Loader2, CheckCircle2, AlertCircle, Cpu, Activity } from 'lucide-react';
 import { AIService } from '../services/AIService';
+import { SynergyBackgroundService } from '../services/SynergyBackgroundService';
 import { motion, AnimatePresence } from 'motion/react';
 
 export const AIStatusIndicator: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
   const [isExpanded, setIsExpanded] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState<string | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -13,7 +15,14 @@ export const AIStatusIndicator: React.FC = () => {
       setStatus(currentStatus);
     }, 1000);
 
-    return () => clearInterval(interval);
+    const unsubscribe = SynergyBackgroundService.subscribe((sku, name) => {
+      setCurrentProduct(name);
+    });
+
+    return () => {
+      clearInterval(interval);
+      unsubscribe();
+    };
   }, []);
 
   const getStatusColor = () => {
@@ -71,9 +80,23 @@ export const AIStatusIndicator: React.FC = () => {
               )}
 
               {status.isReady && (
-                <div className="text-[11px] text-slate-400 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                  Motor: <span className="text-slate-200 font-medium">{status.engine}</span>
+                <div className="space-y-3">
+                  <div className="text-[11px] text-slate-400 flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
+                    Motor: <span className="text-slate-200 font-medium">{status.engine}</span>
+                  </div>
+                  
+                  {currentProduct && (
+                    <div className="p-2.5 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                      <div className="flex items-center gap-2 mb-1">
+                        <Activity className="w-3 h-3 text-brand-primary animate-pulse" />
+                        <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Analizando Sinergia</span>
+                      </div>
+                      <p className="text-xs text-brand-primary font-medium truncate" title={currentProduct}>
+                        {currentProduct}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 

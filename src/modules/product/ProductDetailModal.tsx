@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { ClinicalSynergy } from './ClinicalSynergy';
-import { X, Info, AlertTriangle, CheckCircle2, Tag, RefreshCw, Loader2, Baby, Heart, ShieldCheck, Activity, Droplets, Wheat, Sparkles } from 'lucide-react';
+import { X, Info, AlertTriangle, CheckCircle2, Tag, RefreshCw, Loader2, Baby, Heart, ShieldCheck, Activity, Droplets, Wheat, Sparkles, Cpu } from 'lucide-react';
 import { Badge } from '../../components/ui/badge';
 import { formatArrayToString } from '../../utils/formatters';
 import { GeminiService } from '../../services/GeminiService';
+import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { getDB } from '../../core/database/db';
 
 interface ProductDetailModalProps {
@@ -18,6 +19,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   const [product, setProduct] = useState<Product>(initialProduct);
   const [isReanalyzing, setIsReanalyzing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isForcingSynergy, setIsForcingSynergy] = useState(false);
 
   const handleReanalyze = async () => {
     setIsReanalyzing(true);
@@ -39,6 +41,28 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
       alert('Ocurrió un error al reanalizar el producto.');
     } finally {
       setIsReanalyzing(false);
+    }
+  };
+
+  const handleForceSynergy = async () => {
+    setIsForcingSynergy(true);
+    try {
+      const started = await SynergyBackgroundService.forceAnalyze(product);
+      if (!started) {
+        alert('El motor está ocupado o el producto ya fue analizado.');
+      } else {
+        // Recargar el producto desde la DB local
+        const db = await getDB();
+        const updated = await db.get('products', product.sku);
+        if (updated) {
+          setProduct(updated);
+          if (onUpdate) onUpdate(updated);
+        }
+      }
+    } catch (error) {
+      console.error('Error forzando sinergia:', error);
+    } finally {
+      setIsForcingSynergy(false);
     }
   };
 
@@ -91,9 +115,21 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
             </div>
             <div className="flex items-center gap-3 ml-4">
               <button 
+                onClick={handleForceSynergy}
+                disabled={isForcingSynergy || product.synergy_analyzed}
+                title={product.synergy_analyzed ? "Sinergia ya analizada" : "Forzar análisis de sinergia local"}
+                className={`p-2.5 rounded-xl transition-all disabled:opacity-50 border ${
+                  product.synergy_analyzed 
+                    ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' 
+                    : 'text-indigo-400 border-slate-700 bg-brand-bg hover:bg-slate-700'
+                }`}
+              >
+                {isForcingSynergy ? <Loader2 className="w-5 h-5 animate-spin" /> : <Cpu className="w-5 h-5" />}
+              </button>
+              <button 
                 onClick={handleReanalyze}
                 disabled={isReanalyzing}
-                title="Re-analizar y completar con IA"
+                title="Re-analizar y completar con IA (Nube)"
                 className={`p-2.5 rounded-xl transition-all disabled:opacity-50 border ${
                   isSuccess 
                     ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 

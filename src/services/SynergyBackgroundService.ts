@@ -10,6 +10,21 @@ import { auth } from '../firebase';
 export class SynergyBackgroundService {
   private static isRunning = false;
   private static intervalId: number | null = null;
+  private static currentProcessingSku: string | null = null;
+  private static currentProcessingName: string | null = null;
+  private static listeners: Array<(sku: string | null, name: string | null) => void> = [];
+
+  static subscribe(listener: (sku: string | null, name: string | null) => void) {
+    this.listeners.push(listener);
+    listener(this.currentProcessingSku, this.currentProcessingName);
+    return () => {
+      this.listeners = this.listeners.filter(l => l !== listener);
+    };
+  }
+
+  private static notifyListeners() {
+    this.listeners.forEach(l => l(this.currentProcessingSku, this.currentProcessingName));
+  }
 
   static start() {
     if (this.isRunning) return;
@@ -29,12 +44,25 @@ export class SynergyBackgroundService {
     this.isRunning = false;
   }
 
-  private static async processNext() {
-    try {
-      const status = AIService.getStatus();
-      // El motor de sinergia puede usar Gemini o Ollama incluso si el motor local (WebLLM) no está listo
-      // Pero necesitamos que al menos el sistema esté inicializado.
+  static async forceAnalyze(product: Product) {
+    if (!product || product.synergy_analyzed) return false;
+    
+    // Si ya estamos procesando algo, no interrumpir, pero podríamos encolarlo.
+    // Para simplificar, si está libre, lo procesamos directo.
+    if (this.currentProcessingSku) {
+      console.log(`[SynergyService] Ocupado con ${this.currentProcessingSku}, no se puede forzar ${product.sku} ahora.`);
+      return false;
+    }
 
+    console.log(`[SynergyService] Análisis forzado para: ${product.nombre_comercial}`);
+    await this.processProduct(product);
+    return true;
+  }
+
+  private static async processNext() {
+    if (this.currentProcessingSku) return; // Ya hay uno en proceso
+
+    try {
       const db = await getDB();
       const allProducts = await db.getAll('products');
       const now = Date.now();
@@ -55,37 +83,54 @@ export class SynergyBackgroundService {
         return;
       }
 
+      await this.processProduct(nextProduct);
+    } catch (error) {
+      console.error('[SynergyService] Error en ciclo de procesamiento:', error);
+    }
+  }
+
+  private static async processProduct(product: Product) {
+    try {
+      const status = AIService.getStatus();
+      const db = await getDB();
+      const now = Date.now();
+      const userId = auth.currentUser?.uid;
+
+      if (!userId) return;
+
       // Intentar adquirir el candado en Firebase
-      const lockAcquired = await FirebaseSyncService.claimProductLock(nextProduct.sku, userId);
+      const lockAcquired = await FirebaseSyncService.claimProductLock(product.sku, userId);
       if (!lockAcquired) {
-        console.log(`[SynergyService] Producto ${nextProduct.sku} está siendo procesado por otro nodo. Buscando otro...`);
+        console.log(`[SynergyService] Producto ${product.sku} está siendo procesado por otro nodo. Buscando otro...`);
         return;
       }
 
-      console.log(`[SynergyService] Candado adquirido. Analizando sinergias para: ${nextProduct.nombre_comercial}`);
+      this.currentProcessingSku = product.sku;
+      this.currentProcessingName = product.nombre_comercial;
+      this.notifyListeners();
+
+      console.log(`[SynergyService] Candado adquirido. Analizando sinergias para: ${product.nombre_comercial}`);
       
       // Actualizar DB local con el candado
-      await db.put('products', { ...nextProduct, lock_uid: userId, lock_timestamp: now });
+      await db.put('products', { ...product, lock_uid: userId, lock_timestamp: now });
 
       // 1. Encontrar candidatos por similitud semántica (Local Embeddings)
-      // Nota: Los embeddings siempre son locales para privacidad
-      const mainVector = nextProduct.vectores;
+      const mainVector = product.vectores;
       if (!mainVector || mainVector.length === 0) {
-        // Si no tiene vectores, intentamos generarlos si el motor está listo
         if (status.isReady) {
-          const text = `${nextProduct.nombre_comercial} ${formatArrayToString(nextProduct.indicaciones, ' ')}`;
+          const text = `${product.nombre_comercial} ${formatArrayToString(product.indicaciones, ' ')}`;
           const vector = await AIService.generateEmbedding(text);
-          await db.put('products', { ...nextProduct, vectores: vector });
-          // No retornamos, dejamos que la siguiente iteración lo procese con vectores
+          await db.put('products', { ...product, vectores: vector });
         } else {
-          // Si no hay motor local para vectores, marcamos como analizado básico
-          await db.put('products', { ...nextProduct, synergy_analyzed: true, last_synergy_analysis: Date.now() });
+          await db.put('products', { ...product, synergy_analyzed: true, last_synergy_analysis: Date.now() });
         }
+        this.clearCurrent();
         return;
       }
 
+      const allProducts = await db.getAll('products');
       const candidates = allProducts
-        .filter(p => p.sku !== nextProduct.sku && p.vectores && p.vectores.length > 0)
+        .filter(p => p.sku !== product.sku && p.vectores && p.vectores.length > 0)
         .map(p => ({
           product: p,
           score: this.cosineSimilarity(mainVector, p.vectores)
@@ -96,29 +141,27 @@ export class SynergyBackgroundService {
         .map(item => item.product);
 
       if (candidates.length === 0) {
-        await db.put('products', { 
-          ...nextProduct, 
+        const updatedProduct = { 
+          ...product, 
           synergy_analyzed: true, 
           last_synergy_analysis: Date.now(),
           sugerencia_complementaria: "No se encontraron complementos directos en la base local.",
           skus_relacionados: []
-        });
+        };
+        await db.put('products', updatedProduct);
+        await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
+        this.clearCurrent();
         return;
       }
 
-      // 2. Análisis Clínico - Prioridad de Motores:
-      // A. Ollama (Motor Local PC potente - "O")
-      // B. Gemini (Nube potente)
-      // C. WebLLM (Local Navegador)
-      
+      // 2. Análisis Clínico
       let synergyResult;
-      
       const isOllamaAvailable = await OllamaService.isAvailable();
 
       if (isOllamaAvailable) {
         console.log('[SynergyService] Usando Ollama (Motor PC Local) para análisis...');
         try {
-          const analysis = await OllamaService.analyzeSynergy(nextProduct, candidates);
+          const analysis = await OllamaService.analyzeSynergy(product, candidates);
           synergyResult = {
             sugerencia_complementaria: analysis.sugerencia_complementaria,
             skus_relacionados: analysis.skus_relacionados,
@@ -131,7 +174,7 @@ export class SynergyBackgroundService {
 
       if (!synergyResult) {
         try {
-          const analysis = await GeminiService.analyzeSynergy(nextProduct, candidates);
+          const analysis = await GeminiService.analyzeSynergy(product, candidates);
           synergyResult = {
             sugerencia_complementaria: analysis.sugerencia_complementaria,
             skus_relacionados: analysis.skus_relacionados,
@@ -140,8 +183,8 @@ export class SynergyBackgroundService {
         } catch (e) {
           console.warn('[SynergyService] Fallo Gemini, intentando IA Local Navegador...');
           if (status.isReady) {
-            const prompt = `Analiza si estos productos son complementarios a ${nextProduct.nombre_comercial}: ${candidates.map(c => c.nombre_comercial).join(', ')}.`;
-            const localAnalysis = await AIService.analyze(prompt, [nextProduct, ...candidates]);
+            const prompt = `Analiza si estos productos son complementarios a ${product.nombre_comercial}: ${candidates.map(c => c.nombre_comercial).join(', ')}.`;
+            const localAnalysis = await AIService.analyze(prompt, [product, ...candidates]);
             synergyResult = {
               sugerencia_complementaria: localAnalysis.substring(0, 200),
               skus_relacionados: candidates.map(c => c.sku),
@@ -159,29 +202,31 @@ export class SynergyBackgroundService {
         };
       }
 
-      // 3. Guardar en DB
-      const updatedProduct = {
-        ...nextProduct,
+      const finalProduct = {
+        ...product,
         synergy_analyzed: true,
         last_synergy_analysis: Date.now(),
         sugerencia_complementaria: synergyResult.sugerencia_complementaria,
         skus_relacionados: synergyResult.skus_relacionados
       };
+
+      await db.put('products', finalProduct);
+      await FirebaseSyncService.releaseProductLockAndSave(finalProduct);
       
-      delete updatedProduct.lock_uid;
-      delete updatedProduct.lock_timestamp;
-
-      await db.put('products', updatedProduct);
-
-      // 4. Sincronizar con Firebase y liberar candado
-      await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
-
-      console.log(`[SynergyService] Sinergia completada para ${nextProduct.nombre_comercial}`);
+      console.log(`[SynergyService] Sinergia completada para ${product.nombre_comercial}`);
       window.dispatchEvent(new CustomEvent('db_updated'));
 
     } catch (error) {
-      console.error('[SynergyService] Error en proceso de sinergia:', error);
+      console.error(`[SynergyService] Error procesando ${product.sku}:`, error);
+    } finally {
+      this.clearCurrent();
     }
+  }
+
+  private static clearCurrent() {
+    this.currentProcessingSku = null;
+    this.currentProcessingName = null;
+    this.notifyListeners();
   }
 
   private static cosineSimilarity(vecA: number[], vecB: number[]): number {
