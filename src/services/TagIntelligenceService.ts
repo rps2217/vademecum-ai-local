@@ -65,25 +65,36 @@ export class TagIntelligenceService {
       console.warn('[TagIntelligence] IA Local falló, usando Gemini...');
     }
 
-    // 2. Fallback a Gemini
-    const prompt = `Actúa como un experto en taxonomía médica y farmacéutica. 
-    Tu tarea es normalizar etiquetas de productos. 
-    Si recibes una etiqueta que es un sinónimo, error ortográfico o variante de otra más común, devuelve la versión "canónica".
+    // 2. Fallback a Gemini con instrucciones de ESTANDARIZACIÓN, no de SINÓNIMOS
+    const prompt = `Actúa como un organizador de datos farmacéuticos. 
+    Tu tarea es ESTANDARIZAR etiquetas para que sean legibles y uniformes.
+    
+    REGLAS CRÍTICAS:
+    1. NO uses sinónimos complejos o términos médicos rebuscados (Ej: NO cambies "Dolor de cabeza" por "Cefalea").
+    2. Mantén el término más CERCANO a la realidad y más reconocible por un usuario común.
+    3. Corrige SOLO: Ortografía, Plurales/Singulares, y Capitalización.
+    4. Si el término ya es correcto y estándar, devuélvelo tal cual.
     
     EJEMPLOS:
-    - "producto alimentario" -> "Alimentos"
-    - "producto alimenticio" -> "Alimentos"
+    - "producto alimentario" -> "Producto Alimenticio"
+    - "productos alimenticios" -> "Producto Alimenticio"
     - "analgesico" -> "Analgésico"
-    - "para el dolor de cabeza" -> "Cefalea"
-    - "suplemento dietario" -> "Suplemento Alimenticio"
+    - "vitaminas" -> "Vitamina"
+    - "jarabes" -> "Jarabe"
     
-    ETIQUETA A NORMALIZAR: "${tag}"
+    ETIQUETA A ESTANDARIZAR: "${tag}"
     
-    Responde ÚNICAMENTE con la etiqueta normalizada (máximo 3 palabras, capitalización tipo Título).`;
+    Responde ÚNICAMENTE con la etiqueta estandarizada (máximo 3 palabras, Capitalización De Título).`;
 
     try {
       const result = await GeminiService.generateText(prompt);
-      return result.trim().replace(/[".]/g, '');
+      const normalized = result.trim().replace(/[".]/g, '');
+      
+      // Validación de seguridad: Si la IA cambió demasiado el término, ignoramos el cambio
+      // Esto evita que "Dolor" se convierta en algo totalmente distinto por error.
+      if (normalized.length < 2) return tag;
+      
+      return normalized;
     } catch (error) {
       return tag;
     }

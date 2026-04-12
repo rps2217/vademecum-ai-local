@@ -60,8 +60,11 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
 async function normalizeTag(tag: string) {
   if (!isReady) throw new Error('IA no lista');
 
-  const prompt = `Normaliza esta etiqueta médica/farmacéutica. 
-  Si es un sinónimo o variante, usa el término canónico.
+  const prompt = `Estandariza esta etiqueta de producto. 
+  REGLAS:
+  1. NO uses sinónimos complejos.
+  2. Mantén el término más reconocible.
+  3. Solo corrige ortografía, plurales y capitalización.
   Etiqueta: "${tag}"
   Respuesta (solo la etiqueta):`;
 

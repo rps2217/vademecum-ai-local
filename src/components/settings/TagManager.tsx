@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Tag, Search, RefreshCw, Trash2, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Tag, Search, RefreshCw, Trash2, CheckCircle, AlertCircle, Loader2, X } from 'lucide-react';
 import { getDB } from '../../core/database/db';
 import { TagIntelligenceService } from '../../services/TagIntelligenceService';
 
@@ -14,6 +14,8 @@ export const TagManager: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [isNormalizing, setIsNormalizing] = useState(false);
+  const [editingRaw, setEditingRaw] = useState<string | null>(null);
+  const [editValue, setEditValue] = useState('');
 
   const loadMappings = async () => {
     setIsLoading(true);
@@ -31,6 +33,19 @@ export const TagManager: React.FC = () => {
   useEffect(() => {
     loadMappings();
   }, []);
+
+  const handleSaveEdit = async (raw: string) => {
+    if (!editValue.trim()) return;
+    const db = await getDB();
+    const mapping = {
+      raw,
+      normalized: editValue.trim(),
+      last_updated: Date.now()
+    };
+    await db.put('tag_mappings', mapping);
+    setEditingRaw(null);
+    loadMappings();
+  };
 
   const handleDelete = async (raw: string) => {
     if (!confirm(`¿Eliminar el mapeo para "${raw}"?`)) return;
@@ -104,10 +119,41 @@ export const TagManager: React.FC = () => {
                     <span className="text-slate-400 font-mono text-xs">{m.raw}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-3 h-3 text-emerald-500" />
-                      <span className="text-slate-200 font-bold">{m.normalized}</span>
-                    </div>
+                    {editingRaw === m.raw ? (
+                      <div className="flex items-center gap-2">
+                        <input 
+                          autoFocus
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && handleSaveEdit(m.raw)}
+                          className="bg-slate-800 border border-indigo-500 rounded px-2 py-1 text-white text-sm outline-none w-full"
+                        />
+                        <button 
+                          onClick={() => handleSaveEdit(m.raw)}
+                          className="p-1 text-emerald-500 hover:bg-emerald-500/10 rounded"
+                        >
+                          <CheckCircle className="w-4 h-4" />
+                        </button>
+                        <button 
+                          onClick={() => setEditingRaw(null)}
+                          className="p-1 text-slate-500 hover:bg-slate-500/10 rounded"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div 
+                        className="flex items-center gap-2 cursor-pointer group/item"
+                        onClick={() => {
+                          setEditingRaw(m.raw);
+                          setEditValue(m.normalized);
+                        }}
+                      >
+                        <CheckCircle className="w-3 h-3 text-emerald-500" />
+                        <span className="text-slate-200 font-bold">{m.normalized}</span>
+                        <span className="text-[10px] text-indigo-400 opacity-0 group-hover/item:opacity-100 transition-opacity ml-2">Editar</span>
+                      </div>
+                    )}
                   </td>
                   <td className="px-6 py-4 text-right">
                     <button 
