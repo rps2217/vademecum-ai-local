@@ -100,154 +100,158 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
       <div className="bg-brand-surface w-full h-full rounded-[2rem] shadow-2xl shadow-brand-primary/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
         
         {/* Columna Izquierda: Detalles del Producto */}
-        <div id="product-detail-left-col" className="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto border-r border-slate-800 relative bg-brand-surface/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
-          <div className="flex justify-between items-start mb-8">
-            <div className="flex-1">
-              <Badge variant="outline" className="mb-3 bg-brand-bg text-slate-400 border-slate-700 px-3 py-1">
-                {product.sku}
-              </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                {product.nombre_comercial}
-              </h2>
-              <p className="text-xl text-brand-primary font-medium mt-2">
-                {formatArrayToString(product.principios_activos, ', ')}
-              </p>
-            </div>
-            <div className="flex items-center gap-3 ml-4">
-              <button 
-                onClick={handleForceSynergy}
-                disabled={isForcingSynergy || product.synergy_analyzed}
-                title={product.synergy_analyzed ? "Sinergia ya analizada" : "Forzar análisis de sinergia local"}
-                className={`p-2.5 rounded-xl transition-all disabled:opacity-50 border ${
-                  product.synergy_analyzed 
-                    ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' 
-                    : 'text-indigo-400 border-slate-700 bg-brand-bg hover:bg-slate-700'
-                }`}
-              >
-                {isForcingSynergy ? <Loader2 className="w-5 h-5 animate-spin" /> : <Cpu className="w-5 h-5" />}
-              </button>
-              <button 
-                onClick={handleReanalyze}
-                disabled={isReanalyzing}
-                title="Re-analizar y completar con IA (Nube)"
-                className={`p-2.5 rounded-xl transition-all disabled:opacity-50 border ${
-                  isSuccess 
-                    ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 
-                    : 'text-brand-primary border-slate-700 bg-brand-bg hover:bg-slate-700'
-                }`}
-              >
-                {isReanalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-5 h-5" /> : <RefreshCw className="w-5 h-5" />}
-              </button>
-              <button 
-                onClick={onClose}
-                className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden"
-              >
-                <X className="w-6 h-6" />
-              </button>
+        <div id="product-detail-left-col" className="w-full md:w-3/5 p-4 md:p-8 overflow-y-auto border-r border-slate-800 relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+          
+          {/* Header Block (Destacado) */}
+          <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 md:p-8 mb-6 relative overflow-hidden shadow-lg">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+            
+            <div className="flex justify-between items-start relative z-10">
+              <div className="flex-1 pr-4">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <Badge variant="outline" className="bg-brand-bg text-slate-400 border-slate-700 px-3 py-1 text-xs tracking-wider font-mono">
+                    {product.sku}
+                  </Badge>
+                  {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {product.tags_ia.slice(0, 3).map(tag => (
+                        <span key={tag} className="px-2.5 py-1 bg-brand-primary/10 text-brand-primary rounded-lg text-[10px] font-bold uppercase tracking-wider border border-brand-primary/20">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                
+                <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-5">
+                  {product.nombre_comercial}
+                </h2>
+                
+                <div className="inline-flex items-center gap-2.5 bg-brand-primary/10 border border-brand-primary/20 px-4 py-2.5 rounded-2xl">
+                  <Activity className="w-5 h-5 text-brand-primary" />
+                  <span className="text-lg md:text-xl text-brand-primary font-bold">
+                    {formatArrayToString(product.principios_activos, ', ')}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="flex flex-col gap-3 shrink-0">
+                <button 
+                  onClick={handleForceSynergy}
+                  disabled={isForcingSynergy || product.synergy_analyzed}
+                  title={product.synergy_analyzed ? "Sinergia ya analizada" : "Forzar análisis de sinergia local"}
+                  className={`p-3 rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
+                    product.synergy_analyzed 
+                      ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' 
+                      : 'text-indigo-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-indigo-300'
+                  }`}
+                >
+                  {isForcingSynergy ? <Loader2 className="w-5 h-5 animate-spin" /> : <Cpu className="w-5 h-5" />}
+                </button>
+                <button 
+                  onClick={handleReanalyze}
+                  disabled={isReanalyzing}
+                  title="Re-analizar y completar con IA (Nube)"
+                  className={`p-3 rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
+                    isSuccess 
+                      ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 
+                      : 'text-brand-primary border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-brand-primary/80'
+                  }`}
+                >
+                  {isReanalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-5 h-5" /> : <RefreshCw className="w-5 h-5" />}
+                </button>
+                <button 
+                  onClick={onClose}
+                  className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden shadow-sm"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
 
-          <div className="space-y-10">
-            {/* Perfil de Seguridad (Semáforo) */}
-            <section className="space-y-4">
-              <div className="flex items-center justify-between">
+          {/* Bento Grid de Información */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            
+            {/* Descripción */}
+            <div className="col-span-1 md:col-span-2 bg-brand-surface border border-slate-800 rounded-3xl p-6 md:p-8 shadow-sm">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
+                <Info className="w-4 h-4" /> Descripción
+              </h3>
+              <p className="text-slate-300 leading-relaxed text-base md:text-lg">{product.descripcion}</p>
+            </div>
+
+            {/* Indicaciones */}
+            <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 shadow-sm">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2 mb-5">
+                <CheckCircle2 className="w-4 h-4 text-brand-accent" /> Indicaciones
+              </h3>
+              <ul className="space-y-3">
+                {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
+                  if (!ind) return null;
+                  const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
+                  return (
+                    <li key={i} className="flex items-start gap-3 text-slate-300">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-accent mt-2 shrink-0" />
+                      <span className="text-sm font-medium leading-relaxed">{text}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Posología */}
+            <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 shadow-sm">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-5">
+                Posología
+              </h3>
+              <p className="text-slate-300 text-sm leading-relaxed font-medium">
+                {product.posologia}
+              </p>
+            </div>
+
+            {/* Advertencias */}
+            <div className="col-span-1 md:col-span-2 bg-amber-500/10 border border-amber-500/20 rounded-3xl p-6 md:p-8 shadow-sm">
+              <h3 className="text-xs font-bold text-amber-500 uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
+                <AlertTriangle className="w-4 h-4" /> Advertencias Críticas
+              </h3>
+              <p className="text-amber-200/90 leading-relaxed text-sm md:text-base font-medium">{product.advertencias}</p>
+            </div>
+
+            {/* Perfil de Seguridad */}
+            <div className="col-span-1 md:col-span-2 bg-brand-surface border border-slate-800 rounded-3xl p-6 md:p-8 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4" /> Perfil de Seguridad
                 </h3>
-                {/* Mini Leyenda */}
-                <div className="flex items-center gap-3 text-[9px] uppercase tracking-wider font-bold opacity-60">
-                  <div className="flex items-center gap-1 text-brand-accent">
-                    <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" /> Apto
+                <div className="flex items-center gap-3 text-[9px] uppercase tracking-wider font-bold opacity-80 bg-brand-bg px-3 py-1.5 rounded-lg border border-slate-800">
+                  <div className="flex items-center gap-1.5 text-brand-accent">
+                    <div className="w-2 h-2 rounded-full bg-brand-accent" /> Apto
                   </div>
-                  <div className="flex items-center gap-1 text-amber-400">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500" /> Precaución
+                  <div className="flex items-center gap-1.5 text-amber-400">
+                    <div className="w-2 h-2 rounded-full bg-amber-500" /> Precaución
                   </div>
-                  <div className="flex items-center gap-1 text-red-400">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-500" /> Riesgo
+                  <div className="flex items-center gap-1.5 text-red-400">
+                    <div className="w-2 h-2 rounded-full bg-red-500" /> Riesgo
                   </div>
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                 {safetyItems.map((item) => {
                   const config = getSafetyConfig(item.status);
                   return (
                     <div 
                       key={item.id} 
-                      className={`flex flex-col gap-2 p-3 rounded-2xl border transition-all ${config.color}`}
+                      className={`flex flex-col items-center justify-center gap-2.5 p-4 rounded-2xl border transition-all text-center ${config.color}`}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="opacity-60">{item.icon}</div>
-                        <div>{config.icon}</div>
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-[10px] font-bold uppercase tracking-wider opacity-60">{item.label}</span>
-                        <span className="text-xs font-bold">{config.label}</span>
-                      </div>
+                      <div className="p-2 rounded-full bg-brand-bg/50">{config.icon}</div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">{item.label}</span>
                     </div>
                   );
                 })}
               </div>
-            </section>
-
-            {/* Tags IA */}
-            {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
-              <section>
-                <div className="flex flex-wrap gap-2">
-                  {product.tags_ia.map(tag => (
-                    <button
-                      key={tag}
-                      onClick={() => onTagClick?.(tag)}
-                      className="px-3 py-1.5 bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20 hover:text-brand-primary/80 rounded-xl text-xs font-semibold tracking-wide border border-brand-primary/20 transition-all flex items-center gap-1.5"
-                    >
-                      <Tag className="w-3.5 h-3.5" />
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            <section className="space-y-4">
-              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-                <Info className="w-4 h-4" /> Descripción
-              </h3>
-              <p className="text-slate-300 leading-relaxed text-lg">{product.descripcion}</p>
-            </section>
-
-            <section className="space-y-3">
-              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-accent" /> Indicaciones
-              </h3>
-              <ul className="grid grid-cols-1 gap-2">
-                {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
-                  if (!ind) return null;
-                  const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
-                  return (
-                    <li key={i} className="flex items-start gap-3 text-slate-300 bg-brand-surface/30 p-3 rounded-xl border border-slate-800/50">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-primary mt-2 shrink-0" />
-                      <span className="text-sm">{text}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </section>
-
-            <section className="bg-amber-500/5 rounded-2xl p-6 border border-amber-500/10 space-y-3">
-              <h3 className="text-xs font-bold text-amber-500 uppercase tracking-[0.2em] flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4" /> Advertencias Críticas
-              </h3>
-              <p className="text-amber-200/80 leading-relaxed text-sm font-medium">{product.advertencias}</p>
-            </section>
-
-            <section className="space-y-3">
-              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">
-                Posología y Administración
-              </h3>
-              <div className="bg-brand-primary/5 rounded-2xl p-5 border border-brand-primary/10 text-slate-200 font-medium leading-relaxed">
-                {product.posologia}
-              </div>
-            </section>
+            </div>
           </div>
         </div>
 

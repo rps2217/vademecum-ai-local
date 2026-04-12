@@ -71,7 +71,7 @@ export const SearchModule: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto pb-20 px-4 relative">
+    <div className="w-full max-w-[1400px] mx-auto pb-20 px-4 sm:px-6 lg:px-8 relative">
       {/* Contenedor Sticky para Búsqueda y Filtros */}
       <div className="sticky top-0 z-30 bg-brand-bg/95 backdrop-blur-xl pt-2 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
         {/* Barra de Búsqueda Principal */}
@@ -217,7 +217,7 @@ export const SearchModule: React.FC = () => {
                 Limpiar todo
               </button>
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {results.map((product) => (
                 <ProductCard 
                   key={product.sku} 
