@@ -2,6 +2,7 @@ import { getDB } from '../core/database/db';
 import { FirebaseSyncService } from './FirebaseSyncService';
 import { GeminiService } from './GeminiService';
 import { AIService } from './AIService';
+import { TextUtils } from '../utils/TextUtils';
 
 export class TagIntelligenceService {
   private static localCache: Record<string, string> = {};
@@ -11,14 +12,11 @@ export class TagIntelligenceService {
     if (this.isInitialized) return;
     
     try {
-      // 1. Cargar mapeos desde IndexedDB
       const db = await getDB();
       const mappings = await db.getAll('tag_mappings');
       mappings.forEach(m => {
         this.localCache[m.raw] = m.normalized;
       });
-
-      // 2. Sincronizar con Firestore (opcional, se puede hacer bajo demanda)
       this.isInitialized = true;
     } catch (error) {
       console.error('[TagIntelligence] Error inicializando:', error);
@@ -29,29 +27,35 @@ export class TagIntelligenceService {
     const raw = rawTag.toLowerCase().trim();
     if (!raw) return '';
 
-    // 1. Check local cache
+    // 1. Check direct local cache
     if (this.localCache[raw]) return this.localCache[raw];
 
-    // 2. Check Firestore (via FirebaseSyncService or direct)
-    // Para simplificar, si no está en cache local, intentamos normalizar con IA
-    // y luego guardamos en ambos sitios.
+    // 2. FUZZY MATCHING: Buscar si ya existe un término muy similar normalizado
+    // Esto evita llamar a la IA para "Vitamina" vs "Vitaminas"
+    const existingRaws = Object.keys(this.localCache);
+    for (const existingRaw of existingRaws) {
+      if (TextUtils.similarity(raw, existingRaw) > 0.85) {
+        const normalized = this.localCache[existingRaw];
+        // Guardar el nuevo mapeo basado en la similitud encontrada
+        await this.saveMapping(raw, normalized);
+        return normalized;
+      }
+    }
 
     try {
       const normalized = await this.askIAForNormalization(raw);
-      
-      // 3. Guardar en cache local y DB
-      this.localCache[raw] = normalized;
-      const db = await getDB();
-      await db.put('tag_mappings', { raw, normalized, last_updated: Date.now() });
-
-      // 4. Sincronizar con la nube
-      await FirebaseSyncService.saveTagMapping(raw, normalized);
-
+      await this.saveMapping(raw, normalized);
       return normalized;
     } catch (error) {
-      console.error('[TagIntelligence] Error normalizando tag:', raw, error);
-      return raw; // Fallback al original
+      return raw;
     }
+  }
+
+  private static async saveMapping(raw: string, normalized: string) {
+    this.localCache[raw] = normalized;
+    const db = await getDB();
+    await db.put('tag_mappings', { raw, normalized, last_updated: Date.now() });
+    await FirebaseSyncService.saveTagMapping(raw, normalized);
   }
 
   private static async askIAForNormalization(tag: string): Promise<string> {
