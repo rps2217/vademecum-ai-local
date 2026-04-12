@@ -25,6 +25,8 @@
         "skus_relacionados": { "type": "array", "items": { "type": "string" } },
         "synergy_analyzed": { "type": "boolean" },
         "last_synergy_analysis": { "type": "number" },
+        "vectores": { "type": "array", "items": { "type": "number" }, "description": "Embeddings semánticos (384 dimensiones)" },
+        "last_updated": { "type": "number", "description": "Timestamp de última modificación" },
         "source_url": { "type": "string" }
       },
       "required": ["sku", "nombre_comercial"]

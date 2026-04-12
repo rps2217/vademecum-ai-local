@@ -18,6 +18,7 @@ type WorkerMessage =
   | { type: 'EXTRACT'; payload: { text: string; url: string } }
   | { type: 'EMBED'; payload: { text: string } }
   | { type: 'ANALYZE'; payload: { query: string; context: string } }
+  | { type: 'STANDARDIZE_TAGS'; payload: { tags: string[] } }
   | { type: 'HEALTH_CHECK' }
   | { type: 'PURGE_CACHE' };
 
@@ -37,6 +38,9 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         break;
       case 'ANALYZE':
         await analyzeText(msg.payload.query, msg.payload.context);
+        break;
+      case 'STANDARDIZE_TAGS':
+        await standardizeTags(msg.payload.tags);
         break;
       case 'HEALTH_CHECK':
         await runHealthCheck();
@@ -310,6 +314,52 @@ REGLAS:
         }
         
         self.postMessage({ type: 'ANALYZE_RESULT', payload: reply });
+
+    } catch (e: any) {
+        self.postMessage({ type: 'ERROR', error: e.message });
+    }
+}
+
+async function standardizeTags(tags: string[]) {
+    if (!isReady) throw new Error('IA no lista');
+
+    const prompt = `Actúa como un experto en taxonomía farmacéutica. 
+Tu tarea es estandarizar esta lista de etiquetas clínicas.
+REGLAS:
+1. Unifica términos similares (ej: "dolor", "analgesia", "analgésico" -> "Analgésico").
+2. Corrige ortografía y usa Capitalización de Título.
+3. Devuelve ÚNICAMENTE un objeto JSON donde la llave es la etiqueta original y el valor es la etiqueta estandarizada.
+
+LISTA DE ETIQUETAS:
+${tags.join(', ')}`;
+
+    try {
+        let content = '';
+        if (webLlmEngine) {
+            const response = await webLlmEngine.chat.completions.create({
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.1,
+            });
+            content = response.choices[0].message.content || '{}';
+        } else if (transformersPipeline) {
+            const messages = [
+                { role: 'system', content: 'Standardize clinical tags. Respond ONLY with JSON mapping.' },
+                { role: 'user', content: prompt }
+            ];
+            const promptText = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
+            const result = await transformersPipeline(promptText, { max_new_tokens: 1024, temperature: 0.1 });
+            const genText = result[0].generated_text;
+            content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
+        }
+
+        // Limpieza de JSON
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            const cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+            self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: JSON.parse(cleanJson) });
+        } else {
+            throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
+        }
 
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });

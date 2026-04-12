@@ -46,7 +46,8 @@ service cloud.firestore {
     function isValidProduct(data) {
       return data.sku is string && data.sku.size() > 0 &&
              data.nombre_comercial is string && data.nombre_comercial.size() > 0 &&
-             data.nombre_comercial.size() < 200;
+             data.nombre_comercial.size() < 200 &&
+             (!('vectores' in data) || data.vectores is list);
     }
 
     function isValidUser(data) {
@@ -73,7 +74,8 @@ service cloud.firestore {
            'analisis_componentes', 'categoria_principal', 'nombre_comercial', 
            'descripcion', 'principios_activos', 'posologia', 'indicaciones', 
            'advertencias', 'tags_ia', 'apto_embarazo', 'apto_lactancia', 
-           'apto_pediatria', 'apto_diabeticos', 'apto_hipertensos', 'apto_celiacos'
+           'apto_pediatria', 'apto_diabeticos', 'apto_hipertensos', 'apto_celiacos',
+           'last_updated'
          ])
         );
     }

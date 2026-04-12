@@ -2,11 +2,12 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Cpu, Activity, Zap, Terminal, RefreshCw, Trash2, 
   Play, Pause, CheckCircle2, AlertCircle, Info,
-  Layers, Database, Search
+  Layers, Database, Search, CloudUpload, Tags, Sparkles
 } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { getDB } from '../../core/database/db';
 import { Product } from '../../core/types/product.types';
+import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 
 export const AIEngineModule: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
@@ -14,10 +15,13 @@ export const AIEngineModule: React.FC = () => {
   const [isTesting, setIsTesting] = useState(false);
   const [isPurging, setIsPurging] = useState(false);
   const [isVectorizing, setIsVectorizing] = useState(false);
+  const [isStandardizing, setIsStandardizing] = useState(false);
   const [vectorProgress, setVectorProgress] = useState({ current: 0, total: 0 });
   const [logs, setLogs] = useState<{ time: string; msg: string; type: 'info' | 'success' | 'warn' | 'error' }[]>([]);
   const [playgroundText, setPlaygroundText] = useState('');
   const [playgroundResult, setPlaygroundResult] = useState<number[] | null>(null);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [hasPendingSync, setHasPendingSync] = useState(false);
 
   const addLog = (msg: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') => {
     const time = new Date().toLocaleTimeString();
@@ -100,6 +104,7 @@ export const AIEngineModule: React.FC = () => {
       }
       
       addLog('¡Vectorización masiva completada con éxito!', 'success');
+      setHasPendingSync(true);
       window.dispatchEvent(new Event('db_updated'));
     } catch (e) {
       addLog('Error en vectorización masiva.', 'error');
@@ -114,6 +119,86 @@ export const AIEngineModule: React.FC = () => {
     const result = await AIService.generateEmbedding(playgroundText);
     setPlaygroundResult(result);
     addLog('Embedding generado con éxito (384 dimensiones).', 'success');
+  };
+
+  const handleSyncToCloud = async () => {
+    setIsSyncing(true);
+    addLog('Iniciando respaldo de vectores en la nube...', 'info');
+    try {
+      const count = await FirebaseSyncService.uploadLocalProducts();
+      addLog(`Respaldo completado: ${count} productos sincronizados.`, 'success');
+      setHasPendingSync(false);
+    } catch (e) {
+      addLog('Error al sincronizar con la nube.', 'error');
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  const handleStandardizeTags = async () => {
+    setIsStandardizing(true);
+    addLog('Iniciando estandarización de etiquetas clínicas...', 'info');
+    
+    try {
+      const db = await getDB();
+      const products = await db.getAll('products');
+      
+      // 1. Extraer todas las etiquetas únicas
+      const allTags = new Set<string>();
+      products.forEach(p => p.tags_ia.forEach(t => allTags.add(t)));
+      const uniqueTags = Array.from(allTags);
+      
+      if (uniqueTags.length === 0) {
+        addLog('No se encontraron etiquetas para estandarizar.', 'warn');
+        return;
+      }
+
+      addLog(`Encontradas ${uniqueTags.length} etiquetas únicas. Procesando con IA local...`, 'info');
+      
+      // 2. Procesar con IA local (en lotes si son muchos)
+      const mapping: Record<string, string> = {};
+      const batchSize = 20;
+      
+      for (let i = 0; i < uniqueTags.length; i += batchSize) {
+        const batch = uniqueTags.slice(i, i + batchSize);
+        const result = await AIService.standardizeTags(batch);
+        Object.assign(mapping, result);
+        addLog(`Mapeadas ${Math.min(i + batchSize, uniqueTags.length)} etiquetas...`, 'info');
+      }
+
+      // 3. Aplicar cambios a los productos
+      let updatedCount = 0;
+      for (const product of products) {
+        let changed = false;
+        const newTags = product.tags_ia.map(tag => {
+          if (mapping[tag] && mapping[tag] !== tag) {
+            changed = true;
+            return mapping[tag];
+          }
+          return tag;
+        });
+
+        if (changed) {
+          // Eliminar duplicados después de estandarizar
+          const uniqueNewTags = Array.from(new Set(newTags));
+          await db.put('products', {
+            ...product,
+            tags_ia: uniqueNewTags,
+            last_updated: Date.now()
+          });
+          updatedCount++;
+        }
+      }
+
+      addLog(`¡Estandarización completada! ${updatedCount} productos actualizados.`, 'success');
+      setHasPendingSync(true);
+      window.dispatchEvent(new Event('db_updated'));
+    } catch (e) {
+      addLog('Error durante la estandarización de etiquetas.', 'error');
+      console.error(e);
+    } finally {
+      setIsStandardizing(false);
+    }
   };
 
   return (
@@ -253,14 +338,27 @@ export const AIEngineModule: React.FC = () => {
                   </div>
                 </div>
               ) : (
-                <button 
-                  onClick={handleVectorizeAll}
-                  disabled={!status.isReady}
-                  className="w-full py-3 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl hover:bg-indigo-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  Vectorizar Pendientes
-                </button>
+                <div className="space-y-3">
+                  <button 
+                    onClick={handleVectorizeAll}
+                    disabled={!status.isReady}
+                    className="w-full py-3 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl hover:bg-indigo-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                    Vectorizar Pendientes
+                  </button>
+                  
+                  {hasPendingSync && (
+                    <button 
+                      onClick={handleSyncToCloud}
+                      disabled={isSyncing}
+                      className="w-full py-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl hover:bg-emerald-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 animate-pulse"
+                    >
+                      {isSyncing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CloudUpload className="w-4 h-4" />}
+                      Respaldar Vectores en Nube
+                    </button>
+                  )}
+                </div>
               )}
             </div>
 
@@ -281,6 +379,27 @@ export const AIEngineModule: React.FC = () => {
                 {isPurging ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
                 Purgar Caché Nuclear
               </button>
+            </div>
+
+            {/* Tag Standardizer */}
+            <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 shadow-xl md:col-span-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <Tags className="w-5 h-5 text-amber-400" />
+                  Organizador de Etiquetas (Taxonomía IA)
+                </h3>
+                <button 
+                  onClick={handleStandardizeTags}
+                  disabled={!status.isReady || isStandardizing}
+                  className="px-6 py-2.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl hover:bg-amber-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {isStandardizing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                  Estandarizar Taxonomía Local
+                </button>
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Esta herramienta analiza todas las etiquetas de tu base de datos local y utiliza el motor de IA para unificar términos similares, corregir ortografía y estandarizar la nomenclatura clínica. Ideal para mantener un catálogo limpio y profesional sin enviar datos a la nube.
+              </p>
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import { Product, SafetyStatus } from '../core/types/product.types';
 import { getDB } from '../core/database/db';
 import { AIService } from '../services/AIService';
 import { formatArrayToString } from '../utils/formatters';
+import { cosineSimilarity } from '../utils/math';
 
 // Índice en memoria para búsquedas ultra-rápidas
 interface SearchIndexItem {
@@ -10,19 +11,6 @@ interface SearchIndexItem {
   searchableText: string;
   product: Product;
   vector?: number[];
-}
-
-function cosineSimilarity(vecA: number[], vecB: number[]): number {
-  if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
-  let dotProduct = 0;
-  let normA = 0;
-  let normB = 0;
-  for (let i = 0; i < vecA.length; i++) {
-    dotProduct += vecA[i] * vecB[i];
-    normA += vecA[i] * vecA[i];
-    normB += vecB[i] * vecB[i];
-  }
-  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
 }
 
 function normalizeText(text: string): string {
