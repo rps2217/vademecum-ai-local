@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { SearchModule } from '../../modules/search/SearchModule';
 import { DatabaseModule } from '../../modules/database/DatabaseModule';
+import { AIEngineModule } from '../../modules/ai/AIEngineModule';
 import { SettingsModule } from '../../modules/settings/SettingsModule';
 import { BatchScraper } from '../../modules/scraper/BatchScraper';
 import { SetupModule } from '../../modules/setup/SetupModule';
-import { Activity, Search, Database, Settings, Globe, Monitor } from 'lucide-react';
+import { Activity, Search, Database, Settings, Globe, Monitor, Cpu } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { AIService } from '../../services/AIService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
@@ -18,7 +19,7 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
-  const [activeTab, setActiveTab] = useState<'search' | 'database' | 'scraper' | 'setup' | 'settings'>('search');
+  const [activeTab, setActiveTab] = useState<'search' | 'database' | 'ai-engine' | 'scraper' | 'setup' | 'settings'>('search');
   const { isAccessGranted } = useAuth();
 
   useEffect(() => {
@@ -38,6 +39,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const navItems = [
     { id: 'search', label: 'Buscador', icon: Search },
     { id: 'database', label: 'Base de Datos', icon: Database },
+    { id: 'ai-engine', label: 'Motor de IA', icon: Cpu },
     { id: 'scraper', label: 'Scraper Masivo', icon: Globe },
     { id: 'setup', label: 'Instalación PC', icon: Monitor },
     { id: 'settings', label: 'Configuración', icon: Settings },
@@ -82,6 +84,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <div className="mb-16">
           {activeTab === 'search' && <SearchModule />}
           {activeTab === 'database' && <DatabaseModule />}
+          {activeTab === 'ai-engine' && <AIEngineModule />}
           {activeTab === 'scraper' && <BatchScraper />}
           {activeTab === 'setup' && <SetupModule />}
           {activeTab === 'settings' && <SettingsModule />}

@@ -5,7 +5,7 @@ import {
   Database, Trash2, RefreshCw, ExternalLink, FileUp, 
   ChevronLeft, ChevronRight, ShieldCheck, Sparkles, 
   CloudUpload, Download, Check, AlertCircle, Info,
-  Search, Filter, X
+  Search, Filter, X, CheckCircle2
 } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
@@ -21,6 +21,7 @@ export const DatabaseModule: React.FC = () => {
   const [isCleaning, setIsCleaning] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
+  const [lastSyncTime, setLastSyncTime] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [conflictMode, setConflictMode] = useState<'skip' | 'overwrite' | 'merge'>('skip');
@@ -31,6 +32,8 @@ export const DatabaseModule: React.FC = () => {
     try {
       const db = await getDB();
       const allProducts = await db.getAll('products');
+      const metadata = await db.get('sync_metadata', 'cloud_sync');
+      setLastSyncTime(metadata?.lastSyncTime || 0);
       setProducts(allProducts);
       window.dispatchEvent(new Event('db_updated'));
     } catch (error) {
@@ -436,11 +439,14 @@ export const DatabaseModule: React.FC = () => {
                   <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">SKU / Origen</th>
                   <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Producto Farmacéutico</th>
                   <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Perfil IA</th>
+                  <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Nube</th>
                   <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px] text-right">Acciones</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/50">
-                {currentProducts.map((product) => (
+                {currentProducts.map((product) => {
+                  const isSynced = product.last_updated && product.last_updated <= lastSyncTime;
+                  return (
                   <tr key={product.sku} className="hover:bg-brand-primary/5 transition-colors group">
                     <td className="px-6 py-4">
                       <div className="font-mono text-[10px] text-slate-500 mb-1">{product.sku}</div>
@@ -480,6 +486,19 @@ export const DatabaseModule: React.FC = () => {
                         </div>
                       </div>
                     </td>
+                    <td className="px-6 py-4">
+                      {isSynced ? (
+                        <div className="flex items-center gap-1 text-emerald-400" title="Sincronizado con la nube">
+                          <CheckCircle2 className="w-4 h-4" />
+                          <span className="text-[9px] font-bold uppercase">OK</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-1 text-amber-400" title="Solo local / Pendiente de backup">
+                          <RefreshCw className="w-4 h-4" />
+                          <span className="text-[9px] font-bold uppercase">Local</span>
+                        </div>
+                      )}
+                    </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button 
@@ -492,7 +511,7 @@ export const DatabaseModule: React.FC = () => {
                       </div>
                     </td>
                   </tr>
-                ))}
+                )})}
               </tbody>
             </table>
           </div>
