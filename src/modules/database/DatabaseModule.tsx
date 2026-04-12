@@ -53,17 +53,24 @@ export const DatabaseModule: React.FC = () => {
         const store = tx.objectStore('products');
         
         let importedCount = 0;
+        let skippedCount = 0;
+        
         for (const product of importedData) {
           // Validación básica para asegurar que es un producto válido
           if (product.sku && product.nombre_comercial) {
-            await store.put(product);
-            importedCount++;
+            const existingProduct = await store.get(product.sku);
+            if (!existingProduct) {
+              await store.put(product);
+              importedCount++;
+            } else {
+              skippedCount++;
+            }
           }
         }
         
         await tx.done;
         
-        setSyncStatus(`¡Se importaron ${importedCount} productos exitosamente! Ahora puedes "Respaldar".`);
+        setSyncStatus(`¡Importación finalizada! ${importedCount} nuevos agregados, ${skippedCount} omitidos (ya existían).`);
         await loadData();
         
         setTimeout(() => setSyncStatus(null), 5000);

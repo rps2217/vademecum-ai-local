@@ -30,9 +30,16 @@ function UserMenu() {
 
   const handleSync = async () => {
     setIsSyncing(true);
-    await FirebaseSyncService.uploadLocalProducts();
-    setCloudHasData(true);
-    setIsSyncing(false);
+    try {
+      const count = await FirebaseSyncService.uploadLocalProducts();
+      setCloudHasData(true);
+      alert(`¡Sincronización exitosa! Se han subido/actualizado ${count} productos en la nube.`);
+    } catch (error) {
+      console.error("Error syncing:", error);
+      alert("Hubo un error al sincronizar con la nube.");
+    } finally {
+      setIsSyncing(false);
+    }
   };
 
   if (loading) return null;

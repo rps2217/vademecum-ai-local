@@ -36,7 +36,7 @@ export const FirebaseSyncService = {
   /**
    * Sube productos locales a Firestore (Solo para Admins)
    */
-  uploadLocalProducts: async () => {
+  uploadLocalProducts: async (): Promise<number> => {
     try {
       const localDb = await getDB();
       const allProducts = await localDb.getAll('products');
@@ -56,8 +56,10 @@ export const FirebaseSyncService = {
       }
       
       console.log(`${allProducts.length} productos sincronizados con Firestore.`);
+      return allProducts.length;
     } catch (error) {
       handleFirestoreError(error, OperationType.WRITE, 'products');
+      return 0;
     }
   },
 

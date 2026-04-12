@@ -36,9 +36,11 @@ export interface CategorizedTags {
   otros: {tag: string, count: number}[];
 }
 
+export type SafetyCondition = 'apto_embarazo' | 'apto_lactancia' | 'apto_pediatria' | 'apto_diabeticos' | 'apto_hipertensos' | 'apto_celiacos';
+
 export const useProductSearch = () => {
   const [query, setQuery] = useState('');
-  const [safetyFilter, setSafetyFilter] = useState<SafetyStatus | null>(null);
+  const [conditionFilters, setConditionFilters] = useState<SafetyCondition[]>([]);
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [categorizedTags, setCategorizedTags] = useState<CategorizedTags>({ tipos: [], sintomas: [], otros: [] });
@@ -158,7 +160,7 @@ export const useProductSearch = () => {
 
   useEffect(() => {
     const searchProducts = async () => {
-      if (!query.trim() && !safetyFilter) {
+      if (!query.trim() && conditionFilters.length === 0) {
         setResults([]);
         return;
       }
@@ -211,17 +213,10 @@ export const useProductSearch = () => {
         }
 
         // 3. Aplicar Filtro de Seguridad (Si está activo)
-        if (safetyFilter) {
+        if (conditionFilters.length > 0) {
           combined = combined.filter(p => {
-            // Un producto se considera en el filtro si CUALQUIERA de sus estados de seguridad coincide
-            // Esto es útil para buscar "todo lo apto para embarazadas" por ejemplo.
-            // Pero como el filtro es global, verificamos si el producto tiene ese estado en algún campo clave.
-            return p.apto_embarazo === safetyFilter || 
-                   p.apto_lactancia === safetyFilter || 
-                   p.apto_pediatria === safetyFilter ||
-                   p.apto_diabeticos === safetyFilter ||
-                   p.apto_hipertensos === safetyFilter ||
-                   p.apto_celiacos === safetyFilter;
+            // El producto debe ser APTO (SafetyStatus.SI) para TODAS las condiciones seleccionadas
+            return conditionFilters.every(condition => p[condition] === SafetyStatus.SI);
           });
         }
 
@@ -235,7 +230,7 @@ export const useProductSearch = () => {
 
     const timeoutId = setTimeout(searchProducts, 400);
     return () => clearTimeout(timeoutId);
-  }, [query, safetyFilter]);
+  }, [query, conditionFilters]);
 
-  return { query, setQuery, safetyFilter, setSafetyFilter, results, isSearching, categorizedTags };
+  return { query, setQuery, conditionFilters, setConditionFilters, results, isSearching, categorizedTags };
 };
