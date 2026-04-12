@@ -67,10 +67,49 @@ export const useProductSearch = () => {
         
         // Extraer tags únicos y contarlos (Motor de Etiquetas Dinámico)
         const tagCounts: Record<string, number> = {};
+        
+        // Función para normalizar y agrupar sinónimos de etiquetas
+        const normalizeTagForDisplay = (rawTag: string): string => {
+          let tag = rawTag.toLowerCase().trim();
+          
+          // Mapeo de sinónimos y correcciones ortográficas comunes
+          const synonymMap: Record<string, string> = {
+            'suplemento alimentario': 'suplemento alimenticio',
+            'suplemento dietario': 'suplemento alimenticio',
+            'suplementos alimenticios': 'suplemento alimenticio',
+            'analgesico': 'analgésico',
+            'antiinflamatorio': 'antiinflamatorio',
+            'multivitaminico': 'multivitamínico',
+            'vitamina': 'vitaminas',
+            'mineral': 'minerales',
+            'proteina': 'proteínas',
+            'proteinas': 'proteínas',
+            'antiseptico': 'antiséptico',
+            'antibiotico': 'antibiótico',
+            'antihistaminico': 'antihistamínico',
+            'corticosteroide': 'corticoides',
+            'corticoide': 'corticoides',
+            'dolor de cabeza': 'cefalea',
+            'hipertension': 'hipertensión',
+            'infeccion': 'infección',
+            'infecciones': 'infección'
+          };
+
+          // Remover acentos solo para la búsqueda en el diccionario
+          const tagNoAccents = tag.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          
+          // Buscar coincidencia exacta primero
+          if (synonymMap[tag]) return synonymMap[tag];
+          // Buscar coincidencia sin acentos
+          if (synonymMap[tagNoAccents]) return synonymMap[tagNoAccents];
+
+          return tag; 
+        };
+
         allProducts.forEach(p => {
           if (p.tags_ia && Array.isArray(p.tags_ia)) {
             p.tags_ia.forEach(tag => {
-              const cleanTag = tag.trim().toLowerCase();
+              const cleanTag = normalizeTagForDisplay(tag);
               if (cleanTag) {
                 tagCounts[cleanTag] = (tagCounts[cleanTag] || 0) + 1;
               }

@@ -47,14 +47,14 @@ export const SearchModule: React.FC = () => {
           {icon}
           <h4 className="text-[10px] font-bold uppercase tracking-wider">{title}</h4>
         </div>
-        <div className="flex overflow-x-auto gap-2 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex flex-wrap gap-2 pb-2">
           {tags.map(({ tag, count }) => {
             const isActive = query.toLowerCase() === tag.toLowerCase();
             return (
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}
-                className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-sm transition-all flex items-center gap-2 border ${
+                className={`px-3 py-1.5 rounded-xl text-sm transition-all flex items-center gap-2 border ${
                   isActive ? activeColorClass : colorClass
                 }`}
               >
@@ -95,10 +95,10 @@ export const SearchModule: React.FC = () => {
             {query && (
               <button
                 onClick={() => setQuery('')}
-                className="p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+                className="px-4 py-2 text-xs font-bold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 border border-slate-700 shadow-sm"
                 title="Limpiar búsqueda"
               >
-                <X className="w-4 h-4" />
+                Limpiar <X className="w-3.5 h-3.5" />
               </button>
             )}
             {/* Indicador de IA (Visual) */}

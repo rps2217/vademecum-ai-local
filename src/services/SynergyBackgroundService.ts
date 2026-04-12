@@ -55,7 +55,7 @@ export class SynergyBackgroundService {
     }
 
     console.log(`[SynergyService] Análisis forzado para: ${product.nombre_comercial}`);
-    await this.processProduct(product);
+    await this.processProduct(product, true);
     return true;
   }
 
@@ -83,25 +83,29 @@ export class SynergyBackgroundService {
         return;
       }
 
-      await this.processProduct(nextProduct);
+      await this.processProduct(nextProduct, false);
     } catch (error) {
       console.error('[SynergyService] Error en ciclo de procesamiento:', error);
     }
   }
 
-  private static async processProduct(product: Product) {
+  private static async processProduct(product: Product, isForced: boolean = false) {
     try {
       const status = AIService.getStatus();
       const db = await getDB();
       const now = Date.now();
-      const userId = auth.currentUser?.uid;
+      const userId = auth.currentUser?.uid || 'local-user'; // Fallback for local forced execution
 
-      if (!userId) return;
+      if (!isForced && !auth.currentUser?.uid) return;
 
       // Intentar adquirir el candado en Firebase
-      const lockAcquired = await FirebaseSyncService.claimProductLock(product.sku, userId);
-      if (!lockAcquired) {
-        console.log(`[SynergyService] Producto ${product.sku} está siendo procesado por otro nodo. Buscando otro...`);
+      let lockAcquired = false;
+      if (auth.currentUser?.uid) {
+        lockAcquired = await FirebaseSyncService.claimProductLock(product.sku, userId);
+      }
+      
+      if (!lockAcquired && !isForced) {
+        console.log(`[SynergyService] Producto ${product.sku} está siendo procesado por otro nodo o no está en la nube. Buscando otro...`);
         return;
       }
 
@@ -109,23 +113,24 @@ export class SynergyBackgroundService {
       this.currentProcessingName = product.nombre_comercial;
       this.notifyListeners();
 
-      console.log(`[SynergyService] Candado adquirido. Analizando sinergias para: ${product.nombre_comercial}`);
+      console.log(`[SynergyService] Iniciando análisis de sinergias para: ${product.nombre_comercial} (Forzado: ${isForced})`);
       
       // Actualizar DB local con el candado
       await db.put('products', { ...product, lock_uid: userId, lock_timestamp: now });
 
       // 1. Encontrar candidatos por similitud semántica (Local Embeddings)
-      const mainVector = product.vectores;
+      let mainVector = product.vectores;
       if (!mainVector || mainVector.length === 0) {
         if (status.isReady) {
           const text = `${product.nombre_comercial} ${formatArrayToString(product.indicaciones, ' ')}`;
-          const vector = await AIService.generateEmbedding(text);
-          await db.put('products', { ...product, vectores: vector });
+          mainVector = await AIService.generateEmbedding(text);
+          product.vectores = mainVector;
+          await db.put('products', { ...product, vectores: mainVector });
         } else {
           await db.put('products', { ...product, synergy_analyzed: true, last_synergy_analysis: Date.now() });
+          this.clearCurrent();
+          return;
         }
-        this.clearCurrent();
-        return;
       }
 
       const allProducts = await db.getAll('products');
