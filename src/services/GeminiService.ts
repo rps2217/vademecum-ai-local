@@ -46,10 +46,10 @@ export class GeminiService {
       const prompt = `Busca información detallada sobre el producto farmacéutico: "${productName}".
       ${targetUrl ? `Enfócate en la información de este sitio si es posible: ${targetUrl}` : ''}
       
-      Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).`;
+      Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias, análisis de los componentes y su función, y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
           tools: [{ googleSearch: {} }],
@@ -74,6 +74,8 @@ export class GeminiService {
                 type: Type.ARRAY,
                 items: { type: Type.STRING }
               },
+              categoria_principal: { type: Type.STRING, description: "Belleza, Medicamento, Suplemento, Homeopatía u Otro" },
+              analisis_componentes: { type: Type.STRING, description: "Análisis de la función de cada componente en la formulación" },
               apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
               apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
               apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
@@ -106,6 +108,8 @@ export class GeminiService {
         indicaciones: data.indicaciones || [],
         advertencias: data.advertencias || "",
         tags_ia: [...(data.tags_ia || []), "google_search_grounding"],
+        categoria_principal: data.categoria_principal || 'Otro',
+        analisis_componentes: data.analisis_componentes || '',
         vectores: [],
         apto_embarazo: mapSafety(data.apto_embarazo),
         apto_lactancia: mapSafety(data.apto_lactancia),
@@ -143,11 +147,13 @@ export class GeminiService {
       TAREA:
       1. Busca información oficial y actualizada sobre este medicamento (usa la URL de origen si está disponible, o busca por su nombre comercial y principios activos).
       2. Completa los campos vacíos o incompletos (especialmente advertencias, posología, y restricciones para embarazo/lactancia/etc).
-      3. Genera etiquetas (tags_ia) útiles para búsqueda clínica (ej. "analgésico", "AINE", "hepatotóxico").
-      4. Devuelve el JSON completo actualizado. Mantén el SKU original.`;
+      3. Clasifica el producto en una de estas categorías principales (categoria_principal): "Belleza", "Medicamento", "Suplemento", "Homeopatía" u "Otro".
+      4. Analiza los componentes de la formulación (principios activos) y en el contexto del producto indica la función de cada componente (analisis_componentes).
+      5. Genera etiquetas (tags_ia) útiles para búsqueda clínica (ej. "analgésico", "AINE", "hepatotóxico").
+      6. Devuelve el JSON completo actualizado. Mantén el SKU original.`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
           tools: [{ googleSearch: {} }],
@@ -172,6 +178,8 @@ export class GeminiService {
                 type: Type.ARRAY,
                 items: { type: Type.STRING }
               },
+              categoria_principal: { type: Type.STRING, description: "Belleza, Medicamento, Suplemento, Homeopatía u Otro" },
+              analisis_componentes: { type: Type.STRING, description: "Análisis de la función de cada componente en la formulación" },
               apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
               apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
               apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
@@ -185,8 +193,19 @@ export class GeminiService {
         }
       });
 
-      const data = JSON.parse(response.text || "{}");
-      if (!data.nombre_comercial) return null;
+      let responseText = "";
+      try {
+        responseText = response.text || "{}";
+      } catch (e) {
+        console.error("[GeminiService] Error getting response text (possibly blocked by safety):", e, response);
+        return null;
+      }
+
+      const data = JSON.parse(responseText);
+      if (!data.nombre_comercial) {
+        console.error("[GeminiService] Missing nombre_comercial in response:", data);
+        return null;
+      }
 
       const mapSafety = (val: string): SafetyStatus => {
         const v = String(val).toUpperCase();
@@ -204,6 +223,8 @@ export class GeminiService {
         indicaciones: data.indicaciones || product.indicaciones,
         advertencias: data.advertencias || product.advertencias,
         tags_ia: [...new Set([...(data.tags_ia || []), ...(product.tags_ia || []), "reanalizado_ia"])],
+        categoria_principal: data.categoria_principal || product.categoria_principal || 'Otro',
+        analisis_componentes: data.analisis_componentes || product.analisis_componentes || '',
         vectores: product.vectores || [], // Keep original vectors, they will be updated by AIService if needed
         apto_embarazo: mapSafety(data.apto_embarazo),
         apto_lactancia: mapSafety(data.apto_lactancia),
@@ -228,7 +249,7 @@ export class GeminiService {
       const ai = this.getAI();
       
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: `Analiza el siguiente contenido en Markdown de una página de farmacia y extrae la información del medicamento en formato JSON.
         
         CONTENIDO:
@@ -257,6 +278,8 @@ export class GeminiService {
                 type: Type.ARRAY,
                 items: { type: Type.STRING }
               },
+              categoria_principal: { type: Type.STRING, description: "Belleza, Medicamento, Suplemento, Homeopatía u Otro" },
+              analisis_componentes: { type: Type.STRING, description: "Análisis de la función de cada componente en la formulación" },
               apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
               apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
               apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
@@ -291,6 +314,8 @@ export class GeminiService {
         indicaciones: data.indicaciones || [],
         advertencias: data.advertencias || "",
         tags_ia: data.tags_ia || ["gemini_extracted"],
+        categoria_principal: data.categoria_principal || 'Otro',
+        analisis_componentes: data.analisis_componentes || '',
         vectores: [],
         apto_embarazo: mapSafety(data.apto_embarazo),
         apto_lactancia: mapSafety(data.apto_lactancia),
@@ -321,7 +346,7 @@ export class GeminiService {
       Página: ${url}`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
           tools: [{ urlContext: {} }]
@@ -346,7 +371,7 @@ export class GeminiService {
       No incluyas viñetas, números, explicaciones ni texto adicional.`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
           tools: [{ googleSearch: {} }]
@@ -367,7 +392,7 @@ export class GeminiService {
     try {
       const ai = this.getAI();
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
       });
       return response.text || "";
@@ -381,7 +406,7 @@ export class GeminiService {
     try {
       const ai = this.getAI();
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
           responseMimeType: "application/json"
@@ -422,7 +447,7 @@ export class GeminiService {
          - explicacion_clinica: Una explicación de la sinergia encontrada.`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
           responseMimeType: "application/json",
@@ -478,7 +503,7 @@ export class GeminiService {
       5. Devuelve un JSON estructurado.`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3-flash-preview",
         contents: prompt,
         config: {
           responseMimeType: "application/json",

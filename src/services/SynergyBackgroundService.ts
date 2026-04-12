@@ -122,7 +122,7 @@ export class SynergyBackgroundService {
       let mainVector = product.vectores;
       if (!mainVector || mainVector.length === 0) {
         if (status.isReady) {
-          const text = `${product.nombre_comercial} ${formatArrayToString(product.indicaciones, ' ')}`;
+          const text = `${product.nombre_comercial} ${formatArrayToString(product.indicaciones, ' ')} ${product.analisis_componentes || ''}`;
           mainVector = await AIService.generateEmbedding(text);
           product.vectores = mainVector;
           await db.put('products', { ...product, vectores: mainVector });

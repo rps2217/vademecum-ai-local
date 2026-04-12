@@ -5,6 +5,7 @@ import { X, Info, AlertTriangle, CheckCircle2, Tag, RefreshCw, Loader2, Baby, He
 import { Badge } from '../../components/ui/badge';
 import { formatArrayToString } from '../../utils/formatters';
 import { GeminiService } from '../../services/GeminiService';
+import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { getDB } from '../../core/database/db';
 
@@ -29,6 +30,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
       if (updatedProduct) {
         const db = await getDB();
         await db.put('products', updatedProduct);
+        
+        // Sincronizar con Firestore (si es admin)
+        await FirebaseSyncService.updateProduct(updatedProduct);
+        
         setProduct(updatedProduct);
         if (onUpdate) onUpdate(updatedProduct);
         setIsSuccess(true);
@@ -112,6 +117,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                   <Badge variant="outline" className="bg-brand-bg text-slate-400 border-slate-700 px-3 py-1 text-xs tracking-wider font-mono">
                     {product.sku}
                   </Badge>
+                  {product.categoria_principal && product.categoria_principal !== 'Otro' && (
+                    <Badge variant="outline" className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-3 py-1 text-xs tracking-wider font-bold uppercase">
+                      {product.categoria_principal}
+                    </Badge>
+                  )}
                   {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
                     <div className="flex flex-wrap gap-2">
                       {product.tags_ia.slice(0, 3).map(tag => (
@@ -180,6 +190,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
               </h3>
               <p className="text-slate-300 leading-relaxed text-base md:text-lg">{product.descripcion}</p>
             </div>
+
+            {/* Análisis de Componentes */}
+            {product.analisis_componentes && (
+              <div className="col-span-1 md:col-span-2 bg-brand-surface border border-slate-800 rounded-3xl p-6 md:p-8 shadow-sm">
+                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
+                  <Cpu className="w-4 h-4 text-indigo-400" /> Análisis de Componentes
+                </h3>
+                <div className="text-slate-300 leading-relaxed text-sm md:text-base whitespace-pre-wrap">
+                  {product.analisis_componentes}
+                </div>
+              </div>
+            )}
 
             {/* Indicaciones */}
             <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 shadow-sm">

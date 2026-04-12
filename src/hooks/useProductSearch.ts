@@ -61,9 +61,11 @@ export const useProductSearch = () => {
           searchableText: normalizeText(`
             ${product.sku || ''}
             ${product.nombre_comercial || ''} 
+            ${product.categoria_principal || ''}
             ${formatArrayToString(product.principios_activos, ' ')} 
             ${formatArrayToString(product.indicaciones, ' ')}
             ${formatArrayToString(product.tags_ia, ' ')}
+            ${product.analisis_componentes || ''}
           `)
         }));
         

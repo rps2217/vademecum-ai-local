@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Globe, Database, Play, Square, FileCode2, CheckCircle, AlertCircle, ChevronDown, ChevronUp, Terminal } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
+import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
 
@@ -166,6 +167,8 @@ export const BatchScraper: React.FC = () => {
             "indicaciones": ["indicación 1", "indicación 2"],
             "advertencias": "Advertencias y contraindicaciones",
             "tags_ia": ["etiqueta 1", "etiqueta 2"],
+            "categoria_principal": "Belleza" o "Medicamento" o "Suplemento" o "Homeopatía" o "Otro",
+            "analisis_componentes": "Análisis de la función de cada componente en la formulación",
             "apto_embarazo": "SI" o "NO" o "PRECAUCION",
             "apto_lactancia": "SI" o "NO" o "PRECAUCION",
             "apto_pediatria": "SI" o "NO" o "PRECAUCION",
@@ -194,6 +197,8 @@ export const BatchScraper: React.FC = () => {
             indicaciones: productData.indicaciones || [],
             advertencias: productData.advertencias || 'Sin advertencias específicas',
             tags_ia: productData.tags_ia || [],
+            categoria_principal: productData.categoria_principal || 'Otro',
+            analisis_componentes: productData.analisis_componentes || '',
             vectores: [],
             apto_embarazo: (productData.apto_embarazo as SafetyStatus) || SafetyStatus.PRECAUCION,
             apto_lactancia: (productData.apto_lactancia as SafetyStatus) || SafetyStatus.PRECAUCION,
@@ -209,6 +214,14 @@ export const BatchScraper: React.FC = () => {
           // 1. Guardar en Base de Datos Local (IndexedDB)
           await db.put('products', newProduct);
           addLog(`💾 Guardado en base de datos local: ${newProduct.nombre_comercial}`, 'success');
+
+          // 2. Sincronizar con la nube (Firestore)
+          try {
+            await FirebaseSyncService.updateProduct(newProduct);
+            addLog(`☁️ Sincronizado con la nube: ${newProduct.nombre_comercial}`, 'info');
+          } catch (cloudErr) {
+            console.warn("Error sincronizando con la nube:", cloudErr);
+          }
 
         } catch (err: any) {
           addLog(`❌ Error en producto: ${err.message}`, 'error');

@@ -39,9 +39,16 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
           <h3 className="text-lg font-bold text-white group-hover:text-brand-primary transition-colors">
             {product.nombre_comercial}
           </h3>
-          <p className="text-sm text-slate-400 line-clamp-1">
-            {formatArrayToString(product.principios_activos, ', ')}
-          </p>
+          <div className="flex items-center gap-2 mt-1">
+            {product.categoria_principal && product.categoria_principal !== 'Otro' && (
+              <Badge variant="outline" className="text-[9px] uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border-indigo-500/20 shrink-0">
+                {product.categoria_principal}
+              </Badge>
+            )}
+            <p className="text-sm text-slate-400 line-clamp-1">
+              {formatArrayToString(product.principios_activos, ', ')}
+            </p>
+          </div>
         </div>
         <Badge variant="outline" className="text-[10px] uppercase tracking-wider bg-brand-bg text-slate-400 border-slate-700 shrink-0 ml-2">
           {product.sku}

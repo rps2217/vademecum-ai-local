@@ -13,6 +13,8 @@
         "indicaciones": { "type": "array", "items": { "type": "string" } },
         "advertencias": { "type": "string" },
         "tags_ia": { "type": "array", "items": { "type": "string" } },
+        "categoria_principal": { "type": "string", "enum": ["Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro"] },
+        "analisis_componentes": { "type": "string" },
         "apto_embarazo": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
         "apto_lactancia": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
         "apto_pediatria": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },

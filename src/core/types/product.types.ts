@@ -4,6 +4,8 @@ export enum SafetyStatus {
   PRECAUCION = 'PRECAUCION',
 }
 
+export type MainCategory = 'Belleza' | 'Medicamento' | 'Suplemento' | 'Homeopatía' | 'Otro';
+
 export interface Product {
   sku: string; // Primary Key
   nombre_comercial: string;
@@ -13,6 +15,8 @@ export interface Product {
   indicaciones: string[];
   advertencias: string;
   tags_ia: string[]; // Categorías generadas por IA
+  categoria_principal?: MainCategory; // Clasificación principal
+  analisis_componentes?: string; // Análisis de la función de cada componente
   vectores: number[]; // Embeddings pre-calculados
   
   // Semáforo de Seguridad

@@ -12,6 +12,8 @@ service cloud.firestore {
     //   - nombre_comercial: string (required)
     //   - principios_activos: list (strings)
     //   - tags_ia: list (strings)
+    //   - categoria_principal: string (enum)
+    //   - analisis_componentes: string
     //   - apto_embarazo/lactancia/etc: string (enum: SI, NO, PRECAUCION)
     //
     // Collection: users
@@ -62,12 +64,16 @@ service cloud.firestore {
       allow read: if true;
       // Admins pueden crear y borrar
       allow create, delete: if isAdmin() && isValidProduct(request.resource.data);
-      // Actualizaciones: Admins pueden todo, usuarios anónimos solo pueden actualizar campos de sinergia y candados
+      // Actualizaciones: Admins pueden todo, usuarios autenticados pueden actualizar información clínica y candados
       allow update: if (isAdmin() && isValidProduct(request.resource.data)) ||
-        (isAuthenticated() && !isAdmin() &&
+        (isAuthenticated() && 
          request.resource.data.diff(resource.data).affectedKeys().hasOnly([
            'vectores', 'sugerencia_complementaria', 'skus_relacionados',
-           'synergy_analyzed', 'last_synergy_analysis', 'lock_uid', 'lock_timestamp'
+           'synergy_analyzed', 'last_synergy_analysis', 'lock_uid', 'lock_timestamp',
+           'analisis_componentes', 'categoria_principal', 'nombre_comercial', 
+           'descripcion', 'principios_activos', 'posologia', 'indicaciones', 
+           'advertencias', 'tags_ia', 'apto_embarazo', 'apto_lactancia', 
+           'apto_pediatria', 'apto_diabeticos', 'apto_hipertensos', 'apto_celiacos'
          ])
         );
     }

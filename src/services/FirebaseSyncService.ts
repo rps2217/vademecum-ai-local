@@ -73,7 +73,7 @@ export const FirebaseSyncService = {
   },
 
   /**
-   * Actualiza un solo producto en Firestore (útil para procesos en segundo plano)
+   * Actualiza un solo producto en Firestore (Cualquier usuario autenticado puede colaborar)
    */
   updateProduct: async (product: Product) => {
     try {
@@ -81,8 +81,7 @@ export const FirebaseSyncService = {
       const docRef = doc(db, 'products', product.sku);
       await setDoc(docRef, product);
     } catch (error) {
-      // Silencioso, ya que si no es admin fallará por permisos, lo cual es esperado
-      console.warn('[FirebaseSync] No se pudo actualizar en la nube (¿Faltan permisos de Admin?):', error);
+      console.warn('[FirebaseSync] No se pudo actualizar en la nube:', error);
     }
   },
 
