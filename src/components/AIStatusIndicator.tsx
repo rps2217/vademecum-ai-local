@@ -79,7 +79,7 @@ export const AIStatusIndicator: React.FC = () => {
 
               {!status.isReady && !status.isInitializing && (
                 <p className="text-[11px] text-slate-500 leading-relaxed">
-                  El motor se activará automáticamente cuando sea necesario para análisis clínico.
+                  El motor se activará automáticamente en segundo plano para procesar datos.
                 </p>
               )}
             </motion.div>
@@ -93,7 +93,7 @@ export const AIStatusIndicator: React.FC = () => {
           className={`flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold transition-all shadow-lg backdrop-blur-md ${getStatusColor()}`}
         >
           {getStatusIcon()}
-          <span>IA: {status.isReady ? 'LISTA' : status.isInitializing ? 'CARGANDO' : 'OFFLINE'}</span>
+          <span>IA: {status.isReady ? 'TRABAJANDO EN CLÚSTER' : status.isInitializing ? 'CARGANDO' : 'OFFLINE'}</span>
         </motion.button>
       </motion.div>
     </div>

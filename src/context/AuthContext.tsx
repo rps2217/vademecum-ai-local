@@ -27,9 +27,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (!currentUser) {
+        try {
+          await signInAnonymously(auth);
+        } catch (error) {
+          console.error("Anonymous auth failed:", error);
+          setLoading(false);
+        }
+        return;
+      }
+
       setUser(currentUser);
       
-      if (currentUser) {
+      if (currentUser && !currentUser.isAnonymous) {
         // Sync user profile to Firestore only for Google users
         const userRef = doc(db, 'users', currentUser.uid);
         try {

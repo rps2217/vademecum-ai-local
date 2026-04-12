@@ -60,8 +60,16 @@ service cloud.firestore {
     match /products/{productId} {
       // El Vademécum es público para lectura
       allow read: if true;
-      // Solo admins pueden modificar el catálogo
-      allow write: if isAdmin() && isValidProduct(request.resource.data);
+      // Admins pueden crear y borrar
+      allow create, delete: if isAdmin() && isValidProduct(request.resource.data);
+      // Actualizaciones: Admins pueden todo, usuarios anónimos solo pueden actualizar campos de sinergia y candados
+      allow update: if (isAdmin() && isValidProduct(request.resource.data)) ||
+        (isAuthenticated() && !isAdmin() &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+           'vectores', 'sugerencia_complementaria', 'skus_relacionados',
+           'synergy_analyzed', 'last_synergy_analysis', 'lock_uid', 'lock_timestamp'
+         ])
+        );
     }
 
     match /users/{userId} {

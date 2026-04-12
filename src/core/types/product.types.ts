@@ -29,6 +29,10 @@ export interface Product {
   synergy_analyzed?: boolean;
   last_synergy_analysis?: number;
   
+  // Distributed Locking
+  lock_uid?: string;
+  lock_timestamp?: number;
+  
   // Metadatos del Scraper
   source_url?: string;
 }

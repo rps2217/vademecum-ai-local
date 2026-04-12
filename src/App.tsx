@@ -96,8 +96,10 @@ function Dashboard({ hardware }: DashboardProps) {
 
   useEffect(() => {
     if (hardware) {
-      // Solo configuramos el perfil de hardware, NO iniciamos el motor pesado.
+      // Configurar el perfil de hardware
       AIService.configure(hardware);
+      // Iniciar el motor en segundo plano automáticamente para el clúster distribuido
+      AIService.startEngine().catch(console.error);
     }
   }, [hardware]);
 

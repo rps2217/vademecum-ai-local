@@ -3,7 +3,9 @@ import { Product } from '../core/types/product.types';
 import { AIService } from './AIService';
 import { GeminiService } from './GeminiService';
 import { OllamaService } from './OllamaService';
+import { FirebaseSyncService } from './FirebaseSyncService';
 import { formatArrayToString } from '../utils/formatters';
+import { auth } from '../firebase';
 
 export class SynergyBackgroundService {
   private static isRunning = false;
@@ -35,16 +37,36 @@ export class SynergyBackgroundService {
 
       const db = await getDB();
       const allProducts = await db.getAll('products');
+      const now = Date.now();
+      const userId = auth.currentUser?.uid;
+
+      if (!userId) {
+        console.warn('[SynergyService] Esperando autenticación anónima para iniciar trabajo distribuido...');
+        return;
+      }
       
-      // Buscar el siguiente producto que necesite análisis
-      const nextProduct = allProducts.find(p => !p.synergy_analyzed);
+      // Buscar el siguiente producto que necesite análisis y no esté bloqueado por otro nodo
+      const nextProduct = allProducts.find(p => 
+        !p.synergy_analyzed && 
+        (!p.lock_uid || p.lock_uid === userId || (now - (p.lock_timestamp || 0)) > 5 * 60 * 1000)
+      );
       
       if (!nextProduct) {
         return;
       }
 
-      console.log(`[SynergyService] Analizando sinergias para: ${nextProduct.nombre_comercial}`);
+      // Intentar adquirir el candado en Firebase
+      const lockAcquired = await FirebaseSyncService.claimProductLock(nextProduct.sku, userId);
+      if (!lockAcquired) {
+        console.log(`[SynergyService] Producto ${nextProduct.sku} está siendo procesado por otro nodo. Buscando otro...`);
+        return;
+      }
+
+      console.log(`[SynergyService] Candado adquirido. Analizando sinergias para: ${nextProduct.nombre_comercial}`);
       
+      // Actualizar DB local con el candado
+      await db.put('products', { ...nextProduct, lock_uid: userId, lock_timestamp: now });
+
       // 1. Encontrar candidatos por similitud semántica (Local Embeddings)
       // Nota: Los embeddings siempre son locales para privacidad
       const mainVector = nextProduct.vectores;
@@ -138,13 +160,21 @@ export class SynergyBackgroundService {
       }
 
       // 3. Guardar en DB
-      await db.put('products', {
+      const updatedProduct = {
         ...nextProduct,
         synergy_analyzed: true,
         last_synergy_analysis: Date.now(),
         sugerencia_complementaria: synergyResult.sugerencia_complementaria,
         skus_relacionados: synergyResult.skus_relacionados
-      });
+      };
+      
+      delete updatedProduct.lock_uid;
+      delete updatedProduct.lock_timestamp;
+
+      await db.put('products', updatedProduct);
+
+      // 4. Sincronizar con Firebase y liberar candado
+      await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
 
       console.log(`[SynergyService] Sinergia completada para ${nextProduct.nombre_comercial}`);
       window.dispatchEvent(new CustomEvent('db_updated'));

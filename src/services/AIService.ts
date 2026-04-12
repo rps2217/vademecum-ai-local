@@ -11,6 +11,7 @@ export class AIService {
   private static engineName = 'Ninguno';
   private static hardware: HardwareProfile | null = null;
   private static lastProgress = { text: '', progress: 0 };
+  private static watchdogInterval: number | null = null;
 
   static setProgressCallback(cb: (text: string, progress: number) => void) {
     this.initProgressCallback = cb;
@@ -56,6 +57,7 @@ export class AIService {
                 
                 // Iniciar motor de sinergia en segundo plano
                 SynergyBackgroundService.start();
+                this.startWatchdog();
                 
                 resolve(true);
               } else {
@@ -84,6 +86,7 @@ export class AIService {
 
   // Método para detener el motor y liberar memoria
   static stopEngine() {
+    this.stopWatchdog();
     if (this.worker) {
       this.worker.terminate();
       this.worker = null;
@@ -92,6 +95,47 @@ export class AIService {
     this.isInitializing = false;
     this.engineName = 'Ninguno';
     this.lastProgress = { text: '', progress: 0 };
+  }
+
+  private static startWatchdog() {
+    if (this.watchdogInterval) return;
+    // Revisar cada 5 minutos si el worker sigue vivo
+    this.watchdogInterval = window.setInterval(async () => {
+      if (this.isReady && this.worker) {
+        try {
+          const health = await this.runHealthCheckTimeout(5000); // 5 segundos de timeout
+          if (!health.ok) {
+            console.warn('[AIService] Watchdog: El motor no responde. Reiniciando...');
+            this.restartEngine();
+          }
+        } catch (e) {
+          console.warn('[AIService] Watchdog: Error de timeout. Reiniciando motor...', e);
+          this.restartEngine();
+        }
+      }
+    }, 5 * 60 * 1000);
+  }
+
+  private static stopWatchdog() {
+    if (this.watchdogInterval) {
+      clearInterval(this.watchdogInterval);
+      this.watchdogInterval = null;
+    }
+  }
+
+  private static async restartEngine() {
+    this.stopEngine();
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Esperar a que se limpie la memoria
+    this.startEngine();
+  }
+
+  private static async runHealthCheckTimeout(timeoutMs: number): Promise<{ ok: boolean }> {
+    return Promise.race([
+      this.runHealthCheck(),
+      new Promise<{ ok: boolean }>((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout')), timeoutMs)
+      )
+    ]);
   }
 
   static async extractProductData(rawText: string, url: string): Promise<Product | null> {
