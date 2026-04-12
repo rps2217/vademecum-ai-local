@@ -12,6 +12,79 @@ import { AIService } from './services/AIService';
 import { BatchScraper } from './modules/scraper/BatchScraper';
 import { AIStatusIndicator } from './components/AIStatusIndicator';
 import { SetupModule } from './modules/setup/SetupModule';
+import { useAuth } from './context/AuthContext';
+import { FirebaseSyncService } from './services/FirebaseSyncService';
+import { LogIn, LogOut, User as UserIcon, Loader2, Cloud, RefreshCw, Lock } from 'lucide-react';
+import { AccessGate } from './components/AccessGate';
+
+function UserMenu() {
+  const { user, login, logout, isAdmin, loading } = useAuth();
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [cloudHasData, setCloudHasData] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (user) {
+      FirebaseSyncService.checkCloudData().then(setCloudHasData);
+    }
+  }, [user]);
+
+  const handleSync = async () => {
+    setIsSyncing(true);
+    await FirebaseSyncService.uploadLocalProducts();
+    setCloudHasData(true);
+    setIsSyncing(false);
+  };
+
+  if (loading) return null;
+
+  // If not logged in with Google, show a discreet login for the admin
+  if (!user) {
+    return (
+      <button
+        onClick={login}
+        className="p-2 text-slate-700 hover:text-brand-primary transition-colors"
+        title="Acceso Administrador"
+      >
+        <Lock className="w-4 h-4" />
+      </button>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-4">
+      {isAdmin && cloudHasData === false && (
+        <button
+          onClick={handleSync}
+          disabled={isSyncing}
+          className="flex items-center gap-2 px-4 py-2 bg-brand-accent text-brand-bg rounded-xl text-sm font-bold hover:bg-brand-accent/80 transition-all disabled:opacity-50"
+        >
+          {isSyncing ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+          Sincronizar Nube
+        </button>
+      )}
+      <div className="flex items-center gap-3 bg-brand-surface border border-slate-800 px-4 py-2 rounded-xl">
+        <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center">
+          <UserIcon className="w-3.5 h-3.5 text-brand-primary" />
+        </div>
+        <div className="text-left hidden sm:block">
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider leading-none mb-1">
+            {isAdmin ? 'Administrador' : 'Profesional'}
+          </p>
+          <p className="text-xs font-bold text-white leading-none truncate max-w-[120px]">
+            {user.displayName || user.email}
+          </p>
+        </div>
+        <button
+          onClick={logout}
+          className="p-1.5 text-slate-500 hover:text-red-400 transition-colors"
+          title="Cerrar Sesión"
+        >
+          <LogOut className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 interface DashboardProps {
   hardware: HardwareProfile;
@@ -19,6 +92,7 @@ interface DashboardProps {
 
 function Dashboard({ hardware }: DashboardProps) {
   const [activeTab, setActiveTab] = useState<'search' | 'database' | 'scraper' | 'setup' | 'settings'>('search');
+  const { user, isAccessGranted } = useAuth();
 
   useEffect(() => {
     if (hardware) {
@@ -27,10 +101,20 @@ function Dashboard({ hardware }: DashboardProps) {
     }
   }, [hardware]);
 
+  useEffect(() => {
+    if (isAccessGranted) {
+      const unsubscribe = FirebaseSyncService.startSync();
+      return () => unsubscribe();
+    }
+  }, [isAccessGranted]);
+
   return (
     <div className="min-h-screen bg-brand-bg text-slate-200 p-8">
       <div className="max-w-7xl mx-auto">
-        <header className="mb-8 text-center relative">
+        <header className="mb-8 flex flex-col items-center relative">
+          <div className="absolute top-0 right-0">
+            <UserMenu />
+          </div>
           <div className="inline-flex items-center justify-center p-3 bg-brand-primary/10 rounded-2xl mb-6 border border-brand-primary/20">
             <Activity className="w-8 h-8 text-brand-primary" />
           </div>
@@ -137,8 +221,18 @@ export default function App() {
   return (
     <AppBootstrapper>
       <TrayProvider>
-        <Dashboard hardware={hardware!} />
+        <AuthConsumer hardware={hardware!} />
       </TrayProvider>
     </AppBootstrapper>
   );
+}
+
+function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
+  const { isAccessGranted } = useAuth();
+
+  if (!isAccessGranted) {
+    return <AccessGate />;
+  }
+
+  return <Dashboard hardware={hardware} />;
 }

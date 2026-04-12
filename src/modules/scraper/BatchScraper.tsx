@@ -1,23 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Globe, Database, Play, Square, FileCode2, CheckCircle, AlertCircle, ChevronDown, ChevronUp, Terminal } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
-import { GoogleSyncService } from '../../services/GoogleSyncService';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
 
 export const BatchScraper: React.FC = () => {
-  const [gasUrl, setGasUrl] = useState(() => GoogleSyncService.getGasUrl());
   const [targetUrl, setTargetUrl] = useState('');
   const [logs, setLogs] = useState<{time: string, text: string, type: 'info'|'success'|'error'}[]>([]);
   const [isRunning, setIsRunning] = useState(false);
-  const [showInstructions, setShowInstructions] = useState(!gasUrl);
   
   const isRunningRef = useRef(false);
   const logsEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    GoogleSyncService.setGasUrl(gasUrl);
-  }, [gasUrl]);
 
   useEffect(() => {
     logsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -28,8 +21,8 @@ export const BatchScraper: React.FC = () => {
   };
 
   const startScraping = async () => {
-    if (!gasUrl || !targetUrl) {
-      addLog('Falta la URL del script o la URL objetivo.', 'error');
+    if (!targetUrl) {
+      addLog('Falta la URL objetivo.', 'error');
       return;
     }
 
@@ -215,22 +208,7 @@ export const BatchScraper: React.FC = () => {
 
           // 1. Guardar en Base de Datos Local (IndexedDB)
           await db.put('products', newProduct);
-          addLog(`💾 Guardado en base de datos local: ${newProduct.nombre_comercial}`, 'info');
-
-          // 2. Guardar en Google Sheets (Nube)
-          addLog(`☁️ Guardando en Google Sheets...`, 'info');
-          const saveRes = await fetch(gasUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // text/plain evita el preflight CORS
-            body: JSON.stringify([newProduct]) // Enviamos como array para que el Super Script lo entienda
-          });
-          
-          const saveData = await saveRes.json();
-          if (saveData.success) {
-            addLog(`✅ Sincronizado exitosamente: ${newProduct.nombre_comercial}`, 'success');
-          } else {
-            throw new Error(saveData.error);
-          }
+          addLog(`💾 Guardado en base de datos local: ${newProduct.nombre_comercial}`, 'success');
 
         } catch (err: any) {
           addLog(`❌ Error en producto: ${err.message}`, 'error');
@@ -256,8 +234,6 @@ export const BatchScraper: React.FC = () => {
     addLog('Deteniendo proceso...', 'info');
   };
 
-  const gasScriptTemplate = GoogleSyncService.getGasScriptTemplate();
-
   return (
     <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header className="space-y-2">
@@ -265,10 +241,10 @@ export const BatchScraper: React.FC = () => {
           <div className="p-2 bg-emerald-500/10 rounded-xl">
             <Database className="w-6 h-6 text-emerald-400" />
           </div>
-          <h1 className="text-3xl font-bold text-white">Google Sheets Scraper</h1>
+          <h1 className="text-3xl font-bold text-white">Scraper de Farmacias</h1>
         </div>
         <p className="text-slate-400 text-lg">
-          Extrae datos de farmacias y guárdalos directamente en Google Sheets y en tu base de datos local al mismo tiempo.
+          Extrae datos de farmacias y guárdalos directamente en tu base de datos local.
         </p>
       </header>
 
@@ -277,68 +253,11 @@ export const BatchScraper: React.FC = () => {
         {/* Panel de Configuración */}
         <div className="lg:col-span-5 space-y-6">
           
-          {/* Instrucciones */}
-          <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
-            <button 
-              onClick={() => setShowInstructions(!showInstructions)}
-              className="w-full flex items-center justify-between p-4 bg-slate-800/50 hover:bg-slate-800 transition-colors"
-            >
-              <div className="flex items-center gap-2 font-medium text-slate-200">
-                <FileCode2 className="w-5 h-5 text-indigo-400" />
-                Instrucciones del Super Script
-              </div>
-              {showInstructions ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-            </button>
-            
-            {showInstructions && (
-              <div className="p-5 space-y-4 text-sm text-slate-300">
-                <p>Hemos unificado el sistema. Ahora necesitas un único "Super Script" en tu Google Sheet que hará de puente para el scraper y de base de datos para la aplicación.</p>
-                <ol className="list-decimal pl-5 space-y-2">
-                  <li>Abre tu <a href="https://sheets.new" target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">Google Sheet</a> principal.</li>
-                  <li>Ve a <strong>Extensiones &gt; Apps Script</strong>.</li>
-                  <li>Borra el código que haya y pega este nuevo Super Script:</li>
-                </ol>
-                
-                <div className="relative group">
-                  <pre className="bg-slate-950 p-4 rounded-xl overflow-x-auto text-[11px] font-mono text-slate-400 border border-slate-800 max-h-48 custom-scrollbar">
-                    {gasScriptTemplate}
-                  </pre>
-                  <button 
-                    onClick={() => navigator.clipboard.writeText(gasScriptTemplate)}
-                    className="absolute top-2 right-2 p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    Copiar
-                  </button>
-                </div>
-
-                <ol className="list-decimal pl-5 space-y-2" start={4}>
-                  <li><strong>¡IMPORTANTE - AUTORIZACIÓN!:</strong> Selecciona la función <code>doGet</code> arriba y haz clic en <strong>Ejecutar</strong>. Da los permisos (Avanzado &gt; Ir a Proyecto no seguro).</li>
-                  <li>Haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
-                  <li>Tipo: <strong>Aplicación web</strong>. Acceso: <strong>Cualquier persona</strong>.</li>
-                  <li>Copia la <strong>URL de la aplicación web</strong> y pégala abajo.</li>
-                </ol>
-              </div>
-            )}
-          </div>
-
           {/* Formulario */}
           <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 space-y-5">
             <div className="space-y-2">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                1. URL del Super Script (Google Apps Script)
-              </label>
-              <input 
-                type="url"
-                value={gasUrl}
-                onChange={(e) => setGasUrl(e.target.value)}
-                placeholder="https://script.google.com/macros/s/.../exec"
-                className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl text-slate-200 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all text-sm"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                2. URL de la Farmacia a Escanear
+                URL de la Farmacia a Escanear
               </label>
               <input 
                 type="url"
@@ -359,10 +278,10 @@ export const BatchScraper: React.FC = () => {
             ) : (
               <button 
                 onClick={startScraping}
-                disabled={!gasUrl || !targetUrl}
+                disabled={!targetUrl}
                 className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-800 disabled:text-slate-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-500/20"
               >
-                <Play className="w-5 h-5" /> Iniciar Scraping y Sincronizar
+                <Play className="w-5 h-5" /> Iniciar Scraping
               </button>
             )}
           </div>

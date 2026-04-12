@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Medicamento del Vademécum",
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string", "description": "Identificador único" },
+        "nombre_comercial": { "type": "string" },
+        "descripcion": { "type": "string" },
+        "principios_activos": { "type": "array", "items": { "type": "string" } },
+        "posologia": { "type": "string" },
+        "indicaciones": { "type": "array", "items": { "type": "string" } },
+        "advertencias": { "type": "string" },
+        "tags_ia": { "type": "array", "items": { "type": "string" } },
+        "apto_embarazo": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
+        "apto_lactancia": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
+        "apto_pediatria": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
+        "apto_diabeticos": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
+        "apto_hipertensos": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
+        "apto_celiacos": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
+        "sugerencia_complementaria": { "type": "string" },
+        "skus_relacionados": { "type": "array", "items": { "type": "string" } },
+        "synergy_analyzed": { "type": "boolean" },
+        "last_synergy_analysis": { "type": "number" },
+        "source_url": { "type": "string" }
+      },
+      "required": ["sku", "nombre_comercial"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Perfil de usuario del sistema",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Colección global de medicamentos"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Perfiles de usuario y roles"
+    }
+  }
+}

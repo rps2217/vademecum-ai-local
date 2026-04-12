@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { Cpu, ShieldCheck, Settings, AlertTriangle, Cloud, Copy, Check, Download, Upload, FileJson, Loader2 } from 'lucide-react';
-import { GoogleSyncService } from '../../services/GoogleSyncService';
+import { Cpu, ShieldCheck, Settings, AlertTriangle, Download, Upload, FileJson, Loader2 } from 'lucide-react';
 import { SystemDiagnostics } from '../../components/settings/SystemDiagnostics';
 import { DataService } from '../../services/DataService';
 
 export const SettingsModule: React.FC = () => {
   const { hardware } = useHardwareDetection();
-  const [gasUrl, setGasUrl] = useState('');
-  const [isCopied, setIsCopied] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
-
-  useEffect(() => {
-    setGasUrl(GoogleSyncService.getGasUrl());
-  }, []);
-
-  const handleSaveGasUrl = () => {
-    GoogleSyncService.setGasUrl(gasUrl);
-    alert('URL de Google Apps Script guardada correctamente.');
-  };
-
-  const handleCopyScript = () => {
-    navigator.clipboard.writeText(GoogleSyncService.getGasScriptTemplate());
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
 
   const handleExport = async () => {
     try {
@@ -200,64 +182,6 @@ export const SettingsModule: React.FC = () => {
           <p className="text-xs text-amber-200 leading-relaxed">
             <strong>Aviso de Privacidad:</strong> Toda la información clínica y los datos de los pacientes procesados por la IA nunca abandonan este dispositivo. No se envían datos a servidores externos.
           </p>
-        </div>
-      </div>
-
-      {/* Configuración de Google Sheets Sync */}
-      <div className="bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-800 mt-6">
-        <h2 className="text-xl font-bold text-white mb-2 flex items-center gap-3">
-          <div className="p-2 bg-blue-500/10 rounded-lg">
-            <Cloud className="w-5 h-5 text-blue-400" />
-          </div>
-          Sincronización con Google Sheets
-        </h2>
-        <p className="text-slate-400 text-sm mb-6">
-          Respalda tu base de datos local en la nube para no perder el trabajo del scraper o para sincronizar múltiples dispositivos.
-        </p>
-
-        <div className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
-              URL del Web App (Google Apps Script)
-            </label>
-            <div className="flex gap-3">
-              <input
-                type="url"
-                value={gasUrl}
-                onChange={(e) => setGasUrl(e.target.value)}
-                placeholder="https://script.google.com/macros/s/.../exec"
-                className="flex-1 px-4 py-2 bg-slate-950 border border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm text-white placeholder:text-slate-600"
-              />
-              <button
-                onClick={handleSaveGasUrl}
-                className="px-6 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-500 transition-colors text-sm font-medium"
-              >
-                Guardar URL
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-slate-950/50 border border-slate-800 rounded-xl p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-sm font-bold text-slate-200">¿Cómo configurar Google Sheets?</h3>
-              <button
-                onClick={handleCopyScript}
-                className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-700 transition-colors"
-              >
-                {isCopied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-                {isCopied ? 'Copiado' : 'Copiar Código'}
-              </button>
-            </div>
-            <ol className="list-decimal list-inside text-sm text-slate-400 space-y-2 mb-4">
-              <li>Crea un nuevo Google Sheet.</li>
-              <li>Ve a <strong>Extensiones &gt; Apps Script</strong>.</li>
-              <li>Borra el código existente y pega el código que puedes copiar arriba.</li>
-              <li>Haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
-              <li>Selecciona tipo <strong>Aplicación web</strong>.</li>
-              <li>En "Quién tiene acceso", selecciona <strong>Cualquier persona</strong>.</li>
-              <li>Copia la URL generada y pégala en el campo de arriba.</li>
-            </ol>
-          </div>
         </div>
       </div>
     </div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { getDB } from '../../core/database/db';
 import { Product } from '../../core/types/product.types';
-import { Database, Trash2, RefreshCw, ExternalLink, CloudUpload, CloudDownload, FileUp } from 'lucide-react';
-import { GoogleSyncService } from '../../services/GoogleSyncService';
+import { Database, Trash2, RefreshCw, ExternalLink, FileUp } from 'lucide-react';
 
 export const DatabaseModule: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -100,33 +99,6 @@ export const DatabaseModule: React.FC = () => {
     }
   };
 
-  const handleBackup = async () => {
-    if (!GoogleSyncService.getGasUrl()) {
-      alert('Primero debes configurar la URL de Google Apps Script en la pestaña de Configuración.');
-      return;
-    }
-    setSyncStatus('Respaldando a Google Sheets...');
-    const result = await GoogleSyncService.backupToCloud();
-    setSyncStatus(result.message);
-    setTimeout(() => setSyncStatus(null), 5000);
-  };
-
-  const handleRestore = async () => {
-    if (!GoogleSyncService.getGasUrl()) {
-      alert('Primero debes configurar la URL de Google Apps Script en la pestaña de Configuración.');
-      return;
-    }
-    if (!confirm('¿Deseas descargar los datos desde Google Sheets? Esto actualizará tu base de datos local.')) return;
-    
-    setSyncStatus('Restaurando desde Google Sheets...');
-    const result = await GoogleSyncService.restoreFromCloud();
-    setSyncStatus(result.message);
-    if (result.success) {
-      await loadData();
-    }
-    setTimeout(() => setSyncStatus(null), 5000);
-  };
-
   return (
     <div className="w-full max-w-5xl mx-auto pb-20 animate-in fade-in duration-300">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -155,23 +127,6 @@ export const DatabaseModule: React.FC = () => {
           >
             <FileUp className="w-4 h-4" />
             Importar JSON
-          </button>
-          <button 
-            onClick={handleRestore}
-            className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-xl hover:bg-emerald-500/20 transition-colors text-sm font-medium"
-            title="Descargar datos desde Google Sheets"
-          >
-            <CloudDownload className="w-4 h-4" />
-            Restaurar
-          </button>
-          <button 
-            onClick={handleBackup}
-            disabled={products.length === 0}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-xl hover:bg-indigo-500/20 transition-colors text-sm font-medium disabled:opacity-50"
-            title="Respaldar datos locales a Google Sheets"
-          >
-            <CloudUpload className="w-4 h-4" />
-            Respaldar
           </button>
           <button 
             onClick={loadData}

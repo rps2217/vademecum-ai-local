@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { SyncService } from '../../services/SyncService';
 import { getDB } from '../database/db';
 
 interface AppBootstrapperProps {
@@ -10,7 +9,6 @@ interface AppBootstrapperProps {
 export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) => {
   const { hardware, isDetecting: isDetectingHardware } = useHardwareDetection();
   const [isDbReady, setIsDbReady] = useState(false);
-  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'error' | 'success'>('idle');
   const [bootError, setBootError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -19,22 +17,6 @@ export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) =>
         // 1. Inicializar Base de Datos Local
         await getDB();
         setIsDbReady(true);
-
-        // 2. Verificar estado de sincronización
-        const lastSync = await SyncService.getLastSyncTime();
-        
-        // Si nunca se ha sincronizado o pasaron más de 24h, forzamos sync en background
-        const ONE_DAY = 24 * 60 * 60 * 1000;
-        const needsSync = !lastSync || (Date.now() - lastSync > ONE_DAY);
-
-        if (needsSync) {
-          setSyncStatus('syncing');
-          const result = await SyncService.sync();
-          setSyncStatus(result.success ? 'success' : 'error');
-        } else {
-          setSyncStatus('success');
-        }
-
       } catch (error) {
         console.error('Error durante el arranque de la aplicación:', error);
         setBootError(error instanceof Error ? error.message : 'Error desconocido de inicialización');
@@ -75,18 +57,6 @@ export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) =>
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      {/* Indicador de Sincronización (Opcional, para debug visual en esta fase) */}
-      {syncStatus === 'syncing' && (
-        <div className="bg-indigo-600 text-white text-xs py-1 px-4 text-center">
-          Sincronizando base de datos en segundo plano...
-        </div>
-      )}
-      {syncStatus === 'error' && (
-        <div className="bg-amber-500 text-white text-xs py-1 px-4 text-center">
-          Modo Offline: Usando datos locales. La sincronización falló.
-        </div>
-      )}
-      
       {/* Context Providers para Hardware y DB irían aquí si usamos Context API */}
       <div className="flex-1">
         {children}

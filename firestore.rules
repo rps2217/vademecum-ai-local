@@ -1,0 +1,77 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: products
+    // Document ID: productId (usually SKU)
+    // Fields:
+    //   - sku: string (required)
+    //   - nombre_comercial: string (required)
+    //   - principios_activos: list (strings)
+    //   - tags_ia: list (strings)
+    //   - apto_embarazo/lactancia/etc: string (enum: SI, NO, PRECAUCION)
+    //
+    // Collection: users
+    // Document ID: userId (Firebase Auth UID)
+    // Fields:
+    //   - uid: string (required)
+    //   - email: string (required)
+    //   - role: string (enum: admin, user)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         (request.auth.token.email == "rolando.pizarro.salas@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidProduct(data) {
+      return data.sku is string && data.sku.size() > 0 &&
+             data.nombre_comercial is string && data.nombre_comercial.size() > 0 &&
+             data.nombre_comercial.size() < 200;
+    }
+
+    function isValidUser(data) {
+      return data.uid is string && data.uid == request.auth.uid &&
+             data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
+             data.role in ['admin', 'user'];
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /products/{productId} {
+      // El Vademécum es público para lectura
+      allow read: if true;
+      // Solo admins pueden modificar el catálogo
+      allow write: if isAdmin() && isValidProduct(request.resource.data);
+    }
+
+    match /users/{userId} {
+      // Los usuarios solo pueden leer y escribir su propio perfil
+      // Excepto el rol, que solo puede ser 'user' por defecto a menos que sea admin
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && isValidUser(request.resource.data) && 
+                      (request.resource.data.role == 'user' || isAdmin());
+      allow update: if isOwner(userId) && isValidUser(request.resource.data) && 
+                      (request.resource.data.role == resource.data.role || isAdmin());
+    }
+  }
+}
