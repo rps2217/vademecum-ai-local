@@ -123,9 +123,6 @@ function Dashboard({ hardware }: DashboardProps) {
           <h1 className="text-4xl font-extrabold text-white tracking-tight mb-3">
             Vademécum Inteligente
           </h1>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Consulta de medicamentos con razonamiento clínico local. Rápido, seguro y sin conexión a internet.
-          </p>
         </header>
 
         {/* Navegación Principal */}

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useProductSearch } from '../../hooks/useProductSearch';
 import { ProductCard } from '../../components/product/ProductCard';
-import { Search, Loader2, Database, Sparkles, Tag, CheckCircle2, AlertTriangle, Info, X } from 'lucide-react';
+import { Search, Loader2, Database, Sparkles, Tag, CheckCircle2, AlertTriangle, Info, X, Pill, Activity, MoreHorizontal } from 'lucide-react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { ProductDetailModal } from '../product/ProductDetailModal';
 import { useTray } from '../../context/TrayContext';
 
 export const SearchModule: React.FC = () => {
-  const { query, setQuery, safetyFilter, setSafetyFilter, results, isSearching, availableTags } = useProductSearch();
+  const { query, setQuery, safetyFilter, setSafetyFilter, results, isSearching, categorizedTags } = useProductSearch();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   
   const { toggleProduct, isInTray } = useTray();
@@ -33,39 +33,87 @@ export const SearchModule: React.FC = () => {
     }
   };
 
-  return (
-    <div className="w-full max-w-5xl mx-auto pb-20 px-4">
-      {/* Barra de Búsqueda Principal */}
-      <div className="relative mb-6">
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          {isSearching ? (
-            <Loader2 className="h-5 w-5 text-brand-primary animate-spin" />
-          ) : (
-            <Search className="h-5 w-5 text-slate-500" />
-          )}
+  const renderTagRow = (
+    title: string,
+    icon: React.ReactNode,
+    tags: {tag: string, count: number}[],
+    colorClass: string,
+    activeColorClass: string
+  ) => {
+    if (!tags || tags.length === 0) return null;
+    return (
+      <div className="mb-4">
+        <div className="flex items-center gap-2 mb-2 text-slate-400 px-1">
+          {icon}
+          <h4 className="text-[10px] font-bold uppercase tracking-wider">{title}</h4>
         </div>
-        <input
-          type="text"
-          className="block w-full pl-12 pr-4 py-4 bg-brand-surface border border-slate-800 rounded-2xl text-lg text-white shadow-sm focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all placeholder:text-slate-600"
-          placeholder="Buscar por SKU, nombre, principio activo, indicación o síntoma..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        
-        {/* Indicador de IA (Visual) */}
-        <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-medium border border-brand-primary/20">
-            <Sparkles className="w-3 h-3" />
-            Búsqueda Semántica
-          </div>
+        <div className="flex overflow-x-auto gap-2 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {tags.map(({ tag, count }) => {
+            const isActive = query.toLowerCase() === tag.toLowerCase();
+            return (
+              <button
+                key={tag}
+                onClick={() => handleTagClick(tag)}
+                className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-sm transition-all flex items-center gap-2 border ${
+                  isActive ? activeColorClass : colorClass
+                }`}
+              >
+                <span className="capitalize font-medium">{tag}</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-md ${isActive ? 'bg-black/20' : 'bg-black/20 opacity-70'}`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
+    );
+  };
 
-      {/* Filtros de Seguridad (Semáforo Interactivo) */}
-      <div className="mb-8 flex flex-wrap items-center justify-center gap-4 py-3 px-6 bg-brand-surface/50 rounded-2xl border border-slate-800/50">
-        <span className="text-[10px] uppercase tracking-widest font-bold text-slate-500 w-full text-center mb-2 md:w-auto md:mb-0 md:mr-4">
-          Filtrar por Seguridad:
-        </span>
+  return (
+    <div className="w-full max-w-5xl mx-auto pb-20 px-4 relative">
+      {/* Contenedor Sticky para Búsqueda y Filtros */}
+      <div className="sticky top-0 z-30 bg-brand-bg/95 backdrop-blur-xl pt-2 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
+        {/* Barra de Búsqueda Principal */}
+        <div className="relative mb-4">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            {isSearching ? (
+              <Loader2 className="h-5 w-5 text-brand-primary animate-spin" />
+            ) : (
+              <Search className="h-5 w-5 text-slate-500" />
+            )}
+          </div>
+          <input
+            type="text"
+            className="block w-full pl-12 pr-32 py-4 bg-brand-surface border border-slate-800 rounded-2xl text-lg text-white shadow-sm focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all placeholder:text-slate-600"
+            placeholder="Buscar por SKU, nombre, principio activo, indicación o síntoma..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 gap-2">
+            {query && (
+              <button
+                onClick={() => setQuery('')}
+                className="p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+                title="Limpiar búsqueda"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+            {/* Indicador de IA (Visual) */}
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-xl text-xs font-medium border border-brand-primary/20">
+              <Sparkles className="w-3 h-3" />
+              Semántica
+            </div>
+          </div>
+        </div>
+
+        {/* Filtros de Seguridad (Semáforo Interactivo) */}
+        <div className="flex flex-wrap items-center justify-center gap-3 py-3 px-4 bg-brand-surface/50 rounded-2xl border border-slate-800/50">
+          <span className="text-[10px] uppercase tracking-widest font-bold text-slate-500 w-full text-center mb-1 md:w-auto md:mb-0 md:mr-2">
+            Filtrar por Seguridad:
+          </span>
         
         <button
           onClick={() => toggleSafetyFilter(SafetyStatus.SI)}
@@ -114,29 +162,33 @@ export const SearchModule: React.FC = () => {
             Limpiar Filtro
           </button>
         )}
+        </div>
       </div>
 
       {/* Tags Populares (Solo se muestran si no hay búsqueda activa) */}
-      {query.trim() === '' && !safetyFilter && availableTags && availableTags.length > 0 && (
-        <div className="mb-8 animate-in fade-in duration-500">
-          <div className="flex items-center gap-2 mb-4 text-slate-400">
-            <Tag className="w-4 h-4" />
-            <h3 className="text-sm font-medium uppercase tracking-wider">Explorar por Categorías o Síntomas</h3>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {availableTags.map(({ tag, count }) => (
-              <button
-                key={tag}
-                onClick={() => handleTagClick(tag)}
-                className="px-3 py-1.5 bg-brand-surface/50 hover:bg-brand-primary/20 text-slate-300 hover:text-brand-primary border border-slate-700/50 hover:border-brand-primary/30 rounded-lg text-sm transition-all flex items-center gap-2 group"
-              >
-                <span className="capitalize">{tag}</span>
-                <span className="text-[10px] bg-brand-bg group-hover:bg-brand-primary/20 px-1.5 py-0.5 rounded text-slate-500 group-hover:text-brand-primary">
-                  {count}
-                </span>
-              </button>
-            ))}
-          </div>
+      {query.trim() === '' && !safetyFilter && (
+        <div className="mb-6 mt-2 animate-in fade-in duration-500">
+          {renderTagRow(
+            'Clases y Tipos',
+            <Pill className="w-4 h-4" />,
+            categorizedTags.tipos,
+            'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20 hover:border-emerald-500/40',
+            'bg-emerald-500 text-brand-bg border-emerald-500 shadow-lg shadow-emerald-500/20'
+          )}
+          {renderTagRow(
+            'Síntomas y Condiciones',
+            <Activity className="w-4 h-4" />,
+            categorizedTags.sintomas,
+            'bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500/20 hover:border-rose-500/40',
+            'bg-rose-500 text-white border-rose-500 shadow-lg shadow-rose-500/20'
+          )}
+          {renderTagRow(
+            'Otras Categorías',
+            <MoreHorizontal className="w-4 h-4" />,
+            categorizedTags.otros,
+            'bg-slate-800/50 text-slate-300 border-slate-700 hover:bg-slate-700 hover:text-white',
+            'bg-brand-primary text-brand-bg border-brand-primary shadow-lg shadow-brand-primary/20'
+          )}
         </div>
       )}
 
