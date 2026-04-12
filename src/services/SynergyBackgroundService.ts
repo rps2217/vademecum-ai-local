@@ -45,17 +45,17 @@ export class SynergyBackgroundService {
   }
 
   static async forceAnalyze(product: Product) {
-    if (!product || product.synergy_analyzed) return false;
+    if (!product) return false;
     
-    // Si ya estamos procesando algo, no interrumpir, pero podríamos encolarlo.
-    // Para simplificar, si está libre, lo procesamos directo.
+    // Si ya estamos procesando algo, no interrumpir.
     if (this.currentProcessingSku) {
       console.log(`[SynergyService] Ocupado con ${this.currentProcessingSku}, no se puede forzar ${product.sku} ahora.`);
       return false;
     }
 
     console.log(`[SynergyService] Análisis forzado para: ${product.nombre_comercial}`);
-    await this.processProduct(product, true);
+    // Asegurarnos de que el producto se trate como no analizado para forzar el proceso
+    await this.processProduct({ ...product, synergy_analyzed: false }, true);
     return true;
   }
 

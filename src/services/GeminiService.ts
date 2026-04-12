@@ -7,31 +7,10 @@ export class GeminiService {
 
   private static getAI() {
     if (!this.ai) {
-      let apiKey: string | undefined = undefined;
-
-      // 1. Intentar obtener de Vite (Vercel / Cliente)
-      try {
-        // Vite reemplaza esto estáticamente durante el build
-        if (import.meta.env && import.meta.env.VITE_GEMINI_API_KEY) {
-          apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-        }
-      } catch (e) {
-        // Ignorar si import.meta no está disponible
-      }
-
-      // 2. Intentar obtener de process.env (AI Studio / Servidor)
+      const apiKey = process.env.GEMINI_API_KEY;
+      
       if (!apiKey) {
-        try {
-          if (typeof process !== 'undefined' && process.env && process.env.GEMINI_API_KEY) {
-            apiKey = process.env.GEMINI_API_KEY;
-          }
-        } catch (e) {
-          // Ignorar si process no está disponible
-        }
-      }
-
-      if (!apiKey) {
-        throw new Error("GEMINI_API_KEY no configurada. Si estás en Vercel, asegúrate de haber creado la variable VITE_GEMINI_API_KEY en el entorno de Producción y haber hecho un nuevo despliegue (sin caché).");
+        throw new Error("GEMINI_API_KEY no configurada.");
       }
       
       this.ai = new GoogleGenAI({ apiKey });

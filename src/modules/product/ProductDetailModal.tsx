@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalSynergy } from './ClinicalSynergy';
-import { X, Sparkles } from 'lucide-react';
+import { X, Sparkles, AlertCircle } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
@@ -22,6 +22,26 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   const [isReanalyzing, setIsReanalyzing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isForcingSynergy, setIsForcingSynergy] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{ text: string, type: 'info' | 'error' | 'success' } | null>(null);
+
+  useEffect(() => {
+    const handleDbUpdate = async () => {
+      const db = await getDB();
+      const updated = await db.get('products', product.sku);
+      if (updated) {
+        setProduct(updated);
+        if (onUpdate) onUpdate(updated);
+      }
+    };
+
+    window.addEventListener('db_updated', handleDbUpdate);
+    return () => window.removeEventListener('db_updated', handleDbUpdate);
+  }, [product.sku, onUpdate]);
+
+  const showStatus = (text: string, type: 'info' | 'error' | 'success' = 'info') => {
+    setStatusMessage({ text, type });
+    setTimeout(() => setStatusMessage(null), 4000);
+  };
 
   const handleReanalyze = async () => {
     setIsReanalyzing(true);
@@ -36,13 +56,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         setProduct(updatedProduct);
         if (onUpdate) onUpdate(updatedProduct);
         setIsSuccess(true);
+        showStatus('Producto reanalizado con éxito', 'success');
         setTimeout(() => setIsSuccess(false), 3000);
       } else {
-        alert('No se pudo reanalizar el producto.');
+        showStatus('No se pudo reanalizar el producto. Verifique la conexión.', 'error');
       }
     } catch (error) {
       console.error('Error reanalizando:', error);
-      alert('Ocurrió un error al reanalizar el producto.');
+      showStatus('Error al conectar con el servicio de IA.', 'error');
     } finally {
       setIsReanalyzing(false);
     }
@@ -53,17 +74,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
     try {
       const started = await SynergyBackgroundService.forceAnalyze(product);
       if (!started) {
-        alert('El motor está ocupado o el producto ya fue analizado.');
+        showStatus('El motor está ocupado procesando otro producto.', 'info');
       } else {
-        const db = await getDB();
-        const updated = await db.get('products', product.sku);
-        if (updated) {
-          setProduct(updated);
-          if (onUpdate) onUpdate(updated);
-        }
+        showStatus('Análisis de sinergia iniciado...', 'success');
+        // El motor actualizará la DB y disparará eventos
       }
     } catch (error) {
       console.error('Error forzando sinergia:', error);
+      showStatus('Error al iniciar el análisis de sinergia.', 'error');
     } finally {
       setIsForcingSynergy(false);
     }
@@ -82,6 +100,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         {/* Columna Izquierda: Detalles del Producto */}
         <div id="product-detail-left-col" className="w-full md:w-3/5 p-4 md:p-8 overflow-y-auto border-r border-slate-800 relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           
+          {statusMessage && (
+            <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[60] px-6 py-3 rounded-2xl border shadow-2xl animate-in slide-in-from-top duration-300 flex items-center gap-3 ${
+              statusMessage.type === 'error' ? 'bg-red-500/10 border-red-500/50 text-red-400' :
+              statusMessage.type === 'success' ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-400' :
+              'bg-brand-primary/10 border-brand-primary/50 text-brand-primary'
+            }`}>
+              {statusMessage.type === 'error' && <AlertCircle className="w-5 h-5" />}
+              <span className="font-medium">{statusMessage.text}</span>
+            </div>
+          )}
+
           <div className="relative">
             <ProductHeader product={product} onTagClick={onTagClick} />
             <div className="absolute top-6 right-6 md:top-8 md:right-8">
