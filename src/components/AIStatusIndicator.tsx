@@ -17,9 +17,9 @@ export const AIStatusIndicator: React.FC = () => {
   }, []);
 
   const getStatusColor = () => {
-    if (status.isReady) return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
-    if (status.isInitializing) return 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20';
-    return 'text-slate-500 bg-slate-800/50 border-slate-700';
+    if (status.isReady) return 'text-brand-accent bg-brand-accent/10 border-brand-accent/20';
+    if (status.isInitializing) return 'text-brand-primary bg-brand-primary/10 border-brand-primary/20';
+    return 'text-slate-500 bg-brand-surface/50 border-slate-700';
   };
 
   const getStatusIcon = () => {
@@ -40,10 +40,10 @@ export const AIStatusIndicator: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 10 }}
-              className="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl w-64 mb-2 backdrop-blur-xl"
+              className="bg-brand-surface border border-slate-800 rounded-2xl p-4 shadow-2xl w-64 mb-2 backdrop-blur-xl"
             >
               <div className="flex items-center gap-3 mb-3">
-                <div className={`p-2 rounded-lg ${status.isReady ? 'bg-emerald-500/10 text-emerald-400' : 'bg-indigo-500/10 text-indigo-400'}`}>
+                <div className={`p-2 rounded-lg ${status.isReady ? 'bg-brand-accent/10 text-brand-accent' : 'bg-brand-primary/10 text-brand-primary'}`}>
                   <Brain className="w-5 h-5" />
                 </div>
                 <div>
@@ -60,9 +60,9 @@ export const AIStatusIndicator: React.FC = () => {
                     <span className="truncate max-w-[180px]">{status.lastProgress.text}</span>
                     <span>{Math.round(status.lastProgress.progress)}%</span>
                   </div>
-                  <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-1 w-full bg-brand-bg rounded-full overflow-hidden">
                     <motion.div 
-                      className="h-full bg-indigo-500"
+                      className="h-full bg-brand-primary"
                       initial={{ width: 0 }}
                       animate={{ width: `${status.lastProgress.progress}%` }}
                     />
@@ -72,7 +72,7 @@ export const AIStatusIndicator: React.FC = () => {
 
               {status.isReady && (
                 <div className="text-[11px] text-slate-400 flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
                   Motor: <span className="text-slate-200 font-medium">{status.engine}</span>
                 </div>
               )}

@@ -40,7 +40,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-slate-500">
-        <Loader2 className="w-8 h-8 animate-spin mb-4 text-indigo-500" />
+        <Loader2 className="w-8 h-8 animate-spin mb-4 text-brand-primary" />
         <p className="text-sm font-medium animate-pulse">Cargando sinergias...</p>
       </div>
     );
@@ -48,8 +48,8 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
 
   if (!product.synergy_analyzed) {
     return (
-      <div className="bg-slate-800/30 rounded-3xl p-8 border border-slate-800/50 text-center space-y-4">
-        <div className="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-full flex items-center justify-center mx-auto">
+      <div className="bg-brand-surface/30 rounded-3xl p-8 border border-slate-800/50 text-center space-y-4">
+        <div className="w-12 h-12 bg-brand-primary/10 text-brand-primary rounded-full flex items-center justify-center mx-auto">
           <Clock className="w-6 h-6 animate-pulse" />
         </div>
         <h3 className="text-lg font-bold text-slate-300">Análisis en Segundo Plano</h3>
@@ -78,11 +78,11 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Explicación Clínica / Sugerencia */}
       {product.sugerencia_complementaria && (
-        <section className="bg-indigo-500/5 rounded-3xl p-6 border border-indigo-500/10 relative overflow-hidden">
+        <section className="bg-brand-primary/5 rounded-3xl p-6 border border-brand-primary/10 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-4 opacity-10">
-            <Sparkles className="w-12 h-12 text-indigo-400" />
+            <Sparkles className="w-12 h-12 text-brand-primary" />
           </div>
-          <h3 className="text-xs font-bold text-indigo-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+          <h3 className="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
             <Sparkles className="w-4 h-4" /> Inteligencia de Sinergia
           </h3>
           <p className="text-slate-300 leading-relaxed text-sm italic">
@@ -104,7 +104,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
                 onClick={() => onProductClick?.(relProduct)}
                 className="flex items-center gap-4 p-4 bg-slate-800/30 hover:bg-slate-800/50 rounded-2xl border border-slate-800/50 transition-all group text-left"
               >
-                <div className="p-3 bg-slate-800 rounded-xl text-indigo-400 group-hover:scale-110 transition-transform">
+                <div className="p-3 bg-brand-bg rounded-xl text-brand-primary group-hover:scale-110 transition-transform">
                   <Pill className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -115,7 +115,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
                     {formatArrayToString(relProduct.principios_activos, ', ')}
                   </p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-600 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-5 h-5 text-slate-600 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
               </button>
             ))}
           </div>

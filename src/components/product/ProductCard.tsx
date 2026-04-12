@@ -30,20 +30,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
   };
 
   return (
-    <div className="bg-slate-900 rounded-2xl p-5 shadow-sm border border-slate-800 hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-500/50 transition-all group relative flex flex-col h-full">
+    <div className="bg-brand-surface rounded-2xl p-5 shadow-sm border border-slate-800 hover:shadow-lg hover:shadow-brand-primary/10 hover:border-brand-primary/50 transition-all group relative flex flex-col h-full">
       <div 
         className="flex justify-between items-start mb-3 cursor-pointer"
         onClick={() => onViewDetail?.(product)}
       >
         <div>
-          <h3 className="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">
+          <h3 className="text-lg font-bold text-white group-hover:text-brand-primary transition-colors">
             {product.nombre_comercial}
           </h3>
           <p className="text-sm text-slate-400 line-clamp-1">
             {formatArrayToString(product.principios_activos, ', ')}
           </p>
         </div>
-        <Badge variant="outline" className="text-[10px] uppercase tracking-wider bg-slate-800 text-slate-400 border-slate-700 shrink-0 ml-2">
+        <Badge variant="outline" className="text-[10px] uppercase tracking-wider bg-brand-bg text-slate-400 border-slate-700 shrink-0 ml-2">
           {product.sku}
         </Badge>
       </div>
@@ -84,14 +84,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
                   onViewDetail?.(product);
                 }
               }}
-              className="px-2 py-0.5 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 rounded text-[10px] font-medium tracking-wide border border-indigo-500/20 transition-colors"
+              className="px-2 py-0.5 bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20 hover:text-brand-primary/80 rounded text-[10px] font-medium tracking-wide border border-brand-primary/20 transition-colors"
             >
               #{tag}
             </button>
           ))}
           {product.tags_ia.length > 3 && (
             <span 
-              className="px-2 py-0.5 bg-slate-800 text-slate-500 rounded text-[10px] font-medium border border-slate-700 cursor-pointer hover:bg-slate-700 transition-colors"
+              className="px-2 py-0.5 bg-brand-bg text-slate-500 rounded text-[10px] font-medium border border-slate-700 cursor-pointer hover:bg-slate-700 transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 onViewDetail?.(product);
@@ -112,8 +112,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetail,
           }}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors w-full justify-center ${
             isInTray 
-              ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-              : 'bg-slate-800 text-slate-300 border border-slate-700 hover:bg-indigo-500/10 hover:text-indigo-400 hover:border-indigo-500/30'
+              ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' 
+              : 'bg-brand-bg text-slate-300 border border-slate-700 hover:bg-brand-primary/10 hover:text-brand-primary hover:border-brand-primary/30'
           }`}
         >
           {isInTray ? (

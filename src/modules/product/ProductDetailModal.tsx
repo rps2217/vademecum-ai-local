@@ -52,7 +52,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   const getSafetyConfig = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI:
-        return { color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', icon: <CheckCircle2 className="w-4 h-4" />, label: 'Apto' };
+        return { color: 'text-brand-accent bg-brand-accent/10 border-brand-accent/20', icon: <CheckCircle2 className="w-4 h-4" />, label: 'Apto' };
       case SafetyStatus.NO:
         return { color: 'text-red-400 bg-red-500/10 border-red-500/20', icon: <AlertTriangle className="w-4 h-4" />, label: 'No Apto' };
       case SafetyStatus.PRECAUCION:
@@ -72,20 +72,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-slate-950/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="bg-slate-900 w-full h-full rounded-[2rem] shadow-2xl shadow-indigo-500/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
+    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-brand-bg/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="bg-brand-surface w-full h-full rounded-[2rem] shadow-2xl shadow-brand-primary/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
         
         {/* Columna Izquierda: Detalles del Producto */}
-        <div id="product-detail-left-col" className="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto border-r border-slate-800 relative bg-slate-900/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+        <div id="product-detail-left-col" className="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto border-r border-slate-800 relative bg-brand-surface/50 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           <div className="flex justify-between items-start mb-8">
             <div className="flex-1">
-              <Badge variant="outline" className="mb-3 bg-slate-800 text-slate-400 border-slate-700 px-3 py-1">
+              <Badge variant="outline" className="mb-3 bg-brand-bg text-slate-400 border-slate-700 px-3 py-1">
                 {product.sku}
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
                 {product.nombre_comercial}
               </h2>
-              <p className="text-xl text-indigo-400 font-medium mt-2">
+              <p className="text-xl text-brand-primary font-medium mt-2">
                 {formatArrayToString(product.principios_activos, ', ')}
               </p>
             </div>
@@ -96,8 +96,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                 title="Re-analizar y completar con IA"
                 className={`p-2.5 rounded-xl transition-all disabled:opacity-50 border ${
                   isSuccess 
-                    ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' 
-                    : 'text-indigo-400 border-slate-700 bg-slate-800 hover:bg-slate-700'
+                    ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 
+                    : 'text-brand-primary border-slate-700 bg-brand-bg hover:bg-slate-700'
                 }`}
               >
                 {isReanalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-5 h-5" /> : <RefreshCw className="w-5 h-5" />}
@@ -120,8 +120,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                 </h3>
                 {/* Mini Leyenda */}
                 <div className="flex items-center gap-3 text-[9px] uppercase tracking-wider font-bold opacity-60">
-                  <div className="flex items-center gap-1 text-emerald-400">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Apto
+                  <div className="flex items-center gap-1 text-brand-accent">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" /> Apto
                   </div>
                   <div className="flex items-center gap-1 text-amber-400">
                     <div className="w-1.5 h-1.5 rounded-full bg-amber-500" /> Precaución
@@ -162,7 +162,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                     <button
                       key={tag}
                       onClick={() => onTagClick?.(tag)}
-                      className="px-3 py-1.5 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 rounded-xl text-xs font-semibold tracking-wide border border-indigo-500/20 transition-all flex items-center gap-1.5"
+                      className="px-3 py-1.5 bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20 hover:text-brand-primary/80 rounded-xl text-xs font-semibold tracking-wide border border-brand-primary/20 transition-all flex items-center gap-1.5"
                     >
                       <Tag className="w-3.5 h-3.5" />
                       {tag}
@@ -181,15 +181,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
 
             <section className="space-y-3">
               <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Indicaciones
+                <CheckCircle2 className="w-4 h-4 text-brand-accent" /> Indicaciones
               </h3>
               <ul className="grid grid-cols-1 gap-2">
                 {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
                   if (!ind) return null;
                   const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
                   return (
-                    <li key={i} className="flex items-start gap-3 text-slate-300 bg-slate-800/30 p-3 rounded-xl border border-slate-800/50">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 shrink-0" />
+                    <li key={i} className="flex items-start gap-3 text-slate-300 bg-brand-surface/30 p-3 rounded-xl border border-slate-800/50">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-primary mt-2 shrink-0" />
                       <span className="text-sm">{text}</span>
                     </li>
                   );
@@ -208,7 +208,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
               <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">
                 Posología y Administración
               </h3>
-              <div className="bg-indigo-500/5 rounded-2xl p-5 border border-indigo-500/10 text-indigo-100 font-medium leading-relaxed">
+              <div className="bg-brand-primary/5 rounded-2xl p-5 border border-brand-primary/10 text-slate-200 font-medium leading-relaxed">
                 {product.posologia}
               </div>
             </section>
@@ -216,10 +216,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         </div>
 
         {/* Columna Derecha: Sinergia Clínica IA */}
-        <div className="w-full md:w-2/5 bg-slate-950/30 p-6 md:p-10 flex flex-col relative overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+        <div className="w-full md:w-2/5 bg-brand-bg/30 p-6 md:p-10 flex flex-col relative overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           <button 
             onClick={onClose}
-            className="absolute top-8 right-8 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 text-slate-400 transition-all border border-slate-700/50 hidden md:flex items-center justify-center z-10"
+            className="absolute top-8 right-8 p-2.5 rounded-xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 transition-all border border-slate-700/50 hidden md:flex items-center justify-center z-10"
             title="Cerrar panel"
           >
             <X className="w-5 h-5" />
@@ -227,7 +227,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
           
           <div className="mb-8 pr-12">
             <h3 className="text-2xl font-bold text-white mb-1 flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-indigo-400" />
+              <Sparkles className="w-6 h-6 text-brand-primary" />
               Sinergia Clínica
             </h3>
             <p className="text-sm text-slate-500">Relaciones inteligentes entre productos de tu Vademécum.</p>

@@ -125,21 +125,21 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-slate-950 text-white flex flex-col items-center justify-center z-50 p-6">
+    <div className="fixed inset-0 bg-brand-bg text-white flex flex-col items-center justify-center z-50 p-6">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md space-y-8"
       >
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-500/10 text-indigo-400 mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-primary/10 text-brand-primary mb-4">
             <Activity className="w-8 h-8" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight">Vademécum AI</h1>
           <p className="text-slate-400">Inicializando sistema clínico...</p>
         </div>
 
-        <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 space-y-6 backdrop-blur-sm">
+        <div className="bg-brand-surface/50 border border-slate-800 rounded-2xl p-6 space-y-6 backdrop-blur-sm">
           {steps.map((step) => (
             <div key={step.id} className="space-y-2">
               <div className="flex items-center justify-between">
@@ -147,13 +147,13 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                   {step.id === 'hardware' && <Cpu className="w-5 h-5 text-slate-500" />}
                   {step.id === 'database' && <Database className="w-5 h-5 text-slate-500" />}
                   {step.id === 'ai_engine' && <Brain className="w-5 h-5 text-slate-500" />}
-                  <span className={`font-medium ${step.status === 'loading' ? 'text-indigo-400' : 'text-slate-200'}`}>
+                  <span className={`font-medium ${step.status === 'loading' ? 'text-brand-primary' : 'text-slate-200'}`}>
                     {step.label}
                   </span>
                 </div>
                 {step.status === 'pending' && <div className="w-2 h-2 rounded-full bg-slate-700" />}
-                {step.status === 'loading' && <div className="w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />}
-                {step.status === 'success' && <CheckCircle className="w-5 h-5 text-emerald-500" />}
+                {step.status === 'loading' && <div className="w-4 h-4 border-2 border-brand-primary border-t-transparent rounded-full animate-spin" />}
+                {step.status === 'success' && <CheckCircle className="w-5 h-5 text-brand-accent" />}
                 {step.status === 'error' && <AlertCircle className="w-5 h-5 text-red-500" />}
               </div>
               
@@ -167,9 +167,9 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                     {step.detail}
                   </p>
                   {step.progress !== undefined && step.status === 'loading' && (
-                    <div className="mt-2 h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div className="mt-2 h-1 w-full bg-brand-bg rounded-full overflow-hidden">
                       <motion.div 
-                        className="h-full bg-indigo-500"
+                        className="h-full bg-brand-primary"
                         initial={{ width: 0 }}
                         animate={{ width: `${step.progress}%` }}
                         transition={{ duration: 0.5 }}

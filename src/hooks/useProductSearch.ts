@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Product } from '../core/types/product.types';
+import { Product, SafetyStatus } from '../core/types/product.types';
 import { getDB } from '../core/database/db';
 import { AIService } from '../services/AIService';
 import { formatArrayToString } from '../utils/formatters';
@@ -27,6 +27,7 @@ function cosineSimilarity(vecA: number[], vecB: number[]): number {
 
 export const useProductSearch = () => {
   const [query, setQuery] = useState('');
+  const [safetyFilter, setSafetyFilter] = useState<SafetyStatus | null>(null);
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [availableTags, setAvailableTags] = useState<{tag: string, count: number}[]>([]);
@@ -88,7 +89,7 @@ export const useProductSearch = () => {
 
   useEffect(() => {
     const searchProducts = async () => {
-      if (!query.trim()) {
+      if (!query.trim() && !safetyFilter) {
         setResults([]);
         return;
       }
@@ -104,15 +105,19 @@ export const useProductSearch = () => {
         const searchTerms = query.toLowerCase().split(' ').filter(t => t.length > 0);
         
         // 1. Búsqueda por Texto (Exacta/Keyword)
-        const textFiltered = searchIndex.current.filter(item => {
-          return searchTerms.every(term => item.searchableText.includes(term));
-        });
+        let textFiltered = searchIndex.current;
+        
+        if (searchTerms.length > 0) {
+          textFiltered = textFiltered.filter(item => {
+            return searchTerms.every(term => item.searchableText.includes(term));
+          });
+        }
 
-        // 2. Búsqueda Semántica (Si hay motor de IA listo)
+        // 2. Búsqueda Semántica (Si hay motor de IA listo y hay query)
         let semanticFiltered: { product: Product, score: number }[] = [];
         
         const status = AIService.getStatus();
-        if (status.isReady) {
+        if (status.isReady && query.trim().length > 3) {
           const queryVector = await AIService.generateEmbedding(query);
           
           semanticFiltered = searchIndex.current
@@ -126,7 +131,7 @@ export const useProductSearch = () => {
         }
 
         // Combinar y eliminar duplicados
-        const combined = [...textFiltered.map(i => i.product)];
+        let combined = [...textFiltered.map(i => i.product)];
         const seenSkus = new Set(combined.map(p => p.sku));
         
         for (const item of semanticFiltered) {
@@ -134,6 +139,21 @@ export const useProductSearch = () => {
             combined.push(item.product);
             seenSkus.add(item.product.sku);
           }
+        }
+
+        // 3. Aplicar Filtro de Seguridad (Si está activo)
+        if (safetyFilter) {
+          combined = combined.filter(p => {
+            // Un producto se considera en el filtro si CUALQUIERA de sus estados de seguridad coincide
+            // Esto es útil para buscar "todo lo apto para embarazadas" por ejemplo.
+            // Pero como el filtro es global, verificamos si el producto tiene ese estado en algún campo clave.
+            return p.apto_embarazo === safetyFilter || 
+                   p.apto_lactancia === safetyFilter || 
+                   p.apto_pediatria === safetyFilter ||
+                   p.apto_diabeticos === safetyFilter ||
+                   p.apto_hipertensos === safetyFilter ||
+                   p.apto_celiacos === safetyFilter;
+          });
         }
 
         setResults(combined.slice(0, 50));
@@ -146,7 +166,7 @@ export const useProductSearch = () => {
 
     const timeoutId = setTimeout(searchProducts, 400);
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [query, safetyFilter]);
 
-  return { query, setQuery, results, isSearching, availableTags };
+  return { query, setQuery, safetyFilter, setSafetyFilter, results, isSearching, availableTags };
 };
