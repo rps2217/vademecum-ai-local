@@ -528,7 +528,7 @@ export class GeminiService {
       const prompt = `Actúa como un experto en Data Engineering Farmacéutico y Editor Clínico.
       Tu tarea es limpiar, normalizar y validar la siguiente lista de productos farmacéuticos.
       
-      PRODUCTOS A PROCESAR:
+      PRODUCTOS A PROCESAR (JSON):
       ${JSON.stringify(products.map(p => ({
         sku: p.sku,
         nombre: p.nombre_comercial,
@@ -538,14 +538,15 @@ export class GeminiService {
         categoria: p.categoria_principal
       })))}
       
-      REGLAS DE LIMPIEZA:
-      1. **Normalización de Principios Activos**: Unifica nombres (ej. "Vit. C" -> "Vitamina C"). Usa nombres genéricos estándar.
-      2. **Corrección Ortográfica**: Corrige errores en nombres comerciales y descripciones.
+      REGLAS ESTRICTAS DE LIMPIEZA:
+      1. **Normalización de Principios Activos**: Unifica nombres (ej. "Vit. C" -> "Vitamina C"). Usa nombres genéricos estándar en español.
+      2. **Corrección Ortográfica**: Corrige errores en nombres comerciales y descripciones. Asegura un tono profesional.
       3. **Validación de Etiquetas**: Asegúrate de que los tags_ia tengan sentido clínico y ortografía correcta.
       4. **Clasificación**: Asegura que categoria_principal sea uno de: "Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro".
       5. **Deduplicación Semántica**: Si detectas que dos productos son el mismo pero con nombres ligeramente distintos, unifícalos si es posible o mantén el más completo.
+      6. **Seguridad**: Para los campos de aptitud (embarazo, lactancia, etc.), usa ÚNICAMENTE los valores: "SI", "NO" o "PRECAUCION".
       
-      Devuelve la lista completa de productos limpios en el formato JSON original.`;
+      Devuelve un ARREGLO JSON de objetos con la estructura definida.`;
 
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
@@ -565,13 +566,15 @@ export class GeminiService {
                 indicaciones: { type: Type.ARRAY, items: { type: Type.STRING } },
                 advertencias: { type: Type.STRING },
                 tags_ia: { type: Type.ARRAY, items: { type: Type.STRING } },
-                categoria_principal: { type: Type.STRING },
-                apto_embarazo: { type: Type.STRING },
-                apto_lactancia: { type: Type.STRING },
-                apto_pediatria: { type: Type.STRING },
-                apto_diabeticos: { type: Type.STRING },
-                apto_hipertensos: { type: Type.STRING },
-                apto_celiacos: { type: Type.STRING }
+                categoria_principal: { type: Type.STRING, description: "Belleza, Medicamento, Suplemento, Homeopatía u Otro" },
+                analisis_componentes: { type: Type.STRING },
+                apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+                apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+                apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+                apto_diabeticos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+                apto_hipertensos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+                apto_celiacos: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
+                sugerencia_complementaria: { type: Type.STRING }
               },
               required: ["sku", "nombre_comercial"]
             }
@@ -579,27 +582,39 @@ export class GeminiService {
         }
       });
 
-      const cleanedData = JSON.parse(response.text || "[]");
+      const text = response.text;
+      if (!text) {
+        throw new Error("La IA no devolvió ninguna respuesta.");
+      }
+
+      const cleanedData = JSON.parse(text);
       
-      const mapSafety = (val: string): SafetyStatus => {
-        const v = String(val).toUpperCase();
+      const mapSafety = (val: any): SafetyStatus => {
+        const v = String(val || '').toUpperCase().trim();
         if (v === 'SI') return SafetyStatus.SI;
         if (v === 'NO') return SafetyStatus.NO;
         return SafetyStatus.PRECAUCION;
       };
 
       return cleanedData.map((p: any) => ({
-        ...p,
-        principios_activos: p.principios_activos || [],
-        indicaciones: p.indicaciones || [],
-        tags_ia: p.tags_ia || [],
+        sku: p.sku || `SKU-${Math.random().toString(36).substr(2, 9)}`,
+        nombre_comercial: p.nombre_comercial || "Producto sin nombre",
+        descripcion: p.descripcion || "",
+        principios_activos: Array.isArray(p.principios_activos) ? p.principios_activos : [],
+        posologia: p.posologia || "Consultar prospecto",
+        indicaciones: Array.isArray(p.indicaciones) ? p.indicaciones : [],
+        advertencias: p.advertencias || "",
+        tags_ia: Array.isArray(p.tags_ia) ? p.tags_ia : [],
+        categoria_principal: p.categoria_principal || 'Otro',
+        analisis_componentes: p.analisis_componentes || '',
+        vectores: [],
         apto_embarazo: mapSafety(p.apto_embarazo),
         apto_lactancia: mapSafety(p.apto_lactancia),
         apto_pediatria: mapSafety(p.apto_pediatria),
         apto_diabeticos: mapSafety(p.apto_diabeticos),
         apto_hipertensos: mapSafety(p.apto_hipertensos),
         apto_celiacos: mapSafety(p.apto_celiacos),
-        vectores: [],
+        sugerencia_complementaria: p.sugerencia_complementaria || "",
         skus_relacionados: [],
         synergy_analyzed: false,
         last_updated: Date.now()

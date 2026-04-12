@@ -82,8 +82,8 @@ export const DatabaseModule: React.FC = () => {
     setSyncStatus('IA analizando y limpiando datos (Normalización, Ortografía, Etiquetas)...');
     
     try {
-      // Procesar en lotes de 10 para no saturar el prompt
-      const batchSize = 10;
+      // Procesar en lotes de 5 para mayor fiabilidad y evitar límites de tokens
+      const batchSize = 5;
       const cleaned: Product[] = [];
       
       for (let i = 0; i < stagingProducts.length; i += batchSize) {
