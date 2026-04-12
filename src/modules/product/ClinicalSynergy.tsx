@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { getDB } from '../../core/database/db';
-import { Sparkles, Loader2, Link as LinkIcon, AlertCircle, Pill, ArrowRight, Clock } from 'lucide-react';
-import { formatArrayToString } from '../../utils/formatters';
+import { SynergyLoading } from './components/synergy/SynergyLoading';
+import { SynergyEmpty } from './components/synergy/SynergyEmpty';
+import { SynergySuggestion } from './components/synergy/SynergySuggestion';
+import { RelatedProductsList } from './components/synergy/RelatedProductsList';
 
 interface ClinicalSynergyProps {
   product: Product;
@@ -37,90 +39,27 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
     loadRelated();
   }, [product.sku, product.synergy_analyzed, product.skus_relacionados]);
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col items-center justify-center py-12 text-slate-500">
-        <Loader2 className="w-8 h-8 animate-spin mb-4 text-brand-primary" />
-        <p className="text-sm font-medium animate-pulse">Cargando sinergias...</p>
-      </div>
-    );
-  }
+  if (isLoading) return <SynergyLoading />;
 
-  if (!product.synergy_analyzed) {
-    return (
-      <div className="bg-brand-surface/30 rounded-3xl p-8 border border-slate-800/50 text-center space-y-4">
-        <div className="w-12 h-12 bg-brand-primary/10 text-brand-primary rounded-full flex items-center justify-center mx-auto">
-          <Clock className="w-6 h-6 animate-pulse" />
-        </div>
-        <h3 className="text-lg font-bold text-slate-300">Análisis en Segundo Plano</h3>
-        <p className="text-sm text-slate-500 max-w-xs mx-auto">
-          La IA local está analizando este producto en segundo plano para encontrar relaciones clínicas. Vuelve en unos momentos.
-        </p>
-      </div>
-    );
-  }
+  if (!product.synergy_analyzed) return <SynergyEmpty isAnalyzing={true} />;
 
   if (relatedProducts.length === 0 && !product.sugerencia_complementaria) {
-    return (
-      <div className="bg-slate-800/30 rounded-3xl p-8 border border-slate-800/50 text-center space-y-4">
-        <div className="w-12 h-12 bg-slate-800 text-slate-600 rounded-full flex items-center justify-center mx-auto">
-          <LinkIcon className="w-6 h-6" />
-        </div>
-        <h3 className="text-lg font-bold text-slate-400">Sin Sinergias Directas</h3>
-        <p className="text-sm text-slate-500 max-w-xs mx-auto">
-          No se han encontrado productos complementarios o similares en tu base de datos local para este medicamento.
-        </p>
-      </div>
-    );
+    return <SynergyEmpty isAnalyzing={false} />;
   }
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Explicación Clínica / Sugerencia */}
       {product.sugerencia_complementaria && (
-        <section className="bg-brand-primary/5 rounded-3xl p-6 border border-brand-primary/10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 opacity-10">
-            <Sparkles className="w-12 h-12 text-brand-primary" />
-          </div>
-          <h3 className="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-            <Sparkles className="w-4 h-4" /> Inteligencia de Sinergia
-          </h3>
-          <p className="text-slate-300 leading-relaxed text-sm italic">
-            "{product.sugerencia_complementaria}"
-          </p>
-        </section>
+        <SynergySuggestion suggestion={product.sugerencia_complementaria} />
       )}
 
-      {/* Productos Relacionados */}
       {relatedProducts.length > 0 && (
-        <section className="space-y-4">
-          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-            <LinkIcon className="w-4 h-4" /> Productos Complementarios o Similares
-          </h3>
-          <div className="grid grid-cols-1 gap-3">
-            {relatedProducts.map(relProduct => (
-              <button
-                key={relProduct.sku}
-                onClick={() => onProductClick?.(relProduct)}
-                className="flex items-center gap-4 p-4 bg-slate-800/30 hover:bg-slate-800/50 rounded-2xl border border-slate-800/50 transition-all group text-left"
-              >
-                <div className="p-3 bg-brand-bg rounded-xl text-brand-primary group-hover:scale-110 transition-transform">
-                  <Pill className="w-5 h-5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-slate-200 group-hover:text-white transition-colors truncate">
-                    {relProduct.nombre_comercial}
-                  </h4>
-                  <p className="text-xs text-slate-500 truncate">
-                    {formatArrayToString(relProduct.principios_activos, ', ')}
-                  </p>
-                </div>
-                <ArrowRight className="w-5 h-5 text-slate-600 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
-              </button>
-            ))}
-          </div>
-        </section>
+        <RelatedProductsList 
+          products={relatedProducts} 
+          onProductClick={onProductClick} 
+        />
       )}
     </div>
   );
 };
+

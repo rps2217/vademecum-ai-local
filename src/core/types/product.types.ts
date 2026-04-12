@@ -39,4 +39,5 @@ export interface Product {
   
   // Metadatos del Scraper
   source_url?: string;
+  last_updated?: number;
 }
