@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalSynergy } from './ClinicalSynergy';
 import { X, Sparkles, AlertCircle } from 'lucide-react';
