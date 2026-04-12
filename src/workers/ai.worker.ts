@@ -18,6 +18,7 @@ type WorkerMessage =
   | { type: 'EXTRACT'; payload: { text: string; url: string } }
   | { type: 'EMBED'; payload: { text: string } }
   | { type: 'ANALYZE'; payload: { query: string; context: string } }
+  | { type: 'NORMALIZE_TAG'; payload: { tag: string } }
   | { type: 'HEALTH_CHECK' }
   | { type: 'PURGE_CACHE' };
 
@@ -38,6 +39,9 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
       case 'ANALYZE':
         await analyzeText(msg.payload.query, msg.payload.context);
         break;
+      case 'NORMALIZE_TAG':
+        await normalizeTag(msg.payload.tag);
+        break;
       case 'HEALTH_CHECK':
         await runHealthCheck();
         break;
@@ -46,9 +50,40 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         break;
     }
   } catch (error: any) {
+    console.error('[Worker] Fatal Error:', error);
     self.postMessage({ type: 'ERROR', error: error.message || String(error) });
   }
 };
+
+// ... (purgeCache and initializeAI remain same)
+
+async function normalizeTag(tag: string) {
+  if (!isReady) throw new Error('IA no lista');
+
+  const prompt = `Normaliza esta etiqueta médica/farmacéutica. 
+  Si es un sinónimo o variante, usa el término canónico.
+  Etiqueta: "${tag}"
+  Respuesta (solo la etiqueta):`;
+
+  try {
+    let normalized = tag;
+    if (webLlmEngine) {
+      const response = await webLlmEngine.chat.completions.create({
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.1,
+        max_tokens: 10
+      });
+      normalized = response.choices[0].message.content || tag;
+    } else if (transformersPipeline) {
+      const result = await transformersPipeline(prompt, { max_new_tokens: 10, temperature: 0.1 });
+      normalized = result[0].generated_text.replace(prompt, '').trim();
+    }
+    
+    self.postMessage({ type: 'NORMALIZE_TAG_RESULT', payload: normalized.replace(/[".]/g, '') });
+  } catch (e: any) {
+    self.postMessage({ type: 'ERROR', error: e.message });
+  }
+}
 
 async function purgeCache() {
   try {

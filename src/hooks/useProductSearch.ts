@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Product, SafetyStatus } from '../core/types/product.types';
 import { getDB } from '../core/database/db';
 import { AIService } from '../services/AIService';
+import { TagIntelligenceService } from '../services/TagIntelligenceService';
+import { FirebaseSyncService } from '../services/FirebaseSyncService';
 import { formatArrayToString } from '../utils/formatters';
 
 // Índice en memoria para búsquedas ultra-rápidas
@@ -51,6 +53,7 @@ export const useProductSearch = () => {
   useEffect(() => {
     const loadIndex = async () => {
       try {
+        await TagIntelligenceService.init();
         const db = await getDB();
         const allProducts = await db.getAll('products');
         
@@ -72,54 +75,17 @@ export const useProductSearch = () => {
         // Extraer tags únicos y contarlos (Motor de Etiquetas Dinámico)
         const tagCounts: Record<string, number> = {};
         
-        // Función para normalizar y agrupar sinónimos de etiquetas
-        const normalizeTagForDisplay = (rawTag: string): string => {
-          let tag = rawTag.toLowerCase().trim();
-          
-          // Mapeo de sinónimos y correcciones ortográficas comunes
-          const synonymMap: Record<string, string> = {
-            'suplemento alimentario': 'suplemento alimenticio',
-            'suplemento dietario': 'suplemento alimenticio',
-            'suplementos alimenticios': 'suplemento alimenticio',
-            'analgesico': 'analgésico',
-            'antiinflamatorio': 'antiinflamatorio',
-            'multivitaminico': 'multivitamínico',
-            'vitamina': 'vitaminas',
-            'mineral': 'minerales',
-            'proteina': 'proteínas',
-            'proteinas': 'proteínas',
-            'antiseptico': 'antiséptico',
-            'antibiotico': 'antibiótico',
-            'antihistaminico': 'antihistamínico',
-            'corticosteroide': 'corticoides',
-            'corticoide': 'corticoides',
-            'dolor de cabeza': 'cefalea',
-            'hipertension': 'hipertensión',
-            'infeccion': 'infección',
-            'infecciones': 'infección'
-          };
-
-          // Remover acentos solo para la búsqueda en el diccionario
-          const tagNoAccents = tag.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-          
-          // Buscar coincidencia exacta primero
-          if (synonymMap[tag]) return synonymMap[tag];
-          // Buscar coincidencia sin acentos
-          if (synonymMap[tagNoAccents]) return synonymMap[tagNoAccents];
-
-          return tag; 
-        };
-
-        allProducts.forEach(p => {
+        // Procesar todos los tags de todos los productos
+        for (const p of allProducts) {
           if (p.tags_ia && Array.isArray(p.tags_ia)) {
-            p.tags_ia.forEach(tag => {
-              const cleanTag = normalizeTagForDisplay(tag);
+            for (const tag of p.tags_ia) {
+              const cleanTag = await TagIntelligenceService.normalizeTag(tag);
               if (cleanTag) {
                 tagCounts[cleanTag] = (tagCounts[cleanTag] || 0) + 1;
               }
-            });
+            }
           }
-        });
+        }
         
         // Convertir a array, ordenar por frecuencia y tomar los top 60
         const sortedTags = Object.entries(tagCounts)
@@ -155,9 +121,15 @@ export const useProductSearch = () => {
 
     loadIndex();
 
+    // Sincronizar etiquetas en tiempo real
+    const unsubscribeTags = FirebaseSyncService.startTagSync();
+
     // Escuchar cambios en la base de datos para re-indexar automáticamente
     window.addEventListener('db_updated', loadIndex);
-    return () => window.removeEventListener('db_updated', loadIndex);
+    return () => {
+      window.removeEventListener('db_updated', loadIndex);
+      unsubscribeTags();
+    };
   }, []);
 
   useEffect(() => {

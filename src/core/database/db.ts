@@ -17,20 +17,31 @@ interface VademecumDB extends DBSchema {
       version: string;
     };
   };
+  tag_mappings: {
+    key: string;
+    value: {
+      raw: string;
+      normalized: string;
+      last_updated: number;
+    };
+  };
 }
 
 let dbPromise: Promise<IDBPDatabase<VademecumDB>> | null = null;
 
 export const getDB = () => {
   if (!dbPromise) {
-    dbPromise = openDB<VademecumDB>('vademecum-db', 1, {
-      upgrade(db) {
-        if (!db.objectStoreNames.contains('products')) {
+    dbPromise = openDB<VademecumDB>('vademecum-db', 2, {
+      upgrade(db, oldVersion) {
+        if (oldVersion < 1) {
           const productStore = db.createObjectStore('products', { keyPath: 'sku' });
           productStore.createIndex('by-nombre', 'nombre_comercial');
-        }
-        if (!db.objectStoreNames.contains('sync_metadata')) {
           db.createObjectStore('sync_metadata', { keyPath: 'id' });
+        }
+        if (oldVersion < 2) {
+          if (!db.objectStoreNames.contains('tag_mappings')) {
+            db.createObjectStore('tag_mappings', { keyPath: 'raw' });
+          }
         }
       },
     });

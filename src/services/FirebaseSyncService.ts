@@ -135,5 +135,44 @@ export const FirebaseSyncService = {
     } catch (error) {
       console.error('[FirebaseSync] Error liberando candado y guardando:', error);
     }
+  },
+
+  /**
+   * Guarda un mapeo de etiquetas en Firestore
+   */
+  saveTagMapping: async (raw: string, normalized: string) => {
+    try {
+      if (!auth.currentUser) return;
+      const docRef = doc(db, 'tag_mappings', raw);
+      await setDoc(docRef, { raw, normalized, last_updated: Date.now() });
+    } catch (error) {
+      console.warn('[FirebaseSync] No se pudo guardar mapeo de etiquetas:', error);
+    }
+  },
+
+  /**
+   * Sincroniza mapeos de etiquetas en tiempo real
+   */
+  startTagSync: () => {
+    const tagsRef = collection(db, 'tag_mappings');
+    const unsubscribe = onSnapshot(tagsRef, async (snapshot) => {
+      const localDb = await getDB();
+      const tx = localDb.transaction('tag_mappings', 'readwrite');
+      
+      snapshot.docChanges().forEach(async (change) => {
+        const mapping = change.doc.data() as { raw: string, normalized: string, last_updated: number };
+        if (change.type === 'added' || change.type === 'modified') {
+          await tx.store.put(mapping);
+        } else if (change.type === 'removed') {
+          await tx.store.delete(mapping.raw);
+        }
+      });
+      
+      await tx.done;
+    }, (error) => {
+      console.warn('[FirebaseSync] Error sincronizando etiquetas:', error);
+    });
+
+    return unsubscribe;
   }
 };

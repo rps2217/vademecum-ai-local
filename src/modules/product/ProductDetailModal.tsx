@@ -83,7 +83,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         <div id="product-detail-left-col" className="w-full md:w-3/5 p-4 md:p-8 overflow-y-auto border-r border-slate-800 relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           
           <div className="relative">
-            <ProductHeader product={product} />
+            <ProductHeader product={product} onTagClick={onTagClick} />
             <div className="absolute top-6 right-6 md:top-8 md:right-8">
               <ProductActions 
                 product={product}

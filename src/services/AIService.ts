@@ -278,6 +278,23 @@ export class AIService {
     });
   }
 
+  static async normalizeTag(tag: string): Promise<string | null> {
+    if (!this.worker || !this.isReady) return null;
+
+    return new Promise((resolve) => {
+      const handler = (e: MessageEvent) => {
+        const { type, payload, error } = e.data;
+        if (type === 'NORMALIZE_TAG_RESULT' || type === 'ERROR') {
+          this.worker?.removeEventListener('message', handler);
+          if (error) resolve(null);
+          else resolve(payload);
+        }
+      };
+      this.worker?.addEventListener('message', handler);
+      this.worker?.postMessage({ type: 'NORMALIZE_TAG', payload: { tag } });
+    });
+  }
+
   static async runHealthCheck(): Promise<{ ok: boolean; engine: string; response?: string; error?: string }> {
     if (!this.worker || !this.isReady) {
         return { ok: false, engine: 'Ninguno', error: 'Worker no iniciado' };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { Cpu, ShieldCheck, Settings, AlertTriangle, Download, Upload, FileJson, Loader2 } from 'lucide-react';
 import { SystemDiagnostics } from '../../components/settings/SystemDiagnostics';
+import { TagManager } from '../../components/settings/TagManager';
 import { DataService } from '../../services/DataService';
 
 export const SettingsModule: React.FC = () => {
@@ -151,7 +152,14 @@ export const SettingsModule: React.FC = () => {
       </div>
 
       {/* Diagnóstico del Sistema */}
-      <SystemDiagnostics />
+      <div className="mb-6">
+        <SystemDiagnostics />
+      </div>
+
+      {/* Gestión de Etiquetas Inteligentes */}
+      <div className="mb-6">
+        <TagManager />
+      </div>
 
       {/* Tarjeta de Estado del Sistema */}
       <div className="bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-800 mt-6">

@@ -7,6 +7,7 @@ import { SearchBar } from './components/SearchBar';
 import { SafetyFilters } from './components/SafetyFilters';
 import { TagCloud } from './components/TagCloud';
 import { SearchResults } from './components/SearchResults';
+import { AIAnalysisModal } from './components/AIAnalysisModal';
 
 export const SearchModule: React.FC = () => {
   const { 
@@ -20,6 +21,7 @@ export const SearchModule: React.FC = () => {
   } = useProductSearch();
   
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toggleProduct, isInTray } = useTray();
 
   const handleTagClick = (tag: string) => {
@@ -40,6 +42,7 @@ export const SearchModule: React.FC = () => {
           query={query} 
           setQuery={setQuery} 
           isSearching={isSearching} 
+          onAiQuery={() => setShowAiAnalysis(true)}
         />
         <SafetyFilters 
           conditionFilters={conditionFilters} 
@@ -70,6 +73,15 @@ export const SearchModule: React.FC = () => {
           onClearFilters={handleClearAll}
         />
       </div>
+
+      {/* Modal de Análisis IA */}
+      {showAiAnalysis && (
+        <AIAnalysisModal 
+          query={query}
+          results={results}
+          onClose={() => setShowAiAnalysis(false)}
+        />
+      )}
 
       {/* Modal de Detalle Individual */}
       {selectedProduct && (
