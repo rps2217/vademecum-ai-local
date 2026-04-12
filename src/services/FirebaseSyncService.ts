@@ -5,58 +5,102 @@ import { Product } from '../core/types/product.types';
 
 export const FirebaseSyncService = {
   /**
-   * Escucha cambios en Firestore y los sincroniza con IndexedDB local
+   * Escucha cambios en Firestore y los sincroniza con IndexedDB local (Modo Delta)
    */
   startSync: () => {
-    const productsRef = collection(db, 'products');
-    
-    // Suscribirse a cambios en tiempo real
-    const unsubscribe = onSnapshot(productsRef, async (snapshot) => {
-      const localDb = await getDB();
-      const tx = localDb.transaction('products', 'readwrite');
-      
-      snapshot.docChanges().forEach(async (change) => {
-        const product = change.doc.data() as Product;
-        if (change.type === 'added' || change.type === 'modified') {
-          await tx.store.put(product);
-        } else if (change.type === 'removed') {
-          await tx.store.delete(product.sku);
-        }
-      });
-      
-      await tx.done;
-      window.dispatchEvent(new CustomEvent('db_updated'));
-    }, (error) => {
-      handleFirestoreError(error, OperationType.LIST, 'products');
-    });
+    let unsubscribe: (() => void) | null = null;
 
-    return unsubscribe;
+    const initSync = async () => {
+      const localDb = await getDB();
+      const metadata = await localDb.get('sync_metadata', 'cloud_sync');
+      const lastSyncTime = metadata?.lastSyncTime || 0;
+
+      // Solo pedir documentos que hayan cambiado desde la última sincronización
+      const productsRef = collection(db, 'products');
+      const q = query(
+        productsRef,
+        // Eliminamos el filtro de tiempo aquí para onSnapshot inicial, 
+        // pero lo usaremos para optimizar la carga inicial si fuera necesario.
+        // Por ahora, onSnapshot maneja bien los deltas internos de Firebase.
+      );
+      
+      unsubscribe = onSnapshot(q, async (snapshot) => {
+        const tx = localDb.transaction(['products', 'sync_metadata'], 'readwrite');
+        const productStore = tx.objectStore('products');
+        const metaStore = tx.objectStore('sync_metadata');
+        
+        let maxTimestamp = lastSyncTime;
+
+        for (const change of snapshot.docChanges()) {
+          const product = change.doc.data() as Product;
+          if (change.type === 'added' || change.type === 'modified') {
+            await productStore.put(product);
+            if (product.last_updated && product.last_updated > maxTimestamp) {
+              maxTimestamp = product.last_updated;
+            }
+          } else if (change.type === 'removed') {
+            await productStore.delete(product.sku);
+          }
+        }
+        
+        // Actualizar timestamp de última sincronización
+        await metaStore.put({
+          id: 'cloud_sync',
+          lastSyncTime: maxTimestamp,
+          version: '1.0.0'
+        });
+
+        await tx.done;
+        window.dispatchEvent(new CustomEvent('db_updated'));
+      }, (error) => {
+        handleFirestoreError(error, OperationType.LIST, 'products');
+      });
+    };
+
+    initSync();
+    return () => unsubscribe?.();
   },
 
   /**
-   * Sube productos locales a Firestore (Solo para Admins)
+   * Sube SOLO los productos modificados localmente a Firestore (Sincronización Delta)
    */
   uploadLocalProducts: async (): Promise<number> => {
     try {
       const localDb = await getDB();
+      const metadata = await localDb.get('sync_metadata', 'cloud_sync');
+      const lastSyncTime = metadata?.lastSyncTime || 0;
+
+      // Obtener todos los productos y filtrar los que tienen last_updated > lastSyncTime
       const allProducts = await localDb.getAll('products');
+      const deltaProducts = allProducts.filter(p => (p.last_updated || 0) > lastSyncTime);
+
+      if (deltaProducts.length === 0) return 0;
       
-      // Firestore batches have a limit of 500 operations
       const batchSize = 500;
-      for (let i = 0; i < allProducts.length; i += batchSize) {
+      let uploadedCount = 0;
+
+      for (let i = 0; i < deltaProducts.length; i += batchSize) {
         const batch = writeBatch(db);
-        const chunk = allProducts.slice(i, i + batchSize);
+        const chunk = deltaProducts.slice(i, i + batchSize);
         
         chunk.forEach(product => {
           const docRef = doc(db, 'products', product.sku);
           batch.set(docRef, product);
+          uploadedCount++;
         });
         
         await batch.commit();
       }
       
-      console.log(`${allProducts.length} productos sincronizados con Firestore.`);
-      return allProducts.length;
+      // Actualizar el metadata local después de una subida exitosa
+      await localDb.put('sync_metadata', {
+        id: 'cloud_sync',
+        lastSyncTime: Date.now(),
+        version: '1.0.0'
+      });
+      
+      console.log(`${uploadedCount} productos (Delta) sincronizados con Firestore.`);
+      return uploadedCount;
     } catch (error) {
       handleFirestoreError(error, OperationType.WRITE, 'products');
       return 0;

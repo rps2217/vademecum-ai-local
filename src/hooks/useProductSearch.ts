@@ -142,44 +142,68 @@ export const useProductSearch = () => {
       try {
         const searchTerms = normalizeText(query).split(' ').filter(t => t.length > 0);
         
-        // 1. Búsqueda por Texto (Exacta/Keyword)
+        // 1. Búsqueda por Texto (Exacta/Keyword) - Peso 1.0
         let textFiltered = searchIndex.current;
+        const textResults = new Map<string, { product: Product, score: number }>();
         
         if (searchTerms.length > 0) {
-          textFiltered = textFiltered.filter(item => {
-            return searchTerms.every(term => item.searchableText.includes(term));
+          textFiltered.forEach(item => {
+            let matchCount = 0;
+            searchTerms.forEach(term => {
+              if (item.searchableText.includes(term)) matchCount++;
+            });
+            
+            if (matchCount > 0) {
+              // Puntuación basada en cuántos términos coinciden
+              const score = matchCount / searchTerms.length;
+              textResults.set(item.sku, { product: item.product, score });
+            }
           });
         }
 
-        // 2. Búsqueda Semántica (Si hay motor de IA listo y hay query)
-        let semanticFiltered: { product: Product, score: number }[] = [];
-        
+        // 2. Búsqueda Semántica (IA) - Peso Variable
+        const semanticResults = new Map<string, { product: Product, score: number }>();
         const status = AIService.getStatus();
+        
         if (status.isReady && query.trim().length > 3) {
           const queryVector = await AIService.generateEmbedding(query);
           
-          semanticFiltered = searchIndex.current
-            .filter(item => item.vector && item.vector.length > 0)
-            .map(item => ({
-              product: item.product,
-              score: cosineSimilarity(queryVector, item.vector!)
-            }))
-            .filter(item => item.score > 0.65) // Umbral de similitud
-            .sort((a, b) => b.score - a.score);
+          searchIndex.current.forEach(item => {
+            if (item.vector && item.vector.length > 0) {
+              const similarity = cosineSimilarity(queryVector, item.vector);
+              if (similarity > 0.7) { // Umbral de relevancia semántica
+                semanticResults.set(item.sku, { product: item.product, score: similarity });
+              }
+            }
+          });
         }
 
-        // Combinar y eliminar duplicados
-        let combined = [...textFiltered.map(i => i.product)];
-        const seenSkus = new Set(combined.map(p => p.sku));
+        // 3. Combinación Inteligente (Hybrid Search)
+        // Damos prioridad a coincidencias de texto exactas pero permitimos que la semántica eleve resultados
+        const finalResultsMap = new Map<string, { product: Product, finalScore: number }>();
         
-        for (const item of semanticFiltered) {
-          if (!seenSkus.has(item.product.sku)) {
-            combined.push(item.product);
-            seenSkus.add(item.product.sku);
+        // Procesar resultados de texto
+        textResults.forEach((val, sku) => {
+          const semantic = semanticResults.get(sku);
+          const semanticScore = semantic ? semantic.score : 0;
+          // Fórmula: 70% Texto + 30% Semántica para resultados que tienen ambos
+          const finalScore = (val.score * 0.7) + (semanticScore * 0.3);
+          finalResultsMap.set(sku, { product: val.product, finalScore });
+        });
+        
+        // Añadir resultados puramente semánticos (que no coincidieron por texto)
+        semanticResults.forEach((val, sku) => {
+          if (!finalResultsMap.has(sku)) {
+            // Penalizamos un poco los puramente semánticos para que no desplacen a los de texto exacto
+            finalResultsMap.set(sku, { product: val.product, finalScore: val.score * 0.8 });
           }
-        }
+        });
 
-        // 3. Aplicar Filtro de Seguridad (Si está activo)
+        let combined = Array.from(finalResultsMap.values())
+          .sort((a, b) => b.finalScore - a.finalScore)
+          .map(i => i.product);
+
+        // 4. Aplicar Filtro de Seguridad (Si está activo)
         if (conditionFilters.length > 0) {
           combined = combined.filter(p => {
             // El producto debe ser APTO (SafetyStatus.SI) para TODAS las condiciones seleccionadas

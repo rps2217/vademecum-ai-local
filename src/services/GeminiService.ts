@@ -520,4 +520,93 @@ export class GeminiService {
       };
     }
   }
+
+  static async cleanAndValidateProducts(products: Partial<Product>[]): Promise<Product[]> {
+    try {
+      const ai = this.getAI();
+      
+      const prompt = `Actúa como un experto en Data Engineering Farmacéutico y Editor Clínico.
+      Tu tarea es limpiar, normalizar y validar la siguiente lista de productos farmacéuticos.
+      
+      PRODUCTOS A PROCESAR:
+      ${JSON.stringify(products.map(p => ({
+        sku: p.sku,
+        nombre: p.nombre_comercial,
+        descripcion: p.descripcion,
+        principios: p.principios_activos,
+        tags: p.tags_ia,
+        categoria: p.categoria_principal
+      })))}
+      
+      REGLAS DE LIMPIEZA:
+      1. **Normalización de Principios Activos**: Unifica nombres (ej. "Vit. C" -> "Vitamina C"). Usa nombres genéricos estándar.
+      2. **Corrección Ortográfica**: Corrige errores en nombres comerciales y descripciones.
+      3. **Validación de Etiquetas**: Asegúrate de que los tags_ia tengan sentido clínico y ortografía correcta.
+      4. **Clasificación**: Asegura que categoria_principal sea uno de: "Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro".
+      5. **Deduplicación Semántica**: Si detectas que dos productos son el mismo pero con nombres ligeramente distintos, unifícalos si es posible o mantén el más completo.
+      
+      Devuelve la lista completa de productos limpios en el formato JSON original.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                sku: { type: Type.STRING },
+                nombre_comercial: { type: Type.STRING },
+                descripcion: { type: Type.STRING },
+                principios_activos: { type: Type.ARRAY, items: { type: Type.STRING } },
+                posologia: { type: Type.STRING },
+                indicaciones: { type: Type.ARRAY, items: { type: Type.STRING } },
+                advertencias: { type: Type.STRING },
+                tags_ia: { type: Type.ARRAY, items: { type: Type.STRING } },
+                categoria_principal: { type: Type.STRING },
+                apto_embarazo: { type: Type.STRING },
+                apto_lactancia: { type: Type.STRING },
+                apto_pediatria: { type: Type.STRING },
+                apto_diabeticos: { type: Type.STRING },
+                apto_hipertensos: { type: Type.STRING },
+                apto_celiacos: { type: Type.STRING }
+              },
+              required: ["sku", "nombre_comercial"]
+            }
+          }
+        }
+      });
+
+      const cleanedData = JSON.parse(response.text || "[]");
+      
+      const mapSafety = (val: string): SafetyStatus => {
+        const v = String(val).toUpperCase();
+        if (v === 'SI') return SafetyStatus.SI;
+        if (v === 'NO') return SafetyStatus.NO;
+        return SafetyStatus.PRECAUCION;
+      };
+
+      return cleanedData.map((p: any) => ({
+        ...p,
+        principios_activos: p.principios_activos || [],
+        indicaciones: p.indicaciones || [],
+        tags_ia: p.tags_ia || [],
+        apto_embarazo: mapSafety(p.apto_embarazo),
+        apto_lactancia: mapSafety(p.apto_lactancia),
+        apto_pediatria: mapSafety(p.apto_pediatria),
+        apto_diabeticos: mapSafety(p.apto_diabeticos),
+        apto_hipertensos: mapSafety(p.apto_hipertensos),
+        apto_celiacos: mapSafety(p.apto_celiacos),
+        vectores: [],
+        skus_relacionados: [],
+        synergy_analyzed: false,
+        last_updated: Date.now()
+      }));
+    } catch (error) {
+      console.error("[GeminiService] Error en limpieza masiva:", error);
+      throw error;
+    }
+  }
 }
