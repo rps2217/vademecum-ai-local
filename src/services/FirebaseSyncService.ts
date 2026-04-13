@@ -141,34 +141,43 @@ export const FirebaseSyncService = {
    * Intenta adquirir un candado para procesar un producto de forma distribuida
    */
   claimProductLock: async (sku: string, userId: string): Promise<boolean> => {
-    try {
-      const docRef = doc(db, 'products', sku);
-      const success = await runTransaction(db, async (transaction) => {
-        const sfDoc = await transaction.get(docRef);
-        if (!sfDoc.exists()) return false;
+    const maxRetries = 3;
+    for (let i = 0; i < maxRetries; i++) {
+      try {
+        const docRef = doc(db, 'products', sku);
+        const success = await runTransaction(db, async (transaction) => {
+          const sfDoc = await transaction.get(docRef);
+          if (!sfDoc.exists()) return false;
 
-        const data = sfDoc.data() as Product;
-        const now = Date.now();
-        const lockTime = data.lock_timestamp || 0;
-        const lockUid = data.lock_uid;
+          const data = sfDoc.data() as Product;
+          const now = Date.now();
+          const lockTime = data.lock_timestamp || 0;
+          const lockUid = data.lock_uid;
 
-        // Si está bloqueado por otro y el bloqueo tiene menos de 5 minutos, rechazar
-        if (lockUid && lockUid !== userId && (now - lockTime) < 5 * 60 * 1000) {
-          return false;
-        }
+          // Si está bloqueado por otro y el bloqueo tiene menos de 5 minutos, rechazar
+          if (lockUid && lockUid !== userId && (now - lockTime) < 5 * 60 * 1000) {
+            return false;
+          }
 
-        // Adquirir el candado
-        transaction.update(docRef, {
-          lock_uid: userId,
-          lock_timestamp: now
+          // Adquirir el candado
+          transaction.update(docRef, {
+            lock_uid: userId,
+            lock_timestamp: now
+          });
+          return true;
         });
-        return true;
-      });
-      return success;
-    } catch (e) {
-      console.warn("[FirebaseSync] No se pudo adquirir el candado:", e);
-      return false;
+        return success;
+      } catch (e: any) {
+        if (e.code === 'failed-precondition' && i < maxRetries - 1) {
+          console.warn(`[FirebaseSync] Conflicto en transacción, reintentando (${i + 1}/${maxRetries})...`);
+          await new Promise(resolve => setTimeout(resolve, 100 * (i + 1)));
+          continue;
+        }
+        console.warn("[FirebaseSync] No se pudo adquirir el candado:", e);
+        return false;
+      }
     }
+    return false;
   },
 
   /**

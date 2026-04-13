@@ -7,7 +7,8 @@ export class GeminiService {
 
   private static getAI() {
     if (!this.ai) {
-      const apiKey = process.env.GEMINI_API_KEY;
+      // Intentar usar el nuevo secreto primero, si no, el original
+      const apiKey = process.env.MY_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
       
       if (!apiKey) {
         throw new Error("GEMINI_API_KEY no configurada.");
@@ -68,7 +69,21 @@ export class GeminiService {
         }
       });
 
-      const data = JSON.parse(response.text || "{}");
+      const responseText = response.text || "{}";
+      
+      let data: any;
+      try {
+        data = JSON.parse(responseText);
+      } catch (e) {
+        console.error("[GeminiService] Error parsing JSON, attempting to extract from Markdown:", responseText);
+        const match = responseText.match(/\{[\s\S]*\}/);
+        if (match) {
+          data = JSON.parse(match[0]);
+        } else {
+          throw new Error("No se pudo extraer JSON válido de la respuesta.");
+        }
+      }
+      
       if (!data.nombre_comercial) return null;
 
       const mapSafety = (val: string): SafetyStatus => {
