@@ -145,29 +145,29 @@ main();`;
 
   return (
     <div className="w-full max-w-5xl mx-auto pb-20 animate-in fade-in duration-300">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-          <Monitor className="w-6 h-6 text-indigo-400" />
-          Instalación del Motor Local (PC)
+      <div className="mb-8 px-2">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+          <Monitor className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400" />
+          Instalación del Motor Local
         </h2>
-        <p className="text-slate-400 mt-1">
+        <p className="text-sm sm:text-base text-slate-400 mt-2">
           Sigue estos pasos para activar la IA potente en tu computadora y alimentar este sistema.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Columna Izquierda: Pasos */}
         <div className="lg:col-span-2 space-y-6">
           {/* Paso 1: Requisitos */}
-          <section className="bg-slate-900 rounded-3xl p-8 border border-slate-800 relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-6 opacity-5">
+          <section className="bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-6 opacity-5 hidden sm:block">
               <Package className="w-24 h-24 text-white" />
             </div>
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-3">
+            <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-3">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">1</span>
               Requisitos Previos
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a 
                 href="https://nodejs.org/" 
                 target="_blank" 
@@ -180,7 +180,7 @@ main();`;
                   </div>
                   <div>
                     <p className="text-sm font-bold text-slate-200">Node.js</p>
-                    <p className="text-xs text-slate-500">Entorno de ejecución</p>
+                    <p className="text-[10px] text-slate-500 uppercase tracking-wider">Entorno base</p>
                   </div>
                 </div>
                 <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-indigo-400" />
@@ -197,7 +197,7 @@ main();`;
                   </div>
                   <div>
                     <p className="text-sm font-bold text-slate-200">Ollama</p>
-                    <p className="text-xs text-slate-500">Motor de IA Local</p>
+                    <p className="text-[10px] text-slate-500 uppercase tracking-wider">IA Local</p>
                   </div>
                 </div>
                 <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-indigo-400" />
@@ -206,19 +206,19 @@ main();`;
           </section>
 
           {/* Paso 2: El Asistente */}
-          <section className="bg-slate-900 rounded-3xl p-8 border border-slate-800">
+          <section className="bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-800">
             <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-3">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 text-sm">2</span>
-              Ejecutar el Asistente de Configuración
+              Asistente de Configuración
             </h3>
             <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-              Hemos creado un script que automatiza toda la instalación de librerías, navegadores y modelos de IA por ti.
+              Automatiza la instalación de librerías, navegadores y modelos de IA.
             </p>
             
-            <div className="bg-slate-950 rounded-2xl border border-slate-800 p-6 space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Terminal / CMD</span>
-                <div className="flex gap-4">
+            <div className="bg-slate-950 rounded-2xl border border-slate-800 p-4 sm:p-6 space-y-4">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Terminal / CMD</span>
+                <div className="flex flex-wrap gap-4">
                   <button 
                     onClick={handleDownloadWizard}
                     className="flex items-center gap-2 text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
@@ -235,7 +235,7 @@ main();`;
                   </button>
                 </div>
               </div>
-              <code className="block font-mono text-sm text-indigo-300 bg-indigo-500/5 p-4 rounded-xl border border-indigo-500/10">
+              <code className="block font-mono text-xs sm:text-sm text-indigo-300 bg-indigo-500/5 p-4 rounded-xl border border-indigo-500/10 overflow-x-auto">
                 node setup_wizard.js
               </code>
             </div>

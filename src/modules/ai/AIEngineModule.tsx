@@ -210,29 +210,29 @@ export const AIEngineModule: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto pb-20 px-4 animate-in fade-in duration-500">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-brand-primary/10 rounded-2xl">
-            <Cpu className="w-8 h-8 text-brand-primary" />
+          <div className="p-2.5 sm:p-3 bg-brand-primary/10 rounded-2xl shrink-0">
+            <Cpu className="w-6 h-6 sm:w-8 sm:h-8 text-brand-primary" />
           </div>
           <div>
-            <h2 className="text-3xl font-extrabold text-white tracking-tight">AI Engine Dashboard</h2>
-            <p className="text-slate-400 font-medium">Monitor de inferencia local y gestión de modelos Transformers.js</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">AI Engine Dashboard</h2>
+            <p className="text-xs sm:text-sm text-slate-400 font-medium">Monitor de inferencia local y gestión de modelos Transformers.js</p>
           </div>
         </div>
         
-        <div className="flex gap-3">
+        <div className="flex gap-3 w-full sm:w-auto">
           <button 
             onClick={() => AIService.startEngine()}
             disabled={status.isReady || status.isInitializing}
-            className="flex items-center gap-2 px-5 py-2.5 bg-brand-primary text-white rounded-2xl hover:bg-brand-primary/80 transition-all font-bold shadow-lg disabled:opacity-50"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-primary text-white rounded-2xl hover:bg-brand-primary/80 transition-all font-bold shadow-lg disabled:opacity-50 text-sm"
           >
-            <Play className="w-4 h-4" /> Iniciar Motor
+            <Play className="w-4 h-4" /> Iniciar
           </button>
           <button 
             onClick={() => AIService.stopEngine()}
             disabled={!status.isReady}
-            className="flex items-center gap-2 px-5 py-2.5 bg-slate-800 text-slate-300 rounded-2xl hover:bg-red-500/10 hover:text-red-400 transition-all font-bold border border-slate-700"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-800 text-slate-300 rounded-2xl hover:bg-red-500/10 hover:text-red-400 transition-all font-bold border border-slate-700 text-sm"
           >
             <Pause className="w-4 h-4" /> Detener
           </button>

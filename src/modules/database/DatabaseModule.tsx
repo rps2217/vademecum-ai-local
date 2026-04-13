@@ -393,8 +393,8 @@ export const DatabaseModule: React.FC = () => {
 
       {/* Main Database Table */}
       <div className="bg-brand-surface border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
-        <div className="p-6 border-b border-slate-800 bg-slate-950/30 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-4">
+        <div className="p-4 sm:p-6 border-b border-slate-800 bg-slate-950/30 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
             <span className="text-lg font-bold text-white">Registros Locales</span>
             <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-bold border border-brand-primary/20">
               {products.length} Total
@@ -436,89 +436,145 @@ export const DatabaseModule: React.FC = () => {
             <p className="text-slate-500 font-medium">No se encontraron registros en la base de datos local.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-950/50 border-b border-slate-800 text-slate-500">
-                <tr>
-                  <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">SKU / Origen</th>
-                  <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Producto Farmacéutico</th>
-                  <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Perfil IA</th>
-                  <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Nube</th>
-                  <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px] text-right">Acciones</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/50">
-                {currentProducts.map((product) => {
-                  const isSynced = product.last_updated && product.last_updated <= lastSyncTime;
-                  return (
-                  <tr key={product.sku} className="hover:bg-brand-primary/5 transition-colors group">
-                    <td className="px-6 py-4">
-                      <div className="font-mono text-[10px] text-slate-500 mb-1">{product.sku}</div>
-                      {product.source_url ? (
-                        <a href={product.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[10px] text-indigo-400 hover:text-indigo-300 transition-colors">
-                          <ExternalLink className="w-3 h-3" /> Fuente Web
-                        </a>
-                      ) : (
-                        <span className="text-[10px] text-slate-600 italic">Importado</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="font-bold text-white text-base mb-1">{product.nombre_comercial}</div>
-                      <div className="flex flex-wrap gap-1">
-                        {product.principios_activos.slice(0, 3).map((pa, i) => (
-                          <span key={i} className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-md text-[10px] font-medium">
-                            {pa}
-                          </span>
-                        ))}
-                        {product.principios_activos.length > 3 && (
-                          <span className="text-[10px] text-slate-600 font-bold">+{product.principios_activos.length - 3}</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className={`w-2 h-2 rounded-full ${product.synergy_analyzed ? 'bg-emerald-500' : 'bg-slate-700'}`} />
-                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                            {product.synergy_analyzed ? 'Sinergia OK' : 'Pendiente IA'}
-                          </span>
-                        </div>
-                        <div className="flex flex-wrap gap-1">
-                          {product.tags_ia.slice(0, 2).map(tag => (
-                            <span key={tag} className="text-[9px] text-brand-primary font-bold uppercase">{tag}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      {isSynced ? (
-                        <div className="flex items-center gap-1 text-emerald-400" title="Sincronizado con la nube">
-                          <CheckCircle2 className="w-4 h-4" />
-                          <span className="text-[9px] font-bold uppercase">OK</span>
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-1 text-amber-400" title="Solo local / Pendiente de backup">
-                          <RefreshCw className="w-4 h-4" />
-                          <span className="text-[9px] font-bold uppercase">Local</span>
-                        </div>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button 
-                          onClick={() => handleDelete(product.sku)}
-                          className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all"
-                          title="Eliminar de local"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
+          <>
+            {/* Vista de Tabla (Desktop) */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-950/50 border-b border-slate-800 text-slate-500">
+                  <tr>
+                    <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">SKU / Origen</th>
+                    <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Producto Farmacéutico</th>
+                    <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Perfil IA</th>
+                    <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px]">Nube</th>
+                    <th className="px-6 py-4 font-bold uppercase tracking-wider text-[10px] text-right">Acciones</th>
                   </tr>
-                )})}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-slate-800/50">
+                  {currentProducts.map((product) => {
+                    const isSynced = product.last_updated && product.last_updated <= lastSyncTime;
+                    return (
+                    <tr key={product.sku} className="hover:bg-brand-primary/5 transition-colors group">
+                      <td className="px-6 py-4">
+                        <div className="font-mono text-[10px] text-slate-500 mb-1">{product.sku}</div>
+                        {product.source_url ? (
+                          <a href={product.source_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[10px] text-indigo-400 hover:text-indigo-300 transition-colors">
+                            <ExternalLink className="w-3 h-3" /> Fuente Web
+                          </a>
+                        ) : (
+                          <span className="text-[10px] text-slate-600 italic">Importado</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="font-bold text-white text-base mb-1">{product.nombre_comercial}</div>
+                        <div className="flex flex-wrap gap-1">
+                          {product.principios_activos.slice(0, 3).map((pa, i) => (
+                            <span key={i} className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-md text-[10px] font-medium">
+                              {pa}
+                            </span>
+                          ))}
+                          {product.principios_activos.length > 3 && (
+                            <span className="text-[10px] text-slate-600 font-bold">+{product.principios_activos.length - 3}</span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex flex-col gap-2">
+                          <div className="flex items-center gap-2">
+                            <span className={`w-2 h-2 rounded-full ${product.synergy_analyzed ? 'bg-emerald-500' : 'bg-slate-700'}`} />
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                              {product.synergy_analyzed ? 'Sinergia OK' : 'Pendiente IA'}
+                            </span>
+                          </div>
+                          <div className="flex flex-wrap gap-1">
+                            {product.tags_ia.slice(0, 2).map(tag => (
+                              <span key={tag} className="text-[9px] text-brand-primary font-bold uppercase">{tag}</span>
+                            ))}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        {isSynced ? (
+                          <div className="flex items-center gap-1 text-emerald-400" title="Sincronizado con la nube">
+                            <CheckCircle2 className="w-4 h-4" />
+                            <span className="text-[9px] font-bold uppercase">OK</span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-1 text-amber-400" title="Solo local / Pendiente de backup">
+                            <RefreshCw className="w-4 h-4" />
+                            <span className="text-[9px] font-bold uppercase">Local</span>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button 
+                            onClick={() => handleDelete(product.sku)}
+                            className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all"
+                            title="Eliminar de local"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )})}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Vista de Tarjetas (Mobile) */}
+            <div className="md:hidden divide-y divide-slate-800">
+              {currentProducts.map((product) => {
+                const isSynced = product.last_updated && product.last_updated <= lastSyncTime;
+                return (
+                  <div key={product.sku} className="p-4 space-y-3">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <div className="font-bold text-white text-lg">{product.nombre_comercial}</div>
+                        <div className="font-mono text-[10px] text-slate-500">{product.sku}</div>
+                      </div>
+                      <button 
+                        onClick={() => handleDelete(product.sku)}
+                        className="p-2 text-slate-500 hover:text-red-400"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-1">
+                      {product.principios_activos.map((pa, i) => (
+                        <span key={i} className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-md text-[10px]">
+                          {pa}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center justify-between pt-2 border-t border-slate-800/50">
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-1.5">
+                          <span className={`w-2 h-2 rounded-full ${product.synergy_analyzed ? 'bg-emerald-500' : 'bg-slate-700'}`} />
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">IA</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          {isSynced ? (
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                          ) : (
+                            <RefreshCw className="w-3 h-3 text-amber-400" />
+                          )}
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">Nube</span>
+                        </div>
+                      </div>
+                      {product.source_url && (
+                        <a href={product.source_url} target="_blank" rel="noopener noreferrer" className="text-[10px] text-indigo-400 font-bold uppercase">
+                          Ver Fuente
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
         )}
         
         {!isLoading && filteredProducts.length > 0 && (

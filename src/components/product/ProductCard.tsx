@@ -30,50 +30,50 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
   };
 
   return (
-    <div className="bg-brand-surface rounded-2xl p-5 shadow-sm border border-slate-800 hover:shadow-lg hover:shadow-brand-primary/10 hover:border-brand-primary/50 transition-all group relative flex flex-col h-full">
+    <div className="bg-brand-surface rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-800 hover:shadow-lg hover:shadow-brand-primary/10 hover:border-brand-primary/50 transition-all group relative flex flex-col h-full">
       <div 
-        className="flex justify-between items-start mb-3 cursor-pointer"
+        className="flex justify-between items-start mb-2 sm:mb-3 cursor-pointer"
         onClick={() => onViewDetail?.(product)}
       >
-        <div>
-          <h3 className="text-lg font-bold text-white group-hover:text-brand-primary transition-colors">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-primary transition-colors truncate">
             {product.nombre_comercial}
           </h3>
-          <div className="flex items-center gap-2 mt-1">
+          <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
             {product.categoria_principal && product.categoria_principal !== 'Otro' && (
-              <Badge variant="outline" className="text-[9px] uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border-indigo-500/20 shrink-0">
+              <Badge variant="outline" className="text-[8px] sm:text-[9px] uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border-indigo-500/20 shrink-0">
                 {product.categoria_principal}
               </Badge>
             )}
-            <p className="text-sm text-slate-400 line-clamp-1">
+            <p className="text-xs sm:text-sm text-slate-400 truncate">
               {formatArrayToString(product.principios_activos, ', ')}
             </p>
           </div>
         </div>
-        <Badge variant="outline" className="text-[10px] uppercase tracking-wider bg-brand-bg text-slate-400 border-slate-700 shrink-0 ml-2">
-          {product.sku}
+        <Badge variant="outline" className="text-[9px] sm:text-[10px] uppercase tracking-wider bg-brand-bg text-slate-400 border-slate-700 shrink-0 ml-2">
+          {product.sku.substring(0, 8)}
         </Badge>
       </div>
 
-      <div className="mb-4 flex-1 cursor-pointer" onClick={() => onViewDetail?.(product)}>
-        <p className="text-sm text-slate-300 line-clamp-2 leading-relaxed">
+      <div className="mb-3 sm:mb-4 flex-1 cursor-pointer" onClick={() => onViewDetail?.(product)}>
+        <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
           {formatArrayToString(product.indicaciones, ' • ')}
         </p>
       </div>
 
       {/* Semáforo Compacto */}
-      <div className="grid grid-cols-3 gap-2 mt-auto pt-4 border-t border-slate-800 cursor-pointer" onClick={() => onViewDetail?.(product)}>
-        <div className={`flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium ${getSafetyColor(product.apto_embarazo)}`}>
+      <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mt-auto pt-3 sm:pt-4 border-t border-slate-800 cursor-pointer" onClick={() => onViewDetail?.(product)}>
+        <div className={`flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 rounded-md border text-[10px] sm:text-xs font-medium ${getSafetyColor(product.apto_embarazo)}`}>
           {getSafetyIcon(product.apto_embarazo)}
-          <span className="truncate">Embarazo</span>
+          <span className="truncate">Emb.</span>
         </div>
-        <div className={`flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium ${getSafetyColor(product.apto_lactancia)}`}>
+        <div className={`flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 rounded-md border text-[10px] sm:text-xs font-medium ${getSafetyColor(product.apto_lactancia)}`}>
           {getSafetyIcon(product.apto_lactancia)}
-          <span className="truncate">Lactancia</span>
+          <span className="truncate">Lact.</span>
         </div>
-        <div className={`flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium ${getSafetyColor(product.apto_pediatria)}`}>
+        <div className={`flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 rounded-md border text-[10px] sm:text-xs font-medium ${getSafetyColor(product.apto_pediatria)}`}>
           {getSafetyIcon(product.apto_pediatria)}
-          <span className="truncate">Pediatría</span>
+          <span className="truncate">Ped.</span>
         </div>
       </div>
 

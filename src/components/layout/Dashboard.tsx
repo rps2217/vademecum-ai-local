@@ -46,35 +46,35 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-brand-bg text-slate-200 p-8">
+    <div className="min-h-screen bg-brand-bg text-slate-200 p-4 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <header className="mb-8 flex flex-col items-center relative">
-          <div className="absolute top-0 right-0">
+        <header className="mb-6 sm:mb-8 flex flex-col items-center relative">
+          <div className="absolute top-0 right-0 sm:static sm:mb-4">
             <UserMenu />
           </div>
-          <div className="inline-flex items-center justify-center p-3 bg-brand-primary/10 rounded-2xl mb-6 border border-brand-primary/20">
-            <Activity className="w-8 h-8 text-brand-primary" />
+          <div className="inline-flex items-center justify-center p-2 sm:p-3 bg-brand-primary/10 rounded-2xl mb-4 sm:mb-6 border border-brand-primary/20">
+            <Activity className="w-6 h-6 sm:w-8 sm:h-8 text-brand-primary" />
           </div>
-          <h1 className="text-4xl font-extrabold text-white tracking-tight mb-3">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2 sm:mb-3 text-center">
             Vademécum Inteligente
           </h1>
         </header>
 
         {/* Navegación Principal */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-brand-surface/50 p-1.5 rounded-2xl border border-slate-800 backdrop-blur-sm overflow-x-auto max-w-full">
+        <div className="flex justify-center mb-8 sm:mb-12">
+          <div className="inline-flex bg-brand-surface/50 p-1.5 rounded-2xl border border-slate-800 backdrop-blur-sm overflow-x-auto max-w-full no-scrollbar">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
                   activeTab === item.id 
                     ? 'bg-brand-surface text-brand-primary shadow-lg shadow-brand-primary/10 border border-slate-700' 
                     : 'text-slate-500 hover:text-slate-300 hover:bg-brand-surface/50'
                 }`}
               >
-                <item.icon className="w-4 h-4" />
-                {item.label}
+                <item.icon className="w-3.5 h-3.5 sm:w-4 h-4" />
+                <span className={activeTab === item.id ? 'block' : 'hidden sm:block'}>{item.label}</span>
               </button>
             ))}
           </div>

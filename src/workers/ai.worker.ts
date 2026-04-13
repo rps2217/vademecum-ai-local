@@ -424,9 +424,11 @@ Respuesta JSON:`;
             content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
         }
 
-        const jsonMatch = content.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-            let cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+        const jsonMatch = content.match(/\{[\s\S]*\}/g);
+        if (jsonMatch && jsonMatch.length > 0) {
+            // Tomar el último JSON si hay varios (a veces el modelo repite o da ejemplos)
+            let rawJson = jsonMatch[jsonMatch.length - 1];
+            let cleanJson = rawJson.replace(/```json/g, '').replace(/```/g, '').trim();
             // Limpiar caracteres de control que rompen JSON.parse
             cleanJson = cleanJson.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
                 if (match === '\n') return '\\n';

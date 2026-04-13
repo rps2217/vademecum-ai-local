@@ -26,24 +26,24 @@ export const SafetyFilters: React.FC<SafetyFiltersProps> = ({ conditionFilters, 
   ];
 
   return (
-    <div className="flex flex-wrap items-center gap-2 py-2 px-3 bg-brand-surface/50 rounded-2xl border border-slate-800/50 shadow-sm">
-      <ShieldCheck className="w-4 h-4 text-slate-500 ml-1 hidden sm:block" />
-      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mr-1 hidden sm:block">Solo Aptos Para:</span>
+    <div className="flex flex-wrap items-center gap-2 py-2 px-2 sm:px-3 bg-brand-surface/50 rounded-2xl border border-slate-800/50 shadow-sm overflow-x-auto no-scrollbar">
+      <ShieldCheck className="w-4 h-4 text-slate-500 ml-1 hidden lg:block" />
+      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mr-1 hidden lg:block">Solo Aptos Para:</span>
       
-      <div className="flex flex-wrap items-center gap-2 flex-1">
+      <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap">
         {safetyItems.map((item) => {
           const isActive = conditionFilters.includes(item.id);
           return (
             <button
               key={item.id}
               onClick={() => toggleConditionFilter(item.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all border ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-[10px] sm:text-xs font-medium transition-all border whitespace-nowrap ${
                 isActive 
                   ? 'bg-brand-accent/20 text-brand-accent border-brand-accent/50 shadow-[0_0_10px_rgba(110,231,183,0.1)]' 
                   : 'bg-brand-bg/50 text-slate-400 border-slate-800 hover:border-brand-accent/30 hover:text-brand-accent/70'
               }`}
             >
-              {isActive ? <CheckCircle2 className="w-3.5 h-3.5" /> : item.icon}
+              {isActive ? <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : item.icon}
               {item.label}
             </button>
           );

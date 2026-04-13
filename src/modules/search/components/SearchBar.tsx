@@ -25,7 +25,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, isSearchi
       </div>
       <input
         type="text"
-        className="block w-full pl-12 pr-48 py-4 bg-brand-surface border border-slate-800 rounded-2xl text-lg text-white shadow-sm focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all placeholder:text-slate-600"
+        className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-brand-surface border border-slate-800 rounded-2xl text-base sm:text-lg text-white shadow-sm focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all placeholder:text-slate-600"
         placeholder="Buscar o preguntar a la IA..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -40,19 +40,20 @@ export const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, isSearchi
         {query && !isQuestion && (
           <button
             onClick={() => setQuery('')}
-            className="px-4 py-2 text-xs font-bold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 border border-slate-700 shadow-sm"
+            className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 border border-slate-700 shadow-sm"
           >
-            Limpiar <X className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Limpiar</span> <X className="w-3.5 h-3.5" />
           </button>
         )}
 
         {isQuestion && query.length > 5 && (
           <button
             onClick={onAiQuery}
-            className="px-4 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl transition-all flex items-center gap-1.5 border border-indigo-500 shadow-lg shadow-indigo-500/20 animate-in zoom-in duration-300"
+            className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl transition-all flex items-center gap-1.5 border border-indigo-500 shadow-lg shadow-indigo-500/20 animate-in zoom-in duration-300"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Consultar IA
+            <span className="hidden sm:inline">Consultar IA</span>
+            <span className="sm:hidden">Consultar</span>
           </button>
         )}
 
