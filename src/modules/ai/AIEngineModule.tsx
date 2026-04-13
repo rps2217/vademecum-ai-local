@@ -11,6 +11,7 @@ import { Product } from '../../core/types/product.types';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { TaxonomyBackgroundService, TaxonomyStatus } from '../../services/TaxonomyBackgroundService';
 import { VectorBackgroundService, VectorizationStatus } from '../../services/VectorBackgroundService';
+import { AIOrchestratorService } from '../../services/AIOrchestratorService';
 
 export const AIEngineModule: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
@@ -333,6 +334,31 @@ export const AIEngineModule: React.FC = () => {
 
           {/* Tools Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* AI Orchestrator */}
+            <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 shadow-xl md:col-span-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-indigo-400" />
+                  Orquestador de IA (Pipeline Completo)
+                </h3>
+                <button 
+                  onClick={async () => {
+                    addLog('Iniciando Pipeline Completo en modo Cluster...', 'info');
+                    await AIOrchestratorService.runPipeline();
+                    addLog('Pipeline finalizado.', 'success');
+                  }}
+                  disabled={!status.isReady}
+                  className="px-6 py-2.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl hover:bg-indigo-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  <Zap className="w-4 h-4" />
+                  Ejecutar Pipeline Completo
+                </button>
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Ejecuta el pipeline secuencial (Taxonomía {'->'} Vectorización {'->'} Análisis Clínico {'->'} Respaldo). Este proceso respeta los bloqueos de clúster, permitiendo que varios dispositivos colaboren simultáneamente sin conflictos.
+              </p>
+            </div>
+
             {/* Vector Factory */}
             <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 shadow-xl">
               <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
