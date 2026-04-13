@@ -30,6 +30,7 @@ export class AIOrchestratorService {
     if (this.isWatching) return;
     this.isWatching = true;
     window.addEventListener('db_updated', () => {
+      if (this.isRunning) return;
       this.runPipeline();
     });
     console.log('[Orchestrator] Observador iniciado.');
@@ -99,6 +100,8 @@ export class AIOrchestratorService {
       }
 
       // 6. Respaldo final
+      this.status.currentTask = 'Realizando respaldo en la nube...';
+      this.notify();
       await FirebaseSyncService.uploadLocalProducts();
       
     } finally {
