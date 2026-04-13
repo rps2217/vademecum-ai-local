@@ -193,6 +193,10 @@ export const FirebaseSyncService = {
       const docRef = doc(db, 'products', product.sku);
       
       const productToSave = { ...product };
+      // Asegurar que campos críticos no sean undefined
+      productToSave.skus_relacionados = productToSave.skus_relacionados || [];
+      productToSave.sugerencia_complementaria = productToSave.sugerencia_complementaria || "";
+      
       delete productToSave.lock_uid;
       delete productToSave.lock_timestamp;
 
