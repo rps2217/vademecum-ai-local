@@ -78,6 +78,8 @@ export const FirebaseSyncService = {
       const allProducts = await localDb.getAll('products');
       const deltaProducts = allProducts.filter(p => (p.last_updated || 0) > lastSyncTime);
 
+      console.log(`[FirebaseSync] Productos para respaldo: ${deltaProducts.length}, lastSyncTime: ${lastSyncTime}`);
+
       if (deltaProducts.length === 0) return 0;
       
       const batchSize = 500;
@@ -94,6 +96,7 @@ export const FirebaseSyncService = {
         });
         
         await batch.commit();
+        console.log(`[FirebaseSync] Lote subido: ${uploadedCount} productos.`);
       }
       
       // Actualizar el metadata local después de una subida exitosa
@@ -106,6 +109,7 @@ export const FirebaseSyncService = {
       console.log(`${uploadedCount} productos (Delta) sincronizados con Firestore.`);
       return uploadedCount;
     } catch (error) {
+      console.error('[FirebaseSync] Error en uploadLocalProducts:', error);
       handleFirestoreError(error, OperationType.WRITE, 'products');
       return 0;
     }
@@ -172,7 +176,11 @@ export const FirebaseSyncService = {
    */
   releaseProductLockAndSave: async (product: Product) => {
     try {
-      if (!auth.currentUser) return;
+      if (!auth.currentUser) {
+        console.warn('[FirebaseSync] No se pudo guardar: Usuario no autenticado.');
+        return;
+      }
+      console.log(`[FirebaseSync] Guardando producto en nube: ${product.sku}`);
       const docRef = doc(db, 'products', product.sku);
       
       const productToSave = { ...product };
@@ -180,6 +188,7 @@ export const FirebaseSyncService = {
       delete productToSave.lock_timestamp;
 
       await setDoc(docRef, productToSave);
+      console.log(`[FirebaseSync] Producto guardado exitosamente: ${product.sku}`);
     } catch (error) {
       console.error('[FirebaseSync] Error liberando candado y guardando:', error);
     }
