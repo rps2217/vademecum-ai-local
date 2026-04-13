@@ -8,10 +8,12 @@ export class GeminiService {
   private static getAI() {
     if (!this.ai) {
       // Intentar usar el nuevo secreto primero, si no, el original
-      const apiKey = process.env.MY_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+      const myKey = process.env.MY_GEMINI_API_KEY;
+      const originalKey = process.env.GEMINI_API_KEY;
+      const apiKey = myKey || originalKey;
       
       if (!apiKey) {
-        throw new Error("GEMINI_API_KEY no configurada.");
+        throw new Error(`GEMINI_API_KEY no configurada. (MY_KEY: ${!!myKey}, ORIGINAL: ${!!originalKey})`);
       }
       
       this.ai = new GoogleGenAI({ apiKey });
@@ -73,12 +75,25 @@ export class GeminiService {
       
       let data: any;
       try {
-        data = JSON.parse(responseText);
+        // Limpiar caracteres de control antes de parsear
+        const cleanResponse = responseText.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
+          if (match === '\n') return '\\n';
+          if (match === '\r') return '\\r';
+          if (match === '\t') return '\\t';
+          return '';
+        });
+        data = JSON.parse(cleanResponse);
       } catch (e) {
         console.error("[GeminiService] Error parsing JSON, attempting to extract from Markdown:", responseText);
         const match = responseText.match(/\{[\s\S]*\}/);
         if (match) {
-          data = JSON.parse(match[0]);
+          let cleanMatch = match[0].replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
+            if (match === '\n') return '\\n';
+            if (match === '\r') return '\\r';
+            if (match === '\t') return '\\t';
+            return '';
+          });
+          data = JSON.parse(cleanMatch);
         } else {
           throw new Error("No se pudo extraer JSON válido de la respuesta.");
         }

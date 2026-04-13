@@ -359,8 +359,19 @@ ${tags.join(', ')}`;
         // Limpieza de JSON
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
-            const cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
-            self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: JSON.parse(cleanJson) });
+            let cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+            cleanJson = cleanJson.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
+                if (match === '\n') return '\\n';
+                if (match === '\r') return '\\r';
+                if (match === '\t') return '\\t';
+                return '';
+            });
+            try {
+                self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: JSON.parse(cleanJson) });
+            } catch (parseError) {
+                console.error('[Worker] Error parseando JSON de etiquetas:', parseError, cleanJson);
+                throw new Error('Error de formato en las etiquetas.');
+            }
         } else {
             throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
         }
@@ -415,8 +426,20 @@ Respuesta JSON:`;
 
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
-            const cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
-            self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: JSON.parse(cleanJson) });
+            let cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+            // Limpiar caracteres de control que rompen JSON.parse
+            cleanJson = cleanJson.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
+                if (match === '\n') return '\\n';
+                if (match === '\r') return '\\r';
+                if (match === '\t') return '\\t';
+                return '';
+            });
+            try {
+                self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: JSON.parse(cleanJson) });
+            } catch (parseError) {
+                console.error('[Worker] Error parseando JSON clínico:', parseError, cleanJson);
+                throw new Error('Error de formato en la respuesta clínica.');
+            }
         } else {
             throw new Error('No se pudo extraer JSON de la respuesta clínica.');
         }
