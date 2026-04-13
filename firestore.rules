@@ -63,8 +63,10 @@ service cloud.firestore {
     match /products/{productId} {
       // El Vademécum es público para lectura
       allow read: if true;
-      // Admins pueden crear y borrar
-      allow create, delete: if isAdmin() && isValidProduct(request.resource.data);
+      // Admins pueden borrar
+      allow delete: if isAdmin();
+      // Usuarios autenticados pueden crear si el producto es válido
+      allow create: if isAuthenticated() && isValidProduct(request.resource.data);
       // Actualizaciones: Admins pueden todo, usuarios autenticados pueden actualizar información clínica y candados
       allow update: if (isAdmin() && isValidProduct(request.resource.data)) ||
         (isAuthenticated() && 
