@@ -18,6 +18,7 @@ type WorkerMessage =
   | { type: 'EXTRACT'; payload: { text: string; url: string } }
   | { type: 'EMBED'; payload: { text: string } }
   | { type: 'ANALYZE'; payload: { query: string; context: string } }
+  | { type: 'ANALYZE_CLINICAL'; payload: { product: any; candidates: any[]; type: 'synergy' | 'alternatives' } }
   | { type: 'STANDARDIZE_TAGS'; payload: { tags: string[] } }
   | { type: 'HEALTH_CHECK' }
   | { type: 'PURGE_CACHE' };
@@ -38,6 +39,9 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         break;
       case 'ANALYZE':
         await analyzeText(msg.payload.query, msg.payload.context);
+        break;
+      case 'ANALYZE_CLINICAL':
+        await analyzeClinical(msg.payload.product, msg.payload.candidates, msg.payload.type);
         break;
       case 'STANDARDIZE_TAGS':
         await standardizeTags(msg.payload.tags);
@@ -361,6 +365,61 @@ ${tags.join(', ')}`;
             throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
         }
 
+    } catch (e: any) {
+        self.postMessage({ type: 'ERROR', error: e.message });
+    }
+}
+
+async function analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives') {
+    if (!isReady) throw new Error('IA no lista');
+
+    const isSynergy = type === 'synergy';
+    const prompt = `Actúa como un farmacéutico experto. 
+Analiza la relación entre el producto principal y los candidatos.
+
+PRODUCTO PRINCIPAL:
+- Nombre: ${product.nombre_comercial}
+- Componentes: ${product.principios_activos.join(', ')}
+- Indicaciones: ${product.indicaciones.join(', ')}
+
+CANDIDATOS:
+${candidates.map((c, i) => `${i+1}. ${c.nombre_comercial} (${c.principios_activos.join(', ')}) - Indicado para: ${c.indicaciones.join(', ')}`).join('\n')}
+
+TAREA: ${isSynergy ? 'Identifica SINERGIAS (productos que complementan o potencian el efecto).' : 'Identifica ALTERNATIVAS (productos bioequivalentes o con el mismo uso terapéutico).'}
+
+REGLAS:
+1. Responde ÚNICAMENTE en formato JSON.
+2. Estructura: { "sugerencia": "breve resumen", "ids": ["sku1", "sku2"], "explicacion": "detalle clínico" }
+3. Si no hay relación clara, devuelve un JSON vacío con sugerencia "No se encontraron relaciones".
+
+Respuesta JSON:`;
+
+    try {
+        let content = '';
+        if (webLlmEngine) {
+            const response = await webLlmEngine.chat.completions.create({
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.2,
+            });
+            content = response.choices[0].message.content || '{}';
+        } else if (transformersPipeline) {
+            const messages = [
+                { role: 'system', content: 'You are a clinical pharmacist. Respond ONLY with JSON.' },
+                { role: 'user', content: prompt }
+            ];
+            const promptText = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
+            const result = await transformersPipeline(promptText, { max_new_tokens: 1024, temperature: 0.2 });
+            const genText = result[0].generated_text;
+            content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
+        }
+
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            const cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+            self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: JSON.parse(cleanJson) });
+        } else {
+            throw new Error('No se pudo extraer JSON de la respuesta clínica.');
+        }
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });
     }

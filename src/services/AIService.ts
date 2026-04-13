@@ -297,6 +297,38 @@ export class AIService {
     });
   }
 
+  static async analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives'): Promise<any> {
+    if (!this.worker || !this.isReady) {
+      return null;
+    }
+
+    return new Promise((resolve) => {
+      const handler = (e: MessageEvent) => {
+        const { type: resType, payload, error } = e.data;
+        if (resType === 'ANALYZE_CLINICAL_RESULT' || resType === 'ERROR') {
+          this.worker?.removeEventListener('message', handler);
+          if (error) resolve(null);
+          else resolve(payload);
+        }
+      };
+      this.worker?.addEventListener('message', handler);
+      this.worker?.postMessage({ type: 'ANALYZE_CLINICAL', payload: { product, candidates, type } });
+    });
+  }
+
+  static cosineSimilarity(vecA: number[], vecB: number[]): number {
+    if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    for (let i = 0; i < vecA.length; i++) {
+      dotProduct += vecA[i] * vecB[i];
+      normA += vecA[i] * vecA[i];
+      normB += vecB[i] * vecB[i];
+    }
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+  }
+
   static async runHealthCheck(): Promise<{ ok: boolean; engine: string; response?: string; error?: string }> {
     if (!this.worker || !this.isReady) {
         return { ok: false, engine: 'Ninguno', error: 'Worker no iniciado' };

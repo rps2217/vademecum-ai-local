@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Cpu, Activity, Zap, Terminal, RefreshCw, Trash2, 
   Play, Pause, CheckCircle2, AlertCircle, Info,
-  Layers, Database, Search, CloudUpload, Tags, Sparkles
+  Layers, Database, Search, CloudUpload, Tags, Sparkles,
+  Stethoscope
 } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { getDB } from '../../core/database/db';
@@ -16,6 +17,7 @@ export const AIEngineModule: React.FC = () => {
   const [health, setHealth] = useState<{ ok: boolean; engine: string; response?: string; error?: string } | null>(null);
   const [isTesting, setIsTesting] = useState(false);
   const [isPurging, setIsPurging] = useState(false);
+  const [isAnalyzingClinical, setIsAnalyzingClinical] = useState(false);
   const [vectorStatus, setVectorStatus] = useState<VectorizationStatus>(VectorBackgroundService.getStatus());
   const [taxonomyStatus, setTaxonomyStatus] = useState<TaxonomyStatus>(TaxonomyBackgroundService.getStatus());
   const [logs, setLogs] = useState<{ time: string; msg: string; type: 'info' | 'success' | 'warn' | 'error' }[]>([]);
@@ -112,10 +114,10 @@ export const AIEngineModule: React.FC = () => {
 
   const handleSyncToCloud = async () => {
     setIsSyncing(true);
-    addLog('Iniciando respaldo de vectores en la nube...', 'info');
+    addLog('Iniciando respaldo masivo (Vectores + Taxonomía) en la nube...', 'info');
     try {
       const count = await FirebaseSyncService.uploadLocalProducts();
-      addLog(`Respaldo completado: ${count} productos sincronizados.`, 'success');
+      addLog(`Respaldo completado: ${count} productos actualizados en la nube.`, 'success');
       setHasPendingSync(false);
     } catch (e) {
       addLog('Error al sincronizar con la nube.', 'error');
@@ -126,6 +128,76 @@ export const AIEngineModule: React.FC = () => {
 
   const handleStandardizeTags = () => {
     TaxonomyBackgroundService.startStandardization();
+  };
+
+  const handleLocalClinicalAnalysis = async () => {
+    setIsAnalyzingClinical(true);
+    addLog('Iniciando análisis clínico local masivo...', 'info');
+    
+    try {
+      const db = await getDB();
+      const products = await db.getAll('products');
+      const pending = products.filter(p => !p.synergy_analyzed);
+      
+      if (pending.length === 0) {
+        addLog('No hay productos pendientes de análisis clínico.', 'success');
+        return;
+      }
+
+      addLog(`Procesando ${pending.length} productos con el motor local...`, 'info');
+
+      for (let i = 0; i < pending.length; i++) {
+        const product = pending[i];
+        
+        if (!product.vectores || product.vectores.length === 0) continue;
+
+        const candidates = products
+          .filter(p => p.sku !== product.sku && p.vectores && p.vectores.length > 0)
+          .map(p => ({
+            product: p,
+            score: AIService.cosineSimilarity(product.vectores!, p.vectores!)
+          }))
+          .filter(item => item.score > 0.7)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 3)
+          .map(item => item.product);
+
+        if (candidates.length > 0) {
+          const result = await AIService.analyzeClinical(product, candidates, 'synergy');
+          
+          if (result) {
+            await db.put('products', {
+              ...product,
+              synergy_analyzed: true,
+              last_synergy_analysis: Date.now(),
+              sugerencia_complementaria: result.sugerencia,
+              skus_relacionados: result.ids,
+              last_updated: Date.now()
+            });
+          }
+        } else {
+          await db.put('products', {
+            ...product,
+            synergy_analyzed: true,
+            last_synergy_analysis: Date.now(),
+            last_updated: Date.now()
+          });
+        }
+
+        if ((i + 1) % 5 === 0) {
+          addLog(`Analizados ${i + 1}/${pending.length} productos...`, 'info');
+        }
+      }
+
+      addLog('¡Análisis clínico local completado!', 'success');
+      setHasPendingSync(true);
+      window.dispatchEvent(new Event('db_updated'));
+    } catch (e) {
+      addLog('Error durante el análisis clínico local.', 'error');
+      console.error(e);
+    } finally {
+      setIsAnalyzingClinical(false);
+    }
   };
 
   return (
@@ -159,6 +231,29 @@ export const AIEngineModule: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* Cloud Sync Banner */}
+      {hasPendingSync && (
+        <div className="mb-8 bg-emerald-500/10 border border-emerald-500/20 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 animate-in slide-in-from-top duration-500">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-emerald-500/20 rounded-2xl">
+              <CloudUpload className="w-6 h-6 text-emerald-400" />
+            </div>
+            <div>
+              <h4 className="text-white font-bold">Cambios de IA Pendientes</h4>
+              <p className="text-xs text-emerald-400/70">Tienes vectores o taxonomías actualizadas localmente que aún no están en la nube.</p>
+            </div>
+          </div>
+          <button 
+            onClick={handleSyncToCloud}
+            disabled={isSyncing}
+            className="w-full md:w-auto px-8 py-3 bg-emerald-500 text-white rounded-2xl hover:bg-emerald-600 transition-all font-bold shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 disabled:opacity-50"
+          >
+            {isSyncing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CloudUpload className="w-4 h-4" />}
+            Sincronizar Todo con la Nube
+          </button>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Columna Izquierda: Status y Salud */}
@@ -274,17 +369,6 @@ export const AIEngineModule: React.FC = () => {
                     <Zap className="w-4 h-4" />
                     Iniciar Vectorización Masiva
                   </button>
-                  
-                  {hasPendingSync && (
-                    <button 
-                      onClick={handleSyncToCloud}
-                      disabled={isSyncing}
-                      className="w-full py-3 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl hover:bg-emerald-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 animate-pulse"
-                    >
-                      {isSyncing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CloudUpload className="w-4 h-4" />}
-                      Respaldar Vectores en Nube
-                    </button>
-                  )}
                 </div>
               )}
             </div>
@@ -340,6 +424,27 @@ export const AIEngineModule: React.FC = () => {
               )}
               <p className="text-xs text-slate-400 leading-relaxed">
                 Esta herramienta analiza todas las etiquetas de tu base de datos local y utiliza el motor de IA para unificar términos similares, corregir ortografía y estandarizar la nomenclatura clínica. Ideal para mantener un catálogo limpio y profesional sin enviar datos a la nube.
+              </p>
+            </div>
+
+            {/* Local Clinical Analyzer */}
+            <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 shadow-xl md:col-span-2">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <Stethoscope className="w-5 h-5 text-emerald-400" />
+                  Analizador Clínico Local (Sinergias)
+                </h3>
+                <button 
+                  onClick={handleLocalClinicalAnalysis}
+                  disabled={!status.isReady || isAnalyzingClinical}
+                  className="px-6 py-2.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl hover:bg-emerald-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {isAnalyzingClinical ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Stethoscope className="w-4 h-4" />}
+                  {isAnalyzingClinical ? 'Analizando...' : 'Ejecutar Análisis Clínico Local'}
+                </button>
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Utiliza la potencia de tu GPU/CPU local para encontrar sinergias y relaciones terapéuticas entre productos. A diferencia de Gemini, este proceso no consume tokens externos y mantiene toda la lógica médica dentro de tu navegador, utilizando tus propios vectores semánticos para identificar candidatos.
               </p>
             </div>
           </div>
