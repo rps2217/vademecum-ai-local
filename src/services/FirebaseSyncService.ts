@@ -12,24 +12,26 @@ export const FirebaseSyncService = {
 
     const initSync = async () => {
       const localDb = await getDB();
+      if (!localDb) return;
+      
       const metadata = await localDb.get('sync_metadata', 'cloud_sync');
       const lastSyncTime = metadata?.lastSyncTime || 0;
 
       // Solo pedir documentos que hayan cambiado desde la última sincronización
       const productsRef = collection(db, 'products');
-      const q = query(
-        productsRef,
-        // Eliminamos el filtro de tiempo aquí para onSnapshot inicial, 
-        // pero lo usaremos para optimizar la carga inicial si fuera necesario.
-        // Por ahora, onSnapshot maneja bien los deltas internos de Firebase.
-      );
       
-      unsubscribe = onSnapshot(q, async (snapshot) => {
+      // Verificar si hay datos en la nube antes de sincronizar
+      const cloudHasData = await FirebaseSyncService.checkCloudData();
+      
+      unsubscribe = onSnapshot(productsRef, async (snapshot) => {
         const tx = localDb.transaction(['products', 'sync_metadata'], 'readwrite');
         const productStore = tx.objectStore('products');
         const metaStore = tx.objectStore('sync_metadata');
         
         let maxTimestamp = lastSyncTime;
+
+        // Si es la primera sincronización y la nube no tiene datos, no borrar local
+        const isInitialSync = lastSyncTime === 0;
 
         for (const change of snapshot.docChanges()) {
           const product = change.doc.data() as Product;
@@ -39,7 +41,9 @@ export const FirebaseSyncService = {
               maxTimestamp = product.last_updated;
             }
           } else if (change.type === 'removed') {
-            await productStore.delete(product.sku);
+            if (!(isInitialSync && !cloudHasData)) {
+              await productStore.delete(product.sku);
+            }
           }
         }
         

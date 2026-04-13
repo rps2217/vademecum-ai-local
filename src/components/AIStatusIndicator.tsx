@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Brain, Loader2, CheckCircle2, AlertCircle, Cpu, Activity } from 'lucide-react';
 import { AIService } from '../services/AIService';
 import { SynergyBackgroundService } from '../services/SynergyBackgroundService';
+import { AIOrchestratorService, OrchestratorStatus } from '../services/AIOrchestratorService';
 import { motion, AnimatePresence } from 'motion/react';
 
 export const AIStatusIndicator: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
+  const [orchestratorStatus, setOrchestratorStatus] = useState<OrchestratorStatus>({ isRunning: false, progress: 0, currentTask: '' });
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<string | null>(null);
 
@@ -15,13 +17,18 @@ export const AIStatusIndicator: React.FC = () => {
       setStatus(currentStatus);
     }, 1000);
 
-    const unsubscribe = SynergyBackgroundService.subscribe((sku, name) => {
+    const unsubscribeSynergy = SynergyBackgroundService.subscribe((sku, name) => {
       setCurrentProduct(name);
+    });
+
+    const unsubscribeOrchestrator = AIOrchestratorService.subscribe(status => {
+      setOrchestratorStatus(status);
     });
 
     return () => {
       clearInterval(interval);
-      unsubscribe();
+      unsubscribeSynergy();
+      unsubscribeOrchestrator();
     };
   }, []);
 
@@ -79,7 +86,24 @@ export const AIStatusIndicator: React.FC = () => {
                 </div>
               )}
 
-              {status.isReady && (
+              {orchestratorStatus.isRunning && (
+                <div className="space-y-2 mt-4 pt-4 border-t border-slate-700">
+                  <div className="flex justify-between text-[10px] uppercase tracking-wider text-indigo-400 font-bold">
+                    <span>Pipeline IA</span>
+                    <span>{orchestratorStatus.progress}%</span>
+                  </div>
+                  <div className="text-[10px] text-slate-400 truncate">{orchestratorStatus.currentTask}</div>
+                  <div className="h-1 w-full bg-brand-bg rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-indigo-500"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${orchestratorStatus.progress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {status.isReady && !orchestratorStatus.isRunning && (
                 <div className="space-y-3">
                   <div className="text-[11px] text-slate-400 flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
