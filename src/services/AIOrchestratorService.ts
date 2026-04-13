@@ -4,9 +4,27 @@ import { FirebaseSyncService } from './FirebaseSyncService';
 import { Product } from '../core/types/product.types';
 import { auth } from '../firebase';
 
+export interface OrchestratorStatus {
+  isRunning: boolean;
+  progress: number;
+  currentTask: string;
+}
+
 export class AIOrchestratorService {
   private static isRunning = false;
   private static isWatching = false;
+  private static status: OrchestratorStatus = { isRunning: false, progress: 0, currentTask: '' };
+  private static listeners: Array<(status: OrchestratorStatus) => void> = [];
+
+  static subscribe(listener: (status: OrchestratorStatus) => void) {
+    this.listeners.push(listener);
+    listener({ ...this.status });
+    return () => { this.listeners = this.listeners.filter(l => l !== listener); };
+  }
+
+  private static notify() {
+    this.listeners.forEach(l => l({ ...this.status }));
+  }
 
   static startWatcher() {
     if (this.isWatching) return;
@@ -20,13 +38,22 @@ export class AIOrchestratorService {
   static async runPipeline() {
     if (this.isRunning) return;
     this.isRunning = true;
+    this.status = { isRunning: true, progress: 0, currentTask: 'Iniciando...' };
+    this.notify();
 
     try {
       const db = await getDB();
       const products = await db.getAll('products');
       const userId = auth.currentUser?.uid || 'anonymous';
+      const total = products.length;
+      let processed = 0;
 
       for (const product of products) {
+        processed++;
+        this.status.progress = Math.round((processed / total) * 100);
+        this.status.currentTask = `Procesando ${product.sku}`;
+        this.notify();
+
         // Si ya está todo procesado, saltar
         if (product.synergy_analyzed && product.vectores && product.tags_ia) continue;
 
@@ -76,6 +103,8 @@ export class AIOrchestratorService {
       
     } finally {
       this.isRunning = false;
+      this.status = { isRunning: false, progress: 100, currentTask: 'Completado' };
+      this.notify();
     }
   }
 }

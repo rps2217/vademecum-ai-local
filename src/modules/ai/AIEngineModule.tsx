@@ -11,7 +11,7 @@ import { Product } from '../../core/types/product.types';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { TaxonomyBackgroundService, TaxonomyStatus } from '../../services/TaxonomyBackgroundService';
 import { VectorBackgroundService, VectorizationStatus } from '../../services/VectorBackgroundService';
-import { AIOrchestratorService } from '../../services/AIOrchestratorService';
+import { AIOrchestratorService, OrchestratorStatus } from '../../services/AIOrchestratorService';
 
 export const AIEngineModule: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
@@ -21,6 +21,7 @@ export const AIEngineModule: React.FC = () => {
   const [isAnalyzingClinical, setIsAnalyzingClinical] = useState(false);
   const [vectorStatus, setVectorStatus] = useState<VectorizationStatus>(VectorBackgroundService.getStatus());
   const [taxonomyStatus, setTaxonomyStatus] = useState<TaxonomyStatus>(TaxonomyBackgroundService.getStatus());
+  const [orchestratorStatus, setOrchestratorStatus] = useState<OrchestratorStatus>({ isRunning: false, progress: 0, currentTask: '' });
   const [logs, setLogs] = useState<{ time: string; msg: string; type: 'info' | 'success' | 'warn' | 'error' }[]>([]);
   const [playgroundText, setPlaygroundText] = useState('');
   const [playgroundResult, setPlaygroundResult] = useState<number[] | null>(null);
@@ -38,6 +39,10 @@ export const AIEngineModule: React.FC = () => {
       if (status.lastLog) addLog(status.lastLog.msg, status.lastLog.type);
     });
 
+    const unsubOrchestrator = AIOrchestratorService.subscribe(status => {
+      setOrchestratorStatus(status);
+    });
+
     const handleComplete = () => setHasPendingSync(true);
 
     window.addEventListener('taxonomy_completed', handleComplete);
@@ -46,6 +51,7 @@ export const AIEngineModule: React.FC = () => {
     return () => {
       unsubTaxonomy();
       unsubVector();
+      unsubOrchestrator();
       window.removeEventListener('taxonomy_completed', handleComplete);
       window.removeEventListener('vectorization_completed', handleComplete);
     };
@@ -347,16 +353,30 @@ export const AIEngineModule: React.FC = () => {
                     await AIOrchestratorService.runPipeline();
                     addLog('Pipeline finalizado.', 'success');
                   }}
-                  disabled={!status.isReady}
+                  disabled={!status.isReady || orchestratorStatus.isRunning}
                   className="px-6 py-2.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl hover:bg-indigo-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   <Zap className="w-4 h-4" />
-                  Ejecutar Pipeline Completo
+                  {orchestratorStatus.isRunning ? 'Ejecutando...' : 'Ejecutar Pipeline Completo'}
                 </button>
               </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-400 leading-relaxed mb-4">
                 Ejecuta el pipeline secuencial (Taxonomía {'->'} Vectorización {'->'} Análisis Clínico {'->'} Respaldo). Este proceso respeta los bloqueos de clúster, permitiendo que varios dispositivos colaboren simultáneamente sin conflictos.
               </p>
+              {orchestratorStatus.isRunning && (
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs font-bold">
+                    <span className="text-indigo-400">{orchestratorStatus.currentTask}</span>
+                    <span className="text-white">{orchestratorStatus.progress}%</span>
+                  </div>
+                  <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                    <div 
+                      className="bg-indigo-500 h-full transition-all duration-300" 
+                      style={{ width: `${orchestratorStatus.progress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Vector Factory */}
