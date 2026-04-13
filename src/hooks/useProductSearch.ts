@@ -32,6 +32,7 @@ export const useProductSearch = () => {
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [categorizedTags, setCategorizedTags] = useState<CategorizedTags>({ tipos: [], sintomas: [], otros: [] });
+  const [indexVersion, setIndexVersion] = useState(0);
   const searchIndex = useRef<SearchIndexItem[]>([]);
   const isIndexLoaded = useRef(false);
 
@@ -99,6 +100,7 @@ export const useProductSearch = () => {
 
         setCategorizedTags(newCategorized);
         isIndexLoaded.current = true;
+        setIndexVersion(v => v + 1);
       } catch (error) {
         console.error('Error cargando índice de búsqueda:', error);
       }
@@ -209,7 +211,7 @@ export const useProductSearch = () => {
 
     const timeoutId = setTimeout(searchProducts, 400);
     return () => clearTimeout(timeoutId);
-  }, [query, conditionFilters]);
+  }, [query, conditionFilters, indexVersion]);
 
   return { query, setQuery, conditionFilters, setConditionFilters, results, isSearching, categorizedTags };
 };

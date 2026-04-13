@@ -8,6 +8,7 @@ import { AIService } from '../../services/AIService';
 import { getDB } from '../../core/database/db';
 import { Product } from '../../core/types/product.types';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
+import { TaxonomyBackgroundService, TaxonomyStatus } from '../../services/TaxonomyBackgroundService';
 
 export const AIEngineModule: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
@@ -15,13 +16,32 @@ export const AIEngineModule: React.FC = () => {
   const [isTesting, setIsTesting] = useState(false);
   const [isPurging, setIsPurging] = useState(false);
   const [isVectorizing, setIsVectorizing] = useState(false);
-  const [isStandardizing, setIsStandardizing] = useState(false);
+  const [taxonomyStatus, setTaxonomyStatus] = useState<TaxonomyStatus>(TaxonomyBackgroundService.getStatus());
   const [vectorProgress, setVectorProgress] = useState({ current: 0, total: 0 });
   const [logs, setLogs] = useState<{ time: string; msg: string; type: 'info' | 'success' | 'warn' | 'error' }[]>([]);
   const [playgroundText, setPlaygroundText] = useState('');
   const [playgroundResult, setPlaygroundResult] = useState<number[] | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
   const [hasPendingSync, setHasPendingSync] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = TaxonomyBackgroundService.subscribe(status => {
+      setTaxonomyStatus(status);
+      if (status.lastLog) {
+        addLog(status.lastLog.msg, status.lastLog.type);
+      }
+    });
+
+    const handleTaxonomyComplete = () => {
+      setHasPendingSync(true);
+    };
+
+    window.addEventListener('taxonomy_completed', handleTaxonomyComplete);
+    return () => {
+      unsubscribe();
+      window.removeEventListener('taxonomy_completed', handleTaxonomyComplete);
+    };
+  }, []);
 
   const addLog = (msg: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') => {
     const time = new Date().toLocaleTimeString();
@@ -135,70 +155,8 @@ export const AIEngineModule: React.FC = () => {
     }
   };
 
-  const handleStandardizeTags = async () => {
-    setIsStandardizing(true);
-    addLog('Iniciando estandarización de etiquetas clínicas...', 'info');
-    
-    try {
-      const db = await getDB();
-      const products = await db.getAll('products');
-      
-      // 1. Extraer todas las etiquetas únicas
-      const allTags = new Set<string>();
-      products.forEach(p => p.tags_ia.forEach(t => allTags.add(t)));
-      const uniqueTags = Array.from(allTags);
-      
-      if (uniqueTags.length === 0) {
-        addLog('No se encontraron etiquetas para estandarizar.', 'warn');
-        return;
-      }
-
-      addLog(`Encontradas ${uniqueTags.length} etiquetas únicas. Procesando con IA local...`, 'info');
-      
-      // 2. Procesar con IA local (en lotes si son muchos)
-      const mapping: Record<string, string> = {};
-      const batchSize = 20;
-      
-      for (let i = 0; i < uniqueTags.length; i += batchSize) {
-        const batch = uniqueTags.slice(i, i + batchSize);
-        const result = await AIService.standardizeTags(batch);
-        Object.assign(mapping, result);
-        addLog(`Mapeadas ${Math.min(i + batchSize, uniqueTags.length)} etiquetas...`, 'info');
-      }
-
-      // 3. Aplicar cambios a los productos
-      let updatedCount = 0;
-      for (const product of products) {
-        let changed = false;
-        const newTags = product.tags_ia.map(tag => {
-          if (mapping[tag] && mapping[tag] !== tag) {
-            changed = true;
-            return mapping[tag];
-          }
-          return tag;
-        });
-
-        if (changed) {
-          // Eliminar duplicados después de estandarizar
-          const uniqueNewTags = Array.from(new Set(newTags));
-          await db.put('products', {
-            ...product,
-            tags_ia: uniqueNewTags,
-            last_updated: Date.now()
-          });
-          updatedCount++;
-        }
-      }
-
-      addLog(`¡Estandarización completada! ${updatedCount} productos actualizados.`, 'success');
-      setHasPendingSync(true);
-      window.dispatchEvent(new Event('db_updated'));
-    } catch (e) {
-      addLog('Error durante la estandarización de etiquetas.', 'error');
-      console.error(e);
-    } finally {
-      setIsStandardizing(false);
-    }
+  const handleStandardizeTags = () => {
+    TaxonomyBackgroundService.startStandardization();
   };
 
   return (
@@ -390,13 +348,27 @@ export const AIEngineModule: React.FC = () => {
                 </h3>
                 <button 
                   onClick={handleStandardizeTags}
-                  disabled={!status.isReady || isStandardizing}
+                  disabled={!status.isReady || taxonomyStatus.isProcessing}
                   className="px-6 py-2.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl hover:bg-amber-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  {isStandardizing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                  Estandarizar Taxonomía Local
+                  {taxonomyStatus.isProcessing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                  {taxonomyStatus.isProcessing ? 'Procesando...' : 'Estandarizar Taxonomía Local'}
                 </button>
               </div>
+              {taxonomyStatus.isProcessing && (
+                <div className="mb-4 p-3 bg-amber-500/5 rounded-xl border border-amber-500/10">
+                  <div className="flex justify-between text-[10px] font-bold text-amber-500 uppercase mb-1">
+                    <span>{taxonomyStatus.progress}</span>
+                    <span>{Math.round((taxonomyStatus.processedTags / taxonomyStatus.totalTags) * 100) || 0}%</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-amber-500 transition-all duration-500"
+                      style={{ width: `${(taxonomyStatus.processedTags / taxonomyStatus.totalTags) * 100 || 0}%` }}
+                    />
+                  </div>
+                </div>
+              )}
               <p className="text-xs text-slate-400 leading-relaxed">
                 Esta herramienta analiza todas las etiquetas de tu base de datos local y utiliza el motor de IA para unificar términos similares, corregir ortografía y estandarizar la nomenclatura clínica. Ideal para mantener un catálogo limpio y profesional sin enviar datos a la nube.
               </p>

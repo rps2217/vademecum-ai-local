@@ -45,6 +45,10 @@ export const DatabaseModule: React.FC = () => {
 
   useEffect(() => {
     loadData();
+    
+    // Escuchar actualizaciones externas (ej: desde el motor de IA)
+    window.addEventListener('db_updated', loadData);
+    return () => window.removeEventListener('db_updated', loadData);
   }, []);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
