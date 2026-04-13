@@ -9,15 +9,15 @@ import { getDB } from '../../core/database/db';
 import { Product } from '../../core/types/product.types';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { TaxonomyBackgroundService, TaxonomyStatus } from '../../services/TaxonomyBackgroundService';
+import { VectorBackgroundService, VectorizationStatus } from '../../services/VectorBackgroundService';
 
 export const AIEngineModule: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
   const [health, setHealth] = useState<{ ok: boolean; engine: string; response?: string; error?: string } | null>(null);
   const [isTesting, setIsTesting] = useState(false);
   const [isPurging, setIsPurging] = useState(false);
-  const [isVectorizing, setIsVectorizing] = useState(false);
+  const [vectorStatus, setVectorStatus] = useState<VectorizationStatus>(VectorBackgroundService.getStatus());
   const [taxonomyStatus, setTaxonomyStatus] = useState<TaxonomyStatus>(TaxonomyBackgroundService.getStatus());
-  const [vectorProgress, setVectorProgress] = useState({ current: 0, total: 0 });
   const [logs, setLogs] = useState<{ time: string; msg: string; type: 'info' | 'success' | 'warn' | 'error' }[]>([]);
   const [playgroundText, setPlaygroundText] = useState('');
   const [playgroundResult, setPlaygroundResult] = useState<number[] | null>(null);
@@ -25,21 +25,26 @@ export const AIEngineModule: React.FC = () => {
   const [hasPendingSync, setHasPendingSync] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = TaxonomyBackgroundService.subscribe(status => {
+    const unsubTaxonomy = TaxonomyBackgroundService.subscribe(status => {
       setTaxonomyStatus(status);
-      if (status.lastLog) {
-        addLog(status.lastLog.msg, status.lastLog.type);
-      }
+      if (status.lastLog) addLog(status.lastLog.msg, status.lastLog.type);
     });
 
-    const handleTaxonomyComplete = () => {
-      setHasPendingSync(true);
-    };
+    const unsubVector = VectorBackgroundService.subscribe(status => {
+      setVectorStatus(status);
+      if (status.lastLog) addLog(status.lastLog.msg, status.lastLog.type);
+    });
 
-    window.addEventListener('taxonomy_completed', handleTaxonomyComplete);
+    const handleComplete = () => setHasPendingSync(true);
+
+    window.addEventListener('taxonomy_completed', handleComplete);
+    window.addEventListener('vectorization_completed', handleComplete);
+    
     return () => {
-      unsubscribe();
-      window.removeEventListener('taxonomy_completed', handleTaxonomyComplete);
+      unsubTaxonomy();
+      unsubVector();
+      window.removeEventListener('taxonomy_completed', handleComplete);
+      window.removeEventListener('vectorization_completed', handleComplete);
     };
   }, []);
 
@@ -93,44 +98,8 @@ export const AIEngineModule: React.FC = () => {
     }
   };
 
-  const handleVectorizeAll = async () => {
-    setIsVectorizing(true);
-    addLog('Iniciando vectorización masiva de la base de datos local...', 'info');
-    
-    try {
-      const db = await getDB();
-      const products = await db.getAll('products');
-      const pending = products.filter(p => !p.vectores || p.vectores.length === 0);
-      
-      setVectorProgress({ current: 0, total: pending.length });
-      addLog(`Encontrados ${pending.length} productos sin vectores semánticos.`, 'info');
-
-      for (let i = 0; i < pending.length; i++) {
-        const product = pending[i];
-        const textToEmbed = `${product.nombre_comercial} ${product.principios_activos.join(' ')} ${product.indicaciones.join(' ')}`;
-        
-        const vectors = await AIService.generateEmbedding(textToEmbed);
-        
-        await db.put('products', {
-          ...product,
-          vectores: vectors,
-          last_updated: Date.now()
-        });
-        
-        setVectorProgress(prev => ({ ...prev, current: i + 1 }));
-        if ((i + 1) % 5 === 0) {
-          addLog(`Procesados ${i + 1}/${pending.length} productos...`, 'info');
-        }
-      }
-      
-      addLog('¡Vectorización masiva completada con éxito!', 'success');
-      setHasPendingSync(true);
-      window.dispatchEvent(new Event('db_updated'));
-    } catch (e) {
-      addLog('Error en vectorización masiva.', 'error');
-    } finally {
-      setIsVectorizing(false);
-    }
+  const handleVectorizeAll = () => {
+    VectorBackgroundService.startVectorization();
   };
 
   const handleTestPlayground = async () => {
@@ -279,20 +248,20 @@ export const AIEngineModule: React.FC = () => {
                 Genera representaciones matemáticas (embeddings) para todos los productos. Esto es vital para la búsqueda semántica "por intención".
               </p>
               
-              {isVectorizing ? (
+              {vectorStatus.isProcessing ? (
                 <div className="space-y-3">
                   <div className="flex justify-between text-xs font-bold">
                     <span className="text-indigo-400">Procesando catálogo...</span>
-                    <span className="text-white">{Math.round((vectorProgress.current / vectorProgress.total) * 100)}%</span>
+                    <span className="text-white">{Math.round((vectorStatus.current / vectorStatus.total) * 100) || 0}%</span>
                   </div>
                   <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
                     <div 
                       className="bg-indigo-500 h-full transition-all duration-300" 
-                      style={{ width: `${(vectorProgress.current / vectorProgress.total) * 100}%` }}
+                      style={{ width: `${(vectorStatus.current / vectorStatus.total) * 100 || 0}%` }}
                     />
                   </div>
                   <div className="text-[10px] text-slate-500 text-center">
-                    {vectorProgress.current} de {vectorProgress.total} productos vectorizados
+                    {vectorStatus.current} de {vectorStatus.total} productos vectorizados
                   </div>
                 </div>
               ) : (
@@ -302,8 +271,8 @@ export const AIEngineModule: React.FC = () => {
                     disabled={!status.isReady}
                     className="w-full py-3 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl hover:bg-indigo-500/20 transition-all font-bold text-sm flex items-center justify-center gap-2 disabled:opacity-50"
                   >
-                    <RefreshCw className="w-4 h-4" />
-                    Vectorizar Pendientes
+                    <Zap className="w-4 h-4" />
+                    Iniciar Vectorización Masiva
                   </button>
                   
                   {hasPendingSync && (
