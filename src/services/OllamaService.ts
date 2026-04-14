@@ -39,6 +39,15 @@ export class OllamaService {
     }`;
 
     try {
+      const isAvailable = await this.isAvailable();
+      if (!isAvailable) {
+        return {
+          sugerencia_complementaria: "",
+          skus_relacionados: [],
+          explicacion_clinica: "Ollama no está disponible localmente."
+        };
+      }
+
       const response = await fetch(`${this.baseUrl}/generate`, {
         method: 'POST',
         body: JSON.stringify({
@@ -73,6 +82,15 @@ export class OllamaService {
     }`;
 
     try {
+      const isAvailable = await this.isAvailable();
+      if (!isAvailable) {
+        return {
+          riesgo_total: "BAJO",
+          interacciones: [],
+          resumen_clinico: "Ollama no está disponible localmente."
+        };
+      }
+
       const response = await fetch(`${this.baseUrl}/generate`, {
         method: 'POST',
         body: JSON.stringify({

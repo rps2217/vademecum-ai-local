@@ -8,12 +8,13 @@ export class GeminiService {
   private static getAI() {
     if (!this.ai) {
       // Intentar usar el nuevo secreto primero, si no, el original
-      const myKey = process.env.MY_GEMINI_API_KEY;
-      const originalKey = process.env.GEMINI_API_KEY;
-      const apiKey = myKey || originalKey;
+      const myKey = process.env.MY_GEMINI_API_KEY || (import.meta.env && (import.meta.env as any).VITE_MY_GEMINI_API_KEY);
+      const originalKey = process.env.GEMINI_API_KEY || (import.meta.env && (import.meta.env as any).VITE_GEMINI_API_KEY);
+      
+      const apiKey = apiKeyFromEnv(myKey) || apiKeyFromEnv(originalKey);
       
       if (!apiKey) {
-        throw new Error(`GEMINI_API_KEY no configurada. (MY_KEY: ${!!myKey}, ORIGINAL: ${!!originalKey})`);
+        throw new Error(`GEMINI_API_KEY no configurada. Por favor, ve a Configuración (icono de engranaje) y pega tu clave de Google AI Studio en el campo GEMINI_API_KEY.`);
       }
       
       this.ai = new GoogleGenAI({ apiKey });
@@ -654,4 +655,11 @@ export class GeminiService {
       throw error;
     }
   }
+}
+
+function apiKeyFromEnv(val: any): string | null {
+  if (!val || typeof val !== 'string') return null;
+  const trimmed = val.trim();
+  if (trimmed === '' || trimmed === 'undefined' || trimmed === 'null') return null;
+  return trimmed;
 }
