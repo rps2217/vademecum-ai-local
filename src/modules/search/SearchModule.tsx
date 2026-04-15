@@ -23,15 +23,15 @@ export const SearchModule: React.FC = () => {
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toggleProduct, isInTray } = useTray();
 
-  const handleTagClick = (tag: string) => {
+  const handleTagClick = React.useCallback((tag: string) => {
     setQuery(tag);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, [setQuery]);
 
-  const handleClearAll = () => {
+  const handleClearAll = React.useCallback(() => {
     setQuery('');
     setConditionFilters([]);
-  };
+  }, [setQuery, setConditionFilters]);
 
   return (
     <div className="w-full max-w-[1400px] mx-auto pb-20 px-4 sm:px-6 lg:px-8 relative">

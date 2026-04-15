@@ -139,14 +139,23 @@ export const useProductSearch = () => {
           // Preparar términos individuales ignorando stop words
           const searchTerms = normalizedQuery.split(' ').filter(t => t.length > 0 && !stopWords.has(t));
 
+          // Pre-compilar expresiones regulares fuera del bucle para mejorar drásticamente el rendimiento
+          const exactPhraseRegexes = exactPhrasesToSearch.map(phrase => {
+            const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return new RegExp(`\\b${escapedPhrase}\\b`, 'i');
+          });
+
+          const searchTermsRegexes = searchTerms.map(term => {
+            const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return new RegExp(`\\b${escapedTerm}\\b`, 'i');
+          });
+
           textFiltered.forEach(item => {
             const textToSearch = isPathologySearch ? item.pathologySearchableText : item.searchableText;
             let matchedExact = false;
 
             // Primero intentamos coincidencia de frase exacta (o sinónimos)
-            for (const phrase of exactPhrasesToSearch) {
-              const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              const regex = new RegExp(`\\b${escapedPhrase}\\b`, 'i');
+            for (const regex of exactPhraseRegexes) {
               if (regex.test(textToSearch)) {
                 matchedExact = true;
                 break;
@@ -156,19 +165,17 @@ export const useProductSearch = () => {
             if (matchedExact) {
               // Coincidencia exacta tiene puntuación máxima
               textResults.set(item.sku, { product: item.product, score: 1.0 });
-            } else if (!isPathologySearch && searchTerms.length > 0) {
+            } else if (!isPathologySearch && searchTermsRegexes.length > 0) {
               // Si no es patología, buscamos por palabras individuales (sin stop words)
               let matchCount = 0;
-              searchTerms.forEach(term => {
-                const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
+              for (const regex of searchTermsRegexes) {
                 if (regex.test(textToSearch)) {
                   matchCount++;
                 }
-              });
+              }
               
               if (matchCount > 0) {
-                const score = matchCount / searchTerms.length;
+                const score = matchCount / searchTermsRegexes.length;
                 textResults.set(item.sku, { product: item.product, score });
               }
             }

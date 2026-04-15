@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, CheckCircle2, Heart, Droplets, Baby, Activity, ShieldCheck as ShieldIcon, Wheat } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, Heart, Droplets, Baby, Activity, ShieldCheck as ShieldIcon, Wheat, X } from 'lucide-react';
 import { SafetyCondition } from '../../../hooks/useProductSearch';
 
 interface SafetyFiltersProps {
@@ -53,9 +53,10 @@ export const SafetyFilters: React.FC<SafetyFiltersProps> = ({ conditionFilters, 
       {conditionFilters.length > 0 && (
         <button
           onClick={() => setConditionFilters([])}
-          className="text-[10px] text-slate-500 hover:text-slate-300 underline underline-offset-4 transition-colors px-2 whitespace-nowrap"
+          className="flex items-center gap-1.5 px-3 py-1.5 ml-auto text-xs font-bold text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 hover:border-rose-500/40 rounded-xl transition-all whitespace-nowrap shadow-sm"
         >
-          Limpiar
+          <X className="w-3.5 h-3.5" />
+          Limpiar Filtros
         </button>
       )}
     </div>
