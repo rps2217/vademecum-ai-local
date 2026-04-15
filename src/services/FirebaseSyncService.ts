@@ -143,6 +143,28 @@ export const FirebaseSyncService = {
     }
   },
 
+  updateProductsBatch: async (products: Product[]) => {
+    if (!auth.currentUser || products.length === 0) return;
+    
+    const batch = writeBatch(db);
+    products.forEach(product => {
+      const docRef = doc(db, 'products', product.sku);
+      batch.set(docRef, product);
+    });
+
+    try {
+      await batch.commit();
+      return true;
+    } catch (error: any) {
+      if (error?.code === 'resource-exhausted' || error?.message?.includes('Quota exceeded')) {
+        console.warn('[FirebaseSync] Cuota excedida en lote.');
+        return false;
+      }
+      console.error('[FirebaseSync] Error en actualización por lote:', error);
+      throw error;
+    }
+  },
+
   /**
    * Intenta adquirir un candado para procesar un producto de forma distribuida
    */

@@ -11,15 +11,27 @@ export const QuotaMonitorService = {
 
       console.log(`[QuotaMonitor] Procesando ${tasks.length} tareas pendientes...`);
 
-      for (const task of tasks) {
-        try {
-          if (task.type === 'firebase_sync') {
-            await FirebaseSyncService.updateProduct(task.payload);
+      // Agrupar tareas de sincronización de Firebase para procesarlas por lotes
+      const syncTasks = tasks.filter(t => t.type === 'firebase_sync');
+      const otherTasks = tasks.filter(t => t.type !== 'firebase_sync');
+
+      if (syncTasks.length > 0) {
+        const products = syncTasks.map(t => t.payload);
+        const success = await FirebaseSyncService.updateProductsBatch(products);
+        
+        if (success) {
+          console.log(`[QuotaMonitor] Sincronizados ${syncTasks.length} productos en lote.`);
+          for (const task of syncTasks) {
             await TaskQueueService.removeTask(task.id);
-          } else if (task.type === 'ai_analysis') {
+          }
+        }
+      }
+
+      // Procesar otras tareas (como análisis IA) una por una
+      for (const task of otherTasks) {
+        try {
+          if (task.type === 'ai_analysis') {
             // Reintentar análisis IA
-            // Esto es complejo porque requiere llamar a AIService.analyzeClinical
-            // Por ahora, solo intentamos y si falla, dejamos la tarea
             await AIService.analyzeClinical(task.payload.product, task.payload.candidates, task.payload.type);
             await TaskQueueService.removeTask(task.id);
           }
