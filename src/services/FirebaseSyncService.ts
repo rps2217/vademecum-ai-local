@@ -1,10 +1,25 @@
-import { collection, onSnapshot, query, writeBatch, doc, getDocs, limit, setDoc, runTransaction } from 'firebase/firestore';
+import { collection, onSnapshot, query, writeBatch, doc, getDocs, limit, setDoc, runTransaction, getCountFromServer } from 'firebase/firestore';
 import { db, auth, handleFirestoreError, OperationType } from '../firebase';
 import { getDB } from '../core/database/db';
 import { Product } from '../core/types/product.types';
 import { TaskQueueService } from './TaskQueueService';
+import { ConfigService } from './ConfigService';
 
 export const FirebaseSyncService = {
+  /**
+   * Obtiene la cantidad total de productos en Firestore
+   */
+  getCloudCount: async (): Promise<number> => {
+    try {
+      const coll = collection(db, 'products');
+      const snapshot = await getCountFromServer(coll);
+      return snapshot.data().count;
+    } catch (error) {
+      console.error('[FirebaseSync] Error obteniendo conteo de nube:', error);
+      return 0;
+    }
+  },
+
   /**
    * Escucha cambios en Firestore y los sincroniza con IndexedDB local (Modo Delta)
    */
@@ -131,6 +146,13 @@ export const FirebaseSyncService = {
   updateProduct: async (product: Product) => {
     try {
       if (!auth.currentUser) return;
+      
+      const config = ConfigService.getConfig();
+      if (!config.autoSyncCloud) {
+        console.log('[FirebaseSync] Auto-Sincronización desactivada. Saltando subida de:', product.sku);
+        return;
+      }
+
       const docRef = doc(db, 'products', product.sku);
       await setDoc(docRef, product);
     } catch (error: any) {
@@ -146,6 +168,12 @@ export const FirebaseSyncService = {
   updateProductsBatch: async (products: Product[]) => {
     if (!auth.currentUser || products.length === 0) return;
     
+    const config = ConfigService.getConfig();
+    if (!config.autoSyncCloud) {
+      console.log('[FirebaseSync] Auto-Sincronización desactivada. Saltando subida de lote.');
+      return;
+    }
+
     const batch = writeBatch(db);
     products.forEach(product => {
       const docRef = doc(db, 'products', product.sku);

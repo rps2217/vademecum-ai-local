@@ -57,8 +57,8 @@ export class AIService {
                 this.lastProgress = { text: `${engine} Listo`, progress: 100 };
                 this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
                 
-                // Iniciar motor de sinergia en segundo plano
-                SynergyBackgroundService.start();
+                // Iniciar motor de sinergia en segundo plano (si está habilitado)
+                SynergyBackgroundService.init();
                 AIOrchestratorService.startWatcher();
                 this.startWatchdog();
                 
@@ -74,6 +74,10 @@ export class AIService {
               break;
             case 'ERROR':
               console.error('Error en Worker IA:', error);
+              if (error && (error.includes('disposed') || error.includes('context lost') || error.includes('external Instance reference'))) {
+                console.warn('[AIService] Motor IA reportó estado irrecuperable. Reiniciando...');
+                this.restartEngine();
+              }
               break;
           }
         };
@@ -301,31 +305,45 @@ export class AIService {
   }
 
   static async analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives'): Promise<any> {
-    if (!this.worker || !this.isReady) {
-      return null;
-    }
-
-    return new Promise((resolve) => {
-      const handler = (e: MessageEvent) => {
-        const { type: resType, payload, error } = e.data;
-        if (resType === 'ANALYZE_CLINICAL_RESULT' || resType === 'ERROR') {
-          this.worker?.removeEventListener('message', handler);
-          if (error) {
-            if (error.includes('Quota') || error.includes('429')) {
-              console.warn('[AIService] Cuota excedida, encolando análisis:', product.sku);
-              TaskQueueService.addTask('ai_analysis', { product, candidates, type });
+    // Si el motor local está listo, usarlo
+    if (this.worker && this.isReady) {
+      return new Promise((resolve) => {
+        const handler = (e: MessageEvent) => {
+          const { type: resType, payload, error } = e.data;
+          if (resType === 'ANALYZE_CLINICAL_RESULT' || resType === 'ERROR') {
+            this.worker?.removeEventListener('message', handler);
+            if (error) {
               resolve(null);
             } else {
-              resolve(null);
+              resolve(payload);
             }
-          } else {
-            resolve(payload);
           }
-        }
-      };
-      this.worker?.addEventListener('message', handler);
-      this.worker?.postMessage({ type: 'ANALYZE_CLINICAL', payload: { product, candidates, type } });
-    });
+        };
+        this.worker?.addEventListener('message', handler);
+        this.worker?.postMessage({ type: 'ANALYZE_CLINICAL', payload: { product, candidates, type } });
+      });
+    }
+
+    // Si el motor local NO está listo, intentar usar Gemini en la nube (GeminiService)
+    try {
+      const { GeminiService } = await import('./GeminiService');
+      if (type === 'synergy') {
+        return await GeminiService.analyzeSynergy(product, candidates);
+      }
+      return null;
+    } catch (error: any) {
+      // Capturar errores de cuota o red de GeminiService
+      const isQuotaError = error?.status === 'RESOURCE_EXHAUSTED' || error?.message?.includes('429') || error?.message?.includes('quota');
+      const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
+      
+      if (isQuotaError || isNetworkError) {
+        console.warn(`[AIService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en la nube, encolando análisis:`, product.sku);
+        TaskQueueService.addTask('ai_analysis', { product, candidates, type });
+      } else {
+        console.error('[AIService] Error en análisis clínico en la nube:', error);
+      }
+      return null;
+    }
   }
 
   static cosineSimilarity(vecA: number[], vecB: number[]): number {

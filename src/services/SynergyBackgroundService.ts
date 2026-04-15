@@ -6,6 +6,7 @@ import { OllamaService } from './OllamaService';
 import { FirebaseSyncService } from './FirebaseSyncService';
 import { formatArrayToString } from '../utils/formatters';
 import { auth } from '../firebase';
+import { ConfigService } from './ConfigService';
 
 export class SynergyBackgroundService {
   private static isRunning = false;
@@ -26,14 +27,37 @@ export class SynergyBackgroundService {
     this.listeners.forEach(l => l(this.currentProcessingSku, this.currentProcessingName));
   }
 
+  private static isInitialized = false;
+
+  static init() {
+    if (this.isInitialized) return;
+    this.isInitialized = true;
+
+    // Escuchar cambios en la configuración para arrancar/parar el motor
+    window.addEventListener('config_updated', (e: any) => {
+      const newConfig = e.detail;
+      if (newConfig.enableBackgroundSynergy) {
+        this.start();
+      } else {
+        this.stop();
+      }
+    });
+
+    // Intentar arranque inicial
+    this.start();
+  }
+
   static start() {
     if (this.isRunning) return;
+    
+    const config = ConfigService.getConfig();
+    if (!config.enableBackgroundSynergy) return;
+
     this.isRunning = true;
     console.log('[SynergyService] Iniciando motor de sinergia en segundo plano...');
     
-    // Ejecutar cada 30 segundos si hay trabajo pendiente
     this.intervalId = window.setInterval(() => this.processNext(), 30000);
-    this.processNext(); // Primera ejecución inmediata
+    this.processNext();
   }
 
   static stop() {
@@ -61,6 +85,9 @@ export class SynergyBackgroundService {
 
   private static async processNext() {
     if (this.currentProcessingSku) return; // Ya hay uno en proceso
+
+    const config = ConfigService.getConfig();
+    if (!config.enableBackgroundSynergy) return;
 
     try {
       const db = await getDB();
@@ -178,24 +205,52 @@ export class SynergyBackgroundService {
       }
 
       if (!synergyResult) {
-        try {
-          const analysis = await GeminiService.analyzeSynergy(product, candidates);
-          synergyResult = {
-            sugerencia_complementaria: analysis.sugerencia_complementaria,
-            skus_relacionados: analysis.skus_relacionados,
-            explicacion_clinica: analysis.explicacion_clinica
-          };
-        } catch (e) {
-          console.warn('[SynergyService] Fallo Gemini, intentando IA Local Navegador...');
-          if (status.isReady) {
-            const prompt = `Analiza si estos productos son complementarios a ${product.nombre_comercial}: ${candidates.map(c => c.nombre_comercial).join(', ')}.`;
-            const localAnalysis = await AIService.analyze(prompt, [product, ...candidates]);
+        const config = ConfigService.getConfig();
+        if (config.useGeminiForSynergy) {
+          try {
+            const analysis = await GeminiService.analyzeSynergy(product, candidates);
             synergyResult = {
-              sugerencia_complementaria: localAnalysis.substring(0, 200),
-              skus_relacionados: candidates.map(c => c.sku),
-              explicacion_clinica: localAnalysis
+              sugerencia_complementaria: analysis.sugerencia_complementaria,
+              skus_relacionados: analysis.skus_relacionados,
+              explicacion_clinica: analysis.explicacion_clinica
             };
+          } catch (e: any) {
+            const isQuotaError = e?.status === 'RESOURCE_EXHAUSTED' || e?.message?.includes('429') || e?.message?.includes('quota');
+            const isNetworkError = e?.status === 'UNKNOWN' || e?.message?.includes('xhr error') || e?.message?.includes('fetch');
+            
+            if (isQuotaError || isNetworkError) {
+              console.warn(`[SynergyService] ${isQuotaError ? 'Cuota de Gemini excedida' : 'Error de red en Gemini'}. Encolando tarea de sinergia para:`, product.sku);
+              // Encolar la tarea para reintentar más tarde
+              const { TaskQueueService } = await import('./TaskQueueService');
+              TaskQueueService.addTask('ai_analysis', { product, candidates, type: 'synergy' });
+              
+              // Marcar como no analizado para que se retome después
+              const updatedProduct = { 
+                ...product, 
+                synergy_analyzed: false,
+                lock_uid: null,
+                lock_timestamp: null
+              };
+              await db.put('products', updatedProduct);
+              await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
+              this.clearCurrent();
+              return; // Salir del proceso actual
+            }
+
+            console.warn('[SynergyService] Fallo Gemini, intentando IA Local Navegador...');
           }
+        } else {
+          console.log('[SynergyService] Gemini desactivado por configuración. Saltando a IA Local...');
+        }
+
+        if (!synergyResult && status.isReady) {
+          const prompt = `Analiza si estos productos son complementarios a ${product.nombre_comercial}: ${candidates.map(c => c.nombre_comercial).join(', ')}.`;
+          const localAnalysis = await AIService.analyze(prompt, [product, ...candidates]);
+          synergyResult = {
+            sugerencia_complementaria: localAnalysis.substring(0, 200),
+            skus_relacionados: candidates.map(c => c.sku),
+            explicacion_clinica: localAnalysis
+          };
         }
       }
 

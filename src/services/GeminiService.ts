@@ -67,10 +67,11 @@ export class GeminiService {
         // Si el error es de cuota (429) o sobrecarga (503), reintentar con backoff
         const isQuotaError = error.message?.includes('429') || error.status === 'RESOURCE_EXHAUSTED' || error.message?.includes('quota');
         const isOverloaded = error.message?.includes('503') || error.status === 'SERVICE_UNAVAILABLE';
+        const isNetworkError = error.status === 'UNKNOWN' || error.message?.includes('xhr error') || error.message?.includes('fetch');
         
-        if ((isQuotaError || isOverloaded) && i < maxRetries - 1) {
+        if ((isQuotaError || isOverloaded || isNetworkError) && i < maxRetries - 1) {
           const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-          console.warn(`[GeminiService] Error de cuota o sobrecarga. Reintentando en ${Math.round(delay)}ms... (Intento ${i + 1}/${maxRetries})`);
+          console.warn(`[GeminiService] Error de red, cuota o sobrecarga. Reintentando en ${Math.round(delay)}ms... (Intento ${i + 1}/${maxRetries})`);
           await new Promise(resolve => setTimeout(resolve, delay));
           continue;
         }
@@ -525,13 +526,17 @@ export class GeminiService {
         });
 
         return JSON.parse(response.text || "{}");
-      } catch (error) {
-        console.error("[GeminiService] Error en analyzeSynergy:", error);
-        return {
-          sugerencia_complementaria: "",
-          skus_relacionados: [],
-          explicacion_clinica: "No se pudo realizar el análisis de sinergia en este momento."
-        };
+      } catch (error: any) {
+        const isQuotaError = error?.status === 'RESOURCE_EXHAUSTED' || error?.message?.includes('429') || error?.message?.includes('quota');
+        const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
+        
+        if (isQuotaError || isNetworkError) {
+          console.warn(`[GeminiService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en analyzeSynergy.`);
+        } else {
+          console.error("[GeminiService] Error en analyzeSynergy:", error);
+        }
+        // Rethrow the error so the caller (AIService) can catch it and enqueue the task
+        throw error;
       }
     });
   }

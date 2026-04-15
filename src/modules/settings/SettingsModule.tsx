@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { Cpu, ShieldCheck, Settings, AlertTriangle, Download, Upload, FileJson, Loader2 } from 'lucide-react';
+import { Cpu, ShieldCheck, Settings, AlertTriangle, Download, Upload, FileJson, Loader2, Brain, Cloud, Zap } from 'lucide-react';
 import { SystemDiagnostics } from '../../components/settings/SystemDiagnostics';
 import { DataService } from '../../services/DataService';
+import { ConfigService, AppConfig } from '../../services/ConfigService';
 
 export const SettingsModule: React.FC = () => {
   const { hardware } = useHardwareDetection();
   const [isImporting, setIsImporting] = useState(false);
+  const [config, setConfig] = useState<AppConfig>(ConfigService.getConfig());
+
+  const handleConfigChange = (updates: Partial<AppConfig>) => {
+    const newConfig = ConfigService.updateConfig(updates);
+    setConfig(newConfig);
+  };
 
   const handleExport = async () => {
     try {
@@ -63,6 +70,66 @@ export const SettingsModule: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* Tarjeta de Configuración de IA y Sincronización */}
+        <div className="bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-800">
+          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+            <div className="p-2 bg-brand-primary/10 rounded-lg">
+              <Brain className="w-5 h-5 text-brand-primary" />
+            </div>
+            IA y Sincronización
+          </h2>
+          
+          <div className="space-y-6">
+            <div className="flex items-center justify-between p-4 bg-slate-800/30 rounded-2xl border border-slate-800/50">
+              <div className="flex gap-3">
+                <Zap className="w-5 h-5 text-amber-400 shrink-0" />
+                <div>
+                  <p className="text-sm font-bold text-white">Análisis de Sinergia</p>
+                  <p className="text-xs text-slate-400">Procesa productos en segundo plano</p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleConfigChange({ enableBackgroundSynergy: !config.enableBackgroundSynergy })}
+                className={`w-12 h-6 rounded-full transition-colors relative ${config.enableBackgroundSynergy ? 'bg-brand-primary' : 'bg-slate-700'}`}
+              >
+                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${config.enableBackgroundSynergy ? 'left-7' : 'left-1'}`} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between p-4 bg-slate-800/30 rounded-2xl border border-slate-800/50">
+              <div className="flex gap-3">
+                <Brain className="w-5 h-5 text-indigo-400 shrink-0" />
+                <div>
+                  <p className="text-sm font-bold text-white">Usar Gemini (Nube)</p>
+                  <p className="text-xs text-slate-400">Análisis clínico profundo (Requiere Cuota)</p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleConfigChange({ useGeminiForSynergy: !config.useGeminiForSynergy })}
+                className={`w-12 h-6 rounded-full transition-colors relative ${config.useGeminiForSynergy ? 'bg-indigo-500' : 'bg-slate-700'}`}
+              >
+                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${config.useGeminiForSynergy ? 'left-7' : 'left-1'}`} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between p-4 bg-slate-800/30 rounded-2xl border border-slate-800/50">
+              <div className="flex gap-3">
+                <Cloud className="w-5 h-5 text-emerald-400 shrink-0" />
+                <div>
+                  <p className="text-sm font-bold text-white">Auto-Sincronización</p>
+                  <p className="text-xs text-slate-400">Respaldo automático en Firestore</p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleConfigChange({ autoSyncCloud: !config.autoSyncCloud })}
+                className={`w-12 h-6 rounded-full transition-colors relative ${config.autoSyncCloud ? 'bg-emerald-500' : 'bg-slate-700'}`}
+              >
+                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${config.autoSyncCloud ? 'left-7' : 'left-1'}`} />
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Tarjeta de Perfil de Hardware */}
         <div className="bg-slate-900 rounded-3xl p-8 shadow-sm border border-slate-800">
           <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">

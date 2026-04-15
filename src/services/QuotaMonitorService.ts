@@ -32,7 +32,12 @@ export const QuotaMonitorService = {
         try {
           if (task.type === 'ai_analysis') {
             // Reintentar análisis IA
-            await AIService.analyzeClinical(task.payload.product, task.payload.candidates, task.payload.type);
+            if (task.payload.type === 'synergy') {
+               const { SynergyBackgroundService } = await import('./SynergyBackgroundService');
+               await SynergyBackgroundService.forceAnalyze(task.payload.product);
+            } else {
+               await AIService.analyzeClinical(task.payload.product, task.payload.candidates, task.payload.type);
+            }
             await TaskQueueService.removeTask(task.id);
           }
         } catch (error) {

@@ -19,6 +19,7 @@ const ITEMS_PER_PAGE = 50;
 export const DatabaseModule: React.FC = () => {
   const { isAdmin } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
+  const [cloudCount, setCloudCount] = useState<number | null>(null);
   const [stagingProducts, setStagingProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isCleaning, setIsCleaning] = useState(false);
@@ -39,6 +40,10 @@ export const DatabaseModule: React.FC = () => {
       const metadata = await db.get('sync_metadata', 'cloud_sync');
       setLastSyncTime(metadata?.lastSyncTime || 0);
       setProducts(allProducts);
+      
+      // Cargar conteo de nube de forma asíncrona para no bloquear
+      FirebaseSyncService.getCloudCount().then(setCloudCount);
+      
       window.dispatchEvent(new Event('db_updated'));
     } catch (error) {
       console.error('Error cargando base de datos:', error);
@@ -167,6 +172,9 @@ export const DatabaseModule: React.FC = () => {
     try {
       const count = await FirebaseSyncService.uploadLocalProducts();
       setSyncStatus(`Sincronización completada: ${count} productos actualizados en la nube.`);
+      // Refrescar conteo de nube
+      const newCloudCount = await FirebaseSyncService.getCloudCount();
+      setCloudCount(newCloudCount);
     } catch (error) {
       console.error('Error sincronizando:', error);
     } finally {
@@ -458,11 +466,24 @@ export const DatabaseModule: React.FC = () => {
       {/* Main Database Table */}
       <div className="bg-brand-surface border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
         <div className="p-4 sm:p-6 border-b border-slate-800 bg-slate-950/30 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
             <span className="text-lg font-bold text-white">Registros Locales</span>
-            <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-bold border border-brand-primary/20">
-              {products.length} Total
-            </span>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-bold border border-brand-primary/20">
+                <Monitor className="w-3 h-3" />
+                {products.length} Local
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-bold border border-indigo-500/20">
+                <CloudUpload className="w-3 h-3" />
+                {cloudCount !== null ? `${cloudCount} Nube` : 'Cargando...'}
+              </div>
+              {cloudCount !== null && products.length > cloudCount && (
+                <div className="flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-500 rounded-full text-[10px] font-bold border border-amber-500/20 animate-pulse">
+                  <AlertCircle className="w-3 h-3" />
+                  {products.length - cloudCount} Pendientes
+                </div>
+              )}
+            </div>
           </div>
           
           <div className="flex items-center gap-3 w-full md:w-auto">
