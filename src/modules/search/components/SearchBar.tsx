@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Search, Loader2, X, Sparkles } from 'lucide-react';
 
 interface SearchBarProps {
@@ -8,7 +8,7 @@ interface SearchBarProps {
   onAiQuery?: () => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, isSearching, onAiQuery }) => {
+export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, setQuery, isSearching, onAiQuery }, ref) => {
   const isQuestion = query.trim().endsWith('?') || 
                     ['¿', 'como', 'qué', 'que', 'para', 'cuál', 'cual', 'donde', 'dónde'].some(word => 
                       query.toLowerCase().startsWith(word)
@@ -28,8 +28,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, isSearchi
           )}
         </div>
         <input
+          ref={ref}
           type="text"
-          autoFocus
           className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-brand-surface/90 backdrop-blur-sm border border-slate-700/50 rounded-2xl text-base sm:text-lg text-white shadow-xl focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all placeholder:text-slate-500"
           placeholder="Buscar o preguntar a la IA..."
           value={query}
@@ -44,7 +44,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, isSearchi
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 gap-2">
           {query && !isQuestion && (
             <button
-              onClick={() => setQuery('')}
+              onClick={() => {
+                setQuery('');
+                if (ref && typeof ref !== 'function' && ref.current) {
+                    ref.current.focus();
+                }
+              }}
               className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 border border-slate-700 shadow-sm"
             >
               <span className="hidden sm:inline">Limpiar</span> <X className="w-3.5 h-3.5" />
@@ -72,4 +77,4 @@ export const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, isSearchi
       </div>
     </div>
   );
-};
+});

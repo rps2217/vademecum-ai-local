@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useProductSearch } from '../../hooks/useProductSearch';
 import { Product } from '../../core/types/product.types';
 import { ProductDetailModal } from '../product/ProductDetailModal';
@@ -22,6 +22,13 @@ export const SearchModule: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toggleProduct, isInTray } = useTray();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
 
   const handleTagClick = React.useCallback((tag: string) => {
     setQuery(tag);
@@ -31,6 +38,7 @@ export const SearchModule: React.FC = () => {
   const handleClearAll = React.useCallback(() => {
     setQuery('');
     setConditionFilters([]);
+    searchInputRef.current?.focus();
   }, [setQuery, setConditionFilters]);
 
   return (
@@ -38,6 +46,7 @@ export const SearchModule: React.FC = () => {
       {/* Contenedor Sticky para Búsqueda y Filtros */}
       <div className="sticky top-0 z-30 bg-brand-bg/95 backdrop-blur-xl pt-2 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
         <SearchBar 
+          ref={searchInputRef}
           query={query} 
           setQuery={setQuery} 
           isSearching={isSearching} 
