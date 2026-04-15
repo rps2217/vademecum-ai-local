@@ -34,44 +34,36 @@ export const DatabaseModule: React.FC = () => {
 
   const isLoadingRef = useRef(false);
 
-  const loadData = async () => {
-    if (isLoadingRef.current) return;
+  const loadData = async (isManual = false) => {
+    if (isLoadingRef.current && !isManual) return;
     isLoadingRef.current = true;
     
     console.time('DatabaseModule:loadData');
-    // Solo mostrar loading inicial si no hay datos
-    if (products.length === 0) setIsLoading(true);
+    setIsLoading(true);
     
     try {
       const db = await getDB();
-      const all: Product[] = [];
+      console.log('[DatabaseModule] Accediendo a la tienda "products"...');
       
-      let cursor = await db.transaction('products').store.openCursor();
-      let count = 0;
+      // Obtenemos todos los productos
+      const allProducts = await db.getAll('products');
+      console.log(`[DatabaseModule] Productos encontrados: ${allProducts.length}`);
       
-      while (cursor) {
-        const p = { ...cursor.value };
-        // @ts-ignore - Eliminamos vectores para ahorrar memoria en la tabla
-        delete p.vectores; 
-        
-        all.push(p);
-        count++;
-        
-        if (count % 500 === 0) {
-          await new Promise(resolve => setTimeout(resolve, 0));
-        }
-        
-        cursor = await cursor.continue();
-      }
+      // Limpiamos los vectores para ahorrar memoria en el estado de la tabla
+      const sanitized = allProducts.map(p => {
+        const { vectores, ...rest } = p;
+        return rest as Product;
+      });
 
       const metadata = await db.get('sync_metadata', 'cloud_sync');
       setLastSyncTime(metadata?.lastSyncTime || 0);
       
-      setProducts(all);
+      setProducts(sanitized);
       FirebaseSyncService.getCloudCount().then(setCloudCount).catch(console.error);
       
     } catch (error) {
       console.error('Error cargando base de datos:', error);
+      alert('Error al acceder a la base de datos local.');
     } finally {
       setIsLoading(false);
       isLoadingRef.current = false;
@@ -82,16 +74,19 @@ export const DatabaseModule: React.FC = () => {
   useEffect(() => {
     loadData();
     
+    let timer: number | null = null;
     const handleDbUpdated = () => {
-      // Usar un pequeño delay para no saturar si hay muchas actualizaciones seguidas
-      const timer = setTimeout(() => {
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
         if (!isLoadingRef.current) loadData();
-      }, 300);
-      return () => clearTimeout(timer);
+      }, 500);
     };
     
     window.addEventListener('db_updated', handleDbUpdated);
-    return () => window.removeEventListener('db_updated', handleDbUpdated);
+    return () => {
+      window.removeEventListener('db_updated', handleDbUpdated);
+      if (timer) window.clearTimeout(timer);
+    };
   }, []);
 
 
@@ -350,6 +345,14 @@ export const DatabaseModule: React.FC = () => {
         </div>
         
         <div className="flex flex-wrap gap-3">
+          <button 
+            onClick={() => loadData(true)}
+            className="p-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-800 shadow-lg group"
+            title="Refrescar base de datos"
+          >
+            <RefreshCw className={`w-5 h-5 ${isLoading ? 'animate-spin text-brand-primary' : 'group-hover:rotate-180 transition-transform'}`} />
+          </button>
+          <div className="h-10 w-px bg-slate-800 mx-1 hidden sm:block" />
           <input 
             type="file" 
             accept=".json" 
