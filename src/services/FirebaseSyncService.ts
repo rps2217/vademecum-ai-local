@@ -9,12 +9,16 @@ export const FirebaseSyncService = {
   /**
    * Obtiene la cantidad total de productos en Firestore
    */
-  getCloudCount: async (): Promise<number> => {
+  getCloudCount: async (): Promise<number | 'quota-exceeded'> => {
     try {
       const coll = collection(db, 'products');
       const snapshot = await getCountFromServer(coll);
       return snapshot.data().count;
-    } catch (error) {
+    } catch (error: any) {
+      if (error?.message?.includes('Quota exceeded') || error?.code === 'resource-exhausted') {
+        console.warn('[FirebaseSync] Cuota de lectura excedida en nube.');
+        return 'quota-exceeded';
+      }
       console.error('[FirebaseSync] Error obteniendo conteo de nube:', error);
       return 0;
     }
@@ -73,6 +77,10 @@ export const FirebaseSyncService = {
         await tx.done;
         window.dispatchEvent(new CustomEvent('db_updated'));
       }, (error) => {
+        if (error?.message?.includes('Quota exceeded') || error?.code === 'resource-exhausted') {
+          console.warn('[FirebaseSync] Cuota de lectura excedida en onSnapshot.');
+          return;
+        }
         handleFirestoreError(error, OperationType.LIST, 'products');
       });
     };
@@ -135,9 +143,17 @@ export const FirebaseSyncService = {
    * Verifica si Firestore tiene datos, si no, ofrece subir los locales
    */
   checkCloudData: async () => {
-    const q = query(collection(db, 'products'), limit(1));
-    const snapshot = await getDocs(q);
-    return !snapshot.empty;
+    try {
+      const q = query(collection(db, 'products'), limit(1));
+      const snapshot = await getDocs(q);
+      return !snapshot.empty;
+    } catch (error: any) {
+      if (error?.message?.includes('Quota exceeded') || error?.code === 'resource-exhausted') {
+        console.warn('[FirebaseSync] Cuota excedida en checkCloudData.');
+        return true; // Asumimos que hay datos para evitar subidas masivas accidentales si falla
+      }
+      return false;
+    }
   },
 
   /**
@@ -153,15 +169,21 @@ export const FirebaseSyncService = {
         return;
       }
 
-      const docRef = doc(db, 'products', product.sku);
-      await setDoc(docRef, product);
-    } catch (error: any) {
-      if (error?.code === 'resource-exhausted' || error?.message?.includes('Quota exceeded')) {
-        console.warn('[FirebaseSync] Cuota excedida, encolando tarea:', product.sku);
-        await TaskQueueService.addTask('firebase_sync', product);
+      // En lugar de subir inmediatamente, encolamos la tarea
+      await TaskQueueService.addTask('firebase_sync', product);
+      
+      // Revisar el umbral (5 cambios)
+      const tasks = await TaskQueueService.getTasks();
+      const syncTasksCount = tasks.filter(t => t.type === 'firebase_sync').length;
+      
+      if (syncTasksCount >= 5) {
+        console.log(`[FirebaseSync] Umbral de 5 cambios alcanzado. Disparando sincronización...`);
+        window.dispatchEvent(new CustomEvent('trigger_quota_sync'));
       } else {
-        console.warn('[FirebaseSync] No se pudo actualizar en la nube:', error);
+        console.log(`[FirebaseSync] Cambio encolado (${syncTasksCount}/5 para sincronización inmediata).`);
       }
+    } catch (error: any) {
+      console.warn('[FirebaseSync] Error al encolar producto para sincronización:', error);
     }
   },
 

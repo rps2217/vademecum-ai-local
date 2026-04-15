@@ -19,7 +19,7 @@ const ITEMS_PER_PAGE = 50;
 export const DatabaseModule: React.FC = () => {
   const { isAdmin } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
-  const [cloudCount, setCloudCount] = useState<number | null>(null);
+  const [cloudCount, setCloudCount] = useState<number | null | 'quota-exceeded'>(null);
   const [stagingProducts, setStagingProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isCleaning, setIsCleaning] = useState(false);
@@ -519,9 +519,15 @@ export const DatabaseModule: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-xs font-bold border border-indigo-500/20">
                 <CloudUpload className="w-3 h-3" />
-                {cloudCount !== null ? `${cloudCount} Nube` : 'Cargando...'}
+                {cloudCount === 'quota-exceeded' ? (
+                  <span className="text-amber-500">Cuota Excedida</span>
+                ) : cloudCount !== null ? (
+                  `${cloudCount} Nube`
+                ) : (
+                  'Cargando...'
+                )}
               </div>
-              {cloudCount !== null && products.length > cloudCount && (
+              {cloudCount !== null && cloudCount !== 'quota-exceeded' && products.length > cloudCount && (
                 <div className="flex items-center gap-1 px-3 py-1 bg-amber-500/10 text-amber-500 rounded-full text-[10px] font-bold border border-amber-500/20 animate-pulse">
                   <AlertCircle className="w-3 h-3" />
                   {products.length - cloudCount} Pendientes
