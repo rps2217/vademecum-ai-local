@@ -3,13 +3,15 @@ import { Badge } from '../../../components/ui/badge';
 import { Activity } from 'lucide-react';
 import { Product } from '../../../core/types/product.types';
 import { formatArrayToString } from '../../../utils/formatters';
+import { HighlightText } from '../../../components/ui/HighlightText';
 
 interface ProductHeaderProps {
   product: Product;
   onTagClick?: (tag: string) => void;
+  searchTerm?: string;
 }
 
-export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClick }) => {
+export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClick, searchTerm = '' }) => {
   return (
     <div className="bg-brand-surface border border-slate-800 rounded-3xl p-6 md:p-8 mb-6 relative overflow-hidden shadow-lg">
       <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
@@ -45,7 +47,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
           </div>
           
           <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-5">
-            {product.nombre_comercial}
+            <HighlightText text={product.nombre_comercial} searchTerm={searchTerm} />
           </h2>
           
           <div className="flex flex-wrap gap-2">
@@ -57,7 +59,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
               >
                 <Activity className="w-5 h-5 text-brand-primary group-hover:scale-110 transition-transform" />
                 <span className="text-lg md:text-xl text-brand-primary font-bold">
-                  {principio}
+                  <HighlightText text={principio} searchTerm={searchTerm} />
                 </span>
               </button>
             ))}

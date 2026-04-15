@@ -86,6 +86,7 @@ export const SearchModule: React.FC = () => {
         <ProductDetailModal 
           product={selectedProduct} 
           onClose={() => setSelectedProduct(null)} 
+          searchTerm={query}
           onTagClick={(tag) => {
             setSelectedProduct(null);
             handleTagClick(tag);

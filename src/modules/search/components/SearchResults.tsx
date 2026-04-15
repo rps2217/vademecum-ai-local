@@ -64,6 +64,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
               onAddToTray={onAddToTray}
               isInTray={isInTray(product.sku)}
               onTagClick={onTagClick}
+              searchTerm={query}
             />
           ))}
         </div>

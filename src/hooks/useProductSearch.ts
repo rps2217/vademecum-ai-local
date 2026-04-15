@@ -98,7 +98,15 @@ export const useProductSearch = () => {
           textFiltered.forEach(item => {
             let matchCount = 0;
             searchTerms.forEach(term => {
-              if (item.searchableText.includes(term)) matchCount++;
+              // Usar límites de palabra (\b) para evitar coincidencias parciales no deseadas
+              // Ej: "asma" no debe coincidir con "catatplasma"
+              // Escapamos el término por seguridad y usamos límites de palabra
+              const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
+              
+              if (regex.test(item.searchableText)) {
+                matchCount++;
+              }
             });
             
             if (matchCount > 0) {
@@ -106,6 +114,11 @@ export const useProductSearch = () => {
               const score = matchCount / searchTerms.length;
               textResults.set(item.sku, { product: item.product, score });
             }
+          });
+        } else if (conditionFilters.length > 0) {
+          // Si no hay términos de búsqueda pero hay filtros, incluimos todos para filtrar después
+          textFiltered.forEach(item => {
+            textResults.set(item.sku, { product: item.product, score: 1.0 });
           });
         }
 

@@ -342,27 +342,90 @@ const extractJsonBlocks = (text: string): string[] => {
 
 // Helper para intentar parsear JSON con limpiezas progresivas
 const tryParseJson = (jsonStr: string): any => {
+    // Intentar parseo directo primero
     try {
         return JSON.parse(jsonStr);
-    } catch (e) {
-        // Limpieza 1: Caracteres de control y espacios extraños
-        let c1 = jsonStr.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '');
-        try { return JSON.parse(c1); } catch (e1) {}
+    } catch (e) {}
 
-        // Limpieza 2: Comas finales (trailing commas)
-        let c2 = c1.replace(/,\s*([\]}])/g, '$1');
-        try { return JSON.parse(c2); } catch (e2) {}
+    // Limpiezas progresivas
+    let cleaned = jsonStr;
+    
+    try {
+        // 1. Caracteres de control y espacios extraños
+        cleaned = cleaned.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '');
+        
+        // 2. Comillas inteligentes/tipográficas
+        cleaned = cleaned.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'");
+        
+        // 3. Eliminar comentarios de estilo JS (// o /* */) que rompen JSON.parse
+        cleaned = cleaned.replace(/\/\/.*$/gm, '');
+        cleaned = cleaned.replace(/\/\*[\s\S]*?\*\//g, '');
+        
+        // 4. Reemplazar comillas simples por dobles (solo si parecen delimitar llaves o valores)
+        // Esta es una heurística arriesgada pero útil para modelos pequeños
+        let withDoubleQuotes = cleaned.replace(/'([^']*)'/g, '"$1"');
+        try { return JSON.parse(withDoubleQuotes); } catch (e) {}
 
-        // Limpieza 3: Saltos de línea literales dentro de strings
-        let c3 = c2.replace(/\n/g, ' ').replace(/\r/g, ' ');
-        try { return JSON.parse(c3); } catch (e3) {}
+        // 4. Comas finales (trailing commas) en objetos y arreglos
+        cleaned = cleaned.replace(/,\s*([\]}])/g, '$1');
+        try { return JSON.parse(cleaned); } catch (e) {}
 
-        // Limpieza 4: Reemplazar comillas inteligentes/tipográficas
-        let c4 = c3.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'");
-        try { return JSON.parse(c4); } catch (e4) {}
+        // 5. Saltos de línea literales dentro de strings
+        cleaned = cleaned.replace(/\n/g, ' ').replace(/\r/g, ' ');
+        try { return JSON.parse(cleaned); } catch (e) {}
 
-        return null;
+        // 6. Intentar arreglar JSON truncado (cerrar llaves/corchetes faltantes)
+        let openBraces = (cleaned.match(/\{/g) || []).length;
+        let closeBraces = (cleaned.match(/\}/g) || []).length;
+        if (openBraces > closeBraces) {
+            cleaned += '}'.repeat(openBraces - closeBraces);
+        }
+        try { return JSON.parse(cleaned); } catch (e) {}
+
+    } catch (err) {
+        console.warn('[Worker] Error en fase de limpieza JSON:', err);
     }
+
+    return null;
+};
+
+// Heurística de último recurso para extraer datos básicos si el JSON falla totalmente
+const lastResortClinicalParse = (text: string): any => {
+    try {
+        const sugerenciaMatch = text.match(/"sugerencia"\s*:\s*"([^"]*)"/i) || 
+                               text.match(/sugerencia\s*[:=-]\s*([^,\n}]*)/i);
+        const idsMatch = text.match(/"ids"\s*:\s*\[([^\]]*)\]/i) || 
+                         text.match(/ids\s*[:=-]\s*\[([^\]]*)\]/i);
+        
+        if (sugerenciaMatch || idsMatch) {
+            const sugerencia = sugerenciaMatch ? sugerenciaMatch[1].trim().replace(/^["']|["']$/g, '') : "Análisis clínico parcial";
+            let ids: string[] = [];
+            if (idsMatch) {
+                ids = idsMatch[1].split(',').map(s => s.replace(/["'\s\[\]]/g, '')).filter(s => s.length > 0);
+            }
+            return { 
+                sugerencia, 
+                ids, 
+                explicacion: "Nota: Los datos fueron recuperados mediante un motor de emergencia debido a un error de formato en la IA." 
+            };
+        }
+    } catch (e) {}
+    return null;
+};
+
+// Heurística de último recurso para extraer mapeos de etiquetas si el JSON falla
+const lastResortTagsParse = (text: string): any => {
+    try {
+        const matches = text.matchAll(/"([^"]+)"\s*[:=-]\s*"([^"]+)"/g);
+        const result: Record<string, string> = {};
+        let found = false;
+        for (const match of matches) {
+            result[match[1]] = match[2];
+            found = true;
+        }
+        return found ? result : null;
+    } catch (e) {}
+    return null;
 };
 
 async function standardizeTags(tags: string[]) {
@@ -399,26 +462,30 @@ ${tags.join(', ')}`;
 
         // Limpieza de JSON
         const jsonBlocks = extractJsonBlocks(content);
+        let parsed = null;
         
         if (jsonBlocks.length > 0) {
             const sortedBlocks = jsonBlocks.sort((a, b) => b.length - a.length);
-            
             for (const rawJson of sortedBlocks) {
                 let cleanJson = rawJson.replace(/```json/g, '').replace(/```/g, '').trim();
-                const parsed = tryParseJson(cleanJson);
-                
-                if (parsed && (parsed.tags || Array.isArray(parsed))) {
-                    self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: parsed });
-                    return;
+                const attempt = tryParseJson(cleanJson);
+                if (attempt && (attempt.tags || Array.isArray(attempt) || (typeof attempt === 'object' && Object.keys(attempt).length > 0))) {
+                    parsed = attempt;
+                    break;
                 }
             }
-            
-            console.error('[Worker] Error fatal parseando JSON de etiquetas. Contenido:', content);
-            throw new Error('Error de formato en las etiquetas.');
-        } else {
-            throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
         }
 
+        if (!parsed) {
+            parsed = lastResortTagsParse(content);
+        }
+
+        if (parsed) {
+            self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: parsed });
+        } else {
+            console.error('[Worker] Error fatal parseando JSON de etiquetas. Contenido:', content);
+            throw new Error('Error de formato en las etiquetas.');
+        }
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });
     }
@@ -468,33 +535,30 @@ Respuesta JSON:`;
         }
 
         const jsonBlocks = extractJsonBlocks(content);
-        
+        let parsed = null;
+
         if (jsonBlocks.length > 0) {
             const sortedBlocks = jsonBlocks.sort((a, b) => b.length - a.length);
-            
             for (const rawJson of sortedBlocks) {
                 let cleanJson = rawJson.replace(/```json/g, '').replace(/```/g, '').trim();
-                const parsed = tryParseJson(cleanJson);
-                
-                if (parsed && (parsed.sugerencia || parsed.ids)) {
-                    self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: parsed });
-                    return;
+                const attempt = tryParseJson(cleanJson);
+                if (attempt && (attempt.sugerencia || attempt.ids)) {
+                    parsed = attempt;
+                    break;
                 }
             }
-            
+        }
+
+        // Si no se pudo parsear como JSON válido, intentar rescate heurístico
+        if (!parsed || (!parsed.sugerencia && !parsed.ids)) {
+            parsed = lastResortClinicalParse(content);
+        }
+
+        if (parsed) {
+            self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: parsed });
+        } else {
             console.error('[Worker] Error fatal parseando JSON clínico. Contenido original:', content);
             throw new Error('Error de formato en la respuesta clínica.');
-        } else {
-            // Fallback: Si no hay llaves, intentar buscar algo que parezca JSON o devolver vacío
-            if (content.includes('sugerencia')) {
-                // Heurística: el modelo respondió texto pero no JSON
-                self.postMessage({ 
-                    type: 'ANALYZE_CLINICAL_RESULT', 
-                    payload: { sugerencia: "Error de formato en la IA", ids: [], explicacion: content.slice(0, 200) } 
-                });
-                return;
-            }
-            throw new Error('No se pudo extraer JSON de la respuesta clínica.');
         }
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });

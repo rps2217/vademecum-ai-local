@@ -3,6 +3,7 @@ import { Product, SafetyStatus } from '../../core/types/product.types';
 import { Badge } from '../ui/badge';
 import { AlertTriangle, CheckCircle2, Info, Plus, Check } from 'lucide-react';
 import { formatArrayToString } from '../../utils/formatters';
+import { HighlightText } from '../ui/HighlightText';
 
 interface ProductCardProps {
   product: Product;
@@ -10,9 +11,10 @@ interface ProductCardProps {
   onAddToTray?: (product: Product) => void;
   isInTray?: boolean;
   onTagClick?: (tag: string) => void;
+  searchTerm?: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onViewDetail, onAddToTray, isInTray, onTagClick }) => {
+export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onViewDetail, onAddToTray, isInTray, onTagClick, searchTerm = '' }) => {
   const getSafetyIcon = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI: return <CheckCircle2 className="w-3 h-3 text-emerald-500" />;
@@ -37,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
       >
         <div className="flex-1 min-w-0">
           <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-primary transition-colors truncate">
-            {product.nombre_comercial}
+            <HighlightText text={product.nombre_comercial} searchTerm={searchTerm} />
           </h3>
           <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
             {product.categoria_principal && product.categoria_principal !== 'Otro' && (
@@ -46,7 +48,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
               </Badge>
             )}
             <p className="text-xs sm:text-sm text-slate-400 truncate">
-              {formatArrayToString(product.principios_activos, ', ')}
+              <HighlightText text={formatArrayToString(product.principios_activos, ', ')} searchTerm={searchTerm} />
             </p>
           </div>
         </div>
@@ -57,7 +59,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
 
       <div className="mb-3 sm:mb-4 flex-1 cursor-pointer" onClick={() => onViewDetail?.(product)}>
         <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
-          {formatArrayToString(product.indicaciones, ' • ')}
+          <HighlightText text={formatArrayToString(product.indicaciones, ' • ')} searchTerm={searchTerm} />
         </p>
       </div>
 

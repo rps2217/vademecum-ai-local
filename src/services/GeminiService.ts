@@ -22,6 +22,41 @@ export class GeminiService {
     return this.ai;
   }
 
+  private static cleanAndParseJSON(text: string): any {
+    try {
+      // Limpieza básica de caracteres de control
+      const cleanText = text.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
+        if (match === '\n') return '\\n';
+        if (match === '\r') return '\\r';
+        if (match === '\t') return '\\t';
+        return '';
+      });
+      return JSON.parse(cleanText);
+    } catch (e) {
+      // Intento de extracción de bloque JSON
+      const match = text.match(/\{[\s\S]*\}/);
+      if (match) {
+        try {
+          let cleanMatch = match[0].replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
+            if (match === '\n') return '\\n';
+            if (match === '\r') return '\\r';
+            if (match === '\t') return '\\t';
+            return '';
+          });
+          
+          // Limpiezas adicionales para modelos menos precisos
+          cleanMatch = cleanMatch.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'");
+          cleanMatch = cleanMatch.replace(/,\s*([\]}])/g, '$1');
+          
+          return JSON.parse(cleanMatch);
+        } catch (e2) {
+          console.error("[GeminiService] Error en segundo intento de parseo:", e2);
+        }
+      }
+      throw new Error("No se pudo extraer JSON válido de la respuesta.");
+    }
+  }
+
   static async searchAndExtractProduct(productName: string, targetUrl?: string): Promise<Product | null> {
     try {
       const ai = this.getAI();
@@ -73,32 +108,7 @@ export class GeminiService {
       });
 
       const responseText = response.text || "{}";
-      
-      let data: any;
-      try {
-        // Limpiar caracteres de control antes de parsear
-        const cleanResponse = responseText.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
-          if (match === '\n') return '\\n';
-          if (match === '\r') return '\\r';
-          if (match === '\t') return '\\t';
-          return '';
-        });
-        data = JSON.parse(cleanResponse);
-      } catch (e) {
-        console.error("[GeminiService] Error parsing JSON, attempting to extract from Markdown:", responseText);
-        const match = responseText.match(/\{[\s\S]*\}/);
-        if (match) {
-          let cleanMatch = match[0].replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
-            if (match === '\n') return '\\n';
-            if (match === '\r') return '\\r';
-            if (match === '\t') return '\\t';
-            return '';
-          });
-          data = JSON.parse(cleanMatch);
-        } else {
-          throw new Error("No se pudo extraer JSON válido de la respuesta.");
-        }
-      }
+      const data = this.cleanAndParseJSON(responseText);
       
       if (!data.nombre_comercial) return null;
 

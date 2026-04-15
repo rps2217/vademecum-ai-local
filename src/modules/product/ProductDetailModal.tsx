@@ -15,9 +15,10 @@ interface ProductDetailModalProps {
   onClose: () => void;
   onTagClick?: (tag: string) => void;
   onUpdate?: (updatedProduct: Product) => void;
+  searchTerm?: string;
 }
 
-export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product: initialProduct, onClose, onTagClick, onUpdate }) => {
+export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product: initialProduct, onClose, onTagClick, onUpdate, searchTerm = '' }) => {
   const [product, setProduct] = useState<Product>(initialProduct);
   const [isReanalyzing, setIsReanalyzing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -144,7 +145,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
           )}
 
           <div className="relative">
-            <ProductHeader product={product} onTagClick={onTagClick} />
+            <ProductHeader product={product} onTagClick={onTagClick} searchTerm={searchTerm} />
             <div className="absolute top-6 right-6 md:top-8 md:right-8">
               <ProductActions 
                 product={product}
@@ -159,7 +160,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
             </div>
           </div>
 
-          <ProductBentoGrid product={product} />
+          <ProductBentoGrid product={product} searchTerm={searchTerm} />
         </div>
 
         {/* Columna Derecha: Sinergia Clínica IA */}

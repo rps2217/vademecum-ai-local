@@ -228,12 +228,21 @@ export const DatabaseModule: React.FC = () => {
 
   const filteredProducts = useMemo(() => {
     if (!searchTerm) return products;
-    const term = searchTerm.toLowerCase();
-    return products.filter(p => 
-      p.nombre_comercial.toLowerCase().includes(term) || 
-      p.sku.toLowerCase().includes(term) ||
-      p.principios_activos.some(pa => pa.toLowerCase().includes(term))
-    );
+    const term = searchTerm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
+
+    return products.filter(p => {
+      const nombre = p.nombre_comercial.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const sku = p.sku.toLowerCase();
+      
+      return regex.test(nombre) || 
+             sku.includes(term) || // SKU suele ser exacto o parcial útil
+             p.principios_activos.some(pa => {
+               const normalizedPa = pa.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+               return regex.test(normalizedPa);
+             });
+    });
   }, [products, searchTerm]);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
