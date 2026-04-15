@@ -188,7 +188,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
 
           <div className="relative">
             <ProductHeader product={product} onTagClick={onTagClick} searchTerm={searchTerm} />
-            <div className="absolute top-6 right-6 md:top-8 md:right-8">
+            <div className="absolute top-6 right-6 md:top-8 md:right-8 z-50">
               <ProductActions 
                 product={product}
                 isForcingSynergy={isForcingSynergy}
