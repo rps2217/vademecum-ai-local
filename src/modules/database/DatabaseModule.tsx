@@ -5,7 +5,7 @@ import {
   Database, Trash2, RefreshCw, ExternalLink, FileUp, 
   ChevronLeft, ChevronRight, ShieldCheck, Sparkles, 
   CloudUpload, Download, Check, AlertCircle, Info,
-  Search, Filter, X, CheckCircle2
+  Search, Filter, X, CheckCircle2, Monitor
 } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
@@ -32,33 +32,68 @@ export const DatabaseModule: React.FC = () => {
   const [conflictMode, setConflictMode] = useState<'skip' | 'overwrite' | 'merge'>('skip');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const isLoadingRef = useRef(false);
+
   const loadData = async () => {
-    setIsLoading(true);
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true;
+    
+    console.time('DatabaseModule:loadData');
+    // Solo mostrar loading inicial si no hay datos
+    if (products.length === 0) setIsLoading(true);
+    
     try {
       const db = await getDB();
-      const allProducts = await db.getAll('products');
+      const all: Product[] = [];
+      
+      let cursor = await db.transaction('products').store.openCursor();
+      let count = 0;
+      
+      while (cursor) {
+        const p = { ...cursor.value };
+        // @ts-ignore - Eliminamos vectores para ahorrar memoria en la tabla
+        delete p.vectores; 
+        
+        all.push(p);
+        count++;
+        
+        if (count % 500 === 0) {
+          await new Promise(resolve => setTimeout(resolve, 0));
+        }
+        
+        cursor = await cursor.continue();
+      }
+
       const metadata = await db.get('sync_metadata', 'cloud_sync');
       setLastSyncTime(metadata?.lastSyncTime || 0);
-      setProducts(allProducts);
       
-      // Cargar conteo de nube de forma asíncrona para no bloquear
-      FirebaseSyncService.getCloudCount().then(setCloudCount);
+      setProducts(all);
+      FirebaseSyncService.getCloudCount().then(setCloudCount).catch(console.error);
       
-      window.dispatchEvent(new Event('db_updated'));
     } catch (error) {
       console.error('Error cargando base de datos:', error);
     } finally {
       setIsLoading(false);
+      isLoadingRef.current = false;
+      console.timeEnd('DatabaseModule:loadData');
     }
   };
 
   useEffect(() => {
     loadData();
     
-    // Escuchar actualizaciones externas (ej: desde el motor de IA)
-    window.addEventListener('db_updated', loadData);
-    return () => window.removeEventListener('db_updated', loadData);
+    const handleDbUpdated = () => {
+      // Usar un pequeño delay para no saturar si hay muchas actualizaciones seguidas
+      const timer = setTimeout(() => {
+        if (!isLoadingRef.current) loadData();
+      }, 300);
+      return () => clearTimeout(timer);
+    };
+    
+    window.addEventListener('db_updated', handleDbUpdated);
+    return () => window.removeEventListener('db_updated', handleDbUpdated);
   }, []);
+
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -202,15 +237,24 @@ export const DatabaseModule: React.FC = () => {
   };
 
   const handleExportJSON = () => {
-    const dataStr = JSON.stringify(products, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    
-    const exportFileDefaultName = `vademecum_backup_${new Date().toISOString().split('T')[0]}.json`;
-    
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
-    linkElement.click();
+    try {
+      const dataStr = JSON.stringify(products, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      const exportFileDefaultName = `vademecum_backup_${new Date().toISOString().split('T')[0]}.json`;
+      
+      const linkElement = document.createElement('a');
+      linkElement.href = url;
+      linkElement.download = exportFileDefaultName;
+      document.body.appendChild(linkElement);
+      linkElement.click();
+      document.body.removeChild(linkElement);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error exportando JSON:', error);
+      alert('Error al exportar la base de datos.');
+    }
   };
 
   const handleDelete = async (sku: string) => {

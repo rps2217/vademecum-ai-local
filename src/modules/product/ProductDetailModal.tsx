@@ -135,7 +135,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
     if (leftCol) leftCol.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const hasSynergy = product.sinergia_clinica && product.sinergia_clinica.length > 0;
+  const hasSynergy = !!product.synergy_analyzed;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-brand-bg/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
