@@ -12,6 +12,8 @@ import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { PDFImportService } from '../../services/PDFImportService';
 import { useAuth } from '../../context/AuthContext';
 
+import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
+
 const ITEMS_PER_PAGE = 50;
 
 export const DatabaseModule: React.FC = () => {
@@ -232,7 +234,17 @@ export const DatabaseModule: React.FC = () => {
     const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
 
+    const isPathologySearch = COMMON_PATHOLOGIES.some(p => p.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === term);
+
     return products.filter(p => {
+      if (isPathologySearch) {
+        const ind = p.indicaciones.map(i => {
+          const text = typeof i === 'object' ? ((i as any).nombre || (i as any).tipo || (i as any).indicacion || JSON.stringify(i)) : String(i);
+          return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }).join(" ");
+        return regex.test(ind);
+      }
+
       const nombre = p.nombre_comercial.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       const sku = p.sku.toLowerCase();
       

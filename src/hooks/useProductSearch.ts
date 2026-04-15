@@ -4,11 +4,13 @@ import { getDB } from '../core/database/db';
 import { AIService } from '../services/AIService';
 import { formatArrayToString } from '../utils/formatters';
 import { cosineSimilarity } from '../utils/math';
+import { COMMON_PATHOLOGIES } from '../constants/pathologies';
 
 // Índice en memoria para búsquedas ultra-rápidas
 interface SearchIndexItem {
   sku: string;
   searchableText: string;
+  pathologySearchableText: string;
   product: Product;
   vector?: number[];
 }
@@ -54,6 +56,9 @@ export const useProductSearch = () => {
             ${formatArrayToString(product.indicaciones, ' ')}
             ${formatArrayToString(product.tags_ia, ' ')}
             ${product.analisis_componentes || ''}
+          `),
+          pathologySearchableText: normalizeText(`
+            ${formatArrayToString(product.indicaciones, ' ')}
           `)
         }));
         
@@ -88,7 +93,11 @@ export const useProductSearch = () => {
       setIsSearching(true);
       
       try {
-        const searchTerms = normalizeText(query).split(' ').filter(t => t.length > 0);
+        const normalizedQuery = normalizeText(query);
+        const searchTerms = normalizedQuery.split(' ').filter(t => t.length > 0);
+        
+        // Determinar si es una búsqueda de patología frecuente
+        const isPathologySearch = COMMON_PATHOLOGIES.some(p => normalizeText(p) === normalizedQuery);
         
         // 1. Búsqueda por Texto (Exacta/Keyword) - Peso 1.0
         let textFiltered = searchIndex.current;
@@ -104,7 +113,10 @@ export const useProductSearch = () => {
               const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
               const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
               
-              if (regex.test(item.searchableText)) {
+              // Si es búsqueda de patología, solo buscar en descripción e indicaciones
+              const textToSearch = isPathologySearch ? item.pathologySearchableText : item.searchableText;
+              
+              if (regex.test(textToSearch)) {
                 matchCount++;
               }
             });
