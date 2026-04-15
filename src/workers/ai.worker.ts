@@ -324,6 +324,47 @@ REGLAS:
     }
 }
 
+// Helper para extraer JSON de forma robusta
+const extractJsonBlocks = (text: string): string[] => {
+    const results: string[] = [];
+    // Intentar encontrar bloques delimitados por llaves (no codicioso)
+    const matches = text.match(/\{[\s\S]*?\}/g);
+    if (matches) results.push(...matches);
+    
+    // También intentar la búsqueda codiciosa por si acaso el JSON contiene llaves anidadas
+    const greedyMatch = text.match(/\{[\s\S]*\}/);
+    if (greedyMatch && !results.includes(greedyMatch[0])) {
+        results.push(greedyMatch[0]);
+    }
+    
+    return results;
+};
+
+// Helper para intentar parsear JSON con limpiezas progresivas
+const tryParseJson = (jsonStr: string): any => {
+    try {
+        return JSON.parse(jsonStr);
+    } catch (e) {
+        // Limpieza 1: Caracteres de control y espacios extraños
+        let c1 = jsonStr.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '');
+        try { return JSON.parse(c1); } catch (e1) {}
+
+        // Limpieza 2: Comas finales (trailing commas)
+        let c2 = c1.replace(/,\s*([\]}])/g, '$1');
+        try { return JSON.parse(c2); } catch (e2) {}
+
+        // Limpieza 3: Saltos de línea literales dentro de strings
+        let c3 = c2.replace(/\n/g, ' ').replace(/\r/g, ' ');
+        try { return JSON.parse(c3); } catch (e3) {}
+
+        // Limpieza 4: Reemplazar comillas inteligentes/tipográficas
+        let c4 = c3.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'");
+        try { return JSON.parse(c4); } catch (e4) {}
+
+        return null;
+    }
+};
+
 async function standardizeTags(tags: string[]) {
     if (!isReady) throw new Error('IA no lista');
 
@@ -356,40 +397,27 @@ ${tags.join(', ')}`;
             content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
         }
 
-            // Limpieza de JSON
-            const jsonMatch = content.match(/\{[\s\S]*\}/);
-            if (jsonMatch) {
-                let cleanJson = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+        // Limpieza de JSON
+        const jsonBlocks = extractJsonBlocks(content);
+        
+        if (jsonBlocks.length > 0) {
+            const sortedBlocks = jsonBlocks.sort((a, b) => b.length - a.length);
+            
+            for (const rawJson of sortedBlocks) {
+                let cleanJson = rawJson.replace(/```json/g, '').replace(/```/g, '').trim();
+                const parsed = tryParseJson(cleanJson);
                 
-                // Intentar parsear directamente primero (el modelo podría haber devuelto JSON válido con saltos de línea permitidos)
-                try {
-                    self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: JSON.parse(cleanJson) });
+                if (parsed && (parsed.tags || Array.isArray(parsed))) {
+                    self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: parsed });
                     return;
-                } catch (e) {
-                    // Si falla, limpiar caracteres de control prohibidos (0x00-0x1F) 
-                    // pero mantener saltos de línea, retornos y tabs si están fuera de strings es difícil,
-                    // así que escapamos los que suelen romper el parseo.
-                    cleanJson = cleanJson.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '');
-                    
-                    // Escapar saltos de línea que están DENTRO de valores de string (heurística)
-                    // Buscamos un salto de línea que NO sea seguido por una comilla (inicio de llave) o cierre
-                    // Esto es imperfecto pero ayuda con respuestas de modelos pequeños
-                    try {
-                        self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: JSON.parse(cleanJson) });
-                    } catch (parseError) {
-                        // Último recurso: eliminar saltos de línea literales
-                        const nuclearClean = cleanJson.replace(/\n/g, ' ').replace(/\r/g, ' ');
-                        try {
-                            self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: JSON.parse(nuclearClean) });
-                        } catch (finalError) {
-                            console.error('[Worker] Error fatal parseando JSON de etiquetas:', finalError, cleanJson);
-                            throw new Error('Error de formato en las etiquetas.');
-                        }
-                    }
                 }
-            } else {
-                throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
             }
+            
+            console.error('[Worker] Error fatal parseando JSON de etiquetas. Contenido:', content);
+            throw new Error('Error de formato en las etiquetas.');
+        } else {
+            throw new Error('No se pudo extraer JSON de la respuesta del modelo.');
+        }
 
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });
@@ -439,33 +467,33 @@ Respuesta JSON:`;
             content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
         }
 
-        const jsonMatch = content.match(/\{[\s\S]*\}/g);
-        if (jsonMatch && jsonMatch.length > 0) {
-            // Tomar el último JSON si hay varios
-            let rawJson = jsonMatch[jsonMatch.length - 1];
-            let cleanJson = rawJson.replace(/```json/g, '').replace(/```/g, '').trim();
+        const jsonBlocks = extractJsonBlocks(content);
+        
+        if (jsonBlocks.length > 0) {
+            const sortedBlocks = jsonBlocks.sort((a, b) => b.length - a.length);
             
-            try {
-                // Intento 1: Parseo directo
-                self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: JSON.parse(cleanJson) });
-            } catch (e) {
-                // Intento 2: Limpieza de caracteres de control prohibidos
-                cleanJson = cleanJson.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '');
+            for (const rawJson of sortedBlocks) {
+                let cleanJson = rawJson.replace(/```json/g, '').replace(/```/g, '').trim();
+                const parsed = tryParseJson(cleanJson);
                 
-                try {
-                    self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: JSON.parse(cleanJson) });
-                } catch (parseError) {
-                    // Intento 3: Nuclear (reemplazar saltos de línea por espacios)
-                    const nuclearClean = cleanJson.replace(/\n/g, ' ').replace(/\r/g, ' ');
-                    try {
-                        self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: JSON.parse(nuclearClean) });
-                    } catch (finalError) {
-                        console.error('[Worker] Error fatal parseando JSON clínico:', finalError, cleanJson);
-                        throw new Error('Error de formato en la respuesta clínica.');
-                    }
+                if (parsed && (parsed.sugerencia || parsed.ids)) {
+                    self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: parsed });
+                    return;
                 }
             }
+            
+            console.error('[Worker] Error fatal parseando JSON clínico. Contenido original:', content);
+            throw new Error('Error de formato en la respuesta clínica.');
         } else {
+            // Fallback: Si no hay llaves, intentar buscar algo que parezca JSON o devolver vacío
+            if (content.includes('sugerencia')) {
+                // Heurística: el modelo respondió texto pero no JSON
+                self.postMessage({ 
+                    type: 'ANALYZE_CLINICAL_RESULT', 
+                    payload: { sugerencia: "Error de formato en la IA", ids: [], explicacion: content.slice(0, 200) } 
+                });
+                return;
+            }
             throw new Error('No se pudo extraer JSON de la respuesta clínica.');
         }
     } catch (e: any) {

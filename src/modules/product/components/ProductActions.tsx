@@ -10,6 +10,7 @@ interface ProductActionsProps {
   onForceSynergy: () => void;
   onReanalyze: () => void;
   onClose: () => void;
+  hideCloseMobile?: boolean;
 }
 
 export const ProductActions: React.FC<ProductActionsProps> = ({
@@ -19,7 +20,8 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
   isSuccess,
   onForceSynergy,
   onReanalyze,
-  onClose
+  onClose,
+  hideCloseMobile = false
 }) => {
   return (
     <div className="flex flex-col gap-3 shrink-0">
@@ -49,12 +51,14 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
       >
         {isReanalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-5 h-5" /> : <RefreshCw className="w-5 h-5" />}
       </button>
-      <button 
-        onClick={onClose}
-        className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden shadow-sm"
-      >
-        <X className="w-5 h-5" />
-      </button>
+      {!hideCloseMobile && (
+        <button 
+          onClick={onClose}
+          className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden shadow-sm"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      )}
     </div>
   );
 };

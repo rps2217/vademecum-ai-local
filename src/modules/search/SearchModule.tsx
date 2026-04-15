@@ -5,7 +5,7 @@ import { ProductDetailModal } from '../product/ProductDetailModal';
 import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
 import { SafetyFilters } from './components/SafetyFilters';
-import { TagCloud } from './components/TagCloud';
+import { QuickPathologyFilters } from './components/QuickPathologyFilters';
 import { SearchResults } from './components/SearchResults';
 import { AIAnalysisModal } from './components/AIAnalysisModal';
 
@@ -17,7 +17,6 @@ export const SearchModule: React.FC = () => {
     setConditionFilters, 
     results, 
     isSearching, 
-    categorizedTags 
   } = useProductSearch();
   
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -50,11 +49,10 @@ export const SearchModule: React.FC = () => {
         />
       </div>
 
-      {/* Tags Populares */}
+      {/* Filtros de Patologías Comunes */}
       {query.trim() === '' && conditionFilters.length === 0 && (
-        <TagCloud 
-          categorizedTags={categorizedTags} 
-          query={query} 
+        <QuickPathologyFilters 
+          currentQuery={query} 
           onTagClick={handleTagClick} 
         />
       )}

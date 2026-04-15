@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
+import { PDFImportService } from '../../services/PDFImportService';
 import { useAuth } from '../../context/AuthContext';
 
 const ITEMS_PER_PAGE = 50;
@@ -20,6 +21,7 @@ export const DatabaseModule: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isCleaning, setIsCleaning] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
+  const [isImportingPDF, setIsImportingPDF] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
   const [lastSyncTime, setLastSyncTime] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -171,6 +173,24 @@ export const DatabaseModule: React.FC = () => {
     }
   };
 
+  const handleImportPDFData = async () => {
+    if (!confirm('¿Deseas importar los productos clave extraídos del Vademécum PDF?')) return;
+    setIsImportingPDF(true);
+    setSyncStatus('Importando datos del Vademécum Knop...');
+    
+    try {
+      const count = await PDFImportService.importVademecumData();
+      setSyncStatus(`¡Éxito! Se han importado ${count} productos del Vademécum.`);
+      await loadData();
+    } catch (error) {
+      console.error('Error importando PDF:', error);
+      setSyncStatus('Error al importar datos del PDF.');
+    } finally {
+      setIsImportingPDF(false);
+      setTimeout(() => setSyncStatus(null), 5000);
+    }
+  };
+
   const handleExportJSON = () => {
     const dataStr = JSON.stringify(products, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
@@ -264,6 +284,15 @@ export const DatabaseModule: React.FC = () => {
           >
             <Download className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
             Exportar Backup
+          </button>
+
+          <button 
+            onClick={handleImportPDFData}
+            disabled={isImportingPDF}
+            className="flex items-center gap-2 px-5 py-2.5 bg-brand-surface border border-slate-800 text-white rounded-2xl hover:bg-slate-800 transition-all font-bold shadow-lg group"
+          >
+            <Sparkles className={`w-5 h-5 text-brand-primary ${isImportingPDF ? 'animate-spin' : 'group-hover:scale-110 transition-transform'}`} />
+            Importar Vademécum PDF
           </button>
 
           {isAdmin && (

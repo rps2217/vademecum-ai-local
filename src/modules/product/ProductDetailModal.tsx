@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalSynergy } from './ClinicalSynergy';
-import { X, Sparkles, AlertCircle } from 'lucide-react';
+import { X, Sparkles, AlertCircle, ChevronLeft, Home } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
@@ -100,6 +100,38 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         {/* Columna Izquierda: Detalles del Producto */}
         <div id="product-detail-left-col" className="w-full md:w-3/5 p-4 md:p-8 overflow-y-auto border-r border-slate-800 relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           
+          {/* Navegación Superior */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <button 
+                onClick={onClose}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-300 hover:text-white transition-all border border-slate-700/50 group shadow-lg"
+                title="Volver al listado"
+              >
+                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform text-brand-primary" />
+                <span className="font-bold text-xs uppercase tracking-widest">Volver</span>
+              </button>
+              
+              <button 
+                onClick={onClose}
+                className="p-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
+                title="Ir al inicio"
+              >
+                <Home className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="md:hidden">
+              <button 
+                onClick={onClose}
+                className="p-2.5 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all border border-rose-500/30 shadow-lg"
+                title="Cerrar ficha"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
           {statusMessage && (
             <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[60] px-6 py-3 rounded-2xl border shadow-2xl animate-in slide-in-from-top duration-300 flex items-center gap-3 ${
               statusMessage.type === 'error' ? 'bg-red-500/10 border-red-500/50 text-red-400' :
@@ -122,6 +154,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                 onForceSynergy={handleForceSynergy}
                 onReanalyze={handleReanalyze}
                 onClose={onClose}
+                hideCloseMobile={true}
               />
             </div>
           </div>
@@ -133,13 +166,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
         <div className="w-full md:w-2/5 bg-brand-bg/30 p-6 md:p-10 flex flex-col relative overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
           <button 
             onClick={onClose}
-            className="absolute top-8 right-8 p-2.5 rounded-xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 transition-all border border-slate-700/50 hidden md:flex items-center justify-center z-10"
+            className="absolute top-8 right-8 p-3 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all border border-rose-500/30 hidden md:flex items-center justify-center z-10 shadow-xl group"
             title="Cerrar panel"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6 group-hover:rotate-90 transition-transform" />
           </button>
           
-          <div className="mb-8 pr-12">
+          <div className="mb-8 pr-16">
             <h3 className="text-2xl font-bold text-white mb-1 flex items-center gap-2">
               <Sparkles className="w-6 h-6 text-brand-primary" />
               Sinergia Clínica

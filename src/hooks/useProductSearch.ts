@@ -31,7 +31,6 @@ export const useProductSearch = () => {
   const [conditionFilters, setConditionFilters] = useState<SafetyCondition[]>([]);
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [categorizedTags, setCategorizedTags] = useState<CategorizedTags>({ tipos: [], sintomas: [], otros: [] });
   const [indexVersion, setIndexVersion] = useState(0);
   const searchIndex = useRef<SearchIndexItem[]>([]);
   const isIndexLoaded = useRef(false);
@@ -58,47 +57,6 @@ export const useProductSearch = () => {
           `)
         }));
         
-        // Extraer tags únicos y contarlos (Motor de Etiquetas Dinámico)
-        const tagCounts: Record<string, number> = {};
-        
-        // Procesar todos los tags de todos los productos (Sin normalización externa)
-        allProducts.forEach(p => {
-          if (p.tags_ia && Array.isArray(p.tags_ia)) {
-            p.tags_ia.forEach(tag => {
-              const cleanTag = tag.trim();
-              if (cleanTag) {
-                tagCounts[cleanTag] = (tagCounts[cleanTag] || 0) + 1;
-              }
-            });
-          }
-        });
-        
-        // Convertir a array, ordenar por frecuencia y tomar los top 60
-        const sortedTags = Object.entries(tagCounts)
-          .map(([tag, count]) => ({ tag, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 60);
-          
-        const keywordsTipos = ['suplemento', 'vitamina', 'mineral', 'analgesico', 'analgésico', 'aine', 'antibiotico', 'antibiótico', 'crema', 'pomada', 'jarabe', 'capsula', 'cápsula', 'pastilla', 'comprimido', 'gel', 'locion', 'gotas', 'inyectable', 'vacuna', 'probiotico', 'probiótico', 'corticoide', 'antihistaminico', 'antihistamínico', 'proteina', 'proteína', 'aminoacido'];
-        const keywordsSintomas = ['dolor', 'fiebre', 'tos', 'resfrio', 'gripe', 'diabetes', 'hipertension', 'hipertensión', 'alergia', 'infeccion', 'infección', 'inflamacion', 'inflamación', 'acidez', 'reflujo', 'asma', 'colesterol', 'insomnio', 'ansiedad', 'estres', 'estrés', 'hongo', 'dermatitis', 'herida', 'quemadura', 'nauseas', 'vómitos', 'diarrea', 'estreñimiento'];
-
-        const newCategorized: CategorizedTags = { tipos: [], sintomas: [], otros: [] };
-
-        sortedTags.forEach(t => {
-          const lowerTag = t.tag.toLowerCase();
-          const isTipo = keywordsTipos.some(kw => lowerTag.includes(kw));
-          const isSintoma = keywordsSintomas.some(kw => lowerTag.includes(kw));
-
-          if (isTipo) {
-            newCategorized.tipos.push(t);
-          } else if (isSintoma) {
-            newCategorized.sintomas.push(t);
-          } else {
-            newCategorized.otros.push(t);
-          }
-        });
-
-        setCategorizedTags(newCategorized);
         isIndexLoaded.current = true;
         setIndexVersion(v => v + 1);
       } catch (error) {
@@ -213,5 +171,5 @@ export const useProductSearch = () => {
     return () => clearTimeout(timeoutId);
   }, [query, conditionFilters, indexVersion]);
 
-  return { query, setQuery, conditionFilters, setConditionFilters, results, isSearching, categorizedTags };
+  return { query, setQuery, conditionFilters, setConditionFilters, results, isSearching };
 };
