@@ -18,7 +18,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
           <Info className="w-4 h-4" /> Descripción
         </h3>
-        <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+        <p className="text-slate-300 leading-relaxed text-sm md:text-base">
           <HighlightText text={product.descripcion} searchTerm={searchTerm} />
         </p>
       </div>
@@ -29,7 +29,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
           <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
             <Cpu className="w-4 h-4 text-indigo-400" /> Análisis de Componentes
           </h3>
-          <div className="text-slate-300 leading-relaxed text-sm md:text-base whitespace-pre-wrap">
+          <div className="text-slate-300 leading-relaxed text-xs md:text-sm whitespace-pre-wrap">
             <HighlightText text={product.analisis_componentes} searchTerm={searchTerm} />
           </div>
         </div>
@@ -47,7 +47,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
             return (
               <li key={i} className="flex items-start gap-3 text-slate-300">
                 <div className="w-1.5 h-1.5 rounded-full bg-brand-accent mt-2 shrink-0" />
-                <span className="text-sm font-medium leading-relaxed">
+                <span className="text-xs font-medium leading-relaxed">
                   <HighlightText text={text} searchTerm={searchTerm} />
                 </span>
               </li>
@@ -61,7 +61,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-5">
           Posología
         </h3>
-        <p className="text-slate-300 text-sm leading-relaxed font-medium">
+        <p className="text-slate-300 text-xs leading-relaxed font-medium">
           <HighlightText text={product.posologia} searchTerm={searchTerm} />
         </p>
       </div>
@@ -71,7 +71,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
         <h3 className="text-xs font-bold text-amber-500 uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
           <AlertTriangle className="w-4 h-4" /> Advertencias Críticas
         </h3>
-        <p className="text-amber-200/90 leading-relaxed text-sm md:text-base font-medium">
+        <p className="text-amber-200/90 leading-relaxed text-xs md:text-sm font-medium">
           <HighlightText text={product.advertencias} searchTerm={searchTerm} />
         </p>
       </div>

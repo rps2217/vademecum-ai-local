@@ -134,12 +134,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
     if (leftCol) leftCol.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const hasSynergy = product.sinergia_clinica && product.sinergia_clinica.length > 0;
+
   return (
     <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-brand-bg/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="bg-brand-surface w-full h-full rounded-[2rem] shadow-2xl shadow-brand-primary/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden">
+      <div className={`bg-brand-surface w-full h-full rounded-[2rem] shadow-2xl shadow-brand-primary/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''}`}>
         
         {/* Columna Izquierda: Detalles del Producto */}
-        <div id="product-detail-left-col" className="w-full md:w-3/5 p-4 md:p-8 overflow-y-auto border-r border-slate-800 relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+        <div id="product-detail-left-col" className={`w-full p-4 md:p-8 overflow-y-auto relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-slate-800' : ''}`}>
           
           {/* Navegación Superior */}
           <div className="flex items-center justify-between mb-8">
@@ -254,31 +256,33 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
           </div>
         )}
 
-        {/* Columna Derecha: Sinergia Clínica IA */}
-        <div className="w-full md:w-2/5 bg-brand-bg/30 p-6 md:p-10 flex flex-col relative overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
-          <button 
-            onClick={onClose}
-            className="absolute top-8 right-8 p-3 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all border border-rose-500/30 hidden md:flex items-center justify-center z-10 shadow-xl group"
-            title="Cerrar panel"
-          >
-            <X className="w-6 h-6 group-hover:rotate-90 transition-transform" />
-          </button>
-          
-          <div className="mb-8 pr-16">
-            <h3 className="text-2xl font-bold text-white mb-1 flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-brand-primary" />
-              Sinergia Clínica
-            </h3>
-            <p className="text-sm text-slate-500">Relaciones inteligentes entre productos de tu Vademécum.</p>
+        {hasSynergy && (
+          /* Columna Derecha: Sinergia Clínica IA */
+          <div className="w-full md:w-2/5 bg-brand-bg/30 p-6 md:p-10 flex flex-col relative overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+            <button 
+              onClick={onClose}
+              className="absolute top-8 right-8 p-3 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all border border-rose-500/30 hidden md:flex items-center justify-center z-10 shadow-xl group"
+              title="Cerrar panel"
+            >
+              <X className="w-6 h-6 group-hover:rotate-90 transition-transform" />
+            </button>
+            
+            <div className="mb-8 pr-16">
+              <h3 className="text-2xl font-bold text-white mb-1 flex items-center gap-2">
+                <Sparkles className="w-6 h-6 text-brand-primary" />
+                Sinergia Clínica
+              </h3>
+              <p className="text-sm text-slate-500">Relaciones inteligentes entre productos de tu Vademécum.</p>
+            </div>
+            
+            <div className="flex-1">
+              <ClinicalSynergy 
+                product={product} 
+                onProductClick={handleProductClick}
+              />
+            </div>
           </div>
-          
-          <div className="flex-1">
-            <ClinicalSynergy 
-              product={product} 
-              onProductClick={handleProductClick}
-            />
-          </div>
-        </div>
+        )}
 
       </div>
     </div>

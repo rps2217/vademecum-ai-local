@@ -91,7 +91,7 @@ export class GeminiService {
         Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias, análisis de los componentes y su función, y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3-flash-preview",
           contents: prompt,
           config: {
             tools: [{ googleSearch: {} }],
@@ -199,7 +199,7 @@ export class GeminiService {
         6. Devuelve el JSON completo actualizado. Mantén el SKU original.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3-flash-preview",
           contents: prompt,
           config: {
             tools: [{ googleSearch: {} }],
@@ -297,7 +297,7 @@ export class GeminiService {
         const ai = this.getAI();
         
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3-flash-preview",
           contents: `Analiza el siguiente contenido en Markdown de una página de farmacia y extrae la información del medicamento en formato JSON.
           
           CONTENIDO:
@@ -396,7 +396,7 @@ export class GeminiService {
         Página: ${url}`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3-flash-preview",
           contents: prompt,
           config: {
             tools: [{ urlContext: {} }]
@@ -423,7 +423,7 @@ export class GeminiService {
         No incluyas viñetas, números, explicaciones ni texto adicional.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3-flash-preview",
           contents: prompt,
           config: {
             tools: [{ googleSearch: {} }]
@@ -446,7 +446,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3-flash-preview",
           contents: prompt,
         });
         return response.text || "";
@@ -462,7 +462,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3-flash-preview",
           contents: prompt,
           config: {
             responseMimeType: "application/json"
@@ -505,7 +505,7 @@ export class GeminiService {
         [ignoring loop detection]`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3.1-pro-preview",
           contents: prompt,
           config: {
             responseMimeType: "application/json",
@@ -563,7 +563,7 @@ export class GeminiService {
         5. Devuelve un JSON estructurado.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3.1-pro-preview",
           contents: prompt,
           config: {
             responseMimeType: "application/json",
@@ -632,7 +632,7 @@ export class GeminiService {
         Devuelve un ARREGLO JSON de objetos con la estructura definida.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-1.5-flash",
+          model: "gemini-3.1-pro-preview",
           contents: prompt,
           config: {
             responseMimeType: "application/json",
