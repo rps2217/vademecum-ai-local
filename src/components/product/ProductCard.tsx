@@ -1,7 +1,7 @@
 import React from 'react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { Badge } from '../ui/badge';
-import { AlertTriangle, CheckCircle2, Info, Plus, Check } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, Plus, Check, ExternalLink } from 'lucide-react';
 import { formatArrayToString } from '../../utils/formatters';
 import { HighlightText } from '../ui/HighlightText';
 
@@ -30,6 +30,8 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
       case SafetyStatus.PRECAUCION: return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
     }
   };
+
+  const isGroundingSource = product.source_url === 'google_search' || product.source_url?.includes('google_search');
 
   return (
     <div className="bg-brand-surface rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-800 hover:shadow-lg hover:shadow-brand-primary/10 hover:border-brand-primary/50 transition-all group relative flex flex-col h-full">
@@ -136,14 +138,14 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         </div>
       )}
 
-      {/* Botón de Agregar a Bandeja */}
-      <div className="mt-4 pt-4 border-t border-slate-800 flex justify-end">
+      {/* Botón de Agregar a Bandeja y Fuente Web */}
+      <div className="mt-4 pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
         <button
           onClick={(e) => {
             e.stopPropagation();
             onAddToTray?.(product);
           }}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors w-full justify-center ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors flex-1 justify-center ${
             isInTray 
               ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' 
               : 'bg-brand-bg text-slate-300 border border-slate-700 hover:bg-brand-primary/10 hover:text-brand-primary hover:border-brand-primary/30'
@@ -159,6 +161,18 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
             </>
           )}
         </button>
+        {product.source_url && !isGroundingSource && (
+          <a
+            href={product.source_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="flex items-center gap-1.5 text-[9px] font-bold text-violet-400 hover:text-violet-300 transition-all uppercase tracking-widest whitespace-nowrap bg-violet-500/10 px-3 py-2 rounded-lg border border-violet-500/30 hover:border-violet-500/50"
+          >
+            <ExternalLink className="w-3 h-3" />
+            Fuente web
+          </a>
+        )}
       </div>
     </div>
   );

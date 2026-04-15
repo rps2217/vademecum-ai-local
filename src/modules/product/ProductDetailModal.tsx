@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalSynergy } from './ClinicalSynergy';
-import { X, Sparkles, AlertCircle, ChevronLeft, Home } from 'lucide-react';
+import { X, Sparkles, AlertCircle, ChevronLeft, Home, Lock, Key } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
@@ -9,6 +9,7 @@ import { getDB } from '../../core/database/db';
 import { ProductHeader } from './components/ProductHeader';
 import { ProductBentoGrid } from './components/ProductBentoGrid';
 import { ProductActions } from './components/ProductActions';
+import { ProductEditForm } from './components/ProductEditForm';
 
 interface ProductDetailModalProps {
   product: Product;
@@ -23,6 +24,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   const [isReanalyzing, setIsReanalyzing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isForcingSynergy, setIsForcingSynergy] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
+  const [password, setPassword] = useState('');
   const [statusMessage, setStatusMessage] = useState<{ text: string, type: 'info' | 'error' | 'success' } | null>(null);
 
   useEffect(() => {
@@ -85,6 +89,42 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
       showStatus('Error al iniciar el análisis de sinergia.', 'error');
     } finally {
       setIsForcingSynergy(false);
+    }
+  };
+
+  const handleEditClick = () => {
+    if (isEditing) {
+      setIsEditing(false);
+    } else {
+      setShowPasswordPrompt(true);
+    }
+  };
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'RPS241061') {
+      setIsEditing(true);
+      setShowPasswordPrompt(false);
+      setPassword('');
+    } else {
+      showStatus('Contraseña incorrecta', 'error');
+      setPassword('');
+    }
+  };
+
+  const handleSaveEdit = async (updatedProduct: Product) => {
+    try {
+      const db = await getDB();
+      await db.put('products', updatedProduct);
+      await FirebaseSyncService.updateProduct(updatedProduct);
+      
+      setProduct(updatedProduct);
+      if (onUpdate) onUpdate(updatedProduct);
+      setIsEditing(false);
+      showStatus('Cambios guardados correctamente', 'success');
+    } catch (error) {
+      console.error('Error al guardar cambios:', error);
+      showStatus('Error al guardar los cambios', 'error');
     }
   };
 
@@ -152,16 +192,67 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                 isForcingSynergy={isForcingSynergy}
                 isReanalyzing={isReanalyzing}
                 isSuccess={isSuccess}
+                isEditing={isEditing}
                 onForceSynergy={handleForceSynergy}
                 onReanalyze={handleReanalyze}
+                onEdit={handleEditClick}
                 onClose={onClose}
                 hideCloseMobile={true}
               />
             </div>
           </div>
 
-          <ProductBentoGrid product={product} searchTerm={searchTerm} />
+          {isEditing ? (
+            <ProductEditForm 
+              product={product} 
+              onSave={handleSaveEdit} 
+              onCancel={() => setIsEditing(false)} 
+            />
+          ) : (
+            <ProductBentoGrid product={product} searchTerm={searchTerm} />
+          )}
         </div>
+
+        {showPasswordPrompt && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
+            <div className="bg-brand-surface p-8 rounded-[2.5rem] border border-slate-800 shadow-2xl max-w-sm w-full mx-4 animate-in zoom-in-95 duration-300">
+              <div className="w-16 h-16 bg-brand-primary/10 rounded-3xl flex items-center justify-center mb-6 mx-auto">
+                <Lock className="w-8 h-8 text-brand-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-white text-center mb-2">Acceso Restringido</h3>
+              <p className="text-slate-500 text-center text-sm mb-6">Ingresa la contraseña maestra para editar este registro.</p>
+              
+              <form onSubmit={handlePasswordSubmit} className="space-y-4">
+                <div className="relative">
+                  <Key className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                  <input
+                    autoFocus
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Contraseña"
+                    className="w-full bg-brand-bg border border-slate-700 rounded-2xl pl-12 pr-4 py-4 text-white focus:border-brand-primary outline-none transition-all shadow-inner"
+                  />
+                </div>
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowPasswordPrompt(false)}
+                    className="flex-1 px-6 py-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition-all border border-slate-700"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 px-6 py-4 rounded-2xl bg-brand-primary hover:bg-brand-primary/80 text-white font-bold transition-all shadow-lg shadow-brand-primary/20"
+                  >
+                    Entrar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* Columna Derecha: Sinergia Clínica IA */}
         <div className="w-full md:w-2/5 bg-brand-bg/30 p-6 md:p-10 flex flex-col relative overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
