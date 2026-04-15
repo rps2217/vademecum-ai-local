@@ -122,6 +122,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
       if (onUpdate) onUpdate(updatedProduct);
       setIsEditing(false);
       showStatus('Cambios guardados correctamente', 'success');
+      window.dispatchEvent(new CustomEvent('db_updated'));
     } catch (error) {
       console.error('Error al guardar cambios:', error);
       showStatus('Error al guardar los cambios', 'error');

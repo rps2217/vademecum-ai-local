@@ -2,6 +2,7 @@ import { collection, onSnapshot, query, writeBatch, doc, getDocs, limit, setDoc,
 import { db, auth, handleFirestoreError, OperationType } from '../firebase';
 import { getDB } from '../core/database/db';
 import { Product } from '../core/types/product.types';
+import { TaskQueueService } from './TaskQueueService';
 
 export const FirebaseSyncService = {
   /**
@@ -132,8 +133,13 @@ export const FirebaseSyncService = {
       if (!auth.currentUser) return;
       const docRef = doc(db, 'products', product.sku);
       await setDoc(docRef, product);
-    } catch (error) {
-      console.warn('[FirebaseSync] No se pudo actualizar en la nube:', error);
+    } catch (error: any) {
+      if (error?.code === 'resource-exhausted' || error?.message?.includes('Quota exceeded')) {
+        console.warn('[FirebaseSync] Cuota excedida, encolando tarea:', product.sku);
+        await TaskQueueService.addTask('firebase_sync', product);
+      } else {
+        console.warn('[FirebaseSync] No se pudo actualizar en la nube:', error);
+      }
     }
   },
 

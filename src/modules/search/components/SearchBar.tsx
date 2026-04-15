@@ -29,6 +29,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ query, setQuery, isSearchi
         </div>
         <input
           type="text"
+          autoFocus
           className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-brand-surface/90 backdrop-blur-sm border border-slate-700/50 rounded-2xl text-base sm:text-lg text-white shadow-xl focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all placeholder:text-slate-500"
           placeholder="Buscar o preguntar a la IA..."
           value={query}

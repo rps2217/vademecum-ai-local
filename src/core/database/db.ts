@@ -17,18 +17,30 @@ interface VademecumDB extends DBSchema {
       version: string;
     };
   };
+  pending_tasks: {
+    key: string;
+    value: {
+      id: string;
+      type: 'firebase_sync' | 'ai_analysis';
+      payload: any;
+      timestamp: number;
+    };
+  };
 }
 
 let dbPromise: Promise<IDBPDatabase<VademecumDB>> | null = null;
 
 export const getDB = () => {
   if (!dbPromise) {
-    dbPromise = openDB<VademecumDB>('vademecum-db', 2, {
+    dbPromise = openDB<VademecumDB>('vademecum-db', 3, {
       upgrade(db, oldVersion) {
         if (oldVersion < 1) {
           const productStore = db.createObjectStore('products', { keyPath: 'sku' });
           productStore.createIndex('by-nombre', 'nombre_comercial');
           db.createObjectStore('sync_metadata', { keyPath: 'id' });
+        }
+        if (oldVersion < 3) {
+          db.createObjectStore('pending_tasks', { keyPath: 'id' });
         }
       },
     });

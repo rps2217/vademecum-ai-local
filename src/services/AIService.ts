@@ -3,6 +3,7 @@ import { Product, SafetyStatus } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
 import { SynergyBackgroundService } from './SynergyBackgroundService';
 import { AIOrchestratorService } from './AIOrchestratorService';
+import { TaskQueueService } from './TaskQueueService';
 
 export class AIService {
   private static worker: Worker | null = null;
@@ -309,8 +310,17 @@ export class AIService {
         const { type: resType, payload, error } = e.data;
         if (resType === 'ANALYZE_CLINICAL_RESULT' || resType === 'ERROR') {
           this.worker?.removeEventListener('message', handler);
-          if (error) resolve(null);
-          else resolve(payload);
+          if (error) {
+            if (error.includes('Quota') || error.includes('429')) {
+              console.warn('[AIService] Cuota excedida, encolando análisis:', product.sku);
+              TaskQueueService.addTask('ai_analysis', { product, candidates, type });
+              resolve(null);
+            } else {
+              resolve(null);
+            }
+          } else {
+            resolve(payload);
+          }
         }
       };
       this.worker?.addEventListener('message', handler);

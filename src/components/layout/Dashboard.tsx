@@ -9,6 +9,7 @@ import { Activity, Search, Database, Settings, Globe, Monitor, Cpu } from 'lucid
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { AIService } from '../../services/AIService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
+import { QuotaMonitorService } from '../../services/QuotaMonitorService';
 import { useAuth } from '../../context/AuthContext';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
@@ -32,6 +33,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   useEffect(() => {
     if (isAccessGranted) {
       const unsubscribe = FirebaseSyncService.startSync();
+      QuotaMonitorService.start();
       return () => unsubscribe();
     }
   }, [isAccessGranted]);
