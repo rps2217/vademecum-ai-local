@@ -58,7 +58,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
                 className="inline-flex items-center gap-2.5 bg-brand-primary/10 border border-brand-primary/20 px-4 py-2.5 rounded-2xl hover:bg-brand-primary/20 transition-all group"
               >
                 <Activity className="w-5 h-5 text-brand-primary group-hover:scale-110 transition-transform" />
-                <span className="text-lg md:text-xl text-brand-primary font-bold">
+                <span className="text-sm md:text-base text-brand-primary font-bold">
                   <HighlightText text={principio} searchTerm={searchTerm} />
                 </span>
               </button>
