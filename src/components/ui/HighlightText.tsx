@@ -5,26 +5,50 @@ interface HighlightTextProps {
   searchTerm: string;
 }
 
+const stopWords = new Set(['de', 'la', 'el', 'en', 'y', 'o', 'a', 'las', 'los', 'con', 'por', 'para', 'un', 'una']);
+
 export const HighlightText: React.FC<HighlightTextProps> = ({ text, searchTerm }) => {
   if (!searchTerm || !text) return <>{text}</>;
 
   // Normalizar para encontrar coincidencias sin tildes
   const normalize = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   
-  const normalizedText = normalize(text);
   const normalizedSearch = normalize(searchTerm);
   
-  // Dividir el término de búsqueda en palabras individuales
-  const searchTerms = normalizedSearch.split(/\s+/).filter(t => t.length > 0);
+  // Intentar coincidencia exacta de frase primero
+  const escapedPhrase = normalizedSearch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const phraseRegex = new RegExp(`(\\b${escapedPhrase}\\b)`, 'gi');
+  
+  if (phraseRegex.test(normalize(text))) {
+    const parts = text.split(new RegExp(`(${escapedPhrase})`, 'gi'));
+    return (
+      <>
+        {parts.map((part, i) => {
+          const isMatch = normalize(part) === normalizedSearch;
+          return isMatch ? (
+            <mark 
+              key={i} 
+              className="bg-yellow-300 text-black px-0.5 rounded-sm font-bold animate-pulse"
+              style={{ backgroundColor: '#ffff00' }}
+            >
+              {part}
+            </mark>
+          ) : (
+            <span key={i}>{part}</span>
+          );
+        })}
+      </>
+    );
+  }
+
+  // Si no hay coincidencia de frase exacta, dividir en palabras ignorando stop words
+  const searchTerms = normalizedSearch.split(/\s+/).filter(t => t.length > 0 && !stopWords.has(t));
   
   if (searchTerms.length === 0) return <>{text}</>;
 
-  // Crear una expresión regular que coincida con cualquiera de los términos
-  // Usamos límites de palabra \b para coincidir con palabras completas como pidió el usuario
   const escapedTerms = searchTerms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   const regex = new RegExp(`(\\b${escapedTerms.join('\\b|\\b')}\\b)`, 'gi');
 
-  // Dividir el texto original usando la expresión regular (manteniendo los separadores)
   const parts = text.split(regex);
 
   return (
@@ -36,7 +60,7 @@ export const HighlightText: React.FC<HighlightTextProps> = ({ text, searchTerm }
           <mark 
             key={i} 
             className="bg-yellow-300 text-black px-0.5 rounded-sm font-bold animate-pulse"
-            style={{ backgroundColor: '#ffff00' }} // Amarillo fluorescente
+            style={{ backgroundColor: '#ffff00' }}
           >
             {part}
           </mark>

@@ -231,10 +231,13 @@ export const DatabaseModule: React.FC = () => {
   const filteredProducts = useMemo(() => {
     if (!searchTerm) return products;
     const term = searchTerm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
-
+    
     const isPathologySearch = COMMON_PATHOLOGIES.some(p => p.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === term);
+    
+    const stopWords = new Set(['de', 'la', 'el', 'en', 'y', 'o', 'a', 'las', 'los', 'con', 'por', 'para', 'un', 'una']);
+    const searchTerms = term.split(' ').filter(t => t.length > 0 && !stopWords.has(t));
+    
+    const exactPhraseRegex = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
 
     return products.filter(p => {
       if (isPathologySearch) {
@@ -242,18 +245,29 @@ export const DatabaseModule: React.FC = () => {
           const text = typeof i === 'object' ? ((i as any).nombre || (i as any).tipo || (i as any).indicacion || JSON.stringify(i)) : String(i);
           return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }).join(" ");
-        return regex.test(ind);
+        
+        // Para patologías, requerimos coincidencia de la frase exacta
+        return exactPhraseRegex.test(ind);
       }
 
       const nombre = p.nombre_comercial.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       const sku = p.sku.toLowerCase();
       
-      return regex.test(nombre) || 
-             sku.includes(term) || // SKU suele ser exacto o parcial útil
-             p.principios_activos.some(pa => {
-               const normalizedPa = pa.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-               return regex.test(normalizedPa);
-             });
+      // Si hay coincidencia exacta de la frase en el nombre
+      if (exactPhraseRegex.test(nombre) || sku.includes(term)) return true;
+      
+      // Si no, verificamos si al menos alguna palabra clave (no stop-word) coincide
+      if (searchTerms.length > 0) {
+        return searchTerms.some(t => {
+          const regex = new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+          return regex.test(nombre) || p.principios_activos.some(pa => {
+            const normalizedPa = pa.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return regex.test(normalizedPa);
+          });
+        });
+      }
+      
+      return false;
     });
   }, [products, searchTerm]);
 

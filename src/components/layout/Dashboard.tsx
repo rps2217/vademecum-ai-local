@@ -46,22 +46,19 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-brand-bg text-slate-200 p-4 sm:p-8">
+    <div className="min-h-screen bg-brand-bg text-slate-200 p-2 sm:p-4">
       <div className="max-w-7xl mx-auto">
-        <header className="mb-6 sm:mb-8 flex flex-col items-center relative">
-          <div className="absolute top-0 right-0 sm:static sm:mb-4">
-            <UserMenu />
+        {/* Navegación Principal y Header Compacto */}
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-8 gap-4">
+          
+          {/* Logo / Icono */}
+          <div className="flex items-center gap-3">
+            <div className="inline-flex items-center justify-center p-2 bg-brand-primary/10 rounded-xl border border-brand-primary/20">
+              <Activity className="w-5 h-5 text-brand-primary" />
+            </div>
           </div>
-          <div className="inline-flex items-center justify-center p-2 sm:p-3 bg-brand-primary/10 rounded-2xl mb-4 sm:mb-6 border border-brand-primary/20">
-            <Activity className="w-6 h-6 sm:w-8 sm:h-8 text-brand-primary" />
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2 sm:mb-3 text-center">
-            Vademécum Inteligente
-          </h1>
-        </header>
 
-        {/* Navegación Principal */}
-        <div className="flex justify-center mb-8 sm:mb-12">
+          {/* Tabs */}
           <div className="inline-flex bg-brand-surface/50 p-1.5 rounded-2xl border border-slate-800 backdrop-blur-sm overflow-x-auto max-w-full no-scrollbar">
             {navItems.map((item) => (
               <button
@@ -77,6 +74,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 <span className={activeTab === item.id ? 'block' : 'hidden sm:block'}>{item.label}</span>
               </button>
             ))}
+          </div>
+
+          {/* Acceso Profesional */}
+          <div className="flex items-center">
+            <UserMenu />
           </div>
         </div>
 

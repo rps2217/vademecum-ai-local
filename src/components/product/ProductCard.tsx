@@ -57,10 +57,34 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         </Badge>
       </div>
 
-      <div className="mb-3 sm:mb-4 flex-1 cursor-pointer" onClick={() => onViewDetail?.(product)}>
-        <p className="text-xs sm:text-sm text-slate-300 line-clamp-2 leading-relaxed">
-          <HighlightText text={formatArrayToString(product.indicaciones, ' • ')} searchTerm={searchTerm} />
-        </p>
+      <div className="mb-3 sm:mb-4 flex-1 cursor-pointer flex flex-col gap-3" onClick={() => onViewDetail?.(product)}>
+        {/* Indicaciones */}
+        <div>
+          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Indicaciones</p>
+          <p className="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed">
+            <HighlightText text={formatArrayToString(product.indicaciones, ' • ')} searchTerm={searchTerm} />
+          </p>
+        </div>
+
+        {/* Descripción */}
+        {product.descripcion && (
+          <div>
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Descripción</p>
+            <p className="text-xs sm:text-sm text-slate-400 line-clamp-3 leading-relaxed">
+              <HighlightText text={product.descripcion} searchTerm={searchTerm} />
+            </p>
+          </div>
+        )}
+
+        {/* Análisis de Componentes */}
+        {product.analisis_componentes && (
+          <div>
+            <p className="text-[10px] font-bold text-indigo-400/70 uppercase tracking-wider mb-1">Análisis de Componentes</p>
+            <p className="text-xs sm:text-sm text-slate-400 line-clamp-3 leading-relaxed">
+              <HighlightText text={product.analisis_componentes} searchTerm={searchTerm} />
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Semáforo Compacto */}

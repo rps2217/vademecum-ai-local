@@ -94,37 +94,83 @@ export const useProductSearch = () => {
       
       try {
         const normalizedQuery = normalizeText(query);
-        const searchTerms = normalizedQuery.split(' ').filter(t => t.length > 0);
         
         // Determinar si es una búsqueda de patología frecuente
         const isPathologySearch = COMMON_PATHOLOGIES.some(p => normalizeText(p) === normalizedQuery);
         
+        // Stop words comunes en español para ignorar en búsquedas por palabras sueltas
+        const stopWords = new Set(['de', 'la', 'el', 'en', 'y', 'o', 'a', 'las', 'los', 'con', 'por', 'para', 'un', 'una']);
+        
+        // Diccionario de sinónimos para patologías
+        const synonymsMap: Record<string, string[]> = {
+          "dolor de cabeza": ["migraña", "cefalea", "jaqueca"],
+          "migraña": ["dolor de cabeza", "cefalea", "jaqueca"],
+          "gripe": ["resfrío", "resfriado", "influenza", "catarro"],
+          "resfrio": ["gripe", "resfriado", "catarro", "influenza"],
+          "artrosis": ["artritis", "dolor articular", "reumatismo"],
+          "artritis": ["artrosis", "dolor articular", "reumatismo"],
+          "dolor articular": ["artrosis", "artritis", "reumatismo"],
+          "acne": ["espinillas", "granos", "barros"],
+          "caida de cabello": ["alopecia", "calvicie"],
+          "insomnio": ["trastornos del sueño", "dificultad para dormir", "desvelo"],
+          "estres": ["nerviosismo", "ansiedad", "tensión"],
+          "ansiedad": ["nerviosismo", "estrés", "angustia"],
+          "fatiga": ["cansancio", "agotamiento", "astenia", "debilidad"],
+          "sobrepeso": ["obesidad", "adelgazar", "control de peso"],
+          "gases y meteorismo": ["flatulencia", "gases", "meteorismo", "hinchazón"],
+          "aftas y estomatitis": ["aftas", "estomatitis", "llagas"],
+          "hematomas y contusiones": ["hematomas", "contusiones", "moretones", "golpes"],
+          "picaduras de insectos": ["picaduras"],
+          "pesadez de piernas": ["piernas cansadas", "várices", "mala circulación"],
+          "agotamiento intelectual": ["memoria", "concentración", "cansancio mental"]
+        };
+
         // 1. Búsqueda por Texto (Exacta/Keyword) - Peso 1.0
         let textFiltered = searchIndex.current;
         const textResults = new Map<string, { product: Product, score: number }>();
         
-        if (searchTerms.length > 0) {
+        if (normalizedQuery.length > 0) {
+          // Preparar frases exactas a buscar (la query original + sinónimos si existen)
+          const exactPhrasesToSearch = [normalizedQuery];
+          if (synonymsMap[normalizedQuery]) {
+            exactPhrasesToSearch.push(...synonymsMap[normalizedQuery].map(normalizeText));
+          }
+
+          // Preparar términos individuales ignorando stop words
+          const searchTerms = normalizedQuery.split(' ').filter(t => t.length > 0 && !stopWords.has(t));
+
           textFiltered.forEach(item => {
-            let matchCount = 0;
-            searchTerms.forEach(term => {
-              // Usar límites de palabra (\b) para evitar coincidencias parciales no deseadas
-              // Ej: "asma" no debe coincidir con "catatplasma"
-              // Escapamos el término por seguridad y usamos límites de palabra
-              const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
-              
-              // Si es búsqueda de patología, solo buscar en descripción e indicaciones
-              const textToSearch = isPathologySearch ? item.pathologySearchableText : item.searchableText;
-              
+            const textToSearch = isPathologySearch ? item.pathologySearchableText : item.searchableText;
+            let matchedExact = false;
+
+            // Primero intentamos coincidencia de frase exacta (o sinónimos)
+            for (const phrase of exactPhrasesToSearch) {
+              const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const regex = new RegExp(`\\b${escapedPhrase}\\b`, 'i');
               if (regex.test(textToSearch)) {
-                matchCount++;
+                matchedExact = true;
+                break;
               }
-            });
-            
-            if (matchCount > 0) {
-              // Puntuación basada en cuántos términos coinciden
-              const score = matchCount / searchTerms.length;
-              textResults.set(item.sku, { product: item.product, score });
+            }
+
+            if (matchedExact) {
+              // Coincidencia exacta tiene puntuación máxima
+              textResults.set(item.sku, { product: item.product, score: 1.0 });
+            } else if (!isPathologySearch && searchTerms.length > 0) {
+              // Si no es patología, buscamos por palabras individuales (sin stop words)
+              let matchCount = 0;
+              searchTerms.forEach(term => {
+                const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
+                if (regex.test(textToSearch)) {
+                  matchCount++;
+                }
+              });
+              
+              if (matchCount > 0) {
+                const score = matchCount / searchTerms.length;
+                textResults.set(item.sku, { product: item.product, score });
+              }
             }
           });
         } else if (conditionFilters.length > 0) {
