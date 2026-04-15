@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { SearchModule } from '../../modules/search/SearchModule';
-import { DatabaseModule } from '../../modules/database/DatabaseModule';
-import { AIEngineModule } from '../../modules/ai/AIEngineModule';
-import { SettingsModule } from '../../modules/settings/SettingsModule';
-import { BatchScraper } from '../../modules/scraper/BatchScraper';
-import { SetupModule } from '../../modules/setup/SetupModule';
-import { Activity, Search, Database, Settings, Globe, Monitor, Cpu } from 'lucide-react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Activity, Search, Database, Settings, Globe, Monitor, Cpu, Loader2 } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { AIService } from '../../services/AIService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
@@ -14,6 +8,21 @@ import { useAuth } from '../../context/AuthContext';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
 import { AIStatusIndicator } from '../AIStatusIndicator';
+
+// Lazy load modules
+const SearchModule = lazy(() => import('../../modules/search/SearchModule').then(m => ({ default: m.SearchModule })));
+const DatabaseModule = lazy(() => import('../../modules/database/DatabaseModule').then(m => ({ default: m.DatabaseModule })));
+const AIEngineModule = lazy(() => import('../../modules/ai/AIEngineModule').then(m => ({ default: m.AIEngineModule })));
+const SettingsModule = lazy(() => import('../../modules/settings/SettingsModule').then(m => ({ default: m.SettingsModule })));
+const BatchScraper = lazy(() => import('../../modules/scraper/BatchScraper').then(m => ({ default: m.BatchScraper })));
+const SetupModule = lazy(() => import('../../modules/setup/SetupModule').then(m => ({ default: m.SetupModule })));
+
+const ModuleLoader = () => (
+  <div className="flex flex-col items-center justify-center py-20 animate-in fade-in duration-500">
+    <Loader2 className="w-10 h-10 text-brand-primary animate-spin mb-4" />
+    <p className="text-slate-500 font-medium tracking-wide uppercase text-[10px]">Cargando módulo...</p>
+  </div>
+);
 
 interface DashboardProps {
   hardware: HardwareProfile;
@@ -84,14 +93,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           </div>
         </div>
 
-        {/* Contenido Dinámico */}
+        {/* Contenido Dinámico con Suspense */}
         <div className="mb-16">
-          {activeTab === 'search' && <SearchModule />}
-          {activeTab === 'database' && <DatabaseModule />}
-          {activeTab === 'ai-engine' && <AIEngineModule />}
-          {activeTab === 'scraper' && <BatchScraper />}
-          {activeTab === 'setup' && <SetupModule />}
-          {activeTab === 'settings' && <SettingsModule />}
+          <Suspense fallback={<ModuleLoader />}>
+            {activeTab === 'search' && <SearchModule />}
+            {activeTab === 'database' && <DatabaseModule />}
+            {activeTab === 'ai-engine' && <AIEngineModule />}
+            {activeTab === 'scraper' && <BatchScraper />}
+            {activeTab === 'setup' && <SetupModule />}
+            {activeTab === 'settings' && <SettingsModule />}
+          </Suspense>
         </div>
 
         <FloatingTray />

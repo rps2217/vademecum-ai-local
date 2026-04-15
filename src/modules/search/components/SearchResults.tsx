@@ -2,6 +2,7 @@ import React from 'react';
 import { Database, Search } from 'lucide-react';
 import { Product } from '../../../core/types/product.types';
 import { ProductCard } from '../../../components/product/ProductCard';
+import { ProductSkeleton } from '../../../components/product/ProductSkeleton';
 import { SafetyCondition } from '../../../hooks/useProductSearch';
 
 interface SearchResultsProps {
@@ -27,6 +28,16 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   onTagClick,
   onClearFilters
 }) => {
+  if (isSearching && results.length === 0) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 animate-in fade-in duration-500">
+        {[...Array(6)].map((_, i) => (
+          <ProductSkeleton key={i} />
+        ))}
+      </div>
+    );
+  }
+
   if (query.trim() === '' && conditionFilters.length === 0) {
     return (
       <div className="text-center py-20 bg-brand-surface/30 rounded-3xl border border-slate-800 border-dashed">
