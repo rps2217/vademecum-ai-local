@@ -1,7 +1,7 @@
 import React from 'react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { Badge } from '../ui/badge';
-import { AlertTriangle, CheckCircle2, Info, Plus, Check, ExternalLink } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, Plus, Check, ExternalLink, ShieldCheck } from 'lucide-react';
 import { formatArrayToString } from '../../utils/formatters';
 import { HighlightText } from '../ui/HighlightText';
 
@@ -40,8 +40,13 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         onClick={() => onViewDetail?.(product)}
       >
         <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-primary transition-colors truncate">
+          <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-primary transition-colors truncate flex items-center gap-2">
             <HighlightText text={product.nombre_comercial} searchTerm={searchTerm} />
+            {product.is_verified && (
+              <span title="Verificado por Profesional">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+              </span>
+            )}
           </h3>
           <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
             {product.categoria_principal && product.categoria_principal !== 'Otro' && (

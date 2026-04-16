@@ -1,13 +1,20 @@
 import React from 'react';
-import { ShieldCheck, CheckCircle2, Heart, Droplets, Baby, Activity, ShieldCheck as ShieldIcon, Wheat, X } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, Heart, Droplets, Baby, Activity, ShieldCheck as ShieldIcon, Wheat, X, CheckCircle } from 'lucide-react';
 import { SafetyCondition } from '../../../hooks/useProductSearch';
 
 interface SafetyFiltersProps {
   conditionFilters: SafetyCondition[];
   setConditionFilters: React.Dispatch<React.SetStateAction<SafetyCondition[]>>;
+  showOnlyVerified: boolean;
+  setShowOnlyVerified: (show: boolean) => void;
 }
 
-export const SafetyFilters: React.FC<SafetyFiltersProps> = ({ conditionFilters, setConditionFilters }) => {
+export const SafetyFilters: React.FC<SafetyFiltersProps> = ({ 
+  conditionFilters, 
+  setConditionFilters,
+  showOnlyVerified,
+  setShowOnlyVerified
+}) => {
   const toggleConditionFilter = (condition: SafetyCondition) => {
     setConditionFilters(prev => 
       prev.includes(condition) 
@@ -31,6 +38,21 @@ export const SafetyFilters: React.FC<SafetyFiltersProps> = ({ conditionFilters, 
       <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mr-1 hidden lg:block">Solo Aptos Para:</span>
       
       <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap">
+        {/* Filtro de Verificación Profesional */}
+        <button
+          onClick={() => setShowOnlyVerified(!showOnlyVerified)}
+          className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-[10px] sm:text-xs font-bold transition-all border whitespace-nowrap ${
+            showOnlyVerified 
+              ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.1)]' 
+              : 'bg-brand-bg/50 text-slate-400 border-slate-800 hover:border-emerald-500/30 hover:text-emerald-400/70'
+          }`}
+        >
+          {showOnlyVerified ? <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
+          Verificados
+        </button>
+
+        <div className="h-4 w-px bg-slate-800 mx-1 hidden sm:block" />
+
         {safetyItems.map((item) => {
           const isActive = conditionFilters.includes(item.id);
           return (

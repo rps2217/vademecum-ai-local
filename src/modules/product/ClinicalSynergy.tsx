@@ -6,7 +6,9 @@ import { SynergyEmpty } from './components/synergy/SynergyEmpty';
 import { SynergySuggestion } from './components/synergy/SynergySuggestion';
 import { RelatedProductsList } from './components/synergy/RelatedProductsList';
 import { AlternativesList } from './components/synergy/AlternativesList';
+import { SynergyGraph } from './components/synergy/SynergyGraph';
 import { cosineSimilarity } from '../../utils/math';
+import { Share2, List } from 'lucide-react';
 
 interface ClinicalSynergyProps {
   product: Product;
@@ -17,6 +19,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [alternatives, setAlternatives] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<'list' | 'graph'>('list');
 
   useEffect(() => {
     const loadRelated = async () => {
@@ -99,22 +102,52 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {product.sugerencia_complementaria && (
-        <SynergySuggestion suggestion={product.sugerencia_complementaria} />
-      )}
+      <div className="flex items-center justify-between">
+        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Visualización</h4>
+        <div className="flex bg-slate-800/50 p-1 rounded-xl border border-slate-700">
+          <button 
+            onClick={() => setViewMode('list')}
+            className={`p-1.5 rounded-lg transition-all ${viewMode === 'list' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+            title="Vista de Lista"
+          >
+            <List className="w-3.5 h-3.5" />
+          </button>
+          <button 
+            onClick={() => setViewMode('graph')}
+            className={`p-1.5 rounded-lg transition-all ${viewMode === 'graph' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
+            title="Vista de Mapa"
+          >
+            <Share2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
 
-      {alternatives.length > 0 && (
-        <AlternativesList 
-          products={alternatives}
+      {viewMode === 'graph' ? (
+        <SynergyGraph 
+          centerProduct={product}
+          relatedProducts={[...relatedProducts, ...alternatives]}
           onProductClick={onProductClick}
         />
-      )}
+      ) : (
+        <>
+          {product.sugerencia_complementaria && (
+            <SynergySuggestion suggestion={product.sugerencia_complementaria} />
+          )}
 
-      {relatedProducts.length > 0 && (
-        <RelatedProductsList 
-          products={relatedProducts} 
-          onProductClick={onProductClick} 
-        />
+          {alternatives.length > 0 && (
+            <AlternativesList 
+              products={alternatives}
+              onProductClick={onProductClick}
+            />
+          )}
+
+          {relatedProducts.length > 0 && (
+            <RelatedProductsList 
+              products={relatedProducts} 
+              onProductClick={onProductClick} 
+            />
+          )}
+        </>
       )}
     </div>
   );

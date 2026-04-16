@@ -1,6 +1,7 @@
 import React from 'react';
-import { X, Cpu, RefreshCw, Loader2, CheckCircle2, Edit3 } from 'lucide-react';
+import { X, Cpu, RefreshCw, Loader2, CheckCircle2, Edit3, ArrowLeftRight, ShieldCheck } from 'lucide-react';
 import { Product } from '../../../core/types/product.types';
+import { useComparison } from '../../../context/ComparisonContext';
 
 interface ProductActionsProps {
   product: Product;
@@ -11,6 +12,7 @@ interface ProductActionsProps {
   onForceSynergy: () => void;
   onReanalyze: () => void;
   onEdit: () => void;
+  onVerify: () => void;
   onClose: () => void;
   hideCloseMobile?: boolean;
 }
@@ -24,11 +26,37 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
   onForceSynergy,
   onReanalyze,
   onEdit,
+  onVerify,
   onClose,
   hideCloseMobile = false
 }) => {
+  const { addToComparison, removeFromComparison, isInComparison } = useComparison();
+  const isComparing = isInComparison(product.sku);
+
   return (
     <div className="flex flex-col gap-3 shrink-0">
+      <button 
+        onClick={onVerify}
+        title={product.is_verified ? "Registro Verificado" : "Validar registro profesionalmente"}
+        className={`p-3 rounded-2xl transition-all border shadow-sm ${
+          product.is_verified 
+            ? 'text-emerald-400 border-emerald-500/50 bg-emerald-500/10' 
+            : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-emerald-400'
+        }`}
+      >
+        <ShieldCheck className="w-5 h-5" />
+      </button>
+      <button 
+        onClick={() => isComparing ? removeFromComparison(product.sku) : addToComparison(product)}
+        title={isComparing ? "Quitar de comparación" : "Añadir a comparación"}
+        className={`p-3 rounded-2xl transition-all border shadow-sm ${
+          isComparing 
+            ? 'text-brand-primary border-brand-primary/50 bg-brand-primary/10' 
+            : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-white'
+        }`}
+      >
+        <ArrowLeftRight className="w-5 h-5" />
+      </button>
       <button 
         onClick={onEdit}
         title="Editar registro manualmente"

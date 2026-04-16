@@ -9,6 +9,7 @@ interface SearchResultsProps {
   results: Product[];
   query: string;
   conditionFilters: SafetyCondition[];
+  showOnlyVerified: boolean;
   isSearching: boolean;
   isInTray: (sku: string) => boolean;
   onProductClick: (product: Product) => void;
@@ -21,6 +22,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   results,
   query,
   conditionFilters,
+  showOnlyVerified,
   isSearching,
   isInTray,
   onProductClick,
@@ -58,6 +60,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
             {results.length === 50 ? 'Más de 50' : results.length} resultados 
             {query.trim() && ` para "${query}"`}
             {conditionFilters.length > 0 && ` con filtros de seguridad`}
+            {showOnlyVerified && ` (Solo Verificados)`}
           </span>
           <button 
             onClick={onClearFilters}

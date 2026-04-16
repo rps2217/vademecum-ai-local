@@ -5,12 +5,13 @@ import {
   Database, Trash2, RefreshCw, ExternalLink, FileUp, 
   ChevronLeft, ChevronRight, ShieldCheck, Sparkles, 
   CloudUpload, Download, Check, AlertCircle, Info,
-  Search, Filter, X, CheckCircle2, Monitor
+  Search, Filter, X, CheckCircle2, Monitor, ShieldAlert
 } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { PDFImportService } from '../../services/PDFImportService';
 import { useAuth } from '../../context/AuthContext';
+import { QualityAuditor } from './components/QualityAuditor';
 
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 
@@ -29,6 +30,7 @@ export const DatabaseModule: React.FC = () => {
   const [lastSyncTime, setLastSyncTime] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState<'inventory' | 'auditor'>('inventory');
   const [conflictMode, setConflictMode] = useState<'skip' | 'overwrite' | 'merge'>('skip');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -510,8 +512,34 @@ export const DatabaseModule: React.FC = () => {
         </div>
       )}
 
-      {/* Main Database Table */}
-      <div className="bg-brand-surface border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
+      {/* Tabs de Navegación */}
+      <div className="flex bg-brand-surface p-1 rounded-2xl border border-slate-800 mb-8 w-fit">
+        <button 
+          onClick={() => setActiveTab('inventory')}
+          className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
+            activeTab === 'inventory' ? 'bg-slate-800 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'
+          }`}
+        >
+          <Database className="w-4 h-4" />
+          Inventario Local
+        </button>
+        <button 
+          onClick={() => setActiveTab('auditor')}
+          className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
+            activeTab === 'auditor' ? 'bg-slate-800 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'
+          }`}
+        >
+          <ShieldAlert className="w-4 h-4" />
+          Auditoría de Calidad
+        </button>
+      </div>
+
+      {activeTab === 'auditor' ? (
+        <QualityAuditor />
+      ) : (
+        <>
+          {/* Main Database Table */}
+          <div className="bg-brand-surface border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
         <div className="p-4 sm:p-6 border-b border-slate-800 bg-slate-950/30 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
             <span className="text-lg font-bold text-white">Registros Locales</span>
@@ -746,6 +774,8 @@ export const DatabaseModule: React.FC = () => {
           </div>
         )}
       </div>
+      </>
+      )}
 
       {/* Info Footer */}
       <div className="mt-8 p-6 bg-brand-surface border border-slate-800 rounded-3xl flex items-start gap-4">

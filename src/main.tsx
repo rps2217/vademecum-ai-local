@@ -4,6 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import { registerSW } from 'virtual:pwa-register';
 import { AuthProvider } from './context/AuthContext';
+import { ComparisonProvider } from './context/ComparisonContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Registrar el Service Worker para la PWA
@@ -22,7 +23,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
       <AuthProvider>
-        <App />
+        <ComparisonProvider>
+          <App />
+        </ComparisonProvider>
       </AuthProvider>
     </ErrorBoundary>
   </StrictMode>,

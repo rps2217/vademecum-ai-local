@@ -31,6 +31,7 @@ export type SafetyCondition = 'apto_embarazo' | 'apto_lactancia' | 'apto_pediatr
 export const useProductSearch = () => {
   const [query, setQuery] = useState('');
   const [conditionFilters, setConditionFilters] = useState<SafetyCondition[]>([]);
+  const [showOnlyVerified, setShowOnlyVerified] = useState(false);
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [indexVersion, setIndexVersion] = useState(0);
@@ -237,6 +238,11 @@ export const useProductSearch = () => {
           });
         }
 
+        // 5. Aplicar Filtro de Verificación Profesional
+        if (showOnlyVerified) {
+          combined = combined.filter(p => p.is_verified === true);
+        }
+
         setResults(combined.slice(0, 50));
       } catch (error) {
         console.error('Error buscando productos:', error);
@@ -247,7 +253,16 @@ export const useProductSearch = () => {
 
     const timeoutId = setTimeout(searchProducts, 400);
     return () => clearTimeout(timeoutId);
-  }, [query, conditionFilters, indexVersion]);
+  }, [query, conditionFilters, showOnlyVerified, indexVersion]);
 
-  return { query, setQuery, conditionFilters, setConditionFilters, results, isSearching };
+  return { 
+    query, 
+    setQuery, 
+    conditionFilters, 
+    setConditionFilters, 
+    showOnlyVerified, 
+    setShowOnlyVerified, 
+    results, 
+    isSearching 
+  };
 };

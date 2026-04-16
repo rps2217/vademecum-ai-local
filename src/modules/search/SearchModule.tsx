@@ -15,6 +15,8 @@ export const SearchModule: React.FC = () => {
     setQuery, 
     conditionFilters, 
     setConditionFilters, 
+    showOnlyVerified,
+    setShowOnlyVerified,
     results, 
     isSearching, 
   } = useProductSearch();
@@ -38,8 +40,9 @@ export const SearchModule: React.FC = () => {
   const handleClearAll = React.useCallback(() => {
     setQuery('');
     setConditionFilters([]);
+    setShowOnlyVerified(false);
     searchInputRef.current?.focus();
-  }, [setQuery, setConditionFilters]);
+  }, [setQuery, setConditionFilters, setShowOnlyVerified]);
 
   return (
     <div className="w-full max-w-[1400px] mx-auto pb-20 px-4 sm:px-6 lg:px-8 relative">
@@ -55,6 +58,8 @@ export const SearchModule: React.FC = () => {
         <SafetyFilters 
           conditionFilters={conditionFilters} 
           setConditionFilters={setConditionFilters} 
+          showOnlyVerified={showOnlyVerified}
+          setShowOnlyVerified={setShowOnlyVerified}
         />
       </div>
 
@@ -72,6 +77,7 @@ export const SearchModule: React.FC = () => {
           results={results}
           query={query}
           conditionFilters={conditionFilters}
+          showOnlyVerified={showOnlyVerified}
           isSearching={isSearching}
           isInTray={isInTray}
           onProductClick={setSelectedProduct}

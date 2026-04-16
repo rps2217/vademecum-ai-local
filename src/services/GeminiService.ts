@@ -613,8 +613,8 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = `Actúa como un experto en Data Engineering Farmacéutico y Editor Clínico.
-        Tu tarea es limpiar, normalizar y validar la siguiente lista de productos farmacéuticos.
+        const prompt = `Actúa como un experto en Data Engineering Farmacéutico y Editor Clínico Senior.
+        Tu tarea es realizar una CURACIÓN PROFUNDA de la siguiente lista de productos.
         
         PRODUCTOS A PROCESAR (JSON):
         ${JSON.stringify(products.map(p => ({
@@ -626,15 +626,15 @@ export class GeminiService {
           categoria: p.categoria_principal
         })))}
         
-        REGLAS ESTRICTAS DE LIMPIEZA:
-        1. **Normalización de Principios Activos**: Unifica nombres (ej. "Vit. C" -> "Vitamina C"). Usa nombres genéricos estándar en español.
-        2. **Corrección Ortográfica**: Corrige errores en nombres comerciales y descripciones. Asegura un tono profesional.
-        3. **Validación de Etiquetas**: Asegúrate de que los tags_ia tengan sentido clínico y ortografía correcta.
-        4. **Clasificación**: Asegura que categoria_principal sea uno de: "Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro".
-        5. **Deduplicación Semántica**: Si detectas que dos productos son el mismo pero con nombres ligeramente distintos, unifícalos si es posible o mantén el más completo.
-        6. **Seguridad**: Para los campos de aptitud (embarazo, lactancia, etc.), usa ÚNICAMENTE los valores: "SI", "NO" o "PRECAUCION".
+        REGLAS DE CURACIÓN PROFUNDA:
+        1. **Inferencia de Seguridad**: Si el producto contiene principios activos conocidos (ej. Ibuprofeno), INFIERE los campos de aptitud (embarazo, lactancia, etc.) basándote en el conocimiento médico estándar si no están presentes.
+        2. **Normalización de Principios**: Unifica nombres (ej. "Vit. C" -> "Vitamina C"). Usa nombres genéricos estándar.
+        3. **Enriquecimiento de Indicaciones**: Si las indicaciones son pobres, añade las indicaciones clínicas estándar para esos principios activos.
+        4. **Análisis de Componentes**: Genera un breve análisis técnico de por qué se combinan esos principios activos.
+        5. **Categorización Estricta**: Clasifica en: "Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro".
+        6. **Tags Clínicos**: Genera etiquetas de alta calidad para búsqueda (ej. "Antipirético", "Fotosensibilizante", "Hepatoprotector").
         
-        Devuelve un ARREGLO JSON de objetos con la estructura definida.`;
+        Devuelve un ARREGLO JSON de objetos con la estructura completa.`;
 
         const response = await ai.models.generateContent({
           model: "gemini-3.1-pro-preview",

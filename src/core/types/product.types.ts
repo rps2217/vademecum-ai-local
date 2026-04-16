@@ -40,4 +40,9 @@ export interface Product {
   // Metadatos del Scraper
   source_url?: string;
   last_updated?: number;
+  
+  // Validación Profesional
+  is_verified?: boolean;
+  verified_at?: number;
+  verified_by?: string;
 }

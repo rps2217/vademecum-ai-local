@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalSynergy } from './ClinicalSynergy';
-import { X, Sparkles, AlertCircle, ChevronLeft, Home, Lock, Key } from 'lucide-react';
+import { X, Sparkles, AlertCircle, ChevronLeft, Home, Lock, Key, Printer } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
@@ -25,6 +25,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   const [isSuccess, setIsSuccess] = useState(false);
   const [isForcingSynergy, setIsForcingSynergy] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [password, setPassword] = useState('');
   const [statusMessage, setStatusMessage] = useState<{ text: string, type: 'info' | 'error' | 'success' } | null>(null);
@@ -96,6 +97,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
     if (isEditing) {
       setIsEditing(false);
     } else {
+      setIsVerifying(false);
+      setShowPasswordPrompt(true);
+    }
+  };
+
+  const handleVerifyClick = () => {
+    if (product.is_verified) {
+      handleSaveEdit({ ...product, is_verified: false });
+    } else {
+      setIsVerifying(true);
       setShowPasswordPrompt(true);
     }
   };
@@ -103,7 +114,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === 'RPS241061') {
-      setIsEditing(true);
+      if (isVerifying) {
+        handleSaveEdit({ 
+          ...product, 
+          is_verified: true, 
+          verified_at: Date.now(),
+          verified_by: 'Rolando Pizarro'
+        });
+        setIsVerifying(false);
+      } else {
+        setIsEditing(true);
+      }
       setShowPasswordPrompt(false);
       setPassword('');
     } else {
@@ -135,6 +156,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
     if (leftCol) leftCol.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   const hasSynergy = !!product.synergy_analyzed;
 
   return (
@@ -162,6 +187,14 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                 title="Ir al inicio"
               >
                 <Home className="w-5 h-5" />
+              </button>
+
+              <button 
+                onClick={handlePrint}
+                className="p-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
+                title="Imprimir Ficha de Consultoría"
+              >
+                <Printer className="w-5 h-5" />
               </button>
             </div>
 
@@ -199,6 +232,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
                 onForceSynergy={handleForceSynergy}
                 onReanalyze={handleReanalyze}
                 onEdit={handleEditClick}
+                onVerify={handleVerifyClick}
                 onClose={onClose}
                 hideCloseMobile={true}
               />
@@ -212,7 +246,24 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
               onCancel={() => setIsEditing(false)} 
             />
           ) : (
-            <ProductBentoGrid product={product} searchTerm={searchTerm} />
+            <>
+              <ProductBentoGrid product={product} searchTerm={searchTerm} />
+              
+              {/* Disclaimer de Consultoría */}
+              <div className="mt-12 p-6 rounded-[2rem] bg-slate-900/50 border border-slate-800 border-dashed print:border-slate-300 print:text-slate-800">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-slate-500 mt-0.5 shrink-0 print:text-slate-700" />
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest print:text-slate-700">Aviso de Consultoría de Producto</p>
+                    <p className="text-xs text-slate-500 leading-relaxed print:text-slate-700">
+                      Esta información se proporciona exclusivamente con fines de consultoría técnica sobre productos naturales y suplementos. 
+                      No constituye un diagnóstico médico, tratamiento o prescripción. Consulte siempre con un profesional de la salud calificado 
+                      antes de iniciar cualquier régimen de suplementación.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
           )}
         </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { Activity, Search, Database, Settings, Globe, Monitor, Cpu, Loader2 } from 'lucide-react';
+import { Activity, Search, Database, Settings, Globe, Monitor, Cpu, Loader2, Command } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { AIService } from '../../services/AIService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
@@ -8,6 +8,11 @@ import { useAuth } from '../../context/AuthContext';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
 import { AIStatusIndicator } from '../AIStatusIndicator';
+import { CommandPalette } from '../navigation/CommandPalette';
+import { ComparisonTray } from '../comparison/ComparisonTray';
+import { Product } from '../../core/types/product.types';
+import { ProductDetailModal } from '../../modules/product/ProductDetailModal';
+import { InsightsDashboard } from '../../modules/dashboard/components/InsightsDashboard';
 
 // Lazy load modules
 const SearchModule = lazy(() => import('../../modules/search/SearchModule').then(m => ({ default: m.SearchModule })));
@@ -29,8 +34,23 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
-  const [activeTab, setActiveTab] = useState<'search' | 'database' | 'ai-engine' | 'scraper' | 'setup' | 'settings'>('search');
+  const [activeTab, setActiveTab] = useState<'insights' | 'search' | 'database' | 'ai-engine' | 'scraper' | 'setup' | 'settings'>('insights');
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { isAccessGranted } = useAuth();
+
+  // Atajo de teclado CMD+K / CTRL+K
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsCommandPaletteOpen(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     if (hardware) {
@@ -48,6 +68,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   }, [isAccessGranted]);
 
   const navItems = [
+    { id: 'insights', label: 'Dashboard', icon: Activity },
     { id: 'search', label: 'Buscador', icon: Search },
     { id: 'database', label: 'Base de Datos', icon: Database },
     { id: 'ai-engine', label: 'Motor de IA', icon: Cpu },
@@ -88,7 +109,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           </div>
 
           {/* Acceso Profesional */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={() => setIsCommandPaletteOpen(true)}
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-brand-surface/50 border border-slate-800 text-slate-500 hover:text-slate-300 transition-all group"
+            >
+              <Command className="w-3.5 h-3.5 group-hover:text-brand-primary transition-colors" />
+              <span className="text-[10px] font-bold uppercase tracking-widest">CMD + K</span>
+            </button>
             <UserMenu />
           </div>
         </div>
@@ -96,6 +124,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         {/* Contenido Dinámico con Suspense */}
         <div className="mb-16">
           <Suspense fallback={<ModuleLoader />}>
+            {activeTab === 'insights' && <InsightsDashboard onNavigate={(tab: any) => setActiveTab(tab)} />}
             {activeTab === 'search' && <SearchModule />}
             {activeTab === 'database' && <DatabaseModule />}
             {activeTab === 'ai-engine' && <AIEngineModule />}
@@ -107,6 +136,24 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
         <FloatingTray />
         <AIStatusIndicator />
+        <ComparisonTray />
+
+        <CommandPalette 
+          isOpen={isCommandPaletteOpen}
+          onClose={() => setIsCommandPaletteOpen(false)}
+          onSelectProduct={setSelectedProduct}
+          onNavigate={(tab) => {
+            setActiveTab(tab);
+            setIsCommandPaletteOpen(false);
+          }}
+        />
+
+        {selectedProduct && (
+          <ProductDetailModal 
+            product={selectedProduct}
+            onClose={() => setSelectedProduct(null)}
+          />
+        )}
       </div>
     </div>
   );

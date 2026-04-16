@@ -15,3 +15,32 @@
     @apply bg-brand-bg text-slate-200;
   }
 }
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print, button, nav, .fixed {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .bg-brand-surface, .bg-brand-bg, .bg-slate-900 {
+    background: white !important;
+    border-color: #e2e8f0 !important;
+  }
+  .text-white, .text-slate-200, .text-slate-300, .text-slate-400 {
+    color: black !important;
+  }
+  .border-slate-800 {
+    border-color: #e2e8f0 !important;
+  }
+  .rounded-\[2rem\], .rounded-\[2\.5rem\] {
+    border-radius: 0 !important;
+  }
+  .shadow-2xl, .shadow-xl {
+    shadow: none !important;
+  }
+}
