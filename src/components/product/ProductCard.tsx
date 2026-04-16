@@ -1,9 +1,10 @@
 import React from 'react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { Badge } from '../ui/badge';
-import { AlertTriangle, CheckCircle2, Info, Plus, Check, ExternalLink, ShieldCheck } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, Plus, Check, ExternalLink, ShieldCheck, Brain } from 'lucide-react';
 import { formatArrayToString } from '../../utils/formatters';
 import { HighlightText } from '../ui/HighlightText';
+import { useConsultation } from '../../context/ConsultationContext';
 
 interface ProductCardProps {
   product: Product;
@@ -15,6 +16,9 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onViewDetail, onAddToTray, isInTray, onTagClick, searchTerm = '' }) => {
+  const { addToConsultation, removeFromConsultation, isInConsultation } = useConsultation();
+  const isSelectedForBrain = isInConsultation(product.sku);
+
   const getSafetyIcon = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI: return <CheckCircle2 className="w-3 h-3 text-emerald-500" />;
@@ -144,38 +148,53 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
       )}
 
       {/* Botón de Agregar a Bandeja y Fuente Web */}
-      <div className="mt-4 pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onAddToTray?.(product);
-          }}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors flex-1 justify-center ${
-            isInTray 
-              ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' 
-              : 'bg-brand-bg text-slate-300 border border-slate-700 hover:bg-brand-primary/10 hover:text-brand-primary hover:border-brand-primary/30'
-          }`}
-        >
-          {isInTray ? (
-            <>
-              <Check className="w-4 h-4" /> Seleccionado
-            </>
-          ) : (
-            <>
-              <Plus className="w-4 h-4" /> Analizar Interacción
-            </>
-          )}
-        </button>
+      <div className="mt-4 pt-4 border-t border-slate-800 flex flex-col gap-3">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToTray?.(product);
+            }}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all flex-1 justify-center ${
+              isInTray 
+                ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' 
+                : 'bg-brand-bg text-slate-500 border border-slate-800 hover:bg-brand-primary/10 hover:text-brand-primary hover:border-brand-primary/30'
+            }`}
+          >
+            {isInTray ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+            {isInTray ? 'Comparando' : 'Comparar'}
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isSelectedForBrain) {
+                removeFromConsultation(product.sku);
+              } else {
+                addToConsultation(product);
+              }
+            }}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all flex-1 justify-center ${
+              isSelectedForBrain 
+                ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30 shadow-lg shadow-rose-500/10' 
+                : 'bg-brand-bg text-slate-500 border border-slate-800 hover:bg-rose-500/10 hover:text-rose-400 hover:border-rose-500/30'
+            }`}
+          >
+            {isSelectedForBrain ? <Brain className="w-3.5 h-3.5 animate-pulse" /> : <Brain className="w-3.5 h-3.5" />}
+            {isSelectedForBrain ? 'En Cerebro' : 'Analizar'}
+          </button>
+        </div>
+
         {product.source_url && !isGroundingSource && (
           <a
             href={product.source_url}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-1.5 text-[9px] font-bold text-violet-400 hover:text-violet-300 transition-all uppercase tracking-widest whitespace-nowrap bg-violet-500/10 px-3 py-2 rounded-lg border border-violet-500/30 hover:border-violet-500/50"
+            className="flex items-center justify-center gap-1.5 text-[9px] font-bold text-violet-400 hover:text-violet-300 transition-all uppercase tracking-widest whitespace-nowrap bg-violet-500/10 px-3 py-2.5 rounded-xl border border-violet-500/30 hover:border-violet-500/50"
           >
             <ExternalLink className="w-3 h-3" />
-            Fuente web
+            Fuente web oficial
           </a>
         )}
       </div>

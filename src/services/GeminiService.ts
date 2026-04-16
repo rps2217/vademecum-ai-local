@@ -713,6 +713,183 @@ export class GeminiService {
       }
     });
   }
+
+  static async extractProductFromPDFText(rawText: string): Promise<Product> {
+    return this.withRetry(async () => {
+      try {
+        const ai = this.getAI();
+        
+        const prompt = `Analiza el siguiente texto extraído de una ficha técnica de producto farmacéutico y extrae la información estructurada.
+        
+        TEXTO DE LA FICHA:
+        """
+        ${rawText}
+        """
+        
+        TAREA:
+        Extrae todos los campos necesarios para nuestra base de datos siguiendo estrictamente el esquema JSON proporcionado. 
+        Si algún dato no está presente, intenta inferirlo basándote en el conocimiento clínico o deja el campo vacío/por defecto.
+        Asegúrate de generar un análisis de componentes detallado y etiquetas (tags) relevantes.`;
+
+        const response = await ai.models.generateContent({
+          model: "gemini-2.0-flash",
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                sku: { type: Type.STRING },
+                nombre_comercial: { type: Type.STRING },
+                descripcion: { type: Type.STRING },
+                principios_activos: { type: Type.ARRAY, items: { type: Type.STRING } },
+                posologia: { type: Type.STRING },
+                indicaciones: { type: Type.ARRAY, items: { type: Type.STRING } },
+                advertencias: { type: Type.STRING },
+                tags_ia: { type: Type.ARRAY, items: { type: Type.STRING } },
+                categoria_principal: { type: Type.STRING, enum: ["Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro"] },
+                analisis_componentes: { type: Type.STRING },
+                apto_embarazo: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_lactancia: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_pediatria: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_diabeticos: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_hipertensos: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_celiacos: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                sugerencia_complementaria: { type: Type.STRING }
+              },
+              required: ["sku", "nombre_comercial", "principios_activos"]
+            }
+          }
+        });
+
+        const data = JSON.parse(response.text || "{}");
+        
+        const mapSafety = (val: any): SafetyStatus => {
+          const v = String(val || '').toUpperCase().trim();
+          if (v === 'SI') return SafetyStatus.SI;
+          if (v === 'NO') return SafetyStatus.NO;
+          return SafetyStatus.PRECAUCION;
+        };
+
+        return {
+          sku: data.sku || `PDF-${Math.random().toString(36).substr(2, 9)}`,
+          nombre_comercial: data.nombre_comercial || "Producto Extraído",
+          descripcion: data.descripcion || "",
+          principios_activos: Array.isArray(data.principios_activos) ? data.principios_activos : [],
+          posologia: data.posologia || "Ver ficha técnica",
+          indicaciones: Array.isArray(data.indicaciones) ? data.indicaciones : [],
+          advertencias: data.advertencias || "",
+          tags_ia: Array.isArray(data.tags_ia) ? data.tags_ia : [],
+          categoria_principal: data.categoria_principal || 'Otro',
+          analisis_componentes: data.analisis_componentes || '',
+          vectores: [],
+          apto_embarazo: mapSafety(data.apto_embarazo),
+          apto_lactancia: mapSafety(data.apto_lactancia),
+          apto_pediatria: mapSafety(data.apto_pediatria),
+          apto_diabeticos: mapSafety(data.apto_diabeticos),
+          apto_hipertensos: mapSafety(data.apto_hipertensos),
+          apto_celiacos: mapSafety(data.apto_celiacos),
+          sugerencia_complementaria: data.sugerencia_complementaria || "",
+          skus_relacionados: [],
+          synergy_analyzed: false,
+          last_updated: Date.now()
+        };
+      } catch (error) {
+        console.error("[GeminiService] Error extrayendo de PDF:", error);
+        throw error;
+      }
+    });
+  }
+
+  static async extractProductFromImage(base64Image: string, mimeType: string): Promise<Product> {
+    return this.withRetry(async () => {
+      try {
+        const ai = this.getAI();
+        
+        const prompt = `Analiza la siguiente imagen que es una captura de pantalla de una ficha técnica o capacitación de un producto farmacéutico.
+        
+        TAREA:
+        Lee y extrae toda la información relevante para nuestra base de datos siguiendo el esquema JSON proporcionado.
+        Si hay texto borroso o incompleto, usa tu conocimiento clínico para completar los campos de forma coherente.
+        Asegúrate de extraer: SKU, nombre, principios activos, beneficios/indicaciones y perfiles de seguridad.`;
+
+        const response = await ai.models.generateContent({
+          model: "gemini-2.0-flash",
+          contents: [
+            { text: prompt },
+            {
+              inlineData: {
+                data: base64Image.split(',')[1] || base64Image,
+                mimeType: mimeType
+              }
+            }
+          ],
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.OBJECT,
+              properties: {
+                sku: { type: Type.STRING },
+                nombre_comercial: { type: Type.STRING },
+                descripcion: { type: Type.STRING },
+                principios_activos: { type: Type.ARRAY, items: { type: Type.STRING } },
+                posologia: { type: Type.STRING },
+                indicaciones: { type: Type.ARRAY, items: { type: Type.STRING } },
+                advertencias: { type: Type.STRING },
+                tags_ia: { type: Type.ARRAY, items: { type: Type.STRING } },
+                categoria_principal: { type: Type.STRING, enum: ["Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro"] },
+                analisis_componentes: { type: Type.STRING },
+                apto_embarazo: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_lactancia: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_pediatria: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_diabeticos: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_hipertensos: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                apto_celiacos: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
+                sugerencia_complementaria: { type: Type.STRING }
+              },
+              required: ["sku", "nombre_comercial", "principios_activos"]
+            }
+          }
+        });
+
+        const data = JSON.parse(response.text || "{}");
+        
+        const mapSafety = (val: any): SafetyStatus => {
+          const v = String(val || '').toUpperCase().trim();
+          if (v === 'SI') return SafetyStatus.SI;
+          if (v === 'NO') return SafetyStatus.NO;
+          return SafetyStatus.PRECAUCION;
+        };
+
+        return {
+          sku: data.sku || `IMG-${Math.random().toString(36).substr(2, 9)}`,
+          nombre_comercial: data.nombre_comercial || "Producto de Captura",
+          descripcion: data.descripcion || "",
+          principios_activos: Array.isArray(data.principios_activos) ? data.principios_activos : [],
+          posologia: data.posologia || "Ver imagen",
+          indicaciones: Array.isArray(data.indicaciones) ? data.indicaciones : [],
+          advertencias: data.advertencias || "",
+          tags_ia: Array.isArray(data.tags_ia) ? data.tags_ia : [],
+          categoria_principal: data.categoria_principal || 'Otro',
+          analisis_componentes: data.analisis_componentes || '',
+          vectores: [],
+          apto_embarazo: mapSafety(data.apto_embarazo),
+          apto_lactancia: mapSafety(data.apto_lactancia),
+          apto_pediatria: mapSafety(data.apto_pediatria),
+          apto_diabeticos: mapSafety(data.apto_diabeticos),
+          apto_hipertensos: mapSafety(data.apto_hipertensos),
+          apto_celiacos: mapSafety(data.apto_celiacos),
+          sugerencia_complementaria: data.sugerencia_complementaria || "",
+          skus_relacionados: [],
+          synergy_analyzed: false,
+          last_updated: Date.now()
+        };
+      } catch (error) {
+        console.error("[GeminiService] Error extrayendo de Imagen:", error);
+        throw error;
+      }
+    });
+  }
 }
 
 function apiKeyFromEnv(val: any): string | null {

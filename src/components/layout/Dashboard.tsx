@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { Activity, Search, Database, Settings, Globe, Monitor, Cpu, Loader2, Command } from 'lucide-react';
+import { Activity, Search, Database, Settings, Globe, Monitor, Cpu, Loader2, Command, FileSearch } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { AIService } from '../../services/AIService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
@@ -13,6 +13,8 @@ import { ComparisonTray } from '../comparison/ComparisonTray';
 import { Product } from '../../core/types/product.types';
 import { ProductDetailModal } from '../../modules/product/ProductDetailModal';
 import { InsightsDashboard } from '../../modules/dashboard/components/InsightsDashboard';
+import { ConsultationProvider } from '../../context/ConsultationContext';
+import { ClinicalBrainTray } from '../tray/ClinicalBrainTray';
 
 // Lazy load modules
 const SearchModule = lazy(() => import('../../modules/search/SearchModule').then(m => ({ default: m.SearchModule })));
@@ -20,6 +22,7 @@ const DatabaseModule = lazy(() => import('../../modules/database/DatabaseModule'
 const AIEngineModule = lazy(() => import('../../modules/ai/AIEngineModule').then(m => ({ default: m.AIEngineModule })));
 const SettingsModule = lazy(() => import('../../modules/settings/SettingsModule').then(m => ({ default: m.SettingsModule })));
 const BatchScraper = lazy(() => import('../../modules/scraper/BatchScraper').then(m => ({ default: m.BatchScraper })));
+const PDFExtractionModule = lazy(() => import('../../modules/scraper/PDFExtractionModule').then(m => ({ default: m.PDFExtractionModule })));
 const SetupModule = lazy(() => import('../../modules/setup/SetupModule').then(m => ({ default: m.SetupModule })));
 
 const ModuleLoader = () => (
@@ -34,7 +37,7 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
-  const [activeTab, setActiveTab] = useState<'insights' | 'search' | 'database' | 'ai-engine' | 'scraper' | 'setup' | 'settings'>('insights');
+  const [activeTab, setActiveTab] = useState<'insights' | 'search' | 'database' | 'ai-engine' | 'scraper' | 'pdf-reader' | 'setup' | 'settings'>('search');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { isAccessGranted } = useAuth();
@@ -73,12 +76,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
     { id: 'database', label: 'Base de Datos', icon: Database },
     { id: 'ai-engine', label: 'Motor de IA', icon: Cpu },
     { id: 'scraper', label: 'Scraper Masivo', icon: Globe },
+    { id: 'pdf-reader', label: 'Lector PDF', icon: FileSearch },
     { id: 'setup', label: 'Instalación PC', icon: Monitor },
     { id: 'settings', label: 'Configuración', icon: Settings },
   ] as const;
 
   return (
-    <div className="min-h-screen bg-brand-bg text-slate-200 p-2 sm:p-4">
+    <ConsultationProvider>
+      <div className="min-h-screen bg-brand-bg text-slate-200 p-2 sm:p-4">
       <div className="max-w-7xl mx-auto">
         {/* Navegación Principal y Header Compacto */}
         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-8 gap-4">
@@ -129,6 +134,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
             {activeTab === 'database' && <DatabaseModule />}
             {activeTab === 'ai-engine' && <AIEngineModule />}
             {activeTab === 'scraper' && <BatchScraper />}
+            {activeTab === 'pdf-reader' && <PDFExtractionModule />}
             {activeTab === 'setup' && <SetupModule />}
             {activeTab === 'settings' && <SettingsModule />}
           </Suspense>
@@ -137,6 +143,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <FloatingTray />
         <AIStatusIndicator />
         <ComparisonTray />
+        <ClinicalBrainTray />
 
         <CommandPalette 
           isOpen={isCommandPaletteOpen}
@@ -155,6 +162,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           />
         )}
       </div>
-    </div>
+      </div>
+    </ConsultationProvider>
   );
 };

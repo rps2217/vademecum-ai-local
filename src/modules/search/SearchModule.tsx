@@ -8,6 +8,8 @@ import { SafetyFilters } from './components/SafetyFilters';
 import { QuickPathologyFilters } from './components/QuickPathologyFilters';
 import { SearchResults } from './components/SearchResults';
 import { AIAnalysisModal } from './components/AIAnalysisModal';
+import { useConsultation } from '../../context/ConsultationContext';
+import { Brain, Sparkles } from 'lucide-react';
 
 export const SearchModule: React.FC = () => {
   const { 
@@ -24,6 +26,7 @@ export const SearchModule: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toggleProduct, isInTray } = useTray();
+  const { selectedProducts } = useConsultation();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -65,10 +68,29 @@ export const SearchModule: React.FC = () => {
 
       {/* Filtros de Patologías Comunes */}
       {query.trim() === '' && conditionFilters.length === 0 && (
-        <QuickPathologyFilters 
-          currentQuery={query} 
-          onTagClick={handleTagClick} 
-        />
+        <div className="space-y-8 animate-in fade-in duration-700">
+          {selectedProducts.length > 0 && (
+            <div className="bg-rose-500/10 border border-rose-500/20 rounded-3xl p-6 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-rose-500/20 rounded-2xl">
+                  <Brain className="w-6 h-6 text-rose-400" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Cerebro Clínico Activo</h4>
+                  <p className="text-xs text-slate-400">Tienes {selectedProducts.length} productos seleccionados para análisis de interacción.</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-brand-primary animate-pulse" />
+                <span className="text-[10px] font-bold text-brand-primary uppercase tracking-widest">Listo para procesar</span>
+              </div>
+            </div>
+          )}
+          <QuickPathologyFilters 
+            currentQuery={query} 
+            onTagClick={handleTagClick} 
+          />
+        </div>
       )}
 
       {/* Resultados */}

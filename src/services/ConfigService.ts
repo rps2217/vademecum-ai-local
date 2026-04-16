@@ -3,12 +3,14 @@ export interface AppConfig {
   enableBackgroundSynergy: boolean;
   useGeminiForSynergy: boolean;
   autoSyncCloud: boolean;
+  enableAIInteractions: boolean;
 }
 
 const DEFAULT_CONFIG: AppConfig = {
   enableBackgroundSynergy: false,
   useGeminiForSynergy: false,
   autoSyncCloud: true,
+  enableAIInteractions: false,
 };
 
 export const ConfigService = {

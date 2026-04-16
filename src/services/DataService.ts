@@ -49,4 +49,10 @@ export class DataService {
     const all = await db.getAll('products');
     return JSON.stringify(all, null, 2);
   }
+
+  static async saveProduct(product: Product): Promise<void> {
+    const db = await getDB();
+    await db.put('products', product);
+    window.dispatchEvent(new CustomEvent('db_updated'));
+  }
 }

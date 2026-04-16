@@ -96,6 +96,17 @@ export const useProductSearch = () => {
       try {
         const normalizedQuery = normalizeText(query);
         
+        // Detección automática de filtros de seguridad en la query
+        const autoFilters: SafetyCondition[] = [];
+        if (normalizedQuery.includes('embarazo') || normalizedQuery.includes('gestante')) autoFilters.push('apto_embarazo');
+        if (normalizedQuery.includes('lactancia')) autoFilters.push('apto_lactancia');
+        if (normalizedQuery.includes('niño') || normalizedQuery.includes('pediatrico') || normalizedQuery.includes('infantil')) autoFilters.push('apto_pediatria');
+        if (normalizedQuery.includes('diabetico') || normalizedQuery.includes('azucar')) autoFilters.push('apto_diabeticos');
+        if (normalizedQuery.includes('hipertenso') || normalizedQuery.includes('presion') || normalizedQuery.includes('tension')) autoFilters.push('apto_hipertensos');
+        if (normalizedQuery.includes('celiaco') || normalizedQuery.includes('gluten')) autoFilters.push('apto_celiacos');
+
+        const activeFilters = [...new Set([...conditionFilters, ...autoFilters])];
+        
         // Determinar si es una búsqueda de patología frecuente
         const isPathologySearch = COMMON_PATHOLOGIES.some(p => normalizeText(p) === normalizedQuery);
         
@@ -181,7 +192,7 @@ export const useProductSearch = () => {
               }
             }
           });
-        } else if (conditionFilters.length > 0) {
+        } else if (activeFilters.length > 0) {
           // Si no hay términos de búsqueda pero hay filtros, incluimos todos para filtrar después
           textFiltered.forEach(item => {
             textResults.set(item.sku, { product: item.product, score: 1.0 });
@@ -231,10 +242,10 @@ export const useProductSearch = () => {
           .map(i => i.product);
 
         // 4. Aplicar Filtro de Seguridad (Si está activo)
-        if (conditionFilters.length > 0) {
+        if (activeFilters.length > 0) {
           combined = combined.filter(p => {
             // El producto debe ser APTO (SafetyStatus.SI) para TODAS las condiciones seleccionadas
-            return conditionFilters.every(condition => p[condition] === SafetyStatus.SI);
+            return activeFilters.every(condition => p[condition] === SafetyStatus.SI);
           });
         }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { Cpu, ShieldCheck, Settings, AlertTriangle, Download, Upload, FileJson, Loader2, Brain, Cloud, Zap } from 'lucide-react';
+import { Cpu, ShieldCheck, Settings, AlertTriangle, Download, Upload, FileJson, Loader2, Brain, Cloud, Zap, ShieldAlert } from 'lucide-react';
 import { SystemDiagnostics } from '../../components/settings/SystemDiagnostics';
 import { DataService } from '../../services/DataService';
 import { ConfigService, AppConfig } from '../../services/ConfigService';
@@ -109,6 +109,22 @@ export const SettingsModule: React.FC = () => {
                 className={`w-12 h-6 rounded-full transition-colors relative ${config.useGeminiForSynergy ? 'bg-indigo-500' : 'bg-slate-700'}`}
               >
                 <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${config.useGeminiForSynergy ? 'left-7' : 'left-1'}`} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between p-4 bg-slate-800/30 rounded-2xl border border-slate-800/50">
+              <div className="flex gap-3">
+                <ShieldAlert className="w-5 h-5 text-rose-400 shrink-0" />
+                <div>
+                  <p className="text-sm font-bold text-white">Cerebro Clínico (IA)</p>
+                  <p className="text-xs text-slate-400">Verificador de interacciones (Consume Cuota)</p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleConfigChange({ enableAIInteractions: !config.enableAIInteractions })}
+                className={`w-12 h-6 rounded-full transition-colors relative ${config.enableAIInteractions ? 'bg-rose-500' : 'bg-slate-700'}`}
+              >
+                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${config.enableAIInteractions ? 'left-7' : 'left-1'}`} />
               </button>
             </div>
 
