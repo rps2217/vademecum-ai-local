@@ -217,7 +217,19 @@ Contraindicaciones: Hipersensibilidad..."
                     {(Array.isArray(result.principios_activos) ? result.principios_activos : []).map((pa, i) => {
                       if (!pa) return null;
                       const text = typeof pa === 'object' ? ((pa as any).nombre || (pa as any).tipo || JSON.stringify(pa)) : String(pa);
-                      return <span key={i} className="px-2 py-1 bg-slate-800 rounded text-xs">{text}</span>;
+                      const annotation = result.anotaciones_componentes?.[text];
+                      return (
+                        <div key={i} className="relative group/tag">
+                          <span className="px-2 py-1 bg-slate-800 rounded text-xs block">{text}</span>
+                          {annotation && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 w-48 p-2 bg-slate-800 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover/tag:opacity-100 group-hover/tag:translate-y-0 translate-y-1 pointer-events-none transition-all z-20">
+                              <p className="text-[10px] text-slate-300 leading-tight">
+                                {annotation}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      );
                     })}
                   </div>
                 </div>

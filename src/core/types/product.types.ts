@@ -17,6 +17,7 @@ export interface Product {
   tags_ia: string[]; // Categorías generadas por IA
   categoria_principal?: MainCategory; // Clasificación principal
   analisis_componentes?: string; // Análisis de la función de cada componente
+  anotaciones_componentes?: Record<string, string>; // { "principio activo": "breve información/anotación" }
   vectores: number[]; // Embeddings pre-calculados
   
   // Semáforo de Seguridad

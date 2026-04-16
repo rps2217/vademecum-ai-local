@@ -89,7 +89,8 @@ export class GeminiService {
         const prompt = `Busca información detallada sobre el producto farmacéutico: "${productName}".
         ${targetUrl ? `Enfócate en la información de este sitio si es posible: ${targetUrl}` : ''}
         
-        Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias, análisis de los componentes y su función, y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).`;
+        Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias, análisis de los componentes y su función, y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).
+        Adicionalmente, dame un diccionario 'anotaciones_componentes' con una breve explicación de 1-2 frases de cada principio activo.`;
 
         const response = await ai.models.generateContent({
           model: "gemini-3-flash-preview",
@@ -656,6 +657,7 @@ export class GeminiService {
                   tags_ia: { type: Type.ARRAY, items: { type: Type.STRING } },
                   categoria_principal: { type: Type.STRING, description: "Belleza, Medicamento, Suplemento, Homeopatía u Otro" },
                   analisis_componentes: { type: Type.STRING },
+                  anotaciones_componentes: { type: Type.OBJECT, description: "Diccionario clave-valor. Clave: principio activo. Valor: breve explicación." },
                   apto_embarazo: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
                   apto_lactancia: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
                   apto_pediatria: { type: Type.STRING, description: "SI, NO o PRECAUCION" },
@@ -695,6 +697,7 @@ export class GeminiService {
           tags_ia: Array.isArray(p.tags_ia) ? p.tags_ia : [],
           categoria_principal: p.categoria_principal || 'Otro',
           analisis_componentes: p.analisis_componentes || '',
+          anotaciones_componentes: p.anotaciones_componentes || {},
           vectores: [],
           apto_embarazo: mapSafety(p.apto_embarazo),
           apto_lactancia: mapSafety(p.apto_lactancia),
@@ -729,7 +732,8 @@ export class GeminiService {
         TAREA:
         Extrae todos los campos necesarios para nuestra base de datos siguiendo estrictamente el esquema JSON proporcionado. 
         Si algún dato no está presente, intenta inferirlo basándote en el conocimiento clínico o deja el campo vacío/por defecto.
-        Asegúrate de generar un análisis de componentes detallado y etiquetas (tags) relevantes.`;
+        Asegúrate de generar un análisis de componentes detallado y etiquetas (tags) relevantes.
+        Además, genera el diccionario 'anotaciones_componentes' con una brevísima explicación (1-2 frases) para cada principio activo identificado.`;
 
         const response = await ai.models.generateContent({
           model: "gemini-2.0-flash",
@@ -749,6 +753,7 @@ export class GeminiService {
                 tags_ia: { type: Type.ARRAY, items: { type: Type.STRING } },
                 categoria_principal: { type: Type.STRING, enum: ["Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro"] },
                 analisis_componentes: { type: Type.STRING },
+                anotaciones_componentes: { type: Type.OBJECT, description: "Claves: nombre del principio activo, Valores: breve anotación médica" },
                 apto_embarazo: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
                 apto_lactancia: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
                 apto_pediatria: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
@@ -782,6 +787,7 @@ export class GeminiService {
           tags_ia: Array.isArray(data.tags_ia) ? data.tags_ia : [],
           categoria_principal: data.categoria_principal || 'Otro',
           analisis_componentes: data.analisis_componentes || '',
+          anotaciones_componentes: data.anotaciones_componentes || {},
           vectores: [],
           apto_embarazo: mapSafety(data.apto_embarazo),
           apto_lactancia: mapSafety(data.apto_lactancia),
@@ -811,7 +817,8 @@ export class GeminiService {
         TAREA:
         Lee y extrae toda la información relevante para nuestra base de datos siguiendo el esquema JSON proporcionado.
         Si hay texto borroso o incompleto, usa tu conocimiento clínico para completar los campos de forma coherente.
-        Asegúrate de extraer: SKU, nombre, principios activos, beneficios/indicaciones y perfiles de seguridad.`;
+        Asegúrate de extraer: SKU, nombre, principios activos, beneficios/indicaciones y perfiles de seguridad.
+        Además, genera el diccionario 'anotaciones_componentes' con una brevísima explicación (1-2 frases) para cada principio activo identificado.`;
 
         const response = await ai.models.generateContent({
           model: "gemini-2.0-flash",
@@ -839,6 +846,7 @@ export class GeminiService {
                 tags_ia: { type: Type.ARRAY, items: { type: Type.STRING } },
                 categoria_principal: { type: Type.STRING, enum: ["Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro"] },
                 analisis_componentes: { type: Type.STRING },
+                anotaciones_componentes: { type: Type.OBJECT, description: "Claves: nombre del principio activo, Valores: breve anotación médica" },
                 apto_embarazo: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
                 apto_lactancia: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
                 apto_pediatria: { type: Type.STRING, enum: ["SI", "NO", "PRECAUCION"] },
@@ -872,6 +880,7 @@ export class GeminiService {
           tags_ia: Array.isArray(data.tags_ia) ? data.tags_ia : [],
           categoria_principal: data.categoria_principal || 'Otro',
           analisis_componentes: data.analisis_componentes || '',
+          anotaciones_componentes: data.anotaciones_componentes || {},
           vectores: [],
           apto_embarazo: mapSafety(data.apto_embarazo),
           apto_lactancia: mapSafety(data.apto_lactancia),

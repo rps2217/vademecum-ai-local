@@ -109,11 +109,23 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
                 <div className="space-y-3">
                   <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Componentes Activos</h4>
                   <div className="flex flex-wrap gap-1.5">
-                    {product.principios_activos.map((pa, i) => (
-                      <span key={i} className="px-2 py-1 rounded-lg bg-slate-800/50 border border-slate-700 text-[10px] text-slate-300">
-                        {pa}
-                      </span>
-                    ))}
+                    {product.principios_activos.map((pa, i) => {
+                      const annotation = product.anotaciones_componentes?.[pa];
+                      return (
+                        <div key={i} className="relative group/tag">
+                          <span className="px-2 py-1 rounded-lg bg-slate-800/50 border border-slate-700 text-[10px] text-slate-300 block">
+                            {pa}
+                          </span>
+                          {annotation && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 w-48 p-2 bg-slate-800 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover/tag:opacity-100 group-hover/tag:translate-y-0 translate-y-1 pointer-events-none transition-all z-20">
+                              <p className="text-[10px] text-slate-300 leading-tight">
+                                {annotation}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 

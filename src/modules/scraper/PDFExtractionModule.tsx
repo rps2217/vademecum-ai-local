@@ -185,9 +185,23 @@ export const PDFExtractionModule: React.FC = () => {
                   <div>
                     <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Principios Activos</p>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {extractedProduct.principios_activos.map(pa => (
-                        <span key={pa} className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-slate-300 border border-slate-700">{pa}</span>
-                      ))}
+                      {extractedProduct.principios_activos.map(pa => {
+                        const annotation = extractedProduct.anotaciones_componentes?.[pa];
+                        return (
+                          <div key={pa} className="relative group/tag">
+                            <span className="px-2 py-0.5 bg-slate-800 rounded text-[10px] text-slate-300 border border-slate-700 block">
+                              {pa}
+                            </span>
+                            {annotation && (
+                              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 w-48 p-2 bg-slate-800 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover/tag:opacity-100 group-hover/tag:translate-y-0 translate-y-1 pointer-events-none transition-all z-20">
+                                <p className="text-[10px] text-slate-300 leading-tight">
+                                  {annotation}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 

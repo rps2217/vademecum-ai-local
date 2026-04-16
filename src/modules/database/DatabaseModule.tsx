@@ -633,11 +633,23 @@ export const DatabaseModule: React.FC = () => {
                       <td className="px-6 py-4">
                         <div className="font-bold text-white text-base mb-1">{product.nombre_comercial}</div>
                         <div className="flex flex-wrap gap-1">
-                          {product.principios_activos.slice(0, 3).map((pa, i) => (
-                            <span key={i} className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-md text-[10px] font-medium">
-                              {pa}
-                            </span>
-                          ))}
+                          {product.principios_activos.slice(0, 3).map((pa, i) => {
+                            const annotation = product.anotaciones_componentes?.[pa];
+                            return (
+                              <div key={i} className="relative group/tag">
+                                <span className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-md text-[10px] font-medium block">
+                                  {pa}
+                                </span>
+                                {annotation && (
+                                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 w-48 p-2 bg-slate-800 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover/tag:opacity-100 group-hover/tag:translate-y-0 translate-y-1 pointer-events-none transition-all z-20">
+                                    <p className="text-[10px] text-slate-300 leading-tight">
+                                      {annotation}
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
                           {product.principios_activos.length > 3 && (
                             <span className="text-[10px] text-slate-600 font-bold">+{product.principios_activos.length - 3}</span>
                           )}
@@ -708,11 +720,23 @@ export const DatabaseModule: React.FC = () => {
                     </div>
                     
                     <div className="flex flex-wrap gap-1">
-                      {product.principios_activos.map((pa, i) => (
-                        <span key={i} className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-md text-[10px]">
-                          {pa}
-                        </span>
-                      ))}
+                      {product.principios_activos.map((pa, i) => {
+                        const annotation = product.anotaciones_componentes?.[pa];
+                        return (
+                          <div key={i} className="relative group/tag">
+                            <span className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded-md text-[10px] block">
+                              {pa}
+                            </span>
+                            {annotation && (
+                              <div className="absolute bottom-full left-0 mb-1 w-48 p-2 bg-slate-800 border border-slate-700 rounded-lg shadow-xl opacity-0 group-hover/tag:opacity-100 group-hover/tag:translate-y-0 translate-y-1 pointer-events-none transition-all z-20">
+                                <p className="text-[10px] text-slate-300 leading-tight">
+                                  {annotation}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
 
                     <div className="flex items-center justify-between pt-2 border-t border-slate-800/50">

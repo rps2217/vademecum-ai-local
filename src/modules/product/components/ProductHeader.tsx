@@ -51,18 +51,34 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
           </h2>
           
           <div className="flex flex-wrap gap-2">
-            {(Array.isArray(product.principios_activos) ? product.principios_activos : []).map((principio, idx) => (
-              <button
-                key={idx}
-                onClick={() => onTagClick?.(principio)}
-                className="inline-flex items-center gap-2.5 bg-brand-primary/10 border border-brand-primary/20 px-4 py-2.5 rounded-2xl hover:bg-brand-primary/20 transition-all group"
-              >
-                <Activity className="w-5 h-5 text-brand-primary group-hover:scale-110 transition-transform" />
-                <span className="text-sm md:text-base text-brand-primary font-bold">
-                  <HighlightText text={principio} searchTerm={searchTerm} />
-                </span>
-              </button>
-            ))}
+            {(Array.isArray(product.principios_activos) ? product.principios_activos : []).map((principio, idx) => {
+              const annotation = product.anotaciones_componentes?.[principio];
+              return (
+                <div key={idx} className="relative group">
+                  <button
+                    onClick={() => onTagClick?.(principio)}
+                    className="inline-flex items-center gap-2.5 bg-brand-primary/10 border border-brand-primary/20 px-4 py-2.5 rounded-2xl hover:bg-brand-primary/20 transition-all group-hover:ring-2 ring-brand-primary/30"
+                  >
+                    <Activity className="w-5 h-5 text-brand-primary group-hover:scale-110 transition-transform" />
+                    <span className="text-sm md:text-base text-brand-primary font-bold">
+                      <HighlightText text={principio} searchTerm={searchTerm} />
+                    </span>
+                  </button>
+                  {annotation && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-800 border border-slate-700 rounded-xl shadow-xl opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 pointer-events-none transition-all z-50">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Activity className="w-3.5 h-3.5 text-brand-primary" />
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Anotación Médica</span>
+                      </div>
+                      <p className="text-xs text-slate-200 leading-relaxed">
+                        {annotation}
+                      </p>
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px w-3 h-3 bg-slate-800 border-r border-b border-slate-700 rotate-45 transform origin-center" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
