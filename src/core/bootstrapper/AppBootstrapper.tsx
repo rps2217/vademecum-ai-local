@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { getDB } from '../database/db';
+import { SQLiteService } from '../../core/database/sqliteService';
 
 interface AppBootstrapperProps {
   children: React.ReactNode;
@@ -8,42 +8,17 @@ interface AppBootstrapperProps {
 
 export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) => {
   const { hardware, isDetecting: isDetectingHardware } = useHardwareDetection();
-  const [isDbReady, setIsDbReady] = useState(false);
-  const [bootError, setBootError] = useState<string | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const initializeApp = async () => {
-      try {
-        // 1. Inicializar Base de Datos Local
-        await getDB();
-        setIsDbReady(true);
-      } catch (error) {
-        console.error('Error durante el arranque de la aplicación:', error);
-        setBootError(error instanceof Error ? error.message : 'Error desconocido de inicialización');
-      }
+    const init = async () => {
+        await SQLiteService.initialize();
+        setIsReady(true);
     };
-
-    initializeApp();
+    init();
   }, []);
 
-  if (bootError) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-red-50 text-red-900 p-4">
-        <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 border border-red-200">
-          <h2 className="text-xl font-bold mb-2">Error Crítico de Inicialización</h2>
-          <p className="text-sm opacity-80 mb-4">{bootError}</p>
-          <button 
-            onClick={() => window.location.reload()}
-            className="w-full py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-          >
-            Reintentar
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (isDetectingHardware || !isDbReady) {
+  if (isDetectingHardware || !isReady) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-900">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-4"></div>

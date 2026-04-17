@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Product, SafetyStatus } from '../core/types/product.types';
-import { getDB } from '../core/database/db';
 import { AIService } from '../services/AIService';
 import { formatArrayToString } from '../utils/formatters';
 import { cosineSimilarity } from '../utils/math';
@@ -30,8 +29,6 @@ export type SafetyCondition = 'apto_embarazo' | 'apto_lactancia' | 'apto_pediatr
 
 export const useProductSearch = () => {
   const [query, setQuery] = useState('');
-  const [conditionFilters, setConditionFilters] = useState<SafetyCondition[]>([]);
-  const [showOnlyVerified, setShowOnlyVerified] = useState(false);
   const [results, setResults] = useState<Product[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [indexVersion, setIndexVersion] = useState(0);
@@ -42,10 +39,10 @@ export const useProductSearch = () => {
   useEffect(() => {
     const loadIndex = async () => {
       try {
-        const db = await getDB();
-        const allProducts = await db.getAll('products');
+        const response = await fetch('/api/products');
+        const allProducts = await response.json();
         
-        searchIndex.current = allProducts.map(product => ({
+        searchIndex.current = allProducts.map((product: Product) => ({
           sku: product.sku,
           product,
           vector: product.vectores,
@@ -72,7 +69,7 @@ export const useProductSearch = () => {
 
     loadIndex();
 
-    // Escuchar cambios en la base de datos para re-indexar automáticamente
+    // Escuchar cambios en el servidor para re-indexar automáticamente
     window.addEventListener('db_updated', loadIndex);
     return () => {
       window.removeEventListener('db_updated', loadIndex);
@@ -81,7 +78,7 @@ export const useProductSearch = () => {
 
   useEffect(() => {
     const searchProducts = async () => {
-      if (!query.trim() && conditionFilters.length === 0) {
+      if (!query.trim()) {
         setResults([]);
         return;
       }
@@ -105,7 +102,7 @@ export const useProductSearch = () => {
         if (normalizedQuery.includes('hipertenso') || normalizedQuery.includes('presion') || normalizedQuery.includes('tension')) autoFilters.push('apto_hipertensos');
         if (normalizedQuery.includes('celiaco') || normalizedQuery.includes('gluten')) autoFilters.push('apto_celiacos');
 
-        const activeFilters = [...new Set([...conditionFilters, ...autoFilters])];
+        const activeFilters = [...new Set([...autoFilters])];
         
         // Determinar si es una búsqueda de patología frecuente
         const isPathologySearch = COMMON_PATHOLOGIES.some(p => normalizeText(p) === normalizedQuery);
@@ -175,10 +172,8 @@ export const useProductSearch = () => {
             }
 
             if (matchedExact) {
-              // Coincidencia exacta tiene puntuación máxima
               textResults.set(item.sku, { product: item.product, score: 1.0 });
             } else if (!isPathologySearch && searchTermsRegexes.length > 0) {
-              // Si no es patología, buscamos por palabras individuales (sin stop words)
               let matchCount = 0;
               for (const regex of searchTermsRegexes) {
                 if (regex.test(textToSearch)) {
@@ -192,11 +187,6 @@ export const useProductSearch = () => {
               }
             }
           });
-        } else if (activeFilters.length > 0) {
-          // Si no hay términos de búsqueda pero hay filtros, incluimos todos para filtrar después
-          textFiltered.forEach(item => {
-            textResults.set(item.sku, { product: item.product, score: 1.0 });
-          });
         }
 
         // 2. Búsqueda Semántica (IA) - Peso Variable
@@ -209,7 +199,7 @@ export const useProductSearch = () => {
           searchIndex.current.forEach(item => {
             if (item.vector && item.vector.length > 0) {
               const similarity = cosineSimilarity(queryVector, item.vector);
-              if (similarity > 0.7) { // Umbral de relevancia semántica
+              if (similarity > 0.7) { 
                 semanticResults.set(item.sku, { product: item.product, score: similarity });
               }
             }
@@ -217,22 +207,17 @@ export const useProductSearch = () => {
         }
 
         // 3. Combinación Inteligente (Hybrid Search)
-        // Damos prioridad a coincidencias de texto exactas pero permitimos que la semántica eleve resultados
         const finalResultsMap = new Map<string, { product: Product, finalScore: number }>();
         
-        // Procesar resultados de texto
         textResults.forEach((val, sku) => {
           const semantic = semanticResults.get(sku);
           const semanticScore = semantic ? semantic.score : 0;
-          // Fórmula: 70% Texto + 30% Semántica para resultados que tienen ambos
           const finalScore = (val.score * 0.7) + (semanticScore * 0.3);
           finalResultsMap.set(sku, { product: val.product, finalScore });
         });
         
-        // Añadir resultados puramente semánticos (que no coincidieron por texto)
         semanticResults.forEach((val, sku) => {
           if (!finalResultsMap.has(sku)) {
-            // Penalizamos un poco los puramente semánticos para que no desplacen a los de texto exacto
             finalResultsMap.set(sku, { product: val.product, finalScore: val.score * 0.8 });
           }
         });
@@ -241,17 +226,11 @@ export const useProductSearch = () => {
           .sort((a, b) => b.finalScore - a.finalScore)
           .map(i => i.product);
 
-        // 4. Aplicar Filtro de Seguridad (Si está activo)
+        // 4. Aplicar Filtros Automáticos (Detectados por texto)
         if (activeFilters.length > 0) {
           combined = combined.filter(p => {
-            // El producto debe ser APTO (SafetyStatus.SI) para TODAS las condiciones seleccionadas
             return activeFilters.every(condition => p[condition] === SafetyStatus.SI);
           });
-        }
-
-        // 5. Aplicar Filtro de Verificación Profesional
-        if (showOnlyVerified) {
-          combined = combined.filter(p => p.is_verified === true);
         }
 
         setResults(combined.slice(0, 50));
@@ -264,15 +243,11 @@ export const useProductSearch = () => {
 
     const timeoutId = setTimeout(searchProducts, 400);
     return () => clearTimeout(timeoutId);
-  }, [query, conditionFilters, showOnlyVerified, indexVersion]);
+  }, [query, indexVersion]);
 
   return { 
     query, 
     setQuery, 
-    conditionFilters, 
-    setConditionFilters, 
-    showOnlyVerified, 
-    setShowOnlyVerified, 
     results, 
     isSearching 
   };

@@ -6,7 +6,7 @@ import {
   Stethoscope
 } from 'lucide-react';
 import { AIService } from '../../services/AIService';
-import { getDB } from '../../core/database/db';
+import { DataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { TaxonomyBackgroundService, TaxonomyStatus } from '../../services/TaxonomyBackgroundService';
@@ -142,9 +142,9 @@ export const AIEngineModule: React.FC = () => {
     addLog('Iniciando análisis clínico local masivo...', 'info');
     
     try {
-      const db = await getDB();
-      const products = await db.getAll('products');
-      const pending = products.filter(p => !p.synergy_analyzed);
+      const response = await fetch('/api/products');
+      const products = await response.json();
+      const pending = products.filter((p: Product) => !p.synergy_analyzed);
       
       if (pending.length === 0) {
         addLog('No hay productos pendientes de análisis clínico.', 'success');
@@ -173,7 +173,7 @@ export const AIEngineModule: React.FC = () => {
           const result = await AIService.analyzeClinical(product, candidates, 'synergy');
           
           if (result) {
-            await db.put('products', {
+            await DataService.saveProduct({
               ...product,
               synergy_analyzed: true,
               last_synergy_analysis: Date.now(),
@@ -183,7 +183,7 @@ export const AIEngineModule: React.FC = () => {
             });
           }
         } else {
-          await db.put('products', {
+          await DataService.saveProduct({
             ...product,
             synergy_analyzed: true,
             last_synergy_analysis: Date.now(),

@@ -1,6 +1,4 @@
-import { getDB } from '../core/database/db';
 import { Product, SafetyStatus } from '../core/types/product.types';
-import { FirebaseSyncService } from './FirebaseSyncService';
 
 /**
  * Servicio para integrar datos extraídos del PDF del Vademécum Knop.
@@ -224,21 +222,19 @@ export const PDFImportService = {
       }
     ];
 
-    const db = await getDB();
-    const tx = db.transaction('products', 'readwrite');
-    const store = tx.objectStore('products');
-
     for (const product of products) {
-      await store.put(product);
-      // Sincronizar con Firebase si es posible
+      // Sincronizar con Backend
       try {
-        await FirebaseSyncService.updateProduct(product);
+        await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(product)
+        });
       } catch (e) {
-        console.warn(`No se pudo sincronizar ${product.sku} con Firebase:`, e);
+        console.warn(`No se pudo sincronizar ${product.sku} con el backend:`, e);
       }
     }
 
-    await tx.done;
     window.dispatchEvent(new CustomEvent('db_updated'));
     return products.length;
   }

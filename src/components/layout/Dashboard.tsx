@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { Activity, Search, Database, Settings, Globe, Monitor, Cpu, Loader2, Command, FileSearch } from 'lucide-react';
+import { Activity, Search, Database, Settings, Globe, Monitor, Cpu, Loader2, Command, FileSearch, ShieldAlert } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { AIService } from '../../services/AIService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
@@ -24,6 +24,7 @@ const SettingsModule = lazy(() => import('../../modules/settings/SettingsModule'
 const BatchScraper = lazy(() => import('../../modules/scraper/BatchScraper').then(m => ({ default: m.BatchScraper })));
 const PDFExtractionModule = lazy(() => import('../../modules/scraper/PDFExtractionModule').then(m => ({ default: m.PDFExtractionModule })));
 const SetupModule = lazy(() => import('../../modules/setup/SetupModule').then(m => ({ default: m.SetupModule })));
+const GraphExplorerModule = lazy(() => import('../../modules/graph/GraphExplorerModule').then(m => ({ default: m.GraphExplorerModule })));
 
 const ModuleLoader = () => (
   <div className="flex flex-col items-center justify-center py-20 animate-in fade-in duration-500">
@@ -37,7 +38,7 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
-  const [activeTab, setActiveTab] = useState<'insights' | 'search' | 'database' | 'ai-engine' | 'scraper' | 'pdf-reader' | 'setup' | 'settings'>('search');
+  const [activeTab, setActiveTab] = useState<'insights' | 'search' | 'graph' | 'database' | 'ai-engine' | 'scraper' | 'pdf-reader' | 'setup' | 'settings'>('search');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { isAccessGranted } = useAuth();
@@ -73,6 +74,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const navItems = [
     { id: 'insights', label: 'Dashboard', icon: Activity },
     { id: 'search', label: 'Buscador', icon: Search },
+    { id: 'graph', label: 'Grafo IA', icon: Globe },
     { id: 'database', label: 'Base de Datos', icon: Database },
     { id: 'ai-engine', label: 'Motor de IA', icon: Cpu },
     { id: 'scraper', label: 'Scraper Masivo', icon: Globe },
@@ -131,6 +133,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           <Suspense fallback={<ModuleLoader />}>
             {activeTab === 'insights' && <InsightsDashboard onNavigate={(tab: any) => setActiveTab(tab)} />}
             {activeTab === 'search' && <SearchModule />}
+            {activeTab === 'graph' && <GraphExplorerModule />}
             {activeTab === 'database' && <DatabaseModule />}
             {activeTab === 'ai-engine' && <AIEngineModule />}
             {activeTab === 'scraper' && <BatchScraper />}
@@ -161,6 +164,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
             onClose={() => setSelectedProduct(null)}
           />
         )}
+
+        {/* Disclaimer Institucional */}
+        <div className="fixed bottom-0 left-0 w-full bg-brand-surface border-t border-slate-800 py-1.5 z-[100] hidden md:block">
+          <div className="max-w-7xl mx-auto px-6 flex justify-center">
+            <p className="text-[10px] text-slate-500 flex items-center gap-2">
+              <ShieldAlert className="w-3.5 h-3.5 text-brand-primary" />
+              Esta herramienta explora opciones de fármacos, suplementos y homeopatía (sinergias y alternativas). No es un sistema de diagnóstico ni sustituye la prescripción médica profesional.
+            </p>
+          </div>
+        </div>
       </div>
       </div>
     </ConsultationProvider>

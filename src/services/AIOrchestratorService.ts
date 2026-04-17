@@ -1,4 +1,3 @@
-import { getDB } from '../core/database/db';
 import { AIService } from './AIService';
 import { FirebaseSyncService } from './FirebaseSyncService';
 import { Product } from '../core/types/product.types';
@@ -43,8 +42,8 @@ export class AIOrchestratorService {
     this.notify();
 
     try {
-      const db = await getDB();
-      const products = await db.getAll('products');
+      const response = await fetch('/api/products');
+      const products = await response.json();
       const userId = auth.currentUser?.uid || 'anonymous';
       const total = products.length;
       let processed = 0;

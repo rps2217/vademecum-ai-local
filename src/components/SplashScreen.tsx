@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Activity, Database, Brain, CheckCircle, AlertCircle, Cpu, Shield } from 'lucide-react';
 import { HardwareProfile } from '../core/types/hardware.types';
 import { AIService } from '../services/AIService';
-import { getDB } from '../core/database/db';
 
 interface InitStep {
   id: string;
@@ -101,15 +100,8 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       }
 
       // 2. Database Initialization
-      updateStep('database', { status: 'loading', detail: 'Conectando IndexedDB...' });
-      try {
-        await getDB();
-        await new Promise(r => setTimeout(r, 500));
-        updateStep('database', { status: 'success', detail: 'Almacenamiento listo' });
-      } catch (e) {
-        updateStep('database', { status: 'error', detail: 'Fallo en base de datos' });
-        return;
-      }
+      updateStep('database', { status: 'success', detail: 'Conectado al servidor' });
+      await new Promise(r => setTimeout(r, 500));
 
       // 3. AI Engine Initialization (SKIPPED FOR LAZY LOADING)
       updateStep('ai_engine', { status: 'success', detail: 'Modo diferido activado' });

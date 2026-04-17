@@ -1,4 +1,3 @@
-import { getDB } from '../core/database/db';
 import { Product } from '../core/types/product.types';
 import { AIService } from './AIService';
 import { GeminiService } from './GeminiService';
@@ -90,8 +89,8 @@ export class SynergyBackgroundService {
     if (!config.enableBackgroundSynergy) return;
 
     try {
-      const db = await getDB();
-      const allProducts = await db.getAll('products');
+      const response = await fetch('/api/products');
+      const allProducts = await response.json();
       const now = Date.now();
       const userId = auth.currentUser?.uid;
 
@@ -119,7 +118,6 @@ export class SynergyBackgroundService {
   private static async processProduct(product: Product, isForced: boolean = false) {
     try {
       const status = AIService.getStatus();
-      const db = await getDB();
       const now = Date.now();
       const userId = auth.currentUser?.uid || 'local-user'; // Fallback for local forced execution
 
@@ -142,8 +140,12 @@ export class SynergyBackgroundService {
 
       console.log(`[SynergyService] Iniciando análisis de sinergias para: ${product.nombre_comercial} (Forzado: ${isForced})`);
       
-      // Actualizar DB local con el candado
-      await db.put('products', { ...product, lock_uid: userId, lock_timestamp: now });
+      // Actualizar en el Backend con el candado
+      await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...product, lock_uid: userId, lock_timestamp: now })
+      });
 
       // 1. Encontrar candidatos por similitud semántica (Local Embeddings)
       let mainVector = product.vectores;
@@ -152,18 +154,27 @@ export class SynergyBackgroundService {
           const text = `${product.nombre_comercial} ${formatArrayToString(product.indicaciones, ' ')} ${product.analisis_componentes || ''}`;
           mainVector = await AIService.generateEmbedding(text);
           product.vectores = mainVector;
-          await db.put('products', { ...product, vectores: mainVector });
+          await fetch('/api/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...product, vectores: mainVector })
+          });
         } else {
-          await db.put('products', { ...product, synergy_analyzed: true, last_synergy_analysis: Date.now() });
+          await fetch('/api/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...product, synergy_analyzed: true, last_synergy_analysis: Date.now() })
+          });
           this.clearCurrent();
           return;
         }
       }
 
-      const allProducts = await db.getAll('products');
+      const responseAll = await fetch('/api/products');
+      const allProducts = await responseAll.json();
       const candidates = allProducts
-        .filter(p => p.sku !== product.sku && p.vectores && p.vectores.length > 0)
-        .map(p => ({
+        .filter((p: any) => p.sku !== product.sku && p.vectores && p.vectores.length > 0)
+        .map((p: any) => ({
           product: p,
           score: this.cosineSimilarity(mainVector, p.vectores)
         }))
@@ -180,7 +191,11 @@ export class SynergyBackgroundService {
           sugerencia_complementaria: "No se encontraron complementos directos en la base local.",
           skus_relacionados: []
         };
-        await db.put('products', updatedProduct);
+        await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedProduct)
+        });
         await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
         this.clearCurrent();
         return;
@@ -231,7 +246,11 @@ export class SynergyBackgroundService {
                 lock_uid: null,
                 lock_timestamp: null
               };
-              await db.put('products', updatedProduct);
+              await fetch('/api/products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedProduct)
+              });
               await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
               this.clearCurrent();
               return; // Salir del proceso actual
@@ -270,7 +289,11 @@ export class SynergyBackgroundService {
         skus_relacionados: synergyResult.skus_relacionados
       };
 
-      await db.put('products', finalProduct);
+      await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(finalProduct)
+      });
       await FirebaseSyncService.releaseProductLockAndSave(finalProduct);
       
       console.log(`[SynergyService] Sinergia completada para ${product.nombre_comercial}`);

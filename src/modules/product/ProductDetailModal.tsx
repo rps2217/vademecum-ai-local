@@ -3,9 +3,9 @@ import { Product } from '../../core/types/product.types';
 import { ClinicalSynergy } from './ClinicalSynergy';
 import { X, Sparkles, AlertCircle, ChevronLeft, Home, Lock, Key, Printer } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
+import { DataService } from '../../services/DataService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
-import { getDB } from '../../core/database/db';
 import { ProductHeader } from './components/ProductHeader';
 import { ProductBentoGrid } from './components/ProductBentoGrid';
 import { ProductActions } from './components/ProductActions';
@@ -32,8 +32,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
 
   useEffect(() => {
     const handleDbUpdate = async () => {
-      const db = await getDB();
-      const updated = await db.get('products', product.sku);
+      const updated = await DataService.getProductBySku(product.sku);
       if (updated) {
         setProduct(updated);
         if (onUpdate) onUpdate(updated);
@@ -55,8 +54,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
     try {
       const updatedProduct = await GeminiService.reanalyzeProduct(product);
       if (updatedProduct) {
-        const db = await getDB();
-        await db.put('products', updatedProduct);
+        await DataService.saveProduct(updatedProduct);
         await FirebaseSyncService.updateProduct(updatedProduct);
         
         setProduct(updatedProduct);
@@ -135,8 +133,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
 
   const handleSaveEdit = async (updatedProduct: Product) => {
     try {
-      const db = await getDB();
-      await db.put('products', updatedProduct);
+      await DataService.saveProduct(updatedProduct);
       await FirebaseSyncService.updateProduct(updatedProduct);
       
       setProduct(updatedProduct);

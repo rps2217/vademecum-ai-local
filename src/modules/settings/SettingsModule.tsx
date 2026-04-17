@@ -250,11 +250,11 @@ export const SettingsModule: React.FC = () => {
         <div className="space-y-4 text-sm">
           <div className="flex justify-between items-center py-3 border-b border-slate-800">
             <span className="text-slate-400 font-medium">Modo de Operación</span>
-            <span className="font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Local-First (Offline)</span>
+            <span className="font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Híbrido (Offline+Sync)</span>
           </div>
           <div className="flex justify-between items-center py-3 border-b border-slate-800">
             <span className="text-slate-400 font-medium">Almacenamiento de Datos</span>
-            <span className="font-semibold text-slate-200 bg-slate-800 px-3 py-1 rounded-full">IndexedDB (Navegador)</span>
+            <span className="font-semibold text-slate-200 bg-slate-800 px-3 py-1 rounded-full">SQLite WASM (Navegador)</span>
           </div>
           <div className="flex justify-between items-center py-3 border-b border-slate-800">
             <span className="text-slate-400 font-medium">Procesamiento de IA</span>

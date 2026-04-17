@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { getDB } from '../../core/database/db';
+import { DataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
 import { 
   Database, Trash2, RefreshCw, ExternalLink, FileUp, 
@@ -44,11 +44,10 @@ export const DatabaseModule: React.FC = () => {
     setIsLoading(true);
     
     try {
-      const db = await getDB();
-      console.log('[DatabaseModule] Accediendo a la tienda "products"...');
+      console.log('[DatabaseModule] Accediendo a la API de productos...');
       
       // Obtenemos todos los productos
-      const allProducts = await db.getAll('products');
+      const allProducts = await DataService.getAllProducts();
       console.log(`[DatabaseModule] Productos encontrados: ${allProducts.length}`);
       
       // Limpiamos los vectores para ahorrar memoria en el estado de la tabla
@@ -57,8 +56,8 @@ export const DatabaseModule: React.FC = () => {
         return rest as Product;
       });
 
-      const metadata = await db.get('sync_metadata', 'cloud_sync');
-      setLastSyncTime(metadata?.lastSyncTime || 0);
+      // No podemos obtener metadata desde localDB
+      setLastSyncTime(0);
       
       setProducts(sanitized);
       FirebaseSyncService.getCloudCount().then(setCloudCount).catch(console.error);
@@ -157,26 +156,22 @@ export const DatabaseModule: React.FC = () => {
     setIsLoading(true);
     
     try {
-      const db = await getDB();
-      const tx = db.transaction('products', 'readwrite');
-      const store = tx.objectStore('products');
-      
       let added = 0;
       let updated = 0;
       let skipped = 0;
 
       for (const product of stagingProducts) {
-        const existing = await store.get(product.sku);
+        const existing = await DataService.getProductBySku(product.sku);
         
         if (!existing) {
-          await store.put(product);
+          await DataService.saveProduct(product);
           added++;
         } else {
           if (conflictMode === 'overwrite') {
-            await store.put(product);
+            await DataService.saveProduct(product);
             updated++;
           } else if (conflictMode === 'merge') {
-            await store.put({ ...existing, ...product });
+            await DataService.saveProduct({ ...existing, ...product });
             updated++;
           } else {
             skipped++;
@@ -184,7 +179,6 @@ export const DatabaseModule: React.FC = () => {
         }
       }
       
-      await tx.done;
       setStagingProducts([]);
       setSyncStatus(`Base de datos actualizada: ${added} nuevos, ${updated} actualizados, ${skipped} omitidos.`);
       await loadData();
@@ -257,8 +251,7 @@ export const DatabaseModule: React.FC = () => {
   const handleDelete = async (sku: string) => {
     if (!confirm('¿Estás seguro de eliminar este producto?')) return;
     try {
-      const db = await getDB();
-      await db.delete('products', sku);
+      await fetch(`/api/products/${sku}`, { method: 'DELETE' });
       await loadData();
     } catch (error) {
       console.error('Error eliminando producto:', error);
@@ -268,8 +261,7 @@ export const DatabaseModule: React.FC = () => {
   const handleClearAll = async () => {
     if (!confirm('⚠️ ¿ESTÁS SEGURO? Esto eliminará TODOS los productos locales.')) return;
     try {
-      const db = await getDB();
-      await db.clear('products');
+      await DataService.clearAll();
       setCurrentPage(1);
       await loadData();
     } catch (error) {

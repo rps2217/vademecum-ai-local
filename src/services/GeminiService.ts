@@ -2,6 +2,8 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { Product, SafetyStatus } from "../core/types/product.types";
 import { formatArrayToString } from "../utils/formatters";
 
+const SYSTEM_PHILOSOPHY = `IMPORTANTE: Esta base de datos y aplicación NO diagnostica ni prescribe a los pacientes. Tu función principal es ser una fuente de ALTERNATIVAS de fármacos, suplementos y homeopatía para diversas patologías, además de entregar información sobre TRATAMIENTOS COMPLEMENTARIOS y SINÉRGICOS disponibles en la base de datos. Mantén siempre un enfoque estructurado de análisis e interconexión de opciones en lugar de actuar como médico tratante.`;
+
 export class GeminiService {
   private static ai: GoogleGenAI | null = null;
 
@@ -86,7 +88,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = `Busca información detallada sobre el producto farmacéutico: "${productName}".
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nBusca información detallada sobre el producto farmacéutico: "${productName}".
         ${targetUrl ? `Enfócate en la información de este sitio si es posible: ${targetUrl}` : ''}
         
         Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias, análisis de los componentes y su función, y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).
@@ -181,7 +183,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = `Re-analiza y completa la información de este producto farmacéutico.
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nRe-analiza y completa la información de este producto farmacéutico.
         
         DATOS ACTUALES:
         - Nombre: ${product.nombre_comercial}
@@ -487,7 +489,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = `Analiza la relación clínica entre el producto principal y los productos relacionados.
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nAnaliza la relación clínica entre el producto principal y los productos relacionados.
         
         PRODUCTO PRINCIPAL:
         - Nombre: ${mainProduct.nombre_comercial}
@@ -556,7 +558,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = `Realiza un análisis profundo de interacciones medicamentosas para la siguiente lista de productos.
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nRealiza un análisis profundo de interacciones medicamentosas para la siguiente lista de productos.
         
         PRODUCTOS:
         ${products.map(p => `- ${p.nombre_comercial} (${formatArrayToString(p.principios_activos, ', ')})`).join('\n')}
@@ -614,7 +616,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = `Actúa como un experto en Data Engineering Farmacéutico y Editor Clínico Senior.
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nActúa como un experto en Data Engineering Farmacéutico y Editor Clínico Senior.
         Tu tarea es realizar una CURACIÓN PROFUNDA de la siguiente lista de productos.
         
         PRODUCTOS A PROCESAR (JSON):
@@ -812,7 +814,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = `Analiza la siguiente imagen que es una captura de pantalla de una ficha técnica o capacitación de un producto farmacéutico.
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nAnaliza la siguiente imagen que es una captura de pantalla de una ficha técnica o capacitación de un producto farmacéutico.
         
         TAREA:
         Lee y extrae toda la información relevante para nuestra base de datos siguiendo el esquema JSON proporcionado.

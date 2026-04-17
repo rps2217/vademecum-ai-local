@@ -1,5 +1,5 @@
-import { getDB } from '../core/database/db';
 import { AIService } from './AIService';
+import { DataService } from './DataService';
 
 export interface TaxonomyStatus {
   isProcessing: boolean;
@@ -55,8 +55,7 @@ export class TaxonomyBackgroundService {
     this.addLog('Iniciando estandarización de etiquetas clínicas...', 'info');
 
     try {
-      const db = await getDB();
-      const products = await db.getAll('products');
+      const products = await DataService.getAllProducts();
       
       // 1. Extraer todas las etiquetas únicas
       const allTags = new Set<string>();
@@ -90,9 +89,6 @@ export class TaxonomyBackgroundService {
       this.status.progress = 'Aplicando cambios a productos...';
       let updatedCount = 0;
       
-      const tx = db.transaction('products', 'readwrite');
-      const store = tx.objectStore('products');
-
       for (const product of products) {
         let changed = false;
         const newTags = product.tags_ia.map(tag => {
@@ -105,7 +101,7 @@ export class TaxonomyBackgroundService {
 
         if (changed) {
           const uniqueNewTags = Array.from(new Set(newTags));
-          await store.put({
+          await DataService.saveProduct({
             ...product,
             tags_ia: uniqueNewTags,
             last_updated: Date.now()
@@ -113,8 +109,6 @@ export class TaxonomyBackgroundService {
           updatedCount++;
         }
       }
-      
-      await tx.done;
 
       this.status.updatedProducts = updatedCount;
       this.status.isProcessing = false;

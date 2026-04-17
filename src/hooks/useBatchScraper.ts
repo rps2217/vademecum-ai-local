@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { GeminiService } from '../services/GeminiService';
-import { FirebaseSyncService } from '../services/FirebaseSyncService';
-import { getDB } from '../core/database/db';
 import { Product, SafetyStatus } from '../core/types/product.types';
 
 export interface Log {
@@ -69,8 +67,6 @@ export const useBatchScraper = () => {
       }
       
       addLog(`Se encontraron ${links.length} productos potenciales.`, 'success');
-
-      const db = await getDB();
 
       for (let i = 0; i < links.length; i++) {
         if (!isRunningRef.current) {
@@ -198,15 +194,12 @@ export const useBatchScraper = () => {
             last_updated: Date.now()
           };
 
-          await db.put('products', newProduct);
-          addLog(`💾 Guardado en base de datos local: ${newProduct.nombre_comercial}`, 'success');
-
-          try {
-            await FirebaseSyncService.updateProduct(newProduct);
-            addLog(`☁️ Sincronizado con la nube: ${newProduct.nombre_comercial}`, 'info');
-          } catch (cloudErr) {
-            console.warn("Error sincronizando con la nube:", cloudErr);
-          }
+          await fetch('/api/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newProduct)
+          });
+          addLog(`💾 Guardado en base de datos: ${newProduct.nombre_comercial}`, 'success');
 
         } catch (err: any) {
           addLog(`❌ Error en producto: ${err.message}`, 'error');

@@ -1,4 +1,4 @@
-import { getDB } from '../core/database/db';
+import { DataService } from './DataService';
 import { Product, SafetyStatus } from '../core/types/product.types';
 
 export interface AuditIssue {
@@ -20,8 +20,7 @@ export interface DatabaseHealthReport {
 
 export class DataAuditorService {
   static async generateReport(): Promise<DatabaseHealthReport> {
-    const db = await getDB();
-    const products = await db.getAll('products');
+    const products = await DataService.getAllProducts();
     const issues: AuditIssue[] = [];
     const categories: Record<string, number> = {};
     

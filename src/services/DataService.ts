@@ -1,58 +1,109 @@
-import { getDB } from '../core/database/db';
 import { Product } from '../core/types/product.types';
+import { SQLiteService } from '../core/database/sqliteService';
 
 export class DataService {
+  private static initialized = false;
+
+  private static async ensureInitialized() {
+    if (!this.initialized) {
+      await SQLiteService.initialize();
+      this.initialized = true;
+    }
+  }
+
+  static async getAllProducts(): Promise<Product[]> {
+    await this.ensureInitialized();
+    const db = SQLiteService.getDB();
+    
+    // Try fetching from server first (online)
+    try {
+      if (navigator.onLine) {
+        const response = await fetch('/api/products');
+        const products = await response.json();
+        
+        // Update local SQLite
+        db.run('DELETE FROM products');
+        const stmt = db.prepare('INSERT INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)');
+        for (const p of products) {
+          stmt.run([p.sku, p.nombre_comercial, JSON.stringify(p)]);
+        }
+        stmt.free();
+        await SQLiteService.save();
+        return products;
+      }
+    } catch (e) {
+      console.warn('[DataService] Offline or server error, using local cache', e);
+    }
+
+    // Fallback to local
+    const res = db.prepare('SELECT data FROM products').all();
+    return res.map(p => JSON.parse(p.data as string));
+  }
+
+  static async saveProduct(product: Product): Promise<void> {
+    await this.ensureInitialized();
+    const db = SQLiteService.getDB();
+    
+    // Always save to local first
+    db.prepare('INSERT OR REPLACE INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)')
+      .run(product.sku, product.nombre_comercial, JSON.stringify(product));
+    await SQLiteService.save();
+
+    // Try sync to server
+    if (navigator.onLine) {
+      try {
+        await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(product)
+        });
+      } catch (e) {
+        console.error('[DataService] Sync failed, will retry later', e);
+      }
+    }
+    window.dispatchEvent(new CustomEvent('db_updated'));
+  }
+  
   static async importProducts(jsonString: string): Promise<{ success: number; errors: number }> {
     try {
       const data = JSON.parse(jsonString);
       const products: Product[] = Array.isArray(data) ? data : [data];
       
-      const db = await getDB();
       let success = 0;
       let errors = 0;
 
       for (const p of products) {
-        try {
-          // Asegurar que tenga los campos mínimos
-          if (!p.nombre_comercial || !p.sku) {
-            errors++;
-            continue;
-          }
-
-          // Si viene de un script externo, puede que le falten campos de la app
-          const normalizedProduct: Product = {
-            ...p,
-            vectores: p.vectores || [],
-            skus_relacionados: p.skus_relacionados || [],
-            sugerencia_complementaria: p.sugerencia_complementaria || "",
-            synergy_analyzed: p.synergy_analyzed ?? false,
-            tags_ia: p.tags_ia || []
-          };
-
-          await db.put('products', normalizedProduct);
-          success++;
-        } catch (e) {
+        if (!p.nombre_comercial || !p.sku) {
           errors++;
+          continue;
         }
+        await this.saveProduct(p);
+        success++;
       }
-
-      window.dispatchEvent(new CustomEvent('db_updated'));
       return { success, errors };
     } catch (e) {
-      console.error('[DataService] Error parsing JSON:', e);
+      console.error('[DataService] Error:', e);
       throw new Error('El archivo JSON no es válido.');
     }
   }
 
-  static async exportProducts(): Promise<string> {
-    const db = await getDB();
-    const all = await db.getAll('products');
-    return JSON.stringify(all, null, 2);
+  static async getProductBySku(sku: string): Promise<Product | null> {
+    await this.ensureInitialized();
+    const db = SQLiteService.getDB();
+    const res = db.prepare('SELECT data FROM products WHERE sku = ?').get([sku]);
+    return res ? JSON.parse(res.data as string) : null;
   }
 
-  static async saveProduct(product: Product): Promise<void> {
-    const db = await getDB();
-    await db.put('products', product);
+  static async clearAll(): Promise<void> {
+    await this.ensureInitialized();
+    const db = SQLiteService.getDB();
+    db.run('DELETE FROM products');
+    await SQLiteService.save();
     window.dispatchEvent(new CustomEvent('db_updated'));
+  }
+
+  static async exportProducts(): Promise<string> {
+    const products = await this.getAllProducts();
+    return JSON.stringify(products, null, 2);
   }
 }

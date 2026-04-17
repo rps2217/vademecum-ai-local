@@ -3,13 +3,12 @@ import { Database, Search } from 'lucide-react';
 import { Product } from '../../../core/types/product.types';
 import { ProductCard } from '../../../components/product/ProductCard';
 import { ProductSkeleton } from '../../../components/product/ProductSkeleton';
-import { SafetyCondition } from '../../../hooks/useProductSearch';
 
 interface SearchResultsProps {
   results: Product[];
   query: string;
-  conditionFilters: SafetyCondition[];
-  showOnlyVerified: boolean;
+  conditionFilters?: any;
+  showOnlyVerified?: boolean;
   isSearching: boolean;
   isInTray: (sku: string) => boolean;
   onProductClick: (product: Product) => void;
@@ -21,8 +20,6 @@ interface SearchResultsProps {
 export const SearchResults: React.FC<SearchResultsProps> = ({
   results,
   query,
-  conditionFilters,
-  showOnlyVerified,
   isSearching,
   isInTray,
   onProductClick,
@@ -40,16 +37,8 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
     );
   }
 
-  if (query.trim() === '' && conditionFilters.length === 0) {
-    return (
-      <div className="text-center py-20 bg-brand-surface/30 rounded-3xl border border-slate-800 border-dashed">
-        <Database className="w-12 h-12 text-slate-700 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-slate-200">Vademécum Local Listo</h3>
-        <p className="text-slate-500 mt-2 max-w-md mx-auto">
-          Comienza a escribir para buscar medicamentos o selecciona una categoría arriba.
-        </p>
-      </div>
-    );
+  if (query.trim() === '') {
+    return null;
   }
 
   if (results.length > 0) {
@@ -59,14 +48,12 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
           <span>
             {results.length === 50 ? 'Más de 50' : results.length} resultados 
             {query.trim() && ` para "${query}"`}
-            {conditionFilters.length > 0 && ` con filtros de seguridad`}
-            {showOnlyVerified && ` (Solo Verificados)`}
           </span>
           <button 
             onClick={onClearFilters}
             className="text-brand-primary hover:text-brand-primary/80 hover:underline"
           >
-            Limpiar todo
+            Limpiar búsqueda
           </button>
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -92,13 +79,13 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
         <Search className="w-12 h-12 text-slate-700 mx-auto mb-4" />
         <h3 className="text-lg font-medium text-slate-200">No se encontraron resultados</h3>
         <p className="text-slate-500 mt-2">
-          Intenta con otros términos o cambia el filtro de seguridad.
+          Intenta con otros términos o nombres comerciales.
         </p>
         <button 
           onClick={onClearFilters}
           className="mt-4 px-4 py-2 bg-brand-surface hover:bg-slate-700 text-slate-300 rounded-xl transition-colors text-sm"
         >
-          Limpiar filtros
+          Limpiar búsqueda
         </button>
       </div>
     );
@@ -106,3 +93,4 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
 
   return null;
 };
+

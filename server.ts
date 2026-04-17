@@ -4,6 +4,25 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import TurndownService from 'turndown';
 import fs from 'fs';
+import Database from 'better-sqlite3';
+import admin from 'firebase-admin';
+
+// Initialize SQLite
+const db = new Database('vademecum.sqlite');
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS products (
+    sku TEXT PRIMARY KEY,
+    nombre_comercial TEXT,
+    data TEXT
+  )
+`).run();
+
+// Initialize Firebase Admin (Assuming SERVICE_ACCOUNT config is handled through env or default service account)
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
+});
+const firestore = admin.firestore();
 
 const LOG_FILE = 'server_debug.log';
 function log(msg: string) {
@@ -43,10 +62,44 @@ async function startServer() {
   // 3. API Router
   const apiRouter = express.Router();
 
-  apiRouter.use((req, res, next) => {
-    log(`[API Router] Incoming: ${req.method} ${req.url}`);
-    next();
+  apiRouter.get('/products', (req, res) => {
+    const products = db.prepare('SELECT data FROM products').all();
+    res.json(products.map(p => JSON.parse(p.data as string)));
   });
+
+  apiRouter.post('/products', async (req, res) => {
+    const product = req.body;
+    
+    // Save to SQLite
+    db.prepare('INSERT OR REPLACE INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)')
+      .run(product.sku, product.nombre_comercial, JSON.stringify(product));
+    
+    // Sync to Firestore
+    try {
+      await firestore.collection('products').doc(product.sku).set(product);
+    } catch (err) {
+      log(`[API] Firebase sync error: ${err}`);
+      // Do not fail the request, SQLite is the source of truth
+    }
+    
+    res.json({ success: true });
+  });
+
+  apiRouter.delete('/products/:sku', async (req, res) => {
+    const sku = req.params.sku;
+    db.prepare('DELETE FROM products WHERE sku = ?').run(sku);
+    
+    // Sync to Firestore
+    try {
+      await firestore.collection('products').doc(sku).delete();
+    } catch (err) {
+      log(`[API] Firebase delete sync error: ${err}`);
+      // Do not fail the request
+    }
+
+    res.json({ success: true });
+  });
+
 
   apiRouter.get('/test', (req, res) => {
     log('[API] Hit /test');

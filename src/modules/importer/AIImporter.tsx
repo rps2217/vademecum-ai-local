@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FileText, ArrowRight, Loader2, CheckCircle, AlertCircle, Save, Sparkles, Copy, Trash2, Globe, Link } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { Product } from '../../core/types/product.types';
-import { getDB } from '../../core/database/db';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { formatArrayToString } from '../../utils/formatters';
 
@@ -89,8 +88,11 @@ export const AIImporter: React.FC = () => {
   const handleSave = async () => {
     if (!result) return;
     try {
-      const db = await getDB();
-      await db.put('products', result);
+      await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(result)
+      });
       setIsSaved(true);
       // Reset after delay
       setTimeout(() => {

@@ -1,5 +1,5 @@
-import { getDB } from '../core/database/db';
 import { AIService } from './AIService';
+import { DataService } from './DataService';
 
 export interface VectorizationStatus {
   isProcessing: boolean;
@@ -46,9 +46,9 @@ export class VectorBackgroundService {
     this.addLog('Iniciando vectorización masiva en segundo plano...', 'info');
 
     try {
-      const db = await getDB();
-      const products = await db.getAll('products');
-      const pending = products.filter(p => !p.vectores || p.vectores.length === 0);
+      const response = await fetch('/api/products');
+      const products = await response.json();
+      const pending = products.filter((p: any) => !p.vectores || p.vectores.length === 0);
       
       this.status.total = pending.length;
       this.status.current = 0;
@@ -67,7 +67,7 @@ export class VectorBackgroundService {
         
         const vectors = await AIService.generateEmbedding(textToEmbed);
         
-        await db.put('products', {
+        await DataService.saveProduct({
           ...product,
           vectores: vectors,
           last_updated: Date.now()

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
-import { getDB } from '../../core/database/db';
+import { DataService } from '../../services/DataService';
 import { SynergyLoading } from './components/synergy/SynergyLoading';
 import { SynergyEmpty } from './components/synergy/SynergyEmpty';
 import { SynergySuggestion } from './components/synergy/SynergySuggestion';
@@ -31,8 +31,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
 
       setIsLoading(true);
       try {
-        const db = await getDB();
-        const allProducts = await db.getAll('products');
+        const allProducts = await DataService.getAllProducts();
         
         // 1. Productos Complementarios (Sinergia definida por IA)
         const confirmed = allProducts.filter(p => 
