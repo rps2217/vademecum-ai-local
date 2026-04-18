@@ -99,6 +99,19 @@ export const SettingsModule: React.FC = () => {
                   <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${config.autoSyncCloud ? 'left-7' : 'left-1'}`} />
                 </button>
              </div>
+
+             <div className="flex items-center justify-between p-4 bg-amber-900/20 rounded-2xl border border-amber-900/30">
+                <div>
+                  <p className="text-sm font-bold text-amber-400">Motor Externo (Ollama)</p>
+                  <p className="text-xs text-amber-500/70">Usa el poder de tu PC (Recomendado)</p>
+                </div>
+                <button
+                  onClick={() => handleConfigChange({ useOllama: !config.useOllama })}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${config.useOllama ? 'bg-amber-500' : 'bg-slate-700'}`}
+                >
+                  <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${config.useOllama ? 'left-7' : 'left-1'}`} />
+                </button>
+             </div>
           </div>
         </div>
 
@@ -108,6 +121,18 @@ export const SettingsModule: React.FC = () => {
              <ShieldCheck className="w-6 h-6 text-emerald-400" /> Sistema y Backup
           </h3>
           <div className="space-y-4">
+             {config.useOllama && (
+                <div className="p-4 bg-blue-900/20 rounded-2xl border border-blue-900/30 mb-2">
+                  <p className="text-xs font-bold text-blue-400 mb-2 flex items-center gap-2">
+                    <Zap className="w-3 h-3" /> CONFIGURAR OLLAMA:
+                  </p>
+                  <ol className="text-[10px] text-blue-300/80 space-y-1 list-decimal ml-4">
+                    <li>Instala Ollama y ejecuta: <code className="text-blue-400">ollama run llama3</code></li>
+                    <li>En Windows (CMD): <code className="text-blue-400">setx OLLAMA_ORIGINS "*"</code> (y reinicia)</li>
+                    <li>Navegador: Permite "Contenido no seguro" en este sitio.</li>
+                  </ol>
+                </div>
+             )}
              <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-2xl border border-slate-700">
                 <div className="flex gap-3">
                   <Download className="w-5 h-5 text-emerald-400" />

@@ -7,6 +7,7 @@ import { formatArrayToString } from '../utils/formatters';
 import { auth } from '../firebase';
 import { ConfigService } from './ConfigService';
 import { DataService } from './DataService';
+import { TaskQueueService } from './TaskQueueService';
 
 export class SynergyBackgroundService {
   private static isRunning = false;

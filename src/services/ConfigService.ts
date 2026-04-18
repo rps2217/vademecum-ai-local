@@ -4,6 +4,7 @@ export interface AppConfig {
   useGeminiForSynergy: boolean;
   autoSyncCloud: boolean;
   enableAIInteractions: boolean;
+  useOllama: boolean;
 }
 
 const DEFAULT_CONFIG: AppConfig = {
@@ -11,6 +12,7 @@ const DEFAULT_CONFIG: AppConfig = {
   useGeminiForSynergy: false,
   autoSyncCloud: true,
   enableAIInteractions: false,
+  useOllama: true,
 };
 
 export const ConfigService = {

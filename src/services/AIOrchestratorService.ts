@@ -2,6 +2,7 @@ import { AIService } from './AIService';
 import { FirebaseSyncService } from './FirebaseSyncService';
 import { Product } from '../core/types/product.types';
 import { auth } from '../firebase';
+import { DataService } from './DataService';
 
 export interface OrchestratorStatus {
   isRunning: boolean;

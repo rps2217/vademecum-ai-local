@@ -1,14 +1,27 @@
 import { Product } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
+import { ConfigService } from './ConfigService';
 
 export class OllamaService {
   private static baseUrl = 'http://localhost:11434/api';
 
   static async isAvailable(): Promise<boolean> {
+    const config = ConfigService.getConfig();
+    if (!config.useOllama) return false;
+    
     try {
-      const response = await fetch(`${this.baseUrl}/tags`, { method: 'GET' });
-      return response.ok;
+      // console.log(`[OllamaService] Verificando presencia de motor externo en ${this.baseUrl}...`);
+      const response = await fetch(`${this.baseUrl}/tags`, { 
+        method: 'GET',
+        mode: 'cors' 
+      });
+      if (response.ok) {
+        console.log('[OllamaService] ✅ Motor externo Ollama detectado y listo.');
+        return true;
+      }
+      return false;
     } catch (e) {
+      // console.warn('[OllamaService] ❌ No se detectó Ollama localmente.');
       return false;
     }
   }
