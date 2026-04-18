@@ -138,11 +138,13 @@ export class SynergyBackgroundService {
 
       // Intentar adquirir el candado en Firebase
       let lockAcquired = false;
-      if (auth.currentUser?.uid) {
+      // Skip locking if quota is already exhausted
+      if (auth.currentUser?.uid && !FirebaseSyncService.quota_exhausted) {
         lockAcquired = await FirebaseSyncService.claimProductLock(product.sku, userId);
       }
       
-      if (!lockAcquired && !isForced) {
+      // If we are not in forced mode and couldn't acquire lock, skip (only if cloud is enabled)
+      if (!lockAcquired && !isForced && !FirebaseSyncService.quota_exhausted) {
         console.log(`[SynergyService] Producto ${product.sku} está siendo procesado por otro nodo o no está en la nube. Buscando otro...`);
         return;
       }

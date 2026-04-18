@@ -157,6 +157,7 @@ export const FirebaseSyncService = {
    * Libera el candado y guarda los resultados del análisis
    */
   releaseProductLockAndSave: async (product: Product) => {
+    if (FirebaseSyncService.quota_exhausted) return;
     try {
       if (!auth.currentUser) {
         console.warn('[FirebaseSync] No se pudo guardar: Usuario no autenticado.');
