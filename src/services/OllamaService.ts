@@ -61,6 +61,7 @@ export class OllamaService {
       if (!response.ok) throw new Error('Ollama error');
       
       const data = await response.json();
+      if (!data || !data.response) throw new Error('Cuerpo de respuesta Ollama inválido');
       return JSON.parse(data.response);
     } catch (error) {
       console.error('[OllamaService] Error:', error);

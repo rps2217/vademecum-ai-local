@@ -243,7 +243,20 @@ export class SynergyBackgroundService {
         }
 
         if (!synergyResult && status.isReady) {
-          const prompt = `Analiza si estos productos son complementarios a ${product.nombre_comercial}: ${candidates.map(c => c.nombre_comercial).join(', ')}.`;
+          const prompt = `Analiza la sinergia clínica entre el producto principal y sus complementos. 
+          
+          PRODUCTO PRINCIPAL:
+          - Nombre: ${product.nombre_comercial}
+          - Indicaciones: ${formatArrayToString(product.indicaciones, ', ')}
+          
+          CANDIDATOS:
+          ${candidates.map(c => `- ${c.nombre_comercial}: ${formatArrayToString(c.indicaciones, ', ')}`).join('\n')}
+          
+          TAREA:
+          1. Explica por qué estos productos se complementan clínicamente.
+          2. Indica qué beneficios aporta combinar ${product.nombre_comercial} con los candidatos mencionados.
+          3. Mantén la respuesta concisa y profesional.`;
+
           const localAnalysis = await AIService.analyze(prompt, [product, ...candidates]);
           synergyResult = {
             sugerencia_complementaria: localAnalysis.substring(0, 200),

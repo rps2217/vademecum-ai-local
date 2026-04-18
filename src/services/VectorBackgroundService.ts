@@ -46,9 +46,7 @@ export class VectorBackgroundService {
     this.addLog('Iniciando vectorización masiva en segundo plano...', 'info');
 
     try {
-      const response = await fetch('/api/products');
-      if (!response.ok) throw new Error(`API error: ${response.status}`);
-      const products = await response.json();
+      const products = await DataService.getAllProducts();
       const pending = products.filter((p: any) => !p.vectores || p.vectores.length === 0);
       
       this.status.total = pending.length;

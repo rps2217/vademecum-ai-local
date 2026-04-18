@@ -30,7 +30,7 @@ export class AIOrchestratorService {
     this.isWatching = true;
     window.addEventListener('db_updated', () => {
       if (this.isRunning) return;
-      this.runPipeline();
+      this.runPipeline().catch(err => console.error('[Orchestrator] Pipeline failed:', err));
     });
     console.log('[Orchestrator] Observador iniciado.');
   }
@@ -42,12 +42,15 @@ export class AIOrchestratorService {
     this.notify();
 
     try {
-      const response = await fetch('/api/products');
-      if (!response.ok) throw new Error(`API error: ${response.status}`);
-      const products = await response.json();
+      const products = await DataService.getAllProducts();
       const userId = auth.currentUser?.uid || 'anonymous';
       const total = products.length;
       let processed = 0;
+
+      if (total === 0) {
+        console.log('[Orchestrator] No hay productos para procesar.');
+        return;
+      }
 
       for (const product of products) {
         processed++;
