@@ -53,6 +53,7 @@ export class SQLiteService {
   static getDB() {
     if (!this.db) throw new Error('SQLite not initialized');
     
+    console.log('[SQLiteService] Proveyendo proxy de base de datos compatibilidad better-sqlite3');
     // Proxy que emula better-sqlite3 API sobre sql.js
     const db = this.db;
     return {
@@ -61,18 +62,22 @@ export class SQLiteService {
         const stmt = db.prepare(sql);
         return {
           run: (...params: any[]) => {
-            stmt.run(params);
+            // better-sqlite3 permite .run(a, b, c) o .run([a, b, c])
+            const finalParams = (params.length === 1 && Array.isArray(params[0])) ? params[0] : params;
+            stmt.run(finalParams);
             return { changes: 1 };
           },
           get: (...params: any[]) => {
-            stmt.bind(params);
+            const finalParams = (params.length === 1 && Array.isArray(params[0])) ? params[0] : params;
+            stmt.bind(finalParams);
             let result = null;
             if (stmt.step()) result = stmt.getAsObject();
             stmt.reset();
             return result;
           },
           all: (...params: any[]) => {
-            stmt.bind(params);
+            const finalParams = (params.length === 1 && Array.isArray(params[0])) ? params[0] : params;
+            stmt.bind(finalParams);
             const results = [];
             while (stmt.step()) {
               results.push(stmt.getAsObject());

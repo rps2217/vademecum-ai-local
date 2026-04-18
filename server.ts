@@ -17,12 +17,21 @@ db.prepare(`
   )
 `).run();
 
-// Initialize Firebase Admin (Assuming SERVICE_ACCOUNT config is handled through env or default service account)
-admin.initializeApp({
-  credential: admin.credential.applicationDefault(),
-  databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
-});
-const firestore = admin.firestore();
+// Initialize Firebase Admin de forma segura
+let firestore: any = null;
+try {
+  if (process.env.FIREBASE_PROJECT_ID) {
+    admin.initializeApp({
+      credential: admin.credential.applicationDefault(),
+      databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
+    });
+    firestore = admin.firestore();
+  } else {
+    console.warn('FIREBASE_PROJECT_ID is missing, cloud sync disabled in backend.');
+  }
+} catch (e) {
+  console.error('Failed to initialize Firebase Admin:', e);
+}
 
 const LOG_FILE = 'server_debug.log';
 function log(msg: string) {
@@ -36,14 +45,10 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // 1. Inicializar Vite middleware SÍNCRONAMENTE
-  log('Initializing Vite middleware...');
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: 'spa',
+  const turndownService = new TurndownService({
+    headingStyle: 'atx',
+    codeBlockStyle: 'fenced'
   });
-  app.use(vite.middlewares);
-  log('Vite middleware loaded successfully');
 
   app.use(express.json());
 
@@ -52,18 +57,7 @@ async function startServer() {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
-  // 2. Logging middleware
-  app.use((req, res, next) => {
-    if (!req.url.startsWith('/@vite') && !req.url.startsWith('/src')) {
-      const start = Date.now();
-      res.on('finish', () => {
-        log(`${req.method} ${req.url} - ${res.statusCode} (${Date.now() - start}ms)`);
-      });
-    }
-    next();
-  });
-
-  // 3. API Router
+  // 1. API Router (Definido ANTES de Vite)
   const apiRouter = express.Router();
 
   apiRouter.get('/products', (req, res) => {
@@ -298,6 +292,15 @@ async function startServer() {
   });
 
   app.use('/api', apiRouter);
+
+  // 2. Inicializar Vite middleware (Después de la API para que actúe como fallback)
+  log('Initializing Vite middleware...');
+  const vite = await createViteServer({
+    server: { middlewareMode: true },
+    appType: 'spa',
+  });
+  app.use(vite.middlewares);
+  log('Vite middleware loaded successfully');
 
   // 4. Unmatched request logging
   app.use((req, res, next) => {
