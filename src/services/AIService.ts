@@ -62,6 +62,14 @@ export class AIService {
                 AIOrchestratorService.startWatcher();
                 this.startWatchdog();
                 
+                this.runHealthCheck().then(hc => {
+                    if (hc.ok) {
+                        console.log(`[AIService] Motor verificado y funcional: ${hc.engine}`);
+                    } else {
+                        console.warn(`[AIService] Motor iniciado pero con advertencias: ${hc.error}`);
+                    }
+                });
+                
                 resolve(true);
               } else {
                 console.error('Fallo inicialización IA:', error);

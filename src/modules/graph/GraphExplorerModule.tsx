@@ -27,6 +27,9 @@ export const GraphExplorerModule: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [processingStatus, setProcessingStatus] = useState<{sku: string | null, name: string | null}>({sku: null, name: null});
 
+  const simulationRef = useRef<d3.Simulation<Node, Link> | null>(null);
+  const gRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
+
   useEffect(() => {
     const load = async () => {
       const all = await DataService.getAllProducts();
@@ -36,10 +39,17 @@ export const GraphExplorerModule: React.FC = () => {
 
     const sub = SynergyBackgroundService.subscribe((sku, name) => {
       setProcessingStatus({ sku, name });
-      if (!sku && !name) load(); // Reload when done
+      if (!sku && !name) load(); 
     });
 
-    return sub;
+    // Escuchar actualizaciones globales de la base de datos
+    const handleDBUpdate = () => load();
+    window.addEventListener('db_updated', handleDBUpdate);
+
+    return () => {
+      sub();
+      window.removeEventListener('db_updated', handleDBUpdate);
+    };
   }, []);
 
   const graphData = useMemo(() => {
@@ -64,39 +74,85 @@ export const GraphExplorerModule: React.FC = () => {
   }, [products]);
 
   useEffect(() => {
-    if (!svgRef.current || graphData.nodes.length === 0) return;
+    if (!svgRef.current) return;
 
     const width = svgRef.current.clientWidth;
     const height = svgRef.current.clientHeight;
-
     const svg = d3.select(svgRef.current);
-    svg.selectAll('*').remove();
 
-    const g = svg.append('g');
+    if (!simulationRef.current) {
+        // Inicialización ÚNICA
+        const g = svg.append('g');
+        gRef.current = g;
 
-    const zoom = d3.zoom<SVGSVGElement, unknown>().on('zoom', (event) => {
-      g.attr('transform', event.transform);
+        const zoom = d3.zoom<SVGSVGElement, unknown>().on('zoom', (event) => {
+          g.attr('transform', event.transform);
+        });
+
+        svg.call(zoom);
+
+        simulationRef.current = d3.forceSimulation<Node, Link>()
+          .force('link', d3.forceLink<Node, Link>().id(d => d.id).distance(120))
+          .force('charge', d3.forceManyBody().strength(-400))
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('collision', d3.forceCollide().radius(60));
+    }
+
+    const simulation = simulationRef.current;
+    const g = gRef.current!;
+
+    // Mantener posiciones si los nodos ya existían
+    const oldNodes = new Map(simulation.nodes().map(d => [d.id, d]));
+    const newNodes = graphData.nodes.map(d => {
+        const old = oldNodes.get(d.id);
+        if (old) {
+            d.x = old.x;
+            d.y = old.y;
+            d.vx = old.vx;
+            d.vy = old.vy;
+        }
+        return d;
     });
 
-    svg.call(zoom);
+    simulation.nodes(newNodes);
+    (simulation.force('link') as d3.ForceLink<Node, Link>).links(graphData.links);
 
-    const simulation = d3.forceSimulation<Node>(graphData.nodes)
-      .force('link', d3.forceLink<Node, Link>(graphData.links).id(d => d.id).distance(100))
-      .force('charge', d3.forceManyBody().strength(-300))
-      .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide().radius(50));
-
-    const link = g.append('g')
-      .selectAll('line')
-      .data(graphData.links)
+    // Renderizado incremental de enlaces
+    const link = g.selectAll<SVGLineElement, Link>('line')
+      .data(graphData.links, (d: any) => `${d.source}-${d.target}`)
       .join('line')
-      .attr('stroke', '#ff9c4b33')
-      .attr('stroke-width', 2);
+      .attr('stroke', '#ff9c4b22')
+      .attr('stroke-width', 1.5);
 
-    const node = g.append('g')
-      .selectAll('g')
-      .data(graphData.nodes)
-      .join('g')
+    // Renderizado incremental de nodos
+    const node = g.selectAll<SVGGElement, Node>('g.node')
+      .data(newNodes, d => d.id)
+      .join(
+        enter => {
+            const nodeEnter = enter.append('g').attr('class', 'node');
+            
+            nodeEnter.append('circle')
+                .attr('r', 10)
+                .attr('fill', d => d.category === 'Medicamento' ? '#ff9c4b' : '#10b981')
+                .attr('stroke', '#151c28')
+                .attr('stroke-width', 2);
+
+            nodeEnter.append('text')
+                .text(d => d.name)
+                .attr('x', 14)
+                .attr('y', 4)
+                .attr('fill', '#94a3b8')
+                .style('font-size', '10px')
+                .style('font-weight', 'bold')
+                .style('pointer-events', 'none');
+
+            return nodeEnter;
+        }
+      )
+      .on('click', (event, d) => {
+        const product = products.find(p => p.sku === d.id);
+        if (product) setSelectedProduct(product);
+      })
       .call(d3.drag<any, Node>()
         .on('start', (event, d) => {
           if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -111,25 +167,7 @@ export const GraphExplorerModule: React.FC = () => {
           if (!event.active) simulation.alphaTarget(0);
           d.fx = null;
           d.fy = null;
-        }))
-      .on('click', (event, d) => {
-        const product = products.find(p => p.sku === d.id);
-        if (product) setSelectedProduct(product);
-      });
-
-    node.append('circle')
-      .attr('r', 8)
-      .attr('fill', d => d.category === 'Medicamento' ? '#ff9c4b' : '#10b981')
-      .attr('stroke', '#151c28')
-      .attr('stroke-width', 2);
-
-    node.append('text')
-      .text(d => d.name)
-      .attr('x', 12)
-      .attr('y', 4)
-      .attr('fill', '#94a3b8')
-      .style('font-size', '10px')
-      .style('font-weight', 'bold');
+        }));
 
     simulation.on('tick', () => {
       link
@@ -141,10 +179,12 @@ export const GraphExplorerModule: React.FC = () => {
       node.attr('transform', d => `translate(${d.x},${d.y})`);
     });
 
+    simulation.alpha(0.3).restart();
+
     return () => {
-      simulation.stop();
+       // simulation.stop(); // No detenemos en cada update para mantener fluidez
     };
-  }, [graphData, products]);
+  }, [graphData]);
 
   const handleSmartSync = async () => {
     setIsSyncing(true);

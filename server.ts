@@ -5,6 +5,7 @@ import * as cheerio from 'cheerio';
 import TurndownService from 'turndown';
 import fs from 'fs';
 import Database from 'better-sqlite3';
+import path from 'path';
 import admin from 'firebase-admin';
 
 // Initialize SQLite
@@ -323,14 +324,27 @@ async function startServer() {
 
   app.use('/api', apiRouter);
 
-  // 2. Inicializar Vite middleware (Después de la API para que actúe como fallback)
-  log('Initializing Vite middleware...');
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: 'spa',
-  });
-  app.use(vite.middlewares);
-  log('Vite middleware loaded successfully');
+  // 2. Inicializar Vite o Servir Estáticos (Producción)
+  if (process.env.NODE_ENV !== 'production') {
+    log('Initializing Vite middleware...');
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+    log('Vite middleware loaded successfully');
+  } else {
+    log('Production mode detected, serving static files from dist/');
+    const distPath = path.join(process.cwd(), 'dist');
+    app.use(express.static(distPath));
+    app.get('*', (req, res) => {
+        // Asegurarse de que no estamos interceptando una ruta de API mal formada
+        if (req.url.startsWith('/api')) {
+            return res.status(404).json({ error: 'Endpoint not found' });
+        }
+        res.sendFile(path.join(distPath, 'index.html'));
+    });
+  }
 
   // 4. Unmatched request logging
   app.use((req, res, next) => {

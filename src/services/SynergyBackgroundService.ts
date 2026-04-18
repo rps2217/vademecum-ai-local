@@ -6,6 +6,7 @@ import { FirebaseSyncService } from './FirebaseSyncService';
 import { formatArrayToString } from '../utils/formatters';
 import { auth } from '../firebase';
 import { ConfigService } from './ConfigService';
+import { DataService } from './DataService';
 
 export class SynergyBackgroundService {
   private static isRunning = false;
