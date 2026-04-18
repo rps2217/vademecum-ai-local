@@ -44,9 +44,8 @@ export class DataService {
       }
     } catch (e) {
       this.failedRequests++;
-      // Solo loguear si no hemos alcanzado el límite para evitar inundar la consola
-      if (this.failedRequests <= this.MAX_FAILURES) {
-        console.error(`[DataService] Error de red, usando caché local. (Fallo ${this.failedRequests}/${this.MAX_FAILURES})`);
+      if (this.failedRequests === 1) {
+        console.warn(`[DataService] Problemas de red detectados. Usando caché local.`);
       }
     }
 

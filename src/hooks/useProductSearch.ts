@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Product, SafetyStatus } from '../core/types/product.types';
 import { AIService } from '../services/AIService';
+import { DataService } from '../services/DataService';
 import { formatArrayToString } from '../utils/formatters';
 import { cosineSimilarity } from '../utils/math';
 import { COMMON_PATHOLOGIES } from '../constants/pathologies';
@@ -39,9 +40,9 @@ export const useProductSearch = () => {
   useEffect(() => {
     const loadIndex = async () => {
       try {
-        const response = await fetch('/api/products');
-        if (!response.ok) throw new Error('API failed');
-        const allProducts = await response.json();
+        // Usamos DataService para obtener los productos.
+        // DataService ya maneja el circuito cortado, manejo de 404s y fallback a SQLite.
+        const allProducts = await DataService.getAllProducts();
         
         searchIndex.current = allProducts.map((product: Product) => ({
           sku: product.sku,
@@ -61,9 +62,7 @@ export const useProductSearch = () => {
           `)
         }));
       } catch (error) {
-        console.error('Error cargando índice de búsqueda, intentando usar alternativa o continuando:', error);
-        // Fallback: al menos permitimos que el buscador funcione (aunque esté vacío o limitado)
-        // en lugar de entrar en un bucle infinito de reintentos.
+        console.warn('Índice de búsqueda cargado parcialmente o vacío debido a error de datos:', error);
       } finally {
         isIndexLoaded.current = true;
         setIndexVersion(v => v + 1);

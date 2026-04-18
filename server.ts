@@ -36,10 +36,14 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  const turndownService = new TurndownService({
-    headingStyle: 'atx',
-    codeBlockStyle: 'fenced'
+  // 1. Inicializar Vite middleware SÍNCRONAMENTE
+  log('Initializing Vite middleware...');
+  const vite = await createViteServer({
+    server: { middlewareMode: true },
+    appType: 'spa',
   });
+  app.use(vite.middlewares);
+  log('Vite middleware loaded successfully');
 
   app.use(express.json());
 
@@ -317,21 +321,6 @@ async function startServer() {
   // 6. Start listening
   app.listen(PORT, '0.0.0.0', () => {
     log(`Server listening on port ${PORT}`);
-    
-    // 7. Initialize Vite asynchronously AFTER listening
-    setTimeout(async () => {
-      try {
-        log('Initializing Vite middleware...');
-        const vite = await createViteServer({
-          server: { middlewareMode: true },
-          appType: 'spa',
-        });
-        app.use(vite.middlewares);
-        log('Vite middleware loaded successfully');
-      } catch (e: any) {
-        log(`Failed to load Vite middleware: ${e.message}`);
-      }
-    }, 100);
   });
 }
 
