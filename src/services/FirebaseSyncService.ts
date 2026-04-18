@@ -5,7 +5,10 @@ import { TaskQueueService } from './TaskQueueService';
 import { ConfigService } from './ConfigService';
 
 export const FirebaseSyncService = {
+  quota_exhausted: false,
+
   getCloudCount: async (): Promise<number | 'quota-exceeded'> => {
+    if (FirebaseSyncService.quota_exhausted) return 'quota-exceeded';
     return 0;
   },
 
@@ -22,14 +25,16 @@ export const FirebaseSyncService = {
    * Verifica si Firestore tiene datos, si no, ofrece subir los locales
    */
   checkCloudData: async () => {
+    if (FirebaseSyncService.quota_exhausted) return true;
     try {
       const q = query(collection(db, 'products'), limit(1));
       const snapshot = await getDocs(q);
       return !snapshot.empty;
     } catch (error: any) {
       if (error?.message?.includes('Quota exceeded') || error?.code === 'resource-exhausted') {
-        console.warn('[FirebaseSync] Cuota excedida en checkCloudData.');
-        return true; // Asumimos que hay datos para evitar subidas masivas accidentales si falla
+        console.warn('[FirebaseSync] Cuota excedida detectada. Deshabilitando sync en esta sesión.');
+        FirebaseSyncService.quota_exhausted = true;
+        return true; 
       }
       return false;
     }
@@ -39,6 +44,7 @@ export const FirebaseSyncService = {
    * Actualiza un solo producto en Firestore (Cualquier usuario autenticado puede colaborar)
    */
   updateProduct: async (product: Product) => {
+    if (FirebaseSyncService.quota_exhausted) return;
     try {
       if (!auth.currentUser) return;
       
@@ -62,6 +68,9 @@ export const FirebaseSyncService = {
         console.log(`[FirebaseSync] Cambio encolado (${syncTasksCount}/5 para sincronización inmediata).`);
       }
     } catch (error: any) {
+      if (error?.message?.includes('Quota exceeded') || error?.code === 'resource-exhausted') {
+        FirebaseSyncService.quota_exhausted = true;
+      }
       console.warn('[FirebaseSync] Error al encolar producto para sincronización:', error);
     }
   },
@@ -98,6 +107,7 @@ export const FirebaseSyncService = {
    * Intenta adquirir un candado para procesar un producto de forma distribuida
    */
   claimProductLock: async (sku: string, userId: string): Promise<boolean> => {
+    if (FirebaseSyncService.quota_exhausted) return false;
     const maxRetries = 3;
     for (let i = 0; i < maxRetries; i++) {
       try {
@@ -125,6 +135,9 @@ export const FirebaseSyncService = {
         });
         return success;
       } catch (e: any) {
+        if (e?.message?.includes('Quota exceeded') || e?.code === 'resource-exhausted') {
+          FirebaseSyncService.quota_exhausted = true;
+        }
         if (e.code === 'failed-precondition' && i < maxRetries - 1) {
           console.warn(`[FirebaseSync] Conflicto en transacción, reintentando (${i + 1}/${maxRetries})...`);
           await new Promise(resolve => setTimeout(resolve, 100 * (i + 1)));

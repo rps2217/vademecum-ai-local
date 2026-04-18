@@ -55,18 +55,21 @@ async function startServer() {
 
   // Logging middleware (mejorado)
   app.use((req, res, next) => {
-    if (!req.url.startsWith('/@vite') && !req.url.startsWith('/src')) {
-      const start = Date.now();
-      res.on('finish', () => {
-        const duration = Date.now() - start;
-        const url = req.originalUrl || req.url;
-        if (res.statusCode >= 400) {
-          log(`[ERROR] ${req.method} ${url} - ${res.statusCode} (${duration}ms)`);
-        } else {
-          log(`${req.method} ${url} - ${res.statusCode} (${duration}ms)`);
-        }
-      });
-    }
+    const start = Date.now();
+    res.on('finish', () => {
+      const duration = Date.now() - start;
+      const url = req.originalUrl || req.url;
+      const statusCode = res.statusCode;
+
+      // Log all errors >= 400
+      if (statusCode >= 400) {
+        log(`[ERROR] ${req.method} ${url} - ${statusCode} (${duration}ms)`);
+      } 
+      // Log successful API/Health requests but not assets (too noisy)
+      else if (!url.startsWith('/@vite') && !url.startsWith('/src') && !url.startsWith('/node_modules')) {
+        log(`${req.method} ${url} - ${statusCode} (${duration}ms)`);
+      }
+    });
     next();
   });
 
@@ -80,12 +83,12 @@ async function startServer() {
 
   // Debug middleware para el router
   apiRouter.use((req, res, next) => {
-    log(`[API-DEBUG] Incoming: ${req.method} ${req.url}`);
+    log(`[API-DEBUG] Incoming to Router: ${req.method} ${req.url}`);
     next();
   });
 
   apiRouter.get('/health', (req, res) => {
-    res.json({ status: 'ok', source: 'apiRouter' });
+    res.json({ status: 'ok', source: 'apiRouter', db_ready: !!db });
   });
 
   apiRouter.get('/products', (req, res) => {
@@ -95,8 +98,8 @@ async function startServer() {
     res.setHeader('Expires', '0');
     
     try {
+      if (!db) throw new Error('Database not initialized');
       const products = db.prepare('SELECT data FROM products').all();
-      // Filtrar defensivamente para asegurar que solo devolvemos objetos válidos
       const validProducts = products
         .map(p => {
           try {
@@ -106,11 +109,14 @@ async function startServer() {
         .filter(p => p !== null && p.sku);
         
       res.json(validProducts);
-    } catch (e) {
-      log(`[API] Error fetching products: ${e}`);
-      res.status(500).json({ error: 'Database error' });
+    } catch (e: any) {
+      log(`[API] Error fetching products: ${e.message}`);
+      res.status(500).json({ error: e.message });
     }
   });
+
+  // Montar el router inmediatamente
+  app.use('/api', apiRouter);
 
   apiRouter.post('/products', async (req, res) => {
     const product = req.body;
@@ -338,19 +344,17 @@ async function startServer() {
     }
   });
 
-  app.use('/api', apiRouter);
-
-  // Catch-all para errores 404 en /api explicitly
+  // 3. CATCH-ALL API
   app.use('/api/*', (req, res) => {
-    log(`[ERROR] 404 en API: ${req.method} ${req.originalUrl}`);
+    log(`[ERROR-404] No match in API: ${req.method} ${req.originalUrl}`);
     res.status(404).json({ 
-      error: 'Not Found', 
+      error: 'API Route Not Found', 
       path: req.originalUrl,
-      suggestion: 'Verifique que el backend esté corriendo y la ruta sea correcta'
+      suggestion: 'Verifique los endpoints disponibles en server.ts'
     });
   });
 
-  // 2. Inicializar Vite o Servir Estáticos (Producción)
+  // 4. Inicializar Vite o Servir Estáticos (Producción)
   if (process.env.NODE_ENV !== 'production') {
     log('Initializing Vite middleware...');
     const vite = await createViteServer({

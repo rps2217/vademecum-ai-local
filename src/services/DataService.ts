@@ -20,7 +20,8 @@ export class DataService {
     // Try fetching from server first (online)
     try {
       if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
-        console.log(`[DataService] Fetching products from server... (Failures: ${this.failedRequests})`);
+        const fullEndpoint = `${window.location.origin}/api/products`;
+        console.log(`[DataService] Fetching products from: ${fullEndpoint} (Failures: ${this.failedRequests})`);
         const response = await fetch('/api/products');
         
         if (!response.ok) {
