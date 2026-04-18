@@ -52,6 +52,22 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Logging middleware (mejorado)
+  app.use((req, res, next) => {
+    if (!req.url.startsWith('/@vite') && !req.url.startsWith('/src')) {
+      const start = Date.now();
+      res.on('finish', () => {
+        const duration = Date.now() - start;
+        if (res.statusCode >= 400) {
+          log(`[ERROR] ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+        } else {
+          log(`${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+        }
+      });
+    }
+    next();
+  });
+
   // 0. Health checks
   app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });

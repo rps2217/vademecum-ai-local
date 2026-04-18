@@ -82,11 +82,16 @@ export class DataService {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(product)
         });
-        if (!response.ok) throw new Error('Sync failed');
+        
+        if (!response.ok) {
+          if (response.status === 404) this.failedRequests = this.MAX_FAILURES; // Cortar inmediatamente si no existe endpoint
+          throw new Error(`Sync failed with status: ${response.status}`);
+        }
+        
         this.failedRequests = 0;
       } catch (e) {
         this.failedRequests++;
-        console.error('[DataService] Sync failed', e);
+        console.error('[DataService] Sync failed:', e);
       }
     }
     window.dispatchEvent(new CustomEvent('db_updated'));
