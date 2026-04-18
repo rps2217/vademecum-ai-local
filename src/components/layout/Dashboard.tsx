@@ -85,13 +85,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
             <div className="inline-flex items-center justify-center p-2 bg-emerald-500/20 rounded-xl border border-emerald-500/30">
               <Activity className="w-5 h-5 text-emerald-400" />
             </div>
-            <div className="hidden lg:block">
-               <h1 className="text-white font-bold tracking-wide">Digital Pharmacy <span className="text-brand-primary">Solutions</span></h1>
-               <div className="flex items-center gap-4 text-xs font-semibold mt-1">
-                 <span className="text-slate-400">👤 Rolando Pizarro</span>
-                 <span className="text-emerald-400">📍 LOCAL 121</span>
-               </div>
-            </div>
           </div>
 
           {/* Tabs */}
@@ -157,19 +150,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           />
         )}
 
-        {/* Footer estilo POS (Mint Green) + Disclaimer Institucional */}
+        {/* Footer estilo POS (Mint Green) */}
         <div className="fixed bottom-0 left-0 w-full bg-[#10b981] font-medium py-1.5 z-[100] hidden md:block border-t border-[#059669]">
-          <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-[#064e3b] text-[11px]">
-            <div className="flex gap-6">
-               <span className="flex items-center gap-1.5 hover:text-black cursor-pointer"><Monitor className="w-3.5 h-3.5" /> F1 - Cambiar usuario</span>
-               <span className="flex items-center gap-1.5 hover:text-black cursor-pointer"><Search className="w-3.5 h-3.5" /> F2 - Abrir buscador</span>
-               <span className="flex items-center gap-1.5 hover:text-black cursor-pointer"><Globe className="w-3.5 h-3.5" /> F3 - Nuevo cliente</span>
-            </div>
-
-            <p className="flex items-center gap-2 font-bold bg-[#047857]/10 px-3 py-1 rounded-full">
-              <ShieldAlert className="w-3.5 h-3.5 text-[#064e3b]" />
-              Esta herramienta explora sinergias y alternativas. No es un sistema de diagnóstico ni sustituye la prescripción médica profesional.
-            </p>
+          <div className="max-w-7xl mx-auto px-6 flex justify-center items-center text-[#064e3b] text-[11px]">
+               <span 
+                 onClick={() => setActiveTab('search')}
+                 className="flex items-center gap-1.5 hover:text-black cursor-pointer font-bold uppercase tracking-widest"
+               >
+                 <Search className="w-4 h-4" /> Abrir Buscador
+               </span>
           </div>
         </div>
       </div>

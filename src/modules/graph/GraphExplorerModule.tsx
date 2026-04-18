@@ -28,10 +28,11 @@ export const GraphExplorerModule: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
   const [isCloudReady, setIsCloudReady] = useState(true);
-  const [processingStatus, setProcessingStatus] = useState<{isRunning: boolean, sku: string | null, name: string | null}>({
+  const [processingStatus, setProcessingStatus] = useState<{isRunning: boolean, sku: string | null, name: string | null, engine?: string | null}>({
     isRunning: false,
     sku: null,
-    name: null
+    name: null,
+    engine: null
   });
 
   const stats = useMemo(() => {
@@ -52,19 +53,20 @@ export const GraphExplorerModule: React.FC = () => {
     };
     load();
 
-    const sub = SynergyBackgroundService.subscribe((sku, name) => {
+    const sub = SynergyBackgroundService.subscribe((sku, name, engine) => {
       const globalStatus = SynergyBackgroundService.getStatus();
       setProcessingStatus({ 
         isRunning: globalStatus.isRunning, 
         sku, 
-        name 
+        name,
+        engine
       });
       if (!sku && !name) load(); 
     });
 
     const handleStatusUpdate = (e: any) => {
       const s = e.detail;
-      setProcessingStatus({ isRunning: s.isRunning, sku: s.currentProcessingSku, name: s.currentProcessingName });
+      setProcessingStatus({ isRunning: s.isRunning, sku: s.currentProcessingSku, name: s.currentProcessingName, engine: s.currentEngine });
     };
 
     window.addEventListener('synergy_status_updated', handleStatusUpdate);
@@ -302,7 +304,8 @@ export const GraphExplorerModule: React.FC = () => {
              {processingStatus.sku && (
                <div className="flex items-center gap-2 text-[10px] font-bold text-brand-primary animate-pulse italic">
                  <RefreshCw className="w-3 h-3 animate-spin" />
-                 Analizando {processingStatus.name}...
+                 Analizando {processingStatus.name}... 
+                 <span className="text-slate-500 font-normal">({processingStatus.engine || 'Iniciando...'})</span>
                </div>
              )}
           </div>

@@ -15,11 +15,12 @@ export class SynergyBackgroundService {
   private static isFatalError = false;
   private static currentProcessingSku: string | null = null;
   private static currentProcessingName: string | null = null;
-  private static listeners: Array<(sku: string | null, name: string | null) => void> = [];
+  private static currentEngine: string | null = null;
+  private static listeners: Array<(sku: string | null, name: string | null, engine?: string | null) => void> = [];
 
-  static subscribe(listener: (sku: string | null, name: string | null) => void) {
+  static subscribe(listener: (sku: string | null, name: string | null, engine?: string | null) => void) {
     this.listeners.push(listener);
-    listener(this.currentProcessingSku, this.currentProcessingName);
+    listener(this.currentProcessingSku, this.currentProcessingName, this.currentEngine);
     return () => {
       this.listeners = this.listeners.filter(l => l !== listener);
     };
@@ -30,12 +31,13 @@ export class SynergyBackgroundService {
       isRunning: this.isRunning,
       currentProcessingSku: this.currentProcessingSku,
       currentProcessingName: this.currentProcessingName,
+      currentEngine: this.currentEngine,
       isFatalError: this.isFatalError
     };
   }
 
   private static notifyListeners() {
-    this.listeners.forEach(l => l(this.currentProcessingSku, this.currentProcessingName));
+    this.listeners.forEach(l => l(this.currentProcessingSku, this.currentProcessingName, this.currentEngine));
     // Emitir evento global para que otros componentes puedan reaccionar al cambio de estado interno
     window.dispatchEvent(new CustomEvent('synergy_status_updated', { detail: this.getStatus() }));
   }
@@ -205,6 +207,7 @@ export class SynergyBackgroundService {
 
       // PRIORIDAD 1: Ollama (Poder total local)
       if (isOllamaAvailable) {
+        this.setActiveEngine('Ollama (Local Externo)');
         try {
           const analysis = await OllamaService.analyzeSynergy(product, candidates);
           synergyResult = {
@@ -221,6 +224,7 @@ export class SynergyBackgroundService {
       if (!synergyResult) {
         const config = ConfigService.getConfig();
         if (config.useGeminiForSynergy) {
+          this.setActiveEngine('Gemini (Nube)');
           try {
             const analysis = await GeminiService.analyzeSynergy(product, candidates);
             synergyResult = {
@@ -237,6 +241,7 @@ export class SynergyBackgroundService {
 
       // PRIORIDAD 3: IA Local Browser (WebLLM)
       if (!synergyResult && status.isReady) {
+        this.setActiveEngine('WebLLM (Interno GPU)');
         try {
           const prompt = `Analiza la sinergia clínica entre el producto principal y sus complementos. 
           
@@ -295,6 +300,12 @@ export class SynergyBackgroundService {
   private static clearCurrent() {
     this.currentProcessingSku = null;
     this.currentProcessingName = null;
+    this.currentEngine = null;
+    this.notifyListeners();
+  }
+
+  private static setActiveEngine(engine: string) {
+    this.currentEngine = engine;
     this.notifyListeners();
   }
 
