@@ -120,8 +120,8 @@ export class TaxonomyBackgroundService {
 
     } catch (error: any) {
       this.status.isProcessing = false;
-      this.addLog(`Error: ${error.message || 'Error desconocido'}`, 'error');
-      console.error('[TaxonomyService] Error:', error);
+      this.addLog(`Sincronización pausada: API temporalmente indisponible.`, 'warn');
+      console.warn('[TaxonomyService] API temporalmente indisponible.');
     }
   }
 }
