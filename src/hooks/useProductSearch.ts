@@ -40,6 +40,7 @@ export const useProductSearch = () => {
     const loadIndex = async () => {
       try {
         const response = await fetch('/api/products');
+        if (!response.ok) throw new Error('API failed');
         const allProducts = await response.json();
         
         searchIndex.current = allProducts.map((product: Product) => ({
@@ -59,11 +60,13 @@ export const useProductSearch = () => {
             ${formatArrayToString(product.indicaciones, ' ')}
           `)
         }));
-        
+      } catch (error) {
+        console.error('Error cargando índice de búsqueda, intentando usar alternativa o continuando:', error);
+        // Fallback: al menos permitimos que el buscador funcione (aunque esté vacío o limitado)
+        // en lugar de entrar en un bucle infinito de reintentos.
+      } finally {
         isIndexLoaded.current = true;
         setIndexVersion(v => v + 1);
-      } catch (error) {
-        console.error('Error cargando índice de búsqueda:', error);
       }
     };
 

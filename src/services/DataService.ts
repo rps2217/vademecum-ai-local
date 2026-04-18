@@ -20,6 +20,7 @@ export class DataService {
     // Try fetching from server first (online)
     try {
       if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
+        console.log(`[DataService] Fetching products from server... (Failures: ${this.failedRequests})`);
         const response = await fetch('/api/products');
         
         if (!response.ok) {
@@ -38,10 +39,12 @@ export class DataService {
         stmt.free();
         await SQLiteService.save();
         return products;
+      } else if (this.failedRequests >= this.MAX_FAILURES) {
+        console.warn(`[DataService] Circuit breaker active, skipping server fetch.`);
       }
     } catch (e) {
       this.failedRequests++;
-      console.warn(`[DataService] Server error, using local cache. (Failures: ${this.failedRequests})`, e);
+      console.error(`[DataService] Server error, using local cache. (Failures: ${this.failedRequests})`, e);
     }
 
     // Fallback to local
