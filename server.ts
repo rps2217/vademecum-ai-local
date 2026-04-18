@@ -59,10 +59,11 @@ async function startServer() {
       const start = Date.now();
       res.on('finish', () => {
         const duration = Date.now() - start;
+        const url = req.originalUrl || req.url;
         if (res.statusCode >= 400) {
-          log(`[ERROR] ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+          log(`[ERROR] ${req.method} ${url} - ${res.statusCode} (${duration}ms)`);
         } else {
-          log(`${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+          log(`${req.method} ${url} - ${res.statusCode} (${duration}ms)`);
         }
       });
     }
@@ -83,7 +84,16 @@ async function startServer() {
     next();
   });
 
+  apiRouter.get('/health', (req, res) => {
+    res.json({ status: 'ok', source: 'apiRouter' });
+  });
+
   apiRouter.get('/products', (req, res) => {
+    // Force fresh data to debug
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    
     try {
       const products = db.prepare('SELECT data FROM products').all();
       // Filtrar defensivamente para asegurar que solo devolvemos objetos válidos

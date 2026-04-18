@@ -7,17 +7,15 @@ import { AuthProvider } from './context/AuthContext';
 import { ComparisonProvider } from './context/ComparisonContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
-// Registrar el Service Worker para la PWA
-const updateSW = registerSW({
-  onNeedRefresh() {
-    if (confirm('Hay una nueva versión del Vademécum disponible. ¿Deseas actualizar?')) {
-      updateSW(true);
+// Deshabilitar Service Worker temporalmente para evitar que intercepte rutas de API con 404
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    for (const registration of registrations) {
+      registration.unregister();
+      console.log('Service Worker unregistered successfully');
     }
-  },
-  onOfflineReady() {
-    console.log('La aplicación está lista para usarse sin conexión.');
-  },
-});
+  });
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
