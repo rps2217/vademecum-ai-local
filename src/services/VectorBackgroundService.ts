@@ -47,6 +47,7 @@ export class VectorBackgroundService {
 
     try {
       const response = await fetch('/api/products');
+      if (!response.ok) throw new Error(`API error: ${response.status}`);
       const products = await response.json();
       const pending = products.filter((p: any) => !p.vectores || p.vectores.length === 0);
       

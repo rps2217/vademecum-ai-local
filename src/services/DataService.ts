@@ -20,8 +20,11 @@ export class DataService {
     // Try fetching from server first (online)
     try {
       if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
-        const fullEndpoint = `${window.location.origin}/api/products`;
-        console.log(`[DataService] Fetching products from: ${fullEndpoint} (Failures: ${this.failedRequests})`);
+        // Only log first encounter or when debugging origin
+        if (this.failedRequests === 0) {
+          console.log(`[DataService] Probando conectividad con el backend...`);
+        }
+        
         const response = await fetch('/api/products');
         
         if (!response.ok) {
@@ -40,13 +43,11 @@ export class DataService {
         stmt.free();
         await SQLiteService.save();
         return products;
-      } else if (this.failedRequests >= this.MAX_FAILURES) {
-        console.warn(`[DataService] Circuit breaker active, skipping server fetch.`);
       }
     } catch (e) {
       this.failedRequests++;
       if (this.failedRequests === 1) {
-        console.warn(`[DataService] Problemas de red detectados. Usando caché local.`);
+        console.warn(`[DataService] Backend no disponible. Operando en modo offline local.`);
       }
     }
 

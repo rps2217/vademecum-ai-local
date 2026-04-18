@@ -43,6 +43,7 @@ export class AIOrchestratorService {
 
     try {
       const response = await fetch('/api/products');
+      if (!response.ok) throw new Error(`API error: ${response.status}`);
       const products = await response.json();
       const userId = auth.currentUser?.uid || 'anonymous';
       const total = products.length;
