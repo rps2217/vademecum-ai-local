@@ -2,8 +2,8 @@ import { HardwareProfile } from '../core/types/hardware.types';
 import { Product, SafetyStatus } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
 import { SynergyBackgroundService } from './SynergyBackgroundService';
-import { AIOrchestratorService } from './AIOrchestratorService';
 import { TaskQueueService } from './TaskQueueService';
+import { AIOrchestratorService } from './AIOrchestratorService';
 
 export class AIService {
   private static worker: Worker | null = null;
