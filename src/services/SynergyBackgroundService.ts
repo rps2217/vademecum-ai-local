@@ -25,8 +25,19 @@ export class SynergyBackgroundService {
     };
   }
 
+  static getStatus() {
+    return {
+      isRunning: this.isRunning,
+      currentProcessingSku: this.currentProcessingSku,
+      currentProcessingName: this.currentProcessingName,
+      isFatalError: this.isFatalError
+    };
+  }
+
   private static notifyListeners() {
     this.listeners.forEach(l => l(this.currentProcessingSku, this.currentProcessingName));
+    // Emitir evento global para que otros componentes puedan reaccionar al cambio de estado interno
+    window.dispatchEvent(new CustomEvent('synergy_status_updated', { detail: this.getStatus() }));
   }
 
   private static isInitialized = false;

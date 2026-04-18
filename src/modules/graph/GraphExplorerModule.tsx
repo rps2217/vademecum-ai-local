@@ -4,9 +4,11 @@ import { DataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
 import { 
   Share2, ZoomIn, ZoomOut, RefreshCw, 
-  Sparkles, Info, Maximize2, X, Zap 
+  Sparkles, Info, Maximize2, X, Zap,
+  Cloud, CloudOff, Database, CheckCircle2 
 } from 'lucide-react';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
+import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface Node extends d3.SimulationNodeDatum {
@@ -25,7 +27,18 @@ export const GraphExplorerModule: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
-  const [processingStatus, setProcessingStatus] = useState<{sku: string | null, name: string | null}>({sku: null, name: null});
+  const [isCloudReady, setIsCloudReady] = useState(true);
+  const [processingStatus, setProcessingStatus] = useState<{isRunning: boolean, sku: string | null, name: string | null}>({
+    isRunning: false,
+    sku: null,
+    name: null
+  });
+
+  const stats = useMemo(() => {
+    const total = products.length;
+    const analyzed = products.filter(p => p.synergy_analyzed).length;
+    return { total, analyzed, pending: total - analyzed };
+  }, [products]);
 
   const simulationRef = useRef<d3.Simulation<Node, Link> | null>(null);
   const gRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
@@ -34,13 +47,27 @@ export const GraphExplorerModule: React.FC = () => {
     const load = async () => {
       const all = await DataService.getAllProducts();
       setProducts(all);
+      const cloudOk = await FirebaseSyncService.checkCloudData();
+      setIsCloudReady(cloudOk && !FirebaseSyncService.quota_exhausted);
     };
     load();
 
     const sub = SynergyBackgroundService.subscribe((sku, name) => {
-      setProcessingStatus({ sku, name });
+      const globalStatus = SynergyBackgroundService.getStatus();
+      setProcessingStatus({ 
+        isRunning: globalStatus.isRunning, 
+        sku, 
+        name 
+      });
       if (!sku && !name) load(); 
     });
+
+    const handleStatusUpdate = (e: any) => {
+      const s = e.detail;
+      setProcessingStatus({ isRunning: s.isRunning, sku: s.currentProcessingSku, name: s.currentProcessingName });
+    };
+
+    window.addEventListener('synergy_status_updated', handleStatusUpdate);
 
     // Escuchar actualizaciones globales de la base de datos con debounce
     let debounceTimer: any;
@@ -53,15 +80,17 @@ export const GraphExplorerModule: React.FC = () => {
     return () => {
       sub();
       window.removeEventListener('db_updated', handleDBUpdate);
+      window.removeEventListener('synergy_status_updated', handleStatusUpdate);
       clearTimeout(debounceTimer);
     };
   }, []);
 
   const graphData = useMemo(() => {
-    const nodes: Node[] = products.map(p => ({
+    const nodes: (Node & { analyzed: boolean })[] = products.map(p => ({
       id: p.sku,
       name: p.nombre_comercial,
-      category: p.categoria_principal
+      category: p.categoria_principal,
+      analyzed: !!p.synergy_analyzed
     }));
 
     const links: Link[] = [];
@@ -130,7 +159,7 @@ export const GraphExplorerModule: React.FC = () => {
       .attr('stroke-width', 1.5);
 
     // Renderizado incremental de nodos
-    const node = g.selectAll<SVGGElement, Node>('g.node')
+    const node = g.selectAll<SVGGElement, Node & { analyzed: boolean }>('g.node')
       .data(newNodes, d => d.id)
       .join(
         enter => {
@@ -142,6 +171,16 @@ export const GraphExplorerModule: React.FC = () => {
                 .attr('stroke', '#151c28')
                 .attr('stroke-width', 2);
 
+            // Icono de Sparkle si está analizado
+            nodeEnter.filter(d => d.analyzed)
+              .append('circle')
+              .attr('r', 4)
+              .attr('cx', 8)
+              .attr('cy', -8)
+              .attr('fill', '#fbbf24')
+              .attr('stroke', '#151c28')
+              .attr('stroke-width', 1);
+
             nodeEnter.append('text')
                 .text(d => d.name)
                 .attr('x', 14)
@@ -152,6 +191,24 @@ export const GraphExplorerModule: React.FC = () => {
                 .style('pointer-events', 'none');
 
             return nodeEnter;
+        },
+        update => {
+          update.select('circle')
+            .attr('fill', (d: any) => d.category === 'Medicamento' ? '#ff9c4b' : '#10b981');
+          
+          // Actualizar icono de analizado
+          update.selectAll('.analyzed-icon').remove();
+          update.filter(d => d.analyzed)
+            .append('circle')
+            .attr('class', 'analyzed-icon')
+            .attr('r', 4)
+            .attr('cx', 8)
+            .attr('cy', -8)
+            .attr('fill', '#fbbf24')
+            .attr('stroke', '#151c28')
+            .attr('stroke-width', 1);
+
+          return update;
         }
       )
       .on('click', (event, d) => {
@@ -204,31 +261,59 @@ export const GraphExplorerModule: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-[calc(100vh-200px)] min-h-[600px] flex flex-col animate-in fade-in duration-500">
+    <div className="w-full h-[calc(100vh-150px)] min-h-[600px] flex flex-col animate-in fade-in duration-500 p-2">
       {/* Header del Grafo */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-        <div>
-          <h2 className="text-2xl font-extrabold text-white flex items-center gap-3">
-            <Share2 className="w-7 h-7 text-brand-primary" />
-            Mapa de Sinergias Inteligente
-          </h2>
-          <p className="text-slate-400 text-sm mt-1">Exploración visual de relaciones biológicas y terapéuticas auto-gestionadas.</p>
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 bg-brand-surface p-6 rounded-[2.5rem] border border-slate-700/30 shadow-xl">
+        <div className="flex items-center gap-5">
+           <div className="p-4 bg-brand-primary/10 rounded-3xl border border-brand-primary/20">
+              <Share2 className="w-8 h-8 text-brand-primary" />
+           </div>
+           <div>
+              <h2 className="text-2xl font-black text-white tracking-tight">
+                Mapa de Sinergias <span className="text-brand-primary italic">IA</span>
+              </h2>
+              <div className="flex items-center gap-4 mt-1">
+                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-900 rounded-full border border-slate-800">
+                    <Database className="w-3 h-3 text-brand-primary" />
+                    <span className="text-[10px] font-bold text-slate-400">{stats.total} Productos</span>
+                 </div>
+                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-900/20 rounded-full border border-amber-900/30">
+                    <Sparkles className="w-3 h-3 text-amber-500" />
+                    <span className="text-[10px] font-bold text-amber-500">{stats.analyzed} Analizados</span>
+                 </div>
+              </div>
+           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          {processingStatus.sku && (
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-brand-primary/10 border border-brand-primary/20 rounded-full text-[10px] font-bold text-brand-primary animate-pulse">
-              <RefreshCw className="w-3 h-3 animate-spin" />
-              IA Analizando: {processingStatus.name}
-            </div>
-          )}
+        <div className="flex items-center gap-4">
+          <div className="flex flex-col items-end gap-1">
+             <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Estado Sync:</span>
+                {isCloudReady ? (
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20 text-[9px] font-black uppercase">
+                     <Cloud className="w-2.5 h-2.5" /> Nube Lista
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 bg-rose-500/10 text-rose-400 rounded-full border border-rose-500/20 text-[9px] font-black uppercase">
+                     <CloudOff className="w-2.5 h-2.5" /> Solo Local
+                  </div>
+                )}
+             </div>
+             {processingStatus.sku && (
+               <div className="flex items-center gap-2 text-[10px] font-bold text-brand-primary animate-pulse italic">
+                 <RefreshCw className="w-3 h-3 animate-spin" />
+                 Analizando {processingStatus.name}...
+               </div>
+             )}
+          </div>
+          
           <button 
             onClick={handleSmartSync}
-            disabled={isSyncing}
-            className="flex items-center gap-2 px-4 py-2 bg-brand-surface border border-slate-700 text-white rounded-xl hover:bg-slate-800 transition-all font-bold text-sm shadow-lg disabled:opacity-50"
+            disabled={isSyncing || processingStatus.isRunning}
+            className="group relative flex items-center gap-3 px-6 py-3 bg-brand-primary text-slate-900 rounded-2xl hover:scale-105 active:scale-95 transition-all font-black text-xs uppercase shadow-[0_0_20px_rgba(255,156,75,0.3)] disabled:opacity-50 disabled:scale-100"
           >
-            <Sparkles className={`w-4 h-4 text-brand-primary ${isSyncing ? 'animate-spin' : ''}`} />
-            Autogestionar Relaciones
+            <Sparkles className={`w-4 h-4 ${isSyncing ? 'animate-spin' : 'group-hover:rotate-12'}`} />
+            Gestionar Relaciones
           </button>
         </div>
       </div>
