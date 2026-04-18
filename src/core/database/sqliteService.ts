@@ -52,6 +52,38 @@ export class SQLiteService {
 
   static getDB() {
     if (!this.db) throw new Error('SQLite not initialized');
-    return this.db;
+    
+    // Proxy que emula better-sqlite3 API sobre sql.js
+    const db = this.db;
+    return {
+      run: (sql: string, params: any[] = []) => db.run(sql, params),
+      prepare: (sql: string) => {
+        const stmt = db.prepare(sql);
+        return {
+          run: (...params: any[]) => {
+            stmt.run(params);
+            return { changes: 1 };
+          },
+          get: (...params: any[]) => {
+            stmt.bind(params);
+            let result = null;
+            if (stmt.step()) result = stmt.getAsObject();
+            stmt.reset();
+            return result;
+          },
+          all: (...params: any[]) => {
+            stmt.bind(params);
+            const results = [];
+            while (stmt.step()) {
+              results.push(stmt.getAsObject());
+            }
+            stmt.reset();
+            return results;
+          },
+          free: () => stmt.free()
+        };
+      },
+      exec: (sql: string) => db.exec(sql)
+    };
   }
 }
