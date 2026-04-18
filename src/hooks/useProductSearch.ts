@@ -44,23 +44,29 @@ export const useProductSearch = () => {
         // DataService ya maneja el circuito cortado, manejo de 404s y fallback a SQLite.
         const allProducts = await DataService.getAllProducts();
         
-        searchIndex.current = allProducts.map((product: Product) => ({
-          sku: product.sku,
-          product,
-          vector: product.vectores,
-          searchableText: normalizeText(`
-            ${product.sku || ''}
-            ${product.nombre_comercial || ''} 
-            ${product.categoria_principal || ''}
-            ${formatArrayToString(product.principios_activos, ' ')} 
-            ${formatArrayToString(product.indicaciones, ' ')}
-            ${formatArrayToString(product.tags_ia, ' ')}
-            ${product.analisis_componentes || ''}
-          `),
-          pathologySearchableText: normalizeText(`
-            ${formatArrayToString(product.indicaciones, ' ')}
-          `)
-        }));
+        if (!allProducts || !Array.isArray(allProducts)) {
+          throw new Error('Data format invalid');
+        }
+
+        searchIndex.current = allProducts
+          .filter(p => p && p.sku) // Defensa extrema contra nulos
+          .map((product: Product) => ({
+            sku: product.sku,
+            product,
+            vector: product.vectores,
+            searchableText: normalizeText(`
+              ${product.sku || ''}
+              ${product.nombre_comercial || ''} 
+              ${product.categoria_principal || ''}
+              ${formatArrayToString(product.principios_activos, ' ')} 
+              ${formatArrayToString(product.indicaciones, ' ')}
+              ${formatArrayToString(product.tags_ia, ' ')}
+              ${product.analisis_componentes || ''}
+            `),
+            pathologySearchableText: normalizeText(`
+              ${formatArrayToString(product.indicaciones, ' ')}
+            `)
+          }));
       } catch (error) {
         console.warn('Índice de búsqueda cargado parcialmente o vacío debido a error de datos:', error);
       } finally {

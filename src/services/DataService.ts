@@ -50,8 +50,19 @@ export class DataService {
     }
 
     // Fallback to local
-    const res = db.prepare('SELECT data FROM products').all();
-    return res.map(p => JSON.parse(p.data as string));
+    try {
+      const res = db.prepare('SELECT data FROM products').all();
+      return res
+        .map(p => {
+          try {
+            return p.data ? JSON.parse(p.data as string) : null;
+          } catch (e) { return null; }
+        })
+        .filter((p): p is Product => p !== null && !!p.sku);
+    } catch (e) {
+      console.error('[DataService] Error leyendo base de datos local:', e);
+      return [];
+    }
   }
 
   static async saveProduct(product: Product): Promise<void> {

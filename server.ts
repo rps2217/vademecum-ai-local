@@ -61,8 +61,22 @@ async function startServer() {
   const apiRouter = express.Router();
 
   apiRouter.get('/products', (req, res) => {
-    const products = db.prepare('SELECT data FROM products').all();
-    res.json(products.map(p => JSON.parse(p.data as string)));
+    try {
+      const products = db.prepare('SELECT data FROM products').all();
+      // Filtrar defensivamente para asegurar que solo devolvemos objetos válidos
+      const validProducts = products
+        .map(p => {
+          try {
+            return p.data ? JSON.parse(p.data as string) : null;
+          } catch (e) { return null; }
+        })
+        .filter(p => p !== null && p.sku);
+        
+      res.json(validProducts);
+    } catch (e) {
+      log(`[API] Error fetching products: ${e}`);
+      res.status(500).json({ error: 'Database error' });
+    }
   });
 
   apiRouter.post('/products', async (req, res) => {
