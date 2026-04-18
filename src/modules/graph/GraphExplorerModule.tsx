@@ -141,7 +141,9 @@ export const GraphExplorerModule: React.FC = () => {
       node.attr('transform', d => `translate(${d.x},${d.y})`);
     });
 
-    return () => simulation.stop();
+    return () => {
+      simulation.stop();
+    };
   }, [graphData, products]);
 
   const handleSmartSync = async () => {

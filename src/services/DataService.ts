@@ -3,8 +3,10 @@ import { SQLiteService } from '../core/database/sqliteService';
 
 export class DataService {
   private static initialized = false;
+  private static failedRequests = 0;
+  private static readonly MAX_FAILURES = 5;
 
-  private static async ensureInitialized() {
+  static async ensureInitialized() {
     if (!this.initialized) {
       await SQLiteService.initialize();
       this.initialized = true;
@@ -17,10 +19,16 @@ export class DataService {
     
     // Try fetching from server first (online)
     try {
-      if (navigator.onLine) {
+      if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
         const response = await fetch('/api/products');
-        const products = await response.json();
         
+        if (!response.ok) {
+           throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const products = await response.json();
+        this.failedRequests = 0; // Reset on success
+
         // Update local SQLite
         db.run('DELETE FROM products');
         const stmt = db.prepare('INSERT INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)');
@@ -32,7 +40,8 @@ export class DataService {
         return products;
       }
     } catch (e) {
-      console.warn('[DataService] Offline or server error, using local cache', e);
+      this.failedRequests++;
+      console.warn(`[DataService] Server error, using local cache. (Failures: ${this.failedRequests})`, e);
     }
 
     // Fallback to local

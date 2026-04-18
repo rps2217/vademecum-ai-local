@@ -10,6 +10,7 @@ import { ConfigService } from './ConfigService';
 export class SynergyBackgroundService {
   private static isRunning = false;
   private static intervalId: number | null = null;
+  private static isFatalError = false;
   private static currentProcessingSku: string | null = null;
   private static currentProcessingName: string | null = null;
   private static listeners: Array<(sku: string | null, name: string | null) => void> = [];
@@ -83,13 +84,22 @@ export class SynergyBackgroundService {
   }
 
   private static async processNext() {
-    if (this.currentProcessingSku) return; // Ya hay uno en proceso
+    if (this.currentProcessingSku || this.isFatalError) return; // Ya hay uno en proceso o error fatal
 
     const config = ConfigService.getConfig();
     if (!config.enableBackgroundSynergy) return;
 
     try {
       const response = await fetch('/api/products');
+      if (!response.ok) {
+        if (response.status === 404) {
+          console.error('[SynergyService] API endpoint no encontrado, deteniendo servicio permanentemente.');
+          this.isFatalError = true;
+          this.stop();
+          return;
+        }
+        throw new Error(`Error API: ${response.status}`);
+      }
       const allProducts = await response.json();
       const now = Date.now();
       const userId = auth.currentUser?.uid;

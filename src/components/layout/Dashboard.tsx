@@ -33,7 +33,7 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
-  const [activeTab, setActiveTab] = useState<'search' | 'database' | 'settings'>('search');
+  const [activeTab, setActiveTab] = useState<'search' | 'graph' | 'database' | 'settings'>('search');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { isAccessGranted } = useAuth();
