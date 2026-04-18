@@ -59,15 +59,18 @@ export class DataService {
     await SQLiteService.save();
 
     // Try sync to server
-    if (navigator.onLine) {
+    if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
       try {
-        await fetch('/api/products', {
+        const response = await fetch('/api/products', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(product)
         });
+        if (!response.ok) throw new Error('Sync failed');
+        this.failedRequests = 0;
       } catch (e) {
-        console.error('[DataService] Sync failed, will retry later', e);
+        this.failedRequests++;
+        console.error('[DataService] Sync failed', e);
       }
     }
     window.dispatchEvent(new CustomEvent('db_updated'));
@@ -122,10 +125,13 @@ export class DataService {
     db.run('DELETE FROM products WHERE sku = ?', [sku]);
     await SQLiteService.save();
 
-    if (navigator.onLine) {
+    if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
       try {
-        await fetch(`/api/products/${sku}`, { method: 'DELETE' });
+        const response = await fetch(`/api/products/${sku}`, { method: 'DELETE' });
+        if (!response.ok) throw new Error('Delete sync failed');
+        this.failedRequests = 0;
       } catch (e) {
+        this.failedRequests++;
         console.error('[DataService] Sync delete failed', e);
       }
     }
