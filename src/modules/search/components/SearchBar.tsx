@@ -17,7 +17,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, 
   return (
     <div className="relative mb-4 group">
       {/* Borde con gradiente animado */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-primary via-indigo-500 to-brand-accent rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-primary via-emerald-400 to-brand-accent rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
       
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -59,7 +59,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, 
           {isQuestion && query.length > 5 && (
             <button
               onClick={onAiQuery}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl transition-all flex items-center gap-1.5 border border-indigo-500 shadow-lg shadow-indigo-500/20 animate-in zoom-in duration-300"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-white bg-brand-primary hover:bg-orange-500 rounded-xl transition-all flex items-center gap-1.5 border border-brand-primary shadow-lg shadow-brand-primary/20 animate-in zoom-in duration-300"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Consultar IA</span>

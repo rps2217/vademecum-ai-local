@@ -106,4 +106,20 @@ export class DataService {
     const products = await this.getAllProducts();
     return JSON.stringify(products, null, 2);
   }
+
+  static async deleteProduct(sku: string): Promise<void> {
+    await this.ensureInitialized();
+    const db = SQLiteService.getDB();
+    db.run('DELETE FROM products WHERE sku = ?', [sku]);
+    await SQLiteService.save();
+
+    if (navigator.onLine) {
+      try {
+        await fetch(`/api/products/${sku}`, { method: 'DELETE' });
+      } catch (e) {
+        console.error('[DataService] Sync delete failed', e);
+      }
+    }
+    window.dispatchEvent(new CustomEvent('db_updated'));
+  }
 }

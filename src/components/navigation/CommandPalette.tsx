@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Search, Database, Cpu, Globe, Settings, X, Command, ChevronRight, Sparkles, AlertCircle } from 'lucide-react';
+import { Search, Database, Cpu, Globe, Settings, X, Command, ChevronRight, Sparkles, AlertCircle, Share2 } from 'lucide-react';
 import { useProductSearch } from '../../hooks/useProductSearch';
 import { Product } from '../../core/types/product.types';
 import { motion, AnimatePresence } from 'motion/react';
@@ -48,13 +48,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
   const handleSelect = (index: number) => {
     // Acciones fijas (0-4)
     if (index === 0) onNavigate('search');
-    else if (index === 1) onNavigate('database');
-    else if (index === 2) onNavigate('ai-engine');
-    else if (index === 3) onNavigate('scraper');
-    else if (index === 4) onNavigate('settings');
-    // Resultados de productos (index > 4)
-    else if (results[index - 5]) {
-      onSelectProduct(results[index - 5]);
+    else if (index === 1) onNavigate('graph');
+    else if (index === 2) onNavigate('database');
+    else if (index === 3) onNavigate('settings');
+    // Resultados de productos (index > 3)
+    else if (results[index - 4]) {
+      onSelectProduct(results[index - 4]);
       onClose();
     }
   };
@@ -63,9 +62,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
 
   const actions = [
     { id: 'search', label: 'Ir al Buscador', icon: Search, tab: 'search' },
+    { id: 'graph', label: 'Explorador de Sinergias', icon: Share2, tab: 'graph' },
     { id: 'database', label: 'Gestionar Base de Datos', icon: Database, tab: 'database' },
-    { id: 'ai-engine', label: 'Configurar Motores IA', icon: Cpu, tab: 'ai-engine' },
-    { id: 'scraper', label: 'Importar/Scrapear Datos', icon: Globe, tab: 'scraper' },
     { id: 'settings', label: 'Ajustes del Sistema', icon: Settings, tab: 'settings' },
   ];
 
@@ -131,7 +129,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
             {results.length > 0 ? (
               <div className="space-y-1">
                 {results.map((product, i) => {
-                  const index = search.length < 2 ? i + 5 : i;
+                  const index = search.length < 2 ? i + 4 : i;
                   return (
                     <button
                       key={product.sku}

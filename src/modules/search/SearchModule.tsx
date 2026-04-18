@@ -51,10 +51,10 @@ export const SearchModule: React.FC = () => {
                <Brain className="w-12 h-12 text-brand-primary" />
              </div>
              <h1 className="text-5xl sm:text-6xl font-extrabold text-white mb-6 tracking-tight">
-               Vademécum <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-indigo-400">IA</span>
+               Vademécum <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">IA</span>
              </h1>
              <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
-               Escribe un medicamento, síntoma o enfermedad para explorar <span className="text-brand-primary">alternativas</span>, <span className="text-indigo-400">complementos farmacéuticos</span> o posibles <span className="text-rose-400">sinergias</span>.
+               Escribe un medicamento, síntoma o patología para explorar <span className="text-brand-primary font-medium">alternativas</span>, <span className="text-brand-accent font-medium">complementos farmacéuticos</span> o probables <span className="text-emerald-400 font-medium">sinergias</span>.
              </p>
            </div>
         )}

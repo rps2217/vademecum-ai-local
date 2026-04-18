@@ -1,5 +1,5 @@
 {
   "name": "Vademécum Farmacéutico Inteligente",
-  "description": "Aplicación Local-First para consulta de medicamentos con razonamiento clínico mediante IA local.",
+  "description": "Sistema POS-style simplificado para exploración de alternativas farmacéuticas y sinergias clínicas.",
   "requestFramePermissions": []
 }

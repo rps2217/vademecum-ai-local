@@ -2,17 +2,18 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand-primary: #3b82f6; /* Clinical Blue */
-  --color-brand-accent: #8b5cf6;  /* Violet */
-  --color-brand-bg: #131A21;      /* Pure Dark based on image inputs */
-  --color-brand-surface: #222D39; /* Dark Surface based on image modal */
+  --color-brand-bg: #151c28;      /* Deep Navy background from the image */
+  --color-brand-surface: #1d2535; /* Card / Panel background */
+  --color-brand-primary: #ff9c4b; /* Orange from 'Continuar' button */
+  --color-brand-accent: #9becc8;  /* Mint Green from bottom footer */
   
-  --color-slate-950: #0E131A;
-  --color-slate-900: #131A21;
-  --color-slate-800: #222D39;
-  --color-slate-700: #334355;
+  /* Overriding standard slates to match the navy tone */
+  --color-slate-950: #0f151f;
+  --color-slate-900: #151c28;
+  --color-slate-800: #1d2535;
+  --color-slate-700: #2d3748;
+  --color-slate-600: #4a5568;
 
-  
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
