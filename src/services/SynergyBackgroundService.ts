@@ -185,12 +185,12 @@ export class SynergyBackgroundService {
         return;
       }
 
-      // 2. Análisis Clínico
+      // 2. Análisis Clínico - HÍBRIDO Y SILENCIOSO
       let synergyResult;
       const isOllamaAvailable = await OllamaService.isAvailable();
 
+      // PRIORIDAD 1: Ollama (Poder total local)
       if (isOllamaAvailable) {
-        console.log('[SynergyService] Usando Ollama (Motor PC Local) para análisis...');
         try {
           const analysis = await OllamaService.analyzeSynergy(product, candidates);
           synergyResult = {
@@ -199,10 +199,11 @@ export class SynergyBackgroundService {
             explicacion_clinica: analysis.explicacion_clinica
           };
         } catch (e) {
-          console.warn('[SynergyService] Fallo Ollama, intentando Gemini...');
+          console.warn('[SynergyService] Ollama falló, saltando...');
         }
       }
 
+      // PRIORIDAD 2: Gemini (Si está activo)
       if (!synergyResult) {
         const config = ConfigService.getConfig();
         if (config.useGeminiForSynergy) {
@@ -214,35 +215,15 @@ export class SynergyBackgroundService {
               explicacion_clinica: analysis.explicacion_clinica
             };
           } catch (e: any) {
-            const isQuotaError = e?.status === 'RESOURCE_EXHAUSTED' || e?.message?.includes('429') || e?.message?.includes('quota');
-            const isNetworkError = e?.status === 'UNKNOWN' || e?.message?.includes('xhr error') || e?.message?.includes('fetch');
-            
-            if (isQuotaError || isNetworkError) {
-              console.warn(`[SynergyService] ${isQuotaError ? 'Cuota de Gemini excedida' : 'Error de red en Gemini'}. Encolando tarea de sinergia para:`, product.sku);
-              // Encolar la tarea para reintentar más tarde
-              const { TaskQueueService } = await import('./TaskQueueService');
-              TaskQueueService.addTask('ai_analysis', { product, candidates, type: 'synergy' });
-              
-              // Marcar como no analizado para que se retome después
-              const updatedProduct = { 
-                ...product, 
-                synergy_analyzed: false,
-                lock_uid: null,
-                lock_timestamp: null
-              };
-              await DataService.saveProduct(updatedProduct);
-              await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
-              this.clearCurrent();
-              return; // Salir del proceso actual
-            }
-
-            console.warn('[SynergyService] Fallo Gemini, intentando IA Local Navegador...');
+            console.warn('[SynergyService] Gemini falló (Cuota/Red). Encolando para después.');
+            await TaskQueueService.addTask('ai_analysis', { sku: product.sku, type: 'synergy' });
           }
-        } else {
-          console.log('[SynergyService] Gemini desactivado por configuración. Saltando a IA Local...');
         }
+      }
 
-        if (!synergyResult && status.isReady) {
+      // PRIORIDAD 3: IA Local Browser (WebLLM)
+      if (!synergyResult && status.isReady) {
+        try {
           const prompt = `Analiza la sinergia clínica entre el producto principal y sus complementos. 
           
           PRODUCTO PRINCIPAL:
@@ -263,6 +244,8 @@ export class SynergyBackgroundService {
             skus_relacionados: candidates.map(c => c.sku),
             explicacion_clinica: localAnalysis
           };
+        } catch (e) {
+          console.error('[SynergyService] IA Local Browser falló.');
         }
       }
 

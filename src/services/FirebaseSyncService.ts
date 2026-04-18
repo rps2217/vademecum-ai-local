@@ -27,12 +27,15 @@ export const FirebaseSyncService = {
   checkCloudData: async () => {
     if (FirebaseSyncService.quota_exhausted) return true;
     try {
+      // Solo intentar si estamos online y no hay errores previos graves
+      if (!navigator.onLine) return true;
+      
       const q = query(collection(db, 'products'), limit(1));
       const snapshot = await getDocs(q);
       return !snapshot.empty;
     } catch (error: any) {
-      if (error?.message?.includes('Quota exceeded') || error?.code === 'resource-exhausted') {
-        console.warn('[FirebaseSync] Cuota excedida detectada. Deshabilitando sync en esta sesión.');
+      if (error?.message?.includes('Quota exceeded') || error?.code === 'resource-exhausted' || error?.message?.includes('permission-denied')) {
+        console.warn('[FirebaseSync] Cuota o permisos insuficientes. Deshabilitando sync en esta sesión.');
         FirebaseSyncService.quota_exhausted = true;
         return true; 
       }

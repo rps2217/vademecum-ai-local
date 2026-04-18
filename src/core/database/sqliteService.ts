@@ -38,6 +38,12 @@ export class SQLiteService {
           nombre_comercial TEXT,
           data TEXT
         );
+        CREATE TABLE IF NOT EXISTS pending_tasks (
+          id TEXT PRIMARY KEY,
+          type TEXT,
+          payload TEXT,
+          timestamp INTEGER
+        );
       `);
       await this.save();
     }

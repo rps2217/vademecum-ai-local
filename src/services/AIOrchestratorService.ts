@@ -25,14 +25,26 @@ export class AIOrchestratorService {
     this.listeners.forEach(l => l({ ...this.status }));
   }
 
+  private static lastRun = 0;
+  private static debounceTimer: number | null = null;
+
   static startWatcher() {
     if (this.isWatching) return;
     this.isWatching = true;
+    
     window.addEventListener('db_updated', () => {
       if (this.isRunning) return;
-      this.runPipeline().catch(err => console.error('[Orchestrator] Pipeline failed:', err));
+      
+      // Debounce: solo ejecutar si han pasado 10 segundos desde el último cambio significativo
+      if (this.debounceTimer) window.clearTimeout(this.debounceTimer);
+      this.debounceTimer = window.setTimeout(() => {
+        const now = Date.now();
+        if (now - this.lastRun < 10000) return; // Máximo una vez cada 10 seg
+        this.runPipeline().catch(err => console.error('[Orchestrator] Pipeline failed:', err));
+        this.lastRun = now;
+      }, 5000);
     });
-    console.log('[Orchestrator] Observador iniciado.');
+    console.log('[Orchestrator] Observador silencioso iniciado.');
   }
 
   static async runPipeline() {
