@@ -77,6 +77,12 @@ async function startServer() {
   // 1. API Router (Definido ANTES de Vite)
   const apiRouter = express.Router();
 
+  // Debug middleware para el router
+  apiRouter.use((req, res, next) => {
+    log(`[API-DEBUG] Incoming: ${req.method} ${req.url}`);
+    next();
+  });
+
   apiRouter.get('/products', (req, res) => {
     try {
       const products = db.prepare('SELECT data FROM products').all();
@@ -323,6 +329,16 @@ async function startServer() {
   });
 
   app.use('/api', apiRouter);
+
+  // Catch-all para errores 404 en /api explicitly
+  app.use('/api/*', (req, res) => {
+    log(`[ERROR] 404 en API: ${req.method} ${req.originalUrl}`);
+    res.status(404).json({ 
+      error: 'Not Found', 
+      path: req.originalUrl,
+      suggestion: 'Verifique que el backend esté corriendo y la ruta sea correcta'
+    });
+  });
 
   // 2. Inicializar Vite o Servir Estáticos (Producción)
   if (process.env.NODE_ENV !== 'production') {

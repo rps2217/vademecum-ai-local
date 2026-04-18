@@ -42,13 +42,18 @@ export const GraphExplorerModule: React.FC = () => {
       if (!sku && !name) load(); 
     });
 
-    // Escuchar actualizaciones globales de la base de datos
-    const handleDBUpdate = () => load();
+    // Escuchar actualizaciones globales de la base de datos con debounce
+    let debounceTimer: any;
+    const handleDBUpdate = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(load, 1000); 
+    };
     window.addEventListener('db_updated', handleDBUpdate);
 
     return () => {
       sub();
       window.removeEventListener('db_updated', handleDBUpdate);
+      clearTimeout(debounceTimer);
     };
   }, []);
 
