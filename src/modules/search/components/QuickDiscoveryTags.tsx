@@ -23,31 +23,33 @@ interface TagCategory {
 
 const CATEGORIES: TagCategory[] = [
   {
-    title: 'Patologías Comunes',
+    title: 'Patologías Crónicas',
     icon: Stethoscope,
     color: 'emerald',
     tags: [
       { label: 'Diabetes', query: 'Diabetes' },
       { label: 'Hipertensión', query: 'Hipertensión' },
-      { label: 'Hipotiroidismo', query: 'Hipotiroidismo' },
-      { label: 'Ansiedad', query: 'Ansiedad' },
-      { label: 'Dislipidemia', query: 'Colesterol' }
+      { label: 'Hipotiroidismo', query: 'Tiroides' },
+      { label: 'Asma / EPOC', query: 'Asma' },
+      { label: 'Colesterol', query: 'Colesterol' },
+      { label: 'Ácido Úrico', query: 'Gota' }
     ]
   },
   {
-    title: 'Síntomas & Malestares',
+    title: 'Alivio & Recuperación',
     icon: Activity,
     color: 'orange',
     tags: [
       { label: 'Dolor Muscular', query: 'Dolor' },
-      { label: 'Inflamación', query: 'Inflamación' },
-      { label: 'Insomnio', query: 'Sueño' },
-      { label: 'Reflujo', query: 'Digestivo' },
-      { label: 'Estrés', query: 'Estrés' }
+      { label: 'Inflamación', query: 'Antiinflamatorio' },
+      { label: 'Fiebre', query: 'Antipirético' },
+      { label: 'Alergias', query: 'Antihistamínico' },
+      { label: 'Tos & Gripe', query: 'Antigripal' },
+      { label: 'Cicatrización', query: 'Cicatrizante' }
     ]
   },
   {
-    title: 'Suplementos / Nutraceuticos',
+    title: 'Nutrición & Suplementos',
     icon: Leaf,
     color: 'cyan',
     tags: [
@@ -55,22 +57,69 @@ const CATEGORIES: TagCategory[] = [
       { label: 'Omega 3', query: 'Omega' },
       { label: 'Vitamina D3', query: 'Vitamina D' },
       { label: 'Probióticos', query: 'Probiótico' },
-      { label: 'Zinc', query: 'Zinc' }
+      { label: 'Zinc', query: 'Zinc' },
+      { label: 'Colágeno', query: 'Colágeno' },
+      { label: 'Biotina', query: 'Biotina' }
     ]
   },
   {
-    title: 'Grupos Especiales',
+    title: 'Etapas de Vida / Ciclos',
     icon: Baby,
     color: 'pink',
     tags: [
       { label: 'Pediatría', query: 'Pediatría' },
       { label: 'Embarazo Safe', query: 'Embarazo' },
       { label: 'Adulto Mayor', query: 'Geriatría' },
-      { label: 'Salud Ósea', query: 'Calcio' },
-      { label: 'Inmunidad', query: 'Defensas' }
+      { label: 'Salud Femenina', query: 'Menopausia' },
+      { label: 'Salud Masculina', query: 'Próstata' },
+      { label: 'Fertilidad', query: 'Fertilidad' }
+    ]
+  },
+  {
+    title: 'Salud Mental & Sueño',
+    icon: Brain,
+    color: 'violet',
+    tags: [
+      { label: 'Ansiedad', query: 'Ansiedad' },
+      { label: 'Insomnio', query: 'Sueño' },
+      { label: 'Estrés', query: 'Estrés' },
+      { label: 'Memoria', query: 'Nootrópico' },
+      { label: 'Concentración', query: 'Enfoque' },
+      { label: 'Estado de Ánimo', query: 'Ánimo' }
+    ]
+  },
+  {
+    title: 'Digestivo & Metabólico',
+    icon: Heart,
+    color: 'rose',
+    tags: [
+      { label: 'Reflujo / Gastritis', query: 'Gastritis' },
+      { label: 'Estreñimiento', query: 'Laxante' },
+      { label: 'Salud Hepática', query: 'Hígado' },
+      { label: 'Retención Líquidos', query: 'Diurético' },
+      { label: 'Control Peso', query: 'Metabolismo' },
+      { label: 'Digestión Pesada', query: 'Enzimas' }
     ]
   }
 ];
+
+const colorMap: Record<string, string> = {
+  emerald: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/5',
+  orange: 'text-orange-400 border-orange-500/20 bg-orange-500/5',
+  cyan: 'text-cyan-400 border-cyan-500/20 bg-cyan-500/5',
+  pink: 'text-pink-400 border-pink-500/20 bg-pink-500/5',
+  violet: 'text-violet-400 border-violet-500/20 bg-violet-500/5',
+  rose: 'text-rose-400 border-rose-500/20 bg-rose-500/5'
+};
+
+const textColorMap: Record<string, string> = {
+  emerald: 'text-emerald-500/90',
+  orange: 'text-orange-500/90',
+  cyan: 'text-cyan-500/90',
+  pink: 'text-pink-500/90',
+  violet: 'text-violet-500/90',
+  rose: 'text-rose-500/90'
+};
 
 interface QuickDiscoveryTagsProps {
   onSelect: (query: string) => void;
@@ -85,21 +134,21 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
         <div className="flex items-center gap-2">
            <Zap className="w-3.5 h-3.5 text-brand-primary animate-pulse" />
-           <span className="text-[10px] uppercase tracking-[0.4em] font-black text-slate-500">
+           <span className="text-[11px] uppercase tracking-[0.4em] font-black text-slate-400">
              Descubrimiento Inteligente
            </span>
         </div>
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
         {CATEGORIES.map((category) => (
           <div key={category.title} className="group">
-            <div className="flex items-center gap-2 mb-4 px-1">
-              <div className={`p-1.5 rounded-lg bg-slate-900 border border-slate-800 transition-colors`}>
-                <category.icon className="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-primary transition-colors" />
+            <div className="flex items-center gap-3 mb-5 px-1">
+              <div className={`p-2 rounded-xl border transition-all duration-300 group-hover:scale-110 ${colorMap[category.color] || 'bg-slate-900 border-slate-800'}`}>
+                <category.icon className="w-4 h-4 transition-colors" />
               </div>
-              <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-wider group-hover:text-slate-200 transition-colors">
+              <h3 className={`text-sm font-black uppercase tracking-wider transition-colors ${textColorMap[category.color] || 'text-slate-400'} group-hover:text-white`}>
                 {category.title}
               </h3>
             </div>
