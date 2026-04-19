@@ -5,15 +5,26 @@ import { ConfigService } from './ConfigService';
 export class OllamaService {
   private static hosts = ['http://localhost:11434/api', 'http://127.0.0.1:11434/api'];
   private static activeBaseUrl: string | null = null;
+  private static lastCheckTime = 0;
+  private static lastCheckResult = false;
 
   static async isAvailable(): Promise<boolean> {
     const config = ConfigService.getConfig();
     if (!config.useOllama) return false;
     
+    const now = Date.now();
+    // Cachear el resultado por 30 segundos para evitar spam de peticiones
+    if (now - this.lastCheckTime < 30000) {
+      return this.lastCheckResult;
+    }
+
+    this.lastCheckTime = now;
+
     // Si ya sabemos cual funciona, lo usamos
     if (this.activeBaseUrl) {
       try {
         const res = await fetch(`${this.activeBaseUrl}/tags`);
+        this.lastCheckResult = res.ok;
         return res.ok;
       } catch {
         this.activeBaseUrl = null;
@@ -30,12 +41,14 @@ export class OllamaService {
         if (response.ok) {
           this.activeBaseUrl = host;
           console.log(`[OllamaService] ✅ Conexión exitosa con ${host}`);
+          this.lastCheckResult = true;
           return true;
         }
       } catch (e) {
         console.warn(`[OllamaService] ❌ Falló conexión con ${host}. Asegúrate de que Ollama tenga OLLAMA_ORIGINS="*"`);
       }
     }
+    this.lastCheckResult = false;
     return false;
   }
 

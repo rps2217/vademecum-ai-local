@@ -67,6 +67,9 @@ export class VectorBackgroundService {
         } else {
           this.notify();
         }
+
+        // Pausa térmica para proteger el hardware
+        await new Promise(resolve => setTimeout(resolve, 2000));
       }
       
       this.status.isProcessing = false;

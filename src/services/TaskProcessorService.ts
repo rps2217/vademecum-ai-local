@@ -52,6 +52,9 @@ export class TaskProcessorService {
         }
 
         await this.executeTask(task);
+        
+        // Pausa entre tareas para moderar el uso de CPU/GPU
+        await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (error) {
         console.error('[TaskProcessor] Error critico en el bucle:', error);
         await new Promise(resolve => setTimeout(resolve, 10000));

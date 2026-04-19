@@ -113,9 +113,12 @@ export class AIOrchestratorService {
         // 5. Liberar y guardar
         updatedProduct.last_updated = Date.now();
         await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
+
+        // 6. PAUSA DE SEGURIDAD: Evitar sobrecalentamiento procesando a ráfagas con descanso
+        await new Promise(resolve => setTimeout(resolve, 3000));
       }
 
-      // 6. Respaldo final
+      // 7. Respaldo final
       this.status.currentTask = 'Realizando respaldo en la nube...';
       this.notify();
       await FirebaseSyncService.uploadLocalProducts();
