@@ -85,6 +85,11 @@ export const SearchModule: React.FC = () => {
               setQuery={setQuery} 
               isSearching={isSearching} 
               isInterpreting={isInterpreting}
+              suggestions={results.slice(0, 10)}
+              onSelectProduct={(product) => {
+                setSelectedProduct(product);
+                setQuery('');
+              }}
               onAiQuery={() => setShowAiAnalysis(true)}
             />
             {query.trim() === '' && results.length === 0 && (

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { 
   Dna, 
   Activity, 
@@ -16,7 +17,7 @@ import {
 
 interface TagCategory {
   title: string;
-  icon: React.ElementType; // Cambiar a ElementType para poder renderizarlo como componente
+  icon: React.ElementType;
   tags: { label: string; query: string }[];
   color: string;
 }
@@ -121,13 +122,22 @@ const textColorMap: Record<string, string> = {
   rose: 'text-rose-500/90'
 };
 
+const dotColorMap: Record<string, string> = {
+  emerald: 'bg-emerald-500',
+  orange: 'bg-orange-500',
+  cyan: 'bg-cyan-500',
+  pink: 'bg-pink-500',
+  violet: 'bg-violet-500',
+  rose: 'bg-rose-500'
+};
+
 interface QuickDiscoveryTagsProps {
   onSelect: (query: string) => void;
 }
 
 export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect }) => {
   return (
-    <div className="w-full mt-16 space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+    <div className="w-full mt-16 space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
       
       {/* Header Estilo Hardware */}
       <div className="flex items-center gap-4 px-2">
@@ -141,28 +151,53 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8 text-left">
         {CATEGORIES.map((category) => (
-          <div key={category.title} className="group">
-            <div className="flex items-center gap-3 mb-5 px-1">
-              <div className={`p-2 rounded-xl border transition-all duration-300 group-hover:scale-110 ${colorMap[category.color] || 'bg-slate-900 border-slate-800'}`}>
-                <category.icon className="w-4 h-4 transition-colors" />
+          <div key={category.title} className="flex flex-col">
+            <div className="flex items-center gap-3 mb-6 px-1">
+              <div className={`p-2 rounded-xl border transition-all duration-300 ${colorMap[category.color] || 'bg-slate-900 border-slate-800'}`}>
+                <category.icon className="w-4 h-4" />
               </div>
-              <h3 className={`text-sm font-black uppercase tracking-wider transition-colors ${textColorMap[category.color] || 'text-slate-400'} group-hover:text-white`}>
+              <h3 className={`text-sm font-black uppercase tracking-wider ${textColorMap[category.color] || 'text-slate-400'}`}>
                 {category.title}
               </h3>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {category.tags.map((tag) => (
-                <button
+            <div className="flex flex-wrap gap-3">
+              {category.tags.map((tag, idx) => (
+                <motion.button
                   key={tag.label}
                   onClick={() => onSelect(tag.query)}
-                  className="px-4 py-2 rounded-xl bg-slate-900/50 hover:bg-slate-800 border border-slate-800/80 text-[11px] font-medium text-slate-400 hover:text-white hover:border-slate-600 transition-all active:scale-95 flex items-center gap-2 group/tag"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: idx * 0.05 + 0.5 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -2,
+                    boxShadow: "0 10px 20px -5px rgba(0,0,0,0.3)"
+                  }}
+                  whileTap={{ 
+                    scale: 0.92,
+                    y: 1,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }}
+                  className="relative px-5 py-3 rounded-full bg-slate-900 border border-slate-800/80 text-[13px] font-bold text-slate-300 hover:text-white hover:border-slate-500 transition-colors flex items-center gap-3 group/tag overflow-hidden"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover/tag:bg-brand-primary transition-colors" />
-                  {tag.label}
-                </button>
+                  {/* Glass Glint Effect to make it look like a physical capsule */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+                  
+                  {/* Interaction Indicator Pill-core */}
+                  <div className={`w-3 h-3 rounded-full flex-shrink-0 border border-black/20 shadow-inner group-hover/tag:scale-125 transition-transform duration-300 ${dotColorMap[category.color] || 'bg-slate-700'}`} />
+                  
+                  <span className="relative z-10">{tag.label}</span>
+                  
+                  {/* Subtle shine animation on hover */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full"
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.button>
               ))}
             </div>
           </div>

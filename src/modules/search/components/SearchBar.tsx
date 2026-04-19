@@ -1,5 +1,7 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState, useEffect } from 'react';
 import { Search, Loader2, X, Sparkles } from 'lucide-react';
+import { SearchSuggestions } from './SearchSuggestions';
+import { Product } from '../../../core/types/product.types';
 
 interface SearchBarProps {
   query: string;
@@ -7,13 +9,55 @@ interface SearchBarProps {
   isSearching: boolean;
   isInterpreting?: boolean;
   onAiQuery?: () => void;
+  suggestions?: Product[];
+  onSelectProduct?: (product: Product) => void;
 }
 
-export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, setQuery, isSearching, isInterpreting, onAiQuery }, ref) => {
+export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ 
+  query, 
+  setQuery, 
+  isSearching, 
+  isInterpreting, 
+  onAiQuery,
+  suggestions = [],
+  onSelectProduct
+}, ref) => {
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
   const isQuestion = query.trim().endsWith('?') || 
                     ['¿', 'como', 'qué', 'que', 'para', 'cuál', 'cual', 'donde', 'dónde'].some(word => 
                       query.toLowerCase().startsWith(word)
                     );
+
+  useEffect(() => {
+    if (query.length >= 2 && suggestions.length > 0) {
+      setShowSuggestions(true);
+      setHighlightedIndex(-1);
+    } else {
+      setShowSuggestions(false);
+    }
+  }, [query, suggestions.length]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      if (highlightedIndex >= 0 && highlightedIndex < suggestions.length && onSelectProduct) {
+        onSelectProduct(suggestions[highlightedIndex]);
+        setShowSuggestions(false);
+      } else if (isQuestion && onAiQuery) {
+        onAiQuery();
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setHighlightedIndex(prev => (prev < suggestions.length - 1 ? prev + 1 : prev));
+      setShowSuggestions(true);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setHighlightedIndex(prev => (prev > 0 ? prev - 1 : 0));
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false);
+    }
+  };
 
   return (
     <div className="relative mb-4 group">
@@ -33,15 +77,14 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, 
         <input
           ref={ref}
           type="text"
+          autoComplete="off"
           className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-brand-surface/90 backdrop-blur-sm border border-slate-700/50 rounded-2xl text-base sm:text-lg text-white shadow-xl focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all placeholder:text-slate-500"
           placeholder="Buscar o preguntar a la IA..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && isQuestion && onAiQuery) {
-              onAiQuery();
-            }
-          }}
+          onKeyDown={handleKeyDown}
+          onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+          onFocus={() => query.length >= 2 && setShowSuggestions(true)}
         />
         
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 gap-2">
@@ -49,6 +92,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, 
             <button
               onClick={() => {
                 setQuery('');
+                setShowSuggestions(false);
                 if (ref && typeof ref !== 'function' && ref.current) {
                     ref.current.focus();
                 }
@@ -77,6 +121,17 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, 
             </div>
           )}
         </div>
+
+        {/* Predictive Suggestions Dropdown */}
+        <SearchSuggestions 
+          suggestions={suggestions}
+          isVisible={showSuggestions}
+          highlightedIndex={highlightedIndex}
+          onSelect={(p) => {
+            if (onSelectProduct) onSelectProduct(p);
+            setShowSuggestions(false);
+          }}
+        />
       </div>
     </div>
   );
