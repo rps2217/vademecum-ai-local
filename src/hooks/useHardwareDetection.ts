@@ -44,14 +44,15 @@ export const useHardwareDetection = () => {
         }
 
         // Determinar DeviceTier para el sistema de enfriamiento universal
-        // Detectar si es móvil mediante userAgent y capacidades básicas
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isAppleSilicon = /Mac/.test(navigator.platform) && logicalProcessors >= 8;
+        const isDedicatedGPU = gpuName?.toLowerCase().includes('nvidia') || gpuName?.toLowerCase().includes('radeon');
         
         let deviceTier: HardwareProfile['deviceTier'] = 'STANDARD';
-        if (!isMobile && logicalProcessors >= 8 && memoryGB >= 16) {
-          deviceTier = 'ULTRA'; // MacBook M4, Workstations
-        } else if (isMobile || logicalProcessors <= 2 || memoryGB <= 4) {
-          deviceTier = 'ECO';   // Móviles, PDAs, PCs antiguos o de oficina básica
+        if (!isMobile && (isAppleSilicon || isDedicatedGPU) && memoryGB >= 16) {
+          deviceTier = 'ULTRA'; // MacBook M4, Workstations Reales
+        } else if (isMobile || logicalProcessors <= 4 || memoryGB <= 6) {
+          deviceTier = 'ECO';   // Móviles, PDAs, Laptops de oficina genéricas
         }
 
         setHardware({

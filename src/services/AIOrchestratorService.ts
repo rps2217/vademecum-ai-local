@@ -85,7 +85,7 @@ export class AIOrchestratorService {
             { vectores: { $size: 0 } }
           ]
         },
-        limit: 20
+        limit: 5 // Reducido para proteger hardware de oficina
       }).exec();
 
       if (pendingVector.length > 0) {
@@ -100,7 +100,7 @@ export class AIOrchestratorService {
         selector: {
           synergy_analyzed: { $ne: true }
         },
-        limit: 10
+        limit: 3 // Reducido de 10 a 3 para evitar saturación de CPU/GPU en Windows genéricos
       }).exec();
 
       if (pendingAnalysis.length > 0) {
@@ -125,23 +125,22 @@ export class AIOrchestratorService {
     const restTime = now - this.lastTaskTimestamp;
     const tier = this.hardware?.deviceTier || 'STANDARD';
     
-    // Enfriamiento natural: ULTRA enfría más rápido (mejor hardware), ECO más lento
-    // ULTRA: 2 pts/sec, STANDARD: 1 pt/sec, ECO: 0.5 pts/sec
-    const coolingFactors = { ULTRA: 2, STANDARD: 1, ECO: 0.5 };
+    // Enfriamiento natural: WebGPU genera calor rápido que no disipa instantáneamente.
+    // Reducimos los factores para que el "estrés lógico" aguante más y obligue a pausar.
+    const coolingFactors = { ULTRA: 1, STANDARD: 0.5, ECO: 0.2 };
     const cooling = Math.floor((restTime / 1000) * coolingFactors[tier as keyof typeof coolingFactors]);
     this.thermalStress = Math.max(0, this.thermalStress - cooling);
     
-    // Penalización por Tier: ECO acumula el DOBLE de estrés por la misma tarea
-    // ULTRA acumula menos estrés por tener mejores núcleos térmicos
-    const stressMultiplier = tier === 'ECO' ? 2 : (tier === 'ULTRA' ? 0.7 : 1);
+    // Penalización por Tier
+    const stressMultiplier = tier === 'ECO' ? 2 : (tier === 'ULTRA' ? 0.8 : 1);
     this.thermalStress += (points * stressMultiplier);
     this.lastTaskTimestamp = now;
     this.notify();
     
-    // Umbrales de advertencia dinámicos
-    const thresholds = { ULTRA: 300, STANDARD: 150, ECO: 50 };
+    // Umbrales de advertencia dinámicos (Más restrictivos)
+    const thresholds = { ULTRA: 200, STANDARD: 120, ECO: 50 };
     if (this.thermalStress > thresholds[tier as keyof typeof thresholds]) {
-      console.warn(`[ThermalGuard] Estrés elevado (${Math.round(this.thermalStress)}) en perfil ${tier}. Ralentizando...`);
+      console.warn(`[ThermalGuard] Estrés elevado (${Math.round(this.thermalStress)}) en perfil ${tier}. Ralentizando hardware...`);
     }
     
     return this.thermalStress;
@@ -151,25 +150,28 @@ export class AIOrchestratorService {
     const tier = this.hardware?.deviceTier || 'STANDARD';
     const stress = this.thermalStress;
 
-    // Lógica Universal de Retardos (Escalada por Tier)
+    // Lógica Universal de Retardos (Escalada por Tier - Enfoque WebGPU)
+    // El objetivo es darle al ventilador/chasis tiempo de extraer el calor entre ráfagas
+    
     if (tier === 'ECO') {
-      if (stress > 100) return 60000; // 1 min de respiro
-      if (stress > 50)  return 20000; // 20s
-      if (stress > 25)  return 10000; // 10s
-      return 5000; // 5s mínimo en ECO (Móviles/PDAs)
+      if (stress > 100) return 90000; // 1.5 min de respiro vital
+      if (stress > 50)  return 40000; // 40s
+      if (stress > 25)  return 20000; // 20s
+      return 10000; // 10s mínimo. No quemar teléfonos.
     }
 
     if (tier === 'STANDARD') {
-      if (stress > 200) return 45000;
-      if (stress > 100) return 12000;
-      if (stress > 50)  return 5000;
-      return 2500;
+      if (stress > 150) return 60000; // 1 min pause
+      if (stress > 100) return 25000; // 25s
+      if (stress > 50)  return 12000; // 12s
+      return 6000;  // 6s mínimo base.
     }
 
     // Perfil ULTRA (MacBook M4, High-end PC)
-    if (stress > 400) return 40000; 
-    if (stress > 250) return 15000;
-    if (stress > 150) return 6000;
-    return 1500; // 1.5s ráfagas rápidas
+    // Aunque tenga potencia, WebGPU usa el 100% de la GPU dedicada/integrada.
+    if (stress > 300) return 60000; // Demasiado caliente, dormimos un minuto.
+    if (stress > 180) return 25000; // Respiro severo para bajar ventilador.
+    if (stress > 80) return 12000;  // Pre-enfriamiento.
+    return 7000; // 7s MÍNIMO. Dar espacio a que la RAM unificada se vacíe limpiamente.
   }
 }

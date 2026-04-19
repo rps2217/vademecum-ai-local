@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { GeminiService } from '../services/GeminiService';
+import { DataService } from '../services/DataService';
 import { Product, SafetyStatus } from '../core/types/product.types';
 
 export interface Log {
@@ -194,11 +195,7 @@ export const useBatchScraper = () => {
             last_updated: Date.now()
           };
 
-          await fetch('/api/products', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newProduct)
-          });
+          await DataService.saveProduct(newProduct);
           addLog(`💾 Guardado en base de datos: ${newProduct.nombre_comercial}`, 'success');
 
         } catch (err: any) {

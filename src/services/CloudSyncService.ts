@@ -30,6 +30,11 @@ export const CloudSyncService = {
 
   checkCloudData: async () => {
     if (!navigator.onLine) return true;
+    
+    if (localStorage.getItem('force_supabase_direct') === 'true') {
+        return true; // Asumimos que hay datos si pasamos directo a Supabase
+    }
+    
     try {
       const response = await fetch('/api/products');
       if (response.ok) {

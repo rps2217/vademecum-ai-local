@@ -89,9 +89,9 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         // Determinar DeviceTier para el sistema de enfriamiento universal (Compatible con useHardwareDetection)
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         let deviceTier: HardwareProfile['deviceTier'] = 'STANDARD';
-        if (!isMobile && logicalProcessors >= 8 && memoryGB >= 16) {
-          deviceTier = 'ULTRA'; 
-        } else if (isMobile || logicalProcessors <= 2 || memoryGB <= 4) {
+        if (!isMobile && (isAppleSilicon || isDedicatedGPU) && memoryGB >= 16) {
+          deviceTier = 'ULTRA'; // Protección estricta: PCs Windows integrados jamás serán ULTRA.
+        } else if (isMobile || logicalProcessors <= 4 || memoryGB <= 6) {
           deviceTier = 'ECO';
         }
 

@@ -57,8 +57,8 @@ export class TaskProcessorService {
         
         // Pausa entre tareas con Gestión Térmica Dinámica (Garantiza enfriamiento en M4)
         const delay = AIOrchestratorService.getThermalDelay();
-        if (delay > 10000) {
-          console.warn(`[TaskProcessor] Thermal Guard activo: Esperando ${delay/1000}s para enfriar el procesador...`);
+        if (delay >= 5000) {
+          console.warn(`[TaskProcessor] Thermal Guard activo: Esperando ${delay/1000}s para disipar calor...`);
         }
         await new Promise(resolve => setTimeout(resolve, delay));
       } catch (error) {
