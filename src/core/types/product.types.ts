@@ -35,6 +35,7 @@ export interface Product {
   last_synergy_analysis?: number;
   
   // Distributed Locking
+  locked_by_ai?: boolean;
   lock_uid?: string;
   lock_timestamp?: number;
   

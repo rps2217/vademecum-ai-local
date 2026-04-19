@@ -75,9 +75,13 @@ export class SynergyBackgroundService {
       const status = AIService.getStatus();
       const now = Date.now();
 
-      // En la arquitectura centralizada en el backend con Supabase, 
-      // el bloqueo es implícito mediante el guardado atómico en SQLite/Postgres.
-      // Para evitar colisiones locales, usamos el estado currentProcessingSku.
+      // [CLÚSTER] 1. Reclamo de exclusividad. 
+      // ¿Algún otro PC de esta farmacia ya está trabajando con esto en este instante?
+      const canLock = await CloudSyncService.claimProductLock(product.sku, 'ai_worker_node');
+      if (!isForced && !canLock) {
+         console.warn(`[ClusterSync] Sku ${product.sku} saltado. Otro PC ya lo está analizando.`);
+         return; // Interrumpe el bloque para salir a buscar otro.
+      }
       
       this.currentProcessingSku = product.sku;
       this.currentProcessingName = product.nombre_comercial;

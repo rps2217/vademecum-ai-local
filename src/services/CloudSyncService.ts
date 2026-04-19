@@ -147,15 +147,49 @@ export const CloudSyncService = {
   },
 
   /**
-   * Stub para compatibilidad con lógica de bloqueo distribuido.
-   * En la arquitectura centralizada en el servidor, los conflictos se resuelven en el backend.
+   * Bloqueo Distribuido (Clúster) para Tareas IA.
+   * Evita que 3 PCs en la misma oficina analicen el mismo medicamento en segundo plano simultáneamente.
    */
-  claimProductLock: async (_sku: string, _userId: string): Promise<boolean> => {
-    return true; 
+  claimProductLock: async (sku: string, _userId: string): Promise<boolean> => {
+    try {
+      const db = await DataService.getDB();
+      if (!db) return false;
+
+      // 1. Verificación Local Inmediata
+      const localData = await db.products.findOne(sku).exec();
+      if (!localData) return false;
+
+      const now = Date.now();
+      const lockTimeout = 15 * 60 * 1000; // 15 minutos de timeout para una tarea
+
+      if (localData.locked_by_ai && localData.lock_timestamp) {
+        if (now - localData.lock_timestamp < lockTimeout) {
+          return false; // Alguien más del clúster (o esta máquina) lo está procesando.
+        }
+      }
+
+      // 2. Aplicar "Bloqueo" en Base de datos local para que sincronice a la Nube.
+      // Al guardar, CloudSyncService lo subirá a Supabase alertándole al resto de PCs de la oficina
+      await localData.incrementalPatch({
+        locked_by_ai: true,
+        lock_timestamp: now
+      });
+
+      return true; // Tenemos el bloqueo exitoso, podemos procesar.
+    } catch (e) {
+      console.warn('[ClusterStatus] Fallo al reclamar bloqueo.', e);
+      return false;
+    }
   },
 
   releaseProductLockAndSave: async (product: Product) => {
-    await DataService.saveProduct(product);
+    // Al finalizar IA, quita el candado y marca como analizado
+    const finalizedProduct = {
+      ...product,
+      locked_by_ai: false,
+      lock_timestamp: 0
+    };
+    await DataService.saveProduct(finalizedProduct);
   },
 
   uploadLocalProducts: async () => {
