@@ -16,9 +16,17 @@ interface ProductDetailModalProps {
   onTagClick?: (tag: string) => void;
   onUpdate?: (updatedProduct: Product) => void;
   searchTerm?: string;
+  isEmbedded?: boolean;
 }
 
-export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product: initialProduct, onClose, onTagClick, onUpdate, searchTerm = '' }) => {
+export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ 
+  product: initialProduct, 
+  onClose, 
+  onTagClick, 
+  onUpdate, 
+  searchTerm = '',
+  isEmbedded = false
+}) => {
   const [product, setProduct] = useState<Product>(initialProduct);
   const [isReanalyzing, setIsReanalyzing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -156,24 +164,23 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
 
   const hasSynergy = !!product.synergy_analyzed;
 
-  return (
-    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-brand-bg/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className={`bg-brand-surface w-full h-full rounded-[2rem] shadow-2xl shadow-brand-primary/20 animate-in slide-in-from-right duration-500 border border-slate-800 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''}`}>
+  const detailContent = (
+    <div className={`bg-brand-surface w-full h-full rounded-[2rem] shadow-2xl shadow-brand-primary/20 border border-slate-800 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''} ${isEmbedded ? 'animate-none shadow-none border-none' : 'animate-in slide-in-from-right duration-500'}`}>
+      
+      {/* Columna Izquierda: Detalles del Producto */}
+      <div id="product-detail-left-col" className={`w-full p-4 md:p-8 overflow-y-auto relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-slate-800' : ''}`}>
         
-        {/* Columna Izquierda: Detalles del Producto */}
-        <div id="product-detail-left-col" className={`w-full p-4 md:p-8 overflow-y-auto relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-slate-800' : ''}`}>
-          
-          {/* Navegación Superior */}
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <button 
-                onClick={onClose}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-300 hover:text-white transition-all border border-slate-700/50 group shadow-lg"
-                title="Volver al listado"
-              >
-                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform text-brand-primary" />
-                <span className="font-bold text-xs uppercase tracking-widest">Volver</span>
-              </button>
+        {/* Navegación Superior */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={onClose}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-300 hover:text-white transition-all border border-slate-700/50 group shadow-lg"
+              title="Volver al listado"
+            >
+              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform text-brand-primary" />
+              <span className="font-bold text-xs uppercase tracking-widest">Regresar</span>
+            </button>
               
               <button 
                 onClick={onClose}
@@ -329,8 +336,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
             </div>
           </div>
         )}
-
       </div>
+    );
+
+  if (isEmbedded) {
+    return (
+      <div className="w-full flex-1">
+        {detailContent}
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-brand-bg/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      {detailContent}
     </div>
   );
 };
