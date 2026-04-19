@@ -111,7 +111,7 @@ export class SynergyBackgroundService {
       console.log(`[SynergyService] Iniciando análisis de sinergias para: ${product.nombre_comercial} (Forzado: ${isForced})`);
       
       // Actualizar en el Backend con el candado
-      await DataService.saveProduct({ ...product, lock_uid: userId, lock_timestamp: now });
+      await DataService.saveProduct({ ...product, lock_uid: userId, lock_timestamp: now }, { silent: true });
 
       // 1. Encontrar candidatos por similitud semántica (Local Embeddings)
       let mainVector = product.vectores;
@@ -120,9 +120,9 @@ export class SynergyBackgroundService {
           const text = `${product.nombre_comercial} ${formatArrayToString(product.indicaciones, ' ')} ${product.analisis_componentes || ''}`;
           mainVector = await AIService.generateEmbedding(text);
           product.vectores = mainVector;
-          await DataService.saveProduct({ ...product, vectores: mainVector });
+          await DataService.saveProduct({ ...product, vectores: mainVector }, { silent: true });
         } else {
-          await DataService.saveProduct({ ...product, synergy_analyzed: true, last_synergy_analysis: Date.now() });
+          await DataService.saveProduct({ ...product, synergy_analyzed: true, last_synergy_analysis: Date.now() }, { silent: true });
           this.clearCurrent();
           return;
         }
@@ -148,7 +148,7 @@ export class SynergyBackgroundService {
           sugerencia_complementaria: "No se encontraron complementos directos en la base local.",
           skus_relacionados: []
         };
-        await DataService.saveProduct(updatedProduct);
+        await DataService.saveProduct(updatedProduct, { silent: true });
         await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
         this.clearCurrent();
         return;
@@ -237,7 +237,7 @@ export class SynergyBackgroundService {
         skus_relacionados: synergyResult.skus_relacionados
       };
 
-      await DataService.saveProduct(finalProduct);
+      await DataService.saveProduct(finalProduct, { silent: true });
       await FirebaseSyncService.releaseProductLockAndSave(finalProduct);
       
       console.log(`[SynergyService] Sinergia completada para ${product.nombre_comercial}`);

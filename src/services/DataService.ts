@@ -40,7 +40,7 @@ export class DataService {
     }
   }
 
-  static async saveProduct(product: Product): Promise<void> {
+  static async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
     const db = await waitForDB();
     if (!db) return;
     
@@ -64,7 +64,10 @@ export class DataService {
         console.error('[DataService] Sync failed:', e);
       }
     }
-    EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
+
+    if (!options.silent) {
+       EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
+    }
   }
   
   static async importProducts(jsonString: string): Promise<{ success: number; errors: number }> {

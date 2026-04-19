@@ -15,8 +15,10 @@ export class AutomationTriggerService {
       EventBus.on<{sku: string}>(EventType.PRODUCT_UPDATED).subscribe(async ({ sku }) => {
         const product = await DataService.getProductBySku(sku);
         if (product) {
-          // A. Enqueue Vectorization
-          await TaskQueueService.addTask('vectorization', { sku: product.sku });
+          // A. Enqueue Vectorization ONLY IF MISSING
+          if (!product.vectores || product.vectores.length === 0) {
+            await TaskQueueService.addTask('vectorization', { sku: product.sku });
+          }
 
           // B. Enqueue Synergy Analysis if needed
           const now = Date.now();

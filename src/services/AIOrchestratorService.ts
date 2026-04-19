@@ -112,6 +112,7 @@ export class AIOrchestratorService {
 
         // 5. Liberar y guardar
         updatedProduct.last_updated = Date.now();
+        await DataService.saveProduct(updatedProduct, { silent: true });
         await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
 
         // 6. PAUSA DE SEGURIDAD: Evitar sobrecalentamiento procesando a ráfagas con descanso

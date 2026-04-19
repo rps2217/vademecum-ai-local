@@ -92,6 +92,6 @@ export class VectorBackgroundService {
       ...product,
       vectores: vectors,
       last_updated: Date.now()
-    });
+    }, { silent: true });
   }
 }

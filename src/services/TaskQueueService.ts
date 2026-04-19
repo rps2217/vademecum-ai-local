@@ -11,23 +11,33 @@ export interface PendingTask {
   lastError?: string;
 }
 
+interface AddTaskOptions {
+  deduplicate?: boolean;
+}
+
 export const TaskQueueService = {
-  addTask: async (type: 'firebase_sync' | 'ai_analysis' | 'vectorization', payload: any) => {
+  addTask: async (type: 'firebase_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true }) => {
     try {
       const db = await waitForDB();
       if (!db) throw new Error('DB not initialized');
       
-      // Deduplicación simple: si es una tarea de sync para el mismo SKU, no duplicar si ya está pendiente
-      if (type === 'firebase_sync' && payload.sku) {
+      const sku = payload.sku || (type === 'firebase_sync' ? payload.sku : null);
+
+      // Deduplicación mejorada: si ya hay una tarea del mismo tipo para el mismo SKU pendiente, no duplicar
+      if (options.deduplicate && sku) {
         const existing = await db.pending_tasks.findOne({
           selector: {
-            type: 'firebase_sync',
+            type,
             status: 'pending',
-            'payload.sku': payload.sku
+            $or: [
+              { 'payload.sku': sku },
+              { 'payload.product.sku': sku }
+            ]
           }
         }).exec();
 
         if (existing) {
+          // Si ya existe, actualizamos el timestamp para darle prioridad si es necesario, pero no creamos otra
           await existing.incrementalPatch({ timestamp: Date.now() });
           return;
         }
