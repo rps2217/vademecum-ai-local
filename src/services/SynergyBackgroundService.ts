@@ -2,9 +2,8 @@ import { Product } from '../core/types/product.types';
 import { AIService } from './AIService';
 import { GeminiService } from './GeminiService';
 import { OllamaService } from './OllamaService';
-import { FirebaseSyncService } from './FirebaseSyncService';
+import { CloudSyncService } from './CloudSyncService';
 import { formatArrayToString } from '../utils/formatters';
-import { auth } from '../firebase';
 import { ConfigService } from './ConfigService';
 import { DataService } from './DataService';
 import { TaskQueueService } from './TaskQueueService';
@@ -12,7 +11,6 @@ import { EventBus, EventType } from './EventBus';
 
 export class SynergyBackgroundService {
   private static isRunning = false;
-  private static intervalId: number | null = null;
   private static isFatalError = false;
   private static currentProcessingSku: string | null = null;
   private static currentProcessingName: string | null = null;
@@ -29,7 +27,6 @@ export class SynergyBackgroundService {
   }
 
   private static notifyListeners() {
-    // Emitir evento global a través del EventBus
     EventBus.emit(EventType.SYNERGY_STATUS_CHANGED, this.getStatus());
   }
 
@@ -39,7 +36,6 @@ export class SynergyBackgroundService {
     if (this.isInitialized) return;
     this.isInitialized = true;
 
-    // Escuchar cambios en la configuración para arrancar/parar el motor
     window.addEventListener('config_updated', (e: any) => {
       const newConfig = e.detail;
       if (newConfig.enableBackgroundSynergy) {
@@ -49,10 +45,6 @@ export class SynergyBackgroundService {
       }
     });
 
-    // Intentar arranque inicial
-    // Ya no iniciamos el loop propio (processNext), confiaremos en que el TaskProcessorService 
-    // y los eventos de la DB alimenten la cola si es necesario, 
-    // o simplemente mantenemos la capacidad de forceAnalyze.
     this.isRunning = true;
   }
 
@@ -67,10 +59,8 @@ export class SynergyBackgroundService {
   static async forceAnalyze(product: Product) {
     if (!product) return false;
     
-    // Si ya estamos procesando algo, no interrumpir.
     if (this.currentProcessingSku) {
-      console.log(`[SynergyService] Ocupado con ${this.currentProcessingSku}, no se puede forzar ${product.sku} ahora.`);
-      // Encolar para después si es forzado pero no se puede ahora
+      console.log(`[SynergyService] Ocupado con ${this.currentProcessingSku}, encolando ${product.sku}.`);
       await TaskQueueService.addTask('ai_analysis', { sku: product.sku, type: 'synergy' });
       return false;
     }
@@ -80,38 +70,23 @@ export class SynergyBackgroundService {
     return true;
   }
 
-  // Eliminado processNext() loop propio para unificarse con TaskProcessorService
-  // ... rest of the file ...
-
   private static async processProduct(product: Product, isForced: boolean = false) {
     try {
       const status = AIService.getStatus();
       const now = Date.now();
-      const userId = auth.currentUser?.uid || 'local-user'; // Fallback for local forced execution
 
-      if (!isForced && !auth.currentUser?.uid) return;
-
-      // Intentar adquirir el candado en Firebase
-      let lockAcquired = false;
-      // Skip locking if quota is already exhausted
-      if (auth.currentUser?.uid && !FirebaseSyncService.quota_exhausted) {
-        lockAcquired = await FirebaseSyncService.claimProductLock(product.sku, userId);
-      }
+      // En la arquitectura centralizada en el backend con Supabase, 
+      // el bloqueo es implícito mediante el guardado atómico en SQLite/Postgres.
+      // Para evitar colisiones locales, usamos el estado currentProcessingSku.
       
-      // If we are not in forced mode and couldn't acquire lock, skip (only if cloud is enabled)
-      if (!lockAcquired && !isForced && !FirebaseSyncService.quota_exhausted) {
-        console.log(`[SynergyService] Producto ${product.sku} está siendo procesado por otro nodo o no está en la nube. Buscando otro...`);
-        return;
-      }
-
       this.currentProcessingSku = product.sku;
       this.currentProcessingName = product.nombre_comercial;
       this.notifyListeners();
 
       console.log(`[SynergyService] Iniciando análisis de sinergias para: ${product.nombre_comercial} (Forzado: ${isForced})`);
       
-      // Actualizar en el Backend con el candado
-      await DataService.saveProduct({ ...product, lock_uid: userId, lock_timestamp: now }, { silent: true });
+      // Actualizar localmente que estamos procesando (opcional)
+      // await DataService.saveProduct({ ...product, last_synergy_analysis: now }, { silent: true });
 
       // 1. Encontrar candidatos por similitud semántica (Local Embeddings)
       let mainVector = product.vectores;
@@ -148,8 +123,7 @@ export class SynergyBackgroundService {
           sugerencia_complementaria: "No se encontraron complementos directos en la base local.",
           skus_relacionados: []
         };
-        await DataService.saveProduct(updatedProduct, { silent: true });
-        await FirebaseSyncService.releaseProductLockAndSave(updatedProduct);
+        await CloudSyncService.releaseProductLockAndSave(updatedProduct);
         this.clearCurrent();
         return;
       }
@@ -158,7 +132,6 @@ export class SynergyBackgroundService {
       let synergyResult;
       const isOllamaAvailable = await OllamaService.isAvailable();
 
-      // PRIORIDAD 1: Ollama (Poder total local)
       if (isOllamaAvailable) {
         this.setActiveEngine('Ollama (Local Externo)');
         try {
@@ -173,7 +146,6 @@ export class SynergyBackgroundService {
         }
       }
 
-      // PRIORIDAD 2: Gemini (Si está activo)
       if (!synergyResult) {
         const config = ConfigService.getConfig();
         if (config.useGeminiForSynergy) {
@@ -192,7 +164,6 @@ export class SynergyBackgroundService {
         }
       }
 
-      // PRIORIDAD 3: IA Local Browser (WebLLM)
       if (!synergyResult && status.isReady) {
         this.setActiveEngine('WebLLM (Interno GPU)');
         try {
@@ -237,11 +208,8 @@ export class SynergyBackgroundService {
         skus_relacionados: synergyResult.skus_relacionados
       };
 
-      await DataService.saveProduct(finalProduct, { silent: true });
-      await FirebaseSyncService.releaseProductLockAndSave(finalProduct);
-      
+      await CloudSyncService.releaseProductLockAndSave(finalProduct);
       console.log(`[SynergyService] Sinergia completada para ${product.nombre_comercial}`);
-      // Eliminado dispatch individual de db_updated para evitar sobrecarga del main thread (re-indexación masiva)
 
     } catch (error) {
       console.error(`[SynergyService] Error procesando ${product.sku}:`, error);
@@ -268,9 +236,9 @@ export class SynergyBackgroundService {
     let normA = 0;
     let normB = 0;
     for (let i = 0; i < vecA.length; i++) {
-      dotProduct += vecA[i] * vecB[i];
-      normA += vecA[i] * vecA[i];
-      normB += vecB[i] * vecB[i];
+        dotProduct += vecA[i] * vecB[i];
+        normA += vecA[i] * vecA[i];
+        normB += vecB[i] * vecB[i];
     }
     return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
   }

@@ -53,7 +53,7 @@ export const UserMenu: React.FC = () => {
             {isAdmin ? 'Administrador' : 'Profesional'}
           </p>
           <p className="text-xs font-bold text-white leading-none truncate max-w-[120px]">
-            {user.displayName || user.email}
+            {user.email || 'Profesional'}
           </p>
         </div>
         <button

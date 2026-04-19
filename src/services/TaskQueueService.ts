@@ -3,7 +3,7 @@ import { EventBus, EventType } from './EventBus';
 
 export interface PendingTask {
   id: string;
-  type: 'firebase_sync' | 'ai_analysis' | 'vectorization';
+  type: 'firebase_sync' | 'cloud_sync' | 'ai_analysis' | 'vectorization';
   payload: any;
   timestamp: number;
   status: 'pending' | 'processing' | 'failed';
@@ -16,12 +16,12 @@ interface AddTaskOptions {
 }
 
 export const TaskQueueService = {
-  addTask: async (type: 'firebase_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true }) => {
+  addTask: async (type: 'firebase_sync' | 'cloud_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true }) => {
     try {
       const db = await waitForDB();
       if (!db) throw new Error('DB not initialized');
       
-      const sku = payload.sku || (type === 'firebase_sync' ? payload.sku : null);
+      const sku = payload.sku || (type === 'firebase_sync' || type === 'cloud_sync' ? payload.sku : null);
 
       // Deduplicación mejorada: si ya hay una tarea del mismo tipo para el mismo SKU pendiente, no duplicar
       if (options.deduplicate && sku) {

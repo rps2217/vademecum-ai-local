@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Search, Database, Settings, Loader2, Command, Activity, ShieldAlert, Monitor, Globe, Share2 } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { AIService } from '../../services/AIService';
-import { FirebaseSyncService } from '../../services/FirebaseSyncService';
+import { CloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
@@ -59,7 +59,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
   useEffect(() => {
     if (isAccessGranted) {
-      FirebaseSyncService.init(); // Inicialización reactiva
+      CloudSyncService.init(); // Inicialización reactiva
     }
   }, [isAccessGranted]);
 

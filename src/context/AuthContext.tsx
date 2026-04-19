@@ -1,10 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut, signInAnonymously } from 'firebase/auth';
-import { auth, db, handleFirestoreError, OperationType } from '../firebase';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 interface AuthContextType {
-  user: User | null;
+  user: { uid: string; email?: string } | null;
   loading: boolean;
   isAdmin: boolean;
   isAccessGranted: boolean;
@@ -17,8 +14,12 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const SYSTEM_ACCESS_KEY = 'rps241061';
 
+/**
+ * AuthProvider simplificado tras migración a Supabase.
+ * Actualmente se enfoca en el acceso profesional mediante clave.
+ */
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<{ uid: string; email?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAccessGranted, setIsAccessGranted] = useState(() => {
@@ -26,49 +27,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (!currentUser) {
-        try {
-          await signInAnonymously(auth);
-        } catch (error) {
-          console.error("Anonymous auth failed:", error);
-          setLoading(false);
-        }
-        return;
-      }
-
-      setUser(currentUser);
-      
-      if (currentUser && !currentUser.isAnonymous) {
-        // Sync user profile to Firestore only for Google users
-        const userRef = doc(db, 'users', currentUser.uid);
-        try {
-          const userDoc = await getDoc(userRef);
-          
-          if (!userDoc.exists()) {
-            await setDoc(userRef, {
-              uid: currentUser.uid,
-              email: currentUser.email,
-              displayName: currentUser.displayName,
-              role: 'user', // Default role
-              createdAt: serverTimestamp()
-            });
-            setIsAdmin(false);
-          } else {
-            setIsAdmin(userDoc.data()?.role === 'admin');
-          }
-        } catch (error) {
-          handleFirestoreError(error, OperationType.WRITE, `users/${currentUser.uid}`);
-        }
-      } else {
-        setIsAdmin(false);
-      }
-      
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
+    // Simulamos un usuario local para mantener la lógica de permisos activa
+    if (isAccessGranted) {
+      setUser({ uid: 'local-professional', email: 'profesional@local.vademecum' });
+      setIsAdmin(true); // El usuario con acceso profesional actúa como admin local
+    } else {
+      setUser(null);
+      setIsAdmin(false);
+    }
+    setLoading(false);
+  }, [isAccessGranted]);
 
   const grantAccess = (key: string) => {
     if (key === SYSTEM_ACCESS_KEY) {
@@ -80,20 +48,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const login = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
+    // Aquí se integraría Supabase Auth en el futuro
+    console.log("Login placeholder para Supabase Auth");
   };
 
   const logout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
+    setIsAccessGranted(false);
+    localStorage.removeItem('vademecum_access_granted');
+    setUser(null);
+    setIsAdmin(false);
   };
 
   return (

@@ -48,8 +48,15 @@ export class DataService {
     const db = await waitForDB();
     if (!db) return;
     
-    // Always save to local RxDB first
-    await db.products.upsert(product);
+    // Preparar el objeto para guardado local (marcar como no sincronizado inicialmente)
+    const localProduct: Product = {
+      ...product,
+      synced: product.synced ?? false,
+      last_synced: product.last_synced ?? Date.now()
+    };
+
+    // Always save to local RxDB first (Source of Truth for the UI)
+    await db.products.upsert(localProduct);
 
     // Try sync to server
     if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
@@ -57,15 +64,23 @@ export class DataService {
         const response = await fetch('/api/products', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(product)
+          body: JSON.stringify(localProduct)
         });
         
         if (!response.ok) throw new Error(`Sync failed with status: ${response.status}`);
         
         this.failedRequests = 0;
+
+        // Actualizar estado local a "Sincronizado"
+        await db.products.upsert({
+          ...localProduct,
+          synced: true,
+          last_synced: Date.now()
+        });
+        
       } catch (e) {
         this.failedRequests++;
-        console.error('[DataService] Sync failed:', e);
+        console.warn('[DataService] Sync failed (background retry suggested):', e);
       }
     }
 

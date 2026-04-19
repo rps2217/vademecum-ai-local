@@ -1,7 +1,6 @@
 import { AIService } from './AIService';
-import { FirebaseSyncService } from './FirebaseSyncService';
+import { CloudSyncService } from './CloudSyncService';
 import { Product } from '../core/types/product.types';
-import { auth } from '../firebase';
 import { DataService } from './DataService';
 import { TaskQueueService } from './TaskQueueService';
 

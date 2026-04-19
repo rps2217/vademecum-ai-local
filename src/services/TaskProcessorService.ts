@@ -1,10 +1,11 @@
 import { TaskQueueService, PendingTask } from './TaskQueueService';
-import { FirebaseSyncService } from './FirebaseSyncService';
+import { CloudSyncService } from './CloudSyncService';
 import { SynergyBackgroundService } from './SynergyBackgroundService';
 import { VectorBackgroundService } from './VectorBackgroundService';
 import { AIOrchestratorService } from './AIOrchestratorService';
 import { EventBus, EventType } from './EventBus';
 import { waitForDB } from './DatabaseService';
+import { DataService } from './DataService';
 
 export class TaskProcessorService {
   private static isProcessing = false;
@@ -75,8 +76,9 @@ export class TaskProcessorService {
 
     try {
       switch (task.type) {
-        case 'firebase_sync':
-          await FirebaseSyncService.updateProductsBatch([task.payload]);
+        case 'cloud_sync':
+        case 'firebase_sync': // Mantener alias para compatibilidad con tareas encoladas
+          await CloudSyncService.updateProductsBatch([task.payload]);
           AIOrchestratorService.trackActivity(10);
           break;
         
@@ -120,7 +122,3 @@ export class TaskProcessorService {
     }
   }
 }
-
-// Para evitar dependencias circulares, necesitamos asegurar que DataService esté disponible
-// Usaremos importación dinámica o inyección si es necesario, pero por ahora asumimos disponibilidad.
-import { DataService } from './DataService';

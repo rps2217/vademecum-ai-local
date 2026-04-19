@@ -6,7 +6,7 @@ import TurndownService from 'turndown';
 import fs from 'fs';
 import Database from 'better-sqlite3';
 import path from 'path';
-import admin from 'firebase-admin';
+import { createClient } from '@supabase/supabase-js';
 
 // Initialize SQLite
 const db = new Database('vademecum.sqlite');
@@ -18,20 +18,25 @@ db.prepare(`
   )
 `).run();
 
-// Initialize Firebase Admin de forma segura
-let firestore: any = null;
+// Initialize Supabase Admin de forma segura (Server-side bypass RLS)
+let supabase: any = null;
 try {
-  if (process.env.FIREBASE_PROJECT_ID) {
-    admin.initializeApp({
-      credential: admin.credential.applicationDefault(),
-      databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
+  const supabaseUrl = process.env.VITE_SUPABASE_URL;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (supabaseUrl && supabaseServiceKey) {
+    supabase = createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false
+      }
     });
-    firestore = admin.firestore();
+    console.log('Supabase Admin initialized successfully.');
   } else {
-    console.warn('FIREBASE_PROJECT_ID is missing, cloud sync disabled in backend.');
+    console.warn('Supabase credentials missing, cloud sync disabled in backend.');
   }
 } catch (e) {
-  console.error('Failed to initialize Firebase Admin:', e);
+  console.error('Failed to initialize Supabase Admin:', e);
 }
 
 const LOG_FILE = 'server_debug.log';
@@ -125,14 +130,22 @@ async function startServer() {
     db.prepare('INSERT OR REPLACE INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)')
       .run(product.sku, product.nombre_comercial, JSON.stringify(product));
     
-    // Sync to Firestore
+    // Sync to Supabase
     try {
-      if (firestore) {
-        await firestore.collection('products').doc(product.sku).set(product);
+      if (supabase) {
+        const { error } = await supabase
+          .from('products')
+          .upsert({ 
+            sku: product.sku, 
+            nombre_comercial: product.nombre_comercial,
+            data: product,
+            last_updated: new Date().toISOString()
+          }, { onConflict: 'sku' });
+        
+        if (error) log(`[API] Supabase sync error: ${error.message}`);
       }
     } catch (err) {
-      log(`[API] Firebase sync error: ${err}`);
-      // Do not fail the request, SQLite is the source of truth
+      log(`[API] Supabase unexpected error: ${err}`);
     }
     
     res.json({ success: true });
@@ -142,14 +155,17 @@ async function startServer() {
     const sku = req.params.sku;
     db.prepare('DELETE FROM products WHERE sku = ?').run(sku);
     
-    // Sync to Firestore
+    // Sync to Supabase
     try {
-      if (firestore) {
-        await firestore.collection('products').doc(sku).delete();
+      if (supabase) {
+        const { error } = await supabase
+          .from('products')
+          .delete()
+          .eq('sku', sku);
+        if (error) log(`[API] Supabase delete sync error: ${error.message}`);
       }
     } catch (err) {
-      log(`[API] Firebase delete sync error: ${err}`);
-      // Do not fail the request
+      log(`[API] Supabase delete unexpected error: ${err}`);
     }
 
     res.json({ success: true });

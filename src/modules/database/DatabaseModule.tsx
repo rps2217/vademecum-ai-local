@@ -6,7 +6,7 @@ import {
   ChevronLeft, ChevronRight, Download,
   Search, Monitor, CloudUpload, Info, AlertCircle
 } from 'lucide-react';
-import { FirebaseSyncService } from '../../services/FirebaseSyncService';
+import { CloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
 
 const ITEMS_PER_PAGE = 50;
@@ -14,7 +14,7 @@ const ITEMS_PER_PAGE = 50;
 export const DatabaseModule: React.FC = () => {
   const { isAdmin } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
-  const [cloudCount, setCloudCount] = useState<number | null | 'quota-exceeded'>(null);
+  const [cloudCount, setCloudCount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
@@ -27,7 +27,7 @@ export const DatabaseModule: React.FC = () => {
     try {
       const allProducts = await DataService.getAllProducts();
       setProducts(allProducts);
-      FirebaseSyncService.getCloudCount().then(setCloudCount).catch(console.error);
+      CloudSyncService.getCloudCount().then(setCloudCount).catch(console.error);
     } catch (error) {
       console.error('Error cargando DB:', error);
     } finally {
@@ -64,11 +64,11 @@ export const DatabaseModule: React.FC = () => {
 
   const handleSyncToCloud = async () => {
     setIsSyncing(true);
-    setSyncStatus('Respaldando en la nube...');
+    setSyncStatus('Respaldando en la nube (Supabase)...');
     try {
-      const count = await FirebaseSyncService.uploadLocalProducts();
+      const count = await CloudSyncService.uploadLocalProducts();
       setSyncStatus(`Respaldo completado: ${count} productos.`);
-      setCloudCount(await FirebaseSyncService.getCloudCount());
+      setCloudCount(await CloudSyncService.getCloudCount());
     } finally {
       setIsSyncing(false);
       setTimeout(() => setSyncStatus(null), 3000);

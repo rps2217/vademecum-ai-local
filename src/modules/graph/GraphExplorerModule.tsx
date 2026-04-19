@@ -8,7 +8,7 @@ import {
   Sparkles, Info, Maximize2, X, Zap,
   Cloud, CloudOff, Database, CheckCircle2 
 } from 'lucide-react';
-import { FirebaseSyncService } from '../../services/FirebaseSyncService';
+import { CloudSyncService } from '../../services/CloudSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -64,8 +64,8 @@ export const GraphExplorerModule: React.FC = () => {
     const load = async () => {
       const all = await DataService.getAllProducts();
       setProducts(all);
-      const cloudOk = await FirebaseSyncService.checkCloudData();
-      setIsCloudReady(cloudOk && !FirebaseSyncService.quota_exhausted);
+      const cloudOk = await CloudSyncService.checkCloudData();
+      setIsCloudReady(cloudOk);
     };
     load();
 
@@ -324,7 +324,7 @@ export const GraphExplorerModule: React.FC = () => {
 
   const handleSmartSync = async () => {
     setIsSyncing(true);
-    // Simulate finding products without analysis
+    // Encontrar productos sin análisis
     const pending = products.filter(p => !p.synergy_analyzed);
     if (pending.length > 0) {
       for (const product of pending) {

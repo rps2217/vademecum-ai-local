@@ -46,4 +46,8 @@ export interface Product {
   is_verified?: boolean;
   verified_at?: number;
   verified_by?: string;
+
+  // Sincronización
+  synced?: boolean;
+  last_synced?: number;
 }
