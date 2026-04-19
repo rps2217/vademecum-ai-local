@@ -29,14 +29,8 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
                       query.toLowerCase().startsWith(word)
                     );
 
-  useEffect(() => {
-    if (query.length >= 2 && suggestions.length > 0) {
-      setShowSuggestions(true);
-      setHighlightedIndex(-1);
-    } else {
-      setShowSuggestions(false);
-    }
-  }, [query, suggestions.length]);
+  // Removido el useEffect que forzaba showSuggestions basado en query.length
+  // para evitar que los clicks programáticos (ej: QuickDiscoveryTags) abran el dropdown.
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -80,7 +74,15 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-brand-surface/90 backdrop-blur-sm border border-slate-700/50 rounded-2xl text-base sm:text-lg text-white shadow-xl focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary transition-all placeholder:text-slate-500"
           placeholder="Buscar o preguntar a la IA..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            if (e.target.value.length >= 2) {
+              setShowSuggestions(true);
+              setHighlightedIndex(-1);
+            } else {
+              setShowSuggestions(false);
+            }
+          }}
           onKeyDown={handleKeyDown}
           onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
           onFocus={() => query.length >= 2 && setShowSuggestions(true)}
