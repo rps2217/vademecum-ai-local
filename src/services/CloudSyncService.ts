@@ -57,26 +57,33 @@ export const CloudSyncService = {
 
         const apiUrl = '/api/products';
         let isSynced = false;
+        const useDirectMode = localStorage.getItem('force_supabase_direct') === 'true';
 
-        try {
-            console.log(`[CloudSync] POSTing to: ${window.location.origin}${apiUrl} for ${product.sku}`);
-            const response = await fetch(apiUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(product)
-            });
+        if (useDirectMode) {
+             console.log(`[CloudSync] Modo directo activo. Subiendo ${product.sku} a Supabase...`);
+             isSynced = await this.directSupabaseUpsert(product);
+        } else {
+            try {
+                console.log(`[CloudSync] POSTing to: ${window.location.origin}${apiUrl} for ${product.sku}`);
+                const response = await fetch(apiUrl, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(product)
+                });
 
-            if (response.ok) {
-                isSynced = true;
-            } else if (response.status === 404) {
-                 console.warn(`[CloudSync] API 404 Falló en local para ${product.sku}, intentando proxy directo a Supabase...`);
-                 isSynced = await this.directSupabaseUpsert(product);
-            } else {
-                 console.warn(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status}`);
+                if (response.ok) {
+                    isSynced = true;
+                } else if (response.status === 404) {
+                     console.warn(`[CloudSync] API 404. Cambiando a modo directo Supabase de forma permanente...`);
+                     localStorage.setItem('force_supabase_direct', 'true');
+                     isSynced = await this.directSupabaseUpsert(product);
+                } else {
+                     console.warn(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status}`);
+                }
+            } catch (e) {
+                console.warn(`[CloudSync] Error CORS o Red. Intentando proxy directo a Supabase...`);
+                isSynced = await this.directSupabaseUpsert(product);
             }
-        } catch (e) {
-            console.warn(`[CloudSync] Error CORS o Red. Intentando proxy directo a Supabase...`);
-            isSynced = await this.directSupabaseUpsert(product);
         }
 
         if (isSynced) {

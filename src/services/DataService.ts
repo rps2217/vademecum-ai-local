@@ -25,38 +25,11 @@ export class DataService {
     const now = Date.now();
 
     if (navigator.onLine && (now - lastFetch > 60000) && this.failedRequests < this.MAX_FAILURES) {
-      try {
-        const apiUrl = '/api/products';
-        console.log(`[DataService] Fetching from: ${window.location.origin}${apiUrl}`);
-        const response = await fetch(apiUrl);
-        if (response.ok) {
-          const cloudProducts = await response.json();
-          this.failedRequests = 0;
-          localStorage.setItem('last_cloud_fetch', now.toString());
+      // Si ya sabemos que la API no existe (ej. en Vercel), saltamos directo al fallback
+      const useDirectMode = localStorage.getItem('force_supabase_direct') === 'true';
 
-          // Solo hacer upsert si hay cambios (Evita triggers innecesarios)
-          if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
-            await db.products.bulkUpsert(cloudProducts);
-            EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
-            return cloudProducts;
-          }
-        } else if (response.status === 404) {
-             console.warn(`[DataService] API not found. Trying direct Supabase fetch...`);
-             const cloudProducts = await this.directSupabaseFetch();
-             if (cloudProducts) {
-                 this.failedRequests = 0;
-                 localStorage.setItem('last_cloud_fetch', now.toString());
-                 if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
-                     await db.products.bulkUpsert(cloudProducts);
-                     EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
-                     return cloudProducts;
-                 }
-             }
-        }
-      } catch (e) {
-        // Red de plano, o CORS error
-        this.failedRequests++;
-        console.warn(`[DataService] Red o CORS falló. Intentando Supabase directo...`);
+      if (useDirectMode) {
+        console.log(`[DataService] Direct mode active. Using Supabase fetch...`);
         const cloudProducts = await this.directSupabaseFetch();
         if (cloudProducts) {
              this.failedRequests = 0;
@@ -66,6 +39,53 @@ export class DataService {
                  EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
                  return cloudProducts;
              }
+        }
+      } else {
+        try {
+          const apiUrl = '/api/products';
+          console.log(`[DataService] Fetching from: ${window.location.origin}${apiUrl}`);
+          const response = await fetch(apiUrl);
+          
+          if (response.ok) {
+            const cloudProducts = await response.json();
+            this.failedRequests = 0;
+            localStorage.setItem('last_cloud_fetch', now.toString());
+
+            // Solo hacer upsert si hay cambios (Evita triggers innecesarios)
+            if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
+              await db.products.bulkUpsert(cloudProducts);
+              EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
+              return cloudProducts;
+            }
+          } else if (response.status === 404) {
+               console.warn(`[DataService] API not found. Switching to direct Supabase mode for future requests.`);
+               localStorage.setItem('force_supabase_direct', 'true');
+               
+               const cloudProducts = await this.directSupabaseFetch();
+               if (cloudProducts) {
+                   this.failedRequests = 0;
+                   localStorage.setItem('last_cloud_fetch', now.toString());
+                   if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
+                       await db.products.bulkUpsert(cloudProducts);
+                       EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
+                       return cloudProducts;
+                   }
+               }
+          }
+        } catch (e) {
+          // Red de plano, o CORS error
+          this.failedRequests++;
+          console.warn(`[DataService] Red o CORS falló. Intentando Supabase directo...`);
+          const cloudProducts = await this.directSupabaseFetch();
+          if (cloudProducts) {
+               this.failedRequests = 0;
+               localStorage.setItem('last_cloud_fetch', now.toString());
+               if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
+                   await db.products.bulkUpsert(cloudProducts);
+                   EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
+                   return cloudProducts;
+               }
+          }
         }
       }
     }
