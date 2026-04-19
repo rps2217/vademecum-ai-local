@@ -33,10 +33,18 @@ service cloud.firestore {
              (!('apto_diabeticos' in data) || data.apto_diabeticos is string) &&
              (!('apto_hipertensos' in data) || data.apto_hipertensos is string) &&
              (!('apto_celiacos' in data) || data.apto_celiacos is string) &&
-             (!('vectores' in data) || (data.vectores is list && data.vectores.size() <= 2000)) &&
-             (!('skus_relacionados' in data) || (data.skus_relacionados is list && data.skus_relacionados.size() <= 50)) &&
+             (!('vectores' in data) || (data.vectores is list)) &&
+             (!('skus_relacionados' in data) || (data.skus_relacionados is list)) &&
+             (!('tags_ia' in data) || (data.tags_ia is list)) &&
+             (!('categoria_principal' in data) || data.categoria_principal is string) &&
+             (!('analisis_componentes' in data) || data.analisis_componentes is string) &&
+             (!('anotaciones_componentes' in data) || data.anotaciones_componentes is map) &&
              (!('synergy_analyzed' in data) || data.synergy_analyzed is bool) &&
              (!('sugerencia_complementaria' in data) || data.sugerencia_complementaria is string) &&
+             (!('last_synergy_analysis' in data) || data.last_synergy_analysis is number) &&
+             (!('lock_uid' in data) || data.lock_uid is string) &&
+             (!('lock_timestamp' in data) || data.lock_timestamp is number) &&
+             (!('last_updated' in data) || data.last_updated is number) &&
              (!('is_verified' in data) || data.is_verified is bool);
     }
 
@@ -72,7 +80,7 @@ service cloud.firestore {
                          incoming().diff(existing()).affectedKeys().hasOnly([
                            'vectores', 'sugerencia_complementaria', 'skus_relacionados',
                            'synergy_analyzed', 'last_synergy_analysis', 'lock_uid', 'lock_timestamp',
-                           'last_updated', 'is_verified', 'verified_at', 'verified_by'
+                           'last_updated', 'is_verified', 'verified_at', 'verified_by', 'tags_ia', 'categoria_principal', 'analisis_componentes', 'anotaciones_componentes'
                          ])
                         )
                        );

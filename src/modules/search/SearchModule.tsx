@@ -6,6 +6,7 @@ import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
 import { AIAnalysisModal } from './components/AIAnalysisModal';
+import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
 import { useConsultation } from '../../context/ConsultationContext';
 import { Brain } from 'lucide-react';
 
@@ -73,27 +74,7 @@ export const SearchModule: React.FC = () => {
             onAiQuery={() => setShowAiAnalysis(true)}
           />
           {query.trim() === '' && results.length === 0 && (
-            <div className="flex flex-wrap justify-center gap-4 mt-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-              <span className="w-full text-center text-[10px] uppercase tracking-[0.3em] font-bold text-slate-600 mb-2">Búsquedas Frecuentes</span>
-              <button 
-                onClick={() => setQuery('Hipertensión')} 
-                className="px-6 py-3 rounded-2xl bg-slate-800/40 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-400 hover:text-brand-primary hover:border-brand-primary/30 transition-all uppercase tracking-widest shadow-lg"
-              >
-                Hipertensión
-              </button>
-              <button 
-                onClick={() => setQuery('Magnesio')} 
-                className="px-6 py-3 rounded-2xl bg-slate-800/40 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-400 hover:text-brand-primary hover:border-brand-primary/30 transition-all uppercase tracking-widest shadow-lg"
-              >
-                Suplementos
-              </button>
-              <button 
-                onClick={() => setQuery('Diabetes tipo 2')} 
-                className="px-6 py-3 rounded-2xl bg-slate-800/40 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-400 hover:text-brand-primary hover:border-brand-primary/30 transition-all uppercase tracking-widest shadow-lg"
-              >
-                Diabetes
-              </button>
-            </div>
+            <QuickDiscoveryTags onSelect={setQuery} />
           )}
         </div>
       </div>
