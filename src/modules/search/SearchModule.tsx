@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useProductSearch } from '../../hooks/useProductSearch';
 import { Product } from '../../core/types/product.types';
 import { ProductDetailModal } from '../product/ProductDetailModal';
@@ -11,6 +11,8 @@ import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretati
 import { useConsultation } from '../../context/ConsultationContext';
 import { Brain } from 'lucide-react';
 import { AIService } from '../../services/AIService';
+import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
+import { SearchConcept } from './components/SearchSuggestions';
 
 export const SearchModule: React.FC = () => {
   const { 
@@ -28,6 +30,36 @@ export const SearchModule: React.FC = () => {
   const { toggleProduct, isInTray } = useTray();
   const { selectedProducts } = useConsultation();
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Generar sugerencias conceptuales basadas en patologías frecuentes y moléculas en resultados
+  const conceptualSuggestions = useMemo(() => {
+    if (query.length < 2) return [];
+    const normalizedQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    
+    const concepts: SearchConcept[] = [];
+
+    // 1. Patologías comunes
+    COMMON_PATHOLOGIES.forEach(p => {
+      if (p.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(normalizedQuery)) {
+        concepts.push({ id: `path-${p}`, label: p, type: 'pathology' });
+      }
+    });
+
+    // 2. Moléculas (Principios Activos) de los resultados actuales
+    const molecules = new Set<string>();
+    results.forEach(p => {
+      p.principios_activos?.forEach(m => {
+        if (m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(normalizedQuery)) {
+          molecules.add(m);
+        }
+      });
+    });
+    Array.from(molecules).slice(0, 5).forEach(m => {
+      concepts.push({ id: `mol-${m}`, label: m, type: 'molecule' });
+    });
+
+    return concepts.slice(0, 8);
+  }, [query, results]);
 
   // Focus search input on mount and on coming back from detail
   useEffect(() => {
@@ -85,10 +117,10 @@ export const SearchModule: React.FC = () => {
               setQuery={setQuery} 
               isSearching={isSearching} 
               isInterpreting={isInterpreting}
-              suggestions={results.slice(0, 10)}
-              onSelectProduct={(product) => {
-                setSelectedProduct(product);
-                setQuery('');
+              suggestions={conceptualSuggestions}
+              onSelectConcept={(concept) => {
+                setQuery(concept.label);
+                // No abrimos detalle aquí porque es un concepto clínico, no un producto
               }}
               onAiQuery={() => setShowAiAnalysis(true)}
             />

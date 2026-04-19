@@ -501,7 +501,7 @@ async function analyzeClinical(product: any, candidates: any[], type: 'synergy' 
     if (!isReady) throw new Error('IA no lista');
 
     const isSynergy = type === 'synergy';
-    const prompt = `Actúa como un farmacéutico experto. 
+  const prompt = `Actúa como un farmacéutico experto. 
 Analiza la relación entre el producto principal y los candidatos.
 
 PRODUCTO PRINCIPAL:
@@ -517,7 +517,8 @@ TAREA: ${isSynergy ? 'Identifica SINERGIAS (productos que complementan o potenci
 REGLAS:
 1. Responde ÚNICAMENTE en formato JSON.
 2. Estructura: { "sugerencia": "breve resumen", "ids": ["sku1", "sku2"], "explicacion": "detalle clínico" }
-3. Si no hay relación clara, devuelve un JSON vacío con sugerencia "No se encontraron relaciones".
+3. IMPORTANTE: El campo 'explicacion' debe ser DIRECTO y CONCISO. Ejemplo: "El [Producto A] y el [Producto B] son sinérgicos porque [motivo corto]". Sin introducciones ni verborrea.
+4. Si no hay relación clara, devuelve un JSON vacío con sugerencia "No se encontraron relaciones".
 
 Respuesta JSON:`;
 

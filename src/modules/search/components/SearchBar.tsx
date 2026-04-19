@@ -1,7 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import { Search, Loader2, X, Sparkles } from 'lucide-react';
-import { SearchSuggestions } from './SearchSuggestions';
-import { Product } from '../../../core/types/product.types';
+import { SearchSuggestions, SearchConcept } from './SearchSuggestions';
 
 interface SearchBarProps {
   query: string;
@@ -9,8 +8,8 @@ interface SearchBarProps {
   isSearching: boolean;
   isInterpreting?: boolean;
   onAiQuery?: () => void;
-  suggestions?: Product[];
-  onSelectProduct?: (product: Product) => void;
+  suggestions?: SearchConcept[];
+  onSelectConcept?: (concept: SearchConcept) => void;
 }
 
 export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ 
@@ -20,7 +19,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
   isInterpreting, 
   onAiQuery,
   suggestions = [],
-  onSelectProduct
+  onSelectConcept
 }, ref) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -41,8 +40,8 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      if (highlightedIndex >= 0 && highlightedIndex < suggestions.length && onSelectProduct) {
-        onSelectProduct(suggestions[highlightedIndex]);
+      if (highlightedIndex >= 0 && highlightedIndex < suggestions.length && onSelectConcept) {
+        onSelectConcept(suggestions[highlightedIndex]);
         setShowSuggestions(false);
       } else if (isQuestion && onAiQuery) {
         onAiQuery();
@@ -127,8 +126,8 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           suggestions={suggestions}
           isVisible={showSuggestions}
           highlightedIndex={highlightedIndex}
-          onSelect={(p) => {
-            if (onSelectProduct) onSelectProduct(p);
+          onSelect={(concept) => {
+            if (onSelectConcept) onSelectConcept(concept);
             setShowSuggestions(false);
           }}
         />
