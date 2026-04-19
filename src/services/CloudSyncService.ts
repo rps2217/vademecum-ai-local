@@ -49,10 +49,31 @@ export const CloudSyncService = {
     if (!config.autoSyncCloud) return true;
 
     try {
-      // Enviar uno a uno o implementar endpoint bulk en backend
-      // Por ahora para compatibilidad usamos el bucle saveProduct
+      const db = await DataService.getDB();
+      if (!db) return false;
+
       for (const product of products) {
-        await DataService.saveProduct(product, { silent: true });
+        if (!navigator.onLine) break;
+
+        const response = await fetch('/api/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(product)
+        });
+        
+        if (response.ok) {
+          // Marcar como sincronizado localmente tras éxito en servidor
+          await db.products.upsert({
+            ...product,
+            synced: true,
+            last_synced: Date.now()
+          });
+          EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: true });
+          console.log(`[CloudSync] Sincronizado: ${product.sku}`);
+        } else {
+          console.warn(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status}`);
+          return false;
+        }
       }
       return true;
     } catch (error: any) {

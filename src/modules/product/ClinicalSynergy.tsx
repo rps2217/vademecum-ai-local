@@ -17,7 +17,7 @@ interface ClinicalSynergyProps {
 
 export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onProductClick }) => {
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
-  const [alternatives, setAlternatives] = useState<Product[]>([]);
+  const [alternatives, setAlternatives] = useState<{ product: Product; score: number }[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'list' | 'graph'>('list');
 
@@ -47,25 +47,33 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
 
           let score = 0;
           
-          // A. Coincidencia de Principios Activos (Bioequivalentes) - Peso alto
+          // A. Coincidencia de Principios Activos (Equivalencia Química)
           const commonPA = p.principios_activos.filter(pa => 
             product.principios_activos.includes(pa)
           );
-          if (commonPA.length > 0 && commonPA.length === product.principios_activos.length) {
-            score = 1.0; // Bioequivalente exacto
-          } else if (commonPA.length > 0) {
-            score = 0.8; // Comparte algunos principios
+          
+          if (commonPA.length > 0) {
+            // Un ratio de cuántos principios comparten sobre el total de ambos
+            const chemicalScore = commonPA.length / Math.max(product.principios_activos.length, p.principios_activos.length);
+            score = chemicalScore;
           }
 
-          // B. Similitud Semántica (Vectores) - Peso medio
+          // B. Similitud Semántica (Vectores - Intuición IA sobre uso y forma)
           if (product.vectores && p.vectores && product.vectores.length > 0) {
-            const similarity = cosineSimilarity(product.vectores, p.vectores);
-            if (similarity > 0.85) {
-              score = Math.max(score, similarity);
+            const vectorSimilarity = cosineSimilarity(product.vectores, p.vectores);
+            
+            // Si el score químico es alto, los vectores lo refuerzan. 
+            // Si no hay score químico, los vectores pueden sugerir alternativas terapéuticas de otra familia.
+            if (score > 0) {
+                // Combinar: 70% química, 30% semántica para bioequivalentes
+                score = (score * 0.7) + (vectorSimilarity * 0.3);
+            } else if (vectorSimilarity > 0.85) {
+                // Alternativa terapéutica pura por IA
+                score = vectorSimilarity * 0.9; // Penalizar ligeramente por no compartir químicos
             }
           }
 
-          if (score > 0.75) {
+          if (score > 0.6) {
             altList.push({ product: p, score });
           }
         });
@@ -73,8 +81,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
         setAlternatives(
           altList
             .sort((a, b) => b.score - a.score)
-            .slice(0, 5)
-            .map(item => item.product)
+            .slice(0, 3) // Top 3 de Equivalencia
         );
 
       } catch (error) {
@@ -124,7 +131,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
       {viewMode === 'graph' ? (
         <SynergyGraph 
           centerProduct={product}
-          relatedProducts={[...relatedProducts, ...alternatives]}
+          relatedProducts={[...relatedProducts, ...alternatives.map(a => a.product)]}
           onProductClick={onProductClick}
         />
       ) : (

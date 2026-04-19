@@ -4,10 +4,12 @@ import { Product } from '../../core/types/product.types';
 import { 
   Database, Trash2, RefreshCw, FileUp, 
   ChevronLeft, ChevronRight, Download,
-  Search, Monitor, CloudUpload, Info, AlertCircle
+  Search, Monitor, CloudUpload, Info, AlertCircle,
+  Cloud, CloudOff, CheckCircle
 } from 'lucide-react';
 import { CloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
+import { EventBus, EventType } from '../../services/EventBus';
 
 const ITEMS_PER_PAGE = 50;
 
@@ -37,6 +39,15 @@ export const DatabaseModule: React.FC = () => {
 
   useEffect(() => {
     loadData();
+
+    // Suscribirse a actualizaciones para refrescar el estado de sincronización
+    const sub = EventBus.on<any>(EventType.DB_UPDATED).subscribe(() => loadData());
+    const subProduct = EventBus.on<any>(EventType.PRODUCT_UPDATED).subscribe(() => loadData());
+
+    return () => {
+      sub.unsubscribe();
+      subProduct.unsubscribe();
+    };
   }, []);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -161,6 +172,7 @@ export const DatabaseModule: React.FC = () => {
           <table className="w-full text-left text-sm">
             <thead className="bg-slate-900 text-slate-400 border-b border-slate-700 font-bold">
               <tr>
+                <th className="px-6 py-4">Estado</th>
                 <th className="px-6 py-4">SKU</th>
                 <th className="px-6 py-4">Producto</th>
                 <th className="px-6 py-4">Compuestos</th>
@@ -169,11 +181,24 @@ export const DatabaseModule: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-slate-800">
               {isLoading ? (
-                <tr><td colSpan={4} className="p-10 text-center text-slate-500">Cargando datos...</td></tr>
+                <tr><td colSpan={5} className="p-10 text-center text-slate-500">Cargando datos...</td></tr>
               ) : currentProducts.length === 0 ? (
-                <tr><td colSpan={4} className="p-10 text-center text-slate-500">No hay registros.</td></tr>
+                <tr><td colSpan={5} className="p-10 text-center text-slate-500">No hay registros.</td></tr>
               ) : currentProducts.map(p => (
                 <tr key={p.sku} className="hover:bg-slate-800/20 transition-colors">
+                  <td className="px-6 py-4">
+                    {p.synced ? (
+                      <div className="flex items-center gap-2 text-emerald-400" title="Respaldado en la nube">
+                        <Cloud className="w-4 h-4" />
+                        <CheckCircle className="w-3 h-3" />
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-slate-600" title="Solo local (Pendiente de respaldo)">
+                        <Monitor className="w-4 h-4" />
+                        <CloudOff className="w-3 h-3 opacity-50" />
+                      </div>
+                    )}
+                  </td>
                   <td className="px-6 py-4 font-mono text-[10px] text-slate-500">{p.sku}</td>
                   <td className="px-6 py-4 font-bold text-white leading-tight">{p.nombre_comercial}</td>
                   <td className="px-6 py-4 text-slate-400 text-xs truncate max-w-[200px]">
