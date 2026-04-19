@@ -22,6 +22,7 @@ export class AIService {
   // Configurar hardware pero NO iniciar el motor
   static configure(hardware: HardwareProfile) {
     this.hardware = hardware;
+    AIOrchestratorService.configure(hardware);
   }
 
   // Iniciar el motor explícitamente (Lazy Load)

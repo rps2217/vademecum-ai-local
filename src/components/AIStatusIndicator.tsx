@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Brain, Loader2, CheckCircle2, AlertCircle, Cpu, Activity } from 'lucide-react';
+import { Brain, Loader2, CheckCircle2, AlertCircle, Cpu, Activity, Thermometer } from 'lucide-react';
 import { AIService } from '../services/AIService';
 import { AIOrchestratorService, OrchestratorStatus } from '../services/AIOrchestratorService';
 import { EventBus, EventType } from '../services/EventBus';
@@ -7,7 +7,13 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export const AIStatusIndicator: React.FC = () => {
   const [status, setStatus] = useState(AIService.getStatus());
-  const [orchestratorStatus, setOrchestratorStatus] = useState<OrchestratorStatus>({ isRunning: false, progress: 0, currentTask: '' });
+  const [orchestratorStatus, setOrchestratorStatus] = useState<OrchestratorStatus>({ 
+    isRunning: false, 
+    progress: 0, 
+    currentTask: '', 
+    thermalStress: 0, 
+    deviceTier: 'STANDARD' 
+  });
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<string | null>(null);
 
@@ -42,6 +48,25 @@ export const AIStatusIndicator: React.FC = () => {
     if (status.isReady) return <CheckCircle2 className="w-4 h-4" />;
     if (status.isInitializing) return <Loader2 className="w-4 h-4 animate-spin" />;
     return <Cpu className="w-4 h-4" />;
+  };
+
+  const getThermalColor = () => {
+    const stress = orchestratorStatus.thermalStress;
+    const tier = orchestratorStatus.deviceTier;
+    const thresholds = { ULTRA: 300, STANDARD: 150, ECO: 60 };
+    const max = thresholds[tier as keyof typeof thresholds] || 150;
+    
+    if (stress > max * 0.8) return 'text-red-500';
+    if (stress > max * 0.5) return 'text-yellow-500';
+    return 'text-emerald-500';
+  };
+
+  const getThermalWidth = () => {
+    const stress = orchestratorStatus.thermalStress;
+    const tier = orchestratorStatus.deviceTier;
+    const thresholds = { ULTRA: 400, STANDARD: 250, ECO: 100 };
+    const max = thresholds[tier as keyof typeof thresholds] || 250;
+    return `${Math.min(100, (stress / max) * 100)}%`;
   };
 
   return (
@@ -134,6 +159,30 @@ export const AIStatusIndicator: React.FC = () => {
                         </p>
                       </div>
                     )}
+
+                    <div className="mt-4 pt-4 border-t border-slate-700/50">
+                        <div className="flex justify-between items-center mb-1.5">
+                            <div className="flex items-center gap-1.5">
+                                <Thermometer className={`w-3 h-3 ${getThermalColor()}`} />
+                                <span className="text-[11px] font-bold text-slate-300">Salud Térmica</span>
+                            </div>
+                            <span className="text-[10px] font-mono text-slate-500">{orchestratorStatus.deviceTier}</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                            <motion.div 
+                                className={`h-full transition-colors duration-500 ${
+                                    getThermalColor().includes('red') ? 'bg-red-500' : 
+                                    getThermalColor().includes('yellow') ? 'bg-yellow-500' : 'bg-emerald-500'
+                                }`}
+                                initial={{ width: 0 }}
+                                animate={{ width: getThermalWidth() }}
+                                transition={{ type: 'spring', damping: 20, stiffness: 100 }}
+                            />
+                        </div>
+                        <p className="text-[9px] text-slate-500 mt-1.5 italic">
+                            {orchestratorStatus.thermalStress > 100 ? 'Ralentizando para proteger CPU...' : 'Temperatura estable.'}
+                        </p>
+                    </div>
                   </div>
                 )}
 
@@ -152,6 +201,10 @@ export const AIStatusIndicator: React.FC = () => {
             onClick={() => setIsExpanded(!isExpanded)}
             className={`flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold transition-all shadow-lg backdrop-blur-md ${getStatusColor()}`}
           >
+            <div className="flex items-center gap-1.5 pr-2 mr-2 border-r border-current opacity-80">
+                <Thermometer className={`w-3.5 h-3.5 ${getThermalColor()}`} />
+                <span className="text-[10px] font-mono">{Math.round(orchestratorStatus.thermalStress)}</span>
+            </div>
             {getStatusIcon()}
             <span>IA: {status.isReady ? 'TRABAJANDO EN CLÚSTER' : status.isInitializing ? 'CARGANDO' : 'OFFLINE'}</span>
           </motion.button>

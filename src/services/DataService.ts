@@ -1,6 +1,7 @@
 import { Product } from '../core/types/product.types';
 import { getDB, waitForDB } from './DatabaseService';
 import { EventBus, EventType } from './EventBus';
+import { TaskQueueService } from './TaskQueueService';
 
 export class DataService {
   private static failedRequests = 0;
@@ -14,77 +15,61 @@ export class DataService {
     const db = await waitForDB();
     if (!db) return [];
 
-    // Try fetching from server first (online)
-    try {
-      if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
+    // Priorizar local para velocidad del UI
+    const allLocalDocs = await db.products.find().exec();
+    const localProducts = allLocalDocs.map((p: any) => p.toJSON());
+
+    // Try fetching from server ONLY IF ONLINE and we haven't failed too much
+    // Y no lo hacemos tan seguido para ahorrar batería y cuota (Throttling)
+    const lastFetch = Number(localStorage.getItem('last_cloud_fetch') || 0);
+    const now = Date.now();
+
+    if (navigator.onLine && (now - lastFetch > 60000) && this.failedRequests < this.MAX_FAILURES) {
+      try {
         const response = await fetch('/api/products');
-        
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
-        const products = await response.json();
-        this.failedRequests = 0; // Reset on success
+        if (response.ok) {
+          const cloudProducts = await response.json();
+          this.failedRequests = 0;
+          localStorage.setItem('last_cloud_fetch', now.toString());
 
-        // Bulk insert/update into RxDB
-        await db.products.bulkUpsert(products);
-        EventBus.emit(EventType.DB_UPDATED, { products });
-        return products;
+          // Solo hacer upsert si hay cambios (Evita triggers innecesarios)
+          if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
+            await db.products.bulkUpsert(cloudProducts);
+            EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
+            return cloudProducts;
+          }
+        }
+      } catch (e) {
+        this.failedRequests++;
       }
-    } catch (e) {
-      this.failedRequests++;
-      console.warn(`[DataService] Backend no disponible o error:`, e);
     }
 
-    // Fallback to local RxDB
-    try {
-      const allProducts = await db.products.find().exec();
-      return allProducts.map((p: any) => p.toJSON());
-    } catch (e) {
-      console.error('[DataService] Error leyendo base de datos local:', e);
-      return [];
-    }
+    return localProducts;
   }
 
   static async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
     const db = await waitForDB();
     if (!db) return;
     
-    // Preparar el objeto para guardado local (marcar como no sincronizado inicialmente)
+    // 1. Change Detection: No guardar si es idéntico al local (Ahorra CPU/DB)
+    const existing = await this.getProductBySku(product.sku);
+    if (existing && JSON.stringify(existing) === JSON.stringify(product)) {
+      return;
+    }
+
     const localProduct: Product = {
       ...product,
       synced: product.synced ?? false,
       last_synced: product.last_synced ?? Date.now()
     };
 
-    // Always save to local RxDB first (Source of Truth for the UI)
+    // 2. Guardado Local Inmediato
     await db.products.upsert(localProduct);
 
-    // Try sync to server
-    if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
-      try {
-        const response = await fetch('/api/products', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(localProduct)
-        });
-        
-        if (!response.ok) throw new Error(`Sync failed with status: ${response.status}`);
-        
-        this.failedRequests = 0;
-
-        // Actualizar estado local a "Sincronizado"
-        await db.products.upsert({
-          ...localProduct,
-          synced: true,
-          last_synced: Date.now()
-        });
-        
-      } catch (e) {
-        this.failedRequests++;
-        console.warn('[DataService] Sync failed (background retry suggested):', e);
-      }
-    }
-
+    // 3. Sincronización Inteligente: Encolar tarea en lugar de fetch inmediato
+    // Esto garantiza que el UI no se bloquee y que el Thermal Guard controle la carga
     if (!options.silent) {
+       await TaskQueueService.addTask('cloud_sync', localProduct);
        EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
     }
   }

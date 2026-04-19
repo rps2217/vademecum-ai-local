@@ -35,15 +35,23 @@ export const useHardwareDetection = () => {
 
         // Determinar el tier del modelo de IA (Graceful Degradation)
         let aiModelTier: AIModelTier = 'NONE';
-        
-        // WebLLM requiere WebGPU, pero como aproximación usamos la memoria y existencia de GPU de hardware
-        // Idealmente aquí se verificaría `navigator.gpu` para WebGPU
         const supportsWebGPU = 'gpu' in navigator;
         
         if (supportsWebGPU && hasGPU && memoryGB >= 8) {
-          aiModelTier = 'HIGH'; // Capaz de correr WebLLM (ej. Llama-3-8B-Instruct-q4f32_1)
+          aiModelTier = 'HIGH'; 
         } else if (memoryGB >= 4) {
-          aiModelTier = 'LOW'; // Capaz de correr Transformers.js (ej. modelos cuantizados pequeños)
+          aiModelTier = 'LOW';
+        }
+
+        // Determinar DeviceTier para el sistema de enfriamiento universal
+        // Detectar si es móvil mediante userAgent y capacidades básicas
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        let deviceTier: HardwareProfile['deviceTier'] = 'STANDARD';
+        if (!isMobile && logicalProcessors >= 8 && memoryGB >= 16) {
+          deviceTier = 'ULTRA'; // MacBook M4, Workstations
+        } else if (isMobile || logicalProcessors <= 2 || memoryGB <= 4) {
+          deviceTier = 'ECO';   // Móviles, PDAs, PCs antiguos o de oficina básica
         }
 
         setHardware({
@@ -51,7 +59,8 @@ export const useHardwareDetection = () => {
           gpuName,
           memoryGB,
           logicalProcessors,
-          aiModelTier
+          aiModelTier,
+          deviceTier
         });
       } catch (error) {
         console.error('Error detectando hardware:', error);
@@ -60,7 +69,8 @@ export const useHardwareDetection = () => {
           hasGPU: false,
           memoryGB: 2,
           logicalProcessors: 2,
-          aiModelTier: 'NONE'
+          aiModelTier: 'NONE',
+          deviceTier: 'ECO'
         });
       } finally {
         setIsDetecting(false);

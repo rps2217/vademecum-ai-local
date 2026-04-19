@@ -6,42 +6,21 @@ import { EventBus, EventType } from './EventBus';
 import { Subscription } from 'rxjs';
 
 /**
- * Servicio de Sincronización en la Nube (Abstracción de Supabase vía Backend)
- * 
- * Este servicio orquestra la subida de datos locales al servidor,
- * el cual se encarga de persistirlos en Supabase.
+ * Sincronización Inteligente: 
+ * Implementa Change Detection para ahorrar cuota y CPU.
  */
 export const CloudSyncService = {
   sync_active: true,
-  subscription: null as Subscription | null,
 
   init: () => {
-    if (CloudSyncService.subscription) return;
-    
-    // Escuchar actualizaciones de productos para disparar sincronización reactiva
-    CloudSyncService.subscription = EventBus.on<{sku: string}>(EventType.PRODUCT_UPDATED).subscribe(async ({ sku }) => {
-      const product = await DataService.getProductBySku(sku);
-      if (product) {
-        await CloudSyncService.handleProductSync(product);
-      }
-    });
-    
-    console.log('[CloudSync] Servicio inicializado y escuchando cambios.');
+    // Ya no usamos suscripción reactiva aquí para evitar bucles.
+    // El DataService se encarga de encolar las tareas de sincronización.
+    console.log('[CloudSync] Motor de sincronización inteligente listo (modo TaskQueue).');
   },
 
   handleProductSync: async (product: Product) => {
     if (!CloudSyncService.sync_active) return;
-    
-    try {
-      const config = ConfigService.getConfig();
-      if (!config.autoSyncCloud) return;
-
-      // Usar DataService para guardar (que ya implementa la llamada al API /api/products)
-      await DataService.saveProduct(product, { silent: true });
-      
-    } catch (error: any) {
-      console.warn('[CloudSync] Fallo en sincronización reactiva:', error);
-    }
+    await TaskQueueService.addTask('cloud_sync', product);
   },
 
   getCloudCount: async (): Promise<number> => {

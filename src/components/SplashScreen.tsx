@@ -86,12 +86,21 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
              aiModelTier = 'LOW';
         }
 
-        currentHardware = { memoryGB, hasGPU, gpuName, logicalProcessors, aiModelTier };
+        // Determinar DeviceTier para el sistema de enfriamiento universal (Compatible con useHardwareDetection)
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        let deviceTier: HardwareProfile['deviceTier'] = 'STANDARD';
+        if (!isMobile && logicalProcessors >= 8 && memoryGB >= 16) {
+          deviceTier = 'ULTRA'; 
+        } else if (isMobile || logicalProcessors <= 2 || memoryGB <= 4) {
+          deviceTier = 'ECO';
+        }
+
+        currentHardware = { memoryGB, hasGPU, gpuName, logicalProcessors, aiModelTier, deviceTier };
         setHardware(currentHardware);
         
         updateStep('hardware', { 
             status: 'success', 
-            detail: `${aiModelTier === 'HIGH' ? 'GPU Detectada (Modo Rápido)' : aiModelTier === 'LOW' ? 'Modo Compatibilidad (CPU)' : 'IA Desactivada'} • ${memoryGB}GB RAM` 
+            detail: `${aiModelTier === 'HIGH' ? 'GPU Detectada (Modo Rápido)' : aiModelTier === 'LOW' ? 'Modo Compatibilidad (CPU)' : 'IA Desactivada'} • Perfil ${deviceTier}` 
         });
 
       } catch (e) {
@@ -179,7 +188,12 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
              whileHover={{ scale: 1.02 }}
              whileTap={{ scale: 0.98 }}
              onClick={() => onComplete(hardware || { 
-                memoryGB: 4, hasGPU: false, gpuName: '', logicalProcessors: 2, aiModelTier: 'NONE' 
+                memoryGB: 2, 
+                hasGPU: false, 
+                gpuName: 'Safe Mode', 
+                logicalProcessors: 1, 
+                aiModelTier: 'NONE',
+                deviceTier: 'ECO' 
              })}
              className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-medium transition-colors"
            >
