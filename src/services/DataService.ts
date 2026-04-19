@@ -6,6 +6,10 @@ export class DataService {
   private static failedRequests = 0;
   private static readonly MAX_FAILURES = 5;
 
+  static async getDB() {
+    return await waitForDB();
+  }
+
   static async getAllProducts(): Promise<Product[]> {
     const db = await waitForDB();
     if (!db) return [];

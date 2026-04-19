@@ -2,6 +2,7 @@ import { TaskQueueService, PendingTask } from './TaskQueueService';
 import { FirebaseSyncService } from './FirebaseSyncService';
 import { SynergyBackgroundService } from './SynergyBackgroundService';
 import { VectorBackgroundService } from './VectorBackgroundService';
+import { AIOrchestratorService } from './AIOrchestratorService';
 import { EventBus, EventType } from './EventBus';
 import { waitForDB } from './DatabaseService';
 
@@ -53,8 +54,12 @@ export class TaskProcessorService {
 
         await this.executeTask(task);
         
-        // Pausa entre tareas para moderar el uso de CPU/GPU
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Pausa entre tareas con Gestión Térmica Dinámica (Garantiza enfriamiento en M4)
+        const delay = AIOrchestratorService.getThermalDelay();
+        if (delay > 10000) {
+          console.warn(`[TaskProcessor] Thermal Guard activo: Esperando ${delay/1000}s para enfriar el procesador...`);
+        }
+        await new Promise(resolve => setTimeout(resolve, delay));
       } catch (error) {
         console.error('[TaskProcessor] Error critico en el bucle:', error);
         await new Promise(resolve => setTimeout(resolve, 10000));
@@ -72,6 +77,7 @@ export class TaskProcessorService {
       switch (task.type) {
         case 'firebase_sync':
           await FirebaseSyncService.updateProductsBatch([task.payload]);
+          AIOrchestratorService.trackActivity(10);
           break;
         
         case 'ai_analysis':
@@ -79,6 +85,7 @@ export class TaskProcessorService {
             const product = task.payload.product || await DataService.getProductBySku(task.payload.sku);
             if (product) {
               await SynergyBackgroundService.forceAnalyze(product);
+              AIOrchestratorService.trackActivity(50);
             }
           }
           break;
@@ -87,6 +94,7 @@ export class TaskProcessorService {
           const prodToVectorize = task.payload.product || await DataService.getProductBySku(task.payload.sku);
           if (prodToVectorize) {
             await VectorBackgroundService.vectorizeProduct(prodToVectorize);
+            AIOrchestratorService.trackActivity(30);
           }
           break;
 
