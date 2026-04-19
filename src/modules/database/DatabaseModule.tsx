@@ -10,6 +10,7 @@ import {
 import { CloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
 import { EventBus, EventType } from '../../services/EventBus';
+import { ScraperModal } from './ScraperModal';
 
 const ITEMS_PER_PAGE = 50;
 
@@ -22,6 +23,7 @@ export const DatabaseModule: React.FC = () => {
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showScraperModal, setShowScraperModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const loadData = async (isManual = false) => {
@@ -126,6 +128,11 @@ export const DatabaseModule: React.FC = () => {
         </div>
         
         <div className="flex flex-wrap gap-3">
+          {isAdmin && (
+            <button onClick={() => setShowScraperModal(true)} className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-all font-bold text-sm shadow-lg shadow-indigo-500/20">
+              <CloudUpload className="w-4 h-4" /> Scraper Auto
+            </button>
+          )}
           <input type="file" accept=".json" ref={fileInputRef} onChange={handleFileUpload} className="hidden" />
           <button onClick={() => fileInputRef.current?.click()} className="flex items-center gap-2 px-4 py-2 bg-brand-surface border border-slate-700 text-white rounded-xl hover:bg-slate-800 transition-all font-bold text-sm">
             <FileUp className="w-4 h-4 text-brand-primary" /> Importar
@@ -229,6 +236,16 @@ export const DatabaseModule: React.FC = () => {
           </div>
         )}
       </div>
+
+      {showScraperModal && (
+        <ScraperModal 
+          onClose={() => setShowScraperModal(false)}
+          onComplete={() => {
+            setShowScraperModal(false);
+            loadData();
+          }}
+        />
+      )}
     </div>
   );
 };
