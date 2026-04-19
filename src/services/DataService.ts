@@ -26,7 +26,9 @@ export class DataService {
 
     if (navigator.onLine && (now - lastFetch > 60000) && this.failedRequests < this.MAX_FAILURES) {
       try {
-        const response = await fetch('/api/products');
+        const apiUrl = '/api/products';
+        console.log(`[DataService] Fetching from: ${window.location.origin}${apiUrl}`);
+        const response = await fetch(apiUrl);
         if (response.ok) {
           const cloudProducts = await response.json();
           this.failedRequests = 0;

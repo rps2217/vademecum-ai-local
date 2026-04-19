@@ -8,7 +8,7 @@ import { Product } from '../core/types/product.types';
 addRxPlugin(RxDBMigrationPlugin);
 
 const productSchema = {
-  version: 0,
+  version: 1,
   primaryKey: 'sku',
   type: 'object',
   properties: {
@@ -40,7 +40,9 @@ const productSchema = {
     last_updated: { type: 'number' },
     is_verified: { type: 'boolean' },
     verified_at: { type: 'number' },
-    verified_by: { type: 'string' }
+    verified_by: { type: 'string' },
+    synced: { type: 'boolean' },
+    last_synced: { type: 'number' }
   },
   required: ['sku', 'nombre_comercial']
 };
@@ -62,7 +64,15 @@ export const initDB = async () => {
 
     await database.addCollections({
       products: {
-        schema: productSchema
+        schema: productSchema,
+        migrationStrategies: {
+          // Migración de v0 a v1 para añadir campos de sincronización
+          1: (oldDoc: any) => {
+            oldDoc.synced = oldDoc.synced || false;
+            oldDoc.last_synced = oldDoc.last_synced || Date.now();
+            return oldDoc;
+          }
+        }
       },
       pending_tasks: {
         schema: {

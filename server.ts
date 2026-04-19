@@ -113,42 +113,44 @@ async function startServer() {
         })
         .filter(p => p !== null && p.sku);
         
-      res.json(validProducts);
-    } catch (e: any) {
-      log(`[API] Error fetching products: ${e.message}`);
-      res.status(500).json({ error: e.message });
-    }
+    log(`[API] Fetching products results: ${validProducts.length} items`);
+    res.json(validProducts);
   });
-
-  // Montar el router inmediatamente
-  app.use('/api', apiRouter);
 
   apiRouter.post('/products', async (req, res) => {
     const product = req.body;
+    log(`[API] Attempting to save product: ${product.sku} (${product.nombre_comercial})`);
     
     // Save to SQLite
     db.prepare('INSERT OR REPLACE INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)')
       .run(product.sku, product.nombre_comercial, JSON.stringify(product));
     
     // Sync to Supabase
-    try {
-      if (supabase) {
-        const { error } = await supabase
-          .from('products')
-          .upsert({ 
-            sku: product.sku, 
-            nombre_comercial: product.nombre_comercial,
-            data: product,
-            last_updated: new Date().toISOString()
-          }, { onConflict: 'sku' });
-        
-        if (error) log(`[API] Supabase sync error: ${error.message}`);
-      }
-    } catch (err) {
-      log(`[API] Supabase unexpected error: ${err}`);
+    if (supabase) {
+        log(`[SupabaseSync] Initializing cloud sync for ${product.sku}...`);
+        try {
+            const { error } = await supabase
+                .from('products')
+                .upsert({ 
+                    sku: product.sku, 
+                    nombre_comercial: product.nombre_comercial,
+                    data: product,
+                    last_updated: new Date().toISOString()
+                }, { onConflict: 'sku' });
+            
+            if (error) {
+                log(`[SupabaseSync-ERROR] ${product.sku}: ${error.message}`);
+            } else {
+                log(`[SupabaseSync-SUCCESS] ${product.sku} backed up to cloud.`);
+            }
+        } catch (err) {
+            log(`[SupabaseSync-FATAL] ${product.sku}: ${err}`);
+        }
+    } else {
+        log(`[SupabaseSync-SKIP] ${product.sku}: Supabase not configured in backend.`);
     }
     
-    res.json({ success: true });
+    res.json({ success: true, supabase_synced: !!supabase });
   });
 
   apiRouter.delete('/products/:sku', async (req, res) => {
@@ -363,6 +365,9 @@ async function startServer() {
       res.status(500).json({ success: false, error: error.message });
     }
   });
+
+  // MOUNT ROUTER HERE - AFTER ALL DEFINITIONS
+  app.use('/api', apiRouter);
 
   // 3. CATCH-ALL API
   app.use('/api/*', (req, res) => {

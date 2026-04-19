@@ -55,7 +55,9 @@ export const CloudSyncService = {
       for (const product of products) {
         if (!navigator.onLine) break;
 
-        const response = await fetch('/api/products', {
+        const apiUrl = '/api/products';
+        console.log(`[CloudSync] POSTing to: ${window.location.origin}${apiUrl} for ${product.sku}`);
+        const response = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(product)
