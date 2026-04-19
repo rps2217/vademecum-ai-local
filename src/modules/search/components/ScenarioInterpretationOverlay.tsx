@@ -28,7 +28,7 @@ export const ScenarioInterpretationOverlay: React.FC<ScenarioInterpretationOverl
   onApplyFilters,
   onClose 
 }) => {
-  if (!interpretation.isScenario) return null;
+  if (!interpretation || !interpretation.isScenario) return null;
 
   return (
     <motion.div 
