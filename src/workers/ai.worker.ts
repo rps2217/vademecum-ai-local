@@ -19,6 +19,7 @@ type WorkerMessage =
   | { type: 'EMBED'; payload: { text: string } }
   | { type: 'ANALYZE'; payload: { query: string; context: string } }
   | { type: 'ANALYZE_CLINICAL'; payload: { product: any; candidates: any[]; type: 'synergy' | 'alternatives' } }
+  | { type: 'INTERPRET_SEARCH'; payload: { query: string } }
   | { type: 'STANDARDIZE_TAGS'; payload: { tags: string[] } }
   | { type: 'HEALTH_CHECK' }
   | { type: 'PURGE_CACHE' };
@@ -42,6 +43,9 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         break;
       case 'ANALYZE_CLINICAL':
         await analyzeClinical(msg.payload.product, msg.payload.candidates, msg.payload.type);
+        break;
+      case 'INTERPRET_SEARCH':
+        await interpretSearch(msg.payload.query);
         break;
       case 'STANDARDIZE_TAGS':
         await standardizeTags(msg.payload.tags);
@@ -564,6 +568,64 @@ Respuesta JSON:`;
         }
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });
+    }
+}
+
+async function interpretSearch(query: string) {
+    if (!isReady) throw new Error('IA no lista');
+
+    const prompt = `Analiza esta consulta de búsqueda farmacéutica para identificar la intención clínica.
+CONSULTA: "${query}"
+
+Tu tarea es extraer:
+1. Síntomas o condiciones mencionadas.
+2. Factores de riesgo o contraindicaciones implícitas (ej: si dice paciente hipertenso).
+3. Una lógica clínica de búsqueda (ej: evitar descongestionantes sistémicos).
+4. Sugerencia de filtros de seguridad.
+
+REGLAS:
+1. Responde ÚNICAMENTE en JSON.
+2. Estructura: { 
+    "isScenario": boolean, 
+    "symptoms": string[], 
+    "risks": string[], 
+    "logic": "explicación breve",
+    "suggestedFilters": { "avoid": string[], "prefer": string[] } 
+}
+3. isScenario debe ser true si el usuario describe un paciente o una situación clínica compleja.
+
+Respuesta JSON:`;
+
+    try {
+        let content = '';
+        if (webLlmEngine) {
+            const response = await webLlmEngine.chat.completions.create({
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.1,
+            });
+            content = response.choices[0].message.content || '{}';
+        } else if (transformersPipeline) {
+            const messages = [
+                { role: 'system', content: 'You are a clinical reasoning engine. Respond ONLY with JSON.' },
+                { role: 'user', content: prompt }
+            ];
+            const promptText = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
+            const result = await transformersPipeline(promptText, { max_new_tokens: 512, temperature: 0.1 });
+            const genText = result[0].generated_text;
+            content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
+        }
+
+        const jsonBlocks = extractJsonBlocks(content);
+        let parsed = null;
+
+        if (jsonBlocks.length > 0) {
+            const rawJson = jsonBlocks[0].replace(/```json/g, '').replace(/```/g, '').trim();
+            parsed = tryParseJson(rawJson);
+        }
+
+        self.postMessage({ type: 'INTERPRET_SEARCH_RESULT', payload: parsed || { isScenario: false } });
+    } catch (e: any) {
+        self.postMessage({ type: 'INTERPRET_SEARCH_RESULT', payload: { isScenario: false, error: e.message } });
     }
 }
 

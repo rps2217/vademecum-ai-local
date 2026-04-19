@@ -354,6 +354,22 @@ export class AIService {
     }
   }
 
+  static async interpretClinicalSearch(query: string): Promise<any> {
+    if (!this.worker || !this.isReady) return { isScenario: false };
+
+    return new Promise((resolve) => {
+      const handler = (e: MessageEvent) => {
+        const { type: resType, payload } = e.data;
+        if (resType === 'INTERPRET_SEARCH_RESULT') {
+          this.worker?.removeEventListener('message', handler);
+          resolve(payload);
+        }
+      };
+      this.worker?.addEventListener('message', handler);
+      this.worker?.postMessage({ type: 'INTERPRET_SEARCH', payload: { query } });
+    });
+  }
+
   static cosineSimilarity(vecA: number[], vecB: number[]): number {
     if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
     let dotProduct = 0;

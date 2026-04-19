@@ -7,8 +7,10 @@ import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
 import { AIAnalysisModal } from './components/AIAnalysisModal';
 import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
+import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretationOverlay';
 import { useConsultation } from '../../context/ConsultationContext';
 import { Brain } from 'lucide-react';
+import { AIService } from '../../services/AIService';
 
 export const SearchModule: React.FC = () => {
   const { 
@@ -20,9 +22,38 @@ export const SearchModule: React.FC = () => {
   
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
+  const [interpretation, setInterpretation] = useState<any>(null);
+  const [isInterpreting, setIsInterpreting] = useState(false);
+  
   const { toggleProduct, isInTray } = useTray();
   const { selectedProducts } = useConsultation();
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Efecto para interpretación clínica semántica
+  useEffect(() => {
+    if (query.length < 20) {
+      setInterpretation(null);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsInterpreting(true);
+      try {
+        const result = await AIService.interpretClinicalSearch(query);
+        if (result && result.isScenario) {
+          setInterpretation(result);
+        } else {
+          setInterpretation(null);
+        }
+      } catch (err) {
+        console.error('Error interpretando consulta:', err);
+      } finally {
+        setIsInterpreting(false);
+      }
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, [query]);
 
   useEffect(() => {
     if (searchInputRef.current) {
@@ -43,7 +74,6 @@ export const SearchModule: React.FC = () => {
   return (
     <div className="w-full max-w-[1000px] mx-auto pb-20 px-4 sm:px-6 lg:px-8 relative min-h-[70vh] flex flex-col pt-10">
       
-      {/* Sección principal de búsqueda (Google Style) */}
       <div className={`transition-all duration-1000 ease-in-out flex flex-col items-center justify-center ${query.trim() === '' && results.length === 0 ? 'mt-[15vh]' : 'mt-0 mb-8'}`}>
         
         {query.trim() === '' && results.length === 0 && (
@@ -71,6 +101,7 @@ export const SearchModule: React.FC = () => {
             query={query} 
             setQuery={setQuery} 
             isSearching={isSearching} 
+            isInterpreting={isInterpreting}
             onAiQuery={() => setShowAiAnalysis(true)}
           />
           {query.trim() === '' && results.length === 0 && (
@@ -79,9 +110,18 @@ export const SearchModule: React.FC = () => {
         </div>
       </div>
 
-      {/* Resultados */}
+      {/* Resultados e Interpretación */}
       {query.trim() !== '' && (
         <div className="mt-6 flex-1 animate-in fade-in duration-500">
+          <ScenarioInterpretationOverlay 
+            interpretation={interpretation}
+            onClose={() => setInterpretation(null)}
+            onApplyFilters={(f) => {
+              // Por ahora solo cerramos, en el futuro esto podría filtrar los resultados
+              setInterpretation(null);
+            }}
+          />
+          
           <SearchResults 
             results={results}
             query={query}

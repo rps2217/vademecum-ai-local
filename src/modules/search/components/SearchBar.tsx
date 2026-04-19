@@ -5,10 +5,11 @@ interface SearchBarProps {
   query: string;
   setQuery: (query: string) => void;
   isSearching: boolean;
+  isInterpreting?: boolean;
   onAiQuery?: () => void;
 }
 
-export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, setQuery, isSearching, onAiQuery }, ref) => {
+export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, setQuery, isSearching, isInterpreting, onAiQuery }, ref) => {
   const isQuestion = query.trim().endsWith('?') || 
                     ['¿', 'como', 'qué', 'que', 'para', 'cuál', 'cual', 'donde', 'dónde'].some(word => 
                       query.toLowerCase().startsWith(word)
@@ -17,12 +18,14 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ query, 
   return (
     <div className="relative mb-4 group">
       {/* Borde con gradiente animado */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-primary via-emerald-400 to-brand-accent rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+      <div className={`absolute -inset-0.5 bg-gradient-to-r from-brand-primary via-emerald-400 to-brand-accent rounded-2xl blur transition duration-500 ${isInterpreting ? 'opacity-60 animate-pulse' : 'opacity-20 group-hover:opacity-40'}`}></div>
       
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           {isSearching ? (
             <Loader2 className="h-5 w-5 text-brand-primary animate-spin" />
+          ) : isInterpreting ? (
+            <Sparkles className="h-5 w-5 text-brand-primary animate-pulse" />
           ) : (
             <Search className="h-5 w-5 text-brand-primary/70 group-focus-within:text-brand-primary transition-colors" />
           )}
