@@ -49,12 +49,9 @@ export const useProductSearch = () => {
         }
 
         searchIndex.current = allProducts
-          .filter(p => p && p.sku) // Defensa extrema contra nulos
-          .map((product: Product) => ({
-            sku: product.sku,
-            product,
-            vector: product.vectores,
-            searchableText: normalizeText(`
+          .filter(p => p && p.sku)
+          .map((product: Product) => {
+            const searchableText = normalizeText(`
               ${product.sku || ''}
               ${product.nombre_comercial || ''} 
               ${product.categoria_principal || ''}
@@ -62,11 +59,20 @@ export const useProductSearch = () => {
               ${formatArrayToString(product.indicaciones, ' ')}
               ${formatArrayToString(product.tags_ia, ' ')}
               ${product.analisis_componentes || ''}
-            `),
-            pathologySearchableText: normalizeText(`
+            `);
+            
+            const pathologySearchableText = normalizeText(`
               ${formatArrayToString(product.indicaciones, ' ')}
-            `)
-          }));
+            `);
+
+            return {
+              sku: product.sku,
+              product,
+              vector: product.vectores,
+              searchableText,
+              pathologySearchableText
+            };
+          });
       } catch (error) {
         console.warn('Índice de búsqueda cargado parcialmente o vacío debido a error de datos:', error);
       } finally {

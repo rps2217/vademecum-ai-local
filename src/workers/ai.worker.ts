@@ -623,9 +623,30 @@ Respuesta JSON:`;
             parsed = tryParseJson(rawJson);
         }
 
-        self.postMessage({ type: 'INTERPRET_SEARCH_RESULT', payload: parsed || { isScenario: false } });
+        if (parsed) {
+            // Asegurar estructura completa y valores seguros
+            const safePayload = {
+                isScenario: !!parsed.isScenario,
+                symptoms: Array.isArray(parsed.symptoms) ? parsed.symptoms : [],
+                risks: Array.isArray(parsed.risks) ? parsed.risks : [],
+                logic: typeof parsed.logic === 'string' ? parsed.logic : '',
+                suggestedFilters: {
+                    avoid: Array.isArray(parsed.suggestedFilters?.avoid) ? parsed.suggestedFilters.avoid : [],
+                    prefer: Array.isArray(parsed.suggestedFilters?.prefer) ? parsed.suggestedFilters.prefer : []
+                }
+            };
+            self.postMessage({ type: 'INTERPRET_SEARCH_RESULT', payload: safePayload });
+        } else {
+            self.postMessage({ 
+                type: 'INTERPRET_SEARCH_RESULT', 
+                payload: { isScenario: false, symptoms: [], risks: [], logic: '', suggestedFilters: { avoid: [], prefer: [] } } 
+            });
+        }
     } catch (e: any) {
-        self.postMessage({ type: 'INTERPRET_SEARCH_RESULT', payload: { isScenario: false, error: e.message } });
+        self.postMessage({ 
+            type: 'INTERPRET_SEARCH_RESULT', 
+            payload: { isScenario: false, symptoms: [], risks: [], logic: '', suggestedFilters: { avoid: [], prefer: [] }, error: e.message } 
+        });
     }
 }
 

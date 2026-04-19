@@ -12,12 +12,29 @@ export const EventTracer: React.FC = () => {
     // Cargar historial inicial
     setEvents(EventBus.getHistory().reverse());
 
-    // Suscribirse a nuevos eventos
+    // Suscribirse a nuevos eventos con throttling para proteger la UI
+    let throttleTimer: number | null = null;
+    let pendingEvents: any[] = [];
+
     const sub = EventBus.all().subscribe(event => {
-      setEvents(prev => [event, ...prev.slice(0, 49)]); // Mantener últimos 50 en la vista
+      pendingEvents.push(event);
+      
+      if (!throttleTimer) {
+        throttleTimer = window.setTimeout(() => {
+          setEvents(prev => {
+            const newEvents = [...pendingEvents.reverse(), ...prev].slice(0, 50);
+            pendingEvents = [];
+            throttleTimer = null;
+            return newEvents;
+          });
+        }, 800); // Máximo una actualización visual cada 800ms
+      }
     });
 
-    return () => sub.unsubscribe();
+    return () => {
+      if (throttleTimer) window.clearTimeout(throttleTimer);
+      sub.unsubscribe();
+    };
   }, []);
 
   if (process.env.NODE_ENV === 'production') return null;

@@ -37,14 +37,17 @@ export const ConsultationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     return selectedProducts.some(p => p.sku === sku);
   }, [selectedProducts]);
 
+  // Memoizamos el valor del contexto para evitar re-renderizados innecesarios de los consumidores
+  const contextValue = React.useMemo(() => ({
+    selectedProducts,
+    addToConsultation,
+    removeFromConsultation,
+    clearConsultation,
+    isInConsultation
+  }), [selectedProducts, addToConsultation, removeFromConsultation, clearConsultation, isInConsultation]);
+
   return (
-    <ConsultationContext.Provider value={{
-      selectedProducts,
-      addToConsultation,
-      removeFromConsultation,
-      clearConsultation,
-      isInConsultation
-    }}>
+    <ConsultationContext.Provider value={contextValue}>
       {children}
     </ConsultationContext.Provider>
   );
