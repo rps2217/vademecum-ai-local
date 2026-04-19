@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
 import { DataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
+import { EventBus, EventType } from '../../services/EventBus';
 import { 
   Share2, ZoomIn, ZoomOut, RefreshCw, 
   Sparkles, Info, Maximize2, X, Zap,
   Cloud, CloudOff, Database, CheckCircle2 
 } from 'lucide-react';
-import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { FirebaseSyncService } from '../../services/FirebaseSyncService';
+import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface Node extends d3.SimulationNodeDatum {
@@ -53,23 +54,15 @@ export const GraphExplorerModule: React.FC = () => {
     };
     load();
 
-    const sub = SynergyBackgroundService.subscribe((sku, name, engine) => {
-      const globalStatus = SynergyBackgroundService.getStatus();
+    const sub = EventBus.on<any>(EventType.SYNERGY_STATUS_CHANGED).subscribe((status) => {
       setProcessingStatus({ 
-        isRunning: globalStatus.isRunning, 
-        sku, 
-        name,
-        engine
+        isRunning: status.isRunning, 
+        sku: status.currentProcessingSku, 
+        name: status.currentProcessingName,
+        engine: status.currentEngine
       });
-      if (!sku && !name) load(); 
+      if (!status.currentProcessingSku && !status.currentProcessingName) load();
     });
-
-    const handleStatusUpdate = (e: any) => {
-      const s = e.detail;
-      setProcessingStatus({ isRunning: s.isRunning, sku: s.currentProcessingSku, name: s.currentProcessingName, engine: s.currentEngine });
-    };
-
-    window.addEventListener('synergy_status_updated', handleStatusUpdate);
 
     // Escuchar actualizaciones globales de la base de datos con debounce
     let debounceTimer: any;
@@ -80,9 +73,8 @@ export const GraphExplorerModule: React.FC = () => {
     window.addEventListener('db_updated', handleDBUpdate);
 
     return () => {
-      sub();
+      sub.unsubscribe();
       window.removeEventListener('db_updated', handleDBUpdate);
-      window.removeEventListener('synergy_status_updated', handleStatusUpdate);
       clearTimeout(debounceTimer);
     };
   }, []);

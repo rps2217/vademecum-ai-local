@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Product } from '../core/types/product.types';
+import { EventBus, EventType } from '../services/EventBus';
 
 interface TrayContextType {
   tray: Product[];
@@ -25,6 +26,10 @@ export const TrayProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const clearTray = () => setTray([]);
 
   const isInTray = (sku: string) => tray.some(p => p.sku === sku);
+
+  useEffect(() => {
+    EventBus.emit(EventType.TRAY_CHANGED, { products: tray });
+  }, [tray]);
 
   return (
     <TrayContext.Provider value={{ tray, toggleProduct, clearTray, isInTray }}>

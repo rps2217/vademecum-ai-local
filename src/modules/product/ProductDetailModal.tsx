@@ -4,7 +4,6 @@ import { ClinicalSynergy } from './ClinicalSynergy';
 import { X, Sparkles, AlertCircle, ChevronLeft, Home, Lock, Key, Printer } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
 import { DataService } from '../../services/DataService';
-import { FirebaseSyncService } from '../../services/FirebaseSyncService';
 import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { ProductHeader } from './components/ProductHeader';
 import { ProductBentoGrid } from './components/ProductBentoGrid';
@@ -55,7 +54,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
       const updatedProduct = await GeminiService.reanalyzeProduct(product);
       if (updatedProduct) {
         await DataService.saveProduct(updatedProduct);
-        await FirebaseSyncService.updateProduct(updatedProduct);
         
         setProduct(updatedProduct);
         if (onUpdate) onUpdate(updatedProduct);
@@ -134,7 +132,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product:
   const handleSaveEdit = async (updatedProduct: Product) => {
     try {
       await DataService.saveProduct(updatedProduct);
-      await FirebaseSyncService.updateProduct(updatedProduct);
       
       setProduct(updatedProduct);
       if (onUpdate) onUpdate(updatedProduct);

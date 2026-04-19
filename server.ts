@@ -127,7 +127,9 @@ async function startServer() {
     
     // Sync to Firestore
     try {
-      await firestore.collection('products').doc(product.sku).set(product);
+      if (firestore) {
+        await firestore.collection('products').doc(product.sku).set(product);
+      }
     } catch (err) {
       log(`[API] Firebase sync error: ${err}`);
       // Do not fail the request, SQLite is the source of truth
@@ -142,7 +144,9 @@ async function startServer() {
     
     // Sync to Firestore
     try {
-      await firestore.collection('products').doc(sku).delete();
+      if (firestore) {
+        await firestore.collection('products').doc(sku).delete();
+      }
     } catch (err) {
       log(`[API] Firebase delete sync error: ${err}`);
       // Do not fail the request

@@ -60,18 +60,7 @@ export class VectorBackgroundService {
       }
 
       for (let i = 0; i < pending.length; i++) {
-        // Verificar si se detuvo el motor (opcional, aquí asumimos que sigue)
-        const product = pending[i];
-        const textToEmbed = `${product.nombre_comercial} ${product.principios_activos.join(' ')} ${product.indicaciones.join(' ')}`;
-        
-        const vectors = await AIService.generateEmbedding(textToEmbed);
-        
-        await DataService.saveProduct({
-          ...product,
-          vectores: vectors,
-          last_updated: Date.now()
-        });
-        
+        await this.vectorizeProduct(pending[i]);
         this.status.current = i + 1;
         if ((i + 1) % 5 === 0 || i === pending.length - 1) {
           this.addLog(`Procesados ${i + 1}/${pending.length} productos...`, 'info');
@@ -83,11 +72,23 @@ export class VectorBackgroundService {
       this.status.isProcessing = false;
       this.addLog('¡Vectorización masiva completada con éxito!', 'success');
       window.dispatchEvent(new Event('db_updated'));
-      window.dispatchEvent(new CustomEvent('vectorization_completed'));
 
     } catch (e: any) {
       this.status.isProcessing = false;
       this.addLog(`Error en vectorización: ${e.message || 'Error desconocido'}`, 'error');
     }
+  }
+
+  static async vectorizeProduct(product: any) {
+    if (!product.nombre_comercial) return;
+    
+    const textToEmbed = `${product.nombre_comercial} ${product.principios_activos?.join(' ') || ''} ${product.indicaciones?.join(' ') || ''}`;
+    const vectors = await AIService.generateEmbedding(textToEmbed);
+    
+    await DataService.saveProduct({
+      ...product,
+      vectores: vectors,
+      last_updated: Date.now()
+    });
   }
 }

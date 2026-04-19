@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Brain, Loader2, CheckCircle2, AlertCircle, Cpu, Activity } from 'lucide-react';
 import { AIService } from '../services/AIService';
-import { SynergyBackgroundService } from '../services/SynergyBackgroundService';
 import { AIOrchestratorService, OrchestratorStatus } from '../services/AIOrchestratorService';
+import { EventBus, EventType } from '../services/EventBus';
 import { motion, AnimatePresence } from 'motion/react';
 
 export const AIStatusIndicator: React.FC = () => {
@@ -17,8 +17,8 @@ export const AIStatusIndicator: React.FC = () => {
       setStatus(currentStatus);
     }, 1000);
 
-    const unsubscribeSynergy = SynergyBackgroundService.subscribe((sku, name) => {
-      setCurrentProduct(name);
+    const sub = EventBus.on<any>(EventType.SYNERGY_STATUS_CHANGED).subscribe((evt) => {
+      setCurrentProduct(evt.message || evt.currentProcessingName);
     });
 
     const unsubscribeOrchestrator = AIOrchestratorService.subscribe(status => {
@@ -27,7 +27,7 @@ export const AIStatusIndicator: React.FC = () => {
 
     return () => {
       clearInterval(interval);
-      unsubscribeSynergy();
+      sub.unsubscribe();
       unsubscribeOrchestrator();
     };
   }, []);

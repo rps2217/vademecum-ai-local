@@ -8,6 +8,7 @@ import { auth } from '../firebase';
 import { ConfigService } from './ConfigService';
 import { DataService } from './DataService';
 import { TaskQueueService } from './TaskQueueService';
+import { EventBus, EventType } from './EventBus';
 
 export class SynergyBackgroundService {
   private static isRunning = false;
@@ -16,15 +17,6 @@ export class SynergyBackgroundService {
   private static currentProcessingSku: string | null = null;
   private static currentProcessingName: string | null = null;
   private static currentEngine: string | null = null;
-  private static listeners: Array<(sku: string | null, name: string | null, engine?: string | null) => void> = [];
-
-  static subscribe(listener: (sku: string | null, name: string | null, engine?: string | null) => void) {
-    this.listeners.push(listener);
-    listener(this.currentProcessingSku, this.currentProcessingName, this.currentEngine);
-    return () => {
-      this.listeners = this.listeners.filter(l => l !== listener);
-    };
-  }
 
   static getStatus() {
     return {
@@ -37,9 +29,8 @@ export class SynergyBackgroundService {
   }
 
   private static notifyListeners() {
-    this.listeners.forEach(l => l(this.currentProcessingSku, this.currentProcessingName, this.currentEngine));
-    // Emitir evento global para que otros componentes puedan reaccionar al cambio de estado interno
-    window.dispatchEvent(new CustomEvent('synergy_status_updated', { detail: this.getStatus() }));
+    // Emitir evento global a través del EventBus
+    EventBus.emit(EventType.SYNERGY_STATUS_CHANGED, this.getStatus());
   }
 
   private static isInitialized = false;
@@ -59,27 +50,17 @@ export class SynergyBackgroundService {
     });
 
     // Intentar arranque inicial
-    this.start();
+    // Ya no iniciamos el loop propio (processNext), confiaremos en que el TaskProcessorService 
+    // y los eventos de la DB alimenten la cola si es necesario, 
+    // o simplemente mantenemos la capacidad de forceAnalyze.
+    this.isRunning = true;
   }
 
   static start() {
-    if (this.isRunning) return;
-    
-    const config = ConfigService.getConfig();
-    if (!config.enableBackgroundSynergy) return;
-
     this.isRunning = true;
-    console.log('[SynergyService] Iniciando motor de sinergia en segundo plano...');
-    
-    this.intervalId = window.setInterval(() => this.processNext(), 30000);
-    this.processNext();
   }
 
   static stop() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
     this.isRunning = false;
   }
 
@@ -89,46 +70,18 @@ export class SynergyBackgroundService {
     // Si ya estamos procesando algo, no interrumpir.
     if (this.currentProcessingSku) {
       console.log(`[SynergyService] Ocupado con ${this.currentProcessingSku}, no se puede forzar ${product.sku} ahora.`);
+      // Encolar para después si es forzado pero no se puede ahora
+      await TaskQueueService.addTask('ai_analysis', { sku: product.sku, type: 'synergy' });
       return false;
     }
 
     console.log(`[SynergyService] Análisis forzado para: ${product.nombre_comercial}`);
-    // Asegurarnos de que el producto se trate como no analizado para forzar el proceso
     await this.processProduct({ ...product, synergy_analyzed: false }, true);
     return true;
   }
 
-  private static async processNext() {
-    if (this.currentProcessingSku || this.isFatalError) return; // Ya hay uno en proceso o error fatal
-
-    const config = ConfigService.getConfig();
-    if (!config.enableBackgroundSynergy) return;
-
-    try {
-      const allProducts = await DataService.getAllProducts();
-      const now = Date.now();
-      const userId = auth.currentUser?.uid;
-
-      if (!userId) {
-        console.warn('[SynergyService] Esperando autenticación anónima para iniciar trabajo distribuido...');
-        return;
-      }
-      
-      // Buscar el siguiente producto que necesite análisis y no esté bloqueado por otro nodo
-      const nextProduct = allProducts.find(p => 
-        !p.synergy_analyzed && 
-        (!p.lock_uid || p.lock_uid === userId || (now - (p.lock_timestamp || 0)) > 5 * 60 * 1000)
-      );
-      
-      if (!nextProduct) {
-        return;
-      }
-
-      await this.processProduct(nextProduct, false);
-    } catch (error) {
-      console.error('[SynergyService] Error en ciclo de procesamiento:', error);
-    }
-  }
+  // Eliminado processNext() loop propio para unificarse con TaskProcessorService
+  // ... rest of the file ...
 
   private static async processProduct(product: Product, isForced: boolean = false) {
     try {

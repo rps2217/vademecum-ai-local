@@ -38,152 +38,116 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
   const isGroundingSource = product.source_url === 'google_search' || product.source_url?.includes('google_search');
 
   return (
-    <div className="bg-brand-surface rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-800 hover:shadow-lg hover:shadow-brand-primary/10 hover:border-brand-primary/50 transition-all group relative flex flex-col h-full">
+    <div className="group relative flex flex-col h-full bg-brand-surface rounded-[2rem] p-5 shadow-sm border border-slate-800/60 hover:border-brand-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-1">
+      {/* Glow Effect on Hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem] pointer-events-none" />
+
       <div 
-        className="flex justify-between items-start mb-2 sm:mb-3 cursor-pointer"
+        className="flex justify-between items-start mb-4 cursor-pointer relative z-10"
         onClick={() => onViewDetail?.(product)}
       >
         <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-brand-primary transition-colors truncate flex items-center gap-2">
-            <HighlightText text={product.nombre_comercial} searchTerm={searchTerm} />
+          <div className="flex items-center gap-2 mb-1">
             {product.is_verified && (
-              <span title="Verificado por Profesional">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[8px] font-bold text-emerald-400 uppercase tracking-widest">
+                <ShieldCheck className="w-2.5 h-2.5" /> Verificado
               </span>
             )}
-          </h3>
-          <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
             {product.categoria_principal && product.categoria_principal !== 'Otro' && (
-              <Badge variant="outline" className="text-[8px] sm:text-[9px] uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border-indigo-500/20 shrink-0">
+              <span className="text-[8px] font-bold text-indigo-400 uppercase tracking-widest">
                 {product.categoria_principal}
-              </Badge>
+              </span>
             )}
-            <p className="text-xs sm:text-sm text-slate-400 truncate">
-              <HighlightText text={formatArrayToString(product.principios_activos, ', ')} searchTerm={searchTerm} />
-            </p>
           </div>
-        </div>
-        <Badge variant="outline" className="text-[9px] sm:text-[10px] uppercase tracking-wider bg-brand-bg text-slate-400 border-slate-700 shrink-0 ml-2">
-          {product.sku.substring(0, 8)}
-        </Badge>
-      </div>
-
-      <div className="mb-3 sm:mb-4 flex-1 cursor-pointer flex flex-col gap-3" onClick={() => onViewDetail?.(product)}>
-        {/* Indicaciones */}
-        <div>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Indicaciones</p>
-          <p className="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed">
-            <HighlightText text={formatArrayToString(product.indicaciones, ' • ')} searchTerm={searchTerm} />
+          <h3 className="text-lg font-extrabold text-white leading-tight group-hover:text-brand-primary transition-colors">
+            <HighlightText text={product.nombre_comercial} searchTerm={searchTerm} />
+          </h3>
+          <p className="text-xs text-slate-500 font-medium mt-1 truncate">
+            <HighlightText text={formatArrayToString(product.principios_activos, ', ')} searchTerm={searchTerm} />
           </p>
         </div>
-
-        {/* Descripción */}
-        {product.descripcion && (
-          <div>
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Descripción</p>
-            <p className="text-xs sm:text-sm text-slate-400 line-clamp-3 leading-relaxed">
-              <HighlightText text={product.descripcion} searchTerm={searchTerm} />
-            </p>
-          </div>
-        )}
-
-        {/* Análisis de Componentes */}
-        {product.analisis_componentes && (
-          <div>
-            <p className="text-[10px] font-bold text-indigo-400/70 uppercase tracking-wider mb-1">Análisis de Componentes</p>
-            <p className="text-xs sm:text-sm text-slate-400 line-clamp-3 leading-relaxed">
-              <HighlightText text={product.analisis_componentes} searchTerm={searchTerm} />
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Semáforo Compacto */}
-      <div className="grid grid-cols-3 gap-1.5 sm:gap-2 mt-auto pt-3 sm:pt-4 border-t border-slate-800 cursor-pointer" onClick={() => onViewDetail?.(product)}>
-        <div className={`flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 rounded-md border text-[10px] sm:text-xs font-medium ${getSafetyColor(product.apto_embarazo)}`}>
-          {getSafetyIcon(product.apto_embarazo)}
-          <span className="truncate">Emb.</span>
-        </div>
-        <div className={`flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 rounded-md border text-[10px] sm:text-xs font-medium ${getSafetyColor(product.apto_lactancia)}`}>
-          {getSafetyIcon(product.apto_lactancia)}
-          <span className="truncate">Lact.</span>
-        </div>
-        <div className={`flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1 rounded-md border text-[10px] sm:text-xs font-medium ${getSafetyColor(product.apto_pediatria)}`}>
-          {getSafetyIcon(product.apto_pediatria)}
-          <span className="truncate">Ped.</span>
+        <div className="text-[9px] font-mono text-slate-600 bg-brand-bg px-2 py-1 rounded-lg border border-slate-800">
+          {product.sku.substring(0, 8)}
         </div>
       </div>
 
-      {/* Tags IA */}
+      <div className="mb-6 flex-1 cursor-pointer flex flex-col gap-4 relative z-10" onClick={() => onViewDetail?.(product)}>
+        {/* Indicaciones */}
+        <div>
+          <p className="clinical-label mb-1.5">Indicaciones Clínicas</p>
+          <div className="text-xs text-slate-400 line-clamp-2 leading-relaxed font-medium">
+            <HighlightText text={formatArrayToString(product.indicaciones, ' • ')} searchTerm={searchTerm} />
+          </div>
+        </div>
+
+        {/* Semáforo Integrado */}
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { label: 'Emb.', status: product.apto_embarazo },
+            { label: 'Lact.', status: product.apto_lactancia },
+            { label: 'Ped.', status: product.apto_pediatria }
+          ].map((item, i) => (
+            <div key={i} className={`flex items-center justify-between px-3 py-1.5 rounded-xl border text-[9px] font-bold tracking-tight transition-colors ${getSafetyColor(item.status)}`}>
+              <span>{item.label}</span>
+              {getSafetyIcon(item.status)}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tags de IA con estilo mejorado */}
       {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-1.5">
+        <div className="mb-6 flex flex-wrap gap-1.5 relative z-10">
           {product.tags_ia.slice(0, 3).map(tag => (
             <button 
               key={tag} 
               onClick={(e) => {
                 e.stopPropagation();
-                if (onTagClick) {
-                  onTagClick(tag);
-                } else {
-                  onViewDetail?.(product);
-                }
+                onTagClick?.(tag);
               }}
-              className="px-2 py-0.5 bg-brand-primary/10 text-brand-primary hover:bg-brand-primary/20 hover:text-brand-primary/80 rounded text-[10px] font-medium tracking-wide border border-brand-primary/20 transition-colors"
+              className="px-2.5 py-1 rounded-lg bg-slate-800/50 border border-slate-700 text-[9px] font-bold text-slate-400 hover:text-brand-primary hover:border-brand-primary/30 transition-all uppercase tracking-wider"
             >
               #{tag}
             </button>
           ))}
-          {product.tags_ia.length > 3 && (
-            <span 
-              className="px-2 py-0.5 bg-brand-bg text-slate-500 rounded text-[10px] font-medium border border-slate-700 cursor-pointer hover:bg-slate-700 transition-colors"
-              onClick={(e) => {
-                e.stopPropagation();
-                onViewDetail?.(product);
-              }}
-            >
-              +{product.tags_ia.length - 3}
-            </span>
-          )}
         </div>
       )}
 
-      {/* Botón de Agregar a Bandeja y Fuente Web */}
-      <div className="mt-4 pt-4 border-t border-slate-800 flex flex-col gap-3">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onAddToTray?.(product);
-            }}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all flex-1 justify-center ${
-              isInTray 
-                ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' 
-                : 'bg-brand-bg text-slate-500 border border-slate-800 hover:bg-brand-primary/10 hover:text-brand-primary hover:border-brand-primary/30'
-            }`}
-          >
-            {isInTray ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-            {isInTray ? 'Comparando' : 'Comparar'}
-          </button>
+      {/* Botones de Acción - Refinados */}
+      <div className="mt-auto pt-5 border-t border-slate-800/60 flex items-center gap-2 relative z-10">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onAddToTray?.(product);
+          }}
+          className={`flex items-center justify-center gap-2 h-10 px-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all flex-1 ${
+            isInTray 
+              ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/30' 
+              : 'bg-brand-bg text-slate-500 border border-slate-800 hover:bg-brand-primary/10 hover:text-brand-primary hover:border-brand-primary/40'
+          }`}
+        >
+          {isInTray ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+          <span>{isInTray ? 'En Lista' : 'Comparar'}</span>
+        </button>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (isSelectedForBrain) {
-                removeFromConsultation(product.sku);
-              } else {
-                addToConsultation(product);
-              }
-            }}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all flex-1 justify-center ${
-              isSelectedForBrain 
-                ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30 shadow-lg shadow-rose-500/10' 
-                : 'bg-brand-bg text-slate-500 border border-slate-800 hover:bg-rose-500/10 hover:text-rose-400 hover:border-rose-500/30'
-            }`}
-          >
-            {isSelectedForBrain ? <Brain className="w-3.5 h-3.5 animate-pulse" /> : <Brain className="w-3.5 h-3.5" />}
-            {isSelectedForBrain ? 'En Cerebro' : 'Analizar'}
-          </button>
-        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            if (isSelectedForBrain) {
+              removeFromConsultation(product.sku);
+            } else {
+              addToConsultation(product);
+            }
+          }}
+          className={`h-10 w-10 flex items-center justify-center rounded-2xl transition-all ${
+            isSelectedForBrain 
+              ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/30' 
+              : 'bg-brand-bg text-slate-500 border border-slate-800 hover:text-brand-primary hover:border-brand-primary/40'
+          }`}
+          title={isSelectedForBrain ? 'Quitar del análisis' : 'Analizar con Cerebro IA'}
+        >
+          <Brain className={`w-4 h-4 ${isSelectedForBrain ? 'animate-pulse' : ''}`} />
+        </button>
 
         {product.source_url && !isGroundingSource && (
           <a
@@ -191,10 +155,10 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center justify-center gap-1.5 text-[9px] font-bold text-violet-400 hover:text-violet-300 transition-all uppercase tracking-widest whitespace-nowrap bg-violet-500/10 px-3 py-2.5 rounded-xl border border-violet-500/30 hover:border-violet-500/50"
+            className="h-10 w-10 flex items-center justify-center rounded-2xl bg-brand-bg text-slate-500 border border-slate-800 hover:text-violet-400 hover:border-violet-500/40 transition-all"
+            title="Ver fuente oficial"
           >
-            <ExternalLink className="w-3 h-3" />
-            Fuente web oficial
+            <ExternalLink className="w-4 h-4" />
           </a>
         )}
       </div>

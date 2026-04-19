@@ -120,6 +120,34 @@ export default defineConfig(({mode}) => {
                   statuses: [0, 200]
                 }
               }
+            },
+            {
+              urlPattern: /.*\.bin$|.*\.onnx$|.*\.json$|.*\.wasm$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'ai-models-cache',
+                expiration: {
+                  maxEntries: 50,
+                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
+            },
+            {
+              urlPattern: /^https:\/\/huggingface\.co\/.*/i,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'huggingface-assets',
+                expiration: {
+                  maxEntries: 50,
+                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
             }
           ]
         }

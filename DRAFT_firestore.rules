@@ -60,12 +60,13 @@ service cloud.firestore {
 
     match /products/{sku} {
       allow get: if isSignedIn() && isValidId(sku);
-      allow list: if isSignedIn() && isEmailVerified();
+      allow list: if isSignedIn() && isEmailVerified(); // Note: Query enforcement must be client-side, but rules must limit data access if possible
       
       allow create: if isSignedIn() && isEmailVerified() && isValidId(sku) && isValidProduct(incoming()) && 
                        incoming().sku == sku;
 
       allow update: if isSignedIn() && isEmailVerified() && isValidId(sku) && isValidProduct(incoming()) &&
+                       // Tiers of Access Logic & Terminal State Locking
                        (isAdmin() || 
                         (incoming().sku == existing().sku && 
                          incoming().diff(existing()).affectedKeys().hasOnly([

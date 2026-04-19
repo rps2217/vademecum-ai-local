@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { SQLiteService } from '../../core/database/sqliteService';
+
+import { TaskProcessorService } from '../../services/TaskProcessorService';
+import { AutomationTriggerService } from '../../services/AutomationTriggerService';
 
 interface AppBootstrapperProps {
   children: React.ReactNode;
@@ -11,11 +13,10 @@ export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) =>
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const init = async () => {
-        await SQLiteService.initialize();
-        setIsReady(true);
-    };
-    init();
+    // Database is already initialized in App.tsx via SplashScreen
+    TaskProcessorService.start();
+    AutomationTriggerService.start();
+    setIsReady(true);
   }, []);
 
   if (isDetectingHardware || !isReady) {
@@ -24,7 +25,7 @@ export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) =>
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-4"></div>
         <h2 className="text-lg font-medium">Iniciando Vademécum...</h2>
         <p className="text-sm text-slate-500 mt-2">
-          {isDetectingHardware ? 'Analizando capacidades del sistema...' : 'Preparando base de datos local...'}
+          {"Preparando sistema clínico..."}
         </p>
       </div>
     );

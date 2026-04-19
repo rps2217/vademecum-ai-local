@@ -2,10 +2,10 @@
   "entities": {
     "Product": {
       "title": "Product",
-      "description": "Medicamento del Vademécum",
+      "description": "Medicine or supplement product entry",
       "type": "object",
       "properties": {
-        "sku": { "type": "string", "description": "Identificador único" },
+        "sku": { "type": "string", "description": "Unique identifier" },
         "nombre_comercial": { "type": "string" },
         "descripcion": { "type": "string" },
         "principios_activos": { "type": "array", "items": { "type": "string" } },
@@ -13,46 +13,51 @@
         "indicaciones": { "type": "array", "items": { "type": "string" } },
         "advertencias": { "type": "string" },
         "tags_ia": { "type": "array", "items": { "type": "string" } },
-        "categoria_principal": { "type": "string", "enum": ["Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro"] },
+        "categoria_principal": { "type": "string" },
         "analisis_componentes": { "type": "string" },
-        "apto_embarazo": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
-        "apto_lactancia": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
-        "apto_pediatria": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
-        "apto_diabeticos": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
-        "apto_hipertensos": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
-        "apto_celiacos": { "type": "string", "enum": ["SI", "NO", "PRECAUCION"] },
+        "anotaciones_componentes": { "type": "object" },
+        "vectores": { "type": "array", "items": { "type": "number" } },
+        "apto_embarazo": { "type": "string" },
+        "apto_lactancia": { "type": "string" },
+        "apto_pediatria": { "type": "string" },
+        "apto_diabeticos": { "type": "string" },
+        "apto_hipertensos": { "type": "string" },
+        "apto_celiacos": { "type": "string" },
         "sugerencia_complementaria": { "type": "string" },
         "skus_relacionados": { "type": "array", "items": { "type": "string" } },
         "synergy_analyzed": { "type": "boolean" },
         "last_synergy_analysis": { "type": "number" },
-        "vectores": { "type": "array", "items": { "type": "number" }, "description": "Embeddings semánticos (384 dimensiones)" },
-        "last_updated": { "type": "number", "description": "Timestamp de última modificación" },
-        "source_url": { "type": "string" }
+        "lock_uid": { "type": "string" },
+        "lock_timestamp": { "type": "number" },
+        "source_url": { "type": "string" },
+        "last_updated": { "type": "number" },
+        "is_verified": { "type": "boolean" },
+        "verified_at": { "type": "number" },
+        "verified_by": { "type": "string" }
       },
       "required": ["sku", "nombre_comercial"]
     },
-    "User": {
-      "title": "User",
-      "description": "Perfil de usuario del sistema",
+    "PendingTask": {
+      "title": "PendingTask",
+      "description": "Sync task in queue",
       "type": "object",
       "properties": {
-        "uid": { "type": "string" },
-        "email": { "type": "string" },
-        "displayName": { "type": "string" },
-        "role": { "type": "string", "enum": ["admin", "user"] },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "payload": { "type": "object" },
+        "timestamp": { "type": "number" }
       },
-      "required": ["uid", "email", "role"]
+      "required": ["id", "type", "timestamp"]
     }
   },
   "firestore": {
-    "/products/{productId}": {
-      "schema": "Product",
-      "description": "Colección global de medicamentos"
+    "/products/{sku}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "User-collaborative product database"
     },
-    "/users/{userId}": {
-      "schema": "User",
-      "description": "Perfiles de usuario y roles"
+    "/pending_tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/PendingTask" },
+      "description": "Internal synchronization queue"
     }
   }
 }

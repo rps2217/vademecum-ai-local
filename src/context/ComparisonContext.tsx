@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { Product } from '../core/types/product.types';
+import { EventBus, EventType } from '../services/EventBus';
 
 interface ComparisonContextType {
   comparisonList: Product[];
@@ -35,6 +36,10 @@ export const ComparisonProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const isInComparison = useCallback((sku: string) => {
     return comparisonList.some(p => p.sku === sku);
+  }, [comparisonList]);
+
+  useEffect(() => {
+    EventBus.emit(EventType.COMPARISON_CHANGED, { products: comparisonList });
   }, [comparisonList]);
 
   return (

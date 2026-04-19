@@ -6,6 +6,8 @@ import { HardwareProfile } from './core/types/hardware.types';
 import { useAuth } from './context/AuthContext';
 import { AccessGate } from './components/AccessGate';
 import { Dashboard } from './components/layout/Dashboard';
+import { initDB } from './services/DatabaseService';
+import { EventTracer } from './components/debug/EventTracer';
 
 function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
   const { isAccessGranted } = useAuth();
@@ -24,7 +26,8 @@ export default function App() {
   if (!isInitialized) {
     return (
       <SplashScreen 
-        onComplete={(detectedHardware) => {
+        onComplete={async (detectedHardware) => {
+          await initDB(); // Inicializar RxDB
           setHardware(detectedHardware);
           setIsInitialized(true);
         }} 
@@ -36,6 +39,7 @@ export default function App() {
     <AppBootstrapper>
       <TrayProvider>
         <AuthConsumer hardware={hardware!} />
+        <EventTracer />
       </TrayProvider>
     </AppBootstrapper>
   );

@@ -43,23 +43,28 @@ export const SearchModule: React.FC = () => {
     <div className="w-full max-w-[1000px] mx-auto pb-20 px-4 sm:px-6 lg:px-8 relative min-h-[70vh] flex flex-col pt-10">
       
       {/* Sección principal de búsqueda (Google Style) */}
-      <div className={`transition-all duration-700 ease-in-out flex flex-col items-center justify-center ${query.trim() === '' && results.length === 0 ? 'mt-[20vh]' : 'mt-0 mb-6'}`}>
+      <div className={`transition-all duration-1000 ease-in-out flex flex-col items-center justify-center ${query.trim() === '' && results.length === 0 ? 'mt-[15vh]' : 'mt-0 mb-8'}`}>
         
         {query.trim() === '' && results.length === 0 && (
-           <div className="text-center mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-             <div className="inline-flex items-center justify-center p-4 bg-brand-primary/10 rounded-3xl border border-brand-primary/20 mb-6 shadow-[0_0_40px_rgba(59,130,246,0.15)]">
-               <Brain className="w-12 h-12 text-brand-primary" />
+           <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000 relative">
+             {/* Atmospheric Background Glow */}
+             <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none -z-10" />
+             
+             <div className="relative inline-flex items-center justify-center p-6 bg-brand-surface/40 backdrop-blur-3xl rounded-[2.5rem] border border-slate-800/50 mb-10 shadow-2xl overflow-hidden group">
+               <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+               <Brain className="w-16 h-16 text-brand-primary relative z-10" />
              </div>
-             <h1 className="text-5xl sm:text-6xl font-extrabold text-white mb-6 tracking-tight">
-               Vademécum <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">IA</span>
+             
+             <h1 className="text-6xl sm:text-7xl font-extrabold text-white mb-8 tracking-tighter">
+               Vademécum <span className="text-brand-primary">IA</span>
              </h1>
-             <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
-               Escribe un medicamento, síntoma o patología para explorar <span className="text-brand-primary font-medium">alternativas</span>, <span className="text-brand-accent font-medium">complementos farmacéuticos</span> o probables <span className="text-emerald-400 font-medium">sinergias</span>.
+             <p className="text-slate-500 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+               Explora la farmacopea con <span className="text-slate-300">inteligencia artificial local</span>. Identifica sinergias, contraindicaciones y alternativas clínicas al instante.
              </p>
            </div>
         )}
 
-        <div className={`w-full transition-all duration-500 ${query.trim() === '' && results.length === 0 ? 'max-w-2xl' : 'max-w-3xl'}`}>
+        <div className={`w-full transition-all duration-700 ease-out ${query.trim() === '' && results.length === 0 ? 'max-w-3xl' : 'max-w-4xl'}`}>
           <SearchBar 
             ref={searchInputRef}
             query={query} 
@@ -68,12 +73,25 @@ export const SearchModule: React.FC = () => {
             onAiQuery={() => setShowAiAnalysis(true)}
           />
           {query.trim() === '' && results.length === 0 && (
-            <div className="flex justify-center gap-3 mt-8">
-              <button onClick={() => setQuery('Hipertensión')} className="px-4 py-2 rounded-full bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-sm text-slate-300 transition-colors">
+            <div className="flex flex-wrap justify-center gap-4 mt-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+              <span className="w-full text-center text-[10px] uppercase tracking-[0.3em] font-bold text-slate-600 mb-2">Búsquedas Frecuentes</span>
+              <button 
+                onClick={() => setQuery('Hipertensión')} 
+                className="px-6 py-3 rounded-2xl bg-slate-800/40 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-400 hover:text-brand-primary hover:border-brand-primary/30 transition-all uppercase tracking-widest shadow-lg"
+              >
                 Hipertensión
               </button>
-              <button onClick={() => setQuery('Dolor de cabeza severo')} className="px-4 py-2 rounded-full bg-slate-800/50 hover:bg-slate-800 border border-slate-700 text-sm text-slate-300 transition-colors">
-                Dolor de cabeza crónico
+              <button 
+                onClick={() => setQuery('Magnesio')} 
+                className="px-6 py-3 rounded-2xl bg-slate-800/40 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-400 hover:text-brand-primary hover:border-brand-primary/30 transition-all uppercase tracking-widest shadow-lg"
+              >
+                Suplementos
+              </button>
+              <button 
+                onClick={() => setQuery('Diabetes tipo 2')} 
+                className="px-6 py-3 rounded-2xl bg-slate-800/40 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-slate-400 hover:text-brand-primary hover:border-brand-primary/30 transition-all uppercase tracking-widest shadow-lg"
+              >
+                Diabetes
               </button>
             </div>
           )}

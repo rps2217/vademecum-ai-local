@@ -1,66 +1,39 @@
 import { Product } from '../core/types/product.types';
-import { SQLiteService } from '../core/database/sqliteService';
+import { getDB, waitForDB } from './DatabaseService';
+import { EventBus, EventType } from './EventBus';
 
 export class DataService {
-  private static initialized = false;
   private static failedRequests = 0;
   private static readonly MAX_FAILURES = 5;
 
-  static async ensureInitialized() {
-    if (!this.initialized) {
-      await SQLiteService.initialize();
-      this.initialized = true;
-    }
-  }
-
   static async getAllProducts(): Promise<Product[]> {
-    await this.ensureInitialized();
-    const db = SQLiteService.getDB();
-    
+    const db = await waitForDB();
+    if (!db) return [];
+
     // Try fetching from server first (online)
     try {
       if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
-        // Only log first encounter or when debugging origin
-        if (this.failedRequests === 0) {
-          console.log(`[DataService] Probando conectividad con el backend...`);
-        }
-        
         const response = await fetch('/api/products');
         
-        if (!response.ok) {
-           throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
         const products = await response.json();
         this.failedRequests = 0; // Reset on success
 
-        // Update local SQLite
-        db.run('DELETE FROM products');
-        const stmt = db.prepare('INSERT INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)');
-        for (const p of products) {
-          stmt.run([p.sku, p.nombre_comercial, JSON.stringify(p)]);
-        }
-        stmt.free();
-        await SQLiteService.save();
+        // Bulk insert/update into RxDB
+        await db.products.bulkUpsert(products);
+        EventBus.emit(EventType.DB_UPDATED, { products });
         return products;
       }
     } catch (e) {
       this.failedRequests++;
-      if (this.failedRequests === 1) {
-        console.warn(`[DataService] Backend no disponible. Operando en modo offline local.`);
-      }
+      console.warn(`[DataService] Backend no disponible o error:`, e);
     }
 
-    // Fallback to local
+    // Fallback to local RxDB
     try {
-      const res = db.prepare('SELECT data FROM products').all();
-      return res
-        .map(p => {
-          try {
-            return p.data ? JSON.parse(p.data as string) : null;
-          } catch (e) { return null; }
-        })
-        .filter((p): p is Product => p !== null && !!p.sku);
+      const allProducts = await db.products.find().exec();
+      return allProducts.map((p: any) => p.toJSON());
     } catch (e) {
       console.error('[DataService] Error leyendo base de datos local:', e);
       return [];
@@ -68,13 +41,11 @@ export class DataService {
   }
 
   static async saveProduct(product: Product): Promise<void> {
-    await this.ensureInitialized();
-    const db = SQLiteService.getDB();
+    const db = await waitForDB();
+    if (!db) return;
     
-    // Always save to local first
-    db.prepare('INSERT OR REPLACE INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)')
-      .run(product.sku, product.nombre_comercial, JSON.stringify(product));
-    await SQLiteService.save();
+    // Always save to local RxDB first
+    await db.products.upsert(product);
 
     // Try sync to server
     if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
@@ -85,10 +56,7 @@ export class DataService {
           body: JSON.stringify(product)
         });
         
-        if (!response.ok) {
-          if (response.status === 404) this.failedRequests = this.MAX_FAILURES; // Cortar inmediatamente si no existe endpoint
-          throw new Error(`Sync failed with status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Sync failed with status: ${response.status}`);
         
         this.failedRequests = 0;
       } catch (e) {
@@ -96,7 +64,7 @@ export class DataService {
         console.error('[DataService] Sync failed:', e);
       }
     }
-    window.dispatchEvent(new CustomEvent('db_updated'));
+    EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
   }
   
   static async importProducts(jsonString: string): Promise<{ success: number; errors: number }> {
@@ -123,18 +91,17 @@ export class DataService {
   }
 
   static async getProductBySku(sku: string): Promise<Product | null> {
-    await this.ensureInitialized();
-    const db = SQLiteService.getDB();
-    const res = db.prepare('SELECT data FROM products WHERE sku = ?').get([sku]);
-    return res ? JSON.parse(res.data as string) : null;
+    const db = await waitForDB();
+    if (!db) return null;
+    const doc = await db.products.findOne({ selector: { sku } }).exec();
+    return doc ? doc.toJSON() : null;
   }
 
   static async clearAll(): Promise<void> {
-    await this.ensureInitialized();
-    const db = SQLiteService.getDB();
-    db.run('DELETE FROM products');
-    await SQLiteService.save();
-    window.dispatchEvent(new CustomEvent('db_updated'));
+    const db = await waitForDB();
+    if (!db) return;
+    await db.products.remove();
+    EventBus.emit(EventType.DB_UPDATED, { action: 'cleared' });
   }
 
   static async exportProducts(): Promise<string> {
@@ -143,11 +110,14 @@ export class DataService {
   }
 
   static async deleteProduct(sku: string): Promise<void> {
-    await this.ensureInitialized();
-    const db = SQLiteService.getDB();
-    db.run('DELETE FROM products WHERE sku = ?', [sku]);
-    await SQLiteService.save();
+    const db = await waitForDB();
+    if (!db) return;
 
+    // Delete local
+    const doc = await db.products.findOne({ selector: { sku } }).exec();
+    if (doc) await doc.remove();
+
+    // Sync to server
     if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
       try {
         const response = await fetch(`/api/products/${sku}`, { method: 'DELETE' });
@@ -158,6 +128,6 @@ export class DataService {
         console.error('[DataService] Sync delete failed', e);
       }
     }
-    window.dispatchEvent(new CustomEvent('db_updated'));
+    EventBus.emit(EventType.PRODUCT_DELETED, { sku });
   }
 }
