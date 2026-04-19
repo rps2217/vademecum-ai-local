@@ -77,10 +77,17 @@ export const useProductSearch = () => {
 
     loadIndex();
 
-    // Escuchar cambios en el servidor para re-indexar automáticamente
-    window.addEventListener('db_updated', loadIndex);
+    // Escuchar cambios en el servidor para re-indexar automáticamente con debounce agresivo
+    let debounceTimer: number | null = null;
+    const debouncedLoadIndex = () => {
+      if (debounceTimer) window.clearTimeout(debounceTimer);
+      debounceTimer = window.setTimeout(loadIndex, 30000); // Solo re-indexar cada 30 seg máximo
+    };
+
+    window.addEventListener('db_updated', debouncedLoadIndex);
     return () => {
-      window.removeEventListener('db_updated', loadIndex);
+      if (debounceTimer) window.clearTimeout(debounceTimer);
+      window.removeEventListener('db_updated', debouncedLoadIndex);
     };
   }, []);
 

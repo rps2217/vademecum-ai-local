@@ -105,7 +105,7 @@ export class TaxonomyBackgroundService {
             ...product,
             tags_ia: uniqueNewTags,
             last_updated: Date.now()
-          });
+          }, { silent: true });
           updatedCount++;
         }
       }

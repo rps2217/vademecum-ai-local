@@ -241,7 +241,7 @@ export class SynergyBackgroundService {
       await FirebaseSyncService.releaseProductLockAndSave(finalProduct);
       
       console.log(`[SynergyService] Sinergia completada para ${product.nombre_comercial}`);
-      window.dispatchEvent(new CustomEvent('db_updated'));
+      // Eliminado dispatch individual de db_updated para evitar sobrecarga del main thread (re-indexación masiva)
 
     } catch (error) {
       console.error(`[SynergyService] Error procesando ${product.sku}:`, error);
