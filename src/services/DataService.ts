@@ -40,13 +40,61 @@ export class DataService {
             EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
             return cloudProducts;
           }
+        } else if (response.status === 404) {
+             console.warn(`[DataService] API not found. Trying direct Supabase fetch...`);
+             const cloudProducts = await this.directSupabaseFetch();
+             if (cloudProducts) {
+                 this.failedRequests = 0;
+                 localStorage.setItem('last_cloud_fetch', now.toString());
+                 if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
+                     await db.products.bulkUpsert(cloudProducts);
+                     EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
+                     return cloudProducts;
+                 }
+             }
         }
       } catch (e) {
+        // Red de plano, o CORS error
         this.failedRequests++;
+        console.warn(`[DataService] Red o CORS falló. Intentando Supabase directo...`);
+        const cloudProducts = await this.directSupabaseFetch();
+        if (cloudProducts) {
+             this.failedRequests = 0;
+             localStorage.setItem('last_cloud_fetch', now.toString());
+             if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
+                 await db.products.bulkUpsert(cloudProducts);
+                 EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
+                 return cloudProducts;
+             }
+        }
       }
     }
 
     return localProducts;
+  }
+
+  // Fallback directo a Supabase cuando el backend Node no existe (ej. Vercel estático)
+  private static async directSupabaseFetch(): Promise<any[] | null> {
+      try {
+          const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+          const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+          if (!supabaseUrl || !supabaseKey) return null;
+          
+          const response = await fetch(`${supabaseUrl}/rest/v1/products?select=data`, {
+              headers: {
+                  'apikey': supabaseKey,
+                  'Authorization': `Bearer ${supabaseKey}`
+              }
+          });
+          
+          if (response.ok) {
+              const rows = await response.json();
+              return rows.map((r: any) => r.data).filter(Boolean);
+          }
+          return null;
+      } catch (e) {
+          return null;
+      }
   }
 
   static async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {

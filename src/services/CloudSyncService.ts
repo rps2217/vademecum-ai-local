@@ -56,32 +56,82 @@ export const CloudSyncService = {
         if (!navigator.onLine) break;
 
         const apiUrl = '/api/products';
-        console.log(`[CloudSync] POSTing to: ${window.location.origin}${apiUrl} for ${product.sku}`);
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(product)
-        });
-        
-        if (response.ok) {
-          // Marcar como sincronizado localmente tras éxito en servidor
+        let isSynced = false;
+
+        try {
+            console.log(`[CloudSync] POSTing to: ${window.location.origin}${apiUrl} for ${product.sku}`);
+            const response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(product)
+            });
+
+            if (response.ok) {
+                isSynced = true;
+            } else if (response.status === 404) {
+                 console.warn(`[CloudSync] API 404 Falló en local para ${product.sku}, intentando proxy directo a Supabase...`);
+                 isSynced = await this.directSupabaseUpsert(product);
+            } else {
+                 console.warn(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status}`);
+            }
+        } catch (e) {
+            console.warn(`[CloudSync] Error CORS o Red. Intentando proxy directo a Supabase...`);
+            isSynced = await this.directSupabaseUpsert(product);
+        }
+
+        if (isSynced) {
+          // Marcar como sincronizado localmente tras éxito
           await db.products.upsert({
             ...product,
             synced: true,
             last_synced: Date.now()
           });
           EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: true });
-          console.log(`[CloudSync] Sincronizado: ${product.sku}`);
+          console.log(`[CloudSync] Sincronizado correctamente: ${product.sku}`);
         } else {
-          console.warn(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status}`);
-          return false;
+            console.warn(`[CloudSync] Falló sincronización de ${product.sku} en todos los canales.`);
+            return false;
         }
       }
       return true;
     } catch (error: any) {
-      console.error('[CloudSync] Error en guardado por lotes:', error);
+      console.error('[CloudSync] Error general en guardado por lotes:', error);
       return false;
     }
+  },
+
+  // Fallback para subir datos directamente si el backend Node Express no responde (ej: hosting estático Vercel)
+  directSupabaseUpsert: async (product: Product): Promise<boolean> => {
+      try {
+          const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+          // Atención: Las políticas (RLS) deben permitir el insert/update al usuario o anon, 
+          // caso contrario, esto será rechazado si Supabase es estricto con RLS. 
+          const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY; 
+          
+          if (!supabaseUrl || !supabaseKey) return false;
+          
+          const payload = {
+              sku: product.sku,
+              nombre_comercial: product.nombre_comercial,
+              data: product,
+              last_updated: new Date().toISOString()
+          };
+
+          const response = await fetch(`${supabaseUrl}/rest/v1/products?on_conflict=sku`, {
+              method: 'POST',
+              headers: {
+                  'apikey': supabaseKey,
+                  'Authorization': `Bearer ${supabaseKey}`,
+                  'Content-Type': 'application/json',
+                  'Prefer': 'resolution=merge-duplicates'
+              },
+              body: JSON.stringify(payload) // Supabase Rest Upsert 
+          });
+
+          return response.ok;
+      } catch (e) {
+          return false;
+      }
   },
 
   /**
