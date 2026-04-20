@@ -66,7 +66,7 @@ export const CloudSyncService = {
 
         if (useDirectMode) {
              console.log(`[CloudSync] Modo directo activo. Subiendo ${product.sku} a Supabase...`);
-             isSynced = await this.directSupabaseUpsert(product);
+             isSynced = await CloudSyncService.directSupabaseUpsert(product);
         } else {
             try {
                 console.log(`[CloudSync] POSTing to: ${window.location.origin}${apiUrl} for ${product.sku}`);
@@ -81,13 +81,13 @@ export const CloudSyncService = {
                 } else if (response.status === 404) {
                      console.warn(`[CloudSync] API 404. Cambiando a modo directo Supabase de forma permanente...`);
                      localStorage.setItem('force_supabase_direct', 'true');
-                     isSynced = await this.directSupabaseUpsert(product);
+                     isSynced = await CloudSyncService.directSupabaseUpsert(product);
                 } else {
                      console.warn(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status}`);
                 }
             } catch (e) {
                 console.warn(`[CloudSync] Error CORS o Red. Intentando proxy directo a Supabase...`);
-                isSynced = await this.directSupabaseUpsert(product);
+                isSynced = await CloudSyncService.directSupabaseUpsert(product);
             }
         }
 

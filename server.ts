@@ -113,8 +113,12 @@ async function startServer() {
         })
         .filter(p => p !== null && p.sku);
         
-    log(`[API] Fetching products results: ${validProducts.length} items`);
-    res.json(validProducts);
+      log(`[API] Fetching products results: ${validProducts.length} items`);
+      res.json(validProducts);
+    } catch (e: any) {
+      log(`[API Error] /products GET: ${e.message}`);
+      res.status(500).json({ error: 'Failed to fetch products' });
+    }
   });
 
   apiRouter.post('/products', async (req, res) => {

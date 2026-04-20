@@ -8,7 +8,7 @@ import { Product } from '../core/types/product.types';
 addRxPlugin(RxDBMigrationPlugin);
 
 const productSchema = {
-  version: 1,
+  version: 2,
   primaryKey: 'sku',
   type: 'object',
   properties: {
@@ -34,6 +34,7 @@ const productSchema = {
     skus_relacionados: { type: 'array', items: { type: 'string' } },
     synergy_analyzed: { type: 'boolean' },
     last_synergy_analysis: { type: 'number' },
+    locked_by_ai: { type: 'boolean' },
     lock_uid: { type: 'string' },
     lock_timestamp: { type: 'number' },
     source_url: { type: 'string' },
@@ -70,6 +71,11 @@ export const initDB = async () => {
           1: (oldDoc: any) => {
             oldDoc.synced = oldDoc.synced || false;
             oldDoc.last_synced = oldDoc.last_synced || Date.now();
+            return oldDoc;
+          },
+          // Migración v1 a v2 para bloqueo atómico
+          2: (oldDoc: any) => {
+            oldDoc.locked_by_ai = oldDoc.locked_by_ai || false;
             return oldDoc;
           }
         }
