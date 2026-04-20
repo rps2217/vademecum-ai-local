@@ -58,9 +58,7 @@ export const initDB = async () => {
   initPromise = (async () => {
     const database = await createRxDatabase({
       name: 'vademecumdb',
-      storage: wrappedValidateAjvStorage({
-        storage: getRxStorageDexie()
-      })
+      storage: getRxStorageDexie()
     });
 
     await database.addCollections({
