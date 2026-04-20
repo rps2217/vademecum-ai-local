@@ -132,20 +132,26 @@ export const CloudSyncService = {
           };
 
           const response = await fetch(`${supabaseUrl}/rest/v1/products?on_conflict=sku`, {
-              method: 'POST',
-              headers: {
-                  'apikey': supabaseKey,
-                  'Authorization': `Bearer ${supabaseKey}`,
-                  'Content-Type': 'application/json',
-                  'Prefer': 'resolution=merge-duplicates'
-              },
-              body: JSON.stringify(payload) // Supabase Rest Upsert 
-          });
+            method: 'POST',
+            headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify(payload)
+        });
 
-          return response.ok;
-      } catch (e) {
-          return false;
-      }
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`[CloudSync] Supabase Upsert Fallido para ${product.sku}: ${response.status} - ${errorText}`);
+        }
+
+        return response.ok;
+    } catch (e) {
+        console.error(`[CloudSync] Error catastrófico conectando a Supabase para ${product.sku}:`, e);
+        return false;
+    }
   },
 
   /**
