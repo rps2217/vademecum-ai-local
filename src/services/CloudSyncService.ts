@@ -53,6 +53,8 @@ export const CloudSyncService = {
     const config = ConfigService.getConfig();
     if (!config.autoSyncCloud) return true;
 
+    console.log(`[CloudSync] Procesando lote de ${products.length} productos.`);
+
     try {
       const db = await DataService.getDB();
       if (!db) return false;
@@ -78,15 +80,16 @@ export const CloudSyncService = {
 
                 if (response.ok) {
                     isSynced = true;
-                } else if (response.status === 404) {
-                     console.warn(`[CloudSync] API 404. Cambiando a modo directo Supabase de forma permanente...`);
-                     localStorage.setItem('force_supabase_direct', 'true');
-                     isSynced = await CloudSyncService.directSupabaseUpsert(product);
                 } else {
-                     console.warn(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status}`);
+                     const errorText = await response.text();
+                     console.error(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status} - ${errorText}`);
+                     if (response.status === 404) {
+                         localStorage.setItem('force_supabase_direct', 'true');
+                         isSynced = await CloudSyncService.directSupabaseUpsert(product);
+                     }
                 }
             } catch (e) {
-                console.warn(`[CloudSync] Error CORS o Red. Intentando proxy directo a Supabase...`);
+                console.warn(`[CloudSync] Error CORS o Red al intentar proxy a ${apiUrl}:`, e);
                 isSynced = await CloudSyncService.directSupabaseUpsert(product);
             }
         }
@@ -101,8 +104,7 @@ export const CloudSyncService = {
           EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: true });
           console.log(`[CloudSync] Sincronizado correctamente: ${product.sku}`);
         } else {
-            console.warn(`[CloudSync] Falló sincronización de ${product.sku} en todos los canales.`);
-            return false;
+            console.error(`[CloudSync] Falló sincronización crítica de ${product.sku} en todos los canales.`);
         }
       }
       return true;

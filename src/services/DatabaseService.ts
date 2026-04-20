@@ -11,6 +11,7 @@ const productSchema = {
   version: 2,
   primaryKey: 'sku',
   type: 'object',
+  additionalProperties: true,
   properties: {
     sku: { type: 'string', maxLength: 100 },
     nombre_comercial: { type: 'string' },
