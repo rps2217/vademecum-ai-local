@@ -118,15 +118,14 @@ export const CloudSyncService = {
   // Fallback para subir datos directamente si el backend Node Express no responde (ej: hosting estático Vercel)
   directSupabaseUpsert: async (product: Product): Promise<boolean> => {
       try {
-          // Buscamos las variables de entorno sin depender estrictamente del prefijo VITE_
-          // si estamos en un enviroment configurado vía secretos de plataforma
-          const getEnv = (key: string) => import.meta.env[key] || process.env[key] || ((window as any)._env_ && (window as any)._env_[key]);
-          
-          const supabaseUrl = getEnv('VITE_SUPABASE_URL') || getEnv('SUPABASE_URL');
-          const supabaseKey = getEnv('VITE_SUPABASE_ANON_KEY') || getEnv('SUPABASE_ANON_KEY');
+          // Usamos process.env ya que en tiempo de ejecución en Cloud Run, 
+          // las variables de entorno de plataforma se inyectan en process.env.
+          // Si estas variables no tienen el prefijo VITE_, no estarán en import.meta.env.
+          const supabaseUrl = process.env.SUPABASE_URL;
+          const supabaseKey = process.env.SUPABASE_ANON_KEY;
           
           if (!supabaseUrl || !supabaseKey) {
-            console.error(`[CloudSync] Credenciales de Supabase faltantes. URL detectada: ${!!supabaseUrl}, KEY detectada: ${!!supabaseKey}`);
+            console.error(`[CloudSync] CRÍTICO: No se encontraron las variables SUPABASE_URL o SUPABASE_ANON_KEY en process.env.`);
             return false;
           }
           
@@ -137,7 +136,7 @@ export const CloudSyncService = {
               last_updated: new Date().toISOString()
           };
 
-          console.log(`[CloudSync] Intentando fetch a ${supabaseUrl}/rest/v1/products`);
+          console.log(`[CloudSync] Intentando fetch a ${supabaseUrl}`);
 
           const response = await fetch(`${supabaseUrl}/rest/v1/products?on_conflict=sku`, {
             method: 'POST',
@@ -152,7 +151,7 @@ export const CloudSyncService = {
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error(`[CloudSync] Supabase Upsert Fallido para ${product.sku}: ${response.status} - ${errorText}`);
+            console.error(`[CloudSync] Supabase Upsert Fallido: ${response.status} - ${errorText}`);
         } else {
             console.log(`[CloudSync] Supabase Upsert Éxito para ${product.sku}`);
         }
