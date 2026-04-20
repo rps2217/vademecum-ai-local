@@ -118,18 +118,21 @@ export const CloudSyncService = {
   directSupabaseUpsert: async (product: Product): Promise<boolean> => {
       try {
           const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-          // Atención: Las políticas (RLS) deben permitir el insert/update al usuario o anon, 
-          // caso contrario, esto será rechazado si Supabase es estricto con RLS. 
           const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY; 
           
-          if (!supabaseUrl || !supabaseKey) return false;
+          if (!supabaseUrl || !supabaseKey) {
+            console.error(`[CloudSync] Credenciales de Supabase faltantes. URL: ${!!supabaseUrl}, KEY: ${!!supabaseKey}`);
+            return false;
+          }
           
           const payload = {
               sku: product.sku,
               nombre_comercial: product.nombre_comercial,
-              data: product,
+              ...product,
               last_updated: new Date().toISOString()
           };
+
+          console.log(`[CloudSync] Intentando fetch a ${supabaseUrl}/rest/v1/products`);
 
           const response = await fetch(`${supabaseUrl}/rest/v1/products?on_conflict=sku`, {
             method: 'POST',
@@ -145,6 +148,8 @@ export const CloudSyncService = {
         if (!response.ok) {
             const errorText = await response.text();
             console.error(`[CloudSync] Supabase Upsert Fallido para ${product.sku}: ${response.status} - ${errorText}`);
+        } else {
+            console.log(`[CloudSync] Supabase Upsert Éxito para ${product.sku}`);
         }
 
         return response.ok;
