@@ -117,11 +117,15 @@ export const CloudSyncService = {
   // Fallback para subir datos directamente si el backend Node Express no responde (ej: hosting estático Vercel)
   directSupabaseUpsert: async (product: Product): Promise<boolean> => {
       try {
-          const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-          const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY; 
+          // Buscamos las variables de entorno sin depender estrictamente del prefijo VITE_
+          // si estamos en un enviroment configurado vía secretos de plataforma
+          const getEnv = (key: string) => import.meta.env[key] || process.env[key] || ((window as any)._env_ && (window as any)._env_[key]);
+          
+          const supabaseUrl = getEnv('VITE_SUPABASE_URL') || getEnv('SUPABASE_URL');
+          const supabaseKey = getEnv('VITE_SUPABASE_ANON_KEY') || getEnv('SUPABASE_ANON_KEY');
           
           if (!supabaseUrl || !supabaseKey) {
-            console.error(`[CloudSync] Credenciales de Supabase faltantes. URL: ${!!supabaseUrl}, KEY: ${!!supabaseKey}`);
+            console.error(`[CloudSync] Credenciales de Supabase faltantes. URL detectada: ${!!supabaseUrl}, KEY detectada: ${!!supabaseKey}`);
             return false;
           }
           
