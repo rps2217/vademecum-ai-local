@@ -64,7 +64,8 @@ export const CloudSyncService = {
 
         const apiUrl = '/api/products';
         let isSynced = false;
-        const useDirectMode = localStorage.getItem('force_supabase_direct') === 'true';
+        // Fuerza el uso del backend proxy siempre ya que el cliente no accede bien a las variables de entorno
+        const useDirectMode = false; 
 
         if (useDirectMode) {
              console.log(`[CloudSync] Modo directo activo. Subiendo ${product.sku} a Supabase...`);
