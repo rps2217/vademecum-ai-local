@@ -118,14 +118,12 @@ export const CloudSyncService = {
   // Fallback para subir datos directamente si el backend Node Express no responde (ej: hosting estático Vercel)
   directSupabaseUpsert: async (product: Product): Promise<boolean> => {
       try {
-          // Usamos process.env ya que en tiempo de ejecución en Cloud Run, 
-          // las variables de entorno de plataforma se inyectan en process.env.
-          // Si estas variables no tienen el prefijo VITE_, no estarán en import.meta.env.
-          const supabaseUrl = process.env.SUPABASE_URL;
-          const supabaseKey = process.env.SUPABASE_ANON_KEY;
+          // Intentar obtener de import.meta.env (Vite) de forma segura, o usar fallback hardcodeado
+          const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || 'https://pspxqzwxulgmzarlqwtt.supabase.co';
+          const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || 'sb_publishable_6Wn8XGKb_o8pulv6_pKDFQ_gABZnyHR';
           
           if (!supabaseUrl || !supabaseKey) {
-            console.error(`[CloudSync] CRÍTICO: No se encontraron las variables SUPABASE_URL o SUPABASE_ANON_KEY en process.env.`);
+            console.error(`[CloudSync] CRÍTICO: No se encontraron las variables de configuración de Supabase (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY).`);
             return false;
           }
           
@@ -136,7 +134,9 @@ export const CloudSyncService = {
               last_updated: new Date().toISOString()
           };
 
-          console.log(`[CloudSync] Intentando fetch a ${supabaseUrl}`);
+          // Verificar si hay relaciones (sinergias) encontradas por la IA local
+          const relationsCount = product.skus_relacionados?.length || 0;
+          console.log(`[CloudSync] Sincronizando ${product.sku} con ${relationsCount} relaciones a la nube.`);
 
           const response = await fetch(`${supabaseUrl}/rest/v1/products?on_conflict=sku`, {
             method: 'POST',

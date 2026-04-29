@@ -21,10 +21,8 @@ db.prepare(`
 // Initialize Supabase Admin de forma segura (Server-side bypass RLS)
 let supabase: any = null;
 try {
-  // HARDCODED FOR DIAGNOSTIC (WILL REVERT IMMEDIATELY)
-  log('--- DEBUG: Using hardcoded credentials ---');
-  const supabaseUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
-  const supabaseServiceKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjU3NDU4NCwiZXhwIjoyMDkyMTUwNTg0fQ.gAjBTUAIbhLwjOhbHBk-L0y_0mHstvF57xgrRY1NGcI';
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || 'https://pspxqzwxulgmzarlqwtt.supabase.co';
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjU3NDU4NCwiZXhwIjoyMDkyMTUwNTg0fQ.gAjBTUAIbhLwjOhbHBk-L0y_0mHstvF57xgrRY1NGcI';
   
   if (supabaseUrl && supabaseServiceKey) {
     supabase = createClient(supabaseUrl, supabaseServiceKey, {
@@ -33,7 +31,7 @@ try {
         persistSession: false
       }
     });
-    console.log('Supabase Admin initialized successfully.');
+    log(`Supabase Admin initialized. URL: ${supabaseUrl}`);
   } else {
     console.warn('Supabase credentials missing, cloud sync disabled in backend.');
   }
@@ -98,6 +96,75 @@ async function startServer() {
     res.json({ status: 'ok', source: 'apiRouter', db_ready: !!db });
   });
 
+  apiRouter.get('/cloud-status', async (req, res) => {
+    if (!supabase) {
+      return res.json({ success: false, error: 'Supabase not initialized in backend' });
+    }
+    try {
+      // 1. Verificar productos
+      const { count, error } = await supabase
+        .from('products')
+        .select('*', { count: 'exact', head: true });
+        
+      if (error) {
+          if (error.message.includes('products')) {
+              return res.json({ 
+                  success: false, 
+                  error: 'La tabla "products" no existe en Supabase.',
+                  sql_fix: 'Visite /api/migration-sql para obtener el código SQL de creación.'
+              });
+          }
+          throw error;
+      }
+
+      // 2. Verificar un ejemplo de datos para ver si tienen relaciones
+      const { data: sample } = await supabase
+        .from('products')
+        .select('sku, data')
+        .limit(1);
+
+      let hasRelations = false;
+      if (sample && sample.length > 0) {
+          const productData = sample[0].data;
+          // data en Supabase es un campo JSONB
+          const parsedData = typeof productData === 'string' ? JSON.parse(productData) : productData;
+          hasRelations = !!(parsedData && parsedData.skus_relacionados && parsedData.skus_relacionados.length > 0);
+      }
+
+      res.json({ 
+        success: true, 
+        cloud_product_count: count,
+        has_sample_relations: hasRelations,
+        status: count > 0 ? 'Respaldo activo' : 'Conectado (Vacío)',
+        message: count > 0 ? `Se han detectado ${count} productos en la nube.` : 'No hay productos en la tabla remota.'
+      });
+    } catch (e: any) {
+      log(`[Cloud-Status Error] ${e.message}`);
+      res.status(500).json({ success: false, error: e.message, details: e });
+    }
+  });
+
+  apiRouter.get('/migration-sql', (req, res) => {
+      const sql = `
+-- CÓDIGO SQL PARA SUPABASE SQL EDITOR
+-- Esto habilitará el respaldo en la nube de su vademécum
+
+CREATE TABLE IF NOT EXISTS products (
+    sku TEXT PRIMARY KEY,
+    nombre_comercial TEXT,
+    data JSONB,
+    last_updated TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Habilitar acceso a todos (Opcional, dado que usamos Service Role en el backend)
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Enable read for all" ON products FOR SELECT USING (true);
+CREATE POLICY "Enable insert/upsert for all" ON products FOR INSERT WITH CHECK (true);
+CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
+      `;
+      res.type('text/plain').send(sql);
+  });
+
   apiRouter.get('/products', (req, res) => {
     // Force fresh data to debug
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
@@ -132,6 +199,7 @@ async function startServer() {
       .run(product.sku, product.nombre_comercial, JSON.stringify(product));
     
     // Sync to Supabase
+    let supabaseResult = { success: false, error: 'Not attempted' };
     if (supabase) {
         log(`[SupabaseSync] Initializing cloud sync for ${product.sku}...`);
         try {
@@ -146,17 +214,21 @@ async function startServer() {
             
             if (error) {
                 log(`[SupabaseSync-ERROR] ${product.sku}: ${error.message}`);
+                supabaseResult = { success: false, error: error.message };
             } else {
                 log(`[SupabaseSync-SUCCESS] ${product.sku} backed up to cloud.`);
+                supabaseResult = { success: true, error: null };
             }
-        } catch (err) {
+        } catch (err: any) {
             log(`[SupabaseSync-FATAL] ${product.sku}: ${err}`);
+            supabaseResult = { success: false, error: err.message };
         }
     } else {
         log(`[SupabaseSync-SKIP] ${product.sku}: Supabase not configured in backend.`);
+        supabaseResult = { success: false, error: 'Supabase not configured' };
     }
     
-    res.json({ success: true, supabase_synced: !!supabase });
+    res.json({ success: true, supabase_synced: supabaseResult.success, supabase_error: supabaseResult.error });
   });
 
   apiRouter.delete('/products/:sku', async (req, res) => {
