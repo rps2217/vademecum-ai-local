@@ -130,7 +130,7 @@ export const CloudSyncService = {
           const payload = {
               sku: product.sku,
               nombre_comercial: product.nombre_comercial,
-              ...product,
+              data: product, // Empaquetar todo el producto (incluyendo sinergias) en la columna JSONB "data"
               last_updated: new Date().toISOString()
           };
 
