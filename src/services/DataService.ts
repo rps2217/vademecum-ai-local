@@ -61,7 +61,7 @@ export class DataService {
     if (!navigator.onLine) return;
     try {
         const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
-        await fetch(`${supabaseUrl}/rest/v1/products`, {
+        const response = await fetch(`${supabaseUrl}/rest/v1/products`, {
             method: 'POST',
             headers: { 
                 'apikey': supabaseKey, 
@@ -71,6 +71,9 @@ export class DataService {
             },
             body: JSON.stringify({ sku: product.sku, data: product })
         });
+        if (response.ok) {
+            await LocalDBService.saveProduct({ ...product, synced: true, last_synced: Date.now() });
+        }
     } catch (e) {
         console.error('[DataService] Sync failed', e);
         throw e;
