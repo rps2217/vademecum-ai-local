@@ -1,5 +1,3 @@
-import { Subject, Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 
 export enum EventType {
   PRODUCT_UPDATED = 'PRODUCT_UPDATED',
@@ -21,12 +19,18 @@ interface AppEvent<T = any> {
   id: string;
 }
 
-const eventSubject = new Subject<AppEvent>();
+type Listener<T> = (payload: T) => void;
+
+export interface Subscription {
+  unsubscribe: () => void;
+}
+
+const listeners = new Map<EventType, Listener<any>[]>();
+const allListeners = new Set<Listener<AppEvent>>();
 const eventHistory: AppEvent[] = [];
 const MAX_HISTORY = 100;
 
 export const EventBus = {
-  // Emitir un evento
   emit: <T>(type: EventType, payload: T) => {
     const event: AppEvent = { 
       type, 
@@ -35,7 +39,6 @@ export const EventBus = {
       id: Math.random().toString(36).substring(2, 11)
     };
     
-    // Observabilidad: Loggear a consola en desarrollo
     if (process.env.NODE_ENV !== 'production') {
       console.log(`[EventBus] ${event.type}`, {
         id: event.id,
@@ -44,32 +47,49 @@ export const EventBus = {
       });
     }
 
-    // Mantener historial
     eventHistory.push(event);
     if (eventHistory.length > MAX_HISTORY) {
       eventHistory.shift();
     }
 
-    eventSubject.next(event);
+    const typeListeners = listeners.get(type) || [];
+    typeListeners.forEach(l => l(payload));
+    
+    allListeners.forEach(l => l(event));
   },
 
-  // Observar eventos específicos
-  on: <T>(type: EventType): Observable<T> => {
-    return eventSubject.asObservable().pipe(
-      filter(event => event.type === type),
-      map(event => event.payload)
-    );
+  on: <T>(type: EventType) => {
+    return {
+      subscribe: (callback: Listener<T>) => {
+        const typeListeners = listeners.get(type) || [];
+        typeListeners.push(callback);
+        listeners.set(type, typeListeners);
+        
+        return {
+          unsubscribe: () => {
+            const current = listeners.get(type) || [];
+            listeners.set(type, current.filter(l => l !== callback));
+          }
+        };
+      }
+    };
   },
 
-  // Observar TODOS los eventos (para trazabilidad/UI Debug)
-  all: (): Observable<AppEvent> => {
-    return eventSubject.asObservable();
+  all: () => {
+    return {
+      subscribe: (callback: Listener<AppEvent>) => {
+        allListeners.add(callback);
+        return {
+          unsubscribe: () => {
+            allListeners.delete(callback);
+          }
+        };
+      }
+    };
   },
 
-  // Obtener historial reciente
   getHistory: () => [...eventHistory],
 
-  // Limpiar historial
   clearHistory: () => {
     eventHistory.length = 0;
   }

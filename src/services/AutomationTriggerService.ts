@@ -1,7 +1,6 @@
-import { EventBus, EventType } from './EventBus';
+import { EventBus, EventType, Subscription } from './EventBus';
 import { TaskQueueService } from './TaskQueueService';
 import { DataService } from './DataService';
-import { Subscription } from 'rxjs';
 import { Product } from '../core/types/product.types';
 
 export class AutomationTriggerService {

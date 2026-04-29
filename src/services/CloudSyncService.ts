@@ -2,8 +2,7 @@ import { Product } from '../core/types/product.types';
 import { TaskQueueService } from './TaskQueueService';
 import { ConfigService } from './ConfigService';
 import { DataService } from './DataService';
-import { EventBus, EventType } from './EventBus';
-import { Subscription } from 'rxjs';
+import { EventBus, EventType, Subscription } from './EventBus';
 
 /**
  * Sincronización Inteligente: 
