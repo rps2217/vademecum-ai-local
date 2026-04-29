@@ -31,7 +31,14 @@ export const DatabaseModule: React.FC = () => {
     try {
       const allProducts = await DataService.getAllProducts();
       setProducts(allProducts);
-      CloudSyncService.getCloudCount().then(setCloudCount).catch(console.error);
+      const cCount = await CloudSyncService.getCloudCount();
+      setCloudCount(cCount);
+
+      // Auto-Restore Logic: If local is empty but cloud has data, suggest or auto-pull
+      if (allProducts.length === 0 && cCount > 0 && !isManual) {
+        setSyncStatus('Detectados datos en la nube. Restaurando automáticamente...');
+        await handleSmartPull();
+      }
     } catch (error) {
       console.error('Error cargando DB:', error);
     } finally {
@@ -39,12 +46,31 @@ export const DatabaseModule: React.FC = () => {
     }
   };
 
+  const handleSmartPull = async () => {
+    setIsSyncing(true);
+    setSyncStatus('Reconciliando datos con la nube (Delta Sync)...');
+    try {
+      const { downloaded } = await CloudSyncService.pullCloudData();
+      if (downloaded > 0) {
+        setSyncStatus(`Sincronización exitosa: ${downloaded} productos nuevos descargados.`);
+        await loadData(true);
+      } else {
+        setSyncStatus('Ya estás al día con la nube.');
+      }
+    } catch (error) {
+       setSyncStatus('Error en la sincronización inteligente.');
+    } finally {
+      setIsSyncing(false);
+      setTimeout(() => setSyncStatus(null), 5000);
+    }
+  };
+
   useEffect(() => {
     loadData();
 
     // Suscribirse a actualizaciones para refrescar el estado de sincronización
-    const sub = EventBus.on<any>(EventType.DB_UPDATED).subscribe(() => loadData());
-    const subProduct = EventBus.on<any>(EventType.PRODUCT_UPDATED).subscribe(() => loadData());
+    const sub = EventBus.on<any>(EventType.DB_UPDATED).subscribe(() => loadData(true));
+    const subProduct = EventBus.on<any>(EventType.PRODUCT_UPDATED).subscribe(() => loadData(true));
 
     return () => {
       sub.unsubscribe();
@@ -137,9 +163,19 @@ export const DatabaseModule: React.FC = () => {
             <Download className="w-4 h-4 text-emerald-400" /> Exportar
           </button>
           {isAdmin && (
-            <button onClick={handleSyncToCloud} disabled={isSyncing} className="flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-xl hover:opacity-90 font-bold text-sm disabled:opacity-50">
-              <CloudUpload className={`w-4 h-4 ${isSyncing ? 'animate-bounce' : ''}`} /> Respaldar Nube
-            </button>
+            <>
+              <button 
+                onClick={handleSmartPull} 
+                disabled={isSyncing} 
+                className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-xl hover:bg-indigo-500/20 transition-all font-bold text-sm disabled:opacity-50"
+                title="Descarga solo lo que falta en tu base local"
+              >
+                <RefreshCw className={`w-4 h-4 ${isSyncing ? 'animate-spin' : ''}`} /> Sincronizar Cloud
+              </button>
+              <button onClick={handleSyncToCloud} disabled={isSyncing} className="flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-xl hover:opacity-90 font-bold text-sm disabled:opacity-50">
+                <CloudUpload className={`w-4 h-4 ${isSyncing ? 'animate-bounce' : ''}`} /> Respaldar Nube
+              </button>
+            </>
           )}
         </div>
       </div>

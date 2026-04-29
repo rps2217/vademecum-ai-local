@@ -105,6 +105,29 @@ export class DataService {
     }
   }
 
+  static async fetchCloudInventory(): Promise<{ sku: string }[]> {
+    const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
+    const response = await fetch(`${supabaseUrl}/rest/v1/products?select=sku`, {
+      headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
+    });
+    if (!response.ok) throw new Error('Failed to fetch cloud inventory');
+    return response.json();
+  }
+
+  static async downloadCloudProducts(skus: string[]): Promise<Product[]> {
+    if (skus.length === 0) return [];
+    
+    const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
+    // Paginate or use 'in' operator. PostgREST 'in' is useful for batches
+    const skuList = skus.join(',');
+    const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=in.(${skuList})&select=data`, {
+      headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
+    });
+    if (!response.ok) throw new Error('Failed to download cloud products');
+    const result = await response.json();
+    return result.map((r: any) => r.data);
+  }
+
   static async deleteProduct(sku: string): Promise<void> {
     await LocalDBService.deleteProduct(sku);
 

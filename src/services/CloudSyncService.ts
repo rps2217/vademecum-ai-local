@@ -107,5 +107,81 @@ export const CloudSyncService = {
 
   releaseProductLockAndSave: async (product: Product): Promise<void> => {
     await DataService.saveProduct(product);
+  },
+
+  /**
+   * Reconciliación Inteligente (Smart Pull):
+   * Compara el inventario local con la nube y descarga los deltas.
+   */
+  pullCloudData: async (): Promise<{ downloaded: number; total: number }> => {
+    try {
+      LogService.add({
+        level: 'info',
+        module: 'CloudSync',
+        message: 'Iniciando reconciliación inteligente con la nube...',
+      });
+
+      // 1. Obtener inventario de SKUs local y remoto
+      const localSkus = await LocalDBService.getAllSkus();
+      const cloudInventory = await DataService.fetchCloudInventory();
+      const cloudSkus = cloudInventory.map(item => item.sku);
+
+      // 2. Identificar qué SKUs faltan localmente (Deltas)
+      const missingLocally = cloudSkus.filter(sku => !localSkus.includes(sku));
+      
+      if (missingLocally.length === 0) {
+        LogService.add({
+          level: 'success',
+          module: 'CloudSync',
+          message: 'Base de datos local está al día. No se requieren descargas.',
+        });
+        return { downloaded: 0, total: cloudSkus.length };
+      }
+
+      LogService.add({
+        level: 'info',
+        module: 'CloudSync',
+        message: `Se detectaron ${missingLocally.length} productos nuevos en la nube. Iniciando descarga...`,
+      });
+
+      // 3. Descargar en lotes para no sobrecargar la red/CPU (Standard Industry Batching)
+      const BATCH_SIZE = 50;
+      let downloadedCount = 0;
+
+      for (let i = 0; i < missingLocally.length; i += BATCH_SIZE) {
+        const batchSkus = missingLocally.slice(i, i + BATCH_SIZE);
+        const products = await DataService.downloadCloudProducts(batchSkus);
+        
+        // Marcar como ya sincronizados al guardar localmente
+        const syncedProducts = products.map(p => ({ ...p, synced: true, last_synced: Date.now() }));
+        await LocalDBService.bulkSaveProducts(syncedProducts);
+        
+        downloadedCount += syncedProducts.length;
+        
+        LogService.add({
+          level: 'info',
+          module: 'CloudSync',
+          message: `Descargados ${downloadedCount}/${missingLocally.length} productos...`,
+        });
+      }
+
+      LogService.add({
+        level: 'success',
+        module: 'CloudSync',
+        message: `Sincronización completada. ${downloadedCount} productos integrados localmente.`,
+      });
+
+      EventBus.emit(EventType.DB_UPDATED, { action: 'pull_complete', count: downloadedCount });
+      return { downloaded: downloadedCount, total: cloudSkus.length };
+
+    } catch (error) {
+      LogService.add({
+        level: 'error',
+        module: 'CloudSync',
+        message: 'Fallo en la reconciliación de datos',
+        details: error instanceof Error ? error.message : error
+      });
+      throw error;
+    }
   }
 };

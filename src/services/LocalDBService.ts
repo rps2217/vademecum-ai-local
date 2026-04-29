@@ -46,6 +46,11 @@ export const LocalDBService = {
     await db.delete(STORE_NAME, sku);
   },
 
+  async getAllSkus(): Promise<string[]> {
+    const db = await getDB();
+    return db.getAllKeys(STORE_NAME) as Promise<string[]>;
+  },
+
   async clearAll(): Promise<void> {
     const db = await getDB();
     await db.clear(STORE_NAME);
