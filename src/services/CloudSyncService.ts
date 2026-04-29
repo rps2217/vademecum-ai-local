@@ -47,47 +47,42 @@ export const CloudSyncService = {
     }
   },
 
-  updateProductsBatch: async (products: Product[]) => {
-    if (products.length === 0) return true;
+  updateProductsBatch: async (products: Product[]): Promise<number> => {
+    if (products.length === 0) return 0;
     
     const config = ConfigService.getConfig();
-    if (!config.autoSyncCloud) return true;
+    if (!config.autoSyncCloud) return 0;
 
-    // Check configuration BEFORE starting loop to prevent 1092 error logs
     const fallbackUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
-    const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; // Use generic anon key pattern
+    const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; 
     const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || fallbackUrl;
     const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || fallbackKey;
     const hasDirectConfig = !!(supabaseUrl && supabaseKey);
-    const hasBackendNode = localStorage.getItem('backend_node_active') === 'true'; // Set by checkCloudData if successful
 
-    // We proceed if there's direct config, or if we haven't failed the backend check yet.
     if (!hasDirectConfig && localStorage.getItem('force_supabase_direct') === 'true') {
-        console.log('[CloudSync] Sincronización en la nube abortada: No hay backend Node ni configuración de Supabase (VITE_SUPABASE_URL).');
-        // Disable auto sync to prevent further useless CPU cycles
+        console.log('[CloudSync] Sincronización en la nube abortada: No hay backend Node ni configuración de Supabase.');
         ConfigService.updateConfig({ autoSyncCloud: false });
-        return false;
+        return 0;
     }
 
     console.log(`[CloudSync] Procesando lote de ${products.length} productos.`);
+    let successCount = 0;
 
     try {
       const db = await DataService.getDB();
-      if (!db) return false;
+      if (!db) return 0;
 
       for (const product of products) {
         if (!navigator.onLine) break;
 
         const apiUrl = '/api/products';
         let isSynced = false;
-        // Fuerza el uso del backend proxy siempre ya que el cliente no accede bien a las variables de entorno
         const useDirectMode = localStorage.getItem('force_supabase_direct') === 'true'; 
 
         if (useDirectMode) {
              isSynced = await CloudSyncService.directSupabaseUpsert(product);
         } else {
             try {
-                // ... fetch /api/products
                 const response = await fetch(apiUrl, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
@@ -96,48 +91,27 @@ export const CloudSyncService = {
 
                 if (response.ok) {
                     isSynced = true;
-                    // Mark backend as active
                     localStorage.setItem('backend_node_active', 'true');
-                } else {
-                     if (response.status === 404) {
-                         localStorage.setItem('force_supabase_direct', 'true');
-                         if (hasDirectConfig) {
-                             isSynced = await CloudSyncService.directSupabaseUpsert(product);
-                         } else {
-                             console.error('[CloudSync] Fallo en servidor local 404 y no hay credenciales VITE para directo. Deteniendo sync.');
-                             ConfigService.updateConfig({ autoSyncCloud: false });
-                             return false; // Exit the loop entirely!
-                         }
-                     }
+                } else if (response.status === 404) {
+                    localStorage.setItem('force_supabase_direct', 'true');
+                    isSynced = hasDirectConfig ? await CloudSyncService.directSupabaseUpsert(product) : false;
                 }
             } catch (e) {
-                // ... fallback
                 localStorage.setItem('force_supabase_direct', 'true');
-                if (hasDirectConfig) {
-                    isSynced = await CloudSyncService.directSupabaseUpsert(product);
-                } else {
-                    console.error('[CloudSync] Fallo red local y no hay credenciales VITE para directo. Deteniendo sync.');
-                    ConfigService.updateConfig({ autoSyncCloud: false });
-                    return false;
-                }
+                isSynced = hasDirectConfig ? await CloudSyncService.directSupabaseUpsert(product) : false;
             }
         }
 
         if (isSynced) {
-          // Marcar como sincronizado localmente tras éxito
-          await db.products.upsert({
-            ...product,
-            synced: true,
-            last_synced: Date.now()
-          });
-          // ...
+          await db.products.upsert({ ...product, synced: true, last_synced: Date.now() });
           EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: true });
+          successCount++;
         }
       }
-      return true;
+      return successCount;
     } catch (error: any) {
       console.error('[CloudSync] Error general en guardado por lotes:', error);
-      return false;
+      return successCount;
     }
   },
 
@@ -146,14 +120,14 @@ export const CloudSyncService = {
       try {
           // Intentar obtener de import.meta.env (Vite) de forma segura
           const fallbackUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
-          const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; // anon key
-          const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || fallbackUrl;
-          const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || fallbackKey;
+          const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; 
           
-          if (!supabaseUrl || !supabaseKey) {
-            console.error(`[CloudSync] CRÍTICO: No se encontraron las variables de configuración de Supabase (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY).`);
-            return false;
-          }
+          const envUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
+          const envKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
+          
+          const supabaseUrl = envUrl && envUrl.length > 5 ? envUrl : fallbackUrl;
+          const supabaseKey = envKey && envKey.length > 10 ? envKey : fallbackKey;
+
           
           const payload = {
               sku: product.sku,
@@ -237,9 +211,8 @@ export const CloudSyncService = {
     await DataService.saveProduct(finalizedProduct);
   },
 
-  uploadLocalProducts: async () => {
+  uploadLocalProducts: async (): Promise<number> => {
     const products = await DataService.getAllProducts();
-    await CloudSyncService.updateProductsBatch(products);
-    return products.length;
+    return await CloudSyncService.updateProductsBatch(products);
   }
 };
