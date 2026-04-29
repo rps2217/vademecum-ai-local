@@ -128,22 +128,33 @@ export class AIService {
     this.lastProgress = { text: '', progress: 0 };
   }
 
+  private static isBusy = false;
+
+  static async analyzeSynergy(product: any, candidates: any[]): Promise<any> {
+    this.isBusy = true;
+    try {
+      return await this.runInWorker('analyze_synergy', { product, candidates });
+    } finally {
+      this.isBusy = false;
+    }
+  }
+
   private static startWatchdog() {
     if (this.watchdogInterval) return;
-    // Revisar cada 5 minutos si el worker sigue vivo
     this.watchdogInterval = window.setInterval(async () => {
-      if (this.isReady && this.worker) {
+      if (this.isReady && this.worker && !this.isBusy) {
         try {
-          // Aumentamos timeout a 60s ya que la GPU reporta latencias de 16s en logs
-          const health = await this.runHealthCheckTimeout(60000); 
+          const health = await this.runHealthCheckTimeout(120000); 
           if (!health.ok) {
-            console.warn('[AIService] Watchdog: El motor no responde. Reiniciando...');
+            console.warn('[AIService] Watchdog: El motor no responde tras 2 min. Reiniciando...');
             this.restartEngine();
           }
         } catch (e) {
-          console.warn('[AIService] Watchdog: Error de timeout. Reiniciando motor...', e);
+          console.warn('[AIService] Watchdog: Error o Timeout. RE-INICIANDO motor...', e);
           this.restartEngine();
         }
+      } else if (this.isBusy) {
+        console.log('[AIService] Watchdog: Motor ocupado, posponiendo revisión de salud.');
       }
     }, 5 * 60 * 1000);
   }

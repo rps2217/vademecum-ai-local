@@ -28,8 +28,15 @@ export const SettingsModule: React.FC = () => {
     
     // Polling suave para longitud de cola
     const interval = setInterval(async () => {
-      const { TaskQueueService } = await import('../../services/TaskQueueService');
-      setQueueLength(TaskQueueService.getQueueLength());
+      try {
+        const module = await import('../../services/TaskQueueService');
+        const queueService = module.TaskQueueService;
+        if (queueService && typeof queueService.getQueueLength === 'function') {
+           setQueueLength(queueService.getQueueLength());
+        }
+      } catch (e) {
+        console.error('Error polling queue:', e);
+      }
     }, 2000);
 
     return () => {

@@ -18,7 +18,11 @@ const STORAGE_KEY = 'pending_tasks';
 
 const getTasksFromStorage = (): PendingTask[] => {
   const tasks = localStorage.getItem(STORAGE_KEY);
-  return tasks ? JSON.parse(tasks) : [];
+  try {
+    return tasks ? JSON.parse(tasks) : [];
+  } catch (e) {
+    return [];
+  }
 };
 
 const saveTasksToStorage = (tasks: PendingTask[]) => {

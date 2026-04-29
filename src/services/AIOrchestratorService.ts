@@ -106,10 +106,11 @@ export class AIOrchestratorService {
       }
 
       // 2. Identificar candidatos para Análisis Clínico (Sinergia)
-      // Priorizamos productos que NO han sido analizados
-      const needsAnalysis = allProducts
-        .filter(p => !p.synergy_analyzed)
-        .slice(0, 10); // Aumentamos lote a 10
+      // Priorizamos productos que tienen vectores pero no analisis (Mitad de camino)
+      const halfDone = allProducts.filter(p => !p.synergy_analyzed && p.vectores && p.vectores.length > 0).slice(0, 10);
+      const totallyPending = allProducts.filter(p => !p.synergy_analyzed && (!p.vectores || p.vectores.length === 0)).slice(0, 5);
+      
+      const needsAnalysis = [...halfDone, ...totallyPending].slice(0, 10);
 
       let claimedCount = 0;
       for (const p of needsAnalysis) {
