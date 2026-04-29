@@ -77,10 +77,12 @@ export class SynergyBackgroundService {
 
       // [CLÚSTER] 1. Reclamo de exclusividad. 
       // ¿Algún otro PC de esta farmacia ya está trabajando con esto en este instante?
-      const canLock = await CloudSyncService.claimProductLock(product.sku, 'ai_worker_node');
+      const { getDeviceId } = await import('../utils/clusterUtils');
+      const deviceId = getDeviceId();
+      const canLock = await CloudSyncService.claimProductLock(product.sku, deviceId);
       if (!isForced && !canLock) {
-         console.warn(`[ClusterSync] Sku ${product.sku} saltado. Otro PC ya lo está analizando.`);
-         return; // Interrumpe el bloque para salir a buscar otro.
+         console.warn(`[ClusterSync] Sku ${product.sku} saltado. Otro PC (${deviceId}) ya lo está analizando.`);
+         return; 
       }
       
       this.currentProcessingSku = product.sku;

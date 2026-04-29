@@ -5,12 +5,40 @@ import { DataService } from '../../services/DataService';
 import { ConfigService, AppConfig } from '../../services/ConfigService';
 import { useLogs } from '../../hooks/useLogs';
 import { LogService } from '../../services/LogService';
+import { getDeviceId } from '../../utils/clusterUtils';
+import { CloudSyncService } from '../../services/CloudSyncService';
 
 export const SettingsModule: React.FC = () => {
   const { hardware } = useHardwareDetection();
   const [isImporting, setIsImporting] = useState(false);
   const [config, setConfig] = useState<AppConfig>(ConfigService.getConfig());
   const { logs, clearLogs } = useLogs();
+  const [nodeId] = useState(getDeviceId());
+  const [isTestingCluster, setIsTestingCluster] = useState(false);
+  const [clusterTestResult, setClusterTestResult] = useState<string | null>(null);
+
+  const testClusterLock = async () => {
+    setIsTestingCluster(true);
+    setClusterTestResult(null);
+    try {
+      // Usamos un SKU ficticio para probar el sistema de colas/locks
+      const success = await CloudSyncService.claimProductLock('CLUSTER_TEST_PING', nodeId);
+      if (success) {
+        setClusterTestResult('Lock adquirido con éxito. Este dispositivo tiene exclusividad sobre la tarea de prueba.');
+        LogService.add({
+          level: 'success',
+          module: 'Cluster',
+          message: `Prueba de clúster exitosa: Lock adquirido por ${nodeId}`
+        });
+      } else {
+        setClusterTestResult('No se pudo adquirir el lock. Posiblemente otro nodo está en medio de una prueba o hay error de red.');
+      }
+    } catch (e) {
+      setClusterTestResult('Error de conexión con el motor de clúster.');
+    } finally {
+      setIsTestingCluster(false);
+    }
+  };
 
   const handleConfigChange = (updates: Partial<AppConfig>) => {
     const newConfig = ConfigService.updateConfig(updates);
@@ -193,6 +221,54 @@ export const SettingsModule: React.FC = () => {
                 </div>
                 <button onClick={handleRestartKernel} className="px-3 py-1 bg-red-900/40 hover:bg-red-800/60 text-red-200 rounded-lg text-xs font-bold transition-all">Ejecutar</button>
              </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Cluster Status Tool */}
+      <div className="mt-12 bg-indigo-900/10 border border-indigo-500/20 rounded-3xl p-8 shadow-xl">
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 className="text-xl font-bold text-white flex items-center gap-3">
+              <RefreshCw className="w-6 h-6 text-indigo-400" /> Monitor de Clúster (Smart Synergy)
+            </h3>
+            <p className="text-xs text-indigo-300/60 mt-1">Verifica la identidad de este nodo y la coordinación con otros dispositivos.</p>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1 bg-indigo-500/20 rounded-lg border border-indigo-500/30">
+            <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse" />
+            <span className="text-[10px] font-mono text-indigo-300 font-bold uppercase tracking-tight">{nodeId}</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="p-4 bg-slate-900/50 rounded-2xl border border-slate-700">
+            <p className="text-xs font-bold text-indigo-400 mb-2 uppercase">Identidad de Nodo</p>
+            <div className="flex items-center gap-3 text-slate-300">
+              <div className="p-2 bg-indigo-500/10 rounded-lg">
+                <Terminal className="w-4 h-4 text-indigo-400" />
+              </div>
+              <span className="text-sm font-mono">{nodeId}</span>
+            </div>
+            <p className="text-[10px] text-slate-500 mt-2 italic">Este ID es único para este navegador/dispositivo y previene conflictos de análisis.</p>
+          </div>
+
+          <div className="p-4 bg-slate-900/50 rounded-2xl border border-slate-700 flex flex-col justify-between">
+            <div>
+              <p className="text-xs font-bold text-indigo-400 mb-2 uppercase">Prueba de Concurrencia</p>
+              {clusterTestResult && (
+                <p className={`text-[10px] p-2 rounded-lg mb-2 ${clusterTestResult.includes('éxito') ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+                   {clusterTestResult}
+                </p>
+              )}
+            </div>
+            <button 
+              onClick={testClusterLock} 
+              disabled={isTestingCluster}
+              className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {isTestingCluster ? <Loader2 className="w-3 h-3 animate-spin" /> : <ShieldCheck className="w-3 h-3" />}
+              Probar Sistema de Bloqueo
+            </button>
           </div>
         </div>
       </div>

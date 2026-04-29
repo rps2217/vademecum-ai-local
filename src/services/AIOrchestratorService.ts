@@ -3,6 +3,7 @@ import { CloudSyncService } from './CloudSyncService';
 import { Product } from '../core/types/product.types';
 import { DataService } from './DataService';
 import { TaskQueueService } from './TaskQueueService';
+import { LocalDBService } from './LocalDBService';
 
 export interface OrchestratorStatus {
   isRunning: boolean;
@@ -67,49 +68,48 @@ export class AIOrchestratorService {
 
   /**
    * Busca productos que necesitan atención y los encola en el TaskQueue.
+   * [CLUSTER ENGINE]: Solo encola si puede reclamar el bloqueo distribuido.
    */
   static async scoutPendingWork() {
     if (this.isRunning) return;
     this.isRunning = true;
-    this.updateStatus({ isRunning: true, currentTask: 'Scouting work...' });
+    this.updateStatus({ isRunning: true, currentTask: 'Explorando inventario...' });
     
     try {
-      const db = await DataService.getDB();
-      if (!db) return;
+      const allProducts = await LocalDBService.getAllProducts();
+      if (!allProducts || allProducts.length === 0) return;
 
-      // Buscar productos sin vectores (Prioridad 1)
-      const pendingVector = await db.products.find({
-        selector: {
-          $or: [
-            { vectores: { $exists: false } },
-            { vectores: { $size: 0 } }
-          ]
-        },
-        limit: 5 // Reducido para proteger hardware de oficina
-      }).exec();
-
-      if (pendingVector.length > 0) {
-        console.log(`[Orchestrator Scout] Encontrados ${pendingVector.length} productos para vectorización.`);
-        for (const p of pendingVector) {
-          await TaskQueueService.addTask('vectorization', { sku: p.sku });
+      const deviceId = (await import('../utils/clusterUtils')).getDeviceId();
+      
+      // 1. Identificar candidatos para Vectorización
+      const needsVector = allProducts.filter(p => !p.vectores || p.vectores.length === 0).slice(0, 10);
+      
+      for (const p of needsVector) {
+        // En vectorización el bloqueo es menos crítico pero igual lo aplicamos para orden
+        const canWork = await CloudSyncService.claimProductLock(p.sku, deviceId);
+        if (canWork) {
+           await TaskQueueService.addTask('vectorization', { sku: p.sku });
         }
       }
 
-      // Buscar productos sin análisis clínico (Prioridad 2)
-      const pendingAnalysis = await db.products.find({
-        selector: {
-          synergy_analyzed: { $ne: true }
-        },
-        limit: 3 // Reducido de 10 a 3 para evitar saturación de CPU/GPU en Windows genéricos
-      }).exec();
+      // 2. Identificar candidatos para Análisis Clínico (Sinergia)
+      // Priorizamos productos que NO han sido analizados
+      const needsAnalysis = allProducts
+        .filter(p => !p.synergy_analyzed)
+        .slice(0, 5); // Un lote pequeño para no saturar la red con ráfagas de locks
 
-      if (pendingAnalysis.length > 0) {
-        console.log(`[Orchestrator Scout] Encontrados ${pendingAnalysis.length} productos para análisis clínico.`);
-        for (const p of pendingAnalysis) {
+      for (const p of needsAnalysis) {
+        const canWork = await CloudSyncService.claimProductLock(p.sku, deviceId);
+        if (canWork) {
+          console.log(`[ClusterCoordination] SKU ${p.sku} reservado por este nodo (${deviceId})`);
           await TaskQueueService.addTask('ai_analysis', { sku: p.sku, type: 'synergy' });
+        } else {
+          console.log(`[ClusterCoordination] SKU ${p.sku} ignorado (en proceso por otro nodo)`);
         }
       }
 
+    } catch (error) {
+      console.error('[Orchestrator Scout] Error en exploración de clúster:', error);
     } finally {
       this.isRunning = false;
       this.updateStatus({ isRunning: false, currentTask: '' });

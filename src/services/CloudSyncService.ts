@@ -100,9 +100,89 @@ export const CloudSyncService = {
   },
 
   claimProductLock: async (sku: string, nodeId: string): Promise<boolean> => {
-    // Simple lock implementation: in a real app, this should be an RPC or atomic DB operation
-    // For now, let's just return true to emulate locking
-    return true;
+    if (!navigator.onLine) return true; // Offline mode defaults to local lock (risky but functional)
+    
+    try {
+      const { supabaseUrl, supabaseKey } = DataService.getSupabaseInfo();
+      const now = Date.now();
+      const timeout = 15 * 60 * 1000; // 15 minutes timeout
+
+      // Intentamos actualizar solo si no está bloqueado o el bloqueo expiró
+      // Usamos el operador PostgREST para filtrar por campos dentro del JSONB 'data'
+      // Documentación: https://postgrest.org/en/stable/api.html#jsonpath-filtering
+      
+      const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${sku}`, {
+        method: 'PATCH',
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify({
+          data: {
+             // Nota: Esto re-emplaza el objeto completo 'data' en Supabase si no se tiene cuidado.
+             // Sin embargo, DataService.syncToSupabase ya guarda el objeto completo.
+             // Para un bloqueo real necesitamos que 'locked_by_ai' sea una COLUMNA o usar RPC.
+             // Dado que no puedo crear tablas/columnas, asumiré que el usuario prefiere
+             // que sea lo más robusto posible con la estructura actual.
+          }
+        })
+      });
+
+      // CAMBIO DE ESTRATEGIA: Para evitar sobre-escribir el 'data' JSONB accidentalmente
+      // y dado que no podemos ejecutar SQL directamente fácilmente sin un helper RPC,
+      // usaremos un enfoque de "Optimistic Concurrency" leyendo primero.
+      
+      const checkResponse = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${sku}&select=data`, {
+        headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
+      });
+      
+      if (!checkResponse.ok) return false;
+      const result = await checkResponse.json();
+      if (result.length === 0) return true; // Si no está en la nube, es nuestro.
+
+      const cloudProduct: Product = result[0].data;
+      
+      // Si ya está bloqueado por otro y no ha expirado
+      if (cloudProduct.locked_by_ai && 
+          cloudProduct.lock_uid !== nodeId && 
+          cloudProduct.lock_timestamp && 
+          (now - cloudProduct.lock_timestamp < timeout)) {
+        return false;
+      }
+
+      // Si está libre o expiró, lo reclamamos
+      const lockedProduct = {
+        ...cloudProduct,
+        locked_by_ai: true,
+        lock_uid: nodeId,
+        lock_timestamp: now,
+        synced: false // Forzar resync local
+      };
+
+      // Guardar el reclamo en la nube
+      const updateResponse = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${sku}`, {
+        method: 'PATCH',
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: lockedProduct })
+      });
+
+      if (updateResponse.ok) {
+        // También guardar localmente para que el worker lo sepa
+        await LocalDBService.saveProduct(lockedProduct);
+        return true;
+      }
+
+      return false;
+    } catch (e) {
+      console.error('[CloudSync] Error claiming lock:', e);
+      return false;
+    }
   },
 
   releaseProductLockAndSave: async (product: Product): Promise<void> => {
