@@ -53,6 +53,20 @@ export const CloudSyncService = {
     const config = ConfigService.getConfig();
     if (!config.autoSyncCloud) return true;
 
+    // Check configuration BEFORE starting loop to prevent 1092 error logs
+    const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
+    const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
+    const hasDirectConfig = !!(supabaseUrl && supabaseKey);
+    const hasBackendNode = localStorage.getItem('backend_node_active') === 'true'; // Set by checkCloudData if successful
+
+    // We proceed if there's direct config, or if we haven't failed the backend check yet.
+    if (!hasDirectConfig && localStorage.getItem('force_supabase_direct') === 'true') {
+        console.log('[CloudSync] Sincronización en la nube abortada: No hay backend Node ni configuración de Supabase (VITE_SUPABASE_URL).');
+        // Disable auto sync to prevent further useless CPU cycles
+        ConfigService.updateConfig({ autoSyncCloud: false });
+        return false;
+    }
+
     console.log(`[CloudSync] Procesando lote de ${products.length} productos.`);
 
     try {
@@ -65,14 +79,13 @@ export const CloudSyncService = {
         const apiUrl = '/api/products';
         let isSynced = false;
         // Fuerza el uso del backend proxy siempre ya que el cliente no accede bien a las variables de entorno
-        const useDirectMode = false; 
+        const useDirectMode = localStorage.getItem('force_supabase_direct') === 'true'; 
 
         if (useDirectMode) {
-             console.log(`[CloudSync] Modo directo activo. Subiendo ${product.sku} a Supabase...`);
              isSynced = await CloudSyncService.directSupabaseUpsert(product);
         } else {
             try {
-                console.log(`[CloudSync] POSTing to: ${window.location.origin}${apiUrl} for ${product.sku}`);
+                // ... fetch /api/products
                 const response = await fetch(apiUrl, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
@@ -81,17 +94,30 @@ export const CloudSyncService = {
 
                 if (response.ok) {
                     isSynced = true;
+                    // Mark backend as active
+                    localStorage.setItem('backend_node_active', 'true');
                 } else {
-                     const errorText = await response.text();
-                     console.error(`[CloudSync] Fallo en servidor para ${product.sku}: ${response.status} - ${errorText}`);
                      if (response.status === 404) {
                          localStorage.setItem('force_supabase_direct', 'true');
-                         isSynced = await CloudSyncService.directSupabaseUpsert(product);
+                         if (hasDirectConfig) {
+                             isSynced = await CloudSyncService.directSupabaseUpsert(product);
+                         } else {
+                             console.error('[CloudSync] Fallo en servidor local 404 y no hay credenciales VITE para directo. Deteniendo sync.');
+                             ConfigService.updateConfig({ autoSyncCloud: false });
+                             return false; // Exit the loop entirely!
+                         }
                      }
                 }
             } catch (e) {
-                console.warn(`[CloudSync] Error CORS o Red al intentar proxy a ${apiUrl}:`, e);
-                isSynced = await CloudSyncService.directSupabaseUpsert(product);
+                // ... fallback
+                localStorage.setItem('force_supabase_direct', 'true');
+                if (hasDirectConfig) {
+                    isSynced = await CloudSyncService.directSupabaseUpsert(product);
+                } else {
+                    console.error('[CloudSync] Fallo red local y no hay credenciales VITE para directo. Deteniendo sync.');
+                    ConfigService.updateConfig({ autoSyncCloud: false });
+                    return false;
+                }
             }
         }
 
@@ -102,10 +128,8 @@ export const CloudSyncService = {
             synced: true,
             last_synced: Date.now()
           });
+          // ...
           EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: true });
-          console.log(`[CloudSync] Sincronizado correctamente: ${product.sku}`);
-        } else {
-            console.error(`[CloudSync] Falló sincronización crítica de ${product.sku} en todos los canales.`);
         }
       }
       return true;
