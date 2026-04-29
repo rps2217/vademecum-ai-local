@@ -1,9 +1,6 @@
-import { AIService } from './AIService';
-import { CloudSyncService } from './CloudSyncService';
 import { Product } from '../core/types/product.types';
 import { DataService } from './DataService';
 import { TaskQueueService } from './TaskQueueService';
-import { LocalDBService } from './LocalDBService';
 
 export interface OrchestratorStatus {
   isRunning: boolean;
@@ -63,19 +60,35 @@ export class AIOrchestratorService {
     }, 2 * 60 * 1000); // Revisar cada 2 minutos en lugar de 5
     
     // Revisión inicial suave
-    setTimeout(() => this.scoutPendingWork(), 5000); // 5 segundos después del arranque
+    setTimeout(() => this.scoutPendingWork(), 15000); // Dar 15s de margen inicial
   }
 
   /**
    * Busca productos que necesitan atención y los encola en el TaskQueue.
-   * [CLUSTER ENGINE]: Solo encola si puede reclamar el bloqueo distribuido.
    */
   static async scoutPendingWork() {
     if (this.isRunning) return;
+
+    // Verificar estado del motor IA (Import dinámico para romper ciclo circular)
+    try {
+      const { AIService } = await import('./AIService');
+      const aiStatus = AIService.getStatus();
+      
+      // Si el motor falló o está cargando, abortamos búsqueda para no saturar memoria
+      if (aiStatus.lastProgress.text.toLowerCase().includes('error') || aiStatus.isInitializing) {
+        return;
+      }
+    } catch (e) {
+      return; // AIService no disponible aún
+    }
+
     this.isRunning = true;
     this.updateStatus({ isRunning: true, currentTask: 'Explorando inventario...' });
     
     try {
+      const { LocalDBService } = await import('./LocalDBService');
+      const { CloudSyncService } = await import('./CloudSyncService');
+      
       const allProducts = await LocalDBService.getAllProducts();
       if (!allProducts || allProducts.length === 0) return;
 

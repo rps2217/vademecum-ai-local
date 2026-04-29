@@ -14,6 +14,8 @@ export class AIService {
   private static hardware: HardwareProfile | null = null;
   private static lastProgress = { text: '', progress: 0 };
   private static watchdogInterval: number | null = null;
+  private static lastFailedInit = 0;
+  private static initRetryCount = 0;
 
   static setProgressCallback(cb: (text: string, progress: number) => void) {
     this.initProgressCallback = cb;
@@ -31,7 +33,17 @@ export class AIService {
       SynergyBackgroundService.start();
       return true;
     }
-    if (this.isInitializing) return false; // Ya está en proceso
+    if (this.isInitializing) return false; 
+
+    // Protección contra bucles de reinicio: Esperar si el último fallo fue reciente
+    const now = Date.now();
+    const cooldownPeriod = Math.min(this.initRetryCount * 30000, 300000); // Max 5 min
+    if (now - this.lastFailedInit < cooldownPeriod) {
+      const waitSecs = Math.ceil((cooldownPeriod - (now - this.lastFailedInit)) / 1000);
+      console.warn(`[AIService] Enfriamiento de inicialización: Reintentando en ${waitSecs}s...`);
+      return false;
+    }
+
     if (!this.hardware) throw new Error('Hardware no configurado. Llame a AIService.configure() primero.');
 
     this.isInitializing = true;
@@ -54,6 +66,7 @@ export class AIService {
               this.isInitializing = false;
               if (success) {
                 this.isReady = true;
+                this.initRetryCount = 0; // Resetear contador al éxito
                 this.engineName = engine;
                 this.lastProgress = { text: `${engine} Listo`, progress: 100 };
                 this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
@@ -76,6 +89,8 @@ export class AIService {
                 console.error('Fallo inicialización IA:', error);
                 this.lastProgress = { text: `Error: ${error}`, progress: 0 };
                 this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
+                this.lastFailedInit = Date.now();
+                this.initRetryCount++;
                 this.worker?.terminate();
                 this.worker = null;
                 resolve(false);

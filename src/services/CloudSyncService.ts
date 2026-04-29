@@ -108,29 +108,6 @@ export const CloudSyncService = {
       const now = Date.now();
       const timeout = 15 * 60 * 1000; // 15 minutes timeout
 
-      // Intentamos actualizar solo si no está bloqueado o el bloqueo expiró
-      // Usamos el operador PostgREST para filtrar por campos dentro del JSONB 'data'
-      // Documentación: https://postgrest.org/en/stable/api.html#jsonpath-filtering
-      
-      const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${sku}`, {
-        method: 'PATCH',
-        headers: {
-          'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=representation'
-        },
-        body: JSON.stringify({
-          data: {
-             // Nota: Esto re-emplaza el objeto completo 'data' en Supabase si no se tiene cuidado.
-             // Sin embargo, DataService.syncToSupabase ya guarda el objeto completo.
-             // Para un bloqueo real necesitamos que 'locked_by_ai' sea una COLUMNA o usar RPC.
-             // Dado que no puedo crear tablas/columnas, asumiré que el usuario prefiere
-             // que sea lo más robusto posible con la estructura actual.
-          }
-        })
-      });
-
       // CAMBIO DE ESTRATEGIA: Para evitar sobre-escribir el 'data' JSONB accidentalmente
       // y dado que no podemos ejecutar SQL directamente fácilmente sin un helper RPC,
       // usaremos un enfoque de "Optimistic Concurrency" leyendo primero.
@@ -170,12 +147,16 @@ export const CloudSyncService = {
           'Authorization': `Bearer ${supabaseKey}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data: lockedProduct })
+        body: JSON.stringify({ 
+          data: lockedProduct,
+          updated_at: new Date().toISOString()
+        })
       });
 
       if (updateResponse.ok) {
-        // También guardar localmente para que el worker lo sepa
-        await LocalDBService.saveProduct(lockedProduct);
+        // También guardar localmente para que el worker lo sepa (Uso de import dinámico para evitar 'not defined')
+        const { LocalDBService: LocalDB } = await import('./LocalDBService');
+        await LocalDB.saveProduct(lockedProduct);
         return true;
       }
 
@@ -214,7 +195,8 @@ export const CloudSyncService = {
       console.error('[CloudSync] Failed to release lock:', e);
     }
 
-    await LocalDBService.saveProduct(unlockedProduct);
+    const { LocalDBService: LocalDB } = await import('./LocalDBService');
+    await LocalDB.saveProduct(unlockedProduct);
   },
 
   /**
@@ -228,9 +210,10 @@ export const CloudSyncService = {
         module: 'CloudSync',
         message: 'Iniciando sincronización inteligente...',
       });
-
+      
+      const { LocalDBService: LocalDB } = await import('./LocalDBService');
       const cloudInventory = await DataService.fetchCloudInventory();
-      const localProducts = await LocalDBService.getAllProducts();
+      const localProducts = await LocalDB.getAllProducts();
       const localMap = new Map(localProducts.map(p => [p.sku, p.last_synced || 0]));
 
       const toDownload = cloudInventory.filter(item => {
@@ -261,7 +244,7 @@ export const CloudSyncService = {
         const batchSkus = toDownload.slice(i, i + BATCH_SIZE);
         const products = await DataService.downloadCloudProducts(batchSkus);
         const syncedProducts = products.map(p => ({ ...p, synced: true, last_synced: Date.now() }));
-        await LocalDBService.bulkSaveProducts(syncedProducts);
+        await LocalDB.bulkSaveProducts(syncedProducts);
         downloadedCount += syncedProducts.length;
       }
 
