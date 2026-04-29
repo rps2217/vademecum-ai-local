@@ -96,8 +96,8 @@ export class DataService {
   // Fallback directo a Supabase cuando el backend Node no existe (ej. Vercel estático)
   private static async directSupabaseFetch(): Promise<any[] | null> {
       try {
-          const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-          const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+          const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || 'https://pspxqzwxulgmzarlqwtt.supabase.co';
+          const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || 'sb_publishable_6Wn8XGKb_o8pulv6_pKDFQ_gABZnyHR';
           if (!supabaseUrl || !supabaseKey) return null;
           
           const response = await fetch(`${supabaseUrl}/rest/v1/products?select=data`, {
