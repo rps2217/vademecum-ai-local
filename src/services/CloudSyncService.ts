@@ -4,6 +4,7 @@ import { ConfigService } from './ConfigService';
 import { DataService } from './DataService';
 import { EventBus, EventType } from './EventBus';
 import { LogService } from './LogService';
+import { LocalDBService } from './LocalDBService';
 
 /**
  * Sincronización Inteligente: 
@@ -186,79 +187,98 @@ export const CloudSyncService = {
   },
 
   releaseProductLockAndSave: async (product: Product): Promise<void> => {
-    await DataService.saveProduct(product);
+    const unlockedProduct = {
+      ...product,
+      locked_by_ai: false,
+      lock_uid: null,
+      lock_timestamp: null,
+      synced: true,
+      last_synced: Date.now()
+    };
+    
+    const { supabaseUrl, supabaseKey } = DataService.getSupabaseInfo();
+    try {
+      await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${product.sku}`, {
+        method: 'PATCH',
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          data: unlockedProduct,
+          updated_at: new Date().toISOString()
+        })
+      });
+    } catch (e) {
+      console.error('[CloudSync] Failed to release lock:', e);
+    }
+
+    await LocalDBService.saveProduct(unlockedProduct);
   },
 
   /**
-   * Reconciliación Inteligente (Smart Pull):
-   * Compara el inventario local con la nube y descarga los deltas.
+   * Reconciliación Inteligente PRO (Smart Sync):
+   * Compara timestamps para descargar solo lo nuevo o actualizado.
    */
   pullCloudData: async (): Promise<{ downloaded: number; total: number }> => {
     try {
       LogService.add({
         level: 'info',
         module: 'CloudSync',
-        message: 'Iniciando reconciliación inteligente con la nube...',
+        message: 'Iniciando sincronización inteligente...',
       });
 
-      // 1. Obtener inventario de SKUs local y remoto
-      const localSkus = await LocalDBService.getAllSkus();
       const cloudInventory = await DataService.fetchCloudInventory();
-      const cloudSkus = cloudInventory.map(item => item.sku);
+      const localProducts = await LocalDBService.getAllProducts();
+      const localMap = new Map(localProducts.map(p => [p.sku, p.last_synced || 0]));
 
-      // 2. Identificar qué SKUs faltan localmente (Deltas)
-      const missingLocally = cloudSkus.filter(sku => !localSkus.includes(sku));
+      const toDownload = cloudInventory.filter(item => {
+        const localLastSynced = localMap.get(item.sku) || 0;
+        const cloudUpdatedAt = item.updated_at ? new Date(item.updated_at).getTime() : 0;
+        return !localMap.has(item.sku) || cloudUpdatedAt > localLastSynced;
+      }).map(item => item.sku);
       
-      if (missingLocally.length === 0) {
+      if (toDownload.length === 0) {
         LogService.add({
           level: 'success',
           module: 'CloudSync',
-          message: 'Base de datos local está al día. No se requieren descargas.',
+          message: 'Base local actualizada.',
         });
-        return { downloaded: 0, total: cloudSkus.length };
+        return { downloaded: 0, total: cloudInventory.length };
       }
 
       LogService.add({
         level: 'info',
         module: 'CloudSync',
-        message: `Se detectaron ${missingLocally.length} productos nuevos en la nube. Iniciando descarga...`,
+        message: `Detectados ${toDownload.length} cambios. Sincronizando deltas...`,
       });
 
-      // 3. Descargar en lotes para no sobrecargar la red/CPU (Standard Industry Batching)
       const BATCH_SIZE = 50;
       let downloadedCount = 0;
 
-      for (let i = 0; i < missingLocally.length; i += BATCH_SIZE) {
-        const batchSkus = missingLocally.slice(i, i + BATCH_SIZE);
+      for (let i = 0; i < toDownload.length; i += BATCH_SIZE) {
+        const batchSkus = toDownload.slice(i, i + BATCH_SIZE);
         const products = await DataService.downloadCloudProducts(batchSkus);
-        
-        // Marcar como ya sincronizados al guardar localmente
         const syncedProducts = products.map(p => ({ ...p, synced: true, last_synced: Date.now() }));
         await LocalDBService.bulkSaveProducts(syncedProducts);
-        
         downloadedCount += syncedProducts.length;
-        
-        LogService.add({
-          level: 'info',
-          module: 'CloudSync',
-          message: `Descargados ${downloadedCount}/${missingLocally.length} productos...`,
-        });
       }
 
       LogService.add({
         level: 'success',
         module: 'CloudSync',
-        message: `Sincronización completada. ${downloadedCount} productos integrados localmente.`,
+        message: `Sincronización diferencial completada (${downloadedCount} items).`,
       });
 
       EventBus.emit(EventType.DB_UPDATED, { action: 'pull_complete', count: downloadedCount });
-      return { downloaded: downloadedCount, total: cloudSkus.length };
+      return { downloaded: downloadedCount, total: cloudInventory.length };
 
     } catch (error) {
       LogService.add({
         level: 'error',
         module: 'CloudSync',
-        message: 'Fallo en la reconciliación de datos',
+        message: 'Fallo en la reconciliación',
         details: error instanceof Error ? error.message : error
       });
       throw error;

@@ -73,6 +73,7 @@ export class DataService {
     if (!navigator.onLine) return;
     try {
         const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
+        const now = new Date().toISOString();
         const response = await fetch(`${supabaseUrl}/rest/v1/products`, {
             method: 'POST',
             headers: { 
@@ -81,7 +82,11 @@ export class DataService {
                 'Content-Type': 'application/json',
                 'Prefer': 'resolution=merge-duplicates'
             },
-            body: JSON.stringify({ sku: product.sku, data: product })
+            body: JSON.stringify({ 
+              sku: product.sku, 
+              data: { ...product, synced: true, last_synced: Date.now() },
+              updated_at: now
+            })
         });
         if (response.ok) {
             await LocalDBService.saveProduct({ ...product, synced: true, last_synced: Date.now() });
@@ -105,9 +110,9 @@ export class DataService {
     }
   }
 
-  static async fetchCloudInventory(): Promise<{ sku: string }[]> {
+  static async fetchCloudInventory(): Promise<{ sku: string; updated_at?: string }[]> {
     const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
-    const response = await fetch(`${supabaseUrl}/rest/v1/products?select=sku`, {
+    const response = await fetch(`${supabaseUrl}/rest/v1/products?select=sku,updated_at`, {
       headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
     });
     if (!response.ok) throw new Error('Failed to fetch cloud inventory');
