@@ -122,7 +122,7 @@ export default defineConfig(({mode}) => {
               }
             },
             {
-              urlPattern: /.*\.bin$|.*\.onnx$|.*\.json$|.*\.wasm$/,
+              urlPattern: /.*\.bin$|.*\.onnx$|.*\.wasm$/,
               handler: 'CacheFirst',
               options: {
                 cacheName: 'ai-models-cache',
