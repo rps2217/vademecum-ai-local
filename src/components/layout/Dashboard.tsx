@@ -74,30 +74,31 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
     <ConsultationProvider>
       <div className="min-h-screen bg-brand-bg text-slate-200 p-2 sm:p-4">
       <div className="max-w-7xl mx-auto">
-        {/* Navegación Principal y Header al estilo Pharmacológico / POS */}
-        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-8 gap-4 bg-brand-surface rounded-2xl p-4 shadow-md border border-slate-700/50">
+        {/* Navegación Principal y Header al estilo PRO / POS */}
+        <div className="flex flex-col sm:flex-row items-center justify-between mb-4 sm:mb-6 gap-4 bg-brand-surface rounded-xl p-3 shadow-sm border border-slate-700/40">
           
           {/* Logo / Info Sucursal */}
-          <div className="flex items-center gap-4">
-            <div className="inline-flex items-center justify-center p-2 bg-emerald-500/20 rounded-xl border border-emerald-500/30">
-              <Activity className="w-5 h-5 text-emerald-400" />
+          <div className="flex items-center gap-3">
+            <div className="inline-flex items-center justify-center p-2 bg-emerald-500/10 rounded-lg">
+              <Activity className="w-5 h-5 text-emerald-500" />
             </div>
+            <h1 className="text-sm font-black text-white uppercase tracking-tighter">Vademecum <span className="text-emerald-500">Pro</span></h1>
           </div>
 
           {/* Tabs */}
-          <div className="inline-flex bg-slate-900/50 p-1.5 rounded-xl border border-slate-700 backdrop-blur-sm overflow-x-auto max-w-full no-scrollbar">
+          <div className="inline-flex bg-slate-900/80 p-1 rounded-xl border border-slate-700 overflow-x-auto max-w-full no-scrollbar">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center gap-2 px-4 sm:px-6 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-colors whitespace-nowrap ${
                   activeTab === item.id 
-                    ? 'bg-brand-primary text-white shadow-lg border border-orange-400/50' 
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    ? 'bg-emerald-500 text-slate-950 shadow-md' 
+                    : 'text-slate-500 hover:text-slate-200 hover:bg-slate-800'
                 }`}
               >
                 <item.icon className="w-3.5 h-3.5 sm:w-4 h-4" />
-                <span className={activeTab === item.id ? 'block' : 'hidden sm:block'}>{item.label}</span>
+                <span className={activeTab === item.id ? 'block' : 'hidden md:block'}>{item.label}</span>
               </button>
             ))}
           </div>

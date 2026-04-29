@@ -14,9 +14,10 @@ export const ComparisonTray: React.FC = () => {
     <>
       <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2">
         <motion.div 
-          initial={{ y: 50, opacity: 0 }}
+          initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-brand-surface/80 backdrop-blur-xl border border-slate-800 rounded-full px-6 py-3 shadow-2xl flex items-center gap-6"
+          transition={{ duration: 0.15 }}
+          className="bg-brand-surface border border-slate-700 rounded-2xl px-5 py-2.5 shadow-xl flex items-center gap-5"
         >
           <div className="flex items-center gap-3">
             <div className="flex -space-x-3">

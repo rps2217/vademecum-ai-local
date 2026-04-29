@@ -91,10 +91,11 @@ export const AIStatusIndicator: React.FC = () => {
           <AnimatePresence>
             {isExpanded && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                className="bg-brand-surface border border-slate-800 rounded-2xl p-4 shadow-2xl w-64 mb-2 backdrop-blur-xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.15 }}
+                className="bg-brand-surface border border-slate-700 rounded-xl p-4 shadow-2xl w-64 mb-2"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`p-2 rounded-lg ${status.isReady ? 'bg-brand-accent/10 text-brand-accent' : 'bg-brand-primary/10 text-brand-primary'}`}>
@@ -196,10 +197,9 @@ export const AIStatusIndicator: React.FC = () => {
           </AnimatePresence>
 
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => setIsExpanded(!isExpanded)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold transition-all shadow-lg backdrop-blur-md ${getStatusColor()}`}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-colors shadow-md ${getStatusColor()}`}
           >
             <div className="flex items-center gap-1.5 pr-2 mr-2 border-r border-current opacity-80">
                 <Thermometer className={`w-3.5 h-3.5 ${getThermalColor()}`} />

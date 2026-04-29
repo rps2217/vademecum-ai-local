@@ -135,7 +135,7 @@ export const SearchModule: React.FC = () => {
 
       {/* Detail View (Integrated instead of Modal) */}
       {selectedProduct ? (
-        <div className="w-full animate-in fade-in slide-in-from-right-4 duration-300">
+        <div className="w-full animate-in fade-in duration-150">
            <ProductDetailModal 
               product={selectedProduct} 
               onClose={() => setSelectedProduct(null)} 
@@ -150,7 +150,7 @@ export const SearchModule: React.FC = () => {
       ) : (
         /* Resultados e Interpretación */
         query.trim() !== '' && (
-          <div className="mt-2 flex-1 animate-in fade-in duration-500">
+          <div className="mt-2 flex-1 animate-in fade-in duration-200">
             <ScenarioInterpretationOverlay 
               interpretation={interpretation}
               onClose={() => setInterpretation(null)}
