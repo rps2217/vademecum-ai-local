@@ -118,9 +118,9 @@ export const CloudSyncService = {
   // Fallback para subir datos directamente si el backend Node Express no responde (ej: hosting estático Vercel)
   directSupabaseUpsert: async (product: Product): Promise<boolean> => {
       try {
-          // Intentar obtener de import.meta.env (Vite) de forma segura, o usar fallback hardcodeado
-          const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || 'https://pspxqzwxulgmzarlqwtt.supabase.co';
-          const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || 'sb_publishable_6Wn8XGKb_o8pulv6_pKDFQ_gABZnyHR';
+          // Intentar obtener de import.meta.env (Vite) de forma segura
+          const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
+          const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
           
           if (!supabaseUrl || !supabaseKey) {
             console.error(`[CloudSync] CRÍTICO: No se encontraron las variables de configuración de Supabase (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY).`);
