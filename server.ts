@@ -8,6 +8,20 @@ import Database from 'better-sqlite3';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 
+// Logging utilities
+const LOG_FILE = 'server_debug.log';
+function log(msg: string) {
+  const entry = `[${new Date().toISOString()}] ${msg}\n`;
+  if (fs.existsSync('.')) { // Simple check to ensure fs can write
+    try {
+        fs.appendFileSync(LOG_FILE, entry);
+    } catch (e) {
+        // Fallback if log file not writable in this environment
+    }
+  }
+  console.log(msg);
+}
+
 // Initialize SQLite
 const db = new Database('vademecum.sqlite');
 db.prepare(`
@@ -41,12 +55,6 @@ try {
   console.error('Failed to initialize Supabase Admin:', e);
 }
 
-const LOG_FILE = 'server_debug.log';
-function log(msg: string) {
-  const entry = `[${new Date().toISOString()}] ${msg}\n`;
-  fs.appendFileSync(LOG_FILE, entry);
-  console.log(msg);
-}
 
 async function startServer() {
   fs.writeFileSync(LOG_FILE, '--- Server Starting ---\n');
