@@ -4,7 +4,6 @@ import { SynergyBackgroundService } from './SynergyBackgroundService';
 import { VectorBackgroundService } from './VectorBackgroundService';
 import { AIOrchestratorService } from './AIOrchestratorService';
 import { EventBus, EventType } from './EventBus';
-import { waitForDB } from './DatabaseService';
 import { DataService } from './DataService';
 
 export class TaskProcessorService {
@@ -19,14 +18,6 @@ export class TaskProcessorService {
     
     console.log('[TaskProcessor] Iniciando bucle de procesamiento de tareas...');
     
-    // Asegurar que la DB esté lista antes de entrar al bucle
-    const dbReady = await waitForDB();
-    if (!dbReady) {
-      console.error('[TaskProcessor] No se pudo inicializar la DB para el procesamiento.');
-      this.isProcessing = false;
-      return;
-    }
-
     this.processLoop();
   }
 
@@ -77,7 +68,6 @@ export class TaskProcessorService {
     try {
       switch (task.type) {
         case 'cloud_sync':
-        case 'firebase_sync': // Mantener alias para compatibilidad con tareas encoladas
           await CloudSyncService.updateProductsBatch([task.payload]);
           AIOrchestratorService.trackActivity(10);
           break;

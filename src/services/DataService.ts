@@ -1,103 +1,32 @@
 import { Product } from '../core/types/product.types';
-import { getDB, waitForDB } from './DatabaseService';
 import { EventBus, EventType } from './EventBus';
 import { TaskQueueService } from './TaskQueueService';
+
+const STORAGE_KEY = 'products';
 
 export class DataService {
   private static failedRequests = 0;
   private static readonly MAX_FAILURES = 5;
 
+  // Dummy method to maintain API compatibility
   static async getDB() {
-    return await waitForDB();
+    return null;
   }
 
   static async getAllProducts(): Promise<Product[]> {
-    const db = await waitForDB();
-    if (!db) return [];
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
+  }
 
-    // Priorizar local para velocidad del UI
-    const allLocalDocs = await db.products.find().exec();
-    const localProducts = allLocalDocs.map((p: any) => p.toJSON());
-
-    // Try fetching from server ONLY IF ONLINE and we haven't failed too much
-    // Y no lo hacemos tan seguido para ahorrar batería y cuota (Throttling)
-    const lastFetch = Number(localStorage.getItem('last_cloud_fetch') || 0);
-    const now = Date.now();
-
-    if (navigator.onLine && (now - lastFetch > 60000) && this.failedRequests < this.MAX_FAILURES) {
-      // Si ya sabemos que la API no existe (ej. en Vercel), saltamos directo al fallback
-      const useDirectMode = localStorage.getItem('force_supabase_direct') === 'true';
-
-      if (useDirectMode) {
-        console.log(`[DataService] Direct mode active. Using Supabase fetch...`);
-        const cloudProducts = await this.directSupabaseFetch();
-        if (cloudProducts) {
-             this.failedRequests = 0;
-             localStorage.setItem('last_cloud_fetch', now.toString());
-             if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
-                 await db.products.bulkUpsert(cloudProducts);
-                 EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
-                 return cloudProducts;
-             }
-        }
-      } else {
-        try {
-          const apiUrl = '/api/products';
-          console.log(`[DataService] Fetching from: ${window.location.origin}${apiUrl}`);
-          const response = await fetch(apiUrl);
-          
-          if (response.ok) {
-            const cloudProducts = await response.json();
-            this.failedRequests = 0;
-            localStorage.setItem('last_cloud_fetch', now.toString());
-
-            // Solo hacer upsert si hay cambios (Evita triggers innecesarios)
-            if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
-              await db.products.bulkUpsert(cloudProducts);
-              EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
-              return cloudProducts;
-            }
-          } else if (response.status === 404) {
-               console.warn(`[DataService] API not found. Switching to direct Supabase mode for future requests.`);
-               localStorage.setItem('force_supabase_direct', 'true');
-               
-               const cloudProducts = await this.directSupabaseFetch();
-               if (cloudProducts) {
-                   this.failedRequests = 0;
-                   localStorage.setItem('last_cloud_fetch', now.toString());
-                   if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
-                       await db.products.bulkUpsert(cloudProducts);
-                       EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
-                       return cloudProducts;
-                   }
-               }
-          }
-        } catch (e) {
-          // Red de plano, o CORS error
-          this.failedRequests++;
-          console.warn(`[DataService] Red o CORS falló. Intentando Supabase directo...`);
-          const cloudProducts = await this.directSupabaseFetch();
-          if (cloudProducts) {
-               this.failedRequests = 0;
-               localStorage.setItem('last_cloud_fetch', now.toString());
-               if (JSON.stringify(cloudProducts) !== JSON.stringify(localProducts)) {
-                   await db.products.bulkUpsert(cloudProducts);
-                   EventBus.emit(EventType.DB_UPDATED, { products: cloudProducts });
-                   return cloudProducts;
-               }
-          }
-        }
-      }
-    }
-
-    return localProducts;
+  private static async saveToLocalStorage(products: Product[]) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
   }
 
   // Fallback directo a Supabase cuando el backend Node no existe (ej. Vercel estático)
   private static async directSupabaseFetch(): Promise<any[] | null> {
       try {
           const fallbackUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
-          const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; // anon key
+          const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; 
           const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || fallbackUrl;
           const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || fallbackKey;
           if (!supabaseUrl || !supabaseKey) return null;
@@ -120,28 +49,19 @@ export class DataService {
   }
 
   static async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
-    const db = await waitForDB();
-    if (!db) return;
+    const products = await this.getAllProducts();
+    const index = products.findIndex(p => p.sku === product.sku);
     
-    // 1. Change Detection: No guardar si es idéntico al local (Ahorra CPU/DB)
-    const existing = await this.getProductBySku(product.sku);
-    if (existing && JSON.stringify(existing) === JSON.stringify(product)) {
-      return;
+    if (index !== -1) {
+      if (JSON.stringify(products[index]) === JSON.stringify(product)) return;
+      products[index] = product;
+    } else {
+      products.push(product);
     }
+    await this.saveToLocalStorage(products);
 
-    const localProduct: Product = {
-      ...product,
-      synced: product.synced ?? false,
-      last_synced: product.last_synced ?? Date.now()
-    };
-
-    // 2. Guardado Local Inmediato
-    await db.products.upsert(localProduct);
-
-    // 3. Sincronización Inteligente: Encolar tarea en lugar de fetch inmediato
-    // Esto garantiza que el UI no se bloquee y que el Thermal Guard controle la carga
     if (!options.silent) {
-       await TaskQueueService.addTask('cloud_sync', localProduct);
+       await TaskQueueService.addTask('cloud_sync', product);
        EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
     }
   }
@@ -149,19 +69,20 @@ export class DataService {
   static async importProducts(jsonString: string): Promise<{ success: number; errors: number }> {
     try {
       const data = JSON.parse(jsonString);
-      const products: Product[] = Array.isArray(data) ? data : [data];
+      const newProducts: Product[] = Array.isArray(data) ? data : [data];
+      const products = await this.getAllProducts();
       
       let success = 0;
       let errors = 0;
 
-      for (const p of products) {
+      for (const p of newProducts) {
         if (!p.nombre_comercial || !p.sku) {
           errors++;
           continue;
         }
 
-        // Sanitize internal RxDB fields like _rev, _meta
         const sanitizedData: any = { ...p };
+        // Sanitize (legacy)
         Object.keys(sanitizedData).forEach(key => {
             if (key.startsWith('_')) {
                 delete sanitizedData[key];
@@ -179,16 +100,12 @@ export class DataService {
   }
 
   static async getProductBySku(sku: string): Promise<Product | null> {
-    const db = await waitForDB();
-    if (!db) return null;
-    const doc = await db.products.findOne({ selector: { sku } }).exec();
-    return doc ? doc.toJSON() : null;
+    const products = await this.getAllProducts();
+    return products.find(p => p.sku === sku) || null;
   }
 
   static async clearAll(): Promise<void> {
-    const db = await waitForDB();
-    if (!db) return;
-    await db.products.remove();
+    localStorage.removeItem(STORAGE_KEY);
     EventBus.emit(EventType.DB_UPDATED, { action: 'cleared' });
   }
 
@@ -198,14 +115,10 @@ export class DataService {
   }
 
   static async deleteProduct(sku: string): Promise<void> {
-    const db = await waitForDB();
-    if (!db) return;
+    const products = await this.getAllProducts();
+    const filtered = products.filter(p => p.sku !== sku);
+    await this.saveToLocalStorage(filtered);
 
-    // Delete local
-    const doc = await db.products.findOne({ selector: { sku } }).exec();
-    if (doc) await doc.remove();
-
-    // Sync to server
     if (navigator.onLine && this.failedRequests < this.MAX_FAILURES) {
       try {
         const response = await fetch(`/api/products/${sku}`, { method: 'DELETE' });

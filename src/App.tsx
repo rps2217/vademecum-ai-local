@@ -6,7 +6,6 @@ import { HardwareProfile } from './core/types/hardware.types';
 import { useAuth } from './context/AuthContext';
 import { AccessGate } from './components/AccessGate';
 import { Dashboard } from './components/layout/Dashboard';
-import { initDB } from './services/DatabaseService';
 import { EventTracer } from './components/debug/EventTracer';
 
 function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
@@ -27,7 +26,6 @@ export default function App() {
     return (
       <SplashScreen 
         onComplete={async (detectedHardware) => {
-          await initDB(); // Inicializar RxDB
           setHardware(detectedHardware);
           setIsInitialized(true);
         }} 

@@ -4,7 +4,6 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import TurndownService from 'turndown';
 import fs from 'fs';
-import Database from 'better-sqlite3';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 
@@ -21,16 +20,6 @@ function log(msg: string) {
   }
   console.log(msg);
 }
-
-// Initialize SQLite
-const db = new Database('vademecum.sqlite');
-db.prepare(`
-  CREATE TABLE IF NOT EXISTS products (
-    sku TEXT PRIMARY KEY,
-    nombre_comercial TEXT,
-    data TEXT
-  )
-`).run();
 
 // Initialize Supabase Admin de forma segura (Server-side bypass RLS)
 let supabase: any = null;
@@ -54,6 +43,7 @@ try {
 } catch (e) {
   console.error('Failed to initialize Supabase Admin:', e);
 }
+
 
 
 async function startServer() {
@@ -175,19 +165,24 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
       res.type('text/plain').send(sql);
   });
 
-  apiRouter.get('/products', (req, res) => {
+  apiRouter.get('/products', async (req, res) => {
     // Force fresh data to debug
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
     
     try {
-      if (!db) throw new Error('Database not initialized');
-      const products = db.prepare('SELECT data FROM products').all();
-      const validProducts = products
+      if (!supabase) throw new Error('Supabase not initialized');
+      const { data, error } = await supabase
+        .from('products')
+        .select('data');
+        
+      if (error) throw error;
+      
+      const validProducts = (data || [])
         .map(p => {
           try {
-            return p.data ? JSON.parse(p.data as string) : null;
+            return typeof p.data === 'string' ? JSON.parse(p.data) : p.data;
           } catch (e) { return null; }
         })
         .filter(p => p !== null && p.sku);
@@ -203,10 +198,6 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
   apiRouter.post('/products', async (req, res) => {
     const product = req.body;
     log(`[API] Attempting to save product: ${product.sku} (${product.nombre_comercial})`);
-    
-    // Save to SQLite
-    db.prepare('INSERT OR REPLACE INTO products (sku, nombre_comercial, data) VALUES (?, ?, ?)')
-      .run(product.sku, product.nombre_comercial, JSON.stringify(product));
     
     // Sync to Supabase
     let supabaseResult = { success: false, error: 'Not attempted' };
@@ -243,7 +234,6 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
 
   apiRouter.delete('/products/:sku', async (req, res) => {
     const sku = req.params.sku;
-    db.prepare('DELETE FROM products WHERE sku = ?').run(sku);
     
     // Sync to Supabase
     try {
