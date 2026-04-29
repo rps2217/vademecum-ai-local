@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud } from 'lucide-react';
+import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud, RefreshCw } from 'lucide-react';
 import { DataService } from '../../services/DataService';
 import { ConfigService, AppConfig } from '../../services/ConfigService';
 
@@ -55,6 +55,25 @@ export const SettingsModule: React.FC = () => {
       reader.readAsText(file);
     } catch (error) {
       setIsImporting(false);
+    }
+  };
+
+  const handleRestartKernel = async () => {
+    if (confirm('¿Estás seguro de que deseas reiniciar el kernel? Esto liberará la memoria caché de los modelos de IA y reiniciará la aplicación para solucionar problemas de memoria.')) {
+      try {
+        const cacheNames = await caches.keys();
+        for (const name of cacheNames) {
+          if (name.includes('ai-models') || name.includes('workbox') || name.includes('transformers')) {
+            await caches.delete(name);
+          }
+        }
+        localStorage.removeItem('backend_node_active');
+        localStorage.removeItem('force_supabase_direct');
+        window.location.reload();
+      } catch (error) {
+        console.error('Error al reiniciar kernel:', error);
+        window.location.reload();
+      }
     }
   };
 
@@ -146,7 +165,7 @@ export const SettingsModule: React.FC = () => {
              
              <div className="relative">
                 <input type="file" accept=".json" onChange={handleImport} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-                <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-2xl border border-slate-700">
+                <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-2xl border border-slate-700 hover:border-slate-500 transition-colors">
                    <div className="flex gap-3">
                       {isImporting ? <Loader2 className="w-5 h-5 animate-spin text-brand-primary" /> : <Upload className="w-5 h-5 text-amber-400" />}
                       <div>
@@ -156,6 +175,17 @@ export const SettingsModule: React.FC = () => {
                    </div>
                    <span className="px-3 py-1 bg-slate-700 rounded-lg text-xs font-bold">Seleccionar</span>
                 </div>
+             </div>
+
+             <div className="flex items-center justify-between p-4 bg-red-900/10 rounded-2xl border border-red-900/30 hover:border-red-900/50 transition-colors">
+                <div className="flex gap-3 items-center">
+                  <RefreshCw className="w-5 h-5 text-red-400" />
+                  <div>
+                    <p className="text-sm font-bold text-red-400">Reiniciar Kernel / IA</p>
+                    <p className="text-xs text-red-500/70">Libera memoria caché y recarga</p>
+                  </div>
+                </div>
+                <button onClick={handleRestartKernel} className="px-3 py-1 bg-red-900/40 hover:bg-red-800/60 text-red-200 rounded-lg text-xs font-bold transition-all">Ejecutar</button>
              </div>
           </div>
         </div>
