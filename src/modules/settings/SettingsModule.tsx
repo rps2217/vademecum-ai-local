@@ -16,6 +16,27 @@ export const SettingsModule: React.FC = () => {
   const [nodeId] = useState(getDeviceId());
   const [isTestingCluster, setIsTestingCluster] = useState(false);
   const [clusterTestResult, setClusterTestResult] = useState<string | null>(null);
+  
+  // Estados de diagnóstico de IA
+  const [aiStatus, setAiStatus] = useState<any>(null);
+  const [queueLength, setQueueLength] = useState(0);
+
+  useEffect(() => {
+    const unsubAi = (import('../../services/AIOrchestratorService')).then(m => 
+      m.AIOrchestratorService.subscribe(setAiStatus)
+    );
+    
+    // Polling suave para longitud de cola
+    const interval = setInterval(async () => {
+      const { TaskQueueService } = await import('../../services/TaskQueueService');
+      setQueueLength(TaskQueueService.getQueueLength());
+    }, 2000);
+
+    return () => {
+      unsubAi.then(un => un?.());
+      clearInterval(interval);
+    };
+  }, []);
 
   const testClusterLock = async () => {
     setIsTestingCluster(true);
@@ -271,6 +292,46 @@ export const SettingsModule: React.FC = () => {
             </button>
           </div>
         </div>
+
+        {/* AI Health Stats */}
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="p-4 bg-slate-900/40 rounded-2xl border border-slate-800">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-[10px] font-bold text-slate-500 uppercase">Estado IA</p>
+              <div className={`w-2 h-2 rounded-full ${aiStatus?.isRunning ? 'bg-emerald-500 animate-pulse' : 'bg-slate-600'}`} />
+            </div>
+            <div className="text-lg font-bold text-white truncate h-7">
+              {aiStatus?.isRunning ? 'Trabajando...' : 'En Espera'}
+            </div>
+            <p className="text-[10px] text-slate-500 mt-1">{aiStatus?.currentTask || 'Sin tareas activas'}</p>
+          </div>
+
+          <div className="p-4 bg-slate-900/40 rounded-2xl border border-slate-800">
+            <p className="text-[10px] font-bold text-slate-500 uppercase mb-2">Cola de Tareas</p>
+            <div className="text-3xl font-black text-indigo-400">
+              {queueLength}
+            </div>
+            <p className="text-[10px] text-slate-500 mt-1">Tareas locales pendientes</p>
+          </div>
+
+          <div className="p-4 bg-slate-900/40 rounded-2xl border border-slate-800">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-[10px] font-bold text-slate-500 uppercase">Estrés Térmico</p>
+              <span className="text-[10px] font-mono text-slate-400">{Math.round(aiStatus?.thermalStress || 0)}/200</span>
+            </div>
+            <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+               <div 
+                  className={`h-full transition-all duration-500 ${ (aiStatus?.thermalStress || 0) > 100 ? 'bg-orange-500' : 'bg-indigo-500'}`}
+                  style={{ width: `${Math.min(100, ((aiStatus?.thermalStress || 0) / 200) * 100)}%` }}
+               />
+            </div>
+            <div className="flex justify-between items-center mt-2">
+              <span className="text-[9px] text-slate-500 uppercase">Perfil: {aiStatus?.deviceTier}</span>
+              <span className="text-[9px] text-indigo-400 font-bold">{aiStatus?.thermalStress > 50 ? 'Enfriamiento Activo' : 'Deseable'}</span>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
 
       {/* Logger Section */}

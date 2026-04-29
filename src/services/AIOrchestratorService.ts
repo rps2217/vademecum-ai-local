@@ -60,10 +60,11 @@ export class AIOrchestratorService {
     // El orquestador ya no "hace" el trabajo, solo "busca" trabajo pendiente
     window.setInterval(() => {
       this.scoutPendingWork().catch(err => console.error('[Orchestrator Scout] Failed:', err));
-    }, 5 * 60 * 1000); // Revisar cada 5 minutos
+    }, 2 * 60 * 1000); // Revisar cada 2 minutos en lugar de 5
     
     // Revisión inicial suave
-    setTimeout(() => this.scoutPendingWork(), 10000);
+    setTimeout(() => this.scoutPendingWork(), 5000); // 5 segundos después del arranque
+  }
   }
 
   /**
@@ -96,16 +97,23 @@ export class AIOrchestratorService {
       // Priorizamos productos que NO han sido analizados
       const needsAnalysis = allProducts
         .filter(p => !p.synergy_analyzed)
-        .slice(0, 5); // Un lote pequeño para no saturar la red con ráfagas de locks
+        .slice(0, 10); // Aumentamos lote a 10
 
+      let claimedCount = 0;
       for (const p of needsAnalysis) {
         const canWork = await CloudSyncService.claimProductLock(p.sku, deviceId);
         if (canWork) {
-          console.log(`[ClusterCoordination] SKU ${p.sku} reservado por este nodo (${deviceId})`);
+          claimedCount++;
           await TaskQueueService.addTask('ai_analysis', { sku: p.sku, type: 'synergy' });
-        } else {
-          console.log(`[ClusterCoordination] SKU ${p.sku} ignorado (en proceso por otro nodo)`);
         }
+      }
+
+      if (claimedCount > 0) {
+        (await import('./LogService')).LogService.add({
+          level: 'info',
+          module: 'AI_Clúster',
+          message: `Reservados ${claimedCount} productos para análisis en este nodo.`
+        });
       }
 
     } catch (error) {
