@@ -84,8 +84,12 @@ export class DataService {
             },
             body: JSON.stringify({ 
               sku: product.sku, 
-              data: { ...product, synced: true, last_synced: Date.now() },
-              updated_at: now
+              data: { 
+                ...product, 
+                synced: true, 
+                last_synced: Date.now(),
+                updated_at_cloud: now 
+              }
             })
         });
         if (response.ok) {
@@ -110,9 +114,9 @@ export class DataService {
     }
   }
 
-  static async fetchCloudInventory(): Promise<{ sku: string; updated_at?: string }[]> {
+  static async fetchCloudInventory(): Promise<{ sku: string }[]> {
     const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
-    const response = await fetch(`${supabaseUrl}/rest/v1/products?select=sku,updated_at`, {
+    const response = await fetch(`${supabaseUrl}/rest/v1/products?select=sku`, {
       headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
     });
     if (!response.ok) throw new Error('Failed to fetch cloud inventory');

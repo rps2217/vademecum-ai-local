@@ -148,8 +148,10 @@ export const CloudSyncService = {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          data: lockedProduct,
-          updated_at: new Date().toISOString()
+          data: {
+            ...lockedProduct,
+            updated_at_cloud: new Date().toISOString()
+          }
         })
       });
 
@@ -187,8 +189,10 @@ export const CloudSyncService = {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          data: unlockedProduct,
-          updated_at: new Date().toISOString()
+          data: {
+            ...unlockedProduct,
+            updated_at_cloud: new Date().toISOString()
+          }
         })
       });
     } catch (e) {
@@ -217,9 +221,7 @@ export const CloudSyncService = {
       const localMap = new Map(localProducts.map(p => [p.sku, p.last_synced || 0]));
 
       const toDownload = cloudInventory.filter(item => {
-        const localLastSynced = localMap.get(item.sku) || 0;
-        const cloudUpdatedAt = item.updated_at ? new Date(item.updated_at).getTime() : 0;
-        return !localMap.has(item.sku) || cloudUpdatedAt > localLastSynced;
+        return !localMap.has(item.sku);
       }).map(item => item.sku);
       
       if (toDownload.length === 0) {

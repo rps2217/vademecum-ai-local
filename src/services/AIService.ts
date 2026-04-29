@@ -134,7 +134,8 @@ export class AIService {
     this.watchdogInterval = window.setInterval(async () => {
       if (this.isReady && this.worker) {
         try {
-          const health = await this.runHealthCheckTimeout(5000); // 5 segundos de timeout
+          // Aumentamos timeout a 60s ya que la GPU reporta latencias de 16s en logs
+          const health = await this.runHealthCheckTimeout(60000); 
           if (!health.ok) {
             console.warn('[AIService] Watchdog: El motor no responde. Reiniciando...');
             this.restartEngine();

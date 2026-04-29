@@ -90,6 +90,10 @@ export const TaskQueueService = {
     }
   },
 
+  getQueueLength: (): number => {
+    return getTasksFromStorage().filter(t => t.status === 'pending').length;
+  },
+
   getStats: async () => {
     const tasks = getTasksFromStorage();
     const pending = tasks.filter(t => t.status === 'pending').length;
