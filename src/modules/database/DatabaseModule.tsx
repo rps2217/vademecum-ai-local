@@ -59,15 +59,11 @@ export const DatabaseModule: React.FC = () => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       try {
-        const importedData = JSON.parse(e.target?.result as string);
-        if (Array.isArray(importedData)) {
-          setIsLoading(true);
-          for (const p of importedData) {
-            await DataService.saveProduct(p);
-          }
-          await loadData();
-          setSyncStatus(`Importados ${importedData.length} productos.`);
-        }
+        const jsonStr = e.target?.result as string;
+        setIsLoading(true);
+        const { success, errors } = await DataService.importProducts(jsonStr);
+        await loadData();
+        setSyncStatus(`Importados ${success} productos. Errores: ${errors}`);
       } catch (error) {
         alert('Error al importar JSON');
       }

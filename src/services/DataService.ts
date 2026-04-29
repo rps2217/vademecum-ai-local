@@ -157,7 +157,16 @@ export class DataService {
           errors++;
           continue;
         }
-        await this.saveProduct(p);
+
+        // Sanitize internal RxDB fields like _rev, _meta
+        const sanitizedData: any = { ...p };
+        Object.keys(sanitizedData).forEach(key => {
+            if (key.startsWith('_')) {
+                delete sanitizedData[key];
+            }
+        });
+
+        await this.saveProduct(sanitizedData as Product);
         success++;
       }
       return { success, errors };
