@@ -65,7 +65,6 @@ export class AIOrchestratorService {
     // Revisión inicial suave
     setTimeout(() => this.scoutPendingWork(), 5000); // 5 segundos después del arranque
   }
-  }
 
   /**
    * Busca productos que necesitan atención y los encola en el TaskQueue.

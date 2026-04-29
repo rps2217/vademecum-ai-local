@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud, RefreshCw, Terminal, XCircle, CheckCircle2, Info, AlertCircle } from 'lucide-react';
 import { DataService } from '../../services/DataService';
@@ -331,7 +331,6 @@ export const SettingsModule: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
       </div>
 
       {/* Logger Section */}
