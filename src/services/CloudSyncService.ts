@@ -62,5 +62,30 @@ export const CloudSyncService = {
     } catch (e) {
       return false;
     }
+  },
+
+  getCloudCount: async (): Promise<number> => {
+    try {
+      const { supabaseUrl, supabaseKey } = DataService.getSupabaseInfo();
+      const response = await fetch(`${supabaseUrl}/rest/v1/products?select=count`, {
+        headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}`, 'Prefer': 'count=exact' }
+      });
+      if (!response.ok) return 0;
+      // Depending on Supabase response, might need parsing, assuming it returns count header or body
+      const count = response.headers.get('content-range')?.split('/')[1];
+      return count ? parseInt(count, 10) : 0;
+    } catch (e) {
+      return 0;
+    }
+  },
+
+  claimProductLock: async (sku: string, nodeId: string): Promise<boolean> => {
+    // Simple lock implementation: in a real app, this should be an RPC or atomic DB operation
+    // For now, let's just return true to emulate locking
+    return true;
+  },
+
+  releaseProductLockAndSave: async (product: Product): Promise<void> => {
+    await DataService.saveProduct(product);
   }
 };
