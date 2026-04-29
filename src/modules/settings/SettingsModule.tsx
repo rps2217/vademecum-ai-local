@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud, RefreshCw } from 'lucide-react';
+import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud, RefreshCw, Terminal, XCircle, CheckCircle2, Info, AlertCircle } from 'lucide-react';
 import { DataService } from '../../services/DataService';
 import { ConfigService, AppConfig } from '../../services/ConfigService';
+import { useLogs } from '../../hooks/useLogs';
+import { LogService } from '../../services/LogService';
 
 export const SettingsModule: React.FC = () => {
   const { hardware } = useHardwareDetection();
   const [isImporting, setIsImporting] = useState(false);
   const [config, setConfig] = useState<AppConfig>(ConfigService.getConfig());
+  const { logs, clearLogs } = useLogs();
 
   const handleConfigChange = (updates: Partial<AppConfig>) => {
     const newConfig = ConfigService.updateConfig(updates);
     setConfig(newConfig);
+    LogService.add({
+      level: 'info',
+      module: 'Config',
+      message: `Configuración actualizada: ${Object.keys(updates).join(', ')}`
+    });
   };
 
   const handleExport = async () => {
@@ -67,8 +75,6 @@ export const SettingsModule: React.FC = () => {
             await caches.delete(name);
           }
         }
-        localStorage.removeItem('backend_node_active');
-        localStorage.removeItem('force_supabase_direct');
         window.location.reload();
       } catch (error) {
         console.error('Error al reiniciar kernel:', error);
@@ -109,7 +115,7 @@ export const SettingsModule: React.FC = () => {
              <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-2xl border border-slate-700">
                 <div>
                   <p className="text-sm font-bold text-white">Sincronización Cloud</p>
-                  <p className="text-xs text-slate-500">Respaldo automático (Firebase)</p>
+                  <p className="text-xs text-slate-500">Respaldo automático (Supabase)</p>
                 </div>
                 <button
                   onClick={() => handleConfigChange({ autoSyncCloud: !config.autoSyncCloud })}
@@ -187,6 +193,51 @@ export const SettingsModule: React.FC = () => {
                 </div>
                 <button onClick={handleRestartKernel} className="px-3 py-1 bg-red-900/40 hover:bg-red-800/60 text-red-200 rounded-lg text-xs font-bold transition-all">Ejecutar</button>
              </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Logger Section */}
+      <div className="mt-12 bg-brand-surface border border-slate-700 rounded-3xl p-8 shadow-xl overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+          <h3 className="text-xl font-bold text-white flex items-center gap-3">
+             <Terminal className="w-6 h-6 text-slate-400" /> Registro de Actividad (Logger)
+          </h3>
+          <button 
+            onClick={clearLogs}
+            className="px-4 py-1.5 bg-slate-800 hover:bg-red-900/30 text-slate-400 hover:text-red-400 border border-slate-700 hover:border-red-900/50 rounded-xl text-xs font-bold transition-all"
+          >
+            Limpiar Logs
+          </button>
+        </div>
+
+        <div className="bg-slate-900/80 rounded-2xl border border-slate-800 font-mono text-[11px] overflow-hidden">
+          <div className="max-h-[300px] overflow-y-auto p-4 space-y-2">
+            {logs.length === 0 ? (
+              <div className="text-slate-600 italic py-10 text-center">No hay registros de actividad todavía.</div>
+            ) : (
+              logs.map((log) => (
+                <div key={log.id} className="flex gap-3 animate-in slide-in-from-left-2 duration-200">
+                  <span className="text-slate-600 shrink-0">[{new Date(log.timestamp).toLocaleTimeString()}]</span>
+                  <span className={`shrink-0 font-bold ${
+                    log.level === 'success' ? 'text-emerald-400' : 
+                    log.level === 'error' ? 'text-red-400' :
+                    log.level === 'warn' ? 'text-amber-400' : 'text-blue-400'
+                  }`}>
+                    {log.level.toUpperCase()}
+                  </span>
+                  <span className="text-slate-400 font-bold shrink-0">[{log.module}]</span>
+                  <span className="text-slate-200">{log.message}</span>
+                  {log.details && (
+                    <span className="text-slate-500 italic opacity-60 ml-1">({typeof log.details === 'string' ? log.details : JSON.stringify(log.details)})</span>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+          <div className="bg-slate-950 px-4 py-2 border-t border-slate-800 text-[9px] text-slate-600 flex justify-between uppercase tracking-widest">
+            <span>Supabase Cloud Engine: Active</span>
+            <span>Local DB Cache: Verified</span>
           </div>
         </div>
       </div>

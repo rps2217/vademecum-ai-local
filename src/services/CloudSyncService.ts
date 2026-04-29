@@ -3,6 +3,7 @@ import { TaskQueueService } from './TaskQueueService';
 import { ConfigService } from './ConfigService';
 import { DataService } from './DataService';
 import { EventBus, EventType } from './EventBus';
+import { LogService } from './LogService';
 
 /**
  * Sincronización Inteligente: 
@@ -31,6 +32,11 @@ export const CloudSyncService = {
     }
 
     console.log(`[CloudSync] Procesando lote de ${products.length} productos.`);
+    LogService.add({
+      level: 'info',
+      module: 'CloudSync',
+      message: `Iniciando sincronización de lote (${products.length} productos)`,
+    });
     let successCount = 0;
 
     for (const product of products) {
@@ -39,8 +45,22 @@ export const CloudSyncService = {
         successCount++;
         EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: true });
       } catch (error) {
+        LogService.add({
+          level: 'error',
+          module: 'CloudSync',
+          message: `Error al sincronizar producto ${product.sku}`,
+          details: error instanceof Error ? error.message : error
+        });
         console.error(`[CloudSync] Error sincronizando ${product.sku}:`, error);
       }
+    }
+
+    if (successCount > 0) {
+      LogService.add({
+        level: 'success',
+        module: 'CloudSync',
+        message: `Sincronización de lote completada: ${successCount} productos actualizados`,
+      });
     }
     return successCount;
   },

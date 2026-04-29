@@ -2,6 +2,7 @@ import { Product } from '../core/types/product.types';
 import { EventBus, EventType } from './EventBus';
 import { TaskQueueService } from './TaskQueueService';
 import { LocalDBService } from './LocalDBService';
+import { LogService } from './LogService';
 
 export class DataService {
   static getSupabaseInfo() {
@@ -35,9 +36,20 @@ export class DataService {
       const newProducts: Product[] = Array.isArray(data) ? data : [data];
       
       await LocalDBService.bulkSaveProducts(newProducts);
+      LogService.add({
+        level: 'success',
+        module: 'Database',
+        message: `Importación exitosa: ${newProducts.length} productos cargados localmente`,
+      });
 
       return { success: newProducts.length, errors: 0 };
     } catch (e) {
+      LogService.add({
+        level: 'error',
+        module: 'Database',
+        message: 'Error al importar productos JSON',
+        details: e instanceof Error ? e.message : e
+      });
       console.error('[DataService] Import failed', e);
       return { success: 0, errors: 1 };
     }
@@ -73,8 +85,21 @@ export class DataService {
         });
         if (response.ok) {
             await LocalDBService.saveProduct({ ...product, synced: true, last_synced: Date.now() });
+            LogService.add({
+                level: 'success',
+                module: 'CloudSync',
+                message: `Producto ${product.sku} respaldado en la nube`,
+            });
+        } else {
+            throw new Error(`Status ${response.status}`);
         }
     } catch (e) {
+        LogService.add({
+            level: 'error',
+            module: 'CloudSync',
+            message: `Error al respaldar producto ${product.sku}`,
+            details: e instanceof Error ? e.message : e
+        });
         console.error('[DataService] Sync failed', e);
         throw e;
     }
