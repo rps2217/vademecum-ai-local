@@ -47,10 +47,11 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         <head>
           <style>
             @media print {
-              body { width: 80mm; font-family: monospace; font-size: 12px; }
-              h3 { margin: 0; font-size: 16px; }
-              p { margin: 4px 0; }
-              .header { border-bottom: 1px dashed #000; margin-bottom: 8px; padding-bottom: 4px; }
+              body { width: 80mm; font-family: monospace; font-size: 10px; line-height: 1.2; padding: 5px; }
+              h3 { margin: 0 0 5px 0; font-size: 14px; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 3px; }
+              p { margin: 5px 0; }
+              .section-title { font-weight: bold; text-decoration: underline; margin-top: 8px; font-size: 11px; }
+              .footer { margin-top: 15px; border-top: 1px dashed #000; padding-top: 5px; font-size: 8px; text-align: center; }
             }
           </style>
         </head>
@@ -58,9 +59,17 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
           <div class="header">
             <h3>${product.nombre_comercial}</h3>
           </div>
-          <p><strong>Principios:</strong> ${formatArrayToString(product.principios_activos, ', ')}</p>
-          <p><strong>Posologia/Indicaciones:</strong></p>
-          <p>${formatArrayToString(product.indicaciones, ' • ')}</p>
+          
+          <div class="section-title">DESCRIPCIÓN:</div>
+          <p>${product.descripcion || formatArrayToString(product.indicaciones, ' • ') || 'No disponible'}</p>
+          
+          <div class="section-title">POSOLOGÍA / MODO DE USO:</div>
+          <p>${product.posologia || 'Consulte con su consultor técnico.'}</p>
+
+          <div class="footer">
+            Vademécum Profesional - Consultoría Técnica<br/>
+            ${new Date().toLocaleString()}
+          </div>
         </body>
       </html>
     `;
@@ -68,7 +77,11 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
     if (printWindow) {
       printWindow.document.write(ticketContent);
       printWindow.document.close();
-      printWindow.print();
+      // Esperar un poco a que cargue si hubiera imágenes, aunque aquí no hay
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 250);
     }
   };
 

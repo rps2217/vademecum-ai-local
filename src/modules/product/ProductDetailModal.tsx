@@ -9,6 +9,7 @@ import { ProductHeader } from './components/ProductHeader';
 import { ProductBentoGrid } from './components/ProductBentoGrid';
 import { ProductActions } from './components/ProductActions';
 import { ProductEditForm } from './components/ProductEditForm';
+import { formatArrayToString } from '../../utils/formatters';
 
 interface ProductDetailModalProps {
   product: Product;
@@ -159,7 +160,46 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   };
 
   const handlePrint = () => {
-    window.print();
+    const ticketContent = `
+      <html>
+        <head>
+          <style>
+            @media print {
+              body { width: 80mm; font-family: monospace; font-size: 10px; line-height: 1.2; padding: 5px; }
+              h3 { margin: 0 0 5px 0; font-size: 14px; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 3px; }
+              p { margin: 5px 0; }
+              .section-title { font-weight: bold; text-decoration: underline; margin-top: 8px; font-size: 11px; }
+              .footer { margin-top: 15px; border-top: 1px dashed #000; padding-top: 5px; font-size: 8px; text-align: center; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h3>${product.nombre_comercial}</h3>
+          </div>
+          
+          <div class="section-title">DESCRIPCIÓN:</div>
+          <p>${product.descripcion || formatArrayToString(product.indicaciones, ' • ') || 'No disponible'}</p>
+          
+          <div class="section-title">POSOLOGÍA / MODO DE USO:</div>
+          <p>${product.posologia || 'Consulte con su consultor técnico.'}</p>
+
+          <div class="footer">
+            Vademécum Profesional - Consultoría Técnica<br/>
+            ${new Date().toLocaleString()}
+          </div>
+        </body>
+      </html>
+    `;
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(ticketContent);
+      printWindow.document.close();
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 250);
+    }
   };
 
   const hasSynergy = !!product.synergy_analyzed;
