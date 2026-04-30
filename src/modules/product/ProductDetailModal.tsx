@@ -178,9 +178,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <h3>${product.nombre_comercial}</h3>
           </div>
           
-          <div class="section-title">DESCRIPCIÓN:</div>
-          <p>${product.descripcion || formatArrayToString(product.indicaciones, ' • ') || 'No disponible'}</p>
-          
           <div class="section-title">POSOLOGÍA / MODO DE USO:</div>
           <p>${product.posologia || 'Consulte con su consultor técnico.'}</p>
 
