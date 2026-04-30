@@ -1,7 +1,7 @@
 import React from 'react';
 import { Product, SafetyStatus } from '../../core/types/product.types';
 import { Badge } from '../ui/badge';
-import { AlertTriangle, CheckCircle2, Info, Plus, Check, ExternalLink, ShieldCheck, Brain } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, Plus, Check, ShieldCheck, Brain, Printer } from 'lucide-react';
 import { formatArrayToString } from '../../utils/formatters';
 import { HighlightText } from '../ui/HighlightText';
 import { useConsultation } from '../../context/ConsultationContext';
@@ -39,6 +39,37 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
   const capitalizeFirst = (text: string) => {
     if (!text) return text;
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  };
+
+  const handlePrintTicket = () => {
+    const ticketContent = `
+      <html>
+        <head>
+          <style>
+            @media print {
+              body { width: 80mm; font-family: monospace; font-size: 12px; }
+              h3 { margin: 0; font-size: 16px; }
+              p { margin: 4px 0; }
+              .header { border-bottom: 1px dashed #000; margin-bottom: 8px; padding-bottom: 4px; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h3>${product.nombre_comercial}</h3>
+          </div>
+          <p><strong>Principios:</strong> ${formatArrayToString(product.principios_activos, ', ')}</p>
+          <p><strong>Posologia/Indicaciones:</strong></p>
+          <p>${formatArrayToString(product.indicaciones, ' • ')}</p>
+        </body>
+      </html>
+    `;
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(ticketContent);
+      printWindow.document.close();
+      printWindow.print();
+    }
   };
 
   const isGroundingSource = product.source_url === 'google_search' || product.source_url?.includes('google_search');
@@ -146,6 +177,17 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
           title={isSelectedForBrain ? 'Quitar del análisis' : 'Analizar Sinergias'}
         >
           <Brain className={`w-3.5 h-3.5 ${isSelectedForBrain ? 'animate-pulse' : ''}`} />
+        </button>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handlePrintTicket();
+          }}
+          className="h-9 w-9 flex items-center justify-center rounded-lg bg-slate-800 text-slate-500 hover:text-white transition-colors"
+          title="Imprimir Ticket (80mm)"
+        >
+          <Printer className="w-4 h-4" />
         </button>
       </div>
     </div>
