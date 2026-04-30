@@ -11,7 +11,7 @@ export const FloatingTray: React.FC = () => {
 
   return (
     <>
-      <div className="fixed bottom-4 sm:bottom-6 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 bg-brand-surface rounded-2xl sm:rounded-full shadow-2xl border border-slate-800 p-2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 z-40 animate-in slide-in-from-bottom-10">
+      <div className="fixed bottom-24 sm:bottom-24 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 bg-brand-surface rounded-2xl sm:rounded-full shadow-2xl border border-slate-800 p-2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 z-40 animate-in slide-in-from-bottom-10">
         <div className="flex items-center justify-between w-full sm:w-auto px-2 sm:px-4">
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">

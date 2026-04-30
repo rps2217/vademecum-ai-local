@@ -12,7 +12,7 @@ export const ComparisonTray: React.FC = () => {
 
   return (
     <>
-      <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2">
+      <div className="fixed bottom-24 md:bottom-24 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2">
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

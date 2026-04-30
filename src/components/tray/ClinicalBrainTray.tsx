@@ -47,7 +47,7 @@ export const ClinicalBrainTray: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-24 right-6 z-40 w-80 sm:w-96">
+    <div className="fixed bottom-24 md:bottom-24 right-4 sm:right-6 z-40 w-[calc(100%-2rem)] sm:w-96">
       <AnimatePresence>
         <motion.div 
           initial={{ y: 20, opacity: 0 }}

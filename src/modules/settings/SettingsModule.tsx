@@ -140,20 +140,20 @@ export const SettingsModule: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto pb-20 animate-in fade-in duration-300">
-      <div className="mb-10">
-        <h2 className="text-3xl font-extrabold text-white flex items-center gap-3">
-          <Settings className="w-8 h-8 text-brand-primary" />
+    <div className="w-full max-w-5xl mx-auto pb-24 px-4 sm:px-6 animate-in fade-in duration-300 pt-2">
+      <div className="mb-6 sm:mb-10">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-3">
+          <Settings className="w-6 h-6 sm:w-8 sm:h-8 text-brand-primary" />
           Configuración
         </h2>
-        <p className="text-slate-400 mt-2 text-lg">Administra las preferencias y el respaldo de tu sistema.</p>
+        <p className="text-slate-400 mt-2 text-sm sm:text-lg">Administra las preferencias y el respaldo de tu sistema.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
         {/* IA */}
-        <div className="bg-brand-surface border border-slate-700 rounded-3xl p-8 shadow-xl">
-          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-             <Brain className="w-6 h-6 text-brand-primary" /> Inteligencia Artificial
+        <div className="bg-brand-surface border border-slate-700 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-6 flex items-center gap-3">
+             <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-brand-primary" /> Inteligencia Artificial
           </h3>
           <div className="space-y-4">
              <div className="flex items-center justify-between p-4 bg-slate-900/50 rounded-2xl border border-slate-700">
@@ -197,9 +197,9 @@ export const SettingsModule: React.FC = () => {
         </div>
 
         {/* Hardware & Mantenimiento */}
-        <div className="bg-brand-surface border border-slate-700 rounded-3xl p-8 shadow-xl">
-          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-             <ShieldCheck className="w-6 h-6 text-emerald-400" /> Sistema y Backup
+        <div className="bg-brand-surface border border-slate-700 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-6 flex items-center gap-3">
+             <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" /> Sistema y Backup
           </h3>
           <div className="space-y-4">
              {config.useOllama && (
@@ -254,13 +254,13 @@ export const SettingsModule: React.FC = () => {
       </div>
 
       {/* Cluster Status Tool */}
-      <div className="mt-12 bg-indigo-900/10 border border-indigo-500/20 rounded-3xl p-8 shadow-xl">
-        <div className="flex items-center justify-between gap-4 mb-6">
+      <div className="mt-8 sm:mt-12 bg-indigo-900/10 border border-indigo-500/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-3">
-              <RefreshCw className="w-6 h-6 text-indigo-400" /> Monitor de Clúster (Smart Synergy)
+            <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-3">
+              <RefreshCw className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" /> Monitor de Clúster
             </h3>
-            <p className="text-xs text-indigo-300/60 mt-1">Verifica la identidad de este nodo y la coordinación con otros dispositivos.</p>
+            <p className="text-[10px] sm:text-xs text-indigo-300/60 mt-1">Verifica la identidad y coordinación con otros dispositivos.</p>
           </div>
           <div className="flex items-center gap-2 px-3 py-1 bg-indigo-500/20 rounded-lg border border-indigo-500/30">
             <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse" />
@@ -341,14 +341,14 @@ export const SettingsModule: React.FC = () => {
       </div>
 
       {/* Logger Section */}
-      <div className="mt-12 bg-brand-surface border border-slate-700 rounded-3xl p-8 shadow-xl overflow-hidden">
+      <div className="mt-8 sm:mt-12 bg-brand-surface border border-slate-700 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl overflow-hidden">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-          <h3 className="text-xl font-bold text-white flex items-center gap-3">
-             <Terminal className="w-6 h-6 text-slate-400" /> Registro de Actividad (Logger)
+          <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-3">
+             <Terminal className="w-5 h-5 sm:w-6 sm:h-6 text-slate-400" /> Logs de Sistema
           </h3>
           <button 
             onClick={clearLogs}
-            className="px-4 py-1.5 bg-slate-800 hover:bg-red-900/30 text-slate-400 hover:text-red-400 border border-slate-700 hover:border-red-900/50 rounded-xl text-xs font-bold transition-all"
+            className="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-red-900/30 text-slate-400 hover:text-red-400 border border-slate-700 hover:border-red-900/50 rounded-xl text-xs font-bold transition-all"
           >
             Limpiar Logs
           </button>
