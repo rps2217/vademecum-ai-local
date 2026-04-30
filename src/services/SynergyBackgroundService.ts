@@ -238,9 +238,19 @@ export class SynergyBackgroundService {
       LogService.add({
         level: 'error',
         module: 'Sinergia',
-        message: `Fallo crítico en pipeline para ${product.sku}`,
+        message: `Fallo en pipeline para ${product.sku}`,
         details: error.message || error
       });
+      
+      // Para evitar bucles infinitos en el PC de la oficina si un producto hace crashear el motor:
+      // Marcamos que se intentó y falló.
+      const retryCount = (product as any).synergy_retries || 0;
+      await DataService.saveProduct({ 
+        ...product, 
+        synergy_retries: retryCount + 1,
+        last_synergy_analysis: Date.now() // Actualizamos tiempo para que el "scout" lo ignore un rato
+      }, { silent: true });
+
       console.error(`[SynergyService] Error procesando ${product.sku}:`, error);
     } finally {
       this.clearCurrent();

@@ -99,13 +99,31 @@ export class AIOrchestratorService {
       const allProducts = await LocalDBService.getAllProducts();
       if (!allProducts || allProducts.length === 0) return;
 
+      const now = Date.now();
+      const ONE_HOUR = 60 * 60 * 1000;
+
       const deviceId = (await import('../utils/clusterUtils')).getDeviceId();
       
+      // Filtrar productos que no sean candidatos potentes (muchos reintentos o fallos recientes)
+      const validForAnalysis = allProducts.filter(p => {
+        if (p.synergy_analyzed) return false;
+        
+        const retries = (p as any).synergy_retries || 0;
+        const lastAttempt = p.last_synergy_analysis || 0;
+
+        // Si falló más de 3 veces, ignorar por ahora para no atascar
+        if (retries >= 3) return false;
+
+        // Si falló hace poco, esperar al menos una hora para reintentar
+        if (retries > 0 && (now - lastAttempt < ONE_HOUR)) return false;
+
+        return true;
+      });
+
       // 1. Identificar candidatos para Vectorización
-      const needsVector = allProducts.filter(p => !p.vectores || p.vectores.length === 0).slice(0, 10);
+      const needsVector = validForAnalysis.filter(p => !p.vectores || p.vectores.length === 0).slice(0, 10);
       
       for (const p of needsVector) {
-        // En vectorización el bloqueo es menos crítico pero igual lo aplicamos para orden
         const canWork = await CloudSyncService.claimProductLock(p.sku, deviceId);
         if (canWork) {
            await TaskQueueService.addTask('vectorization', { sku: p.sku });
@@ -113,9 +131,8 @@ export class AIOrchestratorService {
       }
 
       // 2. Identificar candidatos para Análisis Clínico (Sinergia)
-      // Priorizamos productos que tienen vectores pero no analisis (Mitad de camino)
-      const halfDone = allProducts.filter(p => !p.synergy_analyzed && p.vectores && p.vectores.length > 0).slice(0, 10);
-      const totallyPending = allProducts.filter(p => !p.synergy_analyzed && (!p.vectores || p.vectores.length === 0)).slice(0, 5);
+      const halfDone = validForAnalysis.filter(p => p.vectores && p.vectores.length > 0).slice(0, 10);
+      const totallyPending = validForAnalysis.filter(p => !p.vectores || p.vectores.length === 0).slice(0, 5);
       
       const needsAnalysis = [...halfDone, ...totallyPending].slice(0, 10);
 
