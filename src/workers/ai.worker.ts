@@ -214,7 +214,15 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
     }
 
   } catch (error: any) {
-    self.postMessage({ type: 'INIT_COMPLETE', success: false, error: error.message });
+    console.error('[Worker] Fatal Error during init:', error);
+    let errorMessage = error.message || String(error);
+    
+    // Mejorar mensaje para errores de red comunes en dispositivos nuevos o corporativos
+    if (errorMessage.includes('Failed to fetch') || errorMessage.includes('network error')) {
+      errorMessage = 'ERROR_DESCARGA_MODELO: No se pueden descargar los archivos de IA de Hugging Face. Verifica tu conexión a internet o si el dominio huggingface.co está bloqueado en tu red/dispositivo.';
+    }
+    
+    self.postMessage({ type: 'INIT_COMPLETE', success: false, error: errorMessage });
   } finally {
     isInitializing = false;
   }
@@ -448,7 +456,7 @@ REGLAS:
 3. Devuelve ÚNICAMENTE un objeto JSON donde la llave es la etiqueta original y el valor es la etiqueta estandarizada.
 
 LISTA DE ETIQUETAS:
-${tags.join(', ')}`;
+${formatArray(tags)}`;
 
     try {
         let content = '';
@@ -509,11 +517,11 @@ Analiza la relación entre el producto principal y los candidatos.
 
 PRODUCTO PRINCIPAL:
 - Nombre: ${product.nombre_comercial}
-- Componentes: ${product.principios_activos.join(', ')}
-- Indicaciones: ${product.indicaciones.join(', ')}
+- Componentes: ${formatArray(product.principios_activos)}
+- Indicaciones: ${formatArray(product.indicaciones)}
 
 CANDIDATOS:
-${candidates.map((c, i) => `${i+1}. ${c.nombre_comercial} (${c.principios_activos.join(', ')}) - Indicado para: ${c.indicaciones.join(', ')}`).join('\n')}
+${candidates.map((c, i) => `${i+1}. ${c.nombre_comercial} (${formatArray(c.principios_activos)}) - Indicado para: ${formatArray(c.indicaciones)}`).join('\n')}
 
 TAREA: ${isSynergy ? 'Identifica SINERGIAS (productos que complementan o potencian el efecto).' : 'Identifica ALTERNATIVAS (productos bioequivalentes o con el mismo uso terapéutico).'}
 
@@ -652,6 +660,12 @@ Respuesta JSON:`;
             payload: { isScenario: false, symptoms: [], risks: [], logic: '', suggestedFilters: { avoid: [], prefer: [] }, error: e.message } 
         });
     }
+}
+
+// Helper para formateo seguro de arrays en el worker
+function formatArray(arr: any[] | undefined | null, separator: string = ', '): string {
+    if (!Array.isArray(arr)) return '';
+    return arr.join(separator);
 }
 
 async function runHealthCheck() {

@@ -255,7 +255,7 @@ export const DatabaseModule: React.FC = () => {
                   <td className="px-6 py-4 font-mono text-[10px] text-slate-500">{p.sku}</td>
                   <td className="px-6 py-4 font-bold text-white leading-tight">{p.nombre_comercial}</td>
                   <td className="px-6 py-4 text-slate-400 text-xs truncate max-w-[200px]">
-                    {p.principios_activos.join(', ')}
+                    {Array.isArray(p.principios_activos) ? p.principios_activos.join(', ') : ''}
                   </td>
                   <td className="px-6 py-4 text-right">
                     <button onClick={() => handleDelete(p.sku)} className="p-1.5 text-slate-600 hover:text-red-500">

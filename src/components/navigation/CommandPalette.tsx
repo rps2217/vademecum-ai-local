@@ -146,7 +146,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-sm text-slate-200 truncate">{product.nombre_comercial}</div>
-                        <div className="text-[10px] text-slate-500 truncate">{product.principios_activos.join(', ')}</div>
+                        <div className="text-[10px] text-slate-500 truncate">
+                          {Array.isArray(product.principios_activos) ? product.principios_activos.join(', ') : ''}
+                        </div>
                       </div>
                       {selectedIndex === index && (
                         <div className="flex items-center gap-2">
