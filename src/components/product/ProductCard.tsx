@@ -47,11 +47,11 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         <head>
           <style>
             @media print {
-              body { width: 80mm; font-family: monospace; font-size: 10px; line-height: 1.2; padding: 5px; }
-              h3 { margin: 0 0 5px 0; font-size: 14px; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 3px; }
-              p { margin: 5px 0; }
-              .section-title { font-weight: bold; text-decoration: underline; margin-top: 8px; font-size: 11px; }
-              .footer { margin-top: 15px; border-top: 1px dashed #000; padding-top: 5px; font-size: 8px; text-align: center; }
+              body { width: 80mm; font-family: monospace; font-size: 12px; line-height: 1.4; padding: 5px; color: #000; }
+              h3 { margin: 0 0 10px 0; font-size: 18px; text-transform: uppercase; border-bottom: 3px solid #000; padding-bottom: 5px; }
+              .posologia-content { font-size: 16px; font-weight: bold; margin: 10px 0; }
+              .section-title { font-weight: bold; text-decoration: underline; margin-top: 15px; font-size: 14px; }
+              .footer { margin-top: 25px; border-top: 1px dashed #000; padding-top: 10px; font-size: 10px; text-align: center; }
             }
           </style>
         </head>
@@ -61,7 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
           </div>
           
           <div class="section-title">POSOLOGÍA / MODO DE USO:</div>
-          <p>${product.posologia || 'Consulte con su consultor técnico.'}</p>
+          <p class="posologia-content">${product.posologia || 'Consulte con su consultor técnico.'}</p>
 
           <div class="footer">
             Vademécum Profesional - Consultoría Técnica<br/>
