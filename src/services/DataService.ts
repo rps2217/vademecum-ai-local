@@ -129,12 +129,18 @@ export class DataService {
     const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
     // Paginate or use 'in' operator. PostgREST 'in' is useful for batches
     const skuList = skus.join(',');
-    const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=in.(${skuList})&select=data`, {
+    // Seleccionar tanto 'sku' como 'data' para asegurar integridad del keyPath
+    const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=in.(${skuList})&select=sku,data`, {
       headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
     });
     if (!response.ok) throw new Error('Failed to download cloud products');
     const result = await response.json();
-    return result.map((r: any) => r.data);
+    
+    // Asegurar que 'data' contenga 'sku'
+    return result.map((r: any) => ({
+      ...r.data,
+      sku: r.sku || r.data.sku // Priorizar sku del root si existe, sino tomar de data
+    }));
   }
 
   static async deleteProduct(sku: string): Promise<void> {
