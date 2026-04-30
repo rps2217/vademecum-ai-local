@@ -9,7 +9,7 @@ import { AIAnalysisModal } from './components/AIAnalysisModal';
 import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
 import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretationOverlay';
 import { useConsultation } from '../../context/ConsultationContext';
-import { Brain } from 'lucide-react';
+import { Brain, LayoutGrid, List } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
@@ -26,6 +26,7 @@ export const SearchModule: React.FC = () => {
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const [interpretation, setInterpretation] = useState<any>(null);
   const [isInterpreting, setIsInterpreting] = useState(false);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
   const { toggleProduct, isInTray } = useTray();
   const { selectedProducts } = useConsultation();
@@ -159,6 +160,23 @@ export const SearchModule: React.FC = () => {
               }}
             />
             
+            <div className="flex justify-end mb-2 px-2">
+              <div className="flex bg-slate-900 rounded-lg p-0.5 border border-slate-700">
+                <button 
+                  onClick={() => setViewMode('grid')}
+                  className={`p-1.5 rounded-md ${viewMode === 'grid' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-slate-300'}`}
+                >
+                  <LayoutGrid className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => setViewMode('list')}
+                  className={`p-1.5 rounded-md ${viewMode === 'list' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-slate-300'}`}
+                >
+                  <List className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
             <SearchResults 
               results={results}
               query={query}
@@ -170,6 +188,7 @@ export const SearchModule: React.FC = () => {
               onAddToTray={toggleProduct}
               onTagClick={handleTagClick}
               onClearFilters={handleClearAll}
+              viewMode={viewMode}
             />
           </div>
         )

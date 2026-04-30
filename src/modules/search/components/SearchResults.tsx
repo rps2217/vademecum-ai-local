@@ -15,6 +15,7 @@ interface SearchResultsProps {
   onAddToTray: (product: Product) => void;
   onTagClick: (tag: string) => void;
   onClearFilters: () => void;
+  viewMode: 'grid' | 'list';
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({
@@ -25,11 +26,12 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   onProductClick,
   onAddToTray,
   onTagClick,
-  onClearFilters
+  onClearFilters,
+  viewMode
 }) => {
   if (isSearching && results.length === 0) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 animate-in fade-in duration-500">
+      <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' : 'grid-cols-1'} gap-4 animate-in fade-in duration-500`}>
         {[...Array(6)].map((_, i) => (
           <ProductSkeleton key={i} />
         ))}
@@ -51,12 +53,12 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
           </span>
           <button 
             onClick={onClearFilters}
-            className="text-brand-primary hover:text-brand-primary/80 hover:underline"
+            className="text-emerald-500 hover:text-emerald-400 hover:underline"
           >
             Limpiar búsqueda
           </button>
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'} gap-4`}>
           {results.map((product) => (
             <ProductCard 
               key={product.sku} 
