@@ -20,10 +20,14 @@ export class OllamaService {
 
     this.lastCheckTime = now;
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000); // 3s timeout for availability check
+
     // Si ya sabemos cual funciona, lo usamos
     if (this.activeBaseUrl) {
       try {
-        const res = await fetch(`${this.activeBaseUrl}/tags`);
+        const res = await fetch(`${this.activeBaseUrl}/tags`, { signal: controller.signal });
+        clearTimeout(timeout);
         this.lastCheckResult = res.ok;
         return res.ok;
       } catch {
@@ -36,8 +40,10 @@ export class OllamaService {
         console.log(`[OllamaService] Intentando conectar con motor en ${host}...`);
         const response = await fetch(`${host}/tags`, { 
           method: 'GET',
-          mode: 'cors' 
+          mode: 'cors',
+          signal: controller.signal
         });
+        clearTimeout(timeout);
         if (response.ok) {
           this.activeBaseUrl = host;
           console.log(`[OllamaService] ✅ Conexión exitosa con ${host}`);
@@ -61,9 +67,12 @@ export class OllamaService {
     skus_relacionados: string[];
     explicacion_clinica: string;
   }> {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000); // 60s timeout for clinical analysis
+
     try {
       // 1. Obtener modelos disponibles y elegir el mejor
-      const tagsResponse = await fetch(`${this.baseUrl}/tags`);
+      const tagsResponse = await fetch(`${this.baseUrl}/tags`, { signal: controller.signal });
       const tagsData = await tagsResponse.json();
       const models = tagsData.models || [];
       
@@ -106,6 +115,7 @@ export class OllamaService {
 
       const response = await fetch(`${this.baseUrl}/generate`, {
         method: 'POST',
+        signal: controller.signal,
         body: JSON.stringify({
           model: selectedModel,
           prompt: prompt,
@@ -118,10 +128,25 @@ export class OllamaService {
       
       const data = await response.json();
       if (!data || !data.response) throw new Error('Cuerpo de respuesta Ollama inválido');
-      return JSON.parse(data.response);
+      
+      try {
+        return JSON.parse(data.response);
+      } catch (parseError) {
+        // Fallback: Intentar extraer JSON con regex si hay texto extra
+        const jsonMatch = data.response.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          return JSON.parse(jsonMatch[0]);
+        }
+        throw new Error('No se pudo parsear el JSON de la respuesta de Ollama');
+      }
     } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        throw new Error('Timeout agotado esperando respuesta de Ollama (60s)');
+      }
       console.error('[OllamaService] Error en análisis:', error);
       throw error;
+    } finally {
+      clearTimeout(timeout);
     }
   }
 

@@ -106,6 +106,22 @@ export const TaskQueueService = {
   },
 
   runCleanup: async () => {
-    // (Optional: cleanup if tasks stay processing too long, implement if needed)
+    let tasks = getTasksFromStorage();
+    const now = Date.now();
+    const STUCK_TIMEOUT = 30 * 60 * 1000; // 30 minutes
+    
+    let modified = false;
+    tasks = tasks.map(t => {
+      if (t.status === 'processing' && (now - t.timestamp > STUCK_TIMEOUT)) {
+        console.warn(`[TaskQueue] Reseteando tarea estancada ${t.id} (${t.type})`);
+        modified = true;
+        return { ...t, status: 'pending', timestamp: now, retries: (t.retries || 0) + 1 };
+      }
+      return t;
+    });
+
+    if (modified) {
+      saveTasksToStorage(tasks);
+    }
   }
 };

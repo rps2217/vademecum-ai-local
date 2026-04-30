@@ -68,6 +68,13 @@ export class AIOrchestratorService {
    */
   static async scoutPendingWork() {
     if (this.isRunning) return;
+    
+    // Verificar configuración
+    const { ConfigService } = await import('./ConfigService');
+    const config = ConfigService.getConfig();
+    if (!config.enableBackgroundSynergy) {
+      return;
+    }
 
     // Verificar estado del motor IA (Import dinámico para romper ciclo circular)
     try {

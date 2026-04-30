@@ -12,6 +12,10 @@ export class AutomationTriggerService {
     // 1. Trigger Automation on Product Update
     this.subscriptions.push(
       EventBus.on<{sku: string}>(EventType.PRODUCT_UPDATED).subscribe(async ({ sku }) => {
+        const { ConfigService } = await import('./ConfigService');
+        const config = ConfigService.getConfig();
+        if (!config.enableBackgroundSynergy) return;
+
         const product = await DataService.getProductBySku(sku);
         if (product) {
           // A. Enqueue Vectorization ONLY IF MISSING

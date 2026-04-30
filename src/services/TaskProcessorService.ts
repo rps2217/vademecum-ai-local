@@ -60,6 +60,7 @@ export class TaskProcessorService {
   }
 
   private static async executeTask(task: PendingTask) {
+    const { LogService } = await import('./LogService');
     console.log(`[TaskProcessor] Ejecutando tarea: ${task.type} (${task.id})`);
     
     // Marcar como procesando
@@ -99,6 +100,12 @@ export class TaskProcessorService {
       console.log(`[TaskProcessor] Tarea completada: ${task.id}`);
 
     } catch (error: any) {
+      LogService.add({
+        level: 'error',
+        module: 'Procesador',
+        message: `Fallo en tarea ${task.type}`,
+        details: error.message || error
+      });
       console.error(`[TaskProcessor] Error ejecutando tarea ${task.id}:`, error);
       
       const newRetries = (task.retries || 0) + 1;

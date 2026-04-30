@@ -71,12 +71,13 @@ export class SynergyBackgroundService {
   }
 
   private static async processProduct(product: Product, isForced: boolean = false) {
+    const { LogService } = await import('./LogService');
+    const startTimestamp = Date.now();
+    
     try {
       const status = AIService.getStatus();
-      const now = Date.now();
-
+      
       // [CLÚSTER] 1. Reclamo de exclusividad. 
-      // ¿Algún otro PC de esta farmacia ya está trabajando con esto en este instante?
       const { getDeviceId } = await import('../utils/clusterUtils');
       const deviceId = getDeviceId();
       const canLock = await CloudSyncService.claimProductLock(product.sku, deviceId);
@@ -89,20 +90,24 @@ export class SynergyBackgroundService {
       this.currentProcessingName = product.nombre_comercial;
       this.notifyListeners();
 
-      console.log(`[SynergyService] Iniciando análisis de sinergias para: ${product.nombre_comercial} (Forzado: ${isForced})`);
+      LogService.add({
+        level: 'info',
+        module: 'Sinergia',
+        message: `Analizando: ${product.nombre_comercial}`,
+        details: { sku: product.sku, source: isForced ? 'manual' : 'background' }
+      });
       
-      // Actualizar localmente que estamos procesando (opcional)
-      // await DataService.saveProduct({ ...product, last_synergy_analysis: now }, { silent: true });
-
       // 1. Encontrar candidatos por similitud semántica (Local Embeddings)
       let mainVector = product.vectores;
       if (!mainVector || mainVector.length === 0) {
         if (status.isReady) {
+          LogService.add({ level: 'info', module: 'Sinergia', message: `Generando Vector para ${product.sku}...` });
           const text = `${product.nombre_comercial} ${formatArrayToString(product.indicaciones, ' ')} ${product.analisis_componentes || ''}`;
           mainVector = await AIService.generateEmbedding(text);
           product.vectores = mainVector;
           await DataService.saveProduct({ ...product, vectores: mainVector }, { silent: true });
         } else {
+          LogService.add({ level: 'warn', module: 'Sinergia', message: `Motor IA local no listo para vectorización. Saltando.` });
           await DataService.saveProduct({ ...product, synergy_analyzed: true, last_synergy_analysis: Date.now() }, { silent: true });
           this.clearCurrent();
           return;
@@ -122,6 +127,7 @@ export class SynergyBackgroundService {
         .map(item => item.product);
 
       if (candidates.length === 0) {
+        LogService.add({ level: 'info', module: 'Sinergia', message: `Sin candidatos para ${product.sku}.` });
         const updatedProduct = { 
           ...product, 
           synergy_analyzed: true, 
@@ -134,21 +140,24 @@ export class SynergyBackgroundService {
         return;
       }
 
-      // 2. Análisis Clínico - HÍBRIDO Y SILENCIOSO
+      LogService.add({ level: 'info', module: 'Sinergia', message: `Encontrados ${candidates.length} candidatos. Iniciando motor...` });
+
+      // 2. Análisis Clínico - HÍBRIDO Y SILENCIOSO con Timeouts
       let synergyResult;
       const isOllamaAvailable = await OllamaService.isAvailable();
 
       if (isOllamaAvailable) {
         this.setActiveEngine('Ollama (Local Externo)');
         try {
+          LogService.add({ level: 'info', module: 'Sinergia', message: `Consultando Ollama...` });
           const analysis = await OllamaService.analyzeSynergy(product, candidates);
           synergyResult = {
             sugerencia_complementaria: analysis.sugerencia_complementaria,
             skus_relacionados: analysis.skus_relacionados,
             explicacion_clinica: analysis.explicacion_clinica
           };
-        } catch (e) {
-          console.warn('[SynergyService] Ollama falló, saltando...');
+        } catch (e: any) {
+          LogService.add({ level: 'warn', module: 'Sinergia', message: `Ollama falló: ${e.message}. Probando siguiente motor.` });
         }
       }
 
@@ -157,6 +166,7 @@ export class SynergyBackgroundService {
         if (config.useGeminiForSynergy) {
           this.setActiveEngine('Gemini (Nube)');
           try {
+            LogService.add({ level: 'info', module: 'Sinergia', message: `Consultando Gemini...` });
             const analysis = await GeminiService.analyzeSynergy(product, candidates);
             synergyResult = {
               sugerencia_complementaria: analysis.sugerencia_complementaria,
@@ -164,7 +174,7 @@ export class SynergyBackgroundService {
               explicacion_clinica: analysis.explicacion_clinica
             };
           } catch (e: any) {
-            console.warn('[SynergyService] Gemini falló (Cuota/Red). Encolando para después.');
+            LogService.add({ level: 'warn', module: 'Sinergia', message: `Gemini falló (esperando retry en cola).` });
             await TaskQueueService.addTask('ai_analysis', { sku: product.sku, type: 'synergy' });
           }
         }
@@ -173,6 +183,7 @@ export class SynergyBackgroundService {
       if (!synergyResult && status.isReady) {
         this.setActiveEngine('WebLLM (Interno GPU)');
         try {
+          LogService.add({ level: 'info', module: 'Sinergia', message: `Consultando WebLLM (Browser)...` });
           const prompt = `Analiza la sinergia clínica entre el producto principal y sus complementos. 
           
           PRODUCTO PRINCIPAL:
@@ -194,7 +205,7 @@ export class SynergyBackgroundService {
             explicacion_clinica: localAnalysis
           };
         } catch (e) {
-          console.error('[SynergyService] IA Local Browser falló.');
+          LogService.add({ level: 'error', module: 'Sinergia', message: `WebLLM falló fatalmente.` });
         }
       }
 
@@ -215,9 +226,21 @@ export class SynergyBackgroundService {
       };
 
       await CloudSyncService.releaseProductLockAndSave(finalProduct);
-      console.log(`[SynergyService] Sinergia completada para ${product.nombre_comercial}`);
+      
+      const duration = ((Date.now() - startTimestamp) / 1000).toFixed(1);
+      LogService.add({
+        level: 'success',
+        module: 'Sinergia',
+        message: `Completado: ${product.nombre_comercial} (${duration}s)`
+      });
 
-    } catch (error) {
+    } catch (error: any) {
+      LogService.add({
+        level: 'error',
+        module: 'Sinergia',
+        message: `Fallo crítico en pipeline para ${product.sku}`,
+        details: error.message || error
+      });
       console.error(`[SynergyService] Error procesando ${product.sku}:`, error);
     } finally {
       this.clearCurrent();
