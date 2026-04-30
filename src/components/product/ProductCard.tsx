@@ -36,6 +36,11 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
     }
   };
 
+  const capitalizeFirst = (text: string) => {
+    if (!text) return text;
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  };
+
   const isGroundingSource = product.source_url === 'google_search' || product.source_url?.includes('google_search');
 
   return (
@@ -53,11 +58,11 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
               </span>
             )}
           </div>
-          <h3 className="text-base font-bold text-white uppercase leading-tight group-hover:text-emerald-500 transition-colors">
-            <HighlightText text={product.nombre_comercial} searchTerm={searchTerm} />
+          <h3 className="text-base font-bold text-white leading-tight group-hover:text-emerald-500 transition-colors">
+            <HighlightText text={capitalizeFirst(product.nombre_comercial)} searchTerm={searchTerm} />
           </h3>
-          <p className="text-[11px] text-slate-500 font-medium mt-0.5 truncate uppercase">
-            <HighlightText text={formatArrayToString(product.principios_activos, ', ')} searchTerm={searchTerm} />
+          <p className="text-[11px] text-slate-500 font-medium mt-0.5 truncate">
+            <HighlightText text={capitalizeFirst(formatArrayToString(product.principios_activos, ', '))} searchTerm={searchTerm} />
           </p>
         </div>
         <div className="text-[9px] font-mono text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800">
@@ -69,8 +74,8 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         {/* Indicaciones */}
         <div>
           <p className="text-[10px] uppercase font-bold tracking-wider text-slate-600 mb-1">Indicaciones</p>
-          <div className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed uppercase">
-            <HighlightText text={formatArrayToString(product.indicaciones, ' • ')} searchTerm={searchTerm} />
+          <div className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
+            <HighlightText text={capitalizeFirst(formatArrayToString(product.indicaciones, ' • '))} searchTerm={searchTerm} />
           </div>
         </div>
 
