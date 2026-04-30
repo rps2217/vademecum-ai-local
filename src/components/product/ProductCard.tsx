@@ -53,10 +53,10 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
               </span>
             )}
           </div>
-          <h3 className="text-base font-bold text-white leading-tight group-hover:text-emerald-500 transition-colors">
+          <h3 className="text-base font-bold text-white uppercase leading-tight group-hover:text-emerald-500 transition-colors">
             <HighlightText text={product.nombre_comercial} searchTerm={searchTerm} />
           </h3>
-          <p className="text-[11px] text-slate-500 font-medium mt-0.5 truncate">
+          <p className="text-[11px] text-slate-500 font-medium mt-0.5 truncate uppercase">
             <HighlightText text={formatArrayToString(product.principios_activos, ', ')} searchTerm={searchTerm} />
           </p>
         </div>
@@ -69,7 +69,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         {/* Indicaciones */}
         <div>
           <p className="text-[10px] uppercase font-bold tracking-wider text-slate-600 mb-1">Indicaciones</p>
-          <div className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
+          <div className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed uppercase">
             <HighlightText text={formatArrayToString(product.indicaciones, ' • ')} searchTerm={searchTerm} />
           </div>
         </div>
