@@ -69,7 +69,7 @@ export const GraphExplorerModule: React.FC = () => {
     };
     load();
 
-    const sub = EventBus.on<any>(EventType.SYNERGY_STATUS_CHANGED).subscribe((status) => {
+    const subStatus = EventBus.on<any>(EventType.SYNERGY_STATUS_CHANGED).subscribe((status) => {
       setProcessingStatus({ 
         isRunning: status.isRunning, 
         sku: status.currentProcessingSku, 
@@ -79,18 +79,14 @@ export const GraphExplorerModule: React.FC = () => {
       if (!status.currentProcessingSku && !status.currentProcessingName) load();
     });
 
-    // Escuchar actualizaciones globales de la base de datos con debounce
-    let debounceTimer: any;
-    const handleDBUpdate = () => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(load, 1000); 
-    };
-    window.addEventListener('db_updated', handleDBUpdate);
+    // Escuchar actualizaciones globales de la base de datos
+    const subDB = EventBus.on<any>(EventType.DB_UPDATED).subscribe(() => load());
+    const subProduct = EventBus.on<any>(EventType.PRODUCT_UPDATED).subscribe(() => load());
 
     return () => {
-      sub.unsubscribe();
-      window.removeEventListener('db_updated', handleDBUpdate);
-      clearTimeout(debounceTimer);
+      subStatus.unsubscribe();
+      subDB.unsubscribe();
+      subProduct.unsubscribe();
     };
   }, []);
 

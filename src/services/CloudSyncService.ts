@@ -180,8 +180,9 @@ export const CloudSyncService = {
     };
     
     const { supabaseUrl, supabaseKey } = DataService.getSupabaseInfo();
+    let cloudSuccess = false;
     try {
-      await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${product.sku}`, {
+      const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${product.sku}`, {
         method: 'PATCH',
         headers: {
           'apikey': supabaseKey,
@@ -195,12 +196,29 @@ export const CloudSyncService = {
           }
         })
       });
+      cloudSuccess = response.ok;
+      if (cloudSuccess) {
+        LogService.add({
+          level: 'success',
+          module: 'CloudSync',
+          message: `Sinergia de ${product.nombre_comercial} guardada en la nube`,
+        });
+      }
     } catch (e) {
       console.error('[CloudSync] Failed to release lock:', e);
+      LogService.add({
+        level: 'warn',
+        module: 'CloudSync',
+        message: `No se pudo subir a la nube ${product.sku}, se guardó solo localmente`,
+      });
     }
 
     const { LocalDBService: LocalDB } = await import('./LocalDBService');
-    await LocalDB.saveProduct(unlockedProduct);
+    await LocalDB.saveProduct({ ...unlockedProduct, synced: cloudSuccess });
+    
+    // Notificar actualización de producto
+    EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: cloudSuccess });
+    EventBus.emit(EventType.DB_UPDATED, { action: 'saved', sku: product.sku });
   },
 
   /**

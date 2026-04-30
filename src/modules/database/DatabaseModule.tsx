@@ -211,7 +211,8 @@ export const DatabaseModule: React.FC = () => {
           <table className="w-full text-left text-sm">
             <thead className="bg-slate-900 text-slate-400 border-b border-slate-700 font-bold">
               <tr>
-                <th className="px-6 py-4">Estado</th>
+                <th className="px-6 py-4">Cloud</th>
+                <th className="px-6 py-4">Sinergia</th>
                 <th className="px-6 py-4">SKU</th>
                 <th className="px-6 py-4">Producto</th>
                 <th className="px-6 py-4">Compuestos</th>
@@ -220,9 +221,9 @@ export const DatabaseModule: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-slate-800">
               {isLoading ? (
-                <tr><td colSpan={5} className="p-10 text-center text-slate-500">Cargando datos...</td></tr>
+                <tr><td colSpan={6} className="p-10 text-center text-slate-500">Cargando datos...</td></tr>
               ) : currentProducts.length === 0 ? (
-                <tr><td colSpan={5} className="p-10 text-center text-slate-500">No hay registros.</td></tr>
+                <tr><td colSpan={6} className="p-10 text-center text-slate-500">No hay registros.</td></tr>
               ) : currentProducts.map(p => (
                 <tr key={p.sku} className="hover:bg-slate-800/20 transition-colors">
                   <td className="px-6 py-4">
@@ -235,6 +236,19 @@ export const DatabaseModule: React.FC = () => {
                       <div className="flex items-center gap-2 text-slate-600" title="Solo local (Pendiente de respaldo)">
                         <Monitor className="w-4 h-4" />
                         <CloudOff className="w-3 h-3 opacity-50" />
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    {p.synergy_analyzed ? (
+                      <div className="flex items-center gap-2 text-amber-500" title="Analizado por IA">
+                        <Sparkles className="w-4 h-4" />
+                        <span className="text-[10px] font-bold uppercase tracking-tighter">OK</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 text-slate-700" title="Pendiente de análisis">
+                        <RefreshCw className="w-4 h-4 opacity-30" />
+                        <span className="text-[10px] font-bold uppercase tracking-tighter opacity-30">PND</span>
                       </div>
                     )}
                   </td>
