@@ -5,7 +5,7 @@ import {
   Database, Trash2, RefreshCw, FileUp, 
   ChevronLeft, ChevronRight, Download,
   Search, Monitor, CloudUpload, Info, AlertCircle,
-  Cloud, CloudOff, CheckCircle
+  Cloud, CloudOff, CheckCircle, Sparkles
 } from 'lucide-react';
 import { CloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';

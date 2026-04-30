@@ -31,8 +31,10 @@ export interface Product {
   // Sinergia
   sugerencia_complementaria: string;
   skus_relacionados: string[];
+  explicacion_clinica?: string;
   synergy_analyzed?: boolean;
   last_synergy_analysis?: number;
+  synergy_retries?: number;
   
   // Distributed Locking
   locked_by_ai?: boolean;
