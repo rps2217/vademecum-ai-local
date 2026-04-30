@@ -130,12 +130,41 @@ export class AIService {
 
   private static isBusy = false;
 
-  static async analyzeSynergy(product: any, candidates: any[]): Promise<any> {
+  private static async runInWorker(type: string, payload: any, timeoutMs: number = 180000): Promise<any> {
+    if (!this.worker || !this.isReady) {
+      throw new Error('Motor IA no está listo');
+    }
+
     this.isBusy = true;
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        this.worker?.removeEventListener('message', handler);
+        this.isBusy = false;
+        reject(new Error(`Timeout de IA (${timeoutMs}ms) en operación: ${type}`));
+      }, timeoutMs);
+
+      const handler = (e: MessageEvent) => {
+        const { type: resType, payload: resPayload, error } = e.data;
+        if (resType === `${type}_RESULT` || resType === 'ERROR') {
+          clearTimeout(timeout);
+          this.worker?.removeEventListener('message', handler);
+          this.isBusy = false;
+          if (error) reject(new Error(error));
+          else resolve(resPayload);
+        }
+      };
+
+      this.worker.addEventListener('message', handler);
+      this.worker.postMessage({ type, payload });
+    });
+  }
+
+  static async analyzeSynergy(product: any, candidates: any[]): Promise<any> {
     try {
-      return await this.runInWorker('analyze_synergy', { product, candidates });
-    } finally {
-      this.isBusy = false;
+      return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type: 'synergy' });
+    } catch (error) {
+      console.error('[AIService] Error en analyzeSynergy:', error);
+      return null;
     }
   }
 
@@ -296,8 +325,8 @@ export class AIService {
 
   static async analyze(query: string, products: Product[]): Promise<string> {
     if (!this.worker || !this.isReady) {
-        const productNames = products.map(p => p.nombre_comercial).join(' y ');
-        return `### ⚡ Modo Lite (Sin IA)\nEl motor de IA no está activo. Mostrando información básica.\n\n**Productos:** ${productNames}\n\nPor favor, active el motor de IA en Configuración para un análisis clínico profundo.`;
+      const productNames = products.map(p => p.nombre_comercial).join(' y ');
+      return `### ⚡ Modo Lite (Sin IA)\nEl motor de IA no está activo. Mostrando información básica.\n\n**Productos:** ${productNames}\n\nPor favor, active el motor de IA en Configuración para un análisis clínico profundo.`;
     }
 
     const context = products.map(p => 
@@ -307,60 +336,33 @@ export class AIService {
       `- Advertencias: ${p.advertencias}\n`
     ).join('\n\n');
 
-    return new Promise((resolve) => {
-        const handler = (e: MessageEvent) => {
-            const { type, payload, error } = e.data;
-            if (type === 'ANALYZE_RESULT' || type === 'ERROR') {
-                this.worker?.removeEventListener('message', handler);
-                if (error) resolve('Error generando análisis.');
-                else resolve(payload);
-            }
-        };
-        this.worker?.addEventListener('message', handler);
-        this.worker?.postMessage({ type: 'ANALYZE', payload: { query, context } });
-    });
+    try {
+      return await this.runInWorker('ANALYZE', { query, context });
+    } catch (error) {
+      console.error('[AIService] Error en analyze:', error);
+      return 'No se pudo generar el análisis clínico por un error en el motor local.';
+    }
   }
 
   static async standardizeTags(tags: string[]): Promise<Record<string, string>> {
-    if (!this.worker || !this.isReady) {
+    if (!this.worker || !this.isReady) return {};
+    try {
+      return await this.runInWorker('STANDARDIZE_TAGS', { tags }, 30000); 
+    } catch (error) {
+      console.error('[AIService] Error en standardizeTags:', error);
       return {};
     }
-
-    return new Promise((resolve) => {
-      const handler = (e: MessageEvent) => {
-        const { type, payload, error } = e.data;
-        if (type === 'STANDARDIZE_TAGS_RESULT' || type === 'ERROR') {
-          this.worker?.removeEventListener('message', handler);
-          if (error) resolve({});
-          else resolve(payload);
-        }
-      };
-      this.worker?.addEventListener('message', handler);
-      this.worker?.postMessage({ type: 'STANDARDIZE_TAGS', payload: { tags } });
-    });
   }
 
   static async analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives'): Promise<any> {
-    // Si el motor local está listo, usarlo
     if (this.worker && this.isReady) {
-      return new Promise((resolve) => {
-        const handler = (e: MessageEvent) => {
-          const { type: resType, payload, error } = e.data;
-          if (resType === 'ANALYZE_CLINICAL_RESULT' || resType === 'ERROR') {
-            this.worker?.removeEventListener('message', handler);
-            if (error) {
-              resolve(null);
-            } else {
-              resolve(payload);
-            }
-          }
-        };
-        this.worker?.addEventListener('message', handler);
-        this.worker?.postMessage({ type: 'ANALYZE_CLINICAL', payload: { product, candidates, type } });
-      });
+      try {
+        return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type });
+      } catch (error) {
+        console.error('[AIService] Error en motor local, probando nube...', error);
+      }
     }
 
-    // Si el motor local NO está listo, intentar usar Gemini en la nube (GeminiService)
     try {
       const { GeminiService } = await import('./GeminiService');
       if (type === 'synergy') {
@@ -368,7 +370,6 @@ export class AIService {
       }
       return null;
     } catch (error: any) {
-      // Capturar errores de cuota o red de GeminiService
       const isQuotaError = error?.status === 'RESOURCE_EXHAUSTED' || error?.message?.includes('429') || error?.message?.includes('quota');
       const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
       
@@ -384,18 +385,12 @@ export class AIService {
 
   static async interpretClinicalSearch(query: string): Promise<any> {
     if (!this.worker || !this.isReady) return { isScenario: false };
-
-    return new Promise((resolve) => {
-      const handler = (e: MessageEvent) => {
-        const { type: resType, payload } = e.data;
-        if (resType === 'INTERPRET_SEARCH_RESULT') {
-          this.worker?.removeEventListener('message', handler);
-          resolve(payload);
-        }
-      };
-      this.worker?.addEventListener('message', handler);
-      this.worker?.postMessage({ type: 'INTERPRET_SEARCH', payload: { query } });
-    });
+    try {
+      return await this.runInWorker('INTERPRET_SEARCH', { query }, 30000);
+    } catch (error) {
+      console.error('[AIService] Error interpretando búsqueda:', error);
+      return { isScenario: false };
+    }
   }
 
   static cosineSimilarity(vecA: number[], vecB: number[]): number {
