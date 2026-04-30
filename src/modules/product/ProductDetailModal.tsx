@@ -202,65 +202,65 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const hasSynergy = !!product.synergy_analyzed;
 
   const detailContent = (
-    <div className={`bg-brand-surface w-full h-full rounded-[2rem] shadow-2xl shadow-brand-primary/20 border border-slate-800 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''} ${isEmbedded ? 'animate-none shadow-none border-none' : 'animate-in slide-in-from-right duration-500'}`}>
+    <div className={`bg-brand-surface w-full h-full sm:rounded-[2rem] shadow-2xl shadow-brand-primary/20 border-t sm:border border-slate-800 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''} ${isEmbedded ? 'animate-none shadow-none border-none' : 'animate-in slide-in-from-bottom sm:slide-in-from-right duration-500'}`}>
       
       {/* Columna Izquierda: Detalles del Producto */}
-      <div id="product-detail-left-col" className={`w-full p-4 md:p-8 overflow-y-auto relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-slate-800' : ''}`}>
+      <div id="product-detail-left-col" className={`w-full p-4 sm:p-8 overflow-y-auto relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-slate-800' : ''}`}>
         
         {/* Navegación Superior */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between mb-6 sm:mb-8 sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-md -mx-4 px-4 py-2 sm:static sm:mx-0 sm:px-0 sm:py-0 sm:bg-transparent">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button 
               onClick={onClose}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-300 hover:text-white transition-all border border-slate-700/50 group shadow-lg"
+              className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-300 hover:text-white transition-all border border-slate-700/50 group shadow-lg"
               title="Volver al listado"
             >
-              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform text-brand-primary" />
-              <span className="font-bold text-xs uppercase tracking-widest">Regresar</span>
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform text-brand-primary" />
+              <span className="font-bold text-[10px] sm:text-xs uppercase tracking-widest">Cerrar</span>
             </button>
               
               <button 
                 onClick={onClose}
-                className="p-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
+                className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
                 title="Ir al inicio"
               >
-                <Home className="w-5 h-5" />
+                <Home className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               <button 
                 onClick={handlePrint}
-                className="p-2.5 rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
+                className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
                 title="Imprimir Ficha de Consultoría"
               >
-                <Printer className="w-5 h-5" />
+                <Printer className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
 
-            <div className="md:hidden">
+            <div className="flex md:hidden items-center gap-2">
               <button 
-                onClick={onClose}
-                className="p-2.5 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all border border-rose-500/30 shadow-lg"
-                title="Cerrar ficha"
+                onClick={handleReanalyze}
+                disabled={isReanalyzing}
+                className={`p-2 rounded-xl border transition-all ${isReanalyzing ? 'bg-indigo-500/10 border-indigo-500/30' : 'bg-brand-surface border-slate-700'}`}
               >
-                <X className="w-5 h-5" />
+                {isReanalyzing ? <RefreshCw className="w-4 h-4 animate-spin text-indigo-400" /> : <Sparkles className="w-4 h-4 text-brand-primary" />}
               </button>
             </div>
           </div>
 
           {statusMessage && (
-            <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[60] px-6 py-3 rounded-2xl border shadow-2xl animate-in slide-in-from-top duration-300 flex items-center gap-3 ${
+            <div className={`fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-[100] px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border shadow-2xl animate-in slide-in-from-top duration-300 flex items-center gap-2 sm:gap-3 w-[90%] sm:w-auto ${
               statusMessage.type === 'error' ? 'bg-red-500/10 border-red-500/50 text-red-400' :
               statusMessage.type === 'success' ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-400' :
               'bg-brand-primary/10 border-brand-primary/50 text-brand-primary'
             }`}>
-              {statusMessage.type === 'error' && <AlertCircle className="w-5 h-5" />}
-              <span className="font-medium">{statusMessage.text}</span>
+              {statusMessage.type === 'error' && <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />}
+              <span className="font-medium text-xs sm:text-base text-center sm:text-left">{statusMessage.text}</span>
             </div>
           )}
 
           <div className="relative">
             <ProductHeader product={product} onTagClick={onTagClick} searchTerm={searchTerm} />
-            <div className="absolute top-6 right-6 md:top-8 md:right-8 z-50">
+            <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-50 hidden sm:block">
               <ProductActions 
                 product={product}
                 isForcingSynergy={isForcingSynergy}
@@ -287,16 +287,32 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <>
               <ProductBentoGrid product={product} searchTerm={searchTerm} />
               
+              {/* Actions Footer for Mobile only */}
+              <div className="mt-8 pt-8 border-t border-slate-800 flex flex-wrap justify-center gap-3 sm:hidden">
+                <ProductActions 
+                  product={product}
+                  isForcingSynergy={isForcingSynergy}
+                  isReanalyzing={isReanalyzing}
+                  isSuccess={isSuccess}
+                  isEditing={isEditing}
+                  onForceSynergy={handleForceSynergy}
+                  onReanalyze={handleReanalyze}
+                  onEdit={handleEditClick}
+                  onVerify={handleVerifyClick}
+                  onClose={onClose}
+                  hideCloseMobile={true}
+                />
+              </div>
+
               {/* Disclaimer de Consultoría */}
-              <div className="mt-12 p-6 rounded-[2rem] bg-slate-900/50 border border-slate-800 border-dashed print:border-slate-300 print:text-slate-800">
+              <div className="mt-8 sm:mt-12 p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] bg-slate-900/50 border border-slate-800 border-dashed print:border-slate-300 print:text-slate-800">
                 <div className="flex items-start gap-3">
-                  <AlertCircle className="w-5 h-5 text-slate-500 mt-0.5 shrink-0 print:text-slate-700" />
+                  <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 mt-0.5 shrink-0 print:text-slate-700" />
                   <div className="space-y-1">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest print:text-slate-700">Aviso de Consultoría de Producto</p>
-                    <p className="text-xs text-slate-500 leading-relaxed print:text-slate-700">
+                    <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest print:text-slate-700">Aviso de Consultoría de Producto</p>
+                    <p className="text-[10px] sm:text-xs text-slate-500 leading-relaxed print:text-slate-700">
                       Esta información se proporciona exclusivamente con fines de consultoría técnica sobre productos naturales y suplementos. 
-                      No constituye un diagnóstico médico, tratamiento o prescripción. Consulte siempre con un profesional de la salud calificado 
-                      antes de iniciar cualquier régimen de suplementación.
+                      No constituye un diagnóstico médico, tratamiento o prescripción. Consulte siempre con un profesional de la salud calificado.
                     </p>
                   </div>
                 </div>

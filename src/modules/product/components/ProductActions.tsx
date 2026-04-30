@@ -34,45 +34,45 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
   const isComparing = isInComparison(product.sku);
 
   return (
-    <div className="flex flex-col gap-3 shrink-0">
+    <div className="flex flex-row sm:flex-col gap-2 sm:gap-3 shrink-0 flex-wrap justify-center sm:justify-start">
       <button 
         onClick={onVerify}
         title={product.is_verified ? "Registro Verificado" : "Validar registro profesionalmente"}
-        className={`p-3 rounded-2xl transition-all border shadow-sm ${
+        className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all border shadow-sm ${
           product.is_verified 
             ? 'text-emerald-400 border-emerald-500/50 bg-emerald-500/10' 
             : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-emerald-400'
         }`}
       >
-        <ShieldCheck className="w-5 h-5" />
+        <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
       <button 
         onClick={() => isComparing ? removeFromComparison(product.sku) : addToComparison(product)}
         title={isComparing ? "Quitar de comparación" : "Añadir a comparación"}
-        className={`p-3 rounded-2xl transition-all border shadow-sm ${
+        className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all border shadow-sm ${
           isComparing 
             ? 'text-brand-primary border-brand-primary/50 bg-brand-primary/10' 
             : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-white'
         }`}
       >
-        <ArrowLeftRight className="w-5 h-5" />
+        <ArrowLeftRight className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
       <button 
         onClick={onEdit}
         title="Editar registro manualmente"
-        className={`p-3 rounded-2xl transition-all border shadow-sm ${
+        className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all border shadow-sm ${
           isEditing 
             ? 'text-brand-primary border-brand-primary/50 bg-brand-primary/10' 
             : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-white'
         }`}
       >
-        <Edit3 className="w-5 h-5" />
+        <Edit3 className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
       <button 
         onClick={onForceSynergy}
         disabled={isForcingSynergy}
         title={isForcingSynergy ? "Analizando..." : "Forzar análisis de sinergia local"}
-        className={`p-3 rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
+        className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
           isForcingSynergy 
             ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 
             : product.synergy_analyzed
@@ -80,26 +80,26 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
               : 'text-indigo-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-indigo-300'
         }`}
       >
-        {isForcingSynergy ? <Loader2 className="w-5 h-5 animate-spin" /> : <Cpu className="w-5 h-5" />}
+        {isForcingSynergy ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : <Cpu className="w-4 h-4 sm:w-5 sm:h-5" />}
       </button>
       <button 
         onClick={onReanalyze}
         disabled={isReanalyzing}
         title="Re-analizar y completar con IA (Nube)"
-        className={`p-3 rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
+        className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
           isSuccess 
             ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 
             : 'text-brand-primary border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-brand-primary/80'
         }`}
       >
-        {isReanalyzing ? <Loader2 className="w-5 h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-5 h-5" /> : <RefreshCw className="w-5 h-5" />}
+        {isReanalyzing ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" /> : <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5" />}
       </button>
       {!hideCloseMobile && (
         <button 
           onClick={onClose}
-          className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden shadow-sm"
+          className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden shadow-sm"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       )}
     </div>
