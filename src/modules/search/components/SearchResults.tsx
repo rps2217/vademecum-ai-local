@@ -68,6 +68,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
               isInTray={isInTray(product.sku)}
               onTagClick={onTagClick}
               searchTerm={query}
+              viewMode={viewMode}
             />
           ))}
         </div>

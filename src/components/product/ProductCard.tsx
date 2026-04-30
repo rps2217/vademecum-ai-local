@@ -13,9 +13,10 @@ interface ProductCardProps {
   isInTray?: boolean;
   onTagClick?: (tag: string) => void;
   searchTerm?: string;
+  viewMode: 'grid' | 'list';
 }
 
-export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onViewDetail, onAddToTray, isInTray, onTagClick, searchTerm = '' }) => {
+export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onViewDetail, onAddToTray, isInTray, onTagClick, searchTerm = '', viewMode }) => {
   const { addToConsultation, removeFromConsultation, isInConsultation } = useConsultation();
   const isSelectedForBrain = isInConsultation(product.sku);
 
@@ -38,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
   const isGroundingSource = product.source_url === 'google_search' || product.source_url?.includes('google_search');
 
   return (
-    <div className="group relative flex flex-col h-full bg-brand-surface rounded-xl p-4 shadow-sm border border-slate-700/40 hover:border-emerald-500/40 transition-colors duration-200">
+    <div className={`group relative flex ${viewMode === 'list' ? 'flex-row gap-4' : 'flex-col h-full'} bg-brand-surface rounded-xl p-4 shadow-sm border border-slate-700/40 hover:border-emerald-500/40 transition-colors duration-200`}>
       
       <div 
         className="flex justify-between items-start mb-3 cursor-pointer relative z-10"
@@ -64,7 +65,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         </div>
       </div>
 
-      <div className="mb-4 flex-1 cursor-pointer flex flex-col gap-3 relative z-10" onClick={() => onViewDetail?.(product)}>
+      <div className={`mb-4 flex-1 cursor-pointer flex ${viewMode === 'list' ? 'flex-row gap-6' : 'flex-col gap-3'} relative z-10`} onClick={() => onViewDetail?.(product)}>
         {/* Indicaciones */}
         <div>
           <p className="text-[10px] uppercase font-bold tracking-wider text-slate-600 mb-1">Indicaciones</p>
