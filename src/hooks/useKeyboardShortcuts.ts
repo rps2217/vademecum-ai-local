@@ -1,13 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface ShortcutConfigs {
   [key: string]: () => void;
 }
 
 export const useKeyboardShortcuts = (shortcuts: ShortcutConfigs) => {
+  const shortcutsRef = useRef(shortcuts);
+  
+  useEffect(() => {
+    shortcutsRef.current = shortcuts;
+  }, [shortcuts]);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const { key, ctrlKey, metaKey, altKey, shiftKey } = event;
+      
+      const currentShortcuts = shortcutsRef.current;
       
       // Construir string de combinación (ej. "Control+k", "Escape")
       let combo = '';
@@ -17,16 +25,16 @@ export const useKeyboardShortcuts = (shortcuts: ShortcutConfigs) => {
       if (shiftKey) combo += 'Shift+';
       combo += key.toLowerCase();
 
-      if (shortcuts[combo]) {
+      if (currentShortcuts[combo]) {
         event.preventDefault();
-        shortcuts[combo]();
-      } else if (shortcuts[key]) {
+        currentShortcuts[combo]();
+      } else if (currentShortcuts[key]) {
         // Soporte para teclas simples como "Escape"
-        shortcuts[key]();
+        currentShortcuts[key]();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [shortcuts]);
+  }, []);
 };

@@ -76,7 +76,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           ref={ref}
           type="text"
           autoComplete="off"
-          className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl text-base sm:text-lg text-white shadow-2xl focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition-all placeholder:text-slate-500"
+          className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-slate-900 border border-white/10 rounded-2xl text-base sm:text-lg text-white shadow-2xl focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition-all placeholder:text-slate-500"
           placeholder="Buscar o preguntar a la IA..."
           value={query}
           onChange={(e) => {

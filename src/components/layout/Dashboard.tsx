@@ -14,6 +14,7 @@ import { ProductDetailModal } from '../../modules/product/ProductDetailModal';
 import { ConsultationProvider } from '../../context/ConsultationContext';
 import { ClinicalBrainTray } from '../tray/ClinicalBrainTray';
 import { OfflineIndicator } from '../common/OfflineIndicator';
+import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 
 // Lazy load modules
 const SearchModule = lazy(() => import('../../modules/search/SearchModule').then(m => ({ default: m.SearchModule })));
@@ -38,18 +39,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { isAccessGranted } = useAuth();
 
-  // Atajo de teclado CMD+K / CTRL+K
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setIsCommandPaletteOpen(prev => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  // Atajos de teclado globales
+  useKeyboardShortcuts({
+    'Control+k': () => setIsCommandPaletteOpen(prev => !prev),
+    'Meta+k': () => setIsCommandPaletteOpen(prev => !prev),
+  });
 
   useEffect(() => {
     if (hardware) {
@@ -84,7 +78,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         </div>
 
         {/* Top Header - Optimized for mobile */}
-        <header className="sticky top-0 z-[60] bg-brand-bg/40 backdrop-blur-xl border-b border-white/5 px-4 py-3 sm:px-6">
+        <header className="sticky top-0 z-[60] bg-brand-bg border-b border-white/5 px-4 py-3 sm:px-6">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3">
@@ -126,7 +120,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-all group"
               >
                 <Command className="w-3.5 h-3.5 group-hover:text-brand-primary transition-colors" />
-                <span className="text-[10px] font-bold uppercase tracking-widest opacity-60">CMD+K</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest opacity-60">K</span>
               </button>
               <UserMenu />
             </div>

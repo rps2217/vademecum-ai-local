@@ -18,6 +18,7 @@ import { Brain, LayoutGrid, List } from 'lucide-react';
 import { aiService } from '../../services/AIService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
+import { AnimatePresence } from 'motion/react';
 
 export const SearchModule: React.FC = () => {
   const { 
@@ -82,16 +83,21 @@ export const SearchModule: React.FC = () => {
     });
   }, [results, activeFilters]);
 
-  useKeyboardShortcuts({
-    'Control+k': () => {
-      logger.info('Buscador enfocado vía shortcut CTRL+K');
+  const shortcuts = useMemo(() => ({
+    'Control+f': () => {
+      logger.info('Buscador enfocado vía shortcut CTRL+F');
       searchInputRef.current?.focus();
+    },
+    'Meta+f': () => {
+       searchInputRef.current?.focus();
     },
     'Escape': () => {
       if (selectedProduct) setSelectedProduct(null);
       else if (query) setQuery('');
     }
-  });
+  }), [selectedProduct, query, setQuery]);
+
+  useKeyboardShortcuts(shortcuts);
 
   // Generar sugerencias conceptuales basadas en patologías frecuentes y moléculas en resultados
   const conceptualSuggestions = useMemo(() => {

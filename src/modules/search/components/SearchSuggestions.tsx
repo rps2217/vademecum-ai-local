@@ -55,7 +55,7 @@ export const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({
   if (!isVisible || suggestions.length === 0) return null;
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-brand-surface/95 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+    <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-brand-surface border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
       <div className="p-2 border-b border-slate-800/50 flex items-center justify-between">
         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-2">Conceptos Conocidos</span>
         <span className="text-[10px] text-slate-600 pr-2 italic">Usa ↑↓ para navegar</span>
