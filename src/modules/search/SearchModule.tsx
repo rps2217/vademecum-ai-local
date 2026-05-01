@@ -14,11 +14,13 @@ import { RecentlyViewed } from './components/RecentlyViewed';
 import { useConsultation } from '../../context/ConsultationContext';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { logger } from '../../services/LoggerService';
-import { Brain, LayoutGrid, List } from 'lucide-react';
+import { Brain, LayoutGrid, List, History } from 'lucide-react';
 import { aiService } from '../../services/AIService';
+import { historyService } from '../../services/HistoryService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
+import { QuickCategoryFilters } from './components/QuickCategoryFilters';
 
 export const SearchModule: React.FC = () => {
   const { 
@@ -32,19 +34,50 @@ export const SearchModule: React.FC = () => {
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
   const [activeFilters, setActiveFilters] = useState<{ avoid: string[]; prefer: string[] } | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
   const [isInterpreting, setIsInterpreting] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [recentTerms, setRecentTerms] = useState<string[]>([]);
   
   const { toggleProduct, isInTray } = useTray();
   const { selectedProducts } = useConsultation();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Filtrado de resultados basado en interpretación de IA
+  // Update recent terms on mount and when changed
+  useEffect(() => {
+    setRecentTerms(historyService.getRecentTerms());
+    const update = () => setRecentTerms(historyService.getRecentTerms());
+    window.addEventListener('history_updated', update);
+    return () => window.removeEventListener('history_updated', update);
+  }, []);
+
+  // Track search term when results are found
+  useEffect(() => {
+    if (results.length > 0 && !isSearching && query.length > 2) {
+      const timer = setTimeout(() => {
+          historyService.trackSearchTerm(query);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [query, results, isSearching]);
+
+  // Filtrado de resultados basado en interpretación de IA y Categorías
   const filteredResults = useMemo(() => {
-    if (!activeFilters) return results;
+    let base = [...results];
+
+    // Filter by active category chip
+    if (activeCategory) {
+      const cat = activeCategory.toLowerCase();
+      base = base.filter(p => 
+        p.categoria_principal?.toLowerCase().includes(cat) || 
+        p.indicaciones?.some(ind => String(ind).toLowerCase().includes(cat)) ||
+        p.principios_activos?.some(m => m.toLowerCase().includes(cat))
+      );
+    }
+
+    if (!activeFilters) return base;
     
-    // Create a copy to avoid in-place sort issue with useMemo
-    return [...results].sort((a, b) => {
+    return base.sort((a, b) => {
       let scoreA = 0;
       let scoreB = 0;
 
@@ -166,12 +199,14 @@ export const SearchModule: React.FC = () => {
   const handleTagClick = React.useCallback((tag: string) => {
     setQuery(tag);
     setActiveFilters(null);
+    setActiveCategory(undefined);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [setQuery]);
 
   const handleClearAll = React.useCallback(() => {
     setQuery('');
     setActiveFilters(null);
+    setActiveCategory(undefined);
     searchInputRef.current?.focus();
   }, [setQuery]);
 
@@ -202,8 +237,35 @@ export const SearchModule: React.FC = () => {
               }}
               onAiQuery={() => setShowAiAnalysis(true)}
             />
+
+            <div className="mt-4">
+              <QuickCategoryFilters 
+                activeCategory={activeCategory} 
+                onSelect={(cat) => setActiveCategory(prev => prev === cat ? undefined : cat)} 
+              />
+            </div>
+
             {query.trim() === '' && results.length === 0 && (
               <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                {recentTerms.length > 0 && (
+                  <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-3 text-slate-500 pl-2">
+                       <History className="w-3.5 h-3.5" />
+                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">Búsquedas Recientes</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {recentTerms.map((term, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setQuery(term)}
+                          className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/5 text-slate-400 text-xs hover:text-white hover:bg-white/10 transition-colors"
+                        >
+                          {term}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <QuickDiscoveryTags onSelect={setQuery} />
                 <RecentlyViewed onProductClick={handleProductClick} />
               </div>
