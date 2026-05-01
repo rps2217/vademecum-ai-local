@@ -17,6 +17,7 @@ import { logger } from '../../services/LoggerService';
 import { Brain, LayoutGrid, List, History } from 'lucide-react';
 import { aiService } from '../../services/AIService';
 import { historyService } from '../../services/HistoryService';
+import { searchService } from '../../services/SearchService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
@@ -64,15 +65,28 @@ export const SearchModule: React.FC = () => {
   // Filtrado de resultados basado en interpretación de IA y Categorías
   const filteredResults = useMemo(() => {
     let base = [...results];
+    
+    // Si no hay query pero hay categoría, usamos todos los productos como base
+    if (results.length === 0 && !isSearching && activeCategory && query.trim() === '') {
+      base = searchService.getAllIndexedProducts();
+    }
 
     // Filter by active category chip
     if (activeCategory) {
       const cat = activeCategory.toLowerCase();
-      base = base.filter(p => 
-        p.categoria_principal?.toLowerCase().includes(cat) || 
-        p.indicaciones?.some(ind => String(ind).toLowerCase().includes(cat)) ||
-        p.principios_activos?.some(m => m.toLowerCase().includes(cat))
-      );
+      // Búsqueda más robusta: quitamos 's' final para singular/plural y normalizamos
+      const catRoot = cat.endsWith('s') ? cat.slice(0, -1) : cat;
+      const normalizedCat = catRoot.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+      base = base.filter(p => {
+        const pCat = (p.categoria_principal || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const pInds = (p.indicaciones || []).map(i => String(i).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+        const pMol = (p.principios_activos || []).map(m => m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+        
+        return pCat.includes(normalizedCat) || 
+               pInds.some(ind => ind.includes(normalizedCat)) ||
+               pMol.some(m => m.includes(normalizedCat));
+      });
     }
 
     if (!activeFilters) return base;
@@ -241,35 +255,71 @@ export const SearchModule: React.FC = () => {
             <div className="mt-4">
               <QuickCategoryFilters 
                 activeCategory={activeCategory} 
-                onSelect={(cat) => setActiveCategory(prev => prev === cat ? undefined : cat)} 
+                onSelect={(cat) => {
+                  setActiveCategory(prev => prev === cat ? undefined : cat);
+                  // Si estamos en movil, cerramos teclado
+                  if (window.innerWidth < 768) searchInputRef.current?.blur();
+                }} 
               />
             </div>
 
-            {query.trim() === '' && results.length === 0 && (
+            {(query.trim() === '' && results.length === 0) || activeCategory ? (
               <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                {recentTerms.length > 0 && (
-                  <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-3 text-slate-500 pl-2">
-                       <History className="w-3.5 h-3.5" />
-                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">Búsquedas Recientes</span>
+                {query.trim() === '' && (
+                  <>
+                    {recentTerms.length > 0 && !activeCategory && (
+                      <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-3 text-slate-500 pl-2">
+                           <History className="w-3.5 h-3.5" />
+                           <span className="text-[10px] font-black uppercase tracking-[0.2em]">Búsquedas Recientes</span>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {recentTerms.map((term, i) => (
+                            <button
+                              key={i}
+                              onClick={() => setQuery(term)}
+                              className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/5 text-slate-400 text-xs hover:text-white hover:bg-white/10 transition-colors"
+                            >
+                              {term}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {!activeCategory && <QuickDiscoveryTags onSelect={setQuery} />}
+                    {!activeCategory && <RecentlyViewed onProductClick={handleProductClick} />}
+                  </>
+                )}
+
+                {activeCategory && filteredResults.length > 0 && query.trim() === '' && (
+                  <div className="mt-4">
+                    <div className="flex items-center gap-2 mb-4 text-emerald-400 pl-2">
+                       <LayoutGrid className="w-4 h-4" />
+                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">Sugerencias de {activeCategory}</span>
                     </div>
-                    <div className="flex flex-wrap gap-2">
-                      {recentTerms.map((term, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setQuery(term)}
-                          className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/5 text-slate-400 text-xs hover:text-white hover:bg-white/10 transition-colors"
-                        >
-                          {term}
-                        </button>
-                      ))}
-                    </div>
+                    <SearchResults 
+                      results={filteredResults}
+                      query={""}
+                      conditionFilters={[]}
+                      showOnlyVerified={false}
+                      isSearching={isSearching}
+                      isInTray={isInTray}
+                      onProductClick={handleProductClick}
+                      onAddToTray={handleAddToTray}
+                      onTagClick={handleTagClick}
+                      onClearFilters={handleClearAll}
+                      viewMode={viewMode}
+                    />
                   </div>
                 )}
-                <QuickDiscoveryTags onSelect={setQuery} />
-                <RecentlyViewed onProductClick={handleProductClick} />
+
+                {activeCategory && filteredResults.length === 0 && query.trim() === '' && (
+                  <div className="p-10 text-center text-slate-500 bg-white/5 rounded-2xl border border-white/5">
+                    No se encontraron productos en la categoría "{activeCategory}" actualmente.
+                  </div>
+                )}
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       )}

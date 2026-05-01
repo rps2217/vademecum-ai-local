@@ -101,6 +101,10 @@ export class SearchService {
     }
   }
 
+  getAllIndexedProducts(): Product[] {
+    return this.index.map(i => i.product);
+  }
+
   async search(query: string, commonPathologies: string[]): Promise<Product[]> {
     if (!this.isInitialized) await this.initializeIndex();
     if (!query.trim()) return [];
