@@ -105,81 +105,79 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           <div className="spotlight w-[400px] h-[400px] bg-blue-500/5 top-1/4 right-0" />
         </div>
 
-        {/* Top Header - Simplified */}
-        <header className={`sticky top-0 z-[60] bg-brand-bg border-b border-white/5 px-4 py-2 sm:px-6 transition-all duration-500 ease-in-out ${
-          isScrolled && activeTab === 'search' ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
-        }`}>
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+        {/* Top Header - Restored */}
+        <header className="sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-xl border-b border-slate-800 px-4 py-4 sm:px-6">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             {/* Simple Logo Icon */}
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/10">
-                <Activity className="w-4 h-4 text-emerald-500" />
+              <div className="w-9 h-9 rounded-xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
+                <Activity className="w-5 h-5 text-brand-primary" />
               </div>
             </div>
 
-            {/* Navigation Tabs (Minimalist) */}
-            <nav className="flex items-center p-1 bg-white/5 rounded-2xl border border-white/5 mx-2">
+            {/* Navigation Tabs (Original Style) */}
+            <nav className="flex items-center p-1 bg-brand-surface rounded-2xl border border-slate-800">
               <button 
                 onClick={() => setActiveTab('search')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'search' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'search' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
                 }`}
               >
-                <Search className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Buscador</span>
+                <Search className="w-4 h-4" />
+                <span className="hidden md:inline">Buscador</span>
               </button>
               
               <button 
                 onClick={() => setActiveTab('graph')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'graph' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'graph' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
                 }`}
               >
-                <Database className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Sinergias</span>
+                <Share2 className="w-4 h-4" />
+                <span className="hidden md:inline">Sinergias</span>
               </button>
 
               <button 
                 onClick={() => setActiveTab('database')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'database' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'database' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
                 }`}
               >
-                <Monitor className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Base de Datos</span>
+                <Database className="w-4 h-4" />
+                <span className="hidden md:inline">Base de Datos</span>
               </button>
 
               <button 
                 onClick={() => setActiveTab('settings')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'settings' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'settings' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
                 }`}
               >
-                <Settings className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Ajustes</span>
+                <Settings className="w-4 h-4" />
+                <span className="hidden md:inline">Ajustes</span>
               </button>
             </nav>
 
-            {/* Simple Actions */}
-            <div className="flex items-center gap-2">
+            {/* Actions Indicator */}
+            <div className="flex items-center gap-3">
+              <div className="hidden lg:block h-8 w-px bg-slate-800 mx-1" />
               <button 
                 onClick={toggleAiProcessing}
-                className={`p-1.5 rounded-xl border transition-all ${
+                className={`p-2 rounded-xl border transition-all ${
                   isAiProcessingEnabled 
                     ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' 
                     : 'bg-sky-500/10 border-sky-500/20 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.1)]'
                 }`}
                 title={isAiProcessingEnabled ? "IA Activa" : "IA Pausada (Modo Frío)"}
               >
-                {isAiProcessingEnabled ? <Zap className="w-3.5 h-3.5" /> : <Snowflake className="w-3.5 h-3.5 animate-pulse" />}
+                {isAiProcessingEnabled ? <Zap className="w-4 h-4" /> : <Snowflake className="w-4 h-4 animate-pulse" />}
               </button>
-              
               <UserMenu />
             </div>
           </div>
         </header>
 
-        <main className="max-w-7xl mx-auto p-4 pb-24 md:pb-20 transition-all duration-300">
+        <main className="max-w-7xl mx-auto p-4 pb-24 md:p-6 md:pb-20">
           {/* Contenido Dinámico con Suspense */}
           <Suspense fallback={<ModuleLoader />}>
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
@@ -192,9 +190,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         </main>
 
         {/* Mobile Bottom Navigation - Enhanced Glass */}
-        <nav className={`fixed bottom-0 left-0 w-full z-[70] md:hidden bg-slate-950/40 backdrop-blur-2xl border-t border-white/5 px-2 py-3 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.5)] transition-all duration-500 ${
-          isScrolled && activeTab === 'search' ? 'translate-y-full' : 'translate-y-0'
-        }`}>
+        <nav className="fixed bottom-0 left-0 w-full z-[70] md:hidden bg-brand-surface/80 backdrop-blur-xl border-t border-slate-800 px-2 py-3 pb-safe shadow-2xl">
           <div className="flex items-center justify-around">
             {navItems.map((item) => (
               <button
@@ -241,9 +237,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         )}
 
         {/* Footer estilo POS (Mint Green) */}
-        <div className={`fixed bottom-0 left-0 w-full bg-[#10b981] font-medium py-1.5 z-[100] hidden md:block border-t border-[#059669] transition-all duration-500 ${
-          isScrolled && activeTab === 'search' ? 'translate-y-full' : 'translate-y-0'
-        }`}>
+        <div className="fixed bottom-0 left-0 w-full bg-[#10b981] font-medium py-1.5 z-[100] hidden md:block border-t border-[#059669]">
           <div className="max-w-7xl mx-auto px-6 flex justify-center items-center text-[#064e3b] text-[11px]">
                <span 
                  onClick={() => setActiveTab('search')}

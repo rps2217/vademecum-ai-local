@@ -137,20 +137,20 @@ interface QuickDiscoveryTagsProps {
 
 export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect }) => {
   return (
-    <div className="w-full mt-10 space-y-8 animate-in fade-in duration-300">
+    <div className="w-full mt-10 space-y-10 animate-in fade-in duration-500">
       
+      {/* Section Header */}
       <div className="flex items-center gap-4 px-2">
-        <div className="h-px flex-1 bg-slate-800/50" />
         <div className="flex items-center gap-2">
-           <Activity className="w-3.5 h-3.5 text-emerald-500" />
-           <span className="text-[10px] uppercase tracking-[0.2em] font-black text-slate-500">
+           <Activity className="w-4 h-4 text-brand-primary" />
+           <span className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">
              Acceso Directo
            </span>
         </div>
         <div className="h-px flex-1 bg-slate-800/50" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-6 text-left">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-10">
         {CATEGORIES.map((category) => (
           <div key={category.title} className="flex flex-col">
             <div className="flex items-center gap-2 mb-4 px-1">
@@ -160,17 +160,32 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
               </h3>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {category.tags.map((tag) => (
-                <button
-                  key={tag.label}
-                  onClick={() => onSelect(tag.query)}
-                  className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/60 text-[11px] font-bold text-slate-400 hover:text-white hover:border-emerald-500/50 hover:bg-slate-800 transition-colors flex items-center gap-2 group/tag"
-                >
-                  <div className={`w-1.5 h-1.5 rounded-full ${dotColorMap[category.color]}`} />
-                  <span>{tag.label}</span>
-                </button>
-              ))}
+            <div className="flex flex-wrap gap-4">
+              {category.tags.map((tag, idx) => {
+                // Sizing based on "frequency/importance" simulation: first ones are bigger
+                const sizeTier = idx === 0 ? 'large' : (idx < 3 ? 'medium' : 'normal');
+                
+                return (
+                  <button
+                    key={tag.label}
+                    onClick={() => onSelect(tag.query)}
+                    className={`rounded-2xl bg-slate-900 border border-slate-800 transition-all flex items-center gap-3 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 hover:border-slate-700 ${
+                      sizeTier === 'large' 
+                        ? 'px-6 py-4 text-sm font-black text-white bg-slate-800/80' 
+                        : sizeTier === 'medium'
+                        ? 'px-5 py-3 text-[13px] font-bold text-slate-200'
+                        : 'px-4 py-2 text-xs font-bold text-slate-400'
+                    }`}
+                  >
+                    <div className={`rounded-full ${dotColorMap[category.color]} ${
+                      sizeTier === 'large' ? 'w-2.5 h-2.5 shadow-[0_0_10px_rgba(255,255,255,0.2)]' : 
+                      sizeTier === 'medium' ? 'w-2 h-2' : 
+                      'w-1.5 h-1.5'
+                    }`} />
+                    <span>{tag.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         ))}
@@ -178,10 +193,10 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
 
       {/* Footer / Shortcut Hint */}
       <div className="flex justify-center pt-8">
-        <div className="px-6 py-2 rounded-full bg-brand-primary/5 border border-brand-primary/10 flex items-center gap-3">
-          <Microscope className="w-3.5 h-3.5 text-brand-primary" />
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">
-            Utiliza <span className="text-white px-1.5 py-0.5 bg-slate-800 rounded mx-1">CMD+K</span> para búsqueda rápida de SKUs
+        <div className="px-6 py-2 rounded-full bg-slate-900 border border-slate-800 flex items-center gap-3">
+          <Microscope className="w-3.5 h-3.5 text-slate-500" />
+          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none">
+            Utiliza <span className="text-white px-1.5 py-0.5 bg-slate-800 rounded mx-1">CMD+K</span> para búsqueda rápida
           </span>
         </div>
       </div>
