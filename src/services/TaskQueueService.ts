@@ -9,10 +9,13 @@ export interface PendingTask {
   status: 'pending' | 'processing' | 'failed';
   retries: number;
   lastError?: string;
+  priority?: number; // Higher is more urgent
+  earliestRetryTimestamp?: number; // For backoff
 }
 
 interface AddTaskOptions {
   deduplicate?: boolean;
+  priority?: number;
 }
 
 const STORAGE_KEY = 'pending_tasks';
@@ -42,9 +45,10 @@ class TaskQueueService {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   }
 
-  async addTask(type: 'cloud_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true }) {
+  async addTask(type: 'cloud_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
     let tasks = this.getTasksFromStorage();
     const sku = payload.sku || (type === 'cloud_sync' ? payload.sku : null);
+    const priority = options.priority !== undefined ? options.priority : (type === 'cloud_sync' ? 10 : 0);
 
     if (options.deduplicate && sku) {
       const existingIndex = tasks.findIndex(
@@ -53,6 +57,8 @@ class TaskQueueService {
 
       if (existingIndex !== -1) {
         tasks[existingIndex].timestamp = Date.now();
+        // Keep the highest priority
+        tasks[existingIndex].priority = Math.max(tasks[existingIndex].priority || 0, priority);
         this.saveTasksToStorage(tasks);
         return;
       }
@@ -65,7 +71,8 @@ class TaskQueueService {
       payload,
       timestamp: Date.now(),
       status: 'pending',
-      retries: 0
+      retries: 0,
+      priority
     };
 
     tasks.push(taskData);
@@ -77,7 +84,17 @@ class TaskQueueService {
 
   async getNextPending(): Promise<PendingTask | null> {
     const tasks = this.getTasksFromStorage();
-    const pending = tasks.filter(t => t.status === 'pending').sort((a,b) => a.timestamp - b.timestamp);
+    const now = Date.now();
+    const pending = tasks.filter(t => 
+      t.status === 'pending' && (!t.earliestRetryTimestamp || t.earliestRetryTimestamp <= now)
+    ).sort((a,b) => {
+      // 1. Sort by Priority DESC
+      const pA = a.priority || 0;
+      const pB = b.priority || 0;
+      if (pA !== pB) return pB - pA;
+      // 2. Sort by Timestamp ASC
+      return a.timestamp - b.timestamp;
+    });
     return pending.length > 0 ? pending[0] : null;
   }
 

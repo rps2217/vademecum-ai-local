@@ -73,6 +73,14 @@ export class AIOrchestratorService {
   async scoutPendingWork() {
     if (this.isRunning) return;
     
+    // Thermal Guard: Skip background work if already stressed
+    const tier = this.hardware?.deviceTier || 'STANDARD';
+    const thresholds = { ULTRA: 250, STANDARD: 150, ECO: 70 };
+    if (this.thermalStress > thresholds[tier as keyof typeof thresholds]) {
+      console.log(`[Orchestrator] Saltando scout por estrés térmico (${Math.round(this.thermalStress)})`);
+      return;
+    }
+
     const { configService } = await import('./ConfigService');
     const config = configService.getConfig();
     if (!config.enableBackgroundSynergy) {

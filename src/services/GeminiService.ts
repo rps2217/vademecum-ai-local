@@ -4,6 +4,11 @@ import { formatArrayToString } from "../utils/formatters";
 
 const SYSTEM_PHILOSOPHY = `IMPORTANTE: Esta base de datos y aplicación NO diagnostica ni prescribe a los pacientes. Tu función principal es ser una fuente de ALTERNATIVAS de fármacos, suplementos y homeopatía para diversas patologías, además de entregar información sobre TRATAMIENTOS COMPLEMENTARIOS y SINÉRGICOS disponibles en la base de datos. Mantén siempre un enfoque estructurado de análisis e interconexión de opciones en lugar de actuar como médico tratante.`;
 
+const MODELS = {
+  FLASH: "gemini-2.0-flash",
+  PRO: "gemini-2.0-flash", // Use flash by default for speed, or pro if available
+};
+
 export class GeminiService {
   private static instance: GeminiService;
   private ai: GoogleGenAI | null = null;
@@ -35,33 +40,26 @@ export class GeminiService {
 
   private cleanAndParseJSON(text: string): any {
     try {
-      const cleanText = text.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
-        if (match === '\n') return '\\n';
-        if (match === '\r') return '\\r';
-        if (match === '\t') return '\\t';
-        return '';
-      });
-      return JSON.parse(cleanText);
+      // Intentar parseo directo primero
+      return JSON.parse(text);
     } catch (e) {
-      const match = text.match(/\{[\s\S]*\}/);
+      // Limpieza agresiva de caracteres no deseados
+      const match = text.match(/\{[\s\S]*\}|\[[\s\S]*\]/);
       if (match) {
         try {
-          let cleanMatch = match[0].replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
-            if (match === '\n') return '\\n';
-            if (match === '\r') return '\\r';
-            if (match === '\t') return '\\t';
-            return '';
-          });
-          
-          cleanMatch = cleanMatch.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'");
-          cleanMatch = cleanMatch.replace(/,\s*([\]}])/g, '$1');
+          let cleanMatch = match[0]
+            .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // Eliminar caracteres de control
+            .replace(/[\u201C\u201D]/g, '"') // Comillas inteligentes
+            .replace(/[\u2018\u2019]/g, "'")
+            .replace(/,\s*([\]}])/g, '$1'); // Comas finales
           
           return JSON.parse(cleanMatch);
         } catch (e2) {
-          console.error("[GeminiService] Error en segundo intento de parseo:", e2);
+          console.error("[GeminiService] Error en limpieza avanzada de JSON:", e2);
+          throw new Error("Respuesta de IA malformada e irrecuperable.");
         }
       }
-      throw new Error("No se pudo extraer JSON válido de la respuesta.");
+      throw new Error("No se encontró estructura JSON en la respuesta.");
     }
   }
 
@@ -100,7 +98,7 @@ export class GeminiService {
         Adicionalmente, dame un diccionario 'anotaciones_componentes' con una breve explicación de 1-2 frases de cada principio activo.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
+          model: MODELS.FLASH,
           contents: prompt,
           config: {
             tools: [{ googleSearch: {} }],
@@ -208,7 +206,7 @@ export class GeminiService {
         6. Devuelve el JSON completo actualizado. Mantén el SKU original.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
+          model: MODELS.FLASH,
           contents: prompt,
           config: {
             tools: [{ googleSearch: {} }],
@@ -306,7 +304,7 @@ export class GeminiService {
         const ai = this.getAI();
         
         const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
+          model: MODELS.FLASH,
           contents: `Analiza el siguiente contenido en Markdown de una página de farmacia y extrae la información del medicamento en formato JSON.
           
           CONTENIDO:
@@ -405,7 +403,7 @@ export class GeminiService {
         Página: ${url}`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
+          model: MODELS.FLASH,
           contents: prompt,
           config: {
             tools: [{ urlContext: {} }]
@@ -432,7 +430,7 @@ export class GeminiService {
         No incluyas viñetas, números, explicaciones ni texto adicional.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
+          model: MODELS.FLASH,
           contents: prompt,
           config: {
             tools: [{ googleSearch: {} }]
@@ -455,7 +453,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
+          model: MODELS.FLASH,
           contents: prompt,
         });
         return response.text || "";
@@ -471,7 +469,7 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         const response = await ai.models.generateContent({
-          model: "gemini-3-flash-preview",
+          model: MODELS.FLASH,
           contents: prompt,
           config: {
             responseMimeType: "application/json"
@@ -514,7 +512,7 @@ export class GeminiService {
         [ignoring loop detection]`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3.1-pro-preview",
+          model: MODELS.PRO,
           contents: prompt,
           config: {
             responseMimeType: "application/json",
@@ -576,7 +574,7 @@ export class GeminiService {
         5. Devuelve un JSON estructurado.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3.1-pro-preview",
+          model: MODELS.PRO,
           contents: prompt,
           config: {
             responseMimeType: "application/json",
@@ -645,7 +643,7 @@ export class GeminiService {
         Devuelve un ARREGLO JSON de objetos con la estructura completa.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3.1-pro-preview",
+          model: MODELS.PRO,
           contents: prompt,
           config: {
             responseMimeType: "application/json",
@@ -743,7 +741,7 @@ export class GeminiService {
         Además, genera el diccionario 'anotaciones_componentes' con una brevísima explicación (1-2 frases) para cada principio activo identificado.`;
 
         const response = await ai.models.generateContent({
-          model: "gemini-2.0-flash",
+          model: MODELS.FLASH,
           contents: prompt,
           config: {
             responseMimeType: "application/json",

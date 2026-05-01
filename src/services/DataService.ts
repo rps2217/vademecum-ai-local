@@ -47,13 +47,25 @@ export class DataService {
     return db.getAll(STORE_NAME);
   }
 
-  async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
-    const db = await this.getDB();
-    await db.put(STORE_NAME, product);
+  private validateProduct(product: Product) {
+    if (!product.sku) throw new Error('Product must have a SKU');
+    if (!product.nombre_comercial) throw new Error('Product must have a common name');
+    return true;
+  }
 
-    if (!options.silent) {
-       await taskQueueService.addTask('cloud_sync', product);
-       EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
+  async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
+    try {
+      this.validateProduct(product);
+      const db = await this.getDB();
+      await db.put(STORE_NAME, product);
+
+      if (!options.silent) {
+        await taskQueueService.addTask('cloud_sync', product);
+        EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
+      }
+    } catch (error) {
+      logger.error('Fallo al guardar producto en IndexedDB', 'Database', error);
+      throw error;
     }
   }
 
@@ -61,15 +73,31 @@ export class DataService {
     try {
       const data = JSON.parse(jsonString);
       const newProducts: Product[] = Array.isArray(data) ? data : [data];
+      const validProducts: Product[] = [];
+      let errorCount = 0;
+
+      for (const p of newProducts) {
+        try {
+          this.validateProduct(p);
+          validProducts.push(p);
+        } catch (e) {
+          errorCount++;
+        }
+      }
       
       const db = await this.getDB();
       const tx = db.transaction(STORE_NAME, 'readwrite');
-      await Promise.all(newProducts.map(p => tx.store.put(p)));
+      await Promise.all(validProducts.map(p => tx.store.put(p)));
       await tx.done;
 
-      logger.success(`Importación exitosa: ${newProducts.length} productos cargados localmente`, 'Database');
+      if (validProducts.length > 0) {
+        logger.success(`Importación exitosa: ${validProducts.length} productos cargados localmente`, 'Database');
+      }
+      if (errorCount > 0) {
+        logger.warn(`${errorCount} productos omitidos por errores de validación`, 'Database');
+      }
 
-      return { success: newProducts.length, errors: 0 };
+      return { success: validProducts.length, errors: errorCount };
     } catch (e) {
       logger.error('Error al importar productos JSON', 'Database', e);
       console.error('[DataService] Import failed', e);

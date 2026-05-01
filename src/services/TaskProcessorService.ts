@@ -110,10 +110,15 @@ export class TaskProcessorService {
       const newRetries = (task.retries || 0) + 1;
       const status = newRetries >= 5 ? 'failed' : 'pending';
       
+      // Exponential Backoff: 30s, 2m, 8m, 32m...
+      const backoffMinutes = Math.pow(4, newRetries - 1) * 0.5;
+      const earliestRetryTimestamp = Date.now() + (backoffMinutes * 60 * 1000);
+      
       await taskQueueService.updateTask(task.id, {
         status,
         retries: newRetries,
-        lastError: error.message || String(error)
+        lastError: error.message || String(error),
+        earliestRetryTimestamp: status === 'pending' ? earliestRetryTimestamp : undefined
       });
     }
   }

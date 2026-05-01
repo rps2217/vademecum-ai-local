@@ -21,7 +21,11 @@ export class AutomationTriggerService {
     if (this.subscriptions.length > 0) return;
 
     this.subscriptions.push(
-      EventBus.on<{sku: string}>(EventType.PRODUCT_UPDATED).subscribe(async ({ sku }) => {
+      EventBus.on<{sku: string, synced?: boolean}>(EventType.PRODUCT_UPDATED).subscribe(async ({ sku, synced }) => {
+        // Skip automation if this update was just a successful cloud sync
+        // (to avoid infinite loops or redundant task creation)
+        if (synced) return;
+
         const config = configService.getConfig();
         if (!config.enableBackgroundSynergy) return;
 
