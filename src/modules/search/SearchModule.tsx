@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useProductSearch } from '../../hooks/useProductSearch';
-import { Product } from '../../core/types/product.types';
+import { Product, ClinicalSearchInterpretation } from '../../core/types';
 import { ProductDetailModal } from '../product/ProductDetailModal';
 import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
@@ -8,6 +8,7 @@ import { SearchResults } from './components/SearchResults';
 import { AIAnalysisModal } from './components/AIAnalysisModal';
 import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
 import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretationOverlay';
+import { RecentlyViewed } from './components/RecentlyViewed';
 import { useConsultation } from '../../context/ConsultationContext';
 import { Brain, LayoutGrid, List } from 'lucide-react';
 import { AIService } from '../../services/AIService';
@@ -24,7 +25,7 @@ export const SearchModule: React.FC = () => {
   
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
-  const [interpretation, setInterpretation] = useState<any>(null);
+  const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
   const [isInterpreting, setIsInterpreting] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
@@ -105,6 +106,14 @@ export const SearchModule: React.FC = () => {
     searchInputRef.current?.focus();
   }, [setQuery]);
 
+  const handleProductClick = React.useCallback((product: Product) => {
+    setSelectedProduct(product);
+  }, []);
+
+  const handleAddToTray = React.useCallback((product: Product) => {
+    toggleProduct(product);
+  }, [toggleProduct]);
+
   return (
     <div className="w-full max-w-[1200px] mx-auto pb-20 px-2 sm:px-4 lg:px-6 relative min-h-[70vh] flex flex-col pt-2">
       
@@ -126,8 +135,9 @@ export const SearchModule: React.FC = () => {
               onAiQuery={() => setShowAiAnalysis(true)}
             />
             {query.trim() === '' && results.length === 0 && (
-              <div className="mt-4">
+              <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <QuickDiscoveryTags onSelect={setQuery} />
+                <RecentlyViewed onProductClick={handleProductClick} />
               </div>
             )}
           </div>
@@ -184,8 +194,8 @@ export const SearchModule: React.FC = () => {
               showOnlyVerified={false}
               isSearching={isSearching}
               isInTray={isInTray}
-              onProductClick={setSelectedProduct}
-              onAddToTray={toggleProduct}
+              onProductClick={handleProductClick}
+              onAddToTray={handleAddToTray}
               onTagClick={handleTagClick}
               onClearFilters={handleClearAll}
               viewMode={viewMode}

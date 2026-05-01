@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Product } from '../../core/types/product.types';
+import { Product } from '../../core/types';
+import { HistoryService } from '../../services/HistoryService';
+import { useTray } from '../../context/TrayContext';
 import { ClinicalSynergy } from './ClinicalSynergy';
 import { X, Sparkles, AlertCircle, ChevronLeft, Home, Lock, Key, Printer } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
@@ -37,6 +39,25 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [password, setPassword] = useState('');
   const [statusMessage, setStatusMessage] = useState<{ text: string, type: 'info' | 'error' | 'success' } | null>(null);
+
+  useEffect(() => {
+    if (product) {
+      HistoryService.trackView(product);
+    }
+  }, [product.sku]);
+
+  const { isInTray, toggleProduct } = useTray();
+
+  useEffect(() => {
+    // Reset scroll when product changes (useful for synergy navigation)
+    const leftCol = document.getElementById('product-detail-left-col');
+    if (leftCol) leftCol.scrollTo({ top: 0, behavior: 'auto' });
+    
+    // Auto-scroll screen if in mobile and embedded
+    if (isEmbedded && window.innerWidth < 768) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [product.sku, isEmbedded]);
 
   useEffect(() => {
     const handleDbUpdate = async () => {
@@ -155,8 +176,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   const handleProductClick = (newProduct: Product) => {
     setProduct(newProduct);
-    const leftCol = document.getElementById('product-detail-left-col');
-    if (leftCol) leftCol.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePrint = () => {

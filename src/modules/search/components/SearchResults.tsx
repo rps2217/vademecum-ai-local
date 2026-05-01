@@ -18,7 +18,7 @@ interface SearchResultsProps {
   viewMode: 'grid' | 'list';
 }
 
-export const SearchResults: React.FC<SearchResultsProps> = ({
+export const SearchResults = React.memo<SearchResultsProps>(({
   results,
   query,
   isSearching,
@@ -95,5 +95,5 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   }
 
   return null;
-};
+});
 

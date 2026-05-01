@@ -1,5 +1,8 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import { Product } from '../core/types/product.types';
+import React, { createContext, useContext, useState, useCallback, useMemo, useEffect } from 'react';
+import { Product } from '../core/types';
+import { storage } from '../utils/storage';
+
+const STORAGE_KEY = 'vademecum_consultation';
 
 interface ConsultationContextType {
   selectedProducts: Product[];
@@ -12,13 +15,14 @@ interface ConsultationContextType {
 const ConsultationContext = createContext<ConsultationContextType | undefined>(undefined);
 
 export const ConsultationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>(() => 
+    storage.get<Product[]>(STORAGE_KEY, [])
+  );
 
   const addToConsultation = useCallback((product: Product) => {
     setSelectedProducts(prev => {
       if (prev.some(p => p.sku === product.sku)) return prev;
       if (prev.length >= 5) {
-        alert('Máximo 5 productos para análisis simultáneo.');
         return prev;
       }
       return [...prev, product];
@@ -37,8 +41,13 @@ export const ConsultationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     return selectedProducts.some(p => p.sku === sku);
   }, [selectedProducts]);
 
+  // Persistencia automática
+  useEffect(() => {
+    storage.set(STORAGE_KEY, selectedProducts);
+  }, [selectedProducts]);
+
   // Memoizamos el valor del contexto para evitar re-renderizados innecesarios de los consumidores
-  const contextValue = React.useMemo(() => ({
+  const contextValue = useMemo(() => ({
     selectedProducts,
     addToConsultation,
     removeFromConsultation,
