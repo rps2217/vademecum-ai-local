@@ -144,6 +144,13 @@ export const SearchModule: React.FC = () => {
     }
   }), [selectedProduct, query, setQuery]);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useKeyboardShortcuts(shortcuts);
 
   // Generar sugerencias conceptuales basadas en patologías frecuentes y moléculas en resultados
@@ -237,8 +244,12 @@ export const SearchModule: React.FC = () => {
       
       {/* Search Header / Navigation Area */}
       {!selectedProduct && (
-        <div className="w-full mb-6">
-          <div className="w-full transition-all duration-500 ease-out max-w-4xl mx-auto">
+        <div className={`z-[55] transition-all duration-300 ${
+          isScrolled 
+            ? 'fixed top-0 left-0 w-full bg-brand-bg/95 backdrop-blur-xl border-b border-white/5 py-3 px-4 shadow-xl' 
+            : 'relative py-4 w-full mb-6'
+        }`}>
+          <div className="max-w-4xl mx-auto transition-all duration-500">
             <SearchBar 
               ref={searchInputRef}
               query={query} 
@@ -250,19 +261,35 @@ export const SearchModule: React.FC = () => {
                 setQuery(concept.label);
               }}
               onAiQuery={() => setShowAiAnalysis(true)}
+              className={isScrolled ? 'scale-[0.98] shadow-none !border-white/10' : ''}
             />
 
-            <div className="mt-4">
-              <QuickCategoryFilters 
-                activeCategory={activeCategory} 
-                onSelect={(cat) => {
-                  setActiveCategory(prev => prev === cat ? undefined : cat);
-                  // Si estamos en movil, cerramos teclado
-                  if (window.innerWidth < 768) searchInputRef.current?.blur();
-                }} 
-              />
-            </div>
+            {!isScrolled && (
+              <div className="mt-4 animate-in fade-in duration-300 delay-150">
+                <QuickCategoryFilters 
+                  activeCategory={activeCategory} 
+                  onSelect={(cat) => {
+                    setActiveCategory(prev => prev === cat ? undefined : cat);
+                    if (window.innerWidth < 768) searchInputRef.current?.blur();
+                  }} 
+                />
+              </div>
+            )}
+            
+            {isScrolled && activeCategory && (
+                <div className="absolute top-1/2 -right-2 sm:right-4 -translate-y-1/2 hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/20 border border-brand-primary/30 animate-in fade-in slide-in-from-right-4">
+                  <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest">{activeCategory}</span>
+                </div>
+            )}
+          </div>
+        </div>
+      )}
 
+      {/* Spacer to prevent layout jump when search becomes fixed */}
+      {!selectedProduct && isScrolled && <div className="h-[80px]" />}
+
+      {!selectedProduct && (
+        <div className="w-full">
             {(query.trim() === '' && results.length === 0) || activeCategory ? (
               <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
                 {query.trim() === '' && (
@@ -321,7 +348,6 @@ export const SearchModule: React.FC = () => {
               </div>
             ) : null}
           </div>
-        </div>
       )}
 
       {/* Detail View (Integrated instead of Modal) */}

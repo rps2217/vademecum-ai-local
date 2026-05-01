@@ -11,6 +11,7 @@ interface SearchBarProps {
   onAiQuery?: () => void;
   suggestions?: SearchConcept[];
   onSelectConcept?: (concept: SearchConcept) => void;
+  className?: string;
 }
 
 export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({ 
@@ -20,7 +21,8 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
   isInterpreting, 
   onAiQuery,
   suggestions = [],
-  onSelectConcept
+  onSelectConcept,
+  className = ""
 }, ref) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -58,7 +60,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
   };
 
   return (
-    <div className="relative mb-4 group">
+    <div className={`relative group ${className}`}>
       {/* Borde con gradiente animado */}
       <div className={`absolute -inset-0.5 bg-gradient-to-r from-brand-primary via-emerald-400 to-brand-accent rounded-2xl blur transition duration-500 ${isInterpreting ? 'opacity-60 animate-pulse' : 'opacity-20 group-hover:opacity-40'}`}></div>
       

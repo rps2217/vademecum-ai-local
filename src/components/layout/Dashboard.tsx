@@ -41,6 +41,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const { isAccessGranted } = useAuth();
 
   const [isAiProcessingEnabled, setIsAiProcessingEnabled] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     // Sincronizar estado inicial
@@ -96,70 +105,75 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           <div className="spotlight w-[400px] h-[400px] bg-blue-500/5 top-1/4 right-0" />
         </div>
 
-        {/* Top Header - Optimized for mobile */}
-        <header className="sticky top-0 z-[60] bg-brand-bg border-b border-white/5 px-4 py-3 sm:px-6">
+        {/* Top Header - Simplified */}
+        <header className={`sticky top-0 z-[60] bg-brand-bg border-b border-white/5 px-4 py-2 sm:px-6 transition-all duration-500 ease-in-out ${
+          isScrolled && activeTab === 'search' ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+        }`}>
           <div className="max-w-7xl mx-auto flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <div className="inline-flex items-center justify-center p-2 bg-emerald-500/10 rounded-xl neo-glass">
-                <Activity className="w-5 h-5 text-emerald-500" />
-              </div>
-              <div>
-                <h1 className="text-sm font-black text-white uppercase tracking-tighter leading-none">
-                  Vademecum <span className="text-emerald-500">Pro</span>
-                </h1>
-                <p className="hidden sm:block text-[9px] font-bold text-slate-500 uppercase tracking-[0.4em] mt-1 italic">
-                  Clinical Intelligence
-                </p>
+            {/* Simple Logo Icon */}
+            <div className="flex items-center">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/10">
+                <Activity className="w-4 h-4 text-emerald-500" />
               </div>
             </div>
 
-            {/* Desktop Tabs */}
-            <nav className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-md">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${
-                    activeTab === item.id 
-                      ? 'bg-brand-primary text-white shadow-[0_0_20px_rgba(249,115,22,0.3)]' 
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span>{item.label}</span>
-                </button>
-              ))}
+            {/* Navigation Tabs (Minimalist) */}
+            <nav className="flex items-center p-1 bg-white/5 rounded-2xl border border-white/5 mx-2">
+              <button 
+                onClick={() => setActiveTab('search')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'search' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                }`}
+              >
+                <Search className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Buscador</span>
+              </button>
+              
+              <button 
+                onClick={() => setActiveTab('graph')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'graph' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                }`}
+              >
+                <Database className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Sinergias</span>
+              </button>
+
+              <button 
+                onClick={() => setActiveTab('database')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'database' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                }`}
+              >
+                <Monitor className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Base de Datos</span>
+              </button>
+
+              <button 
+                onClick={() => setActiveTab('settings')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all ${
+                  activeTab === 'settings' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-white'
+                }`}
+              >
+                <Settings className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Ajustes</span>
+              </button>
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center gap-3">
+            {/* Simple Actions */}
+            <div className="flex items-center gap-2">
               <button 
                 onClick={toggleAiProcessing}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all ${
+                className={`p-1.5 rounded-xl border transition-all ${
                   isAiProcessingEnabled 
-                    ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20' 
-                    : 'bg-orange-500/10 border-orange-500/20 text-orange-400 hover:bg-orange-500/20'
+                    ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' 
+                    : 'bg-sky-500/10 border-sky-500/20 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.1)]'
                 }`}
-                title={isAiProcessingEnabled ? "Pausar procesamiento IA (Enfriar dispositivo)" : "Reanudar procesamiento IA"}
+                title={isAiProcessingEnabled ? "IA Activa" : "IA Pausada (Modo Frío)"}
               >
-                {isAiProcessingEnabled ? (
-                  <Zap className="w-3.5 h-3.5" />
-                ) : (
-                  <Snowflake className="w-3.5 h-3.5" />
-                )}
-                <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">
-                  {isAiProcessingEnabled ? 'IA Activa' : 'Modo Frío'}
-                </span>
+                {isAiProcessingEnabled ? <Zap className="w-3.5 h-3.5" /> : <Snowflake className="w-3.5 h-3.5 animate-pulse" />}
               </button>
-
-              <button 
-                onClick={() => setIsCommandPaletteOpen(true)}
-                className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-all group"
-              >
-                <Command className="w-3.5 h-3.5 group-hover:text-brand-primary transition-colors" />
-                <span className="text-[10px] font-bold uppercase tracking-widest opacity-60">K</span>
-              </button>
+              
               <UserMenu />
             </div>
           </div>
@@ -178,7 +192,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         </main>
 
         {/* Mobile Bottom Navigation - Enhanced Glass */}
-        <nav className="fixed bottom-0 left-0 w-full z-[70] md:hidden bg-slate-950/40 backdrop-blur-2xl border-t border-white/5 px-2 py-3 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+        <nav className={`fixed bottom-0 left-0 w-full z-[70] md:hidden bg-slate-950/40 backdrop-blur-2xl border-t border-white/5 px-2 py-3 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.5)] transition-all duration-500 ${
+          isScrolled && activeTab === 'search' ? 'translate-y-full' : 'translate-y-0'
+        }`}>
           <div className="flex items-center justify-around">
             {navItems.map((item) => (
               <button
@@ -225,7 +241,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         )}
 
         {/* Footer estilo POS (Mint Green) */}
-        <div className="fixed bottom-0 left-0 w-full bg-[#10b981] font-medium py-1.5 z-[100] hidden md:block border-t border-[#059669]">
+        <div className={`fixed bottom-0 left-0 w-full bg-[#10b981] font-medium py-1.5 z-[100] hidden md:block border-t border-[#059669] transition-all duration-500 ${
+          isScrolled && activeTab === 'search' ? 'translate-y-full' : 'translate-y-0'
+        }`}>
           <div className="max-w-7xl mx-auto px-6 flex justify-center items-center text-[#064e3b] text-[11px]">
                <span 
                  onClick={() => setActiveTab('search')}
