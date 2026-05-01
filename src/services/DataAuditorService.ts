@@ -1,4 +1,4 @@
-import { DataService } from './DataService';
+import { dataService } from './DataService';
 import { Product, SafetyStatus } from '../core/types/product.types';
 
 export interface AuditIssue {
@@ -19,8 +19,19 @@ export interface DatabaseHealthReport {
 }
 
 export class DataAuditorService {
-  static async generateReport(): Promise<DatabaseHealthReport> {
-    const products = await DataService.getAllProducts();
+  private static instance: DataAuditorService;
+
+  private constructor() {}
+
+  static getInstance(): DataAuditorService {
+    if (!DataAuditorService.instance) {
+      DataAuditorService.instance = new DataAuditorService();
+    }
+    return DataAuditorService.instance;
+  }
+
+  async generateReport(): Promise<DatabaseHealthReport> {
+    const products = await dataService.getAllProducts();
     const issues: AuditIssue[] = [];
     const categories: Record<string, number> = {};
     
@@ -109,3 +120,5 @@ export class DataAuditorService {
     };
   }
 }
+
+export const dataAuditorService = DataAuditorService.getInstance();

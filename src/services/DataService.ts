@@ -1,11 +1,40 @@
+import { openDB, IDBPDatabase } from 'idb';
 import { Product } from '../core/types/product.types';
 import { EventBus, EventType } from './EventBus';
-import { TaskQueueService } from './TaskQueueService';
-import { LocalDBService } from './LocalDBService';
-import { LogService } from './LogService';
+import { taskQueueService } from './TaskQueueService';
+import { logger } from './LoggerService';
+
+const DB_NAME = 'VademecumDB';
+const DB_VERSION = 1;
+const STORE_NAME = 'products';
 
 export class DataService {
-  static getSupabaseInfo() {
+  private static instance: DataService;
+  private dbPromise: Promise<IDBPDatabase<any>> | null = null;
+
+  private constructor() {}
+
+  static getInstance(): DataService {
+    if (!DataService.instance) {
+      DataService.instance = new DataService();
+    }
+    return DataService.instance;
+  }
+
+  private getDB(): Promise<IDBPDatabase<any>> {
+    if (!this.dbPromise) {
+      this.dbPromise = openDB(DB_NAME, DB_VERSION, {
+        upgrade(db) {
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME, { keyPath: 'sku' });
+          }
+        },
+      });
+    }
+    return this.dbPromise;
+  }
+
+  getSupabaseInfo() {
     const fallbackUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
     const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; 
     const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || fallbackUrl;
@@ -13,63 +42,58 @@ export class DataService {
     return { supabaseUrl, supabaseKey };
   }
 
-  static async getDB() {
-    return null;
+  async getAllProducts(): Promise<Product[]> {
+    const db = await this.getDB();
+    return db.getAll(STORE_NAME);
   }
 
-  static async getAllProducts(): Promise<Product[]> {
-    return LocalDBService.getAllProducts();
-  }
-
-  static async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
-    await LocalDBService.saveProduct(product);
+  async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
+    const db = await this.getDB();
+    await db.put(STORE_NAME, product);
 
     if (!options.silent) {
-       await TaskQueueService.addTask('cloud_sync', product);
+       await taskQueueService.addTask('cloud_sync', product);
        EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
     }
   }
 
-  static async importProducts(jsonString: string): Promise<{ success: number; errors: number }> {
+  async importProducts(jsonString: string): Promise<{ success: number; errors: number }> {
     try {
       const data = JSON.parse(jsonString);
       const newProducts: Product[] = Array.isArray(data) ? data : [data];
       
-      await LocalDBService.bulkSaveProducts(newProducts);
-      LogService.add({
-        level: 'success',
-        module: 'Database',
-        message: `Importación exitosa: ${newProducts.length} productos cargados localmente`,
-      });
+      const db = await this.getDB();
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      await Promise.all(newProducts.map(p => tx.store.put(p)));
+      await tx.done;
+
+      logger.success(`Importación exitosa: ${newProducts.length} productos cargados localmente`, 'Database');
 
       return { success: newProducts.length, errors: 0 };
     } catch (e) {
-      LogService.add({
-        level: 'error',
-        module: 'Database',
-        message: 'Error al importar productos JSON',
-        details: e instanceof Error ? e.message : e
-      });
+      logger.error('Error al importar productos JSON', 'Database', e);
       console.error('[DataService] Import failed', e);
       return { success: 0, errors: 1 };
     }
   }
 
-  static async getProductBySku(sku: string): Promise<Product | null> {
-    return LocalDBService.getProductBySku(sku);
+  async getProductBySku(sku: string): Promise<Product | null> {
+    const db = await this.getDB();
+    return await db.get(STORE_NAME, sku) as Product || null;
   }
 
-  static async clearAll(): Promise<void> {
-    await LocalDBService.clearAll();
+  async clearAll(): Promise<void> {
+    const db = await this.getDB();
+    await db.clear(STORE_NAME);
     EventBus.emit(EventType.DB_UPDATED, { action: 'cleared' });
   }
 
-  static async exportProducts(): Promise<string> {
+  async exportProducts(): Promise<string> {
     const products = await this.getAllProducts();
     return JSON.stringify(products, null, 2);
   }
 
-  static async syncToSupabase(product: Product): Promise<void> {
+  async syncToSupabase(product: Product): Promise<void> {
     if (!navigator.onLine) return;
     try {
         const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
@@ -93,28 +117,19 @@ export class DataService {
             })
         });
         if (response.ok) {
-            await LocalDBService.saveProduct({ ...product, synced: true, last_synced: Date.now() });
-            LogService.add({
-                level: 'success',
-                module: 'CloudSync',
-                message: `Producto ${product.sku} respaldado en la nube`,
-            });
+            await this.saveProduct({ ...product, synced: true, last_synced: Date.now() }, { silent: true });
+            logger.success(`Producto ${product.sku} respaldado en la nube`, 'CloudSync');
         } else {
             throw new Error(`Status ${response.status}`);
         }
     } catch (e) {
-        LogService.add({
-            level: 'error',
-            module: 'CloudSync',
-            message: `Error al respaldar producto ${product.sku}`,
-            details: e instanceof Error ? e.message : e
-        });
+        logger.error(`Error al respaldar producto ${product.sku}`, 'CloudSync', e);
         console.error('[DataService] Sync failed', e);
         throw e;
     }
   }
 
-  static async fetchCloudInventory(): Promise<{ sku: string }[]> {
+  async fetchCloudInventory(): Promise<{ sku: string }[]> {
     const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
     const response = await fetch(`${supabaseUrl}/rest/v1/products?select=sku`, {
       headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
@@ -123,28 +138,26 @@ export class DataService {
     return response.json();
   }
 
-  static async downloadCloudProducts(skus: string[]): Promise<Product[]> {
+  async downloadCloudProducts(skus: string[]): Promise<Product[]> {
     if (skus.length === 0) return [];
     
     const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
-    // Paginate or use 'in' operator. PostgREST 'in' is useful for batches
     const skuList = skus.join(',');
-    // Seleccionar tanto 'sku' como 'data' para asegurar integridad del keyPath
     const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=in.(${skuList})&select=sku,data`, {
       headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
     });
     if (!response.ok) throw new Error('Failed to download cloud products');
     const result = await response.json();
     
-    // Asegurar que 'data' contenga 'sku'
     return result.map((r: any) => ({
       ...r.data,
-      sku: r.sku || r.data.sku // Priorizar sku del root si existe, sino tomar de data
+      sku: r.sku || r.data.sku 
     }));
   }
 
-  static async deleteProduct(sku: string): Promise<void> {
-    await LocalDBService.deleteProduct(sku);
+  async deleteProduct(sku: string): Promise<void> {
+    const db = await this.getDB();
+    await db.delete(STORE_NAME, sku);
 
     if (navigator.onLine) {
       try {
@@ -160,3 +173,5 @@ export class DataService {
     EventBus.emit(EventType.PRODUCT_DELETED, { sku });
   }
 }
+
+export const dataService = DataService.getInstance();

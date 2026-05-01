@@ -23,11 +23,15 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    logger.error(`ErrorBoundary Catch: ${this.props.componentName || 'Anonymous Component'}`, {
-      error: error.message,
-      stack: error.stack,
-      componentStack: errorInfo.componentStack
-    });
+    logger.error(
+      `ErrorBoundary Catch: ${this.props.componentName || 'Anonymous Component'}`, 
+      'ErrorBoundary',
+      {
+        error: error.message,
+        stack: error.stack,
+        componentStack: errorInfo.componentStack
+      }
+    );
   }
 
   private handleReset = () => {

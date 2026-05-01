@@ -1,17 +1,27 @@
-import { TaskQueueService, PendingTask } from './TaskQueueService';
-import { CloudSyncService } from './CloudSyncService';
-import { SynergyBackgroundService } from './SynergyBackgroundService';
-import { VectorBackgroundService } from './VectorBackgroundService';
-import { AIOrchestratorService } from './AIOrchestratorService';
-import { EventBus, EventType } from './EventBus';
-import { DataService } from './DataService';
+import { taskQueueService, PendingTask } from './TaskQueueService';
+import { cloudSyncService } from './CloudSyncService';
+import { synergyBackgroundService } from './SynergyBackgroundService';
+import { vectorBackgroundService } from './VectorBackgroundService';
+import { aiOrchestratorService } from './AIOrchestratorService';
+import { dataService } from './DataService';
+import { logger } from './LoggerService';
 
 export class TaskProcessorService {
-  private static isProcessing = false;
-  private static stopRequested = false;
-  private static lastCleanup = 0;
+  private static instance: TaskProcessorService;
+  private isProcessing = false;
+  private stopRequested = false;
+  private lastCleanup = 0;
 
-  static async start() {
+  private constructor() {}
+
+  static getInstance(): TaskProcessorService {
+    if (!TaskProcessorService.instance) {
+      TaskProcessorService.instance = new TaskProcessorService();
+    }
+    return TaskProcessorService.instance;
+  }
+
+  async start() {
     if (this.isProcessing) return;
     this.isProcessing = true;
     this.stopRequested = false;
@@ -21,33 +31,30 @@ export class TaskProcessorService {
     this.processLoop();
   }
 
-  static stop() {
+  stop() {
     this.stopRequested = true;
     this.isProcessing = false;
   }
 
-  private static async processLoop() {
+  private async processLoop() {
     while (this.isProcessing && !this.stopRequested) {
       try {
-        // Ejecutar limpieza cada hora
         const now = Date.now();
         if (now - this.lastCleanup > 60 * 60 * 1000) {
-          await TaskQueueService.runCleanup();
+          await taskQueueService.runCleanup();
           this.lastCleanup = now;
         }
 
-        const task = await TaskQueueService.getNextPending();
+        const task = await taskQueueService.getNextPending();
         
         if (!task) {
-          // No hay tareas, esperar un poco
           await new Promise(resolve => setTimeout(resolve, 5000));
           continue;
         }
 
         await this.executeTask(task);
         
-        // Pausa entre tareas con Gestión Térmica Dinámica (Garantiza enfriamiento en M4)
-        const delay = AIOrchestratorService.getThermalDelay();
+        const delay = aiOrchestratorService.getThermalDelay();
         if (delay >= 5000) {
           console.warn(`[TaskProcessor] Thermal Guard activo: Esperando ${delay/1000}s para disipar calor...`);
         }
@@ -59,35 +66,33 @@ export class TaskProcessorService {
     }
   }
 
-  private static async executeTask(task: PendingTask) {
-    const { LogService } = await import('./LogService');
+  private async executeTask(task: PendingTask) {
     console.log(`[TaskProcessor] Ejecutando tarea: ${task.type} (${task.id})`);
     
-    // Marcar como procesando
-    await TaskQueueService.updateTask(task.id, { status: 'processing' });
+    await taskQueueService.updateTask(task.id, { status: 'processing' });
 
     try {
       switch (task.type) {
         case 'cloud_sync':
-          await CloudSyncService.updateProductsBatch([task.payload]);
-          AIOrchestratorService.trackActivity(10);
+          await cloudSyncService.updateProductsBatch([task.payload]);
+          aiOrchestratorService.trackActivity(10);
           break;
         
         case 'ai_analysis':
           if (task.payload.type === 'synergy') {
-            const product = task.payload.product || await DataService.getProductBySku(task.payload.sku);
+            const product = task.payload.product || await dataService.getProductBySku(task.payload.sku);
             if (product) {
-              await SynergyBackgroundService.forceAnalyze(product);
-              AIOrchestratorService.trackActivity(50);
+              await synergyBackgroundService.forceAnalyze(product);
+              aiOrchestratorService.trackActivity(50);
             }
           }
           break;
 
         case 'vectorization':
-          const prodToVectorize = task.payload.product || await DataService.getProductBySku(task.payload.sku);
+          const prodToVectorize = task.payload.product || await dataService.getProductBySku(task.payload.sku);
           if (prodToVectorize) {
-            await VectorBackgroundService.vectorizeProduct(prodToVectorize);
-            AIOrchestratorService.trackActivity(30);
+            await vectorBackgroundService.vectorizeProduct(prodToVectorize);
+            aiOrchestratorService.trackActivity(30);
           }
           break;
 
@@ -95,23 +100,17 @@ export class TaskProcessorService {
           console.warn(`[TaskProcessor] Tipo de tarea desconocido: ${task.type}`);
       }
 
-      // Tarea completada con éxito
-      await TaskQueueService.removeTask(task.id);
+      await taskQueueService.removeTask(task.id);
       console.log(`[TaskProcessor] Tarea completada: ${task.id}`);
 
     } catch (error: any) {
-      LogService.add({
-        level: 'error',
-        module: 'Procesador',
-        message: `Fallo en tarea ${task.type}`,
-        details: error.message || error
-      });
+      logger.error(`Fallo en tarea ${task.type}`, 'Procesador', error);
       console.error(`[TaskProcessor] Error ejecutando tarea ${task.id}:`, error);
       
       const newRetries = (task.retries || 0) + 1;
-      const status = newRetries >= 5 ? 'failed' : 'pending'; // Reintentar hasta 5 veces
+      const status = newRetries >= 5 ? 'failed' : 'pending';
       
-      await TaskQueueService.updateTask(task.id, {
+      await taskQueueService.updateTask(task.id, {
         status,
         retries: newRetries,
         lastError: error.message || String(error)
@@ -119,3 +118,5 @@ export class TaskProcessorService {
     }
   }
 }
+
+export const taskProcessorService = TaskProcessorService.getInstance();

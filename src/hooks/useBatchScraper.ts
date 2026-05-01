@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { GeminiService } from '../services/GeminiService';
-import { DataService } from '../services/DataService';
+import { geminiService } from '../services/GeminiService';
+import { dataService } from '../services/DataService';
 import { Product, SafetyStatus } from '../core/types/product.types';
 
 export interface Log {
@@ -163,7 +163,7 @@ export const useBatchScraper = () => {
             "sugerencia_complementaria": "Sugerencia de producto complementario"
           }`;
           
-          const jsonStr = await GeminiService.generateJSON(prompt);
+          const jsonStr = await geminiService.generateJSON(prompt);
           const productData = JSON.parse(jsonStr);
 
           if (!productData.nombre_comercial) throw new Error("La IA no pudo identificar el producto.");
@@ -195,7 +195,7 @@ export const useBatchScraper = () => {
             last_updated: Date.now()
           };
 
-          await DataService.saveProduct(newProduct);
+          await dataService.saveProduct(newProduct);
           addLog(`💾 Guardado en base de datos: ${newProduct.nombre_comercial}`, 'success');
 
         } catch (err: any) {

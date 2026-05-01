@@ -1,10 +1,10 @@
-import { CloudSyncService } from '../services/CloudSyncService';
+import { cloudSyncService } from '../services/CloudSyncService';
 
 export const verifyCloudBackup = async () => {
   console.log('[CloudDebug] Iniciando verificación de respaldo en la nube...');
   try {
-    const hasData = await CloudSyncService.checkCloudData();
-    const count = await CloudSyncService.getCloudCount();
+    const hasData = await cloudSyncService.checkCloudData();
+    const count = await cloudSyncService.getCloudCount();
     
     console.log(`[CloudDebug] ¡Verificación exitosa!`);
     console.log(`[CloudDebug] ¿Tiene datos en la nube?: ${hasData}`);

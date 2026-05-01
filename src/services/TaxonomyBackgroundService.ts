@@ -1,5 +1,5 @@
-import { AIService } from './AIService';
-import { DataService } from './DataService';
+import { aiService } from './AIService';
+import { dataService } from './DataService';
 
 export interface TaxonomyStatus {
   isProcessing: boolean;
@@ -11,7 +11,8 @@ export interface TaxonomyStatus {
 }
 
 export class TaxonomyBackgroundService {
-  private static status: TaxonomyStatus = {
+  private static instance: TaxonomyBackgroundService;
+  private status: TaxonomyStatus = {
     isProcessing: false,
     progress: '',
     totalTags: 0,
@@ -19,9 +20,18 @@ export class TaxonomyBackgroundService {
     updatedProducts: 0
   };
 
-  private static listeners: Array<(status: TaxonomyStatus) => void> = [];
+  private listeners: Array<(status: TaxonomyStatus) => void> = [];
 
-  static subscribe(listener: (status: TaxonomyStatus) => void) {
+  private constructor() {}
+
+  static getInstance(): TaxonomyBackgroundService {
+    if (!TaxonomyBackgroundService.instance) {
+      TaxonomyBackgroundService.instance = new TaxonomyBackgroundService();
+    }
+    return TaxonomyBackgroundService.instance;
+  }
+
+  subscribe(listener: (status: TaxonomyStatus) => void) {
     this.listeners.push(listener);
     listener(this.status);
     return () => {
@@ -29,20 +39,20 @@ export class TaxonomyBackgroundService {
     };
   }
 
-  private static notify() {
+  private notify() {
     this.listeners.forEach(l => l({ ...this.status }));
   }
 
-  private static addLog(msg: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') {
+  private addLog(msg: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') {
     this.status.lastLog = { msg, type };
     this.notify();
   }
 
-  static getStatus() {
+  getStatus() {
     return { ...this.status };
   }
 
-  static async startStandardization() {
+  async startStandardization() {
     if (this.status.isProcessing) return;
 
     this.status = {
@@ -55,7 +65,7 @@ export class TaxonomyBackgroundService {
     this.addLog('Iniciando estandarización de etiquetas clínicas...', 'info');
 
     try {
-      const products = await DataService.getAllProducts();
+      const products = await dataService.getAllProducts();
       
       // 1. Extraer todas las etiquetas únicas
       const allTags = new Set<string>();
@@ -77,7 +87,7 @@ export class TaxonomyBackgroundService {
       
       for (let i = 0; i < uniqueTags.length; i += batchSize) {
         const batch = uniqueTags.slice(i, i + batchSize);
-        const result = await AIService.standardizeTags(batch);
+        const result = await aiService.standardizeTags(batch);
         Object.assign(mapping, result);
         
         this.status.processedTags = Math.min(i + batchSize, uniqueTags.length);
@@ -101,7 +111,7 @@ export class TaxonomyBackgroundService {
 
         if (changed) {
           const uniqueNewTags = Array.from(new Set(newTags));
-          await DataService.saveProduct({
+          await dataService.saveProduct({
             ...product,
             tags_ia: uniqueNewTags,
             last_updated: Date.now()
@@ -125,3 +135,5 @@ export class TaxonomyBackgroundService {
     }
   }
 }
+
+export const taxonomyBackgroundService = TaxonomyBackgroundService.getInstance();

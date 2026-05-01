@@ -1,41 +1,51 @@
 import { HardwareProfile } from '../core/types/hardware.types';
 import { Product, SafetyStatus } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
-import { SynergyBackgroundService } from './SynergyBackgroundService';
-import { TaskQueueService } from './TaskQueueService';
-import { AIOrchestratorService } from './AIOrchestratorService';
+import { synergyBackgroundService } from './SynergyBackgroundService';
+import { taskQueueService } from './TaskQueueService';
+import { aiOrchestratorService } from './AIOrchestratorService';
 
 export class AIService {
-  private static worker: Worker | null = null;
-  private static isInitializing = false;
-  private static isReady = false;
-  private static initProgressCallback: ((text: string, progress: number) => void) | null = null;
-  private static engineName = 'Ninguno';
-  private static hardware: HardwareProfile | null = null;
-  private static lastProgress = { text: '', progress: 0 };
-  private static watchdogInterval: number | null = null;
-  private static lastFailedInit = 0;
-  private static initRetryCount = 0;
+  private static instance: AIService;
+  private worker: Worker | null = null;
+  private isInitializing = false;
+  private isReady = false;
+  private initProgressCallback: ((text: string, progress: number) => void) | null = null;
+  private engineName = 'Ninguno';
+  private hardware: HardwareProfile | null = null;
+  private lastProgress = { text: '', progress: 0 };
+  private watchdogInterval: number | null = null;
+  private lastFailedInit = 0;
+  private initRetryCount = 0;
+  private isBusy = false;
 
-  static setProgressCallback(cb: (text: string, progress: number) => void) {
+  private constructor() {}
+
+  static getInstance(): AIService {
+    if (!AIService.instance) {
+      AIService.instance = new AIService();
+    }
+    return AIService.instance;
+  }
+
+  setProgressCallback(cb: (text: string, progress: number) => void) {
     this.initProgressCallback = cb;
   }
 
   // Configurar hardware pero NO iniciar el motor
-  static configure(hardware: HardwareProfile) {
+  configure(hardware: HardwareProfile) {
     this.hardware = hardware;
-    AIOrchestratorService.configure(hardware);
+    aiOrchestratorService.configure(hardware);
   }
 
   // Iniciar el motor explícitamente (Lazy Load)
-  static async startEngine(): Promise<boolean> {
+  async startEngine(): Promise<boolean> {
     if (this.isReady) {
-      SynergyBackgroundService.start();
+      synergyBackgroundService.start();
       return true;
     }
     if (this.isInitializing) return false; 
 
-    // Protección contra bucles de reinicio: Esperar si el último fallo fue reciente
     const now = Date.now();
     const cooldownPeriod = Math.min(this.initRetryCount * 30000, 300000); // Max 5 min
     if (now - this.lastFailedInit < cooldownPeriod) {
@@ -71,9 +81,8 @@ export class AIService {
                 this.lastProgress = { text: `${engine} Listo`, progress: 100 };
                 this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
                 
-                // Iniciar motor de sinergia en segundo plano (si está habilitado)
-                SynergyBackgroundService.init();
-                AIOrchestratorService.startWatcher();
+                synergyBackgroundService.init();
+                aiOrchestratorService.startWatcher();
                 this.startWatchdog();
                 
                 this.runHealthCheck().then(hc => {
@@ -116,7 +125,7 @@ export class AIService {
   }
 
   // Método para detener el motor y liberar memoria
-  static stopEngine() {
+  stopEngine() {
     this.stopWatchdog();
     if (this.worker) {
       this.worker.terminate();
@@ -128,9 +137,7 @@ export class AIService {
     this.lastProgress = { text: '', progress: 0 };
   }
 
-  private static isBusy = false;
-
-  private static async runInWorker(type: string, payload: any, timeoutMs: number = 180000): Promise<any> {
+  private async runInWorker(type: string, payload: any, timeoutMs: number = 180000): Promise<any> {
     if (!this.worker || !this.isReady) {
       throw new Error('Motor IA no está listo');
     }
@@ -159,7 +166,7 @@ export class AIService {
     });
   }
 
-  static async analyzeSynergy(product: any, candidates: any[]): Promise<any> {
+  async analyzeSynergy(product: any, candidates: any[]): Promise<any> {
     try {
       return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type: 'synergy' });
     } catch (error) {
@@ -168,7 +175,7 @@ export class AIService {
     }
   }
 
-  private static startWatchdog() {
+  private startWatchdog() {
     if (this.watchdogInterval) return;
     this.watchdogInterval = window.setInterval(async () => {
       if (this.isReady && this.worker && !this.isBusy) {
@@ -188,20 +195,20 @@ export class AIService {
     }, 5 * 60 * 1000);
   }
 
-  private static stopWatchdog() {
+  private stopWatchdog() {
     if (this.watchdogInterval) {
       clearInterval(this.watchdogInterval);
       this.watchdogInterval = null;
     }
   }
 
-  private static async restartEngine() {
+  private async restartEngine() {
     this.stopEngine();
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Esperar a que se limpie la memoria
+    await new Promise(resolve => setTimeout(resolve, 2000)); 
     this.startEngine();
   }
 
-  private static async runHealthCheckTimeout(timeoutMs: number): Promise<{ ok: boolean }> {
+  private async runHealthCheckTimeout(timeoutMs: number): Promise<{ ok: boolean }> {
     return Promise.race([
       this.runHealthCheck(),
       new Promise<{ ok: boolean }>((_, reject) => 
@@ -210,9 +217,7 @@ export class AIService {
     ]);
   }
 
-  static async extractProductData(rawText: string, url: string): Promise<Product | null> {
-    // Si el motor NO está listo, usamos el modo "Lite" (Regex/Heurística) inmediatamente
-    // Esto evita bloqueos y permite funcionalidad básica siempre.
+  async extractProductData(rawText: string, url: string): Promise<Product | null> {
     if (!this.worker || !this.isReady) {
         console.warn('[AIService] Motor IA apagado. Usando modo Lite (Regex).');
         return this.extractDataLite(rawText, url);
@@ -226,7 +231,6 @@ export class AIService {
           
           if (error) {
             console.error('[AIService] Error extracción IA:', error);
-            // Fallback a Lite si la IA falla
             resolve(this.extractDataLite(rawText, url));
             return;
           }
@@ -235,18 +239,16 @@ export class AIService {
             let content = payload.content;
             let data: any = null;
       
-            // Limpieza agresiva para encontrar el JSON
             try {
                 const jsonMatch = content.match(/\{[\s\S]*\}/);
                 if (jsonMatch) {
-                const cleanContent = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
-                data = JSON.parse(cleanContent);
+                    const cleanContent = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+                    data = JSON.parse(cleanContent);
                 }
             } catch (jsonError) {
                 console.warn('[AIService] JSON del modelo inválido. Iniciando fallback heurístico.');
             }
 
-            // Si no hay datos válidos del modelo, usar Regex (Fallback)
             if (!data || !data.nombre_comercial) {
                 resolve(this.extractDataLite(rawText, url));
                 return;
@@ -269,9 +271,7 @@ export class AIService {
     });
   }
 
-  // Método privado para extracción ligera (Regex/Heurística)
-  // Garantiza que la app funcione incluso en un Nokia 3310 (metafóricamente)
-  private static extractDataLite(rawText: string, url: string): Product {
+  private extractDataLite(rawText: string, url: string): Product {
     console.log('[AIService] Ejecutando extracción Lite (Regex)...');
     const nombreMatch = rawText.match(/Producto:\s*([^.]+)/i) || rawText.match(/Nombre:\s*([^.]+)/i);
     const indicacionMatch = rawText.match(/Indicación:\s*([^.]+)/i) || rawText.match(/Para:\s*([^.]+)/i);
@@ -299,9 +299,8 @@ export class AIService {
     };
   }
 
-  static async generateEmbedding(text: string): Promise<number[]> {
+  async generateEmbedding(text: string): Promise<number[]> {
     if (!this.worker || !this.isReady) {
-      // Fallback a vector vacío si no hay motor
       return new Array(384).fill(0);
     }
 
@@ -323,7 +322,7 @@ export class AIService {
     });
   }
 
-  static async analyze(query: string, products: Product[]): Promise<string> {
+  async analyze(query: string, products: Product[]): Promise<string> {
     if (!this.worker || !this.isReady) {
       const productNames = products.map(p => p.nombre_comercial).join(' y ');
       return `### ⚡ Modo Lite (Sin IA)\nEl motor de IA no está activo. Mostrando información básica.\n\n**Productos:** ${productNames}\n\nPor favor, active el motor de IA en Configuración para un análisis clínico profundo.`;
@@ -344,7 +343,7 @@ export class AIService {
     }
   }
 
-  static async standardizeTags(tags: string[]): Promise<Record<string, string>> {
+  async standardizeTags(tags: string[]): Promise<Record<string, string>> {
     if (!this.worker || !this.isReady) return {};
     try {
       return await this.runInWorker('STANDARDIZE_TAGS', { tags }, 30000); 
@@ -354,7 +353,7 @@ export class AIService {
     }
   }
 
-  static async analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives'): Promise<any> {
+  async analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives'): Promise<any> {
     if (this.worker && this.isReady) {
       try {
         return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type });
@@ -364,9 +363,9 @@ export class AIService {
     }
 
     try {
-      const { GeminiService } = await import('./GeminiService');
+      const { geminiService } = await import('./GeminiService');
       if (type === 'synergy') {
-        return await GeminiService.analyzeSynergy(product, candidates);
+        return await geminiService.analyzeSynergy(product, candidates);
       }
       return null;
     } catch (error: any) {
@@ -375,7 +374,7 @@ export class AIService {
       
       if (isQuotaError || isNetworkError) {
         console.warn(`[AIService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en la nube, encolando análisis:`, product.sku);
-        TaskQueueService.addTask('ai_analysis', { product, candidates, type });
+        taskQueueService.addTask('ai_analysis', { product, candidates, type });
       } else {
         console.error('[AIService] Error en análisis clínico en la nube:', error);
       }
@@ -383,7 +382,7 @@ export class AIService {
     }
   }
 
-  static async interpretClinicalSearch(query: string): Promise<any> {
+  async interpretClinicalSearch(query: string): Promise<any> {
     if (!this.worker || !this.isReady) return { isScenario: false };
     try {
       return await this.runInWorker('INTERPRET_SEARCH', { query }, 30000);
@@ -393,7 +392,7 @@ export class AIService {
     }
   }
 
-  static cosineSimilarity(vecA: number[], vecB: number[]): number {
+  cosineSimilarity(vecA: number[], vecB: number[]): number {
     if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
     let dotProduct = 0;
     let normA = 0;
@@ -406,7 +405,7 @@ export class AIService {
     return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
   }
 
-  static async runHealthCheck(): Promise<{ ok: boolean; engine: string; response?: string; error?: string }> {
+  async runHealthCheck(): Promise<{ ok: boolean; engine: string; response?: string; error?: string }> {
     if (!this.worker || !this.isReady) {
         return { ok: false, engine: 'Ninguno', error: 'Worker no iniciado' };
     }
@@ -424,7 +423,7 @@ export class AIService {
     });
   }
 
-  static async purgeCache(): Promise<boolean> {
+  async purgeCache(): Promise<boolean> {
     if (!this.worker) return false;
     
     return new Promise((resolve) => {
@@ -439,7 +438,7 @@ export class AIService {
     });
   }
 
-  static getStatus() {
+  getStatus() {
     return {
       isReady: this.isReady,
       isInitializing: this.isInitializing,
@@ -448,3 +447,5 @@ export class AIService {
     };
   }
 }
+
+export const aiService = AIService.getInstance();

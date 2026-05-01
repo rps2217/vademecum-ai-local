@@ -15,7 +15,18 @@ const DEFAULT_CONFIG: AppConfig = {
   useOllama: true,
 };
 
-export const ConfigService = {
+export class ConfigService {
+  private static instance: ConfigService;
+
+  private constructor() {}
+
+  static getInstance(): ConfigService {
+    if (!ConfigService.instance) {
+      ConfigService.instance = new ConfigService();
+    }
+    return ConfigService.instance;
+  }
+
   getConfig(): AppConfig {
     const saved = localStorage.getItem('app_config');
     if (!saved) return DEFAULT_CONFIG;
@@ -24,7 +35,7 @@ export const ConfigService = {
     } catch {
       return DEFAULT_CONFIG;
     }
-  },
+  }
 
   updateConfig(updates: Partial<AppConfig>) {
     const current = this.getConfig();
@@ -33,4 +44,6 @@ export const ConfigService = {
     window.dispatchEvent(new CustomEvent('config_updated', { detail: updated }));
     return updated;
   }
-};
+}
+
+export const configService = ConfigService.getInstance();

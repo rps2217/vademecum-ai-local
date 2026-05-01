@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { CloudSyncService } from '../services/CloudSyncService';
+import { cloudSyncService } from '../services/CloudSyncService';
 
 export const useCloudSync = () => {
   const { user, isAdmin } = useAuth();
@@ -9,7 +9,7 @@ export const useCloudSync = () => {
 
   useEffect(() => {
     if (user) {
-      CloudSyncService.checkCloudData().then(setCloudHasData);
+      cloudSyncService.checkCloudData().then(setCloudHasData);
     }
   }, [user]);
 
@@ -17,7 +17,7 @@ export const useCloudSync = () => {
     if (!isAdmin) return;
     setIsSyncing(true);
     try {
-      const count = await CloudSyncService.uploadLocalProducts();
+      const count = await cloudSyncService.uploadLocalProducts();
       setCloudHasData(true);
       return count;
     } catch (error) {

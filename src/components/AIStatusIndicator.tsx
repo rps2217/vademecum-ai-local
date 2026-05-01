@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Brain, Loader2, CheckCircle2, AlertCircle, Cpu, Activity, Thermometer } from 'lucide-react';
-import { AIService } from '../services/AIService';
-import { AIOrchestratorService, OrchestratorStatus } from '../services/AIOrchestratorService';
+import { aiService } from '../services/AIService';
+import { aiOrchestratorService, OrchestratorStatus } from '../services/AIOrchestratorService';
 import { EventBus, EventType } from '../services/EventBus';
 import { motion, AnimatePresence } from 'motion/react';
 
 export const AIStatusIndicator: React.FC = () => {
-  const [status, setStatus] = useState(AIService.getStatus());
+  const [status, setStatus] = useState(aiService.getStatus());
   const [orchestratorStatus, setOrchestratorStatus] = useState<OrchestratorStatus>({ 
     isRunning: false, 
     progress: 0, 
@@ -19,7 +19,7 @@ export const AIStatusIndicator: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentStatus = AIService.getStatus();
+      const currentStatus = aiService.getStatus();
       setStatus(currentStatus);
     }, 1000);
 
@@ -27,7 +27,7 @@ export const AIStatusIndicator: React.FC = () => {
       setCurrentProduct(evt.message || evt.currentProcessingName);
     });
 
-    const unsubscribeOrchestrator = AIOrchestratorService.subscribe(status => {
+    const unsubscribeOrchestrator = aiOrchestratorService.subscribe(status => {
       setOrchestratorStatus(status);
     });
 

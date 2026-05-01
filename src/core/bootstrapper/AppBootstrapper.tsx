@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 
-import { TaskProcessorService } from '../../services/TaskProcessorService';
-import { AutomationTriggerService } from '../../services/AutomationTriggerService';
+import { taskProcessorService } from '../../services/TaskProcessorService';
+import { automationTriggerService } from '../../services/AutomationTriggerService';
 
 interface AppBootstrapperProps {
   children: React.ReactNode;
@@ -14,8 +14,8 @@ export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) =>
 
   useEffect(() => {
     // Database is already initialized in App.tsx via SplashScreen
-    TaskProcessorService.start();
-    AutomationTriggerService.start();
+    taskProcessorService.start();
+    automationTriggerService.start();
     setIsReady(true);
   }, []);
 

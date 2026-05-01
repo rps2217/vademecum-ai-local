@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Sparkles, Loader2, AlertCircle, MessageSquare } from 'lucide-react';
-import { AIService } from '../../../services/AIService';
+import { aiService } from '../../../services/AIService';
 import { Product } from '../../../core/types/product.types';
 import ReactMarkdown from 'react-markdown';
 
@@ -22,7 +22,7 @@ export const AIAnalysisModal: React.FC<AIAnalysisModalProps> = ({ query, results
       try {
         // Si hay resultados, usarlos como contexto. Si no, intentar análisis general.
         const contextProducts = results.length > 0 ? results.slice(0, 5) : [];
-        const result = await AIService.analyze(query, contextProducts);
+        const result = await aiService.analyze(query, contextProducts);
         setAnalysis(result);
       } catch (err: any) {
         setError(err.message || 'Error al procesar la consulta.');

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../../core/types';
-import { HistoryService } from '../../../services/HistoryService';
+import { historyService } from '../../../services/HistoryService';
 import { Clock, Trash2, ChevronRight, Bookmark } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -13,7 +13,7 @@ export const RecentlyViewed: React.FC<RecentlyViewedProps> = ({ onProductClick }
 
   useEffect(() => {
     const loadHistory = () => {
-      setHistory(HistoryService.getRecent());
+      setHistory(historyService.getRecent());
     };
 
     loadHistory();
@@ -30,7 +30,7 @@ export const RecentlyViewed: React.FC<RecentlyViewedProps> = ({ onProductClick }
           <Clock className="w-3.5 h-3.5" /> Vistos Recientemente
         </h3>
         <button 
-          onClick={() => HistoryService.clear()}
+          onClick={() => historyService.clear()}
           className="text-[10px] font-bold text-slate-600 hover:text-red-400 flex items-center gap-1 transition-colors"
         >
           <Trash2 className="w-3 h-3" /> Limpiar

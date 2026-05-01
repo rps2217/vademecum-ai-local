@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, Database, Cpu, Globe, Settings, X, Command, ChevronRight, Sparkles, AlertCircle, Share2 } from 'lucide-react';
-import { useProductSearch } from '../../hooks/useProductSearch';
+import { useProductSearch } from '../../modules/search/hooks/useProductSearch';
 import { Product } from '../../core/types/product.types';
 import { motion, AnimatePresence } from 'motion/react';
 

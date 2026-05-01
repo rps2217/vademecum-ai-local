@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { DataService } from '../../services/DataService';
+import { dataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
 import { 
   Database, Trash2, RefreshCw, FileUp, 
@@ -7,7 +7,7 @@ import {
   Search, Monitor, CloudUpload, Info, AlertCircle,
   Cloud, CloudOff, CheckCircle, Sparkles
 } from 'lucide-react';
-import { CloudSyncService } from '../../services/CloudSyncService';
+import { cloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
 import { EventBus, EventType } from '../../services/EventBus';
 import { ScraperModal } from './ScraperModal';
@@ -29,9 +29,9 @@ export const DatabaseModule: React.FC = () => {
   const loadData = async (isManual = false) => {
     setIsLoading(true);
     try {
-      const allProducts = await DataService.getAllProducts();
+      const allProducts = await dataService.getAllProducts();
       setProducts(allProducts);
-      const cCount = await CloudSyncService.getCloudCount();
+      const cCount = await cloudSyncService.getCloudCount();
       setCloudCount(cCount);
 
       // Auto-Restore Logic: If local is empty but cloud has data, suggest or auto-pull
@@ -50,7 +50,7 @@ export const DatabaseModule: React.FC = () => {
     setIsSyncing(true);
     setSyncStatus('Reconciliando datos con la nube (Delta Sync)...');
     try {
-      const { downloaded } = await CloudSyncService.pullCloudData();
+      const { downloaded } = await cloudSyncService.pullCloudData();
       if (downloaded > 0) {
         setSyncStatus(`Sincronización exitosa: ${downloaded} productos nuevos descargados.`);
         await loadData(true);
@@ -87,7 +87,7 @@ export const DatabaseModule: React.FC = () => {
       try {
         const jsonStr = e.target?.result as string;
         setIsLoading(true);
-        const { success, errors } = await DataService.importProducts(jsonStr);
+        const { success, errors } = await dataService.importProducts(jsonStr);
         await loadData();
         setSyncStatus(`Importados ${success} productos. Errores: ${errors}`);
       } catch (error) {
@@ -101,9 +101,9 @@ export const DatabaseModule: React.FC = () => {
     setIsSyncing(true);
     setSyncStatus('Respaldando en la nube (Supabase)...');
     try {
-      const count = await CloudSyncService.uploadLocalProducts();
+      const count = await cloudSyncService.uploadLocalProducts();
       setSyncStatus(`Respaldo completado: ${count} productos.`);
-      setCloudCount(await CloudSyncService.getCloudCount());
+      setCloudCount(await cloudSyncService.getCloudCount());
     } finally {
       setIsSyncing(false);
       setTimeout(() => setSyncStatus(null), 3000);
@@ -123,7 +123,7 @@ export const DatabaseModule: React.FC = () => {
 
   const handleDelete = async (sku: string) => {
     if (!confirm('¿Eliminar producto?')) return;
-    await DataService.deleteProduct(sku);
+    await dataService.deleteProduct(sku);
     await loadData();
   };
 

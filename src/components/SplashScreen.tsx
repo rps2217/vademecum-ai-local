@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Activity, Database, Brain, CheckCircle, AlertCircle, Cpu, Shield } from 'lucide-react';
 import { HardwareProfile } from '../core/types/hardware.types';
-import { AIService } from '../services/AIService';
 
 interface InitStep {
   id: string;

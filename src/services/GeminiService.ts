@@ -5,11 +5,20 @@ import { formatArrayToString } from "../utils/formatters";
 const SYSTEM_PHILOSOPHY = `IMPORTANTE: Esta base de datos y aplicación NO diagnostica ni prescribe a los pacientes. Tu función principal es ser una fuente de ALTERNATIVAS de fármacos, suplementos y homeopatía para diversas patologías, además de entregar información sobre TRATAMIENTOS COMPLEMENTARIOS y SINÉRGICOS disponibles en la base de datos. Mantén siempre un enfoque estructurado de análisis e interconexión de opciones en lugar de actuar como médico tratante.`;
 
 export class GeminiService {
-  private static ai: GoogleGenAI | null = null;
+  private static instance: GeminiService;
+  private ai: GoogleGenAI | null = null;
 
-  private static getAI() {
+  private constructor() {}
+
+  static getInstance(): GeminiService {
+    if (!GeminiService.instance) {
+      GeminiService.instance = new GeminiService();
+    }
+    return GeminiService.instance;
+  }
+
+  private getAI() {
     if (!this.ai) {
-      // Intentar usar el nuevo secreto primero, si no, el original
       const myKey = process.env.MY_GEMINI_API_KEY || (import.meta.env && (import.meta.env as any).VITE_MY_GEMINI_API_KEY);
       const originalKey = process.env.GEMINI_API_KEY || (import.meta.env && (import.meta.env as any).VITE_GEMINI_API_KEY);
       
@@ -24,9 +33,8 @@ export class GeminiService {
     return this.ai;
   }
 
-  private static cleanAndParseJSON(text: string): any {
+  private cleanAndParseJSON(text: string): any {
     try {
-      // Limpieza básica de caracteres de control
       const cleanText = text.replace(/[\u0000-\u001F\u007F-\u009F]/g, (match) => {
         if (match === '\n') return '\\n';
         if (match === '\r') return '\\r';
@@ -35,7 +43,6 @@ export class GeminiService {
       });
       return JSON.parse(cleanText);
     } catch (e) {
-      // Intento de extracción de bloque JSON
       const match = text.match(/\{[\s\S]*\}/);
       if (match) {
         try {
@@ -46,7 +53,6 @@ export class GeminiService {
             return '';
           });
           
-          // Limpiezas adicionales para modelos menos precisos
           cleanMatch = cleanMatch.replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'");
           cleanMatch = cleanMatch.replace(/,\s*([\]}])/g, '$1');
           
@@ -59,14 +65,13 @@ export class GeminiService {
     }
   }
 
-  private static async withRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
+  private async withRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
     let lastError: any;
     for (let i = 0; i < maxRetries; i++) {
       try {
         return await fn();
       } catch (error: any) {
         lastError = error;
-        // Si el error es de cuota (429) o sobrecarga (503), reintentar con backoff
         const isQuotaError = error.message?.includes('429') || error.status === 'RESOURCE_EXHAUSTED' || error.message?.includes('quota');
         const isOverloaded = error.message?.includes('503') || error.status === 'SERVICE_UNAVAILABLE';
         const isNetworkError = error.status === 'UNKNOWN' || error.message?.includes('xhr error') || error.message?.includes('fetch');
@@ -83,7 +88,7 @@ export class GeminiService {
     throw lastError;
   }
 
-  static async searchAndExtractProduct(productName: string, targetUrl?: string): Promise<Product | null> {
+  async searchAndExtractProduct(productName: string, targetUrl?: string): Promise<Product | null> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -178,7 +183,7 @@ export class GeminiService {
     });
   }
 
-  static async reanalyzeProduct(product: Product): Promise<Product | null> {
+  async reanalyzeProduct(product: Product): Promise<Product | null> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -295,7 +300,7 @@ export class GeminiService {
     });
   }
 
-  static async extractProductFromMarkdown(markdown: string, url: string): Promise<Product | null> {
+  async extractProductFromMarkdown(markdown: string, url: string): Promise<Product | null> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -388,7 +393,7 @@ export class GeminiService {
     });
   }
 
-  static async extractProductNamesFromUrl(url: string): Promise<string[]> {
+  async extractProductNamesFromUrl(url: string): Promise<string[]> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -418,7 +423,7 @@ export class GeminiService {
     });
   }
 
-  static async extractProductNamesFromSearch(query: string): Promise<string[]> {
+  async extractProductNamesFromSearch(query: string): Promise<string[]> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -445,7 +450,7 @@ export class GeminiService {
     });
   }
 
-  static async generateText(prompt: string): Promise<string> {
+  async generateText(prompt: string): Promise<string> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -461,7 +466,7 @@ export class GeminiService {
     });
   }
 
-  static async generateJSON(prompt: string): Promise<string> {
+  async generateJSON(prompt: string): Promise<string> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -480,7 +485,7 @@ export class GeminiService {
     });
   }
 
-  static async analyzeSynergy(mainProduct: Product, relatedProducts: Product[]): Promise<{
+  async analyzeSynergy(mainProduct: Product, relatedProducts: Product[]): Promise<{
     sugerencia_complementaria: string;
     skus_relacionados: string[];
     explicacion_clinica: string;
@@ -544,7 +549,7 @@ export class GeminiService {
     });
   }
 
-  static async analyzeInteractions(products: Product[]): Promise<{
+  async analyzeInteractions(products: Product[]): Promise<{
     riesgo_total: 'BAJO' | 'MEDIO' | 'ALTO' | 'CRITICO';
     interacciones: {
       productos: string[];
@@ -611,7 +616,7 @@ export class GeminiService {
     });
   }
 
-  static async cleanAndValidateProducts(products: Partial<Product>[]): Promise<Product[]> {
+  async cleanAndValidateProducts(products: Partial<Product>[]): Promise<Product[]> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -719,7 +724,7 @@ export class GeminiService {
     });
   }
 
-  static async extractProductFromPDFText(rawText: string): Promise<Product> {
+  async extractProductFromPDFText(rawText: string): Promise<Product> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -809,7 +814,7 @@ export class GeminiService {
     });
   }
 
-  static async extractProductFromImage(base64Image: string, mimeType: string): Promise<Product> {
+  async extractProductFromImage(base64Image: string, mimeType: string): Promise<Product> {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
@@ -902,6 +907,8 @@ export class GeminiService {
     });
   }
 }
+
+export const geminiService = GeminiService.getInstance();
 
 function apiKeyFromEnv(val: any): string | null {
   if (!val || typeof val !== 'string') return null;

@@ -1,5 +1,5 @@
-import { AIService } from './AIService';
-import { DataService } from './DataService';
+import { aiService } from './AIService';
+import { dataService } from './DataService';
 
 export interface VectorizationStatus {
   isProcessing: boolean;
@@ -9,15 +9,25 @@ export interface VectorizationStatus {
 }
 
 export class VectorBackgroundService {
-  private static status: VectorizationStatus = {
+  private static instance: VectorBackgroundService;
+  private status: VectorizationStatus = {
     isProcessing: false,
     current: 0,
     total: 0
   };
 
-  private static listeners: Array<(status: VectorizationStatus) => void> = [];
+  private listeners: Array<(status: VectorizationStatus) => void> = [];
 
-  static subscribe(listener: (status: VectorizationStatus) => void) {
+  private constructor() {}
+
+  static getInstance(): VectorBackgroundService {
+    if (!VectorBackgroundService.instance) {
+      VectorBackgroundService.instance = new VectorBackgroundService();
+    }
+    return VectorBackgroundService.instance;
+  }
+
+  subscribe(listener: (status: VectorizationStatus) => void) {
     this.listeners.push(listener);
     listener(this.status);
     return () => {
@@ -25,20 +35,20 @@ export class VectorBackgroundService {
     };
   }
 
-  private static notify() {
+  private notify() {
     this.listeners.forEach(l => l({ ...this.status }));
   }
 
-  private static addLog(msg: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') {
+  private addLog(msg: string, type: 'info' | 'success' | 'warn' | 'error' = 'info') {
     this.status.lastLog = { msg, type };
     this.notify();
   }
 
-  static getStatus() {
+  getStatus() {
     return { ...this.status };
   }
 
-  static async startVectorization() {
+  async startVectorization() {
     if (this.status.isProcessing) return;
 
     this.status.isProcessing = true;
@@ -46,7 +56,7 @@ export class VectorBackgroundService {
     this.addLog('Iniciando vectorización masiva en segundo plano...', 'info');
 
     try {
-      const products = await DataService.getAllProducts();
+      const products = await dataService.getAllProducts();
       const pending = products.filter((p: any) => !p.vectores || p.vectores.length === 0);
       
       this.status.total = pending.length;
@@ -82,16 +92,18 @@ export class VectorBackgroundService {
     }
   }
 
-  static async vectorizeProduct(product: any) {
+  async vectorizeProduct(product: any) {
     if (!product.nombre_comercial) return;
     
     const textToEmbed = `${product.nombre_comercial} ${product.principios_activos?.join(' ') || ''} ${product.indicaciones?.join(' ') || ''}`;
-    const vectors = await AIService.generateEmbedding(textToEmbed);
+    const vectors = await aiService.generateEmbedding(textToEmbed);
     
-    await DataService.saveProduct({
+    await dataService.saveProduct({
       ...product,
       vectores: vectors,
       last_updated: Date.now()
     }, { silent: true });
   }
 }
+
+export const vectorBackgroundService = VectorBackgroundService.getInstance();

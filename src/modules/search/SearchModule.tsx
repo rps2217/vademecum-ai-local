@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
-import { useProductSearch } from '../../hooks/useProductSearch';
+import { useProductSearch } from './hooks/useProductSearch';
 import { Product, ClinicalSearchInterpretation } from '../../core/types';
 // Lazy loading heavy components
 const ProductDetailModal = lazy(() => import('../product/ProductDetailModal').then(module => ({ default: module.ProductDetailModal })));
@@ -15,7 +15,7 @@ import { useConsultation } from '../../context/ConsultationContext';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { logger } from '../../services/LoggerService';
 import { Brain, LayoutGrid, List } from 'lucide-react';
-import { AIService } from '../../services/AIService';
+import { aiService } from '../../services/AIService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
 
@@ -95,7 +95,7 @@ export const SearchModule: React.FC = () => {
     const timer = setTimeout(async () => {
       setIsInterpreting(true);
       try {
-        const result = await AIService.interpretClinicalSearch(query);
+        const result = await aiService.interpretClinicalSearch(query);
         if (result && result.isScenario) {
           setInterpretation(result);
         } else {

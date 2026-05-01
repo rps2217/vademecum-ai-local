@@ -4,10 +4,21 @@ import { storage } from '../utils/storage';
 const HISTORY_KEY = 'vademecum_recent_history';
 const MAX_HISTORY = 12;
 
-export const HistoryService = {
+export class HistoryService {
+  private static instance: HistoryService;
+
+  private constructor() {}
+
+  static getInstance(): HistoryService {
+    if (!HistoryService.instance) {
+      HistoryService.instance = new HistoryService();
+    }
+    return HistoryService.instance;
+  }
+
   getRecent(): Product[] {
     return storage.get<Product[]>(HISTORY_KEY, []);
-  },
+  }
 
   trackView(product: Product): void {
     const history = this.getRecent();
@@ -17,10 +28,12 @@ export const HistoryService = {
     
     // Notificar a la UI si es necesario
     window.dispatchEvent(new CustomEvent('history_updated'));
-  },
+  }
 
   clear(): void {
     storage.remove(HISTORY_KEY);
     window.dispatchEvent(new CustomEvent('history_updated'));
   }
-};
+}
+
+export const historyService = HistoryService.getInstance();

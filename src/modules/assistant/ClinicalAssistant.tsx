@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Product } from '../../core/types/product.types';
-import { AIService } from '../../services/AIService';
+import { aiService } from '../../services/AIService';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { Send, Bot, User, Loader2, Sparkles, AlertCircle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -43,13 +43,13 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
 
   // Verificar estado inicial sin forzar arranque
   useEffect(() => {
-    const status = AIService.getStatus();
+    const status = aiService.getStatus();
     setIsAiReady(status.isReady);
     setIsInitializing(status.isInitializing);
     if (status.isInitializing) {
       setAiStatus(status.lastProgress);
       // Si ya se estaba inicializando en otro lado, suscribirse al progreso
-      AIService.setProgressCallback((text, progress) => {
+      aiService.setProgressCallback((text, progress) => {
         setAiStatus({ text, progress });
         if (progress === 100) {
           setIsAiReady(true);
@@ -63,7 +63,7 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
     if (!hardware || isInitializing || isAiReady) return;
     
     setIsInitializing(true);
-    AIService.setProgressCallback((text, progress) => {
+    aiService.setProgressCallback((text, progress) => {
       setAiStatus({ text, progress });
       if (progress === 100) {
         setIsAiReady(true);
@@ -71,9 +71,9 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
       }
     });
 
-    await AIService.startEngine();
+    await aiService.startEngine();
     
-    const status = AIService.getStatus();
+    const status = aiService.getStatus();
     setIsAiReady(status.isReady);
     setIsInitializing(false);
   };
@@ -88,7 +88,7 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
     setIsTyping(true);
 
     try {
-      const response = await AIService.analyze(userMsg.content, contextProducts);
+      const response = await aiService.analyze(userMsg.content, contextProducts);
       const aiMsg: Message = { id: (Date.now() + 1).toString(), role: 'assistant', content: response };
       setMessages(prev => [...prev, aiMsg]);
     } catch (error) {

@@ -1,8 +1,8 @@
 import { Product, SafetyStatus, ClinicalSearchInterpretation } from '../core/types';
 import { formatArrayToString } from '../utils/formatters';
 import { cosineSimilarity } from '../utils/math';
-import { AIService } from './AIService';
-import { DataService } from './DataService';
+import { aiService } from './AIService';
+import { dataService } from './DataService';
 
 export interface SearchIndexItem {
   sku: string;
@@ -40,17 +40,27 @@ const SYNONYMS_MAP: Record<string, string[]> = {
 };
 
 export class SearchService {
-  private static index: SearchIndexItem[] = [];
-  private static isInitialized = false;
+  private static instance: SearchService;
+  private index: SearchIndexItem[] = [];
+  private isInitialized = false;
 
-  static normalizeText(text: string): string {
+  private constructor() {}
+
+  static getInstance(): SearchService {
+    if (!SearchService.instance) {
+      SearchService.instance = new SearchService();
+    }
+    return SearchService.instance;
+  }
+
+  normalizeText(text: string): string {
     if (!text) return '';
     return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
-  static async initializeIndex(): Promise<void> {
+  async initializeIndex(): Promise<void> {
     try {
-      const allProducts = await DataService.getAllProducts();
+      const allProducts = await dataService.getAllProducts();
       this.index = allProducts.map(product => {
         const searchableText = this.normalizeText(`
           ${product.sku || ''}
@@ -81,7 +91,7 @@ export class SearchService {
     }
   }
 
-  static async search(query: string, commonPathologies: string[]): Promise<Product[]> {
+  async search(query: string, commonPathologies: string[]): Promise<Product[]> {
     if (!this.isInitialized) await this.initializeIndex();
     if (!query.trim()) return [];
 
@@ -89,16 +99,12 @@ export class SearchService {
     const autoFilters = this.detectSafetyFilters(normalizedQuery);
     const isPathologySearch = commonPathologies.some(p => this.normalizeText(p) === normalizedQuery);
 
-    // 1. Text Score
     const textResults = this.performTextSearch(normalizedQuery, isPathologySearch);
 
-    // 2. Semantic Score
     const semanticResults = await this.performSemanticSearch(query);
 
-    // 3. Hybrid Merge
     let combined = this.mergeResults(textResults, semanticResults);
 
-    // 4. Apply Filters
     if (autoFilters.length > 0) {
       combined = combined.filter(p => {
         return autoFilters.every(condition => p[condition] === SafetyStatus.SI);
@@ -108,7 +114,7 @@ export class SearchService {
     return combined.slice(0, 50);
   }
 
-  private static detectSafetyFilters(normalizedQuery: string): SafetyCondition[] {
+  private detectSafetyFilters(normalizedQuery: string): SafetyCondition[] {
     const filters: SafetyCondition[] = [];
     if (normalizedQuery.includes('embarazo') || normalizedQuery.includes('gestante')) filters.push('apto_embarazo');
     if (normalizedQuery.includes('lactancia')) filters.push('apto_lactancia');
@@ -119,7 +125,7 @@ export class SearchService {
     return [...new Set(filters)];
   }
 
-  private static performTextSearch(normalizedQuery: string, isPathologySearch: boolean): Map<string, { product: Product, score: number }> {
+  private performTextSearch(normalizedQuery: string, isPathologySearch: boolean): Map<string, { product: Product, score: number }> {
     const results = new Map<string, { product: Product, score: number }>();
     const exactPhrases = [normalizedQuery, ...(SYNONYMS_MAP[normalizedQuery] || []).map(this.normalizeText)];
     const searchTerms = normalizedQuery.split(' ').filter(t => t.length > 0 && !STOP_WORDS.has(t));
@@ -144,13 +150,13 @@ export class SearchService {
     return results;
   }
 
-  private static async performSemanticSearch(query: string): Promise<Map<string, { product: Product, score: number }>> {
+  private async performSemanticSearch(query: string): Promise<Map<string, { product: Product, score: number }>> {
     const results = new Map<string, { product: Product, score: number }>();
-    const aiStatus = AIService.getStatus();
+    const aiStatus = aiService.getStatus();
     
     if (aiStatus.isReady && query.trim().length > 3) {
       try {
-        const queryVector = await AIService.generateEmbedding(query);
+        const queryVector = await aiService.generateEmbedding(query);
         this.index.forEach(item => {
           if (item.vector && item.vector.length > 0) {
             const similarity = cosineSimilarity(queryVector, item.vector);
@@ -166,7 +172,7 @@ export class SearchService {
     return results;
   }
 
-  private static mergeResults(
+  private mergeResults(
     textResults: Map<string, { product: Product, score: number }>, 
     semanticResults: Map<string, { product: Product, score: number }>
   ): Product[] {
@@ -189,3 +195,5 @@ export class SearchService {
       .map(i => i.product);
   }
 }
+
+export const searchService = SearchService.getInstance();

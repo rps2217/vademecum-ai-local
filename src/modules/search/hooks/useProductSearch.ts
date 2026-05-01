@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Product } from '../core/types';
-import { SearchService } from '../services/SearchService';
-import { COMMON_PATHOLOGIES } from '../constants/pathologies';
+import { Product } from '../../../core/types';
+import { searchService } from '../../../services/SearchService';
+import { COMMON_PATHOLOGIES } from '../../../constants/pathologies';
 
 export const useProductSearch = () => {
   const [query, setQuery] = useState('');
@@ -11,10 +11,10 @@ export const useProductSearch = () => {
 
   // Inicializar índice al montar
   useEffect(() => {
-    SearchService.initializeIndex().catch(console.error);
+    searchService.initializeIndex().catch(console.error);
     
     const handleUpdate = () => {
-      SearchService.initializeIndex().then(() => setRefreshBit(b => b + 1));
+      searchService.initializeIndex().then(() => setRefreshBit(b => b + 1));
     };
 
     window.addEventListener('db_updated', handleUpdate);
@@ -30,12 +30,10 @@ export const useProductSearch = () => {
 
       setIsSearching(true);
       try {
-        // En un entorno real, usaríamos el Worker aquí para evitar bloqueos
-        // Para asegurar compatibilidad inmediata y robustez, SearchService ya está optimizado,
-        // pero vamos a simular la asincronía del worker para liberar el event loop.
+        // Simulación de asincronía para liberar el event loop (worker-like)
         const searchResults = await new Promise<Product[]>((resolve) => {
           setTimeout(async () => {
-             const res = await SearchService.search(query, COMMON_PATHOLOGIES);
+             const res = await searchService.search(query, COMMON_PATHOLOGIES);
              resolve(res);
           }, 0);
         });

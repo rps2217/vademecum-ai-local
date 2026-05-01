@@ -13,12 +13,13 @@ import {
   Info
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GeminiService } from '../../services/GeminiService';
-import { ConfigService } from '../../services/ConfigService';
+import { geminiService } from '../../services/GeminiService';
+import { configService } from '../../services/ConfigService';
 
 export const ClinicalBrainTray: React.FC = () => {
   const { selectedProducts, removeFromConsultation, clearConsultation } = useConsultation();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +27,7 @@ export const ClinicalBrainTray: React.FC = () => {
   if (selectedProducts.length === 0) return null;
 
   const handleAnalyze = async () => {
-    const config = ConfigService.getConfig();
+    const config = configService.getConfig();
     if (!config.enableAIInteractions) {
       alert('El Cerebro Clínico (IA) está desactivado. Actívalo en Configuración.');
       return;
@@ -35,7 +36,7 @@ export const ClinicalBrainTray: React.FC = () => {
     setIsAnalyzing(true);
     setError(null);
     try {
-      const result = await GeminiService.analyzeInteractions(selectedProducts);
+      const result = await geminiService.analyzeInteractions(selectedProducts);
       setAnalysis(result);
       setIsExpanded(true);
     } catch (err: any) {

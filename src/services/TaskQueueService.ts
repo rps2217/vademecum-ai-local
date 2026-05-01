@@ -1,4 +1,5 @@
 import { EventBus, EventType } from './EventBus';
+import { logger } from './LoggerService';
 
 export interface PendingTask {
   id: string;
@@ -16,22 +17,33 @@ interface AddTaskOptions {
 
 const STORAGE_KEY = 'pending_tasks';
 
-const getTasksFromStorage = (): PendingTask[] => {
-  const tasks = localStorage.getItem(STORAGE_KEY);
-  try {
-    return tasks ? JSON.parse(tasks) : [];
-  } catch (e) {
-    return [];
+class TaskQueueService {
+  private static instance: TaskQueueService;
+
+  private constructor() {}
+
+  static getInstance(): TaskQueueService {
+    if (!TaskQueueService.instance) {
+      TaskQueueService.instance = new TaskQueueService();
+    }
+    return TaskQueueService.instance;
   }
-};
 
-const saveTasksToStorage = (tasks: PendingTask[]) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-};
+  private getTasksFromStorage(): PendingTask[] {
+    const tasks = localStorage.getItem(STORAGE_KEY);
+    try {
+      return tasks ? JSON.parse(tasks) : [];
+    } catch (e) {
+      return [];
+    }
+  }
 
-export const TaskQueueService = {
-  addTask: async (type: 'cloud_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true }) => {
-    let tasks = getTasksFromStorage();
+  private saveTasksToStorage(tasks: PendingTask[]) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }
+
+  async addTask(type: 'cloud_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true }) {
+    let tasks = this.getTasksFromStorage();
     const sku = payload.sku || (type === 'cloud_sync' ? payload.sku : null);
 
     if (options.deduplicate && sku) {
@@ -41,7 +53,7 @@ export const TaskQueueService = {
 
       if (existingIndex !== -1) {
         tasks[existingIndex].timestamp = Date.now();
-        saveTasksToStorage(tasks);
+        this.saveTasksToStorage(tasks);
         return;
       }
     }
@@ -57,63 +69,62 @@ export const TaskQueueService = {
     };
 
     tasks.push(taskData);
-    saveTasksToStorage(tasks);
+    this.saveTasksToStorage(tasks);
     
     EventBus.emit(EventType.TASK_QUEUED, taskData);
-    console.log(`[TaskQueue] Tarea encolada: ${type} (${id})`);
-  },
+    logger.info(`Tarea encolada: ${type} (${id})`, 'TaskQueue');
+  }
 
-  getNextPending: async (): Promise<PendingTask | null> => {
-    const tasks = getTasksFromStorage();
-    // Sort by timestamp asc, return first pending
+  async getNextPending(): Promise<PendingTask | null> {
+    const tasks = this.getTasksFromStorage();
     const pending = tasks.filter(t => t.status === 'pending').sort((a,b) => a.timestamp - b.timestamp);
     return pending.length > 0 ? pending[0] : null;
-  },
+  }
 
-  getTasks: async (): Promise<PendingTask[]> => {
-    return getTasksFromStorage();
-  },
+  async getTasks(): Promise<PendingTask[]> {
+    return this.getTasksFromStorage();
+  }
 
-  updateTask: async (id: string, updates: Partial<PendingTask>) => {
-    let tasks = getTasksFromStorage();
+  async updateTask(id: string, updates: Partial<PendingTask>) {
+    let tasks = this.getTasksFromStorage();
     const index = tasks.findIndex(t => t.id === id);
     if (index !== -1) {
       tasks[index] = { ...tasks[index], ...updates };
-      saveTasksToStorage(tasks);
+      this.saveTasksToStorage(tasks);
       EventBus.emit(EventType.TASK_UPDATED, { id, ...updates });
     }
-  },
+  }
 
-  removeTask: async (id: string) => {
-    let tasks = getTasksFromStorage();
+  async removeTask(id: string) {
+    let tasks = this.getTasksFromStorage();
     const index = tasks.findIndex(t => t.id === id);
     if (index !== -1) {
       tasks.splice(index, 1);
-      saveTasksToStorage(tasks);
+      this.saveTasksToStorage(tasks);
       EventBus.emit(EventType.TASK_COMPLETED, { id });
     }
-  },
+  }
 
-  getQueueLength: (): number => {
-    return getTasksFromStorage().filter(t => t.status === 'pending').length;
-  },
+  getQueueLength(): number {
+    return this.getTasksFromStorage().filter(t => t.status === 'pending').length;
+  }
 
-  getStats: async () => {
-    const tasks = getTasksFromStorage();
+  async getStats() {
+    const tasks = this.getTasksFromStorage();
     const pending = tasks.filter(t => t.status === 'pending').length;
     const failed = tasks.filter(t => t.status === 'failed').length;
     return { pending, failed };
-  },
+  }
 
-  runCleanup: async () => {
-    let tasks = getTasksFromStorage();
+  async runCleanup() {
+    let tasks = this.getTasksFromStorage();
     const now = Date.now();
-    const STUCK_TIMEOUT = 30 * 60 * 1000; // 30 minutes
+    const STUCK_TIMEOUT = 30 * 60 * 1000; 
     
     let modified = false;
     tasks = tasks.map(t => {
       if (t.status === 'processing' && (now - t.timestamp > STUCK_TIMEOUT)) {
-        console.warn(`[TaskQueue] Reseteando tarea estancada ${t.id} (${t.type})`);
+        logger.warn(`Reseteando tarea estancada ${t.id} (${t.type})`, 'TaskQueue');
         modified = true;
         return { ...t, status: 'pending', timestamp: now, retries: (t.retries || 0) + 1 };
       }
@@ -121,7 +132,9 @@ export const TaskQueueService = {
     });
 
     if (modified) {
-      saveTasksToStorage(tasks);
+      this.saveTasksToStorage(tasks);
     }
   }
-};
+}
+
+export const taskQueueService = TaskQueueService.getInstance();

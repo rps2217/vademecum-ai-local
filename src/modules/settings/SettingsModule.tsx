@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud, RefreshCw, Terminal, XCircle, CheckCircle2, Info, AlertCircle } from 'lucide-react';
-import { DataService } from '../../services/DataService';
-import { ConfigService, AppConfig } from '../../services/ConfigService';
+import { dataService } from '../../services/DataService';
+import { configService, AppConfig } from '../../services/ConfigService';
 import { useLogs } from '../../hooks/useLogs';
-import { LogService } from '../../services/LogService';
+import { logger } from '../../services/LoggerService';
 import { getDeviceId } from '../../utils/clusterUtils';
-import { CloudSyncService } from '../../services/CloudSyncService';
+import { cloudSyncService } from '../../services/CloudSyncService';
 
 export const SettingsModule: React.FC = () => {
   const { hardware } = useHardwareDetection();
   const [isImporting, setIsImporting] = useState(false);
-  const [config, setConfig] = useState<AppConfig>(ConfigService.getConfig());
+  const [config, setConfig] = useState<AppConfig>(configService.getConfig());
   const { logs, clearLogs } = useLogs();
   const [nodeId] = useState(getDeviceId());
   const [isTestingCluster, setIsTestingCluster] = useState(false);
@@ -23,14 +23,14 @@ export const SettingsModule: React.FC = () => {
 
   useEffect(() => {
     const unsubAi = (import('../../services/AIOrchestratorService')).then(m => 
-      m.AIOrchestratorService.subscribe(setAiStatus)
+      m.aiOrchestratorService.subscribe(setAiStatus)
     );
     
     // Polling suave para longitud de cola
     const interval = setInterval(async () => {
       try {
         const module = await import('../../services/TaskQueueService');
-        const queueService = module.TaskQueueService;
+        const queueService = module.taskQueueService;
         if (queueService && typeof queueService.getQueueLength === 'function') {
            setQueueLength(queueService.getQueueLength());
         }
@@ -50,14 +50,10 @@ export const SettingsModule: React.FC = () => {
     setClusterTestResult(null);
     try {
       // Usamos un SKU ficticio para probar el sistema de colas/locks
-      const success = await CloudSyncService.claimProductLock('CLUSTER_TEST_PING', nodeId);
+      const success = await cloudSyncService.claimProductLock('CLUSTER_TEST_PING', nodeId);
       if (success) {
         setClusterTestResult('Lock adquirido con éxito. Este dispositivo tiene exclusividad sobre la tarea de prueba.');
-        LogService.add({
-          level: 'success',
-          module: 'Cluster',
-          message: `Prueba de clúster exitosa: Lock adquirido por ${nodeId}`
-        });
+        logger.success(`Prueba de clúster exitosa: Lock adquirido por ${nodeId}`, 'Cluster');
       } else {
         setClusterTestResult('No se pudo adquirir el lock. Posiblemente otro nodo está en medio de una prueba o hay error de red.');
       }
@@ -69,18 +65,14 @@ export const SettingsModule: React.FC = () => {
   };
 
   const handleConfigChange = (updates: Partial<AppConfig>) => {
-    const newConfig = ConfigService.updateConfig(updates);
+    const newConfig = configService.updateConfig(updates);
     setConfig(newConfig);
-    LogService.add({
-      level: 'info',
-      module: 'Config',
-      message: `Configuración actualizada: ${Object.keys(updates).join(', ')}`
-    });
+    logger.info(`Configuración actualizada: ${Object.keys(updates).join(', ')}`, 'Config');
   };
 
   const handleExport = async () => {
     try {
-      const all = await DataService.getAllProducts();
+      const all = await dataService.getAllProducts();
       const dataStr = JSON.stringify(all, null, 2);
       const blob = new Blob([dataStr], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
@@ -106,7 +98,7 @@ export const SettingsModule: React.FC = () => {
           const imported = JSON.parse(event.target?.result as string);
           if (Array.isArray(imported)) {
             for (const p of imported) {
-              await DataService.saveProduct(p);
+              await dataService.saveProduct(p);
             }
             alert('Importación completada.');
           }

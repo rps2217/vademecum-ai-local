@@ -1,18 +1,19 @@
 
 import { useState, useEffect } from 'react';
-import { LogService, LogEntry } from '../services/LogService';
-import { EventBus, EventType } from '../services/EventBus';
+import { logger } from '../services/LoggerService';
+import { LogEntry } from '../core/types';
 
 export const useLogs = () => {
-  const [logs, setLogs] = useState<LogEntry[]>(LogService.getLogs());
+  const [logs, setLogs] = useState<LogEntry[]>(logger.getLogs());
 
   useEffect(() => {
-    const sub = EventBus.on(EventType.LOG_ADDED as any).subscribe(() => {
-      setLogs([...LogService.getLogs()]);
-    });
+    const handleLog = () => {
+      setLogs([...logger.getLogs()]);
+    };
 
-    return () => sub.unsubscribe();
+    window.addEventListener('app_log', handleLog);
+    return () => window.removeEventListener('app_log', handleLog);
   }, []);
 
-  return { logs, clearLogs: () => LogService.clear() };
+  return { logs, clearLogs: () => logger.clear() };
 };

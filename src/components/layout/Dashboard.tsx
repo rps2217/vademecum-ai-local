@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Search, Database, Settings, Loader2, Command, Activity, ShieldAlert, Monitor, Globe, Share2 } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
-import { AIService } from '../../services/AIService';
-import { CloudSyncService } from '../../services/CloudSyncService';
+import { aiService } from '../../services/AIService';
+import { cloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
@@ -53,14 +53,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
   useEffect(() => {
     if (hardware) {
-      AIService.configure(hardware);
-      AIService.startEngine().catch(console.error);
+      aiService.configure(hardware);
+      aiService.startEngine().catch(console.error);
     }
   }, [hardware]);
 
   useEffect(() => {
     if (isAccessGranted) {
-      CloudSyncService.init(); // Inicialización reactiva
+      cloudSyncService.init(); // Inicialización reactiva
     }
   }, [isAccessGranted]);
 

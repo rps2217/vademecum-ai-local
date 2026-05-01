@@ -1,15 +1,25 @@
 import { Product } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
-import { ConfigService } from './ConfigService';
+import { configService } from './ConfigService';
 
 export class OllamaService {
-  private static hosts = ['http://localhost:11434/api', 'http://127.0.0.1:11434/api'];
-  private static activeBaseUrl: string | null = null;
-  private static lastCheckTime = 0;
-  private static lastCheckResult = false;
+  private static instance: OllamaService;
+  private hosts = ['http://localhost:11434/api', 'http://127.0.0.1:11434/api'];
+  private activeBaseUrl: string | null = null;
+  private lastCheckTime = 0;
+  private lastCheckResult = false;
 
-  static async isAvailable(): Promise<boolean> {
-    const config = ConfigService.getConfig();
+  private constructor() {}
+
+  static getInstance(): OllamaService {
+    if (!OllamaService.instance) {
+      OllamaService.instance = new OllamaService();
+    }
+    return OllamaService.instance;
+  }
+
+  async isAvailable(): Promise<boolean> {
+    const config = configService.getConfig();
     if (!config.useOllama) return false;
     
     const now = Date.now();
@@ -58,11 +68,11 @@ export class OllamaService {
     return false;
   }
 
-  private static get baseUrl(): string {
+  private get baseUrl(): string {
     return this.activeBaseUrl || this.hosts[0];
   }
 
-  static async analyzeSynergy(mainProduct: Product, candidates: Product[]): Promise<{
+  async analyzeSynergy(mainProduct: Product, candidates: Product[]): Promise<{
     sugerencia_complementaria: string;
     skus_relacionados: string[];
     explicacion_clinica: string;
@@ -150,7 +160,7 @@ export class OllamaService {
     }
   }
 
-  static async analyzeInteractions(products: Product[]): Promise<any> {
+  async analyzeInteractions(products: Product[]): Promise<any> {
     try {
       const tagsResponse = await fetch(`${this.baseUrl}/tags`);
       const tagsData = await tagsResponse.json();
@@ -201,3 +211,5 @@ export class OllamaService {
     }
   }
 }
+
+export const ollamaService = OllamaService.getInstance();

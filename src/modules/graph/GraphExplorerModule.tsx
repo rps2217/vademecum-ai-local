@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as d3 from 'd3';
-import { DataService } from '../../services/DataService';
+import { dataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
 import { EventBus, EventType } from '../../services/EventBus';
 import { 
@@ -8,8 +8,8 @@ import {
   Sparkles, Info, Maximize2, X, Zap,
   Cloud, CloudOff, Database, CheckCircle2 
 } from 'lucide-react';
-import { CloudSyncService } from '../../services/CloudSyncService';
-import { SynergyBackgroundService } from '../../services/SynergyBackgroundService';
+import { cloudSyncService } from '../../services/CloudSyncService';
+import { synergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface Node extends d3.SimulationNodeDatum {
@@ -62,9 +62,9 @@ export const GraphExplorerModule: React.FC = () => {
 
   useEffect(() => {
     const load = async () => {
-      const all = await DataService.getAllProducts();
+      const all = await dataService.getAllProducts();
       setProducts(all);
-      const cloudOk = await CloudSyncService.checkCloudData();
+      const cloudOk = await cloudSyncService.checkCloudData();
       setIsCloudReady(cloudOk);
     };
     load();
@@ -324,7 +324,7 @@ export const GraphExplorerModule: React.FC = () => {
     const pending = products.filter(p => !p.synergy_analyzed);
     if (pending.length > 0) {
       for (const product of pending) {
-        await SynergyBackgroundService.forceAnalyze(product);
+        await synergyBackgroundService.forceAnalyze(product);
       }
     }
     setIsSyncing(false);
