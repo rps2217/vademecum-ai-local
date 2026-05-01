@@ -4,6 +4,7 @@ import * as ReactWindow from 'react-window';
 import { Product } from '../../../core/types/product.types';
 import { ProductCard } from '../../../components/product/ProductCard';
 import { ProductSkeleton } from '../../../components/product/ProductSkeleton';
+import { getRelatedClinicalTerms } from '../../../constants/clinicalSynonyms';
 
 const { FixedSizeList: List } = ReactWindow as any;
 
@@ -38,28 +39,43 @@ export const SearchResults = React.memo<SearchResultsProps>(({
     // Normalizar la query
     const normQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
     
-    // Crear una expresión regular para límite de palabra
-    // Esto asegura que "gota" coincida con "gota" o "gota," pero no con "agotamiento" o "gotas"
-    // Usamos límites manuales [^a-z] para manejar caracteres latinos normalizados correctamente
-    const wordBoundaryRegex = new RegExp(`(^|[^a-z])${normQuery}($|[^a-z])`, 'i');
+    // Términos relacionados (sinónimos clínicos)
+    const relatedTerms = getRelatedClinicalTerms(query);
+    
+    // Expresión regular para la query exacta con límites de palabra
+    const exactRegex = new RegExp(`(^|[^a-z])${normQuery}($|[^a-z])`, 'i');
+    
+    // Expresión regular para CUALQUIER término relacionado
+    const relatedRegex = new RegExp(`(^|[^a-z])(${relatedTerms.join('|')})($|[^a-z])`, 'i');
 
     const exact: Product[] = [];
     const related: Product[] = [];
     
     results.forEach(product => {
-      // Obtenemos solo las indicaciones para la coincidencia directa clínica
       const indications = (product.indicaciones || []).map(i => 
         String(i).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       );
       
-      // La coincidencia es "DIRECTA" solo si el término aparece como palabra completa
-      const isTherapeuticMatch = indications.some(i => wordBoundaryRegex.test(i));
+      const pName = (product.nombre_comercial || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const pPrincipals = (product.principios_activos || []).map(m => m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+
+      // Coincidencia EXACTA: El término buscado está en las indicaciones
+      const isDirectTherapeuticMatch = indications.some(i => exactRegex.test(i));
+      
+      // Coincidencia RELACIONADA: 
+      // 1. Algún sinónimo está en las indicaciones
+      // 2. El término original está en el nombre o principios activos
+      const isRelatedTherapeuticMatch = indications.some(i => relatedRegex.test(i)) || 
+                                       pName.includes(normQuery) || 
+                                       pPrincipals.some(p => p.includes(normQuery));
                       
-      if (isTherapeuticMatch) {
+      if (isDirectTherapeuticMatch) {
         exact.push(product);
-      } else {
+      } else if (isRelatedTherapeuticMatch) {
         related.push(product);
       }
+      // Si no cumple ninguna de las anteriores (ej: era un match semántico débil), 
+      // lo ignoramos para mantener la calidad clínica de los resultados mostrados
     });
     
     return { exactMatches: exact, relatedMatches: related };
