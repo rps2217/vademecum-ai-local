@@ -37,17 +37,23 @@ export const SearchResults = React.memo<SearchResultsProps>(({
     
     // Normalizar la query
     const normQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    
+    // Crear una expresión regular para límite de palabra
+    // Esto asegura que "gota" coincida con "gota" o "gota," pero no con "agotamiento" o "gotas"
+    // Usamos límites manuales [^a-z] para manejar caracteres latinos normalizados correctamente
+    const wordBoundaryRegex = new RegExp(`(^|[^a-z])${normQuery}($|[^a-z])`, 'i');
+
     const exact: Product[] = [];
     const related: Product[] = [];
     
     results.forEach(product => {
       // Obtenemos solo las indicaciones para la coincidencia directa clínica
-      const indications = (product.indicaciones || []).map(i => String(i).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+      const indications = (product.indicaciones || []).map(i => 
+        String(i).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      );
       
-      // La coincidencia es "DIRERCTA" solo si está en las indicaciones terapéuticas (propósito clínico)
-      // Buscamos coincidencia de palabra completa o frase para evitar "gotas" vs "gota" si es posible,
-      // aunque el includes básico con normalización ya ayuda mucho.
-      const isTherapeuticMatch = indications.some(i => i.includes(normQuery));
+      // La coincidencia es "DIRECTA" solo si el término aparece como palabra completa
+      const isTherapeuticMatch = indications.some(i => wordBoundaryRegex.test(i));
                       
       if (isTherapeuticMatch) {
         exact.push(product);
