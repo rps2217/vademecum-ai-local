@@ -73,36 +73,44 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
   return (
     <ConsultationProvider>
-      <div className="min-h-screen bg-brand-bg text-slate-200">
+      <div className="min-h-screen bg-brand-bg text-slate-200 selection:bg-brand-primary/30 selection:text-white">
         <OfflineIndicator />
+        
+        {/* Static Atmospheric Background - High Performance */}
+        <div className="atmospheric-bg">
+          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-brand-primary/5 to-transparent pointer-events-none" />
+          <div className="spotlight w-[500px] h-[500px] bg-brand-primary/10 -top-48 -left-48" />
+          <div className="spotlight w-[400px] h-[400px] bg-blue-500/5 top-1/4 right-0" />
+        </div>
+
         {/* Top Header - Optimized for mobile */}
-        <header className="sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-md border-b border-slate-800 px-4 py-3 sm:px-6">
+        <header className="sticky top-0 z-[60] bg-brand-bg/40 backdrop-blur-xl border-b border-white/5 px-4 py-3 sm:px-6">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="inline-flex items-center justify-center p-2 bg-emerald-500/10 rounded-lg">
+              <div className="inline-flex items-center justify-center p-2 bg-emerald-500/10 rounded-xl neo-glass">
                 <Activity className="w-5 h-5 text-emerald-500" />
               </div>
               <div>
                 <h1 className="text-sm font-black text-white uppercase tracking-tighter leading-none">
                   Vademecum <span className="text-emerald-500">Pro</span>
                 </h1>
-                <p className="hidden sm:block text-[9px] font-bold text-slate-500 uppercase tracking-[0.2em] mt-1 italic">
+                <p className="hidden sm:block text-[9px] font-bold text-slate-500 uppercase tracking-[0.4em] mt-1 italic">
                   Clinical Intelligence
                 </p>
               </div>
             </div>
 
             {/* Desktop Tabs */}
-            <nav className="hidden md:flex items-center bg-slate-900/50 p-1 rounded-xl border border-slate-700/50">
+            <nav className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-md">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${
                     activeTab === item.id 
-                      ? 'bg-emerald-500 text-slate-950 shadow-lg' 
-                      : 'text-slate-500 hover:text-slate-200 hover:bg-slate-800'
+                      ? 'bg-brand-primary text-white shadow-[0_0_20px_rgba(249,115,22,0.3)]' 
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <item.icon className="w-4 h-4" />
@@ -115,45 +123,47 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
             <div className="flex items-center gap-3">
               <button 
                 onClick={() => setIsCommandPaletteOpen(true)}
-                className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition-all group"
+                className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-all group"
               >
-                <Command className="w-3.5 h-3.5 group-hover:text-brand-accent transition-colors" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">CMD+K</span>
+                <Command className="w-3.5 h-3.5 group-hover:text-brand-primary transition-colors" />
+                <span className="text-[10px] font-bold uppercase tracking-widest opacity-60">CMD+K</span>
               </button>
               <UserMenu />
             </div>
           </div>
         </header>
 
-        <main className="max-w-7xl mx-auto p-4 pb-24 md:pb-16 transition-all duration-300">
+        <main className="max-w-7xl mx-auto p-4 pb-24 md:pb-20 transition-all duration-300">
           {/* Contenido Dinámico con Suspense */}
           <Suspense fallback={<ModuleLoader />}>
-            {activeTab === 'search' && <SearchModule />}
-            {activeTab === 'graph' && <GraphExplorerModule />}
-            {activeTab === 'database' && <DatabaseModule />}
-            {activeTab === 'settings' && <SettingsModule />}
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
+              {activeTab === 'search' && <SearchModule />}
+              {activeTab === 'graph' && <GraphExplorerModule />}
+              {activeTab === 'database' && <DatabaseModule />}
+              {activeTab === 'settings' && <SettingsModule />}
+            </div>
           </Suspense>
         </main>
 
-        {/* Mobile Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 w-full z-[70] md:hidden bg-slate-900/90 backdrop-blur-xl border-t border-slate-800 px-2 py-3 pb-safe">
+        {/* Mobile Bottom Navigation - Enhanced Glass */}
+        <nav className="fixed bottom-0 left-0 w-full z-[70] md:hidden bg-slate-950/40 backdrop-blur-2xl border-t border-white/5 px-2 py-3 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
           <div className="flex items-center justify-around">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex flex-col items-center gap-1.5 relative px-3 ${
-                  activeTab === item.id ? 'text-emerald-500' : 'text-slate-500'
+                className={`flex flex-col items-center gap-1.5 relative px-3 transition-colors duration-300 ${
+                  activeTab === item.id ? 'text-brand-primary' : 'text-slate-500'
                 }`}
               >
-                <div className={`p-2 rounded-xl transition-all duration-300 ${
-                  activeTab === item.id ? 'bg-emerald-500/10 text-emerald-500' : ''
+                <div className={`p-2 rounded-2xl transition-all duration-500 ${
+                  activeTab === item.id ? 'bg-brand-primary/20 text-brand-primary scale-110' : 'hover:bg-white/5'
                 }`}>
-                  <item.icon className="w-6 h-6" />
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <span className="text-[9px] font-bold uppercase tracking-widest opacity-80">{item.label.split(' ')[0]}</span>
                 {activeTab === item.id && (
-                  <div className="absolute -top-3 w-1 h-1 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+                  <div className="absolute -top-3 w-1 h-1 bg-brand-primary rounded-full shadow-[0_0_10px_#f97316]" />
                 )}
               </button>
             ))}

@@ -67,17 +67,40 @@ export class TaskProcessorService {
   }
 
   private async executeTask(task: PendingTask) {
-    console.log(`[TaskProcessor] Ejecutando tarea: ${task.type} (${task.id})`);
-    
-    await taskQueueService.updateTask(task.id, { status: 'processing' });
-
     try {
-      switch (task.type) {
-        case 'cloud_sync':
-          await cloudSyncService.updateProductsBatch([task.payload]);
-          aiOrchestratorService.trackActivity(10);
-          break;
+      if (task.type === 'cloud_sync') {
+        // Bundling logic: Pick up other pending cloud_sync tasks
+        const batchTasks = await taskQueueService.getPendingBatch('cloud_sync', 20);
+        const products = batchTasks.map(t => t.payload);
         
+        console.log(`[TaskProcessor] Procesando paquete de ${products.length} sincronizaciones.`);
+        
+        // Mark all as processing
+        await Promise.all(batchTasks.map(t => 
+          taskQueueService.updateTask(t.id, { status: 'processing' })
+        ));
+
+        try {
+          await cloudSyncService.updateProductsBatch(products);
+          aiOrchestratorService.trackActivity(5 * products.length);
+          
+          // Remove all successful tasks
+          await Promise.all(batchTasks.map(t => taskQueueService.removeTask(t.id)));
+          console.log(`[TaskProcessor] Paquete de ${products.length} completado.`);
+        } catch (error: any) {
+          // Revert or retry individually? For now, we allow standard error handling to set them to failed/pending again
+          for (const t of batchTasks) {
+            await this.handleTaskError(t, error);
+          }
+        }
+        return;
+      }
+
+      // Standard processing for non-batchable tasks
+      console.log(`[TaskProcessor] Ejecutando tarea: ${task.type} (${task.id})`);
+      await taskQueueService.updateTask(task.id, { status: 'processing' });
+
+      switch (task.type) {
         case 'ai_analysis':
           if (task.payload.type === 'synergy') {
             const product = task.payload.product || await dataService.getProductBySku(task.payload.sku);
@@ -104,23 +127,27 @@ export class TaskProcessorService {
       console.log(`[TaskProcessor] Tarea completada: ${task.id}`);
 
     } catch (error: any) {
-      logger.error(`Fallo en tarea ${task.type}`, 'Procesador', error);
-      console.error(`[TaskProcessor] Error ejecutando tarea ${task.id}:`, error);
-      
-      const newRetries = (task.retries || 0) + 1;
-      const status = newRetries >= 5 ? 'failed' : 'pending';
-      
-      // Exponential Backoff: 30s, 2m, 8m, 32m...
-      const backoffMinutes = Math.pow(4, newRetries - 1) * 0.5;
-      const earliestRetryTimestamp = Date.now() + (backoffMinutes * 60 * 1000);
-      
-      await taskQueueService.updateTask(task.id, {
-        status,
-        retries: newRetries,
-        lastError: error.message || String(error),
-        earliestRetryTimestamp: status === 'pending' ? earliestRetryTimestamp : undefined
-      });
+      await this.handleTaskError(task, error);
     }
+  }
+
+  private async handleTaskError(task: PendingTask, error: any) {
+    logger.error(`Fallo en tarea ${task.type}`, 'Procesador', error);
+    console.error(`[TaskProcessor] Error ejecutando tarea ${task.id}:`, error);
+    
+    const newRetries = (task.retries || 0) + 1;
+    const status = newRetries >= 5 ? 'failed' : 'pending';
+    
+    // Exponential Backoff: 30s, 2m, 8m, 32m...
+    const backoffMinutes = Math.pow(4, newRetries - 1) * 0.5;
+    const earliestRetryTimestamp = Date.now() + (backoffMinutes * 60 * 1000);
+    
+    await taskQueueService.updateTask(task.id, {
+      status,
+      retries: newRetries,
+      lastError: error.message || String(error),
+      earliestRetryTimestamp: status === 'pending' ? earliestRetryTimestamp : undefined
+    });
   }
 }
 

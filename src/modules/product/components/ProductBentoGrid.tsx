@@ -14,29 +14,29 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
       
       {/* Descripción */}
-      <div className="col-span-1 md:col-span-2 glass-panel rounded-2xl sm:rounded-4xl p-4 sm:p-8 shrink-0">
+      <div className="col-span-1 md:col-span-2 glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-8 shrink-0 hover:bg-white/10 transition-colors">
         <h3 className="clinical-label mb-3 sm:mb-4 flex items-center gap-2">
           <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Ficha Técnica
         </h3>
-        <p className="text-slate-200 leading-relaxed text-[11px] sm:text-sm font-medium">
+        <div className="text-slate-200 leading-relaxed text-[11px] sm:text-sm font-medium">
           <HighlightText text={product.descripcion} searchTerm={searchTerm} />
-        </p>
+        </div>
       </div>
 
       {/* Análisis de Componentes */}
       {product.analisis_componentes && (
-        <div className="col-span-1 md:col-span-2 glass-panel rounded-2xl sm:rounded-4xl p-4 sm:p-8">
-          <h3 className="clinical-label mb-3 sm:mb-4 flex items-center gap-2 text-indigo-400">
+        <div className="col-span-1 md:col-span-2 glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-8 group">
+          <h3 className="clinical-label mb-3 sm:mb-4 flex items-center gap-2 text-indigo-400 group-hover:text-indigo-300 transition-colors">
             <Cpu className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Análisis Bioquímico IA
           </h3>
-          <div className="text-slate-300 leading-relaxed text-[9px] sm:text-xs whitespace-pre-wrap font-mono bg-slate-900/40 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-800/50 overflow-x-auto">
+          <div className="text-slate-300 leading-relaxed text-[9px] sm:text-xs whitespace-pre-wrap font-mono bg-black/40 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/5 overflow-x-auto selection:bg-indigo-500/30">
             <HighlightText text={product.analisis_componentes} searchTerm={searchTerm} />
           </div>
         </div>
       )}
 
       {/* Indicaciones */}
-      <div className="glass-panel rounded-2xl sm:rounded-4xl p-4 sm:p-6">
+      <div className="glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 hover:bg-white/10 transition-colors">
         <h3 className="clinical-label mb-4 sm:mb-5 flex items-center gap-2 text-brand-accent">
           <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Indicaciones Terapéuticas
         </h3>
@@ -46,7 +46,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
             const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
             return (
               <li key={i} className="flex items-start gap-2 sm:gap-3 text-slate-300">
-                <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-brand-accent mt-1.5 sm:mt-2 shrink-0 shadow-[0_0_8px_rgba(155,236,200,0.4)]" />
+                <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-brand-accent mt-1.5 sm:mt-2 shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
                 <span className="text-[11px] sm:text-sm font-bold leading-relaxed">
                   <HighlightText text={text} searchTerm={searchTerm} />
                 </span>
@@ -57,25 +57,25 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
       </div>
 
       {/* Posología */}
-      <div className="glass-panel rounded-2xl sm:rounded-4xl p-4 sm:p-6">
+      <div className="glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 hover:bg-white/10 transition-colors">
         <h3 className="clinical-label mb-4 sm:mb-5">
           Posología y Recomendación
         </h3>
-        <div className="p-3 sm:p-4 bg-brand-primary/5 rounded-xl sm:rounded-2xl border border-brand-primary/10">
-          <p className="text-brand-primary/90 text-[11px] sm:text-sm leading-relaxed font-bold">
+        <div className="p-3 sm:p-4 bg-brand-primary/10 rounded-xl sm:rounded-2xl border border-brand-primary/20 backdrop-blur-sm">
+          <div className="text-brand-primary text-[11px] sm:text-sm leading-relaxed font-bold">
             <HighlightText text={product.posologia} searchTerm={searchTerm} />
-          </p>
+          </div>
         </div>
       </div>
 
       {/* Advertencias */}
-      <div className="col-span-1 md:col-span-2 bg-rose-500/5 border border-rose-500/20 rounded-2xl sm:rounded-4xl p-4 sm:p-8">
+      <div className="col-span-1 md:col-span-2 bg-rose-500/5 border border-rose-500/20 rounded-2xl sm:rounded-[2rem] p-4 sm:p-8 hover:bg-rose-500/10 transition-colors">
         <h3 className="clinical-label mb-3 sm:mb-4 flex items-center gap-2 text-rose-400">
           <AlertTriangle className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Contraindicaciones y Riesgos
         </h3>
-        <p className="text-rose-200/90 leading-relaxed text-[11px] sm:text-sm font-bold italic">
+        <div className="text-rose-200/90 leading-relaxed text-[11px] sm:text-sm font-bold italic">
           <HighlightText text={product.advertencias} searchTerm={searchTerm} />
-        </p>
+        </div>
       </div>
 
       {/* Perfil de Seguridad */}

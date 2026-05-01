@@ -40,23 +40,14 @@ export class CloudSyncService {
     console.log(`[CloudSync] Procesando lote de ${products.length} productos.`);
     logger.info(`Iniciando sincronización de lote (${products.length} productos)`, 'CloudSync');
     
-    let successCount = 0;
-
-    for (const product of products) {
-      try {
-        await dataService.syncToSupabase(product);
-        successCount++;
-        EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: true });
-      } catch (error) {
-        logger.error(`Error al sincronizar producto ${product.sku}`, 'CloudSync', error);
-        console.error(`[CloudSync] Error sincronizando ${product.sku}:`, error);
-      }
+    try {
+      await dataService.syncProductsBatch(products);
+      products.forEach(p => EventBus.emit(EventType.PRODUCT_UPDATED, { sku: p.sku, synced: true }));
+      return products.length;
+    } catch (error) {
+      logger.error('Fallo en sincronización de lote masivo', 'CloudSync', error);
+      throw error;
     }
-
-    if (successCount > 0) {
-      logger.success(`Sincronización de lote completada: ${successCount} productos actualizados`, 'CloudSync');
-    }
-    return successCount;
   }
 
   async uploadLocalProducts(): Promise<number> {

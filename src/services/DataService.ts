@@ -122,10 +122,25 @@ export class DataService {
   }
 
   async syncToSupabase(product: Product): Promise<void> {
-    if (!navigator.onLine) return;
+    return this.syncProductsBatch([product]);
+  }
+
+  async syncProductsBatch(products: Product[]): Promise<void> {
+    if (!navigator.onLine || products.length === 0) return;
     try {
         const { supabaseUrl, supabaseKey } = this.getSupabaseInfo();
         const now = new Date().toISOString();
+        
+        const payloads = products.map(product => ({
+          sku: product.sku,
+          data: {
+            ...product,
+            synced: true,
+            last_synced: Date.now(),
+            updated_at_cloud: now
+          }
+        }));
+
         const response = await fetch(`${supabaseUrl}/rest/v1/products`, {
             method: 'POST',
             headers: { 
@@ -134,25 +149,29 @@ export class DataService {
                 'Content-Type': 'application/json',
                 'Prefer': 'resolution=merge-duplicates'
             },
-            body: JSON.stringify({ 
-              sku: product.sku, 
-              data: { 
-                ...product, 
-                synced: true, 
-                last_synced: Date.now(),
-                updated_at_cloud: now 
-              }
-            })
+            body: JSON.stringify(payloads)
         });
+
         if (response.ok) {
-            await this.saveProduct({ ...product, synced: true, last_synced: Date.now() }, { silent: true });
-            logger.success(`Producto ${product.sku} respaldado en la nube`, 'CloudSync');
+            const db = await this.getDB();
+            const tx = db.transaction(STORE_NAME, 'readwrite');
+            for (const product of products) {
+              await tx.store.put({ ...product, synced: true, last_synced: Date.now() });
+            }
+            await tx.done;
+            
+            if (products.length === 1) {
+              logger.success(`Producto ${products[0].sku} respaldado en la nube`, 'CloudSync');
+            } else {
+              logger.success(`Lote de ${products.length} productos respaldado en la nube`, 'CloudSync');
+            }
         } else {
             throw new Error(`Status ${response.status}`);
         }
     } catch (e) {
-        logger.error(`Error al respaldar producto ${product.sku}`, 'CloudSync', e);
-        console.error('[DataService] Sync failed', e);
+        const skus = products.map(p => p.sku).join(', ');
+        logger.error(`Error al respaldar lote: ${skus}`, 'CloudSync', e);
+        console.error('[DataService] Batch Sync failed', e);
         throw e;
     }
   }

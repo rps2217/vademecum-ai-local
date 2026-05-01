@@ -85,7 +85,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
   const isGroundingSource = product.source_url === 'google_search' || product.source_url?.includes('google_search');
 
   return (
-    <div className={`group relative flex ${viewMode === 'list' ? 'flex-row gap-3 sm:gap-4' : 'flex-col h-full'} bg-brand-surface rounded-xl p-3 sm:p-4 shadow-sm border border-slate-700/40 hover:border-emerald-500/40 transition-colors duration-200`}>
+    <div className={`group relative flex ${viewMode === 'list' ? 'flex-row gap-3 sm:gap-4' : 'flex-col h-full'} bg-white/5 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-xl border border-white/5 hover:border-brand-primary/40 hover:bg-white/10 transition-all duration-300`}>
       
       <div 
         className={`flex justify-between items-start ${viewMode === 'list' ? 'mb-0' : 'mb-3'} cursor-pointer relative z-10 w-full`}

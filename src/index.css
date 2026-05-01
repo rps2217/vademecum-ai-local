@@ -41,7 +41,19 @@
 }
 
 .glass-panel {
-  @apply bg-brand-surface border border-slate-700/40;
+  @apply bg-brand-surface/60 border border-white/5;
+}
+
+.neo-glass {
+  @apply bg-white/5 border border-white/10 shadow-2xl;
+}
+
+.atmospheric-bg {
+  @apply fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-brand-bg;
+}
+
+.spotlight {
+  @apply absolute rounded-full blur-[100px] opacity-10;
 }
 
 @media print {

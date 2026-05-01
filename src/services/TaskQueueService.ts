@@ -98,6 +98,22 @@ class TaskQueueService {
     return pending.length > 0 ? pending[0] : null;
   }
 
+  async getPendingBatch(type: PendingTask['type'], limit: number = 20): Promise<PendingTask[]> {
+    const tasks = this.getTasksFromStorage();
+    const now = Date.now();
+    return tasks
+      .filter(t => 
+        t.type === type && 
+        t.status === 'pending' && 
+        (!t.earliestRetryTimestamp || t.earliestRetryTimestamp <= now)
+      )
+      .sort((a,b) => (a.priority || 0) === (b.priority || 0) 
+        ? a.timestamp - b.timestamp 
+        : (b.priority || 0) - (a.priority || 0)
+      )
+      .slice(0, limit);
+  }
+
   async getTasks(): Promise<PendingTask[]> {
     return this.getTasksFromStorage();
   }

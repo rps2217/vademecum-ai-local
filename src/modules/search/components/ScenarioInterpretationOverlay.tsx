@@ -40,9 +40,9 @@ export const ScenarioInterpretationOverlay: React.FC<ScenarioInterpretationOverl
       {/* Glow Effect */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-primary/20 via-orange-500/10 to-brand-primary/20 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse" />
       
-      <div className="relative bg-brand-surface border border-brand-primary/20 rounded-2xl overflow-hidden shadow-2xl">
+      <div className="relative bg-brand-bg/40 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(16,185,129,0.1)]">
         {/* Hardware Header */}
-        <div className="bg-slate-900/80 px-4 py-2 flex items-center justify-between border-b border-white/5">
+        <div className="bg-white/5 px-4 py-3 flex items-center justify-between border-b border-white/5">
           <div className="flex items-center gap-2">
             <BrainCircuit className="w-3.5 h-3.5 text-brand-primary" />
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">

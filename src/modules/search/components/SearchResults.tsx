@@ -104,16 +104,17 @@ export const SearchResults = React.memo<SearchResultsProps>(({
             // so we keep standard grid for results < 50 for better UI.
             <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'} gap-4`}>
               {results.map((product) => (
-                <ProductCard 
-                  key={product.sku} 
-                  product={product} 
-                  onViewDetail={onProductClick}
-                  onAddToTray={onAddToTray}
-                  isInTray={isInTray(product.sku)}
-                  onTagClick={onTagClick}
-                  searchTerm={query}
-                  viewMode={viewMode}
-                />
+                <div key={product.sku} className="animate-in fade-in duration-300">
+                  <ProductCard 
+                    product={product} 
+                    onViewDetail={onProductClick}
+                    onAddToTray={onAddToTray}
+                    isInTray={isInTray(product.sku)}
+                    onTagClick={onTagClick}
+                    searchTerm={query}
+                    viewMode={viewMode}
+                  />
+                </div>
               ))}
             </div>
           )}

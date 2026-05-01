@@ -82,32 +82,32 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const hasSynergy = !!product.synergy_analyzed;
 
   const detailContent = (
-    <div className={`bg-brand-surface w-full h-full sm:rounded-[2rem] shadow-2xl shadow-brand-primary/20 border-t sm:border border-slate-800 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''} ${isEmbedded ? 'animate-none shadow-none border-none' : 'animate-in slide-in-from-bottom sm:slide-in-from-right duration-500'}`}>
+    <div className={`bg-brand-bg/40 backdrop-blur-2xl w-full h-full sm:rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] border-t sm:border border-white/5 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''} ${isEmbedded ? 'animate-none shadow-none border-none' : 'animate-in slide-in-from-bottom sm:slide-in-from-right duration-500 ease-out'}`}>
       
       {/* Columna Izquierda: Detalles del Producto */}
-      <div id="product-detail-left-col" className={`w-full p-4 sm:p-8 overflow-y-auto relative bg-brand-bg scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-slate-800' : ''}`}>
+      <div id="product-detail-left-col" className={`w-full p-4 sm:p-8 overflow-y-auto relative bg-transparent scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-white/5' : ''}`}>
         
         {/* Navegación Superior */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8 sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-md -mx-4 px-4 py-2 sm:static sm:mx-0 sm:px-0 sm:py-0 sm:bg-transparent">
+        <div className="flex items-center justify-between mb-6 sm:mb-8 sticky top-0 z-[60] bg-brand-bg/60 backdrop-blur-xl -mx-4 px-4 py-3 sm:static sm:mx-0 sm:px-0 sm:py-0 sm:bg-transparent border-b border-white/5 sm:border-none">
           <div className="flex items-center gap-2 sm:gap-3">
             <button 
               onClick={onClose}
-              className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-300 hover:text-white transition-all border border-slate-700/50 group shadow-lg"
+              className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all border border-white/10 group shadow-xl"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform text-brand-primary" />
-              <span className="font-bold text-[10px] sm:text-xs uppercase tracking-widest">Cerrar</span>
+              <span className="font-black text-[10px] sm:text-xs uppercase tracking-[0.2em]">Cerrar</span>
             </button>
               
             <button 
               onClick={onClose}
-              className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
+              className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-brand-primary transition-all border border-white/10 shadow-xl"
             >
               <Home className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             <button 
               onClick={() => printProductTicket(product)}
-              className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-brand-surface/50 hover:bg-brand-surface text-slate-400 hover:text-brand-primary transition-all border border-slate-700/50 shadow-lg"
+              className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-brand-primary transition-all border border-white/10 shadow-xl"
             >
               <Printer className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
