@@ -9,6 +9,7 @@ import { logger } from './LoggerService';
 export class TaskProcessorService {
   private static instance: TaskProcessorService;
   private isProcessing = false;
+  private isEnabled = true;
   private stopRequested = false;
   private lastCleanup = 0;
 
@@ -19,6 +20,17 @@ export class TaskProcessorService {
       TaskProcessorService.instance = new TaskProcessorService();
     }
     return TaskProcessorService.instance;
+  }
+
+  setEnabled(enabled: boolean) {
+    this.isEnabled = enabled;
+    if (enabled && !this.isProcessing) {
+      this.start();
+    }
+  }
+
+  getStatus() {
+    return this.isEnabled;
   }
 
   async start() {
@@ -39,6 +51,11 @@ export class TaskProcessorService {
   private async processLoop() {
     while (this.isProcessing && !this.stopRequested) {
       try {
+        if (!this.isEnabled) {
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          continue;
+        }
+
         const now = Date.now();
         if (now - this.lastCleanup > 60 * 60 * 1000) {
           await taskQueueService.runCleanup();

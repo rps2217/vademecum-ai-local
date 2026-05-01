@@ -1,8 +1,9 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { Search, Database, Settings, Loader2, Command, Activity, ShieldAlert, Monitor, Globe, Share2 } from 'lucide-react';
+import { Search, Database, Settings, Loader2, Command, Activity, ShieldAlert, Monitor, Globe, Share2, Zap, Snowflake } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { aiService } from '../../services/AIService';
 import { cloudSyncService } from '../../services/CloudSyncService';
+import { taskProcessorService } from '../../services/TaskProcessorService';
 import { useAuth } from '../../context/AuthContext';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
@@ -38,6 +39,24 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { isAccessGranted } = useAuth();
+
+  const [isAiProcessingEnabled, setIsAiProcessingEnabled] = useState(true);
+
+  useEffect(() => {
+    // Sincronizar estado inicial
+    setIsAiProcessingEnabled(taskProcessorService.getStatus());
+  }, []);
+
+  const toggleAiProcessing = () => {
+    const newState = !isAiProcessingEnabled;
+    taskProcessorService.setEnabled(newState);
+    setIsAiProcessingEnabled(newState);
+    if (!newState) {
+      logger.info('Procesamiento IA pausado manualmente (Modo Enfriamiento)', 'Sistema');
+    } else {
+      logger.success('Procesamiento IA reanudado', 'Sistema');
+    }
+  };
 
   // Atajos de teclado globales
   useKeyboardShortcuts({
@@ -115,6 +134,25 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
             {/* Actions */}
             <div className="flex items-center gap-3">
+              <button 
+                onClick={toggleAiProcessing}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all ${
+                  isAiProcessingEnabled 
+                    ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20' 
+                    : 'bg-orange-500/10 border-orange-500/20 text-orange-400 hover:bg-orange-500/20'
+                }`}
+                title={isAiProcessingEnabled ? "Pausar procesamiento IA (Enfriar dispositivo)" : "Reanudar procesamiento IA"}
+              >
+                {isAiProcessingEnabled ? (
+                  <Zap className="w-3.5 h-3.5" />
+                ) : (
+                  <Snowflake className="w-3.5 h-3.5" />
+                )}
+                <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:inline">
+                  {isAiProcessingEnabled ? 'IA Activa' : 'Modo Frío'}
+                </span>
+              </button>
+
               <button 
                 onClick={() => setIsCommandPaletteOpen(true)}
                 className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-all group"
