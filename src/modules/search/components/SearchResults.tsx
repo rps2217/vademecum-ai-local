@@ -64,10 +64,10 @@ export const SearchResults = React.memo<SearchResultsProps>(({
       
       // Coincidencia RELACIONADA: 
       // 1. Algún sinónimo está en las indicaciones
-      // 2. El término original está en el nombre o principios activos
+      // 2. El término original está en el nombre o principios activos (usando regex para evitar "gotas")
       const isRelatedTherapeuticMatch = indications.some(i => relatedRegex.test(i)) || 
-                                       pName.includes(normQuery) || 
-                                       pPrincipals.some(p => p.includes(normQuery));
+                                       exactRegex.test(pName) || 
+                                       pPrincipals.some(p => exactRegex.test(p));
                       
       if (isDirectTherapeuticMatch) {
         exact.push(product);
