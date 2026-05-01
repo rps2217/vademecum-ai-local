@@ -1,6 +1,7 @@
-import React, { forwardRef, useState, useEffect } from 'react';
-import { Search, Loader2, X, Sparkles } from 'lucide-react';
+import React, { forwardRef, useState } from 'react';
+import { Search, Loader2, X, Sparkles, Mic, MicOff } from 'lucide-react';
 import { SearchSuggestions, SearchConcept } from './SearchSuggestions';
+import { useVoiceRecognition } from '../../../hooks/useVoiceRecognition';
 
 interface SearchBarProps {
   query: string;
@@ -23,6 +24,10 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
 }, ref) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
+  const { isListening, supported, startListening } = useVoiceRecognition((text) => {
+    setQuery(text);
+  });
 
   const isQuestion = query.trim().endsWith('?') || 
                     ['¿', 'como', 'qué', 'que', 'para', 'cuál', 'cual', 'donde', 'dónde'].some(word => 
@@ -89,6 +94,16 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
         />
         
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 gap-2">
+          {supported && (
+            <button
+              onClick={startListening}
+              className={`p-2 rounded-xl transition-all ${isListening ? 'bg-rose-500/20 text-rose-500 animate-pulse' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+              title="Dictar búsqueda"
+            >
+              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+            </button>
+          )}
+
           {query && !isQuestion && (
             <button
               onClick={() => {

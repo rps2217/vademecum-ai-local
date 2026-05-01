@@ -1,15 +1,19 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
 import { useProductSearch } from '../../hooks/useProductSearch';
 import { Product, ClinicalSearchInterpretation } from '../../core/types';
-import { ProductDetailModal } from '../product/ProductDetailModal';
+// Lazy loading heavy components
+const ProductDetailModal = lazy(() => import('../product/ProductDetailModal').then(module => ({ default: module.ProductDetailModal })));
+const AIAnalysisModal = lazy(() => import('./components/AIAnalysisModal').then(module => ({ default: module.AIAnalysisModal })));
+
 import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
-import { AIAnalysisModal } from './components/AIAnalysisModal';
 import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
 import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretationOverlay';
 import { RecentlyViewed } from './components/RecentlyViewed';
 import { useConsultation } from '../../context/ConsultationContext';
+import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
+import { logger } from '../../services/LoggerService';
 import { Brain, LayoutGrid, List } from 'lucide-react';
 import { AIService } from '../../services/AIService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
@@ -32,6 +36,17 @@ export const SearchModule: React.FC = () => {
   const { toggleProduct, isInTray } = useTray();
   const { selectedProducts } = useConsultation();
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useKeyboardShortcuts({
+    'Control+k': () => {
+      logger.info('Buscador enfocado vía shortcut CTRL+K');
+      searchInputRef.current?.focus();
+    },
+    'Escape': () => {
+      if (selectedProduct) setSelectedProduct(null);
+      else if (query) setQuery('');
+    }
+  });
 
   // Generar sugerencias conceptuales basadas en patologías frecuentes y moléculas en resultados
   const conceptualSuggestions = useMemo(() => {
@@ -115,7 +130,7 @@ export const SearchModule: React.FC = () => {
   }, [toggleProduct]);
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto pb-20 px-2 sm:px-4 lg:px-6 relative min-h-[70vh] flex flex-col pt-2">
+    <div className="w-full max-w-[1200px] mx-auto pb-20 px-2 sm:px-4 lg:px-6 relative min-h-[70vh] flex flex-col pt-2 bg-brand-bg">
       
       {/* Search Header / Navigation Area */}
       {!selectedProduct && (
@@ -147,16 +162,18 @@ export const SearchModule: React.FC = () => {
       {/* Detail View (Integrated instead of Modal) */}
       {selectedProduct ? (
         <div className="w-full animate-in fade-in duration-150">
-           <ProductDetailModal 
-              product={selectedProduct} 
-              onClose={() => setSelectedProduct(null)} 
-              searchTerm={query}
-              onTagClick={(tag) => {
-                setSelectedProduct(null);
-                handleTagClick(tag);
-              }}
-              isEmbedded={true}
-            />
+          <Suspense fallback={null}>
+            <ProductDetailModal 
+                product={selectedProduct} 
+                onClose={() => setSelectedProduct(null)} 
+                searchTerm={query}
+                onTagClick={(tag) => {
+                  setSelectedProduct(null);
+                  handleTagClick(tag);
+                }}
+                isEmbedded={true}
+              />
+          </Suspense>
         </div>
       ) : (
         /* Resultados e Interpretación */
@@ -205,13 +222,15 @@ export const SearchModule: React.FC = () => {
       )}
 
       {/* Modal de Análisis IA */}
-      {showAiAnalysis && (
-        <AIAnalysisModal 
-          query={query}
-          results={results}
-          onClose={() => setShowAiAnalysis(false)}
-        />
-      )}
+      <Suspense fallback={null}>
+        {showAiAnalysis && (
+          <AIAnalysisModal 
+            query={query}
+            results={results}
+            onClose={() => setShowAiAnalysis(false)}
+          />
+        )}
+      </Suspense>
     </div>
   );
 };

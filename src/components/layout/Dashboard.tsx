@@ -13,6 +13,7 @@ import { Product } from '../../core/types/product.types';
 import { ProductDetailModal } from '../../modules/product/ProductDetailModal';
 import { ConsultationProvider } from '../../context/ConsultationContext';
 import { ClinicalBrainTray } from '../tray/ClinicalBrainTray';
+import { OfflineIndicator } from '../common/OfflineIndicator';
 
 // Lazy load modules
 const SearchModule = lazy(() => import('../../modules/search/SearchModule').then(m => ({ default: m.SearchModule })));
@@ -73,6 +74,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   return (
     <ConsultationProvider>
       <div className="min-h-screen bg-brand-bg text-slate-200">
+        <OfflineIndicator />
         {/* Top Header - Optimized for mobile */}
         <header className="sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-md border-b border-slate-800 px-4 py-3 sm:px-6">
           <div className="max-w-7xl mx-auto flex items-center justify-between">

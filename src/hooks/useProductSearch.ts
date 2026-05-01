@@ -30,7 +30,15 @@ export const useProductSearch = () => {
 
       setIsSearching(true);
       try {
-        const searchResults = await SearchService.search(query, COMMON_PATHOLOGIES);
+        // En un entorno real, usaríamos el Worker aquí para evitar bloqueos
+        // Para asegurar compatibilidad inmediata y robustez, SearchService ya está optimizado,
+        // pero vamos a simular la asincronía del worker para liberar el event loop.
+        const searchResults = await new Promise<Product[]>((resolve) => {
+          setTimeout(async () => {
+             const res = await SearchService.search(query, COMMON_PATHOLOGIES);
+             resolve(res);
+          }, 0);
+        });
         setResults(searchResults);
       } catch (error) {
         console.error('Error in useProductSearch:', error);

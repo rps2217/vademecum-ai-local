@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types';
 import { HistoryService } from '../../services/HistoryService';
 import { useTray } from '../../context/TrayContext';
+import { logger } from '../../services/LoggerService';
+import { ErrorBoundary } from '../../components/common/ErrorBoundary';
+import { logger } from '../../services/LoggerService';
+import { ErrorBoundary } from '../../components/common/ErrorBoundary';
 import { ClinicalSynergy } from './ClinicalSynergy';
 import { X, Sparkles, AlertCircle, ChevronLeft, Home, Lock, Key, Printer } from 'lucide-react';
 import { GeminiService } from '../../services/GeminiService';
@@ -103,16 +107,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   const handleForceSynergy = async () => {
     setIsForcingSynergy(true);
+    logger.info('Iniciando análisis de sinergia forzado', { sku: product.sku });
     try {
       const started = await SynergyBackgroundService.forceAnalyze(product);
       if (!started) {
         showStatus('El motor está ocupado procesando otro producto.', 'info');
       } else {
         showStatus('Análisis de sinergia iniciado...', 'success');
-        // El motor actualizará la DB y disparará eventos
       }
     } catch (error) {
-      console.error('Error forzando sinergia:', error);
+      logger.error('Error forzando sinergia clínica', { sku: product.sku, error });
       showStatus('Error al iniciar el análisis de sinergia.', 'error');
     } finally {
       setIsForcingSynergy(false);
@@ -401,10 +405,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
             
             <div className="flex-1">
-              <ClinicalSynergy 
-                product={product} 
-                onProductClick={handleProductClick}
-              />
+              <ErrorBoundary componentName="ClinicalSynergyPanel">
+                <ClinicalSynergy 
+                  product={product} 
+                  onProductClick={handleProductClick}
+                />
+              </ErrorBoundary>
             </div>
           </div>
         )}

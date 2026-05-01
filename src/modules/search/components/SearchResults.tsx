@@ -1,8 +1,11 @@
 import React from 'react';
 import { Database, Search } from 'lucide-react';
+import * as ReactWindow from 'react-window';
 import { Product } from '../../../core/types/product.types';
 import { ProductCard } from '../../../components/product/ProductCard';
 import { ProductSkeleton } from '../../../components/product/ProductSkeleton';
+
+const { FixedSizeList: List } = ReactWindow as any;
 
 interface SearchResultsProps {
   results: Product[];
@@ -29,6 +32,29 @@ export const SearchResults = React.memo<SearchResultsProps>(({
   onClearFilters,
   viewMode
 }) => {
+  // Virtual list configuration
+  const itemHeight = viewMode === 'grid' ? 240 : 120; // Estimated height for list/grid rows
+  const listHeight = 800; // Fixed container height
+
+  const Row = ({ index, style }: { index: number, style: React.CSSProperties }) => {
+    const product = results[index];
+    if (!product) return null;
+
+    return (
+      <div style={style} className="px-2 pb-3">
+        <ProductCard 
+          product={product} 
+          onViewDetail={onProductClick}
+          onAddToTray={onAddToTray}
+          isInTray={isInTray(product.sku)}
+          onTagClick={onTagClick}
+          searchTerm={query}
+          viewMode={viewMode}
+        />
+      </div>
+    );
+  };
+
   if (isSearching && results.length === 0) {
     return (
       <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' : 'grid-cols-1'} gap-4 animate-in fade-in duration-500`}>
@@ -45,8 +71,8 @@ export const SearchResults = React.memo<SearchResultsProps>(({
 
   if (results.length > 0) {
     return (
-      <div>
-        <p className="text-sm text-slate-400 mb-4 font-medium px-2 flex items-center justify-between">
+      <div className="w-full">
+        <div className="text-sm text-slate-400 mb-4 font-medium px-2 flex items-center justify-between">
           <span>
             {results.length === 50 ? 'Más de 50' : results.length} resultados 
             {query.trim() && ` para "${query}"`}
@@ -57,20 +83,40 @@ export const SearchResults = React.memo<SearchResultsProps>(({
           >
             Limpiar búsqueda
           </button>
-        </p>
-        <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'} gap-4`}>
-          {results.map((product) => (
-            <ProductCard 
-              key={product.sku} 
-              product={product} 
-              onViewDetail={onProductClick}
-              onAddToTray={onAddToTray}
-              isInTray={isInTray(product.sku)}
-              onTagClick={onTagClick}
-              searchTerm={query}
-              viewMode={viewMode}
-            />
-          ))}
+        </div>
+        
+        {/* Virtualized list for better scroll performance */}
+        <div className="w-full">
+          {viewMode === 'list' ? (
+            <div className="border border-slate-800/30 rounded-2xl overflow-hidden bg-brand-surface/20">
+              <List
+                height={Math.min(results.length * itemHeight, listHeight)}
+                itemCount={results.length}
+                itemSize={itemHeight}
+                width="100%"
+              >
+                {Row}
+              </List>
+            </div>
+          ) : (
+            // Grid mode still uses simple map for better responsive layouts, 
+            // but wrapped in the same logic. Virtualizing fixed grids is complex,
+            // so we keep standard grid for results < 50 for better UI.
+            <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'} gap-4`}>
+              {results.map((product) => (
+                <ProductCard 
+                  key={product.sku} 
+                  product={product} 
+                  onViewDetail={onProductClick}
+                  onAddToTray={onAddToTray}
+                  isInTray={isInTray(product.sku)}
+                  onTagClick={onTagClick}
+                  searchTerm={query}
+                  viewMode={viewMode}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
