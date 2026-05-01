@@ -35,20 +35,25 @@ export const SearchResults = React.memo<SearchResultsProps>(({
   const { exactMatches, relatedMatches } = React.useMemo(() => {
     if (!query.trim()) return { exactMatches: results, relatedMatches: [] };
     
+    // Normalizar la query
     const normQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
     const exact: Product[] = [];
     const related: Product[] = [];
     
     results.forEach(product => {
-      const name = (product.nombre_comercial || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      // Obtenemos solo las indicaciones para la coincidencia directa clínica
       const indications = (product.indicaciones || []).map(i => String(i).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-      const principals = (product.principios_activos || []).map(m => m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
       
-      const isExact = name.includes(normQuery) || 
-                      indications.some(i => i.includes(normQuery)) || 
-                      principals.some(p => p.includes(normQuery));
+      // La coincidencia es "DIRERCTA" solo si está en las indicaciones terapéuticas (propósito clínico)
+      // Buscamos coincidencia de palabra completa o frase para evitar "gotas" vs "gota" si es posible,
+      // aunque el includes básico con normalización ya ayuda mucho.
+      const isTherapeuticMatch = indications.some(i => i.includes(normQuery));
                       
-      if (isExact) exact.push(product); else related.push(product);
+      if (isTherapeuticMatch) {
+        exact.push(product);
+      } else {
+        related.push(product);
+      }
     });
     
     return { exactMatches: exact, relatedMatches: related };
