@@ -13,18 +13,21 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Safely handle potentially null/undefined insights to prevent 'Cannot convert undefined or null to object'
+  const safeInsights = insights && typeof insights === 'object' ? insights : {};
+
   useEffect(() => {
     const fetchInsights = async () => {
       // Si ya tenemos anotaciones o no hay ingredientes, no hacemos nada
-      if (Object.keys(insights).length > 0 || !product.principios_activos || product.principios_activos.length === 0) {
+      if (Object.keys(safeInsights).length > 0 || !product.principios_activos || product.principios_activos.length === 0) {
         return;
       }
 
       setIsLoading(true);
       setError(null);
       try {
-        const result = await aiService.explainIngredients(product.nombre_comercial, product.principios_activos);
-        if (result && Object.keys(result).length > 0) {
+        const result = (await aiService.explainIngredients(product.nombre_comercial, product.principios_activos)) as Record<string, string>;
+        if (result && typeof result === 'object' && Object.keys(result).length > 0) {
           setInsights(result);
           // Persistimos en la base de datos local para no tener que consultarlo de nuevo
           import('../../../services/DataService').then(({ dataService }) => {
@@ -46,7 +49,7 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
     fetchInsights();
   }, [product.sku, product.principios_activos, product.nombre_comercial]);
 
-  if (product.principios_activos.length === 0) return null;
+  if (!product.principios_activos || product.principios_activos.length === 0) return null;
 
   return (
     <div className="bg-slate-900/40 border border-white/5 rounded-2xl p-5 mb-6">
@@ -64,7 +67,7 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
       </div>
 
       <div className="space-y-3">
-        {isLoading && Object.keys(insights).length === 0 ? (
+        {isLoading && Object.keys(safeInsights).length === 0 ? (
           <div className="space-y-2">
              {[1, 2].map(i => (
                <div key={i} className="h-16 bg-white/5 rounded-xl animate-pulse" />
@@ -76,7 +79,7 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
             {error}
           </div>
         ) : (
-          Object.entries(insights).map(([ingredient, explanation], index) => {
+          Object.entries(safeInsights).map(([ingredient, explanation], index) => {
             const isMain = explanation.includes('(PA)');
             const cleanExplanation = explanation.replace('(PA)', '').trim();
 
