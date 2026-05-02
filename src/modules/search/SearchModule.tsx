@@ -21,7 +21,6 @@ import { searchService } from '../../services/SearchService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
-import { QuickCategoryFilters } from './components/QuickCategoryFilters';
 
 import { useSearch } from '../../context/SearchContext';
 
@@ -38,7 +37,6 @@ export const SearchModule: React.FC = () => {
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
   const [activeFilters, setActiveFilters] = useState<{ avoid: string[]; prefer: string[] } | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
   const [isInterpreting, setIsInterpreting] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [recentTerms, setRecentTerms] = useState<string[]>([]);
@@ -69,29 +67,6 @@ export const SearchModule: React.FC = () => {
   const filteredResults = useMemo(() => {
     let base = [...results];
     
-    // Si no hay query pero hay categoría, usamos todos los productos como base
-    if (results.length === 0 && !isSearching && activeCategory && query.trim() === '') {
-      base = searchService.getAllIndexedProducts();
-    }
-
-    // Filter by active category chip
-    if (activeCategory) {
-      const cat = activeCategory.toLowerCase();
-      // Búsqueda más robusta: quitamos 's' final para singular/plural y normalizamos
-      const catRoot = cat.endsWith('s') ? cat.slice(0, -1) : cat;
-      const normalizedCat = catRoot.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-      base = base.filter(p => {
-        const pCat = (p.categoria_principal || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        const pInds = (p.indicaciones || []).map(i => String(i).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-        const pMol = (p.principios_activos || []).map(m => m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-        
-        return pCat.includes(normalizedCat) || 
-               pInds.some(ind => ind.includes(normalizedCat)) ||
-               pMol.some(m => m.includes(normalizedCat));
-      });
-    }
-
     if (!activeFilters) return base;
     
     return base.sort((a, b) => {
@@ -209,14 +184,12 @@ export const SearchModule: React.FC = () => {
   const handleTagClick = React.useCallback((tag: string) => {
     setQuery(tag);
     setActiveFilters(null);
-    setActiveCategory(undefined);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [setQuery]);
 
   const handleClearAll = React.useCallback(() => {
     setQuery('');
     setActiveFilters(null);
-    setActiveCategory(undefined);
     searchInputRef.current?.focus();
   }, [setQuery]);
 
@@ -231,29 +204,14 @@ export const SearchModule: React.FC = () => {
   return (
     <div className="w-full max-w-[1200px] mx-auto pb-20 px-2 sm:px-4 lg:px-6 relative min-h-[70vh] flex flex-col pt-4">
       
-      {/* Search Header / Navigation Area */}
-      {!selectedProduct && (
-        <div className="relative py-2 w-full mb-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="animate-in fade-in duration-300 delay-150">
-              <QuickCategoryFilters 
-                activeCategory={activeCategory} 
-                onSelect={(cat) => {
-                  setActiveCategory(prev => prev === cat ? undefined : cat);
-                }} 
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
+      {/* Search Header Area */}
       {!selectedProduct && (
         <div className="w-full">
-            {(query.trim() === '' && results.length === 0) || activeCategory ? (
+            {(query.trim() === '' && results.length === 0) ? (
               <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
                 {query.trim() === '' && (
                   <>
-                    {recentTerms.length > 0 && !activeCategory && (
+                    {recentTerms.length > 0 && (
                       <div className="mb-6">
                         <div className="flex items-center gap-2 mb-3 text-slate-500 pl-2">
                            <History className="w-3.5 h-3.5" />
@@ -272,37 +230,9 @@ export const SearchModule: React.FC = () => {
                         </div>
                       </div>
                     )}
-                    {!activeCategory && <QuickDiscoveryTags onSelect={setQuery} />}
-                    {!activeCategory && <RecentlyViewed onProductClick={handleProductClick} />}
+                    <QuickDiscoveryTags onSelect={setQuery} />
+                    <RecentlyViewed onProductClick={handleProductClick} />
                   </>
-                )}
-
-                {activeCategory && filteredResults.length > 0 && query.trim() === '' && (
-                  <div className="mt-4">
-                    <div className="flex items-center gap-2 mb-4 text-emerald-400 pl-2">
-                       <LayoutGrid className="w-4 h-4" />
-                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">Sugerencias de {activeCategory}</span>
-                    </div>
-                    <SearchResults 
-                      results={filteredResults}
-                      query={""}
-                      conditionFilters={[]}
-                      showOnlyVerified={false}
-                      isSearching={isSearching}
-                      isInTray={isInTray}
-                      onProductClick={handleProductClick}
-                      onAddToTray={handleAddToTray}
-                      onTagClick={handleTagClick}
-                      onClearFilters={handleClearAll}
-                      viewMode={viewMode}
-                    />
-                  </div>
-                )}
-
-                {activeCategory && filteredResults.length === 0 && query.trim() === '' && (
-                  <div className="p-10 text-center text-slate-500 bg-white/5 rounded-2xl border border-white/5">
-                    No se encontraron productos en la categoría "{activeCategory}" actualmente.
-                  </div>
                 )}
               </div>
             ) : null}

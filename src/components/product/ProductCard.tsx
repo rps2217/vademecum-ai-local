@@ -85,126 +85,67 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
   const isGroundingSource = product.source_url === 'google_search' || product.source_url?.includes('google_search');
 
   return (
-    <div className={`group relative flex ${viewMode === 'list' ? 'flex-row gap-3 sm:gap-4' : 'flex-col h-full'} bg-white/5 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-xl border border-white/5 hover:border-brand-primary/40 hover:bg-white/10 transition-all duration-300`}>
+    <div className={`group relative flex ${viewMode === 'list' ? 'flex-row gap-3 sm:gap-4' : 'flex-col h-full'} bg-white/5 backdrop-blur-md rounded-2xl p-3 shadow-xl border border-white/5 hover:border-brand-primary/40 hover:bg-brand-primary/[0.03] transition-all duration-300`}>
       
       <div 
-        className={`flex justify-between items-start ${viewMode === 'list' ? 'mb-0' : 'mb-3'} cursor-pointer relative z-10 w-full`}
+        className={`flex justify-between items-start ${viewMode === 'list' ? 'mb-0' : 'mb-2'} cursor-pointer relative z-10 w-full`}
         onClick={() => onViewDetail?.(product)}
       >
         <div className="flex-1 min-w-0 pr-2">
-          <div className="flex flex-wrap items-center gap-1.5 mb-1">
+          <div className="flex flex-wrap items-center gap-1.5 mb-1 text-[10px]">
             {product.is_verified && (
-              <span className="flex items-center gap-1 px-1 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[6px] sm:text-[7px] font-black text-emerald-400 uppercase tracking-widest">
-                VERIFICADO
+              <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold uppercase tracking-widest text-[7px]">
+                Verificado
               </span>
             )}
-            {product.sugerencia_complementaria && (
-              <span className="flex items-center gap-1 px-1 py-0.5 rounded bg-brand-primary/10 border border-brand-primary/20 text-[6px] sm:text-[7px] font-black text-brand-primary uppercase tracking-widest animate-pulse">
-                VENTA INTELIGENTE
+            {product.categoria_principal && (
+              <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-slate-800 text-slate-400 font-bold uppercase tracking-widest text-[7px]">
+                {product.categoria_principal}
               </span>
             )}
           </div>
-          <h3 className="text-sm sm:text-base font-bold text-white leading-tight group-hover:text-emerald-500 transition-colors line-clamp-2">
+          <h3 className="text-sm font-bold text-white leading-snug group-hover:text-brand-primary transition-colors line-clamp-1">
             <HighlightText text={capitalizeFirst(product.nombre_comercial)} searchTerm={searchTerm} />
           </h3>
-          <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium mt-0.5 truncate">
+          <p className="text-[11px] text-slate-500 font-medium truncate italic">
             <HighlightText text={capitalizeFirst(formatArrayToString(product.principios_activos, ', '))} searchTerm={searchTerm} />
           </p>
         </div>
-        <div className="text-[8px] sm:text-[9px] font-mono text-slate-500 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-800 whitespace-nowrap">
-          {product.sku.substring(0, 8)}
-        </div>
       </div>
 
-      <div className={`mb-3 sm:mb-4 flex-1 cursor-pointer flex ${viewMode === 'list' ? 'hidden sm:flex flex-row gap-6' : 'flex-col gap-3'} relative z-10`} onClick={() => onViewDetail?.(product)}>
-        {/* Indicaciones */}
-        <div>
-          <p className="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-slate-600 mb-1">Indicaciones</p>
-          <div className="text-[10px] sm:text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
+      <div className={`flex-1 cursor-pointer relative z-10 flex flex-col`} onClick={() => onViewDetail?.(product)}>
+        {/* Indicaciones - Large and clear Area */}
+        <div className="mt-2 p-3 rounded-xl bg-white/[0.03] border border-white/5 group-hover:border-brand-primary/20 transition-all">
+          <p className="text-[8px] uppercase font-black tracking-[0.2em] text-slate-600 mb-2">Indicaciones Principales</p>
+          <div className="text-[11px] sm:text-[12px] text-slate-300 line-clamp-4 leading-relaxed font-medium">
             <HighlightText text={capitalizeFirst(formatArrayToString(product.indicaciones, ' • '))} searchTerm={searchTerm} />
           </div>
         </div>
-
-        {/* Semáforo Integrado */}
-        <div className="grid grid-cols-3 gap-1 sm:gap-1.5">
-          {[
-            { label: 'EMB', status: product.apto_embarazo },
-            { label: 'LAC', status: product.apto_lactancia },
-            { label: 'PED', status: product.apto_pediatria }
-          ].map((item, i) => (
-            <div key={i} className={`flex flex-col sm:flex-row items-center justify-between px-1.5 sm:px-2 py-1 rounded-lg border text-[7px] sm:text-[8px] font-bold tracking-tighter ${getSafetyColor(item.status)}`}>
-              <span className="mb-0.5 sm:mb-0">{item.label}</span>
-              {getSafetyIcon(item.status)}
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* Tags de IA - Minimal - Hidden on small mobile to save space if needed, or smaller */}
-      {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
-        <div className={`mb-3 sm:mb-4 flex flex-wrap gap-1 relative z-10 ${viewMode === 'list' ? 'hidden sm:flex' : ''}`}>
-          {product.tags_ia.slice(0, 2).map(tag => (
-            <button 
-              key={tag} 
-              onClick={(e) => {
-                e.stopPropagation();
-                onTagClick?.(tag);
-              }}
-              className="px-1.5 sm:px-2 py-0.5 rounded bg-slate-800/50 border border-slate-700/50 text-[7px] sm:text-[8px] font-bold text-slate-500 hover:text-emerald-500 transition-colors uppercase tracking-tight"
-            >
-              #{tag}
-            </button>
-          ))}
+      {/* Footer Area - Minimal */}
+      <div className="mt-3 flex items-center justify-between relative z-10">
+        <div className="flex flex-wrap gap-1">
+           {Array.isArray(product.tags_ia) && product.tags_ia.slice(0, 2).map(tag => (
+              <span key={tag} className="text-[9px] text-slate-600 font-bold uppercase">#{tag}</span>
+           ))}
         </div>
-      )}
-
-      {/* Botones de Acción - Compactos */}
-      <div className={`mt-auto pt-3 sm:pt-4 border-t border-slate-800/60 flex items-center gap-1.5 sm:gap-2 relative z-10 ${viewMode === 'list' ? 'ml-auto' : ''}`}>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onAddToTray?.(product);
-          }}
-          className={`flex items-center justify-center gap-1.5 sm:gap-2 h-8 sm:h-9 px-2 sm:px-3 rounded-lg text-[8px] sm:text-[9px] font-bold uppercase tracking-tight transition-colors flex-1 min-w-[70px] sm:min-w-0 ${
-            isInTray 
-              ? 'bg-emerald-500 text-slate-950' 
-              : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
-          }`}
-        >
-          {isInTray ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
-          <span className="truncate">{isInTray ? 'En Lista' : 'Comparar'}</span>
-        </button>
-
-        <div className="flex items-center gap-1.5">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (isSelectedForBrain) {
-                removeFromConsultation(product.sku);
-              } else {
-                addToConsultation(product);
-              }
-            }}
-            className={`h-8 w-8 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg transition-colors ${
-              isSelectedForBrain 
-                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20' 
-                : 'bg-slate-800 text-slate-500 hover:text-emerald-500'
-            }`}
-            title={isSelectedForBrain ? 'Quitar del análisis' : 'Analizar Sinergias'}
-          >
-            <Brain className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isSelectedForBrain ? 'animate-pulse' : ''}`} />
-          </button>
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handlePrintTicket();
-            }}
-            className="h-8 w-8 sm:h-9 sm:w-9 flex items-center justify-center rounded-lg bg-slate-800 text-slate-500 hover:text-white transition-colors"
-            title="Imprimir Ticket (80mm)"
-          >
-            <Printer className="w-3 h-3 sm:w-4 sm:h-4" />
-          </button>
+        
+        <div className="flex items-center gap-2">
+           <button
+             onClick={(e) => {
+               e.stopPropagation();
+               onAddToTray?.(product);
+             }}
+             className={`p-1.5 rounded-lg transition-all ${
+               isInTray 
+                 ? 'bg-emerald-500 text-slate-950' 
+                 : 'bg-white/5 text-slate-500 hover:bg-brand-primary/20 hover:text-brand-primary'
+             }`}
+             title={isInTray ? 'En Lista' : 'Añadir a Consulta'}
+           >
+             {isInTray ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+           </button>
         </div>
       </div>
     </div>

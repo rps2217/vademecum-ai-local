@@ -33,7 +33,7 @@ export const SearchResults = React.memo<SearchResultsProps>(({
   onClearFilters,
   viewMode
 }) => {
-  const { exactMatches, relatedMatches, activeKit } = React.useMemo(() => {
+  const { exactMatches, relatedMatches } = React.useMemo(() => {
     if (!query.trim()) return { exactMatches: results, relatedMatches: [] };
     
     // Normalizar la query
@@ -80,28 +80,7 @@ export const SearchResults = React.memo<SearchResultsProps>(({
       }
     });
     
-    // Identificar si la búsqueda es una patología para ofrecer "Venta Sugerida"
-    const suggestedKits: Record<string, { title: string, products: string[], reason: string }> = {
-      'gripe': {
-        title: 'Tratamiento Antigripal Completo',
-        products: ['Antigripal', 'Vitamina C', 'Paracetamol'],
-        reason: 'Combinar el alivio de síntomas con refuerzo inmunológico reduce el tiempo de recuperación.'
-      },
-      'alergia': {
-        title: 'Control de Alergia Total',
-        products: ['Antihistamínico', 'Spray Nasal', 'Colirio Lubricante'],
-        reason: 'Tratar los síntomas sistémicos y locales previene complicaciones secundarias.'
-      },
-      'dolor': {
-        title: 'Alivio del Dolor Potenciado',
-        products: ['Analgesico', 'Complejo B', 'Relajante Muscular'],
-        reason: 'El uso de coadyuvantes permite reducir la dosis del analgésico principal.'
-      }
-    };
-
-    const activeKit = suggestedKits[normQuery] || null;
-    
-    return { exactMatches: exact, relatedMatches: related, activeKit };
+    return { exactMatches: exact, relatedMatches: related };
   }, [results, query]);
 
   if (isSearching && results.length === 0) {
@@ -169,40 +148,6 @@ export const SearchResults = React.memo<SearchResultsProps>(({
         </div>
         
         <div className="w-full">
-          {activeKit && (
-            <div className="mb-10 p-5 rounded-3xl bg-gradient-to-br from-indigo-500/20 via-brand-primary/10 to-transparent border border-brand-primary/20 shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-700">
-              <div className="absolute top-0 right-0 p-8 opacity-10">
-                <Sparkles className="w-24 h-24 text-brand-primary" />
-              </div>
-              
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="px-2 py-0.5 rounded bg-brand-primary text-slate-950 text-[9px] font-black uppercase tracking-widest">
-                      Oportunidad de Venta
-                    </div>
-                    <span className="text-[10px] font-bold text-brand-primary uppercase tracking-widest">Recomendación Clínica</span>
-                  </div>
-                  <h4 className="text-xl font-black text-white mb-2 leading-none">{activeKit.title}</h4>
-                  <p className="text-sm text-slate-400 font-medium max-w-xl italic">"{activeKit.reason}"</p>
-                </div>
-
-                <div className="flex flex-wrap gap-2 md:justify-end">
-                  {activeKit.products.map(p => (
-                    <button 
-                      key={p}
-                      onClick={() => onTagClick(p)}
-                      className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/5 text-xs font-bold text-white hover:border-brand-primary transition-all flex items-center gap-2"
-                    >
-                      <Plus className="w-3 h-3 text-brand-primary" />
-                      {p}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
           {renderGrid(exactMatches, "Coincidencias Directas", Target, "text-emerald-400")}
           
           {exactMatches.length > 0 && relatedMatches.length > 0 && (
