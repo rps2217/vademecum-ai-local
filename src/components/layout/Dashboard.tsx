@@ -191,11 +191,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 onSelectConcept={(concept) => setQuery(concept.label)}
                 onAiQuery={() => setShowAiAnalysis(true)}
                 onEnter={(currentValue) => {
-                  const exactMatch = searchService.getLatestResults().find(p => p.sku === currentValue.trim()) || 
-                                     searchService.getAllIndexedProducts().find(p => p.sku === currentValue.trim());
+                  const searchLower = currentValue.trim().toLowerCase();
+                  const exactMatch = searchService.getLatestResults().find(p => p.sku.toLowerCase() === searchLower) || 
+                                     searchService.getAllIndexedProducts().find(p => p.sku.toLowerCase() === searchLower);
                   if (exactMatch) {
-                    window.dispatchEvent(new CustomEvent('open_product', { detail: exactMatch }));
                     if (activeTab !== 'search') setActiveTab('search');
+                    setTimeout(() => {
+                      window.dispatchEvent(new CustomEvent('open_product', { detail: exactMatch }));
+                    }, 100);
                   }
                 }}
                 className="transition-all duration-300"

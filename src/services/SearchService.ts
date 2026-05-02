@@ -122,8 +122,8 @@ export class SearchService {
     const autoFilters = this.detectSafetyFilters(normalizedQuery);
     
     // 0. Exact SKU Match check
-    const trimmedQuery = query.trim();
-    const exactSkuMatch = this.index.find(i => i.product.sku === trimmedQuery);
+    const trimmedQuery = query.trim().toLowerCase();
+    const exactSkuMatch = this.index.find(i => i.product.sku.toLowerCase() === trimmedQuery);
     
     if (exactSkuMatch) {
       this.latestResults = [exactSkuMatch.product];

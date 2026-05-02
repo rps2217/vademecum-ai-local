@@ -50,6 +50,8 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
         onAiQuery();
       } else if (onEnter) {
         onEnter(e.currentTarget.value);
+        e.currentTarget.blur();
+        setShowSuggestions(false);
       }
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
