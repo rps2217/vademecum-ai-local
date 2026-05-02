@@ -21,6 +21,7 @@ type WorkerMessage =
   | { type: 'ANALYZE_CLINICAL'; payload: { product: any; candidates: any[]; type: 'synergy' | 'alternatives' } }
   | { type: 'INTERPRET_SEARCH'; payload: { query: string } }
   | { type: 'STANDARDIZE_TAGS'; payload: { tags: string[] } }
+  | { type: 'EXPLAIN_INGREDIENTS'; payload: { productName: string; ingredients: string[] } }
   | { type: 'HEALTH_CHECK' }
   | { type: 'PURGE_CACHE' };
 
@@ -49,6 +50,9 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         break;
       case 'STANDARDIZE_TAGS':
         await standardizeTags(msg.payload.tags);
+        break;
+      case 'EXPLAIN_INGREDIENTS':
+        await explainIngredients(msg.payload.productName, msg.payload.ingredients);
         break;
       case 'HEALTH_CHECK':
         await runHealthCheck();
@@ -666,6 +670,59 @@ Respuesta JSON:`;
 function formatArray(arr: any[] | undefined | null, separator: string = ', '): string {
     if (!Array.isArray(arr)) return '';
     return arr.join(separator);
+}
+
+async function explainIngredients(productName: string, ingredients: string[]) {
+    if (!isReady) throw new Error('IA no lista');
+
+    const prompt = `Actúa como un Farmacéutico Clínico experto en educación al paciente.
+Para el producto "${productName}", explica de forma muy sencilla la función de estos principios activos:
+${ingredients.join(', ')}
+
+REGLAS:
+1. Lenguaje MUY simple para un paciente (ej. "ayuda a bajar la fiebre" en lugar de "antipirético").
+2. Sé breve (máximo 2 frases por ingrediente).
+3. Identifica cuál es el Principio Activo principal decorado con "(PA)" al final de la definición.
+4. Responde ÚNICAMENTE un objeto JSON donde la llave es el ingrediente y el valor es la explicación.
+
+Respuesta JSON:`;
+
+    try {
+        let content = '';
+        if (webLlmEngine) {
+            const response = await webLlmEngine.chat.completions.create({
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.2,
+            });
+            content = response.choices[0].message.content || '{}';
+        } else if (transformersPipeline) {
+            const messages = [
+                { role: 'system', content: 'You are a clinical pharmacist. Respond ONLY with JSON.' },
+                { role: 'user', content: prompt }
+            ];
+            const promptText = transformersPipeline.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
+            const result = await transformersPipeline(promptText, { max_new_tokens: 1024, temperature: 0.2 });
+            const genText = result[0].generated_text;
+            content = genText.split('<|im_start|>assistant\n')[1]?.trim() || genText;
+        }
+
+        const jsonBlocks = extractJsonBlocks(content);
+        let parsed = null;
+
+        if (jsonBlocks.length > 0) {
+            const rawJson = jsonBlocks[0].replace(/```json/g, '').replace(/```/g, '').trim();
+            parsed = tryParseJson(rawJson);
+        }
+
+        if (!parsed) {
+            parsed = lastResortTagsParse(content); // Reutilizar el de tags que busca "llave": "valor"
+        }
+
+        self.postMessage({ type: 'EXPLAIN_INGREDIENTS_RESULT', payload: parsed || {} });
+
+    } catch (e: any) {
+        self.postMessage({ type: 'ERROR', error: e.message });
+    }
 }
 
 async function runHealthCheck() {

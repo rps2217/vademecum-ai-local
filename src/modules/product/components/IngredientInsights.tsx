@@ -26,7 +26,12 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
         const result = await aiService.explainIngredients(product.nombre_comercial, product.principios_activos);
         if (result && Object.keys(result).length > 0) {
           setInsights(result);
-          // Opcional: Podríamos persistir esto en el estado global o DB local aquí
+          // Persistimos en la base de datos local para no tener que consultarlo de nuevo
+          import('../../../services/DataService').then(({ dataService }) => {
+            dataService.updateProduct(product.sku, {
+              anotaciones_componentes: result
+            }).catch(err => console.error("Error persistiendo insights:", err));
+          });
         } else {
           setError("No se pudo obtener información detallada.");
         }

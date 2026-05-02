@@ -176,12 +176,43 @@ export class AIService {
   }
 
   async explainIngredients(productName: string, ingredients: string[]): Promise<Record<string, string>> {
+    const tryGemini = async () => {
+      try {
+        const { geminiService } = await import('./GeminiService');
+        return await geminiService.explainActiveIngredients(productName, ingredients);
+      } catch (error: any) {
+        // Detectar errores de API Key o red para forzar local
+        const isAuthError = error?.message?.includes('400') || error?.message?.includes('API key') || error?.message?.includes('401');
+        if (isAuthError) {
+          console.warn('[AIService] Gemini API Key inválida o expirada. Usando motor local...');
+          throw error; // Propagar para caer en el catch del motor local
+        }
+        throw error;
+      }
+    };
+
+    const tryLocal = async () => {
+      if (!this.worker || !this.isReady) {
+        throw new Error('Motor local no disponible para fallback');
+      }
+      console.log('[AIService] Generando explicación de componentes localmente...');
+      try {
+        return await this.runInWorker('EXPLAIN_INGREDIENTS', { productName, ingredients }, 60000);
+      } catch (e) {
+        console.error('[AIService] Error en motor local al explicar componentes:', e);
+        return {};
+      }
+    };
+
     try {
-      const { geminiService } = await import('./GeminiService');
-      return await geminiService.explainActiveIngredients(productName, ingredients);
-    } catch (error) {
-      console.error('[AIService] Error en explainIngredients:', error);
-      return {};
+      return await tryGemini();
+    } catch (geminiError) {
+      try {
+        return await tryLocal();
+      } catch (localError) {
+        console.error('[AIService] Ambos motores (Gemini y Local) fallaron:', { geminiError, localError });
+        return {};
+      }
     }
   }
 
