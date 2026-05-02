@@ -62,13 +62,6 @@ export class DataService {
       if (!options.silent) {
         await taskQueueService.addTask('cloud_sync', product);
         
-        // Auto-enqueue ingredient analysis if missing
-        if (!product.anotaciones_componentes || Object.keys(product.anotaciones_componentes).length === 0) {
-          if (product.principios_activos && product.principios_activos.length > 0) {
-            await taskQueueService.addTask('ingredient_analysis', { sku: product.sku });
-          }
-        }
-
         EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
       }
     } catch (error) {

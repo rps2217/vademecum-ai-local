@@ -100,6 +100,7 @@ export class SynergyBackgroundService {
 
       logger.info(`Analizando: ${product.nombre_comercial}`, 'Sinergia', { sku: product.sku, source: isForced ? 'manual' : 'background' });
       
+      // 1. Vectorización (si es necesaria)
       let mainVector = product.vectores;
       if (!mainVector || mainVector.length === 0) {
         if (status.isReady) {
@@ -116,7 +117,24 @@ export class SynergyBackgroundService {
         }
       }
 
+      // 2. Análisis de Principios Activos (IA Componentes)
+      let anotaciones_componentes = product.anotaciones_componentes || {};
+      if (Object.keys(anotaciones_componentes).length === 0 && product.principios_activos && product.principios_activos.length > 0) {
+        try {
+          const { aiService: localAiService } = await import('./AIService');
+          logger.info(`Iniciando análisis de componentes para ${product.sku}...`, 'Sinergia');
+          const result = await localAiService.explainIngredients(product.nombre_comercial, product.principios_activos);
+          if (result && Object.keys(result).length > 0) {
+            anotaciones_componentes = result;
+          }
+        } catch (error) {
+          logger.error(`Error analizando componentes en pipeline para ${product.sku}`, 'Sinergia', error);
+        }
+      }
+
+      // 3. Búsqueda de Candidatos para Sinergia
       const allProducts = await dataService.getAllProducts();
+
       const candidates = allProducts
         .filter((p: any) => p.sku !== product.sku && p.vectores && p.vectores.length > 0)
         .map((p: any) => ({
@@ -223,7 +241,8 @@ export class SynergyBackgroundService {
         synergy_analyzed: true,
         last_synergy_analysis: Date.now(),
         sugerencia_complementaria: synergyResult.sugerencia_complementaria,
-        skus_relacionados: synergyResult.skus_relacionados
+        skus_relacionados: synergyResult.skus_relacionados,
+        anotaciones_componentes: anotaciones_componentes
       };
 
       await cloudSyncService.releaseProductLockAndSave(finalProduct);
