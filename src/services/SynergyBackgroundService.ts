@@ -126,6 +126,10 @@ export class SynergyBackgroundService {
           const result = await localAiService.explainIngredients(product.nombre_comercial, product.principios_activos);
           if (result && Object.keys(result).length > 0) {
             anotaciones_componentes = result;
+            // CHECKPOINT: Guardar el progreso parcial para no perder el análisis de componentes si falla la sinergia
+            product.anotaciones_componentes = result;
+            await dataService.saveProduct({ ...product, anotaciones_componentes: result }, { silent: true });
+            logger.info(`Checkpoint guardado: Componentes de ${product.sku}`, 'Sinergia');
           }
         } catch (error) {
           logger.error(`Error analizando componentes en pipeline para ${product.sku}`, 'Sinergia', error);
@@ -254,11 +258,19 @@ export class SynergyBackgroundService {
       logger.error(`Fallo en pipeline para ${product.sku}`, 'Sinergia', error);
       
       const retryCount = (product as any).synergy_retries || 0;
-      await dataService.saveProduct({ 
+      const failedProduct = { 
         ...product, 
         synergy_retries: retryCount + 1,
         last_synergy_analysis: Date.now() 
-      }, { silent: true });
+      };
+      
+      try {
+        const cloudSyncService = (await import('./CloudSyncService')).cloudSyncService;
+        await cloudSyncService.releaseProductLockAndSave(failedProduct);
+      } catch (releaseError) {
+         console.error(`[SynergyService] No se pudo liberar el lock de ${product.sku}:`, releaseError);
+         await dataService.saveProduct(failedProduct, { silent: true });
+      }
 
       console.error(`[SynergyService] Error procesando ${product.sku}:`, error);
     } finally {
