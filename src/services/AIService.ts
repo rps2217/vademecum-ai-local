@@ -177,17 +177,24 @@ export class AIService {
   }
 
   async explainIngredients(productName: string, ingredients: string[]): Promise<Record<string, string>> {
+    logger.ai(`Iniciando análisis de principios activos para: ${productName} (${ingredients.length} comp.)`, 'AI_Componentes');
+
     const tryGemini = async () => {
       try {
         const { geminiService } = await import('./GeminiService');
-        return await geminiService.explainActiveIngredients(productName, ingredients);
+        const result = await geminiService.explainActiveIngredients(productName, ingredients);
+        if (result && Object.keys(result).length > 0) {
+           logger.success(`Análisis completado vía Cloud AI (Gemini) para ${productName}`, 'AI_Componentes');
+        }
+        return result;
       } catch (error: any) {
         // Detectar errores de API Key o red para forzar local
         const isAuthError = error?.message?.includes('400') || error?.message?.includes('API key') || error?.message?.includes('401');
         if (isAuthError) {
-          console.warn('[AIService] Gemini API Key inválida o expirada. Usando motor local...');
+          logger.error('Gemini API Key inválida o expirada. Saltando a motor local...', 'AI_Componentes');
           throw error; // Propagar para caer en el catch del motor local
         }
+        logger.error(`Error en Gemini: ${error?.message || 'Desconocido'}`, 'AI_Componentes');
         throw error;
       }
     };
@@ -197,12 +204,12 @@ export class AIService {
         throw new Error('Motor local no disponible para fallback');
       }
       
-      logger.ai(`Analizando principios activos de ${productName} (${ingredients.length} comp.)`, 'AI_Componentes');
+      logger.ai(`Ejecutando análisis con motor local (WebLLM) para ${productName}`, 'AI_Componentes');
       
       try {
         const result = await this.runInWorker('EXPLAIN_INGREDIENTS', { productName, ingredients }, 60000);
         if (result && Object.keys(result).length > 0) {
-          logger.success(`Análisis de componentes completado para ${productName}`, 'AI_Componentes');
+          logger.success(`Análisis de componentes completado localmente para ${productName}`, 'AI_Componentes');
         }
         return result;
       } catch (e) {
@@ -217,7 +224,7 @@ export class AIService {
       try {
         return await tryLocal();
       } catch (localError) {
-        console.error('[AIService] Ambos motores (Gemini y Local) fallaron:', { geminiError, localError });
+        logger.error(`Ambos motores (Gemini y Local) fallaron para ${productName}`, 'AI_Componentes');
         return {};
       }
     }
