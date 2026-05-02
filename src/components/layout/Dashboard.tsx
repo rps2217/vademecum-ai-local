@@ -164,18 +164,19 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           <div className="spotlight w-[400px] h-[400px] bg-blue-500/5 top-1/4 right-0" />
         </div>
 
-        {/* Top Header - Restored */}
-        <header className="sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-xl border-b border-slate-800 px-4 py-4 sm:px-6">
-          <div className="max-w-7xl mx-auto grid grid-cols-12 items-center gap-4">
-            {/* Simple Logo Icon */}
-            <div className="col-span-1 flex items-center">
-              <div className="w-9 h-9 rounded-xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
-                <Activity className="w-5 h-5 text-brand-primary" />
+        {/* Top Header - Optimized Layout */}
+        <header className="sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-xl border-b border-slate-800 px-4 py-3 sm:px-6">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            {/* Zone 1: Logo (Fixed Width) */}
+            <div className="flex items-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
+                <Activity className="w-6 h-6 text-brand-primary" />
               </div>
             </div>
 
-            {/* Persistent Global Search */}
-            <div className="col-span-11 md:col-span-5 lg:col-span-6 px-0 sm:px-4">
+            {/* Zone 2: Global Search (Flexible Growth) */}
+            <div className="flex-1 max-w-2xl px-2 sm:px-4">
               <SearchBar 
                 ref={searchInputRef}
                 query={query} 
@@ -184,67 +185,69 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 suggestions={conceptualSuggestions}
                 onSelectConcept={(concept) => setQuery(concept.label)}
                 onAiQuery={() => setShowAiAnalysis(true)}
-                className="!scale-90 sm:!scale-100 transition-transform origin-left"
+                className="transition-all duration-300"
               />
             </div>
 
-            {/* Navigation Tabs (Original Style) */}
-            <nav className="hidden lg:flex col-span-3 items-center p-1 bg-brand-surface rounded-2xl border border-slate-800">
-              <button 
-                onClick={() => setActiveTab('search')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'search' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
-                }`}
-              >
-                <Search className="w-4 h-4" />
-                <span className="hidden md:inline">Buscador</span>
-              </button>
+            {/* Zone 3: Navigation & User (Grouped) */}
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              {/* Iconic Navigation */}
+              <nav className="hidden md:flex items-center p-1 bg-brand-surface rounded-xl border border-slate-800 mr-2">
+                <button 
+                  onClick={() => setActiveTab('search')}
+                  className={`p-2 rounded-lg transition-all ${
+                    activeTab === 'search' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
+                  }`}
+                  title="Buscador"
+                >
+                  <Search className="w-4 h-4" />
+                </button>
+                
+                <button 
+                  onClick={() => setActiveTab('graph')}
+                  className={`p-2 rounded-lg transition-all ${
+                    activeTab === 'graph' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
+                  }`}
+                  title="Sinergias"
+                >
+                  <Share2 className="w-4 h-4" />
+                </button>
+
+                <button 
+                  onClick={() => setActiveTab('database')}
+                  className={`p-2 rounded-lg transition-all ${
+                    activeTab === 'database' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
+                  }`}
+                  title="Base de Datos"
+                >
+                  <Database className="w-4 h-4" />
+                </button>
+
+                <button 
+                  onClick={() => setActiveTab('settings')}
+                  className={`p-2 rounded-lg transition-all ${
+                    activeTab === 'settings' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
+                  }`}
+                  title="Ajustes"
+                >
+                  <Settings className="w-4 h-4" />
+                </button>
+              </nav>
+
+              <div className="h-8 w-px bg-slate-800 hidden sm:block mx-1" />
               
-              <button 
-                onClick={() => setActiveTab('graph')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'graph' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
-                }`}
-              >
-                <Share2 className="w-4 h-4" />
-                <span className="hidden md:inline">Sinergias</span>
-              </button>
-
-              <button 
-                onClick={() => setActiveTab('database')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'database' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
-                }`}
-              >
-                <Database className="w-4 h-4" />
-                <span className="hidden md:inline">Base de Datos</span>
-              </button>
-
-              <button 
-                onClick={() => setActiveTab('settings')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
-                  activeTab === 'settings' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-500 hover:text-white'
-                }`}
-              >
-                <Settings className="w-4 h-4" />
-                <span className="hidden md:inline">Ajustes</span>
-              </button>
-            </nav>
-
-            {/* Actions Indicator */}
-            <div className="col-span-11 md:col-span-6 lg:col-span-2 flex items-center justify-end gap-3">
-              <div className="hidden lg:block h-8 w-px bg-slate-800 mx-1" />
               <button 
                 onClick={toggleAiProcessing}
                 className={`p-2 rounded-xl border transition-all ${
                   isAiProcessingEnabled 
                     ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' 
-                    : 'bg-sky-500/10 border-sky-500/20 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.1)]'
+                    : 'bg-sky-500/10 border-sky-500/20 text-sky-400'
                 }`}
-                title={isAiProcessingEnabled ? "IA Activa" : "IA Pausada (Modo Frío)"}
+                title={isAiProcessingEnabled ? "IA Activa" : "IA Pausada"}
               >
                 {isAiProcessingEnabled ? <Zap className="w-4 h-4" /> : <Snowflake className="w-4 h-4 animate-pulse" />}
               </button>
+
               <UserMenu />
             </div>
           </div>
