@@ -9,6 +9,7 @@ interface SearchBarProps {
   isSearching: boolean;
   isInterpreting?: boolean;
   onAiQuery?: () => void;
+  onEnter?: (currentValue: string) => void;
   suggestions?: SearchConcept[];
   onSelectConcept?: (concept: SearchConcept) => void;
   className?: string;
@@ -20,6 +21,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
   isSearching, 
   isInterpreting, 
   onAiQuery,
+  onEnter,
   suggestions = [],
   onSelectConcept,
   className = ""
@@ -39,13 +41,15 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
   // Removido el useEffect que forzaba showSuggestions basado en query.length
   // para evitar que los clicks programáticos (ej: QuickDiscoveryTags) abran el dropdown.
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (highlightedIndex >= 0 && highlightedIndex < suggestions.length && onSelectConcept) {
         onSelectConcept(suggestions[highlightedIndex]);
         setShowSuggestions(false);
       } else if (isQuestion && onAiQuery) {
         onAiQuery();
+      } else if (onEnter) {
+        onEnter(e.currentTarget.value);
       }
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();

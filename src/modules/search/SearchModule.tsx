@@ -53,6 +53,15 @@ export const SearchModule: React.FC = () => {
     return () => window.removeEventListener('history_updated', update);
   }, []);
 
+  // Listen for open_product event
+  useEffect(() => {
+    const handleOpenProduct = ((e: CustomEvent<Product>) => {
+      setSelectedProduct(e.detail);
+    }) as EventListener;
+    window.addEventListener('open_product', handleOpenProduct);
+    return () => window.removeEventListener('open_product', handleOpenProduct);
+  }, []);
+
   // Track search term when results are found
   useEffect(() => {
     if (results.length > 0 && !isSearching && query.length > 2) {

@@ -121,6 +121,15 @@ export class SearchService {
     const normalizedQuery = this.normalizeText(query);
     const autoFilters = this.detectSafetyFilters(normalizedQuery);
     
+    // 0. Exact SKU Match check
+    const trimmedQuery = query.trim();
+    const exactSkuMatch = this.index.find(i => i.product.sku === trimmedQuery);
+    
+    if (exactSkuMatch) {
+      this.latestResults = [exactSkuMatch.product];
+      return [exactSkuMatch.product];
+    }
+
     // 1. Text Search (Fuzzy with Fuse.js)
     const textResults = this.performFuzzySearch(normalizedQuery);
 
