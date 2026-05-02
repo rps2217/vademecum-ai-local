@@ -4,6 +4,8 @@ import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, Shie
 import { dataService } from '../../services/DataService';
 import { configService, AppConfig } from '../../services/ConfigService';
 import { useLogs } from '../../hooks/useLogs';
+import { useSettings } from '../../context/SettingsContext';
+import { LayoutGrid, Maximize2, Monitor } from 'lucide-react';
 import { logger } from '../../services/LoggerService';
 import { getDeviceId } from '../../utils/clusterUtils';
 import { cloudSyncService } from '../../services/CloudSyncService';
@@ -13,7 +15,8 @@ export const SettingsModule: React.FC = () => {
   const [isImporting, setIsImporting] = useState(false);
   const [config, setConfig] = useState<AppConfig>(configService.getConfig());
   const { logs, clearLogs } = useLogs();
-  const [nodeId] = useState(getDeviceId());
+  const { settings, updateSettings } = useSettings();
+  const nodeId = getDeviceId();
   const [isTestingCluster, setIsTestingCluster] = useState(false);
   const [clusterTestResult, setClusterTestResult] = useState<string | null>(null);
   
@@ -188,7 +191,49 @@ export const SettingsModule: React.FC = () => {
           </div>
         </div>
 
-        {/* Hardware & Mantenimiento */}
+        {/* Appearance Settings */}
+        <div className="bg-brand-surface border border-slate-700 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-6 flex items-center gap-3">
+             <LayoutGrid className="w-5 h-5 sm:w-6 sm:h-6 text-brand-primary" /> Apariencia
+          </h3>
+          <div className="space-y-6">
+             <div className="p-4 bg-slate-900/50 rounded-2xl border border-slate-700">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <p className="text-sm font-bold text-white">Columnas de Resultados</p>
+                    <p className="text-xs text-slate-500">Densidad de la cuadrícula en escritorio</p>
+                  </div>
+                  <div className="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-lg border border-slate-700">
+                    <Monitor className="w-3 h-3 text-slate-500" />
+                    <span className="text-xs font-bold text-brand-primary">{settings.gridColumns} col</span>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-4 gap-2">
+                  {[2, 3, 4, 5].map(cols => (
+                    <button
+                      key={cols}
+                      onClick={() => updateSettings({ gridColumns: cols })}
+                      className={`py-2 rounded-xl text-xs font-bold transition-all border ${
+                        settings.gridColumns === cols 
+                          ? 'bg-brand-primary border-brand-primary text-slate-950 shadow-lg shadow-brand-primary/20' 
+                          : 'bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-500'
+                      }`}
+                    >
+                      {cols}
+                    </button>
+                  ))}
+                </div>
+                
+                <div className="mt-4 flex items-center gap-3 p-3 bg-brand-primary/5 rounded-xl border border-brand-primary/10">
+                   <Maximize2 className="w-4 h-4 text-brand-primary shrink-0" />
+                   <p className="text-[10px] text-slate-400 leading-tight">
+                     Al seleccionar menos columnas, las tarjetas se expandirán automáticamente para ofrecer una mejor lectura de las indicaciones clínicas.
+                   </p>
+                </div>
+             </div>
+          </div>
+        </div>
         <div className="bg-brand-surface border border-slate-700 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl">
           <h3 className="text-lg sm:text-xl font-bold text-white mb-6 flex items-center gap-3">
              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" /> Sistema y Backup

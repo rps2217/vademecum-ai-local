@@ -5,6 +5,7 @@ import { Product } from '../../../core/types/product.types';
 import { ProductCard } from '../../../components/product/ProductCard';
 import { ProductSkeleton } from '../../../components/product/ProductSkeleton';
 import { getRelatedClinicalTerms } from '../../../constants/clinicalSynonyms';
+import { useSettings } from '../../../context/SettingsContext';
 
 const { FixedSizeList: List } = ReactWindow as any;
 
@@ -33,6 +34,29 @@ export const SearchResults = React.memo<SearchResultsProps>(({
   onClearFilters,
   viewMode
 }) => {
+  const { settings } = useSettings();
+  
+  const getGridCols = () => {
+    if (viewMode === 'list') return 'grid-cols-1';
+    
+    // Mapeo explícito para asegurar que Tailwind detecte las clases
+    const desktopCols = {
+      2: 'lg:grid-cols-2',
+      3: 'lg:grid-cols-3',
+      4: 'lg:grid-cols-4',
+      5: 'lg:grid-cols-5'
+    }[settings.gridColumns as 2 | 3 | 4 | 5] || 'lg:grid-cols-4';
+
+    const tabletCols = {
+      2: 'md:grid-cols-2',
+      3: 'md:grid-cols-2',
+      4: 'md:grid-cols-3',
+      5: 'md:grid-cols-4'
+    }[settings.gridColumns as 2 | 3 | 4 | 5] || 'md:grid-cols-3';
+
+    return `grid-cols-1 sm:grid-cols-2 ${tabletCols} ${desktopCols}`;
+  };
+
   const { exactMatches, relatedMatches } = React.useMemo(() => {
     if (!query.trim()) return { exactMatches: results, relatedMatches: [] };
     
@@ -85,7 +109,7 @@ export const SearchResults = React.memo<SearchResultsProps>(({
 
   if (isSearching && results.length === 0) {
     return (
-      <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' : 'grid-cols-1'} gap-4 animate-in fade-in duration-500`}>
+      <div className={`grid ${getGridCols()} gap-4 animate-in fade-in duration-500`}>
         {[...Array(6)].map((_, i) => (
           <ProductSkeleton key={i} />
         ))}
@@ -112,7 +136,7 @@ export const SearchResults = React.memo<SearchResultsProps>(({
             <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent ml-4" />
           </div>
           
-          <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'} gap-5`}>
+          <div className={`grid ${getGridCols()} gap-5`}>
             {items.map((product) => (
               <div key={product.sku} className="group">
                 <ProductCard 

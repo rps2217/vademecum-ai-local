@@ -5,6 +5,7 @@ import { AlertTriangle, CheckCircle2, Info, Plus, Check, ShieldCheck, Brain, Pri
 import { formatArrayToString } from '../../utils/formatters';
 import { HighlightText } from '../ui/HighlightText';
 import { useConsultation } from '../../context/ConsultationContext';
+import { useSettings } from '../../context/SettingsContext';
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +19,22 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onViewDetail, onAddToTray, isInTray, onTagClick, searchTerm = '', viewMode }) => {
   const { addToConsultation, removeFromConsultation, isInConsultation } = useConsultation();
+  const { settings } = useSettings();
   const isSelectedForBrain = isInConsultation(product.sku);
+
+  const getLineClamp = () => {
+    if (viewMode === 'list') return 'line-clamp-2';
+    
+    // Mapeo explícito
+    const clamps = {
+      2: 'line-clamp-10',
+      3: 'line-clamp-6',
+      4: 'line-clamp-4',
+      5: 'line-clamp-3'
+    };
+    
+    return clamps[settings.gridColumns as keyof typeof clamps] || 'line-clamp-4';
+  };
 
   const getSafetyIcon = (status: SafetyStatus) => {
     switch (status) {
@@ -117,7 +133,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         {/* Indicaciones - Large and clear Area */}
         <div className="mt-2 p-3 rounded-xl bg-white/[0.03] border border-white/5 group-hover:border-brand-primary/20 transition-all">
           <p className="text-[8px] uppercase font-black tracking-[0.2em] text-slate-600 mb-2">Indicaciones Principales</p>
-          <div className="text-[11px] sm:text-[12px] text-slate-300 line-clamp-4 leading-relaxed font-medium">
+          <div className={`text-[11px] sm:text-[12px] text-slate-300 ${getLineClamp()} leading-relaxed font-medium`}>
             <HighlightText text={capitalizeFirst(formatArrayToString(product.indicaciones, ' • '))} searchTerm={searchTerm} />
           </div>
         </div>

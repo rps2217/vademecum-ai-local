@@ -9,6 +9,7 @@ import { Dashboard } from './components/layout/Dashboard';
 import { EventTracer } from './components/debug/EventTracer';
 
 import { SearchProvider } from './context/SearchContext';
+import { SettingsProvider } from './context/SettingsContext';
 
 function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
   const { isAccessGranted } = useAuth();
@@ -18,9 +19,11 @@ function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
   }
 
   return (
-    <SearchProvider>
-      <Dashboard hardware={hardware} />
-    </SearchProvider>
+    <SettingsProvider>
+      <SearchProvider>
+        <Dashboard hardware={hardware} />
+      </SearchProvider>
+    </SettingsProvider>
   );
 }
 
