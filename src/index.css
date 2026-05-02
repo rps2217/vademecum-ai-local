@@ -54,13 +54,13 @@
   }
 
   .light {
-    --app-bg: #f4f7fb;
+    --app-bg: #f6f4ed; /* Beige/Ivory background */
     --app-surface: #ffffff;
     
     --app-slate-950: #ffffff;
-    --app-slate-900: #f4f7fb; /* Equivalent to dark's 900 (bg) */
+    --app-slate-900: #f6f4ed; /* Equivalent to dark's 900 (bg) */
     --app-slate-800: #ffffff; /* Equivalent to dark's 800 (surface) */
-    --app-slate-700: #e2e8f0; /* Borders */
+    --app-slate-700: #e5e3db; /* Warmer borders */
     --app-slate-600: #94a3b8;
     --app-slate-500: #64748b; /* Text muted */
     --app-slate-400: #475569; /* Text normal */
