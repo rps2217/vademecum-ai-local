@@ -150,7 +150,14 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         <div className="mt-2 p-3 rounded-xl bg-white/[0.03] border border-white/5 group-hover:border-brand-primary/20 transition-all">
           <p className="text-[8px] uppercase font-black tracking-[0.2em] text-slate-600 mb-2">Indicaciones Principales</p>
           <div className={`${sizes.indications} text-slate-300 ${getLineClamp()} leading-relaxed font-medium`}>
-            <HighlightText text={capitalizeFirst(formatArrayToString(product.indicaciones, ' • '))} searchTerm={searchTerm} />
+            {product.indicaciones.map((ind, idx) => (
+              <React.Fragment key={idx}>
+                <HighlightText text={capitalizeFirst(ind)} searchTerm={searchTerm} />
+                {idx < product.indicaciones.length - 1 && (
+                  <span className="mx-1.5 text-brand-primary font-black opacity-80">•</span>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
