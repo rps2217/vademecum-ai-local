@@ -179,26 +179,6 @@ export class AIService {
   async explainIngredients(productName: string, ingredients: string[]): Promise<Record<string, string>> {
     logger.ai(`Iniciando análisis de principios activos para: ${productName} (${ingredients.length} comp.)`, 'AI_Componentes');
 
-    const tryGemini = async () => {
-      try {
-        const { geminiService } = await import('./GeminiService');
-        const result = await geminiService.explainActiveIngredients(productName, ingredients);
-        if (result && Object.keys(result).length > 0) {
-           logger.success(`Análisis completado vía Cloud AI (Gemini) para ${productName}`, 'AI_Componentes');
-        }
-        return result;
-      } catch (error: any) {
-        // Detectar errores de API Key o red para forzar local
-        const isAuthError = error?.message?.includes('400') || error?.message?.includes('API key') || error?.message?.includes('401');
-        if (isAuthError) {
-          logger.error('Gemini API Key inválida o expirada. Saltando a motor local...', 'AI_Componentes');
-          throw error; // Propagar para caer en el catch del motor local
-        }
-        logger.error(`Error en Gemini: ${error?.message || 'Desconocido'}`, 'AI_Componentes');
-        throw error;
-      }
-    };
-
     const tryLocal = async () => {
       if (!this.worker || !this.isReady) {
         throw new Error('Motor local no disponible para fallback');
@@ -219,14 +199,10 @@ export class AIService {
     };
 
     try {
-      return await tryGemini();
-    } catch (geminiError) {
-      try {
-        return await tryLocal();
-      } catch (localError) {
-        logger.error(`Ambos motores (Gemini y Local) fallaron para ${productName}`, 'AI_Componentes');
-        return {};
-      }
+      return await tryLocal();
+    } catch (localError) {
+      logger.error(`El motor local (WebLLM) falló para ${productName}`, 'AI_Componentes', localError);
+      return {};
     }
   }
 
