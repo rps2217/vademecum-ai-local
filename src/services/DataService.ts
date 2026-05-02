@@ -61,6 +61,14 @@ export class DataService {
 
       if (!options.silent) {
         await taskQueueService.addTask('cloud_sync', product);
+        
+        // Auto-enqueue ingredient analysis if missing
+        if (!product.anotaciones_componentes || Object.keys(product.anotaciones_componentes).length === 0) {
+          if (product.principios_activos && product.principios_activos.length > 0) {
+            await taskQueueService.addTask('ingredient_analysis', { sku: product.sku });
+          }
+        }
+
         EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
       }
     } catch (error) {
@@ -108,6 +116,13 @@ export class DataService {
   async getProductBySku(sku: string): Promise<Product | null> {
     const db = await this.getDB();
     return await db.get(STORE_NAME, sku) as Product || null;
+  }
+
+  async updateProduct(sku: string, updates: Partial<Product>): Promise<void> {
+    const product = await this.getProductBySku(sku);
+    if (product) {
+      await this.saveProduct({ ...product, ...updates });
+    }
   }
 
   async clearAll(): Promise<void> {

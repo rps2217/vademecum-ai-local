@@ -4,6 +4,7 @@ import { formatArrayToString } from '../utils/formatters';
 import { synergyBackgroundService } from './SynergyBackgroundService';
 import { taskQueueService } from './TaskQueueService';
 import { aiOrchestratorService } from './AIOrchestratorService';
+import { logger } from './LoggerService';
 
 export class AIService {
   private static instance: AIService;
@@ -195,12 +196,18 @@ export class AIService {
       if (!this.worker || !this.isReady) {
         throw new Error('Motor local no disponible para fallback');
       }
-      console.log('[AIService] Generando explicación de componentes localmente...');
+      
+      logger.ai(`Analizando principios activos de ${productName} (${ingredients.length} comp.)`, 'AI_Componentes');
+      
       try {
-        return await this.runInWorker('EXPLAIN_INGREDIENTS', { productName, ingredients }, 60000);
+        const result = await this.runInWorker('EXPLAIN_INGREDIENTS', { productName, ingredients }, 60000);
+        if (result && Object.keys(result).length > 0) {
+          logger.success(`Análisis de componentes completado para ${productName}`, 'AI_Componentes');
+        }
+        return result;
       } catch (e) {
-        console.error('[AIService] Error en motor local al explicar componentes:', e);
-        return {};
+        logger.error(`Error en análisis local de componentes para ${productName}`, 'AI_Componentes', e);
+        throw e;
       }
     };
 
