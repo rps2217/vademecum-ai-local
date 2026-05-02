@@ -84,15 +84,19 @@ export class SearchService {
 
       this.fuse = new Fuse(this.index, {
         keys: [
-          { name: 'nombre', weight: 1.0 },
-          { name: 'principios', weight: 0.8 },
-          { name: 'searchableText', weight: 0.4 }
+          { name: 'nombre', weight: 1.2 },
+          { name: 'principios', weight: 0.9 },
+          { name: 'searchableText', weight: 0.5 }
         ],
         includeScore: true,
-        threshold: 0.35,
+        threshold: 0.48, // Mucho más permisivo (antes 0.35)
         minMatchCharLength: 2,
+        location: 0,
+        distance: 200, // Permite que los términos buscados estén más lejos del inicio
+        findAllMatches: true,
         ignoreLocation: true,
-        useExtendedSearch: true
+        useExtendedSearch: true,
+        includeMatches: true
       });
 
       this.isInitialized = true;
