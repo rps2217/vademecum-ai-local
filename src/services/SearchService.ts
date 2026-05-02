@@ -47,6 +47,7 @@ export class SearchService {
   private index: SearchIndexItem[] = [];
   private isInitialized = false;
   private fuse: Fuse<SearchIndexItem> | null = null;
+  private latestResults: Product[] = [];
 
   private constructor() {}
 
@@ -105,6 +106,10 @@ export class SearchService {
     return this.index.map(i => i.product);
   }
 
+  getLatestResults(): Product[] {
+    return this.latestResults;
+  }
+
   async search(query: string, commonPathologies: string[]): Promise<Product[]> {
     if (!this.isInitialized) await this.initializeIndex();
     if (!query.trim()) return [];
@@ -127,7 +132,9 @@ export class SearchService {
       });
     }
 
-    return combined.slice(0, 50);
+    combined = combined.slice(0, 50);
+    this.latestResults = combined;
+    return combined;
   }
 
   private performFuzzySearch(query: string): Map<string, { product: Product, score: number }> {

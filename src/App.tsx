@@ -8,6 +8,8 @@ import { AccessGate } from './components/AccessGate';
 import { Dashboard } from './components/layout/Dashboard';
 import { EventTracer } from './components/debug/EventTracer';
 
+import { SearchProvider } from './context/SearchContext';
+
 function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
   const { isAccessGranted } = useAuth();
 
@@ -15,7 +17,11 @@ function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
     return <AccessGate />;
   }
 
-  return <Dashboard hardware={hardware} />;
+  return (
+    <SearchProvider>
+      <Dashboard hardware={hardware} />
+    </SearchProvider>
+  );
 }
 
 export default function App() {

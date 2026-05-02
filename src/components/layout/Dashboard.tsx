@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy, useMemo, useCallback } from 'react';
 import { Search, Database, Settings, Loader2, Command, Activity, ShieldAlert, Monitor, Globe, Share2, Zap, Snowflake } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { aiService } from '../../services/AIService';
@@ -16,6 +16,15 @@ import { ConsultationProvider } from '../../context/ConsultationContext';
 import { ClinicalBrainTray } from '../tray/ClinicalBrainTray';
 import { OfflineIndicator } from '../common/OfflineIndicator';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
+
+import { SearchBar } from '../../modules/search/components/SearchBar';
+import { useSearch } from '../../context/SearchContext';
+import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
+import { SearchConcept } from '../../modules/search/components/SearchSuggestions';
+import { searchService } from '../../services/SearchService';
+import { logger } from '../../services/LoggerService';
+
+const AIAnalysisModal = lazy(() => import('../../modules/search/components/AIAnalysisModal').then(m => ({ default: m.AIAnalysisModal })));
 
 // Lazy load modules
 const SearchModule = lazy(() => import('../../modules/search/SearchModule').then(m => ({ default: m.SearchModule })));
@@ -38,10 +47,64 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const [activeTab, setActiveTab] = useState<'search' | 'graph' | 'database' | 'settings'>('search');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { isAccessGranted } = useAuth();
+  const { query, setQuery, isSearching } = useSearch();
+  const searchInputRef = React.useRef<HTMLInputElement>(null);
 
   const [isAiProcessingEnabled, setIsAiProcessingEnabled] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  // Focus global search bar
+  const focusSearch = useCallback(() => {
+    searchInputRef.current?.focus();
+    if (activeTab !== 'search') setActiveTab('search');
+  }, [activeTab]);
+
+  // Global keyboard shortcuts
+  useKeyboardShortcuts({
+    'Control+k': () => setIsCommandPaletteOpen(prev => !prev),
+    'Meta+k': () => setIsCommandPaletteOpen(prev => !prev),
+    'Control+f': focusSearch,
+    'Meta+f': focusSearch,
+  });
+
+  // Conceptual Suggestions Logic (Lifted from module)
+  const conceptualSuggestions = useMemo(() => {
+    if (query.length < 2) return [];
+    const normalizedQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const concepts: SearchConcept[] = [];
+
+    // 1. Pathologies
+    COMMON_PATHOLOGIES.forEach(p => {
+      if (p.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(normalizedQuery)) {
+        concepts.push({ id: `path-${p}`, label: p, type: 'pathology' });
+      }
+    });
+
+    // 2. Sample molecules from index (simplified)
+    const all = searchService.getAllIndexedProducts();
+    const molecules = new Set<string>();
+    all.slice(0, 50).forEach(p => { // Fast peek
+      p.principios_activos?.forEach(m => {
+        if (m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(normalizedQuery)) {
+          molecules.add(m);
+        }
+      });
+    });
+    Array.from(molecules).slice(0, 5).forEach(m => {
+      concepts.push({ id: `mol-${m}`, label: m, type: 'molecule' });
+    });
+
+    return concepts.slice(0, 8);
+  }, [query]);
+
+  // Auto-navigate to search when query changes from non-search tab
+  useEffect(() => {
+    if (query.trim().length > 0 && activeTab !== 'search') {
+      setActiveTab('search');
+    }
+  }, [query]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,11 +130,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
     }
   };
 
-  // Atajos de teclado globales
-  useKeyboardShortcuts({
-    'Control+k': () => setIsCommandPaletteOpen(prev => !prev),
-    'Meta+k': () => setIsCommandPaletteOpen(prev => !prev),
-  });
+  // Atajos de teclado globales - Removido el anterior para usar el unificado arriba
 
   useEffect(() => {
     if (hardware) {
@@ -107,16 +166,30 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
         {/* Top Header - Restored */}
         <header className="sticky top-0 z-[60] bg-brand-bg/80 backdrop-blur-xl border-b border-slate-800 px-4 py-4 sm:px-6">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-12 items-center gap-4">
             {/* Simple Logo Icon */}
-            <div className="flex items-center">
+            <div className="col-span-1 flex items-center">
               <div className="w-9 h-9 rounded-xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
                 <Activity className="w-5 h-5 text-brand-primary" />
               </div>
             </div>
 
+            {/* Persistent Global Search */}
+            <div className="col-span-11 md:col-span-5 lg:col-span-6 px-0 sm:px-4">
+              <SearchBar 
+                ref={searchInputRef}
+                query={query} 
+                setQuery={setQuery} 
+                isSearching={isSearching}
+                suggestions={conceptualSuggestions}
+                onSelectConcept={(concept) => setQuery(concept.label)}
+                onAiQuery={() => setShowAiAnalysis(true)}
+                className="!scale-90 sm:!scale-100 transition-transform origin-left"
+              />
+            </div>
+
             {/* Navigation Tabs (Original Style) */}
-            <nav className="flex items-center p-1 bg-brand-surface rounded-2xl border border-slate-800">
+            <nav className="hidden lg:flex col-span-3 items-center p-1 bg-brand-surface rounded-2xl border border-slate-800">
               <button 
                 onClick={() => setActiveTab('search')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
@@ -159,7 +232,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
             </nav>
 
             {/* Actions Indicator */}
-            <div className="flex items-center gap-3">
+            <div className="col-span-11 md:col-span-6 lg:col-span-2 flex items-center justify-end gap-3">
               <div className="hidden lg:block h-8 w-px bg-slate-800 mx-1" />
               <button 
                 onClick={toggleAiProcessing}
@@ -235,6 +308,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
             onClose={() => setSelectedProduct(null)}
           />
         )}
+
+        <Suspense fallback={null}>
+          {showAiAnalysis && (
+            <AIAnalysisModal 
+              query={query}
+              results={searchService.getLatestResults()}
+              onClose={() => setShowAiAnalysis(false)}
+            />
+          )}
+        </Suspense>
 
         {/* Footer estilo POS (Mint Green) */}
         <div className="fixed bottom-0 left-0 w-full bg-[#10b981] font-medium py-1.5 z-[100] hidden md:block border-t border-[#059669]">

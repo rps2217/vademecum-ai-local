@@ -23,14 +23,17 @@ import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
 import { QuickCategoryFilters } from './components/QuickCategoryFilters';
 
+import { useSearch } from '../../context/SearchContext';
+
 export const SearchModule: React.FC = () => {
   const { 
     query, 
     setQuery, 
-    results, 
-    isSearching, 
+    isSearching,
+    results,
   } = useProductSearch();
   
+  const { isSearching: globalIsSearching, setIsSearching } = useSearch();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
@@ -131,13 +134,6 @@ export const SearchModule: React.FC = () => {
   }, [results, activeFilters]);
 
   const shortcuts = useMemo(() => ({
-    'Control+f': () => {
-      logger.info('Buscador enfocado vía shortcut CTRL+F');
-      searchInputRef.current?.focus();
-    },
-    'Meta+f': () => {
-       searchInputRef.current?.focus();
-    },
     'Escape': () => {
       if (selectedProduct) setSelectedProduct(null);
       else if (query) setQuery('');
@@ -237,27 +233,13 @@ export const SearchModule: React.FC = () => {
       
       {/* Search Header / Navigation Area */}
       {!selectedProduct && (
-        <div className="relative py-4 w-full mb-6">
+        <div className="relative py-2 w-full mb-4">
           <div className="max-w-4xl mx-auto">
-            <SearchBar 
-              ref={searchInputRef}
-              query={query} 
-              setQuery={setQuery} 
-              isSearching={isSearching} 
-              isInterpreting={isInterpreting}
-              suggestions={conceptualSuggestions}
-              onSelectConcept={(concept) => {
-                setQuery(concept.label);
-              }}
-              onAiQuery={() => setShowAiAnalysis(true)}
-            />
-
-            <div className="mt-4 animate-in fade-in duration-300 delay-150">
+            <div className="animate-in fade-in duration-300 delay-150">
               <QuickCategoryFilters 
                 activeCategory={activeCategory} 
                 onSelect={(cat) => {
                   setActiveCategory(prev => prev === cat ? undefined : cat);
-                  if (window.innerWidth < 768) searchInputRef.current?.blur();
                 }} 
               />
             </div>

@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Product } from '../../../core/types';
 import { searchService } from '../../../services/SearchService';
 import { COMMON_PATHOLOGIES } from '../../../constants/pathologies';
+import { useSearch } from '../../../context/SearchContext';
 
 export const useProductSearch = () => {
-  const [query, setQuery] = useState('');
+  const { query, setQuery, isSearching, setIsSearching } = useSearch();
   const [results, setResults] = useState<Product[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [refreshBit, setRefreshBit] = useState(0);
 
   // Inicializar índice al montar
@@ -47,7 +47,7 @@ export const useProductSearch = () => {
 
     const timer = setTimeout(performSearch, 400);
     return () => clearTimeout(timer);
-  }, [query, refreshBit]);
+  }, [query, refreshBit, setIsSearching]);
 
   return { 
     query, 

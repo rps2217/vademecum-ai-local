@@ -98,6 +98,11 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
                 VERIFICADO
               </span>
             )}
+            {product.sugerencia_complementaria && (
+              <span className="flex items-center gap-1 px-1 py-0.5 rounded bg-brand-primary/10 border border-brand-primary/20 text-[6px] sm:text-[7px] font-black text-brand-primary uppercase tracking-widest animate-pulse">
+                VENTA INTELIGENTE
+              </span>
+            )}
           </div>
           <h3 className="text-sm sm:text-base font-bold text-white leading-tight group-hover:text-emerald-500 transition-colors line-clamp-2">
             <HighlightText text={capitalizeFirst(product.nombre_comercial)} searchTerm={searchTerm} />
