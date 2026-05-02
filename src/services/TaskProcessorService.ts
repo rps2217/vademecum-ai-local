@@ -128,6 +128,24 @@ export class TaskProcessorService {
           }
           break;
 
+        case 'ingredient_analysis':
+          const prodToAnalyze = task.payload.product || await dataService.getProductBySku(task.payload.sku);
+          if (prodToAnalyze && prodToAnalyze.principios_activos && prodToAnalyze.principios_activos.length > 0) {
+            const { aiService } = await import('./AIService');
+            const result = await aiService.explainIngredients(prodToAnalyze.nombre_comercial, prodToAnalyze.principios_activos);
+            if (result && Object.keys(result).length > 0) {
+              await dataService.saveProduct({
+                ...prodToAnalyze,
+                anotaciones_componentes: result
+              }, { silent: true });
+              
+              // Forzamos el respaldo en la nube del nuevo análisis
+              await taskQueueService.addTask('cloud_sync', { sku: prodToAnalyze.sku });
+            }
+            aiOrchestratorService.trackActivity(40);
+          }
+          break;
+
         case 'vectorization':
           const prodToVectorize = task.payload.product || await dataService.getProductBySku(task.payload.sku);
           if (prodToVectorize) {

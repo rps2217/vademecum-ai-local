@@ -3,7 +3,7 @@ import { logger } from './LoggerService';
 
 export interface PendingTask {
   id: string;
-  type: 'cloud_sync' | 'ai_analysis' | 'vectorization';
+  type: 'cloud_sync' | 'ai_analysis' | 'vectorization' | 'ingredient_analysis';
   payload: any;
   timestamp: number;
   status: 'pending' | 'processing' | 'failed';
@@ -45,7 +45,7 @@ class TaskQueueService {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   }
 
-  async addTask(type: 'cloud_sync' | 'ai_analysis' | 'vectorization', payload: any, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
+  async addTask(type: 'cloud_sync' | 'ai_analysis' | 'vectorization' | 'ingredient_analysis', payload: any, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
     let tasks = this.getTasksFromStorage();
     const sku = payload.sku || (type === 'cloud_sync' ? payload.sku : null);
     const priority = options.priority !== undefined ? options.priority : (type === 'cloud_sync' ? 10 : 0);

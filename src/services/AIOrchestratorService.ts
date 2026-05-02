@@ -151,6 +151,29 @@ export class AIOrchestratorService {
         logger.info(`Reservados ${claimedCount} productos para análisis en este nodo.`, 'AI_Clúster');
       }
 
+      // Scout para análisis de componentes/ingredientes
+      const needsIngredientAnalysis = allProducts.filter(p => {
+        // Solo si tiene principios activos
+        if (!p.principios_activos || p.principios_activos.length === 0) return false;
+        // Solo si NO tiene anotaciones_componentes (o están vacías)
+        if (p.anotaciones_componentes && Object.keys(p.anotaciones_componentes).length > 0) return false;
+        return true;
+      }).slice(0, 5); // Por ejemplo, 5 por ciclo de scouting
+
+      let ingredientClaimedCount = 0;
+      for (const p of needsIngredientAnalysis) {
+        // Aprovecha los mismos locks para evitar colisiones
+        const canWork = await cloudSyncService.claimProductLock(`${p.sku}_ingredients`, deviceId);
+        if (canWork) {
+          ingredientClaimedCount++;
+          await taskQueueService.addTask('ingredient_analysis', { sku: p.sku, type: 'ingredient_analysis' });
+        }
+      }
+
+      if (ingredientClaimedCount > 0) {
+        logger.info(`Reservados ${ingredientClaimedCount} productos para análisis de componentes.`, 'AI_Clúster');
+      }
+
     } catch (error) {
       console.error('[Orchestrator Scout] Error en exploración de clúster:', error);
     } finally {

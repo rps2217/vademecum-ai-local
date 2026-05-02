@@ -574,7 +574,7 @@ export class GeminiService {
         return JSON.parse(response.text || "{}");
       } catch (error) {
         console.error("[GeminiService] Error explicando principios activos:", error);
-        return {};
+        throw error;
       }
     });
   }
