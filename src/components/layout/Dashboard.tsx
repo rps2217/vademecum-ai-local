@@ -57,8 +57,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
   // Focus global search bar
   const focusSearch = useCallback(() => {
-    searchInputRef.current?.focus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (activeTab !== 'search') setActiveTab('search');
+    setTimeout(() => {
+      searchInputRef.current?.focus();
+    }, 100);
   }, [activeTab]);
 
   // Global keyboard shortcuts
@@ -322,15 +325,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
           )}
         </Suspense>
 
-        {/* Footer estilo POS (Mint Green) */}
         <div className="fixed bottom-0 left-0 w-full bg-[#10b981] font-medium py-1.5 z-[100] hidden md:block border-t border-[#059669]">
           <div className="max-w-7xl mx-auto px-6 flex justify-center items-center text-[#064e3b] text-[11px]">
-               <span 
-                 onClick={() => setActiveTab('search')}
-                 className="flex items-center gap-1.5 hover:text-black cursor-pointer font-bold uppercase tracking-widest"
+               <button 
+                 onClick={focusSearch}
+                 className="flex items-center gap-1.5 hover:text-black cursor-pointer font-bold uppercase tracking-[0.15em] transition-colors"
                >
-                 <Search className="w-4 h-4" /> Abrir Buscador
-               </span>
+                 <Search className="w-4 h-4" /> Pulse [Ctrl + F] o haga clic aquí para buscar
+               </button>
           </div>
         </div>
       </div>
