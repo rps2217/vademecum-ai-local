@@ -12,7 +12,7 @@ export const RelatedProductsList: React.FC<RelatedProductsListProps> = ({ produc
   return (
     <section className="space-y-4">
       <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-        <LinkIcon className="w-4 h-4" /> Productos Complementarios o Similares
+        <LinkIcon className="w-4 h-4" /> Productos Complementarios
       </h3>
       <div className="grid grid-cols-1 gap-3">
         {products.map(relProduct => (

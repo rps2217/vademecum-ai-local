@@ -12,7 +12,7 @@ export const SynergySuggestion: React.FC<SynergySuggestionProps> = ({ suggestion
         <Sparkles className="w-12 h-12 text-brand-primary" />
       </div>
       <h3 className="text-xs font-bold text-brand-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-        <Sparkles className="w-4 h-4" /> Inteligencia de Sinergia
+        <Sparkles className="w-4 h-4" /> Sugerencia como Estrategia de Venta
       </h3>
       <p className="text-slate-300 leading-relaxed text-sm italic">
         "{suggestion}"

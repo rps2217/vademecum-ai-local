@@ -14,7 +14,7 @@ export const AlternativesList: React.FC<AlternativesListProps> = ({ products, on
   return (
     <section className="space-y-4">
       <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
-        <Copy className="w-4 h-4" /> Top 3 Alternativas por Equivalencia
+        <Copy className="w-4 h-4" /> Productos Equivalentes o de Reemplazo
       </h3>
       <div className="grid grid-cols-1 gap-3">
         {products.map(({ product: altProduct, score }) => (

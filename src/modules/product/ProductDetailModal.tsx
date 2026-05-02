@@ -9,7 +9,6 @@ import { ProductBentoGrid } from './components/ProductBentoGrid';
 import { ProductActions } from './components/ProductActions';
 import { ProductEditForm } from './components/ProductEditForm';
 import { PasswordPrompt } from './components/PasswordPrompt';
-import { ProductRecommendations } from './components/ProductRecommendations';
 import { IngredientInsights } from './components/IngredientInsights';
 
 import { useProductDetail } from './hooks/useProductDetail';
@@ -171,12 +170,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <ProductBentoGrid product={product} searchTerm={searchTerm} />
             
             <IngredientInsights product={product} />
-
-            {/* Sales Enhancements Section */}
-            <ProductRecommendations 
-              product={product} 
-              onProductClick={(p) => setProduct(p)} 
-            />
 
             <div className="mt-8 pt-8 border-t border-slate-800 flex flex-wrap justify-center gap-3 sm:hidden">
               <ProductActions 
