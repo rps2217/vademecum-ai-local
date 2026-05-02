@@ -60,7 +60,7 @@ export class DataService {
       await db.put(STORE_NAME, product);
 
       if (!options.silent) {
-        await taskQueueService.addTask('cloud_sync', product);
+        await taskQueueService.addTask('cloud_sync', { sku: product.sku });
         
         // Auto-enqueue ingredient analysis if missing
         if (!product.anotaciones_componentes || Object.keys(product.anotaciones_componentes).length === 0) {

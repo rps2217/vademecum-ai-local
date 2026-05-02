@@ -2,9 +2,36 @@ import { HardwareProfile } from '../core/types/hardware.types';
 import { Product, SafetyStatus } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
 import { synergyBackgroundService } from './SynergyBackgroundService';
-import { taskQueueService } from './TaskQueueService';
 import { aiOrchestratorService } from './AIOrchestratorService';
 import { logger } from './LoggerService';
+import { taskQueueService } from './TaskQueueService';
+
+class CloudCircuitBreaker {
+  private failures = 0;
+  private lastFailureTime = 0;
+  private maxFailures = 3;
+  private resetTimeout = 60000 * 5; // 5 min timeout on cloud fail
+
+  canAttempt(): boolean {
+    if (this.failures >= this.maxFailures) {
+      if (Date.now() - this.lastFailureTime > this.resetTimeout) {
+        this.failures = 0; // Half-open
+        return true;
+      }
+      return false; // Open
+    }
+    return true; // Closed
+  }
+
+  recordFailure() {
+    this.failures++;
+    this.lastFailureTime = Date.now();
+  }
+
+  recordSuccess() {
+    this.failures = 0;
+  }
+}
 
 export class AIService {
   private static instance: AIService;
@@ -19,6 +46,7 @@ export class AIService {
   private lastFailedInit = 0;
   private initRetryCount = 0;
   private isBusy = false;
+  private cloudCircuitBreaker = new CloudCircuitBreaker();
 
   private constructor() {}
 
@@ -179,13 +207,9 @@ export class AIService {
   async explainIngredients(productName: string, ingredients: string[]): Promise<Record<string, string>> {
     logger.ai(`Iniciando análisis de principios activos para: ${productName} (${ingredients.length} comp.)`, 'AI_Componentes');
 
-    const tryLocal = async () => {
-      if (!this.worker || !this.isReady) {
-        throw new Error('Motor local no disponible para fallback');
-      }
-      
+    // Intentar local
+    if (this.worker && this.isReady) {
       logger.ai(`Ejecutando análisis con motor local (WebLLM) para ${productName}`, 'AI_Componentes');
-      
       try {
         const result = await this.runInWorker('EXPLAIN_INGREDIENTS', { productName, ingredients }, 60000);
         if (result && Object.keys(result).length > 0) {
@@ -193,15 +217,37 @@ export class AIService {
         }
         return result;
       } catch (e) {
-        logger.error(`Error en análisis local de componentes para ${productName}`, 'AI_Componentes', e);
-        throw e;
+        console.warn(`[AIService] Error en motor local al analizar componentes, probando fallback nube...`, e);
       }
-    };
+    } else {
+      console.warn('[AIService] Motor local no disponible, intentando analizar componentes en la nube...');
+    }
 
+    // Circuit Breaker
+    if (!this.cloudCircuitBreaker.canAttempt()) {
+      console.warn('[AIService] Circuito en la nube abierto. Encolando análisis de componentes para:', productName);
+      taskQueueService.addTask('ingredient_analysis', { product: { nombre_comercial: productName, principios_activos: ingredients } });
+      return {};
+    }
+
+    // Fallback Nube
     try {
-      return await tryLocal();
-    } catch (localError) {
-      logger.error(`El motor local (WebLLM) falló para ${productName}`, 'AI_Componentes', localError);
+      const { geminiService } = await import('./GeminiService');
+      const result = await geminiService.explainActiveIngredients(productName, ingredients);
+      this.cloudCircuitBreaker.recordSuccess();
+      logger.success(`Análisis en la nube exitoso para ${productName}`, 'AI_Componentes');
+      return result;
+    } catch (error: any) {
+      this.cloudCircuitBreaker.recordFailure();
+      const isQuotaError = error?.status === 'RESOURCE_EXHAUSTED' || error?.message?.includes('429') || error?.message?.includes('quota');
+      const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
+      
+      if (isQuotaError || isNetworkError) {
+        console.warn(`[AIService] Cuota o red fallida en la nube. Circuito activado, encolando componentes para:`, productName);
+        taskQueueService.addTask('ingredient_analysis', { product: { nombre_comercial: productName, principios_activos: ingredients } });
+      } else {
+        logger.error(`Error en análisis de componentes nube para ${productName}`, 'AI_Componentes', error);
+      }
       return {};
     }
   }
@@ -249,57 +295,59 @@ export class AIService {
   }
 
   async extractProductData(rawText: string, url: string): Promise<Product | null> {
-    if (!this.worker || !this.isReady) {
-        console.warn('[AIService] Motor IA apagado. Usando modo Lite (Regex).');
-        return this.extractDataLite(rawText, url);
-    }
+    const doLite = () => this.extractDataLite(rawText, url);
 
-    return new Promise((resolve) => {
-      const handler = (e: MessageEvent) => {
-        const { type, payload, error } = e.data;
-        if (type === 'EXTRACT_RESULT' || type === 'ERROR') {
-          this.worker?.removeEventListener('message', handler);
-          
-          if (error) {
-            console.error('[AIService] Error extracción IA:', error);
-            resolve(this.extractDataLite(rawText, url));
-            return;
-          }
+    if (this.worker && this.isReady) {
+      try {
+        const payload = await this.runInWorker('EXTRACT', { text: rawText, url }, 120000);
+        let content = payload.content;
+        let data: any = null;
 
-          try {
-            let content = payload.content;
-            let data: any = null;
-      
-            try {
-                const jsonMatch = content.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    const cleanContent = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
-                    data = JSON.parse(cleanContent);
-                }
-            } catch (jsonError) {
-                console.warn('[AIService] JSON del modelo inválido. Iniciando fallback heurístico.');
+        try {
+            const jsonMatch = content.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const cleanContent = jsonMatch[0].replace(/```json/g, '').replace(/```/g, '').trim();
+                data = JSON.parse(cleanContent);
             }
+        } catch (jsonError) {
+            console.warn('[AIService] JSON del modelo inválido en local. Iniciando fallback...');
+        }
 
-            if (!data || !data.nombre_comercial) {
-                resolve(this.extractDataLite(rawText, url));
-                return;
-            }
-
+        if (data && data.nombre_comercial) {
             data.vectores = [];
             data.skus_relacionados = [];
             data.source_url = url;
-            
-            resolve(data as Product);
-
-          } catch (err) {
-            console.error(err);
-            resolve(this.extractDataLite(rawText, url));
-          }
+            return data as Product;
         }
-      };
-      this.worker?.addEventListener('message', handler);
-      this.worker?.postMessage({ type: 'EXTRACT', payload: { text: rawText, url } });
-    });
+      } catch (error) {
+        console.error('[AIService] Error extracción IA local:', error);
+      }
+    } else {
+      console.warn('[AIService] Motor IA no activo. Intentando nube para extracción.');
+    }
+
+    if (!this.cloudCircuitBreaker.canAttempt()) {
+      console.warn('[AIService] Circuito en la nube abierto. Usando modo Lite (Regex) directamente.');
+      return doLite();
+    }
+
+    try {
+      const { geminiService } = await import('./GeminiService');
+      const data = await geminiService.extractProductFromPDFText(rawText);
+      this.cloudCircuitBreaker.recordSuccess();
+
+      if (data && data.nombre_comercial) {
+          data.vectores = [];
+          data.skus_relacionados = [];
+          data.source_url = url;
+          return data as Product;
+      }
+    } catch (error: any) {
+      this.cloudCircuitBreaker.recordFailure();
+      console.error('[AIService] Error extracción en nube:', error);
+    }
+    
+    return doLite();
   }
 
   private extractDataLite(rawText: string, url: string): Product {
@@ -335,29 +383,19 @@ export class AIService {
       return new Array(384).fill(0);
     }
 
-    return new Promise((resolve) => {
-      const handler = (e: MessageEvent) => {
-        const { type, payload, error } = e.data;
-        if (type === 'EMBED_RESULT' || type === 'ERROR') {
-          this.worker?.removeEventListener('message', handler);
-          if (error) {
-            console.error('[AIService] Error embedding:', error);
-            resolve(new Array(384).fill(0));
-          } else {
-            resolve(payload);
-          }
-        }
-      };
-      this.worker?.addEventListener('message', handler);
-      this.worker?.postMessage({ type: 'EMBED', payload: { text } });
-    });
+    try {
+      return await this.runInWorker('EMBED', { text }, 60000);
+    } catch (error) {
+      console.error('[AIService] Error embedding:', error);
+      return new Array(384).fill(0);
+    }
   }
 
   async analyze(query: string, products: Product[]): Promise<string> {
-    if (!this.worker || !this.isReady) {
+    const doLite = () => {
       const productNames = products.map(p => p.nombre_comercial).join(' y ');
-      return `### ⚡ Modo Lite (Sin IA)\nEl motor de IA no está activo. Mostrando información básica.\n\n**Productos:** ${productNames}\n\nPor favor, active el motor de IA en Configuración para un análisis clínico profundo.`;
-    }
+      return `### ⚡ Modo Lite\nEl motor de IA no pudo conectarse ni en local ni en la nube. Mostrando información básica.\n\n**Productos:** ${productNames}\n\nActiva el motor de IA local o asegúrate de que la conexión funcione.`;
+    };
 
     const context = products.map(p => 
       `MEDICAMENTO: ${p.nombre_comercial}\n` +
@@ -366,11 +404,30 @@ export class AIService {
       `- Advertencias: ${p.advertencias}\n`
     ).join('\n\n');
 
+    if (this.worker && this.isReady) {
+      try {
+        return await this.runInWorker('ANALYZE', { query, context });
+      } catch (error) {
+        console.error('[AIService] Error en analyze local:', error);
+      }
+    } else {
+      console.warn('[AIService] Motor IA no activo, recurriendo a nube para analyze...');
+    }
+
+    if (!this.cloudCircuitBreaker.canAttempt()) {
+      console.warn('[AIService] Circuito en la nube abierto. Usando modo Lite para analyze.');
+      return doLite();
+    }
+
     try {
-      return await this.runInWorker('ANALYZE', { query, context });
-    } catch (error) {
-      console.error('[AIService] Error en analyze:', error);
-      return 'No se pudo generar el análisis clínico por un error en el motor local.';
+      const { geminiService } = await import('./GeminiService');
+      const response = await geminiService.generateGeneralAnalysis(query, context);
+      this.cloudCircuitBreaker.recordSuccess();
+      return response;
+    } catch (error: any) {
+      this.cloudCircuitBreaker.recordFailure();
+      console.error('[AIService] Error en analyze nube:', error);
+      return doLite();
     }
   }
 
@@ -385,26 +442,42 @@ export class AIService {
   }
 
   async analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives'): Promise<any> {
+    // Intento con motor local primero
     if (this.worker && this.isReady) {
       try {
-        return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type });
+        logger.ai(`Análisis clínico (${type}) mediante motor local para: ${product.nombre_comercial}`, 'AI_Clinical');
+        return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type }, 90000);
       } catch (error) {
-        console.error('[AIService] Error en motor local, probando nube...', error);
+        console.warn(`[AIService] Error en motor local, recurriendo a fallback en la nube...`, error);
       }
+    } else {
+      console.warn('[AIService] Motor IA no activo, intentando fallback en la nube...');
     }
 
+    // Circuit Breaker para evitar saturar la nube en caso de caídas
+    if (!this.cloudCircuitBreaker.canAttempt()) {
+      console.warn('[AIService] Circuito en la nube abierto (protección). Encolando:', product.sku);
+      taskQueueService.addTask('ai_analysis', { product, candidates, type });
+      return null;
+    }
+
+    // Fallback a Gemini
     try {
       const { geminiService } = await import('./GeminiService');
+      let result = null;
       if (type === 'synergy') {
-        return await geminiService.analyzeSynergy(product, candidates);
+        result = await geminiService.analyzeSynergy(product, candidates);
       }
-      return null;
+      this.cloudCircuitBreaker.recordSuccess();
+      return result;
     } catch (error: any) {
+      this.cloudCircuitBreaker.recordFailure();
+      
       const isQuotaError = error?.status === 'RESOURCE_EXHAUSTED' || error?.message?.includes('429') || error?.message?.includes('quota');
       const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
       
       if (isQuotaError || isNetworkError) {
-        console.warn(`[AIService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en la nube, encolando análisis:`, product.sku);
+        console.warn(`[AIService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en la nube. Circuito activado, encolando análisis:`, product.sku);
         taskQueueService.addTask('ai_analysis', { product, candidates, type });
       } else {
         console.error('[AIService] Error en análisis clínico en la nube:', error);

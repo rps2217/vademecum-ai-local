@@ -483,6 +483,24 @@ export class GeminiService {
     });
   }
 
+  async generateGeneralAnalysis(query: string, context: string): Promise<string> {
+    return this.withRetry(async () => {
+      try {
+        const ai = this.getAI();
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nActúa como un analista clínico avanzado. Analiza la siguiente consulta y constrúyelo basándote SOLO en el contexto de los productos proporcionados.\n\nCONSULTA: ${query}\n\nPRODUCTOS RELACIONADOS:\n${context}\n\nRequerimientos: Responde de forma clara, priorizando opciones seguras y detalla los riesgos de interacción o perfil de los pacientes.`;
+        
+        const response = await ai.models.generateContent({
+          model: MODELS.PRO,
+          contents: prompt
+        });
+        return response.text || "No se pudo generar respuesta clínica.";
+      } catch (error) {
+        console.error("[GeminiService] Error en generateGeneralAnalysis:", error);
+        throw error;
+      }
+    });
+  }
+
   async analyzeSynergy(mainProduct: Product, relatedProducts: Product[]): Promise<{
     sugerencia_complementaria: string;
     skus_relacionados: string[];

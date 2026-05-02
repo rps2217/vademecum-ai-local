@@ -88,7 +88,16 @@ export class TaskProcessorService {
       if (task.type === 'cloud_sync') {
         // Bundling logic: Pick up other pending cloud_sync tasks
         const batchTasks = await taskQueueService.getPendingBatch('cloud_sync', 20);
-        const products = batchTasks.map(t => t.payload);
+        
+        // Ensure we load the most up-to-date products from the local DB avoiding payload bloating
+        const skus = Array.from(new Set(batchTasks.map(t => t.payload.sku)));
+        const products = [];
+        for (const sku of skus) {
+          if (sku) {
+            const p = await dataService.getProductBySku(sku);
+            if (p) products.push(p);
+          }
+        }
         
         console.log(`[TaskProcessor] Procesando paquete de ${products.length} sincronizaciones.`);
         

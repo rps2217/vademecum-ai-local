@@ -56,30 +56,51 @@ export class VectorBackgroundService {
     this.addLog('Iniciando vectorización masiva en segundo plano...', 'info');
 
     try {
-      const products = await dataService.getAllProducts();
-      const pending = products.filter((p: any) => !p.vectores || p.vectores.length === 0);
+      // Loop until there are no pending products.
+      // Load them in batches to prevent keeping thousands of products in RAM.
+      const batchSize = 20;
+      let totalPending = 0;
       
-      this.status.total = pending.length;
+      // Determine total pending first for status bar
+      const allProductsLight = await dataService.getAllProducts();
+      totalPending = allProductsLight.filter(p => !p.vectores || p.vectores.length === 0).length;
+      
+      this.status.total = totalPending;
       this.status.current = 0;
       this.notify();
 
-      if (pending.length === 0) {
+      if (totalPending === 0) {
         this.status.isProcessing = false;
         this.addLog('No hay productos pendientes de vectorización.', 'success');
         return;
       }
 
-      for (let i = 0; i < pending.length; i++) {
-        await this.vectorizeProduct(pending[i]);
-        this.status.current = i + 1;
-        if ((i + 1) % 5 === 0 || i === pending.length - 1) {
-          this.addLog(`Procesados ${i + 1}/${pending.length} productos...`, 'info');
-        } else {
-          this.notify();
+      let processedCount = 0;
+      let hasMore = true;
+
+      while (hasMore) {
+        const products = await dataService.getAllProducts();
+        const pendingBatch = products.filter(p => !p.vectores || p.vectores.length === 0).slice(0, batchSize);
+        
+        if (pendingBatch.length === 0) {
+          hasMore = false;
+          break;
         }
 
-        // Pausa térmica para proteger el hardware
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        for (let i = 0; i < pendingBatch.length; i++) {
+          await this.vectorizeProduct(pendingBatch[i]);
+          processedCount++;
+          this.status.current = processedCount;
+          
+          if (processedCount % 5 === 0 || processedCount === totalPending) {
+            this.addLog(`Procesados ${processedCount}/${totalPending} productos...`, 'info');
+          } else {
+            this.notify();
+          }
+
+          // Pausa térmica para proteger el hardware
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
       }
       
       this.status.isProcessing = false;
