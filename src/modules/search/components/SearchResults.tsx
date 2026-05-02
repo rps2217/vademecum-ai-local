@@ -42,11 +42,14 @@ export const SearchResults = React.memo<SearchResultsProps>(({
     // Términos relacionados (sinónimos clínicos)
     const relatedTerms = getRelatedClinicalTerms(query);
     
-    // Expresión regular para la query exacta con límites de palabra
-    const exactRegex = new RegExp(`(^|[^a-z])${normQuery}($|[^a-z])`, 'i');
+    // Regex flexible: Coincidencia al inicio de cualquier palabra o término
+    // Esto permite que "murr" coincida con "Murrill" o "Amoxicilina" si se busca amox
+    const flexibleRegex = new RegExp(`(^|[^a-z])${normQuery}`, 'i');
     
-    // Expresión regular para CUALQUIER término relacionado
-    const relatedRegex = new RegExp(`(^|[^a-z])(${relatedTerms.join('|')})($|[^a-z])`, 'i');
+    // Expresión regular para CUALQUIER término relacionado (sinónimos)
+    const relatedRegex = relatedTerms.length > 0 
+      ? new RegExp(`(^|[^a-z])(${relatedTerms.join('|')})`, 'i') 
+      : null;
 
     const exact: Product[] = [];
     const related: Product[] = [];
@@ -59,19 +62,20 @@ export const SearchResults = React.memo<SearchResultsProps>(({
       const pName = (product.nombre_comercial || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       const pPrincipals = (product.principios_activos || []).map(m => m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
 
-      // Coincidencia EXACTA: El término buscado está en las indicaciones
-      const isDirectTherapeuticMatch = indications.some(i => exactRegex.test(i));
+      // Coincidencia DIRECTA: El término buscado está en las indicaciones, nombre o principio activo
+      const isDirectMatch = flexibleRegex.test(pName) || 
+                           pPrincipals.some(p => flexibleRegex.test(p)) ||
+                           indications.some(i => flexibleRegex.test(i));
       
-      // Coincidencia RELACIONADA: 
-      // 1. Algún sinónimo está en las indicaciones
-      // 2. El término original está en el nombre o principios activos (usando regex para evitar "gotas")
-      const isRelatedTherapeuticMatch = indications.some(i => relatedRegex.test(i)) || 
-                                       exactRegex.test(pName) || 
-                                       pPrincipals.some(p => exactRegex.test(p));
+      // Coincidencia RELACIONADA: Algún sinónimo está en las indicaciones
+      const isRelatedMatch = relatedRegex ? indications.some(i => relatedRegex.test(i)) : false;
                       
-      if (isDirectTherapeuticMatch) {
+      if (isDirectMatch) {
         exact.push(product);
-      } else if (isRelatedTherapeuticMatch) {
+      } else if (isRelatedMatch) {
+        related.push(product);
+      } else {
+        // Fallback: Si Fuse lo encontró por similitud (fuzzy), lo mostramos en relacionados
         related.push(product);
       }
     });
