@@ -3,17 +3,25 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-brand-bg: #0f151f;      /* Darker, flatter background */
-  --color-brand-surface: #1a222e; /* Flatter panels */
+  --color-brand-bg: var(--app-bg);      /* Dynamic background */
+  --color-brand-surface: var(--app-surface); /* Dynamic panels */
   --color-brand-primary: #f97316; /* Standard vibrant orange */
   --color-brand-accent: #10b981;  /* Standard vibrant emerald */
   
-  /* Overriding standard slates to match the navy tone */
-  --color-slate-950: #0d121b;
-  --color-slate-900: #0f151f;
-  --color-slate-800: #1a222e;
-  --color-slate-700: #2a3441;
-  --color-slate-600: #445163;
+  /* Overriding standard slates to match the dynamic theme */
+  --color-slate-950: var(--app-slate-950);
+  --color-slate-900: var(--app-slate-900);
+  --color-slate-800: var(--app-slate-800);
+  --color-slate-700: var(--app-slate-700);
+  --color-slate-600: var(--app-slate-600);
+  --color-slate-500: var(--app-slate-500);
+  --color-slate-400: var(--app-slate-400);
+  --color-slate-300: var(--app-slate-300);
+  --color-slate-200: var(--app-slate-200);
+  --color-slate-100: var(--app-slate-100);
+  --color-slate-50: var(--app-slate-50);
+  --color-white: var(--app-white);
+  --color-black: var(--app-black);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", var(--font-sans);
@@ -26,6 +34,44 @@
 }
 
 @layer base {
+  :root {
+    --app-bg: #0f151f;
+    --app-surface: #1a222e;
+    
+    --app-slate-950: #0d121b;
+    --app-slate-900: #0f151f;
+    --app-slate-800: #1a222e;
+    --app-slate-700: #2a3441;
+    --app-slate-600: #445163;
+    --app-slate-500: #64748b;
+    --app-slate-400: #94a3b8;
+    --app-slate-300: #cbd5e1;
+    --app-slate-200: #e2e8f0;
+    --app-slate-100: #f1f5f9;
+    --app-slate-50: #f8fafc;
+    --app-white: #ffffff;
+    --app-black: #000000;
+  }
+
+  .light {
+    --app-bg: #f4f7fb;
+    --app-surface: #ffffff;
+    
+    --app-slate-950: #ffffff;
+    --app-slate-900: #f4f7fb; /* Equivalent to dark's 900 (bg) */
+    --app-slate-800: #ffffff; /* Equivalent to dark's 800 (surface) */
+    --app-slate-700: #e2e8f0; /* Borders */
+    --app-slate-600: #94a3b8;
+    --app-slate-500: #64748b; /* Text muted */
+    --app-slate-400: #475569; /* Text normal */
+    --app-slate-300: #334155; /* Text emphasis */
+    --app-slate-200: #1e293b; /* Text strong */
+    --app-slate-100: #0f172a;
+    --app-slate-50: #020617;
+    --app-white: #0f151f; /* Invert white text to dark text */
+    --app-black: #ffffff; /* Invert black to white */
+  }
+
   body {
     @apply bg-brand-bg text-slate-200 selection:bg-brand-primary/30 antialiased;
     font-feature-settings: "cv02", "cv05", "cv11";

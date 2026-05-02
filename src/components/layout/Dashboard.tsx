@@ -24,6 +24,8 @@ import { SearchConcept } from '../../modules/search/components/SearchSuggestions
 import { searchService } from '../../services/SearchService';
 import { logger } from '../../services/LoggerService';
 
+import { ThemeToggle } from '../common/ThemeToggle';
+
 const AIAnalysisModal = lazy(() => import('../../modules/search/components/AIAnalysisModal').then(m => ({ default: m.AIAnalysisModal })));
 
 // Lazy load modules
@@ -239,6 +241,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
               <div className="h-8 w-px bg-slate-800 hidden sm:block mx-1" />
               
+              <ThemeToggle />
+
               <button 
                 onClick={toggleAiProcessing}
                 className={`p-2 rounded-xl border transition-all ${
