@@ -175,6 +175,16 @@ export class AIService {
     }
   }
 
+  async explainIngredients(productName: string, ingredients: string[]): Promise<Record<string, string>> {
+    try {
+      const { geminiService } = await import('./GeminiService');
+      return await geminiService.explainActiveIngredients(productName, ingredients);
+    } catch (error) {
+      console.error('[AIService] Error en explainIngredients:', error);
+      return {};
+    }
+  }
+
   private startWatchdog() {
     if (this.watchdogInterval) return;
     this.watchdogInterval = window.setInterval(async () => {

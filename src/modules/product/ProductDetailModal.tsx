@@ -10,6 +10,7 @@ import { ProductActions } from './components/ProductActions';
 import { ProductEditForm } from './components/ProductEditForm';
 import { PasswordPrompt } from './components/PasswordPrompt';
 import { ProductRecommendations } from './components/ProductRecommendations';
+import { IngredientInsights } from './components/IngredientInsights';
 
 import { useProductDetail } from './hooks/useProductDetail';
 import { printProductTicket } from './utils/printHelpers';
@@ -136,24 +137,28 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
         )}
 
-        <div className="relative">
-          <ProductHeader product={product} onTagClick={onTagClick} searchTerm={searchTerm} />
-          <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-50 hidden sm:block">
-            <ProductActions 
-              product={product}
-              isForcingSynergy={isForcingSynergy}
-              isReanalyzing={isReanalyzing}
-              isSuccess={isSuccess}
-              isEditing={isEditing}
-              onForceSynergy={handleForceSynergy}
-              onReanalyze={handleReanalyze}
-              onEdit={handleEditClick}
-              onVerify={handleVerifyClick}
-              onClose={onClose}
-              hideCloseMobile={true}
-            />
-          </div>
-        </div>
+        <ProductHeader 
+          product={product} 
+          onTagClick={onTagClick} 
+          searchTerm={searchTerm} 
+          actions={(
+            <div className="hidden sm:block">
+              <ProductActions 
+                product={product}
+                isForcingSynergy={isForcingSynergy}
+                isReanalyzing={isReanalyzing}
+                isSuccess={isSuccess}
+                isEditing={isEditing}
+                onForceSynergy={handleForceSynergy}
+                onReanalyze={handleReanalyze}
+                onEdit={handleEditClick}
+                onVerify={handleVerifyClick}
+                onClose={onClose}
+                hideCloseMobile={true}
+              />
+            </div>
+          )}
+        />
 
         {isEditing ? (
           <ProductEditForm 
@@ -165,6 +170,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <>
             <ProductBentoGrid product={product} searchTerm={searchTerm} />
             
+            <IngredientInsights product={product} />
+
             {/* Sales Enhancements Section */}
             <ProductRecommendations 
               product={product} 

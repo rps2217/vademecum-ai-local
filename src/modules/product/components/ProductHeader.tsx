@@ -9,15 +9,16 @@ interface ProductHeaderProps {
   product: Product;
   onTagClick?: (tag: string) => void;
   searchTerm?: string;
+  actions?: React.ReactNode;
 }
 
-export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClick, searchTerm = '' }) => {
+export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClick, searchTerm = '', actions }) => {
   return (
     <div className="bg-brand-surface border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-8 mb-4 sm:mb-6 relative overflow-hidden shadow-lg">
       <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
       
-      <div className="flex justify-between items-start relative z-10">
-        <div className="flex-1 pr-0 sm:pr-4">
+      <div className="flex flex-col lg:flex-row gap-6 justify-between items-start relative z-10">
+        <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
             <Badge variant="outline" className="bg-brand-bg text-slate-400 border-slate-700 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs tracking-wider font-mono">
               {product.sku}
@@ -81,6 +82,12 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
             })}
           </div>
         </div>
+
+        {actions && (
+          <div className="shrink-0 pt-2 lg:pt-0">
+            {actions}
+          </div>
+        )}
       </div>
     </div>
   );
