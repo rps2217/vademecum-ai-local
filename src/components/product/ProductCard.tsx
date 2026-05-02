@@ -27,14 +27,30 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
     
     // Mapeo explícito
     const clamps = {
-      2: 'line-clamp-10',
-      3: 'line-clamp-6',
+      2: 'line-clamp-12',
+      3: 'line-clamp-8',
       4: 'line-clamp-4',
       5: 'line-clamp-3'
     };
     
     return clamps[settings.gridColumns as keyof typeof clamps] || 'line-clamp-4';
   };
+
+  const getTextSize = () => {
+    if (viewMode === 'list') return { title: 'text-sm', principles: 'text-[11px]', indications: 'text-[11px]' };
+    
+    const sizes = {
+      2: { title: 'text-xl', principles: 'text-sm', indications: 'text-[15px]' },
+      3: { title: 'text-lg', principles: 'text-xs', indications: 'text-[13px]' },
+      4: { title: 'text-sm', principles: 'text-[11px]', indications: 'text-[11px]' },
+      5: { title: 'text-xs', principles: 'text-[9px]', indications: 'text-[10px]' }
+    };
+    
+    const cols = settings.gridColumns as keyof typeof sizes;
+    return sizes[cols] || sizes[4];
+  };
+
+  const sizes = getTextSize();
 
   const getSafetyIcon = (status: SafetyStatus) => {
     switch (status) {
@@ -120,10 +136,10 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
               </span>
             )}
           </div>
-          <h3 className="text-sm font-bold text-white leading-snug group-hover:text-brand-primary transition-colors line-clamp-1">
+          <h3 className={`${sizes.title} font-bold text-white leading-snug group-hover:text-brand-primary transition-colors line-clamp-1`}>
             <HighlightText text={capitalizeFirst(product.nombre_comercial)} searchTerm={searchTerm} />
           </h3>
-          <p className="text-[11px] text-slate-500 font-medium truncate italic">
+          <p className={`${sizes.principles} text-slate-500 font-medium truncate italic`}>
             <HighlightText text={capitalizeFirst(formatArrayToString(product.principios_activos, ', '))} searchTerm={searchTerm} />
           </p>
         </div>
@@ -133,7 +149,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, on
         {/* Indicaciones - Large and clear Area */}
         <div className="mt-2 p-3 rounded-xl bg-white/[0.03] border border-white/5 group-hover:border-brand-primary/20 transition-all">
           <p className="text-[8px] uppercase font-black tracking-[0.2em] text-slate-600 mb-2">Indicaciones Principales</p>
-          <div className={`text-[11px] sm:text-[12px] text-slate-300 ${getLineClamp()} leading-relaxed font-medium`}>
+          <div className={`${sizes.indications} text-slate-300 ${getLineClamp()} leading-relaxed font-medium`}>
             <HighlightText text={capitalizeFirst(formatArrayToString(product.indicaciones, ' • '))} searchTerm={searchTerm} />
           </div>
         </div>
