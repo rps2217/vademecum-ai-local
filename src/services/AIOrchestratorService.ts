@@ -39,6 +39,7 @@ export class AIOrchestratorService {
   configure(hardware: any) {
     this.hardware = hardware;
     this.status.deviceTier = hardware?.deviceTier || 'STANDARD';
+    console.log(`[ThermalGuard] Sistema configurado para perfil: ${this.status.deviceTier}`);
     this.notify();
   }
 
@@ -76,6 +77,7 @@ export class AIOrchestratorService {
     const tier = this.hardware?.deviceTier || 'STANDARD';
     const thresholds = { ULTRA: 250, STANDARD: 150, ECO: 70 };
     if (this.thermalStress > thresholds[tier as keyof typeof thresholds]) {
+      console.log(`[Orchestrator] Saltando scout por estrés térmico (${Math.round(this.thermalStress)})`);
       return;
     }
 

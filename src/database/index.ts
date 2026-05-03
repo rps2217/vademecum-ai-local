@@ -22,12 +22,14 @@ const adapter = new LokiJSAdapter({
   }
 });
 
+console.log('[Database] Initializing WatermelonDB with LokiJS adapter...');
 
 export const database = new Database({
   adapter,
   modelClasses: [Product, Task, DrugFamily, ActiveIngredient, IngredientFamily, DrugInteraction],
 });
 
+console.log('[Database] WatermelonDB driver is initialized.');
 
 export const productsCollection = database.get<Product>('products');
 export const tasksCollection = database.get<Task>('tasks');

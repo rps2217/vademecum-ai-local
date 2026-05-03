@@ -38,6 +38,7 @@ export class TaskProcessorService {
     this.isProcessing = true;
     this.stopRequested = false;
     
+    console.log('[TaskProcessor] Iniciando bucle de procesamiento de tareas...');
     
     this.processLoop();
   }
@@ -98,6 +99,7 @@ export class TaskProcessorService {
           }
         }
         
+        console.log(`[TaskProcessor] Procesando paquete de ${products.length} sincronizaciones.`);
         
         // Mark all as processing
         await Promise.all(batchTasks.map(t => 
@@ -110,6 +112,7 @@ export class TaskProcessorService {
           
           // Remove all successful tasks
           await Promise.all(batchTasks.map(t => taskQueueService.removeTask(t.id)));
+          console.log(`[TaskProcessor] Paquete de ${products.length} completado.`);
         } catch (error: any) {
           // Revert or retry individually? For now, we allow standard error handling to set them to failed/pending again
           for (const t of batchTasks) {
@@ -120,6 +123,7 @@ export class TaskProcessorService {
       }
 
       // Standard processing for non-batchable tasks
+      console.log(`[TaskProcessor] Ejecutando tarea: ${task.type} (${task.id})`);
       await taskQueueService.updateTask(task.id, { status: 'processing' });
 
       switch (task.type) {
@@ -164,6 +168,7 @@ export class TaskProcessorService {
       }
 
       await taskQueueService.removeTask(task.id);
+      console.log(`[TaskProcessor] Tarea completada: ${task.id}`);
 
     } catch (error: any) {
       await this.handleTaskError(task, error);

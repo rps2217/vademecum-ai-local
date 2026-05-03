@@ -1,6 +1,6 @@
-import React, { memo, CSSProperties } from 'react';
+import React, { memo } from 'react';
 import * as ReactWindow from 'react-window';
-const List = (ReactWindow as any).List || (ReactWindow as any).default?.List || ReactWindow;
+const List = (ReactWindow as any).List || (ReactWindow as any).FixedSizeList;
 import { Product } from '../../../core/types/product.types';
 import { Cloud, Monitor, Sparkles, RefreshCw, CheckCircle, Trash2, CloudOff } from 'lucide-react';
 
@@ -10,18 +10,7 @@ interface ProductTableProps {
   onDelete: (sku: string) => void;
 }
 
-interface RowData {
-  products: Product[];
-  onDelete: (sku: string) => void;
-}
-
-interface RowProps {
-  index: number;
-  style: CSSProperties;
-  data: RowData;
-}
-
-const Row = memo(({ index, style, data }: RowProps) => {
+const Row = memo(({ index, style, ...data }: any) => {
   const { products, onDelete } = data;
   const p = products[index];
 
@@ -97,15 +86,15 @@ export const ProductTable: React.FC<ProductTableProps> = ({ products, isLoading,
             No hay registros.
           </div>
         ) : (
-          <List
-            height={400}
-            itemCount={products.length}
-            itemSize={64}
-            width="100%"
-            itemData={{ products, onDelete }}
-          >
-            {Row}
-          </List>
+        <List
+          height={600}
+          itemCount={products.length}
+          itemSize={64}
+          width="100%"
+          itemData={{ products, onDelete }}
+        >
+          {Row as any}
+        </List>
         )}
       </div>
     </div>

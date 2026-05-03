@@ -41,6 +41,7 @@ export const EventBus = {
     };
     
     if (process.env.NODE_ENV !== 'production') {
+      console.log(`[EventBus] ${type}`, {
         id: event.id,
         timestamp: new Date(event.timestamp).toISOString(),
         payload

@@ -71,15 +71,15 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
 
 async function purgeCache() {
   try {
+    console.log('[Worker] Iniciando purga completa de caché...');
 
-    // 1. Borrar Cache Storage específico de IA
-    // Solo borramos las cachés relacionadas a nuestros modelos para no afectar la PWA
+    // 1. Borrar TODO el Cache Storage (Nuclear option)
+    // Esto es necesario porque los nombres de caché pueden variar o estar corruptos
     if ('caches' in self) {
       const keys = await caches.keys();
       for (const key of keys) {
-        if (key.includes('transformers') || key.includes('webllm') || key.includes('model')) {
-          await caches.delete(key);
-        }
+        console.log(`[Worker] Borrando caché: ${key}`);
+        await caches.delete(key);
       }
     }
 
@@ -95,7 +95,9 @@ async function purgeCache() {
                         db.name.includes('webllm') ||
                         db.name.includes('model') // Catch-all para modelos
                     ) {
+                        console.log(`[Worker] Borrando DB: ${db.name}`);
                         const req = self.indexedDB.deleteDatabase(db.name);
+                        req.onsuccess = () => console.log(`[Worker] DB ${db.name} borrada.`);
                         req.onerror = () => console.error(`[Worker] Error borrando DB ${db.name}`);
                     }
                 }

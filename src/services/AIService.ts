@@ -117,6 +117,7 @@ export class AIService {
                 
                 this.runHealthCheck().then(hc => {
                     if (hc.ok) {
+                        console.log(`[AIService] Motor verificado y funcional: ${hc.engine}`);
                     } else {
                         console.warn(`[AIService] Motor iniciado pero con advertencias: ${hc.error}`);
                     }
@@ -166,7 +167,7 @@ export class AIService {
     this.lastProgress = { text: '', progress: 0 };
   }
 
-  private async runInWorker<T = unknown>(type: string, payload: Record<string, unknown>, timeoutMs: number = 180000): Promise<T> {
+  private async runInWorker(type: string, payload: any, timeoutMs: number = 180000): Promise<any> {
     if (!this.worker || !this.isReady) {
       throw new Error('Motor IA no está listo');
     }
@@ -195,7 +196,7 @@ export class AIService {
     });
   }
 
-  async analyzeSynergy(product: Product, candidates: Product[]): Promise<string | null> {
+  async analyzeSynergy(product: any, candidates: any[]): Promise<any> {
     try {
       return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type: 'synergy' });
     } catch (error) {
@@ -211,7 +212,7 @@ export class AIService {
     if (this.worker && this.isReady) {
       logger.ai(`Ejecutando análisis con motor local (WebLLM) para ${productName}`, 'AI_Componentes');
       try {
-        const result = await this.runInWorker<Record<string, string>>('EXPLAIN_INGREDIENTS', { productName, ingredients }, 60000);
+        const result = await this.runInWorker('EXPLAIN_INGREDIENTS', { productName, ingredients }, 60000);
         if (result && Object.keys(result).length > 0) {
           logger.success(`Análisis de componentes completado localmente para ${productName}`, 'AI_Componentes');
         }
@@ -267,6 +268,7 @@ export class AIService {
           this.restartEngine();
         }
       } else if (this.isBusy) {
+        console.log('[AIService] Watchdog: Motor ocupado, posponiendo revisión de salud.');
       }
     }, 5 * 60 * 1000);
   }
@@ -298,7 +300,7 @@ export class AIService {
 
     if (this.worker && this.isReady) {
       try {
-        const payload = await this.runInWorker<Record<string, any>>('EXTRACT', { text: rawText, url }, 120000);
+        const payload = await this.runInWorker('EXTRACT', { text: rawText, url }, 120000);
         let content = payload.content;
         let data: any = null;
 
@@ -350,6 +352,7 @@ export class AIService {
   }
 
   private extractDataLite(rawText: string, url: string): Product {
+    console.log('[AIService] Ejecutando extracción Lite (Regex)...');
     const nombreMatch = rawText.match(/Producto:\s*([^.]+)/i) || rawText.match(/Nombre:\s*([^.]+)/i);
     const indicacionMatch = rawText.match(/Indicación:\s*([^.]+)/i) || rawText.match(/Para:\s*([^.]+)/i);
     
@@ -439,7 +442,7 @@ export class AIService {
     }
   }
 
-  async analyzeClinical(product: Product, candidates: Product[], type: 'synergy' | 'alternatives'): Promise<string> {
+  async analyzeClinical(product: any, candidates: any[], type: 'synergy' | 'alternatives'): Promise<any> {
     // Intento con motor local primero
     if (this.worker && this.isReady) {
       try {
@@ -496,6 +499,18 @@ export class AIService {
     }
   }
 
+  cosineSimilarity(vecA: number[], vecB: number[]): number {
+    if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    for (let i = 0; i < vecA.length; i++) {
+      dotProduct += vecA[i] * vecB[i];
+      normA += vecA[i] * vecA[i];
+      normB += vecB[i] * vecB[i];
+    }
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+  }
 
   async runHealthCheck(): Promise<{ ok: boolean; engine: string; response?: string; error?: string }> {
     if (!this.worker || !this.isReady) {

@@ -10,7 +10,6 @@ import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
 import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
 import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretationOverlay';
-import { RecentlyViewed } from './components/RecentlyViewed';
 import { useConsultation } from '../../context/ConsultationContext';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { logger } from '../../services/LoggerService';
@@ -19,7 +18,6 @@ import { aiService } from '../../services/AIService';
 import { historyService } from '../../services/HistoryService';
 import { searchService } from '../../services/SearchService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
-import { dataService } from '../../services/DataService';
 import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
 import { useStore } from '../../store/useStore';
@@ -38,7 +36,7 @@ export const SearchModule: React.FC = () => {
   } = useProductSearch();
   
   const { isSearching: globalIsSearching, setIsSearching } = useSearch();
-  const { viewedProductSku, setViewedProduct } = useStore();
+  const { viewedProductSku, setViewedProduct, products } = useStore();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
@@ -54,13 +52,12 @@ export const SearchModule: React.FC = () => {
   // Sync viewedProductSku from store
   useEffect(() => {
     if (viewedProductSku) {
-      dataService.getProductBySku(viewedProductSku).then(p => {
-        if (p) setSelectedProduct(p as unknown as Product);
-      });
+      const p = products.find(p => p.sku === viewedProductSku);
+      if (p) setSelectedProduct(p);
     } else {
       setSelectedProduct(null);
     }
-  }, [viewedProductSku]);
+  }, [viewedProductSku, products]);
 
   // Update recent terms on mount and when changed
   useEffect(() => {
@@ -198,13 +195,14 @@ export const SearchModule: React.FC = () => {
         </div>
       ) : (
         /* Search Board */
-        <div className="w-full flex-1 max-w-5xl mx-auto py-12 px-6">
+        <div className="w-full flex-1">
           {query.trim() === '' && results.length === 0 ? (
-            <div className="space-y-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              
-              <QuickDiscoveryTags onSelect={setQuery} />
-
-              <RecentlyViewed onProductClick={handleProductClick} />
+            <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              {/* Recently Viewed / History */}
+              <div className="grid md:grid-cols-2 gap-12">
+                
+                <QuickDiscoveryTags onSelect={setQuery} />
+              </div>
             </div>
           ) : (
             /* Results & Interpretations */

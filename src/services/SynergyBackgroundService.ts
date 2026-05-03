@@ -4,7 +4,6 @@ import { geminiService } from './GeminiService';
 import { ollamaService } from './OllamaService';
 import { cloudSyncService } from './CloudSyncService';
 import { formatArrayToString } from '../utils/formatters';
-import { cosineSimilarity } from '../utils/math';
 import { configService } from './ConfigService';
 import { dataService } from './DataService';
 import { taskQueueService } from './TaskQueueService';
@@ -121,12 +120,12 @@ export class SynergyBackgroundService {
 
       // 2. Análisis de Principios Activos (IA Componentes)
       let anotaciones_componentes = product.anotaciones_componentes || {};
-      if (Object.keys(anotaciones_componentes).length === 0 && product.principios_activos && product.principios_activos.length > 0) {
+      if (anotaciones_componentes && typeof anotaciones_componentes === 'object' && Object.keys(anotaciones_componentes).length === 0 && Array.isArray(product.principios_activos) && product.principios_activos.length > 0) {
         try {
           const { aiService: localAiService } = await import('./AIService');
           logger.info(`Iniciando análisis de componentes para ${product.sku}...`, 'Sinergia');
           const result = await localAiService.explainIngredients(product.nombre_comercial, product.principios_activos);
-          if (result && Object.keys(result).length > 0) {
+          if (result && typeof result === 'object' && Object.keys(result).length > 0) {
             anotaciones_componentes = result;
             // CHECKPOINT: Guardar el progreso parcial para no perder el análisis de componentes si falla la sinergia
             product.anotaciones_componentes = result;
@@ -134,7 +133,7 @@ export class SynergyBackgroundService {
             logger.info(`Checkpoint guardado: Componentes de ${product.sku}`, 'Sinergia');
 
             // Contribuir a la base de conocimientos RAG (Supabase pgvector)
-            for (const [principle, mechanism] of Object.entries(result)) {
+            for (const [principle, mechanism] of Object.entries(result || {})) {
               medicalRAGService.upsertClinicalKnowledge(principle, mechanism as string).catch(() => {});
             }
           }
@@ -150,7 +149,7 @@ export class SynergyBackgroundService {
         .filter((p: any) => p.sku !== product.sku && p.vectores && p.vectores.length > 0)
         .map((p: any) => ({
           product: p,
-          score: cosineSimilarity(mainVector, p.vectores)
+          score: this.cosineSimilarity(mainVector, p.vectores)
         }))
         .filter(item => item.score > 0.65)
         .sort((a, b) => b.score - a.score)
@@ -302,6 +301,18 @@ export class SynergyBackgroundService {
     this.notifyListeners();
   }
 
+  private cosineSimilarity(vecA: number[], vecB: number[]): number {
+    if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    for (let i = 0; i < vecA.length; i++) {
+        dotProduct += vecA[i] * vecB[i];
+        normA += vecA[i] * vecA[i];
+        normB += vecB[i] * vecB[i];
+    }
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+  }
 }
 
 export const synergyBackgroundService = SynergyBackgroundService.getInstance();

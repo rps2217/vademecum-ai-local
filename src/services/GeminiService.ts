@@ -1,29 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Product, SafetyStatus } from "../core/types/product.types";
 import { formatArrayToString } from "../utils/formatters";
-import { 
-  SEARCH_PRODUCT_PROMPT, 
-  REANALYZE_PRODUCT_PROMPT, 
-  EXTRACT_FROM_MARKDOWN_PROMPT, 
-  EXTRACT_NAMES_FROM_URL_PROMPT, 
-  EXTRACT_NAMES_FROM_SEARCH_PROMPT,
-  CLEAN_VALIDATE_PRODUCTS_PROMPT,
-  EXTRACT_FROM_PDF_PROMPT,
-  EXTRACT_FROM_IMAGE_PROMPT
-} from "../prompts/productPrompts";
-import { 
-  ANALYZE_SYNERGY_PROMPT, 
-  GENERATE_GENERAL_ANALYSIS_PROMPT,
-  ANALYZE_INTERACTIONS_PROMPT
-} from "../prompts/synergyPrompts";
-import { EXPLAIN_INGREDIENTS_PROMPT } from "../prompts/ingredientPrompts";
-import {
-  validateProductExtraction,
-  validateProductList,
-  validateInteractionAnalysis,
-  validateSynergyAnalysis,
-  validateExplanation
-} from "../core/validation/aiSchemas";
+
+const SYSTEM_PHILOSOPHY = `IMPORTANTE: Esta base de datos y aplicación NO diagnostica ni prescribe a los pacientes. Tu función principal es ser una fuente de ALTERNATIVAS de fármacos, suplementos y homeopatía para diversas patologías, además de entregar información sobre TRATAMIENTOS COMPLEMENTARIOS y SINÉRGICOS disponibles en la base de datos. Mantén siempre un enfoque estructurado de análisis e interconexión de opciones en lugar de actuar como médico tratante.`;
+
 const MODELS = {
   FLASH: "gemini-2.0-flash",
   PRO: "gemini-2.0-flash", // Use flash by default for speed, or pro if available
@@ -111,7 +91,11 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = SEARCH_PRODUCT_PROMPT(productName, targetUrl);
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nBusca información detallada sobre el producto farmacéutico: "${productName}".
+        ${targetUrl ? `Enfócate en la información de este sitio si es posible: ${targetUrl}` : ''}
+        
+        Necesito extraer: SKU, nombre comercial, descripción completa, principios activos, posología, indicaciones, advertencias, análisis de los componentes y su función, y si es apto para diferentes perfiles (embarazo, lactancia, pediatría, diabéticos, hipertensos, celíacos).
+        Adicionalmente, dame un diccionario 'anotaciones_componentes' con una breve explicación de 1-2 frases de cada principio activo.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.FLASH,
@@ -157,13 +141,7 @@ export class GeminiService {
         const responseText = response.text || "{}";
         const data = this.cleanAndParseJSON(responseText);
         
-        if (!validateProductExtraction(data)) {
-          console.error("[GeminiService] Schema validation failed for searchAndExtractProduct:", validateProductExtraction.errors);
-          return null;
-        }
-        const validData: any = data;
-
-        if (!validData.nombre_comercial) return null;
+        if (!data.nombre_comercial) return null;
 
         const mapSafety = (val: string): SafetyStatus => {
           const v = String(val).toUpperCase();
@@ -173,24 +151,24 @@ export class GeminiService {
         };
 
         return {
-          sku: validData.sku || "SEARCH-" + Date.now().toString().slice(-6),
-          nombre_comercial: validData.nombre_comercial,
-          descripcion: validData.descripcion || "",
-          principios_activos: validData.principios_activos || [],
-          posologia: validData.posologia || "Consultar prospecto",
-          indicaciones: validData.indicaciones || [],
-          advertencias: validData.advertencias || "",
-          tags_ia: [...(validData.tags_ia || []), "google_search_grounding"],
-          categoria_principal: validData.categoria_principal || 'Otro',
-          analisis_componentes: validData.analisis_componentes || '',
+          sku: data.sku || "SEARCH-" + Date.now().toString().slice(-6),
+          nombre_comercial: data.nombre_comercial,
+          descripcion: data.descripcion || "",
+          principios_activos: data.principios_activos || [],
+          posologia: data.posologia || "Consultar prospecto",
+          indicaciones: data.indicaciones || [],
+          advertencias: data.advertencias || "",
+          tags_ia: [...(data.tags_ia || []), "google_search_grounding"],
+          categoria_principal: data.categoria_principal || 'Otro',
+          analisis_componentes: data.analisis_componentes || '',
           vectores: [],
-          apto_embarazo: mapSafety(validData.apto_embarazo),
-          apto_lactancia: mapSafety(validData.apto_lactancia),
-          apto_pediatria: mapSafety(validData.apto_pediatria),
-          apto_diabeticos: mapSafety(validData.apto_diabeticos),
-          apto_hipertensos: mapSafety(validData.apto_hipertensos),
-          apto_celiacos: mapSafety(validData.apto_celiacos),
-          sugerencia_complementaria: validData.sugerencia_complementaria || "",
+          apto_embarazo: mapSafety(data.apto_embarazo),
+          apto_lactancia: mapSafety(data.apto_lactancia),
+          apto_pediatria: mapSafety(data.apto_pediatria),
+          apto_diabeticos: mapSafety(data.apto_diabeticos),
+          apto_hipertensos: mapSafety(data.apto_hipertensos),
+          apto_celiacos: mapSafety(data.apto_celiacos),
+          sugerencia_complementaria: data.sugerencia_complementaria || "",
           skus_relacionados: [],
           synergy_analyzed: false,
           source_url: targetUrl || "google_search"
@@ -208,7 +186,24 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = REANALYZE_PRODUCT_PROMPT(product);
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nRe-analiza y completa la información de este producto farmacéutico.
+        
+        DATOS ACTUALES:
+        - Nombre: ${product.nombre_comercial}
+        - SKU: ${product.sku}
+        - Descripción actual: ${product.descripcion}
+        - Principios Activos: ${(Array.isArray(product.principios_activos) ? product.principios_activos : []).join(', ')}
+        - Indicaciones: ${(Array.isArray(product.indicaciones) ? product.indicaciones : []).join(', ')}
+        - Advertencias: ${product.advertencias}
+        - URL de origen: ${product.source_url || 'No disponible'}
+        
+        TAREA:
+        1. Busca información oficial y actualizada sobre este medicamento (usa la URL de origen si está disponible, o busca por su nombre comercial y principios activos).
+        2. Completa los campos vacíos o incompletos (especialmente advertencias, posología, y restricciones para embarazo/lactancia/etc).
+        3. Clasifica el producto en una de estas categorías principales (categoria_principal): "Belleza", "Medicamento", "Suplemento", "Homeopatía" u "Otro".
+        4. Analiza los componentes de la formulación (principios activos) y en el contexto del producto indica la función de cada componente (analisis_componentes).
+        5. Genera etiquetas (tags_ia) útiles para búsqueda clínica (ej. "analgésico", "AINE", "hepatotóxico").
+        6. Devuelve el JSON completo actualizado. Mantén el SKU original.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.FLASH,
@@ -259,17 +254,9 @@ export class GeminiService {
           return null;
         }
 
-        const data = this.cleanAndParseJSON(responseText);
-        
-        if (!validateProductExtraction(data)) {
-          console.error("[GeminiService] Schema validation failed for reanalyzeProduct:", validateProductExtraction.errors);
-          return null;
-        }
-
-        const validData: any = data;
-
-        if (!validData.nombre_comercial) {
-          console.error("[GeminiService] Missing nombre_comercial in response:", validData);
+        const data = JSON.parse(responseText);
+        if (!data.nombre_comercial) {
+          console.error("[GeminiService] Missing nombre_comercial in response:", data);
           return null;
         }
 
@@ -281,24 +268,24 @@ export class GeminiService {
         };
 
         return {
-          sku: validData.sku || product.sku,
-          nombre_comercial: validData.nombre_comercial,
-          descripcion: validData.descripcion || product.descripcion,
-          principios_activos: validData.principios_activos || product.principios_activos,
-          posologia: validData.posologia || product.posologia,
-          indicaciones: validData.indicaciones || product.indicaciones,
-          advertencias: validData.advertencias || product.advertencias,
-          tags_ia: [...new Set([...(validData.tags_ia || []), ...(product.tags_ia || []), "reanalizado_ia"])],
-          categoria_principal: validData.categoria_principal || product.categoria_principal || 'Otro',
-          analisis_componentes: validData.analisis_componentes || product.analisis_componentes || '',
+          sku: data.sku || product.sku,
+          nombre_comercial: data.nombre_comercial,
+          descripcion: data.descripcion || product.descripcion,
+          principios_activos: data.principios_activos || product.principios_activos,
+          posologia: data.posologia || product.posologia,
+          indicaciones: data.indicaciones || product.indicaciones,
+          advertencias: data.advertencias || product.advertencias,
+          tags_ia: [...new Set([...(data.tags_ia || []), ...(product.tags_ia || []), "reanalizado_ia"])],
+          categoria_principal: data.categoria_principal || product.categoria_principal || 'Otro',
+          analisis_componentes: data.analisis_componentes || product.analisis_componentes || '',
           vectores: product.vectores || [], // Keep original vectors, they will be updated by AIService if needed
-          apto_embarazo: mapSafety(validData.apto_embarazo),
-          apto_lactancia: mapSafety(validData.apto_lactancia),
-          apto_pediatria: mapSafety(validData.apto_pediatria),
-          apto_diabeticos: mapSafety(validData.apto_diabeticos),
-          apto_hipertensos: mapSafety(validData.apto_hipertensos),
-          apto_celiacos: mapSafety(validData.apto_celiacos),
-          sugerencia_complementaria: validData.sugerencia_complementaria || product.sugerencia_complementaria,
+          apto_embarazo: mapSafety(data.apto_embarazo),
+          apto_lactancia: mapSafety(data.apto_lactancia),
+          apto_pediatria: mapSafety(data.apto_pediatria),
+          apto_diabeticos: mapSafety(data.apto_diabeticos),
+          apto_hipertensos: mapSafety(data.apto_hipertensos),
+          apto_celiacos: mapSafety(data.apto_celiacos),
+          sugerencia_complementaria: data.sugerencia_complementaria || product.sugerencia_complementaria,
           skus_relacionados: product.skus_relacionados || [],
           synergy_analyzed: false,
           source_url: product.source_url
@@ -318,7 +305,12 @@ export class GeminiService {
         
         const response = await ai.models.generateContent({
           model: MODELS.FLASH,
-          contents: EXTRACT_FROM_MARKDOWN_PROMPT(markdown, url),
+          contents: `Analiza el siguiente contenido en Markdown de una página de farmacia y extrae la información del medicamento en formato JSON.
+          
+          CONTENIDO:
+          ${markdown.substring(0, 10000)}
+          
+          URL: ${url}`,
           config: {
             responseMimeType: "application/json",
             responseSchema: {
@@ -356,16 +348,9 @@ export class GeminiService {
           }
         });
 
-        const data = this.cleanAndParseJSON(response.text || "{}");
+        const data = JSON.parse(response.text || "{}");
         
-        if (!validateProductExtraction(data)) {
-          console.error("[GeminiService] Schema validation failed for extractProductFromMarkdown:", validateProductExtraction.errors);
-          return null;
-        }
-        
-        const validData: any = data;
-
-        if (!validData.nombre_comercial) return null;
+        if (!data.nombre_comercial) return null;
 
         // Mapear strings a SafetyStatus enum
         const mapSafety = (val: string): SafetyStatus => {
@@ -376,24 +361,24 @@ export class GeminiService {
         };
 
         return {
-          sku: validData.sku || "GEM-" + Date.now().toString().slice(-6),
-          nombre_comercial: validData.nombre_comercial,
-          descripcion: validData.descripcion || "",
-          principios_activos: validData.principios_activos || [],
-          posologia: validData.posologia || "Consultar prospecto",
-          indicaciones: validData.indicaciones || [],
-          advertencias: validData.advertencias || "",
-          tags_ia: validData.tags_ia || ["gemini_extracted"],
-          categoria_principal: validData.categoria_principal || 'Otro',
-          analisis_componentes: validData.analisis_componentes || '',
+          sku: data.sku || "GEM-" + Date.now().toString().slice(-6),
+          nombre_comercial: data.nombre_comercial,
+          descripcion: data.descripcion || "",
+          principios_activos: data.principios_activos || [],
+          posologia: data.posologia || "Consultar prospecto",
+          indicaciones: data.indicaciones || [],
+          advertencias: data.advertencias || "",
+          tags_ia: data.tags_ia || ["gemini_extracted"],
+          categoria_principal: data.categoria_principal || 'Otro',
+          analisis_componentes: data.analisis_componentes || '',
           vectores: [],
-          apto_embarazo: mapSafety(validData.apto_embarazo),
-          apto_lactancia: mapSafety(validData.apto_lactancia),
-          apto_pediatria: mapSafety(validData.apto_pediatria),
-          apto_diabeticos: mapSafety(validData.apto_diabeticos),
-          apto_hipertensos: mapSafety(validData.apto_hipertensos),
-          apto_celiacos: mapSafety(validData.apto_celiacos),
-          sugerencia_complementaria: validData.sugerencia_complementaria || "",
+          apto_embarazo: mapSafety(data.apto_embarazo),
+          apto_lactancia: mapSafety(data.apto_lactancia),
+          apto_pediatria: mapSafety(data.apto_pediatria),
+          apto_diabeticos: mapSafety(data.apto_diabeticos),
+          apto_hipertensos: mapSafety(data.apto_hipertensos),
+          apto_celiacos: mapSafety(data.apto_celiacos),
+          sugerencia_complementaria: data.sugerencia_complementaria || "",
           skus_relacionados: [],
           synergy_analyzed: false,
           source_url: url
@@ -410,7 +395,12 @@ export class GeminiService {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
-        const prompt = EXTRACT_NAMES_FROM_URL_PROMPT(url);
+        const prompt = `Visita la siguiente página web de farmacia y extrae una lista de todos los nombres de medicamentos o productos farmacéuticos que aparezcan en ella.
+        Ignora menús, precios, textos legales y otra basura.
+        Devuelve ÚNICAMENTE los nombres de los productos, uno por línea.
+        No incluyas viñetas, números ni texto adicional.
+        
+        Página: ${url}`;
 
         const response = await ai.models.generateContent({
           model: MODELS.FLASH,
@@ -435,7 +425,9 @@ export class GeminiService {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
-        const prompt = EXTRACT_NAMES_FROM_SEARCH_PROMPT(query);
+        const prompt = `Busca en la web y recopila una lista de medicamentos o productos farmacéuticos relacionados con la siguiente búsqueda: "${query}".
+        Devuelve ÚNICAMENTE los nombres de los productos comerciales, uno por línea.
+        No incluyas viñetas, números, explicaciones ni texto adicional.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.FLASH,
@@ -495,7 +487,7 @@ export class GeminiService {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
-        const prompt = GENERATE_GENERAL_ANALYSIS_PROMPT(query, context);
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nActúa como un analista clínico avanzado. Analiza la siguiente consulta y constrúyelo basándote SOLO en el contexto de los productos proporcionados.\n\nCONSULTA: ${query}\n\nPRODUCTOS RELACIONADOS:\n${context}\n\nRequerimientos: Responde de forma clara, priorizando opciones seguras y detalla los riesgos de interacción o perfil de los pacientes.`;
         
         const response = await ai.models.generateContent({
           model: MODELS.PRO,
@@ -518,7 +510,26 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = ANALYZE_SYNERGY_PROMPT(mainProduct, relatedProducts, clinicalInsights);
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nAnaliza la relación clínica entre el producto principal y los productos relacionados.
+        
+        ${clinicalInsights ? `CONTEXTO CLÍNICO RECUPERADO (RAG):\n${clinicalInsights}\n\n` : ''}
+        
+        PRODUCTO PRINCIPAL:
+        - Nombre: ${mainProduct.nombre_comercial}
+        - Principios Activos: ${formatArrayToString(mainProduct.principios_activos, ', ')}
+        - Indicaciones: ${formatArrayToString(mainProduct.indicaciones, ', ')}
+        
+        PRODUCTOS RELACIONADOS:
+        ${relatedProducts.map(p => `- [${p.sku}] ${p.nombre_comercial}: ${formatArrayToString(p.indicaciones, ', ')}`).join('\n')}
+        
+        TAREA:
+        Identifica productos complementarios registrados en la lista anterior que potencien el efecto del producto principal o traten síntomas relacionados de forma segura.
+        Usa el contexto clínico recuperado para fundamentar tu respuesta y evitar alucinaciones.
+        
+        Devuelve un JSON con:
+        - sugerencia_complementaria: Resumen breve para el usuario (máx 150 chars).
+        - skus_relacionados: Lista de SKUs de los productos que REALMENTE son sinérgicos o complementarios.
+        - explicacion_clinica: Explicación técnica de la sinergia basada en los mecanismos de acción.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.PRO,
@@ -540,12 +551,7 @@ export class GeminiService {
           }
         });
 
-        const data = this.cleanAndParseJSON(response.text || "{}");
-        if (!validateSynergyAnalysis(data)) {
-          console.error("[GeminiService] Schema validation failed for analyzeSynergy:", validateSynergyAnalysis.errors);
-          throw new Error("Invalid synergy analysis format from AI");
-        }
-        return data as any;
+        return JSON.parse(response.text || "{}");
       } catch (error: any) {
         const isQuotaError = error?.status === 'RESOURCE_EXHAUSTED' || error?.message?.includes('429') || error?.message?.includes('quota');
         const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
@@ -565,7 +571,17 @@ export class GeminiService {
     return this.withRetry(async () => {
       try {
         const ai = this.getAI();
-        const prompt = EXPLAIN_INGREDIENTS_PROMPT(productName, ingredients);
+        const prompt = `Actúa como un Farmacéutico Clínico experto en educación al paciente.
+        Para el producto "${productName}", explica de forma muy sencilla y clara la función de cada uno de estos principios activos para un paciente:
+        ${ingredients.join(', ')}
+        
+        REGLAS:
+        1. Lenguaje MUY simple (ej. "ayuda a bajar la fiebre" en lugar de "antipirético").
+        2. Sé breve (máximo 2 frases por ingrediente).
+        3. Identifica cuál de ellos es el Principio Activo principal (si hay varios, el que da el efecto principal decorado con "(PA)") y los demás como coadyuvantes o complementos.
+        4. No des consejos médicos, solo explica la función.
+        
+        Devuelve un JSON donde las llaves sean los nombres de los ingredientes y los valores sean las explicaciones.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.FLASH,
@@ -575,12 +591,7 @@ export class GeminiService {
           }
         });
 
-        const data = this.cleanAndParseJSON(response.text || "{}");
-        if (!validateExplanation(data)) {
-          console.error("[GeminiService] Schema validation failed for explainActiveIngredients:", validateExplanation.errors);
-          return {};
-        }
-        return data as any;
+        return JSON.parse(response.text || "{}");
       } catch (error) {
         console.error("[GeminiService] Error explicando principios activos:", error);
         throw error;
@@ -602,7 +613,17 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = ANALYZE_INTERACTIONS_PROMPT(products);
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nRealiza un análisis profundo de interacciones medicamentosas para la siguiente lista de productos.
+        
+        PRODUCTOS:
+        ${products.map(p => `- ${p.nombre_comercial} (${formatArrayToString(p.principios_activos, ', ')})`).join('\n')}
+        
+        TAREA:
+        1. Identifica interacciones entre los principios activos de estos productos.
+        2. Clasifica el riesgo total de la combinación.
+        3. Detalla cada interacción encontrada con su gravedad, descripción y recomendación clínica.
+        4. Proporciona un resumen clínico ejecutivo.
+        5. Devuelve un JSON estructurado.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.PRO,
@@ -633,12 +654,7 @@ export class GeminiService {
           }
         });
 
-        const data = this.cleanAndParseJSON(response.text || "{}");
-        if (!validateInteractionAnalysis(data)) {
-          console.error("[GeminiService] Schema validation failed for analyzeInteractions:", validateInteractionAnalysis.errors);
-          throw new Error("Invalid interaction analysis format from AI");
-        }
-        return data as any;
+        return JSON.parse(response.text || "{}");
       } catch (error) {
         console.error("[GeminiService] Error en analyzeInteractions:", error);
         return {
@@ -655,15 +671,28 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const productsJson = JSON.stringify(products.map(p => ({
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nActúa como un experto en Data Engineering Farmacéutico y Editor Clínico Senior.
+        Tu tarea es realizar una CURACIÓN PROFUNDA de la siguiente lista de productos.
+        
+        PRODUCTOS A PROCESAR (JSON):
+        ${JSON.stringify(products.map(p => ({
           sku: p.sku,
           nombre: p.nombre_comercial,
           descripcion: p.descripcion,
           principios: p.principios_activos,
           tags: p.tags_ia,
           categoria: p.categoria_principal
-        })));
-        const prompt = CLEAN_VALIDATE_PRODUCTS_PROMPT(productsJson);
+        })))}
+        
+        REGLAS DE CURACIÓN PROFUNDA:
+        1. **Inferencia de Seguridad**: Si el producto contiene principios activos conocidos (ej. Ibuprofeno), INFIERE los campos de aptitud (embarazo, lactancia, etc.) basándote en el conocimiento médico estándar si no están presentes.
+        2. **Normalización de Principios**: Unifica nombres (ej. "Vit. C" -> "Vitamina C"). Usa nombres genéricos estándar.
+        3. **Enriquecimiento de Indicaciones**: Si las indicaciones son pobres, añade las indicaciones clínicas estándar para esos principios activos.
+        4. **Análisis de Componentes**: Genera un breve análisis técnico de por qué se combinan esos principios activos.
+        5. **Categorización Estricta**: Clasifica en: "Belleza", "Medicamento", "Suplemento", "Homeopatía", "Otro".
+        6. **Tags Clínicos**: Genera etiquetas de alta calidad para búsqueda (ej. "Antipirético", "Fotosensibilizante", "Hepatoprotector").
+        
+        Devuelve un ARREGLO JSON de objetos con la estructura completa.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.PRO,
@@ -705,11 +734,7 @@ export class GeminiService {
           throw new Error("La IA no devolvió ninguna respuesta.");
         }
 
-        const cleanedData = this.cleanAndParseJSON(text);
-        if (!validateProductList(cleanedData)) {
-          console.error("[GeminiService] Schema validation failed for cleanAndValidateProducts:", validateProductList.errors);
-          throw new Error("Invalid product list format from AI");
-        }
+        const cleanedData = JSON.parse(text);
         
         const mapSafety = (val: any): SafetyStatus => {
           const v = String(val || '').toUpperCase().trim();
@@ -718,7 +743,7 @@ export class GeminiService {
           return SafetyStatus.PRECAUCION;
         };
 
-        return (cleanedData as any[]).map((p: any) => ({
+        return cleanedData.map((p: any) => ({
           sku: p.sku || `SKU-${Math.random().toString(36).substr(2, 9)}`,
           nombre_comercial: p.nombre_comercial || "Producto sin nombre",
           descripcion: p.descripcion || "",
@@ -754,7 +779,18 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = EXTRACT_FROM_PDF_PROMPT(rawText);
+        const prompt = `Analiza el siguiente texto extraído de una ficha técnica de producto farmacéutico y extrae la información estructurada.
+        
+        TEXTO DE LA FICHA:
+        """
+        ${rawText}
+        """
+        
+        TAREA:
+        Extrae todos los campos necesarios para nuestra base de datos siguiendo estrictamente el esquema JSON proporcionado. 
+        Si algún dato no está presente, intenta inferirlo basándote en el conocimiento clínico o deja el campo vacío/por defecto.
+        Asegúrate de generar un análisis de componentes detallado y etiquetas (tags) relevantes.
+        Además, genera el diccionario 'anotaciones_componentes' con una brevísima explicación (1-2 frases) para cada principio activo identificado.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.FLASH,
@@ -788,13 +824,7 @@ export class GeminiService {
           }
         });
 
-        const data = this.cleanAndParseJSON(response.text || "{}");
-        if (!validateProductExtraction(data)) {
-          console.error("[GeminiService] Schema validation failed for extractProductFromPDFText:", validateProductExtraction.errors);
-          throw new Error("Invalid product format from PDF AI extraction");
-        }
-        
-        const validData: any = data;
+        const data = JSON.parse(response.text || "{}");
         
         const mapSafety = (val: any): SafetyStatus => {
           const v = String(val || '').toUpperCase().trim();
@@ -804,25 +834,25 @@ export class GeminiService {
         };
 
         return {
-          sku: validData.sku || `PDF-${Math.random().toString(36).substr(2, 9)}`,
-          nombre_comercial: validData.nombre_comercial || "Producto Extraído",
-          descripcion: validData.descripcion || "",
-          principios_activos: Array.isArray(validData.principios_activos) ? validData.principios_activos : [],
-          posologia: validData.posologia || "Ver ficha técnica",
-          indicaciones: Array.isArray(validData.indicaciones) ? validData.indicaciones : [],
-          advertencias: validData.advertencias || "",
-          tags_ia: Array.isArray(validData.tags_ia) ? validData.tags_ia : [],
-          categoria_principal: validData.categoria_principal || 'Otro',
-          analisis_componentes: validData.analisis_componentes || '',
-          anotaciones_componentes: validData.anotaciones_componentes || {},
+          sku: data.sku || `PDF-${Math.random().toString(36).substr(2, 9)}`,
+          nombre_comercial: data.nombre_comercial || "Producto Extraído",
+          descripcion: data.descripcion || "",
+          principios_activos: Array.isArray(data.principios_activos) ? data.principios_activos : [],
+          posologia: data.posologia || "Ver ficha técnica",
+          indicaciones: Array.isArray(data.indicaciones) ? data.indicaciones : [],
+          advertencias: data.advertencias || "",
+          tags_ia: Array.isArray(data.tags_ia) ? data.tags_ia : [],
+          categoria_principal: data.categoria_principal || 'Otro',
+          analisis_componentes: data.analisis_componentes || '',
+          anotaciones_componentes: data.anotaciones_componentes || {},
           vectores: [],
-          apto_embarazo: mapSafety(validData.apto_embarazo),
-          apto_lactancia: mapSafety(validData.apto_lactancia),
-          apto_pediatria: mapSafety(validData.apto_pediatria),
-          apto_diabeticos: mapSafety(validData.apto_diabeticos),
-          apto_hipertensos: mapSafety(validData.apto_hipertensos),
-          apto_celiacos: mapSafety(validData.apto_celiacos),
-          sugerencia_complementaria: validData.sugerencia_complementaria || "",
+          apto_embarazo: mapSafety(data.apto_embarazo),
+          apto_lactancia: mapSafety(data.apto_lactancia),
+          apto_pediatria: mapSafety(data.apto_pediatria),
+          apto_diabeticos: mapSafety(data.apto_diabeticos),
+          apto_hipertensos: mapSafety(data.apto_hipertensos),
+          apto_celiacos: mapSafety(data.apto_celiacos),
+          sugerencia_complementaria: data.sugerencia_complementaria || "",
           skus_relacionados: [],
           synergy_analyzed: false,
           last_updated: Date.now()
@@ -839,7 +869,13 @@ export class GeminiService {
       try {
         const ai = this.getAI();
         
-        const prompt = EXTRACT_FROM_IMAGE_PROMPT();
+        const prompt = `${SYSTEM_PHILOSOPHY}\n\nAnaliza la siguiente imagen que es una captura de pantalla de una ficha técnica o capacitación de un producto farmacéutico.
+        
+        TAREA:
+        Lee y extrae toda la información relevante para nuestra base de datos siguiendo el esquema JSON proporcionado.
+        Si hay texto borroso o incompleto, usa tu conocimiento clínico para completar los campos de forma coherente.
+        Asegúrate de extraer: SKU, nombre, principios activos, beneficios/indicaciones y perfiles de seguridad.
+        Además, genera el diccionario 'anotaciones_componentes' con una brevísima explicación (1-2 frases) para cada principio activo identificado.`;
 
         const response = await ai.models.generateContent({
           model: "gemini-2.0-flash",
@@ -881,13 +917,7 @@ export class GeminiService {
           }
         });
 
-        const data = this.cleanAndParseJSON(response.text || "{}");
-        if (!validateProductExtraction(data)) {
-          console.error("[GeminiService] Schema validation failed for extractProductFromImage:", validateProductExtraction.errors);
-          throw new Error("Invalid product format from Image AI extraction");
-        }
-        
-        const validData: any = data;
+        const data = JSON.parse(response.text || "{}");
         
         const mapSafety = (val: any): SafetyStatus => {
           const v = String(val || '').toUpperCase().trim();
@@ -897,25 +927,25 @@ export class GeminiService {
         };
 
         return {
-          sku: validData.sku || `IMG-${Math.random().toString(36).substr(2, 9)}`,
-          nombre_comercial: validData.nombre_comercial || "Producto de Captura",
-          descripcion: validData.descripcion || "",
-          principios_activos: Array.isArray(validData.principios_activos) ? validData.principios_activos : [],
-          posologia: validData.posologia || "Ver imagen",
-          indicaciones: Array.isArray(validData.indicaciones) ? validData.indicaciones : [],
-          advertencias: validData.advertencias || "",
-          tags_ia: Array.isArray(validData.tags_ia) ? validData.tags_ia : [],
-          categoria_principal: validData.categoria_principal || 'Otro',
-          analisis_componentes: validData.analisis_componentes || '',
-          anotaciones_componentes: validData.anotaciones_componentes || {},
+          sku: data.sku || `IMG-${Math.random().toString(36).substr(2, 9)}`,
+          nombre_comercial: data.nombre_comercial || "Producto de Captura",
+          descripcion: data.descripcion || "",
+          principios_activos: Array.isArray(data.principios_activos) ? data.principios_activos : [],
+          posologia: data.posologia || "Ver imagen",
+          indicaciones: Array.isArray(data.indicaciones) ? data.indicaciones : [],
+          advertencias: data.advertencias || "",
+          tags_ia: Array.isArray(data.tags_ia) ? data.tags_ia : [],
+          categoria_principal: data.categoria_principal || 'Otro',
+          analisis_componentes: data.analisis_componentes || '',
+          anotaciones_componentes: data.anotaciones_componentes || {},
           vectores: [],
-          apto_embarazo: mapSafety(validData.apto_embarazo),
-          apto_lactancia: mapSafety(validData.apto_lactancia),
-          apto_pediatria: mapSafety(validData.apto_pediatria),
-          apto_diabeticos: mapSafety(validData.apto_diabeticos),
-          apto_hipertensos: mapSafety(validData.apto_hipertensos),
-          apto_celiacos: mapSafety(validData.apto_celiacos),
-          sugerencia_complementaria: validData.sugerencia_complementaria || "",
+          apto_embarazo: mapSafety(data.apto_embarazo),
+          apto_lactancia: mapSafety(data.apto_lactancia),
+          apto_pediatria: mapSafety(data.apto_pediatria),
+          apto_diabeticos: mapSafety(data.apto_diabeticos),
+          apto_hipertensos: mapSafety(data.apto_hipertensos),
+          apto_celiacos: mapSafety(data.apto_celiacos),
+          sugerencia_complementaria: data.sugerencia_complementaria || "",
           skus_relacionados: [],
           synergy_analyzed: false,
           last_updated: Date.now()

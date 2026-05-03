@@ -88,69 +88,43 @@
 
 @layer base {
   :root {
-    --background: hsl(222 47% 4%);
-    --foreground: hsl(210 40% 98%);
+    --background: 230 30% 5%;
+    --foreground: 210 20% 98%;
 
-    --card: hsl(222 47% 4%);
-    --card-foreground: hsl(210 40% 98%);
+    --card: 230 30% 8%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: hsl(222 47% 4%);
-    --popover-foreground: hsl(210 40% 98%);
+    --popover: 230 30% 8%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: hsl(210 40% 98%);
-    --primary-foreground: hsl(222.2 47.4% 11.2%);
+    /* Color primario vibrante (Indigo/Azul eléctrico) */
+    --primary: 235 90% 60%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: hsl(217 33% 12%);
-    --secondary-foreground: hsl(210 40% 98%);
+    /* Color secundario distintivo (Teal/Sage luminoso) */
+    --secondary: 180 60% 30%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: hsl(217 33% 12%);
-    --muted-foreground: hsl(215 20% 65%);
+    /* Color de acento con matiz púrpura brillante */
+    --accent: 270 70% 35%;
+    --accent-foreground: 210 20% 98%;
 
-    --accent: hsl(217 33% 17%);
-    --accent-foreground: hsl(210 40% 98%);
+    --muted: 230 30% 18%;
+    --muted-foreground: 215 15% 70%;
 
-    --destructive: hsl(0 63% 31%);
-    --destructive-foreground: hsl(210 40% 98%);
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: hsl(217 33% 12%);
-    --input: hsl(217 33% 12%);
-    --ring: hsl(24 95% 53%); /* Orange ring to match brand */
+    --border: 230 30% 18%;
+    --input: 230 30% 15%;
+    --ring: 221 83% 53%;
 
-    --radius: 1rem;
-    
-    /* Brand specific HSL tokens */
-    --brand-primary: hsl(24 95% 53%); /* Orange-500 */
-    --brand-accent: hsl(262 83% 58%);  /* Violet-500 */
+    --radius: 0.5rem;
   }
 
+  /* .dark is already handled by :root now but for completeness if class is present */
   .dark {
-    --background: hsl(222 47% 4%);
-    --foreground: hsl(210 40% 98%);
-
-    --card: hsl(222 47% 4%);
-    --card-foreground: hsl(210 40% 98%);
-
-    --popover: hsl(222 47% 4%);
-    --popover-foreground: hsl(210 40% 98%);
-
-    --primary: hsl(210 40% 98%);
-    --primary-foreground: hsl(222.2 47.4% 11.2%);
-
-    --secondary: hsl(217 33% 12%);
-    --secondary-foreground: hsl(210 40% 98%);
-
-    --muted: hsl(217 33% 12%);
-    --muted-foreground: hsl(215 20% 65%);
-
-    --accent: hsl(217 33% 17%);
-    --accent-foreground: hsl(210 40% 98%);
-
-    --destructive: hsl(0 63% 31%);
-    --destructive-foreground: hsl(210 40% 98%);
-
-    --border: hsl(217 33% 12%);
-    --input: hsl(217 33% 12%);
-    --ring: hsl(24 95% 53%);
+    @apply [color-scheme:dark];
   }
 }
 
@@ -168,17 +142,17 @@
     @apply space-y-6 md:space-y-8;
   }
   
-  /* Semantic alert styles for medical context */
+  /* Semantic alert styles for medical context - Optimized for DARK mode */
   .alert-critical {
-    @apply border-l-4 border-red-600 bg-red-50 text-red-900 px-4 py-3 rounded-r-md shadow-sm;
+    @apply border-l-4 border-red-900 bg-red-950/30 text-red-100 px-4 py-3 rounded-r-md shadow-sm;
   }
   .alert-warning {
-    @apply border-l-4 border-amber-500 bg-amber-50 text-amber-900 px-4 py-3 rounded-r-md shadow-sm;
+    @apply border-l-4 border-amber-900 bg-amber-950/30 text-amber-100 px-4 py-3 rounded-r-md shadow-sm;
   }
   .alert-synergy {
-    @apply border-l-4 border-emerald-600 bg-emerald-50 text-emerald-900 px-4 py-3 rounded-r-md shadow-sm;
+    @apply border-l-4 border-emerald-900 bg-emerald-950/30 text-emerald-100 px-4 py-3 rounded-r-md shadow-sm;
   }
   .alert-info {
-    @apply border-l-4 border-blue-600 bg-blue-50 text-blue-900 px-4 py-3 rounded-r-md shadow-sm;
+    @apply border-l-4 border-blue-900 bg-blue-950/30 text-blue-100 px-4 py-3 rounded-r-md shadow-sm;
   }
 }

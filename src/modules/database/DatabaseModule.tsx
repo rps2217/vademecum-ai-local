@@ -241,15 +241,10 @@ export const DatabaseModule: React.FC = () => {
 
             {activeTab === 'products' ? (
               <>
-                {useMemo(() => (
-                  <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
-                ), [filteredProducts, isLoading])}
-                {useMemo(() => (
-                  <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
-                ), [filteredProducts, isLoading])}
+                <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
+                <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
               </>
             ) : (
-              {useMemo(() => (
                 <ActivePrinciplesTable 
                   principles={facets.principlesWithCounts} 
                   isLoading={isLoading} 
@@ -258,7 +253,6 @@ export const DatabaseModule: React.FC = () => {
                     setActiveTab('products');
                   }} 
                 />
-              ), [facets.principlesWithCounts, isLoading])}
             )}
           </div>
         </div>

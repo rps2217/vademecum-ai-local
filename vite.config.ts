@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import axios from 'axios';
+import * as cheerio from 'cheerio';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
@@ -10,6 +12,60 @@ export default defineConfig(({mode}) => {
     plugins: [
       react(), 
       tailwindcss(),
+      {
+        name: 'api-server',
+        configureServer(server) {
+          server.middlewares.use(async (req, res, next) => {
+            if (req.url?.startsWith('/api/test')) {
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ success: true, message: 'Vite API is active' }));
+              return;
+            }
+            
+            if (req.url?.startsWith('/api/scrape')) {
+              const urlParams = new URL(req.url, `http://${req.headers.host}`).searchParams;
+              const targetUrl = urlParams.get('url');
+              
+              if (!targetUrl) {
+                res.statusCode = 400;
+                res.end(JSON.stringify({ error: 'URL required' }));
+                return;
+              }
+
+              try {
+                const response = await axios.get(targetUrl, {
+                  headers: { 'User-Agent': 'Mozilla/5.0' },
+                  timeout: 10000
+                });
+                const $ = cheerio.load(response.data);
+                
+                const links: any[] = [];
+                $('a').each((_, el) => {
+                  const href = $(el).attr('href');
+                  const text = $(el).text().trim();
+                  if (href && text && !href.startsWith('#')) {
+                    try {
+                      links.push({ text, href: new URL(href, targetUrl).href });
+                    } catch(e) {}
+                  }
+                });
+
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ 
+                  success: true, 
+                  text: $('body').text().substring(0, 5000), 
+                  links 
+                }));
+              } catch (error: any) {
+                res.statusCode = 500;
+                res.end(JSON.stringify({ success: false, error: error.message }));
+              }
+              return;
+            }
+            next();
+          });
+        }
+      },
       VitePWA({
         registerType: 'autoUpdate',
         includeAssets: ['favicon.ico', 'icon.svg', 'catalog.json'],
@@ -36,9 +92,6 @@ export default defineConfig(({mode}) => {
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
           maximumFileSizeToCacheInBytes: 10000000,
-          // Ensure the SW never intercepts API or health-check routes.
-          navigateFallback: '/index.html',
-          navigateFallbackDenylist: [/^\/api\//, /^\/health/],
           runtimeCaching: [
             {
               urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

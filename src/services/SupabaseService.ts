@@ -2,18 +2,15 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 export class SupabaseService {
     private static instance: SupabaseService;
-    private client: SupabaseClient | null = null;
+    private client: SupabaseClient;
 
     private constructor() {
-        // Credentials come exclusively from environment variables (set in .env, exposed by Vite).
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
-        const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
-
-        if (supabaseUrl && supabaseKey) {
-            this.client = createClient(supabaseUrl, supabaseKey);
-        } else {
-            console.warn('[SupabaseService] VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY no configuradas. Cloud sync deshabilitado.');
-        }
+        const fallbackUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
+        const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; 
+        const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || fallbackUrl;
+        const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || fallbackKey;
+        
+        this.client = createClient(supabaseUrl, supabaseKey);
     }
 
     static getInstance(): SupabaseService {
@@ -24,14 +21,7 @@ export class SupabaseService {
     }
 
     getClient(): SupabaseClient {
-        if (!this.client) {
-            throw new Error('Supabase no está configurado. Verifique que VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY estén definidos en el archivo .env');
-        }
         return this.client;
-    }
-
-    isConfigured(): boolean {
-        return this.client !== null;
     }
 }
 

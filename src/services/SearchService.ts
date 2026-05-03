@@ -20,24 +20,15 @@ export interface SearchIndexItem {
 
 export type SafetyCondition = 'apto_embarazo' | 'apto_lactancia' | 'apto_pediatria' | 'apto_diabeticos' | 'apto_hipertensos' | 'apto_celiacos';
 
-export interface SearchFacets { 
-  categories: string[], 
-  activePrinciples: string[],
-  principlesWithCounts: { name: string, count: number }[]
-}
-
 export class SearchService {
   private static instance: SearchService;
   private index: SearchIndexItem[] = [];
   private isInitialized = false;
-  private isIndexing = false;
   private miniSearch: MiniSearch<SearchIndexItem> | null = null;
-  private indexingTimeout: any = null;
   private latestResults: Product[] = [];
-  private facets: SearchFacets = {
+  private facets: { categories: string[], activePrinciples: string[] } = {
       categories: [],
-      activePrinciples: [],
-      principlesWithCounts: []
+      activePrinciples: []
   };
 
   private constructor() {
@@ -53,15 +44,8 @@ export class SearchService {
 
   private async initObserver() {
       productsCollection.changes.subscribe(() => {
-          this.debouncedInitialize();
-      });
-  }
-
-  private debouncedInitialize() {
-      if (this.indexingTimeout) clearTimeout(this.indexingTimeout);
-      this.indexingTimeout = setTimeout(() => {
           this.initializeIndex().catch(console.error);
-      }, 300);
+      });
   }
 
   normalizeText(text: string): string {
@@ -70,9 +54,6 @@ export class SearchService {
   }
 
   async initializeIndex(): Promise<void> {
-    if (this.isIndexing) return;
-    this.isIndexing = true;
-    
     try {
       const allProducts = await dataService.getAllProducts();
       this.index = allProducts.map(product => {
@@ -107,39 +88,28 @@ export class SearchService {
 
       this.updateFacets(allProducts);
       this.isInitialized = true;
-      
-      // Dispatch global event for components that need to refresh facets/index
-      window.dispatchEvent(new CustomEvent('search_index_ready'));
     } catch (error) {
       console.error('Error initializing search index:', error);
       throw error;
-    } finally {
-      this.isIndexing = false;
     }
   }
 
   private updateFacets(products: Product[]) {
       const cats = new Set<string>();
-      const principlesMap = new Map<string, number>();
+      const principles = new Set<string>();
 
       products.forEach(p => {
           if (p.categoria_principal) cats.add(p.categoria_principal);
           if (p.principios_activos) {
               p.principios_activos.forEach(pa => {
-                  if (pa && pa.trim()) {
-                      const normalized = pa.trim();
-                      principlesMap.set(normalized, (principlesMap.get(normalized) || 0) + 1);
-                  }
+                  if (pa && pa.trim()) principles.add(pa.trim());
               });
           }
       });
 
       this.facets = {
           categories: Array.from(cats).sort(),
-          activePrinciples: Array.from(principlesMap.keys()).sort().slice(0, 100),
-          principlesWithCounts: Array.from(principlesMap.entries())
-            .map(([name, count]) => ({ name, count }))
-            .sort((a, b) => b.count - a.count)
+          activePrinciples: Array.from(principles).sort().slice(0, 50)
       };
   }
 
