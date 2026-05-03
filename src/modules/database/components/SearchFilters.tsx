@@ -4,21 +4,15 @@ import { motion, AnimatePresence } from 'motion/react';
 
 interface SearchFiltersProps {
   categories: string[];
-  activePrinciples: string[];
   selectedCategory: string | null;
-  selectedPrinciple: string | null;
   onSelectCategory: (cat: string | null) => void;
-  onSelectPrinciple: (pa: string | null) => void;
   totalResults: number;
 }
 
 export const SearchFilters: React.FC<SearchFiltersProps> = ({
   categories,
-  activePrinciples,
   selectedCategory,
-  selectedPrinciple,
   onSelectCategory,
-  onSelectPrinciple,
   totalResults
 }) => {
   return (
@@ -27,9 +21,9 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
         <div className="flex items-center gap-2 text-slate-400 font-bold text-xs uppercase tracking-wider">
           <Filter className="w-4 h-4" /> Filtros Avanzados
         </div>
-        {(selectedCategory || selectedPrinciple) && (
+        {selectedCategory && (
           <button 
-            onClick={() => { onSelectCategory(null); onSelectPrinciple(null); }}
+            onClick={() => onSelectCategory(null)}
             className="text-[10px] text-brand-primary hover:underline flex items-center gap-1"
           >
             <X className="w-3 h-3" /> Limpiar
@@ -44,7 +38,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
             Categoría Principal
           </h3>
           <div className="flex flex-wrap lg:flex-col gap-1">
-            {categories.map(cat => (
+            {(categories || []).map(cat => (
               <button
                 key={cat}
                 onClick={() => onSelectCategory(selectedCategory === cat ? null : cat)}
@@ -59,30 +53,6 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
                   <ChevronRight className={`w-3 h-3 transition-transform ${selectedCategory === cat ? 'rotate-90 text-brand-primary' : 'text-slate-600 group-hover:text-slate-400'}`} />
                   <span className="truncate">{cat}</span>
                 </div>
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* Principios Activos populares */}
-        <section>
-          <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-             Principios Activos
-          </h3>
-          <div className="flex flex-wrap lg:flex-col gap-1 max-h-[300px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-700">
-            {activePrinciples.map(pa => (
-              <button
-                key={pa}
-                onClick={() => onSelectPrinciple(selectedPrinciple === pa ? null : pa)}
-                className={`
-                  text-left px-3 py-1.5 rounded-lg text-xs transition-all flex items-center gap-2 group
-                  ${selectedPrinciple === pa 
-                    ? 'bg-brand-primary/20 text-brand-primary ring-1 ring-brand-primary/40 font-bold' 
-                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'}
-                `}
-              >
-                <Hash className={`w-3 h-3 ${selectedPrinciple === pa ? 'text-brand-primary' : 'text-slate-600'}`} />
-                <span className="truncate">{pa}</span>
               </button>
             ))}
           </div>

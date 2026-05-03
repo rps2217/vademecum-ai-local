@@ -93,6 +93,7 @@ export const DatabaseModule: React.FC = () => {
 
     // Suscribirse a actualizaciones de WatermelonDB para refrescar la lista local
     const subscription = productsCollection.query().observe().subscribe(async (records) => {
+      if (!records) return;
       const allProducts = records.map(r => r.asJSON());
       setProducts(allProducts);
     });

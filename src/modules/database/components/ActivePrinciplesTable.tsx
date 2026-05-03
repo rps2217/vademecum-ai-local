@@ -39,7 +39,7 @@ export const ActivePrinciplesTable: React.FC<ActivePrinciplesTableProps> = ({
             </div>
           ) : (
             <div className="divide-y divide-slate-800">
-              {principles.map((p) => (
+              {(principles || []).map((p) => (
                 <div 
                   key={p.name} 
                   className="flex border-b border-slate-800 hover:bg-slate-800/20 transition-colors bg-brand-surface group"
