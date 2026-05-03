@@ -33,7 +33,7 @@ export const useProductSearch = () => {
         // Simulación de asincronía para liberar el event loop (worker-like)
         const searchResults = await new Promise<Product[]>((resolve) => {
           setTimeout(async () => {
-             const res = await searchService.search(query, COMMON_PATHOLOGIES);
+             const res = await searchService.search(query);
              resolve(res);
           }, 0);
         });

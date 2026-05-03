@@ -42,7 +42,7 @@ export class CloudSyncService {
     
     try {
       await dataService.syncProductsBatch(products);
-      products.forEach(p => EventBus.emit(EventType.PRODUCT_UPDATED, { sku: p.sku, synced: true }));
+      products.forEach(p => EventBus.emit(EventType.PRODUCT_UPDATED, { sku: p.sku, is_synced_cloud: true }));
       return products.length;
     } catch (error) {
       logger.error('Fallo en sincronización de lote masivo', 'CloudSync', error);
@@ -113,7 +113,7 @@ export class CloudSyncService {
         locked_by_ai: true,
         lock_uid: nodeId,
         lock_timestamp: now,
-        synced: false 
+        is_synced_cloud: false 
       };
 
       const updateResponse = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${sku}`, {
@@ -147,10 +147,10 @@ export class CloudSyncService {
     const unlockedProduct = {
       ...product,
       locked_by_ai: false,
-      lock_uid: null,
-      lock_timestamp: null,
-      synced: true,
-      last_synced: Date.now()
+      lock_uid: null as any,
+      lock_timestamp: null as any,
+      is_synced_cloud: true,
+      last_synced_cloud: Date.now()
     };
     
     const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
@@ -179,9 +179,9 @@ export class CloudSyncService {
       logger.warn(`No se pudo subir a la nube ${product.sku}, se guardó solo localmente`, 'CloudSync');
     }
 
-    await dataService.saveProduct({ ...unlockedProduct, synced: cloudSuccess }, { silent: true });
+    await dataService.saveProduct({ ...unlockedProduct, is_synced_cloud: cloudSuccess }, { silent: true });
     
-    EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, synced: cloudSuccess });
+    EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, is_synced_cloud: cloudSuccess });
     EventBus.emit(EventType.DB_UPDATED, { action: 'saved', sku: product.sku });
   }
 
@@ -191,7 +191,7 @@ export class CloudSyncService {
       
       const cloudInventory = await dataService.fetchCloudInventory();
       const localProducts = await dataService.getAllProducts();
-      const localMap = new Map(localProducts.map(p => [p.sku, p.last_synced || 0]));
+      const localMap = new Map(localProducts.map(p => [p.sku, p.last_synced_cloud || 0]));
 
       const toDownload = cloudInventory.filter(item => {
         return !localMap.has(item.sku);
@@ -210,19 +210,9 @@ export class CloudSyncService {
       for (let i = 0; i < toDownload.length; i += BATCH_SIZE) {
         const batchSkus = toDownload.slice(i, i + BATCH_SIZE);
         const products = await dataService.downloadCloudProducts(batchSkus);
-        const syncedProducts = products.map(p => ({ ...p, synced: true, last_synced: Date.now() }));
+        const syncedProducts = products.map(p => ({ ...p, is_synced_cloud: true, last_synced_cloud: Date.now() }));
         
-        const db = await (dataService as any).getDB();
-        if (db) {
-           const tx = db.transaction('products', 'readwrite');
-           await Promise.all(syncedProducts.map(p => tx.store.put(p)));
-           await tx.done;
-        } else {
-           // Fallback to individual saves if direct bulk not accessible
-           for (const p of syncedProducts) {
-             await dataService.saveProduct(p, { silent: true });
-           }
-        }
+        await dataService.importProducts(JSON.stringify(syncedProducts));
         
         downloadedCount += syncedProducts.length;
       }

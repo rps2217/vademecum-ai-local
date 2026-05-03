@@ -1,5 +1,7 @@
 import React from 'react';
 import { Search, Brain, Zap, FlaskConical, Thermometer, ChevronRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 export interface SearchConcept {
   id: string;
@@ -16,20 +18,20 @@ interface SearchSuggestionsProps {
 
 const ConceptIcon = ({ type }: { type: SearchConcept['type'] }) => {
   switch (type) {
-    case 'pathology': return <Thermometer className="w-3.5 h-3.5" />;
-    case 'molecule': return <FlaskConical className="w-3.5 h-3.5" />;
-    case 'category': return <Zap className="w-3.5 h-3.5" />;
-    case 'symptom': return <Brain className="w-3.5 h-3.5" />;
-    default: return <Search className="w-3.5 h-3.5" />;
+    case 'pathology': return <Thermometer className="h-3.5 w-3.5" />;
+    case 'molecule': return <FlaskConical className="h-3.5 w-3.5" />;
+    case 'category': return <Zap className="h-3.5 w-3.5" />;
+    case 'symptom': return <Brain className="h-3.5 w-3.5" />;
+    default: return <Search className="h-3.5 w-3.5" />;
   }
 };
 
 const ConceptBadge = ({ type }: { type: SearchConcept['type'] }) => {
   const styles = {
-    pathology: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
-    molecule: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-    category: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    symptom: 'bg-violet-500/10 text-violet-400 border-violet-500/20'
+    pathology: 'bg-red-50 text-red-700 border-red-100',
+    molecule: 'bg-blue-50 text-blue-700 border-blue-100',
+    category: 'bg-amber-50 text-amber-700 border-amber-100',
+    symptom: 'bg-purple-50 text-purple-700 border-purple-100'
   };
   
   const labels = {
@@ -40,9 +42,9 @@ const ConceptBadge = ({ type }: { type: SearchConcept['type'] }) => {
   };
 
   return (
-    <span className={`text-[9px] uppercase tracking-tighter px-1.5 py-0.5 rounded border ${styles[type]}`}>
+    <Badge variant="outline" className={cn("text-[9px] uppercase tracking-tighter px-1.5 py-0", styles[type])}>
       {labels[type]}
-    </span>
+    </Badge>
   );
 };
 
@@ -55,38 +57,48 @@ export const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({
   if (!isVisible || suggestions.length === 0) return null;
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-brand-surface border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-      <div className="p-2 border-b border-slate-800/50 flex items-center justify-between">
-        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-2">Conceptos Conocidos</span>
-        <span className="text-[10px] text-slate-600 pr-2 italic">Usa ↑↓ para navegar</span>
+    <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-card border shadow-xl rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+      <div className="p-3 border-b bg-muted/20 flex items-center justify-between">
+        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest pl-2">Conceptos Clínicos Relacionados</span>
+        <span className="text-[10px] text-muted-foreground/60 pr-2 italic">Usa ↑↓ para navegar</span>
       </div>
-      <div className="max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-800">
+      <div className="max-h-[350px] overflow-y-auto">
         {suggestions.map((concept, index) => (
           <button
             key={concept.id}
-            className={`w-full flex items-center gap-3 p-3 text-left transition-colors border-b border-slate-800/30 last:border-0 ${
-              index === highlightedIndex ? 'bg-brand-primary/20 text-white' : 'hover:bg-slate-800/60 text-slate-300'
-            }`}
+            className={cn(
+              "w-full flex items-center gap-4 p-4 text-left transition-all border-b last:border-0",
+              index === highlightedIndex 
+                ? 'bg-accent/10 border-l-4 border-l-primary' 
+                : 'hover:bg-accent/5'
+            )}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               onSelect(concept);
             }}
           >
-            <div className={`p-2 rounded-lg flex-shrink-0 ${
-               index === highlightedIndex ? 'bg-brand-primary/30 text-brand-primary' : 'bg-slate-800 text-slate-500'
-            }`}>
+            <div className={cn(
+              "p-2.5 rounded-xl transition-colors",
+              index === highlightedIndex ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
+            )}>
               <ConceptIcon type={concept.type} />
             </div>
             
             <div className="flex-1 min-w-0 flex items-center justify-between gap-4">
-              <span className="font-bold text-sm truncate">{concept.label}</span>
+              <span className={cn(
+                "font-bold text-[15px] truncate",
+                index === highlightedIndex ? 'text-foreground' : 'text-foreground/80'
+              )}>
+                {concept.label}
+              </span>
               <ConceptBadge type={concept.type} />
             </div>
 
-            <ChevronRight className={`w-4 h-4 flex-shrink-0 transition-transform ${
-              index === highlightedIndex ? 'translate-x-1 text-brand-primary' : 'text-slate-700'
-            }`} />
+            <ChevronRight className={cn(
+              "w-4 h-4 flex-shrink-0 transition-transform",
+              index === highlightedIndex ? 'translate-x-1 text-primary' : 'text-muted-foreground/30'
+            )} />
           </button>
         ))}
       </div>

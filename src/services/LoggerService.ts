@@ -1,5 +1,6 @@
 import { EventBus, EventType } from './EventBus';
 import { LogEntry } from '../core/types';
+import { useStore } from '../store/useStore';
 
 class LoggerService {
   private static instance: LoggerService;
@@ -26,6 +27,13 @@ class LoggerService {
     };
 
     this.logs = [entry, ...this.logs].slice(0, this.MAX_LOGS);
+    
+    // Sync with Zustand
+    try {
+      useStore.getState().addLog(entry);
+    } catch (e) {
+      // Early logging might fail if called before store is ready, ignore
+    }
     
     // Dispatch events for both systems
     EventBus.emit(EventType.LOG_ADDED as any, entry);

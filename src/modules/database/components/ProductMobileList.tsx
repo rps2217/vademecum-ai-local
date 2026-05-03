@@ -10,16 +10,18 @@ interface ProductMobileListProps {
   onDelete: (sku: string) => void;
 }
 
-const MobileRow = memo(({ index, style, data }: any) => {
+const MobileRow = memo(({ index, style, ...data }: any) => {
   const { products, onDelete } = data;
   const p = products[index];
+
+  if (!p) return null;
 
   return (
     <div style={style} className="p-4 hover:bg-slate-800/20 transition-colors border-b border-slate-800 bg-brand-surface">
       <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5">
-            {p.synced ? (
+            {p.is_synced_cloud ? (
               <Cloud className="w-3.5 h-3.5 text-emerald-400" />
             ) : (
               <Monitor className="w-3.5 h-3.5 text-slate-600" />
@@ -32,16 +34,13 @@ const MobileRow = memo(({ index, style, data }: any) => {
           <Trash2 className="w-4 h-4" />
         </button>
       </div>
-      <h3 className="font-bold text-slate-100 leading-tight mb-2 pr-8 truncate">{p.nombre_comercial}</h3>
+      <h3 className="font-bold text-slate-100 leading-tight mb-2 pr-8 truncate font-sans tracking-tight">{p.nombre_comercial}</h3>
       <div className="flex flex-wrap gap-1 overflow-hidden h-[24px]">
         {(Array.isArray(p.principios_activos) ? p.principios_activos : []).slice(0, 3).map((pa, idx) => (
           <span key={idx} className="text-[9px] px-1.5 py-0.5 bg-slate-800 text-slate-400 rounded-md border border-slate-700 font-medium whitespace-nowrap">
             {pa}
           </span>
         ))}
-        {p.principios_activos && p.principios_activos.length > 3 && (
-          <span className="text-[9px] text-slate-600 font-bold flex items-center">+{p.principios_activos.length - 3}</span>
-        )}
       </div>
     </div>
   );

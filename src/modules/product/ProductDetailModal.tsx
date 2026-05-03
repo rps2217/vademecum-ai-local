@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Product } from '../../core/types';
 import { ErrorBoundary } from '../../components/common/ErrorBoundary';
 import { ClinicalSynergy } from './ClinicalSynergy';
-import { X, Sparkles, AlertCircle, ChevronLeft, Home, Printer, RefreshCw } from 'lucide-react';
+import { X, Sparkles, AlertCircle, ChevronLeft, Home, Printer, RefreshCw, Bookmark, ShieldCheck, Info, ShieldAlert } from 'lucide-react';
 
 import { ProductHeader } from './components/ProductHeader';
 import { ProductBentoGrid } from './components/ProductBentoGrid';
@@ -13,6 +13,10 @@ import { IngredientInsights } from './components/IngredientInsights';
 
 import { useProductDetail } from './hooks/useProductDetail';
 import { printProductTicket } from './utils/printHelpers';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 interface ProductDetailModalProps {
   product: Product;
@@ -55,14 +59,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   useEffect(() => {
     // Reset scroll when product changes
-    const leftCol = document.getElementById('product-detail-left-col');
-    if (leftCol) leftCol.scrollTo({ top: 0, behavior: 'auto' });
-    
-    // Auto-scroll screen if in mobile and embedded
-    if (isEmbedded && window.innerWidth < 768) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [product.sku, isEmbedded]);
+    const viewport = document.querySelector('[data-radix-scroll-area-viewport]');
+    if (viewport) viewport.scrollTo({ top: 0, behavior: 'auto' });
+  }, [product.sku]);
 
   const handleEditClick = () => {
     if (isEditing) setIsEditing(false);
@@ -83,122 +82,114 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const hasSynergy = !!product.synergy_analyzed;
 
   const detailContent = (
-    <div className={`bg-brand-bg/40 backdrop-blur-2xl w-full h-full sm:rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] border-t sm:border border-white/5 flex flex-col md:flex-row overflow-hidden ${!hasSynergy ? 'max-w-4xl' : ''} ${isEmbedded ? 'animate-none shadow-none border-none' : 'animate-in slide-in-from-bottom sm:slide-in-from-right duration-500 ease-out'}`}>
+    <div className={`bg-background w-full h-full border-l shadow-2xl flex flex-col md:flex-row overflow-hidden ${isEmbedded ? 'border-none shadow-none' : 'animate-in slide-in-from-right duration-500 ease-out'}`}>
       
-      {/* Columna Izquierda: Detalles del Producto */}
-      <div id="product-detail-left-col" className={`w-full p-4 sm:p-8 overflow-y-auto relative bg-transparent scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent ${hasSynergy ? 'md:w-3/5 border-r border-white/5' : ''}`}>
+      {/* Columna Izquierda: Información Clínica */}
+      <div className={`flex flex-col h-full bg-background ${hasSynergy ? 'md:w-3/5 border-r' : 'w-full'}`}>
         
-        {/* Navegación Superior */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8 sticky top-0 z-[60] bg-brand-bg/60 backdrop-blur-xl -mx-4 px-4 py-3 sm:static sm:mx-0 sm:px-0 sm:py-0 sm:bg-transparent border-b border-white/5 sm:border-none">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <button 
-              onClick={onClose}
-              className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all border border-white/10 group shadow-xl"
-            >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform text-brand-primary" />
-              <span className="font-black text-[10px] sm:text-xs uppercase tracking-[0.2em]">Cerrar</span>
-            </button>
-              
-            <button 
-              onClick={onClose}
-              className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-brand-primary transition-all border border-white/10 shadow-xl"
-            >
-              <Home className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
-
-            <button 
-              onClick={() => printProductTicket(product)}
-              className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-brand-primary transition-all border border-white/10 shadow-xl"
-            >
-              <Printer className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
+        {/* Header de Navegación Modal */}
+        <div className="flex items-center justify-between px-6 h-16 border-b shrink-0 bg-background/80 backdrop-blur sticky top-0 z-10">
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" onClick={onClose} className="text-muted-foreground hover:text-foreground">
+              <ChevronLeft className="mr-1 h-4 w-4" />
+              Volver
+            </Button>
+            <Separator orientation="vertical" className="h-4" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground px-2">Ficha Técnica</span>
           </div>
 
-          <div className="md:hidden">
-            <button 
-              onClick={handleReanalyze}
-              disabled={isReanalyzing}
-              className={`p-2 rounded-xl border transition-all ${isReanalyzing ? 'bg-indigo-500/10 border-indigo-500/30' : 'bg-brand-surface border-slate-700'}`}
-            >
-              {isReanalyzing ? <RefreshCw className="w-4 h-4 animate-spin text-indigo-400" /> : <Sparkles className="w-4 h-4 text-brand-primary" />}
-            </button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="icon" onClick={() => printProductTicket(product)} title="Imprimir">
+              <Printer className="h-4 w-4" />
+            </Button>
+            <Button 
+                variant={product.is_verified ? "secondary" : "outline"}
+                size="sm" 
+                onClick={handleVerifyClick}
+                className={product.is_verified ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-200' : ''}
+              >
+              {product.is_verified ? <ShieldCheck className="mr-2 h-4 w-4" /> : <Bookmark className="mr-2 h-4 w-4" />}
+              {product.is_verified ? 'Verificado' : 'Verificar'}
+            </Button>
           </div>
         </div>
 
-        {statusMessage && (
-          <div className={`fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-[100] px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border shadow-2xl animate-in slide-in-from-top duration-300 flex items-center gap-2 sm:gap-3 w-[90%] sm:w-auto ${
-            statusMessage.type === 'error' ? 'bg-red-500/10 border-red-500/50 text-red-400' :
-            statusMessage.type === 'success' ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-400' :
-            'bg-brand-primary/10 border-brand-primary/50 text-brand-primary'
-          }`}>
-            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-            <span className="font-medium text-xs sm:text-base">{statusMessage.text}</span>
-          </div>
-        )}
-
-        <ProductHeader 
-          product={product} 
-          onTagClick={onTagClick} 
-          searchTerm={searchTerm} 
-          actions={(
-            <div className="hidden sm:block">
-              <ProductActions 
-                product={product}
-                isForcingSynergy={isForcingSynergy}
-                isReanalyzing={isReanalyzing}
-                isSuccess={isSuccess}
-                isEditing={isEditing}
-                onForceSynergy={handleForceSynergy}
-                onReanalyze={handleReanalyze}
-                onEdit={handleEditClick}
-                onVerify={handleVerifyClick}
-                onClose={onClose}
-                hideCloseMobile={true}
-              />
-            </div>
-          )}
-        />
-
-        {isEditing ? (
-          <ProductEditForm 
-            product={product} 
-            onSave={handleSaveEdit} 
-            onCancel={() => setIsEditing(false)} 
-          />
-        ) : (
-          <>
-            <ProductBentoGrid product={product} searchTerm={searchTerm} />
+        <ScrollArea className="flex-1">
+          <div className="p-6 md:p-10 whitespace-optimized">
             
-            <IngredientInsights product={product} />
+            {statusMessage && (
+              <div className={`mb-8 p-4 rounded-lg flex items-center gap-3 border ${
+                statusMessage.type === 'error' ? 'alert-critical' :
+                statusMessage.type === 'success' ? 'alert-synergy' :
+                'alert-info'
+              }`}>
+                <Info className="h-5 w-5 shrink-0" />
+                <span className="font-medium text-sm">{statusMessage.text}</span>
+              </div>
+            )}
 
-            <div className="mt-8 pt-8 border-t border-slate-800 flex flex-wrap justify-center gap-3 sm:hidden">
-              <ProductActions 
-                product={product}
-                isForcingSynergy={isForcingSynergy}
-                isReanalyzing={isReanalyzing}
-                isSuccess={isSuccess}
-                isEditing={isEditing}
-                onForceSynergy={handleForceSynergy}
-                onReanalyze={handleReanalyze}
-                onEdit={handleEditClick}
-                onVerify={handleVerifyClick}
-                onClose={onClose}
-                hideCloseMobile={true}
+            <ProductHeader 
+              product={product} 
+              onTagClick={onTagClick} 
+              searchTerm={searchTerm} 
+              actions={null} // Actions moved to separate grid or top bar
+            />
+
+            {isEditing ? (
+              <ProductEditForm 
+                product={product} 
+                onSave={handleSaveEdit} 
+                onCancel={() => setIsEditing(false)} 
               />
-            </div>
-            
-            <div className="mt-8 sm:mt-12 p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] bg-slate-900/50 border border-slate-800 border-dashed">
-              <div className="flex items-start gap-3">
-                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 mt-0.5 shrink-0" />
-                <div className="space-y-1">
-                  <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">Aviso de Consultoría</p>
-                  <p className="text-[10px] sm:text-xs text-slate-500 leading-relaxed">
-                    Esta información es técnica. No constituye diagnóstico médico.
-                  </p>
+            ) : (
+              <div className="mt-10 space-y-12">
+                <ProductBentoGrid product={product} searchTerm={searchTerm} />
+                
+                <Separator />
+                
+                <IngredientInsights product={product} />
+
+                <div className="bg-muted/30 border border-dashed p-6 rounded-xl">
+                  <div className="flex items-start gap-3">
+                    <ShieldAlert className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
+                    <div>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Responsabilidad Profesional</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        Este producto y sus sugerencias de sinergia han sido analizados por modelos de inteligencia artificial propietarios. 
+                        La decisión clínica final recae exclusivamente en el profesional facultativo. 
+                        Consulte siempre la posología oficial según lote y registro vigente.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
+            )}
+          </div>
+        </ScrollArea>
+        
+        {/* Footer Actions */}
+        {!isEditing && (
+          <div className="p-4 border-t bg-muted/10 flex items-center justify-between px-6 h-16 shrink-0">
+            <div className="flex items-center gap-4">
+              <Badge variant="outline" className="font-mono text-[10px] py-1">SKU: {product.sku}</Badge>
+              {product.categoria_principal && <Badge variant="outline" className="text-[10px] uppercase tracking-wide">{product.categoria_principal}</Badge>}
             </div>
-          </>
+            <div className="flex items-center gap-2">
+               <ProductActions 
+                  product={product}
+                  isForcingSynergy={isForcingSynergy}
+                  isReanalyzing={isReanalyzing}
+                  isSuccess={isSuccess}
+                  isEditing={isEditing}
+                  onForceSynergy={handleForceSynergy}
+                  onReanalyze={handleReanalyze}
+                  onEdit={handleEditClick}
+                  onVerify={handleVerifyClick}
+                  onClose={onClose}
+                  hideCloseMobile={true}
+                />
+            </div>
+          </div>
         )}
       </div>
 
@@ -211,39 +202,39 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         />
       )}
 
-      {/* Columna Derecha: Sinergia */}
+      {/* Columna Derecha: Sinergia Clínica (Swiss Panel) */}
       {hasSynergy && (
-        <div className="w-full md:w-2/5 bg-brand-bg/30 p-6 md:p-10 flex flex-col relative overflow-y-auto">
-          <button 
-            onClick={onClose}
-            className="absolute top-8 right-8 p-3 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 transition-all border border-rose-500/30 hidden md:flex"
-          >
-            <X className="w-6 h-6" />
-          </button>
-          
-          <div className="mb-8 pr-16">
-            <h3 className="text-2xl font-bold text-white mb-1 flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-brand-primary" />
-              Sinergia Clínica
+        <div className="w-full md:w-2/5 bg-slate-50/50 flex flex-col h-full animate-in slide-in-from-right duration-700">
+          <div className="h-16 flex items-center px-6 border-b shrink-0 bg-slate-100/50">
+            <h3 className="text-sm font-bold tracking-tight flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-emerald-600" />
+              Sinergia e Interacciones Clínicas
             </h3>
-            <p className="text-sm text-slate-500">Relaciones inteligentes IA.</p>
           </div>
           
-          <div className="flex-1">
-            <ErrorBoundary componentName="ClinicalSynergyPanel">
-              <ClinicalSynergy product={product} onProductClick={(p) => setProduct(p)} />
-            </ErrorBoundary>
-          </div>
+          <ScrollArea className="flex-1">
+            <div className="p-6 md:p-8">
+              <div className="mb-8 alert-synergy text-[13px] leading-relaxed">
+                Este análisis utiliza el motor RAG vectorial para identificar interacciones farmacológicas y complementos sinérgicos basados en mecanismos de acción documentados.
+              </div>
+              
+              <ErrorBoundary componentName="ClinicalSynergyPanel">
+                <ClinicalSynergy product={product} onProductClick={(p) => setProduct(p)} />
+              </ErrorBoundary>
+            </div>
+          </ScrollArea>
         </div>
       )}
     </div>
   );
 
   return isEmbedded ? (
-    <div className="w-full flex-1">{detailContent}</div>
+    <div className="w-full h-full flex flex-col">{detailContent}</div>
   ) : (
-    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-brand-bg/40 backdrop-blur-sm" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      {detailContent}
+    <div className="fixed inset-0 z-[100] flex justify-end bg-black/20 backdrop-blur-sm sm:pl-20" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="w-full max-w-6xl h-full shadow-2xl">
+        {detailContent}
+      </div>
     </div>
   );
 };

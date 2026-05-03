@@ -13,11 +13,7 @@
     <title>Vademécum Inteligente</title>
     <script>
       (function() {
-        const savedTheme = localStorage.getItem('app-theme');
-        const systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-        if (savedTheme === 'light' || (!savedTheme && systemLight)) {
-          document.documentElement.classList.add('light');
-        }
+        document.documentElement.classList.add('dark');
       })();
     </script>
   </head>

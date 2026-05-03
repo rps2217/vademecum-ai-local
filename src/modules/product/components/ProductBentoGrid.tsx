@@ -1,8 +1,10 @@
 import React from 'react';
-import { Info, Cpu, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Info, Cpu, CheckCircle2, AlertTriangle, ShieldCheck, Stethoscope } from 'lucide-react';
 import { Product } from '../../../core/types/product.types';
 import { ProductSafetyProfile } from './ProductSafetyProfile';
 import { HighlightText } from '../../../components/ui/HighlightText';
+import { Separator } from '@/components/ui/separator';
+import { Badge } from '@/components/ui/badge';
 
 interface ProductBentoGridProps {
   product: Product;
@@ -11,75 +13,81 @@ interface ProductBentoGridProps {
 
 export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, searchTerm = '' }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-700">
       
-      {/* Descripción */}
-      <div className="col-span-1 md:col-span-2 glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-8 shrink-0 hover:bg-white/10 transition-colors">
-        <h3 className="clinical-label mb-3 sm:mb-4 flex items-center gap-2">
-          <Info className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Ficha Técnica
-        </h3>
-        <div className="text-slate-200 leading-relaxed text-[11px] sm:text-sm font-medium">
-          <HighlightText text={product.descripcion} searchTerm={searchTerm} />
-        </div>
-      </div>
-
-      {/* Análisis de Componentes */}
-      {product.analisis_componentes && (
-        <div className="col-span-1 md:col-span-2 glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-8 group">
-          <h3 className="clinical-label mb-3 sm:mb-4 flex items-center gap-2 text-indigo-400 group-hover:text-indigo-300 transition-colors">
-            <Cpu className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Análisis Bioquímico IA
-          </h3>
-          <div className="text-slate-300 leading-relaxed text-[9px] sm:text-xs whitespace-pre-wrap font-mono bg-black/40 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/5 overflow-x-auto selection:bg-indigo-500/30">
-            <HighlightText text={product.analisis_componentes} searchTerm={searchTerm} />
+      {/* Sección 1: Definición Clínica */}
+      <div className="grid md:grid-cols-3 gap-8">
+        <div className="md:col-span-2 space-y-4">
+          <div className="flex items-center gap-2 text-primary">
+            <Info className="h-4 w-4" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Resumen Descriptivo</span>
+          </div>
+          <div className="text-xl font-medium leading-relaxed text-foreground/90">
+            <HighlightText text={product.descripcion} searchTerm={searchTerm} />
           </div>
         </div>
-      )}
 
-      {/* Indicaciones */}
-      <div className="glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 hover:bg-white/10 transition-colors">
-        <h3 className="clinical-label mb-4 sm:mb-5 flex items-center gap-2 text-brand-accent">
-          <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Indicaciones Terapéuticas
-        </h3>
-        <ul className="space-y-2 sm:space-y-3">
-          {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
-            if (!ind) return null;
-            const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
-            return (
-              <li key={i} className="flex items-start gap-2 sm:gap-3 text-slate-300">
-                <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-brand-accent mt-1.5 sm:mt-2 shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
-                <span className="text-[11px] sm:text-sm font-bold leading-relaxed">
-                  <HighlightText text={text} searchTerm={searchTerm} />
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      {/* Posología */}
-      <div className="glass-panel rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 hover:bg-white/10 transition-colors">
-        <h3 className="clinical-label mb-4 sm:mb-5">
-          Posología y Recomendación
-        </h3>
-        <div className="p-3 sm:p-4 bg-brand-primary/10 rounded-xl sm:rounded-2xl border border-brand-primary/20 backdrop-blur-sm">
-          <div className="text-brand-primary text-[11px] sm:text-sm leading-relaxed font-bold">
+        <div className="bg-muted/30 p-6 rounded-2xl space-y-4 flex flex-col justify-center border-l-4 border-primary">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Stethoscope className="h-4 w-4" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Posología Base</span>
+          </div>
+          <div className="text-lg font-bold text-foreground">
             <HighlightText text={product.posologia} searchTerm={searchTerm} />
           </div>
         </div>
       </div>
 
-      {/* Advertencias */}
-      <div className="col-span-1 md:col-span-2 bg-rose-500/5 border border-rose-500/20 rounded-2xl sm:rounded-[2rem] p-4 sm:p-8 hover:bg-rose-500/10 transition-colors">
-        <h3 className="clinical-label mb-3 sm:mb-4 flex items-center gap-2 text-rose-400">
-          <AlertTriangle className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Contraindicaciones y Riesgos
-        </h3>
-        <div className="text-rose-200/90 leading-relaxed text-[11px] sm:text-sm font-bold italic">
-          <HighlightText text={product.advertencias} searchTerm={searchTerm} />
+      <Separator />
+
+      {/* Sección 2: Farmacodinámica e Indicaciones */}
+      <div className="grid md:grid-cols-2 gap-12">
+        <div className="space-y-6">
+          <div className="flex items-center gap-2 text-emerald-600">
+            <CheckCircle2 className="h-4 w-4" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Indicaciones Clínicas</span>
+          </div>
+          <ul className="grid grid-cols-1 gap-4">
+            {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
+              if (!ind) return null;
+              const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
+              return (
+                <li key={i} className="flex items-center gap-4 group">
+                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <HighlightText text={text} searchTerm={searchTerm} />
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <div className="bg-slate-50/50 p-8 rounded-3xl border border-dashed space-y-6">
+          <div className="flex items-center gap-2 text-indigo-600">
+            <Cpu className="h-4 w-4" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-700">Mecanismo de Acción IA</span>
+          </div>
+          <div className="text-xs font-mono leading-relaxed text-slate-600 bg-white p-6 rounded-xl border shadow-sm">
+            <HighlightText text={product.analisis_componentes || 'Análisis no disponible'} searchTerm={searchTerm} />
+          </div>
         </div>
       </div>
 
-      {/* Perfil de Seguridad */}
-      <ProductSafetyProfile product={product} />
+      {/* Sección 3: Seguridad y Contraindicaciones */}
+      <div className="grid md:grid-cols-2 gap-8">
+         <div className="alert-critical p-8 rounded-3xl space-y-4">
+            <div className="flex items-center gap-2 text-red-600">
+              <AlertTriangle className="h-5 w-5" />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Advertencias y Contraindicaciones</span>
+            </div>
+            <div className="text-sm font-bold leading-relaxed text-red-900 italic">
+              <HighlightText text={product.advertencias} searchTerm={searchTerm} />
+            </div>
+          </div>
+
+          <ProductSafetyProfile product={product} />
+      </div>
     </div>
   );
 };

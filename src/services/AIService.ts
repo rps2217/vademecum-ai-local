@@ -5,6 +5,7 @@ import { synergyBackgroundService } from './SynergyBackgroundService';
 import { aiOrchestratorService } from './AIOrchestratorService';
 import { logger } from './LoggerService';
 import { taskQueueService } from './TaskQueueService';
+import { medicalRAGService } from './MedicalRAGService';
 
 class CloudCircuitBreaker {
   private failures = 0;
@@ -466,7 +467,9 @@ export class AIService {
       const { geminiService } = await import('./GeminiService');
       let result = null;
       if (type === 'synergy') {
-        result = await geminiService.analyzeSynergy(product, candidates);
+        const clinicalInsights = await medicalRAGService.retrieveClinicalContext(product.principios_activos || []);
+        const formattedInsights = medicalRAGService.formatInsightsForPrompt(clinicalInsights);
+        result = await geminiService.analyzeSynergy(product, candidates, formattedInsights);
       }
       this.cloudCircuitBreaker.recordSuccess();
       return result;

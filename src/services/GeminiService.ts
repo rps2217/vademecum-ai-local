@@ -501,7 +501,7 @@ export class GeminiService {
     });
   }
 
-  async analyzeSynergy(mainProduct: Product, relatedProducts: Product[]): Promise<{
+  async analyzeSynergy(mainProduct: Product, relatedProducts: Product[], clinicalInsights?: string): Promise<{
     sugerencia_complementaria: string;
     skus_relacionados: string[];
     explicacion_clinica: string;
@@ -512,6 +512,8 @@ export class GeminiService {
         
         const prompt = `${SYSTEM_PHILOSOPHY}\n\nAnaliza la relación clínica entre el producto principal y los productos relacionados.
         
+        ${clinicalInsights ? `CONTEXTO CLÍNICO RECUPERADO (RAG):\n${clinicalInsights}\n\n` : ''}
+        
         PRODUCTO PRINCIPAL:
         - Nombre: ${mainProduct.nombre_comercial}
         - Principios Activos: ${formatArrayToString(mainProduct.principios_activos, ', ')}
@@ -521,13 +523,13 @@ export class GeminiService {
         ${relatedProducts.map(p => `- [${p.sku}] ${p.nombre_comercial}: ${formatArrayToString(p.indicaciones, ', ')}`).join('\n')}
         
         TAREA:
-        Identifica productos complementarios o similares.
-        Devuelve un JSON con:
-        - sugerencia_complementaria: Texto breve.
-        - skus_relacionados: Lista de SKUs.
-        - explicacion_clinica: Explicación breve.
+        Identifica productos complementarios registrados en la lista anterior que potencien el efecto del producto principal o traten síntomas relacionados de forma segura.
+        Usa el contexto clínico recuperado para fundamentar tu respuesta y evitar alucinaciones.
         
-        [ignoring loop detection]`;
+        Devuelve un JSON con:
+        - sugerencia_complementaria: Resumen breve para el usuario (máx 150 chars).
+        - skus_relacionados: Lista de SKUs de los productos que REALMENTE son sinérgicos o complementarios.
+        - explicacion_clinica: Explicación técnica de la sinergia basada en los mecanismos de acción.`;
 
         const response = await ai.models.generateContent({
           model: MODELS.PRO,

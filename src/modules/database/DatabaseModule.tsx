@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { dataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
-import { Search, Info } from 'lucide-react';
+import { Search, Info, X } from 'lucide-react';
 import { cloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
 import { EventBus, EventType } from '../../services/EventBus';
@@ -10,6 +10,8 @@ import { ScraperModal } from './ScraperModal';
 import { DatabaseHeader } from './components/DatabaseHeader';
 import { ProductMobileList } from './components/ProductMobileList';
 import { ProductTable } from './components/ProductTable';
+import { SearchFilters } from './components/SearchFilters';
+import { searchService } from '../../services/SearchService';
 
 export const DatabaseModule: React.FC = () => {
   const { isAdmin } = useAuth();
@@ -19,18 +21,30 @@ export const DatabaseModule: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedPrinciple, setSelectedPrinciple] = useState<string | null>(null);
   const [showScraperModal, setShowScraperModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [facets, setFacets] = useState<{ categories: string[], activePrinciples: string[] }>({ 
+      categories: [], 
+      activePrinciples: [] 
+  });
 
   const loadData = async (isManual = false) => {
     setIsLoading(true);
     try {
       const allProducts = await dataService.getAllProducts();
       setProducts(allProducts);
+      
+      // Initialize/Update search index
+      await searchService.initializeIndex();
+      setFacets(searchService.getFacets());
+
       const cCount = await cloudSyncService.getCloudCount();
       setCloudCount(cCount);
 
-      // Auto-Restore Logic: If local is empty but cloud has data, suggest or auto-pull
       if (allProducts.length === 0 && cCount > 0 && !isManual) {
         setSyncStatus('Detectados datos en la nube. Restaurando automáticamente...');
         await handleSmartPull();
@@ -41,6 +55,18 @@ export const DatabaseModule: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  // Perform advanced search when terms or filters change
+  useEffect(() => {
+     const performSearch = async () => {
+         const results = await searchService.search(searchTerm, {
+             category: selectedCategory || undefined,
+             principle: selectedPrinciple || undefined
+         });
+         setFilteredProducts(results);
+     };
+     performSearch();
+  }, [searchTerm, selectedCategory, selectedPrinciple, products]);
 
   const handleSmartPull = async () => {
     setIsSyncing(true);
@@ -123,14 +149,8 @@ export const DatabaseModule: React.FC = () => {
     await loadData();
   };
 
-  const filteredProducts = useMemo(() => {
-    if (!searchTerm) return products;
-    const term = searchTerm.toLowerCase();
-    return products.filter(p => p.nombre_comercial.toLowerCase().includes(term) || p.sku.toLowerCase().includes(term));
-  }, [products, searchTerm]);
-
   return (
-    <div className="w-full max-w-6xl mx-auto pb-24 px-3 sm:px-6 animate-in fade-in duration-500 pt-3 sm:pt-6">
+    <div className="w-full max-w-7xl mx-auto pb-24 px-3 sm:px-6 animate-in fade-in duration-500 pt-3 sm:pt-6">
       <DatabaseHeader 
         isAdmin={isAdmin}
         isSyncing={isSyncing}
@@ -148,30 +168,53 @@ export const DatabaseModule: React.FC = () => {
         </div>
       )}
 
-      <div className="bg-brand-surface border border-slate-700 rounded-2xl shadow-xl overflow-hidden">
-        <div className="p-4 bg-slate-900/50 border-b border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-bold ring-1 ring-brand-primary/20">
-              {products.length} Local
-            </span>
-            {cloudCount !== null && (
-              <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold ring-1 ring-emerald-500/20">
-                {cloudCount} Nube
-              </span>
-            )}
-          </div>
-          <div className="relative w-full md:w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-            <input 
-              type="text" placeholder="Buscar..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-brand-bg border border-slate-700 rounded-xl text-sm text-white focus:border-brand-primary outline-none"
-            />
+      {/* Main Layout: Filters + List */}
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
+        <SearchFilters 
+            categories={facets.categories}
+            activePrinciples={facets.activePrinciples}
+            selectedCategory={selectedCategory}
+            selectedPrinciple={selectedPrinciple}
+            onSelectCategory={setSelectedCategory}
+            onSelectPrinciple={setSelectedPrinciple}
+            totalResults={filteredProducts.length}
+        />
+
+        <div className="flex-1 w-full space-y-4">
+          <div className="bg-brand-surface border border-slate-700 rounded-2xl shadow-xl overflow-hidden">
+            <div className="p-4 bg-slate-900/50 border-b border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-bold ring-1 ring-brand-primary/20">
+                  {products.length} Local
+                </span>
+                {cloudCount !== null && (
+                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold ring-1 ring-emerald-500/20">
+                    {cloudCount} Nube
+                  </span>
+                )}
+                {(selectedCategory || selectedPrinciple) && (
+                  <button 
+                    onClick={() => { setSelectedCategory(null); setSelectedPrinciple(null); }}
+                    className="flex items-center gap-1.5 px-2 py-0.5 bg-slate-800 text-[10px] text-slate-300 rounded hover:bg-slate-700"
+                  >
+                    <X className="w-3 h-3" /> Limpiar filtros
+                  </button>
+                )}
+              </div>
+              <div className="relative w-full md:w-64">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <input 
+                  type="text" placeholder="Búsqueda rápida (tolerancia a errores)..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 bg-brand-bg border border-slate-700 rounded-xl text-sm text-white focus:border-brand-primary outline-none"
+                />
+              </div>
+            </div>
+
+            <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
+            
+            <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
           </div>
         </div>
-
-        <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
-        
-        <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
       </div>
 
       {showScraperModal && (

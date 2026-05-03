@@ -35,7 +35,8 @@ export const SettingsModule: React.FC = () => {
         const module = await import('../../services/TaskQueueService');
         const queueService = module.taskQueueService;
         if (queueService && typeof queueService.getQueueLength === 'function') {
-           setQueueLength(queueService.getQueueLength());
+           const length = await queueService.getQueueLength();
+           setQueueLength(length);
         }
       } catch (e) {
         console.error('Error polling queue:', e);

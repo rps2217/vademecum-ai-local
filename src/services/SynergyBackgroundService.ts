@@ -9,6 +9,7 @@ import { dataService } from './DataService';
 import { taskQueueService } from './TaskQueueService';
 import { EventBus, EventType } from './EventBus';
 import { logger } from './LoggerService';
+import { medicalRAGService } from './MedicalRAGService';
 
 export class SynergyBackgroundService {
   private static instance: SynergyBackgroundService;
@@ -130,6 +131,11 @@ export class SynergyBackgroundService {
             product.anotaciones_componentes = result;
             await dataService.saveProduct({ ...product, anotaciones_componentes: result }, { silent: true });
             logger.info(`Checkpoint guardado: Componentes de ${product.sku}`, 'Sinergia');
+
+            // Contribuir a la base de conocimientos RAG (Supabase pgvector)
+            for (const [principle, mechanism] of Object.entries(result)) {
+              medicalRAGService.upsertClinicalKnowledge(principle, mechanism as string).catch(() => {});
+            }
           }
         } catch (error) {
           logger.error(`Error analizando componentes en pipeline para ${product.sku}`, 'Sinergia', error);
@@ -149,6 +155,11 @@ export class SynergyBackgroundService {
         .sort((a, b) => b.score - a.score)
         .slice(0, 5)
         .map(item => item.product);
+
+      // 4. Recuperación RAG (Supabase pgvector)
+      logger.info(`Buscando conocimientos clínicos (RAG) para ${product.sku}...`, 'Sinergia');
+      const clinicalInsights = await medicalRAGService.retrieveClinicalContext(product.principios_activos || []);
+      const formattedInsights = medicalRAGService.formatInsightsForPrompt(clinicalInsights);
 
       if (candidates.length === 0) {
         logger.info(`Sin candidatos para ${product.sku}.`, 'Sinergia');
@@ -189,8 +200,8 @@ export class SynergyBackgroundService {
         if (config.useGeminiForSynergy) {
           this.setActiveEngine('Gemini (Nube)');
           try {
-            logger.info(`Consultando Gemini...`, 'Sinergia');
-            const analysis = await geminiService.analyzeSynergy(product, candidates);
+            logger.info(`Consultando Gemini con contexto RAG...`, 'Sinergia');
+            const analysis = await geminiService.analyzeSynergy(product, candidates, formattedInsights);
             synergyResult = {
               sugerencia_complementaria: analysis.sugerencia_complementaria,
               skus_relacionados: analysis.skus_relacionados,

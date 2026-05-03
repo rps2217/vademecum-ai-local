@@ -8,7 +8,9 @@ import { RelatedProductsList } from './components/synergy/RelatedProductsList';
 import { AlternativesList } from './components/synergy/AlternativesList';
 import { SynergyGraph } from './components/synergy/SynergyGraph';
 import { cosineSimilarity } from '../../utils/math';
-import { Share2, List } from 'lucide-react';
+import { Share2, List, Filter, Activity } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 
 interface ClinicalSynergyProps {
   product: Product;
@@ -33,43 +35,34 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
       try {
         const allProducts = await dataService.getAllProducts();
         
-        // 1. Productos Complementarios (Sinergia definida por IA)
         const confirmed = allProducts.filter(p => 
           product.skus_relacionados && product.skus_relacionados.includes(p.sku)
         );
         setRelatedProducts(confirmed);
 
-        // 2. Alternativas (Bioequivalentes o Similitud Semántica)
         const altList: { product: Product, score: number }[] = [];
         
         allProducts.forEach(p => {
-          if (p.sku === product.sku) return; // No incluirse a sí mismo
+          if (p.sku === product.sku) return;
 
           let score = 0;
           
-          // A. Coincidencia de Principios Activos (Equivalencia Química)
           const commonPA = p.principios_activos.filter(pa => 
             product.principios_activos.includes(pa)
           );
           
           if (commonPA.length > 0) {
-            // Un ratio de cuántos principios comparten sobre el total de ambos
             const chemicalScore = commonPA.length / Math.max(product.principios_activos.length, p.principios_activos.length);
             score = chemicalScore;
           }
 
-          // B. Similitud Semántica (Vectores - Intuición IA sobre uso y forma)
           if (product.vectores && p.vectores && product.vectores.length > 0) {
             const vectorSimilarity = cosineSimilarity(product.vectores, p.vectores);
             
-            // Si el score químico es alto, los vectores lo refuerzan. 
-            // Si no hay score químico, los vectores pueden sugerir alternativas terapéuticas de otra familia.
             if (score > 0) {
-                // Combinar: 70% química, 30% semántica para bioequivalentes
                 score = (score * 0.7) + (vectorSimilarity * 0.3);
             } else if (vectorSimilarity > 0.85) {
-                // Alternativa terapéutica pura por IA
-                score = vectorSimilarity * 0.9; // Penalizar ligeramente por no compartir químicos
+                score = vectorSimilarity * 0.9;
             }
           }
 
@@ -81,7 +74,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
         setAlternatives(
           altList
             .sort((a, b) => b.score - a.score)
-            .slice(0, 3) // Top 3 de Equivalencia
+            .slice(0, 3)
         );
 
       } catch (error) {
@@ -107,24 +100,29 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
   }
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 whitespace-optimized">
       <div className="flex items-center justify-between">
-        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Visualización</h4>
-        <div className="flex bg-slate-800/50 p-1 rounded-xl border border-slate-700">
-          <button 
+        <div className="flex items-center gap-2">
+            <Activity className="h-4 w-4 text-primary" />
+            <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Gráfico de Relaciones</span>
+        </div>
+        <div className="flex border rounded-lg p-1 bg-muted/40">
+          <Button 
+            variant={viewMode === 'list' ? 'secondary' : 'ghost'} 
+            size="icon" 
             onClick={() => setViewMode('list')}
-            className={`p-1.5 rounded-lg transition-all ${viewMode === 'list' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
-            title="Vista de Lista"
+            className="h-8 w-8 rounded-md"
           >
-            <List className="w-3.5 h-3.5" />
-          </button>
-          <button 
+            <List className="h-3.5 w-3.5" />
+          </Button>
+          <Button 
+            variant={viewMode === 'graph' ? 'secondary' : 'ghost'} 
+            size="icon" 
             onClick={() => setViewMode('graph')}
-            className={`p-1.5 rounded-lg transition-all ${viewMode === 'graph' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
-            title="Vista de Mapa"
+            className="h-8 w-8 rounded-md"
           >
-            <Share2 className="w-3.5 h-3.5" />
-          </button>
+            <Share2 className="h-3.5 w-3.5" />
+          </Button>
         </div>
       </div>
 
@@ -135,25 +133,39 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
           onProductClick={onProductClick}
         />
       ) : (
-        <>
+        <div className="space-y-12">
           {product.sugerencia_complementaria && (
-            <SynergySuggestion suggestion={product.sugerencia_complementaria} />
+            <div className="space-y-4">
+              <SynergySuggestion suggestion={product.sugerencia_complementaria} />
+            </div>
           )}
 
           {alternatives.length > 0 && (
-            <AlternativesList 
-              products={alternatives}
-              onProductClick={onProductClick}
-            />
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Filter className="h-4 w-4 text-muted-foreground" />
+                <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Alternativas y Bioequivalentes</h4>
+              </div>
+              <AlternativesList 
+                products={alternatives}
+                onProductClick={onProductClick}
+              />
+            </div>
           )}
 
           {relatedProducts.length > 0 && (
-            <RelatedProductsList 
-              products={relatedProducts} 
-              onProductClick={onProductClick} 
-            />
+            <div className="space-y-4">
+               <div className="flex items-center gap-3">
+                  <Activity className="h-4 w-4 text-muted-foreground" />
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Coadyuvantes Sinergistas</h4>
+               </div>
+              <RelatedProductsList 
+                products={relatedProducts} 
+                onProductClick={onProductClick} 
+              />
+            </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );

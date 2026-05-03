@@ -10,14 +10,16 @@ interface ProductTableProps {
   onDelete: (sku: string) => void;
 }
 
-const Row = memo(({ index, style, data }: any) => {
+const Row = memo(({ index, style, ...data }: any) => {
   const { products, onDelete } = data;
   const p = products[index];
+
+  if (!p) return null;
 
   return (
     <div style={style} className="flex border-b border-slate-800 hover:bg-slate-800/20 transition-colors bg-brand-surface group">
       <div className="w-[120px] px-6 flex items-center shrink-0">
-        {p.synced ? (
+        {p.is_synced_cloud ? (
           <div className="flex items-center gap-2 text-emerald-400" title="Respaldado en la nube">
             <Cloud className="w-4 h-4" />
             <CheckCircle className="w-3 h-3" />
@@ -45,7 +47,7 @@ const Row = memo(({ index, style, data }: any) => {
       <div className="w-[120px] px-6 flex items-center font-mono text-[10px] text-slate-500 shrink-0">
         {p.sku}
       </div>
-      <div className="flex-1 px-6 flex items-center font-bold text-white leading-tight min-w-[200px]">
+      <div className="flex-1 px-6 flex items-center font-bold text-white leading-tight min-w-[200px] font-sans tracking-tight">
         {p.nombre_comercial}
       </div>
       <div className="w-[200px] px-6 flex items-center text-slate-400 text-xs truncate shrink-0">
@@ -66,17 +68,17 @@ export const ProductTable: React.FC<ProductTableProps> = ({ products, isLoading,
       <div className="min-w-[860px]">
         {/* Header */}
         <div className="flex bg-slate-900 text-slate-400 border-b border-slate-700 font-bold text-sm h-12">
-          <div className="w-[120px] px-6 flex items-center shrink-0">Cloud</div>
-          <div className="w-[120px] px-6 flex items-center shrink-0">Sinergia</div>
-          <div className="w-[120px] px-6 flex items-center shrink-0">SKU</div>
-          <div className="flex-1 px-6 flex items-center min-w-[200px]">Producto</div>
-          <div className="w-[200px] px-6 flex items-center shrink-0">Compuestos</div>
-          <div className="w-[100px] px-6 flex items-center justify-end shrink-0">Acciones</div>
+          <div className="w-[120px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">Cloud</div>
+          <div className="w-[120px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">Sinergia</div>
+          <div className="w-[120px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">SKU</div>
+          <div className="flex-1 px-6 flex items-center min-w-[200px] uppercase tracking-wider text-[10px]">Producto</div>
+          <div className="w-[200px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">Compuestos</div>
+          <div className="w-[100px] px-6 flex items-center justify-end shrink-0 uppercase tracking-wider text-[10px]">Acciones</div>
         </div>
         
         {/* Body */}
         {isLoading ? (
-          <div className="h-[400px] flex items-center justify-center text-slate-500 border-b border-slate-800">
+          <div className="h-[400px] flex items-center justify-center text-slate-500 border-b border-slate-800 italic">
             Cargando datos...
           </div>
         ) : products.length === 0 ? (
@@ -84,15 +86,15 @@ export const ProductTable: React.FC<ProductTableProps> = ({ products, isLoading,
             No hay registros.
           </div>
         ) : (
-            <List
-              height={600}
-              itemCount={products.length}
-              itemSize={64}
-              width="100%"
-              itemData={{ products, onDelete }}
-            >
-              {Row as any}
-            </List>
+        <List
+          height={600}
+          itemCount={products.length}
+          itemSize={64}
+          width="100%"
+          itemData={{ products, onDelete }}
+        >
+          {Row as any}
+        </List>
         )}
       </div>
     </div>

@@ -1,5 +1,8 @@
 import { EventBus, EventType } from './EventBus';
 import { logger } from './LoggerService';
+import { database, tasksCollection } from '../database';
+import { Q } from '@nozbe/watermelondb';
+import TaskModel from '../database/Task';
 
 export interface PendingTask {
   id: string;
@@ -9,16 +12,14 @@ export interface PendingTask {
   status: 'pending' | 'processing' | 'failed';
   retries: number;
   lastError?: string;
-  priority?: number; // Higher is more urgent
-  earliestRetryTimestamp?: number; // For backoff
+  priority?: number; 
+  earliestRetryTimestamp?: number; 
 }
 
 interface AddTaskOptions {
   deduplicate?: boolean;
   priority?: number;
 }
-
-const STORAGE_KEY = 'pending_tasks';
 
 class TaskQueueService {
   private static instance: TaskQueueService;
@@ -32,140 +33,150 @@ class TaskQueueService {
     return TaskQueueService.instance;
   }
 
-  private getTasksFromStorage(): PendingTask[] {
-    const tasks = localStorage.getItem(STORAGE_KEY);
-    try {
-      return tasks ? JSON.parse(tasks) : [];
-    } catch (e) {
-      return [];
-    }
+  private async getDB(): Promise<any> {
+    return database;
   }
 
-  private saveTasksToStorage(tasks: PendingTask[]) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-  }
-
-  async addTask(type: 'cloud_sync' | 'ai_analysis' | 'vectorization' | 'ingredient_analysis', payload: any, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
-    let tasks = this.getTasksFromStorage();
+  async addTask(type: PendingTask['type'], payload: any, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
     const sku = payload.sku || (type === 'cloud_sync' ? payload.sku : null);
     const priority = options.priority !== undefined ? options.priority : (type === 'cloud_sync' ? 10 : 0);
 
     if (options.deduplicate && sku) {
-      const existingIndex = tasks.findIndex(
-        t => t.type === type && t.status === 'pending' && (t.payload.sku === sku || t.payload.product?.sku === sku)
-      );
+      // WatermelonDB doesn't support $or easily with indexed fields in JSON, so we use string matching if possible
+      // But for deduplication, we can just fetch pending tasks of this type and check manually if few
+      const pendingOfThisType = await tasksCollection.query(
+        Q.where('type', type),
+        Q.where('status', 'pending')
+      ).fetch();
+      
+      const existing = pendingOfThisType.find(t => {
+        const p = t.payload;
+        return p.sku === sku || (p.product && p.product.sku === sku);
+      });
 
-      if (existingIndex !== -1) {
-        tasks[existingIndex].timestamp = Date.now();
-        // Keep the highest priority
-        tasks[existingIndex].priority = Math.max(tasks[existingIndex].priority || 0, priority);
-        this.saveTasksToStorage(tasks);
+      if (existing) {
+        await database.write(async () => {
+          await existing.update(t => {
+            t.timestamp = Date.now();
+            t.priority = Math.max(t.priority || 0, priority);
+          });
+        });
         return;
       }
     }
 
-    const id = Date.now().toString() + Math.random().toString(36).substr(2, 5);
-    const taskData: PendingTask = {
-      id,
+    const taskData: any = {
       type,
-      payload,
+      payload_json: JSON.stringify(payload),
       timestamp: Date.now(),
       status: 'pending',
       retries: 0,
       priority
     };
 
-    tasks.push(taskData);
-    this.saveTasksToStorage(tasks);
+    await database.write(async () => {
+      await tasksCollection.create(t => {
+        t.type = taskData.type;
+        t.payloadJson = taskData.payload_json;
+        t.timestamp = taskData.timestamp;
+        t.status = taskData.status;
+        t.retries = taskData.retries;
+        t.priority = taskData.priority;
+      });
+    });
     
-    EventBus.emit(EventType.TASK_QUEUED, taskData);
-    logger.info(`Tarea encolada: ${type} (${id})`, 'TaskQueue');
+    EventBus.emit(EventType.TASK_QUEUED, { id: 'new', ...taskData, payload });
+    logger.info(`Tarea encolada: ${type}`, 'TaskQueue');
   }
 
   async getNextPending(): Promise<PendingTask | null> {
-    const tasks = this.getTasksFromStorage();
     const now = Date.now();
-    const pending = tasks.filter(t => 
-      t.status === 'pending' && (!t.earliestRetryTimestamp || t.earliestRetryTimestamp <= now)
-    ).sort((a,b) => {
-      // 1. Sort by Priority DESC
-      const pA = a.priority || 0;
-      const pB = b.priority || 0;
-      if (pA !== pB) return pB - pA;
-      // 2. Sort by Timestamp ASC
-      return a.timestamp - b.timestamp;
-    });
-    return pending.length > 0 ? pending[0] : null;
+    const records = await tasksCollection.query(
+      Q.where('status', 'pending'),
+      Q.sortBy('priority', Q.desc),
+      Q.sortBy('timestamp', Q.asc)
+    ).fetch();
+
+    // Filter by earliestRetryTimestamp manually or use Q.or if possible
+    const available = records.find(r => !r.earliestRetryTimestamp || r.earliestRetryTimestamp <= now);
+    return available ? available.asJSON() : null;
   }
 
   async getPendingBatch(type: PendingTask['type'], limit: number = 20): Promise<PendingTask[]> {
-    const tasks = this.getTasksFromStorage();
     const now = Date.now();
-    return tasks
-      .filter(t => 
-        t.type === type && 
-        t.status === 'pending' && 
-        (!t.earliestRetryTimestamp || t.earliestRetryTimestamp <= now)
-      )
-      .sort((a,b) => (a.priority || 0) === (b.priority || 0) 
-        ? a.timestamp - b.timestamp 
-        : (b.priority || 0) - (a.priority || 0)
-      )
-      .slice(0, limit);
+    const records = await tasksCollection.query(
+      Q.where('type', type),
+      Q.where('status', 'pending'),
+      Q.sortBy('priority', Q.desc),
+      Q.sortBy('timestamp', Q.asc),
+      Q.take(limit)
+    ).fetch();
+
+    const available = records.filter(r => !r.earliestRetryTimestamp || r.earliestRetryTimestamp <= now);
+    return available.map(r => r.asJSON());
   }
 
   async getTasks(): Promise<PendingTask[]> {
-    return this.getTasksFromStorage();
+    const records = await tasksCollection.query().fetch();
+    return records.map(r => r.asJSON());
   }
 
   async updateTask(id: string, updates: Partial<PendingTask>) {
-    let tasks = this.getTasksFromStorage();
-    const index = tasks.findIndex(t => t.id === id);
-    if (index !== -1) {
-      tasks[index] = { ...tasks[index], ...updates };
-      this.saveTasksToStorage(tasks);
+    const record = await tasksCollection.find(id);
+    if (record) {
+      await database.write(async () => {
+        await record.update(t => {
+          if (updates.status) t.status = updates.status;
+          if (updates.retries !== undefined) t.retries = updates.retries;
+          if (updates.lastError) t.lastError = updates.lastError;
+          if (updates.earliestRetryTimestamp !== undefined) t.earliestRetryTimestamp = updates.earliestRetryTimestamp;
+        });
+      });
       EventBus.emit(EventType.TASK_UPDATED, { id, ...updates });
     }
   }
 
   async removeTask(id: string) {
-    let tasks = this.getTasksFromStorage();
-    const index = tasks.findIndex(t => t.id === id);
-    if (index !== -1) {
-      tasks.splice(index, 1);
-      this.saveTasksToStorage(tasks);
+    const record = await tasksCollection.find(id);
+    if (record) {
+      await database.write(async () => {
+        await record.destroyPermanently();
+      });
       EventBus.emit(EventType.TASK_COMPLETED, { id });
     }
   }
 
-  getQueueLength(): number {
-    return this.getTasksFromStorage().filter(t => t.status === 'pending').length;
+  async getQueueLength(): Promise<number> {
+    const records = await tasksCollection.query(Q.where('status', 'pending')).fetch();
+    return records.length;
   }
 
   async getStats() {
-    const tasks = this.getTasksFromStorage();
-    const pending = tasks.filter(t => t.status === 'pending').length;
-    const failed = tasks.filter(t => t.status === 'failed').length;
-    return { pending, failed };
+    const pendingRecords = await tasksCollection.query(Q.where('status', 'pending')).fetch();
+    const failedRecords = await tasksCollection.query(Q.where('status', 'failed')).fetch();
+    return { pending: pendingRecords.length, failed: failedRecords.length };
   }
 
   async runCleanup() {
-    let tasks = this.getTasksFromStorage();
     const now = Date.now();
     const STUCK_TIMEOUT = 30 * 60 * 1000; 
     
-    let modified = false;
-    tasks = tasks.map(t => {
-      if (t.status === 'processing' && (now - t.timestamp > STUCK_TIMEOUT)) {
-        logger.warn(`Reseteando tarea estancada ${t.id} (${t.type})`, 'TaskQueue');
-        modified = true;
-        return { ...t, status: 'pending', timestamp: now, retries: (t.retries || 0) + 1 };
-      }
-      return t;
-    });
+    const stuckTasks = await tasksCollection.query(
+        Q.where('status', 'processing'),
+        Q.where('timestamp', Q.lt(now - STUCK_TIMEOUT))
+    ).fetch();
 
-    if (modified) {
-      this.saveTasksToStorage(tasks);
+    if (stuckTasks.length > 0) {
+      await database.write(async () => {
+        for (const t of stuckTasks) {
+            logger.warn(`Reseteando tarea estancada ${t.id} (${t.type})`, 'TaskQueue');
+            await t.update(rec => {
+                rec.status = 'pending';
+                rec.timestamp = now;
+                rec.retries = (rec.retries || 0) + 1;
+            });
+        }
+      });
     }
   }
 }

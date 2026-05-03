@@ -14,15 +14,19 @@ import { RecentlyViewed } from './components/RecentlyViewed';
 import { useConsultation } from '../../context/ConsultationContext';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { logger } from '../../services/LoggerService';
-import { Brain, LayoutGrid, List, History } from 'lucide-react';
+import { Brain, LayoutGrid, List, History, Sparkles, Filter } from 'lucide-react';
 import { aiService } from '../../services/AIService';
 import { historyService } from '../../services/HistoryService';
 import { searchService } from '../../services/SearchService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
+import { useStore } from '../../store/useStore';
 
 import { useSearch } from '../../context/SearchContext';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 export const SearchModule: React.FC = () => {
   const { 
@@ -33,6 +37,7 @@ export const SearchModule: React.FC = () => {
   } = useProductSearch();
   
   const { isSearching: globalIsSearching, setIsSearching } = useSearch();
+  const { viewedProductSku, setViewedProduct, products } = useStore();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
@@ -45,21 +50,22 @@ export const SearchModule: React.FC = () => {
   const { selectedProducts } = useConsultation();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // Sync viewedProductSku from store
+  useEffect(() => {
+    if (viewedProductSku) {
+      const p = products.find(p => p.sku === viewedProductSku);
+      if (p) setSelectedProduct(p);
+    } else {
+      setSelectedProduct(null);
+    }
+  }, [viewedProductSku, products]);
+
   // Update recent terms on mount and when changed
   useEffect(() => {
     setRecentTerms(historyService.getRecentTerms());
     const update = () => setRecentTerms(historyService.getRecentTerms());
     window.addEventListener('history_updated', update);
     return () => window.removeEventListener('history_updated', update);
-  }, []);
-
-  // Listen for open_product event
-  useEffect(() => {
-    const handleOpenProduct = ((e: CustomEvent<Product>) => {
-      setSelectedProduct(e.detail);
-    }) as EventListener;
-    window.addEventListener('open_product', handleOpenProduct);
-    return () => window.removeEventListener('open_product', handleOpenProduct);
   }, []);
 
   // Track search term when results are found
@@ -72,10 +78,9 @@ export const SearchModule: React.FC = () => {
     }
   }, [query, results, isSearching]);
 
-  // Filtrado de resultados basado en interpretación de IA y Categorías
+  // Interpretar filtros IA
   const filteredResults = useMemo(() => {
     let base = [...results];
-    
     if (!activeFilters) return base;
     
     return base.sort((a, b) => {
@@ -95,21 +100,18 @@ export const SearchModule: React.FC = () => {
       const textA = getTextToSearch(a);
       const textB = getTextToSearch(b);
 
-      // Penalizar los que contienen términos a evitar
       activeFilters.avoid.forEach(term => {
         const t = term.toLowerCase();
         if (textA.includes(t)) scoreA -= 20;
         if (textB.includes(t)) scoreB -= 20;
       });
 
-      // Bonificar los que contienen términos preferidos
       activeFilters.prefer.forEach(term => {
         const t = term.toLowerCase();
         if (textA.includes(t)) scoreA += 10;
         if (textB.includes(t)) scoreB += 10;
       });
 
-      // Bonus for verification
       if (a.is_verified) scoreA += 5;
       if (b.is_verified) scoreB += 5;
 
@@ -119,49 +121,12 @@ export const SearchModule: React.FC = () => {
 
   const shortcuts = useMemo(() => ({
     'Escape': () => {
-      if (selectedProduct) setSelectedProduct(null);
+      if (selectedProduct) setViewedProduct(null);
       else if (query) setQuery('');
     }
-  }), [selectedProduct, query, setQuery]);
+  }), [selectedProduct, query, setQuery, setViewedProduct]);
 
   useKeyboardShortcuts(shortcuts);
-
-  // Generar sugerencias conceptuales basadas en patologías frecuentes y moléculas en resultados
-  const conceptualSuggestions = useMemo(() => {
-    if (query.length < 2) return [];
-    const normalizedQuery = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    
-    const concepts: SearchConcept[] = [];
-
-    // 1. Patologías comunes
-    COMMON_PATHOLOGIES.forEach(p => {
-      if (p.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(normalizedQuery)) {
-        concepts.push({ id: `path-${p}`, label: p, type: 'pathology' });
-      }
-    });
-
-    // 2. Moléculas (Principios Activos) de los resultados actuales
-    const molecules = new Set<string>();
-    results.forEach(p => {
-      p.principios_activos?.forEach(m => {
-        if (m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(normalizedQuery)) {
-          molecules.add(m);
-        }
-      });
-    });
-    Array.from(molecules).slice(0, 5).forEach(m => {
-      concepts.push({ id: `mol-${m}`, label: m, type: 'molecule' });
-    });
-
-    return concepts.slice(0, 8);
-  }, [query, results]);
-
-  // Focus search input on mount and on coming back from detail
-  useEffect(() => {
-    if (!selectedProduct && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [selectedProduct]);
 
   // Efecto para interpretación clínica semántica
   useEffect(() => {
@@ -203,61 +168,26 @@ export const SearchModule: React.FC = () => {
   }, [setQuery]);
 
   const handleProductClick = React.useCallback((product: Product) => {
-    setSelectedProduct(product);
-  }, []);
+    setViewedProduct(product.sku);
+  }, [setViewedProduct]);
 
   const handleAddToTray = React.useCallback((product: Product) => {
     toggleProduct(product);
   }, [toggleProduct]);
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto pb-20 px-2 sm:px-4 lg:px-6 relative min-h-[70vh] flex flex-col pt-4">
+    <div className="w-full pb-20 relative min-h-[70vh] flex flex-col pt-4 whitespace-optimized">
       
-      {/* Search Header Area */}
-      {!selectedProduct && (
-        <div className="w-full">
-            {(query.trim() === '' && results.length === 0) ? (
-              <div className="mt-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-                {query.trim() === '' && (
-                  <>
-                    {recentTerms.length > 0 && (
-                      <div className="mb-6">
-                        <div className="flex items-center gap-2 mb-3 text-slate-500 pl-2">
-                           <History className="w-3.5 h-3.5" />
-                           <span className="text-[10px] font-black uppercase tracking-[0.2em]">Búsquedas Recientes</span>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {recentTerms.map((term, i) => (
-                            <button
-                              key={i}
-                              onClick={() => setQuery(term)}
-                              className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/5 text-slate-400 text-xs hover:text-white hover:bg-white/10 transition-colors"
-                            >
-                              {term}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    <QuickDiscoveryTags onSelect={setQuery} />
-                    <RecentlyViewed onProductClick={handleProductClick} />
-                  </>
-                )}
-              </div>
-            ) : null}
-          </div>
-      )}
-
-      {/* Detail View (Integrated instead of Modal) */}
+      {/* Detail View (Integrated Overlay) */}
       {selectedProduct ? (
-        <div className="w-full animate-in fade-in duration-150">
+        <div className="w-full -mt-8 md:-mt-12 animate-in fade-in duration-300">
           <Suspense fallback={null}>
             <ProductDetailModal 
                 product={selectedProduct} 
-                onClose={() => setSelectedProduct(null)} 
+                onClose={() => setViewedProduct(null)} 
                 searchTerm={query}
                 onTagClick={(tag) => {
-                  setSelectedProduct(null);
+                  setViewedProduct(null);
                   handleTagClick(tag);
                 }}
                 isEmbedded={true}
@@ -265,70 +195,120 @@ export const SearchModule: React.FC = () => {
           </Suspense>
         </div>
       ) : (
-        /* Resultados e Interpretación */
-        query.trim() !== '' && (
-          <div className="mt-2 flex-1 animate-in fade-in duration-200">
-            <AnimatePresence>
-              {interpretation && (
-                <ScenarioInterpretationOverlay 
-                  interpretation={interpretation}
-                  onClose={() => setInterpretation(null)}
-                  onApplyFilters={(f) => {
-                    setActiveFilters(f);
-                    setInterpretation(null);
-                    logger.success('Guardia clínica aplicada a los resultados');
-                  }}
-                />
-              )}
-            </AnimatePresence>
-
-            {activeFilters && (
-               <div className="mb-4 flex items-center justify-between p-3 rounded-xl bg-brand-primary/10 border border-brand-primary/20 animate-in zoom-in duration-300">
-                  <div className="flex items-center gap-2">
-                    <Brain className="w-4 h-4 text-brand-primary" />
-                    <span className="text-xs font-bold text-brand-primary uppercase tracking-widest">Guardia IA Activa</span>
+        /* Search Board */
+        <div className="w-full flex-1">
+          {query.trim() === '' && results.length === 0 ? (
+            <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              {/* Recently Viewed / History */}
+              <div className="grid md:grid-cols-2 gap-12">
+                {recentTerms.length > 0 && (
+                  <div>
+                    <div className="flex items-center gap-2 mb-4 text-muted-foreground">
+                       <History className="w-4 h-4" />
+                       <span className="text-[10px] font-bold uppercase tracking-widest">Búsquedas Recientes</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {recentTerms.map((term, i) => (
+                        <Button
+                          key={i}
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => setQuery(term)}
+                          className="rounded-full text-xs font-medium"
+                        >
+                          {term}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
-                  <button 
-                    onClick={() => setActiveFilters(null)}
-                    className="text-[10px] font-bold text-slate-400 hover:text-white uppercase transition-colors"
-                  >
-                    Desactivar Filtros
-                  </button>
-               </div>
-            )}
-            
-            <div className="flex justify-end mb-2 px-2">
-              <div className="flex bg-white/5 backdrop-blur-md rounded-xl p-0.5 border border-white/10">
-                <button 
-                  onClick={() => setViewMode('grid')}
-                  className={`p-1.5 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
-                >
-                  <LayoutGrid className="w-4 h-4" />
-                </button>
-                <button 
-                  onClick={() => setViewMode('list')}
-                  className={`p-1.5 rounded-lg transition-all ${viewMode === 'list' ? 'bg-brand-primary text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}
-                >
-                  <List className="w-4 h-4" />
-                </button>
+                )}
+                
+                <QuickDiscoveryTags onSelect={setQuery} />
               </div>
-            </div>
 
-            <SearchResults 
-              results={filteredResults}
-              query={query}
-              conditionFilters={[]}
-              showOnlyVerified={false}
-              isSearching={isSearching}
-              isInTray={isInTray}
-              onProductClick={handleProductClick}
-              onAddToTray={handleAddToTray}
-              onTagClick={handleTagClick}
-              onClearFilters={handleClearAll}
-              viewMode={viewMode}
-            />
-          </div>
-        )
+              <RecentlyViewed onProductClick={handleProductClick} />
+            </div>
+          ) : (
+            /* Results & Interpretations */
+            <div className="space-y-6 animate-in fade-in duration-300">
+              <AnimatePresence>
+                {interpretation && (
+                  <ScenarioInterpretationOverlay 
+                    interpretation={interpretation}
+                    onClose={() => setInterpretation(null)}
+                    onApplyFilters={(f) => {
+                      setActiveFilters(f);
+                      setInterpretation(null);
+                      logger.success('Protocolo clínico optimizado para la consulta');
+                    }}
+                  />
+                )}
+              </AnimatePresence>
+
+              {activeFilters && (
+                 <div className="flex items-center justify-between p-4 rounded-xl alert-synergy border-dashed">
+                    <div className="flex items-center gap-3">
+                      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                        <Brain className="w-4 h-4" />
+                        Filtros Clínicos Inteligentes
+                      </span>
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => setActiveFilters(null)}
+                      className="text-[10px] font-bold uppercase"
+                    >
+                      Restablecer Búsqueda
+                    </Button>
+                 </div>
+              )}
+              
+              <div className="flex items-center justify-between px-2">
+                <div className="flex items-center gap-4">
+                  <h2 className="text-xl font-bold tracking-tight">Resultados encontrados</h2>
+                  <Badge variant="outline" className="rounded-full px-3">{filteredResults.length}</Badge>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <div className="flex border rounded-lg p-1 bg-muted/30">
+                    <Button 
+                      variant={viewMode === 'grid' ? 'secondary' : 'ghost'} 
+                      size="icon" 
+                      onClick={() => setViewMode('grid')}
+                      className="h-8 w-8 rounded-md"
+                    >
+                      <LayoutGrid className="h-4 w-4" />
+                    </Button>
+                    <Button 
+                      variant={viewMode === 'list' ? 'secondary' : 'ghost'} 
+                      size="icon" 
+                      onClick={() => setViewMode('list')}
+                      className="h-8 w-8 rounded-md"
+                    >
+                      <List className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              <SearchResults 
+                results={filteredResults}
+                query={query}
+                conditionFilters={[]}
+                showOnlyVerified={false}
+                isSearching={isSearching}
+                isInTray={isInTray}
+                onProductClick={handleProductClick}
+                onAddToTray={handleAddToTray}
+                onTagClick={handleTagClick}
+                onClearFilters={handleClearAll}
+                viewMode={viewMode}
+              />
+            </div>
+          )}
+        </div>
       )}
 
       {/* Modal de Análisis IA */}

@@ -96,7 +96,7 @@ export interface Product {
 
   // Estado de Sincronización
   /** Indica si el registro local coincide con la nube. */
-  synced?: boolean;
+  is_synced_cloud?: boolean;
   /** Última vez que se subió/bajó de la nube. */
-  last_synced?: number;
+  last_synced_cloud?: number;
 }
