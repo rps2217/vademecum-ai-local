@@ -88,65 +88,69 @@
 
 @layer base {
   :root {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
+    --background: hsl(222 47% 4%);
+    --foreground: hsl(210 40% 98%);
 
-    --card: 222 47% 7%;
-    --card-foreground: 210 40% 98%;
+    --card: hsl(222 47% 4%);
+    --card-foreground: hsl(210 40% 98%);
 
-    --popover: 222 47% 7%;
-    --popover-foreground: 210 40% 98%;
+    --popover: hsl(222 47% 4%);
+    --popover-foreground: hsl(210 40% 98%);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: hsl(210 40% 98%);
+    --primary-foreground: hsl(222.2 47.4% 11.2%);
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: hsl(217 33% 12%);
+    --secondary-foreground: hsl(210 40% 98%);
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: hsl(217 33% 12%);
+    --muted-foreground: hsl(215 20% 65%);
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: hsl(217 33% 17%);
+    --accent-foreground: hsl(210 40% 98%);
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: hsl(0 63% 31%);
+    --destructive-foreground: hsl(210 40% 98%);
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 213 27% 84%;
+    --border: hsl(217 33% 12%);
+    --input: hsl(217 33% 12%);
+    --ring: hsl(24 95% 53%); /* Orange ring to match brand */
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+    
+    /* Brand specific HSL tokens */
+    --brand-primary: hsl(24 95% 53%); /* Orange-500 */
+    --brand-accent: hsl(262 83% 58%);  /* Violet-500 */
   }
 
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
+    --background: hsl(222 47% 4%);
+    --foreground: hsl(210 40% 98%);
 
-    --card: 222 47% 7%;
-    --card-foreground: 210 40% 98%;
+    --card: hsl(222 47% 4%);
+    --card-foreground: hsl(210 40% 98%);
 
-    --popover: 222 47% 7%;
-    --popover-foreground: 210 40% 98%;
+    --popover: hsl(222 47% 4%);
+    --popover-foreground: hsl(210 40% 98%);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: hsl(210 40% 98%);
+    --primary-foreground: hsl(222.2 47.4% 11.2%);
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: hsl(217 33% 12%);
+    --secondary-foreground: hsl(210 40% 98%);
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: hsl(217 33% 12%);
+    --muted-foreground: hsl(215 20% 65%);
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: hsl(217 33% 17%);
+    --accent-foreground: hsl(210 40% 98%);
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: hsl(0 63% 31%);
+    --destructive-foreground: hsl(210 40% 98%);
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 213 27% 84%;
+    --border: hsl(217 33% 12%);
+    --input: hsl(217 33% 12%);
+    --ring: hsl(24 95% 53%);
   }
 }
 

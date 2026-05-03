@@ -19,7 +19,6 @@ export class CloudSyncService {
   }
 
   init() {
-    console.log('[CloudSync] Motor de sincronización inteligente listo (modo TaskQueue).');
   }
 
   async handleProductSync(product: Product) {
@@ -37,7 +36,6 @@ export class CloudSyncService {
       throw new Error('Offline');
     }
 
-    console.log(`[CloudSync] Procesando lote de ${products.length} productos.`);
     logger.info(`Iniciando sincronización de lote (${products.length} productos)`, 'CloudSync');
     
     try {
@@ -57,13 +55,10 @@ export class CloudSyncService {
 
   async checkCloudData(): Promise<boolean> {
     try {
-      const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
-      const response = await fetch(`${supabaseUrl}/rest/v1/products?limit=1`, {
-        headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
-      });
+      const response = await fetch('/api/cloud-status');
       if (!response.ok) return false;
-      const rows = await response.json();
-      return rows.length > 0;
+      const data = await response.json();
+      return data.success && data.cloud_product_count > 0;
     } catch (e) {
       return false;
     }
@@ -71,13 +66,10 @@ export class CloudSyncService {
 
   async getCloudCount(): Promise<number> {
     try {
-      const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
-      const response = await fetch(`${supabaseUrl}/rest/v1/products?select=count`, {
-        headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}`, 'Prefer': 'count=exact' }
-      });
+      const response = await fetch('/api/cloud-status');
       if (!response.ok) return 0;
-      const count = response.headers.get('content-range')?.split('/')[1];
-      return count ? parseInt(count, 10) : 0;
+      const data = await response.json();
+      return data.cloud_product_count || 0;
     } catch (e) {
       return 0;
     }
@@ -87,56 +79,21 @@ export class CloudSyncService {
     if (!navigator.onLine) return true; 
     
     try {
-      const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
-      const now = Date.now();
-      const timeout = 15 * 60 * 1000; 
-
-      const checkResponse = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${sku}&select=data`, {
-        headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
-      });
-      
-      if (!checkResponse.ok) return false;
-      const result = await checkResponse.json();
-      if (result.length === 0) return true; 
-
-      const cloudProduct: Product = result[0].data;
-      
-      if (cloudProduct.locked_by_ai && 
-          cloudProduct.lock_uid !== nodeId && 
-          cloudProduct.lock_timestamp && 
-          (now - cloudProduct.lock_timestamp < timeout)) {
-        return false;
-      }
-
-      const lockedProduct = {
-        ...cloudProduct,
-        locked_by_ai: true,
-        lock_uid: nodeId,
-        lock_timestamp: now,
-        is_synced_cloud: false 
-      };
-
-      const updateResponse = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${sku}`, {
-        method: 'PATCH',
-        headers: {
-          'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          data: {
-            ...lockedProduct,
-            updated_at_cloud: new Date().toISOString()
-          }
-        })
+      const response = await fetch('/api/products/lock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sku, nodeId })
       });
 
-      if (updateResponse.ok) {
-        await dataService.saveProduct(lockedProduct, { silent: true });
+      if (!response.ok) return false;
+      const result = await response.json();
+      
+      if (result.success && result.product) {
+        await dataService.saveProduct(result.product, { silent: true });
         return true;
       }
 
-      return false;
+      return result.success; 
     } catch (e) {
       console.error('[CloudSync] Error claiming lock:', e);
       return false;
@@ -144,34 +101,20 @@ export class CloudSyncService {
   }
 
   async releaseProductLockAndSave(product: Product): Promise<void> {
-    const unlockedProduct = {
-      ...product,
-      locked_by_ai: false,
-      lock_uid: null as any,
-      lock_timestamp: null as any,
-      is_synced_cloud: true,
-      last_synced_cloud: Date.now()
-    };
-    
-    const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
     let cloudSuccess = false;
+    let finalProduct = product;
+
     try {
-      const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${product.sku}`, {
-        method: 'PATCH',
-        headers: {
-          'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          data: {
-            ...unlockedProduct,
-            updated_at_cloud: new Date().toISOString()
-          }
-        })
+      const response = await fetch('/api/products/unlock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product })
       });
+      
       cloudSuccess = response.ok;
       if (cloudSuccess) {
+        const result = await response.json();
+        finalProduct = result.product;
         logger.success(`Sinergia de ${product.nombre_comercial} guardada en la nube`, 'CloudSync');
       }
     } catch (e) {
@@ -179,7 +122,7 @@ export class CloudSyncService {
       logger.warn(`No se pudo subir a la nube ${product.sku}, se guardó solo localmente`, 'CloudSync');
     }
 
-    await dataService.saveProduct({ ...unlockedProduct, is_synced_cloud: cloudSuccess }, { silent: true });
+    await dataService.saveProduct({ ...finalProduct, is_synced_cloud: cloudSuccess }, { silent: true });
     
     EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku, is_synced_cloud: cloudSuccess });
     EventBus.emit(EventType.DB_UPDATED, { action: 'saved', sku: product.sku });

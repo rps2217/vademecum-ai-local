@@ -11,6 +11,7 @@ import {
 import { cloudSyncService } from '../../services/CloudSyncService';
 import { synergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { motion, AnimatePresence } from 'motion/react';
+import { productsCollection } from '../../database';
 
 interface Node extends d3.SimulationNodeDatum {
   id: string;
@@ -61,13 +62,11 @@ export const GraphExplorerModule: React.FC = () => {
   const gRef = useRef<d3.Selection<SVGGElement, unknown, null, undefined> | null>(null);
 
   useEffect(() => {
-    const load = async () => {
-      const all = await dataService.getAllProducts();
-      setProducts(all);
+    const checkCloud = async () => {
       const cloudOk = await cloudSyncService.checkCloudData();
       setIsCloudReady(cloudOk);
     };
-    load();
+    checkCloud();
 
     const subStatus = EventBus.on<any>(EventType.SYNERGY_STATUS_CHANGED).subscribe((status) => {
       setProcessingStatus({ 
@@ -76,17 +75,17 @@ export const GraphExplorerModule: React.FC = () => {
         name: status.currentProcessingName,
         engine: status.currentEngine
       });
-      if (!status.currentProcessingSku && !status.currentProcessingName) load();
     });
 
-    // Escuchar actualizaciones globales de la base de datos
-    const subDB = EventBus.on<any>(EventType.DB_UPDATED).subscribe(() => load());
-    const subProduct = EventBus.on<any>(EventType.PRODUCT_UPDATED).subscribe(() => load());
+    // Escuchar actualizaciones globales de la base de datos de manera reactiva nativa
+    const subscription = productsCollection.query().observe().subscribe((records) => {
+      const all = records.map(r => r.asJSON());
+      setProducts(all);
+    });
 
     return () => {
       subStatus.unsubscribe();
-      subDB.unsubscribe();
-      subProduct.unsubscribe();
+      subscription.unsubscribe();
     };
   }, []);
 

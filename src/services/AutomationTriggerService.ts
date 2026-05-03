@@ -47,7 +47,6 @@ export class AutomationTriggerService {
     this.subscriptions.push(
       EventBus.on<{products: Product[]}>(EventType.COMPARISON_CHANGED).subscribe(async ({ products }) => {
         if (products.length >= 2) {
-          console.log('[Automation] Disparando análisis proactivo de interacciones...');
           EventBus.emit(EventType.SYNERGY_STATUS_CHANGED, { 
             status: 'analyzing', 
             message: 'Analizando interacciones proactivamente...' 
@@ -56,7 +55,6 @@ export class AutomationTriggerService {
       })
     );
 
-    console.log('[Automation] Servicio de disparadores automáticos iniciado.');
   }
 
   stop() {

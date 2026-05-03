@@ -19,6 +19,7 @@ import { aiService } from '../../services/AIService';
 import { historyService } from '../../services/HistoryService';
 import { searchService } from '../../services/SearchService';
 import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
+import { dataService } from '../../services/DataService';
 import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
 import { useStore } from '../../store/useStore';
@@ -37,7 +38,7 @@ export const SearchModule: React.FC = () => {
   } = useProductSearch();
   
   const { isSearching: globalIsSearching, setIsSearching } = useSearch();
-  const { viewedProductSku, setViewedProduct, products } = useStore();
+  const { viewedProductSku, setViewedProduct } = useStore();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
@@ -53,12 +54,13 @@ export const SearchModule: React.FC = () => {
   // Sync viewedProductSku from store
   useEffect(() => {
     if (viewedProductSku) {
-      const p = products.find(p => p.sku === viewedProductSku);
-      if (p) setSelectedProduct(p);
+      dataService.getProductBySku(viewedProductSku).then(p => {
+        if (p) setSelectedProduct(p as unknown as Product);
+      });
     } else {
       setSelectedProduct(null);
     }
-  }, [viewedProductSku, products]);
+  }, [viewedProductSku]);
 
   // Update recent terms on mount and when changed
   useEffect(() => {
@@ -196,35 +198,11 @@ export const SearchModule: React.FC = () => {
         </div>
       ) : (
         /* Search Board */
-        <div className="w-full flex-1">
+        <div className="w-full flex-1 max-w-5xl mx-auto py-12 px-6">
           {query.trim() === '' && results.length === 0 ? (
-            <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              {/* Recently Viewed / History */}
-              <div className="grid md:grid-cols-2 gap-12">
-                {recentTerms.length > 0 && (
-                  <div>
-                    <div className="flex items-center gap-2 mb-4 text-muted-foreground">
-                       <History className="w-4 h-4" />
-                       <span className="text-[10px] font-bold uppercase tracking-widest">Búsquedas Recientes</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {recentTerms.map((term, i) => (
-                        <Button
-                          key={i}
-                          variant="secondary"
-                          size="sm"
-                          onClick={() => setQuery(term)}
-                          className="rounded-full text-xs font-medium"
-                        >
-                          {term}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                <QuickDiscoveryTags onSelect={setQuery} />
-              </div>
+            <div className="space-y-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              
+              <QuickDiscoveryTags onSelect={setQuery} />
 
               <RecentlyViewed onProductClick={handleProductClick} />
             </div>

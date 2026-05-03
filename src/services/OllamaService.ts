@@ -47,7 +47,6 @@ export class OllamaService {
 
     for (const host of this.hosts) {
       try {
-        console.log(`[OllamaService] Intentando conectar con motor en ${host}...`);
         const response = await fetch(`${host}/tags`, { 
           method: 'GET',
           mode: 'cors',
@@ -56,7 +55,6 @@ export class OllamaService {
         clearTimeout(timeout);
         if (response.ok) {
           this.activeBaseUrl = host;
-          console.log(`[OllamaService] ✅ Conexión exitosa con ${host}`);
           this.lastCheckResult = true;
           return true;
         }
@@ -101,7 +99,6 @@ export class OllamaService {
         }
       }
 
-      console.log(`[OllamaService] Utilizando modelo: ${selectedModel}`);
 
       const prompt = `Analiza la relación clínica entre el producto principal y los productos relacionados.
     

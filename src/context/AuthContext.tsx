@@ -12,7 +12,11 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const SYSTEM_ACCESS_KEY = 'rps241061';
+// Access key loaded from environment variable — never hardcode secrets in source.
+const SYSTEM_ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY as string || '';
+if (!SYSTEM_ACCESS_KEY) {
+  console.warn('[Auth] VITE_ACCESS_KEY no configurada en .env. El acceso profesional no funcionará.');
+}
 
 /**
  * AuthProvider simplificado tras migración a Supabase.
@@ -49,7 +53,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async () => {
     // Aquí se integraría Supabase Auth en el futuro
-    console.log("Login placeholder para Supabase Auth");
   };
 
   const logout = async () => {

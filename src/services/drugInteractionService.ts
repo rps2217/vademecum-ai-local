@@ -35,5 +35,4 @@ export async function seedDrugData() {
       d.description = 'Aumento del riesgo de complicaciones gastrointestinales';
     });
   });
-  console.log('Drug data seeded');
 }

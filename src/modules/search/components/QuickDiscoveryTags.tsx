@@ -114,18 +114,18 @@ const colorMap: Record<string, string> = {
 };
 
 const textColorMap: Record<string, string> = {
-  emerald: 'text-emerald-500/90',
-  orange: 'text-orange-500/90',
-  cyan: 'text-cyan-500/90',
-  pink: 'text-pink-500/90',
-  violet: 'text-violet-500/90',
-  rose: 'text-rose-500/90'
+  emerald: 'text-emerald-400',
+  orange: 'text-orange-500',
+  cyan: 'text-cyan-400',
+  pink: 'text-pink-500',
+  violet: 'text-violet-500',
+  rose: 'text-rose-500'
 };
 
 const dotColorMap: Record<string, string> = {
-  emerald: 'bg-emerald-500',
+  emerald: 'bg-emerald-400',
   orange: 'bg-orange-500',
-  cyan: 'bg-cyan-500',
+  cyan: 'bg-cyan-400',
   pink: 'bg-pink-500',
   violet: 'bg-violet-500',
   rose: 'bg-rose-500'
@@ -150,12 +150,12 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
         <div className="h-px flex-1 bg-slate-800/50" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12">
         {CATEGORIES.map((category) => (
           <div key={category.title} className="flex flex-col">
-            <div className="flex items-center gap-2 mb-4 px-1">
-              <category.icon className={`w-3.5 h-3.5 ${textColorMap[category.color]}`} />
-              <h3 className={`text-[11px] font-black uppercase tracking-widest ${textColorMap[category.color]}`}>
+            <div className="flex items-center gap-3 mb-6 px-1">
+              <category.icon className={`w-4 h-4 ${textColorMap[category.color]}`} />
+              <h3 className={`text-[12px] font-black uppercase tracking-[0.2em] ${textColorMap[category.color]}`}>
                 {category.title}
               </h3>
             </div>
@@ -169,16 +169,16 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
                   <button
                     key={tag.label}
                     onClick={() => onSelect(tag.query)}
-                    className={`rounded-2xl bg-slate-900 border border-slate-800 transition-all flex items-center gap-3 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 hover:border-slate-700 ${
+                    className={`rounded-2xl bg-[#0a0f1a] border border-slate-800/80 transition-all flex items-center gap-3 active:scale-95 hover:shadow-2xl hover:-translate-y-0.5 hover:border-slate-700 ${
                       sizeTier === 'large' 
-                        ? 'px-6 py-4 text-sm font-black text-white bg-slate-800/80' 
+                        ? 'px-6 py-4 text-sm font-black text-white bg-slate-900/60' 
                         : sizeTier === 'medium'
                         ? 'px-5 py-3 text-[13px] font-bold text-slate-200'
                         : 'px-4 py-2 text-xs font-bold text-slate-400'
                     }`}
                   >
-                    <div className={`rounded-full ${dotColorMap[category.color]} ${
-                      sizeTier === 'large' ? 'w-2.5 h-2.5 shadow-[0_0_10px_rgba(255,255,255,0.2)]' : 
+                    <div className={`rounded-full ${dotColorMap[category.color]} shadow-lg ${
+                      sizeTier === 'large' ? 'w-2.5 h-2.5 shadow-current/20' : 
                       sizeTier === 'medium' ? 'w-2 h-2' : 
                       'w-1.5 h-1.5'
                     }`} />

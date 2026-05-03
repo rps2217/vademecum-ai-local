@@ -3,10 +3,6 @@ import { Product } from '@/core/types/product.types';
 import { PendingTask } from '@/services/TaskQueueService';
 
 interface AppState {
-  // Data
-  products: Product[];
-  isLoadingProducts: boolean;
-  
   // UI - Selection
   viewedProductSku: string | null;
   comparisonSkus: string[];
@@ -19,12 +15,6 @@ interface AppState {
   logs: any[];
   
   // Actions
-  setProducts: (products: Product[]) => void;
-  addProduct: (product: Product) => void;
-  updateProduct: (sku: string, updates: Partial<Product>) => void;
-  deleteProduct: (sku: string) => void;
-  setLoadingProducts: (loading: boolean) => void;
-  
   setViewedProduct: (sku: string | null) => void;
   addToComparison: (sku: string) => void;
   removeFromComparison: (sku: string) => void;
@@ -38,10 +28,6 @@ interface AppState {
 }
 
 export const useStore = create<AppState>((set) => ({
-  // Data initial state
-  products: [],
-  isLoadingProducts: false,
-  
   // UI selection initial state
   viewedProductSku: null,
   comparisonSkus: [],
@@ -52,19 +38,6 @@ export const useStore = create<AppState>((set) => ({
   
   // Logs initial state
   logs: [],
-  
-  // Data actions
-  setProducts: (products) => set({ products }),
-  addProduct: (product) => set((state) => ({ 
-    products: [...state.products.filter(p => p.sku !== product.sku), product] 
-  })),
-  updateProduct: (sku, updates) => set((state) => ({
-    products: state.products.map((p) => p.sku === sku ? { ...p, ...updates } : p)
-  })),
-  deleteProduct: (sku) => set((state) => ({
-    products: state.products.filter((p) => p.sku !== sku)
-  })),
-  setLoadingProducts: (loading) => set({ isLoadingProducts: loading }),
   
   // UI actions
   setViewedProduct: (sku) => set({ viewedProductSku: sku }),

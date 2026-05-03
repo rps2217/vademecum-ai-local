@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React, { memo, CSSProperties } from 'react';
 import * as ReactWindow from 'react-window';
-const List = (ReactWindow as any).List || (ReactWindow as any).FixedSizeList;
+const List = (ReactWindow as any).List || (ReactWindow as any).default?.List || ReactWindow;
 import { Product } from '../../../core/types/product.types';
 import { Trash2, Cloud, Monitor, Sparkles } from 'lucide-react';
 
@@ -10,7 +10,18 @@ interface ProductMobileListProps {
   onDelete: (sku: string) => void;
 }
 
-const MobileRow = memo(({ index, style, ...data }: any) => {
+interface MobileRowData {
+  products: Product[];
+  onDelete: (sku: string) => void;
+}
+
+interface MobileRowProps {
+  index: number;
+  style: CSSProperties;
+  data: MobileRowData;
+}
+
+const MobileRow = memo(({ index, style, data }: MobileRowProps) => {
   const { products, onDelete } = data;
   const p = products[index];
 
@@ -61,7 +72,7 @@ export const ProductMobileList: React.FC<ProductMobileListProps> = ({ products, 
           width="100%"
           itemData={{ products, onDelete }}
         >
-          {MobileRow as any}
+          {MobileRow}
         </List>
       )}
     </div>

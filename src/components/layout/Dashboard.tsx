@@ -5,6 +5,7 @@ import { aiService } from '../../services/AIService';
 import { cloudSyncService } from '../../services/CloudSyncService';
 import { taskProcessorService } from '../../services/TaskProcessorService';
 import { useAuth } from '../../context/AuthContext';
+import { dataService } from '../../services/DataService';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
 import { AIStatusIndicator } from '../AIStatusIndicator';
@@ -58,7 +59,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const searchInputRef = React.useRef<HTMLInputElement>(null);
 
   // Zustand Store
-  const { viewedProductSku, setViewedProduct, products } = useStore();
+  const { viewedProductSku, setViewedProduct } = useStore();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const [isAiProcessingEnabled, setIsAiProcessingEnabled] = useState(true);
@@ -67,12 +68,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   // Sync viewedProductSku from store to local selectedProduct for the modal
   useEffect(() => {
     if (viewedProductSku) {
-      const p = products.find(p => p.sku === viewedProductSku);
-      if (p) setSelectedProduct(p);
+      dataService.getProductBySku(viewedProductSku).then(p => {
+        if (p) setSelectedProduct(p as unknown as Product);
+      });
     } else {
       setSelectedProduct(null);
     }
-  }, [viewedProductSku, products]);
+  }, [viewedProductSku]);
 
   // Focus global search bar
   const focusSearch = useCallback(() => {
@@ -166,13 +168,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <OfflineIndicator />
         
         {/* Top Header - Swiss Precision */}
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b border-slate-800/50 bg-[#04070d]/80 backdrop-blur-xl">
           <div className="container flex h-16 items-center justify-between gap-4">
             
             {/* Logo */}
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
-                <Activity className="h-6 w-6" />
+              <div className="flex h-10 w-10 items-center justify-center">
+                <Activity className="h-7 w-7 text-brand-primary" />
               </div>
               <div className="hidden lg:flex flex-col">
                 <span className="text-sm font-bold tracking-tight">Vademécum Pro</span>
@@ -180,40 +182,72 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
               </div>
             </div>
 
-            {/* Navigation Tabs - Centralized */}
             <div className="flex-1 max-w-2xl px-4 hidden md:block">
-              <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)} className="w-full">
-                <TabsList className="grid w-full grid-cols-4 bg-muted/50 p-1 rounded-xl">
-                  {navItems.map(item => (
-                    <TabsTrigger 
-                      key={item.id} 
-                      value={item.id}
-                      className="rounded-lg transition-all data-[state=active]:bg-background data-[state=active]:shadow-sm"
-                    >
-                      <item.icon className="mr-2 h-4 w-4 shrink-0" />
-                      <span className="hidden lg:inline">{item.label}</span>
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
+               <div className="relative group">
+                 <div className="absolute -inset-1 bg-brand-primary/10 rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition duration-500"></div>
+                 <SearchBar 
+                    ref={searchInputRef}
+                    query={query} 
+                    setQuery={setQuery} 
+                    isSearching={isSearching}
+                    suggestions={conceptualSuggestions}
+                    onSelectConcept={(concept) => setQuery(concept.label)}
+                    onAiQuery={() => setShowAiAnalysis(true)}
+                    className="relative bg-slate-900/40 border-slate-800 shadow-none scale-95"
+                  />
+               </div>
             </div>
 
             {/* Actions & User */}
             <div className="flex items-center gap-2">
-              <div className="hidden sm:flex items-center gap-2 mr-2">
+              <div className="hidden sm:flex items-center gap-1 mr-2">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'search' ? 'bg-brand-primary text-white shadow-[0_0_20px_rgba(249,115,22,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  onClick={() => setActiveTab('search')}
+                >
+                  <Search className="h-4 h-4" />
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'graph' ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  onClick={() => setActiveTab('graph')}
+                >
+                  <Share2 className="h-4 h-4" />
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'database' ? 'bg-emerald-600 text-white shadow-[0_0_20px_rgba(5,150,105,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  onClick={() => setActiveTab('database')}
+                >
+                  <Database className="h-4 h-4" />
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'settings' ? 'bg-slate-700 text-white shadow-[0_0_20px_rgba(51,65,85,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  onClick={() => setActiveTab('settings')}
+                >
+                  <Settings className="h-4 h-4" />
+                </Button>
+                
+                <Separator orientation="vertical" className="h-6 mx-2 bg-slate-800" />
+                
+                <ThemeToggle />
+                
                 <Button 
                   variant="ghost" 
                   size="icon" 
                   onClick={toggleAiProcessing}
                   title={isAiProcessingEnabled ? "IA Activa" : "IA Pausada"}
-                  className={isAiProcessingEnabled ? 'text-emerald-600' : 'text-amber-500'}
+                  className={`h-9 w-9 rounded-lg ${isAiProcessingEnabled ? 'text-emerald-500 bg-emerald-500/10' : 'text-amber-500 bg-amber-500/10'}`}
                 >
                   {isAiProcessingEnabled ? <Zap className="h-4 w-4" /> : <Snowflake className="h-4 w-4" />}
                 </Button>
-                <ThemeToggle />
               </div>
-              
-              <Separator orientation="vertical" className="h-8 mx-1 hidden sm:block" />
               
               <UserMenu />
 
@@ -224,23 +258,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
             </div>
           </div>
           
-          {/* Search Sub-header with whitespace */}
-          <div className="border-t bg-muted/20 py-4 hidden md:block">
-            <div className="container">
-              <div className="max-w-3xl mx-auto">
-                <SearchBar 
-                  ref={searchInputRef}
-                  query={query} 
-                  setQuery={setQuery} 
-                  isSearching={isSearching}
-                  suggestions={conceptualSuggestions}
-                  onSelectConcept={(concept) => setQuery(concept.label)}
-                  onAiQuery={() => setShowAiAnalysis(true)}
-                  className="bg-background shadow-sm border-input hover:border-primary/30 transition-colors"
-                />
-              </div>
-            </div>
-          </div>
+          {/* Removed Search Sub-header to match image layout */}
         </header>
 
         {/* Mobile Navigation Drawer */}

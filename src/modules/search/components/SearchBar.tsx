@@ -77,7 +77,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           ) : isInterpreting ? (
             <Sparkles className="h-5 w-5 text-brand-primary animate-pulse" />
           ) : (
-            <Search className="h-5 w-5 text-brand-primary/70 group-focus-within:text-brand-primary transition-colors" />
+            <Search className="h-4 h-4 text-brand-primary" />
           )}
         </div>
         <input
@@ -139,7 +139,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           )}
 
           {!isQuestion && (
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-xl text-xs font-medium border border-brand-primary/20">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest text-brand-primary border border-brand-primary/40 bg-brand-primary/5 shadow-[0_0_15px_rgba(249,115,22,0.1)]">
               <Sparkles className="w-3 h-3" />
               Semántica
             </div>

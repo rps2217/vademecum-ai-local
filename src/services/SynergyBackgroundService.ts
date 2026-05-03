@@ -4,6 +4,7 @@ import { geminiService } from './GeminiService';
 import { ollamaService } from './OllamaService';
 import { cloudSyncService } from './CloudSyncService';
 import { formatArrayToString } from '../utils/formatters';
+import { cosineSimilarity } from '../utils/math';
 import { configService } from './ConfigService';
 import { dataService } from './DataService';
 import { taskQueueService } from './TaskQueueService';
@@ -149,7 +150,7 @@ export class SynergyBackgroundService {
         .filter((p: any) => p.sku !== product.sku && p.vectores && p.vectores.length > 0)
         .map((p: any) => ({
           product: p,
-          score: this.cosineSimilarity(mainVector, p.vectores)
+          score: cosineSimilarity(mainVector, p.vectores)
         }))
         .filter(item => item.score > 0.65)
         .sort((a, b) => b.score - a.score)
@@ -301,18 +302,6 @@ export class SynergyBackgroundService {
     this.notifyListeners();
   }
 
-  private cosineSimilarity(vecA: number[], vecB: number[]): number {
-    if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
-    let dotProduct = 0;
-    let normA = 0;
-    let normB = 0;
-    for (let i = 0; i < vecA.length; i++) {
-        dotProduct += vecA[i] * vecB[i];
-        normA += vecA[i] * vecA[i];
-        normB += vecB[i] * vecB[i];
-    }
-    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
-  }
 }
 
 export const synergyBackgroundService = SynergyBackgroundService.getInstance();

@@ -7,15 +7,19 @@ import { AuthProvider } from './context/AuthContext';
 import { ComparisonProvider } from './context/ComparisonContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
-// Deshabilitar Service Worker temporalmente para evitar que intercepte rutas de API con 404
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(registrations => {
-    for (const registration of registrations) {
-      registration.unregister();
-      console.log('Service Worker unregistered successfully');
-    }
-  });
-}
+// Register Service Worker for PWA offline support.
+// API routes are excluded via navigateFallbackDenylist in vite.config.ts (Workbox).
+const updateSW = registerSW({
+  onNeedRefresh() {
+    // A newer version of the app is available — auto-update silently.
+    updateSW(true);
+  },
+  onOfflineReady() {
+  },
+  onRegisterError(error) {
+    console.error('[PWA] Error al registrar Service Worker:', error);
+  },
+});
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

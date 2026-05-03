@@ -7,7 +7,7 @@ import TaskModel from '../database/Task';
 export interface PendingTask {
   id: string;
   type: 'cloud_sync' | 'ai_analysis' | 'vectorization' | 'ingredient_analysis';
-  payload: any;
+  payload: Record<string, any>;
   timestamp: number;
   status: 'pending' | 'processing' | 'failed';
   retries: number;
@@ -33,11 +33,7 @@ class TaskQueueService {
     return TaskQueueService.instance;
   }
 
-  private async getDB(): Promise<any> {
-    return database;
-  }
-
-  async addTask(type: PendingTask['type'], payload: any, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
+  async addTask(type: PendingTask['type'], payload: Record<string, any>, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
     const sku = payload.sku || (type === 'cloud_sync' ? payload.sku : null);
     const priority = options.priority !== undefined ? options.priority : (type === 'cloud_sync' ? 10 : 0);
 
@@ -65,7 +61,7 @@ class TaskQueueService {
       }
     }
 
-    const taskData: any = {
+    const taskData = {
       type,
       payload_json: JSON.stringify(payload),
       timestamp: Date.now(),

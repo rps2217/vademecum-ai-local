@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import axios from 'axios';
@@ -18,16 +19,14 @@ function log(msg: string) {
         // Fallback if log file not writable in this environment
     }
   }
-  console.log(msg);
 }
 
 // Initialize Supabase Admin de forma segura (Server-side bypass RLS)
+// Credentials MUST be set via .env file or environment variables — never hardcoded.
 let supabase: any = null;
 try {
-  const fallbackUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
-  const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjU3NDU4NCwiZXhwIjoyMDkyMTUwNTg0fQ.gAjBTUAIbhLwjOhbHBk-L0y_0mHstvF57xgrRY1NGcI'; // service key
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || fallbackUrl;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || fallbackKey;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   
   if (supabaseUrl && supabaseServiceKey) {
     supabase = createClient(supabaseUrl, supabaseServiceKey, {
@@ -93,7 +92,7 @@ async function startServer() {
   });
 
   apiRouter.get('/health', (req, res) => {
-    res.json({ status: 'ok', source: 'apiRouter', db_ready: !!db });
+    res.json({ status: 'ok', source: 'apiRouter', supabase_ready: !!supabase });
   });
 
   apiRouter.get('/cloud-status', async (req, res) => {
@@ -195,6 +194,76 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
     }
   });
 
+  // New endpoint for efficient delta sync
+  apiRouter.get('/products/inventory', async (req, res) => {
+    try {
+      if (!supabase) throw new Error('Supabase not initialized');
+      const { data, error } = await supabase
+        .from('products')
+        .select('sku');
+      if (error) throw error;
+      res.json(data || []);
+    } catch (e: any) {
+      log(`[API Error] /products/inventory: ${e.message}`);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  // New endpoint for batch download
+  apiRouter.post('/products/download', async (req, res) => {
+    const { skus } = req.body;
+    if (!skus || !Array.isArray(skus)) return res.status(400).json({ error: 'SKUs array required' });
+    
+    try {
+      if (!supabase) throw new Error('Supabase not initialized');
+      const { data, error } = await supabase
+        .from('products')
+        .select('sku, data')
+        .in('sku', skus);
+      
+      if (error) throw error;
+      
+      const products = (data || []).map(r => ({
+        ... (typeof r.data === 'string' ? JSON.parse(r.data) : r.data),
+        sku: r.sku
+      }));
+      
+      res.json(products);
+    } catch (e: any) {
+      log(`[API Error] /products/download: ${e.message}`);
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  apiRouter.post('/products/batch', async (req, res) => {
+    const { products } = req.body;
+    if (!products || !Array.isArray(products)) return res.status(400).json({ error: 'Products array required' });
+    
+    log(`[API] Attempting to batch save ${products.length} products`);
+    
+    try {
+      if (!supabase) throw new Error('Supabase not initialized');
+      
+      const payloads = products.map(p => ({
+        sku: p.sku,
+        nombre_comercial: p.nombre_comercial,
+        data: p,
+        last_updated: new Date().toISOString()
+      }));
+
+      const { error } = await supabase
+        .from('products')
+        .upsert(payloads, { onConflict: 'sku' });
+        
+      if (error) throw error;
+      
+      res.json({ success: true, count: products.length });
+    } catch (e: any) {
+      log(`[API Error] /products/batch: ${e.message}`);
+      res.status(500).json({ success: false, error: e.message });
+    }
+  });
+
   apiRouter.post('/products', async (req, res) => {
     const product = req.body;
     log(`[API] Attempting to save product: ${product.sku} (${product.nombre_comercial})`);
@@ -249,6 +318,90 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
     }
 
     res.json({ success: true });
+  });
+
+  // Lock Management
+  apiRouter.post('/products/lock', async (req, res) => {
+    const { sku, nodeId } = req.body;
+    if (!sku || !nodeId) return res.status(400).json({ error: 'SKU and nodeId required' });
+    
+    try {
+      if (!supabase) throw new Error('Supabase not initialized');
+      
+      const now = Date.now();
+      const timeout = 15 * 60 * 1000; 
+
+      const { data: result, error: fetchError } = await supabase
+        .from('products')
+        .select('data')
+        .eq('sku', sku);
+        
+      if (fetchError) throw fetchError;
+      
+      if (result.length === 0) return res.json({ success: true }); // No product yet, lock not needed or implicit
+
+      const cloudProduct = typeof result[0].data === 'string' ? JSON.parse(result[0].data) : result[0].data;
+      
+      if (cloudProduct.locked_by_ai && 
+          cloudProduct.lock_uid !== nodeId && 
+          cloudProduct.lock_timestamp && 
+          (now - cloudProduct.lock_timestamp < timeout)) {
+        return res.json({ success: false, message: 'Locked by another node' });
+      }
+
+      const lockedProduct = {
+        ...cloudProduct,
+        locked_by_ai: true,
+        lock_uid: nodeId,
+        lock_timestamp: now
+      };
+
+      const { error: updateError } = await supabase
+        .from('products')
+        .update({ 
+          data: lockedProduct,
+          last_updated: new Date().toISOString()
+        })
+        .eq('sku', sku);
+
+      if (updateError) throw updateError;
+      
+      res.json({ success: true, product: lockedProduct });
+    } catch (e: any) {
+      log(`[API Error] /products/lock: ${e.message}`);
+      res.status(500).json({ success: false, error: e.message });
+    }
+  });
+
+  apiRouter.post('/products/unlock', async (req, res) => {
+    const { product } = req.body;
+    if (!product || !product.sku) return res.status(400).json({ error: 'Valid product object required' });
+    
+    try {
+      if (!supabase) throw new Error('Supabase not initialized');
+      
+      const unlockedProduct = {
+        ...product,
+        locked_by_ai: false,
+        lock_uid: undefined,
+        lock_timestamp: undefined
+      };
+
+      const { error } = await supabase
+        .from('products')
+        .update({ 
+          data: unlockedProduct,
+          last_updated: new Date().toISOString()
+        })
+        .eq('sku', product.sku);
+
+      if (error) throw error;
+      
+      res.json({ success: true, product: unlockedProduct });
+    } catch (e: any) {
+      log(`[API Error] /products/unlock: ${e.message}`);
+      res.status(500).json({ success: false, error: e.message });
+    }
   });
 
 

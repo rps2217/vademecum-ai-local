@@ -32,7 +32,6 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
         const isOllamaAvailable = await ollamaService.isAvailable();
         
         if (isOllamaAvailable) {
-          console.log('[PrescriptionAnalysis] Usando Ollama para análisis...');
           try {
             result = await ollamaService.analyzeInteractions(products);
           } catch (e) {

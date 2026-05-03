@@ -11,7 +11,10 @@ import { DatabaseHeader } from './components/DatabaseHeader';
 import { ProductMobileList } from './components/ProductMobileList';
 import { ProductTable } from './components/ProductTable';
 import { SearchFilters } from './components/SearchFilters';
-import { searchService } from '../../services/SearchService';
+import { searchService, SearchFacets } from '../../services/SearchService';
+import { productsCollection } from '../../database';
+import { ActivePrinciplesTable } from './components/ActivePrinciplesTable';
+import { LayoutGrid, Beaker } from 'lucide-react';
 
 export const DatabaseModule: React.FC = () => {
   const { isAdmin } = useAuth();
@@ -27,25 +30,22 @@ export const DatabaseModule: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [facets, setFacets] = useState<{ categories: string[], activePrinciples: string[] }>({ 
+  const [activeTab, setActiveTab] = useState<'products' | 'principles'>('products');
+  const [facets, setFacets] = useState<SearchFacets>({ 
       categories: [], 
-      activePrinciples: [] 
+      activePrinciples: [],
+      principlesWithCounts: []
   });
 
   const loadData = async (isManual = false) => {
     setIsLoading(true);
     try {
-      const allProducts = await dataService.getAllProducts();
-      setProducts(allProducts);
-      
-      // Initialize/Update search index
-      await searchService.initializeIndex();
-      setFacets(searchService.getFacets());
-
       const cCount = await cloudSyncService.getCloudCount();
       setCloudCount(cCount);
 
-      if (allProducts.length === 0 && cCount > 0 && !isManual) {
+      // Check if we need to auto-restore
+      const localCount = await productsCollection.query().fetchCount();
+      if (localCount === 0 && cCount > 0 && !isManual) {
         setSyncStatus('Detectados datos en la nube. Restaurando automáticamente...');
         await handleSmartPull();
       }
@@ -88,15 +88,24 @@ export const DatabaseModule: React.FC = () => {
   };
 
   useEffect(() => {
+    // We only call loadData() initially to get cloud counts
     loadData();
 
-    // Suscribirse a actualizaciones para refrescar el estado de sincronización
-    const sub = EventBus.on<any>(EventType.DB_UPDATED).subscribe(() => loadData(true));
-    const subProduct = EventBus.on<any>(EventType.PRODUCT_UPDATED).subscribe(() => loadData(true));
+    // Suscribirse a actualizaciones de WatermelonDB para refrescar la lista local
+    const subscription = productsCollection.query().observe().subscribe(async (records) => {
+      const allProducts = records.map(r => r.asJSON());
+      setProducts(allProducts);
+    });
+
+    // Escuchar cuando el servicio de búsqueda termina de indexar para actualizar facetas
+    const handleIndexReady = () => {
+      setFacets(searchService.getFacets());
+    };
+    window.addEventListener('search_index_ready', handleIndexReady);
 
     return () => {
-      sub.unsubscribe();
-      subProduct.unsubscribe();
+      subscription.unsubscribe();
+      window.removeEventListener('search_index_ready', handleIndexReady);
     };
   }, []);
 
@@ -172,11 +181,8 @@ export const DatabaseModule: React.FC = () => {
       <div className="flex flex-col lg:flex-row gap-8 items-start">
         <SearchFilters 
             categories={facets.categories}
-            activePrinciples={facets.activePrinciples}
             selectedCategory={selectedCategory}
-            selectedPrinciple={selectedPrinciple}
             onSelectCategory={setSelectedCategory}
-            onSelectPrinciple={setSelectedPrinciple}
             totalResults={filteredProducts.length}
         />
 
@@ -190,6 +196,12 @@ export const DatabaseModule: React.FC = () => {
                 {cloudCount !== null && (
                   <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold ring-1 ring-emerald-500/20">
                     {cloudCount} Nube
+                  </span>
+                )}
+                {selectedPrinciple && (
+                  <span className="px-3 py-1 bg-amber-500/10 text-amber-400 rounded-full text-xs font-bold ring-1 ring-amber-500/20 flex items-center gap-1.5">
+                    <Beaker className="w-3 h-3" />
+                    {selectedPrinciple}
                   </span>
                 )}
                 {(selectedCategory || selectedPrinciple) && (
@@ -210,9 +222,44 @@ export const DatabaseModule: React.FC = () => {
               </div>
             </div>
 
-            <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
-            
-            <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
+            <div className="p-4 bg-slate-900/30 border-b border-slate-800 flex gap-4">
+              <button 
+                onClick={() => setActiveTab('products')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'products' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+              >
+                <LayoutGrid className="w-4 h-4" />
+                Productos
+              </button>
+              <button 
+                onClick={() => setActiveTab('principles')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'principles' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+              >
+                <Beaker className="w-4 h-4" />
+                Principios Activos
+              </button>
+            </div>
+
+            {activeTab === 'products' ? (
+              <>
+                {useMemo(() => (
+                  <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
+                ), [filteredProducts, isLoading])}
+                {useMemo(() => (
+                  <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
+                ), [filteredProducts, isLoading])}
+              </>
+            ) : (
+              {useMemo(() => (
+                <ActivePrinciplesTable 
+                  principles={facets.principlesWithCounts} 
+                  isLoading={isLoading} 
+                  onSelect={(name) => {
+                    setSelectedPrinciple(name);
+                    setActiveTab('products');
+                  }} 
+                />
+              ), [facets.principlesWithCounts, isLoading])}
+            )}
           </div>
         </div>
       </div>
