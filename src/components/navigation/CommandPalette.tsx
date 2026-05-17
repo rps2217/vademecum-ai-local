@@ -68,27 +68,27 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 bg-brand-bg/80" onClick={onClose}>
+    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 bg-background" onClick={onClose}>
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: -20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: -20 }}
-        className="w-full max-w-2xl bg-brand-surface border border-slate-800 rounded-[2rem] shadow-2xl overflow-hidden"
+        className="w-full max-w-2xl bg-card border border-border rounded-[2rem] shadow-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         {/* Input de Búsqueda */}
-        <div className="relative border-b border-slate-800 p-6">
-          <Search className="absolute left-8 top-1/2 -translate-y-1/2 w-6 h-6 text-brand-primary" />
+        <div className="relative border-b border-border p-6">
+          <Search className="absolute left-8 top-1/2 -translate-y-1/2 w-6 h-6 text-primary" />
           <input
             autoFocus
             type="text"
             placeholder="Busca productos, síntomas, componentes o comandos..."
-            className="w-full bg-transparent pl-12 pr-4 py-2 text-xl text-white outline-none placeholder:text-slate-600 font-medium"
+            className="w-full bg-transparent pl-12 pr-4 py-2 text-xl text-foreground outline-none placeholder:text-muted-foreground font-medium"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
           <div className="absolute right-8 top-1/2 -translate-y-1/2 flex items-center gap-2">
-            <span className="px-2 py-1 rounded-md bg-slate-800 text-[10px] font-bold text-slate-500 border border-slate-700">ESC</span>
+            <span className="px-2 py-1 rounded-md bg-card text-[10px] font-bold text-muted-foreground border border-border">ESC</span>
           </div>
         </div>
 
@@ -98,14 +98,14 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
           {/* Sección de Acciones Rápidas (Solo si no hay búsqueda larga) */}
           {search.length < 2 && (
             <div className="mb-6">
-              <h3 className="px-4 mb-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Navegación Rápida</h3>
+              <h3 className="px-4 mb-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Navegación Rápida</h3>
               <div className="space-y-1">
                 {actions.map((action, i) => (
                   <button
                     key={action.id}
                     onClick={() => onNavigate(action.tab)}
                     className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all ${
-                      selectedIndex === i ? 'bg-brand-primary/10 text-brand-primary border border-brand-primary/20' : 'text-slate-400 hover:bg-slate-800/50 border border-transparent'
+                      selectedIndex === i ? 'bg-primary text-primary border border-primary/50' : 'text-muted-foreground hover:bg-card border border-transparent'
                     }`}
                   >
                     <action.icon className="w-5 h-5" />
@@ -120,10 +120,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
           {/* Resultados de Productos */}
           <div>
             <div className="flex items-center justify-between px-4 mb-2">
-              <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+              <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
                 {search.length > 0 ? 'Resultados del Vademécum' : 'Productos Recientes'}
               </h3>
-              {isSearching && <Sparkles className="w-3 h-3 text-brand-primary animate-pulse" />}
+              {isSearching && <Sparkles className="w-3 h-3 text-primary animate-pulse" />}
             </div>
 
             {results.length > 0 ? (
@@ -138,15 +138,15 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
                         onClose();
                       }}
                       className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all text-left ${
-                        selectedIndex === index ? 'bg-brand-primary/10 text-brand-primary border border-brand-primary/20' : 'text-slate-400 hover:bg-slate-800/50 border border-transparent'
+                        selectedIndex === index ? 'bg-primary text-primary border border-primary/50' : 'text-muted-foreground hover:bg-card border border-transparent'
                       }`}
                     >
-                      <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center font-bold text-[10px] text-slate-500 overflow-hidden border border-slate-700">
+                      <div className="w-10 h-10 rounded-xl bg-card flex items-center justify-center font-bold text-[10px] text-muted-foreground overflow-hidden border border-border">
                         {product.sku.substring(0, 3)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-sm text-slate-200 truncate">{product.nombre_comercial}</div>
-                        <div className="text-[10px] text-slate-500 truncate">
+                        <div className="font-bold text-sm text-foreground truncate">{product.nombre_comercial}</div>
+                        <div className="text-[10px] text-muted-foreground truncate">
                           {Array.isArray(product.principios_activos) ? product.principios_activos.join(', ') : ''}
                         </div>
                       </div>
@@ -161,7 +161,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
                 })}
               </div>
             ) : search.length > 0 && !isSearching ? (
-              <div className="flex flex-col items-center justify-center py-12 text-slate-600">
+              <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
                 <AlertCircle className="w-12 h-12 mb-4 opacity-20" />
                 <p className="font-medium">No se encontraron coincidencias para "{search}"</p>
               </div>
@@ -170,18 +170,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
         </div>
 
         {/* Footer */}
-        <div className="bg-slate-900/50 border-t border-slate-800 p-4 flex items-center justify-between">
+        <div className="bg-card border-t border-border p-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5">
-              <kbd className="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px] text-slate-400">↑↓</kbd>
-              <span className="text-[10px] text-slate-500 font-medium uppercase">Navegar</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-card border border-border text-[10px] text-muted-foreground">↑↓</kbd>
+              <span className="text-[10px] text-muted-foreground font-medium uppercase">Navegar</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <kbd className="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px] text-slate-400">ENTER</kbd>
-              <span className="text-[10px] text-slate-500 font-medium uppercase">Seleccionar</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-card border border-border text-[10px] text-muted-foreground">ENTER</kbd>
+              <span className="text-[10px] text-muted-foreground font-medium uppercase">Seleccionar</span>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-brand-primary/40">
+          <div className="flex items-center gap-2 text-primary/40">
             <Command className="w-3 h-3" />
             <span className="text-[10px] font-bold uppercase tracking-widest">Vademécum Pro</span>
           </div>

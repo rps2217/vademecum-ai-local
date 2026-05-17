@@ -10,13 +10,13 @@ export const ProductSafetyProfile: React.FC<ProductSafetyProfileProps> = ({ prod
   const getSafetyConfig = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI:
-        return { color: 'text-brand-accent bg-brand-accent/10 border-brand-accent/20', icon: <CheckCircle2 className="w-4 h-4" />, label: 'Apto' };
+        return { color: 'text-primary bg-brand-accent/10 border-brand-accent/20', icon: <CheckCircle2 className="w-4 h-4" />, label: 'Apto' };
       case SafetyStatus.NO:
         return { color: 'text-red-400 bg-red-500/10 border-red-500/20', icon: <AlertTriangle className="w-4 h-4" />, label: 'No Apto' };
       case SafetyStatus.PRECAUCION:
         return { color: 'text-amber-400 bg-amber-500/10 border-amber-500/20', icon: <Info className="w-4 h-4" />, label: 'Precaución' };
       default:
-        return { color: 'text-slate-400 bg-slate-500/10 border-slate-500/20', icon: <Info className="w-4 h-4" />, label: 'Desconocido' };
+        return { color: 'text-muted-foreground bg-background0/10 border-slate-500/20', icon: <Info className="w-4 h-4" />, label: 'Desconocido' };
     }
   };
 
@@ -30,13 +30,13 @@ export const ProductSafetyProfile: React.FC<ProductSafetyProfileProps> = ({ prod
   ];
 
   return (
-    <div className="col-span-1 md:col-span-2 bg-brand-surface border border-slate-800 rounded-3xl p-6 md:p-8 shadow-sm">
+    <div className="col-span-1 md:col-span-2 bg-card border border-border rounded-3xl p-6 md:p-8 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-[0.2em] flex items-center gap-2">
           <ShieldCheck className="w-4 h-4" /> Perfil de Seguridad
         </h3>
-        <div className="flex items-center gap-3 text-[9px] uppercase tracking-wider font-bold opacity-80 bg-brand-bg px-3 py-1.5 rounded-lg border border-slate-800">
-          <div className="flex items-center gap-1.5 text-brand-accent">
+        <div className="flex items-center gap-3 text-[9px] uppercase tracking-wider font-bold opacity-80 bg-background px-3 py-1.5 rounded-lg border border-border">
+          <div className="flex items-center gap-1.5 text-primary">
             <div className="w-2 h-2 rounded-full bg-brand-accent" /> Apto
           </div>
           <div className="flex items-center gap-1.5 text-amber-400">
@@ -54,10 +54,10 @@ export const ProductSafetyProfile: React.FC<ProductSafetyProfileProps> = ({ prod
           return (
             <div 
               key={item.id} 
-              className={`flex flex-col items-center justify-center gap-2.5 p-4 rounded-2xl border transition-all text-center ${config.color}`}
+              className={`flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border transition-all text-center ${config.color}`}
             >
-              <div className="p-2 rounded-full bg-brand-bg/50">{config.icon}</div>
-              <span className="text-[10px] font-bold uppercase tracking-wider">{item.label}</span>
+              <div className="p-3 rounded-full bg-background">{config.icon}</div>
+              <span className="text-xs font-bold uppercase tracking-wider">{item.label}</span>
             </div>
           );
         })}

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Product } from '../../../core/types';
 import { searchService } from '../../../services/SearchService';
-import { COMMON_PATHOLOGIES } from '../../../constants/pathologies';
+import { semanticSearchService } from '../../../services/SemanticSearchService';
 import { useSearch } from '../../../context/SearchContext';
 
-export const useProductSearch = () => {
+export const useProductSearch = (useSemantic = false) => {
   const { query, setQuery, isSearching, setIsSearching } = useSearch();
   const [results, setResults] = useState<Product[]>([]);
   const [refreshBit, setRefreshBit] = useState(0);
@@ -12,9 +12,11 @@ export const useProductSearch = () => {
   // Inicializar índice al montar
   useEffect(() => {
     searchService.initializeIndex().catch(console.error);
+    semanticSearchService.initialize().catch(console.error);
     
     const handleUpdate = () => {
       searchService.initializeIndex().then(() => setRefreshBit(b => b + 1));
+      semanticSearchService.initialize().then(() => setRefreshBit(b => b + 1));
     };
 
     window.addEventListener('db_updated', handleUpdate);
@@ -30,13 +32,13 @@ export const useProductSearch = () => {
 
       setIsSearching(true);
       try {
-        // Simulación de asincronía para liberar el event loop (worker-like)
-        const searchResults = await new Promise<Product[]>((resolve) => {
-          setTimeout(async () => {
-             const res = await searchService.search(query);
-             resolve(res);
-          }, 0);
-        });
+        let searchResults: Product[] = [];
+        if (useSemantic) {
+            const semanticResults = await semanticSearchService.semanticSearch(query);
+            searchResults = semanticResults.map(r => r.product);
+        } else {
+            searchResults = await searchService.search(query);
+        }
         setResults(searchResults);
       } catch (error) {
         console.error('Error in useProductSearch:', error);
@@ -47,7 +49,7 @@ export const useProductSearch = () => {
 
     const timer = setTimeout(performSearch, 400);
     return () => clearTimeout(timer);
-  }, [query, refreshBit, setIsSearching]);
+  }, [query, refreshBit, setIsSearching, useSemantic]);
 
   return { 
     query, 

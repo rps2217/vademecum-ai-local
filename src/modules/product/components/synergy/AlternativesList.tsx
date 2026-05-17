@@ -13,7 +13,7 @@ export const AlternativesList: React.FC<AlternativesListProps> = ({ products, on
 
   return (
     <section className="space-y-4">
-      <h3 className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] flex items-center gap-2">
+      <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-[0.2em] flex items-center gap-2">
         <Copy className="w-4 h-4" /> Productos Equivalentes o de Reemplazo
       </h3>
       <div className="grid grid-cols-1 gap-3">
@@ -24,22 +24,22 @@ export const AlternativesList: React.FC<AlternativesListProps> = ({ products, on
             className="flex items-center gap-4 p-4 bg-emerald-500/5 hover:bg-emerald-500/10 rounded-2xl border border-emerald-500/10 transition-all group text-left relative overflow-hidden"
           >
             {/* Badge de Score */}
-            <div className="absolute top-0 right-0 px-3 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-tighter rounded-bl-xl shadow-lg">
+            <div className="absolute top-0 right-0 px-3 py-1 bg-emerald-500 text-foreground text-[9px] font-black uppercase tracking-tighter rounded-bl-xl shadow-lg">
                 Equivalencia: {Math.round(score * 100)}%
             </div>
 
-            <div className="p-3 bg-brand-bg rounded-xl text-emerald-400 group-hover:scale-110 transition-transform">
+            <div className="p-3 bg-background rounded-xl text-emerald-400 group-hover:scale-110 transition-transform">
               <Pill className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="font-bold text-slate-200 group-hover:text-white transition-colors truncate pr-20">
+              <h4 className="font-bold text-foreground group-hover:text-foreground transition-colors truncate pr-20">
                 {altProduct.nombre_comercial}
               </h4>
-              <p className="text-xs text-slate-500 truncate">
+              <p className="text-xs text-muted-foreground truncate">
                 {formatArrayToString(altProduct.principios_activos, ', ')}
               </p>
             </div>
-            <ArrowRight className="w-5 h-5 text-slate-600 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
           </button>
         ))}
       </div>

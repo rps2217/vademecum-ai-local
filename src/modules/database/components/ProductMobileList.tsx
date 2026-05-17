@@ -1,6 +1,5 @@
 import React, { memo, CSSProperties } from 'react';
-import * as ReactWindow from 'react-window';
-const List = (ReactWindow as any).FixedSizeList || (ReactWindow as any).default?.FixedSizeList;
+import { FixedSizeList as List } from 'react-window';
 import { Product } from '../../../core/types/product.types';
 import { Trash2, Cloud, Monitor, Sparkles } from 'lucide-react';
 
@@ -28,27 +27,27 @@ const MobileRow = memo(({ index, style, data }: MobileRowProps) => {
   if (!p) return null;
 
   return (
-    <div style={style} className="p-4 hover:bg-slate-800/20 transition-colors border-b border-slate-800 bg-brand-surface">
+    <div style={style} className="p-4 hover:bg-card transition-colors border-b border-border bg-card">
       <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5">
             {p.is_synced_cloud ? (
               <Cloud className="w-3.5 h-3.5 text-emerald-400" />
             ) : (
-              <Monitor className="w-3.5 h-3.5 text-slate-600" />
+              <Monitor className="w-3.5 h-3.5 text-muted-foreground" />
             )}
             {p.synergy_analyzed && <Sparkles className="w-3.5 h-3.5 text-amber-500" />}
           </div>
-          <span className="font-mono text-[10px] text-slate-500 tracking-tighter">{p.sku}</span>
+          <span className="font-mono text-[10px] text-muted-foreground tracking-tighter">{p.sku}</span>
         </div>
-        <button onClick={() => onDelete(p.sku)} className="p-2 text-slate-600 hover:text-red-400">
+        <button onClick={() => onDelete(p.sku)} className="p-2 text-muted-foreground hover:text-red-400">
           <Trash2 className="w-4 h-4" />
         </button>
       </div>
-      <h3 className="font-bold text-slate-100 leading-tight mb-2 pr-8 truncate font-sans tracking-tight">{p.nombre_comercial}</h3>
+      <h3 className="font-bold text-foreground leading-tight mb-2 pr-8 truncate font-sans tracking-tight">{p.nombre_comercial}</h3>
       <div className="flex flex-wrap gap-1 overflow-hidden h-[24px]">
         {(Array.isArray(p.principios_activos) ? p.principios_activos : []).slice(0, 3).map((pa, idx) => (
-          <span key={idx} className="text-[9px] px-1.5 py-0.5 bg-slate-800 text-slate-400 rounded-md border border-slate-700 font-medium whitespace-nowrap">
+          <span key={idx} className="text-[9px] px-1.5 py-0.5 bg-card text-muted-foreground rounded-md border border-border font-medium whitespace-nowrap">
             {pa}
           </span>
         ))}
@@ -61,9 +60,9 @@ export const ProductMobileList: React.FC<ProductMobileListProps> = ({ products, 
   return (
     <div className="block md:hidden">
       {isLoading ? (
-        <div className="p-10 text-center text-slate-500 italic">Cargando datos...</div>
+        <div className="p-10 text-center text-muted-foreground italic">Cargando datos...</div>
       ) : products.length === 0 ? (
-        <div className="p-10 text-center text-slate-500">No hay registros.</div>
+        <div className="p-10 text-center text-muted-foreground">No hay registros.</div>
       ) : (
         <List
           height={600}

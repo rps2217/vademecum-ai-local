@@ -125,35 +125,35 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-brand-bg text-white flex flex-col items-center justify-center z-50 p-6">
+    <div className="fixed inset-0 bg-background text-foreground flex flex-col items-center justify-center z-50 p-6">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md space-y-8"
       >
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-primary/10 text-brand-primary mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary text-primary mb-4">
             <Activity className="w-8 h-8" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight">Vademécum AI</h1>
-          <p className="text-slate-400">Inicializando sistema clínico...</p>
+          <p className="text-muted-foreground">Inicializando sistema clínico...</p>
         </div>
 
-        <div className="bg-brand-surface/50 border border-slate-800 rounded-2xl p-6 space-y-6 backdrop-blur-sm">
+        <div className="bg-card border border-border rounded-2xl p-6 space-y-6 backdrop-blur-sm">
           {steps.map((step) => (
             <div key={step.id} className="space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  {step.id === 'hardware' && <Cpu className="w-5 h-5 text-slate-500" />}
-                  {step.id === 'database' && <Database className="w-5 h-5 text-slate-500" />}
-                  {step.id === 'ai_engine' && <Brain className="w-5 h-5 text-slate-500" />}
-                  <span className={`font-medium ${step.status === 'loading' ? 'text-brand-primary' : 'text-slate-200'}`}>
+                  {step.id === 'hardware' && <Cpu className="w-5 h-5 text-muted-foreground" />}
+                  {step.id === 'database' && <Database className="w-5 h-5 text-muted-foreground" />}
+                  {step.id === 'ai_engine' && <Brain className="w-5 h-5 text-muted-foreground" />}
+                  <span className={`font-medium ${step.status === 'loading' ? 'text-primary' : 'text-foreground'}`}>
                     {step.label}
                   </span>
                 </div>
                 {step.status === 'pending' && <div className="w-2 h-2 rounded-full bg-slate-700" />}
-                {step.status === 'loading' && <div className="w-4 h-4 border-2 border-brand-primary border-t-transparent rounded-full animate-spin" />}
-                {step.status === 'success' && <CheckCircle className="w-5 h-5 text-brand-accent" />}
+                {step.status === 'loading' && <div className="w-4 h-4 border-2 border-primary/50 border-t-transparent rounded-full animate-spin" />}
+                {step.status === 'success' && <CheckCircle className="w-5 h-5 text-primary" />}
                 {step.status === 'error' && <AlertCircle className="w-5 h-5 text-red-500" />}
               </div>
               
@@ -163,13 +163,13 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                   animate={{ opacity: 1, height: 'auto' }}
                   className="pl-8"
                 >
-                  <p className={`text-xs ${step.status === 'error' ? 'text-red-400' : 'text-slate-500'}`}>
+                  <p className={`text-xs ${step.status === 'error' ? 'text-red-400' : 'text-muted-foreground'}`}>
                     {step.detail}
                   </p>
                   {step.progress !== undefined && step.status === 'loading' && (
-                    <div className="mt-2 h-1 w-full bg-brand-bg rounded-full overflow-hidden">
+                    <div className="mt-2 h-1 w-full bg-background rounded-full overflow-hidden">
                       <motion.div 
-                        className="h-full bg-brand-primary"
+                        className="h-full bg-primary"
                         initial={{ width: 0 }}
                         animate={{ width: `${step.progress}%` }}
                         transition={{ duration: 0.5 }}
@@ -194,7 +194,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                 aiModelTier: 'NONE',
                 deviceTier: 'ECO' 
              })}
-             className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-medium transition-colors"
+             className="w-full py-3 bg-card hover:bg-slate-700 text-muted-foreground rounded-xl font-medium transition-colors"
            >
              Continuar en Modo Seguro (Sin IA Local)
            </motion.button>

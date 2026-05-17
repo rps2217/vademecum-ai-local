@@ -26,12 +26,12 @@ export const RecentlyViewed: React.FC<RecentlyViewedProps> = ({ onProductClick }
   return (
     <div className="mt-8 mb-4">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
           <Clock className="w-3.5 h-3.5" /> Vistos Recientemente
         </h3>
         <button 
           onClick={() => historyService.clear()}
-          className="text-[10px] font-bold text-slate-600 hover:text-red-400 flex items-center gap-1 transition-colors"
+          className="text-[10px] font-bold text-muted-foreground hover:text-red-400 flex items-center gap-1 transition-colors"
         >
           <Trash2 className="w-3 h-3" /> Limpiar
         </button>
@@ -49,17 +49,17 @@ export const RecentlyViewed: React.FC<RecentlyViewedProps> = ({ onProductClick }
               onClick={() => onProductClick(product)}
               className="flex flex-col text-left group transition-all"
             >
-              <div className="bg-brand-surface border border-slate-800 rounded-xl p-3 hover:border-emerald-500/50 transition-colors h-full flex flex-col justify-between">
+              <div className="bg-card border border-border rounded-xl p-3 hover:border-emerald-500/50 transition-colors h-full flex flex-col justify-between">
                 <div>
                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[8px] font-mono text-slate-600 truncate mr-2">{product.sku}</span>
+                      <span className="text-[8px] font-mono text-muted-foreground truncate mr-2">{product.sku}</span>
                       {product.is_verified && <Bookmark className="w-2.5 h-2.5 text-emerald-500" />}
                    </div>
-                   <h4 className="text-[11px] font-bold text-slate-200 line-clamp-2 leading-tight group-hover:text-emerald-400 transition-colors">
+                   <h4 className="text-[11px] font-bold text-foreground line-clamp-2 leading-tight group-hover:text-emerald-400 transition-colors">
                      {product.nombre_comercial}
                    </h4>
                 </div>
-                <div className="mt-2 flex items-center justify-between text-[8px] text-slate-600 font-bold uppercase tracking-tighter">
+                <div className="mt-2 flex items-center justify-between text-[8px] text-muted-foreground font-bold uppercase tracking-tighter">
                    <span>{product.categoria_principal || 'Producto'}</span>
                    <ChevronRight className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>

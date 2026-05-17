@@ -157,7 +157,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
             <div className="space-y-4">
                <div className="flex items-center gap-3">
                   <Activity className="h-4 w-4 text-muted-foreground" />
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Coadyuvantes Sinergistas</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Complementos Sugeridos</h4>
                </div>
               <RelatedProductsList 
                 products={relatedProducts} 

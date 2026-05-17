@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -6,153 +6,53 @@
 
   --color-border: var(--border);
   --color-input: var(--input);
-  --color-ring: var(--ring);
   --color-background: var(--background);
-  --color-brand-bg: var(--background);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
 
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-}
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that currently relies on the default.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
 }
 
 @layer base {
   :root {
-    --background: 230 30% 5%;
-    --foreground: 210 20% 98%;
+    /* Warm Professional Theme (No pure whites or cold grays) */
+    --background: 35 15% 95%; /* Creamy parchment background */
+    --foreground: 30 20% 20%; /* Dark roasted coffee text */
 
-    --card: 230 30% 8%;
-    --card-foreground: 210 20% 98%;
+    --card: 40 20% 92%;      /* Warm gentle card background */
+    --card-foreground: 30 20% 20%;
 
-    --popover: 230 30% 8%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 40 20% 92%;
+    --popover-foreground: 30 20% 20%;
 
-    /* Color primario vibrante (Indigo/Azul eléctrico) */
-    --primary: 235 90% 60%;
-    --primary-foreground: 210 20% 98%;
+    /* Primary: Deep, reliable warm earth tones */
+    --primary: 25 60% 35%; 
+    --primary-foreground: 45 100% 98%;
 
-    /* Color secundario distintivo (Teal/Sage luminoso) */
-    --secondary: 180 60% 30%;
-    --secondary-foreground: 210 20% 98%;
+    /* Muted: Soft earth warm-grays */
+    --muted: 35 15% 85%;
+    --muted-foreground: 30 20% 40%;
 
-    /* Color de acento con matiz púrpura brillante */
-    --accent: 270 70% 35%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 35 15% 85%;
+    --accent-foreground: 30 20% 20%;
 
-    --muted: 230 30% 18%;
-    --muted-foreground: 215 15% 70%;
-
-    --destructive: 0 60% 40%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 230 30% 18%;
-    --input: 230 30% 15%;
-    --ring: 221 83% 53%;
-
-    --radius: 0.5rem;
+    /* Borders: Subtle, non-intrusive */
+    --border: 35 20% 75%;
+    --input: 35 20% 75%;
   }
 
-  /* .dark is already handled by :root now but for completeness if class is present */
-  .dark {
-    @apply [color-scheme:dark];
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    letter-spacing: -0.011em;
+    letter-spacing: -0.01em;
   }
   
-  /* Modern clinical look adjustments */
-  .whitespace-optimized {
-    @apply space-y-6 md:space-y-8;
-  }
-  
-  /* Semantic alert styles for medical context - Optimized for DARK mode */
-  .alert-critical {
-    @apply border-l-4 border-red-900 bg-red-950/30 text-red-100 px-4 py-3 rounded-r-md shadow-sm;
-  }
-  .alert-warning {
-    @apply border-l-4 border-amber-900 bg-amber-950/30 text-amber-100 px-4 py-3 rounded-r-md shadow-sm;
-  }
-  .alert-synergy {
-    @apply border-l-4 border-emerald-900 bg-emerald-950/30 text-emerald-100 px-4 py-3 rounded-r-md shadow-sm;
-  }
-  .alert-info {
-    @apply border-l-4 border-blue-900 bg-blue-950/30 text-blue-100 px-4 py-3 rounded-r-md shadow-sm;
+  /* Simplified Clinical alerts */
+  .alert-clinical {
+    @apply p-4 rounded-lg bg-card border border-border text-sm;
   }
 }

@@ -20,15 +20,22 @@ export interface SearchIndexItem {
 
 export type SafetyCondition = 'apto_embarazo' | 'apto_lactancia' | 'apto_pediatria' | 'apto_diabeticos' | 'apto_hipertensos' | 'apto_celiacos';
 
+export interface SearchFacets {
+  categories: string[];
+  activePrinciples: string[];
+  principlesWithCounts?: { principle: string, count: number }[];
+}
+
 export class SearchService {
   private static instance: SearchService;
   private index: SearchIndexItem[] = [];
   private isInitialized = false;
   private miniSearch: MiniSearch<SearchIndexItem> | null = null;
   private latestResults: Product[] = [];
-  private facets: { categories: string[], activePrinciples: string[] } = {
+  private facets: SearchFacets = {
       categories: [],
-      activePrinciples: []
+      activePrinciples: [],
+      principlesWithCounts: []
   };
 
   private constructor() {
@@ -97,19 +104,29 @@ export class SearchService {
   private updateFacets(products: Product[]) {
       const cats = new Set<string>();
       const principles = new Set<string>();
+      const principlesCount = new Map<string, number>();
 
       products.forEach(p => {
           if (p.categoria_principal) cats.add(p.categoria_principal);
           if (p.principios_activos) {
               p.principios_activos.forEach(pa => {
-                  if (pa && pa.trim()) principles.add(pa.trim());
+                  const pName = pa?.trim();
+                  if (pName) {
+                    principles.add(pName);
+                    principlesCount.set(pName, (principlesCount.get(pName) || 0) + 1);
+                  }
               });
           }
       });
 
+      const principlesWithCounts = Array.from(principlesCount.entries())
+        .map(([principle, count]) => ({ principle, count }))
+        .sort((a, b) => b.count - a.count);
+
       this.facets = {
           categories: Array.from(cats).sort(),
-          activePrinciples: Array.from(principles).sort().slice(0, 50)
+          activePrinciples: Array.from(principles).sort().slice(0, 50),
+          principlesWithCounts
       };
   }
 

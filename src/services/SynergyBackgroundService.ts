@@ -1,3 +1,4 @@
+import { thermalGuardService } from './ThermalGuardService';
 import { Product } from '../core/types/product.types';
 import { aiService } from './AIService';
 import { geminiService } from './GeminiService';
@@ -85,6 +86,10 @@ export class SynergyBackgroundService {
     const startTimestamp = Date.now();
     
     try {
+      if (thermalGuardService.shouldPauseHeavyTask() && !isForced) {
+        logger.info(`Carga térmica alta. Pausando análisis de ${product.sku}...`, 'Sinergia', { sku: product.sku });
+        await new Promise(r => setTimeout(r, 5000));
+      }
       const status = aiService.getStatus();
       
       const { getDeviceId } = await import('../utils/clusterUtils');

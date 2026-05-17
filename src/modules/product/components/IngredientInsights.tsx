@@ -52,14 +52,14 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
   if (!product.principios_activos || product.principios_activos.length === 0) return null;
 
   return (
-    <div className="bg-slate-900/40 border border-white/5 rounded-2xl p-5 mb-6">
+    <div className="bg-card border border-border/50 rounded-2xl p-5 mb-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-bold text-white flex items-center gap-2">
-          <Beaker className="w-4 h-4 text-brand-primary" />
+        <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
+          <Beaker className="w-4 h-4 text-primary" />
           Análisis de Componentes
         </h3>
         {isLoading && (
-          <div className="flex items-center gap-2 text-[10px] text-brand-primary font-bold animate-pulse">
+          <div className="flex items-center gap-2 text-[10px] text-primary font-bold animate-pulse">
             <Sparkles className="w-3 h-3" />
             ANALIZANDO...
           </div>
@@ -70,7 +70,7 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
         {isLoading && Object.keys(safeInsights).length === 0 ? (
           <div className="space-y-2">
              {[1, 2].map(i => (
-               <div key={i} className="h-16 bg-white/5 rounded-xl animate-pulse" />
+               <div key={i} className="h-16 bg-card rounded-xl animate-pulse" />
              ))}
           </div>
         ) : error ? (
@@ -91,24 +91,24 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
                 key={ingredient} 
                 className={`p-3 rounded-xl border transition-all ${
                   isMain 
-                    ? 'bg-brand-primary/10 border-brand-primary/20 shadow-lg shadow-brand-primary/5' 
-                    : 'bg-white/[0.03] border-white/5'
+                    ? 'bg-primary border-primary/50 shadow-lg shadow-brand-primary/5' 
+                    : 'bg-card/[0.03] border-border/50'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
-                     <span className={`text-[11px] font-black uppercase tracking-wider ${isMain ? 'text-brand-primary' : 'text-slate-300'}`}>
+                     <span className={`text-[11px] font-black uppercase tracking-wider ${isMain ? 'text-primary' : 'text-muted-foreground'}`}>
                        {ingredient}
                      </span>
                      {isMain && (
-                       <span className="text-[7px] font-black bg-brand-primary text-slate-950 px-1 py-0.5 rounded uppercase">
+                       <span className="text-[7px] font-black bg-primary text-slate-950 px-1 py-0.5 rounded uppercase">
                          Principio Activo
                        </span>
                      )}
                   </div>
-                  <ChevronRight className={`w-3.5 h-3.5 ${isMain ? 'text-brand-primary' : 'text-slate-700'}`} />
+                  <ChevronRight className={`w-3.5 h-3.5 ${isMain ? 'text-primary' : 'text-slate-700'}`} />
                 </div>
-                <p className={`text-[11px] leading-relaxed ${isMain ? 'text-white' : 'text-slate-400'} font-medium`}>
+                <p className={`text-[11px] leading-relaxed ${isMain ? 'text-foreground' : 'text-muted-foreground'} font-medium`}>
                   {cleanExplanation}
                 </p>
               </motion.div>
@@ -117,9 +117,9 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
         )}
       </div>
 
-      <div className="mt-4 p-3 bg-indigo-500/5 border border-indigo-500/10 rounded-xl flex items-start gap-3">
-        <Info className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-        <p className="text-[10px] text-slate-400 leading-normal italic">
+      <div className="mt-4 p-3 bg-primary border border-primary/50 rounded-xl flex items-start gap-3">
+        <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+        <p className="text-[10px] text-muted-foreground leading-normal italic">
           Esta información es generada por IA para el apoyo en la educación al paciente sobre el mecanismo de acción de los componentes. Siempre verifique con la literatura oficial.
         </p>
       </div>

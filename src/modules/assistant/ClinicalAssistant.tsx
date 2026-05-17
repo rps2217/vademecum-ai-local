@@ -4,6 +4,7 @@ import { aiService } from '../../services/AIService';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { Send, Bot, User, Loader2, Sparkles, AlertCircle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { medicalRAGService } from '../../services/MedicalRAGService';
 
 interface Message {
   id: string;
@@ -88,7 +89,16 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
     setIsTyping(true);
 
     try {
-      const response = await aiService.analyze(userMsg.content, contextProducts);
+      const principles = contextProducts
+        .flatMap(p => p.principios_activos || [])
+        .filter((value, index, self) => self.indexOf(value) === index);
+        
+      const insights = await medicalRAGService.retrieveClinicalContext(principles);
+      const ragContext = insights.length > 0
+        ? `\n\n${medicalRAGService.formatInsightsForPrompt(insights)}`
+        : '';
+        
+      const response = await aiService.analyze(userMsg.content + ragContext, contextProducts);
       const aiMsg: Message = { id: (Date.now() + 1).toString(), role: 'assistant', content: response };
       setMessages(prev => [...prev, aiMsg]);
     } catch (error) {
@@ -100,16 +110,16 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
   };
 
   return (
-    <div className="flex flex-col h-[500px] bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="flex flex-col h-[500px] bg-background border border-border rounded-lg overflow-hidden">
       {/* Header del Asistente */}
-      <div className="flex items-center justify-between px-4 py-3 bg-indigo-50 border-b border-indigo-100">
+      <div className="flex items-center justify-between px-4 py-3 bg-card border-b border-border">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-indigo-600 rounded-lg text-white">
+          <div className="p-1.5 bg-primary rounded text-primary-foreground">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-indigo-900">Razonamiento Clínico Local</h3>
-            <p className="text-[10px] text-indigo-600 font-medium">
+            <h3 className="text-sm font-semibold text-foreground">Razonamiento Clínico</h3>
+            <p className="text-xs text-muted-foreground">
               {hardware?.aiModelTier === 'HIGH' ? 'WebLLM (GPU)' : hardware?.aiModelTier === 'LOW' ? 'Transformers.js (CPU)' : 'Modo Simulación'}
             </p>
           </div>
@@ -117,7 +127,7 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
         
         {/* Barra de Progreso de Inicialización */}
         {!isAiReady && isInitializing && (
-          <div className="flex items-center gap-2 text-xs text-indigo-700 font-medium">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Loader2 className="w-3 h-3 animate-spin" />
             <span className="truncate max-w-[150px]">{aiStatus.text}</span>
           </div>
@@ -125,7 +135,7 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
         {!isAiReady && !isInitializing && (
           <button 
             onClick={handleActivateAI}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium transition-colors shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground rounded text-xs font-medium hover:opacity-90"
           >
             <Bot className="w-3.5 h-3.5" />
             Activar IA
@@ -134,19 +144,19 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
       </div>
 
       {/* Área de Mensajes */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 relative">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background relative">
         {!isAiReady && !isInitializing && (
-          <div className="absolute inset-0 z-10 bg-white/80 backdrop-blur-[1px] flex flex-col items-center justify-center p-6 text-center">
-            <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4">
+          <div className="absolute inset-0 z-10 bg-background flex flex-col items-center justify-center p-6 text-center">
+            <div className="w-12 h-12 bg-card text-primary rounded-full flex items-center justify-center mb-4 border border-border">
               <Sparkles className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-slate-800 mb-2">Asistente Clínico Inactivo</h4>
-            <p className="text-sm text-slate-500 max-w-xs mb-6">
-              Activa el motor de Inteligencia Artificial para analizar interacciones, posología y contraindicaciones de este medicamento.
+            <h4 className="text-lg font-semibold text-foreground mb-2">Asistente Clínico Inactivo</h4>
+            <p className="text-sm text-muted-foreground max-w-xs mb-6">
+              Activa la IA para analizar interacciones, posología y contraindicaciones.
             </p>
             <button 
               onClick={handleActivateAI}
-              className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-medium transition-colors shadow-sm"
+              className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded text-sm font-medium hover:opacity-90"
             >
               <Bot className="w-4 h-4" />
               Iniciar Motor de IA
@@ -156,21 +166,21 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
 
         {messages.map((msg) => (
           <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-            <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-              msg.role === 'user' ? 'bg-slate-800 text-white' : 
-              msg.role === 'system' ? 'bg-red-100 text-red-600' : 'bg-indigo-100 text-indigo-600'
+            <div className={`flex-shrink-0 w-8 h-8 rounded flex items-center justify-center ${
+              msg.role === 'user' ? 'bg-muted text-foreground' : 
+              msg.role === 'system' ? 'bg-background border border-destructive text-destructive' : 'bg-card border border-border text-primary'
             }`}>
               {msg.role === 'user' ? <User className="w-4 h-4" /> : 
                msg.role === 'system' ? <AlertCircle className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
             </div>
-            <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
-              msg.role === 'user' ? 'bg-slate-800 text-white rounded-tr-none' : 
-              msg.role === 'system' ? 'bg-red-50 text-red-800 border border-red-200 rounded-tl-none' : 'bg-white border border-slate-200 text-slate-700 rounded-tl-none shadow-sm'
+            <div className={`max-w-[80%] rounded px-4 py-3 text-sm ${
+              msg.role === 'user' ? 'bg-primary text-primary-foreground' : 
+              msg.role === 'system' ? 'bg-background border border-destructive text-destructive' : 'bg-card border border-border text-foreground'
             }`}>
               {msg.role === 'user' ? (
                 <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
               ) : (
-                <div className="prose prose-sm prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-p:leading-relaxed prose-li:marker:text-indigo-500">
+                <div className="prose prose-sm prose-invert max-w-none">
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
                 </div>
               )}
@@ -180,13 +190,13 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
         
         {isTyping && (
           <div className="flex gap-3 flex-row">
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center">
-              <Bot className="w-4 h-4" />
+            <div className="flex-shrink-0 w-8 h-8 rounded bg-card border border-border flex items-center justify-center">
+              <Bot className="w-4 h-4 text-primary" />
             </div>
-            <div className="bg-white border border-slate-200 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm flex items-center gap-1">
-              <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            <div className="bg-card border border-border rounded px-4 py-3 flex items-center gap-1">
+              <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></div>
+              <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
             </div>
           </div>
         )}
@@ -194,20 +204,20 @@ export const ClinicalAssistant: React.FC<ClinicalAssistantProps> = ({ contextPro
       </div>
 
       {/* Input de Chat */}
-      <form onSubmit={handleSend} className="p-3 bg-white border-t border-slate-200">
+      <form onSubmit={handleSend} className="p-3 bg-card border-t border-border">
         <div className="relative flex items-center">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             disabled={!isAiReady || isTyping}
-            placeholder={isAiReady ? "Pregunta sobre interacciones, dosis..." : "Cargando modelo de IA..."}
-            className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            placeholder={isAiReady ? "Pregunta..." : "Cargando modelo..."}
+            className="w-full pl-4 pr-12 py-2 bg-background border border-border rounded text-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={!input.trim() || !isAiReady || isTyping}
-            className="absolute right-2 p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:hover:bg-indigo-600 transition-colors"
+            className="absolute right-2 p-1.5 bg-primary text-primary-foreground rounded hover:opacity-90 disabled:opacity-50"
           >
             <Send className="w-4 h-4" />
           </button>

@@ -86,9 +86,9 @@ export const PATHOLOGY_CATEGORIES = [
     id: "urologico",
     title: "Urológico y Salud Femenina",
     icon: "Droplets",
-    color: "text-indigo-400",
-    bgColor: "bg-indigo-500/10",
-    borderColor: "border-indigo-500/20",
+    color: "text-primary",
+    bgColor: "bg-primary",
+    borderColor: "border-primary/50",
     tags: [
       "Infección urinaria", "Menopausia", "Cistitis", "Cálculos renales", 
       "Disfunción eréctil", "Menstruación dolorosa", "Vaginitis", "Candidiasis", 

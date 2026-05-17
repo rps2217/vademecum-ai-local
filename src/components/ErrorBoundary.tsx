@@ -41,20 +41,20 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen bg-brand-bg flex items-center justify-center p-6">
-          <div className="bg-brand-surface border border-red-500/20 p-8 rounded-3xl max-w-md w-full text-center space-y-6 shadow-2xl">
+        <div className="min-h-screen bg-background flex items-center justify-center p-6">
+          <div className="bg-card border border-red-500/20 p-8 rounded-3xl max-w-md w-full text-center space-y-6 shadow-2xl">
             <div className="w-16 h-16 bg-red-500/10 text-red-500 rounded-full flex items-center justify-center mx-auto">
               <AlertTriangle className="w-8 h-8" />
             </div>
             <div className="space-y-2">
-              <h2 className="text-xl font-bold text-white">¡Ups! Algo salió mal</h2>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <h2 className="text-xl font-bold text-foreground">¡Ups! Algo salió mal</h2>
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {errorMessage}
               </p>
             </div>
             <button
               onClick={() => window.location.reload()}
-              className="w-full py-3 bg-brand-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-brand-primary/80 transition-colors"
+              className="w-full py-3 bg-primary text-foreground rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary transition-colors"
             >
               <RefreshCw className="w-4 h-4" />
               Recargar Aplicación

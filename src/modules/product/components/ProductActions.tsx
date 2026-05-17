@@ -41,7 +41,7 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
         className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all border shadow-sm ${
           product.is_verified 
             ? 'text-emerald-400 border-emerald-500/50 bg-emerald-500/10' 
-            : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-emerald-400'
+            : 'text-muted-foreground border-border bg-background hover:bg-slate-700 hover:text-emerald-400'
         }`}
       >
         <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -51,8 +51,8 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
         title={isComparing ? "Quitar de comparación" : "Añadir a comparación"}
         className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all border shadow-sm ${
           isComparing 
-            ? 'text-brand-primary border-brand-primary/50 bg-brand-primary/10' 
-            : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-white'
+            ? 'text-primary border-primary/50 bg-primary' 
+            : 'text-muted-foreground border-border bg-background hover:bg-slate-700 hover:text-foreground'
         }`}
       >
         <ArrowLeftRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -62,8 +62,8 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
         title="Editar registro manualmente"
         className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all border shadow-sm ${
           isEditing 
-            ? 'text-brand-primary border-brand-primary/50 bg-brand-primary/10' 
-            : 'text-slate-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-white'
+            ? 'text-primary border-primary/50 bg-primary' 
+            : 'text-muted-foreground border-border bg-background hover:bg-slate-700 hover:text-foreground'
         }`}
       >
         <Edit3 className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -74,10 +74,10 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
         title={isForcingSynergy ? "Analizando..." : "Forzar análisis de sinergia local"}
         className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
           isForcingSynergy 
-            ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 
+            ? 'text-primary border-brand-accent/30 bg-brand-accent/10' 
             : product.synergy_analyzed
               ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20'
-              : 'text-indigo-400 border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-indigo-300'
+              : 'text-primary border-border bg-background hover:bg-slate-700 hover:text-primary'
         }`}
       >
         {isForcingSynergy ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : <Cpu className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -88,8 +88,8 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
         title="Re-analizar y completar con IA (Nube)"
         className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all disabled:opacity-50 border shadow-sm ${
           isSuccess 
-            ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' 
-            : 'text-brand-primary border-slate-700 bg-brand-bg hover:bg-slate-700 hover:text-brand-primary/80'
+            ? 'text-primary border-brand-accent/30 bg-brand-accent/10' 
+            : 'text-primary border-border bg-background hover:bg-slate-700 hover:text-primary/80'
         }`}
       >
         {isReanalyzing ? <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /> : isSuccess ? <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" /> : <RefreshCw className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -97,7 +97,7 @@ export const ProductActions: React.FC<ProductActionsProps> = ({
       {!hideCloseMobile && (
         <button 
           onClick={onClose}
-          className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 md:hidden shadow-sm"
+          className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-card hover:bg-slate-700 text-muted-foreground transition-all border border-border md:hidden shadow-sm"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>

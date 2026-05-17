@@ -173,7 +173,7 @@ export const DatabaseModule: React.FC = () => {
       <input type="file" accept=".json" ref={fileInputRef} onChange={handleFileUpload} className="hidden" />
 
       {syncStatus && (
-        <div className="mb-6 p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-xl text-brand-primary text-sm font-bold flex items-center gap-3">
+        <div className="mb-6 p-4 bg-primary border border-primary/50 rounded-xl text-primary text-sm font-bold flex items-center gap-3">
           <Info className="w-5 h-5" /> {syncStatus}
         </div>
       )}
@@ -188,10 +188,10 @@ export const DatabaseModule: React.FC = () => {
         />
 
         <div className="flex-1 w-full space-y-4">
-          <div className="bg-brand-surface border border-slate-700 rounded-2xl shadow-xl overflow-hidden">
-            <div className="p-4 bg-slate-900/50 border-b border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="bg-card border border-border rounded-2xl shadow-xl overflow-hidden">
+            <div className="p-4 bg-card border-b border-border flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-bold ring-1 ring-brand-primary/20">
+                <span className="px-3 py-1 bg-primary text-primary rounded-full text-xs font-bold ring-1 ring-brand-primary/20">
                   {products.length} Local
                 </span>
                 {cloudCount !== null && (
@@ -208,32 +208,32 @@ export const DatabaseModule: React.FC = () => {
                 {(selectedCategory || selectedPrinciple) && (
                   <button 
                     onClick={() => { setSelectedCategory(null); setSelectedPrinciple(null); }}
-                    className="flex items-center gap-1.5 px-2 py-0.5 bg-slate-800 text-[10px] text-slate-300 rounded hover:bg-slate-700"
+                    className="flex items-center gap-1.5 px-2 py-0.5 bg-card text-[10px] text-muted-foreground rounded hover:bg-slate-700"
                   >
                     <X className="w-3 h-3" /> Limpiar filtros
                   </button>
                 )}
               </div>
               <div className="relative w-full md:w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input 
                   type="text" placeholder="Búsqueda rápida (tolerancia a errores)..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-brand-bg border border-slate-700 rounded-xl text-sm text-white focus:border-brand-primary outline-none"
+                  className="w-full pl-10 pr-4 py-2 bg-background border border-border rounded-xl text-sm text-foreground focus:border-primary/50 outline-none"
                 />
               </div>
             </div>
 
-            <div className="p-4 bg-slate-900/30 border-b border-slate-800 flex gap-4">
+            <div className="p-4 bg-card border-b border-border flex gap-4">
               <button 
                 onClick={() => setActiveTab('products')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'products' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'products' ? 'bg-primary text-foreground shadow-lg shadow-brand-primary/20' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
               >
                 <LayoutGrid className="w-4 h-4" />
                 Productos
               </button>
               <button 
                 onClick={() => setActiveTab('principles')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'principles' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'principles' ? 'bg-primary text-foreground shadow-lg shadow-brand-primary/20' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
               >
                 <Beaker className="w-4 h-4" />
                 Principios Activos
@@ -247,7 +247,7 @@ export const DatabaseModule: React.FC = () => {
               </>
             ) : (
                 <ActivePrinciplesTable 
-                  principles={facets.principlesWithCounts} 
+                  principles={facets.principlesWithCounts?.map(p => ({ name: p.principle, count: p.count })) || []} 
                   isLoading={isLoading} 
                   onSelect={(name) => {
                     setSelectedPrinciple(name);

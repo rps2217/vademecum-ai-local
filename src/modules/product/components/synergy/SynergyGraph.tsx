@@ -138,10 +138,10 @@ export const SynergyGraph: React.FC<SynergyGraphProps> = ({ centerProduct, relat
   }, [centerProduct, relatedProducts, onProductClick]);
 
   return (
-    <div className="w-full h-[400px] bg-slate-900/20 rounded-[2rem] border border-slate-800/50 overflow-hidden relative">
+    <div className="w-full h-[400px] bg-card rounded-[2rem] border border-border overflow-hidden relative">
       <div className="absolute top-4 left-4 flex items-center gap-2">
-        <div className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Mapa de Relaciones Clínicas</span>
+        <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Mapa de Relaciones Clínicas</span>
       </div>
       <svg ref={svgRef} className="w-full h-full" />
     </div>

@@ -28,12 +28,13 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
 export const SearchModule: React.FC = () => {
+  const [useSemantic, setUseSemantic] = useState(false);
   const { 
     query, 
     setQuery, 
     isSearching,
     results,
-  } = useProductSearch();
+  } = useProductSearch(useSemantic);
   
   const { isSearching: globalIsSearching, setIsSearching } = useSearch();
   const { viewedProductSku, setViewedProduct, products } = useStore();
@@ -248,6 +249,15 @@ export const SearchModule: React.FC = () => {
                 </div>
                 
                 <div className="flex items-center gap-2">
+                  <Button
+                    variant={useSemantic ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setUseSemantic(!useSemantic)}
+                    className="text-xs"
+                  >
+                    <Sparkles className="w-3 h-3 mr-2" />
+                    {useSemantic ? 'Búsqueda IA' : 'Búsqueda Texto'}
+                  </Button>
                   <div className="flex border rounded-lg p-1 bg-muted/30">
                     <Button 
                       variant={viewMode === 'grid' ? 'secondary' : 'ghost'} 

@@ -142,12 +142,12 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
       {/* Section Header */}
       <div className="flex items-center gap-4 px-2">
         <div className="flex items-center gap-2">
-           <Activity className="w-4 h-4 text-brand-primary" />
-           <span className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500">
+           <Activity className="w-4 h-4 text-primary" />
+           <span className="text-[10px] uppercase tracking-[0.3em] font-black text-muted-foreground">
              Acceso Directo
            </span>
         </div>
-        <div className="h-px flex-1 bg-slate-800/50" />
+        <div className="h-px flex-1 bg-card" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-10">
@@ -169,12 +169,12 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
                   <button
                     key={tag.label}
                     onClick={() => onSelect(tag.query)}
-                    className={`rounded-2xl bg-slate-900 border border-slate-800 transition-all flex items-center gap-3 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 hover:border-slate-700 ${
+                    className={`rounded-2xl bg-card border border-border transition-all flex items-center gap-3 active:scale-95 hover:shadow-xl hover:-translate-y-0.5 hover:border-border ${
                       sizeTier === 'large' 
-                        ? 'px-6 py-4 text-sm font-black text-white bg-slate-800/80' 
+                        ? 'px-6 py-4 text-sm font-black text-foreground bg-card' 
                         : sizeTier === 'medium'
-                        ? 'px-5 py-3 text-[13px] font-bold text-slate-200'
-                        : 'px-4 py-2 text-xs font-bold text-slate-400'
+                        ? 'px-5 py-3 text-[13px] font-bold text-foreground'
+                        : 'px-4 py-2 text-xs font-bold text-muted-foreground'
                     }`}
                   >
                     <div className={`rounded-full ${dotColorMap[category.color]} ${
@@ -193,10 +193,10 @@ export const QuickDiscoveryTags: React.FC<QuickDiscoveryTagsProps> = ({ onSelect
 
       {/* Footer / Shortcut Hint */}
       <div className="flex justify-center pt-8">
-        <div className="px-6 py-2 rounded-full bg-slate-900 border border-slate-800 flex items-center gap-3">
-          <Microscope className="w-3.5 h-3.5 text-slate-500" />
-          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none">
-            Utiliza <span className="text-white px-1.5 py-0.5 bg-slate-800 rounded mx-1">CMD+K</span> para búsqueda rápida
+        <div className="px-6 py-2 rounded-full bg-card border border-border flex items-center gap-3">
+          <Microscope className="w-3.5 h-3.5 text-muted-foreground" />
+          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest leading-none">
+            Utiliza <span className="text-foreground px-1.5 py-0.5 bg-card rounded mx-1">CMD+K</span> para búsqueda rápida
           </span>
         </div>
       </div>

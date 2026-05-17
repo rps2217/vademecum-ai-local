@@ -47,13 +47,13 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="p-6 rounded-2xl bg-rose-500/5 border border-rose-500/20 flex flex-col items-center text-center">
           <AlertTriangle className="w-8 h-8 text-rose-500 mb-3" />
-          <h3 className="text-white font-bold mb-2">Error de Renderizado</h3>
-          <p className="text-slate-400 text-sm mb-4 max-w-xs">
+          <h3 className="text-foreground font-bold mb-2">Error de Renderizado</h3>
+          <p className="text-muted-foreground text-sm mb-4 max-w-xs">
             Hubo un problema al cargar esta sección. El error ha sido registrado.
           </p>
           <button 
             onClick={handleRestart}
-            className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-card hover:bg-slate-700 text-muted-foreground rounded-xl text-xs font-bold transition-colors"
           >
             <RefreshCcw className="w-3.5 h-3.5" /> Reintentar
           </button>

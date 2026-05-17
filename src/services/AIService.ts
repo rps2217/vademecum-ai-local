@@ -6,6 +6,7 @@ import { aiOrchestratorService } from './AIOrchestratorService';
 import { logger } from './LoggerService';
 import { taskQueueService } from './TaskQueueService';
 import { medicalRAGService } from './MedicalRAGService';
+import { thermalGuardService } from './ThermalGuardService';
 
 class CloudCircuitBreaker {
   private failures = 0;
@@ -169,6 +170,11 @@ export class AIService {
   private async runInWorker<T = unknown>(type: string, payload: Record<string, unknown>, timeoutMs: number = 180000): Promise<T> {
     if (!this.worker || !this.isReady) {
       throw new Error('Motor IA no está listo');
+    }
+
+    if (thermalGuardService.shouldPauseHeavyTask()) {
+      logger.info(`Carga térmica alta. Esperando antes de ejecutar tarea: ${type}`, 'AIService');
+      await new Promise(r => setTimeout(r, 2000));
     }
 
     this.isBusy = true;

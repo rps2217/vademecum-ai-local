@@ -73,18 +73,18 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           {isSearching ? (
-            <Loader2 className="h-5 w-5 text-brand-primary animate-spin" />
+            <Loader2 className="h-5 w-5 text-primary animate-spin" />
           ) : isInterpreting ? (
-            <Sparkles className="h-5 w-5 text-brand-primary animate-pulse" />
+            <Sparkles className="h-5 w-5 text-primary animate-pulse" />
           ) : (
-            <Search className="h-5 w-5 text-brand-primary/70 group-focus-within:text-brand-primary transition-colors" />
+            <Search className="h-5 w-5 text-primary/70 group-focus-within:text-primary transition-colors" />
           )}
         </div>
         <input
           ref={ref}
           type="text"
           autoComplete="off"
-          className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-slate-900 border border-white/10 rounded-2xl text-base sm:text-lg text-white shadow-2xl focus:ring-2 focus:ring-brand-primary/50 focus:border-brand-primary/50 transition-all placeholder:text-slate-500"
+          className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-card border border-border/50 rounded-2xl text-base sm:text-lg text-foreground shadow-2xl focus:ring-2 focus:ring-brand-primary/50 focus:border-primary/50 transition-all placeholder:text-muted-foreground"
           placeholder="Buscar o preguntar a la IA..."
           value={query}
           onChange={(e) => {
@@ -105,7 +105,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           {supported && (
             <button
               onClick={startListening}
-              className={`p-2 rounded-xl transition-all ${isListening ? 'bg-rose-500/20 text-rose-500 animate-pulse' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+              className={`p-2 rounded-xl transition-all ${isListening ? 'bg-rose-500/20 text-rose-500 animate-pulse' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
               title="Dictar búsqueda"
             >
               {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
@@ -121,7 +121,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
                     ref.current.focus();
                 }
               }}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 border border-slate-700 shadow-sm"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-muted-foreground hover:text-foreground bg-card hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 border border-border shadow-sm"
             >
               <span className="hidden sm:inline">Limpiar</span> <X className="w-3.5 h-3.5" />
             </button>
@@ -130,7 +130,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           {isQuestion && query.length > 5 && (
             <button
               onClick={onAiQuery}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-white bg-brand-primary hover:bg-orange-500 rounded-xl transition-all flex items-center gap-1.5 border border-brand-primary shadow-lg shadow-brand-primary/20 animate-in zoom-in duration-300"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-foreground bg-primary hover:bg-orange-500 rounded-xl transition-all flex items-center gap-1.5 border border-primary/50 shadow-lg shadow-brand-primary/20 animate-in zoom-in duration-300"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Consultar IA</span>
@@ -139,7 +139,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           )}
 
           {!isQuestion && (
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-xl text-xs font-medium border border-brand-primary/20">
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary rounded-xl text-xs font-medium border border-primary/50">
               <Sparkles className="w-3 h-3" />
               Semántica
             </div>

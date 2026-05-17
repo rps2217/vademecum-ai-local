@@ -9,6 +9,13 @@ export class CloudSyncService {
   private static instance: CloudSyncService;
   private sync_active = true;
 
+  // 1. Detección de perfil de red adaptativo
+  private getNetworkProfile() {
+    const conn = (navigator as any).connection;
+    if (!conn) return 'standard';
+    return conn.saveData ? 'low-bandwidth' : (conn.effectiveType === '4g' ? 'high-bandwidth' : 'standard');
+  }
+
   private constructor() {}
 
   static getInstance(): CloudSyncService {
@@ -19,7 +26,7 @@ export class CloudSyncService {
   }
 
   init() {
-    console.log('[CloudSync] Motor de sincronización inteligente listo (modo TaskQueue).');
+    logger.info('Motor de sincronización inteligente listo (modo TaskQueue).', 'CloudSync');
   }
 
   async handleProductSync(product: Product) {
@@ -33,11 +40,16 @@ export class CloudSyncService {
     const config = configService.getConfig();
     if (!config.autoSyncCloud) return 0;
 
+    const profile = this.getNetworkProfile();
+    if (profile === 'low-bandwidth' && products.length > 5) {
+       logger.warn(`Network low-bandwidth: Fragmentando lote de ${products.length} a 5 elementos.`, 'CloudSync');
+       return await this.updateProductsBatch(products.slice(0, 5));
+    }
+    
     if (!navigator.onLine) {
       throw new Error('Offline');
     }
 
-    console.log(`[CloudSync] Procesando lote de ${products.length} productos.`);
     logger.info(`Iniciando sincronización de lote (${products.length} productos)`, 'CloudSync');
     
     try {

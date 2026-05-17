@@ -17,7 +17,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
       case SafetyStatus.SI: return <CheckCircle2 className="w-4 h-4 text-emerald-400" />;
       case SafetyStatus.NO: return <X className="w-4 h-4 text-rose-400" />;
       case SafetyStatus.PRECAUCION: return <AlertCircle className="w-4 h-4 text-amber-400" />;
-      default: return <Info className="w-4 h-4 text-slate-500" />;
+      default: return <Info className="w-4 h-4 text-muted-foreground" />;
     }
   };
 
@@ -26,7 +26,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
       case SafetyStatus.SI: return 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400';
       case SafetyStatus.NO: return 'bg-rose-500/10 border-rose-500/20 text-rose-400';
       case SafetyStatus.PRECAUCION: return 'bg-amber-500/10 border-amber-500/20 text-amber-400';
-      default: return 'bg-slate-800 border-slate-700 text-slate-500';
+      default: return 'bg-card border-border text-muted-foreground';
     }
   };
 
@@ -44,34 +44,34 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
   };
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-brand-bg/90 backdrop-blur-xl animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-background backdrop-blur-xl animate-in fade-in duration-300">
       <motion.div 
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="w-full max-w-7xl bg-brand-surface border border-slate-800 rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh] print:max-h-none print:shadow-none print:border-none print:rounded-none"
+        className="w-full max-w-7xl bg-card border border-border rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh] print:max-h-none print:shadow-none print:border-none print:rounded-none"
       >
         {/* Header */}
-        <div className="p-6 md:p-8 border-b border-slate-800 flex items-center justify-between bg-brand-surface/50 print:bg-white print:border-slate-200">
+        <div className="p-6 md:p-8 border-b border-border flex items-center justify-between bg-card print:bg-card print:border-border">
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-brand-primary/10 rounded-2xl print:hidden">
-              <ArrowLeftRight className="w-6 h-6 text-brand-primary" />
+            <div className="p-3 bg-primary rounded-2xl print:hidden">
+              <ArrowLeftRight className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white print:text-slate-900">Análisis Comparativo Clínico</h2>
-              <p className="text-sm text-slate-500 print:text-slate-600">Evaluación diferencial de perfiles de seguridad y componentes.</p>
+              <h2 className="text-2xl font-bold text-foreground print:text-foreground">Análisis Comparativo Clínico</h2>
+              <p className="text-sm text-muted-foreground print:text-muted-foreground">Evaluación diferencial de perfiles de seguridad y componentes.</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-brand-primary hover:bg-brand-primary/80 text-white text-xs font-bold transition-all shadow-lg shadow-brand-primary/20 print:hidden"
+              className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary hover:bg-primary text-foreground text-xs font-bold transition-all shadow-lg shadow-brand-primary/20 print:hidden"
             >
               <Printer className="w-4 h-4" />
               <span>Imprimir Reporte</span>
             </button>
             <button 
               onClick={onClose}
-              className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition-all border border-slate-700 print:hidden"
+              className="p-3 rounded-2xl bg-card hover:bg-slate-700 text-muted-foreground transition-all border border-border print:hidden"
             >
               <X className="w-6 h-6" />
             </button>
@@ -86,7 +86,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
             'grid-cols-3'
           }`}>
             {products.map((product) => (
-              <div key={product.sku} className="flex flex-col gap-6 p-6 rounded-[2rem] bg-brand-bg/50 border border-slate-800 relative group print:bg-white print:border-slate-200 print:rounded-none print:p-4 print:break-inside-avoid">
+              <div key={product.sku} className="flex flex-col gap-6 p-6 rounded-[2rem] bg-background border border-border relative group print:bg-card print:border-border print:rounded-none print:p-4 print:break-inside-avoid">
                 <button 
                   onClick={() => onRemove(product.sku)}
                   className="absolute top-4 right-4 p-2 rounded-xl bg-rose-500/10 text-rose-400 opacity-0 group-hover:opacity-100 transition-all hover:bg-rose-500/20 print:hidden"
@@ -96,21 +96,21 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
 
                 {/* Info Básica */}
                 <div className="space-y-2">
-                  <span className="px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-[10px] font-bold uppercase tracking-widest border border-brand-primary/20 print:text-brand-primary print:border-brand-primary/30">
+                  <span className="px-3 py-1 rounded-full bg-primary text-primary text-[10px] font-bold uppercase tracking-widest border border-primary/50 print:text-primary print:border-primary/50">
                     {product.categoria_principal}
                   </span>
-                  <h3 className="text-xl font-bold text-white leading-tight print:text-slate-900">{product.nombre_comercial}</h3>
-                  <p className="text-xs text-slate-500 font-mono print:text-slate-400">{product.sku}</p>
+                  <h3 className="text-xl font-bold text-foreground leading-tight print:text-foreground">{product.nombre_comercial}</h3>
+                  <p className="text-xs text-muted-foreground font-mono print:text-muted-foreground">{product.sku}</p>
                 </div>
 
                 {/* Perfil de Seguridad */}
                 <div className="space-y-3">
-                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2 print:text-slate-700">
+                  <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2 print:text-slate-700">
                     <ShieldCheck className="w-3 h-3" /> Perfil de Seguridad
                   </h4>
                   <div className="grid grid-cols-2 gap-2 print:grid-cols-3">
                     {safetyLabels.map(({ key, label }) => (
-                      <div key={key} className={`flex items-center justify-between px-3 py-2 rounded-xl border text-[10px] font-bold print:border-slate-100 ${getSafetyBg(product[key])} print:bg-slate-50 print:text-slate-800`}>
+                      <div key={key} className={`flex items-center justify-between px-3 py-2 rounded-xl border text-[10px] font-bold print:border-border ${getSafetyBg(product[key])} print:bg-background print:text-foreground`}>
                         <span>{label}</span>
                         {getSafetyIcon(product[key])}
                       </div>
@@ -120,13 +120,13 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
 
                 {/* Principios Activos */}
                 <div className="space-y-3">
-                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest print:text-slate-700">Componentes Activos</h4>
+                  <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest print:text-slate-700">Componentes Activos</h4>
                   <div className="flex flex-wrap gap-1.5">
                     {product.principios_activos.map((pa, i) => {
                       const annotation = product.anotaciones_componentes?.[pa];
                       return (
                         <div key={i} className="relative group/tag">
-                          <span className="px-2 py-1 rounded-lg bg-slate-800/50 border border-slate-700 text-[10px] text-slate-300 block print:bg-white print:border-slate-300 print:text-slate-900">
+                          <span className="px-2 py-1 rounded-lg bg-card border border-border text-[10px] text-muted-foreground block print:bg-card print:border-border print:text-foreground">
                             {pa}
                           </span>
                         </div>
@@ -137,11 +137,11 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
 
                 {/* Indicaciones */}
                 <div className="space-y-3">
-                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest print:text-slate-700">Indicaciones Principales</h4>
+                  <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest print:text-slate-700">Indicaciones Principales</h4>
                   <div className="space-y-1.5">
                     {product.indicaciones.slice(0, 4).map((ind, i) => (
-                      <div key={i} className="flex items-start gap-2 text-[11px] text-slate-400 print:text-slate-700">
-                        <div className="w-1 h-1 rounded-full bg-brand-primary mt-1.5 shrink-0" />
+                      <div key={i} className="flex items-start gap-2 text-[11px] text-muted-foreground print:text-slate-700">
+                        <div className="w-1 h-1 rounded-full bg-primary mt-1.5 shrink-0" />
                         <span>{ind}</span>
                       </div>
                     ))}
@@ -150,12 +150,12 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
 
                 {/* Sinergia IA */}
                 {product.synergy_analyzed && (
-                  <div className="mt-auto pt-6 border-t border-slate-800 print:border-slate-200">
-                    <div className="p-4 rounded-2xl bg-brand-primary/5 border border-brand-primary/10 print:bg-brand-primary/5 print:border-brand-primary/20">
-                      <h4 className="text-[10px] font-bold text-brand-primary uppercase tracking-widest mb-2 flex items-center gap-2 print:text-brand-primary">
+                  <div className="mt-auto pt-6 border-t border-border print:border-border">
+                    <div className="p-4 rounded-2xl bg-primary border border-primary/50 print:bg-primary print:border-primary/50">
+                      <h4 className="text-[10px] font-bold text-primary uppercase tracking-widest mb-2 flex items-center gap-2 print:text-primary">
                         <Sparkles className="w-3 h-3" /> Sugerencia IA
                       </h4>
-                      <p className="text-[10px] text-slate-400 leading-relaxed italic print:text-slate-700">
+                      <p className="text-[10px] text-muted-foreground leading-relaxed italic print:text-slate-700">
                         "{product.sugerencia_complementaria}"
                       </p>
                     </div>
@@ -167,8 +167,8 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-slate-800 bg-brand-surface/50 flex justify-center print:bg-white print:border-slate-100">
-          <p className="text-[10px] text-slate-500 font-medium uppercase tracking-[0.2em] print:text-slate-400">
+        <div className="p-6 border-t border-border bg-card flex justify-center print:bg-card print:border-border">
+          <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-[0.2em] print:text-muted-foreground">
             Evaluación comparativa generada para uso profesional clínico • {new Date().toLocaleDateString()}
           </p>
         </div>

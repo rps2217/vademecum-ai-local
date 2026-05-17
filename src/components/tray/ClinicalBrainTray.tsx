@@ -54,29 +54,29 @@ export const ClinicalBrainTray: React.FC = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0 }}
-          className="bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-[2rem] shadow-2xl overflow-hidden"
+          className="bg-card backdrop-blur-xl border border-border rounded-[2rem] shadow-2xl overflow-hidden"
         >
           {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-rose-500/10 to-brand-primary/10 border-b border-slate-800 flex items-center justify-between">
+          <div className="p-4 bg-gradient-to-r from-rose-500/10 to-brand-primary/10 border-b border-border flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="p-1.5 bg-rose-500/20 rounded-lg">
                 <Brain className="w-4 h-4 text-rose-400" />
               </div>
-              <span className="text-xs font-bold text-white uppercase tracking-widest">Cerebro Clínico</span>
-              <span className="px-2 py-0.5 bg-slate-800 rounded-full text-[10px] font-bold text-slate-400">
+              <span className="text-xs font-bold text-foreground uppercase tracking-widest">Cerebro Clínico</span>
+              <span className="px-2 py-0.5 bg-card rounded-full text-[10px] font-bold text-muted-foreground">
                 {selectedProducts.length}/5
               </span>
             </div>
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="p-1.5 hover:bg-slate-800 rounded-lg text-slate-400 transition-colors"
+                className="p-1.5 hover:bg-card rounded-lg text-muted-foreground transition-colors"
               >
                 {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
               </button>
               <button 
                 onClick={clearConsultation}
-                className="p-1.5 hover:bg-rose-500/20 rounded-lg text-slate-400 hover:text-rose-400 transition-colors"
+                className="p-1.5 hover:bg-rose-500/20 rounded-lg text-muted-foreground hover:text-rose-400 transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -86,14 +86,14 @@ export const ClinicalBrainTray: React.FC = () => {
           {/* Selected Products List */}
           <div className="p-4 space-y-2 max-h-48 overflow-y-auto no-scrollbar">
             {selectedProducts.map(product => (
-              <div key={product.sku} className="flex items-center justify-between p-2 bg-slate-800/50 rounded-xl border border-slate-700/50 group">
+              <div key={product.sku} className="flex items-center justify-between p-2 bg-card rounded-xl border border-border group">
                 <div className="flex flex-col">
-                  <span className="text-[10px] font-bold text-white truncate max-w-[180px]">{product.nombre_comercial}</span>
-                  <span className="text-[8px] text-slate-500 uppercase tracking-tighter">{product.sku}</span>
+                  <span className="text-[10px] font-bold text-foreground truncate max-w-[180px]">{product.nombre_comercial}</span>
+                  <span className="text-[8px] text-muted-foreground uppercase tracking-tighter">{product.sku}</span>
                 </div>
                 <button 
                   onClick={() => removeFromConsultation(product.sku)}
-                  className="p-1 opacity-0 group-hover:opacity-100 text-slate-500 hover:text-rose-400 transition-all"
+                  className="p-1 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-rose-400 transition-all"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -108,13 +108,13 @@ export const ClinicalBrainTray: React.FC = () => {
                 initial={{ height: 0 }}
                 animate={{ height: 'auto' }}
                 exit={{ height: 0 }}
-                className="border-t border-slate-800 bg-slate-950/50"
+                className="border-t border-border bg-slate-950/50"
               >
                 <div className="p-4 space-y-4">
                   {isAnalyzing ? (
                     <div className="py-8 flex flex-col items-center justify-center gap-3">
                       <Loader2 className="w-8 h-8 text-rose-400 animate-spin" />
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest animate-pulse">Consultando base de datos clínica...</p>
+                      <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest animate-pulse">Consultando base de datos clínica...</p>
                     </div>
                   ) : analysis ? (
                     <div className="space-y-4 animate-in fade-in duration-500">
@@ -135,11 +135,11 @@ export const ClinicalBrainTray: React.FC = () => {
                       {/* Interactions List */}
                       <div className="space-y-3">
                         {analysis.interacciones.map((int: any, i: number) => (
-                          <div key={i} className="p-3 bg-slate-800/30 rounded-2xl border border-slate-800 space-y-2">
+                          <div key={i} className="p-3 bg-card rounded-2xl border border-border space-y-2">
                             <div className="flex items-center justify-between">
                               <div className="flex gap-1">
                                 {int.productos.map((p: string, j: number) => (
-                                  <span key={j} className="text-[8px] font-bold bg-slate-700 px-1.5 py-0.5 rounded text-slate-300">{p}</span>
+                                  <span key={j} className="text-[8px] font-bold bg-slate-700 px-1.5 py-0.5 rounded text-muted-foreground">{p}</span>
                                 ))}
                               </div>
                               <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded ${
@@ -148,21 +148,21 @@ export const ClinicalBrainTray: React.FC = () => {
                                 'bg-blue-500/20 text-blue-400'
                               }`}>{int.gravedad}</span>
                             </div>
-                            <p className="text-[10px] text-slate-300 leading-relaxed">{int.descripcion}</p>
-                            <div className="flex gap-2 p-2 bg-slate-900/50 rounded-xl border border-slate-800/50">
-                              <Info className="w-3 h-3 text-brand-primary shrink-0" />
-                              <p className="text-[9px] text-slate-400 italic">{int.recomendacion}</p>
+                            <p className="text-[10px] text-muted-foreground leading-relaxed">{int.descripcion}</p>
+                            <div className="flex gap-2 p-2 bg-card rounded-xl border border-border">
+                              <Info className="w-3 h-3 text-primary shrink-0" />
+                              <p className="text-[9px] text-muted-foreground italic">{int.recomendacion}</p>
                             </div>
                           </div>
                         ))}
                       </div>
 
                       {/* Summary */}
-                      <div className="p-3 bg-brand-primary/5 rounded-2xl border border-brand-primary/10">
-                        <p className="text-[10px] font-bold text-brand-primary mb-1 flex items-center gap-1">
+                      <div className="p-3 bg-primary rounded-2xl border border-primary/50">
+                        <p className="text-[10px] font-bold text-primary mb-1 flex items-center gap-1">
                           <Sparkles className="w-3 h-3" /> Resumen Clínico
                         </p>
-                        <p className="text-[10px] text-slate-400 leading-relaxed">{analysis.resumen_clinico}</p>
+                        <p className="text-[10px] text-muted-foreground leading-relaxed">{analysis.resumen_clinico}</p>
                       </div>
                     </div>
                   ) : error ? (
@@ -171,22 +171,22 @@ export const ClinicalBrainTray: React.FC = () => {
                       <p className="text-xs text-rose-400 font-medium">{error}</p>
                       <button 
                         onClick={handleAnalyze}
-                        className="text-[10px] font-bold text-brand-primary uppercase underline"
+                        className="text-[10px] font-bold text-primary uppercase underline"
                       >
                         Reintentar
                       </button>
                     </div>
                   ) : (
                     <div className="py-4 text-center space-y-4">
-                      <div className="p-3 bg-slate-800/50 rounded-2xl border border-slate-800">
-                        <p className="text-[10px] text-slate-400 leading-relaxed">
+                      <div className="p-3 bg-card rounded-2xl border border-border">
+                        <p className="text-[10px] text-muted-foreground leading-relaxed">
                           Selecciona hasta 5 productos para analizar posibles interacciones medicamentosas.
                         </p>
                       </div>
                       <button 
                         onClick={handleAnalyze}
                         disabled={selectedProducts.length < 2}
-                        className="w-full py-3 bg-rose-500 text-white rounded-2xl font-bold text-xs shadow-lg shadow-rose-500/20 hover:bg-rose-600 transition-all disabled:opacity-30 disabled:grayscale flex items-center justify-center gap-2"
+                        className="w-full py-3 bg-rose-500 text-foreground rounded-2xl font-bold text-xs shadow-lg shadow-rose-500/20 hover:bg-rose-600 transition-all disabled:opacity-30 disabled:grayscale flex items-center justify-center gap-2"
                       >
                         <Brain className="w-4 h-4" />
                         Analizar Interacciones

@@ -1,12 +1,15 @@
 import { supabaseService } from './SupabaseService';
 import { aiService } from './AIService';
 import { logger } from './LoggerService';
+import { semanticSearchService } from './SemanticSearchService';
+import { thermalGuardService } from './ThermalGuardService';
 
 export interface ClinicalInsight {
     principle: string;
     mechanism: string;
     interactions: string;
     similarity: number;
+    source: 'local' | 'cloud';
 }
 
 export class MedicalRAGService {
@@ -21,59 +24,70 @@ export class MedicalRAGService {
         return MedicalRAGService.instance;
     }
 
-    /**
-     * Recupera información clínica relevante desde Supabase pgvector
-     * basándose en los principios activos proporcionados.
-     */
     async retrieveClinicalContext(principles: string[]): Promise<ClinicalInsight[]> {
         if (!principles || principles.length === 0) return [];
+        
+        if (thermalGuardService.shouldPauseHeavyTask()) {
+            logger.info('Carga alta, limitando RAG a solo búsqueda local rápida', 'RAG');
+            return this.queryLocalOnly(principles);
+        }
+
+        return this.queryHybrid(principles);
+    }
+
+    private async queryLocalOnly(principles: string[]): Promise<ClinicalInsight[]> {
+        const insights: ClinicalInsight[] = [];
+        for (const p of principles) {
+            const results = await semanticSearchService.semanticSearch(p, 2);
+            results.forEach(r => {
+                insights.push({
+                    principle: p,
+                    mechanism: r.product.sugerencia_complementaria || 'Sin información local',
+                    interactions: r.product.skus_relacionados ? 'Ver conexiones locales' : 'Sin interacciones',
+                    similarity: r.score,
+                    source: 'local'
+                });
+            });
+        }
+        return insights;
+    }
+
+    private async queryHybrid(principles: string[]): Promise<ClinicalInsight[]> {
+        const local = await this.queryLocalOnly(principles);
+        const cloud: ClinicalInsight[] = [];
 
         const supabase = supabaseService.getClient();
-        const insights: ClinicalInsight[] = [];
 
         for (const principle of principles) {
             try {
-                // 1. Generar embedding para el principio activo
-                // (Usamos el motor local de AIService para mantener consistencia)
                 const embedding = await aiService.generateEmbedding(principle);
-                
-                // Verificar si el embedding es válido (no todo ceros)
-                if (embedding.every(v => v === 0)) {
-                    logger.warn(`No se pudo generar embedding para RAG: ${principle}`, 'RAG');
-                    continue;
-                }
+                if (embedding.every(v => v === 0)) continue;
 
-                // 2. Llamada RPC a Supabase para búsqueda por similitud
-                // Esta función 'match_clinical_knowledge' debe estar definida en la DB
                 const { data, error } = await supabase.rpc('match_clinical_knowledge', {
                     query_embedding: embedding,
                     match_threshold: 0.75,
-                    match_count: 3,
+                    match_count: 2,
                 });
 
-                if (error) {
-                    logger.error(`Error en búsqueda vectorial para ${principle}`, 'RAG', error);
-                    continue;
-                }
-
-                if (data && data.length > 0) {
+                if (!error && data) {
                     data.forEach((match: any) => {
-                        insights.push({
+                        cloud.push({
                             principle: match.principle_name || principle,
                             mechanism: match.mechanism_of_action,
                             interactions: match.interaction_notes,
-                            similarity: match.similarity
+                            similarity: match.similarity,
+                            source: 'cloud'
                         });
                     });
                 }
             } catch (err) {
-                logger.error(`Fallo crítico en RAG para ${principle}`, 'RAG', err);
+                logger.error(`Error RAG Cloud para ${principle}`, 'RAG', err);
             }
         }
 
-        // Eliminar duplicados cercanos si los hay y devolver
-        return insights;
+        return [...local, ...cloud].sort((a, b) => b.similarity - a.similarity);
     }
+
 
     /**
      * Contribuye a la base de conocimientos clínicos en Supabase.
@@ -108,7 +122,7 @@ export class MedicalRAGService {
         if (insights.length === 0) return "No se encontró información específica en la base de conocimientos clínicos.";
 
         return insights.map(i => 
-            `INSIGHT CLÍNICO (${i.principle}):\n` +
+            `INSIGHT CLÍNICO (${i.principle} - Fuente: ${i.source.toUpperCase()}):\n` +
             `- Mecanismo: ${i.mechanism}\n` +
             `- Interacciones conocidas: ${i.interactions}`
         ).join('\n\n');

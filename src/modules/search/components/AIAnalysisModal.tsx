@@ -38,34 +38,34 @@ export const AIAnalysisModal: React.FC<AIAnalysisModalProps> = ({ query, results
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
       
-      <div className="relative w-full max-w-2xl bg-slate-900 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden animate-in zoom-in duration-300">
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+      <div className="relative w-full max-w-2xl bg-card rounded-3xl border border-border shadow-2xl overflow-hidden animate-in zoom-in duration-300">
+        <div className="p-6 border-b border-border flex items-center justify-between bg-card">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-indigo-500/10 rounded-lg">
-              <Sparkles className="w-5 h-5 text-indigo-400" />
+            <div className="p-2 bg-primary rounded-lg">
+              <Sparkles className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white">Análisis Clínico IA</h3>
-              <p className="text-xs text-slate-500">Procesando consulta semántica...</p>
+              <h3 className="text-lg font-bold text-foreground">Análisis Clínico IA</h3>
+              <p className="text-xs text-muted-foreground">Procesando consulta semántica...</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-slate-800 rounded-xl transition-colors text-slate-400">
+          <button onClick={onClose} className="p-2 hover:bg-card rounded-xl transition-colors text-muted-foreground">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="p-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
-          <div className="mb-6 p-4 bg-slate-950/50 rounded-2xl border border-slate-800">
-            <div className="flex items-center gap-2 mb-2 text-slate-500">
+          <div className="mb-6 p-4 bg-slate-950/50 rounded-2xl border border-border">
+            <div className="flex items-center gap-2 mb-2 text-muted-foreground">
               <MessageSquare className="w-4 h-4" />
               <span className="text-xs font-bold uppercase tracking-wider">Tu Consulta</span>
             </div>
-            <p className="text-slate-200 font-medium">{query}</p>
+            <p className="text-foreground font-medium">{query}</p>
           </div>
 
           {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-12 text-slate-500">
-              <Loader2 className="w-10 h-10 animate-spin text-indigo-500 mb-4" />
+            <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+              <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
               <p className="text-sm animate-pulse">Consultando base de conocimientos local...</p>
             </div>
           ) : error ? (
@@ -80,15 +80,15 @@ export const AIAnalysisModal: React.FC<AIAnalysisModalProps> = ({ query, results
           )}
         </div>
 
-        <div className="p-4 bg-slate-900/50 border-t border-slate-800 flex items-center justify-between">
-          <p className="text-[10px] text-slate-500">
+        <div className="p-4 bg-card border-t border-border flex items-center justify-between">
+          <p className="text-[10px] text-muted-foreground">
             {results.length > 0 
               ? `Análisis basado en ${Math.min(results.length, 5)} resultados encontrados.` 
               : 'Análisis general basado en base de datos local.'}
           </p>
           <button 
             onClick={onClose}
-            className="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl text-sm font-bold transition-all"
+            className="px-6 py-2 bg-card hover:bg-slate-700 text-foreground rounded-xl text-sm font-bold transition-all"
           >
             Cerrar
           </button>

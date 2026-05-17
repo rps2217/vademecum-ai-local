@@ -6,11 +6,12 @@ import { EventBus, EventType } from '../../services/EventBus';
 import { 
   Share2, ZoomIn, ZoomOut, RefreshCw, 
   Sparkles, Info, Maximize2, X, Zap,
-  Cloud, CloudOff, Database, CheckCircle2 
+  Cloud, CloudOff, Database, Atom 
 } from 'lucide-react';
 import { cloudSyncService } from '../../services/CloudSyncService';
 import { synergyBackgroundService } from '../../services/SynergyBackgroundService';
 import { motion, AnimatePresence } from 'motion/react';
+import { CYPInteractionGraph } from './CYPInteractionGraph';
 
 interface Node extends d3.SimulationNodeDatum {
   id: string;
@@ -27,7 +28,9 @@ interface Link extends d3.SimulationLinkDatum<Node> {
 }
 
 export const GraphExplorerModule: React.FC = () => {
+  const [showCYP, setShowCYP] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedElement, setSelectedElement] = useState<{ type: 'product' | 'principle', id: string } | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
@@ -143,7 +146,7 @@ export const GraphExplorerModule: React.FC = () => {
   }, [products]);
 
   useEffect(() => {
-    if (!svgRef.current) return;
+    if (showCYP || !svgRef.current) return;
 
     const width = svgRef.current.clientWidth;
     const height = svgRef.current.clientHeight;
@@ -170,14 +173,15 @@ export const GraphExplorerModule: React.FC = () => {
         const feMerge = filter.append('feMerge');
         feMerge.append('feMergeNode').attr('in', 'blur');
         feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
-
+        
         const zoom = d3.zoom<SVGSVGElement, unknown>()
           .scaleExtent([0.1, 4])
           .on('zoom', (event) => {
             g.attr('transform', event.transform);
           });
-
+        
         svg.call(zoom);
+        zoomRef.current = zoom;
 
         simulationRef.current = d3.forceSimulation<Node, Link>()
           .force('link', d3.forceLink<Node, Link>().id(d => d.id).distance(d => d.type === 'synergy' ? 180 : 80))
@@ -187,6 +191,7 @@ export const GraphExplorerModule: React.FC = () => {
     }
 
     const simulation = simulationRef.current;
+    if (!gRef.current) return;
     const g = gRef.current!;
 
     const oldNodes = new Map(simulation.nodes().map(d => [d.id, d]));
@@ -208,7 +213,7 @@ export const GraphExplorerModule: React.FC = () => {
     const link = g.selectAll<SVGLineElement, Link>('line')
       .data(graphData.links, (d: any) => `${d.source.id || d.source}-${d.target.id || d.target}-${d.type}`)
       .join('line')
-      .attr('stroke', d => d.type === 'synergy' ? '#ff9c4b44' : '#6366f122')
+      .attr('stroke', d => d.type === 'synergy' ? '#d9770644' : '#8b5cf622') // amber / violet
       .attr('stroke-width', d => d.type === 'synergy' ? 2 : 1)
       .attr('stroke-dasharray', d => d.type === 'synergy' ? '4,4' : 'none');
 
@@ -223,7 +228,7 @@ export const GraphExplorerModule: React.FC = () => {
             nodeEnter.append('circle')
                 .attr('class', 'glow-halo')
                 .attr('r', d => d.type === 'product' ? 14 : 7)
-                .attr('fill', d => d.type === 'product' ? (d.category === 'Medicamento' ? '#ff9c4b22' : '#10b98122') : '#6366f111')
+                .attr('fill', d => d.type === 'product' ? (d.category === 'Medicamento' ? '#d9770622' : '#05966922') : '#8b5cf611')
                 .attr('filter', 'url(#glow)');
 
             // Círculo principal
@@ -231,10 +236,10 @@ export const GraphExplorerModule: React.FC = () => {
                 .attr('class', 'main-circle')
                 .attr('r', d => d.type === 'product' ? 10 : 5)
                 .attr('fill', d => {
-                  if (d.type === 'principle') return '#6366f1';
-                  return d.category === 'Medicamento' ? '#ff9c4b' : '#10b981';
+                  if (d.type === 'principle') return '#8b5cf6'; // violet
+                  return d.category === 'Medicamento' ? '#d97706' : '#059669'; // amber / emerald
                 })
-                .attr('stroke', '#151c28')
+                .attr('stroke', '#ffffff')
                 .attr('stroke-width', 2);
 
             // Icono de Sparkle si está analizado
@@ -244,28 +249,28 @@ export const GraphExplorerModule: React.FC = () => {
               .attr('r', 3)
               .attr('cx', 8)
               .attr('cy', -8)
-              .attr('fill', '#fbbf24')
-              .attr('stroke', '#151c28')
+              .attr('fill', '#f59e0b')
+              .attr('stroke', '#ffffff')
               .attr('stroke-width', 1);
 
             nodeEnter.append('text')
                 .text(d => d.name)
                 .attr('x', d => d.type === 'product' ? 16 : 10)
                 .attr('y', 4)
-                .attr('fill', d => d.type === 'product' ? '#f8fafc' : '#94a3b8')
+                .attr('fill', d => d.type === 'product' ? 'var(--foreground)' : 'var(--muted-foreground)')
                 .style('font-family', 'var(--font-mono)')
                 .style('font-size', d => d.type === 'product' ? '11px' : '9px')
-                .style('font-weight', d => d.type === 'product' ? '800' : '400')
+                .style('font-weight', d => d.type === 'product' ? '800' : '500')
                 .style('pointer-events', 'none')
-                .style('text-shadow', '0 2px 4px rgba(0,0,0,0.5)');
+                .style('text-shadow', '0 1px 2px rgba(255,255,255,0.8)');
 
             return nodeEnter;
         },
         update => {
           update.select('.main-circle')
             .attr('fill', (d: any) => {
-              if (d.type === 'principle') return '#6366f1';
-              return d.category === 'Medicamento' ? '#ff9c4b' : '#10b981';
+              if (d.type === 'principle') return '#8b5cf6';
+              return d.category === 'Medicamento' ? '#d97706' : '#059669';
             });
           
           update.selectAll('.analyzed-icon').remove();
@@ -275,8 +280,8 @@ export const GraphExplorerModule: React.FC = () => {
             .attr('r', 3)
             .attr('cx', 8)
             .attr('cy', -8)
-            .attr('fill', '#fbbf24')
-            .attr('stroke', '#151c28')
+            .attr('fill', '#f59e0b')
+            .attr('stroke', '#ffffff')
             .attr('stroke-width', 1);
 
           return update;
@@ -316,7 +321,7 @@ export const GraphExplorerModule: React.FC = () => {
     return () => {
        // simulation.stop(); // No detenemos en cada update para mantener fluidez
     };
-  }, [graphData]);
+  }, [graphData, showCYP]);
 
   const handleSmartSync = async () => {
     setIsSyncing(true);
@@ -331,179 +336,141 @@ export const GraphExplorerModule: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-[calc(100vh-150px)] min-h-[600px] flex flex-col animate-in fade-in duration-500 p-2">
+    <div className="w-full h-full flex flex-col p-4 bg-background">
       {/* Header del Grafo */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 bg-brand-surface p-6 rounded-[2.5rem] border border-slate-700/30 shadow-xl">
-        <div className="flex items-center gap-5">
-           <div className="p-4 bg-brand-primary/10 rounded-3xl border border-brand-primary/20">
-              <Share2 className="w-8 h-8 text-brand-primary" />
-           </div>
-           <div>
-              <h2 className="text-2xl font-black text-white tracking-tight">
-                Mapa de Sinergias <span className="text-brand-primary italic">IA</span>
-              </h2>
-              <div className="flex items-center gap-4 mt-1">
-                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-900 rounded-full border border-slate-800">
-                    <Database className="w-3 h-3 text-brand-primary" />
-                    <span className="text-[10px] font-bold text-slate-400">{stats.total} Productos</span>
-                 </div>
-                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-900/20 rounded-full border border-amber-900/30">
-                    <Sparkles className="w-3 h-3 text-amber-500" />
-                    <span className="text-[10px] font-bold text-amber-500">{stats.analyzed} Analizados</span>
-                 </div>
-              </div>
-           </div>
+      <div className="flex justify-between items-center mb-6 py-4 border-b border-border">
+        <div>
+          <h2 className="text-xl font-semibold text-foreground">
+            Mapa de Venta Cruzada
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            IA clínica orientada a facilitar recomendaciones farmacéuticas
+          </p>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="flex flex-col items-end gap-1">
-             <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Estado Sync:</span>
-                {isCloudReady ? (
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20 text-[9px] font-black uppercase">
-                     <Cloud className="w-2.5 h-2.5" /> Nube Lista
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 bg-rose-500/10 text-rose-400 rounded-full border border-rose-500/20 text-[9px] font-black uppercase">
-                     <CloudOff className="w-2.5 h-2.5" /> Solo Local
-                  </div>
-                )}
-             </div>
-             {processingStatus.sku && (
-               <div className="flex items-center gap-2 text-[10px] font-bold text-brand-primary animate-pulse italic">
-                 <RefreshCw className="w-3 h-3 animate-spin" />
-                 Analizando {processingStatus.name}... 
-                 <span className="text-slate-500 font-normal">({processingStatus.engine || 'Iniciando...'})</span>
-               </div>
-             )}
-          </div>
-          
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setShowCYP(!showCYP)}
+            className="px-4 py-2 text-sm border rounded-md hover:bg-accent transition-colors"
+          >
+            {showCYP ? 'Ocultar CYP450' : 'Ver CYP450'}
+          </button>
+
           <button 
             onClick={handleSmartSync}
             disabled={isSyncing || processingStatus.isRunning}
-            className="group relative flex items-center gap-3 px-6 py-3 bg-brand-primary text-slate-900 rounded-2xl hover:scale-105 active:scale-95 transition-all font-black text-xs uppercase shadow-[0_0_20px_rgba(255,156,75,0.3)] disabled:opacity-50 disabled:scale-100"
+            className="px-4 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            <Sparkles className={`w-4 h-4 ${isSyncing ? 'animate-spin' : 'group-hover:rotate-12'}`} />
-            Gestionar Relaciones
+            {isSyncing ? 'Sincronizando...' : 'Gestionar Relaciones'}
           </button>
         </div>
       </div>
 
       <div className="flex-1 flex gap-6 min-h-0">
         {/* Canvas del Grafo */}
-        <div className="flex-1 bg-brand-surface rounded-[2rem] border border-slate-700/50 relative overflow-hidden shadow-2xl">
-          <svg ref={svgRef} className="w-full h-full cursor-move" />
-          
-          {/* Controles de Vista */}
-          <div className="absolute bottom-6 left-6 flex flex-col gap-2">
-            <button className="p-3 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-700 text-slate-400 hover:text-white transition-all shadow-xl">
-              <ZoomIn className="w-5 h-5" />
-            </button>
-            <button className="p-3 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-700 text-slate-400 hover:text-white transition-all shadow-xl">
-              <ZoomOut className="w-5 h-5" />
-            </button>
-          </div>
+        <div className="flex-1 bg-card rounded-lg border border-border relative overflow-hidden">
+          {showCYP ? (
+            <CYPInteractionGraph />
+          ) : (
+            <svg ref={svgRef} className="w-full h-full cursor-move" />
+          )}
 
-          <div className="absolute top-6 right-6 p-4 bg-slate-900/50 backdrop-blur-md rounded-2xl border border-slate-800 text-[10px] space-y-2">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-brand-primary" />
-              <span className="text-slate-400">Medicamento</span>
+          {/* Controles de Vista */}
+          {!showCYP && (
+            <div className="absolute bottom-4 left-4 flex flex-col gap-2">
+              <button 
+                onClick={() => zoomRef.current && d3.select(svgRef.current as any).transition().call(zoomRef.current.scaleBy, 1.2)}
+                className="p-2 bg-background rounded border border-border text-foreground hover:bg-accent transition-all shadow-sm"
+              >
+                <ZoomIn className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={() => zoomRef.current && d3.select(svgRef.current as any).transition().call(zoomRef.current.scaleBy, 0.8)}
+                className="p-2 bg-background rounded border border-border text-foreground hover:bg-accent transition-all shadow-sm"
+              >
+                <ZoomOut className="w-4 h-4" />
+              </button>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-slate-400">Natural / Suplemento</span>
+          )}
+
+          {!showCYP && (
+            <div className="absolute top-4 right-4 p-3 bg-background rounded border border-border text-xs space-y-1.5 shadow-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary" />
+                <span className="text-muted-foreground">Medicamento</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="text-muted-foreground">Natural / Suplemento</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-primary" />
+                <span className="text-muted-foreground">Principio Activo</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-indigo-500" />
-              <span className="text-slate-400">Principio Activo</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-px bg-brand-primary/40 border-t border-dashed border-brand-primary/60" />
-              <span className="text-slate-400">Posible Sinergia</span>
-            </div>
-            <div className="mt-2 pt-2 border-t border-slate-800">
-               <span className="text-slate-600 italic">Haz clic en un nodo para ver detalles</span>
-            </div>
-          </div>
+          )}
         </div>
 
-        {/* Panel de Detalles con AnimatePresence */}
+        {/* Panel de Detalles */}
         <AnimatePresence>
-          {selectedData && (
+          {selectedData && !showCYP && (
             <motion.div 
-              initial={{ x: 300, opacity: 0 }}
+              initial={{ x: 200, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 300, opacity: 0 }}
-              className="w-80 bg-brand-surface border border-slate-700 rounded-[2rem] flex flex-col shadow-2xl"
+              exit={{ x: 200, opacity: 0 }}
+              className="w-80 bg-card border border-border rounded-lg flex flex-col shadow-lg"
             >
-              <div className="p-6 border-b border-slate-800 flex justify-between items-center">
-                <h3 className="font-bold text-white truncate pr-4">
+              <div className="p-4 border-b border-border flex justify-between items-center">
+                <h3 className="font-semibold text-foreground truncate pr-2">
                   {selectedElement?.type === 'product' 
                     ? (selectedData as Product).nombre_comercial 
                     : (selectedData as any).name}
                 </h3>
                 <button 
                   onClick={() => setSelectedElement(null)}
-                  className="p-1.5 hover:bg-slate-800 rounded-lg text-slate-500 transition-colors"
+                  className="p-1 hover:bg-accent rounded text-muted-foreground transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {selectedElement?.type === 'product' ? (
                   <>
-                    <div>
-                      <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 flex items-center gap-2">
-                        <Zap className="w-3 h-3 text-brand-primary" /> Sugerencia de Sinergia
-                      </h4>
-                      <p className="text-sm text-slate-300 leading-relaxed bg-brand-primary/5 p-4 rounded-2xl border border-brand-primary/10 italic">
-                        {(selectedData as Product).sugerencia_complementaria || 'Análisis pendiente...'}
-                      </p>
+                    <div className="bg-accent/30 p-3 rounded text-sm text-muted-foreground italic">
+                      {(selectedData as Product).sugerencia_complementaria || 'Análisis pendiente...'}
                     </div>
 
                     <div>
-                      <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Conexiones Activas</h4>
-                      <div className="space-y-2">
+                      <h4 className="text-xs font-semibold text-foreground mb-2">Conexiones Activas</h4>
+                      <div className="space-y-1">
                         {(selectedData as Product).skus_relacionados?.length > 0 ? (selectedData as Product).skus_relacionados.map(sku => {
                           const rel = products.find(p => p.sku === sku);
                           return rel ? (
-                            <div key={sku} className="p-3 bg-slate-900/50 rounded-xl border border-slate-800 flex items-center gap-3">
-                              <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" />
-                              <span className="text-xs font-bold text-slate-300">{rel.nombre_comercial}</span>
+                            <div key={sku} className="p-2 border rounded text-xs flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                              {rel.nombre_comercial}
                             </div>
                           ) : null;
                         }) : (
-                          <p className="text-xs text-slate-600 italic">No hay conexiones detectadas aún.</p>
+                          <p className="text-xs text-muted-foreground italic">Sin conexiones.</p>
                         )}
                       </div>
                     </div>
                   </>
                 ) : (
                   <div>
-                    <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
-                      <Database className="w-3 h-3 text-indigo-400" /> Productos que lo contienen
-                    </h4>
-                    <div className="space-y-2">
+                    <h4 className="text-xs font-semibold text-foreground mb-2">Productos relacionados</h4>
+                    <div className="space-y-1">
                       {(selectedData as any).relatedProducts?.map((p: Product) => (
-                        <div key={p.sku} className="p-3 bg-indigo-500/5 rounded-xl border border-indigo-500/10 flex items-center gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                          <span className="text-xs font-bold text-slate-200">{p.nombre_comercial}</span>
+                        <div key={p.sku} className="p-2 border rounded text-xs flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          {p.nombre_comercial}
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
-
-                <div className="bg-brand-bg p-4 rounded-2xl border border-slate-800 border-dashed">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Info className="w-4 h-4 text-indigo-400" />
-                    <span className="text-[10px] font-bold text-indigo-400 uppercase">Sistema Clínico</span>
-                  </div>
-                  <p className="text-[10px] text-slate-500 leading-tight">
-                    Exploración de afinidades moleculares. Los nodos de color índigo representan principios activos compartidos.
-                  </p>
-                </div>
               </div>
             </motion.div>
           )}

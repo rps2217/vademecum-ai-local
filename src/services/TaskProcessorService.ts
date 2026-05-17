@@ -38,7 +38,7 @@ export class TaskProcessorService {
     this.isProcessing = true;
     this.stopRequested = false;
     
-    console.log('[TaskProcessor] Iniciando bucle de procesamiento de tareas...');
+    logger.info('Iniciando bucle de procesamiento de tareas...', 'TaskProcessor');
     
     this.processLoop();
   }
@@ -73,11 +73,11 @@ export class TaskProcessorService {
         
         const delay = aiOrchestratorService.getThermalDelay();
         if (delay >= 5000) {
-          console.warn(`[TaskProcessor] Thermal Guard activo: Esperando ${delay/1000}s para disipar calor...`);
+          logger.warn(`Thermal Guard activo: Esperando ${delay/1000}s para disipar calor...`, 'TaskProcessor');
         }
         await new Promise(resolve => setTimeout(resolve, delay));
       } catch (error) {
-        console.error('[TaskProcessor] Error critico en el bucle:', error);
+        logger.error('Error critico en el bucle', 'TaskProcessor', error);
         await new Promise(resolve => setTimeout(resolve, 10000));
       }
     }
@@ -99,7 +99,7 @@ export class TaskProcessorService {
           }
         }
         
-        console.log(`[TaskProcessor] Procesando paquete de ${products.length} sincronizaciones.`);
+        logger.info(`Procesando paquete de ${products.length} sincronizaciones.`, 'TaskProcessor');
         
         // Mark all as processing
         await Promise.all(batchTasks.map(t => 
@@ -112,7 +112,7 @@ export class TaskProcessorService {
           
           // Remove all successful tasks
           await Promise.all(batchTasks.map(t => taskQueueService.removeTask(t.id)));
-          console.log(`[TaskProcessor] Paquete de ${products.length} completado.`);
+          logger.info(`Paquete de ${products.length} completado.`, 'TaskProcessor');
         } catch (error: any) {
           // Revert or retry individually? For now, we allow standard error handling to set them to failed/pending again
           for (const t of batchTasks) {
@@ -123,7 +123,7 @@ export class TaskProcessorService {
       }
 
       // Standard processing for non-batchable tasks
-      console.log(`[TaskProcessor] Ejecutando tarea: ${task.type} (${task.id})`);
+      logger.info(`Ejecutando tarea: ${task.type} (${task.id})`, 'TaskProcessor');
       await taskQueueService.updateTask(task.id, { status: 'processing' });
 
       switch (task.type) {
@@ -164,11 +164,11 @@ export class TaskProcessorService {
           break;
 
         default:
-          console.warn(`[TaskProcessor] Tipo de tarea desconocido: ${task.type}`);
+          logger.warn(`Tipo de tarea desconocido: ${task.type}`, 'TaskProcessor');
       }
 
       await taskQueueService.removeTask(task.id);
-      console.log(`[TaskProcessor] Tarea completada: ${task.id}`);
+      logger.info(`Tarea completada: ${task.id}`, 'TaskProcessor');
 
     } catch (error: any) {
       await this.handleTaskError(task, error);
@@ -176,8 +176,7 @@ export class TaskProcessorService {
   }
 
   private async handleTaskError(task: PendingTask, error: any) {
-    logger.error(`Fallo en tarea ${task.type}`, 'Procesador', error);
-    console.error(`[TaskProcessor] Error ejecutando tarea ${task.id}:`, error);
+    logger.error(`Error ejecutando tarea ${task.type} (${task.id})`, 'TaskProcessor', error);
     
     const newRetries = (task.retries || 0) + 1;
     const status = newRetries >= 5 ? 'failed' : 'pending';

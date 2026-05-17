@@ -202,20 +202,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         />
       )}
 
-      {/* Columna Derecha: Sinergia Clínica (Swiss Panel) */}
+      {/* Columna Derecha: Oportunidades de Venta / Sinergia */}
       {hasSynergy && (
-        <div className="w-full md:w-2/5 bg-slate-50/50 flex flex-col h-full animate-in slide-in-from-right duration-700">
-          <div className="h-16 flex items-center px-6 border-b shrink-0 bg-slate-100/50">
+        <div className="w-full md:w-2/5 bg-background flex flex-col h-full animate-in slide-in-from-right duration-700 border-l border-border">
+          <div className="h-16 flex items-center px-6 border-b shrink-0 bg-muted">
             <h3 className="text-sm font-bold tracking-tight flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-emerald-600" />
-              Sinergia e Interacciones Clínicas
+              Sugerencias de Venta Cruzada
             </h3>
           </div>
           
           <ScrollArea className="flex-1">
             <div className="p-6 md:p-8">
-              <div className="mb-8 alert-synergy text-[13px] leading-relaxed">
-                Este análisis utiliza el motor RAG vectorial para identificar interacciones farmacológicas y complementos sinérgicos basados en mecanismos de acción documentados.
+              <div className="mb-8 p-4 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-800 text-[13px] leading-relaxed dark:bg-emerald-950/30 dark:border-emerald-900 dark:text-emerald-300">
+                Oportunidades de complemento clínico generadas para este producto, ideales para recomendación al paciente.
               </div>
               
               <ErrorBoundary componentName="ClinicalSynergyPanel">

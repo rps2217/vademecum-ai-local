@@ -26,7 +26,6 @@ import { searchService } from '../../services/SearchService';
 import { logger } from '../../services/LoggerService';
 import { useStore } from '../../store/useStore';
 
-import { ThemeToggle } from '../common/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
@@ -157,8 +156,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
   const navItems = [
     { id: 'search', label: 'Buscador', icon: Search },
-    { id: 'graph', label: 'Sinergias', icon: Share2 },
-    { id: 'database', label: 'Vademécum', icon: Database },
+    { id: 'graph', label: 'Venta Cruzada', icon: Share2 },
+    { id: 'database', label: 'Catálogo', icon: Database },
     { id: 'settings', label: 'Ajustes', icon: Settings },
   ] as const;
 
@@ -168,19 +167,19 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <OfflineIndicator />
         
         {/* Top Header - Swiss Precision */}
-        <header className="sticky top-0 z-50 w-full border-b border-slate-800/50 bg-[#04070d]/80 backdrop-blur-xl">
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background backdrop-blur-xl">
           <div className="container flex h-16 items-center justify-between gap-4">
             
             {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center">
-                <Activity className="h-7 w-7 text-brand-primary" />
+                <Activity className="h-7 w-7 text-primary" />
               </div>
             </div>
 
             <div className="flex-1 max-w-4xl px-4 hidden md:block w-full">
                <div className="relative group w-full">
-                 <div className="absolute -inset-1 bg-brand-primary/10 rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition duration-500"></div>
+                 <div className="absolute -inset-1 bg-primary rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition duration-500"></div>
                  <SearchBar 
                     ref={searchInputRef}
                     query={query} 
@@ -189,7 +188,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                     suggestions={conceptualSuggestions}
                     onSelectConcept={(concept) => setQuery(concept.label)}
                     onAiQuery={() => setShowAiAnalysis(true)}
-                    className="relative bg-slate-900/40 border-slate-800 shadow-none w-full"
+                    className="relative bg-card border-border shadow-none w-full"
                   />
                </div>
             </div>
@@ -200,7 +199,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'search' ? 'bg-brand-primary text-white shadow-[0_0_20px_rgba(249,115,22,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'search' ? 'bg-primary text-foreground shadow-[0_0_20px_rgba(249,115,22,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
                   onClick={() => setActiveTab('search')}
                 >
                   <Search className="h-4 h-4" />
@@ -208,7 +207,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'graph' ? 'bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'graph' ? 'bg-blue-600 text-foreground shadow-[0_0_20px_rgba(37,99,235,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
                   onClick={() => setActiveTab('graph')}
                 >
                   <Share2 className="h-4 h-4" />
@@ -216,7 +215,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'database' ? 'bg-emerald-600 text-white shadow-[0_0_20px_rgba(5,150,105,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'database' ? 'bg-emerald-600 text-foreground shadow-[0_0_20px_rgba(5,150,105,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
                   onClick={() => setActiveTab('database')}
                 >
                   <Database className="h-4 h-4" />
@@ -224,15 +223,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'settings' ? 'bg-slate-700 text-white shadow-[0_0_20px_rgba(51,65,85,0.5)]' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'settings' ? 'bg-slate-700 text-foreground shadow-[0_0_20px_rgba(51,65,85,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
                   onClick={() => setActiveTab('settings')}
                 >
                   <Settings className="h-4 h-4" />
                 </Button>
                 
-                <Separator orientation="vertical" className="h-6 mx-2 bg-slate-800" />
-                
-                <ThemeToggle />
+                <Separator orientation="vertical" className="h-6 mx-2 bg-card" />
                 
                 <Button 
                   variant="ghost" 

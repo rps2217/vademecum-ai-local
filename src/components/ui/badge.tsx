@@ -6,11 +6,11 @@ const Badge = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & { variant?: 'default' | 'success' | 'warning' | 'danger' | 'outline' }
 >(({ className, variant = 'default', ...props }, ref) => {
   const variants = {
-    default: "bg-slate-100 text-slate-800",
+    default: "bg-muted text-foreground",
     success: "bg-emerald-100 text-emerald-800 border border-emerald-200",
     warning: "bg-amber-100 text-amber-800 border border-amber-200",
     danger: "bg-red-100 text-red-800 border border-red-200",
-    outline: "border border-slate-200 text-slate-600 bg-transparent"
+    outline: "border border-border text-muted-foreground bg-transparent"
   };
 
   return (

@@ -12,20 +12,9 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {
     for (const registration of registrations) {
       registration.unregister();
-      console.log('Service Worker unregistered successfully');
     }
   });
 }
-
-// DEBUG: Interceptar Object.values para prevenir errores en tiempo de ejecución
-const originalValues = Object.values;
-Object.values = (obj: any) => {
-  if (obj === null || obj === undefined) {
-    console.warn('BAD OBJECT.VALUES CALL DETECTED, returning [] instead of error');
-    return [];
-  }
-  return originalValues(obj);
-};
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

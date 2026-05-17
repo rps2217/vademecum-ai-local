@@ -148,7 +148,7 @@ export const SearchResults = React.memo<SearchResultsProps>(({
             </div>
           )}
 
-          {renderGrid(relatedMatches, "Resultados Relacionados por Sinergia o Similitud", Sparkles, "text-indigo-600", true)}
+          {renderGrid(relatedMatches, "Resultados Relacionados por Sinergia o Similitud", Sparkles, "text-primary", true)}
         </div>
       </div>
     );
