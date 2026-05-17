@@ -178,7 +178,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <OfflineIndicator />
         
         {/* Top Header - Swiss Precision */}
-        <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-sm">
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-md">
           <div className="container flex h-16 items-center justify-between gap-4">
             
             {/* Logo */}
@@ -206,7 +206,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
             {/* Actions & User */}
             <div className="flex items-center gap-2">
-              <div className="hidden sm:flex items-center gap-2 mr-2 bg-muted/30 p-1.5 rounded-2xl border border-border">
+              <div className="hidden sm:flex items-center gap-2 mr-2 bg-muted p-1.5 rounded-2xl border border-border">
                 {navItems.map(item => (
                   <Button 
                     key={item.id}
@@ -226,7 +226,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
                   size="icon" 
                   onClick={toggleAiProcessing}
                   title={isAiProcessingEnabled ? "IA Activa" : "IA Pausada"}
-                  className={`h-11 w-11 rounded-xl transition-all ${isAiProcessingEnabled ? 'text-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20' : 'text-amber-500 bg-amber-500/10 hover:bg-amber-500/20'}`}
+                  className={`h-11 w-11 rounded-xl transition-all ${isAiProcessingEnabled ? 'text-emerald-500 bg-emerald-100 hover:bg-emerald-200 border border-emerald-200' : 'text-amber-500 bg-amber-100 hover:bg-amber-200 border border-amber-200'}`}
                 >
                   {isAiProcessingEnabled ? <Zap className="h-5 w-5" /> : <Snowflake className="h-5 w-5" />}
                 </Button>
@@ -331,8 +331,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         </Suspense>
 
         {/* Clinical Disclaimer Static */}
-        <footer className="w-full border-t bg-muted/30 py-4 mt-20">
-          <div className="container flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase font-bold tracking-widest text-muted-foreground/60">
+        <footer className="w-full border-t bg-muted py-4 mt-20">
+          <div className="container flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase font-bold tracking-widest text-muted-foreground">
             <div className="flex items-center gap-2">
               <ShieldAlert className="h-3 w-3" />
               <span>Solo para uso profesional de la salud</span>

@@ -280,7 +280,7 @@ export const SearchModule: React.FC = () => {
                     <Sparkles className="w-3 h-3 mr-2" />
                     {useSemantic ? 'Búsqueda IA' : 'Búsqueda Texto'}
                   </Button>
-                  <div className="flex border rounded-lg p-1 bg-muted/30">
+                  <div className="flex border rounded-lg p-1 bg-muted">
                     <Button 
                       variant={viewMode === 'grid' ? 'secondary' : 'ghost'} 
                       size="icon" 

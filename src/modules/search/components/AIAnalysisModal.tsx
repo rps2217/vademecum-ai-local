@@ -36,7 +36,7 @@ export const AIAnalysisModal: React.FC<AIAnalysisModalProps> = ({ query, results
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/80" onClick={onClose} />
       
       <div className="relative w-full max-w-2xl bg-card rounded-3xl border border-border shadow-2xl overflow-hidden animate-in zoom-in duration-300">
         <div className="p-6 border-b border-border flex items-center justify-between bg-card">
@@ -55,7 +55,7 @@ export const AIAnalysisModal: React.FC<AIAnalysisModalProps> = ({ query, results
         </div>
 
         <div className="p-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
-          <div className="mb-6 p-4 bg-slate-950/50 rounded-2xl border border-border">
+          <div className="mb-6 p-4 bg-muted rounded-2xl border border-border">
             <div className="flex items-center gap-2 mb-2 text-muted-foreground">
               <MessageSquare className="w-4 h-4" />
               <span className="text-xs font-bold uppercase tracking-wider">Tu Consulta</span>
@@ -69,12 +69,12 @@ export const AIAnalysisModal: React.FC<AIAnalysisModalProps> = ({ query, results
               <p className="text-sm animate-pulse">Consultando base de conocimientos local...</p>
             </div>
           ) : error ? (
-            <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex gap-3 text-rose-400">
+            <div className="p-4 bg-rose-50 border border-rose-200 rounded-2xl flex gap-3 text-rose-700">
               <AlertCircle className="w-5 h-5 shrink-0" />
               <p className="text-sm">{error}</p>
             </div>
           ) : (
-            <div className="prose prose-invert prose-sm max-w-none">
+            <div className="prose prose-slate prose-sm max-w-none">
               <ReactMarkdown>{analysis}</ReactMarkdown>
             </div>
           )}

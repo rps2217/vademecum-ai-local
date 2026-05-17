@@ -54,16 +54,16 @@ export const ClinicalBrainTray: React.FC = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0 }}
-          className="bg-card backdrop-blur-xl border border-border rounded-[2rem] shadow-2xl overflow-hidden"
+          className="bg-card border border-border rounded-[2rem] shadow-2xl overflow-hidden"
         >
           {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-rose-500/10 to-brand-primary/10 border-b border-border flex items-center justify-between">
+          <div className="p-4 bg-rose-50 border-b border-rose-200 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 bg-rose-500/20 rounded-lg">
-                <Brain className="w-4 h-4 text-rose-400" />
+              <div className="p-1.5 bg-rose-200 rounded-lg">
+                <Brain className="w-4 h-4 text-rose-600" />
               </div>
-              <span className="text-xs font-bold text-foreground uppercase tracking-widest">Cerebro Clínico</span>
-              <span className="px-2 py-0.5 bg-card rounded-full text-[10px] font-bold text-muted-foreground">
+              <span className="text-xs font-bold text-rose-900 uppercase tracking-widest">Cerebro Clínico</span>
+              <span className="px-2 py-0.5 bg-white border border-rose-200 rounded-full text-[10px] font-bold text-rose-700">
                 {selectedProducts.length}/5
               </span>
             </div>
@@ -108,7 +108,7 @@ export const ClinicalBrainTray: React.FC = () => {
                 initial={{ height: 0 }}
                 animate={{ height: 'auto' }}
                 exit={{ height: 0 }}
-                className="border-t border-border bg-slate-950/50"
+                className="border-t border-border bg-slate-50"
               >
                 <div className="p-4 space-y-4">
                   {isAnalyzing ? (
@@ -200,11 +200,11 @@ export const ClinicalBrainTray: React.FC = () => {
 
           {/* Footer Info */}
           {!isExpanded && !analysis && (
-            <div className="p-3 bg-slate-950/50 flex items-center justify-center gap-2">
+            <div className="p-3 bg-slate-50 flex items-center justify-center gap-2 border-t border-border">
               <button 
                 onClick={handleAnalyze}
                 disabled={selectedProducts.length < 2}
-                className="text-[10px] font-bold text-rose-400 hover:text-rose-300 disabled:opacity-30 transition-colors flex items-center gap-1"
+                className="text-[10px] font-bold text-rose-600 hover:text-rose-700 disabled:opacity-30 transition-colors flex items-center gap-1"
               >
                 <Sparkles className="w-3 h-3" /> Analizar ahora
               </button>

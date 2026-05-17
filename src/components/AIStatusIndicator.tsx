@@ -39,9 +39,9 @@ export const AIStatusIndicator: React.FC = () => {
   }, []);
 
   const getStatusColor = () => {
-    if (status.isReady) return 'text-primary bg-brand-accent/10 border-brand-accent/20';
-    if (status.isInitializing) return 'text-primary bg-primary border-primary/50';
-    return 'text-muted-foreground bg-card border-border';
+    if (status.isReady) return 'text-emerald-700 bg-emerald-100 border-emerald-300';
+    if (status.isInitializing) return 'text-primary bg-sky-100 border-primary/30';
+    return 'text-muted-foreground bg-muted border-border';
   };
 
   const getStatusIcon = () => {
@@ -72,13 +72,13 @@ export const AIStatusIndicator: React.FC = () => {
   return (
     <>
       {orchestratorStatus.isRunning && (
-        <div className="fixed top-0 left-0 w-full z-50 h-1 bg-card backdrop-blur-sm">
+        <div className="fixed top-0 left-0 w-full z-50 h-1 bg-card">
           <motion.div
             className="h-full bg-primary"
             initial={{ width: 0 }}
             animate={{ width: `${orchestratorStatus.progress}%` }}
           />
-          <div className="absolute top-2 left-4 text-[10px] font-bold text-primary bg-card px-2 py-1 rounded shadow-lg">
+          <div className="absolute top-2 left-4 text-[10px] font-bold text-primary bg-card border border-border px-2 py-1 rounded shadow-lg">
             Pipeline IA: {orchestratorStatus.progress}% - {orchestratorStatus.currentTask}
           </div>
         </div>

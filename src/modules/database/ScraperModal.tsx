@@ -20,7 +20,7 @@ export const ScraperModal: React.FC<ScraperModalProps> = ({ onClose, onComplete 
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/80" onClick={onClose} />
       
       <div className="relative w-full max-w-3xl bg-card rounded-3xl border border-border shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
         <div className="p-6 border-b border-border bg-card">
@@ -48,7 +48,7 @@ export const ScraperModal: React.FC<ScraperModalProps> = ({ onClose, onComplete 
                 value={targetUrl}
                 onChange={(e) => setTargetUrl(e.target.value)}
                 disabled={isRunning}
-                className="w-full pl-12 pr-4 py-3 bg-slate-950 border border-border rounded-xl text-foreground focus:border-primary/50 outline-none transition-all disabled:opacity-50"
+                className="w-full pl-12 pr-4 py-3 bg-muted border border-border rounded-xl text-foreground focus:border-primary/50 outline-none transition-all disabled:opacity-50"
               />
             </div>
             {!isRunning ? (

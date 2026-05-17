@@ -17,30 +17,30 @@
 
 @layer base {
   :root {
-    /* Warm Professional Theme (No pure whites or cold grays) */
-    --background: 35 15% 95%; /* Creamy parchment background */
-    --foreground: 30 20% 20%; /* Dark roasted coffee text */
+    /* Solid Professional Medical Palette */
+    --background: #f1f5f9; /* Slate 100 - Consistent light gray background */
+    --foreground: #0f172a; /* Slate 900 - Deep contrast for text */
 
-    --card: 40 20% 92%;      /* Warm gentle card background */
-    --card-foreground: 30 20% 20%;
+    --card: #ffffff;      /* Perfect White - Solid cards */
+    --card-foreground: #0f172a;
 
-    --popover: 40 20% 92%;
-    --popover-foreground: 30 20% 20%;
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
 
-    /* Primary: Deep, reliable warm earth tones */
-    --primary: 25 60% 35%; 
-    --primary-foreground: 45 100% 98%;
+    /* Primary: Trustworthy Medical Blue */
+    --primary: #0284c7;   /* Sky 600 */
+    --primary-foreground: #ffffff;
 
-    /* Muted: Soft earth warm-grays */
-    --muted: 35 15% 85%;
-    --muted-foreground: 30 20% 40%;
+    /* Muted: Clear separation grays */
+    --muted: #e2e8f0;     /* Slate 200 */
+    --muted-foreground: #475569; /* Slate 600 */
 
-    --accent: 35 15% 85%;
-    --accent-foreground: 30 20% 20%;
+    --accent: #f8fafc;
+    --accent-foreground: #0f172a;
 
-    /* Borders: Subtle, non-intrusive */
-    --border: 35 20% 75%;
-    --input: 35 20% 75%;
+    /* Borders: Sharp and defined */
+    --border: #cbd5e1;    /* Slate 300 */
+    --input: #cbd5e1;
   }
 
   * {
