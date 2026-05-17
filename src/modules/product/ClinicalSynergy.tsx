@@ -106,7 +106,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
             <Activity className="h-4 w-4 text-primary" />
             <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Gráfico de Relaciones</span>
         </div>
-        <div className="flex border rounded-lg p-1 bg-muted/40">
+        <div className="flex border rounded-lg p-1 bg-muted">
           <Button 
             variant={viewMode === 'list' ? 'secondary' : 'ghost'} 
             size="icon" 

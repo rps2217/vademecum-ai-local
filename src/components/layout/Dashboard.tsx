@@ -178,7 +178,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <OfflineIndicator />
         
         {/* Top Header - Swiss Precision */}
-        <header className="sticky top-0 z-50 w-full border-b border-border bg-background backdrop-blur-xl">
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background shadow-sm">
           <div className="container flex h-16 items-center justify-between gap-4">
             
             {/* Logo */}

@@ -14,8 +14,7 @@ interface ProductHeaderProps {
 
 export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClick, searchTerm = '', actions }) => {
   return (
-    <div className="bg-card border border-border rounded-2xl sm:rounded-3xl p-4 sm:p-8 mb-4 sm:mb-6 relative overflow-hidden shadow-lg">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+    <div className="bg-card border border-border rounded-2xl sm:rounded-3xl p-4 sm:p-8 mb-4 sm:mb-6 relative overflow-hidden shadow-md">
       
       <div className="flex flex-col lg:flex-row gap-6 justify-between items-start relative z-10">
         <div className="flex-1 min-w-0">
@@ -26,7 +25,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
             {product.categoria_principal && product.categoria_principal !== 'Otro' && (
               <Badge 
                 variant="outline" 
-                className="bg-primary text-primary border-primary/50 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs tracking-wider font-bold uppercase cursor-pointer hover:bg-primary transition-colors"
+                className="bg-primary/10 text-primary border-primary/20 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs tracking-wider font-bold uppercase cursor-pointer hover:bg-primary/20 transition-colors"
                 onClick={() => onTagClick?.(product.categoria_principal)}
               >
                 {product.categoria_principal}
@@ -35,7 +34,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
             
             {/* Indicador de Vectorización para el usuario */}
             {Array.isArray(product.vectores) && product.vectores.length > 0 && (
-               <Badge variant="secondary" className="bg-blue-500/10 text-blue-500 border-blue-500/30 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs tracking-wider font-bold uppercase flex items-center gap-1">
+               <Badge variant="outline" className="bg-blue-100 text-blue-700 border-blue-200 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs tracking-wider font-bold uppercase flex items-center gap-1">
                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                  Vectorizado
                </Badge>
@@ -47,7 +46,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
                   <button 
                     key={tag} 
                     onClick={() => onTagClick?.(tag)}
-                    className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-primary text-primary rounded-lg text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border border-primary/50 hover:bg-primary transition-all"
+                    className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-muted text-muted-foreground rounded-lg text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border border-border hover:bg-accent transition-all"
                   >
                     {tag}
                   </button>
@@ -67,10 +66,10 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
                 <div key={idx} className="relative group">
                   <button
                     onClick={() => onTagClick?.(principio)}
-                    className="inline-flex items-center gap-2 bg-primary border border-primary/50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl hover:bg-primary transition-all group-hover:ring-2 ring-brand-primary/30"
+                    className="inline-flex items-center gap-2 bg-muted border border-border px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl hover:bg-accent transition-all group-hover:ring-2 ring-primary/20"
                   >
                     <Activity className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:scale-110 transition-transform" />
-                    <span className="text-xs sm:text-base text-primary font-bold whitespace-nowrap">
+                    <span className="text-xs sm:text-base text-foreground font-bold whitespace-nowrap">
                       <HighlightText text={principio} searchTerm={searchTerm} />
                     </span>
                   </button>

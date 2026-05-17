@@ -82,13 +82,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const hasSynergy = !!product.synergy_analyzed;
 
   const detailContent = (
-    <div className={`bg-background w-full h-full border-l shadow-2xl flex flex-col md:flex-row overflow-hidden ${isEmbedded ? 'border-none shadow-none' : 'animate-in slide-in-from-right duration-500 ease-out'}`}>
+    <div className={`bg-background w-full h-full border-l shadow-2xl flex flex-col md:flex-row overflow-hidden ${isEmbedded ? 'border-none shadow-none' : 'animate-in slide-in-from-right duration-500 ease-out border-border/10'}`}>
       
       {/* Columna Izquierda: Información Clínica */}
-      <div className={`flex flex-col h-full bg-background ${hasSynergy ? 'md:w-3/5 border-r' : 'w-full'}`}>
+      <div className={`flex flex-col h-full bg-card shadow-inner ${hasSynergy ? 'md:w-3/5 border-r border-border' : 'w-full'}`}>
         
         {/* Header de Navegación Modal */}
-        <div className="flex items-center justify-between px-6 h-16 border-b shrink-0 bg-background/80 backdrop-blur sticky top-0 z-10">
+        <div className="flex items-center justify-between px-6 h-16 border-b shrink-0 bg-background sticky top-0 z-10 shadow-sm">
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" onClick={onClose} className="text-muted-foreground hover:text-foreground">
               <ChevronLeft className="mr-1 h-4 w-4" />
@@ -169,7 +169,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         
         {/* Footer Actions */}
         {!isEditing && (
-          <div className="p-4 border-t bg-muted/10 flex items-center justify-between px-6 h-16 shrink-0">
+          <div className="p-4 border-t bg-muted flex items-center justify-between px-6 h-16 shrink-0 shadow-[0_-1px_10px_rgba(0,0,0,0.02)]">
             <div className="flex items-center gap-4">
               <Badge variant="outline" className="font-mono text-[10px] py-1">SKU: {product.sku}</Badge>
               {product.categoria_principal && <Badge variant="outline" className="text-[10px] uppercase tracking-wide">{product.categoria_principal}</Badge>}
@@ -205,7 +205,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       {/* Columna Derecha: Oportunidades de Venta / Sinergia */}
       {hasSynergy && (
         <div className="w-full md:w-2/5 bg-background flex flex-col h-full animate-in slide-in-from-right duration-700 border-l border-border">
-          <div className="h-16 flex items-center px-6 border-b shrink-0 bg-muted">
+          <div className="h-16 flex items-center px-6 border-b shrink-0 bg-background shadow-sm">
             <h3 className="text-sm font-bold tracking-tight flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-emerald-600" />
               Sugerencias de Venta Cruzada
@@ -231,8 +231,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   return isEmbedded ? (
     <div className="w-full h-full flex flex-col">{detailContent}</div>
   ) : (
-    <div className="fixed inset-0 z-[100] flex justify-end bg-black/20 backdrop-blur-sm sm:pl-20" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="w-full max-w-6xl h-full shadow-2xl">
+    <div className="fixed inset-0 z-[100] flex justify-end bg-black/60 sm:pl-20" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="w-full max-w-6xl h-full shadow-2xl border-l border-border bg-background">
         {detailContent}
       </div>
     </div>

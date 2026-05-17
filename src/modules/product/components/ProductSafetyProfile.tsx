@@ -10,13 +10,13 @@ export const ProductSafetyProfile: React.FC<ProductSafetyProfileProps> = ({ prod
   const getSafetyConfig = (status: SafetyStatus) => {
     switch (status) {
       case SafetyStatus.SI:
-        return { color: 'text-primary bg-brand-accent/10 border-brand-accent/20', icon: <CheckCircle2 className="w-4 h-4" />, label: 'Apto' };
+        return { color: 'text-primary bg-primary/5 border-primary/20', icon: <CheckCircle2 className="w-4 h-4 text-emerald-600" />, label: 'Apto' };
       case SafetyStatus.NO:
-        return { color: 'text-red-400 bg-red-500/10 border-red-500/20', icon: <AlertTriangle className="w-4 h-4" />, label: 'No Apto' };
+        return { color: 'text-red-600 bg-red-50 border-red-200', icon: <AlertTriangle className="w-4 h-4" />, label: 'No Apto' };
       case SafetyStatus.PRECAUCION:
-        return { color: 'text-amber-400 bg-amber-500/10 border-amber-500/20', icon: <Info className="w-4 h-4" />, label: 'Precaución' };
+        return { color: 'text-amber-700 bg-amber-50 border-amber-200', icon: <Info className="w-4 h-4" />, label: 'Precaución' };
       default:
-        return { color: 'text-muted-foreground bg-background0/10 border-slate-500/20', icon: <Info className="w-4 h-4" />, label: 'Desconocido' };
+        return { color: 'text-muted-foreground bg-muted border-border', icon: <Info className="w-4 h-4" />, label: 'Desconocido' };
     }
   };
 

@@ -19,7 +19,7 @@ export const PasswordPrompt: React.FC<PasswordPromptProps> = ({
   description = "Ingresa la contraseña maestra para editar este registro."
 }) => {
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 animate-in fade-in duration-300">
       <div className="bg-card p-8 rounded-[2.5rem] border border-border shadow-2xl max-w-sm w-full mx-4 animate-in zoom-in-95 duration-300">
         <div className="w-16 h-16 bg-primary rounded-3xl flex items-center justify-center mb-6 mx-auto">
           <Lock className="w-8 h-8 text-primary" />

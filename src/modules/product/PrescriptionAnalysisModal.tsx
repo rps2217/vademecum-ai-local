@@ -74,7 +74,7 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-background backdrop-blur-sm animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="fixed inset-0 z-50 flex justify-end p-2 md:p-4 bg-black/60 animate-in fade-in duration-300" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="bg-card w-full h-full rounded-[2rem] shadow-2xl animate-in slide-in-from-right duration-500 flex flex-col md:flex-row overflow-hidden border border-border">
         
         {/* Columna Izquierda: Lista de Medicamentos */}

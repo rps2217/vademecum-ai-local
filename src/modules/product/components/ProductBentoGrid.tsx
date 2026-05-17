@@ -27,7 +27,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
           </div>
         </div>
 
-        <div className="bg-muted/30 p-8 rounded-2xl space-y-4 flex flex-col justify-center border-l-4 border-primary">
+        <div className="bg-muted p-8 rounded-2xl space-y-4 flex flex-col justify-center border-l-4 border-primary shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center gap-2 text-muted-foreground">
             <Stethoscope className="h-6 w-6 text-emerald-600" />
             <span className="text-sm font-bold uppercase tracking-widest text-emerald-600">Posología Base</span>
@@ -52,7 +52,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
               if (!ind) return null;
               const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
               return (
-                <li key={i} className="flex items-center gap-4 group bg-accent/20 p-4 rounded-xl border border-border">
+                <li key={i} className="flex items-center gap-4 group bg-background p-4 rounded-xl border border-border hover:border-primary/30 transition-all shadow-sm">
                   <div className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
                   <span className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                     <HighlightText text={text} searchTerm={searchTerm} />
@@ -68,7 +68,7 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
             <Cpu className="h-4 w-4" />
             <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Mecanismo de Acción IA</span>
           </div>
-          <div className="text-xs font-mono leading-relaxed text-muted-foreground bg-card p-6 rounded-lg border border-border">
+          <div className="text-xs font-mono leading-relaxed text-foreground bg-muted/30 p-6 rounded-lg border border-border">
             <HighlightText text={product.analisis_componentes || 'Análisis no disponible'} searchTerm={searchTerm} />
           </div>
         </div>

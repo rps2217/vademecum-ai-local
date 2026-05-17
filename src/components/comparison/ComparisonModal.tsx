@@ -44,7 +44,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({ products, onCl
   };
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-background backdrop-blur-xl animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-background animate-in fade-in duration-300">
       <motion.div 
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
