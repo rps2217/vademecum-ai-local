@@ -1,7 +1,8 @@
 import React, { memo, CSSProperties } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import { Product } from '../../../core/types/product.types';
-import { Cloud, Monitor, Sparkles, RefreshCw, CheckCircle, Trash2, CloudOff } from 'lucide-react';
+import { Cloud, Monitor, Sparkles, RefreshCw, CheckCircle, Trash2, CloudOff, Eye } from 'lucide-react';
+import { useStore } from '../../../store/useStore';
 
 interface ProductTableProps {
   products: Product[];
@@ -12,6 +13,7 @@ interface ProductTableProps {
 interface RowData {
   products: Product[];
   onDelete: (sku: string) => void;
+  onView: (sku: string) => void;
 }
 
 interface RowProps {
@@ -21,13 +23,17 @@ interface RowProps {
 }
 
 const Row = memo(({ index, style, data }: RowProps) => {
-  const { products, onDelete } = data;
+  const { products, onDelete, onView } = data;
   const p = products[index];
 
   if (!p) return null;
 
   return (
-    <div style={style} className="flex border-b border-border hover:bg-card transition-colors bg-card group">
+    <div 
+      style={style} 
+      className="flex border-b border-border hover:bg-muted/50 transition-colors bg-card group cursor-pointer"
+      onClick={() => onView(p.sku)}
+    >
       <div className="w-[120px] px-6 flex items-center shrink-0">
         {p.is_synced_cloud ? (
           <div className="flex items-center gap-2 text-emerald-400" title="Respaldado en la nube">
@@ -48,7 +54,7 @@ const Row = memo(({ index, style, data }: RowProps) => {
             <span className="text-[10px] font-bold uppercase tracking-tighter">OK</span>
           </div>
         ) : (
-          <div className="flex items-center gap-2 text-slate-700" title="Pendiente de análisis">
+          <div className="flex items-center gap-2 text-slate-700" title="Pendiente de análisis (IA Local / Background)">
             <RefreshCw className="w-4 h-4 opacity-30" />
             <span className="text-[10px] font-bold uppercase tracking-tighter opacity-30">PND</span>
           </div>
@@ -57,14 +63,25 @@ const Row = memo(({ index, style, data }: RowProps) => {
       <div className="w-[120px] px-6 flex items-center font-mono text-[10px] text-muted-foreground shrink-0">
         {p.sku}
       </div>
-      <div className="flex-1 px-6 flex items-center font-bold text-foreground leading-tight min-w-[200px] font-sans tracking-tight">
+      <div className="flex-1 px-6 flex items-center font-bold text-foreground leading-tight min-w-[200px] font-sans tracking-tight group-hover:text-primary transition-colors">
         {p.nombre_comercial}
       </div>
       <div className="w-[200px] px-6 flex items-center text-muted-foreground text-xs truncate shrink-0">
         {Array.isArray(p.principios_activos) ? p.principios_activos.join(', ') : ''}
       </div>
-      <div className="w-[100px] px-6 flex items-center justify-end shrink-0">
-        <button onClick={() => onDelete(p.sku)} className="p-1.5 text-muted-foreground hover:text-red-500 transition-colors">
+      <div className="w-[100px] px-6 flex items-center justify-end shrink-0 gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <button 
+          onClick={(e) => { e.stopPropagation(); onView(p.sku); }} 
+          className="p-1.5 text-muted-foreground hover:text-primary transition-colors bg-background rounded ring-1 ring-border"
+          title="Ver Ficha Técnica"
+        >
+          <Eye className="w-4 h-4" />
+        </button>
+        <button 
+          onClick={(e) => { e.stopPropagation(); onDelete(p.sku); }} 
+          className="p-1.5 text-muted-foreground hover:text-red-500 transition-colors bg-background rounded ring-1 ring-border"
+          title="Eliminar del Catálogo"
+        >
           <Trash2 className="w-4 h-4" />
         </button>
       </div>
@@ -73,13 +90,15 @@ const Row = memo(({ index, style, data }: RowProps) => {
 });
 
 export const ProductTable: React.FC<ProductTableProps> = ({ products, isLoading, onDelete }) => {
+  const setViewedProduct = useStore(state => state.setViewedProduct);
+  
   return (
     <div className="hidden md:block overflow-x-auto">
       <div className="min-w-[860px]">
         {/* Header */}
         <div className="flex bg-card text-muted-foreground border-b border-border font-bold text-sm h-12">
           <div className="w-[120px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">Cloud</div>
-          <div className="w-[120px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">Sinergia</div>
+          <div className="w-[120px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">Sinergia IA</div>
           <div className="w-[120px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">SKU</div>
           <div className="flex-1 px-6 flex items-center min-w-[200px] uppercase tracking-wider text-[10px]">Producto</div>
           <div className="w-[200px] px-6 flex items-center shrink-0 uppercase tracking-wider text-[10px]">Compuestos</div>
@@ -101,7 +120,7 @@ export const ProductTable: React.FC<ProductTableProps> = ({ products, isLoading,
             itemCount={products.length}
             itemSize={64}
             width="100%"
-            itemData={{ products, onDelete }}
+            itemData={{ products, onDelete, onView: setViewedProduct }}
           >
             {Row}
           </List>
@@ -110,3 +129,4 @@ export const ProductTable: React.FC<ProductTableProps> = ({ products, isLoading,
     </div>
   );
 };
+

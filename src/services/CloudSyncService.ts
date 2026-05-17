@@ -4,6 +4,7 @@ import { configService } from './ConfigService';
 import { dataService } from './DataService';
 import { EventBus, EventType } from './EventBus';
 import { logger } from './LoggerService';
+import { supabaseService } from './SupabaseService';
 
 export class CloudSyncService {
   private static instance: CloudSyncService;
@@ -69,6 +70,7 @@ export class CloudSyncService {
 
   async checkCloudData(): Promise<boolean> {
     try {
+      if (!supabaseService.isConfigured()) return false;
       const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
       const response = await fetch(`${supabaseUrl}/rest/v1/products?limit=1`, {
         headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}` }
@@ -83,6 +85,7 @@ export class CloudSyncService {
 
   async getCloudCount(): Promise<number> {
     try {
+      if (!supabaseService.isConfigured()) return 0;
       const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
       const response = await fetch(`${supabaseUrl}/rest/v1/products?select=count`, {
         headers: { 'apikey': supabaseKey, 'Authorization': `Bearer ${supabaseKey}`, 'Prefer': 'count=exact' }
@@ -96,7 +99,7 @@ export class CloudSyncService {
   }
 
   async claimProductLock(sku: string, nodeId: string): Promise<boolean> {
-    if (!navigator.onLine) return true; 
+    if (!navigator.onLine || !supabaseService.isConfigured()) return true; 
     
     try {
       const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
@@ -165,30 +168,32 @@ export class CloudSyncService {
       last_synced_cloud: Date.now()
     };
     
-    const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
     let cloudSuccess = false;
-    try {
-      const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${product.sku}`, {
-        method: 'PATCH',
-        headers: {
-          'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          data: {
-            ...unlockedProduct,
-            updated_at_cloud: new Date().toISOString()
+    if (supabaseService.isConfigured()) {
+        const { supabaseUrl, supabaseKey } = dataService.getSupabaseInfo();
+        try {
+          const response = await fetch(`${supabaseUrl}/rest/v1/products?sku=eq.${product.sku}`, {
+            method: 'PATCH',
+            headers: {
+              'apikey': supabaseKey,
+              'Authorization': `Bearer ${supabaseKey}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              data: {
+                ...unlockedProduct,
+                updated_at_cloud: new Date().toISOString()
+              }
+            })
+          });
+          cloudSuccess = response.ok;
+          if (cloudSuccess) {
+            logger.success(`Sinergia de ${product.nombre_comercial} guardada en la nube`, 'CloudSync');
           }
-        })
-      });
-      cloudSuccess = response.ok;
-      if (cloudSuccess) {
-        logger.success(`Sinergia de ${product.nombre_comercial} guardada en la nube`, 'CloudSync');
-      }
-    } catch (e) {
-      console.error('[CloudSync] Failed to release lock:', e);
-      logger.warn(`No se pudo subir a la nube ${product.sku}, se guardó solo localmente`, 'CloudSync');
+        } catch (e) {
+          console.error('[CloudSync] Failed to release lock:', e);
+          logger.warn(`No se pudo subir a la nube ${product.sku}, se guardó solo localmente`, 'CloudSync');
+        }
     }
 
     await dataService.saveProduct({ ...unlockedProduct, is_synced_cloud: cloudSuccess }, { silent: true });
@@ -199,6 +204,7 @@ export class CloudSyncService {
 
   async pullCloudData(): Promise<{ downloaded: number; total: number }> {
     try {
+      if (!supabaseService.isConfigured()) return { downloaded: 0, total: 0 };
       logger.info('Iniciando sincronización inteligente...', 'CloudSync');
       
       const cloudInventory = await dataService.fetchCloudInventory();

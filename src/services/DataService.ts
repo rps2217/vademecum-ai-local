@@ -25,10 +25,8 @@ export class DataService {
   }
 
   getSupabaseInfo() {
-    const fallbackUrl = 'https://pspxqzwxulgmzarlqwtt.supabase.co';
-    const fallbackKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBzcHhxend4dWxnbXphcmxxd3R0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1NzQ1ODQsImV4cCI6MjA5MjE1MDU4NH0.hX0V1F5S6T0I5G1qA1e9D9v1o9Y-H6p9j2V_YI3C1P0'; 
-    const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL || fallbackUrl;
-    const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY || fallbackKey;
+    const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
+    const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
     return { supabaseUrl, supabaseKey };
   }
 
@@ -317,9 +315,10 @@ export class DataService {
 
 
   async syncProductsBatch(products: Product[]): Promise<void> {
-    if (!navigator.onLine || products.length === 0) return;
+    if (!supabaseService.isConfigured() || !navigator.onLine || products.length === 0) return;
     try {
         const supabase = supabaseService.getClient();
+        if (!supabase) return;
         const now = Date.now();
         
         const payloads = products.map(product => ({
@@ -364,15 +363,18 @@ export class DataService {
   }
 
   async fetchCloudInventory(): Promise<{ sku: string }[]> {
+    if (!supabaseService.isConfigured()) return [];
     const supabase = supabaseService.getClient();
+    if (!supabase) return [];
     const { data, error } = await supabase.from('products').select('sku');
     if (error) throw error;
     return data || [];
   }
 
   async downloadCloudProducts(skus: string[]): Promise<Product[]> {
-    if (skus.length === 0) return [];
+    if (!supabaseService.isConfigured() || skus.length === 0) return [];
     const supabase = supabaseService.getClient();
+    if (!supabase) return [];
     const { data, error } = await supabase
         .from('products')
         .select('sku, data')
@@ -394,10 +396,12 @@ export class DataService {
         });
     }
 
-    if (navigator.onLine) {
+    if (navigator.onLine && supabaseService.isConfigured()) {
       try {
         const supabase = supabaseService.getClient();
-        await supabase.from('products').delete().eq('sku', sku);
+        if (supabase) {
+            await supabase.from('products').delete().eq('sku', sku);
+        }
       } catch (e) {
         console.error('[DataService] Sync delete failed', e);
       }

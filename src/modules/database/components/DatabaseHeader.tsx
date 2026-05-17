@@ -26,8 +26,8 @@ export const DatabaseHeader: React.FC<DatabaseHeaderProps> = ({
         <Database className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
       </div>
       <div>
-        <h2 className="text-xl sm:text-3xl font-extrabold text-foreground tracking-tight leading-tight">Base de Datos</h2>
-        <p className="text-muted-foreground font-medium text-[10px] sm:text-sm uppercase tracking-widest opacity-60">Gestión de Inventario</p>
+        <h2 className="text-xl sm:text-3xl font-extrabold text-foreground tracking-tight leading-tight">Catálogo</h2>
+        <p className="text-muted-foreground font-medium text-[10px] sm:text-sm uppercase tracking-widest opacity-60">Gestión de Inventario y Vademécum</p>
       </div>
     </div>
     

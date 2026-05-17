@@ -75,6 +75,17 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
     }
   }, [viewedProductSku]);
 
+  // Focus top bar search when leaving hero mode
+  useEffect(() => {
+    if (query.trim().length > 0 && activeTab === 'search') {
+      // Delay focus slightly to ensure top SearchBar is active / un-hidden
+      const timer = setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [query, activeTab]);
+
   // Focus global search bar
   const focusSearch = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -177,7 +188,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
               </div>
             </div>
 
-            <div className="flex-1 max-w-4xl px-4 hidden md:block w-full">
+            <div className={`flex-1 max-w-4xl px-4 hidden md:block w-full transition-opacity duration-300 ${activeTab === 'search' && query.trim() === '' && !viewedProductSku ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                <div className="relative group w-full">
                  <div className="absolute -inset-1 bg-primary rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition duration-500"></div>
                  <SearchBar 
@@ -195,50 +206,29 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
             {/* Actions & User */}
             <div className="flex items-center gap-2">
-              <div className="hidden sm:flex items-center gap-1 mr-2">
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'search' ? 'bg-primary text-foreground shadow-[0_0_20px_rgba(249,115,22,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
-                  onClick={() => setActiveTab('search')}
-                >
-                  <Search className="h-4 h-4" />
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'graph' ? 'bg-blue-600 text-foreground shadow-[0_0_20px_rgba(37,99,235,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
-                  onClick={() => setActiveTab('graph')}
-                >
-                  <Share2 className="h-4 h-4" />
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'database' ? 'bg-emerald-600 text-foreground shadow-[0_0_20px_rgba(5,150,105,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
-                  onClick={() => setActiveTab('database')}
-                >
-                  <Database className="h-4 h-4" />
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className={`h-10 w-10 rounded-full transition-all ${activeTab === 'settings' ? 'bg-slate-700 text-foreground shadow-[0_0_20px_rgba(51,65,85,0.5)]' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
-                  onClick={() => setActiveTab('settings')}
-                >
-                  <Settings className="h-4 h-4" />
-                </Button>
+              <div className="hidden sm:flex items-center gap-2 mr-2 bg-muted/30 p-1.5 rounded-2xl border border-border">
+                {navItems.map(item => (
+                  <Button 
+                    key={item.id}
+                    variant="ghost" 
+                    className={`h-11 px-4 rounded-xl transition-all flex items-center gap-2 ${activeTab === item.id ? 'bg-primary text-primary-foreground shadow-md' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
+                    onClick={() => setActiveTab(item.id)}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    <span className="font-semibold text-sm">{item.label}</span>
+                  </Button>
+                ))}
                 
-                <Separator orientation="vertical" className="h-6 mx-2 bg-card" />
+                <Separator orientation="vertical" className="h-6 mx-2 bg-border" />
                 
                 <Button 
                   variant="ghost" 
                   size="icon" 
                   onClick={toggleAiProcessing}
                   title={isAiProcessingEnabled ? "IA Activa" : "IA Pausada"}
-                  className={`h-9 w-9 rounded-lg ${isAiProcessingEnabled ? 'text-emerald-500 bg-emerald-500/10' : 'text-amber-500 bg-amber-500/10'}`}
+                  className={`h-11 w-11 rounded-xl transition-all ${isAiProcessingEnabled ? 'text-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20' : 'text-amber-500 bg-amber-500/10 hover:bg-amber-500/20'}`}
                 >
-                  {isAiProcessingEnabled ? <Zap className="h-4 w-4" /> : <Snowflake className="h-4 w-4" />}
+                  {isAiProcessingEnabled ? <Zap className="h-5 w-5" /> : <Snowflake className="h-5 w-5" />}
                 </Button>
               </div>
               

@@ -13,7 +13,7 @@ import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretati
 import { useConsultation } from '../../context/ConsultationContext';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { logger } from '../../services/LoggerService';
-import { Brain, LayoutGrid, List, History, Sparkles, Filter } from 'lucide-react';
+import { Brain, LayoutGrid, List, History, Sparkles, Filter, Activity } from 'lucide-react';
 import { aiService } from '../../services/AIService';
 import { historyService } from '../../services/HistoryService';
 import { searchService } from '../../services/SearchService';
@@ -196,12 +196,34 @@ export const SearchModule: React.FC = () => {
         </div>
       ) : (
         /* Search Board */
-        <div className="w-full flex-1">
+        <div className="w-full flex-1 flex flex-col items-center justify-start mt-4 md:mt-12">
           {query.trim() === '' && results.length === 0 ? (
-            <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              {/* Recently Viewed / History */}
-              <div className="grid md:grid-cols-2 gap-12">
-                
+            <div className="w-full max-w-5xl space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700 flex flex-col items-center">
+              
+              {/* Huge Centered Search Bar */}
+              <div className="w-full max-w-3xl flex flex-col items-center gap-6 text-center">
+                  <div className="flex items-center justify-center gap-3 mb-2">
+                    <Activity className="h-10 w-10 text-primary" />
+                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
+                      Vademécum <span className="text-primary">IA</span>
+                    </h1>
+                  </div>
+                  <p className="text-muted-foreground text-sm md:text-base font-medium max-w-xl">
+                    Busque por principio activo, nombre comercial, síntoma o describa un cuadro clínico complejo.
+                  </p>
+                  
+                  <div className="w-full relative mt-4">
+                    <SearchBar 
+                      query={query} 
+                      setQuery={setQuery} 
+                      isSearching={isSearching}
+                      className="w-full scale-105"
+                    />
+                  </div>
+              </div>
+
+              {/* Recently Viewed / History & Quick Discovery */}
+              <div className="w-full mt-12 pb-24">
                 <QuickDiscoveryTags onSelect={setQuery} />
               </div>
             </div>

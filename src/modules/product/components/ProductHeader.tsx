@@ -32,6 +32,15 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({ product, onTagClic
                 {product.categoria_principal}
               </Badge>
             )}
+            
+            {/* Indicador de Vectorización para el usuario */}
+            {Array.isArray(product.vectores) && product.vectores.length > 0 && (
+               <Badge variant="secondary" className="bg-blue-500/10 text-blue-500 border-blue-500/30 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs tracking-wider font-bold uppercase flex items-center gap-1">
+                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                 Vectorizado
+               </Badge>
+            )}
+
             {Array.isArray(product.tags_ia) && product.tags_ia.length > 0 && (
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {product.tags_ia.slice(0, 3).map(tag => (

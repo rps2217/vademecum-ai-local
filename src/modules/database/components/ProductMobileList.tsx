@@ -1,7 +1,8 @@
 import React, { memo, CSSProperties } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import { Product } from '../../../core/types/product.types';
-import { Trash2, Cloud, Monitor, Sparkles } from 'lucide-react';
+import { Trash2, Cloud, Monitor, Sparkles, ChevronRight } from 'lucide-react';
+import { useStore } from '../../../store/useStore';
 
 interface ProductMobileListProps {
   products: Product[];
@@ -12,6 +13,7 @@ interface ProductMobileListProps {
 interface MobileRowData {
   products: Product[];
   onDelete: (sku: string) => void;
+  onView: (sku: string) => void;
 }
 
 interface MobileRowProps {
@@ -21,13 +23,17 @@ interface MobileRowProps {
 }
 
 const MobileRow = memo(({ index, style, data }: MobileRowProps) => {
-  const { products, onDelete } = data;
+  const { products, onDelete, onView } = data;
   const p = products[index];
 
   if (!p) return null;
 
   return (
-    <div style={style} className="p-4 hover:bg-card transition-colors border-b border-border bg-card">
+    <div 
+      style={style} 
+      className="p-4 hover:bg-muted/50 transition-colors border-b border-border bg-card cursor-pointer group flex flex-col justify-center"
+      onClick={() => onView(p.sku)}
+    >
       <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5">
@@ -40,11 +46,17 @@ const MobileRow = memo(({ index, style, data }: MobileRowProps) => {
           </div>
           <span className="font-mono text-[10px] text-muted-foreground tracking-tighter">{p.sku}</span>
         </div>
-        <button onClick={() => onDelete(p.sku)} className="p-2 text-muted-foreground hover:text-red-400">
-          <Trash2 className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-1">
+          <button 
+            onClick={(e) => { e.stopPropagation(); onDelete(p.sku); }} 
+            className="p-2 text-muted-foreground hover:text-red-400"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+        </div>
       </div>
-      <h3 className="font-bold text-foreground leading-tight mb-2 pr-8 truncate font-sans tracking-tight">{p.nombre_comercial}</h3>
+      <h3 className="font-bold text-foreground leading-tight mb-2 pr-8 truncate font-sans tracking-tight group-hover:text-primary transition-colors">{p.nombre_comercial}</h3>
       <div className="flex flex-wrap gap-1 overflow-hidden h-[24px]">
         {(Array.isArray(p.principios_activos) ? p.principios_activos : []).slice(0, 3).map((pa, idx) => (
           <span key={idx} className="text-[9px] px-1.5 py-0.5 bg-card text-muted-foreground rounded-md border border-border font-medium whitespace-nowrap">
@@ -57,6 +69,7 @@ const MobileRow = memo(({ index, style, data }: MobileRowProps) => {
 });
 
 export const ProductMobileList: React.FC<ProductMobileListProps> = ({ products, isLoading, onDelete }) => {
+  const setViewedProduct = useStore(state => state.setViewedProduct);
   return (
     <div className="block md:hidden">
       {isLoading ? (
@@ -69,7 +82,7 @@ export const ProductMobileList: React.FC<ProductMobileListProps> = ({ products, 
           itemCount={products.length}
           itemSize={130}
           width="100%"
-          itemData={{ products, onDelete }}
+          itemData={{ products, onDelete, onView: setViewedProduct }}
         >
           {MobileRow}
         </List>
@@ -77,3 +90,4 @@ export const ProductMobileList: React.FC<ProductMobileListProps> = ({ products, 
     </div>
   );
 };
+
