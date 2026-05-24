@@ -5,6 +5,7 @@ export interface AppConfig {
   autoSyncCloud: boolean;
   enableAIInteractions: boolean;
   useOllama: boolean;
+  aiExecutionMode: 'hybrid-local' | 'cloud-only';
 }
 
 const DEFAULT_CONFIG: AppConfig = {
@@ -13,6 +14,7 @@ const DEFAULT_CONFIG: AppConfig = {
   autoSyncCloud: true,
   enableAIInteractions: false,
   useOllama: true,
+  aiExecutionMode: 'hybrid-local',
 };
 
 export class ConfigService {

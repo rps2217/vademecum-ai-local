@@ -7,6 +7,8 @@ import { logger } from './LoggerService';
 import { taskQueueService } from './TaskQueueService';
 import { medicalRAGService } from './MedicalRAGService';
 import { thermalGuardService } from './ThermalGuardService';
+import { embeddingCacheService } from './EmbeddingCacheService';
+import { configService } from './ConfigService';
 
 class CloudCircuitBreaker {
   private failures = 0;
@@ -71,6 +73,15 @@ export class AIService {
 
   // Iniciar el motor explícitamente (Lazy Load)
   async startEngine(): Promise<boolean> {
+    const config = configService.getConfig();
+    if (config.aiExecutionMode === 'cloud-only') {
+      this.isReady = true;
+      this.engineName = 'Gemini Cloud';
+      this.lastProgress = { text: 'Gemini Cloud Activo (Modo Ecológico)', progress: 100 };
+      this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
+      return true;
+    }
+
     if (this.isReady) {
       synergyBackgroundService.start();
       return true;
@@ -384,12 +395,30 @@ export class AIService {
 
   async generateEmbedding(text: string): Promise<number[]> {
     if (!text) return new Array(384).fill(0);
+
+    // 1. Check persistent caching first (O(1) memory or extremely fast Disk db lookup)
+    try {
+      const cached = await embeddingCacheService.get(text);
+      if (cached) {
+        return cached;
+      }
+    } catch (err) {
+      console.warn('[AIService] Failed reading from embedding cache:', err);
+    }
+
+    // 2. Fall back to local Worker calculation if ready
     if (!this.worker || !this.isReady) {
       return new Array(384).fill(0);
     }
 
     try {
-      return await this.runInWorker('EMBED', { text }, 60000);
+      const vector = await this.runInWorker('EMBED', { text }, 60000) as number[];
+      
+      // 3. Cache the calculated vector for future lookups
+      if (vector && vector.length > 0) {
+        await embeddingCacheService.set(text, vector);
+      }
+      return vector;
     } catch (error) {
       console.error('[AIService] Error embedding:', error);
       return new Array(384).fill(0);
@@ -523,6 +552,12 @@ export class AIService {
   }
 
   async purgeCache(): Promise<boolean> {
+    try {
+      await embeddingCacheService.clear();
+    } catch (e) {
+      console.warn('[AIService] Failed clearing embeddingCacheService during purge:', e);
+    }
+
     if (!this.worker) return false;
     
     return new Promise((resolve) => {

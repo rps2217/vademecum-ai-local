@@ -189,6 +189,50 @@ export const SettingsModule: React.FC = () => {
                   <div className={`absolute top-1 w-4 h-4 bg-card rounded-full transition-all ${config.useOllama ? 'left-7' : 'left-1'}`} />
                 </button>
              </div>
+
+             <div className="p-4 bg-card rounded-2xl border border-border">
+                <p className="text-sm font-bold text-foreground mb-1 flex items-center gap-2">
+                   <Zap className="w-4 h-4 text-primary" /> Perfil de Ejecución de IA
+                </p>
+                <p className="text-[11px] text-muted-foreground mb-3">
+                   Optimiza el consumo de batería y almacenamiento del dispositivo clínico.
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => {
+                      handleConfigChange({ aiExecutionMode: 'hybrid-local' });
+                    }}
+                    className={`p-3 rounded-xl border text-left transition-all flex flex-col justify-between h-24 ${
+                      config.aiExecutionMode !== 'cloud-only'
+                        ? 'bg-primary/10 border-primary text-foreground'
+                        : 'bg-card border-border hover:border-slate-500 text-muted-foreground'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center w-full">
+                      <span className="text-xs font-bold font-sans">Híbrido Local</span>
+                      <Brain className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="text-[9px] leading-tight text-muted-foreground/90 font-medium">WebGPU/Transformers local con fallback. Privacidad.</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      handleConfigChange({ aiExecutionMode: 'cloud-only' });
+                    }}
+                    className={`p-3 rounded-xl border text-left transition-all flex flex-col justify-between h-24 ${
+                      config.aiExecutionMode === 'cloud-only'
+                        ? 'bg-primary/10 border-primary text-foreground'
+                        : 'bg-card border-border hover:border-slate-500 text-muted-foreground'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center w-full">
+                      <span className="text-xs font-bold font-sans">Nube Directa</span>
+                      <Cloud className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="text-[9px] leading-tight text-muted-foreground/90 font-medium">Gemini Cloud directo. Ideal para dispositivos móviles/ligeros.</span>
+                  </button>
+                </div>
+             </div>
           </div>
         </div>
 

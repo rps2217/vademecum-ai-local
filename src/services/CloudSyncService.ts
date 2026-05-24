@@ -79,6 +79,7 @@ export class CloudSyncService {
       const rows = await response.json();
       return rows.length > 0;
     } catch (e) {
+      supabaseService.markUnreachable();
       return false;
     }
   }
@@ -94,6 +95,7 @@ export class CloudSyncService {
       const count = response.headers.get('content-range')?.split('/')[1];
       return count ? parseInt(count, 10) : 0;
     } catch (e) {
+      supabaseService.markUnreachable();
       return 0;
     }
   }
@@ -154,6 +156,7 @@ export class CloudSyncService {
       return false;
     } catch (e) {
       console.error('[CloudSync] Error claiming lock:', e);
+      supabaseService.markUnreachable();
       return false;
     }
   }
@@ -192,6 +195,7 @@ export class CloudSyncService {
           }
         } catch (e) {
           console.error('[CloudSync] Failed to release lock:', e);
+          supabaseService.markUnreachable();
           logger.warn(`No se pudo subir a la nube ${product.sku}, se guardó solo localmente`, 'CloudSync');
         }
     }
