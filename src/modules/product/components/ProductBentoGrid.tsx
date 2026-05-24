@@ -1,7 +1,6 @@
 import React from 'react';
 import { Info, Cpu, CheckCircle2, AlertTriangle, ShieldCheck, Stethoscope } from 'lucide-react';
 import { Product } from '../../../core/types/product.types';
-import { ProductSafetyProfile } from './ProductSafetyProfile';
 import { HighlightText } from '../../../components/ui/HighlightText';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -13,48 +12,49 @@ interface ProductBentoGridProps {
 
 export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, searchTerm = '' }) => {
   return (
-    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-700">
+    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-6 duration-700">
       
-      {/* Sección 1: Definición Clínica */}
-      <div className="grid md:grid-cols-3 gap-8">
-        <div className="md:col-span-2 space-y-4">
-          <div className="flex items-center gap-2 text-primary">
+      {/* Sección 1: Definición Clínica y Dosificación */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="md:col-span-2 bg-gradient-to-br from-card to-muted/10 p-6 md:p-8 rounded-3xl border border-border/60 shadow-sm space-y-4 hover:shadow-md transition-all duration-300">
+          <div className="flex items-center gap-2 text-[#0284c7]">
             <Info className="h-5 w-5" />
-            <span className="text-xs font-bold uppercase tracking-widest">Resumen Descriptivo</span>
+            <span className="text-[10px] font-black uppercase tracking-widest">Resumen Descriptivo Clínico</span>
           </div>
-          <div className="text-2xl font-medium leading-relaxed text-foreground/90">
+          <p className="text-lg sm:text-xl font-medium leading-relaxed text-foreground/90">
             <HighlightText text={product.descripcion} searchTerm={searchTerm} />
-          </div>
+          </p>
         </div>
 
-        <div className="bg-muted p-8 rounded-2xl space-y-4 flex flex-col justify-center border-l-4 border-primary shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Stethoscope className="h-6 w-6 text-emerald-600" />
-            <span className="text-sm font-bold uppercase tracking-widest text-emerald-600">Posología Base</span>
+        <div className="bg-sky-50/50 p-6 md:p-8 rounded-3xl space-y-4 flex flex-col justify-center border border-sky-100 hover:border-sky-200 shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="flex items-center gap-2 text-sky-700">
+            <Stethoscope className="h-5 w-5" />
+            <span className="text-[10px] font-black uppercase tracking-widest">Posología de Referencia</span>
           </div>
-          <div className="text-2xl font-bold text-foreground">
+          <p className="text-xl sm:text-2xl font-black text-sky-900 tracking-tight leading-tight">
             <HighlightText text={product.posologia} searchTerm={searchTerm} />
-          </div>
+          </p>
+          <span className="text-[10px] font-bold text-sky-600/80 uppercase">Dosificación sugerida por protocolo clínico</span>
         </div>
       </div>
 
-      <Separator className="my-8" />
+      <Separator className="border-border/60" />
 
       {/* Sección 2: Farmacodinámica e Indicaciones */}
-      <div className="grid md:grid-cols-2 gap-12">
-        <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        <div className="space-y-4 bg-card p-6 md:p-8 rounded-3xl border border-border/60 shadow-sm">
           <div className="flex items-center gap-2 text-emerald-600">
-            <CheckCircle2 className="h-6 w-6" />
-            <span className="text-sm font-bold uppercase tracking-widest">Indicaciones Clínicas</span>
+            <CheckCircle2 className="h-5 w-5" />
+            <span className="text-[10px] font-black uppercase tracking-widest">Indicaciones Clínicas Autorizadas</span>
           </div>
-          <ul className="grid grid-cols-1 gap-4">
+          <ul className="grid grid-cols-1 gap-3">
             {(Array.isArray(product.indicaciones) ? product.indicaciones : []).map((ind, i) => {
               if (!ind) return null;
               const text = typeof ind === 'object' ? ((ind as any).nombre || (ind as any).tipo || (ind as any).indicacion || JSON.stringify(ind)) : String(ind);
               return (
-                <li key={i} className="flex items-center gap-4 group bg-background p-4 rounded-xl border border-border hover:border-primary/30 transition-all shadow-sm">
-                  <div className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-                  <span className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                <li key={i} className="flex items-center gap-3.5 group bg-muted/20 p-4 rounded-2xl border border-transparent hover:border-emerald-100 hover:bg-emerald-50/20 transition-all duration-300">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500 shrink-0 shadow-sm shadow-emerald-400" />
+                  <span className="text-sm font-bold text-foreground group-hover:text-amber-950 transition-colors leading-snug">
                     <HighlightText text={text} searchTerm={searchTerm} />
                   </span>
                 </li>
@@ -63,31 +63,17 @@ export const ProductBentoGrid: React.FC<ProductBentoGridProps> = ({ product, sea
           </ul>
         </div>
 
-        <div className="bg-background p-8 rounded-3xl border border-dashed space-y-6">
+        <div className="bg-card p-6 md:p-8 rounded-3xl border border-border/60 space-y-4 shadow-sm">
           <div className="flex items-center gap-2 text-primary">
-            <Cpu className="h-4 w-4" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Mecanismo de Acción IA</span>
+            <Cpu className="h-5 w-5" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-[#0284c7]">Mecanismo de Acción (IA Analizado)</span>
           </div>
-          <div className="text-xs font-mono leading-relaxed text-foreground bg-muted/30 p-6 rounded-lg border border-border">
+          <div className="text-xs font-mono leading-relaxed text-slate-700 bg-muted/30 p-5 rounded-2xl border border-border/50 max-h-[300px] overflow-y-auto">
             <HighlightText text={product.analisis_componentes || 'Análisis no disponible'} searchTerm={searchTerm} />
           </div>
         </div>
       </div>
-
-      {/* Sección 3: Seguridad y Contraindicaciones */}
-      <div className="grid md:grid-cols-2 gap-8">
-         <div className="alert-critical p-8 rounded-3xl space-y-4">
-            <div className="flex items-center gap-2 text-red-600">
-              <AlertTriangle className="h-6 w-6" />
-              <span className="text-sm font-bold uppercase tracking-widest">Advertencias y Contraindicaciones</span>
-            </div>
-            <div className="text-lg font-bold leading-relaxed text-red-900 italic">
-              <HighlightText text={product.advertencias} searchTerm={searchTerm} />
-            </div>
-          </div>
-
-          <ProductSafetyProfile product={product} />
-      </div>
     </div>
   );
 };
+
