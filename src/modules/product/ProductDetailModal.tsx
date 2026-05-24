@@ -95,7 +95,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             Volver
           </Button>
           <Separator orientation="vertical" className="h-4" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-[#0284c7] px-2 bg-sky-50 rounded py-0.5">Ficha Técnica</span>
+          <span className="text-[10px] font-black uppercase tracking-widest text-[#06b6d4] px-2.5 bg-cyan-950/50 border border-cyan-800/40 rounded-xl py-0.5">Ficha Técnica</span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -106,9 +106,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               variant={product.is_verified ? "secondary" : "outline"}
               size="sm" 
               onClick={handleVerifyClick}
-              className={product.is_verified ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-200 rounded-xl' : 'rounded-xl'}
+              className={product.is_verified ? 'bg-emerald-950/65 text-emerald-400 hover:bg-emerald-900/80 border-emerald-800/60 rounded-xl shadow-sm' : 'rounded-xl'}
             >
-            {product.is_verified ? <ShieldCheck className="mr-2 h-4 w-4 text-emerald-600" /> : <Bookmark className="mr-2 h-4 w-4" />}
+            {product.is_verified ? <ShieldCheck className="mr-2 h-4 w-4 text-emerald-400 animate-pulse" /> : <Bookmark className="mr-2 h-4 w-4" />}
             {product.is_verified ? 'Verificado' : 'Verificar'}
           </Button>
         </div>
@@ -122,7 +122,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             onClick={() => setActiveTab('general')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
               activeTab === 'general' 
-                ? 'bg-primary/10 text-primary border-transparent' 
+                ? 'bg-primary/20 text-primary border border-primary/30' 
                 : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
             }`}
           >
@@ -135,11 +135,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             onClick={() => setActiveTab('synergy')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
               activeTab === 'synergy' 
-                ? 'bg-emerald-50 text-emerald-700 border-transparent' 
+                ? 'bg-emerald-950/50 text-emerald-400 border border-emerald-800/40' 
                 : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
             }`}
           >
-            <Sparkles className="h-4 w-4 text-emerald-600 animate-pulse" />
+            <Sparkles className="h-4 w-4 text-emerald-400 animate-pulse" />
             Sinergia y Venta Cruzada
           </button>
 
@@ -148,11 +148,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             onClick={() => setActiveTab('safety')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
               activeTab === 'safety' 
-                ? 'bg-orange-50 text-orange-700 border-transparent' 
+                ? 'bg-amber-950/50 text-amber-400 border border-amber-800/40' 
                 : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
             }`}
           >
-            <ShieldCheck className="h-4 w-4 text-orange-600" />
+            <ShieldCheck className="h-4 w-4 text-amber-400" />
             Seguridad Clínica
           </button>
 
@@ -161,11 +161,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             onClick={() => setActiveTab('ingredients')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer whitespace-nowrap ${
               activeTab === 'ingredients' 
-                ? 'bg-sky-50 text-sky-800 border-transparent' 
+                ? 'bg-purple-950/50 text-purple-400 border border-purple-800/40' 
                 : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
             }`}
           >
-            <Beaker className="h-4 w-4 text-sky-600" />
+            <Beaker className="h-4 w-4 text-purple-400" />
             Compuestos Químicos
           </button>
         </div>
@@ -212,7 +212,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                 {activeTab === 'synergy' && (
                   <div className="space-y-8 animate-in fade-in duration-300 bg-background/40 p-6 rounded-3xl border border-border/50">
-                    <div className="mb-4 p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs sm:text-[13px] leading-relaxed dark:bg-emerald-950/30 dark:border-emerald-900 dark:text-emerald-300">
+                    <div className="mb-4 p-4 rounded-xl bg-emerald-950/40 border border-emerald-900/60 text-emerald-300 text-xs sm:text-[13px] leading-relaxed">
                       <strong>Información de Sinergia y Co-prescripción:</strong> Relaciones clínicas mapeadas detalladamente para mejorar las recomendaciones médicas cruzadas y precauciones entre fármacos.
                     </div>
                     
@@ -226,19 +226,19 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <div className="space-y-8 animate-in fade-in duration-300">
                     {product.advertencias && (
                       <div className="alert-critical p-6 sm:p-8 rounded-3xl space-y-3">
-                        <div className="flex items-center gap-2 text-red-600">
+                        <div className="flex items-center gap-2 text-red-400">
                           <AlertCircle className="h-6 w-6" />
                           <span className="text-xs font-bold uppercase tracking-widest">Advertencias Especiales y Contraindicaciones de Seguridad</span>
                         </div>
-                        <p className="text-sm font-semibold leading-relaxed text-red-900 leading-relaxed italic">
+                        <p className="text-sm font-semibold leading-relaxed text-red-200 leading-relaxed italic">
                           {product.advertencias}
                         </p>
                       </div>
                     )}
 
                     <div className="bg-background/40 p-6 rounded-3xl border border-border/50">
-                      <h4 className="text-xs font-black uppercase tracking-widest text-[#0284c7] mb-6 flex items-center gap-1.5">
-                        <ShieldCheck className="w-4 h-4" /> Categorías de Aptitud Clínica
+                      <h4 className="text-xs font-black uppercase tracking-widest text-[#06b6d4] mb-6 flex items-center gap-1.5">
+                        <ShieldCheck className="w-4 h-4 text-cyan-400" /> Categorías de Aptitud Clínica
                       </h4>
                       <ProductSafetyProfile product={product} />
                     </div>

@@ -8,39 +8,52 @@
   --color-input: var(--input);
   --color-background: var(--background);
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --color-foreground: var(--foreground);
 
-  --radius-lg: 0.75rem;
-  --radius-md: 0.5rem;
-  --radius-sm: 0.25rem;
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
 }
 
 @layer base {
   :root {
-    /* Solid Professional Medical Palette */
-    --background: #f1f5f9; /* Slate 100 - Consistent light gray background */
-    --foreground: #0f172a; /* Slate 900 - Deep contrast for text */
+    /* Rich, Vivid Clinical Deep Ocean Indigo - Escaping white/grays completely */
+    --background: #03080f; /* Midnight Deep Marine */
+    --foreground: #e0f2fe; /* Ultra crisp medical light cyan */
 
-    --card: #ffffff;      /* Perfect White - Solid cards */
-    --card-foreground: #0f172a;
+    --card: #081524;      /* Highly saturated deep ocean navy card */
+    --card-foreground: #f0fdf4;
 
-    --popover: #ffffff;
-    --popover-foreground: #0f172a;
+    --popover: #06101c;
+    --popover-foreground: #cbd5e1;
 
-    /* Primary: Trustworthy Medical Blue */
-    --primary: #0284c7;   /* Sky 600 */
-    --primary-foreground: #ffffff;
+    /* Primary: Vibrantly Glowing Medical Cyan */
+    --primary: #06b6d4;   /* Vivid Cyan 500 */
+    --primary-foreground: #020617; /* High-contrast text on primary active items */
 
-    /* Muted: Clear separation grays */
-    --muted: #e2e8f0;     /* Slate 200 */
-    --muted-foreground: #475569; /* Slate 600 */
+    /* Muted states */
+    --muted: #0d2847;     /* Deep navy blue */
+    --muted-foreground: #7dd3fc; /* Clean clear sky-blue for outstanding label contrast */
 
-    --accent: #f8fafc;
-    --accent-foreground: #0f172a;
+    --accent: #113459;    /* Vivid Blue Accent */
+    --accent-foreground: #a5f3fc;
 
-    /* Borders: Sharp and defined */
-    --border: #cbd5e1;    /* Slate 300 */
-    --input: #cbd5e1;
+    /* Borders: Highly defined, vibrant sky-blue/ocean borders */
+    --border: #14355a;    /* Clean navy boundary */
+    --input: #1b497a;
   }
 
   * {
@@ -51,20 +64,20 @@
     letter-spacing: -0.01em;
   }
   
-  /* Simplified Clinical alerts */
+  /* Modern Clinical high-contrast alerts */
   .alert-clinical {
-    @apply p-4 rounded-lg bg-card border border-border text-sm;
+    @apply p-5 rounded-2xl bg-card border border-border/80 text-sm shadow-md;
   }
 
   .alert-critical {
-    @apply bg-red-100 border-red-300 text-red-900 border p-6 rounded-2xl;
+    @apply bg-red-950/40 border-red-800 text-red-200 border p-6 rounded-2xl shadow-md;
   }
 
   .alert-synergy {
-    @apply bg-emerald-100 border-emerald-300 text-emerald-900 border p-4 rounded-lg;
+    @apply bg-emerald-950/40 border-emerald-800 text-emerald-200 border p-6 rounded-2xl shadow-md;
   }
 
   .alert-info {
-    @apply bg-blue-100 border-blue-300 text-blue-900 border p-4 rounded-lg;
+    @apply bg-sky-950/40 border-sky-800 text-sky-200 border p-6 rounded-2xl shadow-md;
   }
 }
