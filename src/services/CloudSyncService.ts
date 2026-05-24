@@ -209,33 +209,71 @@ export class CloudSyncService {
       
       const cloudInventory = await dataService.fetchCloudInventory();
       const localProducts = await dataService.getAllProducts();
-      const localMap = new Map(localProducts.map(p => [p.sku, p.last_synced_cloud || 0]));
+      const localMap = new Map(localProducts.map(p => [p.sku, p]));
 
-      const toDownload = cloudInventory.filter(item => {
-        return !localMap.has(item.sku);
-      }).map(item => item.sku);
+      // Identify which need downloading or conflict resolution
+      const toDownload: string[] = [];
+      const toResolve = new Map<string, Product>();
+
+      for (const item of cloudInventory) {
+        const localProd = localMap.get(item.sku);
+        if (!localProd) {
+          // Entirely new product
+          toDownload.push(item.sku);
+        } else {
+          // Check if modified in cloud since last local-to-cloud sync
+          const cloudLastUpdatedStr = item.last_updated;
+          const cloudLastUpdated = cloudLastUpdatedStr ? new Date(cloudLastUpdatedStr).getTime() : 0;
+          const localLastSyncedCloud = localProd.last_synced_cloud || 0;
+
+          if (cloudLastUpdated > localLastSyncedCloud) {
+            toDownload.push(item.sku);
+            toResolve.set(item.sku, localProd);
+          }
+        }
+      }
       
       if (toDownload.length === 0) {
         logger.success('Base local actualizada.', 'CloudSync');
         return { downloaded: 0, total: cloudInventory.length };
       }
 
-      logger.info(`Detectados ${toDownload.length} cambios. Sincronizando deltas...`, 'CloudSync');
+      logger.info(`Detectados ${toDownload.length} cambios. Sincronizando deltas y resolviendo conflictos...`, 'CloudSync');
 
       const BATCH_SIZE = 50;
       let downloadedCount = 0;
 
       for (let i = 0; i < toDownload.length; i += BATCH_SIZE) {
         const batchSkus = toDownload.slice(i, i + BATCH_SIZE);
-        const products = await dataService.downloadCloudProducts(batchSkus);
-        const syncedProducts = products.map(p => ({ ...p, is_synced_cloud: true, last_synced_cloud: Date.now() }));
+        const downloadedProducts = await dataService.downloadCloudProducts(batchSkus);
         
-        await dataService.importProducts(JSON.stringify(syncedProducts));
+        const finalProductsToSave: Product[] = [];
+
+        for (const cloudProd of downloadedProducts) {
+          const localConflict = toResolve.get(cloudProd.sku);
+          if (localConflict) {
+            // Apply granular conflict resolution field-by-field
+            const mergedProduct = resolveProductConflict(localConflict, cloudProd);
+            finalProductsToSave.push(mergedProduct);
+            
+            // Queue the resolved copy to upload soon so the cloud updates as well
+            await taskQueueService.addTask('cloud_sync', { sku: mergedProduct.sku });
+          } else {
+            // New local insert
+            finalProductsToSave.push({ 
+              ...cloudProd, 
+              is_synced_cloud: true, 
+              last_synced_cloud: Date.now() 
+            });
+          }
+        }
         
-        downloadedCount += syncedProducts.length;
+        await dataService.importProducts(JSON.stringify(finalProductsToSave));
+        
+        downloadedCount += finalProductsToSave.length;
       }
 
-      logger.success(`Sincronización diferencial completada (${downloadedCount} items).`, 'CloudSync');
+      logger.success(`Sincronización diferencial y resolución de conflictos completada (${downloadedCount} items).`, 'CloudSync');
 
       EventBus.emit(EventType.DB_UPDATED, { action: 'pull_complete', count: downloadedCount });
       return { downloaded: downloadedCount, total: cloudInventory.length };
@@ -245,6 +283,92 @@ export class CloudSyncService {
       throw error;
     }
   }
+}
+
+export function resolveProductConflict(local: Product, cloud: Product): Product {
+  // If local wasn't modified since last sync, cloud wins
+  const localLastUpdated = local.last_updated || 0;
+  const cloudLastUpdated = cloud.last_updated || 0;
+  const localLastSyncedCloud = local.last_synced_cloud || 0;
+
+  // No local changes since last sync -> simple override with cloud
+  if (localLastUpdated <= localLastSyncedCloud) {
+    return { ...cloud, last_synced_cloud: Date.now(), is_synced_cloud: true };
+  }
+
+  // No cloud changes since last sync -> local wins, mark for sync up soon
+  if (cloudLastUpdated <= localLastSyncedCloud) {
+    return { ...local, last_synced_cloud: localLastSyncedCloud, is_synced_cloud: false };
+  }
+
+  // Conflict case: BOTH were updated. Let's merge them field-by-field!
+  const merged: Product = { ...cloud };
+
+  const localIsNewer = localLastUpdated > cloudLastUpdated;
+
+  // Merge each major clinical or inventory field:
+  merged.nombre_comercial = localIsNewer ? local.nombre_comercial : cloud.nombre_comercial;
+  merged.descripcion = localIsNewer ? local.descripcion : cloud.descripcion;
+  
+  // Stock: merge/prefer newest edit
+  const localStockVal = (local as any).stock;
+  const cloudStockVal = (cloud as any).stock;
+  if (localStockVal !== undefined && cloudStockVal !== undefined) {
+    (merged as any).stock = localIsNewer ? localStockVal : cloudStockVal;
+  } else if (localStockVal !== undefined) {
+    (merged as any).stock = localStockVal;
+  } else if (cloudStockVal !== undefined) {
+    (merged as any).stock = cloudStockVal;
+  }
+
+  // Tags: combine uniquely so no tags are lost from either side
+  const combinedTags = new Set([
+    ...(local.tags_ia || []),
+    ...(cloud.tags_ia || [])
+  ]);
+  merged.tags_ia = Array.from(combinedTags);
+
+  // Core Clinical definitions
+  merged.posologia = localIsNewer ? local.posologia : cloud.posologia;
+  merged.advertencias = localIsNewer ? local.advertencias : cloud.advertencias;
+  merged.indicaciones = localIsNewer ? local.indicaciones : cloud.indicaciones;
+  merged.principios_activos = localIsNewer ? local.principios_activos : cloud.principios_activos;
+
+  // Component annotations (AI extractions)
+  if (local.anotaciones_componentes || cloud.anotaciones_componentes) {
+    merged.anotaciones_componentes = {
+      ...(cloud.anotaciones_componentes || {}),
+      ...(local.anotaciones_componentes || {})
+    };
+  }
+
+  // Locks & Vectors
+  merged.locked_by_ai = cloud.locked_by_ai;
+  merged.lock_uid = cloud.lock_uid;
+  merged.lock_timestamp = cloud.lock_timestamp;
+  merged.vectores = localIsNewer ? local.vectores : cloud.vectores;
+
+  // Patient safety lights
+  merged.apto_embarazo = localIsNewer ? local.apto_embarazo : cloud.apto_embarazo;
+  merged.apto_lactancia = localIsNewer ? local.apto_lactancia : cloud.apto_lactancia;
+  merged.apto_pediatria = localIsNewer ? local.apto_pediatria : cloud.apto_pediatria;
+  merged.apto_diabeticos = localIsNewer ? local.apto_diabeticos : cloud.apto_diabeticos;
+  merged.apto_hipertensos = localIsNewer ? local.apto_hipertensos : cloud.apto_hipertensos;
+  merged.apto_celiacos = localIsNewer ? local.apto_celiacos : cloud.apto_celiacos;
+
+  // Synergy relations
+  merged.sugerencia_complementaria = localIsNewer ? local.sugerencia_complementaria : cloud.sugerencia_complementaria;
+  merged.skus_relacionados = localIsNewer ? local.skus_relacionados : cloud.skus_relacionados;
+  merged.explicacion_clinica = localIsNewer ? local.explicacion_clinica : cloud.explicacion_clinica;
+  merged.synergy_analyzed = localIsNewer ? local.synergy_analyzed : cloud.synergy_analyzed;
+  merged.last_synergy_analysis = localIsNewer ? local.last_synergy_analysis : cloud.last_synergy_analysis;
+
+  // Final metadata
+  merged.last_updated = Math.max(localLastUpdated, cloudLastUpdated);
+  merged.last_synced_cloud = Date.now();
+  merged.is_synced_cloud = false; // Mark for upload sync to push merged results back
+
+  return merged;
 }
 
 export const cloudSyncService = CloudSyncService.getInstance();

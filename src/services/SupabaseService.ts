@@ -9,7 +9,7 @@ export class SupabaseService {
         const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
         const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
         
-        if (supabaseUrl && supabaseKey) {
+        if (supabaseUrl && supabaseKey && supabaseUrl.includes('.supabase.co')) {
             this.client = createClient(supabaseUrl, supabaseKey);
             this.configured = true;
         }

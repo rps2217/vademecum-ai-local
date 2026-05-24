@@ -1,4 +1,4 @@
-import { taskQueueService, PendingTask } from './TaskQueueService';
+import { taskQueueService, PendingTask, AiAnalysisPayload, IngredientAnalysisPayload, VectorizationPayload } from './TaskQueueService';
 import { cloudSyncService } from './CloudSyncService';
 import { synergyBackgroundService } from './SynergyBackgroundService';
 import { vectorBackgroundService } from './VectorBackgroundService';
@@ -127,18 +127,21 @@ export class TaskProcessorService {
       await taskQueueService.updateTask(task.id, { status: 'processing' });
 
       switch (task.type) {
-        case 'ai_analysis':
-          if (task.payload.type === 'synergy') {
-            const product = task.payload.product || await dataService.getProductBySku(task.payload.sku);
+        case 'ai_analysis': {
+          const payload = task.payload as AiAnalysisPayload;
+          if (payload.type === 'synergy') {
+            const product = payload.product || await dataService.getProductBySku(payload.sku || '');
             if (product) {
               await synergyBackgroundService.forceAnalyze(product);
               aiOrchestratorService.trackActivity(50);
             }
           }
           break;
+        }
 
-        case 'ingredient_analysis':
-          const prodToAnalyze = task.payload.product || await dataService.getProductBySku(task.payload.sku);
+        case 'ingredient_analysis': {
+          const payload = task.payload as IngredientAnalysisPayload;
+          const prodToAnalyze = payload.product || await dataService.getProductBySku(payload.sku || '');
           if (prodToAnalyze && prodToAnalyze.principios_activos && prodToAnalyze.principios_activos.length > 0) {
             const { aiService } = await import('./AIService');
             const result = await aiService.explainIngredients(prodToAnalyze.nombre_comercial, prodToAnalyze.principios_activos);
@@ -154,14 +157,17 @@ export class TaskProcessorService {
             aiOrchestratorService.trackActivity(40);
           }
           break;
+        }
 
-        case 'vectorization':
-          const prodToVectorize = task.payload.product || await dataService.getProductBySku(task.payload.sku);
+        case 'vectorization': {
+          const payload = task.payload as VectorizationPayload;
+          const prodToVectorize = payload.product || await dataService.getProductBySku(payload.sku || '');
           if (prodToVectorize) {
             await vectorBackgroundService.vectorizeProduct(prodToVectorize);
             aiOrchestratorService.trackActivity(30);
           }
           break;
+        }
 
         default:
           logger.warn(`Tipo de tarea desconocido: ${task.type}`, 'TaskProcessor');

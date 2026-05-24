@@ -56,7 +56,10 @@ export class MedicalRAGService {
         const local = await this.queryLocalOnly(principles);
         const cloud: ClinicalInsight[] = [];
 
+        if (!supabaseService.isConfigured()) return local;
+
         const supabase = supabaseService.getClient();
+        if (!supabase) return local;
 
         for (const principle of principles) {
             try {
@@ -93,8 +96,12 @@ export class MedicalRAGService {
      * Contribuye a la base de conocimientos clínicos en Supabase.
      */
     async upsertClinicalKnowledge(principle: string, mechanism: string): Promise<boolean> {
+        if (!supabaseService.isConfigured()) return false;
+        
         try {
             const supabase = supabaseService.getClient();
+            if (!supabase) return false;
+            
             const embedding = await aiService.generateEmbedding(mechanism); // Vectorizamos el mecanismo
 
             const { error } = await supabase.from('clinical_knowledge').upsert({

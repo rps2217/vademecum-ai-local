@@ -362,13 +362,13 @@ export class DataService {
     }
   }
 
-  async fetchCloudInventory(): Promise<{ sku: string }[]> {
+  async fetchCloudInventory(): Promise<{ sku: string; last_updated?: string }[]> {
     if (!supabaseService.isConfigured()) return [];
     const supabase = supabaseService.getClient();
     if (!supabase) return [];
-    const { data, error } = await supabase.from('products').select('sku');
+    const { data, error } = await supabase.from('products').select('sku, last_updated');
     if (error) throw error;
-    return data || [];
+    return (data || []) as { sku: string; last_updated?: string }[];
   }
 
   async downloadCloudProducts(skus: string[]): Promise<Product[]> {

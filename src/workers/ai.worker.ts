@@ -451,6 +451,55 @@ const lastResortTagsParse = (text: string): any => {
     return null;
 };
 
+interface ClinicalAnalysisResult {
+    sugerencia: string;
+    ids: string[];
+    explicacion: string;
+}
+
+const validateClinicalAnalysis = (parsed: any): ClinicalAnalysisResult => {
+    const result: ClinicalAnalysisResult = {
+        sugerencia: 'No se encontraron relaciones',
+        ids: [],
+        explicacion: 'Sin detalles adicionales disponibles.'
+    };
+
+    if (parsed && typeof parsed === 'object') {
+        if (typeof parsed.sugerencia === 'string') {
+            result.sugerencia = parsed.sugerencia;
+        } else if (typeof parsed.suggestion === 'string') {
+            result.sugerencia = parsed.suggestion;
+        }
+
+        if (Array.isArray(parsed.ids)) {
+            result.ids = parsed.ids.map((id: any) => String(id));
+        } else if (Array.isArray(parsed.skus)) {
+            result.ids = parsed.skus.map((id: any) => String(id));
+        }
+
+        if (typeof parsed.explicacion === 'string') {
+            result.explicacion = parsed.explicacion;
+        } else if (typeof parsed.explanation === 'string') {
+            result.explicacion = parsed.explanation;
+        }
+    }
+
+    return result;
+};
+
+const validateTagMapping = (parsed: any): Record<string, string> => {
+    const result: Record<string, string> = {};
+    if (parsed && typeof parsed === 'object') {
+        const source = (parsed.tags && typeof parsed.tags === 'object') ? parsed.tags : parsed;
+        for (const [key, val] of Object.entries(source)) {
+            if (typeof val === 'string') {
+                result[key] = val;
+            }
+        }
+    }
+    return result;
+};
+
 async function standardizeTags(tags: string[]) {
     if (!isReady) throw new Error('IA no lista');
 
@@ -503,12 +552,8 @@ ${formatArray(tags)}`;
             parsed = lastResortTagsParse(content);
         }
 
-        if (parsed) {
-            self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: parsed });
-        } else {
-            console.error('[Worker] Error fatal parseando JSON de etiquetas. Contenido:', content);
-            throw new Error('Error de formato en las etiquetas.');
-        }
+        const validatedPayload = validateTagMapping(parsed);
+        self.postMessage({ type: 'STANDARDIZE_TAGS_RESULT', payload: validatedPayload });
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });
     }
@@ -578,12 +623,8 @@ Respuesta JSON:`;
             parsed = lastResortClinicalParse(content);
         }
 
-        if (parsed) {
-            self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: parsed });
-        } else {
-            console.error('[Worker] Error fatal parseando JSON clínico. Contenido original:', content);
-            throw new Error('Error de formato en la respuesta clínica.');
-        }
+        const validatedPayload = validateClinicalAnalysis(parsed);
+        self.postMessage({ type: 'ANALYZE_CLINICAL_RESULT', payload: validatedPayload });
     } catch (e: any) {
         self.postMessage({ type: 'ERROR', error: e.message });
     }

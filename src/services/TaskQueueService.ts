@@ -2,12 +2,40 @@ import { EventBus, EventType } from './EventBus';
 import { logger } from './LoggerService';
 import { database, tasksCollection } from '../database';
 import { Q } from '@nozbe/watermelondb';
-import TaskModel from '../database/Task';
 
-export interface PendingTask {
+export interface CloudSyncPayload {
+  sku: string;
+  operation?: 'create' | 'update' | 'delete';
+  timestamp?: number;
+}
+
+export interface AiAnalysisPayload {
+  sku?: string;
+  query?: string;
+  productName?: string;
+  ingredients?: string[];
+  product?: any;
+  candidates?: any[];
+  type?: 'synergy' | 'alternatives';
+}
+
+export interface VectorizationPayload {
+  sku?: string;
+  product?: any;
+  text?: string;
+}
+
+export interface IngredientAnalysisPayload {
+  sku?: string;
+  product?: any;
+}
+
+export type TaskPayload = CloudSyncPayload | AiAnalysisPayload | VectorizationPayload | IngredientAnalysisPayload;
+
+export interface PendingTask<P = TaskPayload> {
   id: string;
   type: 'cloud_sync' | 'ai_analysis' | 'vectorization' | 'ingredient_analysis';
-  payload: any;
+  payload: P;
   timestamp: number;
   status: 'pending' | 'processing' | 'failed';
   retries: number;
@@ -33,24 +61,22 @@ class TaskQueueService {
     return TaskQueueService.instance;
   }
 
-  private async getDB(): Promise<any> {
-    return database;
-  }
-
-  async addTask(type: PendingTask['type'], payload: any, options: AddTaskOptions = { deduplicate: true, priority: 0 }) {
-    const sku = payload.sku || (type === 'cloud_sync' ? payload.sku : null);
+  async addTask<T extends TaskPayload>(
+    type: PendingTask['type'], 
+    payload: T, 
+    options: AddTaskOptions = { deduplicate: true, priority: 0 }
+  ): Promise<void> {
+    const sku = (payload as any).sku || ((payload as any).product ? (payload as any).product.sku : null);
     const priority = options.priority !== undefined ? options.priority : (type === 'cloud_sync' ? 10 : 0);
 
     if (options.deduplicate && sku) {
-      // WatermelonDB doesn't support $or easily with indexed fields in JSON, so we use string matching if possible
-      // But for deduplication, we can just fetch pending tasks of this type and check manually if few
       const pendingOfThisType = await tasksCollection.query(
         Q.where('type', type),
         Q.where('status', 'pending')
       ).fetch();
       
       const existing = pendingOfThisType.find(t => {
-        const p = t.payload;
+        const p = t.payload as any;
         return p.sku === sku || (p.product && p.product.sku === sku);
       });
 
@@ -65,11 +91,11 @@ class TaskQueueService {
       }
     }
 
-    const taskData: any = {
+    const taskData = {
       type,
       payload_json: JSON.stringify(payload),
       timestamp: Date.now(),
-      status: 'pending',
+      status: 'pending' as const,
       retries: 0,
       priority
     };
@@ -97,9 +123,8 @@ class TaskQueueService {
       Q.sortBy('timestamp', Q.asc)
     ).fetch();
 
-    // Filter by earliestRetryTimestamp manually or use Q.or if possible
     const available = records.find(r => !r.earliestRetryTimestamp || r.earliestRetryTimestamp <= now);
-    return available ? available.asJSON() : null;
+    return available ? (available.asJSON() as PendingTask) : null;
   }
 
   async getPendingBatch(type: PendingTask['type'], limit: number = 20): Promise<PendingTask[]> {
@@ -113,12 +138,12 @@ class TaskQueueService {
     ).fetch();
 
     const available = records.filter(r => !r.earliestRetryTimestamp || r.earliestRetryTimestamp <= now);
-    return available.map(r => r.asJSON());
+    return available.map(r => r.asJSON() as PendingTask);
   }
 
   async getTasks(): Promise<PendingTask[]> {
     const records = await tasksCollection.query().fetch();
-    return records.map(r => r.asJSON());
+    return records.map(r => r.asJSON() as PendingTask);
   }
 
   async updateTask(id: string, updates: Partial<PendingTask>) {

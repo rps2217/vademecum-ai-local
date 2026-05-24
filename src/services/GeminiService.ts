@@ -74,6 +74,11 @@ export class GeminiService {
         const isOverloaded = error.message?.includes('503') || error.status === 'SERVICE_UNAVAILABLE';
         const isNetworkError = error.status === 'UNKNOWN' || error.message?.includes('xhr error') || error.message?.includes('fetch');
         
+        if (error.message?.includes('400') || error.status === 'INVALID_ARGUMENT' || error.message?.includes('API key expired')) {
+          console.error(`[GeminiService] Error fatal de API Key: ${error.message}. Por favor, verifique su GEMINI_API_KEY en Configuración.`);
+          throw error; // Don't retry fatal 400 errors
+        }
+
         if ((isQuotaError || isOverloaded || isNetworkError) && i < maxRetries - 1) {
           const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
           console.warn(`[GeminiService] Error de red, cuota o sobrecarga. Reintentando en ${Math.round(delay)}ms... (Intento ${i + 1}/${maxRetries})`);
