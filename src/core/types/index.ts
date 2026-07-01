@@ -1,13 +1,23 @@
 export * from './product.types';
 
+export type LogLevel = 'info' | 'warn' | 'error' | 'success' | 'ai';
+
 export interface LogEntry {
   id: string;
   timestamp: number;
-  level: 'info' | 'warn' | 'error' | 'success' | 'ai';
+  level: LogLevel;
   module: string;
   message: string;
-  details?: any;
+  details?: LogDetails;
 }
+
+export type LogDetails = 
+  | { type: 'error'; error: Error }
+  | { type: 'data'; data: Record<string, unknown> }
+  | { type: 'count'; count: number }
+  | { type: 'string'; value: string }
+  | null
+  | undefined;
 
 export interface ClinicalSearchInterpretation {
   isScenario: boolean;

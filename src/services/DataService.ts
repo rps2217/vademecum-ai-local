@@ -8,6 +8,81 @@ import ProductModel from '../database/Product';
 import { supabaseService } from './SupabaseService';
 import { useStore } from '../store/useStore';
 
+// Helper para mapear campos de Product a ProductModel
+interface ProductFields {
+  nombreComercial?: string;
+  descripcion?: string;
+  _principiosActivosJson?: string;
+  posologia?: string;
+  _indicacionesJson?: string;
+  advertencias?: string;
+  _tagsIaJson?: string;
+  categoriaPrincipal?: string;
+  analisisComponentes?: string;
+  _anotacionesComponentesJson?: string;
+  _vectoresJson?: string;
+  aptoEmbarazo?: string;
+  aptoLactancia?: string;
+  aptoPediatria?: string;
+  aptoDiabeticos?: string;
+  aptoHipertensos?: string;
+  aptoCeliacos?: string;
+  sugerenciaComplementaria?: string;
+  _skusRelacionadosJson?: string;
+  explicacionClinica?: string;
+  synergyAnalyzed?: boolean;
+  lastSynergyAnalysis?: number;
+  synergyRetries?: number;
+  lockedByAi?: boolean;
+  lockUid?: string;
+  lockTimestamp?: number;
+  sourceUrl?: string;
+  lastUpdated?: number;
+  isVerified?: boolean;
+  verifiedAt?: number;
+  verifiedBy?: string;
+  isSyncedCloud?: boolean;
+  lastSyncedCloud?: number;
+}
+
+const mapProductToRecord = (product: Product): ProductFields => {
+  return {
+    nombreComercial: product.nombre_comercial,
+    descripcion: product.descripcion,
+    _principiosActivosJson: JSON.stringify(product.principios_activos || []),
+    posologia: product.posologia || '',
+    _indicacionesJson: JSON.stringify(product.indicaciones || []),
+    advertencias: product.advertencias || '',
+    _tagsIaJson: JSON.stringify(product.tags_ia || []),
+    categoriaPrincipal: product.categoria_principal,
+    analisisComponentes: product.analisis_componentes,
+    _anotacionesComponentesJson: JSON.stringify(product.anotaciones_componentes || {}),
+    _vectoresJson: JSON.stringify(product.vectores || []),
+    aptoEmbarazo: product.apto_embarazo,
+    aptoLactancia: product.apto_lactancia,
+    aptoPediatria: product.apto_pediatria,
+    aptoDiabeticos: product.apto_diabeticos,
+    aptoHipertensos: product.apto_hipertensos,
+    aptoCeliacos: product.apto_celiacos,
+    sugerenciaComplementaria: product.sugerencia_complementaria,
+    _skusRelacionadosJson: JSON.stringify(product.skus_relacionados || []),
+    explicacionClinica: product.explicacion_clinica,
+    synergyAnalyzed: product.synergy_analyzed,
+    lastSynergyAnalysis: product.last_synergy_analysis,
+    synergyRetries: product.synergy_retries,
+    lockedByAi: product.locked_by_ai,
+    lockUid: product.lock_uid,
+    lockTimestamp: product.lock_timestamp,
+    sourceUrl: product.source_url,
+    lastUpdated: product.last_updated || Date.now(),
+    isVerified: product.is_verified,
+    verifiedAt: product.verified_at,
+    verifiedBy: product.verified_by,
+    isSyncedCloud: product.is_synced_cloud,
+    lastSyncedCloud: product.last_synced_cloud,
+  };
+};
+
 export class DataService {
   private static instance: DataService;
 
@@ -47,80 +122,18 @@ export class DataService {
       
       await database.write(async () => {
         const existing = await productsCollection.query(Q.where('sku', product.sku)).fetch();
+        const fields = mapProductToRecord(product);
         
         if (existing.length > 0) {
           const record = existing[0];
           await record.update(r => {
-            r.nombreComercial = product.nombre_comercial;
-            r.descripcion = product.descripcion;
-            r._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-            r.posologia = product.posologia || '';
-            r._indicacionesJson = JSON.stringify(product.indicaciones || []);
-            r.advertencias = product.advertencias || '';
-            r._tagsIaJson = JSON.stringify(product.tags_ia || []);
-            r.categoriaPrincipal = product.categoria_principal;
-            r.analisisComponentes = product.analisis_componentes;
-            r._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-            r._vectoresJson = JSON.stringify(product.vectores || []);
-            r.aptoEmbarazo = product.apto_embarazo;
-            r.aptoLactancia = product.apto_lactancia;
-            r.aptoPediatria = product.apto_pediatria;
-            r.aptoDiabeticos = product.apto_diabeticos;
-            r.aptoHipertensos = product.apto_hipertensos;
-            r.aptoCeliacos = product.apto_celiacos;
-            r.sugerenciaComplementaria = product.sugerencia_complementaria;
-            r._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-            r.explicacionClinica = product.explicacion_clinica;
-            r.synergyAnalyzed = product.synergy_analyzed;
-            r.lastSynergyAnalysis = product.last_synergy_analysis;
-            r.synergyRetries = product.synergy_retries;
-            r.lockedByAi = product.locked_by_ai;
-            r.lockUid = product.lock_uid;
-            r.lockTimestamp = product.lock_timestamp;
-            r.sourceUrl = product.source_url;
-            r.lastUpdated = product.last_updated || Date.now();
-            r.isVerified = product.is_verified;
-            r.verifiedAt = product.verified_at;
-            r.verifiedBy = product.verified_by;
-            r.isSyncedCloud = product.is_synced_cloud;
-            r.lastSyncedCloud = product.last_synced_cloud;
+            r.sku = product.sku;
+            Object.assign(r, fields);
           });
         } else {
           await productsCollection.create(r => {
             r.sku = product.sku;
-            r.nombreComercial = product.nombre_comercial;
-            r.descripcion = product.descripcion;
-            r._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-            r.posologia = product.posologia || '';
-            r._indicacionesJson = JSON.stringify(product.indicaciones || []);
-            r.advertencias = product.advertencias || '';
-            r._tagsIaJson = JSON.stringify(product.tags_ia || []);
-            r.categoriaPrincipal = product.categoria_principal;
-            r.analisisComponentes = product.analisis_componentes;
-            r._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-            r._vectoresJson = JSON.stringify(product.vectores || []);
-            r.aptoEmbarazo = product.apto_embarazo;
-            r.aptoLactancia = product.apto_lactancia;
-            r.aptoPediatria = product.apto_pediatria;
-            r.aptoDiabeticos = product.apto_diabeticos;
-            r.aptoHipertensos = product.apto_hipertensos;
-            r.aptoCeliacos = product.apto_celiacos;
-            r.sugerenciaComplementaria = product.sugerencia_complementaria;
-            r._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-            r.explicacionClinica = product.explicacion_clinica;
-            r.synergyAnalyzed = product.synergy_analyzed;
-            r.lastSynergyAnalysis = product.last_synergy_analysis;
-            r.synergyRetries = product.synergy_retries;
-            r.lockedByAi = product.locked_by_ai;
-            r.lockUid = product.lock_uid;
-            r.lockTimestamp = product.lock_timestamp;
-            r.sourceUrl = product.source_url;
-            r.lastUpdated = product.last_updated || Date.now();
-            r.isVerified = product.is_verified;
-            r.verifiedAt = product.verified_at;
-            r.verifiedBy = product.verified_by;
-            r.isSyncedCloud = product.is_synced_cloud;
-            r.lastSyncedCloud = product.last_synced_cloud;
+            Object.assign(r, fields);
           });
         }
       });
@@ -156,87 +169,23 @@ export class DataService {
         try {
           this.validateProduct(p);
           validProducts.push(p);
-        } catch (e) {
+        } catch {
           errorCount++;
         }
       }
       
       await database.write(async () => {
-        // Bulk upsert logic for WatermelonDB
         for (const product of validProducts) {
           const existing = await productsCollection.query(Q.where('sku', product.sku)).fetch();
+          const fields = mapProductToRecord(product);
           if (existing.length > 0) {
             await existing[0].update(r => {
-                r.nombreComercial = product.nombre_comercial;
-                r.descripcion = product.descripcion;
-                r._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-                r.posologia = product.posologia || '';
-                r._indicacionesJson = JSON.stringify(product.indicaciones || []);
-                r.advertencias = product.advertencias || '';
-                r._tagsIaJson = JSON.stringify(product.tags_ia || []);
-                r.categoriaPrincipal = product.categoria_principal;
-                r.analisisComponentes = product.analisis_componentes;
-                r._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-                r._vectoresJson = JSON.stringify(product.vectores || []);
-                r.aptoEmbarazo = product.apto_embarazo;
-                r.aptoLactancia = product.apto_lactancia;
-                r.aptoPediatria = product.apto_pediatria;
-                r.aptoDiabeticos = product.apto_diabeticos;
-                r.aptoHipertensos = product.apto_hipertensos;
-                r.aptoCeliacos = product.apto_celiacos;
-                r.sugerenciaComplementaria = product.sugerencia_complementaria;
-                r._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-                r.explicacionClinica = product.explicacion_clinica;
-                r.synergyAnalyzed = product.synergy_analyzed;
-                r.lastSynergyAnalysis = product.last_synergy_analysis;
-                r.synergyRetries = product.synergy_retries;
-                r.lockedByAi = product.locked_by_ai;
-                r.lockUid = product.lock_uid;
-                r.lockTimestamp = product.lock_timestamp;
-                r.sourceUrl = product.source_url;
-                r.lastUpdated = product.last_updated || Date.now();
-                r.isVerified = product.is_verified;
-                r.verifiedAt = product.verified_at;
-                r.verifiedBy = product.verified_by;
-                r.isSyncedCloud = product.is_synced_cloud;
-                r.lastSyncedCloud = product.last_synced_cloud;
+              Object.assign(r, fields);
             });
           } else {
             await productsCollection.create(r => {
-                r.sku = product.sku;
-                r.nombreComercial = product.nombre_comercial;
-                r.descripcion = product.descripcion;
-                r._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-                r.posologia = product.posologia || '';
-                r._indicacionesJson = JSON.stringify(product.indicaciones || []);
-                r.advertencias = product.advertencias || '';
-                r._tagsIaJson = JSON.stringify(product.tags_ia || []);
-                r.categoriaPrincipal = product.categoria_principal;
-                r.analisisComponentes = product.analisis_componentes;
-                r._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-                r._vectoresJson = JSON.stringify(product.vectores || []);
-                r.aptoEmbarazo = product.apto_embarazo;
-                r.aptoLactancia = product.apto_lactancia;
-                r.aptoPediatria = product.apto_pediatria;
-                r.aptoDiabeticos = product.apto_diabeticos;
-                r.aptoHipertensos = product.apto_hipertensos;
-                r.aptoCeliacos = product.apto_celiacos;
-                r.sugerenciaComplementaria = product.sugerencia_complementaria;
-                r._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-                r.explicacionClinica = product.explicacion_clinica;
-                r.synergyAnalyzed = product.synergy_analyzed;
-                r.lastSynergyAnalysis = product.last_synergy_analysis;
-                r.synergyRetries = product.synergy_retries;
-                r.lockedByAi = product.locked_by_ai;
-                r.lockUid = product.lock_uid;
-                r.lockTimestamp = product.lock_timestamp;
-                r.sourceUrl = product.source_url;
-                r.lastUpdated = product.last_updated || Date.now();
-                r.isVerified = product.is_verified;
-                r.verifiedAt = product.verified_at;
-                r.verifiedBy = product.verified_by;
-                r.isSyncedCloud = product.is_synced_cloud;
-                r.lastSyncedCloud = product.last_synced_cloud;
+              r.sku = product.sku;
+              Object.assign(r, fields);
             });
           }
         }

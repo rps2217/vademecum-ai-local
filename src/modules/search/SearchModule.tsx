@@ -8,16 +8,16 @@ const AIAnalysisModal = lazy(() => import('./components/AIAnalysisModal').then(m
 import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
-import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
+import { HomepageSymptoms } from './components/HomepageSymptoms';
 import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretationOverlay';
 import { useConsultation } from '../../context/ConsultationContext';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { logger } from '../../services/LoggerService';
-import { Brain, LayoutGrid, List, History, Sparkles, Filter, Activity } from 'lucide-react';
+import { Brain, LayoutGrid, List, History, Sparkles, Filter, Activity, Leaf } from 'lucide-react';
 import { aiService } from '../../services/AIService';
 import { historyService } from '../../services/HistoryService';
 import { searchService } from '../../services/SearchService';
-import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
+import { COMMON_PATHOLOGIES, PATHOLOGY_CATEGORIES } from '../../constants/pathologies';
 import { SearchConcept } from './components/SearchSuggestions';
 import { AnimatePresence } from 'motion/react';
 import { useStore } from '../../store/useStore';
@@ -175,6 +175,21 @@ export const SearchModule: React.FC = () => {
     toggleProduct(product);
   }, [toggleProduct]);
 
+  // Handler para seleccionar síntoma o categoría
+  const handleSelectSymptom = useCallback((symptom: string) => {
+    setQuery(symptom);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [setQuery]);
+
+  const handleSelectCategory = useCallback((categoryId: string) => {
+    // Buscar la categoría y sus síntomas
+    const category = PATHOLOGY_CATEGORIES.find(c => c.id === categoryId);
+    if (category && category.tags.length > 0) {
+      setQuery(category.tags[0]);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [setQuery]);
+
   return (
     <div className="w-full pb-20 relative min-h-[70vh] flex flex-col pt-4 whitespace-optimized">
       
@@ -196,35 +211,16 @@ export const SearchModule: React.FC = () => {
         </div>
       ) : (
         /* Search Board */
-        <div className="w-full flex-1 flex flex-col items-center justify-start mt-4 md:mt-12">
+        <div className="w-full flex-1 flex flex-col items-center justify-start">
           {query.trim() === '' && results.length === 0 ? (
-            <div className="w-full max-w-5xl space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700 flex flex-col items-center">
+            <div className="w-full max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 flex flex-col items-center">
               
-              {/* Huge Centered Search Bar */}
-              <div className="w-full max-w-3xl flex flex-col items-center gap-6 text-center">
-                  <div className="flex items-center justify-center gap-3 mb-2">
-                    <Activity className="h-10 w-10 text-primary" />
-                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
-                      Vademécum <span className="text-primary">IA</span>
-                    </h1>
-                  </div>
-                  <p className="text-muted-foreground text-sm md:text-base font-medium max-w-xl">
-                    Busque por principio activo, nombre comercial, síntoma o describa un cuadro clínico complejo.
-                  </p>
-                  
-                  <div className="w-full relative mt-4">
-                    <SearchBar 
-                      query={query} 
-                      setQuery={setQuery} 
-                      isSearching={isSearching}
-                      className="w-full scale-105"
-                    />
-                  </div>
-              </div>
-
-              {/* Recently Viewed / History & Quick Discovery */}
-              <div className="w-full mt-12 pb-24">
-                <QuickDiscoveryTags onSelect={setQuery} />
+              {/* Homepage con categorías de síntomas */}
+              <div className="w-full">
+                <HomepageSymptoms 
+                  onSelectSymptom={handleSelectSymptom}
+                  onSelectCategory={handleSelectCategory}
+                />
               </div>
             </div>
           ) : (

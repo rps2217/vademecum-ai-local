@@ -1,5 +1,4 @@
-import React from 'react';
-import { Product } from '../core/types';
+import React, { createContext, useContext } from 'react';
 import { useStore } from '../store/useStore';
 
 export const TrayProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -30,30 +30,61 @@
 
 @layer base {
   :root {
-    /* Rich, Vivid Clinical Deep Ocean Indigo - Escaping white/grays completely */
-    --background: #03080f; /* Midnight Deep Marine */
-    --foreground: #e0f2fe; /* Ultra crisp medical light cyan */
+    /* Natural Health & Wellness Theme - Warm & Professional */
+    --background: #fafaf9; /* Warm off-white */
+    --foreground: #1c1917; /* Stone 900 */
 
-    --card: #081524;      /* Highly saturated deep ocean navy card */
+    --card: #ffffff;
+    --card-foreground: #1c1917;
+
+    --popover: #ffffff;
+    --popover-foreground: #44403c;
+
+    /* Primary: Natural Green - Health & Wellness */
+    --primary: #15803d; /* Emerald 700 - Professional health */
+    --primary-foreground: #f0fdf4;
+
+    /* Secondary: Warm Amber - Natural supplements */
+    --secondary: #d97706; /* Amber 600 */
+    --secondary-foreground: #fefce8;
+
+    /* Muted states - Subtle warm grays */
+    --muted: #f5f5f4; /* Stone 100 */
+    --muted-foreground: #78716c; /* Stone 500 */
+
+    --accent: #fef3c7; /* Amber 100 */
+    --accent-foreground: #92400e;
+
+    /* Borders: Clean, subtle stone borders */
+    --border: #e7e5e4; /* Stone 200 */
+    --input: #d6d3d1; /* Stone 300 */
+  }
+
+  /* Dark mode - Deep forest/nature theme */
+  :root.dark {
+    --background: #0c1a0f; /* Deep forest green-black */
+    --foreground: #f0fdf4; /* Emerald 50 */
+
+    --card: #14532d; /* Emerald 900 */
     --card-foreground: #f0fdf4;
 
-    --popover: #06101c;
-    --popover-foreground: #cbd5e1;
+    --popover: #166534; /* Emerald 800 */
+    --popover-foreground: #d1fae5;
 
-    /* Primary: Vibrantly Glowing Medical Cyan */
-    --primary: #06b6d4;   /* Vivid Cyan 500 */
-    --primary-foreground: #020617; /* High-contrast text on primary active items */
+    --primary: #22c55e; /* Emerald 500 */
+    --primary-foreground: #052e16; /* Emerald 950 */
 
-    /* Muted states */
-    --muted: #0d2847;     /* Deep navy blue */
-    --muted-foreground: #7dd3fc; /* Clean clear sky-blue for outstanding label contrast */
+    --secondary: #f59e0b; /* Amber 500 */
+    --secondary-foreground: #451a03;
 
-    --accent: #113459;    /* Vivid Blue Accent */
-    --accent-foreground: #a5f3fc;
+    --muted: #14532d; /* Emerald 900 */
+    --muted-foreground: #6ee7b7; /* Emerald 300 */
 
-    /* Borders: Highly defined, vibrant sky-blue/ocean borders */
-    --border: #14355a;    /* Clean navy boundary */
-    --input: #1b497a;
+    --accent: #166534; /* Emerald 800 */
+    --accent-foreground: #d1fae5;
+
+    --border: #166534; /* Emerald 800 */
+    --input: #15803d; /* Emerald 700 */
   }
 
   * {
@@ -64,20 +95,20 @@
     letter-spacing: -0.01em;
   }
   
-  /* Modern Clinical high-contrast alerts */
+  /* Natural Health alerts - Warm & Clear */
   .alert-clinical {
-    @apply p-5 rounded-2xl bg-card border border-border/80 text-sm shadow-md;
+    @apply p-5 rounded-2xl bg-card border border-border text-sm shadow-md;
   }
 
   .alert-critical {
-    @apply bg-red-950/40 border-red-800 text-red-200 border p-6 rounded-2xl shadow-md;
+    @apply bg-red-50 dark:bg-red-950/40 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 p-6 rounded-2xl shadow-md;
   }
 
   .alert-synergy {
-    @apply bg-emerald-950/40 border-emerald-800 text-emerald-200 border p-6 rounded-2xl shadow-md;
+    @apply bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200 p-6 rounded-2xl shadow-md;
   }
 
   .alert-info {
-    @apply bg-sky-950/40 border-sky-800 text-sky-200 border p-6 rounded-2xl shadow-md;
+    @apply bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200 p-6 rounded-2xl shadow-md;
   }
 }

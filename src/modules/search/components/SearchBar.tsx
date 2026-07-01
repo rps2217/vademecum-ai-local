@@ -38,9 +38,6 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
                       query.toLowerCase().startsWith(word)
                     );
 
-  // Removido el useEffect que forzaba showSuggestions basado en query.length
-  // para evitar que los clicks programáticos (ej: QuickDiscoveryTags) abran el dropdown.
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (highlightedIndex >= 0 && highlightedIndex < suggestions.length && onSelectConcept) {
@@ -67,9 +64,6 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
 
   return (
     <div className={`relative group ${className}`}>
-      {/* Borde con gradiente animado */}
-      <div className={`absolute -inset-0.5 bg-gradient-to-r from-brand-primary via-emerald-400 to-brand-accent rounded-2xl blur transition duration-500 ${isInterpreting ? 'opacity-60 animate-pulse' : 'opacity-20 group-hover:opacity-40'}`}></div>
-      
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           {isSearching ? (
@@ -77,15 +71,15 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           ) : isInterpreting ? (
             <Sparkles className="h-5 w-5 text-primary animate-pulse" />
           ) : (
-            <Search className="h-5 w-5 text-primary/70 group-focus-within:text-primary transition-colors" />
+            <Search className="h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
           )}
         </div>
         <input
           ref={ref}
           type="text"
           autoComplete="off"
-          className="block w-full pl-12 pr-12 sm:pr-48 py-3 sm:py-4 bg-card border border-border/50 rounded-2xl text-base sm:text-lg text-foreground shadow-2xl focus:ring-2 focus:ring-brand-primary/50 focus:border-primary/50 transition-all placeholder:text-muted-foreground"
-          placeholder="Buscar o preguntar a la IA..."
+          className="block w-full pl-12 pr-24 py-3.5 bg-white border border-stone-200 rounded-xl text-base text-foreground shadow-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-muted-foreground hover:border-stone-300"
+          placeholder="Buscar suplemento, fitoterapia o síntoma..."
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -101,18 +95,18 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
           onFocus={() => query.length >= 2 && setShowSuggestions(true)}
         />
         
-        <div className="absolute inset-y-0 right-0 flex items-center pr-2 gap-2">
+        <div className="absolute inset-y-0 right-0 flex items-center pr-2 gap-1.5">
           {supported && (
             <button
               onClick={startListening}
-              className={`p-2 rounded-xl transition-all ${isListening ? 'bg-rose-500/20 text-rose-500 animate-pulse' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
+              className={`p-2 rounded-lg transition-all ${isListening ? 'bg-red-100 text-red-600 animate-pulse' : 'text-muted-foreground hover:text-foreground hover:bg-stone-100'}`}
               title="Dictar búsqueda"
             >
               {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
             </button>
           )}
 
-          {query && !isQuestion && (
+          {query && (
             <button
               onClick={() => {
                 setQuery('');
@@ -121,28 +115,20 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(({
                     ref.current.focus();
                 }
               }}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-muted-foreground hover:text-foreground bg-card hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 border border-border shadow-sm"
+              className="p-2 text-muted-foreground hover:text-foreground hover:bg-stone-100 rounded-lg transition-colors"
             >
-              <span className="hidden sm:inline">Limpiar</span> <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           )}
 
-          {isQuestion && query.length > 5 && (
+          {isQuestion && query.length > 3 && (
             <button
               onClick={onAiQuery}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold text-foreground bg-primary hover:bg-orange-500 rounded-xl transition-all flex items-center gap-1.5 border border-primary/50 shadow-lg shadow-brand-primary/20 animate-in zoom-in duration-300"
+              className="px-3 py-1.5 text-xs font-semibold text-white bg-primary hover:bg-emerald-600 rounded-lg transition-all flex items-center gap-1.5 shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Consultar IA</span>
-              <span className="sm:hidden">Consultar</span>
+              IA
             </button>
-          )}
-
-          {!isQuestion && (
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary rounded-xl text-xs font-medium border border-primary/50">
-              <Sparkles className="w-3 h-3" />
-              Semántica
-            </div>
           )}
         </div>
 
