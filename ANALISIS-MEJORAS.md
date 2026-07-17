@@ -318,13 +318,13 @@ interface ProductHistory {
 ## 📈 MÉTRICAS ACTUALES
 
 ```
-Líneas de código:    9,230 (+1,414 nuevos servicios)
-Archivos .ts/.tsx:    ~84
-Servicios:           30 (+4 nuevos)
+Líneas de código:    9,433 (+4 archivos nuevos)
+Archivos .ts/.tsx:    ~88
+Servicios:           31
 Tests:               55/55 ✅
 Rate Limiting:       ✅ Implementado
 Console.logs:        7 ⚠️ (patrones válidos)
-Bundle principal:     949KB ✅ (-35%)
+Bundle principal:     950KB
 Code Splitting:       ✅ Implementado
 Dashboard Métricas:  ✅ Implementado
 AI On-Demand Load:   ✅ Implementado
@@ -332,6 +332,7 @@ Realtime Sync:       ✅ Implementado (WebSocket/Supabase)
 Ollama Fallback:     ✅ Implementado
 Audit Trail:        ✅ Implementado
 Búsqueda Híbrida:   ✅ Implementado
+Cloud Download:      ✅ Corregido + Diagnostico
 ```
 
 ---
@@ -363,6 +364,36 @@ Búsqueda Híbrida:   ✅ Implementado
 - **Recursos bajo demanda**: Solo carga lo necesario
 - **Adaptable al hardware**: Selección automática por capacidad
 - **Fallback a nube**: Si falla local, usa Gemini Cloud
+
+---
+
+## 🐛 CORRECCIONES IMPLEMENTADAS
+
+### Bug: Descarga de catalogo desde la nube
+
+**Problema identificado:**
+El `SupabaseService` estaba bloquando la conexion a la URL real del proyecto 
+(`pspxqzwxulgmzarlqwtt.supabase.co`) porque la lista de URLs bloqueadas 
+incluia el ID del proyecto.
+
+**Solucion:**
+- Eliminado el ID del proyecto de la lista de bloqueo de URLs
+- Ahora solo se bloquean URLs placeholder genericas (`placeholder`, `YOUR_SUPABASE`, `yourproject`)
+- Agregada validacion de API key para detectar placeholders
+
+**Mejoras en descarga:**
+- Verificacion de count antes de descargar
+- Tamano de lote reducido a 500 (antes 1000)
+- Pausas entre lotes para no saturar la conexion
+- Logging detallado por cada lote
+
+**Componente de diagnostico:**
+Nuevo `CloudConnectionDiagnostic` en Settings > Consola de Diagnostico:
+- Estado de configuracion
+- URL y prefijo de API key
+- Conteo de productos en la nube
+- Mensajes de error detallados
+- Boton de reintento
 
 ---
 
