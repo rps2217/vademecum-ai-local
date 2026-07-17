@@ -35,6 +35,8 @@ export const SearchModule: React.FC = () => {
   const { viewedProductSku, setViewedProduct, products } = useStore();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [recentTerms, setRecentTerms] = useState<string[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [isLoadingAll, setIsLoadingAll] = useState(true);
   
   const { toggleProduct, isInTray } = useTray();
 
