@@ -130,6 +130,37 @@ export const DatabaseModule: React.FC = () => {
     reader.readAsText(file);
   };
 
+  const handleFullPull = async () => {
+    if (!confirm('¿Descargar TODOS los productos desde la nube? Esto reemplazará los datos locales.')) return;
+    
+    setIsSyncing(true);
+    setSyncStatus('Limpiando base de datos local...');
+    
+    try {
+      // Limpiar base de datos local
+      await dataService.clearAll();
+      console.log('[DatabaseModule] Base de datos local limpiada');
+      
+      setSyncStatus('Descargando todos los productos desde la nube...');
+      
+      // Importar catálogo completo
+      const count = await dataService.importCatalog();
+      
+      if (count > 0) {
+        setSyncStatus(`Descarga completa: ${count} productos desde la nube.`);
+        await loadData(true);
+      } else {
+        setSyncStatus('No se encontraron productos en la nube.');
+      }
+    } catch (error) {
+      console.error('[DatabaseModule] Error en descarga completa:', error);
+      setSyncStatus('Error en descarga completa.');
+    } finally {
+      setIsSyncing(false);
+      setTimeout(() => setSyncStatus(null), 5000);
+    }
+  };
+
   const handleSyncToCloud = async () => {
     setIsSyncing(true);
     setSyncStatus('Respaldando en la nube (Supabase)...');
@@ -170,6 +201,7 @@ export const DatabaseModule: React.FC = () => {
         onExport={handleExportJSON}
         onSmartPull={handleSmartPull}
         onSyncToCloud={handleSyncToCloud}
+        onFullPull={handleFullPull}
       />
       <input type="file" accept=".json" ref={fileInputRef} onChange={handleFileUpload} className="hidden" />
 
