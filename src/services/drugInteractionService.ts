@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import { database, drugFamiliesCollection, activeIngredientsCollection, ingredientFamiliesCollection, drugInteractionsCollection } from '../database';
 
 export async function seedDrugData() {
@@ -35,5 +36,5 @@ export async function seedDrugData() {
       d.description = 'Aumento del riesgo de complicaciones gastrointestinales';
     });
   });
-  console.log('Drug data seeded');
+  logger.info('Drug data seeded');
 }

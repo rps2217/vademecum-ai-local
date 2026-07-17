@@ -1,3 +1,4 @@
+import { logger } from '../../services/LoggerService';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { dataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
@@ -50,7 +51,7 @@ export const DatabaseModule: React.FC = () => {
         await handleSmartPull();
       }
     } catch (error) {
-      console.error('Error cargando DB:', error);
+      logger.error('Error cargando DB:', error);
     } finally {
       setIsLoading(false);
     }

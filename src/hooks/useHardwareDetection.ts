@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import { useState, useEffect } from 'react';
 import { HardwareProfile, AIModelTier } from '../core/types/hardware.types';
 
@@ -30,7 +31,7 @@ export const useHardwareDetection = () => {
             }
           }
         } catch (e) {
-          console.warn('No se pudo detectar GPU via WebGL', e);
+          logger.warn('No se pudo detectar GPU via WebGL', e);
         }
 
         // Determinar el tier del modelo de IA (Graceful Degradation)
@@ -64,7 +65,7 @@ export const useHardwareDetection = () => {
           deviceTier
         });
       } catch (error) {
-        console.error('Error detectando hardware:', error);
+        logger.error('Error detectando hardware:', error);
         // Fallback seguro
         setHardware({
           hasGPU: false,

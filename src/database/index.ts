@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import { Database } from '@nozbe/watermelondb';
 import LokiJSAdapter from '@nozbe/watermelondb/adapters/lokijs';
 import { schema } from './schema';
@@ -15,21 +16,21 @@ const adapter = new LokiJSAdapter({
   useIncrementalIndexedDB: true,
   useWebWorker: false,
   onQuotaExceededError: (error) => {
-    console.error('LokiJS Disk quota exceeded', error);
+    logger.error('LokiJS Disk quota exceeded', error);
   },
   onSetUpError: (error) => {
-    console.error('LokiJS Set Up Error', error);
+    logger.error('LokiJS Set Up Error', error);
   }
 });
 
-console.log('[Database] Initializing WatermelonDB with LokiJS adapter...');
+logger.info('[Database] Initializing WatermelonDB with LokiJS adapter...');
 
 export const database = new Database({
   adapter,
   modelClasses: [Product, Task, DrugFamily, ActiveIngredient, IngredientFamily, DrugInteraction],
 });
 
-console.log('[Database] WatermelonDB driver is initialized.');
+logger.info('[Database] WatermelonDB driver is initialized.');
 
 export const productsCollection = database.get<Product>('products');
 export const tasksCollection = database.get<Task>('tasks');

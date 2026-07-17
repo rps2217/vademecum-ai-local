@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import { Product } from '../core/types/product.types';
 import { formatArrayToString } from '../utils/formatters';
 import { configService } from './ConfigService';
@@ -47,7 +48,7 @@ export class OllamaService {
 
     for (const host of this.hosts) {
       try {
-        console.log(`[OllamaService] Intentando conectar con motor en ${host}...`);
+        logger.info(`[OllamaService] Intentando conectar con motor en ${host}...`);
         const response = await fetch(`${host}/tags`, { 
           method: 'GET',
           mode: 'cors',
@@ -56,12 +57,12 @@ export class OllamaService {
         clearTimeout(timeout);
         if (response.ok) {
           this.activeBaseUrl = host;
-          console.log(`[OllamaService] ✅ Conexión exitosa con ${host}`);
+          logger.info(`[OllamaService] ✅ Conexión exitosa con ${host}`);
           this.lastCheckResult = true;
           return true;
         }
       } catch (e) {
-        console.warn(`[OllamaService] ❌ Falló conexión con ${host}. Asegúrate de que Ollama tenga OLLAMA_ORIGINS="*"`);
+        logger.warn(`[OllamaService] ❌ Falló conexión con ${host}. Asegúrate de que Ollama tenga OLLAMA_ORIGINS="*"`);
       }
     }
     this.lastCheckResult = false;
@@ -101,7 +102,7 @@ export class OllamaService {
         }
       }
 
-      console.log(`[OllamaService] Utilizando modelo: ${selectedModel}`);
+      logger.info(`[OllamaService] Utilizando modelo: ${selectedModel}`);
 
       const prompt = `Analiza la relación clínica entre el producto principal y los productos relacionados.
     
@@ -153,7 +154,7 @@ export class OllamaService {
       if (error instanceof Error && error.name === 'AbortError') {
         throw new Error('Timeout agotado esperando respuesta de Ollama (60s)');
       }
-      console.error('[OllamaService] Error en análisis:', error);
+      logger.error('[OllamaService] Error en análisis:', error);
       throw error;
     } finally {
       clearTimeout(timeout);
@@ -206,7 +207,7 @@ export class OllamaService {
       const data = await response.json();
       return JSON.parse(data.response);
     } catch (error) {
-      console.error('[OllamaService] Error en interacciones:', error);
+      logger.error('[OllamaService] Error en interacciones:', error);
       throw error;
     }
   }

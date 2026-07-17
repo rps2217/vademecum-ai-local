@@ -55,7 +55,7 @@ export class GeminiService {
           
           return JSON.parse(cleanMatch);
         } catch (e2) {
-          console.error("[GeminiService] Error en limpieza avanzada de JSON:", e2);
+          logger.error("[GeminiService] Error en limpieza avanzada de JSON:", e2);
           throw new Error("Respuesta de IA malformada e irrecuperable.");
         }
       }
@@ -75,13 +75,13 @@ export class GeminiService {
         const isNetworkError = error.status === 'UNKNOWN' || error.message?.includes('xhr error') || error.message?.includes('fetch');
         
         if (error.message?.includes('400') || error.status === 'INVALID_ARGUMENT' || error.message?.includes('API key expired')) {
-          console.error(`[GeminiService] Error fatal de API Key: ${error.message}. Por favor, verifique su GEMINI_API_KEY en Configuración.`);
+          logger.error(`[GeminiService] Error fatal de API Key: ${error.message}. Por favor, verifique su GEMINI_API_KEY en Configuración.`);
           throw error; // Don't retry fatal 400 errors
         }
 
         if ((isQuotaError || isOverloaded || isNetworkError) && i < maxRetries - 1) {
           const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-          console.warn(`[GeminiService] Error de red, cuota o sobrecarga. Reintentando en ${Math.round(delay)}ms... (Intento ${i + 1}/${maxRetries})`);
+          logger.warn(`[GeminiService] Error de red, cuota o sobrecarga. Reintentando en ${Math.round(delay)}ms... (Intento ${i + 1}/${maxRetries})`);
           await new Promise(resolve => setTimeout(resolve, delay));
           continue;
         }
@@ -180,7 +180,7 @@ export class GeminiService {
         };
 
       } catch (error) {
-        console.error("[GeminiService] Error en búsqueda y extracción:", error);
+        logger.error("[GeminiService] Error en búsqueda y extracción:", error);
         return null;
       }
     });
@@ -255,13 +255,13 @@ export class GeminiService {
         try {
           responseText = response.text || "{}";
         } catch (e) {
-          console.error("[GeminiService] Error getting response text (possibly blocked by safety):", e, response);
+          logger.error("[GeminiService] Error getting response text (possibly blocked by safety):", e, response);
           return null;
         }
 
         const data = JSON.parse(responseText);
         if (!data.nombre_comercial) {
-          console.error("[GeminiService] Missing nombre_comercial in response:", data);
+          logger.error("[GeminiService] Missing nombre_comercial in response:", data);
           return null;
         }
 
@@ -297,7 +297,7 @@ export class GeminiService {
         };
 
       } catch (error) {
-        console.error("[GeminiService] Error en reanálisis:", error);
+        logger.error("[GeminiService] Error en reanálisis:", error);
         return null;
       }
     });
@@ -390,7 +390,7 @@ export class GeminiService {
         };
 
       } catch (error) {
-        console.error("[GeminiService] Error en extracción:", error);
+        logger.error("[GeminiService] Error en extracción:", error);
         return null;
       }
     });
@@ -420,7 +420,7 @@ export class GeminiService {
           .map(line => line.replace(/^[-\*\d\.\s]+/, '').trim())
           .filter(line => line.length > 3 && !line.toLowerCase().includes('precio') && !line.toLowerCase().includes('agregar'));
       } catch (error: any) {
-        console.error("[GeminiService] Error en extractProductNamesFromUrl:", error);
+        logger.error("[GeminiService] Error en extractProductNamesFromUrl:", error);
         throw new Error(`Error al leer la URL con IA: ${error.message}`);
       }
     });
@@ -447,7 +447,7 @@ export class GeminiService {
           .map(line => line.replace(/^[-\*\d\.\s]+/, '').trim())
           .filter(line => line.length > 3 && !line.toLowerCase().includes('precio') && !line.toLowerCase().includes('agregar'));
       } catch (error: any) {
-        console.error("[GeminiService] Error en extractProductNamesFromSearch:", error);
+        logger.error("[GeminiService] Error en extractProductNamesFromSearch:", error);
         throw new Error(`Error en la búsqueda con IA: ${error.message}`);
       }
     });
@@ -463,7 +463,7 @@ export class GeminiService {
         });
         return response.text || "";
       } catch (error) {
-        console.error("[GeminiService] Error en generateText:", error);
+        logger.error("[GeminiService] Error en generateText:", error);
         throw error;
       }
     });
@@ -482,7 +482,7 @@ export class GeminiService {
         });
         return response.text || "{}";
       } catch (error) {
-        console.error("[GeminiService] Error en generateJSON:", error);
+        logger.error("[GeminiService] Error en generateJSON:", error);
         throw error;
       }
     });
@@ -500,7 +500,7 @@ export class GeminiService {
         });
         return response.text || "No se pudo generar respuesta clínica.";
       } catch (error) {
-        console.error("[GeminiService] Error en generateGeneralAnalysis:", error);
+        logger.error("[GeminiService] Error en generateGeneralAnalysis:", error);
         throw error;
       }
     });
@@ -562,9 +562,9 @@ export class GeminiService {
         const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
         
         if (isQuotaError || isNetworkError) {
-          console.warn(`[GeminiService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en analyzeSynergy.`);
+          logger.warn(`[GeminiService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en analyzeSynergy.`);
         } else {
-          console.error("[GeminiService] Error en analyzeSynergy:", error);
+          logger.error("[GeminiService] Error en analyzeSynergy:", error);
         }
         // Rethrow the error so the caller (AIService) can catch it and enqueue the task
         throw error;
@@ -598,7 +598,7 @@ export class GeminiService {
 
         return JSON.parse(response.text || "{}");
       } catch (error) {
-        console.error("[GeminiService] Error explicando principios activos:", error);
+        logger.error("[GeminiService] Error explicando principios activos:", error);
         throw error;
       }
     });
@@ -661,7 +661,7 @@ export class GeminiService {
 
         return JSON.parse(response.text || "{}");
       } catch (error) {
-        console.error("[GeminiService] Error en analyzeInteractions:", error);
+        logger.error("[GeminiService] Error en analyzeInteractions:", error);
         return {
           riesgo_total: 'BAJO',
           interacciones: [],
@@ -773,7 +773,7 @@ export class GeminiService {
           last_updated: Date.now()
         }));
       } catch (error) {
-        console.error("[GeminiService] Error en limpieza masiva:", error);
+        logger.error("[GeminiService] Error en limpieza masiva:", error);
         throw error;
       }
     });
@@ -863,7 +863,7 @@ export class GeminiService {
           last_updated: Date.now()
         };
       } catch (error) {
-        console.error("[GeminiService] Error extrayendo de PDF:", error);
+        logger.error("[GeminiService] Error extrayendo de PDF:", error);
         throw error;
       }
     });
@@ -956,7 +956,7 @@ export class GeminiService {
           last_updated: Date.now()
         };
       } catch (error) {
-        console.error("[GeminiService] Error extrayendo de Imagen:", error);
+        logger.error("[GeminiService] Error extrayendo de Imagen:", error);
         throw error;
       }
     });

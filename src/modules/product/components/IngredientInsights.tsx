@@ -1,3 +1,4 @@
+import { logger } from '../../../services/LoggerService';
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../../core/types/product.types';
 import { aiService } from '../../../services/AIService';
@@ -33,13 +34,13 @@ export const IngredientInsights: React.FC<IngredientInsightsProps> = ({ product 
           import('../../../services/DataService').then(({ dataService }) => {
             dataService.updateProduct(product.sku, {
               anotaciones_componentes: result
-            }).catch(err => console.error("Error persistiendo insights:", err));
+            }).catch(err => logger.error("Error persistiendo insights:", err));
           });
         } else {
           setError("No se pudo obtener información detallada.");
         }
       } catch (err) {
-        console.error("Error fetching ingredient insights:", err);
+        logger.error("Error fetching ingredient insights:", err);
         setError("Error de conexión con el motor de IA.");
       } finally {
         setIsLoading(false);

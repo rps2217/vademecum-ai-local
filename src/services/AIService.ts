@@ -92,7 +92,7 @@ export class AIService {
     const cooldownPeriod = Math.min(this.initRetryCount * 30000, 300000); // Max 5 min
     if (now - this.lastFailedInit < cooldownPeriod) {
       const waitSecs = Math.ceil((cooldownPeriod - (now - this.lastFailedInit)) / 1000);
-      console.warn(`[AIService] Enfriamiento de inicialización: Reintentando en ${waitSecs}s...`);
+      logger.warn(`[AIService] Enfriamiento de inicialización: Reintentando en ${waitSecs}s...`);
       return false;
     }
 
@@ -130,13 +130,13 @@ export class AIService {
                 this.runHealthCheck().then(hc => {
                     if (hc.ok) {
                     } else {
-                        console.warn(`[AIService] Motor iniciado pero con advertencias: ${hc.error}`);
+                        logger.warn(`[AIService] Motor iniciado pero con advertencias: ${hc.error}`);
                     }
                 });
                 
                 resolve(true);
               } else {
-                console.error('Fallo inicialización IA:', error);
+                logger.error('Fallo inicialización IA:', error);
                 this.lastProgress = { text: `Error: ${error}`, progress: 0 };
                 this.initProgressCallback?.(this.lastProgress.text, this.lastProgress.progress);
                 this.lastFailedInit = Date.now();
@@ -147,9 +147,9 @@ export class AIService {
               }
               break;
             case 'ERROR':
-              console.error('Error en Worker IA:', error);
+              logger.error('Error en Worker IA:', error);
               if (error && (error.includes('disposed') || error.includes('context lost') || error.includes('external Instance reference'))) {
-                console.warn('[AIService] Motor IA reportó estado irrecuperable. Reiniciando...');
+                logger.warn('[AIService] Motor IA reportó estado irrecuperable. Reiniciando...');
                 this.restartEngine();
               }
               break;
@@ -158,7 +158,7 @@ export class AIService {
 
         this.worker.postMessage({ type: 'INIT', payload: { hardwareTier: this.hardware.aiModelTier } });
       } catch (e) {
-        console.error('Error creando Worker:', e);
+        logger.error('Error creando Worker:', e);
         this.isInitializing = false;
         resolve(false);
       }
@@ -216,7 +216,7 @@ export class AIService {
     try {
       return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type: 'synergy' });
     } catch (error) {
-      console.error('[AIService] Error en analyzeSynergy:', error);
+      logger.error('[AIService] Error en analyzeSynergy:', error);
       return null;
     }
   }
@@ -234,15 +234,15 @@ export class AIService {
         }
         return result;
       } catch (e) {
-        console.warn(`[AIService] Error en motor local al analizar componentes, probando fallback nube...`, e);
+        logger.warn(`[AIService] Error en motor local al analizar componentes, probando fallback nube...`, e);
       }
     } else {
-      console.warn('[AIService] Motor local no disponible, intentando analizar componentes en la nube...');
+      logger.warn('[AIService] Motor local no disponible, intentando analizar componentes en la nube...');
     }
 
     // Circuit Breaker
     if (!this.cloudCircuitBreaker.canAttempt()) {
-      console.warn('[AIService] Circuito en la nube abierto. Encolando análisis de componentes para:', productName);
+      logger.warn('[AIService] Circuito en la nube abierto. Encolando análisis de componentes para:', productName);
       taskQueueService.addTask('ingredient_analysis', { product: { nombre_comercial: productName, principios_activos: ingredients } });
       return {};
     }
@@ -260,7 +260,7 @@ export class AIService {
       const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
       
       if (isQuotaError || isNetworkError) {
-        console.warn(`[AIService] Cuota o red fallida en la nube. Circuito activado, encolando componentes para:`, productName);
+        logger.warn(`[AIService] Cuota o red fallida en la nube. Circuito activado, encolando componentes para:`, productName);
         taskQueueService.addTask('ingredient_analysis', { product: { nombre_comercial: productName, principios_activos: ingredients } });
       } else {
         logger.error(`Error en análisis de componentes nube para ${productName}`, 'AI_Componentes', error);
@@ -276,11 +276,11 @@ export class AIService {
         try {
           const health = await this.runHealthCheckTimeout(120000); 
           if (!health.ok) {
-            console.warn('[AIService] Watchdog: El motor no responde tras 2 min. Reiniciando...');
+            logger.warn('[AIService] Watchdog: El motor no responde tras 2 min. Reiniciando...');
             this.restartEngine();
           }
         } catch (e) {
-          console.warn('[AIService] Watchdog: Error o Timeout. RE-INICIANDO motor...', e);
+          logger.warn('[AIService] Watchdog: Error o Timeout. RE-INICIANDO motor...', e);
           this.restartEngine();
         }
       } else if (this.isBusy) {
@@ -326,7 +326,7 @@ export class AIService {
                 data = JSON.parse(cleanContent);
             }
         } catch (jsonError) {
-            console.warn('[AIService] JSON del modelo inválido en local. Iniciando fallback...');
+            logger.warn('[AIService] JSON del modelo inválido en local. Iniciando fallback...');
         }
 
         if (data && data.nombre_comercial) {
@@ -336,14 +336,14 @@ export class AIService {
             return data as Product;
         }
       } catch (error) {
-        console.error('[AIService] Error extracción IA local:', error);
+        logger.error('[AIService] Error extracción IA local:', error);
       }
     } else {
-      console.warn('[AIService] Motor IA no activo. Intentando nube para extracción.');
+      logger.warn('[AIService] Motor IA no activo. Intentando nube para extracción.');
     }
 
     if (!this.cloudCircuitBreaker.canAttempt()) {
-      console.warn('[AIService] Circuito en la nube abierto. Usando modo Lite (Regex) directamente.');
+      logger.warn('[AIService] Circuito en la nube abierto. Usando modo Lite (Regex) directamente.');
       return doLite();
     }
 
@@ -360,7 +360,7 @@ export class AIService {
       }
     } catch (error: any) {
       this.cloudCircuitBreaker.recordFailure();
-      console.error('[AIService] Error extracción en nube:', error);
+      logger.error('[AIService] Error extracción en nube:', error);
     }
     
     return doLite();
@@ -403,7 +403,7 @@ export class AIService {
         return cached;
       }
     } catch (err) {
-      console.warn('[AIService] Failed reading from embedding cache:', err);
+      logger.warn('[AIService] Failed reading from embedding cache:', err);
     }
 
     // 2. Fall back to local Worker calculation if ready
@@ -420,7 +420,7 @@ export class AIService {
       }
       return vector;
     } catch (error) {
-      console.error('[AIService] Error embedding:', error);
+      logger.error('[AIService] Error embedding:', error);
       return new Array(384).fill(0);
     }
   }
@@ -442,14 +442,14 @@ export class AIService {
       try {
         return await this.runInWorker('ANALYZE', { query, context });
       } catch (error) {
-        console.error('[AIService] Error en analyze local:', error);
+        logger.error('[AIService] Error en analyze local:', error);
       }
     } else {
-      console.warn('[AIService] Motor IA no activo, recurriendo a nube para analyze...');
+      logger.warn('[AIService] Motor IA no activo, recurriendo a nube para analyze...');
     }
 
     if (!this.cloudCircuitBreaker.canAttempt()) {
-      console.warn('[AIService] Circuito en la nube abierto. Usando modo Lite para analyze.');
+      logger.warn('[AIService] Circuito en la nube abierto. Usando modo Lite para analyze.');
       return doLite();
     }
 
@@ -460,7 +460,7 @@ export class AIService {
       return response;
     } catch (error: any) {
       this.cloudCircuitBreaker.recordFailure();
-      console.error('[AIService] Error en analyze nube:', error);
+      logger.error('[AIService] Error en analyze nube:', error);
       return doLite();
     }
   }
@@ -470,7 +470,7 @@ export class AIService {
     try {
       return await this.runInWorker('STANDARDIZE_TAGS', { tags }, 30000); 
     } catch (error) {
-      console.error('[AIService] Error en standardizeTags:', error);
+      logger.error('[AIService] Error en standardizeTags:', error);
       return {};
     }
   }
@@ -482,15 +482,15 @@ export class AIService {
         logger.ai(`Análisis clínico (${type}) mediante motor local para: ${product.nombre_comercial}`, 'AI_Clinical');
         return await this.runInWorker('ANALYZE_CLINICAL', { product, candidates, type }, 90000);
       } catch (error) {
-        console.warn(`[AIService] Error en motor local, recurriendo a fallback en la nube...`, error);
+        logger.warn(`[AIService] Error en motor local, recurriendo a fallback en la nube...`, error);
       }
     } else {
-      console.warn('[AIService] Motor IA no activo, intentando fallback en la nube...');
+      logger.warn('[AIService] Motor IA no activo, intentando fallback en la nube...');
     }
 
     // Circuit Breaker para evitar saturar la nube en caso de caídas
     if (!this.cloudCircuitBreaker.canAttempt()) {
-      console.warn('[AIService] Circuito en la nube abierto (protección). Encolando:', product.sku);
+      logger.warn('[AIService] Circuito en la nube abierto (protección). Encolando:', product.sku);
       taskQueueService.addTask('ai_analysis', { product, candidates, type });
       return null;
     }
@@ -513,10 +513,10 @@ export class AIService {
       const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
       
       if (isQuotaError || isNetworkError) {
-        console.warn(`[AIService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en la nube. Circuito activado, encolando análisis:`, product.sku);
+        logger.warn(`[AIService] ${isQuotaError ? 'Cuota excedida' : 'Error de red'} en la nube. Circuito activado, encolando análisis:`, product.sku);
         taskQueueService.addTask('ai_analysis', { product, candidates, type });
       } else {
-        console.error('[AIService] Error en análisis clínico en la nube:', error);
+        logger.error('[AIService] Error en análisis clínico en la nube:', error);
       }
       return null;
     }
@@ -527,7 +527,7 @@ export class AIService {
     try {
       return await this.runInWorker('INTERPRET_SEARCH', { query }, 30000);
     } catch (error) {
-      console.error('[AIService] Error interpretando búsqueda:', error);
+      logger.error('[AIService] Error interpretando búsqueda:', error);
       return { isScenario: false };
     }
   }
@@ -555,7 +555,7 @@ export class AIService {
     try {
       await embeddingCacheService.clear();
     } catch (e) {
-      console.warn('[AIService] Failed clearing embeddingCacheService during purge:', e);
+      logger.warn('[AIService] Failed clearing embeddingCacheService during purge:', e);
     }
 
     if (!this.worker) return false;

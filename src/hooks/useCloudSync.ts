@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { cloudSyncService } from '../services/CloudSyncService';
@@ -21,7 +22,7 @@ export const useCloudSync = () => {
       setCloudHasData(true);
       return count;
     } catch (error) {
-      console.error("Error syncing:", error);
+      logger.error("Error syncing:", error);
       throw error;
     } finally {
       setIsSyncing(false);

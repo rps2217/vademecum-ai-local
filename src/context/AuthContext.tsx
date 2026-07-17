@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { supabaseService } from '../services/SupabaseService';
 
@@ -79,7 +80,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       return { success: true };
     } catch (err) {
-      console.error('Error en signIn:', err);
+      logger.error('Error en signIn:', err);
       return { success: false, error: 'Error de conexión. Intente nuevamente.' };
     }
   };
@@ -128,7 +129,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       return { success: true };
     } catch (err) {
-      console.error('Error en signUp:', err);
+      logger.error('Error en signUp:', err);
       return { success: false, error: 'Error de conexión. Intente nuevamente.' };
     }
   };
@@ -164,7 +165,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       return { success: true };
     } catch (err) {
-      console.error('Error en resetPassword:', err);
+      logger.error('Error en resetPassword:', err);
       return { success: false, error: 'Error de conexión. Intente nuevamente.' };
     }
   };

@@ -516,7 +516,7 @@ export class DataService {
     } catch (e) {
         const skus = products.map(p => p.sku).join(', ');
         logger.error(`Error al respaldar lote: ${skus}`, 'CloudSync', e);
-        console.error('[DataService] Batch Sync failed', e);
+        logger.error('[DataService] Batch Sync failed', e);
         throw e;
     }
   }
@@ -562,7 +562,7 @@ export class DataService {
             await supabase.from('products').delete().eq('sku', sku);
         }
       } catch (e) {
-        console.error('[DataService] Sync delete failed', e);
+        logger.error('[DataService] Sync delete failed', e);
       }
     }
 

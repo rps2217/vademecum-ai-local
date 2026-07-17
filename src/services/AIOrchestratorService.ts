@@ -39,7 +39,7 @@ export class AIOrchestratorService {
   configure(hardware: any) {
     this.hardware = hardware;
     this.status.deviceTier = hardware?.deviceTier || 'STANDARD';
-    console.log(`[ThermalGuard] Sistema configurado para perfil: ${this.status.deviceTier}`);
+    logger.info(`[ThermalGuard] Sistema configurado para perfil: ${this.status.deviceTier}`);
     this.notify();
   }
 
@@ -64,7 +64,7 @@ export class AIOrchestratorService {
     this.isWatching = true;
     
     window.setInterval(() => {
-      this.scoutPendingWork().catch(err => console.error('[Orchestrator Scout] Failed:', err));
+      this.scoutPendingWork().catch(err => logger.error('[Orchestrator Scout] Failed:', err));
     }, 2 * 60 * 1000); 
     
     setTimeout(() => this.scoutPendingWork(), 15000);
@@ -77,7 +77,7 @@ export class AIOrchestratorService {
     const tier = this.hardware?.deviceTier || 'STANDARD';
     const thresholds = { ULTRA: 250, STANDARD: 150, ECO: 70 };
     if (this.thermalStress > thresholds[tier as keyof typeof thresholds]) {
-      console.log(`[Orchestrator] Saltando scout por estrés térmico (${Math.round(this.thermalStress)})`);
+      logger.info(`[Orchestrator] Saltando scout por estrés térmico (${Math.round(this.thermalStress)})`);
       return;
     }
 
@@ -175,7 +175,7 @@ export class AIOrchestratorService {
       }
 
     } catch (error) {
-      console.error('[Orchestrator Scout] Error en exploración de clúster:', error);
+      logger.error('[Orchestrator Scout] Error en exploración de clúster:', error);
     } finally {
       this.isRunning = false;
       this.updateStatus({ isRunning: false, currentTask: '' });
@@ -198,7 +198,7 @@ export class AIOrchestratorService {
     
     const thresholds = { ULTRA: 200, STANDARD: 120, ECO: 50 };
     if (this.thermalStress > thresholds[tier as keyof typeof thresholds]) {
-      console.warn(`[ThermalGuard] Estrés elevado (${Math.round(this.thermalStress)}) en perfil ${tier}. Ralentizando hardware...`);
+      logger.warn(`[ThermalGuard] Estrés elevado (${Math.round(this.thermalStress)}) en perfil ${tier}. Ralentizando hardware...`);
     }
     
     return this.thermalStress;

@@ -1,3 +1,4 @@
+import { logger } from '../../services/LoggerService';
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
@@ -32,11 +33,11 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
         const isOllamaAvailable = await ollamaService.isAvailable();
         
         if (isOllamaAvailable) {
-          console.log('[PrescriptionAnalysis] Usando Ollama para análisis...');
+          logger.info('[PrescriptionAnalysis] Usando Ollama para análisis...');
           try {
             result = await ollamaService.analyzeInteractions(products);
           } catch (e) {
-            console.warn('[PrescriptionAnalysis] Fallo Ollama, intentando Gemini...');
+            logger.warn('[PrescriptionAnalysis] Fallo Ollama, intentando Gemini...');
           }
         }
 
@@ -46,7 +47,7 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
         
         setAnalysis(result);
       } catch (error) {
-        console.error("Error en auto-análisis:", error);
+        logger.error("Error en auto-análisis:", error);
       } finally {
         setIsAnalyzing(false);
       }

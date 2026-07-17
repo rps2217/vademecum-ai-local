@@ -1,15 +1,16 @@
+import { logger } from '../services/LoggerService';
 import { cloudSyncService } from '../services/CloudSyncService';
 
 export const verifyCloudBackup = async () => {
-  console.log('[CloudDebug] Iniciando verificación de respaldo en la nube...');
+  logger.info('[CloudDebug] Iniciando verificación de respaldo en la nube...');
   try {
     const hasData = await cloudSyncService.checkCloudData();
     const count = await cloudSyncService.getCloudCount();
     
-    console.log(`[CloudDebug] ¡Verificación exitosa!`);
-    console.log(`[CloudDebug] ¿Tiene datos en la nube?: ${hasData}`);
-    console.log(`[CloudDebug] Cantidad de productos en la nube: ${count}`);
+    logger.info(`[CloudDebug] ¡Verificación exitosa!`);
+    logger.info(`[CloudDebug] ¿Tiene datos en la nube?: ${hasData}`);
+    logger.info(`[CloudDebug] Cantidad de productos en la nube: ${count}`);
   } catch (error) {
-    console.error('[CloudDebug] Error durante la verificación:', error);
+    logger.error('[CloudDebug] Error durante la verificación:', error);
   }
 };

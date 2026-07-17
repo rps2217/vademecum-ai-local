@@ -206,7 +206,7 @@ export class ErrorHandlerService {
       try {
         handler(report);
       } catch (err) {
-        console.error('Error in error handler:', err);
+        logger.error('Error in error handler:', err);
       }
     }
   }

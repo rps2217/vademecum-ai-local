@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import { CreateMLCEngine, MLCEngine } from '@mlc-ai/web-llm';
 import { pipeline, env } from '@xenova/transformers';
 
@@ -62,7 +63,7 @@ self.onmessage = async (e: MessageEvent<WorkerMessage>) => {
         break;
     }
   } catch (error: any) {
-    console.error('[Worker] Fatal Error:', error);
+    logger.error('[Worker] Fatal Error:', error);
     self.postMessage({ type: 'ERROR', error: error.message || String(error) });
   }
 };
@@ -96,13 +97,13 @@ async function purgeCache() {
                         db.name.includes('model') // Catch-all para modelos
                     ) {
                         const req = self.indexedDB.deleteDatabase(db.name);
-                        req.onerror = () => console.error(`[Worker] Error borrando DB ${db.name}`);
+                        req.onerror = () => logger.error(`[Worker] Error borrando DB ${db.name}`);
                     }
                 }
             }
         }
     } catch (e) {
-        console.warn('[Worker] No se pudo listar/borrar IndexedDB:', e);
+        logger.warn('[Worker] No se pudo listar/borrar IndexedDB:', e);
     }
 
     self.postMessage({ type: 'PURGE_COMPLETE', success: true });
@@ -146,7 +147,7 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
         webLlmEngine = await Promise.race([initPromise, timeoutPromise]) as MLCEngine;
         gpuSuccess = true;
       } catch (e) {
-        console.warn('Fallo GPU, cayendo a CPU...', e);
+        logger.warn('Fallo GPU, cayendo a CPU...', e);
         self.postMessage({ type: 'PROGRESS', text: 'GPU no disponible. Cambiando a CPU...', progress: 0 });
         webLlmEngine = null;
       }
@@ -193,7 +194,7 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
       } catch (cpuError: any) {
         // AUTO-REPARACIÓN: Si detectamos corrupción, borramos caché y reintentamos
         if (cpuError.message && cpuError.message.includes('offset is out of bounds')) {
-           console.error('[Worker] Detectada corrupción de caché. Iniciando auto-reparación...');
+           logger.error('[Worker] Detectada corrupción de caché. Iniciando auto-reparación...');
            await purgeCache();
            throw new Error('CORRUPTED_CACHE_AUTO_FIXED: Se ha detectado un archivo dañado. La caché ha sido borrada. Por favor, recarga la página para descargar el modelo limpio.');
         }
@@ -207,7 +208,7 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
     } else {
       // Fallback final: Si el tier es NONE pero el hardware parece capaz, intentamos CPU
       if (tier === 'NONE') {
-        console.warn('[Worker] Tier NONE detectado, pero intentando fallback a CPU...');
+        logger.warn('[Worker] Tier NONE detectado, pero intentando fallback a CPU...');
         // Reutilizamos la lógica de tier LOW
         await initializeAI('LOW');
       } else {
@@ -216,7 +217,7 @@ async function initializeAI(tier: 'HIGH' | 'LOW' | 'NONE') {
     }
 
   } catch (error: any) {
-    console.error('[Worker] Fatal Error during init:', error);
+    logger.error('[Worker] Fatal Error during init:', error);
     let errorMessage = error.message || String(error);
     
     // Mejorar mensaje para errores de red comunes en dispositivos nuevos o corporativos
@@ -406,7 +407,7 @@ const tryParseJson = (jsonStr: string): any => {
         try { return JSON.parse(cleaned); } catch (e) {}
 
     } catch (err) {
-        console.warn('[Worker] Error en fase de limpieza JSON:', err);
+        logger.warn('[Worker] Error en fase de limpieza JSON:', err);
     }
 
     return null;

@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 export class EmbeddingCacheService {
   private static instance: EmbeddingCacheService;
   private memoryCache = new Map<string, number[]>();
@@ -32,16 +33,16 @@ export class EmbeddingCacheService {
 
         request.onsuccess = (e: any) => {
           this.db = e.target.result;
-          console.log('[EmbeddingCache] IndexedDB cache initialized successfully.');
+          logger.info('[EmbeddingCache] IndexedDB cache initialized successfully.');
           resolve();
         };
 
         request.onerror = (e) => {
-          console.warn('[EmbeddingCache] IndexedDB failed to load, falling back to memory-only cache:', e);
+          logger.warn('[EmbeddingCache] IndexedDB failed to load, falling back to memory-only cache:', e);
           resolve();
         };
       } catch (err) {
-        console.warn('[EmbeddingCache] Exception initializing IndexedDB, falling back to memory-only:', err);
+        logger.warn('[EmbeddingCache] Exception initializing IndexedDB, falling back to memory-only:', err);
         resolve();
       }
     });

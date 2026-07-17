@@ -1,3 +1,4 @@
+import { logger } from '../../services/LoggerService';
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { dataService } from '../../services/DataService';
@@ -78,7 +79,7 @@ export const ClinicalSynergy: React.FC<ClinicalSynergyProps> = ({ product, onPro
         );
 
       } catch (error) {
-        console.error("Error cargando productos relacionados:", error);
+        logger.error("Error cargando productos relacionados:", error);
       } finally {
         setIsLoading(false);
       }

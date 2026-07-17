@@ -96,7 +96,7 @@ export class SynergyBackgroundService {
       const deviceId = getDeviceId();
       const canLock = await cloudSyncService.claimProductLock(product.sku, deviceId);
       if (!isForced && !canLock) {
-         console.warn(`[ClusterSync] Sku ${product.sku} saltado. Otro PC (${deviceId}) ya lo está analizando.`);
+         logger.warn(`[ClusterSync] Sku ${product.sku} saltado. Otro PC (${deviceId}) ya lo está analizando.`);
          return; 
       }
       
@@ -284,11 +284,11 @@ export class SynergyBackgroundService {
         const cloudSyncService = (await import('./CloudSyncService')).cloudSyncService;
         await cloudSyncService.releaseProductLockAndSave(failedProduct);
       } catch (releaseError) {
-         console.error(`[SynergyService] No se pudo liberar el lock de ${product.sku}:`, releaseError);
+         logger.error(`[SynergyService] No se pudo liberar el lock de ${product.sku}:`, releaseError);
          await dataService.saveProduct(failedProduct, { silent: true });
       }
 
-      console.error(`[SynergyService] Error procesando ${product.sku}:`, error);
+      logger.error(`[SynergyService] Error procesando ${product.sku}:`, error);
     } finally {
       this.clearCurrent();
     }

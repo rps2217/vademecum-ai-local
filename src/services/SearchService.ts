@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import { Product, SafetyStatus, ClinicalSearchInterpretation } from '../core/types';
 import { formatArrayToString } from '../utils/formatters';
 import { cosineSimilarity } from '../utils/math';
@@ -124,7 +125,7 @@ export class SearchService {
         }
       }
     } catch (error) {
-      console.warn('[SearchService] Incremental update failed, falling back to full rebuild:', error);
+      logger.warn('[SearchService] Incremental update failed, falling back to full rebuild:', error);
       await this.initializeIndex();
     }
   }
@@ -158,7 +159,7 @@ export class SearchService {
     // Update facets incrementally
     this.updateFacetsIncremental(removedSkus, addedProducts, updatedProducts);
     
-    console.log(`[SearchService] Incremental update: ${addedProducts.length} added, ${updatedProducts.length} updated, ${removedSkus.length} removed`);
+    logger.info(`[SearchService] Incremental update: ${addedProducts.length} added, ${updatedProducts.length} updated, ${removedSkus.length} removed`);
   }
 
   /**
@@ -251,9 +252,9 @@ export class SearchService {
       this.updateFacetsIncremental([], allProducts, []);
       this.isInitialized = true;
       
-      console.log(`[SearchService] Index initialized with ${this.index.length} products`);
+      logger.info(`[SearchService] Index initialized with ${this.index.length} products`);
     } catch (error) {
-      console.error('Error initializing search index:', error);
+      logger.error('Error initializing search index:', error);
       throw error;
     }
   }

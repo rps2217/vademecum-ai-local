@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Activity, Database, Brain, CheckCircle, AlertCircle, Cpu, Shield } from 'lucide-react';
@@ -55,7 +56,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                     }
                 }
             }
-        } catch (e) { console.warn(e); }
+        } catch (e) { logger.warn(e); }
 
         // Determine Tier
         let aiModelTier: 'HIGH' | 'LOW' | 'NONE' = 'NONE';

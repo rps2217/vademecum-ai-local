@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 
 /**
  * ThermalGuardService
@@ -26,7 +27,7 @@ export class ThermalGuardService {
 
   setLoadStatus(isHigh: boolean) {
     this.isThermalLimitExceeded = isHigh;
-    console.log(`[ThermalGuard]: Carga térmica alta - ${isHigh}`);
+    logger.info(`[ThermalGuard]: Carga térmica alta - ${isHigh}`);
   }
 }
 

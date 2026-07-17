@@ -1,3 +1,4 @@
+import { logger } from '../../../services/LoggerService';
 import { useState, useEffect } from 'react';
 import { Product } from '../../../core/types';
 import { searchService } from '../../../services/SearchService';
@@ -41,7 +42,7 @@ export const useProductSearch = (useSemantic = false) => {
         }
         setResults(searchResults);
       } catch (error) {
-        console.error('Error in useProductSearch:', error);
+        logger.error('Error in useProductSearch:', error);
       } finally {
         setIsSearching(false);
       }

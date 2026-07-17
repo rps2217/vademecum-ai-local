@@ -1,3 +1,4 @@
+import { logger } from '../../services/LoggerService';
 import React, { useState } from 'react';
 import { useConsultation } from '../../context/ConsultationContext';
 import { 
@@ -41,7 +42,7 @@ export const ClinicalBrainTray: React.FC = () => {
       setIsExpanded(true);
     } catch (err: any) {
       setError('Error al analizar interacciones. Intenta de nuevo.');
-      console.error(err);
+      logger.error(err);
     } finally {
       setIsAnalyzing(false);
     }

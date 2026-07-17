@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 
 export enum EventType {
   PRODUCT_UPDATED = 'PRODUCT_UPDATED',
@@ -41,7 +42,7 @@ export const EventBus = {
     };
     
     if (process.env.NODE_ENV !== 'production') {
-      console.log(`[EventBus] ${type}`, {
+      logger.info(`[EventBus] ${type}`, {
         id: event.id,
         timestamp: new Date(event.timestamp).toISOString(),
         payload

@@ -1,3 +1,4 @@
+import { logger } from '../services/LoggerService';
 /**
  * Rate Limiter Utility
  * Controla la frecuencia de llamadas a APIs para evitar throttling
@@ -92,13 +93,13 @@ export class RateLimiter {
 export const supabaseRateLimiter = new RateLimiter({
   maxRequests: 30,           // Supabase free tier: 60 req/min
   windowMs: 60 * 1000,      // 1 minuto
-  onLimitReached: () => console.warn('[RateLimiter] Límite de Supabase próximo')
+  onLimitReached: () => logger.warn('[RateLimiter] Límite de Supabase próximo')
 });
 
 export const geminiRateLimiter = new RateLimiter({
   maxRequests: 15,           // Gemini free tier: 15 req/min
   windowMs: 60 * 1000,      // 1 minuto
-  onLimitReached: () => console.warn('[RateLimiter] Límite de Gemini próximo')
+  onLimitReached: () => logger.warn('[RateLimiter] Límite de Gemini próximo')
 });
 
 export const apiRateLimiter = new RateLimiter({

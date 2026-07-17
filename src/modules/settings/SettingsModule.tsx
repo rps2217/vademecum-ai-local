@@ -39,7 +39,7 @@ export const SettingsModule: React.FC = () => {
            setQueueLength(length);
         }
       } catch (e) {
-        console.error('Error polling queue:', e);
+        logger.error('Error polling queue:', e);
       }
     }, 2000);
 
@@ -129,7 +129,7 @@ export const SettingsModule: React.FC = () => {
         }
         window.location.reload();
       } catch (error) {
-        console.error('Error al reiniciar kernel:', error);
+        logger.error('Error al reiniciar kernel:', error);
         window.location.reload();
       }
     }
