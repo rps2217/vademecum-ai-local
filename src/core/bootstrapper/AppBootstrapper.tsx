@@ -4,6 +4,8 @@ import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { taskProcessorService } from '../../services/TaskProcessorService';
 import { automationTriggerService } from '../../services/AutomationTriggerService';
 import { seedDrugData } from '../../services/drugInteractionService';
+import { dataService } from '../../services/DataService';
+import { useStore } from '../../store/useStore';
 import { drugFamiliesCollection } from '../../database';
 import { Q } from '@nozbe/watermelondb';
 
@@ -26,6 +28,12 @@ export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) =>
       if (families.length === 0) {
         await seedDrugData();
       }
+
+      // Cargar productos en Zustand store
+      const products = await dataService.getAllProducts();
+      useStore.getState().setProducts(products);
+      console.log('[AppBootstrapper] Productos cargados en store:', products.length);
+
       setIsReady(true);
     };
     initialize();
