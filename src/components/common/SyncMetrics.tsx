@@ -24,7 +24,8 @@ export const SyncMetrics: React.FC = () => {
 
   const loadMetrics = React.useCallback(async () => {
     try {
-      const localProducts = await dataService.getAllProductsCount();
+      const products = await dataService.getAllProducts();
+      const localProducts = products.length;
       const cloudCount = await cloudSyncService.getCloudCount();
       const syncStats = cloudSyncService.getSyncStats();
       const aiStatus = taskProcessorService.getStatus();
