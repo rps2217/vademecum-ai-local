@@ -10,6 +10,7 @@ import { logger } from '../../services/LoggerService';
 import { getDeviceId } from '../../utils/clusterUtils';
 import { cloudSyncService } from '../../services/CloudSyncService';
 import { SyncMetrics } from '../../components/common/SyncMetrics';
+import { CloudConnectionDiagnostic } from '../../components/common/CloudConnectionDiagnostic';
 
 export const SettingsModule: React.FC = () => {
   const { hardware } = useHardwareDetection();

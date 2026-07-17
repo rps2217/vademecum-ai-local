@@ -8,17 +8,35 @@ export class SupabaseService {
     private constructor() {
         const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
         const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
-        
-        // Block known template dummy prefixes to keep client-side clean of connection failures
+
+        // Block only generic placeholder/template URLs (not real project URLs)
         const isDummy = supabaseUrl && (
-            supabaseUrl.includes('pspxqzwxulgmzarlqwtt') || 
-            supabaseUrl.includes('placeholder') || 
-            supabaseUrl.includes('YOUR_SUPABASE')
+            supabaseUrl.includes('placeholder') ||
+            supabaseUrl.includes('YOUR_SUPABASE') ||
+            supabaseUrl.includes('yourproject')
         );
 
-        if (supabaseUrl && supabaseKey && supabaseUrl.includes('.supabase.co') && !isDummy) {
-            this.client = createClient(supabaseUrl, supabaseKey);
-            this.configured = true;
+        // Also check if key looks like a template placeholder
+        const keyIsDummy = supabaseKey && (
+            supabaseKey.includes('placeholder') ||
+            supabaseKey.includes('your-') ||
+            supabaseKey === '' ||
+            supabaseKey.includes('example')
+        );
+
+        if (supabaseUrl && supabaseKey && supabaseUrl.includes('.supabase.co') && !isDummy && !keyIsDummy) {
+            try {
+                this.client = createClient(supabaseUrl, supabaseKey);
+                this.configured = true;
+                console.log('[SupabaseService] Conectado a:', supabaseUrl);
+            } catch (error) {
+                console.error('[SupabaseService] Error creando cliente:', error);
+                this.configured = false;
+            }
+        } else {
+            if (supabaseUrl && !isDummy && !keyIsDummy) {
+                console.warn('[SupabaseService] URL configurada pero sin clave valida');
+            }
         }
     }
 
@@ -33,11 +51,11 @@ export class SupabaseService {
         if (!this.configured) return null;
         return this.client;
     }
-    
+
     markUnreachable(): void {
         this.configured = false;
     }
-    
+
     isConfigured(): boolean {
         return this.configured;
     }
