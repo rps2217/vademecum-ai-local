@@ -5,17 +5,21 @@ import { dataService } from '../../../services/DataService';
 import { geminiService } from '../../../services/GeminiService';
 import { synergyBackgroundService } from '../../../services/SynergyBackgroundService';
 import { logger } from '../../../services/LoggerService';
+import { useAuth } from '../../../context/AuthContext';
 
 export const useProductDetail = (initialProduct: Product, onUpdate?: (p: Product) => void) => {
+  const { user, isAdmin } = useAuth();
   const [product, setProduct] = useState<Product>(initialProduct);
   const [isReanalyzing, setIsReanalyzing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isForcingSynergy, setIsForcingSynergy] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
-  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
-  const [password, setPassword] = useState('');
   const [statusMessage, setStatusMessage] = useState<{ text: string, type: 'info' | 'error' | 'success' } | null>(null);
+
+  // Permisos basados en rol
+  const canEdit = isAdmin || user !== null;
+  const canVerify = isAdmin;
 
   useEffect(() => {
     if (product) {
@@ -96,26 +100,25 @@ export const useProductDetail = (initialProduct: Product, onUpdate?: (p: Product
     }
   };
 
-  const handlePasswordSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === 'RPS241061') {
-      if (isVerifying) {
-        handleSaveEdit({ 
-          ...product, 
-          is_verified: true, 
-          verified_at: Date.now(),
-          verified_by: 'Rolando Pizarro'
-        });
-        setIsVerifying(false);
-      } else {
-        setIsEditing(true);
-      }
-      setShowPasswordPrompt(false);
-      setPassword('');
-    } else {
-      showStatus('Contraseña incorrecta', 'error');
-      setPassword('');
+  const handleStartEdit = () => {
+    if (!canEdit) {
+      showStatus('Inicia sesión para editar productos', 'error');
+      return;
     }
+    setIsEditing(true);
+  };
+
+  const handleStartVerify = () => {
+    if (!canVerify) {
+      showStatus('Solo los administradores pueden verificar productos', 'error');
+      return;
+    }
+    handleSaveEdit({
+      ...product,
+      is_verified: true,
+      verified_at: Date.now(),
+      verified_by: user?.email || 'Administrador'
+    });
   };
 
   return {
@@ -128,15 +131,14 @@ export const useProductDetail = (initialProduct: Product, onUpdate?: (p: Product
     setIsEditing,
     isVerifying,
     setIsVerifying,
-    showPasswordPrompt,
-    setShowPasswordPrompt,
-    password,
-    setPassword,
+    canEdit,
+    canVerify,
     statusMessage,
     handleReanalyze,
     handleForceSynergy,
     handleSaveEdit,
-    handlePasswordSubmit,
+    handleStartEdit,
+    handleStartVerify,
     showStatus
   };
 };
