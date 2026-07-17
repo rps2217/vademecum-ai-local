@@ -10,6 +10,7 @@ import { useStore } from '../store/useStore';
 
 export class DataService {
   private static instance: DataService;
+  private catalogImported = false;
 
   private constructor() {}
 
@@ -33,6 +34,99 @@ export class DataService {
   async getAllProducts(): Promise<Product[]> {
     const records = await productsCollection.query().fetch();
     return records.map(record => record.asJSON());
+  }
+
+  /**
+   * Importa el catálogo de productos desde catalog.json
+   * Solo importa si la base de datos está vacía
+   */
+  async importCatalog(): Promise<number> {
+    if (this.catalogImported) {
+      logger.info('Catálogo ya importado previamente', 'DataService');
+      return 0;
+    }
+
+    // Verificar si ya hay productos
+    const existingProducts = await productsCollection.query().fetchCount();
+    if (existingProducts > 0) {
+      logger.info(`Base de datos ya contiene ${existingProducts} productos`, 'DataService');
+      this.catalogImported = true;
+      return 0;
+    }
+
+    try {
+      logger.info('Importando catálogo de productos...', 'DataService');
+      
+      const response = await fetch('/catalog.json');
+      if (!response.ok) {
+        throw new Error(`Error al cargar catalog.json: ${response.status}`);
+      }
+
+      const products: Product[] = await response.json();
+      
+      if (!Array.isArray(products) || products.length === 0) {
+        logger.warn('Catálogo vacío o formato inválido', 'DataService');
+        return 0;
+      }
+
+      // Asegurar valores por defecto para campos requeridos
+      const normalizedProducts = products.map(p => ({
+        ...p,
+        categoria_principal: p.categoria_principal || 'Medicamento',
+        analisis_componentes: p.analisis_componentes || '',
+        anotaciones_componentes: p.anotaciones_componentes || {},
+        vectores: p.vectores || [],
+        synergy_analyzed: p.synergy_analyzed || false,
+        last_synergy_analysis: p.last_synergy_analysis || 0,
+        synergy_retries: p.synergy_retries || 0,
+        is_verified: p.is_verified || false,
+        is_synced_cloud: p.is_synced_cloud || false,
+        last_synced_cloud: p.last_synced_cloud || 0,
+        last_updated: p.last_updated || Date.now(),
+      }));
+
+      // Guardar productos en batch
+      await database.write(async () => {
+        for (const product of normalizedProducts) {
+          try {
+            await productsCollection.create(record => {
+              record.sku = product.sku;
+              record.nombreComercial = product.nombre_comercial;
+              record.descripcion = product.descripcion || '';
+              record._principiosActivosJson = JSON.stringify(product.principios_activos || []);
+              record.posologia = product.posologia || '';
+              record._indicacionesJson = JSON.stringify(product.indicaciones || []);
+              record.advertencias = product.advertencias || '';
+              record._tagsIaJson = JSON.stringify(product.tags_ia || []);
+              record.categoriaPrincipal = product.categoria_principal || 'Medicamento';
+              record.analisisComponentes = product.analisis_componentes || '';
+              record._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
+              record._vectoresJson = JSON.stringify(product.vectores || []);
+              record.aptoEmbarazo = product.apto_embarazo || 'PRECAUCION';
+              record.aptoLactancia = product.apto_lactancia || 'PRECAUCION';
+              record.aptoPediatria = product.apto_pediatria || 'PRECAUCION';
+              record.aptoDiabeticos = product.apto_diabeticos || 'SI';
+              record.aptoHipertensos = product.apto_hipertensos || 'SI';
+              record.aptoCeliacos = product.apto_celiacos || 'SI';
+              record.sugerenciaComplementaria = product.sugerencia_complementaria || '';
+              record._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
+              record.lastUpdated = product.last_updated || Date.now();
+            });
+          } catch (e) {
+            logger.error(`Error guardando producto ${product.sku}`, 'DataService', e);
+          }
+        }
+      });
+
+      this.catalogImported = true;
+      logger.success(`Catálogo importado: ${normalizedProducts.length} productos`, 'DataService');
+      EventBus.emit(EventType.DB_UPDATED, {});
+      
+      return normalizedProducts.length;
+    } catch (error) {
+      logger.error('Error importando catálogo', 'DataService', error);
+      return 0;
+    }
   }
 
   private validateProduct(product: Product) {

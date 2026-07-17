@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Activity, Database, Brain, CheckCircle, AlertCircle, Cpu, Shield } from 'lucide-react';
 import { HardwareProfile } from '../core/types/hardware.types';
+import { dataService } from '../services/DataService';
 
 interface InitStep {
   id: string;
@@ -107,8 +108,19 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
         return;
       }
 
-      // 2. Database Initialization
-      updateStep('database', { status: 'success', detail: 'Conectado al servidor' });
+      // 2. Database Initialization - Importar catálogo si es necesario
+      updateStep('database', { status: 'loading', detail: 'Verificando base de datos...' });
+      try {
+        const importedCount = await dataService.importCatalog();
+        if (importedCount > 0) {
+          updateStep('database', { status: 'success', detail: `Catálogo importado: ${importedCount} productos` });
+        } else {
+          const totalProducts = await dataService.getAllProducts();
+          updateStep('database', { status: 'success', detail: `Base de datos lista (${totalProducts.length} productos)` });
+        }
+      } catch (e) {
+        updateStep('database', { status: 'error', detail: 'Error inicializando base de datos' });
+      }
       await new Promise(r => setTimeout(r, 500));
 
       // 3. AI Engine Initialization (SKIPPED FOR LAZY LOADING)
