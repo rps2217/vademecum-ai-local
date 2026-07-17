@@ -5,6 +5,7 @@ import { useHardwareDetection } from '../../hooks/useHardwareDetection';
 import { Send, Bot, User, Loader2, Sparkles, AlertCircle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { medicalRAGService } from '../../services/MedicalRAGService';
+import { aiLoadStrategy } from '../../services/AILoadStrategy';
 
 interface Message {
   id: string;

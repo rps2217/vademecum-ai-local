@@ -14,6 +14,7 @@ import { OfflineIndicator } from '../common/OfflineIndicator';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { ConsultationProvider } from '../../context/ConsultationContext';
 import { logger } from '../../services/LoggerService';
+import { aiLoadStrategy } from '../../services/AILoadStrategy';
 
 import { Button } from '@/components/ui/button';
 
@@ -48,7 +49,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   useEffect(() => {
     if (hardware) {
       aiService.configure(hardware);
-      aiService.startEngine().catch(console.error);
+      // Carga bajo demanda del motor IA - no iniciar automáticamente
+      // Cargar nivel óptimo basado en hardware (bajo demanda)
     }
   }, [hardware]);
 
