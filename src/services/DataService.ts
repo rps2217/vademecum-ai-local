@@ -146,24 +146,40 @@ export class DataService {
    * Guarda una lista de productos en la base de datos local
    */
   private async saveProductsToLocalDB(products: Product[]): Promise<void> {
-    const normalizedProducts = products.map(p => ({
-      ...p,
-      categoria_principal: p.categoria_principal || 'Medicamento',
-      analisis_componentes: p.analisis_componentes || '',
-      anotaciones_componentes: p.anotaciones_componentes || {},
-      vectores: p.vectores || [],
-      synergy_analyzed: p.synergy_analyzed || false,
-      last_synergy_analysis: p.last_synergy_analysis || 0,
-      synergy_retries: p.synergy_retries || 0,
-      is_verified: p.is_verified || false,
-      is_synced_cloud: p.is_synced_cloud || false,
-      last_synced_cloud: p.last_synced_cloud || 0,
-      last_updated: p.last_updated || Date.now(),
-    }));
+    if (!products || products.length === 0) {
+      logger.warn('No hay productos para guardar', 'DataService');
+      return;
+    }
+
+    logger.info(`Guardando ${products.length} productos en la base de datos local...`, 'DataService');
+
+    // Verificar estructura del primer producto para debug
+    if (products[0]) {
+      logger.info(`Primer producto SKU: ${products[0].sku}`, 'DataService');
+      logger.info(`Primer producto nombre: ${products[0].nombre_comercial || 'N/A'}`, 'DataService');
+    }
+
+    let successCount = 0;
+    let errorCount = 0;
 
     await database.write(async () => {
-      for (const product of normalizedProducts) {
+      for (const product of products) {
         try {
+          // Verificar que tenga SKU
+          if (!product.sku) {
+            logger.warn('Producto sin SKU, omitiendo', 'DataService');
+            errorCount++;
+            continue;
+          }
+
+          // Verificar si ya existe
+          const existing = await productsCollection.query(Q.where('sku', product.sku)).fetch();
+          if (existing.length > 0) {
+            logger.info(`Producto ${product.sku} ya existe, omitiendo`, 'DataService');
+            successCount++;
+            continue;
+          }
+
           await productsCollection.create(record => {
             record.sku = product.sku;
             record.nombreComercial = product.nombre_comercial || product.sku;
@@ -187,11 +203,20 @@ export class DataService {
             record._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
             record.lastUpdated = product.last_updated || Date.now();
           });
+
+          successCount++;
         } catch (e) {
-          logger.error(`Error guardando producto ${product.sku}`, 'DataService', e);
+          errorCount++;
+          logger.error(`Error guardando producto ${product.sku}: ${e}`, 'DataService', e);
         }
       }
     });
+
+    logger.info(`Guardado completado: ${successCount} exitosos, ${errorCount} errores`, 'DataService');
+    
+    // Verificar count en base de datos
+    const dbCount = await productsCollection.query().fetchCount();
+    logger.info(`Total productos en base de datos: ${dbCount}`, 'DataService');
   }
 
   private validateProduct(product: Product) {
