@@ -1,54 +1,41 @@
-import React, { useState, useRef, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
+import React, { useState, useRef, useEffect, useMemo, Suspense, lazy } from 'react';
 import { useProductSearch } from './hooks/useProductSearch';
-import { Product, ClinicalSearchInterpretation } from '../../core/types';
-// Lazy loading heavy components
+import { Product } from '../../core/types';
+
 const ProductDetailModal = lazy(() => import('../product/ProductDetailModal').then(module => ({ default: module.ProductDetailModal })));
-const AIAnalysisModal = lazy(() => import('./components/AIAnalysisModal').then(module => ({ default: module.AIAnalysisModal })));
 
 import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
 import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
-import { ScenarioInterpretationOverlay } from './components/ScenarioInterpretationOverlay';
-import { useConsultation } from '../../context/ConsultationContext';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
-import { logger } from '../../services/LoggerService';
-import { Brain, LayoutGrid, List, History, Sparkles, Filter, Activity } from 'lucide-react';
-import { aiService } from '../../services/AIService';
+import { Search, Grid3X3, List as ListIcon, X, Loader2 } from 'lucide-react';
 import { historyService } from '../../services/HistoryService';
-import { searchService } from '../../services/SearchService';
-import { COMMON_PATHOLOGIES } from '../../constants/pathologies';
-import { SearchConcept } from './components/SearchSuggestions';
-import { AnimatePresence } from 'motion/react';
 import { useStore } from '../../store/useStore';
 
-import { useSearch } from '../../context/SearchContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 
+/**
+ * SearchModule - Simplified and Clean
+ * Main interface for searching and browsing medications
+ */
 export const SearchModule: React.FC = () => {
-  const [useSemantic, setUseSemantic] = useState(false);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  
   const { 
     query, 
     setQuery, 
     isSearching,
     results,
-  } = useProductSearch(useSemantic);
+  } = useProductSearch(false);
   
-  const { isSearching: globalIsSearching, setIsSearching } = useSearch();
   const { viewedProductSku, setViewedProduct, products } = useStore();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [showAiAnalysis, setShowAiAnalysis] = useState(false);
-  const [interpretation, setInterpretation] = useState<ClinicalSearchInterpretation | null>(null);
-  const [activeFilters, setActiveFilters] = useState<{ avoid: string[]; prefer: string[] } | null>(null);
-  const [isInterpreting, setIsInterpreting] = useState(false);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [recentTerms, setRecentTerms] = useState<string[]>([]);
   
   const { toggleProduct, isInTray } = useTray();
-  const { selectedProducts } = useConsultation();
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Sync viewedProductSku from store
   useEffect(() => {
@@ -60,65 +47,12 @@ export const SearchModule: React.FC = () => {
     }
   }, [viewedProductSku, products]);
 
-  // Update recent terms on mount and when changed
+  // Update recent terms
   useEffect(() => {
     setRecentTerms(historyService.getRecentTerms());
-    const update = () => setRecentTerms(historyService.getRecentTerms());
-    window.addEventListener('history_updated', update);
-    return () => window.removeEventListener('history_updated', update);
   }, []);
 
-  // Track search term when results are found
-  useEffect(() => {
-    if (results.length > 0 && !isSearching && query.length > 2) {
-      const timer = setTimeout(() => {
-          historyService.trackSearchTerm(query);
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [query, results, isSearching]);
-
-  // Interpretar filtros IA
-  const filteredResults = useMemo(() => {
-    let base = [...results];
-    if (!activeFilters) return base;
-    
-    return base.sort((a, b) => {
-      let scoreA = 0;
-      let scoreB = 0;
-
-      const getTextToSearch = (p: Product) => {
-        return [
-          p.nombre_comercial,
-          ...(p.principios_activos || []),
-          ...(p.indicaciones || []),
-          p.descripcion || '',
-          p.advertencias || ''
-        ].join(' ').toLowerCase();
-      };
-
-      const textA = getTextToSearch(a);
-      const textB = getTextToSearch(b);
-
-      activeFilters.avoid.forEach(term => {
-        const t = term.toLowerCase();
-        if (textA.includes(t)) scoreA -= 20;
-        if (textB.includes(t)) scoreB -= 20;
-      });
-
-      activeFilters.prefer.forEach(term => {
-        const t = term.toLowerCase();
-        if (textA.includes(t)) scoreA += 10;
-        if (textB.includes(t)) scoreB += 10;
-      });
-
-      if (a.is_verified) scoreA += 5;
-      if (b.is_verified) scoreB += 5;
-
-      return scoreB - scoreA;
-    });
-  }, [results, activeFilters]);
-
+  // Keyboard shortcuts
   const shortcuts = useMemo(() => ({
     'Escape': () => {
       if (selectedProduct) setViewedProduct(null);
@@ -128,207 +62,174 @@ export const SearchModule: React.FC = () => {
 
   useKeyboardShortcuts(shortcuts);
 
-  // Efecto para interpretación clínica semántica
+  // Track search
   useEffect(() => {
-    if (query.length < 20) {
-      setInterpretation(null);
-      if (query.length === 0) setActiveFilters(null);
-      return;
+    if (results.length > 0 && !isSearching && query.length > 2) {
+      const timer = setTimeout(() => {
+        historyService.trackSearchTerm(query);
+      }, 1500);
+      return () => clearTimeout(timer);
     }
+  }, [query, results, isSearching]);
 
-    const timer = setTimeout(async () => {
-      setIsInterpreting(true);
-      try {
-        const result = await aiService.interpretClinicalSearch(query);
-        if (result && result.isScenario) {
-          setInterpretation(result);
-        } else {
-          setInterpretation(null);
-        }
-      } catch (err) {
-        console.error('Error interpretando consulta:', err);
-      } finally {
-        setIsInterpreting(false);
-      }
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, [query]);
-
-  const handleTagClick = React.useCallback((tag: string) => {
-    setQuery(tag);
-    setActiveFilters(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [setQuery]);
-
-  const handleClearAll = React.useCallback(() => {
+  const handleClear = () => {
     setQuery('');
-    setActiveFilters(null);
     searchInputRef.current?.focus();
-  }, [setQuery]);
+  };
 
-  const handleProductClick = React.useCallback((product: Product) => {
+  const handleProductClick = (product: Product) => {
     setViewedProduct(product.sku);
-  }, [setViewedProduct]);
+  };
 
-  const handleAddToTray = React.useCallback((product: Product) => {
+  const handleAddToTray = (product: Product) => {
     toggleProduct(product);
-  }, [toggleProduct]);
+  };
+
+  const handleTagClick = (tag: string) => {
+    setQuery(tag);
+  };
+
+  const hasResults = results.length > 0;
+  const hasQuery = query.trim().length > 0;
 
   return (
-    <div className="w-full pb-20 relative min-h-[70vh] flex flex-col pt-4 whitespace-optimized">
-      
-      {/* Detail View (Integrated Overlay) */}
-      {selectedProduct ? (
-        <div className="w-full -mt-8 md:-mt-12 animate-in fade-in duration-300">
-          <Suspense fallback={null}>
-            <ProductDetailModal 
-                product={selectedProduct} 
-                onClose={() => setViewedProduct(null)} 
-                searchTerm={query}
-                onTagClick={(tag) => {
-                  setViewedProduct(null);
-                  handleTagClick(tag);
-                }}
-                isEmbedded={true}
-              />
-          </Suspense>
-        </div>
-      ) : (
-        /* Search Board */
-        <div className="w-full flex-1 flex flex-col items-center justify-start mt-4 md:mt-12">
-          {query.trim() === '' && results.length === 0 ? (
-            <div className="w-full max-w-5xl space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700 flex flex-col items-center">
-              
-              {/* Huge Centered Search Bar */}
-              <div className="w-full max-w-3xl flex flex-col items-center gap-6 text-center">
-                  <div className="flex items-center justify-center gap-3 mb-2">
-                    <Activity className="h-10 w-10 text-primary" />
-                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
-                      Vademécum <span className="text-primary">IA</span>
-                    </h1>
-                  </div>
-                  <p className="text-muted-foreground text-sm md:text-base font-medium max-w-xl">
-                    Busque por principio activo, nombre comercial, síntoma o describa un cuadro clínico complejo.
-                  </p>
-                  
-                  <div className="w-full relative mt-4">
-                    <SearchBar 
-                      query={query} 
-                      setQuery={setQuery} 
-                      isSearching={isSearching}
-                      className="w-full scale-105"
-                    />
-                  </div>
+    <div className="w-full min-h-screen bg-slate-50/50">
+      {/* Hero Search Section */}
+      <div className="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
+        <div className="max-w-3xl mx-auto px-4 pt-8 pb-6">
+          {/* Logo & Title */}
+          <div className="text-center mb-6">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
+                <Search className="w-6 h-6 text-white" />
               </div>
-
-              {/* Recently Viewed / History & Quick Discovery */}
-              <div className="w-full mt-12 pb-24">
-                <QuickDiscoveryTags onSelect={setQuery} />
-              </div>
+              <h1 className="text-3xl font-bold text-slate-900">
+                Vademécum
+              </h1>
             </div>
-          ) : (
-            /* Results & Interpretations */
-            <div className="space-y-6 animate-in fade-in duration-300">
-              <AnimatePresence>
-                {interpretation && (
-                  <ScenarioInterpretationOverlay 
-                    interpretation={interpretation}
-                    onClose={() => setInterpretation(null)}
-                    onApplyFilters={(f) => {
-                      setActiveFilters(f);
-                      setInterpretation(null);
-                      logger.success('Protocolo clínico optimizado para la consulta');
-                    }}
-                  />
-                )}
-              </AnimatePresence>
+            <p className="text-slate-500 text-sm">
+              Busque por nombre, principio activo o indicación
+            </p>
+          </div>
 
-              {activeFilters && (
-                 <div className="flex items-center justify-between p-4 rounded-xl alert-synergy border-dashed">
-                    <div className="flex items-center gap-3">
-                      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                        <Brain className="w-4 h-4" />
-                        Filtros Clínicos Inteligentes
-                      </span>
-                    </div>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      onClick={() => setActiveFilters(null)}
-                      className="text-[10px] font-bold uppercase"
-                    >
-                      Restablecer Búsqueda
-                    </Button>
-                 </div>
-              )}
-              
-              <div className="flex items-center justify-between px-2">
-                <div className="flex items-center gap-4">
-                  <h2 className="text-xl font-bold tracking-tight">Resultados encontrados</h2>
-                  <Badge variant="outline" className="rounded-full px-3">{filteredResults.length}</Badge>
-                </div>
-                
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant={useSemantic ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setUseSemantic(!useSemantic)}
-                    className="text-xs"
-                  >
-                    <Sparkles className="w-3 h-3 mr-2" />
-                    {useSemantic ? 'Búsqueda IA' : 'Búsqueda Texto'}
-                  </Button>
-                  <div className="flex border rounded-lg p-1 bg-muted">
-                    <Button 
-                      variant={viewMode === 'grid' ? 'secondary' : 'ghost'} 
-                      size="icon" 
-                      onClick={() => setViewMode('grid')}
-                      className="h-8 w-8 rounded-md"
-                    >
-                      <LayoutGrid className="h-4 w-4" />
-                    </Button>
-                    <Button 
-                      variant={viewMode === 'list' ? 'secondary' : 'ghost'} 
-                      size="icon" 
-                      onClick={() => setViewMode('list')}
-                      className="h-8 w-8 rounded-md"
-                    >
-                      <List className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
+          {/* Search Input */}
+          <div className="relative">
+            <SearchBar 
+              ref={searchInputRef}
+              query={query} 
+              setQuery={setQuery} 
+              isSearching={isSearching}
+              className="bg-white shadow-lg border-slate-200"
+            />
+            {hasQuery && (
+              <button
+                onClick={handleClear}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:bg-slate-100 rounded-xl transition-colors"
+              >
+                <X className="w-5 h-5 text-slate-400" />
+              </button>
+            )}
+          </div>
 
-              <SearchResults 
-                results={filteredResults}
-                query={query}
-                conditionFilters={[]}
-                showOnlyVerified={false}
-                isSearching={isSearching}
-                isInTray={isInTray}
-                onProductClick={handleProductClick}
-                onAddToTray={handleAddToTray}
-                onTagClick={handleTagClick}
-                onClearFilters={handleClearAll}
-                viewMode={viewMode}
-              />
-            </div>
+          {/* Quick Categories */}
+          {!hasQuery && (
+            <QuickDiscoveryTags onSelect={setQuery} />
           )}
         </div>
-      )}
+      </div>
 
-      {/* Modal de Análisis IA */}
-      <Suspense fallback={null}>
-        {showAiAnalysis && (
-          <AIAnalysisModal 
-            query={query}
-            results={results}
-            onClose={() => setShowAiAnalysis(false)}
+      {/* Results Section */}
+      <div className="max-w-5xl mx-auto px-4 py-6">
+        {isSearching ? (
+          <div className="flex flex-col items-center justify-center py-16">
+            <Loader2 className="w-8 h-8 text-emerald-500 animate-spin mb-4" />
+            <p className="text-slate-500">Buscando medicamentos...</p>
+          </div>
+        ) : hasResults ? (
+          <>
+            {/* Results Header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <h2 className="text-lg font-semibold text-slate-900">
+                  {results.length} {results.length === 1 ? 'resultado' : 'resultados'}
+                </h2>
+                {hasQuery && (
+                  <Badge variant="muted">
+                    para "{query}"
+                  </Badge>
+                )}
+              </div>
+              
+              {/* View Toggle */}
+              <div className="flex items-center bg-white rounded-xl border border-slate-200 p-1">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-2 rounded-lg transition-all ${
+                    viewMode === 'grid' 
+                      ? 'bg-emerald-100 text-emerald-700' 
+                      : 'text-slate-400 hover:text-slate-600'
+                  }`}
+                >
+                  <Grid3X3 className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-2 rounded-lg transition-all ${
+                    viewMode === 'list' 
+                      ? 'bg-emerald-100 text-emerald-700' 
+                      : 'text-slate-400 hover:text-slate-600'
+                  }`}
+                >
+                  <ListIcon className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Results */}
+            <SearchResults 
+              results={results}
+              query={query}
+              conditionFilters={[]}
+              showOnlyVerified={false}
+              isSearching={isSearching}
+              isInTray={isInTray}
+              onProductClick={handleProductClick}
+              onAddToTray={handleAddToTray}
+              onTagClick={handleTagClick}
+              onClearFilters={handleClear}
+              viewMode={viewMode}
+            />
+          </>
+        ) : hasQuery && !isSearching ? (
+          <div className="flex flex-col items-center justify-center py-16 text-center">
+            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+              <Search className="w-8 h-8 text-slate-400" />
+            </div>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              Sin resultados
+            </h3>
+            <p className="text-slate-500 mb-4">
+              No encontramos medicamentos para "{query}"
+            </p>
+            <Button variant="outline" onClick={handleClear}>
+              Limpiar búsqueda
+            </Button>
+          </div>
+        ) : null}
+      </div>
+
+      {/* Product Detail Modal */}
+      {selectedProduct && (
+        <Suspense fallback={null}>
+          <ProductDetailModal 
+            product={selectedProduct} 
+            onClose={() => setViewedProduct(null)} 
+            searchTerm={query}
+            onTagClick={handleTagClick}
+            isEmbedded={true}
           />
-        )}
-      </Suspense>
+        </Suspense>
+      )}
     </div>
   );
 };

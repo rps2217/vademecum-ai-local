@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -23,61 +24,124 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
 
-  --radius-lg: 1rem;
-  --radius-md: 0.75rem;
+  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
   --radius-sm: 0.5rem;
 }
 
 @layer base {
   :root {
-    /* Rich, Vivid Clinical Deep Ocean Indigo - Escaping white/grays completely */
-    --background: #03080f; /* Midnight Deep Marine */
-    --foreground: #e0f2fe; /* Ultra crisp medical light cyan */
+    /* Clean Medical Light Theme - Simple and Professional */
+    --background: #fafbfc;
+    --foreground: #1a1f36;
 
-    --card: #081524;      /* Highly saturated deep ocean navy card */
-    --card-foreground: #f0fdf4;
+    --card: #ffffff;
+    --card-foreground: #1a1f36;
 
-    --popover: #06101c;
-    --popover-foreground: #cbd5e1;
+    --popover: #ffffff;
+    --popover-foreground: #1a1f36;
 
-    /* Primary: Vibrantly Glowing Medical Cyan */
-    --primary: #06b6d4;   /* Vivid Cyan 500 */
-    --primary-foreground: #020617; /* High-contrast text on primary active items */
+    /* Medical Green - Trust and Health */
+    --primary: #059669;
+    --primary-foreground: #ffffff;
 
-    /* Muted states */
-    --muted: #0d2847;     /* Deep navy blue */
-    --muted-foreground: #7dd3fc; /* Clean clear sky-blue for outstanding label contrast */
+    /* Muted states - Soft grays */
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
 
-    --accent: #113459;    /* Vivid Blue Accent */
-    --accent-foreground: #a5f3fc;
+    /* Light accent */
+    --accent: #ecfdf5;
+    --accent-foreground: #059669;
 
-    /* Borders: Highly defined, vibrant sky-blue/ocean borders */
-    --border: #14355a;    /* Clean navy boundary */
-    --input: #1b497a;
+    /* Borders */
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+
+    /* Semantic colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
   }
 
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     letter-spacing: -0.01em;
   }
-  
-  /* Modern Clinical high-contrast alerts */
-  .alert-clinical {
-    @apply p-5 rounded-2xl bg-card border border-border/80 text-sm shadow-md;
-  }
 
-  .alert-critical {
-    @apply bg-red-950/40 border-red-800 text-red-200 border p-6 rounded-2xl shadow-md;
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
+}
 
-  .alert-synergy {
-    @apply bg-emerald-950/40 border-emerald-800 text-emerald-200 border p-6 rounded-2xl shadow-md;
-  }
+/* Selection color */
+::selection {
+  background-color: #059669;
+  color: white;
+}
 
-  .alert-info {
-    @apply bg-sky-950/40 border-sky-800 text-sky-200 border p-6 rounded-2xl shadow-md;
-  }
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+}
+
+/* Alert styles - clean and simple */
+.alert {
+  @apply p-4 rounded-xl border text-sm font-medium;
+}
+
+.alert-success {
+  @apply bg-emerald-50 border-emerald-200 text-emerald-800;
+}
+
+.alert-warning {
+  @apply bg-amber-50 border-amber-200 text-amber-800;
+}
+
+.alert-error {
+  @apply bg-red-50 border-red-200 text-red-800;
+}
+
+.alert-info {
+  @apply bg-blue-50 border-blue-200 text-blue-800;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-lg hover:border-emerald-200;
+}
+
+/* Button press effect */
+.btn-press {
+  @apply active:scale-[0.98] transition-transform duration-100;
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply animate-pulse bg-slate-200 rounded;
 }

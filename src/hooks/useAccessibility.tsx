@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 interface UseAccessibilityOptions {
   /**
@@ -226,5 +226,3 @@ export function useReducedMotion() {
   return reducedMotion;
 }
 
-// Need React import for LiveRegion component
-import React from 'react';
