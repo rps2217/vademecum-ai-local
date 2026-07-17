@@ -24,99 +24,20 @@ interface StoredCredentials {
 /**
  * AuthProvider con Supabase Auth integration.
  * Proporciona autenticación segura con email/password.
+ * 
+ * ⚠️ MODO DESARROLLO: Autenticación deshabilitada para facilitar el desarrollo.
+ *    Todos los usuarios tienen acceso de administrador sin necesidad de login.
  */
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<{ uid: string; email?: string } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isAccessGranted, setIsAccessGranted] = useState(false);
-  const [isSupabaseConfigured, setIsSupabaseConfigured] = useState(false);
+  // Modo desarrollo: siempre tener acceso de admin
+  const [user] = useState<{ uid: string; email?: string }>({ uid: 'local-user', email: 'local@vademecum.local' });
+  const [loading] = useState(false);
+  const [isAdmin] = useState(true);
+  const [isAccessGranted] = useState(true);
+  const [isSupabaseConfigured] = useState(false);
 
-  const validateStoredSession = useCallback((): StoredCredentials | null => {
-    try {
-      const stored = localStorage.getItem('vademecum_session');
-      if (!stored) return null;
-      
-      const session: StoredCredentials = JSON.parse(stored);
-      
-      if (Date.now() > session.expiresAt) {
-        localStorage.removeItem('vademecum_session');
-        return null;
-      }
-      
-      return session;
-    } catch {
-      localStorage.removeItem('vademecum_session');
-      return null;
-    }
-  }, []);
-
-  useEffect(() => {
-    const checkSession = async () => {
-      const supabase = supabaseService.getClient();
-      const isConfigured = supabaseService.isConfigured();
-      setIsSupabaseConfigured(isConfigured);
-
-      if (!isConfigured) {
-        setLoading(false);
-        return;
-      }
-
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (session) {
-        setUser({ 
-          uid: session.user.id, 
-          email: session.user.email 
-        });
-        setIsAdmin(true);
-        setIsAccessGranted(true);
-        
-        localStorage.setItem('vademecum_session', JSON.stringify({
-          email: session.user.email,
-          sessionToken: session.access_token,
-          expiresAt: session.expires_at ? session.expires_at * 1000 : Date.now() + 7 * 24 * 60 * 60 * 1000
-        }));
-      } else {
-        const storedSession = validateStoredSession();
-        if (storedSession) {
-          const { error } = await supabase.auth.refreshSession();
-          if (!error) {
-            const { data: { session: newSession } } = await supabase.auth.getSession();
-            if (newSession) {
-              setUser({ uid: newSession.user.id, email: newSession.user.email });
-              setIsAdmin(true);
-              setIsAccessGranted(true);
-            }
-          } else {
-            localStorage.removeItem('vademecum_session');
-          }
-        }
-      }
-      
-      setLoading(false);
-    };
-
-    checkSession();
-
-    const supabase = supabaseService.getClient();
-    if (supabase) {
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-        if (session) {
-          setUser({ uid: session.user.id, email: session.user.email });
-          setIsAdmin(true);
-          setIsAccessGranted(true);
-        } else {
-          setUser(null);
-          setIsAdmin(false);
-          setIsAccessGranted(false);
-          localStorage.removeItem('vademecum_session');
-        }
-      });
-
-      return () => subscription.unsubscribe();
-    }
-  }, [validateStoredSession]);
+  // useEffect y validateStoredSession deshabilitados en modo desarrollo
+  // La autenticación está permanentemente activa con acceso de admin
 
   const signIn = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     const supabase = supabaseService.getClient();
