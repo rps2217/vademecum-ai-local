@@ -292,15 +292,46 @@ interface ProductHistory {
 ```
 Líneas de código:    7,816
 Archivos .ts/.tsx:    ~80
-Servicios:           25
+Servicios:           26 (nuevo: AILoadStrategy)
 Tests:               55/55 ✅
 Rate Limiting:       ✅ Implementado
 Console.logs:        7 ⚠️ (patrones válidos)
 Bundle principal:     949KB ✅ (-35%)
 Code Splitting:       ✅ Implementado
 Dashboard Métricas:  ✅ Implementado
+AI On-Demand Load:   ✅ Implementado
 Productos en nube:    1,000 ✅
 ```
+
+---
+
+## 🧠 ESTRATEGIA DE CARGA IA BAJO DEMANDA
+
+### Niveles de Carga Progresiva
+
+| Nivel | Descripción | Tiempo Carga | Uso |
+|-------|-------------|--------------|-----|
+| **LEVEL_0_CLOUD** | Solo Gemini Cloud | Instantáneo | Equipos limitados |
+| **LEVEL_1_EMBEDDINGS** | Embeddings locales | 5-10s | Búsqueda semántica |
+| **LEVEL_2_FULL** | Modelo completo IA local | 30-60s | Análisis clínico |
+
+### Lógica de Selección
+
+```
+ Hardware         →  Tier    →  Nivel IA
+────────────────────────────────────────────
+ Apple Silicon    →  HIGH    →  LEVEL_2_FULL
+ GPU Dedicada     →  HIGH    →  LEVEL_2_FULL  
+ 8GB+ RAM        →  MEDIUM  →  LEVEL_1_EMBEDDINGS
+ ECO/Móvil       →  LOW     →  LEVEL_0_CLOUD
+```
+
+### Beneficios
+
+- **Inicio instantáneo**: App lista sin esperar carga de IA
+- **Recursos bajo demanda**: Solo carga lo necesario
+- **Adaptable al hardware**: Selección automática por capacidad
+- **Fallback a nube**: Si falla local, usa Gemini Cloud
 
 ---
 
@@ -310,6 +341,8 @@ Productos en nube:    1,000 ✅
 - [x] Implementar rate limiting
 - [x] Code splitting para bundles pesados
 - [x] Dashboard de métricas
+- [x] Carga IA bajo demanda (On-Demand)
+- [ ] Verificación descarga catálogo desde nube
 - [ ] WebSocket para sync en tiempo real
 - [ ] Fallback a Ollama
 - [ ] Audit trail de productos
