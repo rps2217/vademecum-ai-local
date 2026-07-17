@@ -9,6 +9,7 @@ import { LayoutGrid, Maximize2, Monitor } from 'lucide-react';
 import { logger } from '../../services/LoggerService';
 import { getDeviceId } from '../../utils/clusterUtils';
 import { cloudSyncService } from '../../services/CloudSyncService';
+import { SyncMetrics } from '../../components/common/SyncMetrics';
 
 export const SettingsModule: React.FC = () => {
   const { hardware } = useHardwareDetection();
@@ -435,6 +436,9 @@ export const SettingsModule: React.FC = () => {
             Limpiar Logs
           </button>
         </div>
+
+        {/* Métricas del Sistema */}
+        <SyncMetrics />
 
         <div className="bg-card rounded-2xl border border-border font-mono text-[11px] overflow-hidden">
           <div className="max-h-[300px] overflow-y-auto p-4 space-y-2">
