@@ -1,10 +1,10 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useCloudSync } from '../../hooks/useCloudSync';
-import { LogOut, User as UserIcon, Loader2, RefreshCw, Lock } from 'lucide-react';
+import { LogOut, User as UserIcon, Loader2, RefreshCw } from 'lucide-react';
 
 export const UserMenu: React.FC = () => {
-  const { user, login, logout, isAdmin, loading } = useAuth();
+  const { user, signOut, isAdmin, loading } = useAuth();
   const { isSyncing, cloudHasData, handleSync } = useCloudSync();
 
   const onSyncClick = async () => {
@@ -18,18 +18,14 @@ export const UserMenu: React.FC = () => {
     }
   };
 
-  if (loading) return null;
+  const onSignOut = async () => {
+    await signOut();
+  };
 
+  if (loading) return null;
+  
   if (!user) {
-    return (
-      <button
-        onClick={login}
-        className="p-2 text-slate-700 hover:text-primary transition-colors"
-        title="Acceso Administrador"
-      >
-        <Lock className="w-4 h-4" />
-      </button>
-    );
+    return null; // No mostrar nada si no hay usuario (AccessGate se encarga)
   }
 
   return (
@@ -46,12 +42,12 @@ export const UserMenu: React.FC = () => {
       )}
       
       <div className="flex items-center gap-2 bg-card border border-border p-1 rounded-xl">
-        <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center border border-orange-500/10">
+        <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center border border-orange-500/10" title={user.email || user.uid}>
           <UserIcon className="w-4 h-4 text-orange-500" />
         </div>
         
         <button
-          onClick={logout}
+          onClick={onSignOut}
           className="p-1 px-2 text-muted-foreground hover:text-foreground transition-colors"
           title="Cerrar Sesión"
         >
