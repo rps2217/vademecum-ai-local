@@ -26,6 +26,14 @@ export interface SearchFacets {
   principlesWithCounts?: { principle: string, count: number }[];
 }
 
+export interface SearchResult {
+  products: Product[];
+  total: number;
+  page: number;
+  pageSize: number;
+  hasMore: boolean;
+}
+
 export class SearchService {
   private static instance: SearchService;
   private index: SearchIndexItem[] = [];
@@ -37,6 +45,13 @@ export class SearchService {
       activePrinciples: [],
       principlesWithCounts: []
   };
+  
+  // Performance optimization: debounce index updates
+  private updateTimeout: number | null = null;
+  private readonly UPDATE_DEBOUNCE_MS = 500;
+  
+  // Pagination
+  private readonly DEFAULT_PAGE_SIZE = 50;
 
   private constructor() {
       this.initObserver();
@@ -51,8 +66,175 @@ export class SearchService {
 
   private async initObserver() {
       productsCollection.changes.subscribe(() => {
-          this.initializeIndex().catch(console.error);
+          this.debouncedIndexUpdate().catch(console.error);
       });
+  }
+
+  /**
+   * Debounced index update to prevent multiple full rebuilds
+   */
+  private async debouncedIndexUpdate(): Promise<void> {
+    if (this.updateTimeout) {
+      clearTimeout(this.updateTimeout);
+    }
+    
+    return new Promise((resolve) => {
+      this.updateTimeout = window.setTimeout(async () => {
+        await this.incrementalIndexUpdate();
+        resolve();
+      }, this.UPDATE_DEBOUNCE_MS);
+    });
+  }
+
+  /**
+   * Incremental update - only update changed items instead of full rebuild
+   */
+  private async incrementalIndexUpdate(): Promise<void> {
+    try {
+      const allProducts = await dataService.getAllProducts();
+      const existingSkus = new Set(this.index.map(i => i.sku));
+      const newSkus = new Set(allProducts.map(p => p.sku));
+      
+      // Find removed products
+      const removedSkus = [...existingSkus].filter(sku => !newSkus.has(sku));
+      
+      // Find added products
+      const addedProducts = allProducts.filter(p => !existingSkus.has(p.sku));
+      
+      // Find updated products
+      const updatedProducts = allProducts.filter(p => {
+        const existing = this.index.find(i => i.sku === p.sku);
+        if (!existing) return false;
+        return existing.product.last_updated !== p.last_updated;
+      });
+
+      // Apply incremental changes
+      if (removedSkus.length > 0 || addedProducts.length > 0 || updatedProducts.length > 0) {
+        // For simplicity, we still do a full rebuild if there are many changes
+        // But for small changes, we can do incremental updates
+        const totalChanges = removedSkus.length + addedProducts.length + updatedProducts.length;
+        const changeRatio = totalChanges / Math.max(this.index.length, 1);
+        
+        if (changeRatio > 0.1) {
+          // More than 10% changed - full rebuild is faster
+          await this.initializeIndex();
+        } else {
+          // Incremental update
+          this.applyIncrementalChanges(removedSkus, addedProducts, updatedProducts);
+        }
+      }
+    } catch (error) {
+      console.warn('[SearchService] Incremental update failed, falling back to full rebuild:', error);
+      await this.initializeIndex();
+    }
+  }
+
+  /**
+   * Apply incremental changes to the index
+   */
+  private applyIncrementalChanges(
+    removedSkus: string[],
+    addedProducts: Product[],
+    updatedProducts: Product[]
+  ): void {
+    // Remove deleted items
+    this.index = this.index.filter(item => !removedSkus.includes(item.sku));
+    
+    // Add new items
+    const newItems = addedProducts.map(product => this.createIndexItem(product));
+    this.index.push(...newItems);
+    
+    // Update existing items
+    for (const product of updatedProducts) {
+      const idx = this.index.findIndex(i => i.sku === product.sku);
+      if (idx !== -1) {
+        this.index[idx] = this.createIndexItem(product);
+      }
+    }
+    
+    // Rebuild MiniSearch index
+    this.rebuildMiniSearchIndex();
+    
+    // Update facets incrementally
+    this.updateFacetsIncremental(removedSkus, addedProducts, updatedProducts);
+    
+    console.log(`[SearchService] Incremental update: ${addedProducts.length} added, ${updatedProducts.length} updated, ${removedSkus.length} removed`);
+  }
+
+  /**
+   * Rebuild MiniSearch index from current state
+   */
+  private rebuildMiniSearchIndex(): void {
+    this.miniSearch = new MiniSearch({
+      fields: ['nombre', 'principios', 'sku', 'searchableText', 'categoria'],
+      storeFields: ['id', 'sku'],
+      searchOptions: {
+        boost: { nombre: 2, principios: 1.5, sku: 1, categoria: 0.8 },
+        fuzzy: 0.2,
+        prefix: true
+      }
+    });
+    this.miniSearch.addAll(this.index);
+  }
+
+  /**
+   * Incremental facets update
+   */
+  private updateFacetsIncremental(
+    removedSkus: string[],
+    addedProducts: Product[],
+    updatedProducts: Product[]
+  ): void {
+    // Simple approach: recalculate affected facets
+    // For large datasets, this could be optimized further
+    const cats = new Set<string>();
+    const principles = new Set<string>();
+    const principlesCount = new Map<string, number>();
+
+    this.index.forEach(item => {
+      const p = item.product;
+      if (p.categoria_principal) cats.add(p.categoria_principal);
+      if (p.principios_activos) {
+        p.principios_activos.forEach(pa => {
+          const pName = pa?.trim();
+          if (pName) {
+            principles.add(pName);
+            principlesCount.set(pName, (principlesCount.get(pName) || 0) + 1);
+          }
+        });
+      }
+    });
+
+    const principlesWithCounts = Array.from(principlesCount.entries())
+      .map(([principle, count]) => ({ principle, count }))
+      .sort((a, b) => b.count - a.count);
+
+    this.facets = {
+      categories: Array.from(cats).sort(),
+      activePrinciples: Array.from(principles).sort().slice(0, 50),
+      principlesWithCounts
+    };
+  }
+
+  /**
+   * Create an index item from a product
+   */
+  private createIndexItem(product: Product): SearchIndexItem {
+    const searchableText = `${product.sku || ''} ${product.nombre_comercial || ''} ${product.categoria_principal || ''} ${formatArrayToString(product.principios_activos, ' ')} ${formatArrayToString(product.indicaciones, ' ')} ${formatArrayToString(product.tags_ia, ' ')} ${product.analisis_componentes || ''}`;
+    
+    const pathologySearchableText = formatArrayToString(product.indicaciones, ' ');
+
+    return {
+      id: product.sku,
+      sku: product.sku,
+      product,
+      vector: product.vectores,
+      searchableText: this.normalizeText(searchableText),
+      pathologySearchableText: this.normalizeText(pathologySearchableText),
+      principios: product.principios_activos?.join(' ') || '',
+      nombre: product.nombre_comercial || '',
+      categoria: product.categoria_principal || ''
+    };
   }
 
   normalizeText(text: string): string {
@@ -63,71 +245,17 @@ export class SearchService {
   async initializeIndex(): Promise<void> {
     try {
       const allProducts = await dataService.getAllProducts();
-      this.index = allProducts.map(product => {
-        const searchableText = `${product.sku || ''} ${product.nombre_comercial || ''} ${product.categoria_principal || ''} ${formatArrayToString(product.principios_activos, ' ')} ${formatArrayToString(product.indicaciones, ' ')} ${formatArrayToString(product.tags_ia, ' ')} ${product.analisis_componentes || ''}`;
-        
-        const pathologySearchableText = formatArrayToString(product.indicaciones, ' ');
+      this.index = allProducts.map(product => this.createIndexItem(product));
 
-        return {
-          id: product.sku,
-          sku: product.sku,
-          product,
-          vector: product.vectores,
-          searchableText: this.normalizeText(searchableText),
-          pathologySearchableText: this.normalizeText(pathologySearchableText),
-          principios: product.principios_activos?.join(' ') || '',
-          nombre: product.nombre_comercial || '',
-          categoria: product.categoria_principal || ''
-        };
-      });
-
-      this.miniSearch = new MiniSearch({
-        fields: ['nombre', 'principios', 'sku', 'searchableText', 'categoria'], // fields to index for full-text search
-        storeFields: ['id', 'sku'], // fields to return with search results
-        searchOptions: {
-          boost: { nombre: 2, principios: 1.5, sku: 1, categoria: 0.8 },
-          fuzzy: 0.2, // typo tolerance
-          prefix: true // prefix matching
-        }
-      });
-
-      this.miniSearch.addAll(this.index);
-
-      this.updateFacets(allProducts);
+      this.rebuildMiniSearchIndex();
+      this.updateFacetsIncremental([], allProducts, []);
       this.isInitialized = true;
+      
+      console.log(`[SearchService] Index initialized with ${this.index.length} products`);
     } catch (error) {
       console.error('Error initializing search index:', error);
       throw error;
     }
-  }
-
-  private updateFacets(products: Product[]) {
-      const cats = new Set<string>();
-      const principles = new Set<string>();
-      const principlesCount = new Map<string, number>();
-
-      products.forEach(p => {
-          if (p.categoria_principal) cats.add(p.categoria_principal);
-          if (p.principios_activos) {
-              p.principios_activos.forEach(pa => {
-                  const pName = pa?.trim();
-                  if (pName) {
-                    principles.add(pName);
-                    principlesCount.set(pName, (principlesCount.get(pName) || 0) + 1);
-                  }
-              });
-          }
-      });
-
-      const principlesWithCounts = Array.from(principlesCount.entries())
-        .map(([principle, count]) => ({ principle, count }))
-        .sort((a, b) => b.count - a.count);
-
-      this.facets = {
-          categories: Array.from(cats).sort(),
-          activePrinciples: Array.from(principles).sort().slice(0, 50),
-          principlesWithCounts
-      };
   }
 
   getFacets() {
@@ -142,8 +270,22 @@ export class SearchService {
     return this.latestResults;
   }
 
-  async search(query: string, options: { category?: string, principle?: string } = {}): Promise<Product[]> {
+  /**
+   * Search with pagination support
+   */
+  async search(
+    query: string, 
+    options: { 
+      category?: string; 
+      principle?: string;
+      page?: number;
+      pageSize?: number;
+    } = {}
+  ): Promise<SearchResult> {
     if (!this.isInitialized) await this.initializeIndex();
+    
+    const page = options.page ?? 1;
+    const pageSize = Math.min(options.pageSize ?? this.DEFAULT_PAGE_SIZE, 100);
     
     let combinedItems: { product: Product, score: number }[] = [];
     const normalizedQuery = query ? this.normalizeText(query) : '';
@@ -173,9 +315,27 @@ export class SearchService {
         combined = combined.filter(p => p.principios_activos?.includes(options.principle!));
     }
 
-    combined = combined.slice(0, 50);
-    this.latestResults = combined;
-    return combined;
+    const total = combined.length;
+    const startIndex = (page - 1) * pageSize;
+    const paginatedResults = combined.slice(startIndex, startIndex + pageSize);
+    
+    this.latestResults = paginatedResults;
+    
+    return {
+      products: paginatedResults,
+      total,
+      page,
+      pageSize,
+      hasMore: startIndex + pageSize < total
+    };
+  }
+
+  /**
+   * Legacy method for backward compatibility
+   */
+  async searchLegacy(query: string, options: { category?: string, principle?: string } = {}): Promise<Product[]> {
+    const result = await this.search(query, options);
+    return result.products;
   }
 }
 
