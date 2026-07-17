@@ -162,6 +162,27 @@ export default defineConfig(({mode}) => {
         '@': path.resolve(__dirname, './src'),
       },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // React core
+            'vendor-react': ['react', 'react-dom'],
+            // UI libraries
+            'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
+            // AI/ML libraries (lazy loaded)
+            'vendor-ai': ['@google/genai', '@mlc-ai/web-llm', '@xenova/transformers'],
+            // Database/Storage
+            'vendor-db': ['@nozbe/watermelondb', 'rxdb', 'rxjs'],
+            // Visualization
+            'vendor-viz': ['d3'],
+            // PDF processing (lazy loaded)
+            'vendor-pdf': ['pdfjs-dist'],
+          },
+        },
+      },
+      chunkSizeWarningLimit: 600,
+    },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
