@@ -37,7 +37,9 @@ export class DataService {
   }
 
   /**
-   * Importa el catálogo de productos desde catalog.json
+   * Importa el catálogo de productos
+   * 1. Primero intenta descargar desde Supabase (nube)
+   * 2. Si falla, usa el archivo local catalog.json
    * Solo importa si la base de datos está vacía
    */
   async importCatalog(): Promise<number> {
@@ -54,8 +56,26 @@ export class DataService {
       return 0;
     }
 
+    // Intentar primero desde la nube (Supabase)
+    if (supabaseService.isConfigured()) {
+      try {
+        logger.info('Descargando productos desde la nube...', 'DataService');
+        const products = await this.downloadAllCloudProducts();
+        if (products.length > 0) {
+          await this.saveProductsToLocalDB(products);
+          this.catalogImported = true;
+          logger.success(`Descargados ${products.length} productos desde la nube`, 'DataService');
+          EventBus.emit(EventType.DB_UPDATED, {});
+          return products.length;
+        }
+      } catch (error) {
+        logger.warn('No se pudo descargar desde la nube, usando archivo local', 'DataService', error);
+      }
+    }
+
+    // Fallback: importar desde catalog.json
     try {
-      logger.info('Importando catálogo de productos...', 'DataService');
+      logger.info('Importando catálogo desde archivo local...', 'DataService');
       
       const response = await fetch('/catalog.json');
       if (!response.ok) {
@@ -69,64 +89,109 @@ export class DataService {
         return 0;
       }
 
-      // Asegurar valores por defecto para campos requeridos
-      const normalizedProducts = products.map(p => ({
-        ...p,
-        categoria_principal: p.categoria_principal || 'Medicamento',
-        analisis_componentes: p.analisis_componentes || '',
-        anotaciones_componentes: p.anotaciones_componentes || {},
-        vectores: p.vectores || [],
-        synergy_analyzed: p.synergy_analyzed || false,
-        last_synergy_analysis: p.last_synergy_analysis || 0,
-        synergy_retries: p.synergy_retries || 0,
-        is_verified: p.is_verified || false,
-        is_synced_cloud: p.is_synced_cloud || false,
-        last_synced_cloud: p.last_synced_cloud || 0,
-        last_updated: p.last_updated || Date.now(),
-      }));
-
-      // Guardar productos en batch
-      await database.write(async () => {
-        for (const product of normalizedProducts) {
-          try {
-            await productsCollection.create(record => {
-              record.sku = product.sku;
-              record.nombreComercial = product.nombre_comercial;
-              record.descripcion = product.descripcion || '';
-              record._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-              record.posologia = product.posologia || '';
-              record._indicacionesJson = JSON.stringify(product.indicaciones || []);
-              record.advertencias = product.advertencias || '';
-              record._tagsIaJson = JSON.stringify(product.tags_ia || []);
-              record.categoriaPrincipal = product.categoria_principal || 'Medicamento';
-              record.analisisComponentes = product.analisis_componentes || '';
-              record._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-              record._vectoresJson = JSON.stringify(product.vectores || []);
-              record.aptoEmbarazo = product.apto_embarazo || 'PRECAUCION';
-              record.aptoLactancia = product.apto_lactancia || 'PRECAUCION';
-              record.aptoPediatria = product.apto_pediatria || 'PRECAUCION';
-              record.aptoDiabeticos = product.apto_diabeticos || 'SI';
-              record.aptoHipertensos = product.apto_hipertensos || 'SI';
-              record.aptoCeliacos = product.apto_celiacos || 'SI';
-              record.sugerenciaComplementaria = product.sugerencia_complementaria || '';
-              record._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-              record.lastUpdated = product.last_updated || Date.now();
-            });
-          } catch (e) {
-            logger.error(`Error guardando producto ${product.sku}`, 'DataService', e);
-          }
-        }
-      });
-
+      await this.saveProductsToLocalDB(products);
       this.catalogImported = true;
-      logger.success(`Catálogo importado: ${normalizedProducts.length} productos`, 'DataService');
+      logger.success(`Catálogo local importado: ${products.length} productos`, 'DataService');
       EventBus.emit(EventType.DB_UPDATED, {});
       
-      return normalizedProducts.length;
+      return products.length;
     } catch (error) {
-      logger.error('Error importando catálogo', 'DataService', error);
+      logger.error('Error importando catálogo local', 'DataService', error);
       return 0;
     }
+  }
+
+  /**
+   * Descarga todos los productos desde Supabase
+   */
+  private async downloadAllCloudProducts(): Promise<Product[]> {
+    if (!supabaseService.isConfigured()) return [];
+    
+    const supabase = supabaseService.getClient();
+    if (!supabase) return [];
+
+    try {
+      // Descargar en lotes de 1000 para evitar timeouts
+      const allProducts: any[] = [];
+      let page = 0;
+      const pageSize = 1000;
+      
+      while (true) {
+        const { data, error } = await supabase
+          .from('products')
+          .select('sku, data')
+          .range(page * pageSize, (page + 1) * pageSize - 1);
+        
+        if (error) throw error;
+        if (!data || data.length === 0) break;
+        
+        const products = data.map((r: any) => ({
+          ...r.data,
+          sku: r.sku || r.data.sku
+        }));
+        
+        allProducts.push(...products);
+        if (data.length < pageSize) break;
+        page++;
+      }
+
+      return allProducts as Product[];
+    } catch (error) {
+      logger.error('Error descargando productos desde la nube', 'DataService', error);
+      return [];
+    }
+  }
+
+  /**
+   * Guarda una lista de productos en la base de datos local
+   */
+  private async saveProductsToLocalDB(products: Product[]): Promise<void> {
+    const normalizedProducts = products.map(p => ({
+      ...p,
+      categoria_principal: p.categoria_principal || 'Medicamento',
+      analisis_componentes: p.analisis_componentes || '',
+      anotaciones_componentes: p.anotaciones_componentes || {},
+      vectores: p.vectores || [],
+      synergy_analyzed: p.synergy_analyzed || false,
+      last_synergy_analysis: p.last_synergy_analysis || 0,
+      synergy_retries: p.synergy_retries || 0,
+      is_verified: p.is_verified || false,
+      is_synced_cloud: p.is_synced_cloud || false,
+      last_synced_cloud: p.last_synced_cloud || 0,
+      last_updated: p.last_updated || Date.now(),
+    }));
+
+    await database.write(async () => {
+      for (const product of normalizedProducts) {
+        try {
+          await productsCollection.create(record => {
+            record.sku = product.sku;
+            record.nombreComercial = product.nombre_comercial || product.sku;
+            record.descripcion = product.descripcion || '';
+            record._principiosActivosJson = JSON.stringify(product.principios_activos || []);
+            record.posologia = product.posologia || '';
+            record._indicacionesJson = JSON.stringify(product.indicaciones || []);
+            record.advertencias = product.advertencias || '';
+            record._tagsIaJson = JSON.stringify(product.tags_ia || []);
+            record.categoriaPrincipal = product.categoria_principal || 'Medicamento';
+            record.analisisComponentes = product.analisis_componentes || '';
+            record._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
+            record._vectoresJson = JSON.stringify(product.vectores || []);
+            record.aptoEmbarazo = product.apto_embarazo || 'PRECAUCION';
+            record.aptoLactancia = product.apto_lactancia || 'PRECAUCION';
+            record.aptoPediatria = product.apto_pediatria || 'PRECAUCION';
+            record.aptoDiabeticos = product.apto_diabeticos || 'SI';
+            record.aptoHipertensos = product.apto_hipertensos || 'SI';
+            record.aptoCeliacos = product.apto_celiacos || 'SI';
+            record.sugerenciaComplementaria = product.sugerencia_complementaria || '';
+            record._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
+            record.lastUpdated = product.last_updated || Date.now();
+          });
+        } catch (e) {
+          logger.error(`Error guardando producto ${product.sku}`, 'DataService', e);
+        }
+      }
+    });
   }
 
   private validateProduct(product: Product) {
