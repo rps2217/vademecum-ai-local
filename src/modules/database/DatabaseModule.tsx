@@ -144,13 +144,15 @@ export const DatabaseModule: React.FC = () => {
       setSyncStatus('Descargando todos los productos desde la nube...');
       
       // Importar catálogo completo
-      const count = await dataService.importCatalog();
+      const result = await dataService.importCatalog();
       
-      if (count > 0) {
-        setSyncStatus(`Descarga completa: ${count} productos desde la nube.`);
+      if (result.success && result.count > 0) {
+        setSyncStatus(`✓ Descarga completa: ${result.count} productos desde la nube.`);
         await loadData(true);
+      } else if (result.error) {
+        setSyncStatus(`⚠️ ${result.error}`);
       } else {
-        setSyncStatus('No se encontraron productos en la nube.');
+        setSyncStatus('⚠️ No se encontraron productos en la nube.');
       }
     } catch (error) {
       console.error('[DatabaseModule] Error en descarga completa:', error);

@@ -8,6 +8,16 @@ import ProductModel from '../database/Product';
 import { supabaseService } from './SupabaseService';
 import { useStore } from '../store/useStore';
 
+/**
+ * Resultado de la importación del catálogo
+ */
+export interface CatalogImportResult {
+  success: boolean;
+  count: number;
+  source: 'cloud' | 'local' | 'none';
+  error?: string;
+}
+
 export class DataService {
   private static instance: DataService;
   private catalogImported = false;
@@ -38,66 +48,67 @@ export class DataService {
 
   /**
    * Importa el catálogo de productos
-   * 1. Primero intenta descargar desde Supabase (nube)
-   * 2. Si falla, usa el archivo local catalog.json
-   * Solo importa si la base de datos está vacía
+   * 1. Si ya hay productos locales, los usa directamente
+   * 2. Si la BD está vacía, descarga desde Supabase (nube)
+   * 3. Si no hay conexión a la nube y BD está vacía, retorna vacío
+   * NO usa catalog.json de respaldo - solo datos reales de la nube
    */
-  async importCatalog(): Promise<number> {
+  async importCatalog(): Promise<CatalogImportResult> {
     if (this.catalogImported) {
       logger.info('Catálogo ya importado previamente', 'DataService');
-      return 0;
+      return { success: true, count: 0, source: 'none' };
     }
 
-    // Verificar si ya hay productos
+    // Verificar si ya hay productos en la BD local
     const existingProducts = await productsCollection.query().fetchCount();
     if (existingProducts > 0) {
-      logger.info(`Base de datos ya contiene ${existingProducts} productos`, 'DataService');
+      logger.info(`Base de datos local ya contiene ${existingProducts} productos. Usando datos locales.`, 'DataService');
       this.catalogImported = true;
-      return 0;
+      EventBus.emit(EventType.DB_UPDATED, {});
+      return { success: true, count: existingProducts, source: 'local' };
     }
 
-    // Intentar primero desde la nube (Supabase)
-    if (supabaseService.isConfigured()) {
-      try {
-        logger.info('Descargando productos desde la nube...', 'DataService');
-        const products = await this.downloadAllCloudProducts();
-        if (products.length > 0) {
-          await this.saveProductsToLocalDB(products);
-          this.catalogImported = true;
-          logger.success(`Descargados ${products.length} productos desde la nube`, 'DataService');
-          EventBus.emit(EventType.DB_UPDATED, {});
-          return products.length;
-        }
-      } catch (error) {
-        logger.warn('No se pudo descargar desde la nube, usando archivo local', 'DataService', error);
-      }
+    // BD vacía: intentar descargar desde Supabase
+    if (!supabaseService.isConfigured()) {
+      logger.warn('Supabase no está configurado. No se puede descargar el catálogo.', 'DataService');
+      logger.info('La base de datos permanecerá vacía hasta que haya conexión a la nube.', 'DataService');
+      return { 
+        success: false, 
+        count: 0, 
+        source: 'none',
+        error: 'Supabase no configurado. Conéctate a internet para descargar el catálogo.'
+      };
     }
 
-    // Fallback: importar desde catalog.json
     try {
-      logger.info('Importando catálogo desde archivo local...', 'DataService');
+      logger.info('Descargando productos desde la nube (Supabase)...', 'DataService');
+      const products = await this.downloadAllCloudProducts();
       
-      const response = await fetch('/catalog.json');
-      if (!response.ok) {
-        throw new Error(`Error al cargar catalog.json: ${response.status}`);
-      }
-
-      const products: Product[] = await response.json();
-      
-      if (!Array.isArray(products) || products.length === 0) {
-        logger.warn('Catálogo vacío o formato inválido', 'DataService');
-        return 0;
+      if (products.length === 0) {
+        logger.warn('La nube no contiene productos. La base de datos permanecerá vacía.', 'DataService');
+        return { 
+          success: false, 
+          count: 0, 
+          source: 'none',
+          error: 'La nube no contiene productos. Sincroniza datos primero.'
+        };
       }
 
       await this.saveProductsToLocalDB(products);
       this.catalogImported = true;
-      logger.success(`Catálogo local importado: ${products.length} productos`, 'DataService');
+      logger.success(`✓ Catálogo descargado exitosamente: ${products.length} productos desde la nube`, 'DataService');
       EventBus.emit(EventType.DB_UPDATED, {});
+      return { success: true, count: products.length, source: 'cloud' };
       
-      return products.length;
     } catch (error) {
-      logger.error('Error importando catálogo local', 'DataService', error);
-      return 0;
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      logger.error(`Error al descargar desde la nube: ${errorMessage}`, 'DataService', error);
+      return { 
+        success: false, 
+        count: 0, 
+        source: 'none',
+        error: `Error de conexión: ${errorMessage}. Intenta más tarde.`
+      };
     }
   }
 
