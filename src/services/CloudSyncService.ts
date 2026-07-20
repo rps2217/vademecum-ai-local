@@ -46,6 +46,15 @@ export class CloudSyncService {
     return this.rateLimiter.getStats();
   }
 
+  /**
+   * Estadísticas del estado de sincronización
+   */
+  getSyncStats() {
+    return {
+      isSyncing: this.isSyncing
+    };
+  }
+
   async handleProductSync(product: Product) {
     if (!this.sync_active) return;
     await taskQueueService.addTask('cloud_sync', product);
