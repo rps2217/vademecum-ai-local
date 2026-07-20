@@ -112,12 +112,25 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
       // 2. Database Initialization - Importar catálogo si es necesario
       updateStep('database', { status: 'loading', detail: 'Verificando base de datos...' });
       try {
-        const importedCount = await dataService.importCatalog();
-        if (importedCount > 0) {
-          updateStep('database', { status: 'success', detail: `Catálogo importado: ${importedCount} productos` });
+        const result = await dataService.importCatalog();
+        
+        if (result.success) {
+          if (result.source === 'local') {
+            updateStep('database', { status: 'success', detail: `Catálogo local: ${result.count} productos` });
+          } else if (result.source === 'cloud') {
+            updateStep('database', { status: 'success', detail: `✓ Descargados ${result.count} productos desde la nube` });
+          } else {
+            updateStep('database', { status: 'success', detail: 'Catálogo listo' });
+          }
         } else {
+          // Hubo un problema - mostrar mensaje de error pero no bloquear la app
           const totalProducts = await dataService.getAllProducts();
-          updateStep('database', { status: 'success', detail: `Base de datos lista (${totalProducts.length} productos)` });
+          if (totalProducts.length === 0) {
+            // BD vacía y no se pudo descargar
+            updateStep('database', { status: 'error', detail: '⚠️ Sin conexión a la nube' });
+          } else {
+            updateStep('database', { status: 'success', detail: `Base de datos lista (${totalProducts.length} productos)` });
+          }
         }
       } catch (e) {
         updateStep('database', { status: 'error', detail: 'Error inicializando base de datos' });
