@@ -95,10 +95,6 @@ export const SearchResults = React.memo<SearchResultsProps>(({
     );
   }
 
-  if (query.trim() === '') {
-    return null;
-  }
-
   if (results.length > 0) {
     const renderGrid = (items: Product[], title: string, Icon: any, colorClass: string, isRelated = false) => {
       if (items.length === 0) return null;
