@@ -521,14 +521,18 @@ export class DataService {
             .upsert(payloads);
 
         if (!error) {
-            const records = await productsCollection.query().fetch();
-            for (const r of records) {
-              await r.update(doc => {
-                doc.isSyncedCloud = true;
-                doc.lastSyncedCloud = now;
-                doc.lastUpdated = now;
-              });
-            }
+            // Solo actualizar los productos del lote, dentro de database.write()
+            const skus = products.map(p => p.sku);
+            await database.write(async () => {
+              const records = await productsCollection.query(Q.where('sku', Q.oneOf(skus))).fetch();
+              for (const r of records) {
+                await r.update(doc => {
+                  doc.isSyncedCloud = true;
+                  doc.lastSyncedCloud = now;
+                  doc.lastUpdated = now;
+                });
+              }
+            });
             
             if (products.length === 1) {
               logger.success(`Producto ${products[0].sku} respaldado en la nube`, 'CloudSync');
