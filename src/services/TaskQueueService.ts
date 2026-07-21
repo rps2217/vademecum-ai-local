@@ -155,6 +155,7 @@ class TaskQueueService {
           if (updates.retries !== undefined) t.retries = updates.retries;
           if (updates.lastError) t.lastError = updates.lastError;
           if (updates.earliestRetryTimestamp !== undefined) t.earliestRetryTimestamp = updates.earliestRetryTimestamp;
+          if (updates.priority !== undefined) t.priority = updates.priority;
         });
       });
       EventBus.emit(EventType.TASK_UPDATED, { id, ...updates });
