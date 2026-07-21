@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy, useCallback } from 'react';
-import { Search, Database, Settings, Loader2, Activity, ShieldCheck, Menu, X, Zap, Snowflake } from 'lucide-react';
+import { Search, Database, Settings, Loader2, Activity, ShieldCheck, Menu, X, Zap, Snowflake, Brain } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { aiService } from '../../services/AIService';
 import { cloudSyncService } from '../../services/CloudSyncService';
@@ -14,7 +14,6 @@ import { OfflineIndicator } from '../common/OfflineIndicator';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { ConsultationProvider } from '../../context/ConsultationContext';
 import { logger } from '../../services/LoggerService';
-import { aiLoadStrategy } from '../../services/AILoadStrategy';
 
 import { Button } from '@/components/ui/button';
 
@@ -25,9 +24,11 @@ const GraphExplorerModule = lazy(() => import('../../modules/graph/GraphExplorer
 const SettingsModule = lazy(() => import('../../modules/settings/SettingsModule').then(m => ({ default: m.SettingsModule })));
 
 const ModuleLoader = () => (
-  <div className="flex flex-col items-center justify-center py-24">
-    <Loader2 className="w-8 h-8 text-emerald-500 animate-spin mb-4" />
-    <p className="text-slate-500 text-sm">Cargando...</p>
+  <div className="flex flex-col items-center justify-center py-24 animate-fade-in">
+    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center mb-4 animate-pulse">
+      <Brain className="w-6 h-6 text-white animate-float" />
+    </div>
+    <p className="text-slate-500 text-sm font-medium">Cargando módulo...</p>
   </div>
 );
 
@@ -36,8 +37,8 @@ interface DashboardProps {
 }
 
 /**
- * Dashboard - Clean and Simple
- * Main navigation hub for the application
+ * Dashboard - Medical Futurism Design
+ * Sophisticated and modern interface for healthcare professionals
  */
 export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const [activeTab, setActiveTab] = useState<'search' | 'graph' | 'database' | 'settings'>('search');
@@ -49,8 +50,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   useEffect(() => {
     if (hardware) {
       aiService.configure(hardware);
-      // Carga bajo demanda del motor IA - no iniciar automáticamente
-      // Cargar nivel óptimo basado en hardware (bajo demanda)
     }
   }, [hardware]);
 
@@ -76,11 +75,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
     }
   }, [isAiProcessingEnabled]);
 
-  // Keyboard shortcuts
   useKeyboardShortcuts({
-    'Control+k': () => {
-      // Could open command palette
-    },
+    'Control+k': () => {},
   });
 
   const navItems = [
@@ -92,114 +88,135 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
   return (
     <ConsultationProvider>
-      <div className="min-h-screen bg-slate-50 flex flex-col">
+      <div className="min-h-screen flex flex-col relative">
+        {/* Background gradient mesh */}
+        <div className="fixed inset-0 gradient-mesh -z-10" />
+        <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-100/30 via-transparent to-transparent -z-10" />
+        
         <OfflineIndicator />
         
-        {/* Header */}
-        <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-            
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200">
-                <Activity className="w-5 h-5 text-white" />
-              </div>
-              <div className="hidden sm:block">
-                <h1 className="text-lg font-bold text-slate-900">Vademécum</h1>
-                <p className="text-xs text-slate-500">Asistente IA</p>
-              </div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1 bg-slate-100 rounded-xl p-1">
-              {navItems.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
-                    activeTab === item.id
-                      ? 'bg-white text-emerald-700 shadow-sm'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
-                  }`}
-                >
-                  <item.icon className="w-4 h-4" />
-                  {item.label}
-                </button>
-              ))}
-            </nav>
-
-            {/* Actions */}
-            <div className="flex items-center gap-3">
-              {/* AI Toggle */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleAiProcessing}
-                className={`hidden sm:flex items-center gap-2 px-3 ${
-                  isAiProcessingEnabled 
-                    ? 'text-emerald-600 bg-emerald-50 hover:bg-emerald-100' 
-                    : 'text-amber-600 bg-amber-50 hover:bg-amber-100'
-                }`}
-              >
-                {isAiProcessingEnabled ? (
-                  <>
-                    <Zap className="w-4 h-4" />
-                    <span className="text-sm font-medium">IA Activa</span>
-                  </>
-                ) : (
-                  <>
-                    <Snowflake className="w-4 h-4" />
-                    <span className="text-sm font-medium">IA Pausada</span>
-                  </>
-                )}
-              </Button>
+        {/* Header - Glass effect */}
+        <header className="sticky top-0 z-50 w-full">
+          <div className="mx-4 mt-4 rounded-2xl glass-strong">
+            <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
               
-              <UserMenu />
+              {/* Logo */}
+              <div className="flex items-center gap-3 group cursor-pointer">
+                <div className="relative">
+                  <div className="w-11 h-11 rounded-xl gradient-primary flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
+                    <Activity className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-teal-400 to-teal-600 opacity-30 blur-sm -z-10 group-hover:opacity-50 transition-opacity" />
+                </div>
+                <div className="hidden sm:block">
+                  <h1 className="text-xl font-bold text-slate-900 tracking-tight">Vademécum</h1>
+                  <p className="text-xs text-slate-500 font-medium">Asistente IA Clínico</p>
+                </div>
+              </div>
 
-              {/* Mobile Menu */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 hover:bg-slate-100 rounded-xl transition-colors"
-              >
-                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-          
-          {/* Mobile Navigation */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden border-t border-slate-200 bg-white p-4">
-              <nav className="grid grid-cols-2 gap-2">
-                {navItems.map(item => (
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center gap-1">
+                {navItems.map((item, index) => (
                   <button
                     key={item.id}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`px-4 py-3 rounded-xl text-sm font-medium transition-all flex items-center gap-2 justify-center ${
+                    onClick={() => setActiveTab(item.id)}
+                    className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2.5 ${
                       activeTab === item.id
-                        ? 'bg-emerald-100 text-emerald-700'
-                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                        ? 'text-white'
+                        : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
-                    <item.icon className="w-4 h-4" />
-                    {item.label}
+                    {activeTab === item.id && (
+                      <div className="absolute inset-0 gradient-primary rounded-xl shadow-lg shadow-teal-500/20" />
+                    )}
+                    <span className="relative z-10 flex items-center gap-2">
+                      <item.icon className={`w-4 h-4 ${activeTab === item.id ? 'animate-fade-in' : ''}`} />
+                      {item.label}
+                    </span>
                   </button>
                 ))}
               </nav>
+
+              {/* Actions */}
+              <div className="flex items-center gap-3">
+                {/* AI Toggle */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={toggleAiProcessing}
+                  className={`hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 btn-press ${
+                    isAiProcessingEnabled 
+                      ? 'bg-gradient-to-r from-teal-500/10 to-teal-600/10 text-teal-700 border border-teal-200 hover:from-teal-500/20 hover:to-teal-600/20' 
+                      : 'bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100'
+                  }`}
+                >
+                  {isAiProcessingEnabled ? (
+                    <>
+                      <div className="relative">
+                        <Zap className="w-4 h-4" />
+                        <div className="absolute inset-0 animate-ping opacity-75">
+                          <Zap className="w-4 h-4 text-teal-500" />
+                        </div>
+                      </div>
+                      <span className="text-sm font-semibold">IA Activa</span>
+                    </>
+                  ) : (
+                    <>
+                      <Snowflake className="w-4 h-4" />
+                      <span className="text-sm font-semibold">IA Pausada</span>
+                    </>
+                  )}
+                </Button>
+                
+                <UserMenu />
+
+                {/* Mobile Menu */}
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="md:hidden p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors btn-press"
+                >
+                  {isMobileMenuOpen ? <X className="w-5 h-5 text-slate-700" /> : <Menu className="w-5 h-5 text-slate-700" />}
+                </button>
+              </div>
             </div>
-          )}
+          
+            {/* Mobile Navigation */}
+            {isMobileMenuOpen && (
+              <div className="md:hidden px-4 pb-4 animate-fade-in-up">
+                <nav className="grid grid-cols-2 gap-2">
+                  {navItems.map(item => (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setActiveTab(item.id);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`px-4 py-4 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-3 justify-center btn-press ${
+                        activeTab === item.id
+                          ? 'gradient-primary text-white shadow-lg shadow-teal-500/30'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      <item.icon className="w-5 h-5" />
+                      {item.label}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+            )}
+          </div>
         </header>
 
         {/* Main Content */}
-        <main className="flex-1">
-          <div className="max-w-7xl mx-auto">
+        <main className="flex-1 relative">
+          <div className="max-w-7xl mx-auto px-4 py-6">
             <Suspense fallback={<ModuleLoader />}>
-              {activeTab === 'search' && <SearchModule />}
-              {activeTab === 'graph' && <GraphExplorerModule />}
-              {activeTab === 'database' && <DatabaseModule />}
-              {activeTab === 'settings' && <SettingsModule />}
+              <div className="animate-fade-in-up">
+                {activeTab === 'search' && <SearchModule />}
+                {activeTab === 'graph' && <GraphExplorerModule />}
+                {activeTab === 'database' && <DatabaseModule />}
+                {activeTab === 'settings' && <SettingsModule />}
+              </div>
             </Suspense>
           </div>
         </main>
@@ -210,16 +227,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <ComparisonTray />
         <ClinicalBrainTray />
 
-        {/* Footer */}
-        <footer className="border-t border-slate-200 bg-white py-4 mt-auto">
-          <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Solo para uso profesional de la salud</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span>{hardware.deviceTier}</span>
-              <span>&copy; 2026 Vademécum IA</span>
+        {/* Footer - Glass effect */}
+        <footer className="mt-auto">
+          <div className="mx-4 mb-4 rounded-xl glass">
+            <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
+                <ShieldCheck className="w-4 h-4 text-teal-600" />
+                <span className="text-sm font-medium text-slate-600">Solo para uso profesional de la salud</span>
+              </div>
+              <div className="flex items-center gap-4 text-sm text-slate-500 font-medium">
+                <span className="px-2.5 py-1 bg-slate-100 rounded-lg">{hardware.deviceTier}</span>
+                <span className="text-slate-400">•</span>
+                <span>&copy; 2026 Vademécum IA</span>
+              </div>
             </div>
           </div>
         </footer>
