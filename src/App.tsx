@@ -12,6 +12,9 @@ import { LiveRegion } from './hooks/useAccessibility';
 import { SearchProvider } from './context/SearchContext';
 import { SettingsProvider } from './context/SettingsContext';
 
+// Cargar herramientas de debug (expuestas globalmente para consola)
+import './utils/DebugUtils';
+
 function AuthConsumer({ hardware }: { hardware: HardwareProfile }) {
   const { isAccessGranted } = useAuth();
 

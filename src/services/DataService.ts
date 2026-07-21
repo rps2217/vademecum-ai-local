@@ -639,6 +639,54 @@ export class DataService {
     
     EventBus.emit(EventType.PRODUCT_DELETED, { sku });
   }
+
+  /**
+   * Exporta todos los productos locales a JSON
+   */
+  async exportToJSON(): Promise<string> {
+    const products = await this.getAllProducts();
+    return JSON.stringify(products, null, 2);
+  }
+
+  /**
+   * Sube todos los productos locales a Supabase (respaldar en la nube)
+   */
+  async backupToCloud(): Promise<{ success: boolean; count: number; error?: string }> {
+    if (!supabaseService.isConfigured()) {
+      return { success: false, count: 0, error: 'Supabase no configurado' };
+    }
+
+    try {
+      const products = await this.getAllProducts();
+      logger.info(`Respaldando ${products.length} productos a la nube...`, 'DataService');
+
+      const batchSize = 100;
+      let uploaded = 0;
+
+      for (let i = 0; i < products.length; i += batchSize) {
+        const batch = products.slice(i, i + batchSize);
+        const payloads = batch.map(p => ({
+          sku: p.sku,
+          data: { ...p, is_synced_cloud: true },
+          last_updated: new Date().toISOString()
+        }));
+
+        const { error } = await supabase
+          .from('products')
+          .upsert(payloads, { onConflict: 'sku' });
+
+        if (error) throw error;
+        uploaded += batch.length;
+      }
+
+      logger.success(`Respaldados ${uploaded} productos a la nube`, 'DataService');
+      return { success: true, count: uploaded };
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : 'Error desconocido';
+      logger.error(`Error respaldando: ${msg}`, 'DataService', error);
+      return { success: false, count: 0, error: msg };
+    }
+  }
 }
 
 export const dataService = DataService.getInstance();
