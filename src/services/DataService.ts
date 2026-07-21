@@ -264,103 +264,173 @@ export class DataService {
     return true;
   }
 
+  /**
+   * Normaliza un producto antes de guardarlo, asignando valores por defecto
+   * para campos faltantes o valores inválidos
+   */
+  private normalizeProduct(product: Partial<Product>): Product {
+    // Valores válidos para SafetyStatus
+    const validSafetyStatuses = ['SI', 'NO', 'PRECAUCION'];
+    
+    const normalizeSafetyStatus = (value: any): string => {
+      if (value && validSafetyStatuses.includes(value)) return value;
+      return 'PRECAUCION'; // Default seguro
+    };
+
+    return {
+      // Campos requeridos (validación previa asegura que existan)
+      sku: product.sku || '',
+      nombre_comercial: product.nombre_comercial || 'Sin nombre',
+      descripcion: product.descripcion || '',
+      principios_activos: Array.isArray(product.principios_activos) ? product.principios_activos : [],
+      posologia: product.posologia || '',
+      indicaciones: Array.isArray(product.indicaciones) ? product.indicaciones : [],
+      advertencias: product.advertencias || '',
+      tags_ia: Array.isArray(product.tags_ia) ? product.tags_ia : [],
+      
+      // Campos opcionales con defaults
+      categoria_principal: product.categoria_principal || 'Medicamento',
+      analisis_componentes: product.analisis_componentes || '',
+      anotaciones_componentes: product.anotaciones_componentes || {},
+      vectores: Array.isArray(product.vectores) ? product.vectores : [],
+      
+      // Safety Status (normalizados)
+      apto_embarazo: normalizeSafetyStatus(product.apto_embarazo),
+      apto_lactancia: normalizeSafetyStatus(product.apto_lactancia),
+      apto_pediatria: normalizeSafetyStatus(product.apto_pediatria),
+      apto_diabeticos: normalizeSafetyStatus(product.apto_diabeticos),
+      apto_hipertensos: normalizeSafetyStatus(product.apto_hipertensos),
+      apto_celiacos: normalizeSafetyStatus(product.apto_celiacos),
+      
+      // Relaciones
+      sugerencia_complementaria: product.sugerencia_complementaria || '',
+      skus_relacionados: Array.isArray(product.skus_relacionados) ? product.skus_relacionados : [],
+      
+      // Análisis de sinergia
+      explicacion_clinica: product.explicacion_clinica,
+      synergy_analyzed: product.synergy_analyzed,
+      last_synergy_analysis: product.last_synergy_analysis,
+      synergy_retries: product.synergy_retries,
+      
+      // Locking
+      locked_by_ai: product.locked_by_ai,
+      lock_uid: product.lock_uid,
+      lock_timestamp: product.lock_timestamp,
+      
+      // Metadatos
+      source_url: product.source_url,
+      last_updated: product.last_updated || Date.now(),
+      
+      // Auditoría
+      is_verified: product.is_verified,
+      verified_at: product.verified_at,
+      verified_by: product.verified_by,
+      
+      // Sync
+      is_synced_cloud: product.is_synced_cloud,
+      last_synced_cloud: product.last_synced_cloud,
+    };
+  }
+
   async saveProduct(product: Product, options: { silent?: boolean } = {}): Promise<void> {
     try {
-      this.validateProduct(product);
+      // Normalizar producto antes de guardar
+      const normalized = this.normalizeProduct(product);
+      this.validateProduct(normalized);
       
       await database.write(async () => {
-        const existing = await productsCollection.query(Q.where('sku', product.sku)).fetch();
+        const existing = await productsCollection.query(Q.where('sku', normalized.sku)).fetch();
         
         if (existing.length > 0) {
           const record = existing[0];
           await record.update(r => {
-            r.nombreComercial = product.nombre_comercial;
-            r.descripcion = product.descripcion;
-            r._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-            r.posologia = product.posologia || '';
-            r._indicacionesJson = JSON.stringify(product.indicaciones || []);
-            r.advertencias = product.advertencias || '';
-            r._tagsIaJson = JSON.stringify(product.tags_ia || []);
-            r.categoriaPrincipal = product.categoria_principal;
-            r.analisisComponentes = product.analisis_componentes;
-            r._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-            r._vectoresJson = JSON.stringify(product.vectores || []);
-            r.aptoEmbarazo = product.apto_embarazo;
-            r.aptoLactancia = product.apto_lactancia;
-            r.aptoPediatria = product.apto_pediatria;
-            r.aptoDiabeticos = product.apto_diabeticos;
-            r.aptoHipertensos = product.apto_hipertensos;
-            r.aptoCeliacos = product.apto_celiacos;
-            r.sugerenciaComplementaria = product.sugerencia_complementaria;
-            r._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-            r.explicacionClinica = product.explicacion_clinica;
-            r.synergyAnalyzed = product.synergy_analyzed;
-            r.lastSynergyAnalysis = product.last_synergy_analysis;
-            r.synergyRetries = product.synergy_retries;
-            r.lockedByAi = product.locked_by_ai;
-            r.lockUid = product.lock_uid;
-            r.lockTimestamp = product.lock_timestamp;
-            r.sourceUrl = product.source_url;
-            r.lastUpdated = product.last_updated || Date.now();
-            r.isVerified = product.is_verified;
-            r.verifiedAt = product.verified_at;
-            r.verifiedBy = product.verified_by;
-            r.isSyncedCloud = product.is_synced_cloud;
-            r.lastSyncedCloud = product.last_synced_cloud;
+            r.nombreComercial = normalized.nombre_comercial;
+            r.descripcion = normalized.descripcion;
+            r._principiosActivosJson = JSON.stringify(normalized.principios_activos);
+            r.posologia = normalized.posologia;
+            r._indicacionesJson = JSON.stringify(normalized.indicaciones);
+            r.advertencias = normalized.advertencias;
+            r._tagsIaJson = JSON.stringify(normalized.tags_ia);
+            r.categoriaPrincipal = normalized.categoria_principal;
+            r.analisisComponentes = normalized.analisis_componentes;
+            r._anotacionesComponentesJson = JSON.stringify(normalized.anotaciones_componentes);
+            r._vectoresJson = JSON.stringify(normalized.vectores);
+            r.aptoEmbarazo = normalized.apto_embarazo;
+            r.aptoLactancia = normalized.apto_lactancia;
+            r.aptoPediatria = normalized.apto_pediatria;
+            r.aptoDiabeticos = normalized.apto_diabeticos;
+            r.aptoHipertensos = normalized.apto_hipertensos;
+            r.aptoCeliacos = normalized.apto_celiacos;
+            r.sugerenciaComplementaria = normalized.sugerencia_complementaria;
+            r._skusRelacionadosJson = JSON.stringify(normalized.skus_relacionados);
+            r.explicacionClinica = normalized.explicacion_clinica;
+            r.synergyAnalyzed = normalized.synergy_analyzed;
+            r.lastSynergyAnalysis = normalized.last_synergy_analysis;
+            r.synergyRetries = normalized.synergy_retries;
+            r.lockedByAi = normalized.locked_by_ai;
+            r.lockUid = normalized.lock_uid;
+            r.lockTimestamp = normalized.lock_timestamp;
+            r.sourceUrl = normalized.source_url;
+            r.lastUpdated = normalized.last_updated;
+            r.isVerified = normalized.is_verified;
+            r.verifiedAt = normalized.verified_at;
+            r.verifiedBy = normalized.verified_by;
+            r.isSyncedCloud = normalized.is_synced_cloud;
+            r.lastSyncedCloud = normalized.last_synced_cloud;
           });
         } else {
           await productsCollection.create(r => {
-            r.sku = product.sku;
-            r.nombreComercial = product.nombre_comercial;
-            r.descripcion = product.descripcion;
-            r._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-            r.posologia = product.posologia || '';
-            r._indicacionesJson = JSON.stringify(product.indicaciones || []);
-            r.advertencias = product.advertencias || '';
-            r._tagsIaJson = JSON.stringify(product.tags_ia || []);
-            r.categoriaPrincipal = product.categoria_principal;
-            r.analisisComponentes = product.analisis_componentes;
-            r._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-            r._vectoresJson = JSON.stringify(product.vectores || []);
-            r.aptoEmbarazo = product.apto_embarazo;
-            r.aptoLactancia = product.apto_lactancia;
-            r.aptoPediatria = product.apto_pediatria;
-            r.aptoDiabeticos = product.apto_diabeticos;
-            r.aptoHipertensos = product.apto_hipertensos;
-            r.aptoCeliacos = product.apto_celiacos;
-            r.sugerenciaComplementaria = product.sugerencia_complementaria;
-            r._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-            r.explicacionClinica = product.explicacion_clinica;
-            r.synergyAnalyzed = product.synergy_analyzed;
-            r.lastSynergyAnalysis = product.last_synergy_analysis;
-            r.synergyRetries = product.synergy_retries;
-            r.lockedByAi = product.locked_by_ai;
-            r.lockUid = product.lock_uid;
-            r.lockTimestamp = product.lock_timestamp;
-            r.sourceUrl = product.source_url;
-            r.lastUpdated = product.last_updated || Date.now();
-            r.isVerified = product.is_verified;
-            r.verifiedAt = product.verified_at;
-            r.verifiedBy = product.verified_by;
-            r.isSyncedCloud = product.is_synced_cloud;
-            r.lastSyncedCloud = product.last_synced_cloud;
+            r.sku = normalized.sku;
+            r.nombreComercial = normalized.nombre_comercial;
+            r.descripcion = normalized.descripcion;
+            r._principiosActivosJson = JSON.stringify(normalized.principios_activos);
+            r.posologia = normalized.posologia;
+            r._indicacionesJson = JSON.stringify(normalized.indicaciones);
+            r.advertencias = normalized.advertencias;
+            r._tagsIaJson = JSON.stringify(normalized.tags_ia);
+            r.categoriaPrincipal = normalized.categoria_principal;
+            r.analisisComponentes = normalized.analisis_componentes;
+            r._anotacionesComponentesJson = JSON.stringify(normalized.anotaciones_componentes);
+            r._vectoresJson = JSON.stringify(normalized.vectores);
+            r.aptoEmbarazo = normalized.apto_embarazo;
+            r.aptoLactancia = normalized.apto_lactancia;
+            r.aptoPediatria = normalized.apto_pediatria;
+            r.aptoDiabeticos = normalized.apto_diabeticos;
+            r.aptoHipertensos = normalized.apto_hipertensos;
+            r.aptoCeliacos = normalized.apto_celiacos;
+            r.sugerenciaComplementaria = normalized.sugerencia_complementaria;
+            r._skusRelacionadosJson = JSON.stringify(normalized.skus_relacionados);
+            r.explicacionClinica = normalized.explicacion_clinica;
+            r.synergyAnalyzed = normalized.synergy_analyzed;
+            r.lastSynergyAnalysis = normalized.last_synergy_analysis;
+            r.synergyRetries = normalized.synergy_retries;
+            r.lockedByAi = normalized.locked_by_ai;
+            r.lockUid = normalized.lock_uid;
+            r.lockTimestamp = normalized.lock_timestamp;
+            r.sourceUrl = normalized.source_url;
+            r.lastUpdated = normalized.last_updated;
+            r.isVerified = normalized.is_verified;
+            r.verifiedAt = normalized.verified_at;
+            r.verifiedBy = normalized.verified_by;
+            r.isSyncedCloud = normalized.is_synced_cloud;
+            r.lastSyncedCloud = normalized.last_synced_cloud;
           });
         }
       });
 
       if (!options.silent) {
-        await taskQueueService.addTask('cloud_sync', { sku: product.sku });
+        await taskQueueService.addTask('cloud_sync', { sku: normalized.sku });
         
-        if (!product.anotaciones_componentes || Object.keys(product.anotaciones_componentes).length === 0) {
-          if (product.principios_activos && product.principios_activos.length > 0) {
-            await taskQueueService.addTask('ingredient_analysis', { sku: product.sku });
+        if (!normalized.anotaciones_componentes || Object.keys(normalized.anotaciones_componentes).length === 0) {
+          if (normalized.principios_activos && normalized.principios_activos.length > 0) {
+            await taskQueueService.addTask('ingredient_analysis', { sku: normalized.sku });
           }
         }
 
         // Sync with Zustand
-        useStore.getState().addProduct(product);
+        useStore.getState().addProduct(normalized);
         
-        EventBus.emit(EventType.PRODUCT_UPDATED, { sku: product.sku });
+        EventBus.emit(EventType.PRODUCT_UPDATED, { sku: normalized.sku });
       }
     } catch (error) {
       logger.error('Fallo al guardar producto en WatermelonDB', 'Database', error);
