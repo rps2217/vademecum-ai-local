@@ -70,8 +70,8 @@ export class DataService {
 
     // BD vacía: intentar descargar desde Supabase
     if (!supabaseService.isConfigured()) {
-      logger.warn('Supabase no está configurado. No se puede descargar el catálogo.', 'DataService');
-      logger.info('La base de datos permanecerá vacía hasta que haya conexión a la nube.', 'DataService');
+      logger.error('❌ Supabase no está configurado. No se puede descargar el catálogo.', 'DataService');
+      logger.warn('⚠️ La base de datos permanecerá vacía hasta que haya conexión a la nube.', 'DataService');
       return { 
         success: false, 
         count: 0, 
@@ -81,11 +81,11 @@ export class DataService {
     }
 
     try {
-      logger.info('Descargando productos desde la nube (Supabase)...', 'DataService');
+      logger.info('🌐 Descargando productos desde la nube (Supabase)...', 'DataService');
       const products = await this.downloadAllCloudProducts();
       
       if (products.length === 0) {
-        logger.warn('La nube no contiene productos. La base de datos permanecerá vacía.', 'DataService');
+        logger.error('❌ La nube no contiene productos. La base de datos permanecerá vacía.', 'DataService');
         return { 
           success: false, 
           count: 0, 
@@ -94,15 +94,16 @@ export class DataService {
         };
       }
 
+      logger.info(`💾 Guardando ${products.length} productos en la base de datos local...`, 'DataService');
       await this.saveProductsToLocalDB(products);
       this.catalogImported = true;
-      logger.success(`✓ Catálogo descargado exitosamente: ${products.length} productos desde la nube`, 'DataService');
+      logger.success(`✅ Catálogo descargado exitosamente: ${products.length} productos desde la nube`, 'DataService');
       EventBus.emit(EventType.DB_UPDATED, {});
       return { success: true, count: products.length, source: 'cloud' };
       
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
-      logger.error(`Error al descargar desde la nube: ${errorMessage}`, 'DataService', error);
+      logger.error(`❌ Error al descargar desde la nube: ${errorMessage}`, 'DataService', error);
       return { 
         success: false, 
         count: 0, 
@@ -116,39 +117,66 @@ export class DataService {
    * Descarga todos los productos desde Supabase
    */
   private async downloadAllCloudProducts(): Promise<Product[]> {
-    if (!supabaseService.isConfigured()) return [];
+    if (!supabaseService.isConfigured()) {
+      logger.error('Supabase no está configurado', 'DataService');
+      return [];
+    }
     
     const supabase = supabaseService.getClient();
-    if (!supabase) return [];
+    if (!supabase) {
+      logger.error('Cliente Supabase no disponible', 'DataService');
+      return [];
+    }
 
     try {
+      logger.info('Iniciando descarga de productos desde Supabase...', 'DataService');
+      
       // Descargar en lotes de 1000 para evitar timeouts
       const allProducts: any[] = [];
       let page = 0;
       const pageSize = 1000;
       
       while (true) {
-        const { data, error } = await supabase
+        const from = page * pageSize;
+        const to = (page + 1) * pageSize - 1;
+        logger.info(`Descargando lote ${page + 1}: productos ${from}-${to}`, 'DataService');
+        
+        const { data, error, status, statusText } = await supabase
           .from('products')
           .select('sku, data')
-          .range(page * pageSize, (page + 1) * pageSize - 1);
+          .range(from, to);
         
-        if (error) throw error;
-        if (!data || data.length === 0) break;
+        if (error) {
+          logger.error(`Error de Supabase (status ${status}): ${error.message}`, 'DataService', error);
+          throw error;
+        }
+        
+        if (!data || data.length === 0) {
+          logger.info(`No más productos para descargar. Total: ${allProducts.length}`, 'DataService');
+          break;
+        }
+        
+        logger.info(`Recibidos ${data.length} productos en este lote`, 'DataService');
         
         const products = data.map((r: any) => ({
           ...r.data,
-          sku: r.sku || r.data.sku
+          sku: r.sku || r.data?.sku
         }));
         
         allProducts.push(...products);
-        if (data.length < pageSize) break;
+        
+        if (data.length < pageSize) {
+          logger.info(`Último lote recibido. Total acumulado: ${allProducts.length}`, 'DataService');
+          break;
+        }
         page++;
       }
 
+      logger.success(`Descarga completada: ${allProducts.length} productos`, 'DataService');
       return allProducts as Product[];
     } catch (error) {
-      logger.error('Error descargando productos desde la nube', 'DataService', error);
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      logger.error(`Error descargando productos: ${errorMessage}`, 'DataService', error);
       return [];
     }
   }
