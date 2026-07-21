@@ -97,19 +97,46 @@ export const SettingsModule: React.FC = () => {
     if (!file) return;
 
     setIsImporting(true);
+    let importedCount = 0;
+    let errorCount = 0;
+    
     try {
       const reader = new FileReader();
       reader.onload = async (event) => {
         try {
           const imported = JSON.parse(event.target?.result as string);
           if (Array.isArray(imported)) {
-            for (const p of imported) {
-              await dataService.saveProduct(p);
+            const total = imported.length;
+            logger.info(`Iniciando importación de ${total} productos...`, 'Import');
+            
+            for (let i = 0; i < imported.length; i++) {
+              const p = imported[i];
+              try {
+                await dataService.saveProduct(p);
+                importedCount++;
+                
+                // Log cada 100 productos o al final
+                if ((i + 1) % 100 === 0 || i === imported.length - 1) {
+                  logger.info(`Importados ${importedCount}/${total} productos`, 'Import');
+                }
+              } catch (err) {
+                errorCount++;
+                logger.error(`Error importando producto ${p.sku || i}: ${err}`, 'Import');
+              }
             }
-            alert('Importación completada.');
+            
+            const message = errorCount > 0 
+              ? `Importación completada: ${importedCount} productos (${errorCount} errores)`
+              : `Importación completada: ${importedCount} productos`;
+            
+            alert(message);
+            logger.success(message, 'Import');
+          } else {
+            alert('El archivo debe ser un array de productos');
           }
         } catch (err) {
-          alert('Error en formato JSON');
+          alert('Error en formato JSON: ' + (err instanceof Error ? err.message : 'Desconocido'));
+          logger.error('Error parseando JSON', 'Import', err);
         } finally {
           setIsImporting(false);
         }
@@ -117,6 +144,7 @@ export const SettingsModule: React.FC = () => {
       reader.readAsText(file);
     } catch (error) {
       setIsImporting(false);
+      alert('Error leyendo archivo');
     }
   };
 
