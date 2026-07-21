@@ -11,6 +11,7 @@ import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { Search, Grid3X3, List as ListIcon, X, Loader2, Sparkles } from 'lucide-react';
 import { historyService } from '../../services/HistoryService';
+import { dataService } from '../../services/DataService';
 import { useStore } from '../../store/useStore';
 import { searchService } from '../../services/SearchService';
 
@@ -60,13 +61,29 @@ export const SearchModule: React.FC = () => {
     const loadAllProducts = async () => {
       setIsLoadingAll(true);
       try {
+        // Primero esperar a que el índice esté listo
+        await searchService.initializeIndex();
+        
         const indexed = searchService.getAllIndexedProducts();
+        console.log('[SearchModule] Productos del índice:', indexed.length);
+        console.log('[SearchModule] Productos del store:', products.length);
+        
         if (indexed.length > 0) {
           setAllProducts(indexed);
-        } else {
+        } else if (products.length > 0) {
+          // Fallback al store si el índice está vacío
+          console.log('[SearchModule] Usando fallback del store');
           setAllProducts(products);
+        } else {
+          // Intentar obtener directamente de la BD
+          console.log('[SearchModule] Buscando en DataService...');
+          const fromService = await dataService.getAllProducts();
+          console.log('[SearchModule] Productos de DataService:', fromService.length);
+          setAllProducts(fromService);
         }
       } catch (error) {
+        console.error('[SearchModule] Error cargando productos:', error);
+        // Último fallback
         setAllProducts(products);
       }
       setIsLoadingAll(false);
