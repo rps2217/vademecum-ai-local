@@ -187,6 +187,31 @@ import { Q } from '@nozomuikuta/h3-validations';
     }
     
     console.log('\n✅ Diagnóstico completado');
+  },
+
+  /**
+   * Descarga forzada desde la nube
+   * Útil cuando la BD local está vacía pero la nube tiene productos
+   */
+  async forceReload() {
+    try {
+      console.log('🔄 Iniciando descarga forzada desde la nube...');
+      
+      const result = await dataService.forceReloadFromCloud();
+      
+      if (result.success) {
+        console.log(`✅ Descarga completada: ${result.count} productos`);
+        console.log('🔄 Recargando la página...');
+        setTimeout(() => window.location.reload(), 1500);
+      } else {
+        console.error(`❌ Error: ${result.error}`);
+      }
+      
+      return result;
+    } catch (error) {
+      console.error('❌ Error en descarga forzada:', error);
+      throw error;
+    }
   }
 };
 
@@ -197,6 +222,7 @@ import { Q } from '@nozomuikuta/h3-validations';
 (window as any).restoreFromCloud = () => (window as any).DebugTools.restoreFromCloud();
 (window as any).syncStatus = () => (window as any).DebugTools.syncStatus();
 (window as any).diagnose = () => (window as any).DebugTools.diagnose();
+(window as any).forceReload = () => (window as any).DebugTools.forceReload();
 
 console.log(`
 ╔══════════════════════════════════════════════════════════════╗
@@ -207,9 +233,10 @@ console.log(`
 ║  📥 downloadProducts()    - Descarga como archivo JSON        ║
 ║  ☁️  backupToCloud()       - Subir locales a Supabase        ║
 ║  ☁️  restoreFromCloud()    - Descargar desde Supabase         ║
-║  📊 syncStatus()           - Ver estado de sincronización      ║
+║  🔄 forceReload()          - Forzar descarga desde nube       ║
+║  📊 syncStatus()           - Ver estado de sincronización     ║
 ║  🔍 diagnose()             - Diagnóstico completo             ║
 ║                                                              ║
-║  Ejemplo: await backupToCloud()                              ║
+║  Ejemplo: await forceReload()                               ║
 ╚══════════════════════════════════════════════════════════════╝
 `);

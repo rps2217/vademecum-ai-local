@@ -114,6 +114,64 @@ export class DataService {
   }
 
   /**
+   *Fuerza la descarga de productos desde la nube, borrando la BD local primero.
+   * Útil cuando los productos en la nube no coinciden con los locales.
+   */
+  async forceReloadFromCloud(): Promise<CatalogImportResult> {
+    logger.warn('🔄 Iniciando descarga forzada desde la nube...', 'DataService');
+    
+    try {
+      // 1. Verificar Supabase
+      if (!supabaseService.isConfigured()) {
+        return { success: false, count: 0, source: 'none', error: 'Supabase no configurado' };
+      }
+
+      // 2. Contar productos en la nube
+      const supabase = supabaseService.getClient();
+      const { count, error: countError } = await supabase
+        .from('products')
+        .select('*', { count: 'exact', head: true });
+      
+      if (countError) {
+        logger.error('Error contando productos en Supabase:', 'DataService', countError);
+        return { success: false, count: 0, source: 'none', error: countError.message };
+      }
+      
+      logger.info(`📊 Productos en Supabase: ${count}`, 'DataService');
+      
+      if (!count || count === 0) {
+        return { success: false, count: 0, source: 'none', error: 'La nube no tiene productos' };
+      }
+
+      // 3. Descargar productos
+      const products = await this.downloadAllCloudProducts();
+      
+      if (products.length === 0) {
+        return { success: false, count: 0, source: 'none', error: 'No se pudieron descargar productos' };
+      }
+
+      // 4. Guardar en BD local
+      await this.saveProductsToLocalDB(products);
+      
+      // 5. Resetear el flag y notificar
+      this.catalogImported = true;
+      EventBus.emit(EventType.DB_UPDATED, {});
+      
+      // 6. Actualizar Zustand store
+      const allProducts = await this.getAllProducts();
+      useStore.getState().setProducts(allProducts);
+      
+      logger.success(`✅ Descarga forzada completada: ${products.length} productos`, 'DataService');
+      return { success: true, count: products.length, source: 'cloud' };
+      
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      logger.error(`❌ Error en descarga forzada: ${errorMessage}`, 'DataService', error);
+      return { success: false, count: 0, source: 'none', error: errorMessage };
+    }
+  }
+
+  /**
    * Descarga todos los productos desde Supabase
    */
   private async downloadAllCloudProducts(): Promise<Product[]> {
@@ -141,13 +199,18 @@ export class DataService {
         const to = (page + 1) * pageSize - 1;
         logger.info(`Descargando lote ${page + 1}: productos ${from}-${to}`, 'DataService');
         
-        const { data, error, status, statusText } = await supabase
+        const { data, error, status } = await supabase
           .from('products')
           .select('sku, data')
           .range(from, to);
         
         if (error) {
           logger.error(`Error de Supabase (status ${status}): ${error.message}`, 'DataService', error);
+          // Intentar con count para diagnóstico
+          const { count, error: countError } = await supabase
+            .from('products')
+            .select('*', { count: 'exact', head: true });
+          logger.info(`Diagnóstico: productos en Supabase = ${count}, error: ${countError?.message}`, 'DataService');
           throw error;
         }
         
