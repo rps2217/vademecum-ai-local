@@ -8,6 +8,7 @@ import {
   Database, Key, Link as LinkIcon, CheckCircle2, 
   AlertCircle, Loader2, ExternalLink, X
 } from 'lucide-react';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { cn } from '../../lib/utils';
 
 interface SupabaseSetupProps {
@@ -51,37 +52,56 @@ export function SupabaseSetup({ onConnected }: SupabaseSetupProps) {
     setConfig(prev => ({ ...prev, status: 'testing', message: 'Probando conexión...' }));
 
     try {
-      const response = await fetch(`/api/cloud-status`);
-      const data = await response.json();
+      // Crear cliente de Supabase directamente en el frontend
+      const supabase: SupabaseClient = createClient(config.url, config.anonKey);
       
-      if (data.success) {
-        setConfig(prev => ({
-          ...prev,
-          status: 'success',
-          message: `Conexión exitosa. ${data.cloud_product_count || 0} productos en la nube.`,
-          productCount: data.cloud_product_count
-        }));
+      // Verificar conexión consultando los productos
+      const { count, error } = await supabase
+        .from('products')
+        .select('*', { count: 'exact', head: true });
         
-        // Guardar configuración
-        localStorage.setItem('supabase_url', config.url);
-        localStorage.setItem('supabase_anon_key', config.anonKey);
-        if (config.serviceKey) {
-          localStorage.setItem('supabase_service_key', config.serviceKey);
+      if (error) {
+        if (error.message.includes('products')) {
+          setConfig(prev => ({
+            ...prev,
+            status: 'error',
+            message: 'La tabla "products" no existe en Supabase. Ejecuta el script de migración SQL.'
+          }));
+        } else {
+          setConfig(prev => ({
+            ...prev,
+            status: 'error',
+            message: error.message || 'Error al conectar con Supabase'
+          }));
         }
-        
-        onConnected?.();
-      } else {
-        setConfig(prev => ({
-          ...prev,
-          status: 'error',
-          message: data.error || 'Error al conectar con Supabase'
-        }));
+        return;
       }
-    } catch (error) {
+
+      // Conexión exitosa
+      setConfig(prev => ({
+        ...prev,
+        status: 'success',
+        message: `Conexión exitosa. ${count || 0} productos en la nube.`,
+        productCount: count || 0
+      }));
+      
+      // Guardar configuración
+      localStorage.setItem('supabase_url', config.url);
+      localStorage.setItem('supabase_anon_key', config.anonKey);
+      if (config.serviceKey) {
+        localStorage.setItem('supabase_service_key', config.serviceKey);
+      }
+      
+      // Actualizar variables de entorno para el frontend
+      window.localStorage.setItem('supabase_connected', 'true');
+      window.dispatchEvent(new Event('storage'));
+      
+      onConnected?.();
+    } catch (error: any) {
       setConfig(prev => ({
         ...prev,
         status: 'error',
-        message: 'Error de conexión. Verifica tu internet.'
+        message: error.message || 'Error de conexión. Verifica tu internet.'
       }));
     }
   };
@@ -90,6 +110,8 @@ export function SupabaseSetup({ onConnected }: SupabaseSetupProps) {
     localStorage.removeItem('supabase_url');
     localStorage.removeItem('supabase_anon_key');
     localStorage.removeItem('supabase_service_key');
+    localStorage.removeItem('supabase_connected');
+    window.dispatchEvent(new Event('storage'));
     setConfig({
       url: '',
       anonKey: '',

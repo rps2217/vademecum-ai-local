@@ -4,19 +4,39 @@ export class SupabaseService {
     private static instance: SupabaseService;
     private client: SupabaseClient | null = null;
     private configured: boolean = false;
+    private currentUrl: string = '';
 
     private constructor() {
-        const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
-        const supabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
+        this.initializeClient();
+        
+        // Listen for storage changes (from SupabaseSetup)
+        if (typeof window !== 'undefined') {
+            window.addEventListener('storage', () => {
+                this.initializeClient();
+            });
+        }
+    }
 
-        // Block only generic placeholder/template URLs (not real project URLs)
+    private initializeClient(): void {
+        // Try localStorage first (from SupabaseSetup component)
+        const localUrl = localStorage.getItem('supabase_url');
+        const localKey = localStorage.getItem('supabase_anon_key');
+        
+        // Fall back to environment variables
+        const envUrl = (import.meta.env.VITE_SUPABASE_URL as string) || (window as any)._env_?.VITE_SUPABASE_URL;
+        const envKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || (window as any)._env_?.VITE_SUPABASE_ANON_KEY;
+
+        const supabaseUrl = localUrl || envUrl;
+        const supabaseKey = localKey || envKey;
+
+        // Block only generic placeholder/template URLs
         const isDummy = supabaseUrl && (
             supabaseUrl.includes('placeholder') ||
             supabaseUrl.includes('YOUR_SUPABASE') ||
             supabaseUrl.includes('yourproject')
         );
 
-        // Also check if key looks like a template placeholder
+        // Check if key looks like a template placeholder
         const keyIsDummy = supabaseKey && (
             supabaseKey.includes('placeholder') ||
             supabaseKey.includes('your-') ||
@@ -28,14 +48,16 @@ export class SupabaseService {
             try {
                 this.client = createClient(supabaseUrl, supabaseKey);
                 this.configured = true;
+                this.currentUrl = supabaseUrl;
                 console.log('[SupabaseService] Conectado a:', supabaseUrl);
             } catch (error) {
                 console.error('[SupabaseService] Error creando cliente:', error);
                 this.configured = false;
             }
         } else {
+            this.configured = false;
             if (supabaseUrl && !isDummy && !keyIsDummy) {
-                console.warn('[SupabaseService] URL configurada pero sin clave valida');
+                console.warn('[SupabaseService] URL configurada pero sin clave válida');
             }
         }
     }
@@ -48,7 +70,10 @@ export class SupabaseService {
     }
 
     getClient(): SupabaseClient | null {
-        if (!this.configured) return null;
+        if (!this.configured) {
+            // Try re-initializing
+            this.initializeClient();
+        }
         return this.client;
     }
 
@@ -58,6 +83,10 @@ export class SupabaseService {
 
     isConfigured(): boolean {
         return this.configured;
+    }
+    
+    getConnectedUrl(): string {
+        return this.currentUrl;
     }
 }
 
