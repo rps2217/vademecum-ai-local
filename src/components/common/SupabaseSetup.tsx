@@ -110,13 +110,6 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       
       console.log('[SupabaseSetup] Descargando productos desde:', savedUrl);
       
-      // Primero verificar la conexión
-      const { data: countData, error: countError } = await supabase
-        .from('products')
-        .select('*', { count: 'exact', head: true });
-      
-      console.log('[SupabaseSetup] Count error:', countError);
-      
       const { data, error } = await supabase.from('products').select('*');
       
       if (error) {
@@ -143,37 +136,40 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
         return;
       }
       
-      // Guardar en localStorage como backup PRIMERO
-      localStorage.setItem('synced_products', JSON.stringify(products));
+      // Guardar SOLO la fecha de última sincronización (no los productos en localStorage)
       localStorage.setItem('last_sync', new Date().toISOString());
-      console.log('[SupabaseSetup] Productos guardados en localStorage');
+      console.log('[SupabaseSetup] Fecha de sync guardada');
       
-      // Guardar en IndexedDB usando DataService
+      // Guardar directamente en IndexedDB usando DataService
       try {
         const { dataService } = await import('../../services/DataService');
         console.log('[SupabaseSetup] Llamando saveProductsToLocalDB...');
         await dataService.saveProductsToLocalDB(products);
         console.log(`[SupabaseSetup] Productos guardados en BD local`);
-      } catch (dbError) {
+        
+        setConfig(prev => ({ 
+          ...prev, 
+          status: 'success', 
+          message: `¡Sincronizados ${products.length} productos!`,
+          productCount: products.length,
+          cloudProductCount: products.length
+        }));
+        
+        onSyncComplete?.(products.length);
+        
+        // Recargar después de 2 segundos
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        
+      } catch (dbError: any) {
         console.error('[SupabaseSetup] Error guardando en BD:', dbError);
-        // No fallar si no se puede guardar en BD, localStorage tiene los datos
-        console.log('[SupabaseSetup] Los datos están en localStorage como backup');
+        setConfig(prev => ({ 
+          ...prev, 
+          status: 'error', 
+          message: `Error al guardar: ${dbError.message}` 
+        }));
       }
-      
-      setConfig(prev => ({ 
-        ...prev, 
-        status: 'success', 
-        message: `¡Sincronizados ${products.length} productos!`,
-        productCount: products.length,
-        cloudProductCount: products.length
-      }));
-      
-      onSyncComplete?.(products.length);
-      
-      // Recargar después de 2 segundos
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
       
     } catch (error: any) {
       console.error('[SupabaseSetup] Error de sincronización:', error);

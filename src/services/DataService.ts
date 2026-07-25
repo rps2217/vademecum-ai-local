@@ -49,9 +49,8 @@ export class DataService {
   /**
    * Importa el catálogo de productos
    * 1. Si ya hay productos locales, los usa directamente
-   * 2. Si hay productos sincronizados en localStorage, los carga
-   * 3. Si la BD está vacía, descarga desde Supabase (nube)
-   * 4. Si no hay conexión a la nube y BD está vacía, retorna vacío
+   * 2. Si la BD está vacía, descarga desde Supabase (nube)
+   * 3. Si no hay conexión a la nube y BD está vacía, retorna vacío
    */
   async importCatalog(): Promise<CatalogImportResult> {
     if (this.catalogImported) {
@@ -68,25 +67,7 @@ export class DataService {
       return { success: true, count: existingProducts, source: 'local' };
     }
 
-    // Verificar si hay productos sincronizados en localStorage (del SupabaseSetup)
-    const syncedProductsJson = localStorage.getItem('synced_products');
-    if (syncedProductsJson) {
-      try {
-        const syncedProducts = JSON.parse(syncedProductsJson);
-        if (syncedProducts.length > 0) {
-          logger.info(`💾 Cargando ${syncedProducts.length} productos desde cache de sincronización...`, 'DataService');
-          await this.saveProductsToLocalDB(syncedProducts);
-          this.catalogImported = true;
-          logger.success(`✅ Catálogo cargado desde cache: ${syncedProducts.length} productos`, 'DataService');
-          EventBus.emit(EventType.DB_UPDATED, {});
-          return { success: true, count: syncedProducts.length, source: 'local' };
-        }
-      } catch (e) {
-        logger.warn('⚠️ Error al parsear productos del cache, continuando...', 'DataService');
-      }
-    }
-
-    // BD vacía y sin cache: intentar descargar desde Supabase
+    // BD vacía: intentar descargar desde Supabase
     if (!supabaseService.isConfigured()) {
       logger.error('❌ Supabase no está configurado. No se puede descargar el catálogo.', 'DataService');
       logger.warn('⚠️ La base de datos permanecerá vacía hasta que haya conexión a la nube.', 'DataService');
@@ -115,8 +96,7 @@ export class DataService {
       logger.info(`💾 Guardando ${products.length} productos en la base de datos local...`, 'DataService');
       await this.saveProductsToLocalDB(products);
       
-      // Guardar en localStorage como backup
-      localStorage.setItem('synced_products', JSON.stringify(products));
+      // Solo guardar la fecha de sync
       localStorage.setItem('last_sync', new Date().toISOString());
       
       this.catalogImported = true;
