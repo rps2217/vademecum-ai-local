@@ -24,18 +24,37 @@ function log(msg: string) {
 
 // Initialize Supabase Admin de forma segura (Server-side bypass RLS)
 let supabase: any = null;
+let supabaseReadOnly: any = null;
+
 try {
   const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
   
-  if (supabaseUrl && supabaseServiceKey && supabaseUrl.includes('.supabase.co')) {
-    supabase = createClient(supabaseUrl, supabaseServiceKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false
-      }
-    });
-    log(`Supabase Admin initialized. URL: ${supabaseUrl}`);
+  if (supabaseUrl && supabaseUrl.includes('.supabase.co')) {
+    // Admin client with Service Role Key (for writes)
+    if (supabaseServiceKey) {
+      supabase = createClient(supabaseUrl, supabaseServiceKey, {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      });
+      log(`Supabase Admin initialized. URL: ${supabaseUrl}`);
+    } else {
+      console.warn('SERVICE_ROLE_KEY not found, admin operations disabled.');
+    }
+    
+    // Read-only client with Anon Key (for reads)
+    if (supabaseAnonKey) {
+      supabaseReadOnly = createClient(supabaseUrl, supabaseAnonKey, {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      });
+      log(`Supabase Read-only client initialized.`);
+    }
   } else {
     console.warn('Supabase credentials missing or invalid, cloud sync disabled in backend.');
   }
@@ -96,12 +115,14 @@ async function startServer() {
   });
 
   apiRouter.get('/cloud-status', async (req, res) => {
-    if (!supabase) {
+    // Use admin client if available, otherwise use read-only client
+    const client = supabase || supabaseReadOnly;
+    if (!client) {
       return res.json({ success: false, error: 'Supabase not initialized in backend' });
     }
     try {
       // 1. Verificar productos
-      const { count, error } = await supabase
+      const { count, error } = await client
         .from('products')
         .select('*', { count: 'exact', head: true });
         
@@ -117,7 +138,7 @@ async function startServer() {
       }
 
       // 2. Verificar un ejemplo de datos para ver si tienen relaciones
-      const { data: sample } = await supabase
+      const { data: sample } = await client
         .from('products')
         .select('sku, data')
         .limit(1);
@@ -171,8 +192,11 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
     res.setHeader('Expires', '0');
     
     try {
-      if (!supabase) throw new Error('Supabase not initialized');
-      const { data, error } = await supabase
+      // Use admin client if available, otherwise use read-only client
+      const client = supabase || supabaseReadOnly;
+      if (!client) throw new Error('Supabase not initialized');
+      
+      const { data, error } = await client
         .from('products')
         .select('data');
         
