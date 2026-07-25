@@ -178,10 +178,12 @@ export default defineConfig(({mode}) => {
             'vendor-viz': ['d3'],
             // PDF processing (lazy loaded)
             'vendor-pdf': ['pdfjs-dist'],
+            // Lucide icons
+            'vendor-icons': ['lucide-react'],
           },
         },
       },
-      chunkSizeWarningLimit: 600,
+      chunkSizeWarningLimit: 500,
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
