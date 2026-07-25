@@ -309,6 +309,188 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
     }
   });
 
+  // Endpoint para scraping de un solo producto por SKU
+  apiRouter.get('/scrape-product', async (req, res) => {
+    const { sku } = req.query;
+    log(`[API] Hit /scrape-product with sku: ${sku}`);
+    
+    if (!sku || typeof sku !== 'string') {
+      return res.status(400).json({ 
+        success: false, 
+        errores: ['SKU requerido'] 
+      });
+    }
+
+    try {
+      // URL de búsqueda de Farmacias Knop
+      const searchUrl = `https://www.farmaciasknop.com/catalogsearch/result?q=${encodeURIComponent(sku)}`;
+      log(`[API] Buscando en: ${searchUrl}`);
+      
+      const response = await axios.get(searchUrl, {
+        headers: { 
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+          'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+          'Accept-Encoding': 'gzip, deflate, br',
+          'Connection': 'keep-alive',
+          'Upgrade-Insecure-Requests': '1',
+          'Sec-Fetch-Dest': 'document',
+          'Sec-Fetch-Mode': 'navigate',
+          'Sec-Fetch-Site': 'none',
+          'Sec-Fetch-User': '?1',
+          'Cache-Control': 'max-age=0',
+        },
+        timeout: 20000 
+      });
+
+      const $ = cheerio.load(response.data);
+      
+      // Verificar si la búsqueda devuelve resultados
+      const title = $('title').text();
+      if (title.includes('No encontrado') || title.includes('not found')) {
+        log(`[API] Búsqueda sin resultados para SKU: ${sku}`);
+        return res.json({
+          success: false,
+          sku: sku,
+          datos: null,
+          errores: ['Producto no encontrado en Farmacias Knop']
+        });
+      }
+      
+      // Buscar el primer enlace de producto
+      let productUrl = null;
+      let productTitle = null;
+      
+      // Selectores para Farmacias Knop
+      const selectors = [
+        '.product-item a.product-item-link',
+        '.items-list .item a',
+        '.product-item-info a',
+        '.vtex-product-summary-2-x-productLink',
+        '.products-list .item-info a',
+        '.product a[href*="/product/"]',
+        '.result-item a'
+      ];
+      
+      for (const selector of selectors) {
+        const link = $(selector).first();
+        if (link.length > 0) {
+          const href = link.attr('href');
+          if (href && !href.includes('catalogsearch') && !href.includes('javascript')) {
+            productUrl = href;
+            productTitle = link.find('.product-item-name, .product-name, h2, h3').first().text().trim() || link.text().trim();
+            break;
+          }
+        }
+      }
+      
+      if (!productUrl) {
+        log(`[API] No se encontró URL de producto para SKU: ${sku}`);
+        return res.json({
+          success: false,
+          sku: sku,
+          datos: null,
+          errores: ['No se encontró producto con ese SKU']
+        });
+      }
+
+      log(`[API] Producto encontrado: ${productUrl}`);
+      
+      // Obtener datos del producto
+      const productResponse = await axios.get(productUrl, {
+        headers: { 
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+          'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+          'Accept-Encoding': 'gzip, deflate, br',
+          'Connection': 'keep-alive',
+          'Upgrade-Insecure-Requests': '1',
+          'Sec-Fetch-Dest': 'document',
+          'Sec-Fetch-Mode': 'navigate',
+          'Sec-Fetch-Site': 'none',
+        },
+        timeout: 20000 
+      });
+
+      const $product = cheerio.load(productResponse.data);
+      
+      // Extraer datos del producto
+      const nombre_comercial = $product('h1.page-title span, .product-name h1, h1.product-name').first().text().trim() || null;
+      
+      const sku_text = $product('[itemprop="sku"], .sku .value, .product-code, [data-th="SKU"] .value')
+        .first()
+        .text()
+        .trim() || sku;
+      
+      const marca = $product('.product-brand, [itemprop="brand"], .brand, [data-th="Marca"]')
+        .first()
+        .text()
+        .trim() || null;
+      
+      const descripcion = $product('.product.attribute.description, #description, .description, [data-th="Descripción"]')
+        .first()
+        .text()
+        .trim()
+        ?.substring(0, 500) || null;
+      
+      const precio = $product('[itemprop="price"], .price-wrapper .price, .special-price .price, .price, [data-th="Precio"]')
+        .first()
+        .text()
+        .trim() || null;
+      
+      const imagen = $product('.product-image-photo, .fotorama__img, img[itemprop="image"], .product-image img')
+        .first()
+        .attr('src') || null;
+      
+      const categoria = $product('.breadcrumbs .current, .category-path, .breadcrumbs li:last-child')
+        .last()
+        .text()
+        .trim() || null;
+
+      // Extraer principios activos de las especificaciones
+      const principios_activos: string[] = [];
+      $product('.data-table tr, .specs-table tr, .additional-attributes tr').each((_, row) => {
+        const label = $product(row).find('th, .label, [class*="label"]').text().toLowerCase();
+        if (label.includes('principio') || label.includes('activo')) {
+          const value = $product(row).find('td, .data, [class*="data"]').text().trim();
+          if (value) {
+            principios_activos.push(...value.split(',').map((p: string) => p.trim()).filter(Boolean));
+          }
+        }
+      });
+
+      const result = {
+        success: true,
+        sku: sku,
+        url_fuente: productUrl,
+        datos: {
+          nombre_comercial,
+          sku: sku_text,
+          marca,
+          descripcion,
+          precio,
+          categoria,
+          imagen_url: imagen,
+          principios_activos,
+          indicaciones: []
+        },
+        errores: []
+      };
+
+      log(`[API] Scraping exitoso para SKU: ${sku}`);
+      return res.json(result);
+
+    } catch (error: any) {
+      log(`[API] Error en scraping: ${error.message}`);
+      return res.status(500).json({
+        success: false,
+        sku: sku,
+        datos: null,
+        errores: [error.message || 'Error al hacer scraping']
+      });
+    }
+  });
+
   apiRouter.get('/scrape', async (req, res) => {
     const { url } = req.query;
     log(`[API] Hit /scrape with url: ${url}`);
