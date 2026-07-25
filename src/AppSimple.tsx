@@ -18,6 +18,7 @@ function getStats() {
 }
 import { synergyGraphService } from './core/knowledge-base/SynergyGraph';
 import { Product } from './core/types/product.types';
+import { supabaseService } from './services/SupabaseService';
 
 // Tipos locales
 interface AnalyzedProduct extends Product {
