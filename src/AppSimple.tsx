@@ -8,6 +8,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { getCombinedKnowledgeBase, getIngredientCount } from './core/knowledge-base';
+function getStats() {
+  const kb = getCombinedKnowledgeBase();
+  const categories: Record<string, number> = {};
+  Object.values(kb).forEach((ing: any) => {
+    categories[ing.categoria] = (categories[ing.categoria] || 0) + 1;
+  });
+  return categories;
+}
 import { synergyGraphService } from './core/knowledge-base/SynergyGraph';
 import { Product } from './core/types/product.types';
 
@@ -300,7 +308,7 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
 }
 
 function StatsPanel() {
-  const stats = getStatsByCategory();
+  const stats = getStats();
   
   return (
     <div className="p-4 bg-gray-50 border-b">
