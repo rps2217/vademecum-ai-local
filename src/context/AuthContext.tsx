@@ -11,6 +11,7 @@ interface AuthContextType {
   signUp: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<{ success: boolean; error?: string }>;
+  checkAccess: () => Promise<void>;
   isSupabaseConfigured: boolean;
 }
 
@@ -31,11 +32,19 @@ interface StoredCredentials {
  */
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Modo desarrollo: siempre tener acceso de admin
-  const [user] = useState<{ uid: string; email?: string }>({ uid: 'local-user', email: 'local@vademecum.local' });
+  const [user, setUser] = useState<{ uid: string; email?: string } | null>({ uid: 'local-user', email: 'local@vademecum.local' });
   const [loading] = useState(false);
-  const [isAdmin] = useState(true);
-  const [isAccessGranted] = useState(true);
-  const [isSupabaseConfigured] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAccessGranted, setIsAccessGranted] = useState(true);
+  const [isSupabaseConfigured, setIsSupabaseConfigured] = useState(false);
+
+  // checkAccess - Función requerida por AuthGate
+  const checkAccess = useCallback(async () => {
+    // En modo desarrollo, siempre hay acceso
+    // En producción, verificaría la sesión de Supabase
+    setIsAccessGranted(true);
+    setIsAdmin(true);
+  }, []);
 
   // useEffect y validateStoredSession deshabilitados en modo desarrollo
   // La autenticación está permanentemente activa con acceso de admin
@@ -180,6 +189,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       signUp,
       signOut,
       resetPassword,
+      checkAccess,
       isSupabaseConfigured
     }}>
       {children}
