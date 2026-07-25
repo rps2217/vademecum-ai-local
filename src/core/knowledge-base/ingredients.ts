@@ -1,79 +1,16 @@
 /**
- * Base de Conocimiento Médico - Tipos y Utilidades
+ * Base de Conocimiento Médico - Ingredientes
  */
 
-// Tipos de datos
-export interface IngredientInfo {
-  id: string;
-  nombre: string;
-  nombre_latin?: string;
-  categoria: IngredientCategory;
-  descripcion: string;
-  mecanismo_accion: string;
-  beneficios: string[];
-  fuentes_alimentarias?: string[];
-  dosis_recomendada?: string;
-  interacciones?: string[];
-  contraindicaciones?: Contraindicacion[];
-  sinergias: SynergyRelation[];
-  antagonismos?: AntagonismRelation[];
-  objetivos_salud: HealthObjective[];
-}
+// Re-exportar tipos
+export * from './types';
 
-export type IngredientCategory = 
-  | 'vitaminas' 
-  | 'minerales' 
-  | 'aminoacidos' 
-  | 'botanicos' 
-  | 'enzimas' 
-  | 'acidos_grasos' 
-  | 'probioticos' 
-  | 'antioxidantes'
-  | 'extractos'
-  | 'otros';
+// Re-exportar la base de conocimiento combinada
+import { KNOWLEDGE_BASE_EXPANDED, getCombinedKnowledgeBase } from './ExpandedIngredients';
+import type { IngredientInfo } from './types';
 
-export interface Contraindicacion {
-  condicion: string;
-  nivel: 'absoluta' | 'relativa' | 'precaución';
-  descripcion: string;
-}
-
-export type HealthObjective = 
-  | 'inmunidad'
-  | 'energia'
-  | 'sueno'
-  | 'articula'
-  | 'cerebro'
-  | 'deporte'
-  | 'digestion'
-  | 'corazon'
-  | 'piel'
-  | 'antiedad'
-  | 'vision'
-  | 'huesos'
-  | 'peso'
-  | 'fertilidad'
-  | 'detox';
-
-export interface SynergyRelation {
-  ingrediente_id: string;
-  tipo: 'potenciador' | 'complementario' | 'cofactor';
-  descripcion: string;
-  nivel: 'alto' | 'medio' | 'bajo';
-}
-
-export interface AntagonismRelation {
-  ingrediente_id: string;
-  tipo: 'competidor' | 'inhibidor' | 'bloqueador';
-  descripcion: string;
-  nivel: 'alto' | 'medio' | 'bajo';
-}
-
-// Importar la base combinada desde ExpandedIngredients
-import { getCombinedKnowledgeBase } from './ExpandedIngredients';
-
-// Re-exportar la base de conocimiento
-export const KNOWLEDGE_BASE = getCombinedKnowledgeBase();
+export const KNOWLEDGE_BASE = KNOWLEDGE_BASE_EXPANDED;
+export { getCombinedKnowledgeBase };
 
 // Función de búsqueda
 export function findIngredient(searchTerm: string): IngredientInfo | undefined {
@@ -96,7 +33,7 @@ export function findIngredient(searchTerm: string): IngredientInfo | undefined {
 }
 
 // Obtener todos los ingredientes de una categoría
-export function getIngredientsByCategory(categoria: IngredientCategory): IngredientInfo[] {
+export function getIngredientsByCategory(categoria: string): IngredientInfo[] {
   const kb = getCombinedKnowledgeBase();
   return Object.values(kb).filter(i => i.categoria === categoria);
 }
@@ -113,7 +50,7 @@ export function getSynergies(ingredientId: string): IngredientInfo[] {
 }
 
 // Verificar si dos ingredientes tienen sinergia
-export function checkSynergy(ingredientId1: string, ingredientId2: string): SynergyRelation | undefined {
+export function checkSynergy(ingredientId1: string, ingredientId2: string) {
   const kb = getCombinedKnowledgeBase();
   const ing1 = kb[ingredientId1];
   if (!ing1) return undefined;

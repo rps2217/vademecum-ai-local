@@ -5,7 +5,7 @@
  * incluyendo contraindicaciones médicas.
  */
 
-import { IngredientInfo, type IngredientCategory, type HealthObjective, type Contraindicacion } from './ingredients';
+import { IngredientInfo, IngredientCategory, HealthObjective, Contraindicacion } from './types';
 
 // Helper para crear ingrediente completo
 function createIngredient(
@@ -1089,15 +1089,6 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
 
 };
 
-// Función para combinar con base original
-export function getCombinedKnowledgeBase(): Record<string, IngredientInfo> {
-  // Importar dinámicamente para evitar circular
-  const { KNOWLEDGE_BASE_BASE } = require('./ingredients');
-  return {
-    ...KNOWLEDGE_BASE_BASE,
-    ...KNOWLEDGE_BASE_EXPANDED
-  };
-}
 
 // Contador de ingredientes
 export function getIngredientCount(): number {
@@ -1111,4 +1102,9 @@ export function getStatsByCategory(): Record<string, number> {
     acc[ing.categoria] = (acc[ing.categoria] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
+}
+
+// Función para obtener la base de conocimiento combinada
+export function getCombinedKnowledgeBase(): Record<string, IngredientInfo> {
+  return KNOWLEDGE_BASE_EXPANDED;
 }

@@ -2,11 +2,14 @@
  * Knowledge Base - Índice de módulos
  */
 
-// Re-export ingredients (types y KNOWLEDGE_BASE)
-export * from './ingredients';
+// Re-exportar types
+export * from './types';
 
-// Re-export ExpandedIngredients (base expandida)
+// Re-export ExpandedIngredients (base completa)
 export * from './ExpandedIngredients';
+
+// Re-export ingredients (compatibilidad)
+export * from './ingredients';
 
 // Re-export SynergyEngine
 export * from './SynergyEngine';
