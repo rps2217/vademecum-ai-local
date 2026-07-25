@@ -1,9 +1,15 @@
 /**
  * Knowledge Base - Índice de módulos
- * 
- * Exporta todos los módulos de la base de conocimiento médico
  */
 
+// Re-export ingredients (types y KNOWLEDGE_BASE)
 export * from './ingredients';
+
+// Re-export ExpandedIngredients (base expandida)
+export * from './ExpandedIngredients';
+
+// Re-export SynergyEngine
 export * from './SynergyEngine';
+
+// Re-export SynergyGraph
 export * from './SynergyGraph';

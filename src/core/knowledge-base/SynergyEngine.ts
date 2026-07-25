@@ -1,21 +1,43 @@
 /**
  * Motor de Análisis de Sinergias - Sin IA
- * 
- * Este módulo proporciona análisis de sinergias y compatibilidad entre
- * ingredientes usando únicamente la base de conocimiento pre-estructurada.
- * 
- * NO requiere conexión a internet ni APIs de IA.
  */
 
-import { 
-  KNOWLEDGE_BASE, 
-  findIngredient, 
-  checkSynergy,
-  getSynergies,
-  type IngredientInfo,
-  type SynergyRelation 
-} from './ingredients';
+import { getCombinedKnowledgeBase } from './ExpandedIngredients';
+import type { IngredientInfo } from './ingredients';
 import { Product } from '../types/product.types';
+
+// Usar base de conocimiento combinada
+const KNOWLEDGE_BASE = getCombinedKnowledgeBase();
+
+// Función de búsqueda mejorada
+function findIngredient(searchTerm: string): IngredientInfo | undefined {
+  const normalized = searchTerm.toLowerCase().trim();
+  
+  // Búsqueda exacta por ID
+  if (KNOWLEDGE_BASE[normalized]) {
+    return KNOWLEDGE_BASE[normalized];
+  }
+  
+  // Búsqueda por nombre
+  for (const key of Object.keys(KNOWLEDGE_BASE)) {
+    const info = KNOWLEDGE_BASE[key];
+    if (info.nombre.toLowerCase().includes(normalized) || 
+        (info.nombre_latin && info.nombre_latin.toLowerCase().includes(normalized))) {
+      return info;
+    }
+  }
+  
+  // Búsqueda parcial (primeros 4 caracteres)
+  const partial = normalized.substring(0, 4);
+  for (const key of Object.keys(KNOWLEDGE_BASE)) {
+    const info = KNOWLEDGE_BASE[key];
+    if (info.nombre.toLowerCase().includes(partial)) {
+      return info;
+    }
+  }
+  
+  return undefined;
+}
 
 export interface SynergyResult {
   producto_principal: string;

@@ -1091,8 +1091,10 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
 
 // Función para combinar con base original
 export function getCombinedKnowledgeBase(): Record<string, IngredientInfo> {
+  // Importar dinámicamente para evitar circular
+  const { KNOWLEDGE_BASE_BASE } = require('./ingredients');
   return {
-    ...KNOWLEDGE_BASE,
+    ...KNOWLEDGE_BASE_BASE,
     ...KNOWLEDGE_BASE_EXPANDED
   };
 }
