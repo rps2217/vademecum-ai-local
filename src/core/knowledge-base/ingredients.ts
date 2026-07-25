@@ -12,17 +12,54 @@ export interface IngredientInfo {
   id: string;
   nombre: string;
   nombre_latin?: string;
-  categoria: 'vitaminas' | 'minerales' | 'aminoacidos' | 'botanicos' | 'enzimas' | 'acidos_grasos' | 'probioticos' | 'otros';
+  categoria: IngredientCategory;
   descripcion: string;
   mecanismo_accion: string;
   beneficios: string[];
   fuentes_alimentarias?: string[];
   dosis_recomendada?: string;
   interacciones?: string[];
-  contraindicaciones?: string[];
+  contraindicaciones?: Contraindicacion[];
   sinergias: SynergyRelation[];
   antagonismos?: AntagonismRelation[];
+  objetivos_salud: HealthObjective[];
 }
+
+export type IngredientCategory = 
+  | 'vitaminas' 
+  | 'minerales' 
+  | 'aminoacidos' 
+  | 'botanicos' 
+  | 'enzimas' 
+  | 'acidos_grasos' 
+  | 'probioticos' 
+  | 'antioxidantes'
+  | 'extractos'
+  | 'otros';
+
+export interface Contraindicacion {
+  condicion: string;
+  nivel: 'absoluta' | 'relativa' | 'precaución';
+  descripcion: string;
+}
+
+export type HealthObjective = 
+  | 'inmunidad'
+  | 'energia'
+  | 'sueno'
+  | 'articula'
+  | 'cerebro'
+  | 'deporte'
+  | 'digestion'
+  | 'corazon'
+  | 'piel'
+  | 'antiedad'
+  | 'vision'
+  | 'huesos'
+  | 'peso'
+  | 'fertilidad'
+  | 'antiedad'
+  | 'detox';
 
 export interface SynergyRelation {
   ingrediente_id: string;
