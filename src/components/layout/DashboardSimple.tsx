@@ -9,10 +9,11 @@ import {
   Link2, BarChart3, X, ChevronRight, 
   CheckCircle2, AlertCircle, Cloud, CloudOff,
   Loader2, Zap, Sparkles, Copy, ExternalLink, 
-  Package, Info, TrendingUp, RefreshCw
+  Package, Info, TrendingUp, RefreshCw, Brain, Leaf
 } from 'lucide-react';
 import { getCombinedKnowledgeBase, getIngredientCount } from '../../core/knowledge-base';
 import { synergyGraphService } from '../../core/knowledge-base/SynergyGraph';
+import { knowledgeService, type ProductAnalysis } from '../../services/KnowledgeService';
 import { Product } from '../../core/types/product.types';
 import { supabaseService } from '../../services/SupabaseService';
 import { dataService } from '../../services/DataService';
@@ -26,6 +27,7 @@ interface AnalyzedProduct extends Product {
   ingredientes_encontrados: string[];
   cobertura_kb: number;
   sinergias_detectadas: string[];
+  kbAnalysis?: ProductAnalysis | null;
 }
 
 interface ScrapingState {
@@ -67,7 +69,11 @@ const IconChart = () => (
 );
 
 // ==================== HELPERS ====================
-function analyzeProduct(product: Product, kb: Record<string, any>): { found: string[]; sinergias: string[] } {
+function analyzeProduct(product: Product, kb: Record<string, any>): { 
+  found: string[]; 
+  sinergias: string[];
+  kbAnalysis: ProductAnalysis | null;
+} {
   const found: string[] = [];
   const principios = (product.principios_activos || []).map(p => String(p).toLowerCase());
   
@@ -93,7 +99,14 @@ function analyzeProduct(product: Product, kb: Record<string, any>): { found: str
     }
   }
 
-  return { found, sinergias };
+  // Análisis con KnowledgeService
+  const kbAnalysis = knowledgeService.analyzeProduct({
+    sku: product.sku,
+    nombre_comercial: product.nombre_comercial,
+    principios_activos: product.principios_activos
+  });
+
+  return { found, sinergias, kbAnalysis };
 }
 
 // ==================== COMPONENTS ====================
@@ -534,6 +547,7 @@ function SearchView({
 // Vista: Catálogo
 function CatalogView({ stats }: { stats: { total: number; kbMatch: number; sinergias: number } }) {
   const kbStats = synergyGraphService.obtenerEstadisticas();
+  const kbInfo = knowledgeService.getStats();
   
   return (
     <div className="space-y-6">
@@ -545,6 +559,31 @@ function CatalogView({ stats }: { stats: { total: number; kbMatch: number; siner
           <StatCard label="Sinergias" value={kbStats.sinergiasTotales} color="violet" />
           <StatCard label="Antagonismos" value={kbStats.antagonismosTotales} color="red" />
         </div>
+      </div>
+      
+      {/* Panel de Base de Conocimiento Fitoterapéutica */}
+      <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-5 border border-emerald-100">
+        <div className="flex items-center gap-2 mb-4">
+          <Leaf className="w-5 h-5 text-emerald-600" />
+          <h3 className="font-semibold text-gray-900">Base de Conocimiento Fitoterapéutico</h3>
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-emerald-600">{kbInfo.total}</div>
+            <div className="text-xs text-gray-500 mt-1">Ingredientes</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-emerald-600">{kbInfo.familias}</div>
+            <div className="text-xs text-gray-500 mt-1">Familias</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-emerald-600">{kbInfo.tipos}</div>
+            <div className="text-xs text-gray-500 mt-1">Tipos</div>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 mt-4 text-center">
+          Fitoterapia, homeopatía, vitaminas y minerales verificados
+        </p>
       </div>
     </div>
   );
@@ -569,36 +608,152 @@ function StatCard({ label, value, color = 'gray' }: { label: string; value: numb
 // Vista: Sinergias
 function SynergyView({ kb }: { kb: Record<string, any> }) {
   const kbEntries = useMemo(() => Object.entries(kb).slice(0, 20), [kb]);
+  const kbIngredients = knowledgeService.getAllIngredients();
+  const [selectedType, setSelectedType] = useState<'all' | 'sinergia' | 'antagonismo'>('all');
+
+  // Obtener ingredientes con sinergias
+  const ingredientsWithSynergies = useMemo(() => {
+    return kbIngredients
+      .filter(ing => ing.sinergias.length > 0)
+      .sort((a, b) => b.sinergias.length - a.sinergias.length)
+      .slice(0, 15);
+  }, []);
+
+  // Obtener ingredientes con antagonismos
+  const ingredientsWithAntagonisms = useMemo(() => {
+    return kbIngredients
+      .filter(ing => ing.antagonismos.length > 0)
+      .sort((a, b) => b.antagonismos.length - a.antagonismos.length)
+      .slice(0, 10);
+  }, []);
 
   return (
-    <div>
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Sinergias Disponibles</h2>
-      <div className="space-y-2">
-        {kbEntries.map(([id, ing]: [string, any]) => {
-          const sinergias = synergyGraphService.obtenerSinergiasDe(id);
-          if (sinergias.length === 0) return null;
-          
-          return (
-            <div key={id} className="bg-white border border-gray-100 rounded-xl p-3">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-medium text-gray-900 text-sm">{ing.nombre}</h3>
-                <span className="text-xs bg-violet-50 text-violet-600 px-2 py-0.5 rounded-full">
-                  {sinergias.length} sinergia{sinergias.length !== 1 ? 's' : ''}
-                </span>
+    <div className="space-y-6">
+      {/* Panel de resumen */}
+      <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-5 border border-violet-100">
+        <div className="flex items-center gap-2 mb-4">
+          <Brain className="w-5 h-5 text-violet-600" />
+          <h3 className="font-semibold text-gray-900">Análisis de Interacciones</h3>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white/60 rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-violet-600">{ingredientsWithSynergies.length}</div>
+            <div className="text-xs text-gray-500 mt-1">Con Sinergias</div>
+          </div>
+          <div className="bg-white/60 rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-amber-600">{ingredientsWithAntagonisms.length}</div>
+            <div className="text-xs text-gray-500 mt-1">Con Antagonismos</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs para filtrar */}
+      <div className="flex gap-2">
+        <button
+          onClick={() => setSelectedType('all')}
+          className={cn(
+            "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+            selectedType === 'all' 
+              ? "bg-violet-100 text-violet-700" 
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          )}
+        >
+          Todos
+        </button>
+        <button
+          onClick={() => setSelectedType('sinergia')}
+          className={cn(
+            "px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5",
+            selectedType === 'sinergia' 
+              ? "bg-emerald-100 text-emerald-700" 
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          )}
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          Sinergias
+        </button>
+        <button
+          onClick={() => setSelectedType('antagonismo')}
+          className={cn(
+            "px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5",
+            selectedType === 'antagonismo' 
+              ? "bg-amber-100 text-amber-700" 
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          )}
+        >
+          <AlertCircle className="w-3.5 h-3.5" />
+          Antagonismos
+        </button>
+      </div>
+
+      {/* Lista de ingredientes */}
+      <div className="space-y-3">
+        {(selectedType === 'all' || selectedType === 'sinergia') && ingredientsWithSynergies.map((ing) => (
+          <div key={ing.id} className="bg-white border border-gray-100 rounded-xl p-4">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h4 className="font-medium text-gray-900 text-sm">{ing.nombre}</h4>
+                <span className="text-xs text-gray-400">{ing.familia}</span>
               </div>
-              <div className="flex flex-wrap gap-1">
-                {sinergias.slice(0, 3).map((syn: any, i: number) => (
-                  <span key={i} className="text-xs bg-gray-50 text-gray-600 px-2 py-0.5 rounded">
-                    + {syn.hacia}
-                  </span>
-                ))}
-                {sinergias.length > 3 && (
-                  <span className="text-xs text-gray-400">+{sinergias.length - 3} más</span>
-                )}
-              </div>
+              <span className="text-xs bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full">
+                {ing.sinergias.length} sinergia{ing.sinergias.length !== 1 ? 's' : ''}
+              </span>
             </div>
-          );
-        })}
+            <div className="flex flex-wrap gap-1.5">
+              {ing.sinergias.slice(0, 4).map((synergyId) => {
+                const synergyIng = kbIngredients.find(i => i.id === synergyId);
+                return synergyIng ? (
+                  <span key={synergyId} className="text-xs bg-emerald-50 text-emerald-700 px-2 py-1 rounded-lg flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" />
+                    {synergyIng.nombre}
+                  </span>
+                ) : (
+                  <span key={synergyId} className="text-xs bg-gray-50 text-gray-600 px-2 py-1 rounded">
+                    {synergyId}
+                  </span>
+                );
+              })}
+              {ing.sinergias.length > 4 && (
+                <span className="text-xs text-gray-400 px-1 py-1">+{ing.sinergias.length - 4} más</span>
+              )}
+            </div>
+            {ing.notas && (
+              <p className="text-xs text-gray-500 mt-2 italic">{ing.notas}</p>
+            )}
+          </div>
+        ))}
+
+        {(selectedType === 'all' || selectedType === 'antagonismo') && ingredientsWithAntagonisms.map((ing) => (
+          <div key={ing.id} className="bg-white border border-amber-100 rounded-xl p-4">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h4 className="font-medium text-gray-900 text-sm">{ing.nombre}</h4>
+                <span className="text-xs text-gray-400">{ing.familia}</span>
+              </div>
+              <span className="text-xs bg-amber-50 text-amber-600 px-2 py-0.5 rounded-full">
+                {ing.antagonismos.length} antagonismo{ing.antagonismos.length !== 1 ? 's' : ''}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {ing.antagonismos.slice(0, 4).map((antId) => {
+                const antIng = kbIngredients.find(i => i.id === antId);
+                return antIng ? (
+                  <span key={antId} className="text-xs bg-amber-50 text-amber-700 px-2 py-1 rounded-lg flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    {antIng.nombre}
+                  </span>
+                ) : (
+                  <span key={antId} className="text-xs bg-gray-50 text-gray-600 px-2 py-1 rounded">
+                    {antId}
+                  </span>
+                );
+              })}
+              {ing.antagonismos.length > 4 && (
+                <span className="text-xs text-gray-400 px-1 py-1">+{ing.antagonismos.length - 4} más</span>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -1133,14 +1288,15 @@ export function DashboardSimple() {
           logger.info(`Cargando ${indexedProducts.length} productos`, 'Dashboard');
           
           const analyzed = indexedProducts.map((product: Product) => {
-            const { found, sinergias } = analyzeProduct(product, kb);
+            const { found, sinergias, kbAnalysis } = analyzeProduct(product, kb);
             const principiosCount = (product.principios_activos || []).length;
             const cobertura = principiosCount > 0 ? Math.round((found.length / principiosCount) * 100) : 0;
             return {
               ...product,
               ingredientes_encontrados: found,
               cobertura_kb: Math.min(cobertura, 100),
-              sinergias_detectadas: sinergias
+              sinergias_detectadas: sinergias,
+              kbAnalysis
             };
           });
           
@@ -1150,14 +1306,15 @@ export function DashboardSimple() {
           const fromService = await dataService.getAllProducts();
           if (fromService.length > 0) {
             const analyzed = fromService.map((product: Product) => {
-              const { found, sinergias } = analyzeProduct(product, kb);
+              const { found, sinergias, kbAnalysis } = analyzeProduct(product, kb);
               const principiosCount = (product.principios_activos || []).length;
               const cobertura = principiosCount > 0 ? Math.round((found.length / principiosCount) * 100) : 0;
               return {
                 ...product,
                 ingredientes_encontrados: found,
                 cobertura_kb: Math.min(cobertura, 100),
-                sinergias_detectadas: sinergias
+                sinergias_detectadas: sinergias,
+                kbAnalysis
               };
             });
             setProducts(analyzed);
