@@ -312,7 +312,6 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
   // Endpoint para scraping de un solo producto por SKU
   apiRouter.get('/scrape-product', async (req, res) => {
     const { sku } = req.query;
-    const { api_key } = req.query; // ScrapingBee API key opcional
     log(`[API] Hit /scrape-product with sku: ${sku}`);
     
     if (!sku || typeof sku !== 'string') {
@@ -322,6 +321,9 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
       });
     }
 
+    // Obtener API key de ScrapingBee desde variable de entorno
+    const SCRAPINGBEE_API_KEY = process.env.SCRAPINGBEE_API_KEY;
+
     try {
       // URL de búsqueda de Farmacias Knop
       const searchUrl = `https://www.farmaciasknop.com/catalogsearch/result?q=${encodeURIComponent(sku)}`;
@@ -330,12 +332,13 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
       let response;
       
       // Si tiene API key de ScrapingBee, usar ese servicio
-      if (api_key && typeof api_key === 'string') {
+      if (SCRAPINGBEE_API_KEY) {
         log(`[API] Usando ScrapingBee para: ${sku}`);
-        response = await axios.get(`https://app.scrapingbee.com/v1/scrape?api_key=${api_key}&url=${encodeURIComponent(searchUrl)}&render_js=true`, {
+        response = await axios.get(`https://app.scrapingbee.com/v1/scrape?api_key=${SCRAPINGBEE_API_KEY}&url=${encodeURIComponent(searchUrl)}&render_js=true`, {
           timeout: 20000
         });
       } else {
+        log(`[API] ScrapingBee no configurado, usando request directo`);
         // Intentar directamente primero
         response = await axios.get(searchUrl, {
           headers: { 
@@ -410,8 +413,8 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
       
       // Obtener datos del producto
       let productResponse;
-      if (api_key && typeof api_key === 'string') {
-        productResponse = await axios.get(`https://app.scrapingbee.com/v1/scrape?api_key=${api_key}&url=${encodeURIComponent(productUrl)}&render_js=true`, {
+      if (SCRAPINGBEE_API_KEY) {
+        productResponse = await axios.get(`https://app.scrapingbee.com/v1/scrape?api_key=${SCRAPINGBEE_API_KEY}&url=${encodeURIComponent(productUrl)}&render_js=true`, {
           timeout: 20000
         });
       } else {
