@@ -15,6 +15,7 @@ import { getCombinedKnowledgeBase, getIngredientCount } from '../../core/knowled
 import { synergyGraphService } from '../../core/knowledge-base/SynergyGraph';
 import { knowledgeService, type ProductAnalysis } from '../../services/KnowledgeService';
 import { knowledgeSyncService, type SyncStatus } from '../../services/KnowledgeSyncService';
+import { productCategorizationService } from '../../services/ProductCategorizationService';
 import { Product } from '../../core/types/product.types';
 import { supabaseService } from '../../services/SupabaseService';
 import { dataService } from '../../services/DataService';
@@ -29,6 +30,8 @@ interface AnalyzedProduct extends Product {
   cobertura_kb: number;
   sinergias_detectadas: string[];
   kbAnalysis?: ProductAnalysis | null;
+  categorias_inferidas?: string[];
+  categoryLabels?: string[];
 }
 
 interface ScrapingState {
@@ -107,7 +110,16 @@ function analyzeProduct(product: Product, kb: Record<string, any>): {
     principios_activos: product.principios_activos
   });
 
-  return { found, sinergias, kbAnalysis };
+
+  // Categorización del producto
+  const categorization = productCategorizationService.getCategorizationDetails({
+    sku: product.sku,
+    nombre_comercial: product.nombre_comercial,
+    principios_activos: product.principios_activos,
+    descripcion: product.descripcion,
+    categoria: product.categoria_principal || product.categoria
+  });
+  return { found, sinergias, kbAnalysis, categorization };
 }
 
 // ==================== COMPONENTS ====================
@@ -1420,7 +1432,7 @@ export function DashboardSimple() {
           logger.info(`Cargando ${indexedProducts.length} productos`, 'Dashboard');
           
           const analyzed = indexedProducts.map((product: Product) => {
-            const { found, sinergias, kbAnalysis } = analyzeProduct(product, kb);
+            const { found, sinergias, kbAnalysis, categorization } = analyzeProduct(product, kb);
             const principiosCount = (product.principios_activos || []).length;
             const cobertura = principiosCount > 0 ? Math.round((found.length / principiosCount) * 100) : 0;
             return {
@@ -1428,7 +1440,9 @@ export function DashboardSimple() {
               ingredientes_encontrados: found,
               cobertura_kb: Math.min(cobertura, 100),
               sinergias_detectadas: sinergias,
-              kbAnalysis
+              kbAnalysis,
+              categorias_inferidas: categorization.categories,
+              categoryLabels: categorization.categoryLabels
             };
           });
           
@@ -1438,7 +1452,7 @@ export function DashboardSimple() {
           const fromService = await dataService.getAllProducts();
           if (fromService.length > 0) {
             const analyzed = fromService.map((product: Product) => {
-              const { found, sinergias, kbAnalysis } = analyzeProduct(product, kb);
+              const { found, sinergias, kbAnalysis, categorization } = analyzeProduct(product, kb);
               const principiosCount = (product.principios_activos || []).length;
               const cobertura = principiosCount > 0 ? Math.round((found.length / principiosCount) * 100) : 0;
               return {
@@ -1446,7 +1460,9 @@ export function DashboardSimple() {
                 ingredientes_encontrados: found,
                 cobertura_kb: Math.min(cobertura, 100),
                 sinergias_detectadas: sinergias,
-                kbAnalysis
+                kbAnalysis,
+                categorias_inferidas: categorization.categories,
+                categoryLabels: categorization.categoryLabels
               };
             });
             setProducts(analyzed);

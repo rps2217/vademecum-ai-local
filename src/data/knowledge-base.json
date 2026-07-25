@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Base de conocimiento de fitoterapia, homeopatía y nutracéuticos",
   "lastUpdated": "2025-07-25",
   "ingredients": [
@@ -4159,6 +4159,547 @@
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Para ansiedad, miedos e intoxicaciones."
+    },
+    {
+      "id": "capsicum",
+      "nombre": "Capsicum",
+      "sinonimos": [
+        "Capsicum annuum",
+        "Cayenne pepper"
+      ],
+      "familia": "Solanaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Estimulante",
+        "Antiespasmodico",
+        "Rubefaciente"
+      ],
+      "sinergias": [
+        "nux-vomica",
+        "lycopodium"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para neuralgias, amigdalitis, faringitis con ardor."
+    },
+    {
+      "id": "chelidonium",
+      "nombre": "Chelidonium",
+      "sinonimos": [
+        "Chelidonium majus",
+        "Greater celandine"
+      ],
+      "familia": "Papaveraceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Hepatobiliar",
+        "Antiinflamatorio",
+        "Analgésico"
+      ],
+      "sinergias": [
+        "lycopodium",
+        "nux-vomica",
+        "carduus-marianus"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para hepatopatías con dolor en hombro derecho."
+    },
+    {
+      "id": "carduus-marianus",
+      "nombre": "Carduus Marianus",
+      "sinonimos": [
+        "Silybum marianum",
+        "Milk thistle"
+      ],
+      "familia": "Asteraceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Hepatoprotector",
+        "Antiinflamatorio",
+        "Colagogo"
+      ],
+      "sinergias": [
+        "chelidonium",
+        "lycopodium",
+        "nux-vomica"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para insuficiencia hepática, congestión portal."
+    },
+    {
+      "id": "iris",
+      "nombre": "Iris",
+      "sinonimos": [
+        "Iris versicolor",
+        "Blue flag"
+      ],
+      "familia": "Iridaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Colagogo",
+        "Antiinflamatorio",
+        "Laxante"
+      ],
+      "sinergias": [
+        "nux-vomica",
+        "bryonia",
+        "mercurius"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para migrañas digestivas, pancreatitis, hepatitis."
+    },
+    {
+      "id": "podophyllum",
+      "nombre": "Podophyllum",
+      "sinonimos": [
+        "Podophyllum peltatum",
+        "May apple"
+      ],
+      "familia": "Berberidaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Hepatobiliar",
+        "Laxante",
+        "Antiemetico"
+      ],
+      "sinergias": [
+        "nux-vomica",
+        "mercurius",
+        "arsenicum"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para gastroenteritis con diarrea profusa."
+    },
+    {
+      "id": "lobelia",
+      "nombre": "Lobelia",
+      "sinonimos": [
+        "Lobelia inflata",
+        "Indian tobacco"
+      ],
+      "familia": "Campanulaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Espasmolitico",
+        "Antiemetico",
+        "Expectorante"
+      ],
+      "sinergias": [
+        "ipecacuanha",
+        "nux-vomica",
+        "antimonium-tart"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para asma, bronquitis, nauseas con ansiedad."
+    },
+    {
+      "id": "cubeba",
+      "nombre": "Cubeba",
+      "sinonimos": [
+        "Piper cubeba",
+        "Cubeb"
+      ],
+      "familia": "Piperaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiinfeccioso urinario",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "cantharis",
+        "mercurius",
+        "nux-vomica"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para cistitis, uretritis, gonorrea."
+    },
+    {
+      "id": "cannabis-indica",
+      "nombre": "Cannabis Indica",
+      "sinonimos": [
+        "Cannabis",
+        "Marijuana"
+      ],
+      "familia": "Cannabaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Sedante",
+        "Antiespasmodico",
+        "Analgesico"
+      ],
+      "sinergias": [
+        "ignatia",
+        "stramonium",
+        "hyoscyamus"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para euforia, paranoia, migranas, insomnio."
+    },
+    {
+      "id": "cannabis-sativa",
+      "nombre": "Cannabis Sativa",
+      "sinonimos": [
+        "Cannabis sativa"
+      ],
+      "familia": "Cannabaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Sedante",
+        "Antiinflamatorio",
+        "Antiespasmodico"
+      ],
+      "sinergias": [
+        "cannabis-indica",
+        "stramonium"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para perdida de control, vertigo, adiccion."
+    },
+    {
+      "id": "anis-verde",
+      "nombre": "Anis Verde",
+      "sinonimos": [
+        "Pimpinella anisum",
+        "Anise"
+      ],
+      "familia": "Apiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Digestivo",
+        "Carminativo",
+        "Galactagogo",
+        "Antitusivo"
+      ],
+      "sinergias": [
+        "hinojo",
+        "comino",
+        "fenjeel"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para digestion, gases, tos, lactation."
+    },
+    {
+      "id": "artemisa-fit",
+      "nombre": "Artemisa",
+      "sinonimos": [
+        "artemisa",
+        "ajenjo"
+      ],
+      "familia": "Asteraceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Emenagogo",
+        "Digestivo",
+        "Antiparasitario",
+        "Sedante"
+      ],
+      "antagonismos": [
+        "hierro"
+      ],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para ciclos irregulares, parasitos intestinales."
+    },
+    {
+      "id": "poleo",
+      "nombre": "Poleo",
+      "sinonimos": [
+        "Mentha pulegium",
+        "Pennyroyal"
+      ],
+      "familia": "Lamiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Digestivo",
+        "Carminativo",
+        "Emenagogro",
+        "Antispasmodico"
+      ],
+      "sinergias": [
+        "menta",
+        "hinojo",
+        "melisa"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo",
+        "Lactancia"
+      ],
+      "notas": "Para digestion, gases, regulacion menstrual."
+    },
+    {
+      "id": "artemisa-annua-fit",
+      "nombre": "Artemisa Annua",
+      "sinonimos": [
+        "Artemisia annua",
+        "Sweet wormwood"
+      ],
+      "familia": "Asteraceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antimalarico",
+        "Antiinflamatorio",
+        "Antiviral"
+      ],
+      "sinergias": [
+        "equinacea",
+        "propoleo"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Famosa por artemisinina. Antipaludico natural."
+    },
+    {
+      "id": "sanguinaria",
+      "nombre": "Sanguinaria",
+      "sinonimos": [
+        "Sanguinaria canadensis",
+        "Bloodroot"
+      ],
+      "familia": "Papaveraceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Expectorante",
+        "Antiinflamatorio",
+        "Antiinfeccioso"
+      ],
+      "sinergias": [
+        "ipecacuanha",
+        "antimonium-tart"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para tos, bronquitis, sinusitis."
+    },
+    {
+      "id": "serenoa",
+      "nombre": "Serenoa Repens",
+      "sinonimos": [
+        "Serenoa repens",
+        "Saw palmetto"
+      ],
+      "familia": "Arecaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antiinflamatorio prostatica",
+        "Antiandrogenico"
+      ],
+      "sinergias": [
+        "ortiga-fit",
+        "pygeum-fit"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para hiperplasia prostatica benigna."
+    },
+    {
+      "id": "palma-enana",
+      "nombre": "Palma Enana",
+      "sinonimos": [
+        "Serenoa repens",
+        "Sabal"
+      ],
+      "familia": "Arecaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antiinflamatorio prostatica",
+        "Diuretico"
+      ],
+      "sinergias": [
+        "ortiga-fit",
+        "serenoa"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para prostata agrandada."
+    },
+    {
+      "id": "colina",
+      "nombre": "Colina",
+      "sinonimos": [
+        "Choline",
+        "Vitamin B4"
+      ],
+      "familia": "Vitamina B",
+      "tipo": "vitaminico",
+      "propiedades": [
+        "Hepatoprotector",
+        "Neurotransmisor",
+        "Metabolismo lipidios"
+      ],
+      "sinergias": [
+        "metionina",
+        "inositol",
+        "vitamina-b12"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para higado graso, memoria, colesterol."
+    },
+    {
+      "id": "metionina",
+      "nombre": "Metionina",
+      "sinonimos": [
+        "L-Methionine",
+        "DL-Methionine"
+      ],
+      "familia": "Aminoacido",
+      "tipo": "aminoacido",
+      "propiedades": [
+        "Hepatoprotector",
+        "Quelante",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "colina",
+        "nac",
+        "cardo-mariano"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para higado, metales pesados, olor corporal."
+    },
+    {
+      "id": "inositol",
+      "nombre": "Inositol",
+      "sinonimos": [
+        "Myo-inositol",
+        "Vitamin B8"
+      ],
+      "familia": "Vitamina B",
+      "tipo": "vitaminico",
+      "propiedades": [
+        "Neuroprotector",
+        "Insulino-sensibilizador",
+        "Salud mental"
+      ],
+      "sinergias": [
+        "colina",
+        "magnesio",
+        "vitamina-d"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para SOP, ansiedad, depresion, memoria."
+    },
+    {
+      "id": "bitartrato-carnitina",
+      "nombre": "L-Carnitina",
+      "sinonimos": [
+        "Carnitine",
+        "L-Carnitine",
+        "Acetyl-carnitine"
+      ],
+      "familia": "Aminoacido",
+      "tipo": "aminoacido",
+      "propiedades": [
+        "Metabolismo energetico",
+        "Salud cardiaca",
+        "Neuroprotector"
+      ],
+      "sinergias": [
+        "coenzima-q10",
+        "taurina",
+        "omega-3"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Hipotiroidismo"
+      ],
+      "notas": "Para energia, corazon, cerebro, Fertilidad."
+    },
+    {
+      "id": "l-glutation",
+      "nombre": "L-Glutation",
+      "sinonimos": [
+        "L-Glutathione",
+        "GSH"
+      ],
+      "familia": "Tripeptido",
+      "tipo": "antioxidante",
+      "propiedades": [
+        "Antioxidante maestro",
+        "Detoxificacion",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "nac",
+        "selenio",
+        "vitamina-c"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Antioxidante mas importante. Piel luminosa, detox."
+    },
+    {
+      "id": "s-adenosil-metionina",
+      "nombre": "SAMe",
+      "sinonimos": [
+        "S-Adenosyl Methionine",
+        "Ademetionine"
+      ],
+      "familia": "Aminoacido",
+      "tipo": "neurotransmisor",
+      "propiedades": [
+        "Antidepresivo natural",
+        "Hepatoprotector",
+        "Salud articular"
+      ],
+      "sinergias": [
+        "5-htp",
+        "colina",
+        "b-vitamines"
+      ],
+      "antagonismos": [
+        "antidepresivos"
+      ],
+      "contraindicaciones": [
+        "Enfermedad bipolar",
+        "Parkinson"
+      ],
+      "notas": "Efecto antidepresivo comparable a farmacos."
+    },
+    {
+      "id": "trimetilglicina",
+      "nombre": "TMG",
+      "sinonimos": [
+        "Betaine",
+        "Trimethylglycine",
+        "Betaína"
+      ],
+      "familia": "Aminoacido",
+      "tipo": "aminoacido",
+      "propiedades": [
+        "Metilante",
+        "Hepatoprotector",
+        "Salud cardiaca"
+      ],
+      "sinergias": [
+        "metionina",
+        "folato",
+        "vitamina-b12"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para homocisteína, higado, digestión."
     }
   ]
 }

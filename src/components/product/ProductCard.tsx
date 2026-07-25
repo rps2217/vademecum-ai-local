@@ -103,6 +103,20 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({
               {isInTray ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
             </Button>
           </div>
+
+          {/* Categorías Inferidas */}
+          {product.categoryLabels && product.categoryLabels.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-2 pt-2 border-t border-slate-100">
+              {product.categoryLabels.slice(0, 3).map((label, idx) => (
+                <span 
+                  key={idx}
+                  className="text-[9px] px-1.5 py-0.5 bg-emerald-50 text-emerald-700 rounded-full"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          )}
         </>
       ) : (
         /* List Layout */
