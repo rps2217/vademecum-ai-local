@@ -312,6 +312,7 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
   // Endpoint para scraping de un solo producto por SKU
   apiRouter.get('/scrape-product', async (req, res) => {
     const { sku } = req.query;
+    const { api_key } = req.query; // ScrapingBee API key opcional
     log(`[API] Hit /scrape-product with sku: ${sku}`);
     
     if (!sku || typeof sku !== 'string') {
@@ -326,22 +327,33 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
       const searchUrl = `https://www.farmaciasknop.com/catalogsearch/result?q=${encodeURIComponent(sku)}`;
       log(`[API] Buscando en: ${searchUrl}`);
       
-      const response = await axios.get(searchUrl, {
-        headers: { 
-          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-          'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
-          'Accept-Encoding': 'gzip, deflate, br',
-          'Connection': 'keep-alive',
-          'Upgrade-Insecure-Requests': '1',
-          'Sec-Fetch-Dest': 'document',
-          'Sec-Fetch-Mode': 'navigate',
-          'Sec-Fetch-Site': 'none',
-          'Sec-Fetch-User': '?1',
-          'Cache-Control': 'max-age=0',
-        },
-        timeout: 20000 
-      });
+      let response;
+      
+      // Si tiene API key de ScrapingBee, usar ese servicio
+      if (api_key && typeof api_key === 'string') {
+        log(`[API] Usando ScrapingBee para: ${sku}`);
+        response = await axios.get(`https://app.scrapingbee.com/v1/scrape?api_key=${api_key}&url=${encodeURIComponent(searchUrl)}&render_js=true`, {
+          timeout: 20000
+        });
+      } else {
+        // Intentar directamente primero
+        response = await axios.get(searchUrl, {
+          headers: { 
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Cache-Control': 'max-age=0',
+          },
+          timeout: 20000 
+        });
+      }
 
       const $ = cheerio.load(response.data);
       
@@ -397,20 +409,27 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
       log(`[API] Producto encontrado: ${productUrl}`);
       
       // Obtener datos del producto
-      const productResponse = await axios.get(productUrl, {
-        headers: { 
-          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-          'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
-          'Accept-Encoding': 'gzip, deflate, br',
-          'Connection': 'keep-alive',
-          'Upgrade-Insecure-Requests': '1',
-          'Sec-Fetch-Dest': 'document',
-          'Sec-Fetch-Mode': 'navigate',
-          'Sec-Fetch-Site': 'none',
-        },
-        timeout: 20000 
-      });
+      let productResponse;
+      if (api_key && typeof api_key === 'string') {
+        productResponse = await axios.get(`https://app.scrapingbee.com/v1/scrape?api_key=${api_key}&url=${encodeURIComponent(productUrl)}&render_js=true`, {
+          timeout: 20000
+        });
+      } else {
+        productResponse = await axios.get(productUrl, {
+          headers: { 
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+          },
+          timeout: 20000 
+        });
+      }
 
       const $product = cheerio.load(productResponse.data);
       
