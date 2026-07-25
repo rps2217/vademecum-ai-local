@@ -1,64 +1,139 @@
 {
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Base de conocimiento de fitoterapia, homeopatía y nutracéuticos",
   "lastUpdated": "2025-07-25",
   "ingredients": [
     {
       "id": "vitamina-a",
       "nombre": "Vitamina A",
-      "sinonimos": ["Retinol", "Betacaroteno", "Retinoides"],
+      "sinonimos": [
+        "Retinol",
+        "Betacaroteno",
+        "Retinoides"
+      ],
       "familia": "Vitamina",
       "tipo": "vitaminico",
-      "propiedades": ["Salud visual", "Inmunoestimulante", "Antioxidante", "Salud de piel"],
-      "sinergias": ["vitamina-c", "vitamina-e", "zinc", "omega-3"],
-      "antagonismos": ["alcohol", "tabaco"],
-      "contraindicaciones": ["Embarazo (dosis altas)", "Fumadores (betacaroteno)"],
+      "propiedades": [
+        "Salud visual",
+        "Inmunoestimulante",
+        "Antioxidante",
+        "Salud de piel"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "vitamina-e",
+        "zinc",
+        "omega-3"
+      ],
+      "antagonismos": [
+        "alcohol",
+        "tabaco"
+      ],
+      "contraindicaciones": [
+        "Embarazo (dosis altas)",
+        "Fumadores (betacaroteno)"
+      ],
       "notas": "Betacaroteno es forma mas segura. Sinergia con zinc para absorcion."
     },
     {
       "id": "vitamina-b1",
       "nombre": "Vitamina B1",
-      "sinonimos": ["Tiamina", "Thiamine"],
+      "sinonimos": [
+        "Tiamina",
+        "Thiamine"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Metabolismo energetico", "Funcion neurológica", "Fcor cardiaco"],
-      "sinergias": ["vitamina-b-complex", "magnesio", "alfa-lipoico"],
-      "antagonismos": ["alcohol", "te-verde", "cafe"],
+      "propiedades": [
+        "Metabolismo energetico",
+        "Funcion neurológica",
+        "Fcor cardiaco"
+      ],
+      "sinergias": [
+        "vitamina-b-complex",
+        "magnesio",
+        "alfa-lipoico"
+      ],
+      "antagonismos": [
+        "alcohol",
+        "te-verde",
+        "cafe"
+      ],
       "contraindicaciones": [],
       "notas": "Importante para metabolism de carbohidratos."
     },
     {
       "id": "vitamina-b2",
       "nombre": "Vitamina B2",
-      "sinonimos": ["Riboflavina", "Riboflavin"],
+      "sinonimos": [
+        "Riboflavina",
+        "Riboflavin"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Metabolismo energetico", "Salud de mucosas", "Antioxidante"],
-      "sinergias": ["vitamina-b-complex", "hierro", "vitamina-b3"],
-      "antagonismos": ["alcohol", "luz solar"],
+      "propiedades": [
+        "Metabolismo energetico",
+        "Salud de mucosas",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "vitamina-b-complex",
+        "hierro",
+        "vitamina-b3"
+      ],
+      "antagonismos": [
+        "alcohol",
+        "luz solar"
+      ],
       "contraindicaciones": [],
       "notas": "Ayuda a absorber hierro. Sensible a la luz."
     },
     {
       "id": "vitamina-b3",
       "nombre": "Vitamina B3",
-      "sinonimos": ["Niacina", "Niacinamida", "Vitamin B3"],
+      "sinonimos": [
+        "Niacina",
+        "Niacinamida",
+        "Vitamin B3"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Metabolismo energetico", "Colesterol bajo", "Salud piel"],
-      "sinergias": ["vitamina-b-complex", "cromo", "guggul"],
+      "propiedades": [
+        "Metabolismo energetico",
+        "Colesterol bajo",
+        "Salud piel"
+      ],
+      "sinergias": [
+        "vitamina-b-complex",
+        "cromo",
+        "guggul"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Enfermedad hepatica", "Ulceras"],
+      "contraindicaciones": [
+        "Enfermedad hepatica",
+        "Ulceras"
+      ],
       "notas": "Niacinamida es forma mas suave. Ayuda a reducir colesterol."
     },
     {
       "id": "vitamina-b5",
       "nombre": "Vitamina B5",
-      "sinonimos": ["Acido pantotenico", "Pantothenic acid"],
+      "sinonimos": [
+        "Acido pantotenico",
+        "Pantothenic acid"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Metabolismo energetico", "Sintesis hormonas", "Cicatrizacion"],
-      "sinergias": ["vitamina-b-complex", "vitamina-c", "biotina"],
+      "propiedades": [
+        "Metabolismo energetico",
+        "Sintesis hormonas",
+        "Cicatrizacion"
+      ],
+      "sinergias": [
+        "vitamina-b-complex",
+        "vitamina-c",
+        "biotina"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Esencial para sintesis de coenzima A."
@@ -66,191 +141,470 @@
     {
       "id": "vitamina-b6",
       "nombre": "Vitamina B6",
-      "sinonimos": ["Piridoxina", "Pyridoxine"],
+      "sinonimos": [
+        "Piridoxina",
+        "Pyridoxine"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Metabolismo aminoacidos", "Neurotransmisores", "Salud mental"],
-      "sinergias": ["magnesio", "vitamina-b-complex", "gaba"],
+      "propiedades": [
+        "Metabolismo aminoacidos",
+        "Neurotransmisores",
+        "Salud mental"
+      ],
+      "sinergias": [
+        "magnesio",
+        "vitamina-b-complex",
+        "gaba"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Parkinson (con levodopa)"],
+      "contraindicaciones": [
+        "Parkinson (con levodopa)"
+      ],
       "notas": "Sinergia critica con magnesio. Importante para humor."
     },
     {
       "id": "vitamina-b12",
       "nombre": "Vitamina B12",
-      "sinonimos": ["Cobalamina", "Cyanocobalamin", "Metilcobalamina"],
+      "sinonimos": [
+        "Cobalamina",
+        "Cyanocobalamin",
+        "Metilcobalamina"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Formacion globulos rojos", "Sistema nervioso", "DNA"],
-      "sinergias": ["acido-folico", "hierro", "vitamina-c"],
-      "antagonismos": ["vitamina-c", "alcohol", "antiacidos"],
-      "contraindicaciones": ["Cancer", "Enfermedad de Leber"],
+      "propiedades": [
+        "Formacion globulos rojos",
+        "Sistema nervioso",
+        "DNA"
+      ],
+      "sinergias": [
+        "acido-folico",
+        "hierro",
+        "vitamina-c"
+      ],
+      "antagonismos": [
+        "vitamina-c",
+        "alcohol",
+        "antiacidos"
+      ],
+      "contraindicaciones": [
+        "Cancer",
+        "Enfermedad de Leber"
+      ],
       "notas": "Metilcobalamina es forma mas biodisponible. Crucial para vegetarianos."
     },
     {
       "id": "acido-folico",
       "nombre": "Acido Folico",
-      "sinonimos": ["Folato", "Vitamin B9", "MTHF"],
+      "sinonimos": [
+        "Folato",
+        "Vitamin B9",
+        "MTHF"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Division celular", "Formacion ADN", "Embarazo"],
-      "sinergias": ["vitamina-b12", "hierro", "zinc"],
-      "antagonismos": ["zinc-exceso", "alcohol"],
-      "contraindicaciones": ["Cancer", "Epilepsia"],
+      "propiedades": [
+        "Division celular",
+        "Formacion ADN",
+        "Embarazo"
+      ],
+      "sinergias": [
+        "vitamina-b12",
+        "hierro",
+        "zinc"
+      ],
+      "antagonismos": [
+        "zinc-exceso",
+        "alcohol"
+      ],
+      "contraindicaciones": [
+        "Cancer",
+        "Epilepsia"
+      ],
       "notas": "Esencial en embarazo. Metilfolato es forma activa."
     },
     {
       "id": "biotina",
       "nombre": "Biotina",
-      "sinonimos": ["Vitamin B7", "Vitamin H"],
+      "sinonimos": [
+        "Vitamin B7",
+        "Vitamin H"
+      ],
       "familia": "Vitamina B",
       "tipo": "vitaminico",
-      "propiedades": ["Salud cabello", "Salud unas", "Metabolismo glucosa"],
-      "sinergias": ["zinc", "vitamina-b5", "colageno"],
-      "antagonismos": ["huevo-crudo"],
+      "propiedades": [
+        "Salud cabello",
+        "Salud unas",
+        "Metabolismo glucosa"
+      ],
+      "sinergias": [
+        "zinc",
+        "vitamina-b5",
+        "colageno"
+      ],
+      "antagonismos": [
+        "huevo-crudo"
+      ],
       "contraindicaciones": [],
       "notas": "Mejora la salud de cabello y unas. Importante para metabolismo."
     },
     {
       "id": "vitamina-c",
       "nombre": "Vitamina C",
-      "sinonimos": ["Acido ascorbico", "Ascorbic acid"],
+      "sinonimos": [
+        "Acido ascorbico",
+        "Ascorbic acid"
+      ],
       "familia": "Vitamina",
       "tipo": "vitaminico",
-      "propiedades": ["Antioxidante", "Inmunoestimulante", "Colageno sintesis", "Absorcion hierro"],
-      "sinergias": ["hierro", "vitamina-e", "zinc", "bioflavonoides", "quercetina"],
-      "antagonismos": ["vitamina-b12", "cobre", "medicamentos anticolinergicos"],
-      "contraindicaciones": ["Calculos renales", "Deficit G6PD"],
+      "propiedades": [
+        "Antioxidante",
+        "Inmunoestimulante",
+        "Colageno sintesis",
+        "Absorcion hierro"
+      ],
+      "sinergias": [
+        "hierro",
+        "vitamina-e",
+        "zinc",
+        "bioflavonoides",
+        "quercetina"
+      ],
+      "antagonismos": [
+        "vitamina-b12",
+        "cobre",
+        "medicamentos anticolinergicos"
+      ],
+      "contraindicaciones": [
+        "Calculos renales",
+        "Deficit G6PD"
+      ],
       "notas": "Mejora absorcion de hierro no hematico. Efecto sinergico con bioflavonoides."
     },
     {
       "id": "vitamina-d3",
       "nombre": "Vitamina D3",
-      "sinonimos": ["Colecalciferol", "Cholecalciferol"],
+      "sinonimos": [
+        "Colecalciferol",
+        "Cholecalciferol"
+      ],
       "familia": "Vitamina",
       "tipo": "vitaminico",
-      "propiedades": ["Inmunoestimulante", "Salud osea", "Neuroprotector", "Regulador animo"],
-      "sinergias": ["calcio", "vitamina-k2", "magnesio", "zinc"],
-      "antagonismos": ["glucocorticoides", "corticoides"],
-      "contraindicaciones": ["Hipercalcemia", "Sarcoidosis"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Salud osea",
+        "Neuroprotector",
+        "Regulador animo"
+      ],
+      "sinergias": [
+        "calcio",
+        "vitamina-k2",
+        "magnesio",
+        "zinc"
+      ],
+      "antagonismos": [
+        "glucocorticoides",
+        "corticoides"
+      ],
+      "contraindicaciones": [
+        "Hipercalcemia",
+        "Sarcoidosis"
+      ],
       "notas": "Sinergia critica con K2 para metabolismo oseo."
     },
     {
       "id": "vitamina-e",
       "nombre": "Vitamina E",
-      "sinonimos": ["Tocoferol", "Tocopherol", "Mixed tocopherols"],
+      "sinonimos": [
+        "Tocoferol",
+        "Tocopherol",
+        "Mixed tocopherols"
+      ],
       "familia": "Vitamina",
       "tipo": "vitaminico",
-      "propiedades": ["Antioxidante", "Salud piel", "Cardioprotector", "Antienvejecimiento"],
-      "sinergias": ["vitamina-c", "selenio", "omega-3"],
-      "antagonismos": ["hierro", "vitamina-k"],
-      "contraindicaciones": ["Anticoagulantes", "Cirugia"],
+      "propiedades": [
+        "Antioxidante",
+        "Salud piel",
+        "Cardioprotector",
+        "Antienvejecimiento"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "selenio",
+        "omega-3"
+      ],
+      "antagonismos": [
+        "hierro",
+        "vitamina-k"
+      ],
+      "contraindicaciones": [
+        "Anticoagulantes",
+        "Cirugia"
+      ],
       "notas": "Tocotrienoles son forma mas potente. Sinergia con selenio."
     },
     {
       "id": "vitamina-k2",
       "nombre": "Vitamina K2",
-      "sinonimos": ["Menaquinona", "MK-7", "MK-4"],
+      "sinonimos": [
+        "Menaquinona",
+        "MK-7",
+        "MK-4"
+      ],
       "familia": "Vitamina",
       "tipo": "vitaminico",
-      "propiedades": ["Salud osea", "Salud cardiovascular", "Regulador calcio"],
-      "sinergias": ["vitamina-d3", "calcio", "magnesio"],
-      "antagonismos": ["anticoagulantes-warfarina"],
-      "contraindicaciones": ["Anticoagulantes (warfarina)"],
+      "propiedades": [
+        "Salud osea",
+        "Salud cardiovascular",
+        "Regulador calcio"
+      ],
+      "sinergias": [
+        "vitamina-d3",
+        "calcio",
+        "magnesio"
+      ],
+      "antagonismos": [
+        "anticoagulantes-warfarina"
+      ],
+      "contraindicaciones": [
+        "Anticoagulantes (warfarina)"
+      ],
       "notas": "K2 MK-7 es forma mas biodisponible. Esencial con vitamina D3."
     },
     {
       "id": "calcio",
       "nombre": "Calcio",
-      "sinonimos": ["Calcium", "Ca"],
+      "sinonimos": [
+        "Calcium",
+        "Ca"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Salud osea", "Contraccion muscular", "Coagulacion", "Senales nerviosas"],
-      "sinergias": ["vitamina-d3", "vitamina-k2", "magnesio", "boron"],
-      "antagonismos": ["hierro", "zinc", "magnesio-exceso"],
-      "contraindicaciones": ["Hipercalcemia", "Calculos renales"],
+      "propiedades": [
+        "Salud osea",
+        "Contraccion muscular",
+        "Coagulacion",
+        "Senales nerviosas"
+      ],
+      "sinergias": [
+        "vitamina-d3",
+        "vitamina-k2",
+        "magnesio",
+        "boron"
+      ],
+      "antagonismos": [
+        "hierro",
+        "zinc",
+        "magnesio-exceso"
+      ],
+      "contraindicaciones": [
+        "Hipercalcemia",
+        "Calculos renales"
+      ],
       "notas": "Dosis separadas para mejor absorcion. Citrato o glicinato."
     },
     {
       "id": "magnesio",
       "nombre": "Magnesio",
-      "sinonimos": ["Mg", "Magnesium"],
+      "sinonimos": [
+        "Mg",
+        "Magnesium"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Relajante muscular", "Antiinflamatorio", "Neuroprotector", "Regulador cardiaco"],
-      "sinergias": ["vitamina-b6", "taurina", "potasio", "gaba"],
-      "antagonismos": ["calcio-exceso", "zinc-exceso"],
-      "contraindicaciones": ["Insuficiencia renal", "Block cardiaco"],
+      "propiedades": [
+        "Relajante muscular",
+        "Antiinflamatorio",
+        "Neuroprotector",
+        "Regulador cardiaco"
+      ],
+      "sinergias": [
+        "vitamina-b6",
+        "taurina",
+        "potasio",
+        "gaba"
+      ],
+      "antagonismos": [
+        "calcio-exceso",
+        "zinc-exceso"
+      ],
+      "contraindicaciones": [
+        "Insuficiencia renal",
+        "Block cardiaco"
+      ],
       "notas": "Glicinato es mejor absorbido. Sinergia con B6."
     },
     {
       "id": "hierro",
       "nombre": "Hierro",
-      "sinonimos": ["Fe", "Iron", "Ferrum"],
+      "sinonimos": [
+        "Fe",
+        "Iron",
+        "Ferrum"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Hematopoyetico", "Oxigenacion tisular", "Hemoglobina"],
-      "sinergias": ["vitamina-c", "vitamina-b12", "acido-folico", "cobre"],
-      "antagonismos": ["calcio", "zinc", "te-verde", "cafe", "antiacidos"],
-      "contraindicaciones": ["Hemocromatosis", "Anemia sideroblastica"],
+      "propiedades": [
+        "Hematopoyetico",
+        "Oxigenacion tisular",
+        "Hemoglobina"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "vitamina-b12",
+        "acido-folico",
+        "cobre"
+      ],
+      "antagonismos": [
+        "calcio",
+        "zinc",
+        "te-verde",
+        "cafe",
+        "antiacidos"
+      ],
+      "contraindicaciones": [
+        "Hemocromatosis",
+        "Anemia sideroblastica"
+      ],
       "notas": "Vitamina C mejora absorcion 3-6x. Tomar con estomago vacio."
     },
     {
       "id": "zinc",
       "nombre": "Zinc",
-      "sinonimos": ["Zn", "Zincum"],
+      "sinonimos": [
+        "Zn",
+        "Zincum"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Inmunoestimulante", "Antioxidante", "Cicatrizacion", "Funcion tiroidea"],
-      "sinergias": ["vitamina-a", "vitamina-c", "equinacea", "quercetina"],
-      "antagonismos": ["hierro", "calcio", "fitosatos"],
-      "contraindicaciones": ["Enfermedad de Wilson"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Antioxidante",
+        "Cicatrizacion",
+        "Funcion tiroidea"
+      ],
+      "sinergias": [
+        "vitamina-a",
+        "vitamina-c",
+        "equinacea",
+        "quercetina"
+      ],
+      "antagonismos": [
+        "hierro",
+        "calcio",
+        "fitosatos"
+      ],
+      "contraindicaciones": [
+        "Enfermedad de Wilson"
+      ],
       "notas": "Esencial para funcion inmunologica. Sinergia con vitamina A."
     },
     {
       "id": "selenio",
       "nombre": "Selenio",
-      "sinonimos": ["Se", "Selenium"],
+      "sinonimos": [
+        "Se",
+        "Selenium"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Antioxidante", "Funcion tiroidea", "Inmunoestimulante", "Antiaging"],
-      "sinergias": ["vitamina-e", "vitamina-c", "yodo"],
-      "antagonismos": ["vitamina-c-exceso"],
-      "contraindicaciones": ["Dosis altas"],
+      "propiedades": [
+        "Antioxidante",
+        "Funcion tiroidea",
+        "Inmunoestimulante",
+        "Antiaging"
+      ],
+      "sinergias": [
+        "vitamina-e",
+        "vitamina-c",
+        "yodo"
+      ],
+      "antagonismos": [
+        "vitamina-c-exceso"
+      ],
+      "contraindicaciones": [
+        "Dosis altas"
+      ],
       "notas": "Importante para funcion tiroidea. Dosis 200mcg/dia."
     },
     {
       "id": "yodo",
       "nombre": "Yodo",
-      "sinonimos": ["Iodine", "I", "Yoduro"],
+      "sinonimos": [
+        "Iodine",
+        "I",
+        "Yoduro"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Funcion tiroidea", "Metabolismo", "Desarrollo cerebral"],
-      "sinergias": ["selenio", "zinc", "vitamina-d"],
-      "antagonismos": ["bromo", "fluor"],
-      "contraindicaciones": ["Hipertiroidismo", "Tiroiditis"],
+      "propiedades": [
+        "Funcion tiroidea",
+        "Metabolismo",
+        "Desarrollo cerebral"
+      ],
+      "sinergias": [
+        "selenio",
+        "zinc",
+        "vitamina-d"
+      ],
+      "antagonismos": [
+        "bromo",
+        "fluor"
+      ],
+      "contraindicaciones": [
+        "Hipertiroidismo",
+        "Tiroiditis"
+      ],
       "notas": "Esencial para hormonas tiroideas. Evitar exceso."
     },
     {
       "id": "potasio",
       "nombre": "Potasio",
-      "sinonimos": ["K", "Potassium"],
+      "sinonimos": [
+        "K",
+        "Potassium"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Equilibrio hidrico", "Contraccion muscular", "Presion arterial"],
-      "sinergias": ["magnesio", "sodio", "taurina"],
-      "antagonismos": ["sodio-exceso"],
-      "contraindicaciones": ["Insuficiencia renal", "Enfermedad Addison"],
+      "propiedades": [
+        "Equilibrio hidrico",
+        "Contraccion muscular",
+        "Presion arterial"
+      ],
+      "sinergias": [
+        "magnesio",
+        "sodio",
+        "taurina"
+      ],
+      "antagonismos": [
+        "sodio-exceso"
+      ],
+      "contraindicaciones": [
+        "Insuficiencia renal",
+        "Enfermedad Addison"
+      ],
       "notas": "Importante balance con sodio. Citrato es buena forma."
     },
     {
       "id": "cromo",
       "nombre": "Cromo",
-      "sinonimos": ["Cr", "Chromium"],
+      "sinonimos": [
+        "Cr",
+        "Chromium"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Metabolismo glucosa", "Sensibilidad insulina", "Metabolismo lipidios"],
-      "sinergias": ["berberina", "canela", "alfa-lipoico"],
+      "propiedades": [
+        "Metabolismo glucosa",
+        "Sensibilidad insulina",
+        "Metabolismo lipidios"
+      ],
+      "sinergias": [
+        "berberina",
+        "canela",
+        "alfa-lipoico"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Picolinato es forma mas absorbible. Para diabetes tipo 2."
@@ -258,35 +612,77 @@
     {
       "id": "cobre",
       "nombre": "Cobre",
-      "sinonimos": ["Cu", "Copper"],
+      "sinonimos": [
+        "Cu",
+        "Copper"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Formacion colageno", "Absorcion hierro", "Antioxidante"],
-      "sinergias": ["vitamina-c", "zinc", "colageno"],
-      "antagonismos": ["zinc-exceso", "vitamina-c-exceso", "hierro-exceso"],
-      "contraindicaciones": ["Enfermedad de Wilson"],
+      "propiedades": [
+        "Formacion colageno",
+        "Absorcion hierro",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "zinc",
+        "colageno"
+      ],
+      "antagonismos": [
+        "zinc-exceso",
+        "vitamina-c-exceso",
+        "hierro-exceso"
+      ],
+      "contraindicaciones": [
+        "Enfermedad de Wilson"
+      ],
       "notas": "Balance importante con zinc (2:1 Zn:Cu)."
     },
     {
       "id": "manganeso",
       "nombre": "Manganeso",
-      "sinonimos": ["Mn", "Manganese"],
+      "sinonimos": [
+        "Mn",
+        "Manganese"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Metabolismo oseo", "Antioxidante", "Metabolismo glucosa"],
-      "sinergias": ["calcio", "magnesio", "vitamina-k"],
-      "antagonismos": ["hierro-exceso", "calcio-exceso"],
+      "propiedades": [
+        "Metabolismo oseo",
+        "Antioxidante",
+        "Metabolismo glucosa"
+      ],
+      "sinergias": [
+        "calcio",
+        "magnesio",
+        "vitamina-k"
+      ],
+      "antagonismos": [
+        "hierro-exceso",
+        "calcio-exceso"
+      ],
       "contraindicaciones": [],
       "notas": "Cofactor de enzimas antioxidantes. Dosis 2-5mg."
     },
     {
       "id": "boro",
       "nombre": "Boro",
-      "sinonimos": ["B", "Boron"],
+      "sinonimos": [
+        "B",
+        "Boron"
+      ],
       "familia": "Mineral",
       "tipo": "mineral",
-      "propiedades": ["Metabolismo oseo", "Hormonas sexuales", "Funcion cerebral"],
-      "sinergias": ["calcio", "magnesio", "vitamina-d"],
+      "propiedades": [
+        "Metabolismo oseo",
+        "Hormonas sexuales",
+        "Funcion cerebral"
+      ],
+      "sinergias": [
+        "calcio",
+        "magnesio",
+        "vitamina-d"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Mejora niveles de testosterona y estrogenos."
@@ -294,83 +690,196 @@
     {
       "id": "omega-3",
       "nombre": "Omega 3",
-      "sinonimos": ["EPA", "DHA", "Acidos grasos omega-3", "Fish oil"],
+      "sinonimos": [
+        "EPA",
+        "DHA",
+        "Acidos grasos omega-3",
+        "Fish oil"
+      ],
       "familia": "Acido graso esencial",
       "tipo": "nutriente",
-      "propiedades": ["Antiinflamatorio", "Cardioprotector", "Neuroprotector", "Anticoagulante"],
-      "sinergias": ["curcuma", "vitamina-d3", "coenzima-q10", "magnesio"],
-      "antagonismos": ["omega-6-exceso", "trans-fat"],
-      "contraindicaciones": ["Anticoagulantes", "Cirugia proxima"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Cardioprotector",
+        "Neuroprotector",
+        "Anticoagulante"
+      ],
+      "sinergias": [
+        "curcuma",
+        "vitamina-d3",
+        "coenzima-q10",
+        "magnesio"
+      ],
+      "antagonismos": [
+        "omega-6-exceso",
+        "trans-fat"
+      ],
+      "contraindicaciones": [
+        "Anticoagulantes",
+        "Cirugia proxima"
+      ],
       "notas": "Proporcion EPA/DHA importante. Sinergia con vitamina D."
     },
     {
       "id": "omega-6",
       "nombre": "Omega 6",
-      "sinonimos": ["GLA", "Acidos grasos omega-6", "Linoleic acid"],
+      "sinonimos": [
+        "GLA",
+        "Acidos grasos omega-6",
+        "Linoleic acid"
+      ],
       "familia": "Acido graso esencial",
       "tipo": "nutriente",
-      "propiedades": ["Salud piel", "Antiinflamatorio", "Funcion cerebral"],
-      "sinergias": ["omega-3", "gla", "onagra"],
-      "antagonismos": ["omega-3-exceso", "trans-fat"],
+      "propiedades": [
+        "Salud piel",
+        "Antiinflamatorio",
+        "Funcion cerebral"
+      ],
+      "sinergias": [
+        "omega-3",
+        "gla",
+        "onagra"
+      ],
+      "antagonismos": [
+        "omega-3-exceso",
+        "trans-fat"
+      ],
       "contraindicaciones": [],
       "notas": "Balance omega-3:omega-6 ideal 1:4. GLA es forma antiinflamatoria."
     },
     {
       "id": "gla",
       "nombre": "GLA",
-      "sinonimos": ["Acido gamma-linolenico", "Gamma-linolenic acid"],
+      "sinonimos": [
+        "Acido gamma-linolenico",
+        "Gamma-linolenic acid"
+      ],
       "familia": "Acido graso",
       "tipo": "nutriente",
-      "propiedades": ["Antiinflamatorio", "Salud hormonal", "Salud piel"],
-      "sinergias": ["omega-3", "onagra", "borraja"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Salud hormonal",
+        "Salud piel"
+      ],
+      "sinergias": [
+        "omega-3",
+        "onagra",
+        "borraja"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Epilepsia"],
+      "contraindicaciones": [
+        "Epilepsia"
+      ],
       "notas": "Convierte a prostaglandinas buenas. Onagra y borraja son fuentes."
     },
     {
       "id": "alfa-lipoico",
       "nombre": "Acido Alfa Lipoico",
-      "sinonimos": ["ALA", "Lipoic acid", "Thioctic acid"],
+      "sinonimos": [
+        "ALA",
+        "Lipoic acid",
+        "Thioctic acid"
+      ],
       "familia": "Acido organico",
       "tipo": "antioxidante",
-      "propiedades": ["Antioxidante universal", "Metabolismo glucosa", "Funcion hepatica"],
-      "sinergias": ["vitamina-b1", "vitamina-c", "vitamina-e", "cromo"],
-      "antagonismos": ["biotina"],
-      "contraindicaciones": ["Deficit tiamina", "Quimioterapia"],
+      "propiedades": [
+        "Antioxidante universal",
+        "Metabolismo glucosa",
+        "Funcion hepatica"
+      ],
+      "sinergias": [
+        "vitamina-b1",
+        "vitamina-c",
+        "vitamina-e",
+        "cromo"
+      ],
+      "antagonismos": [
+        "biotina"
+      ],
+      "contraindicaciones": [
+        "Deficit tiamina",
+        "Quimioterapia"
+      ],
       "notas": "Antioxidante unico (agua y grasa). R-LA es forma natural."
     },
     {
       "id": "coenzima-q10",
       "nombre": "Coenzima Q10",
-      "sinonimos": ["CoQ10", "Ubiquinona", "Ubidecarenone"],
+      "sinonimos": [
+        "CoQ10",
+        "Ubiquinona",
+        "Ubidecarenone"
+      ],
       "familia": "Enzima",
       "tipo": "enzimatico",
-      "propiedades": ["Antioxidante mitocondrial", "Cardioprotector", "Energia celular", "Antiaging"],
-      "sinergias": ["omega-3", "vitamina-e", "magnesio", "pqq"],
-      "antagonismos": ["estatinas"],
-      "contraindicaciones": ["Embarazo", "Lactancia"],
+      "propiedades": [
+        "Antioxidante mitocondrial",
+        "Cardioprotector",
+        "Energia celular",
+        "Antiaging"
+      ],
+      "sinergias": [
+        "omega-3",
+        "vitamina-e",
+        "magnesio",
+        "pqq"
+      ],
+      "antagonismos": [
+        "estatinas"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Lactancia"
+      ],
       "notas": "Estatinas reducen CoQ10. Suplementar conjuntamente."
     },
     {
       "id": "nac",
       "nombre": "NAC",
-      "sinonimos": ["N-Acetil Cisteina", "N-Acetylcysteine", "NAC"],
+      "sinonimos": [
+        "N-Acetil Cisteina",
+        "N-Acetylcysteine",
+        "NAC"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Antioxidante", "Desintoxicacion hepatica", "Mucolitico", "Salud respiratoria"],
-      "sinergias": ["vitamina-c", "selenio", "glutathione"],
-      "antagonismos": ["carbocisteina"],
+      "propiedades": [
+        "Antioxidante",
+        "Desintoxicacion hepatica",
+        "Mucolitico",
+        "Salud respiratoria"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "selenio",
+        "glutathione"
+      ],
+      "antagonismos": [
+        "carbocisteina"
+      ],
       "contraindicaciones": [],
       "notas": "Precursor de glutation. Excelente para higado y pulmones."
     },
     {
       "id": "glutathione",
       "nombre": "Glutation",
-      "sinonimos": ["GSH", "Glutathione reduced"],
+      "sinonimos": [
+        "GSH",
+        "Glutathione reduced"
+      ],
       "familia": "Tripeptido",
       "tipo": "antioxidante",
-      "propiedades": ["Antioxidante maestro", "Desintoxicacion", "Inmunoestimulante"],
-      "sinergias": ["nac", "selenio", "vitamina-c", "alfa-lipoico"],
+      "propiedades": [
+        "Antioxidante maestro",
+        "Desintoxicacion",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "nac",
+        "selenio",
+        "vitamina-c",
+        "alfa-lipoico"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Antioxidante mas importante del cuerpo. NAC es precursor."
@@ -378,23 +887,50 @@
     {
       "id": "creatina",
       "nombre": "Creatina",
-      "sinonimos": ["Creatine monohydrate", "Creatine"],
+      "sinonimos": [
+        "Creatine monohydrate",
+        "Creatine"
+      ],
       "familia": "Aminoacido",
       "tipo": "nutriente",
-      "propiedades": ["Energia muscular", "Funcion cognitiva", "Fuerza", "Recuperacion"],
-      "sinergias": ["beta-alanina", "bcaa", "citrulina"],
-      "antagonismos": ["cafeina-exceso"],
-      "contraindicaciones": ["Enfermedad renal"],
+      "propiedades": [
+        "Energia muscular",
+        "Funcion cognitiva",
+        "Fuerza",
+        "Recuperacion"
+      ],
+      "sinergias": [
+        "beta-alanina",
+        "bcaa",
+        "citrulina"
+      ],
+      "antagonismos": [
+        "cafeina-exceso"
+      ],
+      "contraindicaciones": [
+        "Enfermedad renal"
+      ],
       "notas": "5g/dia mantenimiento. Creatina H2O para hidatacion."
     },
     {
       "id": "beta-alanina",
       "nombre": "Beta Alanina",
-      "sinonimos": ["Beta-alanine", "CarnoSyn"],
+      "sinonimos": [
+        "Beta-alanine",
+        "CarnoSyn"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Resistencia muscular", "Carnosina sintesis", "Anti-fatiga"],
-      "sinergias": ["creatina", "citrulina", "bcaa"],
+      "propiedades": [
+        "Resistencia muscular",
+        "Carnosina sintesis",
+        "Anti-fatiga"
+      ],
+      "sinergias": [
+        "creatina",
+        "citrulina",
+        "bcaa"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Produce parestesia. Dosis 3-6g dividida."
@@ -402,47 +938,101 @@
     {
       "id": "bcaa",
       "nombre": "BCAA",
-      "sinonimos": ["Aminoacidos ramificados", "Branched-chain amino acids"],
+      "sinonimos": [
+        "Aminoacidos ramificados",
+        "Branched-chain amino acids"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Sintesis muscular", "Recuperacion", "Energia"],
-      "sinergias": ["creatina", "proteina", "glutamina"],
-      "antagonismos": ["tryptophan-exceso"],
+      "propiedades": [
+        "Sintesis muscular",
+        "Recuperacion",
+        "Energia"
+      ],
+      "sinergias": [
+        "creatina",
+        "proteina",
+        "glutamina"
+      ],
+      "antagonismos": [
+        "tryptophan-exceso"
+      ],
       "contraindicaciones": [],
       "notas": "Leucina, isoleucina, valina (2:1:1). Para atletas."
     },
     {
       "id": "l-glutamina",
       "nombre": "L-Glutamina",
-      "sinonimos": ["Glutamine", "L-Glutamine"],
+      "sinonimos": [
+        "Glutamine",
+        "L-Glutamine"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Salud intestinal", "Inmunoestimulante", "Recuperacion muscular"],
-      "sinergias": ["probioticos", "nac", "zinc"],
+      "propiedades": [
+        "Salud intestinal",
+        "Inmunoestimulante",
+        "Recuperacion muscular"
+      ],
+      "sinergias": [
+        "probioticos",
+        "nac",
+        "zinc"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Enfermedad hepatica", "Enfermedad renal"],
+      "contraindicaciones": [
+        "Enfermedad hepatica",
+        "Enfermedad renal"
+      ],
       "notas": "Acido mas abundante del cuerpo. Para intestino e inmunidad."
     },
     {
       "id": "l-arginina",
       "nombre": "L-Arginina",
-      "sinonimos": ["Arginine", "L-Arginine"],
+      "sinonimos": [
+        "Arginine",
+        "L-Arginine"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Vasodilatador", "Funcion inmunologica", "Sintesis colageno"],
-      "sinergias": ["citrulina", "ornitina", "glicina"],
-      "antagonismos": ["lisina"],
-      "contraindicaciones": ["Herpes virus", "Infarto recentemiente"],
+      "propiedades": [
+        "Vasodilatador",
+        "Funcion inmunologica",
+        "Sintesis colageno"
+      ],
+      "sinergias": [
+        "citrulina",
+        "ornitina",
+        "glicina"
+      ],
+      "antagonismos": [
+        "lisina"
+      ],
+      "contraindicaciones": [
+        "Herpes virus",
+        "Infarto recentemiente"
+      ],
       "notas": "Precursor de oxido nitrico. Especial para rendimiento."
     },
     {
       "id": "l-citrulina",
       "nombre": "L-Citrulina",
-      "sinonimos": ["Citrulline", "L-Citrulline"],
+      "sinonimos": [
+        "Citrulline",
+        "L-Citrulline"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Vasodilatador", "Rendimiento", "Eliminacion amoniaco"],
-      "sinergias": ["l-arginina", "beetroot", "resveratrol"],
+      "propiedades": [
+        "Vasodilatador",
+        "Rendimiento",
+        "Eliminacion amoniaco"
+      ],
+      "sinergias": [
+        "l-arginina",
+        "beetroot",
+        "resveratrol"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Citulina malato mejor para deporte. Convirtese en arginina."
@@ -450,23 +1040,47 @@
     {
       "id": "taurina",
       "nombre": "Taurina",
-      "sinonimos": ["Taurine", "L-Taurine"],
+      "sinonimos": [
+        "Taurine",
+        "L-Taurine"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Salud cardiaca", "Funcion neurologica", "Antioxidante"],
-      "sinergias": ["magnesio", "potasio", "coenzima-q10"],
+      "propiedades": [
+        "Salud cardiaca",
+        "Funcion neurologica",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "magnesio",
+        "potasio",
+        "coenzima-q10"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Epilepsia"],
+      "contraindicaciones": [
+        "Epilepsia"
+      ],
       "notas": "Importante para corazon y cerebro. Cafeina reduce niveles."
     },
     {
       "id": "glicina",
       "nombre": "Glicina",
-      "sinonimos": ["Glycine", "L-Glycine"],
+      "sinonimos": [
+        "Glycine",
+        "L-Glycine"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Colageno sintesis", "Sueño", "Neuroprotector"],
-      "sinergias": ["colageno", "magnesio", "l-arginina"],
+      "propiedades": [
+        "Colageno sintesis",
+        "Sueño",
+        "Neuroprotector"
+      ],
+      "sinergias": [
+        "colageno",
+        "magnesio",
+        "l-arginina"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "3g antes de dormir para mejor sueno. Necesaria para colageno."
@@ -474,83 +1088,190 @@
     {
       "id": "5-htp",
       "nombre": "5-HTP",
-      "sinonimos": ["5-Hydroxytryptophan", "Griffonia simplicifolia"],
+      "sinonimos": [
+        "5-Hydroxytryptophan",
+        "Griffonia simplicifolia"
+      ],
       "familia": "Aminoacido",
       "tipo": "neurotransmisor",
-      "propiedades": ["Precursor serotonina", "Mejora animo", "Mejora sueno"],
-      "sinergias": ["vitamina-b6", "magnesio", "sam-e"],
-      "antagonismos": ["antidepresivos", "triptanos"],
-      "contraindicaciones": ["Antidepresivos", "Enfermedad cardiaca"],
+      "propiedades": [
+        "Precursor serotonina",
+        "Mejora animo",
+        "Mejora sueno"
+      ],
+      "sinergias": [
+        "vitamina-b6",
+        "magnesio",
+        "sam-e"
+      ],
+      "antagonismos": [
+        "antidepresivos",
+        "triptanos"
+      ],
+      "contraindicaciones": [
+        "Antidepresivos",
+        "Enfermedad cardiaca"
+      ],
       "notas": "Precursor directo de serotonina. No combinar con antidepresivos."
     },
     {
       "id": "l-teanina",
       "nombre": "L-Teanina",
-      "sinonimos": ["Theanine", "Gamma-glutamiletilamida"],
+      "sinonimos": [
+        "Theanine",
+        "Gamma-glutamiletilamida"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Ansiolitico suave", "Concentracion", "Promueve alfa ondas", "Relajacion sin sueno"],
-      "sinergias": ["cafe", "gaba", "bacopa", "ginseng"],
+      "propiedades": [
+        "Ansiolitico suave",
+        "Concentracion",
+        "Promueve alfa ondas",
+        "Relajacion sin sueno"
+      ],
+      "sinergias": [
+        "cafe",
+        "gaba",
+        "bacopa",
+        "ginseng"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo"],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
       "notas": "Reduce ansiedad sin sedacion. Sinergia perfecta con cafeina."
     },
     {
       "id": "gaba",
       "nombre": "GABA",
-      "sinonimos": ["Gamma-aminobutyric acid", "Acido gamma-aminobutirico"],
+      "sinonimos": [
+        "Gamma-aminobutyric acid",
+        "Acido gamma-aminobutirico"
+      ],
       "familia": "Neurotransmisor",
       "tipo": "neurotransmisor",
-      "propiedades": ["Inhibidor CNS", "Ansiolitico natural", "Mejora sueno", "Relajacion"],
-      "sinergias": ["valeriana", "passiflora", "l-teanina", "magnesio"],
-      "antagonismos": ["cafeina-exceso", "glutamato-exceso"],
+      "propiedades": [
+        "Inhibidor CNS",
+        "Ansiolitico natural",
+        "Mejora sueno",
+        "Relajacion"
+      ],
+      "sinergias": [
+        "valeriana",
+        "passiflora",
+        "l-teanina",
+        "magnesio"
+      ],
+      "antagonismos": [
+        "cafeina-exceso",
+        "glutamato-exceso"
+      ],
       "contraindicaciones": [],
       "notas": "Neurotransmisor calmante. Sinergia con L-teanina."
     },
     {
       "id": "sam-e",
       "nombre": "SAM-e",
-      "sinonimos": ["S-Adenosyl Methionine", "Ademetionine"],
+      "sinonimos": [
+        "S-Adenosyl Methionine",
+        "Ademetionine"
+      ],
       "familia": "Aminoacido",
       "tipo": "neurotransmisor",
-      "propiedades": ["Antidepresivo natural", "Salud hepatica", "Antiinflamatorio"],
-      "sinergias": ["5-htp", "vitamina-b12", "folato"],
-      "antagonismos": ["antidepresivos"],
-      "contraindicaciones": ["Enfermedad bipolar", "Parkinson"],
+      "propiedades": [
+        "Antidepresivo natural",
+        "Salud hepatica",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "5-htp",
+        "vitamina-b12",
+        "folato"
+      ],
+      "antagonismos": [
+        "antidepresivos"
+      ],
+      "contraindicaciones": [
+        "Enfermedad bipolar",
+        "Parkinson"
+      ],
       "notas": "Efecto antidepresivo comparable a farmacos."
     },
     {
       "id": "tirosina",
       "nombre": "L-Tirosina",
-      "sinonimos": ["Tyrosine", "L-Tyrosine"],
+      "sinonimos": [
+        "Tyrosine",
+        "L-Tyrosine"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Precursor dopamina", "Funcion tiroidea", "Concentracion"],
-      "sinergias": ["cafe", "ginseng", "vitaminas-b"],
-      "antagonismos": ["5-htp"],
-      "contraindicaciones": ["Hipertension", "Tiroides hiperactiva"],
+      "propiedades": [
+        "Precursor dopamina",
+        "Funcion tiroidea",
+        "Concentracion"
+      ],
+      "sinergias": [
+        "cafe",
+        "ginseng",
+        "vitaminas-b"
+      ],
+      "antagonismos": [
+        "5-htp"
+      ],
+      "contraindicaciones": [
+        "Hipertension",
+        "Tiroides hiperactiva"
+      ],
       "notas": "Precursor de dopamina y norepinefrina. Para stress."
     },
     {
       "id": "triptofano",
       "nombre": "L-Triptofano",
-      "sinonimos": ["Tryptophan", "L-Tryptophan"],
+      "sinonimos": [
+        "Tryptophan",
+        "L-Tryptophan"
+      ],
       "familia": "Aminoacido",
       "tipo": "aminoacido",
-      "propiedades": ["Precursor serotonina", "Mejora sueno", "Mejora animo"],
-      "sinergias": ["vitamina-b6", "magnesio", "5-htp"],
-      "antagonismos": ["bcaa"],
-      "contraindicaciones": ["Antidepresivos"],
+      "propiedades": [
+        "Precursor serotonina",
+        "Mejora sueno",
+        "Mejora animo"
+      ],
+      "sinergias": [
+        "vitamina-b6",
+        "magnesio",
+        "5-htp"
+      ],
+      "antagonismos": [
+        "bcaa"
+      ],
+      "contraindicaciones": [
+        "Antidepresivos"
+      ],
       "notas": "Precursor de serotonina y melatonina. Mejor en ayunas."
     },
     {
       "id": "fosfatidilserina",
       "nombre": "Fosfatidilserina",
-      "sinonimos": ["Phosphatidylserine", "PS"],
+      "sinonimos": [
+        "Phosphatidylserine",
+        "PS"
+      ],
       "familia": "Fosfolipido",
       "tipo": "nootropico",
-      "propiedades": ["Funcion cognitiva", "Memoria", "Salud neuronal"],
-      "sinergias": ["omega-3", "ginkgo", "bacopa", "huperzina"],
+      "propiedades": [
+        "Funcion cognitiva",
+        "Memoria",
+        "Salud neuronal"
+      ],
+      "sinergias": [
+        "omega-3",
+        "ginkgo",
+        "bacopa",
+        "huperzina"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Importante para membranas celulares. Para memoria y concentracion."
@@ -558,203 +1279,496 @@
     {
       "id": "huperzina",
       "nombre": "Huperzina A",
-      "sinonimos": ["Huperzine A", "Huperzia serrata"],
+      "sinonimos": [
+        "Huperzine A",
+        "Huperzia serrata"
+      ],
       "familia": "Alcaloide",
       "tipo": "nootropico",
-      "propiedades": ["Inhibidor acetilcolinesterasa", "Memoria", "Neuroprotector"],
-      "sinergias": ["ginkgo", "bacopa", "omega-3", "fosfatidilserina"],
+      "propiedades": [
+        "Inhibidor acetilcolinesterasa",
+        "Memoria",
+        "Neuroprotector"
+      ],
+      "sinergias": [
+        "ginkgo",
+        "bacopa",
+        "omega-3",
+        "fosfatidilserina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Epilepsia", "Problemas cardiacos"],
+      "contraindicaciones": [
+        "Epilepsia",
+        "Problemas cardiacos"
+      ],
       "notas": "Inhibidor natural de acetilcolinesterasa. Para Alzheimer."
     },
     {
       "id": "vinpocetina",
       "nombre": "Vinpocetina",
-      "sinonimos": ["Vinpocetine", "Apovincaminic acid"],
+      "sinonimos": [
+        "Vinpocetine",
+        "Apovincaminic acid"
+      ],
       "familia": "Alcaloide",
       "tipo": "nootropico",
-      "propiedades": ["Vasodilatador cerebral", "Memoria", "Antiinflamatorio cerebral"],
-      "sinergias": ["ginkgo", "bacopa", "omega-3"],
-      "antagonismos": ["anticoagulantes"],
-      "contraindicaciones": ["Embarazo", "Epilepsia", "Anticoagulantes"],
+      "propiedades": [
+        "Vasodilatador cerebral",
+        "Memoria",
+        "Antiinflamatorio cerebral"
+      ],
+      "sinergias": [
+        "ginkgo",
+        "bacopa",
+        "omega-3"
+      ],
+      "antagonismos": [
+        "anticoagulantes"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Epilepsia",
+        "Anticoagulantes"
+      ],
       "notas": "Deriva de vincapervinca. Mejora circulacion cerebral."
     },
     {
       "id": "centella-asiatica",
       "nombre": "Centella Asiatica",
-      "sinonimos": ["Gotu kola", "Indian pennywort", "Centella asiatica"],
+      "sinonimos": [
+        "Gotu kola",
+        "Indian pennywort",
+        "Centella asiatica"
+      ],
       "familia": "Mackinlayaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Neuroprotector", "Cicatrizante", "Antiinflamatorio", "Funcion cognitiva"],
-      "sinergias": ["ginkgo", "bacopa", "omega-3"],
+      "propiedades": [
+        "Neuroprotector",
+        "Cicatrizante",
+        "Antiinflamatorio",
+        "Funcion cognitiva"
+      ],
+      "sinergias": [
+        "ginkgo",
+        "bacopa",
+        "omega-3"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Enfermedad hepatica"],
+      "contraindicaciones": [
+        "Enfermedad hepatica"
+      ],
       "notas": "Usada en ayurveda. Excelente para memoria y circulacion."
     },
     {
       "id": "ginkgo",
       "nombre": "Ginkgo Biloba",
-      "sinonimos": ["Ginkgo biloba", "Fossil tree", "Maidenhair tree"],
+      "sinonimos": [
+        "Ginkgo biloba",
+        "Fossil tree",
+        "Maidenhair tree"
+      ],
       "familia": "Ginkgoaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Neuroprotector", "Vasodilatador cerebral", "Antioxidante", "Memoria"],
-      "sinergias": ["bacopa", "omega-3", "fosfatidilserina", "huperzina"],
-      "antagonismos": ["anticoagulantes", "antiagregantes"],
-      "contraindicaciones": ["Epilepsia", "Anticoagulantes"],
+      "propiedades": [
+        "Neuroprotector",
+        "Vasodilatador cerebral",
+        "Antioxidante",
+        "Memoria"
+      ],
+      "sinergias": [
+        "bacopa",
+        "omega-3",
+        "fosfatidilserina",
+        "huperzina"
+      ],
+      "antagonismos": [
+        "anticoagulantes",
+        "antiagregantes"
+      ],
+      "contraindicaciones": [
+        "Epilepsia",
+        "Anticoagulantes"
+      ],
       "notas": "Mejora circulacion cerebral. Sinergia con bacopa para memoria."
     },
     {
       "id": "bacopa",
       "nombre": "Bacopa",
-      "sinonimos": ["Bacopa monnieri", "Brahmi", "Water hyssop"],
+      "sinonimos": [
+        "Bacopa monnieri",
+        "Brahmi",
+        "Water hyssop"
+      ],
       "familia": "Plantaginaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Nootropico", "Neuroprotector", "Anti-ansiedad", "Memoria"],
-      "sinergias": ["ginkgo", "ashwagandha", "omega-3", "fosfatidilserina"],
+      "propiedades": [
+        "Nootropico",
+        "Neuroprotector",
+        "Anti-ansiedad",
+        "Memoria"
+      ],
+      "sinergias": [
+        "ginkgo",
+        "ashwagandha",
+        "omega-3",
+        "fosfatidilserina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Tiroides"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Tiroides"
+      ],
       "notas": "Efecto butuh 4-6 semanas. Sinergia con ginkgo para cognicion."
     },
     {
       "id": "lion-mane",
       "nombre": "Lion's Mane",
-      "sinonimos": ["Hericium erinaceus", "Yamabushitake", "Melena de leon"],
+      "sinonimos": [
+        "Hericium erinaceus",
+        "Yamabushitake",
+        "Melena de leon"
+      ],
       "familia": "Hericiaceae",
       "tipo": "fungico",
-      "propiedades": ["Neurogenerador", "Inmunoestimulante", "Neuroprotector", "Salud digestiva"],
-      "sinergias": ["omega-3", "ginkgo", "fosfatidilserina"],
+      "propiedades": [
+        "Neurogenerador",
+        "Inmunoestimulante",
+        "Neuroprotector",
+        "Salud digestiva"
+      ],
+      "sinergias": [
+        "omega-3",
+        "ginkgo",
+        "fosfatidilserina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Alergia a hongos"],
+      "contraindicaciones": [
+        "Alergia a hongos"
+      ],
       "notas": "Estimula NGF (factor crecimiento nervioso). Unico hongo nootropico."
     },
     {
       "id": "ashwagandha",
       "nombre": "Ashwagandha",
-      "sinonimos": ["Withania somnifera", "Ginseng indio", "Hierba del sueno"],
+      "sinonimos": [
+        "Withania somnifera",
+        "Ginseng indio",
+        "Hierba del sueno"
+      ],
       "familia": "Solanaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Adaptogeno", "Ansiolitico", "Neuroprotector", "Antiinflamatorio"],
-      "sinergias": ["rhodiola", "bacopa", "omega-3", "magnesio"],
-      "antagonismos": ["cafeina-exceso", "estimulantes-exceso"],
-      "contraindicaciones": ["Embarazo", "Tiroides", "Enfermedad autoinmune"],
+      "propiedades": [
+        "Adaptogeno",
+        "Ansiolitico",
+        "Neuroprotector",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "rhodiola",
+        "bacopa",
+        "omega-3",
+        "magnesio"
+      ],
+      "antagonismos": [
+        "cafeina-exceso",
+        "estimulantes-exceso"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Tiroides",
+        "Enfermedad autoinmune"
+      ],
       "notas": "Sinergia notable con rhodiola para estres cronico."
     },
     {
       "id": "rhodiola",
       "nombre": "Rodiola",
-      "sinonimos": ["Rhodiola rosea", "Golden root", "Artic root"],
+      "sinonimos": [
+        "Rhodiola rosea",
+        "Golden root",
+        "Artic root"
+      ],
       "familia": "Crassulaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Adaptogeno", "Energizante suave", "Neuroprotector", "Anti-fatiga"],
-      "sinergias": ["ashwagandha", "ginseng", "ginkgo", "omega-3"],
-      "antagonismos": ["cafeina-exceso"],
-      "contraindicaciones": ["Embarazo", "Lactancia", "BPAC"],
+      "propiedades": [
+        "Adaptogeno",
+        "Energizante suave",
+        "Neuroprotector",
+        "Anti-fatiga"
+      ],
+      "sinergias": [
+        "ashwagandha",
+        "ginseng",
+        "ginkgo",
+        "omega-3"
+      ],
+      "antagonismos": [
+        "cafeina-exceso"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Lactancia",
+        "BPAC"
+      ],
       "notas": "Efecto estimulante suave diferente a cafeina. Sinergia con ashwagandha."
     },
     {
       "id": "ginseng",
       "nombre": "Ginseng Coreano",
-      "sinonimos": ["Panax ginseng", "Asian ginseng"],
+      "sinonimos": [
+        "Panax ginseng",
+        "Asian ginseng"
+      ],
       "familia": "Araliaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Adaptogeno", "Energizante", "Inmunoestimulante", "Neuroprotector"],
-      "sinergias": ["eleutherococcus", "rhodiola", "vitamina-b", "magnesio"],
-      "antagonismos": ["cafeina-exceso", "estimulantes-exceso", "anticoagulantes"],
-      "contraindicaciones": ["Hipertension", "Embarazo", "Lactancia", "Insuficiencia cardiaca"],
+      "propiedades": [
+        "Adaptogeno",
+        "Energizante",
+        "Inmunoestimulante",
+        "Neuroprotector"
+      ],
+      "sinergias": [
+        "eleutherococcus",
+        "rhodiola",
+        "vitamina-b",
+        "magnesio"
+      ],
+      "antagonismos": [
+        "cafeina-exceso",
+        "estimulantes-exceso",
+        "anticoagulantes"
+      ],
+      "contraindicaciones": [
+        "Hipertension",
+        "Embarazo",
+        "Lactancia",
+        "Insuficiencia cardiaca"
+      ],
       "notas": "Efecto adaptogeno potencia con rhodiola. No combinar con estimulantes."
     },
     {
       "id": "ginseng-siberiano",
       "nombre": "Ginseng Siberiano",
-      "sinonimos": ["Eleutherococcus senticosus", "Eleuthero", "Devil's shrub"],
+      "sinonimos": [
+        "Eleutherococcus senticosus",
+        "Eleuthero",
+        "Devil's shrub"
+      ],
       "familia": "Araliaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Adaptogeno", "Energizante", "Inmunoestimulante", "Anti-fatiga"],
-      "sinergias": ["ginseng", "rhodiola", "ashwagandha"],
-      "antagonismos": ["cafeina-exceso"],
-      "contraindicaciones": ["Hipertension", "Enfermedad cardiaca"],
+      "propiedades": [
+        "Adaptogeno",
+        "Energizante",
+        "Inmunoestimulante",
+        "Anti-fatiga"
+      ],
+      "sinergias": [
+        "ginseng",
+        "rhodiola",
+        "ashwagandha"
+      ],
+      "antagonismos": [
+        "cafeina-exceso"
+      ],
+      "contraindicaciones": [
+        "Hipertension",
+        "Enfermedad cardiaca"
+      ],
       "notas": "Diferente de Panax ginseng. Menos estimulante."
     },
     {
       "id": "schisandra",
       "nombre": "Schisandra",
-      "sinonimos": ["Schisandra chinensis", "Bay berry", "Five flavor berry"],
+      "sinonimos": [
+        "Schisandra chinensis",
+        "Bay berry",
+        "Five flavor berry"
+      ],
       "familia": "Schisandraceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Adaptogeno", "Hepatoprotector", "Neuroprotector", "Anti-fatiga"],
-      "sinergias": ["ashwagandha", "rhodiola", "curcuma"],
+      "propiedades": [
+        "Adaptogeno",
+        "Hepatoprotector",
+        "Neuroprotector",
+        "Anti-fatiga"
+      ],
+      "sinergias": [
+        "ashwagandha",
+        "rhodiola",
+        "curcuma"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Epilepsia", "Ulceras"],
+      "contraindicaciones": [
+        "Epilepsia",
+        "Ulceras"
+      ],
       "notas": "Usada en medicina china. Mejora resistencia fisica y mental."
     },
     {
       "id": "maca",
       "nombre": "Maca",
-      "sinonimos": ["Lepidium meyenii", "Ginseng peruano", "Root of life"],
+      "sinonimos": [
+        "Lepidium meyenii",
+        "Ginseng peruano",
+        "Root of life"
+      ],
       "familia": "Brassicaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Adaptogeno", "Energizante", "Fertilidad", "Balance hormonal"],
-      "sinergias": ["ashwagandha", "cacao", "omega-3", "zinc"],
+      "propiedades": [
+        "Adaptogeno",
+        "Energizante",
+        "Fertilidad",
+        "Balance hormonal"
+      ],
+      "sinergias": [
+        "ashwagandha",
+        "cacao",
+        "omega-3",
+        "zinc"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Cancer hormono-dependiente"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Cancer hormono-dependiente"
+      ],
       "notas": "Excelente para fatiga y balance hormonal. Sinergia con ashwagandha."
     },
     {
       "id": "tulsi",
       "nombre": "Tulsi",
-      "sinonimos": ["Ocimum tenuiflorum", "Holy basil", "Albahaca sagrada"],
+      "sinonimos": [
+        "Ocimum tenuiflorum",
+        "Holy basil",
+        "Albahaca sagrada"
+      ],
       "familia": "Lamiaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Adaptogeno", "Ansiolitico", "Antiinflamatorio", "Inmunoestimulante"],
-      "sinergias": ["ashwagandha", "rhodiola", "ginkgo"],
+      "propiedades": [
+        "Adaptogeno",
+        "Ansiolitico",
+        "Antiinflamatorio",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "ashwagandha",
+        "rhodiola",
+        "ginkgo"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Anticoagulantes"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Anticoagulantes"
+      ],
       "notas": "Reverenciada en ayurveda. Reduce cortisol y estres."
     },
     {
       "id": "curcuma",
       "nombre": "Curcuma",
-      "sinonimos": ["Curcuma longa", "Turmeric", "Azafran de la India"],
+      "sinonimos": [
+        "Curcuma longa",
+        "Turmeric",
+        "Azafran de la India"
+      ],
       "familia": "Zingiberaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antiinflamatorio", "Antioxidante", "Hepatoprotector", "Anticancerigeno"],
-      "sinergias": ["jengibre", "pimienta-negra", "omega-3", "boswellia"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Antioxidante",
+        "Hepatoprotector",
+        "Anticancerigeno"
+      ],
+      "sinergias": [
+        "jengibre",
+        "pimienta-negra",
+        "omega-3",
+        "boswellia"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Calculos biliares", "Obstruccion biliar"],
+      "contraindicaciones": [
+        "Calculos biliares",
+        "Obstruccion biliar"
+      ],
       "notas": "Piperina aumenta biodisponibilidad 2000%. Sinergia con omega-3."
     },
     {
       "id": "boswellia",
       "nombre": "Boswellia",
-      "sinonimos": ["Boswellia serrata", "Indian frankincense", "Shallaki"],
+      "sinonimos": [
+        "Boswellia serrata",
+        "Indian frankincense",
+        "Shallaki"
+      ],
       "familia": "Burseraceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antiinflamatorio", "Antiartritico", "Analgesico", "Salud articular"],
-      "sinergias": ["curcuma", "omega-3", "glucosamina"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Antiartritico",
+        "Analgesico",
+        "Salud articular"
+      ],
+      "sinergias": [
+        "curcuma",
+        "omega-3",
+        "glucosamina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Enfermedad hepatica"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Enfermedad hepatica"
+      ],
       "notas": "Excelente para articulaciones. Inhibe leucotrienos."
     },
     {
       "id": "jengibre",
       "nombre": "Jengibre",
-      "sinonimos": ["Zingiber officinale", "Ginger"],
+      "sinonimos": [
+        "Zingiber officinale",
+        "Ginger"
+      ],
       "familia": "Zingiberaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antiinflamatorio", "Antiemetico", "Digestivo", "Termogenico"],
-      "sinergias": ["curcuma", "pimienta-negra", "canela", "limon"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Antiemetico",
+        "Digestivo",
+        "Termogenico"
+      ],
+      "sinergias": [
+        "curcuma",
+        "pimienta-negra",
+        "canela",
+        "limon"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Cirugia proxima", "Anticoagulantes", "Calculos biliares"],
+      "contraindicaciones": [
+        "Cirugia proxima",
+        "Anticoagulantes",
+        "Calculos biliares"
+      ],
       "notas": "Sinergia con curcuma para inflamacion. Mejora biodisponibilidad."
     },
     {
       "id": "pimienta-negra",
       "nombre": "Pimienta Negra",
-      "sinonimos": ["Piper nigrum", "Black pepper", "Piperina"],
+      "sinonimos": [
+        "Piper nigrum",
+        "Black pepper",
+        "Piperina"
+      ],
       "familia": "Piperaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Bioamplificador", "Digestivo", "Antiinflamatorio", "Antioxidante"],
-      "sinergias": ["curcuma", "resveratrol", "beta-caroteno", "coenzima-q10"],
+      "propiedades": [
+        "Bioamplificador",
+        "Digestivo",
+        "Antiinflamatorio",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "curcuma",
+        "resveratrol",
+        "beta-caroteno",
+        "coenzima-q10"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Piperina aumenta biodisponibilidad 2000%. Esencial con curcuma."
@@ -762,83 +1776,206 @@
     {
       "id": "canela",
       "nombre": "Canela",
-      "sinonimos": ["Cinnamomum verum", "Cinnamon", "Ceylon cinnamon"],
+      "sinonimos": [
+        "Cinnamomum verum",
+        "Cinnamon",
+        "Ceylon cinnamon"
+      ],
       "familia": "Lauraceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antidiabetico", "Antiinflamatorio", "Antimicrobiano", "Metabolismo glucosa"],
-      "sinergias": ["curcuma", "jengibre", "cromo", "berberina"],
+      "propiedades": [
+        "Antidiabetico",
+        "Antiinflamatorio",
+        "Antimicrobiano",
+        "Metabolismo glucosa"
+      ],
+      "sinergias": [
+        "curcuma",
+        "jengibre",
+        "cromo",
+        "berberina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Hepatotoxicidad en dosis altas"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Hepatotoxicidad en dosis altas"
+      ],
       "notas": "Ceylon (no Cassia) es mas segura. Sinergia con cromo para diabetes."
     },
     {
       "id": "berberina",
       "nombre": "Berberina",
-      "sinonimos": ["Berberine", "Huang Lian"],
+      "sinonimos": [
+        "Berberine",
+        "Huang Lian"
+      ],
       "familia": "Berberidaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antidiabetico", "Antimicrobiano", "Antiinflamatorio", "Cardioprotector"],
-      "sinergias": ["canela", "curcuma", "cromo", "omega-3"],
+      "propiedades": [
+        "Antidiabetico",
+        "Antimicrobiano",
+        "Antiinflamatorio",
+        "Cardioprotector"
+      ],
+      "sinergias": [
+        "canela",
+        "curcuma",
+        "cromo",
+        "omega-3"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Bilirrubina elevada"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Bilirrubina elevada"
+      ],
       "notas": "Efecto similar a metformina. Sinergia con canela potencia efecto."
     },
     {
       "id": "cacao",
       "nombre": "Cacao",
-      "sinonimos": ["Theobroma cacao", "Cocoa", "Chocolate negro"],
+      "sinonimos": [
+        "Theobroma cacao",
+        "Cocoa",
+        "Chocolate negro"
+      ],
       "familia": "Malvaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antioxidante", "Neuroprotector", "Vasodilatador", "Animo positivo"],
-      "sinergias": ["maca", "l-teanina", "omega-3", "magnesio"],
+      "propiedades": [
+        "Antioxidante",
+        "Neuroprotector",
+        "Vasodilatador",
+        "Animo positivo"
+      ],
+      "sinergias": [
+        "maca",
+        "l-teanina",
+        "omega-3",
+        "magnesio"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Cafe excesivo"],
+      "contraindicaciones": [
+        "Cafe excesivo"
+      ],
       "notas": "Contiene teobromina. Sinergia con L-teanina para focus."
     },
     {
       "id": "cafe",
       "nombre": "Cafeina",
-      "sinonimos": ["Coffea arabica", "Caffeine", "Guarana"],
+      "sinonimos": [
+        "Coffea arabica",
+        "Caffeine",
+        "Guarana"
+      ],
       "familia": "Rubiaceae",
       "tipo": "psicoestimulante",
-      "propiedades": ["Estimulante CNS", "Termogenico", "Metabolismo", "Concentracion"],
-      "sinergias": ["l-teanina", "guarana", "green-tea"],
-      "antagonismos": ["hierro", "calcio", "magnesio", "valeriana"],
-      "contraindicaciones": ["Ansiedad", "Insomnio", "Embarazo", "Arritmias"],
+      "propiedades": [
+        "Estimulante CNS",
+        "Termogenico",
+        "Metabolismo",
+        "Concentracion"
+      ],
+      "sinergias": [
+        "l-teanina",
+        "guarana",
+        "green-tea"
+      ],
+      "antagonismos": [
+        "hierro",
+        "calcio",
+        "magnesio",
+        "valeriana"
+      ],
+      "contraindicaciones": [
+        "Ansiedad",
+        "Insomnio",
+        "Embarazo",
+        "Arritmias"
+      ],
       "notas": "L-teanina neutraliza efectos negativos de cafeina. Sinergia ideal."
     },
     {
       "id": "guarana",
       "nombre": "Guarana",
-      "sinonimos": ["Paullinia cupana", "Guarana seed"],
+      "sinonimos": [
+        "Paullinia cupana",
+        "Guarana seed"
+      ],
       "familia": "Sapindaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Estimulante", "Termogenico", "Concentracion", "Antioxidante"],
-      "sinergias": ["cafe", "l-teanina", "green-tea"],
-      "antagonismos": ["magnesio", "valeriana"],
-      "contraindicaciones": ["Ansiedad", "Insomnio", "Presion alta"],
+      "propiedades": [
+        "Estimulante",
+        "Termogenico",
+        "Concentracion",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "cafe",
+        "l-teanina",
+        "green-tea"
+      ],
+      "antagonismos": [
+        "magnesio",
+        "valeriana"
+      ],
+      "contraindicaciones": [
+        "Ansiedad",
+        "Insomnio",
+        "Presion alta"
+      ],
       "notas": "Cafeina natural de liberacion gradual. Mas suave que cafe."
     },
     {
       "id": "green-tea",
       "nombre": "Te Verde",
-      "sinonimos": ["Camellia sinensis", "Green tea extract", "EGCG"],
+      "sinonimos": [
+        "Camellia sinensis",
+        "Green tea extract",
+        "EGCG"
+      ],
       "familia": "Theaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antioxidante", "Termogenico", "Neuroprotector", "Salud cardiaca"],
-      "sinergias": ["cafe", "l-teanina", "resveratrol"],
-      "antagonismos": ["hierro", "acido-folico"],
-      "contraindicaciones": ["Ansiedad", "Enfermedad hepatica"],
+      "propiedades": [
+        "Antioxidante",
+        "Termogenico",
+        "Neuroprotector",
+        "Salud cardiaca"
+      ],
+      "sinergias": [
+        "cafe",
+        "l-teanina",
+        "resveratrol"
+      ],
+      "antagonismos": [
+        "hierro",
+        "acido-folico"
+      ],
+      "contraindicaciones": [
+        "Ansiedad",
+        "Enfermedad hepatica"
+      ],
       "notas": "Contiene L-teanina natural. EGCG es componente activo principal."
     },
     {
       "id": "cardamomo",
       "nombre": "Cardamomo",
-      "sinonimos": ["Elettaria cardamomum", "Cardamom"],
+      "sinonimos": [
+        "Elettaria cardamomum",
+        "Cardamom"
+      ],
       "familia": "Zingiberaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Digestivo", "Carminativo", "Antimicrobiano", "Halitosis"],
-      "sinergias": ["jengibre", "curcuma", "canela", "hinojo"],
+      "propiedades": [
+        "Digestivo",
+        "Carminativo",
+        "Antimicrobiano",
+        "Halitosis"
+      ],
+      "sinergias": [
+        "jengibre",
+        "curcuma",
+        "canela",
+        "hinojo"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Mejora digestiva. Sinergia con curcuma para SII."
@@ -846,215 +1983,520 @@
     {
       "id": "hinojo",
       "nombre": "Hinojo",
-      "sinonimos": ["Foeniculum vulgare", "Fennel"],
+      "sinonimos": [
+        "Foeniculum vulgare",
+        "Fennel"
+      ],
       "familia": "Apiaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Digestivo", "Carminativo", "Antiinflamatorio", "Lactancia"],
-      "sinergias": ["jengibre", "anís", "menta"],
+      "propiedades": [
+        "Digestivo",
+        "Carminativo",
+        "Antiinflamatorio",
+        "Lactancia"
+      ],
+      "sinergias": [
+        "jengibre",
+        "anís",
+        "menta"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Cancer hormono-dependiente"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Cancer hormono-dependiente"
+      ],
       "notas": "Excelente para digestion y gases. Fitoestrogeno suave."
     },
     {
       "id": "menta",
       "nombre": "Menta",
-      "sinonimos": ["Mentha piperita", "Peppermint"],
+      "sinonimos": [
+        "Mentha piperita",
+        "Peppermint"
+      ],
       "familia": "Lamiaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Digestivo", "Antiinflamatorio", "Analgésico", "Antimicrobiano"],
-      "sinergias": ["jengibre", "hinojo", "curcuma"],
-      "antagonismos": ["reflujo-exceso"],
-      "contraindicaciones": ["Reflujo severo", "Enfermedad vesicula"],
+      "propiedades": [
+        "Digestivo",
+        "Antiinflamatorio",
+        "Analgésico",
+        "Antimicrobiano"
+      ],
+      "sinergias": [
+        "jengibre",
+        "hinojo",
+        "curcuma"
+      ],
+      "antagonismos": [
+        "reflujo-exceso"
+      ],
+      "contraindicaciones": [
+        "Reflujo severo",
+        "Enfermedad vesicula"
+      ],
       "notas": "Aceite de menta para SII. Relaja musculos intestinales."
     },
     {
       "id": "manzanilla",
       "nombre": "Manzanilla",
-      "sinonimos": ["Matricaria chamomilla", "Chamomile", "Camomila"],
+      "sinonimos": [
+        "Matricaria chamomilla",
+        "Chamomile",
+        "Camomila"
+      ],
       "familia": "Asteraceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Sedante", "Digestivo", "Antiinflamatorio", "Antiespasmodico"],
-      "sinergias": ["valeriana", "passiflora", "melatonina"],
+      "propiedades": [
+        "Sedante",
+        "Digestivo",
+        "Antiinflamatorio",
+        "Antiespasmodico"
+      ],
+      "sinergias": [
+        "valeriana",
+        "passiflora",
+        "melatonina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Alergia a margaritas", "Warfarina"],
+      "contraindicaciones": [
+        "Alergia a margaritas",
+        "Warfarina"
+      ],
       "notas": "Excelente para ansiedad y digestion. Apigenina es componente activo."
     },
     {
       "id": "lavanda",
       "nombre": "Lavanda",
-      "sinonimos": ["Lavandula angustifolia", "Lavender"],
+      "sinonimos": [
+        "Lavandula angustifolia",
+        "Lavender"
+      ],
       "familia": "Lamiaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Sedante", "Ansiolitico", "Antidepressivo", "Analgésico"],
-      "sinergias": ["valeriana", "passiflora", "melatonina"],
-      "antagonismos": ["hierro"],
-      "contraindicaciones": ["Embarazo", "Cirugia"],
+      "propiedades": [
+        "Sedante",
+        "Ansiolitico",
+        "Antidepressivo",
+        "Analgésico"
+      ],
+      "sinergias": [
+        "valeriana",
+        "passiflora",
+        "melatonina"
+      ],
+      "antagonismos": [
+        "hierro"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Cirugia"
+      ],
       "notas": "Aceite esencial para ansiedad. Linalool tiene efectos ansioliticos."
     },
     {
       "id": "valeriana",
       "nombre": "Valeriana",
-      "sinonimos": ["Valeriana officinalis", "Valerian root"],
+      "sinonimos": [
+        "Valeriana officinalis",
+        "Valerian root"
+      ],
       "familia": "Caprifoliaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Sedante", "Ansiolitico natural", "Hipnotico suave", "Relajante muscular"],
-      "sinergias": ["passiflora", "lupulo", "melatonina", "magnesio", "gaba"],
-      "antagonismos": ["alcohol", "benzodiacepinas"],
-      "contraindicaciones": ["Embarazo", "Lactancia"],
+      "propiedades": [
+        "Sedante",
+        "Ansiolitico natural",
+        "Hipnotico suave",
+        "Relajante muscular"
+      ],
+      "sinergias": [
+        "passiflora",
+        "lupulo",
+        "melatonina",
+        "magnesio",
+        "gaba"
+      ],
+      "antagonismos": [
+        "alcohol",
+        "benzodiacepinas"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Lactancia"
+      ],
       "notas": "Sinergia notable con pasiflora para insomnio. Efecto potenciado con melatonina."
     },
     {
       "id": "passiflora",
       "nombre": "Pasiflora",
-      "sinonimos": ["Passiflora incarnata", "Passion flower", "Flor de la pasion"],
+      "sinonimos": [
+        "Passiflora incarnata",
+        "Passion flower",
+        "Flor de la pasion"
+      ],
       "familia": "Passifloraceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Sedante", "Ansiolitico", "Antiespasmodico"],
-      "sinergias": ["valeriana", "lupulo", "melatonina", "manzanilla"],
-      "antagonismos": ["cafeina-exceso"],
-      "contraindicaciones": ["Embarazo", "Lactancia"],
+      "propiedades": [
+        "Sedante",
+        "Ansiolitico",
+        "Antiespasmodico"
+      ],
+      "sinergias": [
+        "valeriana",
+        "lupulo",
+        "melatonina",
+        "manzanilla"
+      ],
+      "antagonismos": [
+        "cafeina-exceso"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Lactancia"
+      ],
       "notas": "Sinergia clasica con valeriana para ansiedad."
     },
     {
       "id": "lupulo",
       "nombre": "Lupulo",
-      "sinonimos": ["Humulus lupulus", "Hops"],
+      "sinonimos": [
+        "Humulus lupulus",
+        "Hops"
+      ],
       "familia": "Cannabaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Sedante", "Ansiolitico", "Antiinflamatorio"],
-      "sinergias": ["valeriana", "passiflora", "melatonina", "magnesio"],
-      "antagonismos": ["cafeina-exceso"],
-      "contraindicaciones": ["Depresion", "Cancer hormono-dependiente"],
+      "propiedades": [
+        "Sedante",
+        "Ansiolitico",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "valeriana",
+        "passiflora",
+        "melatonina",
+        "magnesio"
+      ],
+      "antagonismos": [
+        "cafeina-exceso"
+      ],
+      "contraindicaciones": [
+        "Depresion",
+        "Cancer hormono-dependiente"
+      ],
       "notas": "Sinergia clasica con valeriana para insomnio."
     },
     {
       "id": "melatonina",
       "nombre": "Melatonina",
-      "sinonimos": ["5-Methoxytryptamine", "Sleep hormone"],
+      "sinonimos": [
+        "5-Methoxytryptamine",
+        "Sleep hormone"
+      ],
       "familia": "Hormona",
       "tipo": "hormonal",
-      "propiedades": ["Regulador del sueno", "Antioxidante", "Inmunoestimulante"],
-      "sinergias": ["valeriana", "passiflora", "magnesio", "gaba"],
-      "antagonismos": ["cafeina", "luz-azul"],
-      "contraindicaciones": ["Embarazo", "Enfermedades autoinmunes"],
+      "propiedades": [
+        "Regulador del sueno",
+        "Antioxidante",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "valeriana",
+        "passiflora",
+        "magnesio",
+        "gaba"
+      ],
+      "antagonismos": [
+        "cafeina",
+        "luz-azul"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Enfermedades autoinmunes"
+      ],
       "notas": "Dosis bajas (0.3-1mg) son mas fisiologicas. Sinergia con magnesio."
     },
     {
       "id": "equinacea",
       "nombre": "Equinacea",
-      "sinonimos": ["Echinacea purpurea", "Echinacea angustifolia"],
+      "sinonimos": [
+        "Echinacea purpurea",
+        "Echinacea angustifolia"
+      ],
       "familia": "Asteraceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Inmunoestimulante", "Antiinflamatorio", "Antiviral"],
-      "sinergias": ["zinc", "vitamina-c", "propoleo", "astragalo", "sauco"],
-      "antagonismos": ["inmunosupresores", "corticosteroides", "ciclosporina"],
-      "contraindicaciones": ["Enfermedades autoinmunes", "Embarazo primer trimestre"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Antiinflamatorio",
+        "Antiviral"
+      ],
+      "sinergias": [
+        "zinc",
+        "vitamina-c",
+        "propoleo",
+        "astragalo",
+        "sauco"
+      ],
+      "antagonismos": [
+        "inmunosupresores",
+        "corticosteroides",
+        "ciclosporina"
+      ],
+      "contraindicaciones": [
+        "Enfermedades autoinmunes",
+        "Embarazo primer trimestre"
+      ],
       "notas": "No usar mas de 8 semanas continuas. Efecto sinergico con zinc."
     },
     {
       "id": "propoleo",
       "nombre": "Propoleo",
-      "sinonimos": ["Propolis", "Bee glue"],
+      "sinonimos": [
+        "Propolis",
+        "Bee glue"
+      ],
       "familia": "Apidae",
       "tipo": "apiterapico",
-      "propiedades": ["Antimicrobiano", "Inmunoestimulante", "Antiinflamatorio", "Anestesico"],
-      "sinergias": ["equinacea", "zinc", "vitamina-c", "sauco"],
+      "propiedades": [
+        "Antimicrobiano",
+        "Inmunoestimulante",
+        "Antiinflamatorio",
+        "Anestesico"
+      ],
+      "sinergias": [
+        "equinacea",
+        "zinc",
+        "vitamina-c",
+        "sauco"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Alergia a productos apiocol", "Asma bronquial"],
+      "contraindicaciones": [
+        "Alergia a productos apiocol",
+        "Asma bronquial"
+      ],
       "notas": "Sinergia notable con equinacea en infecciones respiratorias."
     },
     {
       "id": "sauco",
       "nombre": "Sauco",
-      "sinonimos": ["Sambucus nigra", "Elderberry", "Black elder"],
+      "sinonimos": [
+        "Sambucus nigra",
+        "Elderberry",
+        "Black elder"
+      ],
       "familia": "Adoxaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antiviral", "Inmunoestimulante", "Antioxidante", "Diaforetico"],
-      "sinergias": ["equinacea", "propoleo", "vitamina-c", "zinc"],
+      "propiedades": [
+        "Antiviral",
+        "Inmunoestimulante",
+        "Antioxidante",
+        "Diaforetico"
+      ],
+      "sinergias": [
+        "equinacea",
+        "propoleo",
+        "vitamina-c",
+        "zinc"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Lactancia"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Lactancia"
+      ],
       "notas": "Sinergia clasica con equinacea para infecciones respiratorias virales."
     },
     {
       "id": "astragalo",
       "nombre": "Astragalo",
-      "sinonimos": ["Astragalus membranaceus", "Huang Qi", "Milk vetch"],
+      "sinonimos": [
+        "Astragalus membranaceus",
+        "Huang Qi",
+        "Milk vetch"
+      ],
       "familia": "Fabaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Inmunoestimulante", "Adaptogeno", "Cardioprotector", "Hepatoprotector"],
-      "sinergias": ["equinacea", "reishi", "shiitake", "licorice"],
-      "antagonismos": ["inmunosupresores"],
-      "contraindicaciones": ["Embarazo", "Fiebre"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Adaptogeno",
+        "Cardioprotector",
+        "Hepatoprotector"
+      ],
+      "sinergias": [
+        "equinacea",
+        "reishi",
+        "shiitake",
+        "licorice"
+      ],
+      "antagonismos": [
+        "inmunosupresores"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Fiebre"
+      ],
       "notas": "Tonico inmune ideal para prevenir infecciones. Sinergia con reishi."
     },
     {
       "id": "reishi",
       "nombre": "Reishi",
-      "sinonimos": ["Ganoderma lucidum", "Lingzhi", "Champignon immortalite"],
+      "sinonimos": [
+        "Ganoderma lucidum",
+        "Lingzhi",
+        "Champignon immortalite"
+      ],
       "familia": "Ganodermataceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Inmunoestimulante", "Adaptogeno", "Cardioprotector", "Antiinflamatorio"],
-      "sinergias": ["astragalo", "shiitake", "equinacea", "zinc"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Adaptogeno",
+        "Cardioprotector",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "astragalo",
+        "shiitake",
+        "equinacea",
+        "zinc"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Lactancia", "Cirugia proxima"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Lactancia",
+        "Cirugia proxima"
+      ],
       "notas": "Rey de los adaptogenos. Sinergia potente con astragalo."
     },
     {
       "id": "shiitake",
       "nombre": "Shiitake",
-      "sinonimos": ["Lentinula edodes", "Oak mushroom"],
+      "sinonimos": [
+        "Lentinula edodes",
+        "Oak mushroom"
+      ],
       "familia": "Omphalotaceae",
       "tipo": "fungico",
-      "propiedades": ["Inmunoestimulante", "Antiviral", "Anticancerigeno", "Colesterol bajo"],
-      "sinergias": ["reishi", "astragalo", "zinc", "vitamina-d"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Antiviral",
+        "Anticancerigeno",
+        "Colesterol bajo"
+      ],
+      "sinergias": [
+        "reishi",
+        "astragalo",
+        "zinc",
+        "vitamina-d"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Alergia a hongos"],
+      "contraindicaciones": [
+        "Alergia a hongos"
+      ],
       "notas": "Rico en lentinano. Sinergia con reishi para sistema inmune."
     },
     {
       "id": "maitake",
       "nombre": "Maitake",
-      "sinonimos": ["Grifola frondosa", "Dancing mushroom", "Hen of the woods"],
+      "sinonimos": [
+        "Grifola frondosa",
+        "Dancing mushroom",
+        "Hen of the woods"
+      ],
       "familia": "Meripilaceae",
       "tipo": "fungico",
-      "propiedades": ["Inmunoestimulante", "Anticancerigeno", "Antiviral", "Antidiabetico"],
-      "sinergias": ["reishi", "shiitake", "zinc", "vitamina-c"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Anticancerigeno",
+        "Antiviral",
+        "Antidiabetico"
+      ],
+      "sinergias": [
+        "reishi",
+        "shiitake",
+        "zinc",
+        "vitamina-c"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Alergia a hongos"],
+      "contraindicaciones": [
+        "Alergia a hongos"
+      ],
       "notas": "Beta-glucanos potentisimos. Sinergia con otros hongos."
     },
     {
       "id": "cordyceps",
       "nombre": "Cordyceps",
-      "sinonimos": ["Cordyceps sinensis", "Cordyceps militaris", "Caterpillar fungus"],
+      "sinonimos": [
+        "Cordyceps sinensis",
+        "Cordyceps militaris",
+        "Caterpillar fungus"
+      ],
       "familia": "Ophiocordycipitaceae",
       "tipo": "fungico",
-      "propiedades": ["Energizante", "Inmunoestimulante", "Antifatiga", "Salud pulmonar"],
-      "sinergias": ["reishi", "ginseng", "rhodiola"],
+      "propiedades": [
+        "Energizante",
+        "Inmunoestimulante",
+        "Antifatiga",
+        "Salud pulmonar"
+      ],
+      "sinergias": [
+        "reishi",
+        "ginseng",
+        "rhodiola"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Enfermedad autoimmune", "Enfermedad renal"],
+      "contraindicaciones": [
+        "Enfermedad autoimmune",
+        "Enfermedad renal"
+      ],
       "notas": "Excelente para rendimiento atletico y salud pulmonar."
     },
     {
       "id": "andrografis",
       "nombre": "Andrografis",
-      "sinonimos": ["Andrographis paniculata", "King of bitters", "Kalamegh"],
+      "sinonimos": [
+        "Andrographis paniculata",
+        "King of bitters",
+        "Kalamegh"
+      ],
       "familia": "Acanthaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Inmunoestimulante", "Antiviral", "Antiinflamatorio", "Hepatoprotector"],
-      "sinergias": ["equinacea", "sauco", "zinc", "vitamina-c"],
+      "propiedades": [
+        "Inmunoestimulante",
+        "Antiviral",
+        "Antiinflamatorio",
+        "Hepatoprotector"
+      ],
+      "sinergias": [
+        "equinacea",
+        "sauco",
+        "zinc",
+        "vitamina-c"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Enfermedad autoimmune"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Enfermedad autoimmune"
+      ],
       "notas": "Muy efectivo para infecciones respiratorias superiores."
     },
     {
       "id": "acerola",
       "nombre": "Acerola",
-      "sinonimos": ["Malpighia emarginata", "West Indian cherry", "Barbados cherry"],
+      "sinonimos": [
+        "Malpighia emarginata",
+        "West Indian cherry",
+        "Barbados cherry"
+      ],
       "familia": "Malpighiaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Vitamina C natural", "Antioxidante", "Inmunoestimulante", "Energizante"],
-      "sinergias": ["vitamina-c", "quercetina", "bioflavonoides"],
+      "propiedades": [
+        "Vitamina C natural",
+        "Antioxidante",
+        "Inmunoestimulante",
+        "Energizante"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "quercetina",
+        "bioflavonoides"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Fruta con mayor contenido de vitamina C. Mejor que sintética."
@@ -1062,35 +2504,78 @@
     {
       "id": "espirulina",
       "nombre": "Espirulina",
-      "sinonimos": ["Spirulina platensis", "Spirulina maxima", "Blue-green algae"],
+      "sinonimos": [
+        "Spirulina platensis",
+        "Spirulina maxima",
+        "Blue-green algae"
+      ],
       "familia": "Cyanobacteria",
       "tipo": "superfood",
-      "propiedades": ["Proteina completa", "Antioxidante", "Inmunoestimulante", "Detox"],
-      "sinergias": ["clorela", "vitamina-c", "zinc"],
+      "propiedades": [
+        "Proteina completa",
+        "Antioxidante",
+        "Inmunoestimulante",
+        "Detox"
+      ],
+      "sinergias": [
+        "clorela",
+        "vitamina-c",
+        "zinc"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Fenilcetonuria", "Enfermedad autoimmune"],
+      "contraindicaciones": [
+        "Fenilcetonuria",
+        "Enfermedad autoimmune"
+      ],
       "notas": "Rica en proteins y hierro. 60% proteina."
     },
     {
       "id": "clorela",
       "nombre": "Clorela",
-      "sinonimos": ["Chlorella vulgaris", "Chlorella pyrenoidosa", "Green algae"],
+      "sinonimos": [
+        "Chlorella vulgaris",
+        "Chlorella pyrenoidosa",
+        "Green algae"
+      ],
       "familia": "Chlorellaceae",
       "tipo": "superfood",
-      "propiedades": ["Detox metales pesados", "Inmunoestimulante", "Antioxidante", "Salud intestinal"],
-      "sinergias": ["espirulina", "nac", "vitamina-c"],
+      "propiedades": [
+        "Detox metales pesados",
+        "Inmunoestimulante",
+        "Antioxidante",
+        "Salud intestinal"
+      ],
+      "sinergias": [
+        "espirulina",
+        "nac",
+        "vitamina-c"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Enfermedad autoimmune"],
+      "contraindicaciones": [
+        "Enfermedad autoimmune"
+      ],
       "notas": "Excelente para detoxificacion. Contiene factor de crecimiento."
     },
     {
       "id": "chlorella-p",
       "nombre": "Clorofila",
-      "sinonimos": ["Chlorophyll", "Chlorophyllin"],
+      "sinonimos": [
+        "Chlorophyll",
+        "Chlorophyllin"
+      ],
       "familia": "Pigmento",
       "tipo": "nutriente",
-      "propiedades": ["Desodorante natural", "Antioxidante", "Detox", "Cicatrizante"],
-      "sinergias": ["espirulina", "clorela", "nac"],
+      "propiedades": [
+        "Desodorante natural",
+        "Antioxidante",
+        "Detox",
+        "Cicatrizante"
+      ],
+      "sinergias": [
+        "espirulina",
+        "clorela",
+        "nac"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Estructura similar a hemoglobina. Buena para mal aliento."
@@ -1098,11 +2583,25 @@
     {
       "id": "colageno",
       "nombre": "Colageno",
-      "sinonimos": ["Collagen", "Collagen peptides", "Hydrolyzed collagen"],
+      "sinonimos": [
+        "Collagen",
+        "Collagen peptides",
+        "Hydrolyzed collagen"
+      ],
       "familia": "Proteina",
       "tipo": "nutriente",
-      "propiedades": ["Salud articular", "Salud piel", "Salud intestinal", "Salud osea"],
-      "sinergias": ["vitamina-c", "hyaluronic-acid", "biotina", "zinc"],
+      "propiedades": [
+        "Salud articular",
+        "Salud piel",
+        "Salud intestinal",
+        "Salud osea"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "hyaluronic-acid",
+        "biotina",
+        "zinc"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Tipos I, II y III para diferentes tejidos. Peptidos pequenos mejor."
@@ -1110,11 +2609,23 @@
     {
       "id": "hyaluronic-acid",
       "nombre": "Acido Hialuronico",
-      "sinonimos": ["Hyaluronic acid", "HA", "Sodium hyaluronate"],
+      "sinonimos": [
+        "Hyaluronic acid",
+        "HA",
+        "Sodium hyaluronate"
+      ],
       "familia": "Glicosaminoglicano",
       "tipo": "nutriente",
-      "propiedades": ["Hidratacion piel", "Salud articular", "Salud ocular"],
-      "sinergias": ["colageno", "vitamina-c", "glucosamina"],
+      "propiedades": [
+        "Hidratacion piel",
+        "Salud articular",
+        "Salud ocular"
+      ],
+      "sinergias": [
+        "colageno",
+        "vitamina-c",
+        "glucosamina"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Retiene 1000x su peso en agua. Para piel y articulaciones."
@@ -1122,35 +2633,74 @@
     {
       "id": "glucosamina",
       "nombre": "Glucosamina",
-      "sinonimos": ["Glucosamine sulfate", "Glucosamine HCl", "Glucosamine"],
+      "sinonimos": [
+        "Glucosamine sulfate",
+        "Glucosamine HCl",
+        "Glucosamine"
+      ],
       "familia": "Aminoazucar",
       "tipo": "nutriente",
-      "propiedades": ["Salud articular", "Cartilago", "Antiinflamatorio"],
-      "sinergias": ["condroitina", "msm", "colageno"],
+      "propiedades": [
+        "Salud articular",
+        "Cartilago",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "condroitina",
+        "msm",
+        "colageno"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Alergia a mariscos"],
+      "contraindicaciones": [
+        "Alergia a mariscos"
+      ],
       "notas": "Sulfato es mejor que HCl. Para osteoartritis."
     },
     {
       "id": "condroitina",
       "nombre": "Condroitina",
-      "sinonimos": ["Chondroitin sulfate", "Chondroitin"],
+      "sinonimos": [
+        "Chondroitin sulfate",
+        "Chondroitin"
+      ],
       "familia": "Glicosaminoglicano",
       "tipo": "nutriente",
-      "propiedades": ["Salud articular", "Cartilago", "Antiinflamatorio"],
-      "sinergias": ["glucosamina", "msm", "colageno"],
+      "propiedades": [
+        "Salud articular",
+        "Cartilago",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "glucosamina",
+        "msm",
+        "colageno"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Enfermedad cardiaca"],
+      "contraindicaciones": [
+        "Enfermedad cardiaca"
+      ],
       "notas": "Sinergia con glucosamina para articulaciones."
     },
     {
       "id": "msm",
       "nombre": "MSM",
-      "sinonimos": ["Methylsulfonylmethane", "Methyl sulfone"],
+      "sinonimos": [
+        "Methylsulfonylmethane",
+        "Methyl sulfone"
+      ],
       "familia": "Azufre organico",
       "tipo": "nutriente",
-      "propiedades": ["Antiinflamatorio", "Salud articular", "Salud piel", "Detox"],
-      "sinergias": ["glucosamina", "condroitina", "colageno"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Salud articular",
+        "Salud piel",
+        "Detox"
+      ],
+      "sinergias": [
+        "glucosamina",
+        "condroitina",
+        "colageno"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Fuente de azufre biodisponible. Para dolor articular."
@@ -1158,11 +2708,24 @@
     {
       "id": "quercetina",
       "nombre": "Quercetina",
-      "sinonimos": ["Quercetin", "Bioflavonoide"],
+      "sinonimos": [
+        "Quercetin",
+        "Bioflavonoide"
+      ],
       "familia": "Flavonoide",
       "tipo": "flavonoide",
-      "propiedades": ["Antioxidante", "Antiinflamatorio", "Antiviral", "Inmunoestimulante"],
-      "sinergias": ["vitamina-c", "zinc", "resveratrol", "bromelaina"],
+      "propiedades": [
+        "Antioxidante",
+        "Antiinflamatorio",
+        "Antiviral",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "vitamina-c",
+        "zinc",
+        "resveratrol",
+        "bromelaina"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Sinergia potente con vitamina C y zinc para sistema inmune."
@@ -1170,23 +2733,50 @@
     {
       "id": "resveratrol",
       "nombre": "Resveratrol",
-      "sinonimos": ["Trans-resveratrol", "Polygonum cuspidatum"],
+      "sinonimos": [
+        "Trans-resveratrol",
+        "Polygonum cuspidatum"
+      ],
       "familia": "Polifenol",
       "tipo": "polifenol",
-      "propiedades": ["Antioxidante", "Antiaging", "Cardioprotector", "Antiinflamatorio"],
-      "sinergias": ["curcuma", "quercetina", "pimienta-negra", "omega-3"],
+      "propiedades": [
+        "Antioxidante",
+        "Antiaging",
+        "Cardioprotector",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "curcuma",
+        "quercetina",
+        "pimienta-negra",
+        "omega-3"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Cirugia proxima"],
+      "contraindicaciones": [
+        "Cirugia proxima"
+      ],
       "notas": "Biodisponibilidad baja. Sinergia con quercetina y piperina."
     },
     {
       "id": "pQQ",
       "nombre": "PQQ",
-      "sinonimos": ["Pyrroloquinoline quinone", "Methoxatin"],
+      "sinonimos": [
+        "Pyrroloquinoline quinone",
+        "Methoxatin"
+      ],
       "familia": "Coenzima",
       "tipo": "antioxidante",
-      "propiedades": ["Mitocondrogenesis", "Neuroprotector", "Antioxidante", "Antiaging"],
-      "sinergias": ["coenzima-q10", "nac", "alfa-lipoico"],
+      "propiedades": [
+        "Mitocondrogenesis",
+        "Neuroprotector",
+        "Antioxidante",
+        "Antiaging"
+      ],
+      "sinergias": [
+        "coenzima-q10",
+        "nac",
+        "alfa-lipoico"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Estimula creacion de nuevas mitocondrias. Unico."
@@ -1194,11 +2784,23 @@
     {
       "id": "astaxantina",
       "nombre": "Astaxantina",
-      "sinonimos": ["Astaxanthin", "Haematococcus pluvialis"],
+      "sinonimos": [
+        "Astaxanthin",
+        "Haematococcus pluvialis"
+      ],
       "familia": "Carotenoide",
       "tipo": "antioxidante",
-      "propiedades": ["Antioxidante potentisimo", "Salud piel", "Salud ocular", "Antiinflamatorio"],
-      "sinergias": ["omega-3", "luteina", "zeaxantina"],
+      "propiedades": [
+        "Antioxidante potentisimo",
+        "Salud piel",
+        "Salud ocular",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "omega-3",
+        "luteina",
+        "zeaxantina"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "10x mas potente que otros carotenoides. Para piel y ojos."
@@ -1206,11 +2808,23 @@
     {
       "id": "luteina",
       "nombre": "Luteina",
-      "sinonimos": ["Lutein", "Xanthophyll"],
+      "sinonimos": [
+        "Lutein",
+        "Xanthophyll"
+      ],
       "familia": "Carotenoide",
       "tipo": "nutriente",
-      "propiedades": ["Salud ocular", "Filtro azul", "Antioxidante", "Salud cognitiva"],
-      "sinergias": ["zeaxantina", "astaxantina", "omega-3"],
+      "propiedades": [
+        "Salud ocular",
+        "Filtro azul",
+        "Antioxidante",
+        "Salud cognitiva"
+      ],
+      "sinergias": [
+        "zeaxantina",
+        "astaxantina",
+        "omega-3"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Importante para macular. 10-20mg/dia."
@@ -1218,11 +2832,22 @@
     {
       "id": "zeaxantina",
       "nombre": "Zeaxantina",
-      "sinonimos": ["Zeaxanthin", "Mesozeaxanthin"],
+      "sinonimos": [
+        "Zeaxanthin",
+        "Mesozeaxanthin"
+      ],
       "familia": "Carotenoide",
       "tipo": "nutriente",
-      "propiedades": ["Salud ocular", "Filtro azul", "Antioxidante"],
-      "sinergias": ["luteina", "astaxantina", "omega-3"],
+      "propiedades": [
+        "Salud ocular",
+        "Filtro azul",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "luteina",
+        "astaxantina",
+        "omega-3"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Combinada con luteina protege macular. Ratio 10:2 luteina:zeaxantina."
@@ -1230,11 +2855,23 @@
     {
       "id": "licopeno",
       "nombre": "Licopeno",
-      "sinonimos": ["Lycopene", "Cyclopentane"],
+      "sinonimos": [
+        "Lycopene",
+        "Cyclopentane"
+      ],
       "familia": "Carotenoide",
       "tipo": "antioxidante",
-      "propiedades": ["Salud prostatica", "Antioxidante", "Salud cardiaca", "Antiaging"],
-      "sinergias": ["saw-palmetto", "resveratrol", "vitamina-e"],
+      "propiedades": [
+        "Salud prostatica",
+        "Antioxidante",
+        "Salud cardiaca",
+        "Antiaging"
+      ],
+      "sinergias": [
+        "saw-palmetto",
+        "resveratrol",
+        "vitamina-e"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Mejor biodisponibilidad con licopeno de tomate cocido."
@@ -1242,83 +2879,191 @@
     {
       "id": "bromelaina",
       "nombre": "Bromelaina",
-      "sinonimos": ["Bromelain", "Pineapple extract"],
+      "sinonimos": [
+        "Bromelain",
+        "Pineapple extract"
+      ],
       "familia": "Enzima",
       "tipo": "enzimatico",
-      "propiedades": ["Antiinflamatorio", "Digestivo", "Anti-edema", "Inmunoestimulante"],
-      "sinergias": ["quercetina", "curcuma", "omega-3"],
-      "antagonismos": ["antibioticos"],
-      "contraindicaciones": ["Alergia a piña", "Enfermedad hepatica"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Digestivo",
+        "Anti-edema",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "quercetina",
+        "curcuma",
+        "omega-3"
+      ],
+      "antagonismos": [
+        "antibioticos"
+      ],
+      "contraindicaciones": [
+        "Alergia a piña",
+        "Enfermedad hepatica"
+      ],
       "notas": "Enzima de piña. Excelente para inflamacion post-cirugia."
     },
     {
       "id": "papaina",
       "nombre": "Papaina",
-      "sinonimos": ["Papain", "Papaya extract"],
+      "sinonimos": [
+        "Papain",
+        "Papaya extract"
+      ],
       "familia": "Enzima",
       "tipo": "enzimatico",
-      "propiedades": ["Digestivo", "Antiinflamatorio", "Cicatrizante"],
-      "sinergias": ["bromelaina", "probioticos"],
+      "propiedades": [
+        "Digestivo",
+        "Antiinflamatorio",
+        "Cicatrizante"
+      ],
+      "sinergias": [
+        "bromelaina",
+        "probioticos"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo"],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
       "notas": "Enzima de papaya. Para digestion de proteins."
     },
     {
       "id": "probioticos",
       "nombre": "Probioticos",
-      "sinonimos": ["Probiotics", "Lactobacillus", "Bifidobacterium"],
+      "sinonimos": [
+        "Probiotics",
+        "Lactobacillus",
+        "Bifidobacterium"
+      ],
       "familia": "Bacteria",
       "tipo": "microbioma",
-      "propiedades": ["Salud intestinal", "Inmunoestimulante", "Salud mental", "Salud vaginal"],
-      "sinergias": ["prebioticos", "glutamina", "vitamina-d"],
-      "antagonismos": ["antibioticos", "alcohol"],
-      "contraindicaciones": ["Inmunosupresion severa"],
+      "propiedades": [
+        "Salud intestinal",
+        "Inmunoestimulante",
+        "Salud mental",
+        "Salud vaginal"
+      ],
+      "sinergias": [
+        "prebioticos",
+        "glutamina",
+        "vitamina-d"
+      ],
+      "antagonismos": [
+        "antibioticos",
+        "alcohol"
+      ],
+      "contraindicaciones": [
+        "Inmunosupresion severa"
+      ],
       "notas": "Strains diversos para diferentes beneficios. 10-50 mil millones UFC."
     },
     {
       "id": "prebioticos",
       "nombre": "Prebioticos",
-      "sinonimos": ["Prebiotics", "Inulin", "FOS", "GOS"],
+      "sinonimos": [
+        "Prebiotics",
+        "Inulin",
+        "FOS",
+        "GOS"
+      ],
       "familia": "Fibra",
       "tipo": "fibra",
-      "propiedades": ["Alimento probioticos", "Salud intestinal", "Absorcion minerales"],
-      "sinergias": ["probioticos", "glutamina"],
+      "propiedades": [
+        "Alimento probioticos",
+        "Salud intestinal",
+        "Absorcion minerales"
+      ],
+      "sinergias": [
+        "probioticos",
+        "glutamina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["SII", "FODMAP"],
+      "contraindicaciones": [
+        "SII",
+        "FODMAP"
+      ],
       "notas": "Alimenta bacterias buenas. Inulina es prebiotico comun."
     },
     {
       "id": "digestive-enzymes",
       "nombre": "Enzimas Digestivas",
-      "sinonimos": ["Digestive enzymes", "Protease", "Amylase", "Lipase"],
+      "sinonimos": [
+        "Digestive enzymes",
+        "Protease",
+        "Amylase",
+        "Lipase"
+      ],
       "familia": "Enzima",
       "tipo": "enzimatico",
-      "propiedades": ["Digestion", "Absorcion nutrientes", "Hinchazon", "Gases"],
-      "sinergias": ["probioticos", "betaina-hcl"],
+      "propiedades": [
+        "Digestion",
+        "Absorcion nutrientes",
+        "Hinchazon",
+        "Gases"
+      ],
+      "sinergias": [
+        "probioticos",
+        "betaina-hcl"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Ulceras", "Pancreatitis"],
+      "contraindicaciones": [
+        "Ulceras",
+        "Pancreatitis"
+      ],
       "notas": "Para personas con insuficiencia pancreatica o edad avanzada."
     },
     {
       "id": "betaina-hcl",
       "nombre": "Betaina HCl",
-      "sinonimos": ["Betaine hydrochloride", "Betaine HCl", "TMG"],
+      "sinonimos": [
+        "Betaine hydrochloride",
+        "Betaine HCl",
+        "TMG"
+      ],
       "familia": "Acido",
       "tipo": "digestivo",
-      "propiedades": ["Acido estomacal", "Digestion proteinas", "Absorcion nutrientes"],
-      "sinergias": ["digestive-enzymes", "pepsina"],
-      "antagonismos": ["antiacidos", "inhibidores-bomba-protones"],
-      "contraindicaciones": ["Ulceras", "Reflujo severo", "Gastritis"],
+      "propiedades": [
+        "Acido estomacal",
+        "Digestion proteinas",
+        "Absorcion nutrientes"
+      ],
+      "sinergias": [
+        "digestive-enzymes",
+        "pepsina"
+      ],
+      "antagonismos": [
+        "antiacidos",
+        "inhibidores-bomba-protones"
+      ],
+      "contraindicaciones": [
+        "Ulceras",
+        "Reflujo severo",
+        "Gastritis"
+      ],
       "notas": "Mejora digestion y absorcion. Para hipoclorhidria."
     },
     {
       "id": "omega-7",
       "nombre": "Omega 7",
-      "sinonimos": ["Palmitoleic acid", "Omega-7"],
+      "sinonimos": [
+        "Palmitoleic acid",
+        "Omega-7"
+      ],
       "familia": "Acido graso",
       "tipo": "nutriente",
-      "propiedades": ["Salud mucosas", "Salud piel", "Antiinflamatorio", "Salud hepatica"],
-      "sinergias": ["omega-3", "vitamina-a", "colageno"],
+      "propiedades": [
+        "Salud mucosas",
+        "Salud piel",
+        "Antiinflamatorio",
+        "Salud hepatica"
+      ],
+      "sinergias": [
+        "omega-3",
+        "vitamina-a",
+        "colageno"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Bueno para sequedad de mucosas. Aceite de espino amarillo."
@@ -1326,59 +3071,141 @@
     {
       "id": "betacaroteno",
       "nombre": "Betacaroteno",
-      "sinonimos": ["Beta-carotene", "Provitamin A", "Betacaroteno"],
+      "sinonimos": [
+        "Beta-carotene",
+        "Provitamin A",
+        "Betacaroteno"
+      ],
       "familia": "Carotenoide",
       "tipo": "precursor-vitamina",
-      "propiedades": ["Precursor vitamina A", "Antioxidante", "Salud piel", "Inmunoestimulante"],
-      "sinergias": ["vitamina-e", "vitamina-c", "zinc"],
-      "antagonismos": ["tabaco", "alcohol"],
-      "contraindicaciones": ["Fumadores"],
+      "propiedades": [
+        "Precursor vitamina A",
+        "Antioxidante",
+        "Salud piel",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "vitamina-e",
+        "vitamina-c",
+        "zinc"
+      ],
+      "antagonismos": [
+        "tabaco",
+        "alcohol"
+      ],
+      "contraindicaciones": [
+        "Fumadores"
+      ],
       "notas": "Convierte a vitamina A segun necesidad. Seguro en dosis altas."
     },
     {
       "id": "dong-quai",
       "nombre": "Dong Quai",
-      "sinonimos": ["Angelica sinensis", "Chinese angelica", "Danggui"],
+      "sinonimos": [
+        "Angelica sinensis",
+        "Chinese angelica",
+        "Danggui"
+      ],
       "familia": "Apiaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Salud hormonal", "Embarazo", "Antiinflamatorio", "Anemia"],
-      "sinergias": ["vitex", "maca", "onagra"],
-      "antagonismos": ["anticoagulantes"],
-      "contraindicaciones": ["Embarazo", "Cancer hormono-dependiente", "Anticoagulantes"],
+      "propiedades": [
+        "Salud hormonal",
+        "Embarazo",
+        "Antiinflamatorio",
+        "Anemia"
+      ],
+      "sinergias": [
+        "vitex",
+        "maca",
+        "onagra"
+      ],
+      "antagonismos": [
+        "anticoagulantes"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Cancer hormono-dependiente",
+        "Anticoagulantes"
+      ],
       "notas": "Reina de las hierbas femeninas en medicina china."
     },
     {
       "id": "vitex",
       "nombre": "Vitex",
-      "sinonimos": ["Vitex agnus-castus", "Chaste tree", "Agnus castus"],
+      "sinonimos": [
+        "Vitex agnus-castus",
+        "Chaste tree",
+        "Agnus castus"
+      ],
       "familia": "Lamiaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Balance hormonal", "Sindrome premenstrual", "Ciclo menstrual", "Fertilidad"],
-      "sinergias": ["dong-quai", "onagra", "maca"],
-      "antagonismos": ["antipsicoticos"],
-      "contraindicaciones": ["Embarazo", "Cancer hormono-dependiente"],
+      "propiedades": [
+        "Balance hormonal",
+        "Sindrome premenstrual",
+        "Ciclo menstrual",
+        "Fertilidad"
+      ],
+      "sinergias": [
+        "dong-quai",
+        "onagra",
+        "maca"
+      ],
+      "antagonismos": [
+        "antipsicoticos"
+      ],
+      "contraindicaciones": [
+        "Embarazo",
+        "Cancer hormono-dependiente"
+      ],
       "notas": "Regula prolactina y progesterona. Efecto butuh 3-6 meses."
     },
     {
       "id": "saw-palmetto",
       "nombre": "Saw Palmetto",
-      "sinonimos": ["Serenoa repens", "Sabal serrulata", "Palmito enano"],
+      "sinonimos": [
+        "Serenoa repens",
+        "Sabal serrulata",
+        "Palmito enano"
+      ],
       "familia": "Arecaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Salud prostatica", "Antiandrogenico", "Diuretico", "Perdida cabello"],
-      "sinergias": ["pygeum", "ortiga", "licopeno", "zinc"],
+      "propiedades": [
+        "Salud prostatica",
+        "Antiandrogenico",
+        "Diuretico",
+        "Perdida cabello"
+      ],
+      "sinergias": [
+        "pygeum",
+        "ortiga",
+        "licopeno",
+        "zinc"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo"],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
       "notas": "Sinergia con pygeum para hiperplasia prostatica."
     },
     {
       "id": "pygeum",
       "nombre": "Pygeum",
-      "sinonimos": ["Pygeum africanum", "African plum tree"],
+      "sinonimos": [
+        "Pygeum africanum",
+        "African plum tree"
+      ],
       "familia": "Rosaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Salud prostatica", "Antiinflamatorio", "Diuretico"],
-      "sinergias": ["saw-palmetto", "ortiga", "beta-sitosterol"],
+      "propiedades": [
+        "Salud prostatica",
+        "Antiinflamatorio",
+        "Diuretico"
+      ],
+      "sinergias": [
+        "saw-palmetto",
+        "ortiga",
+        "beta-sitosterol"
+      ],
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Excelente para sintomas de hiperplasia prostatica."
@@ -1386,86 +3213,952 @@
     {
       "id": "ortiga",
       "nombre": "Ortiga",
-      "sinonimos": ["Urtica dioica", "Stinging nettle", "Nettle root"],
+      "sinonimos": [
+        "Urtica dioica",
+        "Stinging nettle",
+        "Nettle root"
+      ],
       "familia": "Urticaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Antiinflamatorio", "Salud prostatica", "Antialergico", "Diuretico"],
-      "sinergias": ["saw-palmetto", "pygeum", "quercetina"],
+      "propiedades": [
+        "Antiinflamatorio",
+        "Salud prostatica",
+        "Antialergico",
+        "Diuretico"
+      ],
+      "sinergias": [
+        "saw-palmetto",
+        "pygeum",
+        "quercetina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Insuficiencia cardiaca"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Insuficiencia cardiaca"
+      ],
       "notas": "Raiz para prostata. Hojas para alergias."
     },
     {
       "id": "muira-puama",
       "nombre": "Muira Puama",
-      "sinonimos": ["Ptychopetalum olacoides", "Potency wood", "Marapuama"],
+      "sinonimos": [
+        "Ptychopetalum olacoides",
+        "Potency wood",
+        "Marapuama"
+      ],
       "familia": "Olacaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Afrdisiaco", "Funcion erectil", "Energizante", "Estimulante"],
-      "sinergias": ["maca", "tongkat-ali", "l-arginina"],
+      "propiedades": [
+        "Afrdisiaco",
+        "Funcion erectil",
+        "Energizante",
+        "Estimulante"
+      ],
+      "sinergias": [
+        "maca",
+        "tongkat-ali",
+        "l-arginina"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Presion alta"],
+      "contraindicaciones": [
+        "Presion alta"
+      ],
       "notas": "Conocida como madera de potencia. Para libido y funcion."
     },
     {
       "id": "tongkat-ali",
       "nombre": "Tongkat Ali",
-      "sinonimos": ["Eurycoma longifolia", "Longjack", "Malaysian ginseng"],
+      "sinonimos": [
+        "Eurycoma longifolia",
+        "Longjack",
+        "Malaysian ginseng"
+      ],
       "familia": "Simaroubaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Testosterona", "Libido", "Energia", "Rendimiento"],
-      "sinergias": ["maca", "muira-puama", "fenugreek"],
+      "propiedades": [
+        "Testosterona",
+        "Libido",
+        "Energia",
+        "Rendimiento"
+      ],
+      "sinergias": [
+        "maca",
+        "muira-puama",
+        "fenugreek"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Cancer prostata", "Corazon"],
+      "contraindicaciones": [
+        "Cancer prostata",
+        "Corazon"
+      ],
       "notas": "Aumenta testosterona naturalmente. Para hombres mayores."
     },
     {
       "id": "fenugreek",
       "nombre": "Fenogreco",
-      "sinonimos": ["Trigonella foenum-graecum", "Fenugreek", "Methi"],
+      "sinonimos": [
+        "Trigonella foenum-graecum",
+        "Fenugreek",
+        "Methi"
+      ],
       "familia": "Fabaceae",
       "tipo": "fitoterapico",
-      "propiedades": ["Testosterona", "Libido", "Glucosa sangre", "Lactancia"],
-      "sinergias": ["tongkat-ali", "maca", "zinc"],
+      "propiedades": [
+        "Testosterona",
+        "Libido",
+        "Glucosa sangre",
+        "Lactancia"
+      ],
+      "sinergias": [
+        "tongkat-ali",
+        "maca",
+        "zinc"
+      ],
       "antagonismos": [],
-      "contraindicaciones": ["Embarazo", "Cancer hormono-dependiente"],
+      "contraindicaciones": [
+        "Embarazo",
+        "Cancer hormono-dependiente"
+      ],
       "notas": "Aumenta testosterona y libido. Semillas para glucosa."
     },
     {
       "id": "lactobacillus-rhamnosus",
       "nombre": "Lactobacillus Rhamnosus",
-      "sinonimos": ["L. rhamnosus", "LGG"],
+      "sinonimos": [
+        "L. rhamnosus",
+        "LGG"
+      ],
       "familia": "Bacteria",
       "tipo": "probiotico",
-      "propiedades": ["Salud intestinal", "Inmunoestimulante", "Perdida peso", "Salud vaginal"],
-      "sinergias": ["probioticos", "prebioticos", "vitamina-d"],
-      "antagonismos": ["antibioticos"],
-      "contraindicaciones": ["SII severo"],
+      "propiedades": [
+        "Salud intestinal",
+        "Inmunoestimulante",
+        "Perdida peso",
+        "Salud vaginal"
+      ],
+      "sinergias": [
+        "probioticos",
+        "prebioticos",
+        "vitamina-d"
+      ],
+      "antagonismos": [
+        "antibioticos"
+      ],
+      "contraindicaciones": [
+        "SII severo"
+      ],
       "notas": "Strain muy estudiado. Para immunity y weight management."
     },
     {
       "id": "bifidobacterium",
       "nombre": "Bifidobacterium",
-      "sinonimos": ["B. longum", "B. breve", "Bifido"],
+      "sinonimos": [
+        "B. longum",
+        "B. breve",
+        "Bifido"
+      ],
       "familia": "Bacteria",
       "tipo": "probiotico",
-      "propiedades": ["Salud intestinal", "Salud mental", "Inmunoestimulante", "Absorcion nutrientes"],
-      "sinergias": ["lactobacillus", "prebioticos", "glutamina"],
-      "antagonismos": ["antibioticos"],
-      "contraindicaciones": ["Inmunosupresion"],
+      "propiedades": [
+        "Salud intestinal",
+        "Salud mental",
+        "Inmunoestimulante",
+        "Absorcion nutrientes"
+      ],
+      "sinergias": [
+        "lactobacillus",
+        "prebioticos",
+        "glutamina"
+      ],
+      "antagonismos": [
+        "antibioticos"
+      ],
+      "contraindicaciones": [
+        "Inmunosupresion"
+      ],
       "notas": "Importante para colon. B. longum para cognition."
     },
     {
       "id": "saccharomyces-boulardii",
       "nombre": "Saccharomyces Boulardii",
-      "sinonimos": ["S. boulardii", "Saccharomyces boulardii"],
+      "sinonimos": [
+        "S. boulardii",
+        "Saccharomyces boulardii"
+      ],
       "familia": "Hongo",
       "tipo": "probiotico",
-      "propiedades": ["Salud intestinal", "Anti-diarreico", "Inmunoestimulante", "Hepatoprotector"],
-      "sinergias": ["probioticos", "nac", "glutamina"],
-      "antagonismos": ["antifungicos"],
-      "contraindicaciones": ["CVC", "Inmunosupresion severa"],
+      "propiedades": [
+        "Salud intestinal",
+        "Anti-diarreico",
+        "Inmunoestimulante",
+        "Hepatoprotector"
+      ],
+      "sinergias": [
+        "probioticos",
+        "nac",
+        "glutamina"
+      ],
+      "antagonismos": [
+        "antifungicos"
+      ],
+      "contraindicaciones": [
+        "CVC",
+        "Inmunosupresion severa"
+      ],
       "notas": "Unico probiotico fungico. Excelente para antibiotic-associated diarrhea."
+    },
+    {
+      "id": "arnica-montana",
+      "nombre": "Arnica Montana",
+      "sinonimos": [
+        "Arnica montana",
+        "Leopard's bane"
+      ],
+      "familia": "Asteraceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiinflamatorio",
+        "Analgésico",
+        "Anti-hematoma"
+      ],
+      "sinergias": [
+        "rhus-toxicodendron",
+        "hypericum"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Hipersensibilidad a asteraceas"
+      ],
+      "notas": "Remedio #1 para traumatismos y golpes."
+    },
+    {
+      "id": "belladonna",
+      "nombre": "Belladonna",
+      "sinonimos": [
+        "Atropa belladonna",
+        "Deadly nightshade"
+      ],
+      "familia": "Solanaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiespasmodico",
+        "Antinflamatorio",
+        "Antipiretico"
+      ],
+      "sinergias": [
+        "aconitum",
+        "chamomilla"
+      ],
+      "antagonismos": [
+        "cafe",
+        "alcohol"
+      ],
+      "contraindicaciones": [
+        "Glaucoma"
+      ],
+      "notas": "Para cuadros agudos con rubor y dolor pulsatil."
+    },
+    {
+      "id": "nux-vomica",
+      "nombre": "Nux Vomica",
+      "sinonimos": [
+        "Strychnos nux-vomica"
+      ],
+      "familia": "Loganiaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Digestivo",
+        "Antiespasmodico",
+        "Antiemetico"
+      ],
+      "sinergias": [
+        "lycopodium",
+        "sulphur"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Remedio #1 para problemas digestivos por excesos."
+    },
+    {
+      "id": "melisa",
+      "nombre": "Melisa",
+      "sinonimos": [
+        "Melissa officinalis",
+        "Lemon balm"
+      ],
+      "familia": "Lamiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Sedante",
+        "Antiespasmodico",
+        "Digestivo",
+        "Antiviral"
+      ],
+      "sinergias": [
+        "valeriana",
+        "passiflora",
+        "l-teanina"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Hipotiroidismo"
+      ],
+      "notas": "Excelente para ansiedad, insomnio y herpes."
+    },
+    {
+      "id": "hipérico",
+      "nombre": "Hiperico",
+      "sinonimos": [
+        "Hypericum perforatum",
+        "St. John's wort"
+      ],
+      "familia": "Hypericaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antidepresivo natural",
+        "Antiinflamatorio",
+        "Antiviral"
+      ],
+      "sinergias": [
+        "valeriana",
+        "ashwagandha"
+      ],
+      "antagonismos": [
+        "antidepresivos"
+      ],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Efecto comparable a antidepresivos suaves."
+    },
+    {
+      "id": "salvia",
+      "nombre": "Salvia",
+      "sinonimos": [
+        "Salvia officinalis",
+        "Sage"
+      ],
+      "familia": "Lamiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antioxidante",
+        "Memoria",
+        "Antimicrobiano"
+      ],
+      "sinergias": [
+        "romero",
+        "ginkgo"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Excelente para memoria y concentracion."
+    },
+    {
+      "id": "romero",
+      "nombre": "Romero",
+      "sinonimos": [
+        "Rosmarinus officinalis"
+      ],
+      "familia": "Lamiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Estimulante",
+        "Antioxidante",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "salvia",
+        "ginkgo",
+        "curcuma"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Estimula circulacion y memoria."
+    },
+    {
+      "id": "boldo",
+      "nombre": "Boldo",
+      "sinonimos": [
+        "Peumus boldus"
+      ],
+      "familia": "Monimiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Hepatoprotector",
+        "Digestivo",
+        "Coleretico"
+      ],
+      "sinergias": [
+        "diente-leon",
+        "cardo-mariano"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Obstruccion biliar"
+      ],
+      "notas": "Para problemas hepaticos y biliares."
+    },
+    {
+      "id": "cardo-mariano",
+      "nombre": "Cardo Mariano",
+      "sinonimos": [
+        "Silybum marianum",
+        "Milk thistle"
+      ],
+      "familia": "Asteraceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Hepatoprotector",
+        "Antioxidante",
+        "Regenerador hepatico"
+      ],
+      "sinergias": [
+        "boldo",
+        "diente-leon",
+        "nac"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Silimarina protege hepatocitos."
+    },
+    {
+      "id": "ajo",
+      "nombre": "Ajo",
+      "sinonimos": [
+        "Allium sativum",
+        "Garlic"
+      ],
+      "familia": "Amaryllidaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antimicrobiano",
+        "Cardioprotector",
+        "Antihipertensivo"
+      ],
+      "sinergias": [
+        "jengibre",
+        "curcuma"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Cirugia"
+      ],
+      "notas": "Antibiotico natural."
+    },
+    {
+      "id": "tomillo",
+      "nombre": "Tomillo",
+      "sinonimos": [
+        "Thymus vulgaris"
+      ],
+      "familia": "Lamiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antimicrobiano",
+        "Antitusivo",
+        "Expectorante"
+      ],
+      "sinergias": [
+        "ajo",
+        "equinacea"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Excelente para vias respiratorias."
+    },
+    {
+      "id": "eucalipto",
+      "nombre": "Eucalipto",
+      "sinonimos": [
+        "Eucalyptus globulus"
+      ],
+      "familia": "Myrtaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antimicrobiano",
+        "Expectorante",
+        "Descongestionante"
+      ],
+      "sinergias": [
+        "tomillo",
+        "menta"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para congestion nasal."
+    },
+    {
+      "id": "sauce-blanco",
+      "nombre": "Sauce Blanco",
+      "sinonimos": [
+        "Salix alba",
+        "White willow"
+      ],
+      "familia": "Salicaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antiinflamatorio",
+        "Analgésico",
+        "Antipiretico"
+      ],
+      "sinergias": [
+        "curcuma",
+        "jengibre"
+      ],
+      "antagonismos": [
+        "anticoagulantes"
+      ],
+      "contraindicaciones": [
+        "Alergia a salicilatos"
+      ],
+      "notas": "Aspirina natural."
+    },
+    {
+      "id": "harpagofito",
+      "nombre": "Harpagofito",
+      "sinonimos": [
+        "Harpagophytum procumbens"
+      ],
+      "familia": "Pedaliaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antiinflamatorio",
+        "Analgésico",
+        "Antirreumatico"
+      ],
+      "sinergias": [
+        "curcuma",
+        "boswellia"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Excelente para articulaciones."
+    },
+    {
+      "id": "calendula",
+      "nombre": "Calendula",
+      "sinonimos": [
+        "Calendula officinalis"
+      ],
+      "familia": "Asteraceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Cicatrizante",
+        "Antiinflamatorio",
+        "Antimicrobiano"
+      ],
+      "sinergias": [
+        "aloe-vera",
+        "hipérico"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para heridas y quemaduras."
+    },
+    {
+      "id": "regaliz",
+      "nombre": "Regaliz",
+      "sinonimos": [
+        "Glycyrrhiza glabra"
+      ],
+      "familia": "Fabaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antiinflamatorio",
+        "Antiulceroso",
+        "Expectorante"
+      ],
+      "sinergias": [
+        "echinacea",
+        "gingko"
+      ],
+      "antagonismos": [
+        "diureticos"
+      ],
+      "contraindicaciones": [
+        "Hipertension"
+      ],
+      "notas": "Protege mucosas."
+    },
+    {
+      "id": "uncarina",
+      "nombre": "Uncaria Tomentosa",
+      "sinonimos": [
+        "Uncaria tomentosa",
+        "Cat's claw"
+      ],
+      "familia": "Rubiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Inmunoestimulante",
+        "Antiinflamatorio",
+        "Antiviral"
+      ],
+      "sinergias": [
+        "equinacea",
+        "astragalo"
+      ],
+      "antagonismos": [
+        "inmunosupresores"
+      ],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Inmunoestimulante potente."
+    },
+    {
+      "id": "pau-d-arco",
+      "nombre": "Pau d'Arco",
+      "sinonimos": [
+        "Tabebuia impetiginosa"
+      ],
+      "familia": "Bignoniaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antimicotico",
+        "Antiinflamatorio",
+        "Inmunoestimulante"
+      ],
+      "sinergias": [
+        "propoleo",
+        "ajo"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para hongos cronicos y candidiasis."
+    },
+    {
+      "id": "goji",
+      "nombre": "Bayas de Goji",
+      "sinonimos": [
+        "Lycium barbarum"
+      ],
+      "familia": "Solanaceae",
+      "tipo": "superfood",
+      "propiedades": [
+        "Antioxidante",
+        "Inmunoestimulante",
+        "Antiaging"
+      ],
+      "sinergias": [
+        "espirulina",
+        "maca",
+        "acai"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Vision e immunity."
+    },
+    {
+      "id": "acai",
+      "nombre": "Acai",
+      "sinonimos": [
+        "Euterpe oleracea"
+      ],
+      "familia": "Arecaceae",
+      "tipo": "superfood",
+      "propiedades": [
+        "Antioxidante",
+        "Antiaging",
+        "Cardioprotector"
+      ],
+      "sinergias": [
+        "goji",
+        "granada"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Alto ORAC para corazon y piel."
+    },
+    {
+      "id": "granada",
+      "nombre": "Granada",
+      "sinonimos": [
+        "Punica granatum"
+      ],
+      "familia": "Lythraceae",
+      "tipo": "superfood",
+      "propiedades": [
+        "Antioxidante",
+        "Cardioprotector",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "resveratrol",
+        "te-verde"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Rica en polifenoles."
+    },
+    {
+      "id": "espino-blanco",
+      "nombre": "Espino Blanco",
+      "sinonimos": [
+        "Crataegus oxyacantha",
+        "Hawthorn"
+      ],
+      "familia": "Rosaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Cardiotonico",
+        "Vasodilatador",
+        "Antiarrítmico"
+      ],
+      "sinergias": [
+        "olivo",
+        "coenzima-q10"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Tonico cardiaco seguro."
+    },
+    {
+      "id": "morera",
+      "nombre": "Morera",
+      "sinonimos": [
+        "Morus alba"
+      ],
+      "familia": "Moraceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antidiabetico",
+        "Hipolipemiante"
+      ],
+      "sinergias": [
+        "canela",
+        "berberina"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para diabetes tipo 2."
+    },
+    {
+      "id": "olivo",
+      "nombre": "Hojas de Olivo",
+      "sinonimos": [
+        "Olea europaea"
+      ],
+      "familia": "Oleaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Antihipertensivo",
+        "Antiviral",
+        "Antioxidante"
+      ],
+      "sinergias": [
+        "ajo",
+        "espino-blanco"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Hipertension y immunity."
+    },
+    {
+      "id": "desmodium",
+      "nombre": "Desmodium",
+      "sinonimos": [
+        "Desmodium adscendens"
+      ],
+      "familia": "Fabaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Hepatoprotector",
+        "Antiasmatico"
+      ],
+      "sinergias": [
+        "boldo",
+        "cardo-mariano"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para asma y hepatopatias."
+    },
+    {
+      "id": "eleuterococo",
+      "nombre": "Eleuterococo",
+      "sinonimos": [
+        "Eleutherococcus senticosus",
+        "Siberian ginseng"
+      ],
+      "familia": "Araliaceae",
+      "tipo": "adaptogeno",
+      "propiedades": [
+        "Adaptogeno",
+        "Inmunoestimulante",
+        "Energizante"
+      ],
+      "sinergias": [
+        "ginseng",
+        "rhodiola",
+        "ashwagandha"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Hipertension severa"
+      ],
+      "notas": "Mas suave que Panax ginseng."
+    },
+    {
+      "id": "noni",
+      "nombre": "Noni",
+      "sinonimos": [
+        "Morinda citrifolia"
+      ],
+      "familia": "Rubiaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Inmunoestimulante",
+        "Antiinflamatorio"
+      ],
+      "sinergias": [
+        "graviola",
+        "uncaria-tomentosa"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Inmunity y dolor articular."
+    },
+    {
+      "id": "graviola",
+      "nombre": "Graviola",
+      "sinonimos": [
+        "Annona muricata"
+      ],
+      "familia": "Annonaceae",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Anticancerigeno",
+        "Antiparasitario"
+      ],
+      "sinergias": [
+        "noni",
+        "uncaria-tomentosa"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Enfermedad de Parkinson"
+      ],
+      "notas": "Investigacion para cancer."
+    },
+    {
+      "id": "sepia",
+      "nombre": "Sepia",
+      "sinonimos": [
+        "Sepia officinalis"
+      ],
+      "familia": "Mineral",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Hormonal",
+        "Descongestionante"
+      ],
+      "sinergias": [
+        "lycopodium",
+        "natrum-mur"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Remedio clave para mujeres y menopausia."
+    },
+    {
+      "id": "lycopodium",
+      "nombre": "Lycopodium",
+      "sinonimos": [
+        "Lycopodium clavatum"
+      ],
+      "familia": "Lycopodiaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Digestivo",
+        "Hepatobiliar"
+      ],
+      "sinergias": [
+        "nux-vomica",
+        "carbo-veg"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para digestiones lentas e hinchazon."
+    },
+    {
+      "id": "sulphur",
+      "nombre": "Sulphur",
+      "sinonimos": [
+        "Sulfur"
+      ],
+      "familia": "Mineral",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Descongestionante",
+        "Antiinflamatorio",
+        "Depurativo"
+      ],
+      "sinergias": [
+        "nux-vomica",
+        "calc-carb"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para enfermedades cronicas con manifestaciones cutaneas."
+    },
+    {
+      "id": "pulsatilla",
+      "nombre": "Pulsatilla",
+      "sinonimos": [
+        "Pulsatilla pratensis"
+      ],
+      "familia": "Ranunculaceae",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiespasmodico",
+        "Antiinflamatorio",
+        "Sedante"
+      ],
+      "sinergias": [
+        "chamomilla"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para temperamento dulce y secreciones amarillas."
+    },
+    {
+      "id": "arsenicum-album",
+      "nombre": "Arsenicum Album",
+      "sinonimos": [
+        "Arsenic trioxide"
+      ],
+      "familia": "Mineral",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiemetico",
+        "Antipiretico"
+      ],
+      "sinergias": [
+        "phosphorus",
+        "carbo-veg"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para ansiedad, miedos e intoxicaciones."
     }
   ]
 }
