@@ -276,6 +276,29 @@ function IngredientDetail({
   );
 }
 
+function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
+  const [query, setQuery] = useState("");
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSearch(query);
+  };
+  
+  return (
+    <form onSubmit={handleSubmit} className="p-4 bg-white border-b">
+      <div className="max-w-6xl mx-auto">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Buscar producto..."
+          className="w-full p-3 border-2 border-gray-300 rounded-lg text-lg focus:border-emerald-500 focus:outline-none"
+        />
+      </div>
+    </form>
+  );
+}
+
 function StatsPanel() {
   const stats = getStatsByCategory();
   
