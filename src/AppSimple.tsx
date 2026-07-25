@@ -13,58 +13,53 @@ import { supabaseService } from './services/SupabaseService';
 interface AnalyzedProduct extends Product {
   ingredientes_encontrados: string[];
   cobertura_kb: number;
-  sinergias: string[];
+  sinergias_detectadas: string[];
 }
 
 // ==================== HELPERS ====================
 
-function findIngredientsInProduct(product: Product, kb: Record<string, any>): string[] {
+function analyzeProduct(product: Product, kb: Record<string, any>): { found: string[]; sinergias: string[] } {
   const found: string[] = [];
-  const principios = (product.principios_activos || []).map(p => p.toLowerCase());
+  const principios = (product.principios_activos || []).map(p => String(p).toLowerCase());
   
   for (const [id, ing] of Object.entries(kb)) {
-    const ingName = (ing as any).nombre.toLowerCase();
-    const ingParts = ingName.split(/[\s\-,\/]+/);
-    
-    // Buscar coincidencia en principios activos
+    const ingName = String((ing as any).nombre).toLowerCase();
     for (const principio of principios) {
       if (principio.includes(ingName) || ingName.includes(principio)) {
         if (!found.includes(id)) found.push(id);
       }
-      // Buscar por partes del nombre
-      for (const part of ingParts) {
-        if (part.length > 3 && principio.includes(part)) {
-          if (!found.includes(id)) found.push(id);
+    }
+  }
+
+  const sinergias: string[] = [];
+  for (const id of found) {
+    const sin = synergyGraphService.obtenerSinergiasDe(id);
+    for (const s of sin) {
+      if (found.includes(s.hacia)) {
+        const key = [id, s.hacia].sort().join('+');
+        if (!sinergias.some(x => x.includes(key))) {
+          sinergias.push(`${id} + ${s.hacia}`);
         }
       }
     }
   }
-  
-  return found;
-}
 
-function calculateSynergies(ingredientIds: string[]): string[] {
-  const sinergias: string[] = [];
-  for (const id of ingredientIds) {
-    const sin = synergyGraphService.obtenerSinergiasDe(id);
-    for (const s of sin) {
-      if (ingredientIds.includes(s.hacia) && !sinergias.includes(`${id}+${s.hacia}`)) {
-        sinergias.push(`${id} + ${s.hacia}`);
-      }
-    }
-  }
-  return sinergias;
+  return { found, sinergias };
 }
 
 // ==================== COMPONENTES ====================
 
-function Header({ productCount }: { productCount: number }) {
+function Header({ productCount, connected }: { productCount: number; connected: boolean }) {
   return (
     <header className="bg-emerald-600 text-white p-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold">Vademecum AI</h1>
           <p className="text-sm opacity-80">{productCount} productos • {getIngredientCount()} ingredientes KB</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className={`w-3 h-3 rounded-full ${connected ? 'bg-green-400' : 'bg-yellow-400'}`}></span>
+          <span className="text-sm">{connected ? 'Nube' : 'Local'}</span>
         </div>
       </div>
     </header>
@@ -411,40 +406,135 @@ function SynergyFinder() {
 // ==================== APP PRINCIPAL ====================
 
 export default function AppSimple() {
-  const [view, setView] = useState<'buscar' | 'sinergias' | 'stats'>('buscar');
+  const [view, setView] = useState<'productos' | 'sinergias' | 'stats'>('productos');
+  const [products, setProducts] = useState<AnalyzedProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingMessage, setLoadingMessage] = useState('Conectando...');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('todas');
   const [selectedIngredient, setSelectedIngredient] = useState<IngredientInfo | null>(null);
-  
+  const [supabaseConnected, setSupabaseConnected] = useState(false);
+
   const kb = getCombinedKnowledgeBase();
   const categories = [...new Set(Object.values(kb).map(i => i.categoria))].sort();
-  
-  // Filtrar ingredientes
-  const filteredIngredients = Object.values(kb).filter(ing => {
-    const matchesCategory = selectedCategory === 'todas' || ing.categoria === selectedCategory;
-    const matchesSearch = !searchQuery || 
-      ing.nombre.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ing.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ing.descripcion.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-  
+
+  const filteredProducts = useMemo(() => {
+    if (view === 'productos') {
+      return products.filter(p => {
+        const matchesCategory = selectedCategory === 'todas' || p.categoria_principal === selectedCategory;
+        const matchesSearch = !searchQuery || 
+          (p.nombre_comercial?.toLowerCase().includes(searchQuery.toLowerCase())) ||
+          (p.descripcion?.toLowerCase().includes(searchQuery.toLowerCase())) ||
+          (p.principios_activos || []).some((pa: string) => pa.toLowerCase().includes(searchQuery.toLowerCase()));
+        return matchesCategory && matchesSearch;
+      });
+    }
+    return products;
+  }, [products, searchQuery, selectedCategory, view]);
+
+  const stats = useMemo(() => ({
+    total: products.length,
+    withKbMatch: products.filter(p => (p.ingredientes_encontrados?.length || 0) > 0).length,
+    withSynergies: products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
+  }), [products]);
+
+  useEffect(() => {
+    async function loadProducts() {
+      console.log('[AppSimple] Cargando productos...');
+      
+      const supabase = supabaseService.getClient();
+      console.log('[AppSimple] Supabase client:', supabase ? 'OK' : 'NULL');
+      console.log('[AppSimple] Is configured:', supabaseService.isConfigured());
+      
+      if (!supabase) {
+        console.log('[AppSimple] Sin Supabase, usando KB');
+        setLoadingMessage('Sin conexión a la nube...');
+        const kbProducts = Object.values(kb).map((ing: any) => ({
+          sku: ing.id,
+          nombre_comercial: ing.nombre,
+          descripcion: ing.descripcion,
+          principios_activos: [ing.nombre],
+          categoria_principal: 'KB' as const,
+          ingredientes_encontrados: [ing.id],
+          cobertura_kb: 100,
+          sinergias_detectadas: []
+        }));
+        setProducts(kbProducts as any);
+        setLoading(false);
+        return;
+      }
+
+      setSupabaseConnected(true);
+      setLoadingMessage('Descargando productos de la nube...');
+
+      try {
+        console.log('[AppSimple] Fetching products from Supabase...');
+        const { data, error } = await supabase.from('products').select('*').limit(200);
+        console.log('[AppSimple] Data:', data?.length, 'products', 'Error:', error);
+
+        if (error) {
+          console.error('[AppSimple] Error:', error);
+          setLoadingMessage('Error al cargar productos');
+        } else if (data && data.length > 0) {
+          console.log('[AppSimple] Analizando productos...');
+          const analyzed = data.map((product: Product) => {
+            const { found, sinergias } = analyzeProduct(product, kb);
+            const principiosCount = (product.principios_activos || []).length;
+            const cobertura = principiosCount > 0 ? Math.round((found.length / principiosCount) * 100) : 0;
+            return {
+              ...product,
+              ingredientes_encontrados: found,
+              cobertura_kb: Math.min(cobertura, 100),
+              sinergias_detectadas: sinergias
+            };
+          });
+          setProducts(analyzed);
+        } else {
+          console.log('[AppSimple] Sin productos en la nube');
+          setLoadingMessage('Sin productos en la nube...');
+        }
+      } catch (e) {
+        console.error('[AppSimple] Exception:', e);
+        setLoadingMessage('Error al conectar');
+      }
+      
+      setLoading(false);
+    }
+
+    loadProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <Header productCount={0} connected={false} />
+        <LoadingState message={loadingMessage} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
-      <Header />
+      <Header productCount={stats.total} connected={supabaseConnected} />
       
-      {/* Navegación simple */}
+      <div className="p-3 bg-emerald-50 border-b text-sm">
+        <div className="max-w-6xl mx-auto flex gap-6">
+          <span><strong>{stats.withKbMatch}</strong> en KB</span>
+          <span><strong>{stats.withSynergies}</strong> con sinergias</span>
+        </div>
+      </div>
+
       <nav className="bg-white border-b">
         <div className="max-w-6xl mx-auto flex">
           <button
-            onClick={() => setView('buscar')}
+            onClick={() => setView('productos')}
             className={`px-6 py-3 font-medium border-b-2 ${
-              view === 'buscar' 
+              view === 'productos' 
                 ? 'border-emerald-600 text-emerald-600' 
                 : 'border-transparent text-gray-600'
             }`}
           >
-            Buscar
+            Productos ({stats.total})
           </button>
           <button
             onClick={() => setView('sinergias')}
@@ -469,7 +559,7 @@ export default function AppSimple() {
         </div>
       </nav>
       
-      {view === 'buscar' && (
+      {view === 'productos' && (
         <>
           <SearchBar onSearch={setSearchQuery} />
           <CategoryFilter 
@@ -480,22 +570,52 @@ export default function AppSimple() {
           
           <main className="max-w-6xl mx-auto p-4">
             <div className="mb-4 text-sm text-gray-600">
-              {filteredIngredients.length} ingredientes encontrados
+              {filteredProducts.length} productos
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredIngredients.map(ing => (
-                <IngredientCard
-                  key={ing.id}
-                  ingredient={ing}
-                  onClick={() => setSelectedIngredient(ing)}
-                />
-              ))}
+              {filteredProducts.map((prod: any) => {
+                const ingNames = prod.ingredientes_encontrados?.map((id: string) => kb[id]?.nombre).filter(Boolean) || [];
+                const sinCount = prod.sinergias_detectadas?.length || 0;
+                return (
+                  <div
+                    key={prod.sku}
+                    className="bg-white border rounded-lg p-4 cursor-pointer hover:border-emerald-500"
+                    onClick={() => {
+                      const ing = kb[prod.ingredientes_encontrados?.[0]] || { id: prod.sku, nombre: prod.nombre_comercial, descripcion: prod.descripcion, categoria: prod.categoria_principal || 'KB', beneficios: [], mecanismo_accion: '' };
+                      setSelectedIngredient(ing as IngredientInfo);
+                    }}
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="font-semibold text-gray-900 line-clamp-1">{prod.nombre_comercial || prod.sku}</h3>
+                      {prod.cobertura_kb > 0 && (
+                        <span className={`text-xs px-2 py-1 rounded ${prod.cobertura_kb >= 50 ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>
+                          {prod.cobertura_kb}%
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-600 line-clamp-2 mb-3">{prod.descripcion || 'Sin descripción'}</p>
+                    <div className="flex flex-wrap gap-1 mb-2">
+                      {ingNames.slice(0, 3).map((name: string, i: number) => (
+                        <span key={i} className="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded">
+                          {name.split(' ')[0]}
+                        </span>
+                      ))}
+                      {ingNames.length > 3 && (
+                        <span className="text-xs text-gray-500">+{ingNames.length - 3}</span>
+                      )}
+                    </div>
+                    {sinCount > 0 && (
+                      <div className="text-xs text-emerald-600">+{sinCount} sinergia(s)</div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
             
-            {filteredIngredients.length === 0 && (
+            {filteredProducts.length === 0 && (
               <div className="text-center py-12 text-gray-500">
-                <p className="text-lg">No se encontraron ingredientes</p>
+                <p className="text-lg">No se encontraron productos</p>
                 <p className="text-sm mt-2">Intenta con otros términos de búsqueda</p>
               </div>
             )}
