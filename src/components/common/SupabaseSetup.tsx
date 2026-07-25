@@ -52,7 +52,30 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
 
   const checkCloudProducts = async (url: string, key: string) => {
     try {
-      const supabase = createClient(url, key);
+      // Reutilizar el cliente de SupabaseService si está configurado con la misma URL
+      const supabaseUrl = localStorage.getItem('supabase_url');
+      const supabaseKey = localStorage.getItem('supabase_anon_key');
+      
+      if (supabaseUrl === url && supabaseKey === key) {
+        // Usar el cliente existente
+        const { supabaseService } = await import('../../services/SupabaseService');
+        const existingClient = supabaseService.getClient();
+        if (existingClient) {
+          const { count } = await existingClient
+            .from('products')
+            .select('*', { count: 'exact', head: true });
+          
+          setConfig(prev => ({
+            ...prev,
+            cloudProductCount: count || 0
+          }));
+          return;
+        }
+      }
+      
+      // Crear cliente temporal solo para esta consulta
+      const { createClient: createSupabaseClient } = await import('@supabase/supabase-js');
+      const supabase = createSupabaseClient(url, key);
       const { count } = await supabase
         .from('products')
         .select('*', { count: 'exact', head: true });
@@ -74,18 +97,17 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
     onSyncStart?.();
     
     try {
-      const supabase = createClient(savedUrl, savedAnonKey);
+      // Usar el cliente existente de SupabaseService si está disponible
+      const { supabaseService } = await import('../../services/SupabaseService');
+      let products: any[] = [];
+      const existingClient = supabaseService.getClient();
       
-      // Descargar productos desde Supabase
-      const { data: products, error } = await supabase
-        .from('products')
-        .select('*');
-      
-      if (error) {
-        throw error;
+      if (existingClient) {
+        const result = await existingClient.from('products').select('*');
+        products = result.data || [];
       }
       
-      if (!products || products.length === 0) {
+      if (products.length === 0) {
         setConfig(prev => ({ 
           ...prev, 
           status: 'error', 

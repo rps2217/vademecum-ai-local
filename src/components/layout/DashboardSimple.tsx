@@ -585,11 +585,60 @@ function SynergyView({ kb }: { kb: Record<string, any> }) {
 // Vista: Ajustes
 function SettingsView({ connected }: { connected: boolean }) {
   const [refreshKey, setRefreshKey] = useState(0);
+  const [localProductCount, setLocalProductCount] = useState<number | null>(null);
+
+  // Obtener cantidad de productos locales
+  useEffect(() => {
+    const checkLocalProducts = async () => {
+      try {
+        const products = await dataService.getAllProducts();
+        setLocalProductCount(products.length);
+      } catch (e) {
+        setLocalProductCount(0);
+      }
+    };
+    checkLocalProducts();
+  }, [refreshKey]);
 
   const handleSupabaseConnected = () => {
     setRefreshKey(prev => prev + 1);
-    // Recargar la página para aplicar cambios
     window.location.reload();
+  };
+
+  const handleForceSync = async () => {
+    if (!confirm('¿Forzar sincronización? Esto borrará los datos locales y descargará todo desde la nube.')) {
+      return;
+    }
+    
+    // Limpiar cache local
+    localStorage.removeItem('synced_products');
+    
+    // Recargar
+    window.location.reload();
+  };
+
+  const handleClearLocal = async () => {
+    if (!confirm('¿Borrar datos locales? Necesitarás sincronizar desde la nube.')) {
+      return;
+    }
+    
+    try {
+      // Limpiar base de datos local
+      const { database } = await import('../../database');
+      await database.write(async () => {
+        await database.unsafeResetDatabase();
+      });
+      
+      // Limpiar cache
+      localStorage.removeItem('synced_products');
+      localStorage.removeItem('last_sync');
+      
+      alert('Datos locales eliminados. Recarga la página para sincronizar desde la nube.');
+      window.location.reload();
+    } catch (error) {
+      console.error('Error clearing local data:', error);
+      alert('Error al borrar datos locales.');
+    }
   };
 
   return (
@@ -638,7 +687,7 @@ function SettingsView({ connected }: { connected: boolean }) {
         <div className="space-y-3">
           <SettingRow 
             label="Base de datos local" 
-            value="WatermelonDB (IndexedDB)"
+            value={`${localProductCount !== null ? localProductCount : '...' } productos`}
             icon={<Database className="w-4 h-4 text-gray-400" />}
           />
           <SettingRow 
@@ -652,6 +701,22 @@ function SettingsView({ connected }: { connected: boolean }) {
             icon={<Zap className="w-4 h-4 text-gray-400" />}
           />
         </div>
+
+        {/* Acciones de datos */}
+        {connected && localProductCount !== null && localProductCount < 10 && (
+          <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+            <p className="text-sm text-amber-800 mb-3">
+              ⚠️ Solo tienes {localProductCount} productos locales. 
+              Sincroniza para obtener los datos completos.
+            </p>
+            <button
+              onClick={handleClearLocal}
+              className="text-xs text-amber-600 hover:text-amber-800 underline"
+            >
+              Borrar datos locales y sincronizar
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="pt-4 border-t border-gray-100">
