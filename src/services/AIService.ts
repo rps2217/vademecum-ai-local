@@ -247,26 +247,74 @@ export class AIService {
       return {};
     }
 
-    // Fallback Nube
-    try {
-      const { geminiService } = await import('./GeminiService');
-      const result = await geminiService.explainActiveIngredients(productName, ingredients);
-      this.cloudCircuitBreaker.recordSuccess();
-      logger.success(`Análisis en la nube exitoso para ${productName}`, 'AI_Componentes');
-      return result;
-    } catch (error: any) {
-      this.cloudCircuitBreaker.recordFailure();
-      const isQuotaError = error?.status === 'RESOURCE_EXHAUSTED' || error?.message?.includes('429') || error?.message?.includes('quota');
-      const isNetworkError = error?.status === 'UNKNOWN' || error?.message?.includes('xhr error') || error?.message?.includes('fetch');
-      
-      if (isQuotaError || isNetworkError) {
-        logger.warn(`[AIService] Cuota o red fallida en la nube. Circuito activado, encolando componentes para:`, productName);
-        taskQueueService.addTask('ingredient_analysis', { product: { nombre_comercial: productName, principios_activos: ingredients } });
-      } else {
-        logger.error(`Error en análisis de componentes nube para ${productName}`, 'AI_Componentes', error);
+    // Fallback Nube con retry automático
+    const maxRetries = 2;
+    let lastError: any = null;
+    
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const { geminiService } = await import('./GeminiService');
+        const result = await geminiService.explainActiveIngredients(productName, ingredients);
+        this.cloudCircuitBreaker.recordSuccess();
+        logger.success(`Análisis en la nube exitoso para ${productName}`, 'AI_Componentes');
+        return result;
+      } catch (error: any) {
+        lastError = error;
+        this.cloudCircuitBreaker.recordFailure();
+        
+        // Analizar el tipo de error
+        const errorMessage = error?.message || String(error) || '';
+        const errorStatus = error?.status || '';
+        
+        const isQuotaError = errorStatus === 'RESOURCE_EXHAUSTED' || 
+                            errorMessage.includes('429') || 
+                            errorMessage.includes('quota') ||
+                            errorMessage.includes('rate limit');
+        
+        const isNetworkError = errorStatus === 'UNKNOWN' || 
+                              errorMessage.includes('xhr error') || 
+                              errorMessage.includes('fetch') ||
+                              errorMessage.includes('network') ||
+                              errorMessage.includes('Failed to fetch');
+        
+        const isTimeoutError = errorMessage.includes('timeout') || 
+                              errorMessage.includes('timed out');
+        
+        // Para errores de cuota, red o timeout, encolar para retry
+        if (isQuotaError || isNetworkError || isTimeoutError) {
+          logger.warn(`[AIService] ${isQuotaError ? 'Cuota' : isTimeoutError ? 'Timeout' : 'Red'} fallida (intento ${attempt}/${maxRetries}). Encolando para:`, productName);
+          
+          if (attempt < maxRetries) {
+            // Esperar antes de reintentar (exponential backoff)
+            await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+            continue;
+          }
+          
+          // Último intento fallido, encolar para más tarde
+          taskQueueService.addTask('ingredient_analysis', { 
+            product: { nombre_comercial: productName, principios_activos: ingredients },
+            retryAfter: Date.now() + 60000 // Retry después de 1 minuto
+          });
+          return {};
+        }
+        
+        // Para otros errores, intentar una vez más con ingredientes simplificados
+        if (attempt < maxRetries) {
+          logger.warn(`[AIService] Error desconocido (intento ${attempt}/${maxRetries}):`, errorMessage.substring(0, 100));
+          await new Promise(resolve => setTimeout(resolve, 500));
+          continue;
+        }
+        
+        // Todos los intentos fallidos
+        logger.error(`Error en análisis de componentes nube para ${productName} después de ${maxRetries} intentos`, 'AI_Componentes', {
+          error: errorMessage || error,
+          status: errorStatus,
+          ingredients: ingredients?.length || 0
+        });
       }
-      return {};
     }
+    
+    return {};
   }
 
   private startWatchdog() {
