@@ -955,14 +955,86 @@ export function DashboardSimple() {
   const handleScrapeProduct = useCallback(async (sku: string) => {
     if (scrapeStates[sku] === 'scraping') return;
     
+    // Limpiar SKU de caracteres extraños
+    const cleanSku = sku.trim().split(' ')[0].split('\n')[0];
+    if (!cleanSku || cleanSku.length < 5) {
+      logger.warn(`SKU inválido: ${sku}`, 'Dashboard');
+      return;
+    }
+    
     setScrapeStates(prev => ({ ...prev, [sku]: 'scraping' }));
-    logger.info(`Iniciando scraping para SKU: ${sku}`, 'Dashboard');
+    logger.info(`Iniciando scraping para SKU: ${cleanSku}`, 'Dashboard');
     
     try {
-      const response = await fetch(`/api/scrape-product?sku=${encodeURIComponent(sku)}`);
-      const result = await response.json();
+      // Intentar primero con el backend local/desplegado
+      let result = null;
       
-      if (result.success && result.datos) {
+      try {
+        const response = await fetch(`/api/scrape-product?sku=${encodeURIComponent(cleanSku)}`);
+        if (response.ok) {
+          result = await response.json();
+        }
+      } catch (apiError) {
+        console.log('[Scraping] API no disponible, usando fetch directo');
+      }
+      
+      // Si no funciona el API, usar fetch directo
+      if (!result || !result.success) {
+        // Scraping directo usando fetch hacia Farmacias Knop
+        const searchUrl = `https://www.farmaciasknop.com/catalogsearch/result?q=${encodeURIComponent(cleanSku)}`;
+        
+        try {
+          const response = await fetch(searchUrl);
+          const html = await response.text();
+          
+          // Parsear HTML con DOM
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          
+          // Buscar el primer producto
+          const productLink = doc.querySelector('.product-item a, .vtex-product-summary-2-x-productLink, .items-list .item a');
+          
+          if (productLink) {
+            const productUrl = productLink.getAttribute('href');
+            if (productUrl) {
+              // Obtener datos del producto
+              const productResponse = await fetch(productUrl);
+              const productHtml = await productResponse.text();
+              const productDoc = parser.parseFromString(productHtml, 'text/html');
+              
+              // Extraer datos
+              const nombre = productDoc.querySelector('h1.page-title span, .vtex-store-components-3-x-productNameContainer span, h1')?.textContent?.trim();
+              const skuText = productDoc.querySelector('[itemprop="sku"], .sku .value, .product-code')?.textContent?.trim();
+              const marca = productDoc.querySelector('.product-brand, [itemprop="brand"], .vtex-store-components-3-x-productBrand')?.textContent?.trim();
+              const descripcion = productDoc.querySelector('.product.attribute.description, #description')?.textContent?.trim()?.substring(0, 500);
+              const imagen = productDoc.querySelector('.product-image-photo, .vtex-store-components-3-x-productImage')?.getAttribute('src');
+              const precio = productDoc.querySelector('[itemprop="price"], .price-wrapper .price')?.textContent?.trim();
+              const categoria = productDoc.querySelector('.breadcrumbs .current:last-child, .vtex-breadcrumb-1-x-current')?.textContent?.trim();
+              
+              if (nombre) {
+                result = {
+                  success: true,
+                  datos: {
+                    nombre_comercial: nombre,
+                    sku: skuText || cleanSku,
+                    marca: marca,
+                    descripcion: descripcion,
+                    precio: precio,
+                    categoria: categoria,
+                    imagen_url: imagen,
+                    principios_activos: [],
+                    indicaciones: []
+                  }
+                };
+              }
+            }
+          }
+        } catch (fetchError) {
+          console.error('[Scraping] Error en fetch directo:', fetchError);
+        }
+      }
+      
+      if (result?.success && result.datos) {
         // Actualizar el producto con los datos encontrados
         setProducts(prev => prev.map(p => {
           if (p.sku === sku) {
@@ -985,15 +1057,13 @@ export function DashboardSimple() {
         setScrapeStates(prev => ({ ...prev, [sku]: 'success' }));
         logger.info(`Scraping completado para SKU: ${sku}`, 'Dashboard');
         
-        // Resetear estado después de 2 segundos
         setTimeout(() => {
           setScrapeStates(prev => ({ ...prev, [sku]: 'idle' }));
         }, 2000);
       } else {
         setScrapeStates(prev => ({ ...prev, [sku]: 'error' }));
-        logger.warn(`Scraping falló para SKU: ${sku} - ${result.errores?.[0] || 'Error desconocido'}`, 'Dashboard');
+        logger.warn(`Scraping falló para SKU: ${sku}`, 'Dashboard');
         
-        // Resetear estado después de 3 segundos
         setTimeout(() => {
           setScrapeStates(prev => ({ ...prev, [sku]: 'idle' }));
         }, 3000);
