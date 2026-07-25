@@ -3,48 +3,84 @@
  * 
  * UI simple, rápida y sin animaciones.
  * Alto rendimiento, práctica y funcional.
+ * Integrada con productos de Supabase.
  */
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { getCombinedKnowledgeBase, getIngredientCount, getStatsByCategory } from './core/knowledge-base';
+import React, { useState, useEffect } from 'react';
+import { getCombinedKnowledgeBase, getIngredientCount } from './core/knowledge-base';
 import { synergyGraphService } from './core/knowledge-base/SynergyGraph';
-import type { IngredientInfo } from './core/knowledge-base/ingredients';
+import { Product } from './core/types/product.types';
 
-// Usar el servicio exportado
+// Tipos locales
+interface AnalyzedProduct extends Product {
+  ingredientes_encontrados: string[];
+  cobertura_kb: number;
+  sinergias: string[];
+}
 
-// ==================== COMPONENTES SIMPLES ====================
+// ==================== HELPERS ====================
 
-function Header() {
+function findIngredientsInProduct(product: Product, kb: Record<string, any>): string[] {
+  const found: string[] = [];
+  const principios = (product.principios_activos || []).map(p => p.toLowerCase());
+  
+  for (const [id, ing] of Object.entries(kb)) {
+    const ingName = (ing as any).nombre.toLowerCase();
+    const ingParts = ingName.split(/[\s\-,\/]+/);
+    
+    // Buscar coincidencia en principios activos
+    for (const principio of principios) {
+      if (principio.includes(ingName) || ingName.includes(principio)) {
+        if (!found.includes(id)) found.push(id);
+      }
+      // Buscar por partes del nombre
+      for (const part of ingParts) {
+        if (part.length > 3 && principio.includes(part)) {
+          if (!found.includes(id)) found.push(id);
+        }
+      }
+    }
+  }
+  
+  return found;
+}
+
+function calculateSynergies(ingredientIds: string[]): string[] {
+  const sinergias: string[] = [];
+  for (const id of ingredientIds) {
+    const sin = synergyGraphService.obtenerSinergiasDe(id);
+    for (const s of sin) {
+      if (ingredientIds.includes(s.hacia) && !sinergias.includes(`${id}+${s.hacia}`)) {
+        sinergias.push(`${id} + ${s.hacia}`);
+      }
+    }
+  }
+  return sinergias;
+}
+
+// ==================== COMPONENTES ====================
+
+function Header({ productCount }: { productCount: number }) {
   return (
     <header className="bg-emerald-600 text-white p-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <h1 className="text-xl font-bold">Vademecum AI</h1>
-        <span className="text-sm opacity-80">Base de {getIngredientCount()} ingredientes</span>
+        <div>
+          <h1 className="text-xl font-bold">Vademecum AI</h1>
+          <p className="text-sm opacity-80">{productCount} productos • {getIngredientCount()} ingredientes KB</p>
+        </div>
       </div>
     </header>
   );
 }
 
-function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
-  const [query, setQuery] = useState('');
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSearch(query);
-  };
-  
+function LoadingState({ message }: { message: string }) {
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-white border-b">
-      <div className="max-w-6xl mx-auto">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Buscar ingrediente... (ej: vitamina c, zinc, magnesio)"
-          className="w-full p-3 border-2 border-gray-300 rounded-lg text-lg focus:border-emerald-500 focus:outline-none"
-        />
+    <div className="flex items-center justify-center py-12">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600">{message}</p>
       </div>
-    </form>
+    </div>
   );
 }
 
