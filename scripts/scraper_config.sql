@@ -33,12 +33,23 @@ CREATE INDEX IF NOT EXISTS idx_scraper_history_dates ON public.scraper_history(s
 ALTER TABLE public.scraper_config ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.scraper_history ENABLE ROW LEVEL SECURITY;
 
--- Políticas públicas
+-- Políticas públicas (usar OR REPLACE si ya existe)
+DROP POLICY IF EXISTS "Public read scraper_config" ON public.scraper_config;
 CREATE POLICY "Public read scraper_config" ON public.scraper_config FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Public write scraper_config" ON public.scraper_config;
 CREATE POLICY "Public write scraper_config" ON public.scraper_config FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public write scraper_config_update" ON public.scraper_config;
 CREATE POLICY "Public write scraper_config_update" ON public.scraper_config FOR UPDATE USING (true);
+
+DROP POLICY IF EXISTS "Public read scraper_history" ON public.scraper_history;
 CREATE POLICY "Public read scraper_history" ON public.scraper_history FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Public write scraper_history" ON public.scraper_history;
 CREATE POLICY "Public write scraper_history" ON public.scraper_history FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public write scraper_history_update" ON public.scraper_history;
 CREATE POLICY "Public write scraper_history_update" ON public.scraper_history FOR UPDATE USING (true);
 
 -- Insertar configuración inicial
