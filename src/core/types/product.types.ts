@@ -99,4 +99,16 @@ export interface Product {
   is_synced_cloud?: boolean;
   /** Última vez que se subió/bajó de la nube. */
   last_synced_cloud?: number;
+  /** Estado de sincronización local */
+  sync_status?: 'local' | 'synced' | 'pending';
+  /** Timestamp de última actualización local */
+  updated_at?: number;
+}
+
+/**
+ * Producto con metadatos locales para IndexedDB
+ */
+export interface LocalProduct extends Product {
+  sync_status: 'local' | 'synced' | 'pending';
+  updated_at: number;
 }
