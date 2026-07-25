@@ -708,16 +708,16 @@ function SynergyView({ kb }: { kb: Record<string, any> }) {
   // Obtener ingredientes con sinergias
   const ingredientsWithSynergies = useMemo(() => {
     return kbIngredients
-      .filter(ing => ing.sinergias.length > 0)
-      .sort((a, b) => b.sinergias.length - a.sinergias.length)
+      .filter(ing => (ing.sinergias || []).length > 0)
+      .sort((a, b) => (b.sinergias || []).length - (a.sinergias || []).length)
       .slice(0, 15);
   }, []);
 
   // Obtener ingredientes con antagonismos
   const ingredientsWithAntagonisms = useMemo(() => {
     return kbIngredients
-      .filter(ing => ing.antagonismos.length > 0)
-      .sort((a, b) => b.antagonismos.length - a.antagonismos.length)
+      .filter(ing => (ing.antagonismos || []).length > 0)
+      .sort((a, b) => (b.antagonismos || []).length - (a.antagonismos || []).length)
       .slice(0, 10);
   }, []);
 
@@ -790,7 +790,7 @@ function SynergyView({ kb }: { kb: Record<string, any> }) {
                 <span className="text-xs text-gray-400">{ing.familia}</span>
               </div>
               <span className="text-xs bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full">
-                {ing.sinergias.length} sinergia{ing.sinergias.length !== 1 ? 's' : ''}
+                {(ing.sinergias || []).length} sinergia{(ing.sinergias || []).length !== 1 ? 's' : ''}
               </span>
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -807,8 +807,8 @@ function SynergyView({ kb }: { kb: Record<string, any> }) {
                   </span>
                 );
               })}
-              {ing.sinergias.length > 4 && (
-                <span className="text-xs text-gray-400 px-1 py-1">+{ing.sinergias.length - 4} más</span>
+              {(ing.sinergias || []).length > 4 && (
+                <span className="text-xs text-gray-400 px-1 py-1">+{(ing.sinergias || []).length - 4} más</span>
               )}
             </div>
             {ing.notas && (
@@ -825,7 +825,7 @@ function SynergyView({ kb }: { kb: Record<string, any> }) {
                 <span className="text-xs text-gray-400">{ing.familia}</span>
               </div>
               <span className="text-xs bg-amber-50 text-amber-600 px-2 py-0.5 rounded-full">
-                {ing.antagonismos.length} antagonismo{ing.antagonismos.length !== 1 ? 's' : ''}
+                {(ing.antagonismos || []).length} antagonismo{(ing.antagonismos || []).length !== 1 ? 's' : ''}
               </span>
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -842,8 +842,8 @@ function SynergyView({ kb }: { kb: Record<string, any> }) {
                   </span>
                 );
               })}
-              {ing.antagonismos.length > 4 && (
-                <span className="text-xs text-gray-400 px-1 py-1">+{ing.antagonismos.length - 4} más</span>
+              {(ing.antagonismos || []).length > 4 && (
+                <span className="text-xs text-gray-400 px-1 py-1">+{(ing.antagonismos || []).length - 4} más</span>
               )}
             </div>
           </div>
