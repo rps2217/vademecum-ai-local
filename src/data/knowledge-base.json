@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Base de conocimiento de fitoterapia, homeopatía y nutracéuticos",
   "lastUpdated": "2025-07-25",
   "ingredients": [
@@ -4700,6 +4700,451 @@
       "antagonismos": [],
       "contraindicaciones": [],
       "notas": "Para homocisteína, higado, digestión."
+    },
+    {
+      "id": "aloes",
+      "nombre": "Aloes",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Laxante",
+        "Hematostatico"
+      ],
+      "familia": "Asphodelaceae",
+      "sinergias": [
+        "nux-vomica"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para hemorroides.",
+      "sinonimos": [
+        "Aloe socotrina"
+      ]
+    },
+    {
+      "id": "baptisia",
+      "nombre": "Baptisia",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiinfeccioso"
+      ],
+      "familia": "Fabaceae",
+      "sinergias": [
+        "echinacea"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para septicemia.",
+      "sinonimos": [
+        "Wild indigo"
+      ]
+    },
+    {
+      "id": "cinchona",
+      "nombre": "Cinchona",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antipiretico",
+        "Tonico"
+      ],
+      "familia": "Rubiaceae",
+      "sinergias": [
+        "arsenicum"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para fiebre.",
+      "sinonimos": [
+        "Quina"
+      ]
+    },
+    {
+      "id": "actaea-racemosa",
+      "nombre": "Actaea Racemosa",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiinflamatorio",
+        "Sedante"
+      ],
+      "familia": "Ranunculaceae",
+      "sinergias": [
+        "pulsatilla"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para menopausia.",
+      "sinonimos": [
+        "Black cohosh"
+      ]
+    },
+    {
+      "id": "guaiacum",
+      "nombre": "Guaiacum",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiinflamatorio"
+      ],
+      "familia": "Zygophyllaceae",
+      "sinergias": [
+        "rhus-tox"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para gota.",
+      "sinonimos": [
+        "Lignum vitae"
+      ]
+    },
+    {
+      "id": "kalmia",
+      "nombre": "Kalmia",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiinflamatorio",
+        "Cardiotonico"
+      ],
+      "familia": "Ericaceae",
+      "sinergias": [
+        "rhus-tox"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para neuralgias.",
+      "sinonimos": [
+        "Mountain laurel"
+      ]
+    },
+    {
+      "id": "agnus-castus",
+      "nombre": "Agnus Castus",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Tonico nervioso",
+        "Hormonal"
+      ],
+      "familia": "Lamiaceae",
+      "sinergias": [
+        "sepia"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para impotencia.",
+      "sinonimos": [
+        "Chaste tree"
+      ]
+    },
+    {
+      "id": "anacardium",
+      "nombre": "Anacardium",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Neurotonico",
+        "Analgesico"
+      ],
+      "familia": "Anacardiaceae",
+      "sinergias": [
+        "lycopodium"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para memoria.",
+      "sinonimos": [
+        "Marking nut"
+      ]
+    },
+    {
+      "id": "causticum",
+      "nombre": "Causticum",
+      "tipo": "homeopatico",
+      "propiedades": [
+        "Antiinflamatorio",
+        "Neurotonico"
+      ],
+      "familia": "Mineral",
+      "sinergias": [
+        "rhus-tox"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para paralisis.",
+      "sinonimos": [
+        "Hahnemann caustic"
+      ]
+    },
+    {
+      "id": "hericium",
+      "nombre": "Hericium",
+      "tipo": "fungico",
+      "propiedades": [
+        "Neurogenerador",
+        "Neuroprotector"
+      ],
+      "familia": "Hericiaceae",
+      "sinergias": [
+        "bacopa",
+        "omega-3"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Estimula NGF.",
+      "sinonimos": [
+        "Lions Mane"
+      ]
+    },
+    {
+      "id": "chaga",
+      "nombre": "Chaga",
+      "tipo": "fungico",
+      "propiedades": [
+        "Antioxidante",
+        "Antiinflamatorio"
+      ],
+      "familia": "Hymenochaetaceae",
+      "sinergias": [
+        "reishi"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Hongo de abedul.",
+      "sinonimos": [
+        "Inonotus obliquus"
+      ]
+    },
+    {
+      "id": "turkey-tail",
+      "nombre": "Turkey Tail",
+      "tipo": "fungico",
+      "propiedades": [
+        "Inmunoestimulante",
+        "Antiviral"
+      ],
+      "familia": "Polyporaceae",
+      "sinergias": [
+        "reishi"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Rico en PSK.",
+      "sinonimos": [
+        "Trametes versicolor"
+      ]
+    },
+    {
+      "id": "cordyceps-fit",
+      "nombre": "Cordyceps",
+      "tipo": "fungico",
+      "propiedades": [
+        "Inmunoestimulante",
+        "Energizante"
+      ],
+      "familia": "Ophiocordycipitaceae",
+      "sinergias": [
+        "reishi",
+        "ginseng"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Hongo del Himalaya.",
+      "sinonimos": [
+        "Caterpillar fungus"
+      ]
+    },
+    {
+      "id": "polygala",
+      "nombre": "Polygala",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Neuroprotector",
+        "Nootropico"
+      ],
+      "familia": "Polygalaceae",
+      "sinergias": [
+        "bacopa"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Medicina china.",
+      "sinonimos": [
+        "Yuan Zhi"
+      ]
+    },
+    {
+      "id": "acorus",
+      "nombre": "Acorus",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Neuroprotector",
+        "Digestivo"
+      ],
+      "familia": "Acoraceae",
+      "sinergias": [
+        "polygala"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Embarazo"
+      ],
+      "notas": "Para memoria.",
+      "sinonimos": [
+        "Sweet flag"
+      ]
+    },
+    {
+      "id": "linden",
+      "nombre": "Tilo",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Sedante",
+        "Diaforetico"
+      ],
+      "familia": "Malvaceae",
+      "sinergias": [
+        "valeriana"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para ansiedad.",
+      "sinonimos": [
+        "Tilia cordata"
+      ]
+    },
+    {
+      "id": "verbena",
+      "nombre": "Verbena",
+      "tipo": "fitoterapico",
+      "propiedades": [
+        "Tonico nervioso",
+        "Galactagogo"
+      ],
+      "familia": "Verbenaceae",
+      "sinergias": [
+        "valeriana"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para estres.",
+      "sinonimos": [
+        "Vervain"
+      ]
+    },
+    {
+      "id": "DMAE",
+      "nombre": "DMAE",
+      "tipo": "nootropico",
+      "propiedades": [
+        "Neuroprotector",
+        "Antioxidante"
+      ],
+      "familia": "Nutriente",
+      "sinergias": [
+        "colina"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Epilepsia"
+      ],
+      "notas": "Para memoria.",
+      "sinonimos": [
+        "Dimethylaminoethanol"
+      ]
+    },
+    {
+      "id": "l-carnosina",
+      "nombre": "L-Carnosina",
+      "tipo": "antioxidante",
+      "propiedades": [
+        "Antiaging",
+        "Neuroprotector"
+      ],
+      "familia": "Dipeptido",
+      "sinergias": [
+        "alpha-lipoico"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para longevidad.",
+      "sinonimos": [
+        "Carnosine"
+      ]
+    },
+    {
+      "id": "yodo-potasico",
+      "nombre": "Yodo",
+      "tipo": "mineral",
+      "propiedades": [
+        "Funcion tiroidea",
+        "Metabolismo"
+      ],
+      "familia": "Mineral",
+      "sinergias": [
+        "selenio"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [
+        "Hipertiroidismo"
+      ],
+      "notas": "Para hipotiroidismo.",
+      "sinonimos": [
+        "Potassium iodide"
+      ]
+    },
+    {
+      "id": "molibdeno",
+      "nombre": "Molibdeno",
+      "tipo": "mineral",
+      "propiedades": [
+        "Metabolismo hierro",
+        "Enzimas"
+      ],
+      "familia": "Mineral",
+      "sinergias": [
+        "hierro"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Cofactor de enzimas.",
+      "sinonimos": [
+        "Molybdenum"
+      ]
+    },
+    {
+      "id": "vanadio",
+      "nombre": "Vanadio",
+      "tipo": "mineral",
+      "propiedades": [
+        "Metabolismo glucosa",
+        "Insulina"
+      ],
+      "familia": "Mineral",
+      "sinergias": [
+        "cromo"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para diabetes.",
+      "sinonimos": [
+        "Vanadium"
+      ]
+    },
+    {
+      "id": "silicio",
+      "nombre": "Silicio",
+      "tipo": "mineral",
+      "propiedades": [
+        "Colageno sintesis",
+        "Salud osea"
+      ],
+      "familia": "Mineral",
+      "sinergias": [
+        "colageno"
+      ],
+      "antagonismos": [],
+      "contraindicaciones": [],
+      "notas": "Para piel.",
+      "sinonimos": [
+        "Silicon"
+      ]
     }
   ]
 }
