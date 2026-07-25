@@ -90,22 +90,35 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
   };
 
   const handleSyncFromCloud = async () => {
-    if (!savedUrl || !savedAnonKey) return;
+    if (!savedUrl || !savedAnonKey) {
+      setConfig(prev => ({ 
+        ...prev, 
+        status: 'error', 
+        message: 'No hay credenciales guardadas' 
+      }));
+      return;
+    }
     
     setIsSyncing(true);
-    setConfig(prev => ({ ...prev, status: 'syncing', message: 'Sincronizando productos...' }));
+    setConfig(prev => ({ ...prev, status: 'syncing', message: 'Descargando productos...' }));
     onSyncStart?.();
     
     try {
-      // Usar el cliente existente de SupabaseService si está disponible
-      const { supabaseService } = await import('../../services/SupabaseService');
-      let products: any[] = [];
-      const existingClient = supabaseService.getClient();
+      // Crear cliente de Supabase directamente con las credenciales guardadas
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(savedUrl, savedAnonKey);
       
-      if (existingClient) {
-        const result = await existingClient.from('products').select('*');
-        products = result.data || [];
+      console.log('[SupabaseSetup] Descargando productos desde:', savedUrl);
+      
+      const { data, error } = await supabase.from('products').select('*');
+      
+      if (error) {
+        console.error('[SupabaseSetup] Error:', error);
+        throw new Error(error.message || 'Error al descargar productos');
       }
+      
+      const products = data || [];
+      console.log(`[SupabaseSetup] Productos descargados: ${products.length}`);
       
       if (products.length === 0) {
         setConfig(prev => ({ 
@@ -121,10 +134,15 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       localStorage.setItem('synced_products', JSON.stringify(products));
       localStorage.setItem('last_sync', new Date().toISOString());
       
-      // Disparar evento para que el dashboard actualice
-      window.dispatchEvent(new CustomEvent('cloud-data-ready', { 
-        detail: { products, count: products.length } 
-      }));
+      // Guardar en IndexedDB usando DataService
+      try {
+        const { dataService } = await import('../../services/DataService');
+        await dataService.saveProductsToLocalDB(products);
+        console.log(`[SupabaseSetup] Productos guardados en BD local`);
+      } catch (dbError) {
+        console.error('[SupabaseSetup] Error guardando en BD:', dbError);
+        // Continuar aunque falle guardar en BD, el localStorage tiene los datos
+      }
       
       setConfig(prev => ({ 
         ...prev, 
@@ -136,12 +154,13 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       
       onSyncComplete?.(products.length);
       
-      // Recargar después de 2 segundos
+      // Recargar después de 1.5 segundos
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 1500);
       
     } catch (error: any) {
+      console.error('[SupabaseSetup] Error de sincronización:', error);
       setConfig(prev => ({ 
         ...prev, 
         status: 'error', 

@@ -270,7 +270,7 @@ export class DataService {
   /**
    * Guarda una lista de productos en la base de datos local
    */
-  private async saveProductsToLocalDB(products: Product[]): Promise<void> {
+  async saveProductsToLocalDB(products: Product[]): Promise<void> {
     if (!products || products.length === 0) {
       logger.warn('No hay productos para guardar', 'DataService');
       return;
@@ -280,6 +280,7 @@ export class DataService {
 
     // Verificar estructura del primer producto para debug
     if (products[0]) {
+      console.log('[DataService] Primer producto recibido:', JSON.stringify(products[0]).substring(0, 500));
       logger.info(`Primer producto SKU: ${products[0].sku}`, 'DataService');
       logger.info(`Primer producto nombre: ${products[0].nombre_comercial || 'N/A'}`, 'DataService');
     }
