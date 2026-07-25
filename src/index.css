@@ -31,41 +31,129 @@
 
 @layer base {
   :root {
-    /* Medical Futurism Theme - Sophisticated & Modern */
-    --background: #f8fafc;
-    --foreground: #0f172a;
+    /* Modern Medical Theme - Clean & Professional */
+    --background: #FAFBFC;
+    --foreground: #1E293B;
     
-    --card: #ffffff;
-    --card-foreground: #0f172a;
+    --card: #FFFFFF;
+    --card-foreground: #1E293B;
     
-    --popover: #ffffff;
-    --popover-foreground: #0f172a;
+    --popover: #FFFFFF;
+    --popover-foreground: #1E293B;
     
-    /* Sophisticated Teal - Trust & Innovation */
-    --primary: #0d9488;
-    --primary-foreground: #ffffff;
+    /* Vibrant Teal - Modern & Trust */
+    --primary: #0891B2;
+    --primary-hover: #0E7490;
+    --primary-foreground: #FFFFFF;
     
-    /* Muted states */
-    --muted: #f1f5f9;
-    --muted-foreground: #64748b;
+    /* Muted states - Soft slate */
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
     
-    /* Accent - Subtle teal glow */
-    --accent: #f0fdfa;
-    --accent-foreground: #0d9488;
+    /* Accent - Subtle cyan tint */
+    --accent: #ECFEFF;
+    --accent-foreground: #0891B2;
     
-    /* Borders - Softer */
-    --border: #e2e8f0;
-    --input: #e2e8f0;
+    /* Secondary - Warm slate */
+    --secondary: #F8FAFC;
+    --secondary-foreground: #475569;
     
-    /* Semantic colors */
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --info: #3b82f6;
+    /* Borders - Clean */
+    --border: #E2E8F0;
+    --input: #E2E8F0;
+    --ring: #0891B2;
+    
+    /* Semantic colors - Modern palette */
+    --success: #059669;
+    --success-light: #D1FAE5;
+    --warning: #D97706;
+    --warning-light: #FEF3C7;
+    --danger: #DC2626;
+    --danger-light: #FEE2E2;
+    --info: #2563EB;
+    --info-light: #DBEAFE;
+    
+    /* Destructive */
+    --destructive: #DC2626;
+    --destructive-foreground: #FFFFFF;
     
     /* Glass effect */
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    
+    /* Chart colors */
+    --chart-1: #0891B2;
+    --chart-2: #6366F1;
+    --chart-3: #8B5CF6;
+    --chart-4: #EC4899;
+    --chart-5: #F59E0B;
+    
+    /* Sidebar (if used) */
+    --sidebar: #FAFBFC;
+    --sidebar-foreground: #1E293B;
+    --sidebar-border: #E2E8F0;
+    --sidebar-accent: #ECFEFF;
+    --sidebar-accent-foreground: #0891B2;
+    --sidebar-primary: #0891B2;
+    --sidebar-primary-foreground: #FFFFFF;
+  }
+  
+  /* Dark mode */
+  .dark {
+    --background: #0F172A;
+    --foreground: #F1F5F9;
+    
+    --card: #1E293B;
+    --card-foreground: #F1F5F9;
+    
+    --popover: #1E293B;
+    --popover-foreground: #F1F5F9;
+    
+    --primary: #22D3EE;
+    --primary-hover: #06B6D4;
+    --primary-foreground: #0F172A;
+    
+    --muted: #334155;
+    --muted-foreground: #94A3B8;
+    
+    --accent: #164E63;
+    --accent-foreground: #22D3EE;
+    
+    --secondary: #334155;
+    --secondary-foreground: #E2E8F0;
+    
+    --border: #334155;
+    --input: #334155;
+    --ring: #22D3EE;
+    
+    --success: #34D399;
+    --success-light: #064E3B;
+    --warning: #FBBF24;
+    --warning-light: #78350F;
+    --danger: #F87171;
+    --danger-light: #7F1D1D;
+    --info: #60A5FA;
+    --info-light: #1E3A8A;
+    
+    --destructive: #F87171;
+    --destructive-foreground: #0F172A;
+    
+    --glass-bg: rgba(30, 41, 59, 0.8);
+    --glass-border: rgba(51, 65, 85, 0.5);
+    
+    --chart-1: #22D3EE;
+    --chart-2: #818CF8;
+    --chart-3: #A78BFA;
+    --chart-4: #F472B6;
+    --chart-5: #FBBF24;
+    
+    --sidebar: #1E293B;
+    --sidebar-foreground: #F1F5F9;
+    --sidebar-border: #334155;
+    --sidebar-accent: #164E63;
+    --sidebar-accent-foreground: #22D3EE;
+    --sidebar-primary: #22D3EE;
+    --sidebar-primary-foreground: #0F172A;
   }
 
   * {
@@ -101,31 +189,38 @@
 
 /* Gradient backgrounds */
 .gradient-primary {
-  background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #115e59 100%);
+  background: linear-gradient(135deg, #0891B2 0%, #0E7490 50%, #155E75 100%);
 }
 
 .gradient-surface {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 100%);
 }
 
 .gradient-mesh {
   background: 
-    radial-gradient(at 40% 20%, rgba(13, 148, 136, 0.08) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(59, 130, 246, 0.06) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(16, 185, 129, 0.06) 0px, transparent 50%),
-    #f8fafc;
+    radial-gradient(at 40% 20%, rgba(8, 145, 178, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(139, 92, 246, 0.05) 0px, transparent 50%),
+    #FAFBFC;
+}
+
+.gradient-hero {
+  background: 
+    linear-gradient(135deg, rgba(8, 145, 178, 0.05) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+    #FAFBFC;
 }
 
 /* Selection color */
 ::selection {
-  background-color: #0d9488;
+  background-color: #0891B2;
   color: white;
 }
 
 /* Custom scrollbar - Thinner & elegant */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -133,18 +228,18 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #CBD5E1;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #94A3B8;
 }
 
 /* Focus ring - Custom */
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #f8fafc, 0 0 0 4px #0d9488;
+  box-shadow: 0 0 0 2px #FAFBFC, 0 0 0 4px #0891B2;
 }
 
 /* Animations */
@@ -188,10 +283,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4);
+    box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(13, 148, 136, 0);
+    box-shadow: 0 0 0 8px rgba(8, 145, 178, 0);
   }
 }
 
@@ -250,7 +345,7 @@
 
 .card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(13, 148, 136, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(8, 145, 178, 0.15);
 }
 
 /* Button press effect */
@@ -260,7 +355,14 @@
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+  background: linear-gradient(135deg, #0891B2 0%, #0E7490 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-hover:hover {
+  background: linear-gradient(135deg, #0891B2 0%, #6366F1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -300,43 +402,68 @@
 
 /* Glow effects */
 .glow-primary {
-  box-shadow: 0 0 20px rgba(13, 148, 136, 0.3);
+  box-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
 }
 
 .glow-primary-strong {
-  box-shadow: 0 0 30px rgba(13, 148, 136, 0.5), 0 0 60px rgba(13, 148, 136, 0.2);
+  box-shadow: 0 0 30px rgba(8, 145, 178, 0.5), 0 0 60px rgba(8, 145, 178, 0.2);
+}
+
+.glow-success {
+  box-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
+}
+
+.glow-warning {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.3);
+}
+
+.glow-danger {
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
 }
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid #0d9488;
+  outline: 2px solid #0891B2;
   outline-offset: 2px;
 }
 
-/* Alert styles - clean and simple */
+/* Alert styles - clean and modern */
 .alert {
   @apply p-4 rounded-xl border text-sm font-medium;
 }
 
 .alert-success {
-  @apply bg-emerald-50 border-emerald-200 text-emerald-800;
+  background: var(--success-light);
+  border-color: var(--success);
+  color: var(--success);
 }
 
 .alert-warning {
-  @apply bg-amber-50 border-amber-200 text-amber-800;
+  background: var(--warning-light);
+  border-color: var(--warning);
+  color: var(--warning);
 }
 
 .alert-error {
-  @apply bg-red-50 border-red-200 text-red-800;
+  background: var(--danger-light);
+  border-color: var(--danger);
+  color: var(--danger);
 }
 
 .alert-info {
-  @apply bg-blue-50 border-blue-200 text-blue-800;
+  background: var(--info-light);
+  border-color: var(--info);
+  color: var(--info);
 }
 
 /* Card hover effect */
 .card-hover {
-  @apply transition-all duration-200 hover:shadow-lg hover:border-emerald-200;
+  @apply transition-all duration-200 hover:shadow-lg;
+  border-color: var(--border);
+}
+
+.card-hover:hover {
+  border-color: var(--primary);
 }
 
 /* Button press effect */
