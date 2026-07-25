@@ -9,7 +9,7 @@ import {
   Link2, BarChart3, X, ChevronRight, 
   CheckCircle2, AlertCircle, Cloud, CloudOff,
   Loader2, Zap, Sparkles, Copy, ExternalLink, 
-  Package, Info, TrendingUp
+  Package, Info, TrendingUp, RefreshCw
 } from 'lucide-react';
 import { getCombinedKnowledgeBase, getIngredientCount } from '../../core/knowledge-base';
 import { synergyGraphService } from '../../core/knowledge-base/SynergyGraph';
@@ -19,6 +19,7 @@ import { dataService } from '../../services/DataService';
 import { searchService } from '../../services/SearchService';
 import { cn } from '../../lib/utils';
 import { logger } from '../../services/LoggerService';
+import { SupabaseSetup } from '../common/SupabaseSetup';
 
 // Tipos
 interface AnalyzedProduct extends Product {
@@ -583,21 +584,67 @@ function SynergyView({ kb }: { kb: Record<string, any> }) {
 
 // Vista: Ajustes
 function SettingsView({ connected }: { connected: boolean }) {
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleSupabaseConnected = () => {
+    setRefreshKey(prev => prev + 1);
+    // Recargar la página para aplicar cambios
+    window.location.reload();
+  };
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-lg">
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Configuración</h2>
         
+        {/* Estado de conexión */}
+        <div className="bg-white border border-gray-100 rounded-xl p-4 mb-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className={cn(
+                "w-10 h-10 rounded-xl flex items-center justify-center",
+                connected ? "bg-emerald-100" : "bg-gray-100"
+              )}>
+                {connected ? (
+                  <Cloud className="w-5 h-5 text-emerald-600" />
+                ) : (
+                  <CloudOff className="w-5 h-5 text-gray-400" />
+                )}
+              </div>
+              <div>
+                <p className="font-medium text-gray-900">
+                  {connected ? 'Supabase Conectado' : 'Modo Local'}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {connected ? 'Sincronización activa' : 'Sin conexión a la nube'}
+                </p>
+              </div>
+            </div>
+            
+            {connected && (
+              <span className="px-2.5 py-1 bg-emerald-50 text-emerald-600 text-xs font-medium rounded-full">
+                Activo
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Configuración de Supabase */}
+        <div className="mb-4">
+          <SupabaseSetup onConnected={handleSupabaseConnected} />
+        </div>
+
+        {/* Info del sistema */}
         <div className="space-y-3">
           <SettingRow 
-            label="Conexión a la nube" 
-            value={connected ? 'Conectado' : 'Sin conexión'}
-            icon={connected ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <CloudOff className="w-4 h-4 text-gray-400" />}
+            label="Base de datos local" 
+            value="WatermelonDB (IndexedDB)"
+            icon={<Database className="w-4 h-4 text-gray-400" />}
           />
           <SettingRow 
-            label="Base de datos" 
-            value="SQLite local"
-            icon={<Database className="w-4 h-4 text-gray-400" />}
+            label="Índice de búsqueda" 
+            value="MiniSearch"
+            icon={<Search className="w-4 h-4 text-gray-400" />}
           />
           <SettingRow 
             label="Versión" 
