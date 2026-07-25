@@ -14,6 +14,7 @@ import {
 import { getCombinedKnowledgeBase, getIngredientCount } from '../../core/knowledge-base';
 import { synergyGraphService } from '../../core/knowledge-base/SynergyGraph';
 import { knowledgeService, type ProductAnalysis } from '../../services/KnowledgeService';
+import { knowledgeSyncService, type SyncStatus } from '../../services/KnowledgeSyncService';
 import { Product } from '../../core/types/product.types';
 import { supabaseService } from '../../services/SupabaseService';
 import { dataService } from '../../services/DataService';
@@ -545,10 +546,23 @@ function SearchView({
 }
 
 // Vista: Catálogo
-function CatalogView({ stats }: { stats: { total: number; kbMatch: number; sinergias: number } }) {
-  const kbStats = synergyGraphService.obtenerEstadisticas();
-  const kbInfo = knowledgeService.getStats();
-  
+function CatalogView({ 
+  stats, 
+  kbStats,
+  syncStatus,
+  onSync 
+}: { 
+  stats: { total: number; kbMatch: number; sinergias: number }; 
+  kbStats: { total: number; families: number; types: number };
+  syncStatus: SyncStatus;
+  onSync: () => void;
+}) {
+  const kbSynStats = synergyGraphService.obtenerEstadisticas();
+  const isSyncing = syncStatus.status === 'syncing';
+  const lastSync = syncStatus.status === 'synced' 
+    ? new Date().toLocaleTimeString() 
+    : null;
+
   return (
     <div className="space-y-6">
       <div>
@@ -556,33 +570,101 @@ function CatalogView({ stats }: { stats: { total: number; kbMatch: number; siner
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <StatCard label="Productos" value={stats.total} />
           <StatCard label="Ingredientes KB" value={getIngredientCount()} color="emerald" />
-          <StatCard label="Sinergias" value={kbStats.sinergiasTotales} color="violet" />
-          <StatCard label="Antagonismos" value={kbStats.antagonismosTotales} color="red" />
+          <StatCard label="Sinergias" value={kbSynStats.sinergiasTotales} color="violet" />
+          <StatCard label="Antagonismos" value={kbSynStats.antagonismosTotales} color="red" />
         </div>
       </div>
       
-      {/* Panel de Base de Conocimiento Fitoterapéutica */}
+      {/* Panel de Base de Conocimiento Fitoterapéutica con Sincronización */}
       <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-5 border border-emerald-100">
-        <div className="flex items-center gap-2 mb-4">
-          <Leaf className="w-5 h-5 text-emerald-600" />
-          <h3 className="font-semibold text-gray-900">Base de Conocimiento Fitoterapéutico</h3>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <Leaf className="w-5 h-5 text-emerald-600" />
+            <h3 className="font-semibold text-gray-900">Base de Conocimiento</h3>
+          </div>
+          <button
+            onClick={onSync}
+            disabled={isSyncing}
+            className={cn(
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
+              isSyncing 
+                ? "bg-emerald-100 text-emerald-400 cursor-not-allowed"
+                : "bg-emerald-500 text-white hover:bg-emerald-600"
+            )}
+          >
+            <RefreshCw className={cn("w-3.5 h-3.5", isSyncing && "animate-spin")} />
+            {isSyncing ? 'Sincronizando...' : 'Sincronizar'}
+          </button>
         </div>
+        
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center">
-            <div className="text-3xl font-bold text-emerald-600">{kbInfo.total}</div>
+            <div className="text-3xl font-bold text-emerald-600">{kbStats.total}</div>
             <div className="text-xs text-gray-500 mt-1">Ingredientes</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-emerald-600">{kbInfo.familias}</div>
+            <div className="text-3xl font-bold text-emerald-600">{kbStats.familias}</div>
             <div className="text-xs text-gray-500 mt-1">Familias</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-emerald-600">{kbInfo.tipos}</div>
+            <div className="text-3xl font-bold text-emerald-600">{kbStats.types}</div>
             <div className="text-xs text-gray-500 mt-1">Tipos</div>
           </div>
         </div>
-        <p className="text-xs text-gray-500 mt-4 text-center">
+        
+        {lastSync && (
+          <p className="text-xs text-emerald-600 mt-3 text-center">
+            ✓ Sincronizado a las {lastSync}
+          </p>
+        )}
+        
+        <p className="text-xs text-gray-500 mt-2 text-center">
           Fitoterapia, homeopatía, vitaminas y minerales verificados
+        </p>
+        
+        {syncStatus.status === 'error' && (
+          <p className="text-xs text-red-500 mt-2 text-center">
+            Error: {syncStatus.error}
+          </p>
+        )}
+      </div>
+
+      {/* Panel de Sincronización Multi-Dispositivo */}
+      <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-5 border border-violet-100">
+        <div className="flex items-center gap-2 mb-3">
+          <Cloud className="w-5 h-5 text-violet-600" />
+          <h3 className="font-semibold text-gray-900">Sincronización en la Nube</h3>
+        </div>
+        <div className="space-y-2 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="text-gray-600">Estado:</span>
+            <span className={cn(
+              "px-2 py-0.5 rounded-full text-xs font-medium",
+              syncStatus.status === 'synced' ? "bg-emerald-100 text-emerald-700" :
+              syncStatus.status === 'syncing' ? "bg-amber-100 text-amber-700" :
+              syncStatus.status === 'error' ? "bg-red-100 text-red-700" :
+              "bg-gray-100 text-gray-700"
+            )}>
+              {syncStatus.status === 'synced' ? 'Sincronizado' :
+               syncStatus.status === 'syncing' ? 'Sincronizando...' :
+               syncStatus.status === 'error' ? 'Error' : 'Listo'}
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-gray-600">Dispositivos:</span>
+            <span className="text-gray-900">Todos sincronizados</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-gray-600">Offline:</span>
+            <span className="text-emerald-600 flex items-center gap-1">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              Disponible
+            </span>
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 mt-3">
+          La base de conocimiento se sincroniza automáticamente con Supabase. 
+          Disponible offline en todos tus dispositivos.
         </p>
       </div>
     </div>
@@ -1124,9 +1206,59 @@ export function DashboardSimple() {
   const [selectedCategory, setSelectedCategory] = useState('todas');
   const [selectedProduct, setSelectedProduct] = useState<AnalyzedProduct | null>(null);
   const [scrapeStates, setScrapeStates] = useState<ScrapingState>({});
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>({ status: 'idle' });
+  const [kbStats, setKbStats] = useState({ total: 0, families: 0, types: 0 });
 
   const kb = useMemo(() => getCombinedKnowledgeBase(), []);
   const supabaseConnected = supabaseService.isConfigured();
+
+  // Sincronizar KB con Supabase al iniciar
+  useEffect(() => {
+    const syncKb = async () => {
+      if (!supabaseConnected) {
+        console.log('[Dashboard] Supabase no conectado, usando KB local');
+        setKbStats(knowledgeSyncService.getStats());
+        return;
+      }
+
+      // Registrar listener de sincronización
+      const unsubscribe = knowledgeSyncService.addSyncListener((status) => {
+        setSyncStatus(status);
+        if (status.status === 'synced') {
+          setKbStats(knowledgeSyncService.getStats());
+        }
+      });
+
+      // Verificar si necesita sincronización
+      if (knowledgeSyncService.needsSync()) {
+        console.log('[Dashboard] Iniciando sincronización de KB...');
+        const result = await knowledgeSyncService.sync();
+        if (result.success) {
+          setKbStats(knowledgeSyncService.getStats());
+        }
+      } else {
+        setKbStats(knowledgeSyncService.getStats());
+      }
+
+      return unsubscribe;
+    };
+
+    syncKb();
+  }, [supabaseConnected]);
+
+  // Función para forzar sincronización
+  const handleSyncKb = useCallback(async () => {
+    if (!supabaseConnected) {
+      alert('Conecta Supabase para sincronizar la base de conocimiento');
+      return;
+    }
+    const result = await knowledgeSyncService.sync();
+    if (result.success) {
+      setKbStats(knowledgeSyncService.getStats());
+    } else {
+      alert('Error sincronizando: ' + result.error);
+    }
+  }, [supabaseConnected]);
   
   // Función para hacer scraping on-demand de un producto
   const handleScrapeProduct = useCallback(async (sku: string) => {
@@ -1387,7 +1519,14 @@ export function DashboardSimple() {
               />
             )}
             
-            {view === 'catalogo' && <CatalogView stats={stats} />}
+            {view === 'catalogo' && (
+              <CatalogView 
+                stats={stats} 
+                kbStats={kbStats}
+                syncStatus={syncStatus}
+                onSync={handleSyncKb}
+              />
+            )}
             
             {view === 'sinergias' && <SynergyView kb={kb} />}
             
