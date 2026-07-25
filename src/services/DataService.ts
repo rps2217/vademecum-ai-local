@@ -276,73 +276,95 @@ export class DataService {
       return;
     }
 
+    console.log('[DataService] saveProductsToLocalDB llamado con', products.length, 'productos');
     logger.info(`Guardando ${products.length} productos en la base de datos local...`, 'DataService');
 
     // Verificar estructura del primer producto para debug
     if (products[0]) {
-      console.log('[DataService] Primer producto recibido:', JSON.stringify(products[0]).substring(0, 500));
+      console.log('[DataService] Primer producto:', JSON.stringify(products[0]).substring(0, 300));
+      console.log('[DataService] Claves del primer producto:', Object.keys(products[0]));
       logger.info(`Primer producto SKU: ${products[0].sku}`, 'DataService');
       logger.info(`Primer producto nombre: ${products[0].nombre_comercial || 'N/A'}`, 'DataService');
     }
 
     let successCount = 0;
     let errorCount = 0;
+    let skippedCount = 0;
 
-    await database.write(async () => {
-      for (const product of products) {
-        try {
-          // Verificar que tenga SKU
-          if (!product.sku) {
-            logger.warn('Producto sin SKU, omitiendo', 'DataService');
-            errorCount++;
-            continue;
-          }
+    try {
+      await database.write(async () => {
+        for (const product of products) {
+          try {
+            // Verificar que tenga SKU
+            if (!product.sku) {
+              console.log('[DataService] Producto sin SKU, omitiendo');
+              logger.warn('Producto sin SKU, omitiendo', 'DataService');
+              errorCount++;
+              continue;
+            }
 
-          // Verificar si ya existe
-          const existing = await productsCollection.query(Q.where('sku', product.sku)).fetch();
-          if (existing.length > 0) {
-            logger.info(`Producto ${product.sku} ya existe, omitiendo`, 'DataService');
+            // Verificar si ya existe
+            const existing = await productsCollection.query(Q.where('sku', product.sku)).fetch();
+            if (existing.length > 0) {
+              console.log(`[DataService] Producto ${product.sku} ya existe`);
+              logger.info(`Producto ${product.sku} ya existe, omitiendo`, 'DataService');
+              skippedCount++;
+              continue;
+            }
+
+            console.log(`[DataService] Creando producto: ${product.sku}`);
+            
+            await productsCollection.create(record => {
+              record.sku = product.sku;
+              record.nombreComercial = product.nombre_comercial || product.sku;
+              record.descripcion = product.descripcion || '';
+              record._principiosActivosJson = JSON.stringify(product.principios_activos || []);
+              record.posologia = product.posologia || '';
+              record._indicacionesJson = JSON.stringify(product.indicaciones || []);
+              record.advertencias = product.advertencias || '';
+              record._tagsIaJson = JSON.stringify(product.tags_ia || []);
+              record.categoriaPrincipal = product.categoria_principal || 'Medicamento';
+              record.analisisComponentes = product.analisis_componentes || '';
+              record._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
+              record._vectoresJson = JSON.stringify(product.vectores || []);
+              record.aptoEmbarazo = product.apto_embarazo || 'PRECAUCION';
+              record.aptoLactancia = product.apto_lactancia || 'PRECAUCION';
+              record.aptoPediatria = product.apto_pediatria || 'PRECAUCION';
+              record.aptoDiabeticos = product.apto_diabeticos || 'SI';
+              record.aptoHipertensos = product.apto_hipertensos || 'SI';
+              record.aptoCeliacos = product.apto_celiacos || 'SI';
+              record.sugerenciaComplementaria = product.sugerencia_complementaria || '';
+              record._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
+              record.lastUpdated = product.last_updated || Date.now();
+            });
+
             successCount++;
-            continue;
+            if (successCount % 50 === 0) {
+              console.log(`[DataService] Guardados ${successCount} productos...`);
+            }
+          } catch (e: any) {
+            errorCount++;
+            console.error(`[DataService] Error guardando producto ${product.sku}:`, e);
+            logger.error(`Error guardando producto ${product.sku}: ${e}`, 'DataService', e);
           }
-
-          await productsCollection.create(record => {
-            record.sku = product.sku;
-            record.nombreComercial = product.nombre_comercial || product.sku;
-            record.descripcion = product.descripcion || '';
-            record._principiosActivosJson = JSON.stringify(product.principios_activos || []);
-            record.posologia = product.posologia || '';
-            record._indicacionesJson = JSON.stringify(product.indicaciones || []);
-            record.advertencias = product.advertencias || '';
-            record._tagsIaJson = JSON.stringify(product.tags_ia || []);
-            record.categoriaPrincipal = product.categoria_principal || 'Medicamento';
-            record.analisisComponentes = product.analisis_componentes || '';
-            record._anotacionesComponentesJson = JSON.stringify(product.anotaciones_componentes || {});
-            record._vectoresJson = JSON.stringify(product.vectores || []);
-            record.aptoEmbarazo = product.apto_embarazo || 'PRECAUCION';
-            record.aptoLactancia = product.apto_lactancia || 'PRECAUCION';
-            record.aptoPediatria = product.apto_pediatria || 'PRECAUCION';
-            record.aptoDiabeticos = product.apto_diabeticos || 'SI';
-            record.aptoHipertensos = product.apto_hipertensos || 'SI';
-            record.aptoCeliacos = product.apto_celiacos || 'SI';
-            record.sugerenciaComplementaria = product.sugerencia_complementaria || '';
-            record._skusRelacionadosJson = JSON.stringify(product.skus_relacionados || []);
-            record.lastUpdated = product.last_updated || Date.now();
-          });
-
-          successCount++;
-        } catch (e) {
-          errorCount++;
-          logger.error(`Error guardando producto ${product.sku}: ${e}`, 'DataService', e);
         }
-      }
-    });
+      });
+    } catch (writeError) {
+      console.error('[DataService] Error en database.write:', writeError);
+      throw writeError;
+    }
 
-    logger.info(`Guardado completado: ${successCount} exitosos, ${errorCount} errores`, 'DataService');
+    console.log(`[DataService] Guardado completado: ${successCount} exitosos, ${skippedCount} omitidos (ya existían), ${errorCount} errores`);
+    logger.info(`Guardado completado: ${successCount} exitosos, ${skippedCount} omitidos, ${errorCount} errores`, 'DataService');
     
     // Verificar count en base de datos
-    const dbCount = await productsCollection.query().fetchCount();
-    logger.info(`Total productos en base de datos: ${dbCount}`, 'DataService');
+    try {
+      const dbCount = await productsCollection.query().fetchCount();
+      console.log(`[DataService] Total productos en base de datos: ${dbCount}`);
+      logger.info(`Total productos en base de datos: ${dbCount}`, 'DataService');
+    } catch (countError) {
+      console.error('[DataService] Error contando productos:', countError);
+    }
   }
 
   private validateProduct(product: Product) {

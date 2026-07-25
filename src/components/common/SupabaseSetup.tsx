@@ -110,11 +110,24 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       
       console.log('[SupabaseSetup] Descargando productos desde:', savedUrl);
       
+      // Primero verificar la conexión
+      const { data: countData, error: countError } = await supabase
+        .from('products')
+        .select('*', { count: 'exact', head: true });
+      
+      console.log('[SupabaseSetup] Count error:', countError);
+      
       const { data, error } = await supabase.from('products').select('*');
       
       if (error) {
-        console.error('[SupabaseSetup] Error:', error);
-        throw new Error(error.message || 'Error al descargar productos');
+        console.error('[SupabaseSetup] Error al consultar productos:', error);
+        setConfig(prev => ({ 
+          ...prev, 
+          status: 'error', 
+          message: `Error: ${error.message}` 
+        }));
+        setIsSyncing(false);
+        return;
       }
       
       const products = data || [];
@@ -124,24 +137,27 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
         setConfig(prev => ({ 
           ...prev, 
           status: 'error', 
-          message: 'No hay productos en la nube' 
+          message: 'La nube está vacía (0 productos)' 
         }));
         setIsSyncing(false);
         return;
       }
       
-      // Guardar en localStorage como backup
+      // Guardar en localStorage como backup PRIMERO
       localStorage.setItem('synced_products', JSON.stringify(products));
       localStorage.setItem('last_sync', new Date().toISOString());
+      console.log('[SupabaseSetup] Productos guardados en localStorage');
       
       // Guardar en IndexedDB usando DataService
       try {
         const { dataService } = await import('../../services/DataService');
+        console.log('[SupabaseSetup] Llamando saveProductsToLocalDB...');
         await dataService.saveProductsToLocalDB(products);
         console.log(`[SupabaseSetup] Productos guardados en BD local`);
       } catch (dbError) {
         console.error('[SupabaseSetup] Error guardando en BD:', dbError);
-        // Continuar aunque falle guardar en BD, el localStorage tiene los datos
+        // No fallar si no se puede guardar en BD, localStorage tiene los datos
+        console.log('[SupabaseSetup] Los datos están en localStorage como backup');
       }
       
       setConfig(prev => ({ 
@@ -154,10 +170,10 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       
       onSyncComplete?.(products.length);
       
-      // Recargar después de 1.5 segundos
+      // Recargar después de 2 segundos
       setTimeout(() => {
         window.location.reload();
-      }, 1500);
+      }, 2000);
       
     } catch (error: any) {
       console.error('[SupabaseSetup] Error de sincronización:', error);
