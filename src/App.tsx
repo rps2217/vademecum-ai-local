@@ -1,11 +1,11 @@
 /**
  * Vademecum AI - Aplicación Principal
- * Dashboard Híbrido basado en AppSimple con funcionalidades mejoradas
+ * Interfaz minimalista de alto rendimiento
  */
 
 import React from 'react';
-import DashboardV2 from './DashboardV2';
+import { DashboardSimple } from './components/layout/DashboardSimple';
 
 export default function App() {
-  return <DashboardV2 />;
+  return <DashboardSimple />;
 }

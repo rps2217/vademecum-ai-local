@@ -734,6 +734,242 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
     }
   });
 
+  // ═══════════════════════════════════════════════════════════════════
+  // SCRAPING ON-DEMAND: Para buscar un producto específico por SKU
+  // ═══════════════════════════════════════════════════════════════════
+  
+  apiRouter.get('/scrape-product', async (req, res) => {
+    const { sku, url } = req.query;
+    
+    if (!sku && !url) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Se requiere SKU o URL del producto' 
+      });
+    }
+    
+    log(`[Scrape Product On-Demand] SKU: ${sku || 'N/A'}, URL: ${url || 'N/A'}`);
+    
+    try {
+      // Si tenemos URL directa, usamos esa
+      // Si tenemos SKU, construimos la URL de búsqueda
+      let targetUrl = url as string;
+      
+      if (!targetUrl && sku) {
+        // URL de búsqueda de Farmacias Knop
+        const searchQuery = encodeURIComponent(String(sku));
+        targetUrl = `https://www.farmaciasknop.com/catalogsearch/result?q=${searchQuery}`;
+      }
+      
+      // 1. Buscar el producto por SKU
+      const searchResponse = await axios.get(targetUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'es-ES,es;q=0.9',
+        },
+        timeout: 30000
+      });
+      
+      const $ = cheerio.load(searchResponse.data);
+      let productUrl: string | null = null;
+      
+      // Estrategia 1: Buscar en VTEX __STATE__
+      let vtexProduct: any = null;
+      $('script').each((_, el) => {
+        const content = $(el).html();
+        if (content && content.includes('__STATE__')) {
+          try {
+            const jsonStr = content.split('__STATE__ = ')[1]?.split(';')[0];
+            if (jsonStr) {
+              const vtexData = JSON.parse(jsonStr);
+              
+              // Buscar producto que coincida con el SKU
+              Object.keys(vtexData).forEach(key => {
+                if (key.startsWith('Product:')) {
+                  const p = vtexData[key];
+                  const productSku = p.productReference || p.linkText;
+                  const searchSku = String(sku).toLowerCase();
+                  
+                  if (productSku && (
+                    productSku.toLowerCase().includes(searchSku) ||
+                    searchSku.includes(productSku.toLowerCase())
+                  )) {
+                    productUrl = `${BASE_URL}/${p.linkText}/p`;
+                    vtexProduct = p;
+                  }
+                }
+              });
+            }
+          } catch (e) {
+            // Continuar con siguiente script
+          }
+        }
+      });
+      
+      // Estrategia 2: Si no encontramos en VTEX, buscar enlace directo
+      if (!productUrl) {
+        const productLinks = $('a[href*="/p"]:not([href*="cl"]), a.product-item-link');
+        productLinks.each((_, el) => {
+          const href = $(el).attr('href');
+          const text = $(el).text().toLowerCase();
+          const searchSku = String(sku).toLowerCase();
+          
+          if (href && (
+            href.includes(searchSku) || 
+            text.includes(searchSku)
+          )) {
+            productUrl = new URL(href, targetUrl).href;
+            return false; // break
+          }
+        });
+        
+        // Último recurso: usar primer resultado
+        if (!productUrl) {
+          const firstLink = $('a[href*="/p"]').first().attr('href');
+          if (firstLink) {
+            productUrl = new URL(firstLink, targetUrl).href;
+            log(`[Scrape Product] Usando primer resultado: ${productUrl}`);
+          }
+        }
+      }
+      
+      if (!productUrl) {
+        return res.json({
+          success: false,
+          sku,
+          datos: null,
+          errores: ['No se encontró el producto en la tienda']
+        });
+      }
+      
+      // 2. Extraer datos del producto
+      log(`[Scrape Product] Extrayendo datos de: ${productUrl}`);
+      await new Promise(r => setTimeout(r, 1500)); // Rate limit
+      
+      const productResponse = await axios.get(productUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'es-ES,es;q=0.9',
+        },
+        timeout: 30000
+      });
+      
+      const $prod = cheerio.load(productResponse.data);
+      const datos: any = {};
+      
+      // Extraer desde VTEX o HTML
+      let fullData: any = null;
+      $prod('script').each((_, el) => {
+        const content = $(el).html();
+        if (content && content.includes('__STATE__')) {
+          try {
+            const jsonStr = content.split('__STATE__ = ')[1]?.split(';')[0];
+            if (jsonStr) {
+              fullData = JSON.parse(jsonStr);
+            }
+          } catch (e) {}
+        }
+      });
+      
+      if (fullData) {
+        // Extraer datos del producto desde VTEX
+        Object.keys(fullData).forEach(key => {
+          if (key.startsWith('Product:')) {
+            const p = fullData[key];
+            datos.nombre_comercial = p.productName;
+            datos.marca = p.brand;
+            datos.descripcion = p.description;
+            datos.categoria = p.categories?.[0]?.split('/').pop();
+            
+            // Extraer SKU
+            if (p.items?.[0]) {
+              const itemKey = Object.keys(fullData).find(k => k === p.items[0].id);
+              if (itemKey) {
+                datos.sku = fullData[itemKey]?.itemId;
+              }
+            }
+            
+            // Extraer precio
+            datos.precio = p.items?.[0]?.sellers?.[0]?.commertialOffer?.Price;
+            
+            // Extraer principios activos (si están disponibles)
+            if (p.metaTagDescription || p.description) {
+              datos.descripcion_larga = (p.metaTagDescription || p.description).substring(0, 1000);
+            }
+          }
+        });
+        
+        // Extraer imagen
+        const imgKey = Object.keys(fullData).find(k => k.includes('Image'));
+        if (imgKey && fullData[imgKey]) {
+          datos.imagen_url = fullData[imgKey]?.imageUrl;
+        }
+      } else {
+        // Fallback: HTML parsing
+        datos.nombre_comercial = $prod('h1.page-title, h1.product-name').first().text().trim() || null;
+        datos.sku = $prod('[itemprop="sku"], .sku .value').first().text().trim() || String(sku);
+        datos.marca = $prod('.product-brand, [itemprop="brand"]').first().text().trim() || null;
+        datos.descripcion = $prod('.product.attribute.description, #description').first().text().trim() || null;
+        datos.precio = $prod('.price-wrapper .price, [itemprop="price"]').first().text().trim() || null;
+        datos.imagen_url = $prod('.product-image-photo, img[itemprop="image"]').first().attr('src') || null;
+      }
+      
+      // Registrar en historial
+      if (supabase) {
+        await supabase.from('scraper_history').insert({
+          start_time: new Date().toISOString(),
+          end_time: new Date().toISOString(),
+          status: 'completed',
+          products_scraped: 1,
+          scrape_type: 'on-demand'
+        });
+      }
+      
+      log(`[Scrape Product] Completado para SKU: ${sku}`);
+      
+      res.json({
+        success: true,
+        sku_original: sku,
+        url_fuente: productUrl,
+        datos: {
+          nombre_comercial: datos.nombre_comercial || null,
+          sku: datos.sku || sku,
+          marca: datos.marca || null,
+          descripcion: datos.descripcion || datos.descripcion_larga || null,
+          precio: datos.precio || null,
+          categoria: datos.categoria || null,
+          principios_activos: datos.principios_activos || [],
+          indicaciones: datos.indicaciones || [],
+          imagen_url: datos.imagen_url || null
+        },
+        errores: []
+      });
+      
+    } catch (error: any) {
+      log(`[Scrape Product Error] ${error.message}`);
+      
+      // Registrar error
+      if (supabase) {
+        await supabase.from('scraper_history').insert({
+          start_time: new Date().toISOString(),
+          end_time: new Date().toISOString(),
+          status: 'failed',
+          error_message: error.message,
+          scrape_type: 'on-demand'
+        });
+      }
+      
+      res.status(500).json({ 
+        success: false, 
+        sku,
+        datos: null,
+        errores: [error.message]
+      });
+    }
+  });
+
   // MOUNT ROUTER HERE - AFTER ALL DEFINITIONS
   app.use('/api', apiRouter);
 
