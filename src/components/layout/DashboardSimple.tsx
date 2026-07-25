@@ -454,12 +454,27 @@ function SearchView({
       // Filtro de búsqueda
       if (query) {
         const q = query.toLowerCase();
+        
+        // Buscar por SKU primero (prioridad más alta)
+        const matchSku = (p.sku || '').toLowerCase().includes(q);
+        
+        // Si busca solo números o código, dar prioridad al SKU
+        const isSkuSearch = /^\d+$/.test(q.replace(/\s/g, ''));
+        
         const matchNombre = (p.nombre_comercial || '').toLowerCase().includes(q);
         const matchDesc = (p.descripcion || '').toLowerCase().includes(q);
         const matchIng = (p.principios_activos || []).some((id: string) => 
           String(id).toLowerCase().includes(q)
         );
-        if (!matchNombre && !matchDesc && !matchIng) return false;
+        const matchMarca = (p.marca || '').toLowerCase().includes(q);
+        
+        // Si es búsqueda por SKU exacto, mostrar solo coincidencias de SKU
+        if (isSkuSearch || matchSku) {
+          if (matchSku) return true;
+        }
+        
+        // Búsqueda normal: nombre, descripción, principios, marca
+        if (!matchNombre && !matchDesc && !matchIng && !matchMarca) return false;
       }
       
       // Filtro de categoría
@@ -503,7 +518,14 @@ function SearchView({
       </div>
 
       {filteredProducts.length === 0 && query && (
-        <EmptyState message={`No hay resultados para "${query}"`} />
+        <div className="text-center py-8 text-gray-400">
+          <p className="text-sm">No hay resultados para "{query}"</p>
+          {/^\d+$/.test(query.replace(/\s/g, '')) && (
+            <p className="text-xs mt-2 text-violet-500">
+              💡 Este SKU no está en tu base de datos local.
+            </p>
+          )}
+        </div>
       )}
     </div>
   );
