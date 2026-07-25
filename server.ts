@@ -443,6 +443,273 @@ CREATE POLICY "Enable update for all" ON products FOR UPDATE USING (true);
     }
   });
 
+  // =============================================
+  // SCRAPER BACKGROUND - ENDPOINTS DE CONTROL
+  // =============================================
+  
+  // Estado del scraper
+  apiRouter.get('/scraper/status', async (req, res) => {
+    try {
+      if (!supabase) {
+        return res.json({ 
+          success: false, 
+          error: 'Supabase no disponible',
+          isRunning: false,
+          isEnabled: false
+        });
+      }
+      
+      // Obtener config
+      const { data: configs } = await supabase
+        .from('scraper_config')
+        .select('config_key, config_value');
+      
+      const configMap: Record<string, string> = {};
+      (configs || []).forEach(c => { configMap[c.config_key] = c.config_value; });
+      
+      // Obtener último historial
+      const { data: lastHistory } = await supabase
+        .from('scraper_history')
+        .select('*')
+        .order('start_time', { ascending: false })
+        .limit(1)
+        .single();
+      
+      res.json({
+        success: true,
+        isEnabled: configMap.enabled === 'true',
+        intervalMinutes: parseInt(configMap.interval_minutes || '60'),
+        lastRun: configMap.last_run || null,
+        lastHistory: lastHistory ? {
+          status: lastHistory.status,
+          productsScraped: lastHistory.products_scraped || 0,
+          startTime: lastHistory.start_time,
+          endTime: lastHistory.end_time
+        } : null
+      });
+    } catch (error: any) {
+      log(`[Scraper Status Error] ${error.message}`);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
+  // Activar scraper
+  apiRouter.post('/scraper/enable', async (req, res) => {
+    try {
+      if (!supabase) {
+        return res.json({ success: false, error: 'Supabase no disponible' });
+      }
+      
+      await supabase
+        .from('scraper_config')
+        .upsert({ config_key: 'enabled', config_value: 'true' }, { onConflict: 'config_key' });
+      
+      log('[Scraper] Activado por API');
+      res.json({ success: true, message: 'Scraper activado' });
+    } catch (error: any) {
+      log(`[Scraper Enable Error] ${error.message}`);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
+  // Desactivar scraper
+  apiRouter.post('/scraper/disable', async (req, res) => {
+    try {
+      if (!supabase) {
+        return res.json({ success: false, error: 'Supabase no disponible' });
+      }
+      
+      await supabase
+        .from('scraper_config')
+        .upsert({ config_key: 'enabled', config_value: 'false' }, { onConflict: 'config_key' });
+      
+      log('[Scraper] Desactivado por API');
+      res.json({ success: true, message: 'Scraper desactivado' });
+    } catch (error: any) {
+      log(`[Scraper Disable Error] ${error.message}`);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
+  // Actualizar configuración
+  apiRouter.post('/scraper/config', async (req, res) => {
+    try {
+      if (!supabase) {
+        return res.json({ success: false, error: 'Supabase no disponible' });
+      }
+      
+      const { intervalMinutes, targetUrl, categories } = req.body;
+      
+      const updates = [];
+      if (intervalMinutes !== undefined) {
+        updates.push(supabase.from('scraper_config').upsert({ 
+          config_key: 'interval_minutes', 
+          config_value: String(intervalMinutes) 
+        }, { onConflict: 'config_key' }));
+      }
+      if (targetUrl !== undefined) {
+        updates.push(supabase.from('scraper_config').upsert({ 
+          config_key: 'target_url', 
+          config_value: targetUrl 
+        }, { onConflict: 'config_key' }));
+      }
+      if (categories !== undefined) {
+        updates.push(supabase.from('scraper_config').upsert({ 
+          config_key: 'categories', 
+          config_value: Array.isArray(categories) ? categories.join(',') : categories 
+        }, { onConflict: 'config_key' }));
+      }
+      
+      await Promise.all(updates);
+      
+      log('[Scraper] Configuración actualizada');
+      res.json({ success: true, message: 'Configuración actualizada' });
+    } catch (error: any) {
+      log(`[Scraper Config Error] ${error.message}`);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
+  // Historial del scraper
+  apiRouter.get('/scraper/history', async (req, res) => {
+    try {
+      if (!supabase) {
+        return res.json({ success: false, error: 'Supabase no disponible', history: [] });
+      }
+      
+      const limit = parseInt(req.query.limit as string) || 10;
+      
+      const { data, error } = await supabase
+        .from('scraper_history')
+        .select('*')
+        .order('start_time', { ascending: false })
+        .limit(limit);
+      
+      if (error) throw error;
+      
+      res.json({ 
+        success: true, 
+        history: data || [] 
+      });
+    } catch (error: any) {
+      log(`[Scraper History Error] ${error.message}`);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
+  // Ejecutar scraping de categoría
+  apiRouter.get('/scrape-category', async (req, res) => {
+    const { url } = req.query;
+    
+    if (!url || typeof url !== 'string') {
+      return res.status(400).json({ success: false, error: 'URL requerida' });
+    }
+    
+    log(`[Scrape Category] Iniciando: ${url}`);
+    
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'es-ES,es;q=0.9',
+        },
+        timeout: 30000
+      });
+      
+      const $ = cheerio.load(response.data);
+      const products: any[] = [];
+      
+      // Detectar estructura VTEX
+      let vtexData: any = null;
+      $('script').each((_, el) => {
+        const content = $(el).html();
+        if (content && content.includes('__STATE__')) {
+          try {
+            const jsonStr = content.split('__STATE__ = ')[1].split(';')[0];
+            vtexData = JSON.parse(jsonStr);
+          } catch (e) {}
+        }
+      });
+      
+      if (vtexData) {
+        // Extraer productos de VTEX
+        Object.keys(vtexData).forEach(key => {
+          if (key.startsWith('Product:')) {
+            const p = vtexData[key];
+            if (p.linkText && p.productName) {
+              products.push({
+                sku: p.productReference || p.linkText,
+                nombre_comercial: p.productName,
+                nombre: p.productName,
+                marca: p.brand,
+                descripcion: p.description,
+                precio: p.items?.[0]?.sellers?.[0]?.commertialOffer?.Price,
+                categoria: url.split('/').pop()?.replace(/-/g, ' '),
+                linkText: p.linkText,
+                categories: p.categories,
+                items: p.items?.map((i: any) => ({
+                  sku: vtexData[i.id]?.itemId,
+                  nombre: vtexData[i.id]?.nameComplete,
+                  precio: vtexData[i.id]?.sellers?.[0]?.commertialOffer?.Price
+                }))
+              });
+            }
+          }
+        });
+      } else {
+        // Extraer productos genéricos
+        const productLinks = $('a[href*="/p"], a[href*="/product/"], .product-item a, .product-card a');
+        productLinks.each((_, el) => {
+          const href = $(el).attr('href');
+          const name = $(el).find('h3, .name, [class*="product"]').text().trim() || $(el).text().trim();
+          if (href && name) {
+            products.push({
+              sku: href.split('/').pop()?.split('?')[0] || `prod_${Date.now()}`,
+              nombre_comercial: name.substring(0, 100),
+              nombre: name.substring(0, 100),
+              url: new URL(href, url).href,
+              categoria: url.split('/').pop()?.replace(/-/g, ' ')
+            });
+          }
+        });
+      }
+      
+      // Registrar en historial
+      if (supabase) {
+        await supabase.from('scraper_history').insert({
+          start_time: new Date().toISOString(),
+          end_time: new Date().toISOString(),
+          status: 'completed',
+          products_scraped: products.length
+        });
+      }
+      
+      log(`[Scrape Category] Completado: ${products.length} productos`);
+      
+      res.json({
+        success: true,
+        products,
+        count: products.length,
+        url
+      });
+    } catch (error: any) {
+      log(`[Scrape Category Error] ${error.message}`);
+      
+      // Registrar error en historial
+      if (supabase) {
+        await supabase.from('scraper_history').insert({
+          start_time: new Date().toISOString(),
+          end_time: new Date().toISOString(),
+          status: 'failed',
+          error_message: error.message
+        });
+      }
+      
+      res.status(500).json({ success: false, error: error.message });
+    }
+  });
+
   // MOUNT ROUTER HERE - AFTER ALL DEFINITIONS
   app.use('/api', apiRouter);
 

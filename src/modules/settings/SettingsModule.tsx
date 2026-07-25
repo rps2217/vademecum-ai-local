@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
-import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud, RefreshCw, Terminal, XCircle, CheckCircle2, Info, AlertCircle } from 'lucide-react';
+import { Cpu, ShieldCheck, Settings, Download, Upload, Loader2, Brain, Zap, ShieldAlert, Cloud, RefreshCw, Terminal, XCircle, CheckCircle2, Info, AlertCircle, Play, Square, Clock, History, DatabaseZap, ToggleLeft, ToggleRight } from 'lucide-react';
 import { dataService } from '../../services/DataService';
 import { configService, AppConfig } from '../../services/ConfigService';
 import { useLogs } from '../../hooks/useLogs';
@@ -25,6 +25,110 @@ export const SettingsModule: React.FC = () => {
   // Estados de diagnóstico de IA
   const [aiStatus, setAiStatus] = useState<any>(null);
   const [queueLength, setQueueLength] = useState(0);
+
+  // Estados del Scraper en Segundo Plano
+  const [scraperEnabled, setScraperEnabled] = useState(false);
+  const [scraperLoading, setScraperLoading] = useState(false);
+  const [scraperHistory, setScraperHistory] = useState<any[]>([]);
+  const [scraperInterval, setScraperInterval] = useState(60);
+  const [showScraperHistory, setShowScraperHistory] = useState(false);
+
+  // Cargar estado del scraper
+  const loadScraperStatus = async () => {
+    try {
+      const response = await fetch('/api/scraper/status');
+      const data = await response.json();
+      if (data.success) {
+        setScraperEnabled(data.isEnabled);
+        setScraperInterval(data.intervalMinutes || 60);
+      }
+    } catch (e) {
+      logger.error('Error cargando estado del scraper', 'Scraper');
+    }
+  };
+
+  // Cargar historial del scraper
+  const loadScraperHistory = async () => {
+    try {
+      const response = await fetch('/api/scraper/history?limit=10');
+      const data = await response.json();
+      if (data.success) {
+        setScraperHistory(data.history || []);
+      }
+    } catch (e) {
+      logger.error('Error cargando historial del scraper', 'Scraper');
+    }
+  };
+
+  // Toggle scraper
+  const toggleScraper = async () => {
+    setScraperLoading(true);
+    try {
+      const endpoint = scraperEnabled ? '/api/scraper/disable' : '/api/scraper/enable';
+      const response = await fetch(endpoint, { method: 'POST' });
+      const data = await response.json();
+      if (data.success) {
+        setScraperEnabled(!scraperEnabled);
+        logger.success(`Scraper ${!scraperEnabled ? 'activado' : 'desactivado'}`, 'Scraper');
+      }
+    } catch (e) {
+      logger.error('Error toggling scraper', 'Scraper');
+    } finally {
+      setScraperLoading(false);
+    }
+  };
+
+  // Actualizar intervalo
+  const updateScraperInterval = async (minutes: number) => {
+    setScraperLoading(true);
+    try {
+      const response = await fetch('/api/scraper/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ intervalMinutes: minutes })
+      });
+      const data = await response.json();
+      if (data.success) {
+        setScraperInterval(minutes);
+        logger.success(`Intervalo actualizado a ${minutes} minutos`, 'Scraper');
+      }
+    } catch (e) {
+      logger.error('Error actualizando intervalo', 'Scraper');
+    } finally {
+      setScraperLoading(false);
+    }
+  };
+
+  // Ejecutar scraper ahora
+  const runScraperNow = async () => {
+    setScraperLoading(true);
+    try {
+      const response = await fetch('/api/scrape-category?url=https://www.farmaciasknop.com/vitaminas-y-suplementos');
+      const data = await response.json();
+      if (data.success) {
+        logger.success(`Scraping completado: ${data.count} productos`, 'Scraper');
+        loadScraperHistory();
+      } else {
+        logger.error(data.error || 'Error en scraping', 'Scraper');
+      }
+    } catch (e) {
+      logger.error('Error ejecutando scraper', 'Scraper');
+    } finally {
+      setScraperLoading(false);
+    }
+  };
+
+  // Cargar estado inicial del scraper
+  useEffect(() => {
+    loadScraperStatus();
+    loadScraperHistory();
+    // Actualizar cada 30 segundos
+    const interval = setInterval(() => {
+      loadScraperStatus();
+      loadScraperHistory();
+    }, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const unsubAi = (import('../../services/AIOrchestratorService')).then(m => 
@@ -450,6 +554,164 @@ export const SettingsModule: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scraper Background Section */}
+      <div className="mt-8 sm:mt-12 bg-card border border-border rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+          <div className="flex items-center gap-3">
+            <div className="p-3 bg-emerald-500/20 rounded-xl">
+              <DatabaseZap className="w-6 h-6 text-emerald-400" />
+            </div>
+            <div>
+              <h3 className="text-lg sm:text-xl font-bold text-foreground flex items-center gap-3">
+                Scraper en Segundo Plano
+              </h3>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
+                Extrae productos de Farmacias Knop automáticamente
+              </p>
+            </div>
+          </div>
+          <button 
+            onClick={toggleScraper}
+            disabled={scraperLoading}
+            className={`w-full sm:w-auto px-6 py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50 ${
+              scraperEnabled 
+                ? 'bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 border border-rose-500/50' 
+                : 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/50'
+            }`}
+          >
+            {scraperLoading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : scraperEnabled ? (
+              <>
+                <Square className="w-5 h-5" />
+                Desactivar
+              </>
+            ) : (
+              <>
+                <Play className="w-5 h-5" />
+                Activar
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Status Badges */}
+        <div className="flex flex-wrap gap-3 mb-6">
+          <div className={`flex items-center gap-2 px-4 py-2 rounded-xl ${
+            scraperEnabled 
+              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
+              : 'bg-slate-800 text-slate-400 border border-slate-700'
+          }`}>
+            {scraperEnabled ? (
+              <ToggleRight className="w-5 h-5" />
+            ) : (
+              <ToggleLeft className="w-5 h-5" />
+            )}
+            <span className="text-sm font-bold">
+              {scraperEnabled ? 'Activo' : 'Inactivo'}
+            </span>
+          </div>
+          
+          <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-xl border border-border">
+            <Clock className="w-5 h-5 text-muted-foreground" />
+            <span className="text-sm text-muted-foreground">
+              Cada <strong className="text-foreground">{scraperInterval}</strong> min
+            </span>
+          </div>
+
+          {scraperHistory[0] && (
+            <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-xl border border-border">
+              <History className="w-5 h-5 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">
+                Última: <strong className="text-foreground">{scraperHistory[0].products_scraped || 0}</strong> productos
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Interval Selector */}
+        <div className="grid grid-cols-4 gap-2 mb-6">
+          {[15, 30, 60, 120].map(mins => (
+            <button
+              key={mins}
+              onClick={() => updateScraperInterval(mins)}
+              disabled={scraperLoading}
+              className={`py-2 rounded-xl text-xs font-bold transition-all border ${
+                scraperInterval === mins 
+                  ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400' 
+                  : 'bg-card border-border text-muted-foreground hover:border-emerald-500/30 hover:text-emerald-400'
+              }`}
+            >
+              {mins} min
+            </button>
+          ))}
+        </div>
+
+        {/* Quick Actions */}
+        <div className="flex flex-wrap gap-3 mb-6">
+          <button
+            onClick={runScraperNow}
+            disabled={scraperLoading}
+            className="px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/30 rounded-xl text-xs font-bold transition-all disabled:opacity-50 flex items-center gap-2"
+          >
+            <Play className="w-4 h-4" />
+            Ejecutar Ahora
+          </button>
+          <button
+            onClick={() => setShowScraperHistory(!showScraperHistory)}
+            className="px-4 py-2 bg-card hover:bg-slate-800 text-muted-foreground border border-border rounded-xl text-xs font-bold transition-all flex items-center gap-2"
+          >
+            <History className="w-4 h-4" />
+            {showScraperHistory ? 'Ocultar' : 'Ver'} Historial
+          </button>
+        </div>
+
+        {/* History Panel */}
+        {showScraperHistory && (
+          <div className="bg-slate-950 rounded-xl border border-border overflow-hidden">
+            <div className="max-h-[200px] overflow-y-auto p-4 space-y-2">
+              {scraperHistory.length === 0 ? (
+                <div className="text-muted-foreground text-center py-4 text-sm">
+                  No hay historial de executions
+                </div>
+              ) : (
+                scraperHistory.map((entry, i) => (
+                  <div key={entry.id || i} className="flex items-center justify-between text-xs font-mono">
+                    <div className="flex items-center gap-3">
+                      <span className={`w-2 h-2 rounded-full ${
+                        entry.status === 'completed' ? 'bg-emerald-400' :
+                        entry.status === 'failed' ? 'bg-rose-400' :
+                        entry.status === 'running' ? 'bg-amber-400 animate-pulse' :
+                        'bg-slate-500'
+                      }`} />
+                      <span className="text-slate-400">
+                        {new Date(entry.start_time).toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className={
+                        entry.status === 'completed' ? 'text-emerald-400' :
+                        entry.status === 'failed' ? 'text-rose-400' :
+                        'text-muted-foreground'
+                      }>
+                        {entry.products_scraped || 0} productos
+                      </span>
+                      <span className={`px-2 py-0.5 rounded ${
+                        entry.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400' :
+                        entry.status === 'failed' ? 'bg-rose-500/20 text-rose-400' :
+                        'bg-slate-700 text-slate-400'
+                      }`}>
+                        {entry.status}
+                      </span>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Logger Section */}
