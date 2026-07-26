@@ -44,17 +44,21 @@ export function useProducts(options: UseProductsOptions = {}): UseProductsReturn
 
   // Analizar un producto con la KB
   const analyzeProduct = useCallback((product: AnalyzedProduct): AnalyzedProduct => {
-    const result = knowledgeService.analyzeProductIngredients(product);
+    const result = knowledgeService.analyzeProduct({
+      sku: product.sku,
+      nombre_comercial: product.nombre_comercial,
+      principios_activos: product.principios_activos
+    });
     
     // Obtener categorización
     const categorization = productCategorizationService.getCategorizationDetails(product);
     
     return {
       ...product,
-      ingredientes_encontrados: result.found,
-      cobertura_kb: result.cobertura,
-      sinergias_detectadas: result.sinergias,
-      kbAnalysis: result.kbAnalysis,
+      ingredientes_encontrados: result.ingredientes_kb || [],
+      cobertura_kb: result.cobertura_kb || 0,
+      sinergias_detectadas: result.sinergias?.map(s => s.descripcion) || [],
+      kbAnalysis: result,
       categorias_inferidas: categorization.categories,
       categoryLabels: categorization.categoryLabels,
     };

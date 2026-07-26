@@ -63,6 +63,22 @@ export function useSync(): UseSyncReturn {
 
   // Cargar estado inicial
   useEffect(() => {
+    const loadInitialState = async () => {
+      const kbStats = knowledgeSyncService.getStats();
+      setKbIngredientsCount(kbStats.total);
+
+      const deltaStats = deltaSyncService.getSyncStats();
+      setLastSyncTime(deltaStats.lastSync);
+      setKbPendingChanges(deltaStats.pendingChanges);
+      setPendingChanges(deltaStats.pendingChanges);
+
+      try {
+        const cloudCount = await cloudSyncService.getCloudCount();
+        setCloudProductCount(cloudCount);
+      } catch {
+        // Ignorar errores de cloud
+      }
+    };
     loadInitialState();
   }, []);
 
@@ -96,29 +112,6 @@ export function useSync(): UseSyncReturn {
       unsubscribeDelta();
     };
   }, []);
-
-  const loadInitialState = useCallback(async () => {
-    // Cargar stats de KB
-    const kbStats = knowledgeSyncService.getStats();
-    setKbIngredientsCount(kbStats.total);
-
-    const deltaStats = deltaSyncService.getSyncStats();
-    setLastSyncTime(deltaStats.lastSync);
-    setKbPendingChanges(deltaStats.pendingChanges);
-    setNeedsSync(deltaStats.needsSync);
-
-    // Cargar stats de productos
-    try {
-      const cloudCount = await cloudSyncService.getCloudCount();
-      setCloudProductCount(cloudCount);
-    } catch {
-      // Ignorar errores de cloud
-    }
-  }, []);
-
-  const setNeedsSync = useCallback((value: boolean) => {
-    setPendingChanges(kbPendingChanges);
-  }, [kbPendingChanges]);
 
   const syncKb = useCallback(async (): Promise<SyncResult> => {
     setError(null);
@@ -158,8 +151,11 @@ export function useSync(): UseSyncReturn {
     }
     
     // Recargar estado
-    await loadInitialState();
-  }, [syncKb, syncProducts, loadInitialState]);
+    const deltaStats = deltaSyncService.getSyncStats();
+    setLastSyncTime(deltaStats.lastSync);
+    setKbPendingChanges(deltaStats.pendingChanges);
+    setPendingChanges(deltaStats.pendingChanges);
+  }, [syncKb, syncProducts]);
 
   const forceFullSync = useCallback(async (): Promise<SyncResult> => {
     setError(null);
