@@ -5,6 +5,7 @@
 import React from 'react';
 import { Cloud, CloudOff, Pill } from 'lucide-react';
 import { cn } from '../../../lib/utils';
+import { SecurityAlertsBadge } from '../../ui/SecurityAlerts';
 
 interface DashboardHeaderProps {
   productCount: number;
@@ -35,6 +36,9 @@ export function DashboardHeader({
 
         {/* Status */}
         <div className="flex items-center gap-3">
+          {/* Alertas de Seguridad */}
+          <SecurityAlertsBadge />
+          
           <div className={cn(
             "flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium",
             connected ? "bg-emerald-50 text-emerald-600" : "bg-gray-100 text-gray-500"

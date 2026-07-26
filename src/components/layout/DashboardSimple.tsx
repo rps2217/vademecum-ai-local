@@ -17,6 +17,7 @@ import { SearchView, CatalogView, SynergyView, SettingsView } from './dashboard/
 import { DashboardHeader, DashboardSidebar } from './dashboard';
 import { useAppStore, type AnalyzedProduct, loadPreferences } from '../../store';
 import { analyzeProductWithKb } from '../../hooks/useAnalysis';
+import { syncService } from '../../core/sync/sync-service';
 import type { Product } from '../../types';
 import { type ProductType, type TherapeuticFunction, type BodySystem } from '../../core/categorization';
 
@@ -48,9 +49,15 @@ export function DashboardSimple() {
   // Flag para evitar carga doble
   const loadedRef = useRef(false);
 
-  // Cargar preferencias desde IndexedDB
+  // Cargar preferencias desde IndexedDB e inicializar servicios
   useEffect(() => {
     loadPreferences();
+    // Inicializar servicio de sincronización
+    syncService.init({
+      autoSync: true,
+      syncOnMount: true,
+      enableAlerts: true,
+    });
   }, []);
 
   // Escuchar eventos de búsqueda desde SearchBar
