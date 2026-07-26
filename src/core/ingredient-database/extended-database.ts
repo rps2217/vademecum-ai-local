@@ -1879,22 +1879,33 @@ export function getExtendedIngredientDatabase(): Record<string, ExtendedIngredie
 export function findExtendedIngredient(query: string): ExtendedIngredientInfo | null {
   const normalizedQuery = query.toLowerCase().trim();
   const db = getExtendedIngredientDatabase();
-  
-  // Búsqueda directa
+
+  // Búsqueda directa por clave
   if (db[normalizedQuery]) {
     return db[normalizedQuery];
   }
-  
-  // Búsqueda por sinónimos
+
+  // Búsqueda por sinónimos y nombre
   for (const [key, ingredient] of Object.entries(db)) {
-    if (ingredient.synonyms.some(s => s.toLowerCase().includes(normalizedQuery))) {
+    // Verificar sinónimos
+    if (ingredient.synonyms.some(s => 
+      s.toLowerCase().includes(normalizedQuery) || 
+      normalizedQuery.includes(s.toLowerCase())
+    )) {
       return ingredient;
     }
-    if (ingredient.name.toLowerCase().includes(normalizedQuery)) {
+    // Verificar nombre
+    if (ingredient.name.toLowerCase().includes(normalizedQuery) ||
+        normalizedQuery.includes(ingredient.name.toLowerCase())) {
+      return ingredient;
+    }
+    // Verificar palabras individuales del nombre
+    const nameWords = ingredient.name.toLowerCase().split(/\s+/);
+    if (nameWords.some(word => normalizedQuery.includes(word) && word.length > 3)) {
       return ingredient;
     }
   }
-  
+
   return null;
 }
 

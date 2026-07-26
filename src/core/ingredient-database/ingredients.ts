@@ -713,16 +713,28 @@ export const INGREDIENT_DATABASE: IngredientDatabase = {
 export function findIngredient(query: string): IngredientInfo | null {
   const normalizedQuery = query.toLowerCase().trim();
   
-  // Primero buscar en base local
+  // Primero buscar en base local (por clave exacta)
   if (INGREDIENT_DATABASE[normalizedQuery]) {
     return INGREDIENT_DATABASE[normalizedQuery];
   }
   
+  // Buscar en base local por sinónimos o nombre
   for (const [key, ingredient] of Object.entries(INGREDIENT_DATABASE)) {
-    if (ingredient.synonyms.some(s => s.toLowerCase().includes(normalizedQuery))) {
+    // Verificar sinónimos
+    if (ingredient.synonyms.some(s => 
+      s.toLowerCase().includes(normalizedQuery) || 
+      normalizedQuery.includes(s.toLowerCase())
+    )) {
       return ingredient;
     }
-    if (ingredient.name.toLowerCase().includes(normalizedQuery)) {
+    // Verificar nombre
+    if (ingredient.name.toLowerCase().includes(normalizedQuery) ||
+        normalizedQuery.includes(ingredient.name.toLowerCase())) {
+      return ingredient;
+    }
+    // Verificar palabras individuales del nombre
+    const nameWords = ingredient.name.toLowerCase().split(/\s+/);
+    if (nameWords.some(word => normalizedQuery.includes(word) && word.length > 3)) {
       return ingredient;
     }
   }

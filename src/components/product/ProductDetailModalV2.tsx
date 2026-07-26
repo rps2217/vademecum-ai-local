@@ -188,10 +188,34 @@ function IngredientChip({
   onSelect: (info: IngredientInfo) => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
-  const info = useMemo(() => findIngredient(name), [name]);
+  
+  // Buscar información del ingrediente - incluyendo búsqueda flexible
+  const info = useMemo(() => {
+    const result = findIngredient(name);
+    if (result) return result;
+    
+    // Búsqueda flexible: buscar por palabras clave
+    const normalizedName = name.toLowerCase().trim();
+    const keywords = normalizedName.split(/\s+/);
+    
+    // Probar con variaciones
+    const variations = [
+      normalizedName,
+      normalizedName.replace(/\s+/g, '-'),
+      normalizedName.replace(/-/g, ''),
+      ...keywords
+    ];
+    
+    for (const variation of variations) {
+      const found = findIngredient(variation);
+      if (found) return found;
+    }
+    
+    return null;
+  }, [name]);
   
   if (!info) {
-    return <span className="text-gray-600">{name}</span>;
+    return <span className="text-gray-500 text-sm">{name}</span>;
   }
 
   return (
