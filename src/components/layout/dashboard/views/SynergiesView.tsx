@@ -5,9 +5,9 @@
 
 import React, { useMemo, useState } from 'react';
 import { Brain, Sparkles, AlertCircle } from 'lucide-react';
-import { cn } from '../../../lib/utils';
-import { knowledgeService } from '../../../services/KnowledgeService';
-import type { KbIngredient } from '../../../types';
+import { cn } from '../../../../lib/utils';
+import { knowledgeService } from '../../../../services/KnowledgeService';
+import type { KbIngredient } from '../../../../types';
 
 interface SynergiesViewProps {
   kb: Record<string, unknown>;

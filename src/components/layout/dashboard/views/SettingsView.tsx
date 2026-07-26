@@ -5,8 +5,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Settings, Database, RefreshCw, ExternalLink, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import { supabaseService } from '../../../services/SupabaseService';
-import { dataService } from '../../../services/DataService';
+import { supabaseService } from '../../../../services/SupabaseService';
+import { dataService } from '../../../../services/DataService';
 
 interface SettingsViewProps {
   connected: boolean;

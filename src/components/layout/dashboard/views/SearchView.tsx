@@ -5,7 +5,7 @@
 
 import React, { useMemo } from 'react';
 import type { AnalyzedProduct } from '../../../types';
-import { ProductCard } from '../../product/ProductCard';
+import { ProductCard } from '../../../product/ProductCard';
 import { CategoryFilter } from '../CategoryFilter';
 import { EmptyState } from '../EmptyState';
 

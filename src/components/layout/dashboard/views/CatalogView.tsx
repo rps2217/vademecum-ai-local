@@ -5,9 +5,9 @@
 
 import React from 'react';
 import { Leaf, RefreshCw, Cloud, CheckCircle2 } from 'lucide-react';
-import { cn } from '../../../lib/utils';
-import { knowledgeSyncService } from '../../../services/KnowledgeSyncService';
-import type { SyncStatus, KbStats } from '../../../types';
+import { cn } from '../../../../lib/utils';
+import { knowledgeSyncService } from '../../../../services/KnowledgeSyncService';
+import type { SyncStatus, KbStats } from '../../../../types';
 
 interface CatalogViewProps {
   stats: { total: number; kbMatch: number; sinergias: number };
