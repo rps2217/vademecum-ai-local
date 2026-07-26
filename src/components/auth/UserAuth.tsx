@@ -103,15 +103,32 @@ export const UserAuth: React.FC<Props> = ({ onClose, onAuthenticated }) => {
       <div className="bg-white rounded-xl shadow-lg p-6 max-w-md mx-auto">
         <h2 className="text-xl font-bold mb-4">Sincronización entre dispositivos</h2>
         <p className="text-gray-600 mb-4">
-          Para sincronizar configuraciones, configura tu proyecto Supabase en Ajustes.
+          Para sincronizar configuraciones entre dispositivos:
         </p>
-        <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-2">
-          <li>Crea cuenta en supabase.com</li>
-          <li>Copia las credenciales en configuración</li>
-          <li>Ejecuta el SQL de migración</li>
+        <ol className="list-decimal pl-5 text-sm text-gray-700 space-y-2 mb-4">
+          <li>Crea proyecto en <span className="text-blue-600">supabase.com</span></li>
+          <li>Copia URL y Key en Ajustes de la app</li>
+          <li>En Supabase SQL Editor, ejecuta este SQL:</li>
         </ol>
+        <pre className="bg-gray-100 p-3 rounded text-xs overflow-x-auto mb-4">
+{`CREATE TABLE public.user_profiles (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  email TEXT,
+  display_name TEXT,
+  settings JSONB DEFAULT '{}',
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE public.user_profiles ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "manage_own" ON public.user_profiles FOR ALL USING (auth.uid() = user_id);`}
+        </pre>
+        <button onClick={() => navigator.clipboard.writeText(
+          `CREATE TABLE public.user_profiles (id UUID DEFAULT gen_random_uuid() PRIMARY KEY, user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE, email TEXT, display_name TEXT, settings JSONB DEFAULT '{}', updated_at TIMESTAMPTZ DEFAULT NOW()); ALTER TABLE public.user_profiles ENABLE ROW LEVEL SECURITY; CREATE POLICY "manage_own" ON public.user_profiles FOR ALL USING (auth.uid() = user_id);`
+        )} className="text-sm text-blue-600 hover:underline mb-4">
+          📋 Copiar SQL
+        </button>
         {onClose && (
-          <button onClick={onClose} className="mt-4 w-full bg-gray-100 py-2 rounded-lg">
+          <button onClick={onClose} className="mt-2 w-full bg-gray-100 py-2 rounded-lg">
             Cerrar
           </button>
         )}

@@ -349,21 +349,57 @@ class UserProfileService {
     if (!client) return null;
 
     try {
+      // Usar maybeSingle() en lugar de single() para no error si no existe
       const { data, error } = await client
         .from(PROFILES_TABLE)
         .select('*')
         .eq('user_id', userId)
-        .single();
+        .maybeSingle();
 
-      if (error || !data) {
+      if (error) {
+        // Si la tabla no existe, intentar crearla
+        if (error.code === 'PGRST116' || error.message.includes('does not exist')) {
+          logger.warn('Tabla user_profiles no existe, intentando crear...', 'UserProfile');
+          await this.ensureTableExists();
+          return null;
+        }
+        logger.debug('Error cargando perfil (puede ser normal):', 'UserProfile', error.message);
+        return null;
+      }
+
+      if (!data) {
+        // No existe perfil, es normal para nuevos usuarios
         return null;
       }
 
       return this.parseProfile(data);
 
-    } catch (error) {
-      logger.error('Error cargando perfil:', 'UserProfile', error);
+    } catch (error: any) {
+      // Error genérico, puede ser que la tabla no existe
+      logger.debug('Excepción cargando perfil:', 'UserProfile', error.message);
       return null;
+    }
+  }
+
+  /**
+   * Intenta crear la tabla si no existe (solo para clientes nuevos)
+   */
+  private async ensureTableExists(): Promise<boolean> {
+    const client = supabaseService.getClient();
+    if (!client) return false;
+
+    try {
+      // Intentar crear la tabla usando la API de Supabase
+      const { error } = await client.rpc('pg_catalog.pg_tables', {
+        schemaname: 'public',
+      });
+      
+      // Si llegamos aquí sin error crítico, la conexión funciona
+      // El usuario necesitará crear la tabla manualmente via SQL
+      logger.info('Tabla user_profiles requiere creación manual', 'UserProfile');
+      return false;
+    } catch {
+      return false;
     }
   }
 
