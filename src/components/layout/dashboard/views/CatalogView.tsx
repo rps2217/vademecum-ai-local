@@ -6,7 +6,7 @@
 import React from 'react';
 import { Leaf, RefreshCw, Cloud, CheckCircle2 } from 'lucide-react';
 import { cn } from '../../../../lib/utils';
-import { knowledgeSyncService } from '../../../../services/KnowledgeSyncService';
+import { synergyGraphService } from '../../../../core/knowledge-base/SynergyGraph';
 import type { SyncStatus, KbStats } from '../../../../types';
 
 interface CatalogViewProps {
@@ -17,7 +17,7 @@ interface CatalogViewProps {
 }
 
 export function CatalogView({ stats, kbStats, syncStatus, onSync }: CatalogViewProps) {
-  const kbSynStats = knowledgeSyncService.obtenerEstadisticas();
+  const kbSynStats = synergyGraphService.obtenerEstadisticas();
   const isSyncing = syncStatus.status === 'syncing';
   const lastSync = syncStatus.status === 'synced' 
     ? new Date().toLocaleTimeString() 
