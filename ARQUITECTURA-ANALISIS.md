@@ -199,6 +199,35 @@ export default defineConfig({
 
 ---
 
+## 🔄 Sincronización Delta
+
+El sistema implementa sincronización delta para optimizar el rendimiento:
+
+```
+┌──────────────┐         ┌───────────────┐         ┌──────────────┐
+│   Local      │◄──────►│  DeltaSync    │◄──────►│  Supabase   │
+│ localStorage │  delta  │   Service     │  delta  │   Remote    │
+└──────────────┘         └───────────────┘         └──────────────┘
+       │                        │
+       │ checkpoint             │ pending_changes
+       ▼                        ▼
+  kb_delta_checkpoint      kb_pending_changes
+```
+
+**Flujo:**
+1. Obtener checkpoint de última sincronización
+2. Descargar SOLO cambios con `updated_at > lastSync`
+3. Resolver conflictos con timestamps
+4. Subir SOLO cambios locales pendientes
+5. Actualizar checkpoint
+
+**Beneficios:**
+- ~90% reducción de tráfico en cambios menores
+- Sincronización más rápida
+- Mejor soporte offline
+
+---
+
 ## 🎯 Priorización
 
 1. **Alta prioridad**: Dividir DashboardSimple
@@ -224,11 +253,19 @@ export default defineConfig({
   - SettingsView
   - ProductDetailModal
   - CategoryFilter, EmptyState
+- [x] **Implementar sincronización delta** para Knowledge Base
+  - DeltaSyncService: solo sincroniza cambios desde última sync
+  - Checkpoints de sincronización con timestamps
+  - Cola de cambios pendientes locales
+  - Detección de conflictos basada en updated_at
+- [x] **Hooks personalizados**
+  - useProducts: gestión de estado de productos
+  - useSync: gestión centralizada de sincronización
 
 ### 🔄 En Progreso
 - [ ] Continuar reduciendo DashboardSimple (<300 líneas objetivo)
 
 ### 📋 Pendiente
-- [ ] Extraer lógica de negocio a hooks personalizados
 - [ ] Simplificar flujo de datos con Zustand
 - [ ] Unificar servicios de conocimiento
+- [ ] Tests de integración para sincronización delta

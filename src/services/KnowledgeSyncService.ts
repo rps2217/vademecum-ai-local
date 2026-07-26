@@ -1,9 +1,10 @@
 /**
  * Knowledge Sync Service
- * Sincroniza la base de conocimiento con Supabase para acceso multi-dispositivo y offline
+ * Sincroniza la base de conocimiento con Supabase usando sincronización delta
  */
 
 import { supabaseService } from './SupabaseService';
+import { deltaSyncService, DeltaSyncResult } from './DeltaSyncService';
 import knowledgeBaseData from '../data/knowledge-base.json';
 
 export interface KbIngredient {
@@ -17,6 +18,8 @@ export interface KbIngredient {
   antagonismos: string[];
   contraindicaciones: string[];
   notas: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface KbSyncMetadata {
@@ -24,6 +27,8 @@ export interface KbSyncMetadata {
   lastUpdated: string;
   totalIngredients: number;
   syncedAt: string;
+  lastSyncTimestamp: number | null;
+  pendingChanges: number;
 }
 
 interface KbData {
@@ -43,6 +48,19 @@ class KnowledgeSyncService {
 
   constructor() {
     this.loadFromLocalStorage();
+    // Replicar eventos del DeltaSyncService
+    deltaSyncService.addListener((status) => {
+      if (status.phase === 'complete') {
+        this.notifyListeners({ status: 'synced' });
+      } else if (status.phase === 'error') {
+        this.notifyListeners({ status: 'error', error: status.error });
+      } else {
+        this.notifyListeners({ 
+          status: 'syncing', 
+          progress: status.progress 
+        });
+      }
+    });
   }
 
   /**
@@ -130,82 +148,55 @@ class KnowledgeSyncService {
    */
   getSyncMetadata(): KbSyncMetadata {
     const kb = this.getLocalKb();
+    const deltaStats = deltaSyncService.getSyncStats();
     return {
       version: kb.version,
       lastUpdated: kb.lastUpdated,
       totalIngredients: kb.ingredients.length,
-      syncedAt: this.getLastSyncTime()?.toISOString() || 'never'
+      syncedAt: this.getLastSyncTime()?.toISOString() || 'never',
+      lastSyncTimestamp: deltaStats.lastSync?.getTime() || null,
+      pendingChanges: deltaStats.pendingChanges
     };
   }
 
   /**
-   * Sincronizar KB con Supabase
+   * Sincronizar KB con Supabase usando DELTA SYNC
+   * Solo sincroniza lo que ha cambiado desde la última sincronización
    */
   async sync(): Promise<SyncResult> {
     if (this.isSyncing) {
       return { success: false, error: 'Ya hay una sincronización en progreso' };
     }
 
-    const client = supabaseService.getClient();
-    if (!client) {
-      return { success: false, error: 'Supabase no está configurado' };
-    }
-
     this.isSyncing = true;
     this.notifyListeners({ status: 'syncing', progress: 0 });
 
     try {
-      console.log('[KnowledgeSync] Iniciando sincronización...');
-
-      // 1. Obtener KB del bundle
-      const bundleKb = knowledgeBaseData as KbData;
+      console.log('[KnowledgeSync] Iniciando sincronización DELTA...');
       
-      // 2. Obtener versión de Supabase
-      const { data: remoteMeta, error: metaError } = await client
-        .from('kb_metadata')
-        .select('*')
-        .single();
+      // Usar el servicio de sincronización delta
+      const deltaResult: DeltaSyncResult = await deltaSyncService.sync();
 
-      if (metaError && metaError.code !== 'PGRST116') {
-        console.log('[KnowledgeSync] No existe metadata en Supabase, creando...');
-        // Primera vez - crear estructura
-        await this.initializeRemoteKb(client, bundleKb);
-        this.notifyListeners({ status: 'syncing', progress: 50 });
+      if (deltaResult.success) {
+        // Refrescar KB local después del sync
+        const kb = this.getLocalKb();
+        
+        const result: SyncResult = {
+          success: true,
+          localVersion: kb.version,
+          remoteVersion: kb.version,
+          ingredientsCount: kb.ingredients.length,
+          mergedAt: new Date().toISOString(),
+          changesDownloaded: deltaResult.changesDownloaded,
+          changesUploaded: deltaResult.changesUploaded,
+          conflicts: deltaResult.conflicts
+        };
+
+        console.log('[KnowledgeSync] Sincronización delta completada:', result);
+        return result;
+      } else {
+        return { success: false, error: deltaResult.error };
       }
-
-      // 3. Obtener ingredientes remotos
-      const { data: remoteIngredients, error: ingredientsError } = await client
-        .from('knowledge_base')
-        .select('*');
-
-      if (ingredientsError) {
-        throw new Error('Error obteniendo ingredientes remotos');
-      }
-
-      this.notifyListeners({ status: 'syncing', progress: 75 });
-
-      // 4. Combinar KB local con remota
-      const mergedKb = this.mergeKnowledgeBases(bundleKb, remoteIngredients || []);
-      
-      // 5. Guardar localmente
-      this.saveToLocalStorage(mergedKb);
-
-      // 6. Actualizar Supabase con datos locales (si hay cambios)
-      await this.pushLocalChanges(client, mergedKb);
-
-      this.notifyListeners({ status: 'syncing', progress: 100 });
-
-      const result: SyncResult = {
-        success: true,
-        localVersion: bundleKb.version,
-        remoteVersion: remoteMeta?.version || bundleKb.version,
-        ingredientsCount: mergedKb.ingredients.length,
-        mergedAt: new Date().toISOString()
-      };
-
-      this.notifyListeners({ status: 'synced', ...result });
-      console.log('[KnowledgeSync] Sincronización completada:', result);
-      return result;
 
     } catch (error: any) {
       console.error('[KnowledgeSync] Error:', error);
@@ -217,136 +208,13 @@ class KnowledgeSyncService {
   }
 
   /**
-   * Inicializar estructura de KB en Supabase
+   * Forzar sincronización completa (no delta)
+   * Útil para resolver problemas de consistencia
    */
-  private async initializeRemoteKb(client: any, kb: KbData): Promise<void> {
-    try {
-      // Crear metadata
-      await client.from('kb_metadata').upsert({
-        id: 1,
-        version: kb.version,
-        last_updated: kb.lastUpdated,
-        description: kb.description
-      });
-
-      // Crear ingredientes
-      const ingredientsToInsert = kb.ingredients.map(ing => ({
-        id: ing.id,
-        nombre: ing.nombre,
-        sinonimos: ing.sinonimos,
-        familia: ing.familia,
-        tipo: ing.tipo,
-        propiedades: ing.propiedades,
-        sinergias: ing.sinergias,
-        antagonismos: ing.antagonismos,
-        contraindicaciones: ing.contraindicaciones,
-        notas: ing.notas,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      }));
-
-      const { error } = await client
-        .from('knowledge_base')
-        .upsert(ingredientsToInsert, { onConflict: 'id' });
-
-      if (error) {
-        console.error('[KnowledgeSync] Error inicializando remoto:', error);
-      }
-
-    } catch (e) {
-      console.error('[KnowledgeSync] Error en inicialización:', e);
-    }
-  }
-
-  /**
-   * Combinar KBs local y remota
-   */
-  private mergeKnowledgeBases(local: KbData, remote: any[]): KbData {
-    const merged = new Map<string, KbIngredient>();
-
-    // Agregar ingredientes locales
-    for (const ing of local.ingredients) {
-      merged.set(ing.id, ing);
-    }
-
-    // Sobrescribir con datos remotos (más recientes)
-    for (const remoteIng of remote) {
-      const localIng = merged.get(remoteIng.id);
-      
-      if (!localIng) {
-        // Nuevo ingrediente del remoto
-        merged.set(remoteIng.id, {
-          id: remoteIng.id,
-          nombre: remoteIng.nombre,
-          sinonimos: remoteIng.sinonimos || [],
-          familia: remoteIng.familia,
-          tipo: remoteIng.tipo,
-          propiedades: remoteIng.propiedades || [],
-          sinergias: remoteIng.sinergias || [],
-          antagonismos: remoteIng.antagonismos || [],
-          contraindicaciones: remoteIng.contraindicaciones || [],
-          notas: remoteIng.notas || ''
-        });
-      } else {
-        // Actualizar si remoto es más nuevo
-        const localDate = new Date(localIng.notas ? Date.now() : 0);
-        const remoteDate = new Date(remoteIng.updated_at || 0);
-        
-        if (remoteDate > localDate) {
-          merged.set(remoteIng.id, {
-            ...localIng,
-            nombre: remoteIng.nombre || localIng.nombre,
-            sinonimos: remoteIng.sinonimos || localIng.sinonimos,
-            propiedades: remoteIng.propiedades || localIng.propiedades,
-            sinergias: remoteIng.sinergias || localIng.sinergias,
-            antagonismos: remoteIng.antagonismos || localIng.antagonismos,
-            contraindicaciones: remoteIng.contraindicaciones || localIng.contraindicaciones,
-            notas: remoteIng.notas || localIng.notas
-          });
-        }
-      }
-    }
-
-    return {
-      ...local,
-      version: `${local.version}-merged-${Date.now()}`,
-      ingredients: Array.from(merged.values())
-    };
-  }
-
-  /**
-   * Subir cambios locales a Supabase
-   */
-  private async pushLocalChanges(client: any, kb: KbData): Promise<void> {
-    try {
-      const ingredientsToUpsert = kb.ingredients.map(ing => ({
-        id: ing.id,
-        nombre: ing.nombre,
-        sinonimos: ing.sinonimos,
-        familia: ing.familia,
-        tipo: ing.tipo,
-        propiedades: ing.propiedades,
-        sinergias: ing.sinergias,
-        antagonismos: ing.antagonismos,
-        contraindicaciones: ing.contraindicaciones,
-        notas: ing.notas,
-        updated_at: new Date().toISOString()
-      }));
-
-      await client
-        .from('knowledge_base')
-        .upsert(ingredientsToUpsert, { onConflict: 'id' });
-
-      // Actualizar metadata
-      await client.from('kb_metadata').update({
-        version: kb.version,
-        last_updated: kb.lastUpdated,
-        updated_at: new Date().toISOString()
-      }).eq('id', 1);
-
-    } catch (e) {
-      console.error('[KnowledgeSync] Error push changes:', e);
-    }
+  async fullSync(): Promise<SyncResult> {
+    // Limpiar checkpoint para forzar sync completa
+    localStorage.removeItem('kb_delta_checkpoint');
+    return this.sync();
   }
 
   /**
@@ -380,13 +248,7 @@ class KnowledgeSyncService {
   needsSync(): boolean {
     const client = supabaseService.getClient();
     if (!client) return false;
-
-    const lastSync = this.getLastSyncTime();
-    if (!lastSync) return true;
-
-    // Sincronizar si han pasado más de 1 hora
-    const hourAgo = new Date(Date.now() - 60 * 60 * 1000);
-    return lastSync < hourAgo;
+    return deltaSyncService.needsSync();
   }
 
   /**
@@ -403,6 +265,13 @@ class KnowledgeSyncService {
       types: types.size
     };
   }
+
+  /**
+   * Obtener estado de sincronización delta
+   */
+  getDeltaSyncStats() {
+    return deltaSyncService.getSyncStats();
+  }
 }
 
 export interface SyncStatus {
@@ -417,6 +286,9 @@ export interface SyncResult {
   remoteVersion?: string;
   ingredientsCount?: number;
   mergedAt?: string;
+  changesDownloaded?: number;
+  changesUploaded?: number;
+  conflicts?: number;
   error?: string;
 }
 
