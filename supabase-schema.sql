@@ -6,6 +6,46 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- =====================================================
+-- TABLA: products
+-- Productos del vademécum
+-- =====================================================
+CREATE TABLE IF NOT EXISTS products (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    sku VARCHAR(100) UNIQUE NOT NULL,
+    nombre_comercial VARCHAR(255),
+    principio_activo TEXT,
+    principios_activos TEXT[],
+    categoria_principal VARCHAR(255),
+    categorias TEXT[],
+    laboratorio VARCHAR(255),
+    descripcion TEXT,
+    posologia TEXT,
+    indicaciones TEXT[],
+    contraindicaciones TEXT[],
+    interacciones TEXT[],
+    efectos_secundarios TEXT[],
+    cobertura_kb INTEGER DEFAULT 0,
+    sinergias_detectadas TEXT[],
+    last_updated TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_products_sku ON products(sku);
+CREATE INDEX IF NOT EXISTS idx_products_nombre ON products(nombre_comercial);
+CREATE INDEX IF NOT EXISTS idx_products_categoria ON products(categoria_principal);
+
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read products" ON products FOR SELECT USING (true);
+CREATE POLICY "Authenticated insert products" ON products FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated update products" ON products FOR UPDATE USING (auth.role() = 'authenticated');
+
+DROP TRIGGER IF EXISTS update_products_updated_at ON products;
+CREATE TRIGGER update_products_updated_at
+    BEFORE UPDATE ON products
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- =====================================================
 -- TABLA: extended_ingredients
 -- Ingredientes extendidos (homeopatía, fitoterapia, suplementos)
 -- =====================================================
@@ -86,12 +126,100 @@ CREATE TABLE IF NOT EXISTS sync_metadata (
 );
 
 -- =====================================================
--- TABLA: product_ingredient_analysis (ya existe, solo ajustamos)
+-- TABLA: product_ingredient_analysis
+-- Análisis de ingredientes de productos
 -- =====================================================
-ALTER TABLE product_ingredient_analysis 
-    ADD COLUMN IF NOT EXISTS extended_ingredients TEXT[],
-    ADD COLUMN IF NOT EXISTS organs_related TEXT[],
-    ADD COLUMN IF NOT EXISTS pathologies_related TEXT[];
+CREATE TABLE IF NOT EXISTS product_ingredient_analysis (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    producto_sku VARCHAR(255) UNIQUE NOT NULL,
+    ingredientes_encontrados TEXT[],
+    ingredientes_sin_match TEXT[],
+    cobertura_kb NUMERIC(5,2) DEFAULT 0,
+    categoria_predominante VARCHAR(255),
+    analisis_explicacion TEXT,
+    nivel_analisis_completo INTEGER DEFAULT 0,
+    requiere_ia_externa BOOLEAN DEFAULT FALSE,
+    extended_ingredients TEXT[],
+    organs_related TEXT[],
+    pathologies_related TEXT[],
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_product_analysis_sku ON product_ingredient_analysis(producto_sku);
+
+ALTER TABLE product_ingredient_analysis ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read product_ingredient_analysis" ON product_ingredient_analysis FOR SELECT USING (true);
+CREATE POLICY "Authenticated insert product_ingredient_analysis" ON product_ingredient_analysis FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated update product_ingredient_analysis" ON product_ingredient_analysis FOR UPDATE USING (auth.role() = 'authenticated');
+
+DROP TRIGGER IF EXISTS update_product_ingredient_analysis_updated_at ON product_ingredient_analysis;
+CREATE TRIGGER update_product_ingredient_analysis_updated_at
+    BEFORE UPDATE ON product_ingredient_analysis
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- =====================================================
+-- TABLA: product_synergies
+-- Sinergias entre productos
+-- =====================================================
+CREATE TABLE IF NOT EXISTS product_synergies (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    producto1_sku VARCHAR(255) NOT NULL,
+    producto2_sku VARCHAR(255) NOT NULL,
+    nivel_sinergia VARCHAR(20) CHECK (nivel_sinergia IN ('alto', 'medio', 'bajo')),
+    tipo_relacion VARCHAR(100),
+    descripcion TEXT,
+    beneficios_combinados TEXT[],
+    explicacion TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(producto1_sku, producto2_sku)
+);
+
+CREATE INDEX IF NOT EXISTS idx_product_synergies_prod1 ON product_synergies(producto1_sku);
+CREATE INDEX IF NOT EXISTS idx_product_synergies_prod2 ON product_synergies(producto2_sku);
+CREATE INDEX IF NOT EXISTS idx_product_synergies_nivel ON product_synergies(nivel_sinergia);
+
+ALTER TABLE product_synergies ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read product_synergies" ON product_synergies FOR SELECT USING (true);
+CREATE POLICY "Authenticated insert product_synergies" ON product_synergies FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated update product_synergies" ON product_synergies FOR UPDATE USING (auth.role() = 'authenticated');
+
+DROP TRIGGER IF EXISTS update_product_synergies_updated_at ON product_synergies;
+CREATE TRIGGER update_product_synergies_updated_at
+    BEFORE UPDATE ON product_synergies
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- =====================================================
+-- TABLA: ingredient_relationships
+-- Relaciones entre ingredientes
+-- =====================================================
+CREATE TABLE IF NOT EXISTS ingredient_relationships (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    ingrediente1 VARCHAR(255) NOT NULL,
+    ingrediente2 VARCHAR(255) NOT NULL,
+    tipo_relacion VARCHAR(50) CHECK (tipo_relacion IN ('sinergia', 'antagonismo', 'complemento', 'inductor', 'inhibidor')),
+    intensidad VARCHAR(20) CHECK (intensidad IN ('fuerte', 'moderada', 'leve')),
+    descripcion TEXT,
+    evidencia TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    UNIQUE(ingrediente1, ingrediente2, tipo_relacion)
+);
+
+CREATE INDEX IF NOT EXISTS idx_ingredient_rel_ing1 ON ingredient_relationships(ingrediente1);
+CREATE INDEX IF NOT EXISTS idx_ingredient_rel_ing2 ON ingredient_relationships(ingrediente2);
+CREATE INDEX IF NOT EXISTS idx_ingredient_rel_tipo ON ingredient_relationships(tipo_relacion);
+
+ALTER TABLE ingredient_relationships ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public read ingredient_relationships" ON ingredient_relationships FOR SELECT USING (true);
+CREATE POLICY "Authenticated insert ingredient_relationships" ON ingredient_relationships FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated update ingredient_relationships" ON ingredient_relationships FOR UPDATE USING (auth.role() = 'authenticated');
+
+DROP TRIGGER IF EXISTS update_ingredient_relationships_updated_at ON ingredient_relationships;
+CREATE TRIGGER update_ingredient_relationships_updated_at
+    BEFORE UPDATE ON ingredient_relationships
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 -- =====================================================
 -- FUNCIONES Y TRIGGERS
