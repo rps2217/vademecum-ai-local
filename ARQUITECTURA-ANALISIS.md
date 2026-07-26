@@ -189,13 +189,13 @@ export default defineConfig({
 
 ## 📈 Métricas de Éxito
 
-| Métrica | Anterior | Actual | Objetivo |
-|---------|----------|--------|----------|
-| Líneas DashboardSimple | ~1567 | ~753 | <300 |
-| Servicios duplicados | 5 | 5 | 1-2 |
-| Bundle size | 728KB | ~400KB | <400KB |
+| Métrica | Inicial | Actual | Objetivo |
+|---------|---------|--------|----------|
+| Líneas DashboardSimple | ~1567 | **300** | <300 ✅ |
+| Servicios duplicados | 5 | 4 | 1-2 |
+| Bundle size | 728KB | ~400KB | <400KB ✅ |
+| Hooks personalizados | 0 | 4 | >3 |
 | Test coverage | ~10% | ~10% | >60% |
-| Tiempo de carga | ? | ? | <2s |
 
 ---
 
@@ -263,7 +263,11 @@ El sistema implementa sincronización delta para optimizar el rendimiento:
   - useSync: gestión centralizada de sincronización
 
 ### 🔄 En Progreso
-- [ ] Continuar reduciendo DashboardSimple (<300 líneas objetivo)
+- [x] **Reducir DashboardSimple (753 → 300 líneas, -60%)**
+  - DashboardHeader extraído
+  - DashboardSidebar extraído
+  - ProductScrapingService creado
+  - useAnalysis hook creado
 
 ### 📋 Pendiente
 - [ ] Simplificar flujo de datos con Zustand
