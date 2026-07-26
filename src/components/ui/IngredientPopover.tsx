@@ -299,15 +299,38 @@ export function IngredientText({
   className?: string;
   onIngredientClick?: (name: string) => void;
 }) {
-  // Palabras que podrían ser ingredientes
+  // Palabras que podrían ser ingredientes (expandido - 100+ ingredientes)
   const ingredientKeywords = [
-    'china', 'arnica', 'belladonna', 'nux vomica', 'rhythm', 'phosphorus', 'sulfur', 'sepia',
-    'curcuma', 'jengibre', 'ginseng', 'valeriana', 'ashwagandha', 'ginkgo', 'echinacea',
-    'reishi', 'cordyceps', 'shiitake', 'maitake',
-    'gaba', 'nac', 'glicina', '5-htp', 'teanina',
-    'colageno', 'vitamina', 'zinc', 'magnesio', 'selenio',
-    'coq10', 'resveratrol', 'astaxantina',
-    'lactobacillus', 'bifidobacterium', 'probiotico',
+    // Homeopatía
+    'china', 'arnica', 'belladonna', 'nux vomica', 'nux-vomica', 'rhythm', 
+    'phosphorus', 'sulfur', 'sepia', 'iris versicolor', 'iris-versicolor',
+    'calendula', 'hamamelis', 'antimonium', 'rhus toxicodendron', 'rhustox',
+    'mercurius', 'hepatic', 'lycopodium', 'pulsatilla', 'aconitum', 'apis',
+    'chamomilla', 'colocynthis', 'magnesium phosphoricum', 'kali bichromicum',
+    'silicea', 'natrum muriaticum', 'natrum mur', 'lachesis', 'crotalus',
+    'echinacea', 'thuja', 'arsenicum album', 'baryta carbonica',
+    // Fitoterapia
+    'curcuma', 'jengibre', 'ginseng', 'valeriana', 'ashwagandha', 'ginkgo', 'gingko',
+    'reishi', 'cordyceps', 'shiitake', 'maitake', 'melatonina',
+    'alcachofa', 'cardo mariano', 'saw palmetto', 'hipérico', 'hypericum',
+    'passiflora', 'tila', 'marcela', 'borraja', 'equinácea',
+    // Aminoácidos
+    'gaba', 'nac', 'glicina', '5-htp', 'teanina', 'triptófano', 'tirosina',
+    'glutamina', 'lisina', 'ornitina', 'arginina', 'carnitina',
+    // Vitaminas
+    'vitamina', 'vitamina-c', 'vitamina-d', 'vitamina-e', 'vitamina-b',
+    'vitamina a', 'vitamina k', 'complejo b', 'ácido fólico', 'folato', 'biotina',
+    // Minerales
+    'zinc', 'magnesio', 'selenio', 'hierro', 'calcio', 'cobre', 'cromo',
+    'magnesio glicinato', 'magnesio citrato', 'magnesio treonato',
+    // Suplementos
+    'colageno', 'coq10', 'resveratrol', 'astaxantina', 'quercetina',
+    'omega-3', 'omega 3', 'dha', 'epa', 'aceite de pescado',
+    'probióticos', 'probiotico', 'espirulina', 'chlorella',
+    'lactobacillus', 'bifidobacterium', 'lgg',
+    'melatonina', 'nacetilcisteina',
+    // Otros
+    'bromelaína', 'bromelain', 'papaya', 'fibra', 'inulina',
   ];
 
   // Encontrar ingredientes en el texto
