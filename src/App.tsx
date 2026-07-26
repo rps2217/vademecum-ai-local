@@ -1,10 +1,5 @@
 /**
  * Vademecum AI - Aplicación Principal
- * Interfaz minimalista de alto rendimiento
- * 
- * Code Splitting implementado para mejorar rendimiento:
- * - Lazy loading de componentes pesados
- * - Suspense para estados de carga
  */
 
 import React, { Suspense, lazy } from 'react';
@@ -52,9 +47,12 @@ class ErrorBoundary extends React.Component<
             <p className="text-sm text-gray-500 mb-4">
               {this.state.error?.message || 'Error desconocido'}
             </p>
+            <pre className="text-xs text-left bg-gray-100 p-2 rounded overflow-auto max-h-40">
+              {this.state.error?.stack}
+            </pre>
             <button
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+              className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors mt-4"
             >
               Recargar página
             </button>

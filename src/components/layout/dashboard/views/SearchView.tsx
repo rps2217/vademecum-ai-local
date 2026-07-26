@@ -82,10 +82,13 @@ export function SearchView({
           // Principio activo contiene query
           else if (principios.some(p => p.includes(q))) priority = 1;
           
-          return { product, categories, priority };
+          // Usar cobertura de KB si está disponible
+          const kbCoverage = (product as any).cobertura_kb || 0;
+          
+          return { product, categories, priority, kbCoverage };
         })
         .filter(r => r.priority > 0)
-        .sort((a, b) => b.priority - a.priority || b.categories.coverage - a.categories.coverage)
+        .sort((a, b) => b.priority - a.priority || b.kbCoverage - a.kbCoverage)
         .map(r => ({ product: r.product, categories: r.categories }));
     }
 
