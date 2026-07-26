@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy, useCallback } from 'react';
-import { Search, Database, Settings, Loader2, Activity, ShieldCheck, Menu, X, Zap, Snowflake, Brain } from 'lucide-react';
+import { Search, Database, Settings, Loader2, Activity, ShieldCheck, Menu, X, Zap, Snowflake, Brain, Sparkles } from 'lucide-react';
 import { HardwareProfile } from '../../core/types/hardware.types';
 import { aiService } from '../../services/AIService';
 import { cloudSyncService } from '../../services/CloudSyncService';
@@ -14,6 +14,8 @@ import { OfflineIndicator } from '../common/OfflineIndicator';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { ConsultationProvider } from '../../context/ConsultationContext';
 import { logger } from '../../services/LoggerService';
+import { SemanticSearchPanel } from '../../modules/search/components/SemanticSearchPanel';
+import { ProtocolsModule } from '../../modules/protocols/ProtocolsModule';
 
 import { Button } from '@/components/ui/button';
 
@@ -44,6 +46,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
   const [activeTab, setActiveTab] = useState<'search' | 'graph' | 'database' | 'settings'>('search');
   const [isAiProcessingEnabled, setIsAiProcessingEnabled] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSemanticSearchOpen, setIsSemanticSearchOpen] = useState(false);
+  const [isProtocolsOpen, setIsProtocolsOpen] = useState(false);
   const { isAccessGranted } = useAuth();
 
   // Initialize services
@@ -139,6 +143,28 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
 
               {/* Actions */}
               <div className="flex items-center gap-3">
+                {/* Protocols Button */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsProtocolsOpen(true)}
+                  className="hidden xl:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500/10 to-emerald-500/10 text-teal-700 border border-teal-200 hover:from-teal-500/20 hover:to-emerald-500/20 transition-all duration-300 btn-press"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span className="text-sm font-semibold">Protocolos</span>
+                </Button>
+                
+                {/* Semantic Search Button */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsSemanticSearchOpen(true)}
+                  className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-500/10 to-purple-500/10 text-violet-700 border border-violet-200 hover:from-violet-500/20 hover:to-purple-500/20 transition-all duration-300 btn-press"
+                >
+                  <Brain className="w-4 h-4" />
+                  <span className="text-sm font-semibold">Búsqueda IA</span>
+                </Button>
+                
                 {/* AI Toggle */}
                 <Button
                   variant="ghost"
@@ -226,6 +252,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ hardware }) => {
         <AIStatusIndicator />
         <ComparisonTray />
         <ClinicalBrainTray />
+
+        {/* Semantic Search Panel */}
+        {isSemanticSearchOpen && (
+          <SemanticSearchPanel
+            onClose={() => setIsSemanticSearchOpen(false)}
+          />
+        )}
+
+        {/* Protocols Module */}
+        {isProtocolsOpen && (
+          <ProtocolsModule
+            onClose={() => setIsProtocolsOpen(false)}
+          />
+        )}
 
         {/* Footer - Glass effect */}
         <footer className="mt-auto">
