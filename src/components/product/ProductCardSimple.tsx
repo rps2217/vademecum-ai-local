@@ -4,9 +4,10 @@
  */
 
 import React from 'react';
-import { Pill, Loader2, Check, X, ChevronRight, Clock } from 'lucide-react';
+import { Pill, Loader2, Check, X, ChevronRight, Clock, BookOpen } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
+import { TermExpander } from '../ui/TermExpander';
 import type { AnalyzedProduct } from '../../types';
 
 interface ScrapingState {
@@ -73,11 +74,15 @@ export const ProductCardSimple: React.FC<ProductCardSimpleProps> = React.memo(({
             <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors shrink-0" />
           </div>
 
-          {/* Posología (si está disponible) */}
+          {/* Posología con términos expandidos */}
           {posologia && (
-            <div className="flex items-center gap-1.5 mt-2 text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">
-              <Clock className="w-3 h-3" />
-              <span className="line-clamp-1">{posologia}</span>
+            <div className="flex items-start gap-1.5 mt-2">
+              <Clock className="w-3 h-3 text-amber-500 mt-0.5 shrink-0" />
+              <TermExpander 
+                text={posologia} 
+                className="text-xs text-gray-600 line-clamp-1"
+                variant="inline"
+              />
             </div>
           )}
 

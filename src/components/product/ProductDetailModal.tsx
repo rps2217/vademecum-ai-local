@@ -9,6 +9,7 @@ import {
   ExternalLink, Package, Clock 
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { TermExpander } from '../ui/TermExpander';
 import type { AnalyzedProduct } from '../../types';
 
 interface ProductDetailModalProps {
@@ -139,7 +140,7 @@ export function ProductDetailModal({
           {product.descripcion ? (
             <div>
               <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">Descripción</h3>
-              <p className="text-sm text-gray-700 leading-relaxed">{product.descripcion}</p>
+              <TermExpander text={product.descripcion || ""} className="text-sm text-gray-700 leading-relaxed" variant="inline" />
             </div>
           ) : (
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
@@ -157,7 +158,7 @@ export function ProductDetailModal({
                 <Clock className="w-3.5 h-3.5" />
                 Posología
               </h3>
-              <p className="text-sm text-amber-800 leading-relaxed">{product.posologia}</p>
+              <TermExpander text={product.posologia || ""} className="text-sm text-amber-800 leading-relaxed" variant="inline" />
             </div>
           )}
 
@@ -169,7 +170,7 @@ export function ProductDetailModal({
                 {product.indicaciones.slice(0, 8).map((ind: string, i: number) => (
                   <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                    {ind}
+                    <TermExpander text={ind} variant="inline" />
                   </li>
                 ))}
               </ul>
