@@ -299,38 +299,101 @@ export function IngredientText({
   className?: string;
   onIngredientClick?: (name: string) => void;
 }) {
-  // Palabras que podrían ser ingredientes (expandido - 100+ ingredientes)
+  // Palabras que podrían ser ingredientes (EXPANDIDO - 200+ ingredientes)
   const ingredientKeywords = [
-    // Homeopatía
-    'china', 'arnica', 'belladonna', 'nux vomica', 'nux-vomica', 'rhythm', 
-    'phosphorus', 'sulfur', 'sepia', 'iris versicolor', 'iris-versicolor',
-    'calendula', 'hamamelis', 'antimonium', 'rhus toxicodendron', 'rhustox',
-    'mercurius', 'hepatic', 'lycopodium', 'pulsatilla', 'aconitum', 'apis',
-    'chamomilla', 'colocynthis', 'magnesium phosphoricum', 'kali bichromicum',
-    'silicea', 'natrum muriaticum', 'natrum mur', 'lachesis', 'crotalus',
-    'echinacea', 'thuja', 'arsenicum album', 'baryta carbonica',
-    // Fitoterapia
-    'curcuma', 'jengibre', 'ginseng', 'valeriana', 'ashwagandha', 'ginkgo', 'gingko',
-    'reishi', 'cordyceps', 'shiitake', 'maitake', 'melatonina',
-    'alcachofa', 'cardo mariano', 'saw palmetto', 'hipérico', 'hypericum',
-    'passiflora', 'tila', 'marcela', 'borraja', 'equinácea',
-    // Aminoácidos
-    'gaba', 'nac', 'glicina', '5-htp', 'teanina', 'triptófano', 'tirosina',
-    'glutamina', 'lisina', 'ornitina', 'arginina', 'carnitina',
-    // Vitaminas
-    'vitamina', 'vitamina-c', 'vitamina-d', 'vitamina-e', 'vitamina-b',
-    'vitamina a', 'vitamina k', 'complejo b', 'ácido fólico', 'folato', 'biotina',
-    // Minerales
-    'zinc', 'magnesio', 'selenio', 'hierro', 'calcio', 'cobre', 'cromo',
-    'magnesio glicinato', 'magnesio citrato', 'magnesio treonato',
-    // Suplementos
-    'colageno', 'coq10', 'resveratrol', 'astaxantina', 'quercetina',
-    'omega-3', 'omega 3', 'dha', 'epa', 'aceite de pescado',
-    'probióticos', 'probiotico', 'espirulina', 'chlorella',
-    'lactobacillus', 'bifidobacterium', 'lgg',
-    'melatonina', 'nacetilcisteina',
-    // Otros
-    'bromelaína', 'bromelain', 'papaya', 'fibra', 'inulina',
+    // === HOMEOPATÍA (50+ remedios) ===
+    'aconitum', 'apis', 'arnica', 'arsenicum album', 'arsenicum-album',
+    'baryta carbonica', 'baryta-carbonica', 'belladonna',
+    'calcarea carbonica', 'calcarea-fluorica', 'calcarea phosphorica', 'calendula',
+    'carbo vegetabilis', 'caulophyllum', 'chamomilla', 'china', 'china rubra',
+    'cimicifuga', 'cocculus', 'colocynthis', 'conium', 'crotalus',
+    'dulcamara', 'eupatorium', 'echinacea',
+    'gelsemium', 'graphites',
+    'hamamelis', 'hepar sulfur', 'hepatic', 'hyoscyamus',
+    'ignatia',
+    'iris versicolor', 'iris-versicolor',
+    'kali bichromicum', 'kali carbonicum', 'kali phosphoricum',
+    'lachesis', 'ledum', 'lithium carbonicum', 'lycopodium',
+    'magnesia carbonica', 'magnesia phosphorica', 'mercurius', 'mercurius solubilis',
+    'mezereum',
+    'natrum carbonicum', 'natrum muriaticum', 'natrum mur', 'natrum phosphoricum', 'natrum sulfuricum',
+    'nux vomica', 'nux-vomica', 'nux vom',
+    'petroleum', 'phellandrium', 'phosphorus', 'phosphoricum acidum', 'phytolacca', 'platina', 'plumbum', 'pulsatilla',
+    'rhododendron', 'rhus toxicodendron', 'rhus tox', 'rhus-tox',
+    'sepia', 'silicea', 'spongia', 'staphysagria', 'stramonium', 'sulfur', 'sulphur', 'symphytum',
+    'thuja',
+    'veratrum album', 'veratrum-album',
+    'zincum metallicum', 'zincum met',
+    
+    // === FITOTERAPIA - Sistema Digestivo ===
+    'alcachofa', 'alcaucil', 'cardo mariano', 'cardo Mariano', 'diente de leon', 'gentiana',
+    'hinojo', 'jenjibre', 'jengi bre', 'manzanilla', 'melisa', 'menta piperita', 'menta',
+    'regaliz', 'valeriana',
+    
+    // === FITOTERAPIA - Sistema Nervioso ===
+    'ashwagandha', 'bacopa', 'ginkgo', 'ginseng', 'gotu kola', 'griffonia', 'gotu kola',
+    'hierba de san juan', 'hierba-de-san-juan', 'hipérico', 'hypericum',
+    'l-teanina', 'l teanina', 'l-teanina', 'mucuna', 'pasiflora', 'pasiflora',
+    'rodiola', 'salvia', 'schisandra', 'schisandra', 'tila', 'tilo',
+    'kava', 'lúpulo', 'lupulo', 'verbena',
+    
+    // === FITOTERAPIA - Inmunidad ===
+    'equinacea', 'equinácea', 'propoleo', 'própoleo', 'equinacea',
+    'umbo copahuite', 'umbo', 'copahuite', 'mirto', 'arrayán',
+    
+    // === FITOTERAPIA - Cardiovascular ===
+    'ajo', 'espino blanco', 'espino-blanco', 'muérdago', 'muerdago', 'olivo', 'olive leaf',
+    'castaño de Indias', 'marron indio', 'marron', 'aesculus',
+    
+    // === FITOTERAPIA - Respiratorio ===
+    'alho silvestre', 'alho-silvestre', 'grindelia', 'gordolobo', 'hisopo',
+    'licen de Islandia', 'licen-de-islandia', 'pelargonio', 'plantago', 'llanten', 'tomillo',
+    'eucalyptus', 'eucalipto', 'sauco', 'elderberry',
+    
+    // === FITOTERAPIA - Urinario ===
+    'abedul', 'gayuba', 'uva ursi', 'ortiga verde', 'ortiga', 'pierna', 'vara de oro',
+    
+    // === FITOTERAPIA - Locomotor ===
+    'harpagofito', 'garra del diablo', 'cola de caballo', 'úrsica',
+    
+    // === HONGOS MEDICINALES ===
+    'reishi', 'ganoderma', 'cordyceps', 'maitake', 'shiitake', 'hericium',
+    'hericium erinaceus', 'lions mane', 'chaga',
+    
+    // === FITOTERAPIA - Piel ===
+    'aloe vera', 'aloe-vera', 'calendula vera', 'hipérico tópico',
+    
+    // === VITAMINAS ===
+    'vitamina', 'vitamina-c', 'vitamina-d', 'vitamina-e', 'vitamina-k', 'vitamina-b',
+    'vitamina a', 'vitamina b1', 'vitamina b6', 'vitamina b12',
+    'complejo b', 'ácido fólico', 'folato', 'biotina', 'colina', 'inositol',
+    
+    // === MINERALES ===
+    'zinc', 'magnesio', 'selenio', 'hierro', 'calcio', 'cobre', 'cromo', 'manganeso', 'boro',
+    'magnesio glicinato', 'magnesio citrato', 'magnesio treonato', 'magnesio malato',
+    'zinc picolinato', 'hierro bisglicinato', 'calcio citrato', 'calcio coral',
+    'potasio', 'sodio', 'fosforo', 'yodo',
+    
+    // === AMINOÁCIDOS ===
+    'gaba', 'nac', 'glicina', '5-htp', '5htp', 'teanina', 'triptofano', 'tirosina',
+    'glutamina', 'lisina', 'ornitina', 'arginina', 'carnitina', 'creatina',
+    'l-teanina', 'l-tirosina', 'l-triptofano', 'l-glutamina',
+    'taurina', 'cisteina', 'metionina', 'treonina', 'triptofano', 'fenilalanina',
+    'l-dopa', 'dopa',
+    
+    // === SUPLEMENTOS ===
+    'colageno', 'coq10', 'resveratrol', 'astaxantina', 'quercetina', 'rutina',
+    'omega-3', 'omega 3', 'omega3', 'dha', 'epa', 'aceite de pescado',
+    'probióticos', 'probiotico', 'espirulina', 'chlorella', 'agua marina',
+    'lactobacillus', 'bifidobacterium', 'lactobacillus rhamnosus', 'lgg',
+    'melatonina', 'nacetilcisteina', 'nac', 'sam-e', 'same',
+    'dlpa', 'fenilalanina', 'sam',
+    'picolinato de cromo', 'bitartrato de creatina',
+    
+    // === OTROS ===
+    'bromelaína', 'bromelain', 'papaína', 'papaya', 'fibra', 'inulina', 'psyllium',
+    'ácido alfa lipoico', 'ácido alfa-lipoico', 'lipoico', 'ala',
+    '卡曼', '酶', 'digestive enzymes', 'enzimas digestivas',
   ];
 
   // Encontrar ingredientes en el texto

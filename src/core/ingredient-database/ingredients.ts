@@ -25,6 +25,11 @@ export interface IngredientInfo {
 
 export type IngredientDatabase = Record<string, IngredientInfo>;
 
+// Re-export from extended database
+export { getExtendedIngredientDatabase, findExtendedIngredient, getExtendedIngredientStats, 
+         HOMEOPATHY_DATABASE, HERBAL_DATABASE } from './extended-database';
+export type { ExtendedIngredientInfo } from './extended-database';
+
 // Base de datos de ingredientes principales
 export const INGREDIENT_DATABASE: IngredientDatabase = {
   'china': {
@@ -695,10 +700,11 @@ export const INGREDIENT_DATABASE: IngredientDatabase = {
   },
 };
 
-// Función para buscar ingrediente por nombre
+// Función para buscar ingrediente por nombre (busca en base local y extendida)
 export function findIngredient(query: string): IngredientInfo | null {
   const normalizedQuery = query.toLowerCase().trim();
   
+  // Primero buscar en base local
   if (INGREDIENT_DATABASE[normalizedQuery]) {
     return INGREDIENT_DATABASE[normalizedQuery];
   }
@@ -712,10 +718,16 @@ export function findIngredient(query: string): IngredientInfo | null {
     }
   }
   
+  // Buscar en base extendida
+  const extendedResult = findExtendedIngredient(query);
+  if (extendedResult) {
+    return extendedResult;
+  }
+  
   return null;
 }
 
-// Función para obtener estadísticas
+// Función para obtener estadísticas (incluye base extendida)
 export function getIngredientStats(): { total: number; byCategory: Record<string, number> } {
   const byCategory: Record<string, number> = {};
   let total = 0;
@@ -725,5 +737,11 @@ export function getIngredientStats(): { total: number; byCategory: Record<string
     byCategory[ingredient.category] = (byCategory[ingredient.category] || 0) + 1;
   }
   
-  return { total, byCategory };
+  // Agregar estadísticas de base extendida
+  const extendedStats = getExtendedIngredientStats();
+  
+  return { 
+    total: total + extendedStats.total, 
+    byCategory 
+  };
 }
