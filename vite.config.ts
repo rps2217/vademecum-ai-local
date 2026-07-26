@@ -244,20 +244,22 @@ export default defineConfig(({mode}) => {
             'vendor-react': ['react', 'react-dom'],
             // UI libraries
             'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
-            // AI/ML libraries (lazy loaded)
-            'vendor-ai': ['@google/genai', '@mlc-ai/web-llm', '@xenova/transformers'],
             // Database/Storage
             'vendor-db': ['@nozbe/watermelondb', 'rxdb', 'rxjs'],
-            // Visualization
+            // Lucide icons
+            'vendor-icons': ['lucide-react'],
+            // AI Libraries - Split into smaller chunks
+            'vendor-transformers': ['@xenova/transformers'],
+            'vendor-webllm': ['@mlc-ai/web-llm'],
+            'vendor-genai': ['@google/genai'],
+            // Visualization (lazy loaded)
             'vendor-viz': ['d3'],
             // PDF processing (lazy loaded)
             'vendor-pdf': ['pdfjs-dist'],
-            // Lucide icons
-            'vendor-icons': ['lucide-react'],
           },
         },
       },
-      chunkSizeWarningLimit: 500,
+      chunkSizeWarningLimit: 1000,
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.

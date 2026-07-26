@@ -7,6 +7,7 @@ import { Q } from '@nozbe/watermelondb';
 import ProductModel from '../database/Product';
 import { supabaseService } from './SupabaseService';
 import { useStore } from '../store/useStore';
+import { validateProduct, validateProducts, ProductSchema, type ProductInput } from '../core/schemas/validation';
 
 /**
  * Resultado de la importación del catálogo
@@ -256,13 +257,24 @@ export class DataService {
       return;
     }
 
-    console.log('[DataService] saveProductsToLocalDB llamado con', products.length, 'productos');
+    logger.debug('saveProductsToLocalDB llamado con ' + products.length + ' productos', 'DataService');
     logger.info(`Guardando ${products.length} productos en la base de datos local...`, 'DataService');
+
+    // Validación Zod de todos los productos
+    const validation = validateProducts(products);
+    if (!validation.success) {
+      logger.warn(`Validación Zod: ${validation.errorCount} productos inválidos de ${products.length}`, 'DataService');
+      if (validation.errors.length > 0) {
+        logger.debug('Errores de validación: ' + JSON.stringify(validation.errors.slice(0, 3)), 'DataService');
+      }
+    } else {
+      logger.debug('Todos los productos pasaron validación Zod', 'DataService');
+    }
 
     // Verificar estructura del primer producto para debug
     if (products[0]) {
-      console.log('[DataService] Primer producto:', JSON.stringify(products[0]).substring(0, 300));
-      console.log('[DataService] Claves del primer producto:', Object.keys(products[0]));
+      logger.debug('Primer producto: ' + JSON.stringify(products[0]).substring(0, 300), 'DataService');
+      logger.debug('Claves del primer producto: ' + Object.keys(products[0]).join(', '), 'DataService');
       logger.info(`Primer producto SKU: ${products[0].sku}`, 'DataService');
       logger.info(`Primer producto nombre: ${products[0].nombre_comercial || 'N/A'}`, 'DataService');
     }
@@ -277,7 +289,7 @@ export class DataService {
           try {
             // Verificar que tenga SKU
             if (!product.sku) {
-              console.log('[DataService] Producto sin SKU, omitiendo');
+              logger.debug('Producto sin SKU, omitiendo', 'DataService');
               logger.warn('Producto sin SKU, omitiendo', 'DataService');
               errorCount++;
               continue;
@@ -286,13 +298,13 @@ export class DataService {
             // Verificar si ya existe
             const existing = await productsCollection.query(Q.where('sku', product.sku)).fetch();
             if (existing.length > 0) {
-              console.log(`[DataService] Producto ${product.sku} ya existe`);
+              logger.debug(`Producto ${product.sku} ya existe`, 'DataService');
               logger.info(`Producto ${product.sku} ya existe, omitiendo`, 'DataService');
               skippedCount++;
               continue;
             }
 
-            console.log(`[DataService] Creando producto: ${product.sku}`);
+            logger.debug(`Creando producto: ${product.sku}`, 'DataService');
             
             await productsCollection.create(record => {
               record.sku = product.sku;
@@ -320,30 +332,30 @@ export class DataService {
 
             successCount++;
             if (successCount % 50 === 0) {
-              console.log(`[DataService] Guardados ${successCount} productos...`);
+              logger.debug(`Guardados ${successCount} productos...`, 'DataService');
             }
           } catch (e: any) {
             errorCount++;
-            console.error(`[DataService] Error guardando producto ${product.sku}:`, e);
+            logger.error(`Error guardando producto ${product.sku}`, 'DataService', e);
             logger.error(`Error guardando producto ${product.sku}: ${e}`, 'DataService', e);
           }
         }
       });
     } catch (writeError) {
-      console.error('[DataService] Error en database.write:', writeError);
+      logger.error('Error en database.write', 'DataService', writeError);
       throw writeError;
     }
 
-    console.log(`[DataService] Guardado completado: ${successCount} exitosos, ${skippedCount} omitidos (ya existían), ${errorCount} errores`);
+    logger.success(`Guardado completado: ${successCount} exitosos, ${skippedCount} omitidos, ${errorCount} errores`, 'DataService');
     logger.info(`Guardado completado: ${successCount} exitosos, ${skippedCount} omitidos, ${errorCount} errores`, 'DataService');
     
     // Verificar count en base de datos
     try {
       const dbCount = await productsCollection.query().fetchCount();
-      console.log(`[DataService] Total productos en base de datos: ${dbCount}`);
+      logger.info(`Total productos en base de datos: ${dbCount}`, 'DataService');
       logger.info(`Total productos en base de datos: ${dbCount}`, 'DataService');
     } catch (countError) {
-      console.error('[DataService] Error contando productos:', countError);
+      logger.error('Error contando productos', 'DataService', countError);
     }
   }
 
@@ -743,7 +755,6 @@ export class DataService {
     } catch (e) {
         const skus = products.map(p => p.sku).join(', ');
         logger.error(`Error al respaldar lote: ${skus}`, 'CloudSync', e);
-        logger.error('[DataService] Batch Sync failed', e);
         throw e;
     }
   }

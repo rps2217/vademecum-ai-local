@@ -8,6 +8,7 @@
 import Dexie, { type Table } from 'dexie';
 import { Product } from '../types/product.types';
 import { SynergyCache } from './types';
+import { logger } from '../../services/LoggerService';
 
 // Versión de la base de datos
 const DB_VERSION = 1;
@@ -44,9 +45,9 @@ class LocalDatabaseService {
     try {
       await this.db.open();
       this.isInitialized = true;
-      console.log('[LocalDB] Base de datos local inicializada');
+      logger.info('Base de datos local inicializada', 'LocalDatabase');
     } catch (error) {
-      console.error('[LocalDB] Error inicializando IndexedDB:', error);
+      logger.error('Error inicializando IndexedDB', 'LocalDatabase', error);
       throw error;
     }
   }

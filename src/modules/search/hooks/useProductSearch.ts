@@ -12,8 +12,8 @@ export const useProductSearch = (useSemantic = false) => {
 
   // Inicializar índice al montar
   useEffect(() => {
-    searchService.initializeIndex().catch(console.error);
-    semanticSearchService.initialize().catch(console.error);
+    searchService.initializeIndex().catch((e) => logger.error('Error inicializando índice', 'useProductSearch', e));
+    semanticSearchService.initialize().catch((e) => logger.error('Error inicializando búsqueda semántica', 'useProductSearch', e));
     
     const handleUpdate = () => {
       searchService.initializeIndex().then(() => setRefreshBit(b => b + 1));

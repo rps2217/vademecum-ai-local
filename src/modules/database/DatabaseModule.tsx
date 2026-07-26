@@ -139,7 +139,7 @@ export const DatabaseModule: React.FC = () => {
     try {
       // Limpiar base de datos local
       await dataService.clearAll();
-      console.log('[DatabaseModule] Base de datos local limpiada');
+      logger.info('Base de datos local limpiada', 'DatabaseModule');
       
       setSyncStatus('Descargando todos los productos desde la nube...');
       
@@ -155,7 +155,7 @@ export const DatabaseModule: React.FC = () => {
         setSyncStatus('⚠️ No se encontraron productos en la nube.');
       }
     } catch (error) {
-      console.error('[DatabaseModule] Error en descarga completa:', error);
+      logger.error('Error en descarga completa', 'DatabaseModule', error);
       setSyncStatus('Error en descarga completa.');
     } finally {
       setIsSyncing(false);

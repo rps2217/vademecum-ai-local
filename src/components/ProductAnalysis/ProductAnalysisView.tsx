@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../../core/types/product.types';
 import { knowledgeAnalysisService } from '../../services/KnowledgeAnalysisService';
+import { logger } from '../../services/LoggerService';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -30,7 +31,7 @@ export function ProductAnalysisView({ product, onClose }: ProductAnalysisViewPro
       const result = await knowledgeAnalysisService.analizarProducto(product);
       setAnalisis(result);
     } catch (error) {
-      console.error('Error analizando producto:', error);
+      logger.error('Error analizando producto', 'ProductAnalysisView', error);
     } finally {
       setLoading(false);
     }

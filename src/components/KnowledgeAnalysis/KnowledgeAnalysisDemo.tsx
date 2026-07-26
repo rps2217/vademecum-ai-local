@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import { knowledgeAnalysisService } from '../../services/KnowledgeAnalysisService';
 import { synergyGraphService } from '../../core/knowledge-base/SynergyGraph';
+import { logger } from '../../services/LoggerService';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -34,7 +35,7 @@ export function KnowledgeAnalysisDemo() {
         setSelectedIngredient(result.ingredientes[0].id);
       }
     } catch (error) {
-      console.error('Error buscando ingrediente:', error);
+      logger.error('Error buscando ingrediente', 'KnowledgeAnalysisDemo', error);
     } finally {
       setLoading(false);
     }

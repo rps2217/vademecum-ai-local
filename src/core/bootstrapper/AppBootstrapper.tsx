@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHardwareDetection } from '../../hooks/useHardwareDetection';
+import { logger } from '../../services/LoggerService';
 
 import { taskProcessorService } from '../../services/TaskProcessorService';
 import { automationTriggerService } from '../../services/AutomationTriggerService';
@@ -32,7 +33,7 @@ export const AppBootstrapper: React.FC<AppBootstrapperProps> = ({ children }) =>
       // Cargar productos en Zustand store
       const products = await dataService.getAllProducts();
       useStore.getState().setProducts(products);
-      console.log('[AppBootstrapper] Productos cargados en store:', products.length);
+      logger.debug('Productos cargados en store: ' + products.length, 'AppBootstrapper');
 
       setIsReady(true);
     };

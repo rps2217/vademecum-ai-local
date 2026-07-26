@@ -940,7 +940,7 @@ export default function DashboardV2() {
         if (response.ok) {
           const data = await response.json();
           if (data && data.length > 0) {
-            console.log('[DashboardV2] Analizando productos...');
+            logger.info('Analizando productos...', 'DashboardV2');
             const analyzed = data.map((product: Product) => {
               const { found, sinergias } = analyzeProduct(product, kb);
               const principiosCount = (product.principios_activos || []).length;
@@ -954,14 +954,14 @@ export default function DashboardV2() {
             });
             setProducts(analyzed);
           } else {
-            console.log('[DashboardV2] Sin productos en la nube');
+            logger.info('Sin productos en la nube', 'DashboardV2');
             setLoadingMessage('No hay productos. Ejecuta el scraper.');
           }
         } else {
           setLoadingMessage('Error al conectar con la API');
         }
       } catch (e) {
-        console.error('[DashboardV2] Exception:', e);
+        logger.error('Exception en DashboardV2', 'DashboardV2', e);
         setLoadingMessage('Error al cargar productos');
       }
       
