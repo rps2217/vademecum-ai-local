@@ -5,7 +5,7 @@
 
 import React, { useMemo } from 'react';
 import type { AnalyzedProduct } from '../../../types';
-import { ProductCard } from '../../../product/ProductCard';
+import { ProductCardSimple } from '../../../product/ProductCardSimple';
 import { CategoryFilter } from '../CategoryFilter';
 import { EmptyState } from '../EmptyState';
 
@@ -27,7 +27,6 @@ interface SearchViewProps {
 
 export function SearchView({
   products,
-  kb,
   query,
   categories,
   selectedCategory,
@@ -42,24 +41,14 @@ export function SearchView({
       if (query) {
         const q = query.toLowerCase();
         
-        // Buscar por SKU primero
         const matchSku = (p.sku || '').toLowerCase().includes(q);
-        const isSkuSearch = /^\d+$/.test(q.replace(/\s/g, ''));
-        
         const matchNombre = (p.nombre_comercial || '').toLowerCase().includes(q);
         const matchDesc = (p.descripcion || '').toLowerCase().includes(q);
         const matchIng = (p.principios_activos || []).some((id: string) => 
           String(id).toLowerCase().includes(q)
         );
-        const matchMarca = (p.marca || '').toLowerCase().includes(q);
         
-        // Si es búsqueda por SKU exacto
-        if (isSkuSearch || matchSku) {
-          if (matchSku) return true;
-        }
-        
-        // Búsqueda normal
-        if (!matchNombre && !matchDesc && !matchIng && !matchMarca) return false;
+        if (!matchSku && !matchNombre && !matchDesc && !matchIng) return false;
       }
       
       // Filtro de categoría
@@ -89,12 +78,11 @@ export function SearchView({
         {filteredProducts.length} medicamento{filteredProducts.length !== 1 ? 's' : ''}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {filteredProducts.map(prod => (
-          <ProductCard
+          <ProductCardSimple
             key={prod.sku}
             product={prod}
-            kb={kb}
             onSelect={() => onSelectProduct(prod)}
             onScrape={onScrapeProduct}
             scrapeState={scrapeStates[prod.sku] || 'idle'}
@@ -105,11 +93,6 @@ export function SearchView({
       {filteredProducts.length === 0 && query && (
         <div className="text-center py-8 text-gray-400">
           <p className="text-sm">No hay resultados para "{query}"</p>
-          {/^\d+$/.test(query.replace(/\s/g, '')) && (
-            <p className="text-xs mt-2 text-violet-500">
-              💡 Este SKU no está en tu base de datos local.
-            </p>
-          )}
         </div>
       )}
     </div>
