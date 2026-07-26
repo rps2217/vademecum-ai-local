@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.0.0",
-    "ultimaActualizacion": "2026-01-01",
-    "total": 40,
+    "version": "1.1.0",
+    "ultimaActualizacion": "2026-07-26",
+    "total": 20,
     "fuente": "Vademecum AI Knowledge Base"
   },
   "ingredientes": [
@@ -452,6 +452,198 @@
       "constelaciones": ["Eccema", "Heridas cronicas", "Constipacion"],
       "advertencias": ["Remedio para transtornos cronicos"],
       "tags": ["cronico", "piel", "obsesidad", "constipacion"],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "calcaria_carbonica",
+      "nombre": "Calcarea Carbonica",
+      "nombresAlternativos": ["Calc carb", "Carbonato de calcio", "Ostra shell"],
+      "nombreCientifico": "Calcarea carbonica",
+      "familia": "No aplica (mineral)",
+      "categoria": "homeopatia",
+      "sistemas": ["musculoesqueletico", "metabolico", "inmune"],
+      "indicaciones": ["ansiedad", "obesidad", "fatiga", "articaciones", "infecciones recurrentes", "niños friolentos"],
+      "descripcion": "Remedio constitucional para personas lentas, friolentas y propensas a ganhar peso facilmente.",
+      "mecanismoAccion": "Modula metabolismo oseo y respuesta immune. Regulator de calcium.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [6, 9, 15, 30, 200],
+      "sintomasClave": [
+        "Fatiga cronica con necesidad de descanso",
+        "Frio intenso, especialmente en cabeza y pies",
+        "Obesidad con distribucion abdominal",
+        "Transpiracion excesiva en cabeza",
+        "Aniedad por anticipacion"
+      ],
+      "modalidades": {
+        "empeora": ["frio", "humedad", "esfuerzo fisico", "denticion"],
+        "mejora": ["clima seco", "acostado de lado"]
+      },
+      "afinidad": ["huesos", "ganglios", "metabolismo"],
+      "constelaciones": ["Ansiedad", "Obesidad", "Infecciones recurrentes"],
+      "advertencias": ["Remedio constitucional de uso crónico"],
+      "tags": ["constitucional", "metabolismo", "friolento"],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "phosphorus",
+      "nombre": "Phosphorus",
+      "nombresAlternativos": ["Phos", "Fósforo", "Phosphorus"],
+      "nombreCientifico": "Phosphorus",
+      "familia": "No aplica (elemento)",
+      "categoria": "homeopatia",
+      "sistemas": ["nervioso", "respiratorio", "sanguineo"],
+      "indicaciones": ["hemorragias", "tos", "faringitis", "ansiedad social", "fatiga adrenal"],
+      "descripcion": "Remedio para personas sensibles, kreativas y ansiosas que tienden a sangrar facilmente.",
+      "mecanismoAccion": "Afecta coagulacion, mucosa respiratoria y sistema nervioso.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [6, 9, 15, 30, 200],
+      "sintomasClave": [
+        "Hemorragiasfaciles (sangrado nasal)",
+        "Tos seca con cosquilleo laríngeo",
+        "Aniedad social, sensitivity a impresiones",
+        "Sed excesiva por bebidas frías",
+        "Agotamiento después de esfuerzo"
+      ],
+      "modalidades": {
+        "empeora": ["anochecer", "acostado sobre lado izquierdo", "clima frio"],
+        "mejora": ["dormir", "comidas frias", "agua fria"]
+      },
+      "afinidad": ["sangre", "pulmones", "nervios"],
+      "constelaciones": ["Hemorragia", "Tos", "Angustia"],
+      "advertencias": [" personas muy sensibles y sugestionables"],
+      "tags": ["hemorragias", "tos", "ansiedad", "sensible"],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "natrum_muriaticum",
+      "nombre": "Natrum Muriaticum",
+      "nombresAlternativos": ["Nat mur", "Cloruro de sodio", "Sal marina"],
+      "nombreCientifico": "Natrum muriaticum",
+      "familia": "No aplica (mineral)",
+      "categoria": "homeopatia",
+      "sistemas": ["nervioso", "digestivo", "dermatologico"],
+      "indicaciones": ["depresion", "migrana", "constipacion", "herpes labial", "tristeza", "afrontamiento de perdidas"],
+      "descripcion": "Remedio para personas reservadas que ocultan emociones, especial para duelos no resueltos.",
+      "mecanismoAccion": "Afecta metabolism de agua y electrolitos. Regulator emocional.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [6, 9, 15, 30, 200],
+      "sintomasClave": [
+        "Pena y tristeza ocultas",
+        "Migrana por exposición solar",
+        "Labios dryos con herpes recidivante",
+        "Constipacion sin desire",
+        "Necesidad de soledad"
+      ],
+      "modalidades": {
+        "empeora": ["consolacion", "calor", "9-11h"],
+        "mejora": ["sudor", "despues de dormir", "ayuno"]
+      },
+      "afinidad": ["mente", "labios", "genitales"],
+      "constelaciones": ["Depresión", "Migraña", "Duelo"],
+      "advertencias": ["Remedio profundo para perturbaciones emocionales"],
+      "tags": ["emocional", "duelo", "migrana", "reservado"],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "arsenicum_album",
+      "nombre": "Arsenicum Album",
+      "nombresAlternativos": ["Ars alb", "Trióxido de arsénico", "Arsénico blanco"],
+      "nombreCientifico": "Arsenicum album",
+      "familia": "No aplica (mineral)",
+      "categoria": "homeopatia",
+      "sistemas": ["digestivo", "respiratorio", "psiquico"],
+      "indicaciones": ["intoxicacion alimentaria", "ansiedad", "insomnio", "asma", "eczema"],
+      "descripcion": "Remedio clave para estados agudos con agotamiento intenso y ansiedad por la salud.",
+      "mecanismoAccion": "Afecta mucosa gastrointestinal y respiratoria. Modula ansiedad.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [6, 9, 15, 30],
+      "sintomasClave": [
+        "Diarrea y vomiting con agotamento",
+        "Ansiedad extrema por la salud",
+        "Inquietud con miedo a la muerte",
+        "Sed por pequeños sorbos de agua",
+        "Quemaduras y eczemas con picor intenso"
+      ],
+      "modalidades": {
+        "empeora": ["media noche", "frio", "consumir"],
+        "mejora": ["calor", "posicion elevada", "agua caliente"]
+      },
+      "afinidad": ["estomago", "intestinos", "piel"],
+      "constelaciones": ["Intoxicación", "Ansiedad", "Asma"],
+      "advertencias": ["Remedio agudo importante"],
+      "tags": ["agudo", "intoxicacion", "ansiedad", "agotamiento"],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "thuja",
+      "nombre": "Thuja",
+      "nombresAlternativos": ["Thuya", "Arbol de la vida", "Thuja occidentalis"],
+      "nombreCientifico": "Thuja occidentalis",
+      "familia": "Cupressaceae",
+      "categoria": "homeopatia",
+      "sistemas": ["urinario", "dermatologico", "inmune"],
+      "indicaciones": ["verrugas", "efectos secundarios de vacunas", "cistitis cronica", "gripe"],
+      "descripcion": "Remedio para transtornos después de vaccionaciones, fungales y verrugas.",
+      "mecanismoAccion": "Modula respuesta immune aberrante. Antifungico e immunomodulador.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [6, 9, 15, 30, 200],
+      "sintomasClave": [
+        "Verrugas pedunculadas en cualquier parte",
+        "Efectos adversos após vaccionación",
+        "Cistitis con urine fétido",
+        "Gripe con secretion nasal verde",
+        "Sensación de delgadez en partes del cuerpo"
+      ],
+      "modalidades": {
+        "empeora": ["tiempo frio y humedo", "a noche", "por чай"],
+        "mejora": ["despertar", "calor seco"]
+      },
+      "afinidad": ["piel", "vias urinarias", "glándulas"],
+      "constelaciones": ["Verrugas", "Post-vaccinal", "Cistitis"],
+      "advertencias": ["No usar aceite esencial de thuja (tóxico)"],
+      "tags": ["verrugas", "pos-vaccinal", "fungico", "cistitis"],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "kali_bichromicum",
+      "nombre": "Kali Bichromicum",
+      "nombresAlternativos": ["Kali bic", "Bicromato de potasio"],
+      "nombreCientifico": "Kali bichromicum",
+      "familia": "No aplica (mineral)",
+      "categoria": "homeopatia",
+      "sistemas": ["respiratorio", "digestivo", "articaciones"],
+      "indicaciones": ["sinusitis", "migraña", "ulceras gastricas", "artritis"],
+      "descripcion": "Remedio para condições con secretion viscosa amarilla y dolores localizados.",
+      "mecanismoAccion": "Afecta mucosas con secreciones densas. Analgésico localized.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [6, 9, 15, 30],
+      "sintomasClave": [
+        "Secreción nasal espesa, amarilla-verde",
+        "Dolor de cabeza en un punto (migrana)",
+        "Ulceras con dolor localizado",
+        "Artritis con dolor en puntos específicos",
+        "Tos con flema difícil de expectorar"
+      ],
+      "modalidades": {
+        "empeora": ["frio", "verano", "alcohol"],
+        "mejora": ["calor", "presion"]
+      },
+      "afinidad": ["mucosas", "estomago", "articulaciones"],
+      "constelaciones": ["Sinusitis", "Migraña", "Ulceras"],
+      "advertencias": ["Remedio para secretion densa"],
+      "tags": ["sinusitis", "migrana", "ulceras", "viscoso"],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }

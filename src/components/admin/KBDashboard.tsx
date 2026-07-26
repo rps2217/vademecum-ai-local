@@ -97,6 +97,10 @@ export default function KBDashboard({ onClose }: KBDashboardProps) {
     { id: 'aceite_esencial', name: 'Aceites', count: stats?.byCategory?.aceite_esencial || 0 },
     { id: 'vitaminas', name: 'Vitaminas', count: stats?.byCategory?.vitaminas || 0 },
     { id: 'minerales', name: 'Minerales', count: stats?.byCategory?.minerales || 0 },
+    { id: 'aminoacidos', name: 'Aminoácidos', count: stats?.byCategory?.aminoacidos || 0 },
+    { id: 'probioticos', name: 'Probióticos', count: stats?.byCategory?.probioticos || 0 },
+    { id: 'prebioticos', name: 'Prebióticos', count: stats?.byCategory?.prebioticos || 0 },
+    { id: 'enzimas', name: 'Enzimas', count: stats?.byCategory?.enzimas || 0 },
   ];
 
   const tabs = [

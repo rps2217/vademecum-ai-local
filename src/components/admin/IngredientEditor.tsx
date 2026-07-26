@@ -26,6 +26,10 @@ const categoryIcons: Record<string, any> = {
   aceite_esencial: Shield,
   vitaminas: Shield,
   minerales: Shield,
+  aminoacidos: Sparkles,
+  probioticos: Beaker,
+  prebioticos: Leaf,
+  enzimas: Beaker,
 };
 
 const evidenceColors: Record<string, string> = {
@@ -61,6 +65,10 @@ export default function IngredientEditor({ ingredient, onClose, onSave }: Ingred
                 ingredient.categoria === 'fitoterapia' && "bg-emerald-100 text-emerald-600",
                 ingredient.categoria === 'homeopatia' && "bg-violet-100 text-violet-600",
                 ingredient.categoria === 'aceite_esencial' && "bg-amber-100 text-amber-600",
+                ingredient.categoria === 'aminoacidos' && "bg-blue-100 text-blue-600",
+                ingredient.categoria === 'probioticos' && "bg-teal-100 text-teal-600",
+                ingredient.categoria === 'prebioticos' && "bg-green-100 text-green-600",
+                ingredient.categoria === 'enzimas' && "bg-orange-100 text-orange-600",
                 (ingredient.categoria === 'vitaminas' || ingredient.categoria === 'minerales') && "bg-blue-100 text-blue-600"
               )}>
                 <Icon className="w-7 h-7" />

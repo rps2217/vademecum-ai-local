@@ -35,6 +35,10 @@ const categoryColors: Record<string, string> = {
   aceite_esencial: '#f59e0b',
   vitaminas: '#3b82f6',
   minerales: '#64748b',
+  aminoacidos: '#2563eb',
+  probioticos: '#0d9488',
+  prebioticos: '#22c55e',
+  enzimas: '#ea580c',
 };
 
 const typeColors: Record<string, string> = {

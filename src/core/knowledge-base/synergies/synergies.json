@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.0.0",
-    "ultimaActualizacion": "2026-01-01",
-    "total": 80,
+    "version": "1.1.0",
+    "ultimaActualizacion": "2026-07-26",
+    "total": 45,
     "fuente": "Vademecum AI Knowledge Base"
   },
   "sinergias": [
@@ -212,7 +212,7 @@
     {
       "id": "sin_vitd_vitk2",
       "ingredienteA": "vitamina_d3",
-      "ingredienteB": "vitamina_k",
+      "ingredienteB": "vitamina_k2",
       "tipo": "complementario",
       "nivelEvidencia": "A",
       "descripcion": "Vitamina K2 dirige el calcio activ ado por D3 hacia huesos y lejos de arterias.",
@@ -311,7 +311,7 @@
     },
     {
       "id": "sin_triptofano_5htp",
-      "ingredienteA": "triptofano",
+      "ingredienteA": "5_htp",
       "ingredienteB": "vitamina_b6",
       "tipo": "cofactor",
       "nivelEvidencia": "B",
@@ -489,6 +489,401 @@
       "mecanismo": "Sauco inhibe entrada viral a celulas, vit C potencia funcion immune global.",
       "categorias": ["fitoterapia", "vitaminas"],
       "sistemas": ["inmune", "respiratorio"]
+    },
+    {
+      "id": "sin_curcuma_piperina",
+      "ingredienteA": "curcuma",
+      "ingredienteB": "jengibre",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion antiinflamatoria clasica de la medicina ayurvedica.",
+      "beneficios": [
+        "Antiinflamacion potenciada",
+        "Mejor absorcion de curcumina",
+        "Salud articular mejorada"
+      ],
+      "precauciones": [
+        "Puede interactuar con anticoagulantes",
+        "Dosis altas pueden causar malestar gastrico"
+      ],
+      "mecanismo": "Jengibre mejora biodisponibilidad de curcumina. Ambos inhiben NF-kB.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["musculoesqueletico", "digestivo"]
+    },
+    {
+      "id": "sin_magnesio_vitamina_b6",
+      "ingredienteA": "magnesio",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "cofactor",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia esencial para funcion neurologica y muscular.",
+      "beneficios": [
+        "Absorcion de magnesio mejorada",
+        "Funcion neurologica optimizada",
+        "Reduce calambres musculares"
+      ],
+      "precauciones": [
+        "B6 en dosis >100mg/dia por largos periodos puede causar neuropatia"
+      ],
+      "mecanismo": "B6 es cofactor para sintesis de GABA y activacion de magnesio.",
+      "categorias": ["minerales", "vitaminas"],
+      "sistemas": ["nervioso", "musculoesqueletico"]
+    },
+    {
+      "id": "sin_vitd3_k2",
+      "ingredienteA": "vitamina_d3",
+      "ingredienteB": "vitamina_k2",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion indispensable para salud osea y cardiovascular.",
+      "beneficios": [
+        "Calcio dirigido a huesos y dientes",
+        "Prevencion calcificacion arterial",
+        "Salud cardiovascular optimizada"
+      ],
+      "precauciones": [
+        "No combinar con anticoagulantes sin supervision",
+        "Monitorizar niveles de vitamina D"
+      ],
+      "mecanismo": "K2 activa osteocalcina y MGP dependentes de D3 para mineralizacion osea.",
+      "categorias": ["vitaminas", "vitaminas"],
+      "sistemas": ["musculoesqueletico", "cardiovascular"]
+    },
+    {
+      "id": "sin_zinc_vitc",
+      "ingredienteA": "zinc",
+      "ingredienteB": "vitamina_c",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Duo immunomodulador para prevencion de infecciones.",
+      "beneficios": [
+        "Funcion inmunologica potenciada",
+        "Reduce duracion de resfriados",
+        "Antioxidacion sinergetica"
+      ],
+      "precauciones": [
+        "Zinc >40mg/dia largo plazo puede causar deficiencia de cobre"
+      ],
+      "mecanismo": "Ambos actuan sobre diferentes vias immunes, potenciando respuesta global.",
+      "categorias": ["minerales", "vitaminas"],
+      "sistemas": ["inmune"]
+    },
+    {
+      "id": "sin_ginkgo_bacopa",
+      "ingredienteA": "ginkgo",
+      "ingredienteB": "bacopa",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinacion nootropica para memoria y cognicion.",
+      "beneficios": [
+        "Memoria y concentracion mejoradas",
+        "Flujo sanguineo cerebral optimizado",
+        "Aprendizaje facilitado"
+      ],
+      "precauciones": [
+        "Pueden interactuar con anticoagulantes",
+        "Efectos aparecen despues de 4-8 semanas"
+      ],
+      "mecanismo": "Ginkgo mejora perfusión cerebral, bacopa modula receptores de memoria.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_omega3_vitd",
+      "ingredienteA": "omega_3",
+      "ingredienteB": "vitamina_d3",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia para salud cardiovascular y antiinflamatoria.",
+      "beneficios": [
+        "Antiinflamacion potenciada",
+        "Salud cardiovascular sinergetica",
+        "Absorcion de D3 mejorada con grasas"
+      ],
+      "precauciones": [
+        "Anticoagulantes: monitorizar",
+        "Dosis altas de omega pueden afectar coagulacion"
+      ],
+      "mecanismo": "Omega-3 mejora biodisponibilidad de D3 (liposoluble). D3 potencia efeito antiinflamatario.",
+      "categorias": ["vitaminas", "vitaminas"],
+      "sistemas": ["cardiovascular", "inmune"]
+    },
+    {
+      "id": "sin_equinacea_zinc",
+      "ingredienteA": "equinacea",
+      "ingredienteB": "zinc",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion para prevencion y tratamiento de infecciones respiratorias.",
+      "beneficios": [
+        "Actividad antiviral potenciada",
+        "Respuesta inmunologica rapida",
+        "Reduce riesgo de complicaciones"
+      ],
+      "precauciones": [
+        "No usar en enfermedades autoimmunes sin supervision",
+        "No usar continuo >8 semanas"
+      ],
+      "mecanismo": "Equinacea modula innate immunity, zinc bloquea replicacion viral.",
+      "categorias": ["fitoterapia", "minerales"],
+      "sistemas": ["inmune", "respiratorio"]
+    },
+    {
+      "id": "sin_probioticos_prebioticos",
+      "ingredienteA": "lactobacillus_rhamnosus_gg",
+      "ingredienteB": "inulina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Synbiotics: combinacion de probioticos y prebioticos.",
+      "beneficios": [
+        "Supervivencia probiotica mejorada",
+        "Crecimiento de bacterias beneficiosas",
+        "Salud intestinal optimizada"
+      ],
+      "precauciones": [
+        "Iniciar prebioticos gradualmente",
+        "Puedo causar gas inicial"
+      ],
+      "mecanismo": "Prebioticos alimentan y estimulan crecimiento de probioticos.",
+      "categorias": ["probioticos", "otros"],
+      "sistemas": ["digestivo", "inmune"]
+    },
+    {
+      "id": "sin_boswelia_curcuma",
+      "ingredienteA": "boswelia",
+      "ingredienteB": "curcuma",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Potente combinacion antiinflamatoria sin efectos gastrointestinales.",
+      "beneficios": [
+        "Inflamacion articular reducida",
+        "Movilidad mejorada",
+        "Alternativa natural a AINEs"
+      ],
+      "precauciones": [
+        "Puede interactuar con anticoagulantes",
+        "No usar en embarazo"
+      ],
+      "mecanismo": "Boswellia inhibe 5-LOX, curcumina inhibe COX-2: doble bloqueo antiinflamatorio.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["musculoesqueletico"]
+    },
+    {
+      "id": "sin_ginseng_eleuterococo",
+      "ingredienteA": "ginseng",
+      "ingredienteB": "eleuterococo",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo adaptogeno para energia y resistencia al estres.",
+      "beneficios": [
+        "Energia fisica y mental",
+        "Resistencia al estres",
+        "Recuperacion post-ejercicio"
+      ],
+      "precauciones": [
+        "No combinar con Cafeina excesiva",
+        "No usar en hipertension",
+        "Ciclos de 3 meses con descanso"
+      ],
+      "mecanismo": "Ambos modulan eje HPA pero por vias ligeramente diferentes.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso", "metabolico"]
+    },
+    {
+      "id": "sin_valeriana_magnesio",
+      "ingredienteA": "valeriana",
+      "ingredienteB": "magnesio",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion relaxante para insomnio y ansiedad.",
+      "beneficios": [
+        "Sueno mejorado",
+        "Relajacion muscular",
+        "Ansiedad reducida"
+      ],
+      "precauciones": [
+        "Somnolencia matutina posible",
+        "No combinar con farmacos sedantes"
+      ],
+      "mecanismo": "Valeriana modula GABA, magnesio activa receptores GABA.",
+      "categorias": ["fitoterapia", "minerales"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_melisa_lavanda",
+      "ingredienteA": "melisa",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia calmante para ansiedad y estres.",
+      "beneficios": [
+        "Calma natural potenciada",
+        "Ideal para aromaterapia",
+        "Mejora calidad de vida"
+      ],
+      "precauciones": [
+        "Lavanda: dilution adecuada para uso topico"
+      ],
+      "mecanismo": "Ambos modulan receptores GABA por diferentes compuestos.",
+      "categorias": ["fitoterapia", "aceite_esencial"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_cardo_mariano_nac",
+      "ingredienteA": "cardo_mariano",
+      "ingredienteB": "tirosina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion hepatoprotectora y antioxidante.",
+      "beneficios": [
+        "Proteccion hepatica potenciada",
+        "Desintoxicacion mejorada",
+        "Antioxidacion celular"
+      ],
+      "precauciones": [
+        "No usar en embarazo",
+        "Tirosina: no combinar con MAOIs"
+      ],
+      "mecanismo": "Silimarina protege hepatocitos, NAC proporciona glutatión.",
+      "categorias": ["fitoterapia", "aminoacidos"],
+      "sistemas": ["hepatico"]
+    },
+    {
+      "id": "sin_ashwagandha_magnesio",
+      "ingredienteA": "ashwagandha",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion anti-estres y relajante.",
+      "beneficios": [
+        "Cortisol reducido",
+        "Sueno mejorado",
+        "Ansiedad aliviada"
+      ],
+      "precauciones": [
+        "No combinar con farmacos tiroideos sin supervision"
+      ],
+      "mecanismo": "Ashwagandha modula HPA, magnesio modula receptores GABA.",
+      "categorias": ["fitoterapia", "minerales"],
+      "sistemas": ["nervioso", "endocrino"]
+    },
+    {
+      "id": "sin_coq10_magnesio",
+      "ingredienteA": "coq10",
+      "ingredienteB": "magnesio",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia cardiovascular y energetica.",
+      "beneficios": [
+        "Produccion ATP optimizada",
+        "Salud cardiaca protegida",
+        "Energia celular mejorada"
+      ],
+      "precauciones": [
+        "CoQ10 puede interactuar con warfarina"
+      ],
+      "mecanismo": "CoQ10 es esencial en cadena respiratoria, magnesio necesario para ATP.",
+      "categorias": ["vitaminas", "minerales"],
+      "sistemas": ["cardiovascular", "metabolico"]
+    },
+    {
+      "id": "sin_hierro_vitc",
+      "ingredienteA": "hierro",
+      "ingredienteB": "vitamina_c",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion para corregir deficiencia de hierro.",
+      "beneficios": [
+        "Absorcion de hierro mejorada 2-3x",
+        "Tratamiento anemia mas efficace",
+        "Menos efectos secundarios gastricos"
+      ],
+      "precauciones": [
+        "No tomar con antibioticos (separar 2h)",
+        "El exceso de hierro es toxico"
+      ],
+      "mecanismo": "Vit C reduce Fe3+ a Fe2+ absorbible en intestino.",
+      "categorias": ["minerales", "vitaminas"],
+      "sistemas": ["sanguineo"]
+    },
+    {
+      "id": "sin_reishi_vitd",
+      "ingredienteA": "reishi",
+      "ingredienteB": "vitamina_d3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinacion inmunomoduladora profunda.",
+      "beneficios": [
+        "Sistema inmune equilibrado",
+        "Propiedades anticancerigenas potenciales",
+        "Adaptogeno y energizante"
+      ],
+      "precauciones": [
+        "No combinar con imunossupresores",
+        "Puede tener efectos anticoagulantes"
+      ],
+      "mecanismo": "Reishi modula vias immunes, D3 potencia immunity innata.",
+      "categorias": ["fitoterapia", "vitaminas"],
+      "sistemas": ["inmune"]
+    },
+    {
+      "id": "sin_cefiro_menta",
+      "ingredienteA": "menta",
+      "ingredienteB": "jengibre",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion digestive para nausea y discomfort.",
+      "beneficios": [
+        "Alivio de nausea",
+        "Digestion facilitada",
+        "Flatulencia reducida"
+      ],
+      "precauciones": [
+        "Mentol puede causar reflujo en algunos",
+        "Jengibre: anticoagulante leve"
+      ],
+      "mecanismo": "Mentol relaja musculo liso, jengibre antiemetico y carminativo.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["digestivo"]
+    },
+    {
+      "id": "sin_bromelaina_curcuma",
+      "ingredienteA": "bromelaina",
+      "ingredienteB": "curcuma",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Potente combinacion antiinflamatoria.",
+      "beneficios": [
+        "Inflamacion reducida",
+        "Absorcion de curcumina mejorada",
+        "Dolor articular aliviado"
+      ],
+      "precauciones": [
+        "Anticoagulantes: usar con supervision",
+        "No usar en ulceras activas"
+      ],
+      "mecanismo": "Bromelain mejora absorcion intestinal de curcumina.",
+      "categorias": ["enzimas", "fitoterapia"],
+      "sistemas": ["musculoesqueletico", "digestivo"]
+    },
+    {
+      "id": "sin_lactasa_probioticos",
+      "ingredienteA": "lactasa",
+      "ingredienteB": "probioticos",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Ayuda completa para intolerancia a lactosa.",
+      "beneficios": [
+        "Digestion lactosa garantizada",
+        "Salud intestinal a largo plazo",
+        "Sintomas reducidos"
+      ],
+      "precauciones": [
+        "Probioticos requieren consistencia"
+      ],
+      "mecanismo": "Lactasa digiere lactosa inmediatamente, probioticos producen lactasa endogena.",
+      "categorias": ["enzimas", "probioticos"],
+      "sistemas": ["digestivo"]
     }
   ]
 }

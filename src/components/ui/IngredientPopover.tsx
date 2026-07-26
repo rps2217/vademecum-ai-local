@@ -66,6 +66,14 @@ export function IngredientPopover({ ingredientName, children, className }: Ingre
         return <Leaf className="w-4 h-4" />;
       case 'suplemento':
         return <Pill className="w-4 h-4" />;
+      case 'aminoacidos':
+        return <Sparkles className="w-4 h-4" />;
+      case 'probioticos':
+        return <Beaker className="w-4 h-4" />;
+      case 'prebioticos':
+        return <Leaf className="w-4 h-4" />;
+      case 'enzimas':
+        return <Pill className="w-4 h-4" />;
       default:
         return <Info className="w-4 h-4" />;
     }
@@ -79,6 +87,14 @@ export function IngredientPopover({ ingredientName, children, className }: Ingre
         return 'bg-emerald-100 text-emerald-700 border-emerald-200';
       case 'suplemento':
         return 'bg-amber-100 text-amber-700 border-amber-200';
+      case 'aminoacidos':
+        return 'bg-blue-100 text-blue-700 border-blue-200';
+      case 'probioticos':
+        return 'bg-teal-100 text-teal-700 border-teal-200';
+      case 'prebioticos':
+        return 'bg-green-100 text-green-700 border-green-200';
+      case 'enzimas':
+        return 'bg-orange-100 text-orange-700 border-orange-200';
       default:
         return 'bg-gray-100 text-gray-700 border-gray-200';
     }
