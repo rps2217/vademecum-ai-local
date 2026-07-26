@@ -8,8 +8,9 @@ import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
 import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
+import { SemanticSearchPanel } from './components/SemanticSearchPanel';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
-import { Search, Grid3X3, List as ListIcon, X, Loader2, Sparkles } from 'lucide-react';
+import { Search, Grid3X3, List as ListIcon, X, Loader2, Sparkles, Brain } from 'lucide-react';
 import { historyService } from '../../services/HistoryService';
 import { dataService } from '../../services/DataService';
 import { useStore } from '../../store/useStore';
@@ -25,6 +26,7 @@ import { Badge } from '@/components/ui/badge';
  */
 export const SearchModule: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [isSemanticSearchOpen, setIsSemanticSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   
   const { 
@@ -41,6 +43,11 @@ export const SearchModule: React.FC = () => {
   const [isLoadingAll, setIsLoadingAll] = useState(true);
   
   const { toggleProduct, isInTray } = useTray();
+
+  // Abrir búsqueda semántica con Ctrl+Shift+S
+  useKeyboardShortcuts({
+    'Control+Shift+S': () => setIsSemanticSearchOpen(true),
+  });
 
   // Sync viewedProductSku from store
   useEffect(() => {
@@ -181,6 +188,20 @@ export const SearchModule: React.FC = () => {
                 <X className="w-5 h-5 text-slate-400 group-hover/clear:text-slate-600 transition-colors" />
               </button>
             )}
+          </div>
+
+          {/* Botón de Búsqueda Semántica */}
+          <div className="mt-4 flex justify-center animate-fade-in-up" style={{ animationDelay: '150ms' }}>
+            <button
+              onClick={() => setIsSemanticSearchOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-500/10 to-purple-500/10 hover:from-violet-500/20 hover:to-purple-500/20 border border-violet-200/50 rounded-xl text-sm font-medium text-violet-600 transition-all"
+            >
+              <Brain className="w-4 h-4" />
+              <span>Búsqueda Semántica IA</span>
+              <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 bg-violet-100/50 rounded text-[10px] font-mono">
+                ⌘⇧S
+              </kbd>
+            </button>
           </div>
 
           {/* Quick Categories - Floating tags */}
@@ -366,6 +387,18 @@ export const SearchModule: React.FC = () => {
             isEmbedded={true}
           />
         </Suspense>
+      )}
+
+      {/* Semantic Search Panel */}
+      {isSemanticSearchOpen && (
+        <SemanticSearchPanel
+          onClose={() => setIsSemanticSearchOpen(false)}
+          onSelectIngredient={(ingredient) => {
+            // Cuando se selecciona un ingrediente, buscar productos que lo contengan
+            setQuery(ingredient.nombre);
+            setIsSemanticSearchOpen(false);
+          }}
+        />
       )}
     </div>
   );
