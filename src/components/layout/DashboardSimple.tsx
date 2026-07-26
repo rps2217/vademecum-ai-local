@@ -53,6 +53,15 @@ export function DashboardSimple() {
     loadPreferences();
   }, []);
 
+  // Escuchar eventos de búsqueda desde SearchBar
+  useEffect(() => {
+    const handleSearchChange = (e: CustomEvent<string>) => {
+      setSearchQuery(e.detail);
+    };
+    window.addEventListener('searchChange', handleSearchChange as EventListener);
+    return () => window.removeEventListener('searchChange', handleSearchChange as EventListener);
+  }, [setSearchQuery]);
+
   // Sincronizar KB al iniciar
   useEffect(() => {
     const syncKb = async () => {
