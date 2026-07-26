@@ -13,7 +13,7 @@ import { cn } from '../../lib/utils';
 import { findIngredient, type IngredientInfo } from '../../core/ingredient-database/ingredients';
 import type { AnalyzedProduct } from '../../types';
 
-// Panel lateral para mostrar información de ingredientes
+// Panel lateral para mostrar información de ingredientes - MÁS GRANDE
 function IngredientPanel({ 
   ingredient, 
   onClose 
@@ -43,15 +43,15 @@ function IngredientPanel({
   };
 
   return (
-    <div className="absolute inset-y-0 right-0 w-full md:w-96 bg-white border-l border-gray-200 overflow-y-auto animate-slide-in-right shadow-xl z-10">
+    <div className="absolute inset-y-0 right-0 w-full md:w-[480px] bg-white border-l border-gray-200 overflow-y-auto animate-slide-in-right shadow-xl z-10">
       {/* Header del panel */}
-      <div className="sticky top-0 bg-white border-b border-gray-100 p-4 flex items-center justify-between">
+      <div className="sticky top-0 bg-white border-b border-gray-100 p-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{getCategoryIcon()}</span>
+          <span className="text-3xl">{getCategoryIcon()}</span>
           <div>
-            <h3 className="font-semibold text-gray-900">{ingredient.name}</h3>
+            <h3 className="font-bold text-lg text-gray-900">{ingredient.name}</h3>
             {ingredient.scientificName && (
-              <p className="text-xs text-gray-500 italic">{ingredient.scientificName}</p>
+              <p className="text-sm text-gray-500 italic">{ingredient.scientificName}</p>
             )}
           </div>
         </div>
@@ -59,23 +59,23 @@ function IngredientPanel({
           onClick={onClose}
           className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
         >
-          <X className="w-4 h-4 text-gray-400" />
+          <X className="w-5 h-5 text-gray-400" />
         </button>
       </div>
 
-      {/* Contenido */}
-      <div className="p-4 space-y-4">
+      {/* Contenido - más grande */}
+      <div className="p-6 space-y-5">
         {/* Descripción */}
-        <p className="text-sm text-gray-600 leading-relaxed">
+        <p className="text-base text-gray-600 leading-relaxed">
           {ingredient.description}
         </p>
 
         {/* Origen */}
-        <div className="bg-gray-50 rounded-xl p-3">
-          <div className="flex items-center gap-2 text-xs text-gray-500 mb-1">
+        <div className="bg-gray-50 rounded-xl p-4">
+          <div className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-2">
             <span>📍</span> Origen
           </div>
-          <p className="text-sm text-gray-700">
+          <p className="text-base text-gray-700">
             {ingredient.origin.type === 'planta' && '🌿 '}
             {ingredient.origin.type === 'mineral' && '💎 '}
             {ingredient.origin.type === 'animal' && '🦋 '}
@@ -87,10 +87,10 @@ function IngredientPanel({
 
         {/* Mecanismo */}
         <div>
-          <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 mb-2">
+          <div className="flex items-center gap-2 text-sm font-semibold text-emerald-600 mb-3">
             <span>⚡</span> Mecanismo de Acción
           </div>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-base text-gray-700 leading-relaxed">
             {ingredient.mechanism}
           </p>
         </div>
@@ -98,15 +98,15 @@ function IngredientPanel({
         {/* Indicaciones */}
         {ingredient.indications.length > 0 && (
           <div>
-            <div className="flex items-center gap-2 text-xs font-medium text-violet-600 mb-2">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-2 text-sm font-semibold text-violet-600 mb-3">
+              <CheckCircle2 className="w-4 h-4" />
               Indicaciones
             </div>
-            <div className="flex flex-wrap gap-1.5">
-              {ingredient.indications.slice(0, 6).map((ind, i) => (
+            <div className="flex flex-wrap gap-2">
+              {ingredient.indications.slice(0, 8).map((ind, i) => (
                 <span 
                   key={i}
-                  className="px-2 py-1 bg-violet-50 text-violet-700 text-xs rounded-lg"
+                  className="px-3 py-1.5 bg-violet-50 text-violet-700 text-sm rounded-lg"
                 >
                   {ind}
                 </span>
@@ -118,13 +118,13 @@ function IngredientPanel({
         {/* Contraindicaciones */}
         {ingredient.contraindications.length > 0 && (
           <div>
-            <div className="flex items-center gap-2 text-xs font-medium text-red-600 mb-2">
-              <AlertTriangle className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-2 text-sm font-semibold text-red-600 mb-3">
+              <AlertTriangle className="w-4 h-4" />
               Contraindicaciones
             </div>
-            <div className="space-y-1">
+            <div className="space-y-2">
               {ingredient.contraindications.map((contra, i) => (
-                <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                <div key={i} className="flex items-start gap-2 text-base text-gray-700">
                   <span className="text-red-400 mt-1">•</span>
                   {contra}
                 </div>
@@ -134,11 +134,11 @@ function IngredientPanel({
         )}
 
         {/* Dosis */}
-        <div className="bg-amber-50 rounded-xl p-3">
-          <div className="text-xs font-medium text-amber-700 mb-1">
+        <div className="bg-amber-50 rounded-xl p-4">
+          <div className="text-sm font-semibold text-amber-700 mb-2">
             💊 Dosis habitual
           </div>
-          <p className="text-sm text-amber-800">
+          <p className="text-base text-amber-800">
             {ingredient.dosage}
           </p>
         </div>
@@ -146,13 +146,13 @@ function IngredientPanel({
         {/* Interacciones */}
         {ingredient.interactions.length > 0 && (
           <div>
-            <div className="flex items-center gap-2 text-xs font-medium text-orange-600 mb-2">
-              <AlertTriangle className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-2 text-sm font-semibold text-orange-600 mb-3">
+              <AlertTriangle className="w-4 h-4" />
               Interacciones
             </div>
-            <div className="space-y-1">
+            <div className="space-y-2">
               {ingredient.interactions.map((inter, i) => (
-                <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                <div key={i} className="flex items-start gap-2 text-base text-gray-700">
                   <span className="text-orange-400 mt-1">⚠️</span>
                   {inter}
                 </div>
@@ -163,12 +163,12 @@ function IngredientPanel({
 
         {/* Warnings */}
         {ingredient.warnings && ingredient.warnings.length > 0 && (
-          <div className="bg-red-50 rounded-xl p-3">
-            <div className="text-xs font-medium text-red-700 mb-2 flex items-center gap-1">
-              ⚠️ Precauciones
+          <div className="bg-red-50 rounded-xl p-4">
+            <div className="text-sm font-semibold text-red-700 mb-3 flex items-center gap-1">
+              ⚠️ Precauciones importantes
             </div>
             {ingredient.warnings.map((warn, i) => (
-              <p key={i} className="text-xs text-red-800">
+              <p key={i} className="text-sm text-red-800 mb-1">
                 • {warn}
               </p>
             ))}
@@ -315,52 +315,52 @@ export function ProductDetailModalV2({
         onClick={onClose}
       />
       
-      {/* Modal */}
+      {/* Modal - MÁS GRANDE */}
       <div className={cn(
         "relative bg-white flex-1 md:flex-none md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2",
-        "md:w-full md:max-w-2xl md:max-h-[90vh] md:rounded-2xl md:shadow-2xl",
+        "md:w-full md:max-w-4xl md:max-h-[92vh] md:rounded-2xl md:shadow-2xl",
         "flex flex-col overflow-hidden",
         "animate-scale-in"
       )}>
         {/* Header */}
-        <div className="shrink-0 p-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+        <div className="shrink-0 p-5 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
               {/* Status badges */}
-              <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
                 {needsScrape ? (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 text-amber-600 text-xs font-medium rounded-md">
-                    <Info className="w-3 h-3" />
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-50 text-amber-600 text-xs font-medium rounded-md">
+                    <Info className="w-3.5 h-3.5" />
                     Info incompleta
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-50 text-emerald-600 text-xs font-medium rounded-md">
-                    <CheckCircle2 className="w-3 h-3" />
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 text-emerald-600 text-xs font-medium rounded-md">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
                     Completo
                   </span>
                 )}
                 {product.cobertura_kb > 0 && (
-                  <span className="px-2 py-0.5 bg-violet-50 text-violet-600 text-xs font-medium rounded-md">
+                  <span className="px-2.5 py-1 bg-violet-50 text-violet-600 text-xs font-medium rounded-md">
                     KB {product.cobertura_kb}%
                   </span>
                 )}
                 {product.sinergias_detectadas && product.sinergias_detectadas.length > 0 && (
-                  <span className="px-2 py-0.5 bg-blue-50 text-blue-600 text-xs font-medium rounded-md">
+                  <span className="px-2.5 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-md">
                     {product.sinergias_detectadas.length} sinergias
                   </span>
                 )}
               </div>
               
-              <h2 className="text-lg font-semibold text-gray-900 line-clamp-2">
+              <h2 className="text-xl font-semibold text-gray-900 line-clamp-2">
                 {product.nombre_comercial || 'Sin nombre'}
               </h2>
               
               {/* SKU */}
               <button
                 onClick={handleCopySku}
-                className="mt-1 text-xs text-gray-400 hover:text-gray-600 flex items-center gap-1 transition-colors"
+                className="mt-2 text-sm text-gray-400 hover:text-gray-600 flex items-center gap-1.5 transition-colors"
               >
-                <Copy className="w-3 h-3" />
+                <Copy className="w-3.5 h-3.5" />
                 SKU: {product.sku}
               </button>
             </div>
@@ -371,7 +371,7 @@ export function ProductDetailModalV2({
                 onClick={() => onScrape(product.sku)}
                 disabled={scrapeState === 'scraping'}
                 className={cn(
-                  "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
+                  "flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all",
                   scrapeState === 'scraping' 
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                     : needsScrape
@@ -381,13 +381,13 @@ export function ProductDetailModalV2({
               >
                 {scrapeState === 'scraping' ? (
                   <>
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    <span className="hidden sm:inline">Buscando...</span>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Buscando...</span>
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">{needsScrape ? 'Completar' : 'Actualizar'}</span>
+                    <Sparkles className="w-4 h-4" />
+                    <span>{needsScrape ? 'Completar' : 'Actualizar'}</span>
                   </>
                 )}
               </button>
@@ -395,24 +395,24 @@ export function ProductDetailModalV2({
               {/* Cerrar */}
               <button 
                 onClick={onClose}
-                className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <X className="w-4 h-4 text-gray-400" />
+                <X className="w-5 h-5 text-gray-400" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Content - scrollable */}
-        <div className="flex-1 overflow-y-auto p-4">
+        {/* Content - scrollable - MÁS ESPACIO */}
+        <div className="flex-1 overflow-y-auto p-6">
           {/* Posología - EXTENDIDA por defecto */}
           {product.posologia && (
             <CollapsibleSection 
               title="Posología" 
-              icon={<Calendar className="w-4 h-4 text-amber-500" />}
+              icon={<Calendar className="w-5 h-5 text-amber-500" />}
               defaultOpen={true}
             >
-              <p className="text-sm text-gray-600 leading-relaxed bg-amber-50 -mx-1 px-1 py-2 rounded-lg">
+              <p className="text-base text-gray-600 leading-relaxed bg-amber-50 -mx-1 px-2 py-3 rounded-lg">
                 {product.posologia}
               </p>
             </CollapsibleSection>
@@ -422,13 +422,13 @@ export function ProductDetailModalV2({
           {product.indicaciones && product.indicaciones.length > 0 && (
             <CollapsibleSection 
               title="Indicaciones" 
-              icon={<CheckCircle2 className="w-4 h-4 text-emerald-500" />}
+              icon={<CheckCircle2 className="w-5 h-5 text-emerald-500" />}
               defaultOpen={true}
             >
-              <ul className="space-y-1.5">
-                {product.indicaciones.slice(0, 8).map((ind: string, i: number) => (
-                  <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <ul className="space-y-2">
+                {product.indicaciones.slice(0, 10).map((ind: string, i: number) => (
+                  <li key={i} className="text-base text-gray-600 flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                     {ind}
                   </li>
                 ))}
@@ -440,7 +440,7 @@ export function ProductDetailModalV2({
           {principios.length > 0 && (
             <CollapsibleSection 
               title={`Principios Activos (${principios.length})`}
-              icon={<Pill className="w-4 h-4 text-emerald-500" />}
+              icon={<Pill className="w-5 h-5 text-emerald-500" />}
               defaultOpen={false}
             >
               <div className="flex flex-wrap gap-2">
@@ -459,10 +459,10 @@ export function ProductDetailModalV2({
           {product.descripcion && (
             <CollapsibleSection 
               title="Descripción" 
-              icon={<Info className="w-4 h-4 text-blue-500" />}
+              icon={<Info className="w-5 h-5 text-blue-500" />}
               defaultOpen={false}
             >
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-base text-gray-600 leading-relaxed">
                 {product.descripcion}
               </p>
             </CollapsibleSection>
@@ -472,14 +472,14 @@ export function ProductDetailModalV2({
           {sinergias.length > 0 && (
             <CollapsibleSection 
               title={`Sinergias (${sinergias.length})`}
-              icon={<Link2 className="w-4 h-4 text-violet-500" />}
+              icon={<Link2 className="w-5 h-5 text-violet-500" />}
               defaultOpen={false}
             >
               <div className="flex flex-wrap gap-2">
                 {sinergias.map((sin: string, i: number) => (
                   <span 
                     key={i} 
-                    className="px-2.5 py-1 bg-violet-50 text-violet-700 text-xs font-medium rounded-full"
+                    className="px-3 py-1.5 bg-violet-50 text-violet-700 text-sm font-medium rounded-full"
                   >
                     {sin}
                   </span>
@@ -490,9 +490,9 @@ export function ProductDetailModalV2({
 
           {/* Categoría */}
           {product.categoria_principal && (
-            <div className="pt-2">
-              <span className="text-xs text-gray-400">Categoría:</span>{' '}
-              <span className="text-xs text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded">
+            <div className="pt-4">
+              <span className="text-sm text-gray-400">Categoría:</span>{' '}
+              <span className="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded">
                 {product.categoria_principal}
               </span>
             </div>
