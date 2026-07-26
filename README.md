@@ -1,82 +1,163 @@
-# Vademécum Inteligente (Local-First)
+# Vademécum AI - Guía Terapéutica para Farmacias
 
-Aplicación web progresiva (PWA) para farmacéuticos que permite consultar medicamentos, analizar interacciones y obtener recomendaciones clínicas utilizando Inteligencia Artificial que se ejecuta 100% localmente en el dispositivo (sin necesidad de conexión a internet).
+Aplicación web progresiva (PWA) para consultoras de farmacia que proporciona:
 
-## Características Principales
-
-1.  **Local-First Architecture**: Toda la base de datos de medicamentos se descarga y sincroniza en el navegador usando IndexedDB.
-2.  **IA Clínica Local**: Integra `@mlc-ai/web-llm` y `Transformers.js` para ejecutar modelos de lenguaje (LLMs) directamente en la GPU/CPU del dispositivo del usuario.
-3.  **Análisis Cruzado**: Permite seleccionar múltiples medicamentos en una "bandeja" para que la IA analice posibles interacciones, duplicidad terapéutica o contraindicaciones.
-4.  **Soporte Offline (PWA)**: La aplicación se puede instalar en móviles y escritorio, funcionando completamente sin conexión a internet gracias a los Service Workers.
-5.  **Scraper Modular (Python)**: Incluye un pipeline ETL automatizado para extraer y estructurar el catálogo de Farmacias Knop.
+- **Fitoterapia**: Plantas medicinales con indicaciones, posología y contraindicaciones
+- **Homeopatía**: Remedios homeopáticos con síntomas clave y modalidades
+- **Aromaterapia**: Aceites esenciales con diluciones y propiedades
+- **Suplementos**: Micronutrientes y compuestos bioactivos
+- **Detección de sinergias** entre productos naturales
+- **Búsqueda semántica** con IA local (100% offline)
 
 ---
 
-## 🚀 Cómo ejecutar el Frontend (Aplicación Web)
+## ✨ Características Principales
 
-El frontend está construido con React, Vite y Tailwind CSS.
+| Característica | Descripción |
+|----------------|-------------|
+| **Local-First** | Base de conocimiento funciona 100% offline |
+| **PWA** | Instalable en móvil y escritorio |
+| **Búsqueda semántica** | IA local con Transformers.js |
+| **Detección de sinergias** | Encuentra combinaciones beneficiosas |
+| **Autenticación** | Contraseña compartida para equipos |
+| **Métricas** | Estadísticas de uso integradas |
+
+---
+
+## 📚 Base de Conocimiento
+
+### Fitoterapia (Plantas Medicinales)
+- 45+ plantas medicinales
+- Sistema nervioso: Valeriana, Pasiflora, Melisa, Hipérico, Ginkgo
+- Digestivo: Jengibre, Manzanilla, Menta, Cúrcuma, Aloe
+- Inmunidad: Equinácea, Propóleo, Ajo, Sauco
+- Cardiovascular: Espino Blanco, Hoja de Olivo
+
+### Homeopatía (Remedios)
+- 30+ remedios homeopáticos
+- Sistema nervioso: Arnica, Nux Vomica, Ignatia, Gelsemium
+- Digestivo: Lycopodium, Carbo Veg, Bryonia
+- Inmunidad: Belladonna, Ferrum Phos, Mercurius
+- Piel: Graphites, Sulphur, Apis Mellifica
+
+### Aromaterapia (Aceites Esenciales)
+- 25+ aceites esenciales
+- Relajantes: Lavanda, Manzanilla, Vetiver
+- Energizantes: Romero, Menta, Eucalipto
+- Antiinflamatorios: Gaulteria, Jengibre
+- Antisépticos: Tea Tree, Ravintsara
+
+---
+
+## 🚀 Instalación
 
 ### Requisitos
-*   [Node.js](https://nodejs.org/) (v18 o superior)
+- [Node.js](https://nodejs.org/) v18 o superior
 
-### Instalación y Ejecución Local
-
-1.  **Clonar el repositorio** y navegar a la carpeta raíz.
-2.  **Instalar dependencias**:
-    ```bash
-    npm install
-    ```
-3.  **Iniciar el servidor de desarrollo**:
-    ```bash
-    npm run dev
-    ```
-4.  Abre tu navegador en `http://localhost:3000`.
-
-### Despliegue (Producción)
-Para generar la versión optimizada y los archivos del Service Worker (PWA):
+### Desarrollo
 ```bash
-npm run build
+# Clonar repositorio
+git clone https://github.com/rps2217/vademecum-ai-local.git
+cd vademecum-ai-local
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor local
+npm run dev
+# Abre http://localhost:3000
 ```
-La carpeta `dist/` contendrá los archivos listos para ser alojados en Vercel, Netlify o GitHub Pages.
+
+### Producción
+```bash
+# Build
+npm run build
+
+# Previsualizar
+npm run preview
+```
 
 ---
 
-## 🕷️ Cómo ejecutar el Scraper (Extracción de Datos)
+## 🔐 Autenticación
 
-El módulo de scraping está diseñado para ser multiplataforma y autoinstalable. Extrae los datos de Farmacias Knop, los limpia usando un LLM (OpenAI o modelo local) y genera el catálogo para la aplicación web.
+La aplicación usa autenticación simple con contraseña compartida:
 
-### Requisitos
-*   [Python 3.10+](https://www.python.org/downloads/) (Asegúrate de marcar "Add Python to PATH" durante la instalación en Windows).
+1. **Primera vez**: Configura una contraseña para proteger la app
+2. **Otros dispositivos**: Usa la misma contraseña para acceder
+3. **Seguridad**: La contraseña se guarda localmente (hash SHA-256)
 
-### Autoinstalación y Ejecución
+Para cambiar contraseña: **Configuración → Seguridad**
 
-Hemos incluido scripts que automatizan la creación del entorno virtual, la instalación de dependencias (Playwright, BeautifulSoup, Pydantic) y la ejecución del pipeline.
+---
 
-**En Windows:**
-1. Abre la carpeta `scraper/`.
-2. Haz doble clic en el archivo `run.bat` (o ejecútalo desde la terminal: `.\run.bat`).
-3. El script te pedirá tu API Key de OpenAI (opcional si usas Ollama local).
-4. Espera a que termine el proceso.
+## 📱 Instalación como PWA
 
-**En macOS / Linux:**
-1. Abre una terminal y navega a la carpeta `scraper/`.
-2. Dale permisos de ejecución al script:
-   ```bash
-   chmod +x run.sh
-   ```
-3. Ejecuta el script:
-   ```bash
-   ./run.sh
-   ```
+1. Abre la aplicación en Chrome/Edge/Safari
+2. En móvil: "Añadir a pantalla de inicio"
+3. En escritorio: Click en el icono de instalación en la barra de direcciones
 
-### ¿Qué hace el Scraper?
-1.  **Crawling**: Navega por las categorías y extrae las URLs de los productos (`urls_extraidas.txt`).
-2.  **Extracción**: Descarga el HTML crudo de cada ficha técnica (`raw_data.jsonl`).
-3.  **Procesamiento LLM**: Limpia y estructura los datos en formato JSON estricto (`structured_data.jsonl`).
+La app funcionará **sin conexión** una vez instalada.
 
-### Actualizar la Base de Datos de la App
-Una vez que el scraper termine, generará un archivo llamado `structured_data.jsonl`.
-Para que la aplicación web lo utilice:
-1.  Renombra el archivo a `catalog.json`.
-2.  Muévelo a la carpeta `public/` en la raíz del proyecto frontend.
-3.  La próxima vez que abras la aplicación web, el `SyncService` detectará el nuevo archivo y actualizará la base de datos local (IndexedDB).
+---
+
+## 🔧 Configuración
+
+### Variables de Entorno
+```env
+VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+VITE_SUPABASE_ANON_KEY=tu-clave
+```
+
+### Supabase (Opcional)
+Para sincronizar datos entre dispositivos:
+1. Crear proyecto en [supabase.com](https://supabase.com)
+2. Habilitar Email Auth
+3. Ejecutar SQL de migración
+4. Configurar URL y Key en Ajustes
+
+---
+
+## 🧪 Tests
+
+```bash
+# Ejecutar tests E2E con Playwright
+npm run test:e2e
+
+# Tests unitarios (futuro)
+npm run test:unit
+```
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── components/
+│   ├── auth/           # Login, autenticación
+│   ├── layout/          # Dashboard, navegación
+│   └── ui/             # Componentes UI
+├── core/
+│   ├── knowledge-base/ # Fitoterapia, Homeopatía, Aceites
+│   └── semantic-search/ # Búsqueda con IA
+├── hooks/              # React hooks personalizados
+├── services/           # Servicios (Supabase, Metrics, etc)
+└── store/             # Estado global (Zustand)
+```
+
+---
+
+## 📄 Licencia
+
+MIT License
+
+---
+
+## 🤝 Contribuir
+
+1. Fork el repositorio
+2. Crea una rama (`git checkout -b feature/nueva-caracteristica`)
+3. Commit (`git commit -m 'Agregar nueva característica'`)
+4. Push (`git push origin feature/nueva-caracteristica`)
+5. Abre un Pull Request

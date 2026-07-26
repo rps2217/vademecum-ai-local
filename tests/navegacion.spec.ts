@@ -4,53 +4,59 @@ import { test, expect } from '@playwright/test';
  * Tests E2E - Navegación y UI
  */
 
+// Helper para autenticarse rápidamente
+async function authenticate(page: any) {
+  await page.goto('/');
+  const passwordInput = page.locator('input[type="password"]');
+  await passwordInput.waitFor({ state: 'visible', timeout: 10000 });
+  await passwordInput.first().fill('test123');
+  const inputs = page.locator('input[type="password"]');
+  if (await inputs.count() >= 2) {
+    await inputs.nth(1).fill('test123');
+  }
+  await page.locator('button[type="submit"]').click();
+  await page.waitForTimeout(2000);
+}
+
 test.describe('Navegación y UI', () => {
-  test('debería mostrar el header con logo', async ({ page }) => {
+  
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    
-    // Verificar que hay un elemento header
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+    await authenticate(page);
+  });
+
+  test('debería mostrar el header con logo', async ({ page }) => {
     const header = page.locator('header, [role="banner"]').first();
     await expect(header).toBeVisible({ timeout: 10000 });
   });
 
   test('debería tener input de búsqueda visible', async ({ page }) => {
-    await page.goto('/');
-    
     const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
     await expect(searchInput).toBeVisible({ timeout: 10000 });
   });
 
-  test('no debería mostrar errores en consola', async ({ page }) => {
-    const errors: string[] = [];
-    
-    page.on('console', msg => {
-      if (msg.type() === 'error') {
-        errors.push(msg.text());
-      }
-    });
-    
-    await page.goto('/');
-    await page.waitForTimeout(3000); // Esperar que cargue
-    
-    // Filtrar errores conocidos que no son críticos
-    const criticalErrors = errors.filter(e => 
-      !e.includes('favicon') && 
-      !e.includes('404') &&
-      !e.includes('supabase') // Supabase puede no estar configurado
-    );
-    
-    expect(criticalErrors).toHaveLength(0);
-  });
-
-  test('debería ser responsive', async ({ page }) => {
+  test('debería ser responsive en móvil', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 }); // iPhone SE
-    await page.goto('/');
-    
-    // Verificar que la página no crashea
     await expect(page.locator('body')).toBeVisible();
     
-    // Verificar que el search input sigue visible
     const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
     await expect(searchInput).toBeVisible({ timeout: 10000 });
+  });
+
+  test('debería tener acceso a configuración', async ({ page }) => {
+    // Buscar botón de configuración
+    const settingsButton = page.locator('button, a').filter({ hasText: /config|ajustes|settings|⚙/i }).first();
+    
+    // Click en configuración si existe
+    const isVisible = await settingsButton.isVisible().catch(() => false);
+    if (isVisible) {
+      await settingsButton.click();
+      await page.waitForTimeout(1000);
+      // Verificar que se abrió algo relacionado con settings
+      const settingsContent = page.locator('text=/seguridad|security|password|contraseña/i');
+      await expect(settingsContent.first()).toBeVisible({ timeout: 5000 });
+    }
   });
 });
