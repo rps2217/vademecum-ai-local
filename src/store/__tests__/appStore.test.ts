@@ -7,7 +7,7 @@ import { useAppStore } from '../appStore';
 
 describe('AppStore', () => {
   beforeEach(() => {
-    // Reset store before each test
+    // Reset store before each test (sin persistencia)
     useAppStore.setState({
       view: 'buscar',
       searchQuery: '',

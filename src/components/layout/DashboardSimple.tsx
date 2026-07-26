@@ -3,7 +3,7 @@
  * Inspirado en appsimple: limpio, simple, rápido
  */
 
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Pill } from 'lucide-react';
 import { getCombinedKnowledgeBase } from '../../core/knowledge-base';
 import { knowledgeSyncService } from '../../services/KnowledgeSyncService';
@@ -28,14 +28,24 @@ export function DashboardSimple() {
     setSyncStatus, setKbStats, setSupabaseConnected, setKb, updateProduct
   } = useAppStore();
 
-  const kb = getCombinedKnowledgeBase();
+  // Usar useMemo para evitar recalcular en cada render
+  const kb = useMemo(() => getCombinedKnowledgeBase(), []);
   const supabaseConnected = supabaseService.isConfigured();
-  const stats = useAppStore(state => ({
-    total: state.products.length,
-    kbMatch: state.products.filter(p => p.cobertura_kb > 0).length,
-    sinergias: state.products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
-  }));
-  const categories = [...new Set(products.flatMap(p => [p.categoria_principal, p.categoria].filter(Boolean)))].sort();
+  
+  // Usar useMemo para stats
+  const stats = useMemo(() => ({
+    total: products.length,
+    kbMatch: products.filter(p => p.cobertura_kb > 0).length,
+    sinergias: products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
+  }), [products]);
+  
+  const categories = useMemo(() => 
+    [...new Set(products.flatMap(p => [p.categoria_principal, p.categoria].filter(Boolean)))].sort(),
+    [products]
+  );
+
+  // Flag para evitar carga doble
+  const loadedRef = useRef(false);
 
   // Sincronizar KB al iniciar
   useEffect(() => {
@@ -52,10 +62,13 @@ export function DashboardSimple() {
       return unsubscribe;
     };
     syncKb();
-  }, [supabaseConnected, kb]);
+  }, [supabaseConnected]);
 
-  // Cargar productos
+  // Cargar productos (solo una vez)
   useEffect(() => {
+    if (loadedRef.current) return;
+    loadedRef.current = true;
+    
     const loadProducts = async () => {
       setLoading(true, 'Inicializando...');
       try {
@@ -114,7 +127,7 @@ export function DashboardSimple() {
   };
 
   // Filtrar productos
-  const filteredProducts = products.filter(p => {
+  const filteredProducts = useMemo(() => products.filter(p => {
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       if (!p.nombre_comercial?.toLowerCase().includes(q) && !p.sku?.toLowerCase().includes(q) &&
@@ -122,7 +135,7 @@ export function DashboardSimple() {
     }
     if (selectedCategory !== 'todas' && p.categoria_principal?.toLowerCase() !== selectedCategory.toLowerCase()) return false;
     return true;
-  });
+  }), [products, searchQuery, selectedCategory]);
 
   if (isLoading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">

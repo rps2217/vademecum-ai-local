@@ -1,10 +1,10 @@
 /**
  * AppStore - Estado Global Centralizado con Zustand
  * Unifica el estado de productos, sincronización y UI
+ * SIN persistencia - los productos se cargan desde IndexedDB
  */
 
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import type { Product } from '../types';
 
 // Tipos
@@ -120,102 +120,91 @@ function filterProducts(
   return filtered;
 }
 
-// Store con persistencia
+// Store SIN persistencia (para evitar QuotaExceededError)
+// Los productos se cargan desde IndexedDB/SearchService
 export const useAppStore = create<AppState>()(
-  persist(
-    (set, get) => ({
-      // Estado inicial - UI
-      view: 'buscar',
-      searchQuery: '',
-      selectedCategory: 'todas',
-      selectedProduct: null,
-      isLoading: false,
-      loadingMessage: '',
-      
-      // Estado inicial - Products
-      products: [],
-      categories: [],
-      
-      // Estado inicial - Sync
-      syncStatus: { status: 'idle', pendingChanges: 0 },
-      kbStats: { total: 0, families: 0, types: 0 },
-      supabaseConnected: false,
-      
-      // Estado inicial - Scraping
-      scrapeStates: {},
-      
-      // Estado inicial - KB
-      kb: {},
-      ingredientCount: 0,
-      
-      // === ACCIONES ===
-      
-      // UI Actions
-      setView: (view) => set({ view }),
-      setSearchQuery: (searchQuery) => set({ searchQuery }),
-      setSelectedCategory: (selectedCategory) => set({ selectedCategory }),
-      setSelectedProduct: (selectedProduct) => set({ selectedProduct }),
-      setLoading: (isLoading, loadingMessage = '') => set({ isLoading, loadingMessage }),
-      
-      // Products Actions
-      setProducts: (products) => set({ products }),
-      
-      updateProduct: (sku, updates) => set((state) => ({
-        products: state.products.map(p => 
-          p.sku === sku ? { ...p, ...updates } : p
-        )
-      })),
-      
-      addProduct: (product) => set((state) => ({
-        products: [...state.products, product]
-      })),
-      
-      removeProduct: (sku) => set((state) => ({
-        products: state.products.filter(p => p.sku !== sku)
-      })),
-      
-      setCategories: (categories) => set({ categories }),
-      
-      // Sync Actions
-      setSyncStatus: (syncStatus) => set({ syncStatus }),
-      setKbStats: (kbStats) => set({ kbStats }),
-      setSupabaseConnected: (supabaseConnected) => set({ supabaseConnected }),
-      
-      // Scraping Actions
-      setScrapeState: (sku, state) => set((prev) => ({
-        scrapeStates: { ...prev.scrapeStates, [sku]: state }
-      })),
-      resetScrapeStates: () => set({ scrapeStates: {} }),
-      
-      // KB Actions
-      setKb: (kb, ingredientCount) => set({ kb, ingredientCount }),
-      
-      // Computed getters
-      getFilteredProducts: () => {
-        const { products, searchQuery, selectedCategory } = get();
-        return filterProducts(products, searchQuery, selectedCategory);
-      },
-      
-      getStats: () => {
-        const { products } = get();
-        return {
-          total: products.length,
-          kbMatch: products.filter(p => p.cobertura_kb > 0).length,
-          sinergias: products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
-        };
-      }
-    }),
-    {
-      name: 'vademecum-app-storage',
-      partialize: (state) => ({
-        // Solo persistir estas partes del estado
-        products: state.products,
-        categories: state.categories,
-        scrapeStates: state.scrapeStates,
-        selectedCategory: state.selectedCategory,
-      }),
+  (set, get) => ({
+    // Estado inicial - UI
+    view: 'buscar',
+    searchQuery: '',
+    selectedCategory: 'todas',
+    selectedProduct: null,
+    isLoading: false,
+    loadingMessage: '',
+    
+    // Estado inicial - Products
+    products: [],
+    categories: [],
+    
+    // Estado inicial - Sync
+    syncStatus: { status: 'idle', pendingChanges: 0 },
+    kbStats: { total: 0, families: 0, types: 0 },
+    supabaseConnected: false,
+    
+    // Estado inicial - Scraping
+    scrapeStates: {},
+    
+    // Estado inicial - KB
+    kb: {},
+    ingredientCount: 0,
+    
+    // === ACCIONES ===
+    
+    // UI Actions
+    setView: (view) => set({ view }),
+    setSearchQuery: (searchQuery) => set({ searchQuery }),
+    setSelectedCategory: (selectedCategory) => set({ selectedCategory }),
+    setSelectedProduct: (selectedProduct) => set({ selectedProduct }),
+    setLoading: (isLoading, loadingMessage = '') => set({ isLoading, loadingMessage }),
+    
+    // Products Actions
+    setProducts: (products) => set({ products }),
+    
+    updateProduct: (sku, updates) => set((state) => ({
+      products: state.products.map(p => 
+        p.sku === sku ? { ...p, ...updates } : p
+      )
+    })),
+    
+    addProduct: (product) => set((state) => ({
+      products: [...state.products, product]
+    })),
+    
+    removeProduct: (sku) => set((state) => ({
+      products: state.products.filter(p => p.sku !== sku)
+    })),
+    
+    setCategories: (categories) => set({ categories }),
+    
+    // Sync Actions
+    setSyncStatus: (syncStatus) => set({ syncStatus }),
+    setKbStats: (kbStats) => set({ kbStats }),
+    setSupabaseConnected: (supabaseConnected) => set({ supabaseConnected }),
+    
+    // Scraping Actions
+    setScrapeState: (sku, state) => set((prev) => ({
+      scrapeStates: { ...prev.scrapeStates, [sku]: state }
+    })),
+    resetScrapeStates: () => set({ scrapeStates: {} }),
+    
+    // KB Actions
+    setKb: (kb, ingredientCount) => set({ kb, ingredientCount }),
+    
+    // Computed getters
+    getFilteredProducts: () => {
+      const { products, searchQuery, selectedCategory } = get();
+      return filterProducts(products, searchQuery, selectedCategory);
+    },
+    
+    getStats: () => {
+      const { products } = get();
+      return {
+        total: products.length,
+        kbMatch: products.filter(p => p.cobertura_kb > 0).length,
+        sinergias: products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
+      };
     }
-  )
+  })
 );
 
 export default useAppStore;
