@@ -6,6 +6,7 @@ import React from 'react';
 import { Cloud, CloudOff, Pill } from 'lucide-react';
 import { cn } from '../../../lib/utils';
 import { SecurityAlertsBadge } from '../../ui/SecurityAlerts';
+import { SemanticSearchStatus } from '../../ui/SemanticSearchStatus';
 
 interface DashboardHeaderProps {
   productCount: number;
@@ -36,6 +37,9 @@ export function DashboardHeader({
 
         {/* Status */}
         <div className="flex items-center gap-3">
+          {/* Estado de Búsqueda Semántica */}
+          <SemanticSearchStatus />
+          
           {/* Alertas de Seguridad */}
           <SecurityAlertsBadge />
           

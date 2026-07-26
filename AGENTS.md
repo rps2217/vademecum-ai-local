@@ -34,8 +34,9 @@ src/
 - **Tailwind CSS** para estilos
 - **Zustand** para estado global
 - **Dexie.js** para IndexedDB
-- **Ollama** para embeddings (opcional)
+- **Transformers.js** para embeddings (sin Ollama, 100% local)
 - **Supabase** para sincronización (opcional)
+- **PWA** para uso offline
 
 ## Comandos Importantes
 
@@ -57,11 +58,32 @@ VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
 VITE_SUPABASE_ANON_KEY=tu-clave
 ```
 
-## Endpoints de Ollama
+## Búsqueda Semántica
 
-```env
-OLLAMA_URL=http://localhost:11434
-EMBEDDING_MODEL=nomic-embed-text
+La aplicación soporta búsqueda semántica sin necesidad de Ollama:
+
+### Proveedores disponibles (en orden de prioridad):
+
+1. **Transformers.js** (recomendado, 100% local)
+   - Modelo: `Xenova/transformers-mlnl6`
+   - ~50MB (se descarga una vez)
+   - Funciona offline
+   - Indicador: "IA Local" en header
+
+2. **Fallback: Búsqueda Fuzzy Mejorada**
+   - Sin modelo de IA
+   - Usa sinónimos predefinidos
+   - Indicador: "Búsqueda Rápida" en header
+
+### Sinónimos soportados:
+
+```javascript
+{
+  'dormir': ['insomnio', 'sueño', 'hipnótico', 'sedante'],
+  'dolor': ['analgesia', 'antiinflamatorio', 'calma'],
+  'estrés': ['ansiedad', 'nerviosismo', 'tensión'],
+  // ... 30+ categorías
+}
 ```
 
 ## Estado de Implementación
