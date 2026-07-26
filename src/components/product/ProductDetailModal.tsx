@@ -6,7 +6,7 @@
 import React, { useEffect } from 'react';
 import { 
   X, Copy, Loader2, Sparkles, Info, CheckCircle2, 
-  ExternalLink, Package 
+  ExternalLink, Package, Clock 
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import type { AnalyzedProduct } from '../../types';
@@ -147,6 +147,17 @@ export function ProductDetailModal({
                 <Info className="w-4 h-4" />
                 Este producto no tiene descripción. Haz clic en "Completar" para buscar información.
               </p>
+            </div>
+          )}
+
+          {/* Posología */}
+          {product.posologia && (
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
+              <h3 className="text-xs font-medium text-amber-600 uppercase tracking-wide mb-2 flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5" />
+                Posología
+              </h3>
+              <p className="text-sm text-amber-800 leading-relaxed">{product.posologia}</p>
             </div>
           )}
 
