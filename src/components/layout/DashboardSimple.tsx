@@ -12,7 +12,7 @@ import { dataService } from '../../services/DataService';
 import { searchService } from '../../services/SearchService';
 import { productScrapingService } from '../../services/ProductScrapingService';
 import { logger } from '../../services/LoggerService';
-import { ProductDetailModal } from '../product/ProductDetailModal';
+import { ProductDetailModalV2 } from '../product/ProductDetailModalV2';
 import { ConnectionBanner } from '../ui/ConnectionBanner';
 import { SearchView, CatalogView, SynergyView, SettingsView } from './dashboard/views';
 import { DashboardHeader, DashboardSidebar } from './dashboard';
@@ -187,7 +187,7 @@ export function DashboardSimple() {
           </div>
         </main>
       </div>
-      {selectedProduct && <ProductDetailModal product={selectedProduct} kb={kb} onClose={() => setSelectedProduct(null)}
+      {selectedProduct && <ProductDetailModalV2 product={selectedProduct} kb={kb} onClose={() => setSelectedProduct(null)}
         onScrape={handleScrapeProduct} scrapeState={scrapeStates[selectedProduct.sku] || 'idle'} />}
       
       {/* Banner de conexión */}
