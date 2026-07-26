@@ -6,6 +6,7 @@
 import { supabaseService } from './SupabaseService';
 import { deltaSyncService, DeltaSyncResult } from './DeltaSyncService';
 import knowledgeBaseData from '../data/knowledge-base.json';
+import { logger } from './LoggerService';
 
 export interface KbIngredient {
   id: string;
@@ -83,10 +84,10 @@ class KnowledgeSyncService {
       const cached = localStorage.getItem(LOCAL_KB_DATA_KEY);
       if (cached) {
         const data = JSON.parse(cached) as KbData;
-        console.log('[KnowledgeSync] KB cargada desde localStorage:', data.ingredients.length, 'ingredientes');
+        logger.info(`KB cargada desde localStorage: ${data.ingredients.length} ingredientes`, 'KnowledgeSync');
       }
     } catch (e) {
-      console.error('[KnowledgeSync] Error cargando desde localStorage:', e);
+      logger.error('Error cargando KB desde localStorage', 'KnowledgeSync', e);
     }
   }
 
@@ -98,9 +99,9 @@ class KnowledgeSyncService {
       localStorage.setItem(LOCAL_KB_DATA_KEY, JSON.stringify(data));
       localStorage.setItem(LOCAL_KB_VERSION_KEY, data.version);
       localStorage.setItem(LAST_SYNC_KEY, new Date().toISOString());
-      console.log('[KnowledgeSync] KB guardada en localStorage');
+      logger.info('KB guardada en localStorage', 'KnowledgeSync');
     } catch (e) {
-      console.error('[KnowledgeSync] Error guardando en localStorage:', e);
+      logger.error('Error guardando KB en localStorage', 'KnowledgeSync', e);
     }
   }
 
@@ -129,7 +130,7 @@ class KnowledgeSyncService {
         return JSON.parse(cached);
       }
     } catch (e) {
-      console.error('[KnowledgeSync] Error leyendo localStorage:', e);
+      logger.error('Error leyendo localStorage', 'KnowledgeSync', e);
     }
     // Fallback a KB del bundle
     return knowledgeBaseData as KbData;
@@ -172,7 +173,7 @@ class KnowledgeSyncService {
     this.notifyListeners({ status: 'syncing', progress: 0 });
 
     try {
-      console.log('[KnowledgeSync] Iniciando sincronización DELTA...');
+      logger.info('Iniciando sincronización DELTA...', 'KnowledgeSync');
       
       // Usar el servicio de sincronización delta
       const deltaResult: DeltaSyncResult = await deltaSyncService.sync();
@@ -192,14 +193,14 @@ class KnowledgeSyncService {
           conflicts: deltaResult.conflicts
         };
 
-        console.log('[KnowledgeSync] Sincronización delta completada:', result);
+        logger.success('Sincronización delta completada', 'KnowledgeSync');
         return result;
       } else {
         return { success: false, error: deltaResult.error };
       }
 
     } catch (error: any) {
-      console.error('[KnowledgeSync] Error:', error);
+      logger.error('Error en sincronización', 'KnowledgeSync', error);
       this.notifyListeners({ status: 'error', error: error.message });
       return { success: false, error: error.message };
     } finally {

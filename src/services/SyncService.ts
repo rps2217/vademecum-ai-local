@@ -98,7 +98,7 @@ class SyncService {
       this.status.isOnline = true;
       this.notifyListeners();
       logger.info('[SyncService] Conexión恢复: intentando sincronizar...');
-      this.syncToCloud().catch(console.error);
+      this.syncToCloud().catch((e) => logger.error('Error en syncToCloud', 'SyncService', e));
     });
 
     window.addEventListener('offline', () => {

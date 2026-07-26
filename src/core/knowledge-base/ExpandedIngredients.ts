@@ -1136,6 +1136,359 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
     { dosis: '3-7g/día' }
   ),
 
+  // ==================== PREBIÓTICOS Y FIBRA ====================
+  
+  'inulina': createIngredient('inulina', 'Inulina', 'prebioticos',
+    'Fibra soluble prebiótica que alimenta las bacterias beneficiosas del intestino.',
+    'Fermentada por bifidobacterias, produce ácidos grasos de cadena corta.',
+    ['Salud digestiva', 'Microbioma intestinal', 'Absorción de calcio'],
+    ['digestion'],
+    [
+      { id: 'probioticos', tipo: 'complementario', desc: 'Alimento para probióticos', nivel: 'alto' },
+      { id: 'frutoologosaccharides', tipo: 'complementario', desc: 'Sinergia prebiótica', nivel: 'alto' }
+    ],
+    { dosis: '5-10g/día', contraindicaciones: [
+      { condicion: 'SII', nivel: 'precaución', descripcion: 'Puede causar hinchazón' }
+    ]}
+  ),
+
+  'fructooligosacaridos': createIngredient('fructooligosacaridos', 'Frutooligosacáridos (FOS)', 'prebioticos',
+    'Prebiótico natural que estimula el crecimiento de bifidobacterias.',
+    'Azúcar natural que alimenta la flora intestinal beneficiosa.',
+    ['Microbioma', 'Inmunidad', 'Salud intestinal'],
+    ['digestion', 'inmunidad'],
+    [
+      { id: 'inulina', tipo: 'complementario', desc: 'Efecto sinérgico', nivel: 'alto' },
+      { id: 'probioticos', tipo: 'complementario', desc: 'Apoyo al microbioma', nivel: 'alto' }
+    ],
+    { dosis: '3-5g/día' }
+  ),
+
+  'psyllium': createIngredient('psyllium', 'Psyllium (Plantago ovata)', 'fibra',
+    'Fibra soluble mucilaginosa para salud digestiva y cardiovascular.',
+    'Forma gel viscoso que mejora el tránsito y reduce colesterol.',
+    ['Salud digestiva', 'Colesterol', 'Glucosa en sangre'],
+    ['digestion', 'corazon'],
+    [
+      { id: 'inulina', tipo: 'complementario', desc: 'Fibra combinada', nivel: 'medio' },
+      { id: 'avena', tipo: 'complementario', desc: 'Efecto hipocolesterolemiante', nivel: 'alto' }
+    ],
+    { dosis: '5-10g/día', contraindicaciones: [
+      { condicion: 'Obstrucción intestinal', nivel: 'absoluta', descripcion: 'Contraindicado en obstrucciones' }
+    ]}
+  ),
+
+  // ==================== ENZIMAS DIGESTIVAS ====================
+  
+  'amilasa': createIngredient('amilasa', 'Amilasa', 'enzimas',
+    'Enzima que descompone carbohidratos en azúcares simples.',
+    'Hidroliza almidones a maltosa y dextrina.',
+    ['Digestión de carbohidratos', 'Absorción', 'Energía'],
+    ['digestion', 'energia'],
+    [
+      { id: 'lipasa', tipo: 'complementario', desc: 'Digestión completa', nivel: 'alto' },
+      { id: 'proteasa', tipo: 'complementario', desc: 'Enzimas digestivas combinadas', nivel: 'alto' }
+    ],
+    { dosis: '500-2000 HU/comida' }
+  ),
+
+  'proteasa': createIngredient('proteasa', 'Proteasa', 'enzimas',
+    'Enzima que descompone proteínas en aminoácidos.',
+    'Hidroliza enlaces peptídicos de proteínas.',
+    ['Digestión de proteínas', 'Absorción', 'Músculos'],
+    ['digestion', 'deporte'],
+    [
+      { id: 'amilasa', tipo: 'complementario', desc: 'Enzimas combinadas', nivel: 'alto' },
+      { id: 'lipasa', tipo: 'complementario', desc: 'Digestión completa', nivel: 'alto' }
+    ],
+    { dosis: '500-2000 HUT/comida' }
+  ),
+
+  'lipasa': createIngredient('lipasa', 'Lipasa', 'enzimas',
+    'Enzima que descompone grasas en ácidos grasos y glicerol.',
+    'Hidroliza triglicéridos en el intestino.',
+    ['Digestión de grasas', 'Absorción de vitaminas liposolubles', 'Energía'],
+    ['digestion'],
+    [
+      { id: 'proteasa', tipo: 'complementario', desc: 'Enzimas combinadas', nivel: 'alto' },
+      { id: 'amilasa', tipo: 'complementario', desc: 'Digestión completa', nivel: 'alto' }
+    ],
+    { dosis: '500-3000 FIP/comida' }
+  ),
+
+  'bromelina': createIngredient('bromelina', 'Bromelina', 'enzimas',
+    'Enzima proteolítica del tallo de piña con propiedades antiinflamatorias.',
+    'Degrada proteínas y reduce inflamación.',
+    ['Inflamación', 'Digestión', 'Recuperación muscular'],
+    ['articula', 'digestion'],
+    [
+      { id: 'curcumina', tipo: 'potenciador', desc: 'Antiinflamatorio sinérgico', nivel: 'alto' },
+      { id: 'papaina', tipo: 'complementario', desc: 'Enzimas proteolíticas combinadas', nivel: 'alto' }
+    ],
+    { dosis: '500-2000 GDU/día', contraindicaciones: [
+      { condicion: 'Alergia a piña', nivel: 'absoluta', descripcion: 'Contraindicado en alergia' },
+      { condicion: 'Anticoagulantes', nivel: 'precaución', descripcion: 'Puede potenciar efecto' }
+    ]}
+  ),
+
+  'papaina': createIngredient('papaina', 'Papaina', 'enzimas',
+    'Enzima proteolítica de papaya con acción digestiva.',
+    'Hidroliza proteínas en aminoácidos.',
+    ['Digestión proteica', 'Antiinflamatorio', 'Cicatrización'],
+    ['digestion', 'articula'],
+    [
+      { id: 'bromelina', tipo: 'complementario', desc: 'Enzimas combinadas', nivel: 'alto' },
+      { id: 'curcumina', tipo: 'potenciador', desc: 'Efecto antiinflamatorio', nivel: 'medio' }
+    ],
+    { dosis: '500-1500 FCC PU/mg' }
+  ),
+
+  // ==================== ANTIOXIDANTES ESPECIALES ====================
+  
+  'astaxantina': createIngredient('astaxantina', 'Astaxantina', 'antioxidantes',
+    'Carotenoide potente con propiedades antioxidantes excepcionalmente fuertes.',
+    'Neutraliza radicales libres múltiples, protege membranas celulares.',
+    ['Antioxidante', 'Piel', 'Músculos', 'Ojos'],
+    ['antiedad', 'piel'],
+    [
+      { id: 'vitamina_e', tipo: 'potenciador', desc: 'Protección sinérgica', nivel: 'alto' },
+      { id: 'luteina', tipo: 'complementario', desc: 'Antioxidantes oculares', nivel: 'medio' }
+    ],
+    { dosis: '4-12mg/día' }
+  ),
+
+  'luteina': createIngredient('luteina', 'Luteína', 'antioxidantes',
+    'Carotenoide esencial para salud ocular y visión.',
+    'Filtra luz azul, protege mácula y retina.',
+    ['Visión', 'Salud ocular', 'Antioxidante'],
+    ['vision'],
+    [
+      { id: 'zeaxantina', tipo: 'potenciador', desc: 'Pigmentos maculares combinados', nivel: 'alto' },
+      { id: 'astaxantina', tipo: 'complementario', desc: 'Antioxidante ocular', nivel: 'medio' }
+    ],
+    { dosis: '10-20mg/día' }
+  ),
+
+  'zeaxantina': createIngredient('zeaxantina', 'Zeaxantina', 'antioxidantes',
+    'Carotenoide que protege la mácula del ojo.',
+    'Componente del pigmento macular que filtra luz azul.',
+    ['Visión', 'Degeneración macular', 'Antioxidante'],
+    ['vision'],
+    [
+      { id: 'luteina', tipo: 'potenciador', desc: 'Pigmentos maculares', nivel: 'alto' },
+      { id: 'vitamina_c', tipo: 'potenciador', desc: 'Antioxidante sinérgico', nivel: 'medio' }
+    ],
+    { dosis: '2-4mg/día' }
+  ),
+
+  'resveratrol': createIngredient('resveratrol', 'Resveratrol', 'antioxidantes',
+    'Polifenol con propiedades antiinflamatorias y cardioprotectoras.',
+    'Activa sirtuinas, retrasa envejecimiento celular.',
+    ['Corazón', 'Antiedad', 'Inflamación', 'Longevidad'],
+    ['corazon', 'antiedad'],
+    [
+      { id: 'curcumina', tipo: 'potenciador', desc: 'Antiinflamatorio sinérgico', nivel: 'alto' },
+      { id: 'quercetina', tipo: 'complementario', desc: 'Flavonoides combinados', nivel: 'medio' }
+    ],
+    { dosis: '150-500mg/día', contraindicaciones: [
+      { condicion: 'Anticoagulantes', nivel: 'precaución', descripcion: 'Puede potenciar efecto' }
+    ]}
+  ),
+
+  'pQQ': createIngredient('pqq', 'PQQ (Pirroloquinolina quinona)', 'antioxidantes',
+    'Cofactor redox con propiedades neuroprotectoras.',
+    'Estimula mitocondriogénesis, protege neuronas.',
+    ['Cerebro', 'Energía mitocondrial', 'Memoria'],
+    ['cerebro', 'energia'],
+    [
+      { id: 'coenzima_q10', tipo: 'potenciador', desc: 'Función mitocondrial', nivel: 'alto' },
+      { id: 'acetil_l_carnitina', tipo: 'complementario', desc: 'Neuroprotección', nivel: 'alto' }
+    ],
+    { dosis: '10-20mg/día' }
+  ),
+
+  // ==================== COMPUESTOS BOTÁNICOS ESPECIALES ====================
+  
+  'berberina': createIngredient('berberina', 'Berberina', 'botanicos',
+    'Alcaloide vegetal con propiedades antimicrobianas y metabólicas.',
+    'Activa AMPK, mejora sensibilidad a insulina.',
+    ['Glucosa', 'Colesterol', 'Microbioma', 'Antiinflamatorio'],
+    ['peso'],
+    [
+      { id: 'cromo', tipo: 'potenciador', desc: 'Metabolismo de glucosa', nivel: 'alto' },
+      { id: 'canela', tipo: 'complementario', desc: 'Control glucémico', nivel: 'alto' }
+    ],
+    { dosis: '1000-1500mg/día', contraindicaciones: [
+      { condicion: 'Embarazo', nivel: 'absoluta', descripcion: 'Contraindicado en embarazo' },
+      { condicion: 'Medicamentos hepáticos', nivel: 'precaución', descripcion: 'Interacción posible' }
+    ]}
+  ),
+
+  'tongkat_ali': createIngredient('tongkat_ali', 'Tongkat Ali (Eurycoma longifolia)', 'botanicos',
+    'Planta malaya con propiedades afrodisíacas y adaptógenas.',
+    'Aumenta testosterona, reduce cortisol.',
+    ['Testosterona', 'Energía', 'Rendimiento', 'Estrés'],
+    ['energia', 'deporte'],
+    [
+      { id: 'maca', tipo: 'complementario', desc: 'Adaptógenos combinados', nivel: 'alto' },
+      { id: 'ashwagandha', tipo: 'complementario', desc: 'Reducción de cortisol', nivel: 'alto' }
+    ],
+    { dosis: '200-400mg/día' }
+  ),
+
+  'epimedium': createIngredient('epimedium', 'Epimedium (Horny Goat Weed)', 'botanicos',
+    'Hierba china para disfunción eréctil y libido.',
+    'Contiene icariin, inhibe PDE5 naturalmente.',
+    ['Libido', 'Función sexual', 'Testosterona'],
+    ['fertilidad'],
+    [
+      { id: 'tongkat_ali', tipo: 'complementario', desc: 'Afrodisíacos combinados', nivel: 'alto' },
+      { id: 'maca', tipo: 'complementario', desc: 'Adaptógeno sexual', nivel: 'medio' }
+    ],
+    { dosis: '500-1000mg/día' }
+  ),
+
+  'mucuna_pruriens': createIngredient('mucuna_pruriens', 'Mucuna pruriens', 'botanicos',
+    'Semilla rica en L-DOPA, precursora de dopamina.',
+    'Convierte a dopamina, mejora motivación y movimiento.',
+    ['Párkinson', 'Dopamina', 'Estado de ánimo', 'Motivación'],
+    ['cerebro'],
+    [
+      { id: 'l_teanina', tipo: 'potenciador', desc: 'Dopamina y GABA', nivel: 'medio' },
+      { id: 'rodiola', tipo: 'complementario', desc: 'Motivación y energía', nivel: 'alto' }
+    ],
+    { dosis: '200-500mg/día', contraindicaciones: [
+      { condicion: 'Antipsicóticos', nivel: 'absoluta', descripcion: 'Interacción medicamentosa' }
+    ]}
+  ),
+
+  'saflor': createIngredient('safranal', 'Azafrán (Crocus sativus)', 'botanicos',
+    'Especia con propiedades antidepresivas y antiinflamatorias.',
+    'Inhibe recaptación de serotonina, regula estado de ánimo.',
+    ['Estado de ánimo', 'Apetito', 'Antioxidante'],
+    ['cerebro'],
+    [
+      { id: 'l_teanina', tipo: 'potenciador', desc: 'Relajación sinérgica', nivel: 'medio' },
+      { id: 'vitamina_d3', tipo: 'potenciador', desc: 'Estado de ánimo', nivel: 'alto' }
+    ],
+    { dosis: '30-60mg/día' }
+  ),
+
+  'ginkgo': createIngredient('ginkgo', 'Ginkgo biloba', 'botanicos',
+    'Extracto vegetal para memoria y circulación cerebral.',
+    'Mejora flujo sanguíneo, protege de daño oxidativo.',
+    ['Memoria', 'Circulación', 'Concentración', 'Zumbido de oídos'],
+    ['cerebro'],
+    [
+      { id: 'vinpocetina', tipo: 'potenciador', desc: 'Circulación cerebral', nivel: 'alto' },
+      { id: 'bacopa', tipo: 'complementario', desc: 'Memoria y cognición', nivel: 'alto' }
+    ],
+    { dosis: '120-240mg/día', contraindicaciones: [
+      { condicion: 'Anticoagulantes', nivel: 'precaución', descripcion: 'Riesgo de sangrado' }
+    ]}
+  ),
+
+  'gotu_kola': createIngredient('gotu_kola', 'Gotu Kola (Centella asiática)', 'botanicos',
+    'Hierba adaptógena para cognición y piel.',
+    'Estimula síntesis de colágeno, mejora cicatrización.',
+    ['Cognición', 'Piel', 'Ansiedad', 'Cicatrización'],
+    ['cerebro', 'piel'],
+    [
+      { id: 'bacopa', tipo: 'complementario', desc: 'Nootrópicos combinados', nivel: 'alto' },
+      { id: 'colageno', tipo: 'potenciador', desc: 'Salud de la piel', nivel: 'medio' }
+    ],
+    { dosis: '500-1000mg/día' }
+  ),
+
+  'rhodiola': createIngredient('rhodiola', 'Rhodiola rosea', 'botanicos',
+    'Adaptógeno siberiano para estrés y fatiga.',
+    'Reduce cortisol, mejora rendimiento mental.',
+    ['Estrés', 'Fatiga', 'Rendimiento', 'Estado de ánimo'],
+    ['energia', 'cerebro'],
+    [
+      { id: 'ashwagandha', tipo: 'complementario', desc: 'Adaptógenos combinados', nivel: 'alto' },
+      { id: 'l_teanina', tipo: 'potenciador', desc: 'Enfoque sin estrés', nivel: 'alto' }
+    ],
+    { dosis: '200-600mg/día', contraindicaciones: [
+      { condicion: 'Bipolares', nivel: 'precaución', descripcion: 'Puede afectar estado de ánimo' }
+    ]}
+  ),
+
+  // ==================== MINERALES ADICIONALES ====================
+  
+  'molibdeno': createIngredient('molibdeno', 'Molibdeno', 'minerales',
+    'Mineral traza esencial para metabolismo de azufre.',
+    'Cofactor de sulfito oxidasa y xantina oxidasa.',
+    ['Metabolismo', 'Detoxificación', 'Salud dental'],
+    ['detox'],
+    [
+      { id: 'cobre', tipo: 'balance', desc: 'Equilibrio mineral', nivel: 'medio' }
+    ],
+    { dosis: '45-75mcg/día' }
+  ),
+
+  'boro': createIngredient('boro', 'Boro', 'minerales',
+    'Mineral traza para metabolismo óseo y hormonal.',
+    'Influye en metabolismo de calcio, magnesio y vitamina D.',
+    ['Huesos', 'Hormonas', 'Cognición'],
+    ['huesos', 'cerebro'],
+    [
+      { id: 'calcio', tipo: 'potenciador', desc: 'Metabolismo óseo', nivel: 'alto' },
+      { id: 'vitamina_d3', tipo: 'potenciador', desc: 'Utilización de vitamina D', nivel: 'alto' }
+    ],
+    { dosis: '3-5mg/día' }
+  ),
+
+  'vanadio': createIngredient('vanadio', 'Vanadio', 'minerales',
+    'Mineral traza con propiedades similares a insulina.',
+    'Mejora sensibilidad a insulina en estudios.',
+    ['Glucosa', 'Metabolismo', 'Energía'],
+    ['peso'],
+    [
+      { id: 'cromo', tipo: 'potenciador', desc: 'Metabolismo de glucosa', nivel: 'alto' },
+      { id: 'berberina', tipo: 'complementario', desc: 'Control glucémico', nivel: 'alto' }
+    ],
+    { dosis: '10-50mcg/día' }
+  ),
+
+  // ==================== VITAMINAS B ADICIONALES ====================
+  
+  'inositol': createIngredient('inositol', 'Inositol', 'vitaminas',
+    'Vitamina B8 con propiedades ansiolíticas y reguladoras.',
+    'Modula neurotransmisores, mejora sensibilidad a insulina.',
+    ['Ansiedad', 'SOPCO', 'Depresión', 'Insulina'],
+    ['cerebro'],
+    [
+      { id: 'magnesio', tipo: 'potenciador', desc: 'Relajación sinérgica', nivel: 'alto' },
+      { id: 'vitamina_d3', tipo: 'potenciador', desc: 'Estado de ánimo', nivel: 'medio' }
+    ],
+    { dosis: '2-4g/día' }
+  ),
+
+  'paba': createIngredient('paba', 'PABA (Ácido para-aminobenzoico)', 'vitaminas',
+    'Vitamina B10 componente del ácido fólico.',
+    'Protege de radiación UV, apoya salud de la piel.',
+    ['Piel', 'Cabello', 'Salud celular'],
+    ['piel'],
+    [
+      { id: 'acido_folico', tipo: 'potenciador', desc: 'Metabolismo celular', nivel: 'alto' },
+      { id: 'biotina', tipo: 'complementario', desc: 'Salud de piel y cabello', nivel: 'medio' }
+    ],
+    { dosis: '100-500mg/día' }
+  ),
+
+  'colina': createIngredient('colina', 'Colina', 'vitaminas',
+    'Nutriente esencial para función hepática y cerebral.',
+    'Precursor de acetilcolina y fosfatidilcolina.',
+    ['Hígado', 'Cerebro', 'Memoria', 'Músculos'],
+    ['cerebro', 'huesos'],
+    [
+      { id: 'l_teanina', tipo: 'potenciador', desc: 'Neurotransmisión', nivel: 'medio' },
+      { id: 'vitaminas_b', tipo: 'complementario', desc: 'Complejo B', nivel: 'alto' }
+    ],
+    { dosis: '425-550mg/día' }
+  ),
+
 };
 
 

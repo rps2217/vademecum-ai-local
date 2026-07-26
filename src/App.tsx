@@ -4,6 +4,7 @@
 
 import React, { Suspense, lazy } from 'react';
 import { Loader2 } from 'lucide-react';
+import { errorHandler } from './services/ErrorHandlerService';
 
 // Lazy loading del Dashboard principal
 const DashboardSimple = lazy(() => import('./components/layout/DashboardSimple').then(m => ({ default: m.DashboardSimple })));
@@ -35,7 +36,7 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('ErrorBoundary caught:', error, errorInfo);
+    errorHandler.captureError(error, { componentStack: errorInfo.componentStack });
   }
 
   render() {

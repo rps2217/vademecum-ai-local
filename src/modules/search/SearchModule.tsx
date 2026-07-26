@@ -14,6 +14,7 @@ import { historyService } from '../../services/HistoryService';
 import { dataService } from '../../services/DataService';
 import { useStore } from '../../store/useStore';
 import { searchService } from '../../services/SearchService';
+import { logger } from '../../services/LoggerService';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -65,24 +66,24 @@ export const SearchModule: React.FC = () => {
         await searchService.initializeIndex();
         
         const indexed = searchService.getAllIndexedProducts();
-        console.log('[SearchModule] Productos del índice:', indexed.length);
-        console.log('[SearchModule] Productos del store:', products.length);
+        logger.debug('Productos del índice: ' + indexed.length, 'SearchModule');
+        logger.debug('Productos del store: ' + products.length, 'SearchModule');
         
         if (indexed.length > 0) {
           setAllProducts(indexed);
         } else if (products.length > 0) {
           // Fallback al store si el índice está vacío
-          console.log('[SearchModule] Usando fallback del store');
+          logger.debug('Usando fallback del store', 'SearchModule');
           setAllProducts(products);
         } else {
           // Intentar obtener directamente de la BD
-          console.log('[SearchModule] Buscando en DataService...');
+          logger.debug('Buscando en DataService...', 'SearchModule');
           const fromService = await dataService.getAllProducts();
-          console.log('[SearchModule] Productos de DataService:', fromService.length);
+          logger.debug('Productos de DataService: ' + fromService.length, 'SearchModule');
           setAllProducts(fromService);
         }
       } catch (error) {
-        console.error('[SearchModule] Error cargando productos:', error);
+        logger.error('Error cargando productos', 'SearchModule', error);
         // Último fallback
         setAllProducts(products);
       }

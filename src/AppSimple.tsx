@@ -8,6 +8,7 @@ import { getCombinedKnowledgeBase, getIngredientCount } from './core/knowledge-b
 import { synergyGraphService } from './core/knowledge-base/SynergyGraph';
 import { Product } from './core/types/product.types';
 import { supabaseService } from './services/SupabaseService';
+import { logger } from './services/LoggerService';
 
 // Tipos locales
 interface AnalyzedProduct extends Product {
@@ -440,14 +441,14 @@ export default function AppSimple() {
 
   useEffect(() => {
     async function loadProducts() {
-      console.log('[AppSimple] Cargando productos...');
+      logger.info('Cargando productos...', 'AppSimple');
       
       const supabase = supabaseService.getClient();
-      console.log('[AppSimple] Supabase client:', supabase ? 'OK' : 'NULL');
-      console.log('[AppSimple] Is configured:', supabaseService.isConfigured());
+      logger.debug(`Supabase client: ${supabase ? 'OK' : 'NULL'}`, 'AppSimple');
+      logger.debug(`Is configured: ${supabaseService.isConfigured()}`, 'AppSimple');
       
       if (!supabase) {
-        console.log('[AppSimple] Sin Supabase, usando KB');
+        logger.info('Sin Supabase, usando KB local', 'AppSimple');
         setLoadingMessage('Sin conexión a la nube...');
         const kbProducts = Object.values(kb).map((ing: any) => ({
           sku: ing.id,
@@ -468,15 +469,15 @@ export default function AppSimple() {
       setLoadingMessage('Descargando productos de la nube...');
 
       try {
-        console.log('[AppSimple] Fetching products from Supabase...');
+        logger.info('Fetching products from Supabase...', 'AppSimple');
         const { data, error } = await supabase.from('products').select('*').limit(200);
-        console.log('[AppSimple] Data:', data?.length, 'products', 'Error:', error);
+        logger.debug(`Data: ${data?.length} products, Error: ${error}`, 'AppSimple');
 
         if (error) {
-          console.error('[AppSimple] Error:', error);
+          logger.error('Error fetching products', 'AppSimple', error);
           setLoadingMessage('Error al cargar productos');
         } else if (data && data.length > 0) {
-          console.log('[AppSimple] Analizando productos...');
+          logger.info('Analizando productos...', 'AppSimple');
           const analyzed = data.map((product: Product) => {
             const { found, sinergias } = analyzeProduct(product, kb);
             const principiosCount = (product.principios_activos || []).length;
@@ -490,11 +491,11 @@ export default function AppSimple() {
           });
           setProducts(analyzed);
         } else {
-          console.log('[AppSimple] Sin productos en la nube');
+          logger.info('Sin productos en la nube', 'AppSimple');
           setLoadingMessage('Sin productos en la nube...');
         }
       } catch (e) {
-        console.error('[AppSimple] Exception:', e);
+        logger.error('Exception loading products', 'AppSimple', e);
         setLoadingMessage('Error al conectar');
       }
       

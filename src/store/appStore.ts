@@ -7,6 +7,7 @@
 import { create } from 'zustand';
 import Dexie from 'dexie';
 import type { Product } from '../types';
+import { logger } from '../services/LoggerService';
 
 // Tipos
 export type ViewType = 'buscar' | 'catalogo' | 'sinergias' | 'ajustes';
@@ -138,7 +139,7 @@ async function savePreference(key: string, value: any) {
   try {
     await prefDB.preferences.put({ key, value });
   } catch (e) {
-    console.warn('[Preferences] Error saving:', e);
+    logger.warn('Error saving preference', 'Preferences', e);
   }
 }
 

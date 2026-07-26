@@ -5,6 +5,7 @@
 
 import { useSyncStore, type SecurityAlert, type SyncIngredientData, type SyncProductData } from './sync-store';
 import { INGREDIENT_DATABASE } from '../ingredient-database/ingredients';
+import { logger } from '../../services/LoggerService';
 
 // Configuración de Supabase
 // NOTA: Reemplazar con tus credenciales reales
@@ -143,7 +144,7 @@ class SyncService {
   async syncIngredients(): Promise<void> {
     // Si Supabase no está configurado, usar datos locales
     if (!this.isSupabaseConfigured()) {
-      console.log('[Sync] Usando base de datos local de ingredientes');
+      logger.info('Usando base de datos local de ingredientes', 'SyncService');
       this.loadLocalIngredients();
       return;
     }
@@ -188,7 +189,7 @@ class SyncService {
 
       useSyncStore.getState().setIngredients(ingredients);
     } catch (error) {
-      console.error('[Sync] Error sincronizando ingredientes:', error);
+      logger.error('Error sincronizando ingredientes', 'SyncService', error);
       // Caer a datos locales
       this.loadLocalIngredients();
     }
@@ -227,7 +228,7 @@ class SyncService {
    */
   async syncProducts(): Promise<void> {
     if (!this.isSupabaseConfigured()) {
-      console.log('[Sync] Supabase no configurado, omitiendo productos');
+      logger.info('Supabase no configurado, omitiendo productos', 'SyncService');
       return;
     }
 
@@ -264,7 +265,7 @@ class SyncService {
 
       useSyncStore.getState().setProductsData(productsData);
     } catch (error) {
-      console.error('[Sync] Error sincronizando productos:', error);
+      logger.error('Error sincronizando productos', 'SyncService', error);
     }
   }
 
@@ -299,7 +300,7 @@ class SyncService {
           return;
         }
       } catch (error) {
-        console.error('[Sync] Error sincronizando alertas:', error);
+        logger.error('Error sincronizando alertas', 'SyncService', error);
       }
     }
 

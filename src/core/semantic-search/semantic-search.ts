@@ -4,6 +4,7 @@
  */
 
 import type { AnalyzedProduct } from '../../types';
+import { logger } from '../../services/LoggerService';
 
 // Configuración
 const OLLAMA_URL = 'http://localhost:11434';
@@ -57,7 +58,7 @@ class SemanticSearchService {
    */
   async generateEmbedding(text: string): Promise<number[] | null> {
     if (!this.ollamaAvailable) {
-      console.log('[SemanticSearch] Ollama no disponible, usando búsqueda fuzzy');
+      logger.info('Ollama no disponible, usando búsqueda fuzzy', 'SemanticSearch');
       return null;
     }
 
@@ -79,7 +80,7 @@ class SemanticSearchService {
       const data = await response.json();
       return data.embedding;
     } catch (error) {
-      console.error('[SemanticSearch] Error generando embedding:', error);
+      logger.error('Error generando embedding', 'SemanticSearch', error);
       this.ollamaAvailable = false;
       return null;
     }
@@ -137,7 +138,7 @@ class SemanticSearchService {
     try {
       localStorage.setItem('vademecum_embeddings', JSON.stringify(embeddings));
     } catch (e) {
-      console.error('[SemanticSearch] Error guardando embeddings:', e);
+      logger.error('Error guardando embeddings', 'SemanticSearch', e);
     }
   }
 
@@ -153,10 +154,10 @@ class SemanticSearchService {
           this.embeddingsCache.set(emb.sku, emb);
         }
         this.isInitialized = true;
-        console.log(`[SemanticSearch] Cargados ${embeddings.length} embeddings`);
+        logger.info(`Cargados ${embeddings.length} embeddings`, 'SemanticSearch');
       }
     } catch (e) {
-      console.error('[SemanticSearch] Error cargando embeddings:', e);
+      logger.error('Error cargando embeddings', 'SemanticSearch', e);
     }
   }
 
@@ -192,7 +193,7 @@ class SemanticSearchService {
 
     // Si Ollama no está disponible, usar solo búsqueda tradicional
     if (!this.ollamaAvailable) {
-      console.log('[SemanticSearch] Usando búsqueda tradicional (Ollama no disponible)');
+      logger.info('Usando búsqueda tradicional (Ollama no disponible)', 'SemanticSearch');
       return this.traditionalSearch(query, products, options);
     }
 

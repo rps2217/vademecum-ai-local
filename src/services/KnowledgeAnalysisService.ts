@@ -18,6 +18,7 @@ import {
 import { synergyGraphService, type SynergyEdge } from '../core/knowledge-base/SynergyGraph';
 import { localDatabaseService } from '../core/database/LocalDatabase';
 import { findIngredient, type IngredientInfo } from '../core/knowledge-base/ingredients';
+import { logger } from './LoggerService';
 
 class KnowledgeAnalysisService {
   private static instance: KnowledgeAnalysisService;
@@ -69,7 +70,7 @@ class KnowledgeAnalysisService {
       };
       
     } catch (error) {
-      console.error('[KnowledgeAnalysis] Error analizando producto:', error);
+      logger.error('Error analizando producto', 'KnowledgeAnalysis', error);
       throw error;
     }
   }
@@ -131,7 +132,7 @@ class KnowledgeAnalysisService {
       }).sort((a, b) => b.puntuacion_sinergia - a.puntuacion_sinergia);
       
     } catch (error) {
-      console.error('[KnowledgeAnalysis] Error encontrando complementarios:', error);
+      logger.error('Error encontrando productos complementarios', 'KnowledgeAnalysis', error);
       return [];
     }
   }

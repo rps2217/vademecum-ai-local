@@ -13,6 +13,7 @@ import type {
   KbStats,
   ScrapingState 
 } from '../types';
+import { logger } from '../services/LoggerService';
 
 // ==================== ESTADO ====================
 
@@ -151,7 +152,7 @@ export const useAppStore = create<AppStore>()(
           const products = await dataService.getAllProducts();
           set({ products, loading: false });
         } catch (error) {
-          console.error('Error loading products:', error);
+          logger.error('Error loading products', 'AppStore', error);
           set({ loading: false });
         }
       },

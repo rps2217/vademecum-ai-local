@@ -5,6 +5,7 @@
 
 import { supabaseService } from './SupabaseService';
 import knowledgeBaseData from '../data/knowledge-base.json';
+import { logger } from './LoggerService';
 
 export interface DeltaChange {
   id: string;
@@ -146,23 +147,23 @@ class DeltaSyncService {
       const checkpoint = this.getCheckpoint();
       const lastSync = checkpoint?.lastSyncTimestamp || 0;
       
-      console.log(`[DeltaSync] Última sincronización: ${new Date(lastSync).toISOString()}`);
+      logger.info(`Última sincronización: ${new Date(lastSync).toISOString()}`, 'DeltaSync');
 
       // 1. OBTENER CAMBIOS REMOTOS (solo los modificados desde última sync)
       this.notify({ phase: 'downloading', progress: 10 });
       const remoteChanges = await this.fetchRemoteChanges(client, lastSync);
-      console.log(`[DeltaSync] ${remoteChanges.length} cambios remotos detectados`);
+      logger.info(`${remoteChanges.length} cambios remotos detectados`, 'DeltaSync');
 
       // 2. RESOLVER CONFLICTOS Y APLICAR CAMBIOS LOCALES
       this.notify({ phase: 'resolving', progress: 40 });
       const { applied: appliedRemote, conflicts } = await this.applyRemoteChanges(remoteChanges);
-      console.log(`[DeltaSync] ${appliedRemote} cambios remotos aplicados, ${conflicts} conflictos`);
+      logger.info(`${appliedRemote} cambios remotos aplicados, ${conflicts} conflictos`, 'DeltaSync');
 
       // 3. SUBIR CAMBIOS LOCALES PENDIENTES
       this.notify({ phase: 'uploading', progress: 70 });
       const pendingChanges = this.getPendingChanges();
       const uploaded = await this.uploadPendingChanges(client, pendingChanges);
-      console.log(`[DeltaSync] ${uploaded} cambios locales subidos`);
+      logger.info(`${uploaded} cambios locales subidos`, 'DeltaSync');
 
       // 4. ACTUALIZAR CHECKPOINT
       this.notify({ phase: 'checkpoint', progress: 90 });
@@ -185,7 +186,7 @@ class DeltaSyncService {
       };
 
     } catch (error: any) {
-      console.error('[DeltaSync] Error:', error);
+      logger.error('Error en sincronización delta', 'DeltaSync', error);
       this.notify({ phase: 'error', error: error.message });
       return { success: false, changesDownloaded: 0, changesUploaded: 0, conflicts: 0, error: error.message };
     } finally {
@@ -224,7 +225,7 @@ class DeltaSyncService {
       if (error) throw error;
       return data || [];
     } catch (e) {
-      console.error('[DeltaSync] Error fetchRemoteChanges:', e);
+      logger.error('Error fetchRemoteChanges', 'DeltaSync', e);
       return [];
     }
   }
@@ -299,7 +300,7 @@ class DeltaSyncService {
           uploaded++;
         }
       } catch (e) {
-        console.error(`[DeltaSync] Error subiendo cambio ${change.id}:`, e);
+        logger.error(`Error subiendo cambio ${change.id}`, 'DeltaSync', e);
       }
     }
 
@@ -316,7 +317,7 @@ class DeltaSyncService {
         return JSON.parse(cached);
       }
     } catch (e) {
-      console.error('[DeltaSync] Error leyendo local:', e);
+      logger.error('Error leyendo local KB', 'DeltaSync', e);
     }
     return knowledgeBaseData as KbData;
   }

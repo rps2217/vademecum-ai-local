@@ -8,6 +8,7 @@ import { Product } from '../core/types/product.types';
 import { SynergyResult } from '../core/knowledge-base/SynergyEngine';
 import { knowledgeAnalysisService } from './KnowledgeAnalysisService';
 import { supabaseService } from './SupabaseService';
+import { logger } from './LoggerService';
 
 // Tipos para Supabase
 interface IngredientKnowledge {
@@ -77,7 +78,7 @@ class SupabaseSynergiesService {
     try {
       // Obtener estadisticas de la Knowledge Base local
       const stats = knowledgeAnalysisService.getStats();
-      console.log(`[SynergiesService] Sincronizando ${stats.knowledgeBase.total_ingredientes} ingredientes...`);
+      logger.info(`Sincronizando ${stats.knowledgeBase.total_ingredientes} ingredientes...`, 'SynergiesService');
 
       // La Knowledge Base local se mantiene como fuente principal
       // Solo sincronizamos cuando hay cambios o para backup
@@ -87,7 +88,7 @@ class SupabaseSynergiesService {
       };
 
     } catch (error) {
-      console.error('[SynergiesService] Error sincronizando Knowledge Base:', error);
+      logger.error('Error sincronizando Knowledge Base', 'SynergiesService', error);
       return {
         success: false,
         message: `Error: ${error instanceof Error ? error.message : 'Desconocido'}`
@@ -123,15 +124,15 @@ class SupabaseSynergiesService {
         .upsert(analysisRecord, { onConflict: 'producto_sku' });
 
       if (error) {
-        console.error('[SynergiesService] Error guardando analisis:', error);
+        logger.error('Error guardando analisis de producto', 'SynergiesService', error);
         return false;
       }
 
-      console.log(`[SynergiesService] Analisis de ${producto.sku} guardado en Supabase`);
+      logger.success(`Analisis de ${producto.sku} guardado en Supabase`, 'SynergiesService');
       return true;
 
     } catch (error) {
-      console.error('[SynergiesService] Error en saveProductAnalysis:', error);
+      logger.error('Error en saveProductAnalysis', 'SynergiesService', error);
       return false;
     }
   }
@@ -172,14 +173,14 @@ class SupabaseSynergiesService {
         .upsert(synergyRecord, { onConflict: 'producto1_sku,producto2_sku' });
 
       if (error) {
-        console.error('[SynergiesService] Error guardando sinergia:', error);
+        logger.error('Error guardando sinergia', 'SynergiesService', error);
         return false;
       }
 
       return true;
 
     } catch (error) {
-      console.error('[SynergiesService] Error en saveProductSynergies:', error);
+      logger.error('Error en saveProductSynergies', 'SynergiesService', error);
       return false;
     }
   }
@@ -202,7 +203,7 @@ class SupabaseSynergiesService {
 
       if (error) {
         if (error.code !== 'PGRST116') { // No rows found
-          console.error('[SynergiesService] Error obteniendo analisis:', error);
+          logger.error('Error obteniendo analisis de producto', 'SynergiesService', error);
         }
         return null;
       }
@@ -210,7 +211,7 @@ class SupabaseSynergiesService {
       return data;
 
     } catch (error) {
-      console.error('[SynergiesService] Error en getProductAnalysis:', error);
+      logger.error('Error en getProductAnalysis', 'SynergiesService', error);
       return null;
     }
   }
@@ -232,14 +233,14 @@ class SupabaseSynergiesService {
         .order('nivel_sinergia');
 
       if (error) {
-        console.error('[SynergiesService] Error obteniendo sinergias:', error);
+        logger.error('Error obteniendo sinergias de producto', 'SynergiesService', error);
         return [];
       }
 
       return data || [];
 
     } catch (error) {
-      console.error('[SynergiesService] Error en getProductSynergies:', error);
+      logger.error('Error en getProductSynergies', 'SynergiesService', error);
       return [];
     }
   }
@@ -263,7 +264,7 @@ class SupabaseSynergiesService {
         .limit(limit);
 
       if (error) {
-        console.error('[SynergiesService] Error:', error);
+        logger.error('Error obteniendo productos complementarios', 'SynergiesService', error);
         return [];
       }
 
@@ -272,7 +273,7 @@ class SupabaseSynergiesService {
       );
 
     } catch (error) {
-      console.error('[SynergiesService] Error:', error);
+      logger.error('Error obteniendo productos complementarios', 'SynergiesService', error);
       return [];
     }
   }
@@ -302,7 +303,7 @@ class SupabaseSynergiesService {
       }
     }
 
-    console.log(`[SynergiesService] Batch sync: ${synced} exitosos, ${failed} fallidos`);
+    logger.info(`Batch sync: ${synced} exitosos, ${failed} fallidos`, 'SynergiesService');
     return { synced, failed };
   }
 
@@ -322,14 +323,14 @@ class SupabaseSynergiesService {
         .order('nombre');
 
       if (error) {
-        console.error('[SynergiesService] Error obteniendo ingredientes:', error);
+        logger.error('Error obteniendo ingredientes desde cloud', 'SynergiesService', error);
         return [];
       }
 
       return data || [];
 
     } catch (error) {
-      console.error('[SynergiesService] Error:', error);
+      logger.error('Error obteniendo ingredientes', 'SynergiesService', error);
       return [];
     }
   }
@@ -350,14 +351,14 @@ class SupabaseSynergiesService {
         .eq('tipo_relacion', 'sinergia');
 
       if (error) {
-        console.error('[SynergiesService] Error:', error);
+        logger.error('Error obteniendo relaciones desde cloud', 'SynergiesService', error);
         return [];
       }
 
       return data || [];
 
     } catch (error) {
-      console.error('[SynergiesService] Error:', error);
+      logger.error('Error obteniendo relaciones', 'SynergiesService', error);
       return [];
     }
   }

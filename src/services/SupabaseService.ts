@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { logger } from './LoggerService';
 
 export class SupabaseService {
     private static instance: SupabaseService;
@@ -49,15 +50,15 @@ export class SupabaseService {
                 this.client = createClient(supabaseUrl, supabaseKey);
                 this.configured = true;
                 this.currentUrl = supabaseUrl;
-                console.log('[SupabaseService] Conectado a:', supabaseUrl);
+                logger.info(`Conectado a Supabase: ${supabaseUrl.replace(/\/\/.*@/, '//***@')}`, 'SupabaseService');
             } catch (error) {
-                console.error('[SupabaseService] Error creando cliente:', error);
+                logger.error('Error creando cliente Supabase', 'SupabaseService', error);
                 this.configured = false;
             }
         } else {
             this.configured = false;
             if (supabaseUrl && !isDummy && !keyIsDummy) {
-                console.warn('[SupabaseService] URL configurada pero sin clave válida');
+                logger.warn('URL configurada pero sin clave válida', 'SupabaseService');
             }
         }
     }

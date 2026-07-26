@@ -68,7 +68,7 @@ export class SearchService {
 
   private async initObserver() {
       productsCollection.changes.subscribe(() => {
-          this.debouncedIndexUpdate().catch(console.error);
+          this.debouncedIndexUpdate().catch((e) => logger.error('Error en index update', 'SearchService', e));
       });
   }
 

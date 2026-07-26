@@ -4,6 +4,7 @@
  */
 
 import type { AnalyzedProduct } from '../../types';
+import { logger } from '../../services/LoggerService';
 
 // Configuración
 const EMBEDDING_MODEL = 'Xenova/transformers-mlnl6'; // Modelo ligero para embeddings
@@ -52,7 +53,7 @@ class EmbeddingService {
       // Intentar cargar Transformers.js
       await this.initTransformers();
     } catch (error) {
-      console.warn('[EmbeddingService] Transformers.js no disponible, usando fallback fuzzy');
+      logger.warn('Transformers.js no disponible, usando fallback fuzzy', 'EmbeddingService');
       this.state.provider = 'fuzzy';
       this.state.isReady = true;
     }
@@ -72,7 +73,7 @@ class EmbeddingService {
       env.allowLocalModels = false;
       env.useBrowserCache = true;
 
-      console.log('[EmbeddingService] Cargando modelo de embeddings...');
+      logger.info('Cargando modelo de embeddings...', 'EmbeddingService');
       
       // Crear pipeline de embeddings
       this.transformersPipeline = await pipeline(
@@ -81,7 +82,7 @@ class EmbeddingService {
         {
           progress_callback: (progress: any) => {
             if (progress.status === 'progress') {
-              console.log(`[EmbeddingService] ${progress.file} - ${progress.progress?.toFixed(1)}%`);
+              logger.debug(`${progress.file} - ${progress.progress?.toFixed(1)}%`, 'EmbeddingService');
             }
           },
         }
@@ -89,7 +90,7 @@ class EmbeddingService {
 
       this.state.provider = 'transformers';
       this.state.isReady = true;
-      console.log('[EmbeddingService] Transformers.js listo!');
+      logger.success('Transformers.js listo!', 'EmbeddingService');
     } catch (error) {
       throw error;
     }
@@ -108,7 +109,7 @@ class EmbeddingService {
         
         return Array.from(result.data);
       } catch (error) {
-        console.error('[EmbeddingService] Error generando embedding:', error);
+        logger.error('Error generando embedding', 'EmbeddingService', error);
         return null;
       }
     }

@@ -5,6 +5,7 @@
 
 import type { Product } from '../types';
 import { PRODUCT_TYPES, THERAPEUTIC_FUNCTIONS, BODY_SYSTEMS, type ProductType, type TherapeuticFunction, type BodySystem } from '../core/categorization/categories';
+import { logger } from './LoggerService';
 
 interface CategorizationResult {
   type: ProductType | null;
@@ -136,7 +137,7 @@ Responde en JSON con este formato exacto (sin markdown):
       const response = await this.ollamaRequest(prompt);
       return this.parseAIResponse(response, product);
     } catch (error) {
-      console.error('Error en categorización IA:', error);
+      logger.error('Error en categorización IA', 'AICategorization', error);
       return this.ruleBasedCategorization(product);
     }
   }

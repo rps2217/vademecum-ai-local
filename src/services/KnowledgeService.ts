@@ -4,6 +4,7 @@
  */
 
 import knowledgeBase from '../data/knowledge-base.json';
+import { logger } from './LoggerService';
 
 export interface KbIngredient {
   id: string;
@@ -112,7 +113,7 @@ class KnowledgeService {
     }
 
     this.initialized = true;
-    console.log(`[KnowledgeService] Inicializado con ${kb.ingredients.length} ingredientes`);
+    logger.info(`Inicializado con ${kb.ingredients.length} ingredientes`, 'KnowledgeService');
   }
 
   findIngredient(searchTerm: string): KbIngredient | null {

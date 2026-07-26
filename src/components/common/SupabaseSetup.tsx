@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { cn } from '../../lib/utils';
+import { logger } from '../../services/LoggerService';
 
 interface SupabaseSetupProps {
   onConnected?: () => void;
@@ -85,7 +86,7 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
         cloudProductCount: count || 0
       }));
     } catch (error) {
-      console.error('Error checking cloud products:', error);
+      logger.error('Error checking cloud products', 'SupabaseSetup', error);
     }
   };
 
@@ -108,12 +109,12 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       const { createClient } = await import('@supabase/supabase-js');
       const supabase = createClient(savedUrl, savedAnonKey);
       
-      console.log('[SupabaseSetup] Descargando productos desde:', savedUrl);
+      logger.info(`Descargando productos desde: ${savedUrl}`, 'SupabaseSetup');
       
       const { data, error } = await supabase.from('products').select('*');
       
       if (error) {
-        console.error('[SupabaseSetup] Error al consultar productos:', error);
+        logger.error('Error al consultar productos', 'SupabaseSetup', error);
         setConfig(prev => ({ 
           ...prev, 
           status: 'error', 
@@ -124,7 +125,7 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       }
       
       const products = data || [];
-      console.log(`[SupabaseSetup] Productos descargados: ${products.length}`);
+      logger.info(`Productos descargados: ${products.length}`, 'SupabaseSetup');
       
       if (products.length === 0) {
         setConfig(prev => ({ 
@@ -138,14 +139,14 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       
       // Guardar SOLO la fecha de última sincronización (no los productos en localStorage)
       localStorage.setItem('last_sync', new Date().toISOString());
-      console.log('[SupabaseSetup] Fecha de sync guardada');
+      logger.debug('Fecha de sync guardada', 'SupabaseSetup');
       
       // Guardar directamente en IndexedDB usando DataService
       try {
         const { dataService } = await import('../../services/DataService');
-        console.log('[SupabaseSetup] Llamando saveProductsToLocalDB...');
+        logger.debug('Llamando saveProductsToLocalDB...', 'SupabaseSetup');
         await dataService.saveProductsToLocalDB(products);
-        console.log(`[SupabaseSetup] Productos guardados en BD local`);
+        logger.success(`Productos guardados en BD local`, 'SupabaseSetup');
         
         setConfig(prev => ({ 
           ...prev, 
@@ -163,7 +164,7 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
         }, 2000);
         
       } catch (dbError: any) {
-        console.error('[SupabaseSetup] Error guardando en BD:', dbError);
+        logger.error('Error guardando en BD', 'SupabaseSetup', dbError);
         setConfig(prev => ({ 
           ...prev, 
           status: 'error', 
@@ -172,7 +173,7 @@ export function SupabaseSetup({ onConnected, onSyncStart, onSyncComplete }: Supa
       }
       
     } catch (error: any) {
-      console.error('[SupabaseSetup] Error de sincronización:', error);
+      logger.error('Error de sincronización', 'SupabaseSetup', error);
       setConfig(prev => ({ 
         ...prev, 
         status: 'error', 

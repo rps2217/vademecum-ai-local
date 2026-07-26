@@ -10,6 +10,7 @@
 
 import { Product } from '../types/product.types';
 import { localDatabaseService } from './LocalDatabase';
+import { logger } from '../../services/LoggerService';
 
 interface SyncResult {
   success: boolean;
@@ -48,7 +49,7 @@ class OfflineSyncService {
   
   async sincronizar(): Promise<SyncResult> {
     if (this.isSyncing) {
-      console.log('[Sync] Sincronización ya en progreso, encolando...');
+      logger.info('Sincronización ya en progreso, encolando...', 'OfflineSync');
       return new Promise((resolve) => {
         this.syncQueue.push(async () => {
           resolve(await this.sincronizar());
@@ -86,11 +87,11 @@ class OfflineSyncService {
       await localDatabaseService.guardarUltimaSincronizacion(Date.now());
       
       result.success = true;
-      console.log('[Sync] Sincronización completada:', result);
+      logger.success('Sincronización completada', 'OfflineSync');
       
     } catch (error: any) {
       result.errores.push(error.message || 'Error desconocido');
-      console.error('[Sync] Error en sincronización:', error);
+      logger.error('Error en sincronización', 'OfflineSync', error);
       
       // Programar retry
       this.scheduleRetry();
@@ -108,7 +109,7 @@ class OfflineSyncService {
   
   private async uploadLocalChanges(): Promise<number> {
     if (!this.supabaseUrl || !this.supabaseKey) {
-      console.log('[Sync] Supabase no configurado, saltando upload');
+      logger.info('Supabase no configurado, saltando upload', 'OfflineSync');
       return 0;
     }
     
@@ -118,7 +119,7 @@ class OfflineSyncService {
       const productosLocales = await localDatabaseService.obtenerProductosActualizados(lastSync);
       
       if (productosLocales.length === 0) {
-        console.log('[Sync] No hay cambios locales para subir');
+        logger.info('No hay cambios locales para subir', 'OfflineSync');
         return 0;
       }
       
@@ -144,17 +145,17 @@ class OfflineSyncService {
           if (response.ok) {
             totalSubidos += batch.length;
           } else {
-            console.error('[Sync] Error subiendo lote:', response.status);
+            logger.error(`Error subiendo lote: ${response.status}`, 'OfflineSync');
           }
         } catch (error) {
-          console.error('[Sync] Error en lote:', error);
+          logger.error('Error en lote', 'OfflineSync', error);
         }
       }
       
       return totalSubidos;
       
     } catch (error) {
-      console.error('[Sync] Error uploading local changes:', error);
+      logger.error('Error uploading local changes', 'OfflineSync', error);
       return 0;
     }
   }
@@ -194,7 +195,7 @@ class OfflineSyncService {
       return remoteProducts.length;
       
     } catch (error) {
-      console.error('[Sync] Error downloading remote changes:', error);
+      logger.error('Error downloading remote changes', 'OfflineSync', error);
       return 0;
     }
   }
@@ -207,8 +208,8 @@ class OfflineSyncService {
   
   private scheduleRetry(): void {
     setTimeout(() => {
-      console.log('[Sync] Reintentando sincronización...');
-      this.sincronizar().catch(console.error);
+      logger.info('Reintentando sincronización...', 'OfflineSync');
+      this.sincronizar().catch((e) => logger.error('Error en retry', 'OfflineSync', e));
     }, this.retryDelay);
   }
   
@@ -216,7 +217,7 @@ class OfflineSyncService {
     if (this.syncQueue.length > 0) {
       const next = this.syncQueue.shift();
       if (next) {
-        next().catch(console.error);
+        next().catch((e) => logger.error('Error procesando cola', 'OfflineSync', e));
       }
     }
   }
@@ -243,10 +244,10 @@ class OfflineSyncService {
         await localDatabaseService.limpiarProductos();
         await localDatabaseService.guardarProductos(productos);
         await localDatabaseService.guardarUltimaSincronizacion(Date.now());
-        console.log(`[Sync] Sincronización completa: ${productos.length} productos`);
+        logger.success(`Sincronización completa: ${productos.length} productos`, 'OfflineSync');
       }
     } catch (error) {
-      console.error('[Sync] Error en sincronización completa:', error);
+      logger.error('Error en sincronización completa', 'OfflineSync', error);
     }
   }
   
