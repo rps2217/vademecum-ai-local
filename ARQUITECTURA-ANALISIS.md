@@ -189,13 +189,13 @@ export default defineConfig({
 
 ## 📈 Métricas de Éxito
 
-| Métrica | Actual | Objetivo |
-|---------|--------|----------|
-| Líneas DashboardSimple | ~1567 | <300 |
-| Servicios duplicados | 5 | 1-2 |
-| Bundle size | 728KB | <400KB |
-| Test coverage | ~10% | >60% |
-| Tiempo de carga | ? | <2s |
+| Métrica | Anterior | Actual | Objetivo |
+|---------|----------|--------|----------|
+| Líneas DashboardSimple | ~1567 | ~753 | <300 |
+| Servicios duplicados | 5 | 5 | 1-2 |
+| Bundle size | 728KB | ~400KB | <400KB |
+| Test coverage | ~10% | ~10% | >60% |
+| Tiempo de carga | ? | ? | <2s |
 
 ---
 
@@ -217,9 +217,16 @@ export default defineConfig({
 - [x] Tipos centralizados (src/types/index.ts)
 - [x] Tests unitarios con Vitest (9 tests passing)
 - [x] Optimización de chunks del bundle
+- [x] **Extraer vistas del DashboardSimple (1567 → 753 líneas, -52%)**
+  - SearchView
+  - CatalogView
+  - SynergyView
+  - SettingsView
+  - ProductDetailModal
+  - CategoryFilter, EmptyState
 
 ### 🔄 En Progreso
-- [ ] Refactorizar DashboardSimple (~1567 líneas → <300 líneas)
+- [ ] Continuar reduciendo DashboardSimple (<300 líneas objetivo)
 
 ### 📋 Pendiente
 - [ ] Extraer lógica de negocio a hooks personalizados
