@@ -1,11 +1,12 @@
 /**
  * SyncService - Servicio de sincronización en la nube con soporte offline
- * Permite respaldar y sincronizar la base de conocimiento entre dispositivos
+ * Usa Supabase como fuente principal y IndexedDB como caché local
  */
 
 import { logger } from './LoggerService';
 import { getExtendedIngredientDatabase } from '../core/ingredient-database/ingredients';
 import { ORGANS_PATHOLOGIES_MAP } from '../core/knowledge/organs-pathologies-map';
+import { supabaseService } from './SupabaseService';
 
 export interface SyncData {
   version: string;
@@ -18,10 +19,13 @@ export interface SyncData {
 
 export interface SyncStatus {
   isOnline: boolean;
+  isSupabaseConnected: boolean;
   lastSync: number;
   pendingChanges: number;
   syncInProgress: boolean;
   error: string | null;
+  cloudIngredients: number;
+  cloudOrgans: number;
 }
 
 const DB_NAME = 'vademecum-sync';
@@ -34,10 +38,13 @@ class SyncService {
   private db: IDBDatabase | null = null;
   private status: SyncStatus = {
     isOnline: navigator.onLine,
+    isSupabaseConnected: false,
     lastSync: 0,
     pendingChanges: 0,
     syncInProgress: false,
-    error: null
+    error: null,
+    cloudIngredients: 0,
+    cloudOrgans: 0
   };
   private listeners: Set<(status: SyncStatus) => void> = new Set();
 
@@ -45,6 +52,7 @@ class SyncService {
     this.initDatabase();
     this.setupOnlineListener();
     this.loadLastSync();
+    this.checkSupabaseConnection();
   }
 
   static getInstance(): SyncService {
@@ -78,9 +86,6 @@ class SyncService {
           const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
           store.createIndex('timestamp', 'timestamp', { unique: false });
         }
-        if (!db.objectStoreNames.contains('backup')) {
-          db.createObjectStore('backup', { keyPath: 'id' });
-        }
       };
     });
   }
@@ -101,6 +106,40 @@ class SyncService {
       this.notifyListeners();
       logger.info('[SyncService] Sin conexión - modo offline');
     });
+  }
+
+  /**
+   * Verificar conexión a Supabase
+   */
+  private async checkSupabaseConnection(): Promise<void> {
+    const connected = supabaseService.isConfigured();
+    this.status.isSupabaseConnected = connected;
+    
+    if (connected) {
+      await this.fetchCloudStats();
+    }
+    
+    this.notifyListeners();
+  }
+
+  /**
+   * Obtener estadísticas de la nube
+   */
+  private async fetchCloudStats(): Promise<void> {
+    const supabase = supabaseService.getClient();
+    if (!supabase) return;
+
+    try {
+      const [ingredientsResponse, organsResponse] = await Promise.all([
+        supabase.from('extended_ingredients').select('*', { count: 'exact', head: true }),
+        supabase.from('organs_pathologies').select('*', { count: 'exact', head: true })
+      ]);
+
+      this.status.cloudIngredients = ingredientsResponse.count || 0;
+      this.status.cloudOrgans = organsResponse.count || 0;
+    } catch (error) {
+      logger.warn('[SyncService] Error al obtener estadísticas de cloud:', error);
+    }
   }
 
   /**
@@ -137,12 +176,17 @@ class SyncService {
   }
 
   /**
+   * Verificar si Supabase está conectado
+   */
+  isSupabaseConfigured(): boolean {
+    return supabaseService.isConfigured();
+  }
+
+  /**
    * Generar datos de sincronización completos
    */
   async generateSyncData(): Promise<SyncData> {
     const ingredients = getExtendedIngredientDatabase();
-    
-    // Extraer todas las keywords del archivo de popover
     const keywords = this.extractKeywords();
 
     return {
@@ -156,31 +200,24 @@ class SyncService {
   }
 
   /**
-   * Extraer keywords de ingredientes (simplificado)
+   * Extraer keywords de ingredientes
    */
   private extractKeywords(): string[] {
-    // Keywords comunes de ingredientes homeopáticos y fitoterapéuticos
     return [
-      // Homeopatía
       'aconitum', 'apis', 'arnica', 'arsenicum', 'belladonna', 'bryonia', 'calcarea',
       'calendula', 'chamomilla', 'china', 'colocynthis', 'dulcamara', 'echinacea',
       'gelsemium', 'graphites', 'hamamelis', 'hepar', 'hyoscyamus', 'hypericum',
       'ignatia', 'iris', 'lachesis', 'ledum', 'lycopodium', 'mercurius', 'nux vomica',
       'phosphorus', 'pulsatilla', 'rhus toxicodendron', 'sepia', 'silicea', 'sulfur',
-      'thuja', 'veratrum',
-      // Fitoterapia
-      'alcachofa', 'ashwagandha', 'cardo mariano', 'curcuma', 'equinacea', 'espino blanco',
-      'ginkgo', 'ginseng', 'griffonia', 'jengibre', 'kava', 'l-teanina', 'maca',
-      'melatonina', 'melisa', 'ortiga', 'pasiflora', 'propoleo', 'reishi', 'rodiola',
-      'salvia', 'schisandra', 'tila', 'tomillo', 'valeriana', 'vitex',
-      // Vitaminas y minerales
-      'vitamina', 'calcio', 'cromo', 'hierro', 'magnesio', 'potasio', 'selenio', 'zinc',
-      // Aminoácidos
-      '5-htp', 'arginina', 'carnitina', 'creatina', 'gaba', 'glicina', 'glutamina',
-      'lisina', 'nac', 'taurina', 'teanina', 'tirosina', 'triptofano',
-      // Suplementos
-      'astaxantina', 'coq10', 'colageno', 'omega-3', 'probióticos', 'quercetina',
-      'resveratrol'
+      'thuja', 'veratrum', 'alcachofa', 'ashwagandha', 'cardo mariano', 'curcuma',
+      'equinacea', 'espino blanco', 'ginkgo', 'ginseng', 'griffonia', 'jengibre',
+      'kava', 'l-teanina', 'maca', 'melatonina', 'melisa', 'ortiga', 'pasiflora',
+      'propoleo', 'reishi', 'rodiola', 'salvia', 'schisandra', 'tila', 'tomillo',
+      'valeriana', 'vitamina', 'calcio', 'cromo', 'hierro', 'magnesio', 'potasio',
+      'selenio', 'zinc', '5-htp', 'arginina', 'carnitina', 'creatina', 'gaba',
+      'glicina', 'glutamina', 'lisina', 'nac', 'taurina', 'teanina', 'tirosina',
+      'triptofano', 'astaxantina', 'coq10', 'colageno', 'omega-3', 'probióticos',
+      'quercetina', 'resveratrol'
     ];
   }
 
@@ -240,15 +277,217 @@ class SyncService {
   }
 
   /**
+   * Sincronizar datos a Supabase
+   */
+  async syncToCloud(): Promise<{ success: boolean; message: string }> {
+    if (!this.status.isOnline) {
+      return { success: false, message: 'Sin conexión a internet' };
+    }
+
+    if (!this.status.isSupabaseConnected) {
+      return { success: false, message: 'Supabase no está configurado' };
+    }
+
+    if (this.status.syncInProgress) {
+      return { success: false, message: 'Sincronización en progreso...' };
+    }
+
+    this.status.syncInProgress = true;
+    this.status.error = null;
+    this.notifyListeners();
+
+    const supabase = supabaseService.getClient();
+    if (!supabase) {
+      this.status.syncInProgress = false;
+      return { success: false, message: 'Cliente Supabase no disponible' };
+    }
+
+    try {
+      const data = await this.generateSyncData();
+      let syncedIngredients = 0;
+      let syncedOrgans = 0;
+
+      // Sincronizar ingredientes extendidos a Supabase
+      const ingredients = Object.entries(data.ingredients);
+      for (const [key, ingredient] of ingredients) {
+        const record = {
+          ingredient_key: key,
+          name: (ingredient as any).name || key,
+          scientific_name: (ingredient as any).scientificName || null,
+          category: (ingredient as any).category || 'otro',
+          origin_type: (ingredient as any).origin?.type || 'sintetico',
+          origin_description: (ingredient as any).origin?.description || '',
+          description: (ingredient as any).description || '',
+          mechanism: (ingredient as any).mechanism || '',
+          indications: (ingredient as any).indications || [],
+          contraindications: (ingredient as any).contraindications || [],
+          interactions: (ingredient as any).interactions || [],
+          dosage: (ingredient as any).dosage || '',
+          side_effects: (ingredient as any).sideEffects || [],
+          synonyms: (ingredient as any).synonyms || [],
+          warnings: (ingredient as any).warnings || []
+        };
+
+        const { error } = await supabase
+          .from('extended_ingredients')
+          .upsert(record, { onConflict: 'ingredient_key' });
+
+        if (!error) syncedIngredients++;
+      }
+
+      // Sincronizar órganos y patologías a Supabase
+      for (const organ of data.organs) {
+        const record = {
+          organ: organ.organ,
+          aliases: organ.aliases,
+          pathologies: organ.pathologies,
+          categories: organ.categories,
+          ingredients: organ.ingredients,
+          description: organ.description
+        };
+
+        const { error } = await supabase
+          .from('organs_pathologies')
+          .upsert(record, { onConflict: 'organ' });
+
+        if (!error) syncedOrgans++;
+      }
+
+      // Guardar metadatos de sincronización
+      await supabase.from('sync_metadata').insert({
+        version: data.version,
+        last_sync: new Date(data.timestamp).toISOString(),
+        ingredients_count: syncedIngredients,
+        organs_count: syncedOrgans,
+        keywords_count: data.keywords.length
+      });
+
+      // Guardar también localmente
+      await this.saveLocal(data);
+
+      // Actualizar estadísticas
+      this.status.cloudIngredients = syncedIngredients;
+      this.status.cloudOrgans = syncedOrgans;
+      this.status.lastSync = data.timestamp;
+
+      logger.info(`[SyncService] Sincronizado: ${syncedIngredients} ingredientes, ${syncedOrgans} órganos`);
+
+      return {
+        success: true,
+        message: `Sincronizado: ${syncedIngredients} ingredientes, ${syncedOrgans} órganos`
+      };
+
+    } catch (error) {
+      this.status.error = (error as Error).message;
+      logger.error('[SyncService] Error en sincronización:', error);
+      return {
+        success: false,
+        message: `Error: ${(error as Error).message}`
+      };
+    } finally {
+      this.status.syncInProgress = false;
+      this.notifyListeners();
+    }
+  }
+
+  /**
+   * Restaurar datos desde Supabase
+   */
+  async restoreFromCloud(): Promise<{ success: boolean; message: string }> {
+    if (!this.status.isSupabaseConnected) {
+      return { success: false, message: 'Supabase no está configurado' };
+    }
+
+    const supabase = supabaseService.getClient();
+    if (!supabase) {
+      return { success: false, message: 'Cliente Supabase no disponible' };
+    }
+
+    try {
+      // Cargar ingredientes desde Supabase
+      const { data: ingredients, error: ingError } = await supabase
+        .from('extended_ingredients')
+        .select('*');
+
+      if (ingError) throw ingError;
+
+      // Cargar órganos desde Supabase
+      const { data: organs, error: orgError } = await supabase
+        .from('organs_pathologies')
+        .select('*');
+
+      if (orgError) throw orgError;
+
+      // Guardar localmente
+      const data: SyncData = {
+        version: '1.0.0',
+        timestamp: Date.now(),
+        ingredients: {},
+        organs: [],
+        keywords: this.extractKeywords(),
+        lastSync: Date.now()
+      };
+
+      // Convertir ingredientes
+      if (ingredients) {
+        for (const ing of ingredients) {
+          data.ingredients[ing.ingredient_key] = {
+            name: ing.name,
+            scientificName: ing.scientific_name,
+            category: ing.category,
+            origin: {
+              type: ing.origin_type,
+              description: ing.origin_description
+            },
+            description: ing.description,
+            mechanism: ing.mechanism,
+            indications: ing.indications || [],
+            contraindications: ing.contraindications || [],
+            interactions: ing.interactions || [],
+            dosage: ing.dosage,
+            sideEffects: ing.side_effects || [],
+            synonyms: ing.synonyms || [],
+            warnings: ing.warnings || []
+          };
+        }
+      }
+
+      // Convertir órganos
+      if (organs) {
+        data.organs = organs.map(o => ({
+          organ: o.organ,
+          aliases: o.aliases || [],
+          pathologies: o.pathologies || [],
+          categories: o.categories || [],
+          ingredients: o.ingredients || [],
+          description: o.description || ''
+        }));
+      }
+
+      await this.saveLocal(data);
+      this.status.lastSync = data.timestamp;
+
+      return {
+        success: true,
+        message: `Restaurado: ${ingredients?.length || 0} ingredientes, ${organs?.length || 0} órganos`
+      };
+
+    } catch (error) {
+      logger.error('[SyncService] Error al restaurar desde cloud:', error);
+      return {
+        success: false,
+        message: `Error: ${(error as Error).message}`
+      };
+    }
+  }
+
+  /**
    * Exportar datos a JSON para backup manual
    */
   async exportToJSON(): Promise<string> {
     const data = await this.generateSyncData();
     const json = JSON.stringify(data, null, 2);
-    
-    // Guardar también en IndexedDB
     await this.saveLocal(data);
-    
     return json;
   }
 
@@ -283,94 +522,15 @@ class SyncService {
     try {
       const data = JSON.parse(jsonString) as SyncData;
       
-      // Validar estructura
       if (!data.version || !data.ingredients || !data.organs) {
         throw new Error('Archivo de backup inválido');
       }
 
-      // Guardar localmente
       await this.saveLocal(data);
-      
       logger.info('[SyncService] Backup importado correctamente');
     } catch (error) {
       logger.error('[SyncService] Error al importar backup:', error);
       throw error;
-    }
-  }
-
-  /**
-   * Sincronizar con la nube (implementación básica - usar Firebase/Supabase en producción)
-   */
-  async syncToCloud(): Promise<void> {
-    if (!this.status.isOnline) {
-      logger.info('[SyncService] Sin conexión - sync postergado');
-      return;
-    }
-
-    if (this.status.syncInProgress) {
-      logger.info('[SyncService] Sincronización en progreso...');
-      return;
-    }
-
-    this.status.syncInProgress = true;
-    this.status.error = null;
-    this.notifyListeners();
-
-    try {
-      const data = await this.generateSyncData();
-      
-      // Guardar localmente primero
-      await this.saveLocal(data);
-      
-      // En producción, aquí subiríamos a Firebase/Supabase:
-      // await this.uploadToFirebase(data);
-      
-      // Por ahora, guardamos en localStorage como fallback
-      try {
-        localStorage.setItem('cloudSyncData', JSON.stringify(data));
-        localStorage.setItem('cloudSyncTimestamp', Date.now().toString());
-      } catch (e) {
-        // localStorage podría estar lleno, no es crítico
-        logger.warn('[SyncService] No se pudo guardar en localStorage:', e);
-      }
-
-      this.status.lastSync = data.timestamp;
-      logger.info('[SyncService] Sincronización completada');
-    } catch (error) {
-      this.status.error = (error as Error).message;
-      logger.error('[SyncService] Error en sincronización:', error);
-      throw error;
-    } finally {
-      this.status.syncInProgress = false;
-      this.notifyListeners();
-    }
-  }
-
-  /**
-   * Restaurar desde la nube
-   */
-  async restoreFromCloud(): Promise<SyncData | null> {
-    if (!this.status.isOnline) {
-      logger.info('[SyncService] Sin conexión - usando datos locales');
-      return this.loadLocal();
-    }
-
-    try {
-      // En producción, aquí descargaríamos de Firebase/Supabase:
-      // const cloudData = await this.downloadFromFirebase();
-      
-      // Por ahora, intentamos desde localStorage
-      const stored = localStorage.getItem('cloudSyncData');
-      if (stored) {
-        const data = JSON.parse(stored) as SyncData;
-        await this.saveLocal(data);
-        return data;
-      }
-
-      return this.loadLocal();
-    } catch (error) {
-      logger.error('[SyncService] Error al restaurar desde nube:', error);
-      return this.loadLocal();
     }
   }
 
@@ -382,7 +542,6 @@ class SyncService {
     let cloudSize = 0;
 
     try {
-      // Tamaño en IndexedDB
       const localData = await this.loadLocal();
       if (localData) {
         localSize = new Blob([JSON.stringify(localData)]).size;
@@ -392,18 +551,25 @@ class SyncService {
     }
 
     try {
-      // Tamaño en localStorage
-      const cloudData = localStorage.getItem('cloudSyncData');
-      if (cloudData) {
-        cloudSize = new Blob([cloudData]).size;
+      // Calcular tamaño en Supabase
+      const supabase = supabaseService.getClient();
+      if (supabase) {
+        const [ingResponse, orgResponse] = await Promise.all([
+          supabase.from('extended_ingredients').select('*'),
+          supabase.from('organs_pathologies').select('*')
+        ]);
+        
+        const ingSize = ingResponse.data ? new Blob([JSON.stringify(ingResponse.data)]).size : 0;
+        const orgSize = orgResponse.data ? new Blob([JSON.stringify(orgResponse.data)]).size : 0;
+        cloudSize = ingSize + orgSize;
       }
     } catch (e) {
       logger.warn('[SyncService] Error al calcular tamaño cloud:', e);
     }
 
     return {
-      local: Math.round(localSize / 1024), // KB
-      cloud: Math.round(cloudSize / 1024) // KB
+      local: Math.round(localSize / 1024),
+      cloud: Math.round(cloudSize / 1024)
     };
   }
 }

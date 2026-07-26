@@ -1,12 +1,13 @@
 /**
- * SyncPanel - Panel de sincronización y backup
+ * SyncPanel - Panel de sincronización y backup con Supabase
  * Permite gestionar la sincronización en la nube y backups
  */
 
 import React, { useState, useEffect } from 'react';
 import { 
   Cloud, CloudOff, RefreshCw, Download, Upload, 
-  CheckCircle, AlertCircle, Wifi, WifiOff, HardDrive, Database
+  CheckCircle, AlertCircle, Wifi, WifiOff, HardDrive, Database,
+  Server, ArrowUpToLine, ArrowDownToLine, Trash2
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { syncService, type SyncStatus } from '../../services/SyncService';
@@ -16,30 +17,57 @@ export function SyncPanel() {
   const [storageSize, setStorageSize] = useState<{ local: number; cloud: number }>({ local: 0, cloud: 0 });
   const [syncing, setSyncing] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error' | 'info'; text: string } | null>(null);
+  const [syncingToCloud, setSyncingToCloud] = useState(false);
+  const [syncingFromCloud, setSyncingFromCloud] = useState(false);
 
   useEffect(() => {
-    // Suscribirse a cambios de estado
     const unsubscribe = syncService.subscribe(setStatus);
-    
-    // Cargar tamaño de almacenamiento
     syncService.getStorageSize().then(setStorageSize);
 
     return () => unsubscribe();
   }, []);
 
-  const handleSync = async () => {
-    setSyncing(true);
+  const handleSyncToCloud = async () => {
+    setSyncingToCloud(true);
     setMessage(null);
     
     try {
-      await syncService.syncToCloud();
-      const size = await syncService.getStorageSize();
-      setStorageSize(size);
-      setMessage({ type: 'success', text: 'Sincronización completada correctamente' });
+      const result = await syncService.syncToCloud();
+      if (result.success) {
+        setMessage({ type: 'success', text: result.message });
+        const size = await syncService.getStorageSize();
+        setStorageSize(size);
+      } else {
+        setMessage({ type: 'error', text: result.message });
+      }
     } catch (error) {
       setMessage({ type: 'error', text: `Error: ${(error as Error).message}` });
     } finally {
-      setSyncing(false);
+      setSyncingToCloud(false);
+    }
+  };
+
+  const handleRestoreFromCloud = async () => {
+    if (!confirm('¿Restaurar desde la nube? Esto sobrescribirá los datos locales.')) {
+      return;
+    }
+    
+    setSyncingFromCloud(true);
+    setMessage(null);
+    
+    try {
+      const result = await syncService.restoreFromCloud();
+      if (result.success) {
+        setMessage({ type: 'success', text: result.message });
+        const size = await syncService.getStorageSize();
+        setStorageSize(size);
+      } else {
+        setMessage({ type: 'error', text: result.message });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: `Error: ${(error as Error).message}` });
+    } finally {
+      setSyncingFromCloud(false);
     }
   };
 
@@ -89,9 +117,11 @@ export function SyncPanel() {
           <div className="flex items-center gap-3">
             <div className={cn(
               "w-10 h-10 rounded-lg flex items-center justify-center",
-              status.isOnline ? "bg-emerald-100" : "bg-gray-100"
+              status.isSupabaseConnected ? "bg-violet-100" : status.isOnline ? "bg-emerald-100" : "bg-gray-100"
             )}>
-              {status.isOnline ? (
+              {status.isSupabaseConnected ? (
+                <Server className="w-5 h-5 text-violet-600" />
+              ) : status.isOnline ? (
                 <Cloud className="w-5 h-5 text-emerald-600" />
               ) : (
                 <CloudOff className="w-5 h-5 text-gray-400" />
@@ -99,36 +129,26 @@ export function SyncPanel() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Sincronización</h3>
-              <p className="text-sm text-gray-500 flex items-center gap-1">
-                {status.isOnline ? (
+              <p className="text-sm flex items-center gap-1.5">
+                {status.isSupabaseConnected ? (
                   <>
-                    <Wifi className="w-3 h-3 text-emerald-500" />
-                    Conectado
+                    <span className="w-2 h-2 bg-violet-500 rounded-full"></span>
+                    <span className="text-violet-600">Supabase conectado</span>
+                  </>
+                ) : status.isOnline ? (
+                  <>
+                    <span className="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                    <span className="text-emerald-600">Solo local</span>
                   </>
                 ) : (
                   <>
-                    <WifiOff className="w-3 h-3 text-gray-400" />
-                    Sin conexión
+                    <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                    <span className="text-gray-500">Sin conexión</span>
                   </>
                 )}
               </p>
             </div>
           </div>
-
-          {/* Botón de sincronizar */}
-          <button
-            onClick={handleSync}
-            disabled={syncing || !status.isOnline}
-            className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
-              syncing || !status.isOnline
-                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                : "bg-emerald-50 text-emerald-600 hover:bg-emerald-100"
-            )}
-          >
-            <RefreshCw className={cn("w-4 h-4", syncing && "animate-spin")} />
-            {syncing ? 'Sincronizando...' : 'Sincronizar'}
-          </button>
         </div>
       </div>
 
@@ -148,6 +168,86 @@ export function SyncPanel() {
           </div>
         )}
 
+        {/* Estado de Supabase */}
+        {status.isSupabaseConnected ? (
+          <>
+            {/* Estadísticas de sincronización */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-violet-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 text-violet-600 mb-1">
+                  <ArrowUpToLine className="w-4 h-4" />
+                  <span className="text-xs font-medium">En la nube</span>
+                </div>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-violet-500">Ingredientes:</span>
+                    <span className="font-semibold text-violet-700">{status.cloudIngredients}</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-violet-500">Órganos:</span>
+                    <span className="font-semibold text-violet-700">{status.cloudOrgans}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-emerald-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 text-emerald-600 mb-1">
+                  <ArrowDownToLine className="w-4 h-4" />
+                  <span className="text-xs font-medium">Local</span>
+                </div>
+                <div className="flex items-center justify-center h-8">
+                  <span className="text-lg font-semibold text-emerald-700">
+                    {storageSize.local > 0 ? `${storageSize.local} KB` : '-'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Botones de sincronización */}
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={handleSyncToCloud}
+                disabled={syncingToCloud || !status.isOnline}
+                className={cn(
+                  "flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all",
+                  syncingToCloud || !status.isOnline
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    : "bg-violet-600 text-white hover:bg-violet-700"
+                )}
+              >
+                <ArrowUpToLine className={cn("w-4 h-4", syncingToCloud && "animate-spin")} />
+                {syncingToCloud ? 'Subiendo...' : 'Subir a la nube'}
+              </button>
+              <button
+                onClick={handleRestoreFromCloud}
+                disabled={syncingFromCloud || !status.isOnline}
+                className={cn(
+                  "flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all",
+                  syncingFromCloud || !status.isOnline
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                    : "bg-emerald-600 text-white hover:bg-emerald-700"
+                )}
+              >
+                <ArrowDownToLine className={cn("w-4 h-4", syncingFromCloud && "animate-spin")} />
+                {syncingFromCloud ? 'Descargando...' : 'Descargar desde nube'}
+              </button>
+            </div>
+          </>
+        ) : (
+          /* Info cuando no hay Supabase */
+          <div className="bg-amber-50 rounded-lg p-4">
+            <div className="flex items-center gap-2 text-amber-700 mb-2">
+              <AlertCircle className="w-5 h-5" />
+              <span className="font-medium">Supabase no configurado</span>
+            </div>
+            <p className="text-sm text-amber-600 mb-3">
+              Conecta Supabase en Configuración para sincronizar tu base de conocimiento en la nube.
+            </p>
+            <p className="text-xs text-amber-500">
+              Los datos locales están disponibles para uso offline.
+            </p>
+          </div>
+        )}
+
         {/* Última sincronización */}
         <div className="flex items-center justify-between py-2 border-b border-gray-100">
           <span className="text-sm text-gray-600">Última sincronización</span>
@@ -156,60 +256,31 @@ export function SyncPanel() {
           </span>
         </div>
 
-        {/* Almacenamiento */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-gray-50 rounded-lg p-3">
-            <div className="flex items-center gap-2 text-gray-500 mb-1">
-              <HardDrive className="w-4 h-4" />
-              <span className="text-xs">Local</span>
-            </div>
-            <span className="text-lg font-semibold text-gray-900">
-              {storageSize.local > 0 ? `${storageSize.local} KB` : '-'}
-            </span>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-3">
-            <div className="flex items-center gap-2 text-gray-500 mb-1">
-              <Database className="w-4 h-4" />
-              <span className="text-xs">Nube</span>
-            </div>
-            <span className="text-lg font-semibold text-gray-900">
-              {storageSize.cloud > 0 ? `${storageSize.cloud} KB` : '-'}
-            </span>
-          </div>
-        </div>
-
         {/* Estado de sincronización */}
-        {status.syncInProgress && (
-          <div className="flex items-center gap-2 text-sm text-blue-600">
+        {(syncingToCloud || syncingFromCloud) && (
+          <div className="flex items-center gap-2 text-sm text-blue-600 bg-blue-50 p-3 rounded-lg">
             <RefreshCw className="w-4 h-4 animate-spin" />
             Sincronizando datos...
           </div>
         )}
 
-        {status.error && (
-          <div className="flex items-center gap-2 text-sm text-red-600">
-            <AlertCircle className="w-4 h-4" />
-            {status.error}
-          </div>
-        )}
-
         {/* Acciones de backup */}
         <div className="pt-2 border-t border-gray-100">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">Respaldos</h4>
+          <h4 className="text-sm font-medium text-gray-700 mb-3">Respaldos locales</h4>
           <div className="flex gap-2">
             <button
               onClick={handleDownloadBackup}
               className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-700 transition-colors"
             >
               <Download className="w-4 h-4" />
-              Descargar Backup
+              Exportar JSON
             </button>
             <button
               onClick={handleUploadBackup}
               className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-700 transition-colors"
             >
               <Upload className="w-4 h-4" />
-              Restaurar Backup
+              Importar JSON
             </button>
           </div>
         </div>
