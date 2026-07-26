@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { TermExpander } from '../ui/TermExpander';
+import { IngredientPopover, IngredientText } from '../ui/IngredientPopover';
 import type { AnalyzedProduct } from '../../types';
 
 interface ProductDetailModalProps {
@@ -132,7 +133,7 @@ export function ProductDetailModal({
           {principios && (
             <div className="bg-gray-50 rounded-xl p-4">
               <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">Principios Activos</h3>
-              <p className="text-sm text-gray-700">{principios}</p>
+              <IngredientText text={principios} className="text-sm text-gray-700 leading-relaxed" />
             </div>
           )}
           
