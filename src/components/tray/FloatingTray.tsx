@@ -1,11 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTray } from '../../context/TrayContext';
-import { Sparkles, X } from 'lucide-react';
+import { Sparkles, X, AlertTriangle } from 'lucide-react';
 import { PrescriptionAnalysisModal } from '../../modules/product/PrescriptionAnalysisModal';
+import { synergyEngineV2 } from '../../core/knowledge-base';
+import { findIngredientByAny } from '../../core/ingredient-database/SynonymsService';
 
 export const FloatingTray: React.FC = () => {
   const { tray, clearTray } = useTray();
   const [isAnalysisModalOpen, setIsAnalysisModalOpen] = useState(false);
+
+  // Verificar antagonismos en los productos seleccionados
+  const antagonisms = useMemo(() => {
+    if (tray.length < 2) return [];
+    
+    const ids: string[] = [];
+    tray.forEach(product => {
+      (product.principios_activos || []).forEach(principio => {
+        const found = findIngredientByAny(principio);
+        if (found?.id) {
+          ids.push(found.id);
+        }
+      });
+    });
+    
+    if (ids.length < 2) return [];
+    return synergyEngineV2.checkAntagonisms([...new Set(ids)]);
+  }, [tray]);
+
+  const hasHighSeverity = antagonisms.some(a => a.severidad === 'alta');
+  const hasWarnings = antagonisms.length > 0;
 
   if (tray.length === 0) return null;
 
@@ -13,7 +36,23 @@ export const FloatingTray: React.FC = () => {
     <>
       <div className="fixed bottom-24 sm:bottom-24 left-4 right-4 sm:left-1/2 sm:-translate-x-1/2 bg-card rounded-2xl sm:rounded-full shadow-2xl border border-border p-2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 z-40 animate-in slide-in-from-bottom-10">
         <div className="flex items-center justify-between w-full sm:w-auto px-2 sm:px-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            {/* Indicador de alertas */}
+            {hasWarnings && (
+              <div 
+                className={`flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-bold cursor-pointer hover:scale-105 transition-transform ${
+                  hasHighSeverity 
+                    ? 'bg-red-500/20 text-red-400' 
+                    : 'bg-amber-500/20 text-amber-400'
+                }`}
+                onClick={() => setIsAnalysisModalOpen(true)}
+                title={`${antagonisms.length} alerta(s) detectada(s)`}
+              >
+                <AlertTriangle className="w-3.5 h-3.5" />
+                <span>{antagonisms.length}</span>
+              </div>
+            )}
+            
             <div className="flex -space-x-2">
               {tray.slice(0, 4).map(p => (
                 <div key={p.sku} className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary border-2 border-brand-surface flex items-center justify-center text-[9px] sm:text-[10px] font-bold text-primary" title={p.nombre_comercial}>
@@ -42,10 +81,16 @@ export const FloatingTray: React.FC = () => {
           <button
             onClick={() => setIsAnalysisModalOpen(true)}
             disabled={tray.length < 2}
-            className="flex-1 sm:flex-none bg-primary text-foreground px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold hover:bg-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className={`flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 ${
+              hasHighSeverity 
+                ? 'bg-red-500 hover:bg-red-600 text-white' 
+                : hasWarnings 
+                  ? 'bg-amber-500 hover:bg-amber-600 text-white'
+                  : 'bg-primary text-foreground hover:bg-primary/90'
+            }`}
           >
             <Sparkles className="w-3.5 h-3.5 sm:w-4 h-4" />
-            {tray.length < 2 ? 'Selecciona otro' : 'Analizar Interacciones'}
+            {tray.length < 2 ? 'Selecciona otro' : hasWarnings ? `Analizar (${antagonisms.length} alerta)` : 'Analizar Interacciones'}
           </button>
           <button
             onClick={clearTray}
