@@ -711,6 +711,10 @@ export const INGREDIENT_DATABASE: IngredientDatabase = {
 
 // Función para buscar ingrediente por nombre (busca en base local y extendida)
 export function findIngredient(query: string): IngredientInfo | null {
+  if (!query || query.trim() === '') {
+    return null;
+  }
+
   const normalizedQuery = query.toLowerCase().trim();
   
   // Primero buscar en base local (por clave exacta)
@@ -737,6 +741,12 @@ export function findIngredient(query: string): IngredientInfo | null {
     if (nameWords.some(word => normalizedQuery.includes(word) && word.length > 3)) {
       return ingredient;
     }
+    // Verificar nombre científico
+    if (ingredient.scientificName && 
+        (ingredient.scientificName.toLowerCase().includes(normalizedQuery) ||
+         normalizedQuery.includes(ingredient.scientificName.toLowerCase()))) {
+      return ingredient;
+    }
   }
   
   // Buscar en base extendida
@@ -745,6 +755,8 @@ export function findIngredient(query: string): IngredientInfo | null {
     return extendedResult;
   }
   
+  // NO devolver null - el ingrediente simplemente no existe en nuestra KB
+  // NO asignar "Phosphorus" ni ningún otro valor por defecto
   return null;
 }
 
