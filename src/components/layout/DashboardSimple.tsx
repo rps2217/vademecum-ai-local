@@ -15,7 +15,7 @@ import { logger } from '../../services/LoggerService';
 import { ProductDetailModal } from '../product/ProductDetailModal';
 import { SearchView, CatalogView, SynergyView, SettingsView } from './dashboard/views';
 import { DashboardHeader, DashboardSidebar } from './dashboard';
-import { useAppStore, type AnalyzedProduct } from '../../store';
+import { useAppStore, type AnalyzedProduct, loadPreferences } from '../../store';
 import { analyzeProductWithKb } from '../../hooks/useAnalysis';
 import type { Product } from '../../types';
 
@@ -46,6 +46,11 @@ export function DashboardSimple() {
 
   // Flag para evitar carga doble
   const loadedRef = useRef(false);
+
+  // Cargar preferencias desde IndexedDB
+  useEffect(() => {
+    loadPreferences();
+  }, []);
 
   // Sincronizar KB al iniciar
   useEffect(() => {

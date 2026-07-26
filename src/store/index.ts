@@ -2,7 +2,7 @@
  * Store - Exportaciones
  */
 
-export { useAppStore } from './appStore';
+export { useAppStore, loadPreferences } from './appStore';
 export type { 
   AppState, 
   ViewType, 

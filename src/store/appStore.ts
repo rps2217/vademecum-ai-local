@@ -1,10 +1,11 @@
 /**
  * AppStore - Estado Global Centralizado con Zustand
- * Unifica el estado de productos, sincronización y UI
- * SIN persistencia - los productos se cargan desde IndexedDB
+ * Los productos se cargan desde IndexedDB/SearchService
+ * Las preferencias de UI se persisten en IndexedDB
  */
 
 import { create } from 'zustand';
+import Dexie from 'dexie';
 import type { Product } from '../types';
 
 // Tipos
@@ -120,91 +121,125 @@ function filterProducts(
   return filtered;
 }
 
-// Store SIN persistencia (para evitar QuotaExceededError)
-// Los productos se cargan desde IndexedDB/SearchService
-export const useAppStore = create<AppState>()(
-  (set, get) => ({
-    // Estado inicial - UI
-    view: 'buscar',
-    searchQuery: '',
-    selectedCategory: 'todas',
-    selectedProduct: null,
-    isLoading: false,
-    loadingMessage: '',
-    
-    // Estado inicial - Products
-    products: [],
-    categories: [],
-    
-    // Estado inicial - Sync
-    syncStatus: { status: 'idle', pendingChanges: 0 },
-    kbStats: { total: 0, families: 0, types: 0 },
-    supabaseConnected: false,
-    
-    // Estado inicial - Scraping
-    scrapeStates: {},
-    
-    // Estado inicial - KB
-    kb: {},
-    ingredientCount: 0,
-    
-    // === ACCIONES ===
-    
-    // UI Actions
-    setView: (view) => set({ view }),
-    setSearchQuery: (searchQuery) => set({ searchQuery }),
-    setSelectedCategory: (selectedCategory) => set({ selectedCategory }),
-    setSelectedProduct: (selectedProduct) => set({ selectedProduct }),
-    setLoading: (isLoading, loadingMessage = '') => set({ isLoading, loadingMessage }),
-    
-    // Products Actions
-    setProducts: (products) => set({ products }),
-    
-    updateProduct: (sku, updates) => set((state) => ({
-      products: state.products.map(p => 
-        p.sku === sku ? { ...p, ...updates } : p
-      )
-    })),
-    
-    addProduct: (product) => set((state) => ({
-      products: [...state.products, product]
-    })),
-    
-    removeProduct: (sku) => set((state) => ({
-      products: state.products.filter(p => p.sku !== sku)
-    })),
-    
-    setCategories: (categories) => set({ categories }),
-    
-    // Sync Actions
-    setSyncStatus: (syncStatus) => set({ syncStatus }),
-    setKbStats: (kbStats) => set({ kbStats }),
-    setSupabaseConnected: (supabaseConnected) => set({ supabaseConnected }),
-    
-    // Scraping Actions
-    setScrapeState: (sku, state) => set((prev) => ({
-      scrapeStates: { ...prev.scrapeStates, [sku]: state }
-    })),
-    resetScrapeStates: () => set({ scrapeStates: {} }),
-    
-    // KB Actions
-    setKb: (kb, ingredientCount) => set({ kb, ingredientCount }),
-    
-    // Computed getters
-    getFilteredProducts: () => {
-      const { products, searchQuery, selectedCategory } = get();
-      return filterProducts(products, searchQuery, selectedCategory);
-    },
-    
-    getStats: () => {
-      const { products } = get();
-      return {
-        total: products.length,
-        kbMatch: products.filter(p => p.cobertura_kb > 0).length,
-        sinergias: products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
-      };
-    }
-  })
-);
+// IndexedDB para preferencias de UI
+class PreferencesDB extends Dexie {
+  preferences!: { key: string; value: any };
+  
+  constructor() {
+    super('VademecumPreferences');
+    this.version(1).stores({ preferences: 'key' });
+  }
+}
+
+const prefDB = new PreferencesDB();
+
+// Helper para guardar preferencias
+async function savePreference(key: string, value: any) {
+  try {
+    await prefDB.preferences.put({ key, value });
+  } catch (e) {
+    console.warn('[Preferences] Error saving:', e);
+  }
+}
+
+// Helper para cargar preferencias
+async function loadPreference<T>(key: string, defaultValue: T): Promise<T> {
+  try {
+    const row = await prefDB.preferences.get(key);
+    return row?.value ?? defaultValue;
+  } catch {
+    return defaultValue;
+  }
+}
+
+// Crear store
+export const useAppStore = create<AppState>()((set, get) => ({
+  // Estado inicial
+  view: 'buscar',
+  searchQuery: '',
+  selectedCategory: 'todas',
+  selectedProduct: null,
+  isLoading: false,
+  loadingMessage: '',
+  products: [],
+  categories: [],
+  syncStatus: { status: 'idle', pendingChanges: 0 },
+  kbStats: { total: 0, families: 0, types: 0 },
+  supabaseConnected: false,
+  scrapeStates: {},
+  kb: {},
+  ingredientCount: 0,
+  
+  // UI Actions
+  setView: (view) => {
+    set({ view });
+    savePreference('view', view);
+  },
+  setSearchQuery: (searchQuery) => set({ searchQuery }),
+  setSelectedCategory: (selectedCategory) => {
+    set({ selectedCategory });
+    savePreference('selectedCategory', selectedCategory);
+  },
+  setSelectedProduct: (selectedProduct) => set({ selectedProduct }),
+  setLoading: (isLoading, loadingMessage = '') => set({ isLoading, loadingMessage }),
+  
+  // Products Actions
+  setProducts: (products) => set({ products }),
+  updateProduct: (sku, updates) => set((state) => ({
+    products: state.products.map(p => p.sku === sku ? { ...p, ...updates } : p)
+  })),
+  addProduct: (product) => set((state) => ({ products: [...state.products, product] })),
+  removeProduct: (sku) => set((state) => ({
+    products: state.products.filter(p => p.sku !== sku)
+  })),
+  setCategories: (categories) => set({ categories }),
+  
+  // Sync Actions
+  setSyncStatus: (syncStatus) => set({ syncStatus }),
+  setKbStats: (kbStats) => set({ kbStats }),
+  setSupabaseConnected: (supabaseConnected) => set({ supabaseConnected }),
+  
+  // Scraping Actions
+  setScrapeState: (sku, state) => set((prev) => {
+    const newStates = { ...prev.scrapeStates, [sku]: state };
+    savePreference('scrapeStates', newStates);
+    return { scrapeStates: newStates };
+  }),
+  resetScrapeStates: () => {
+    set({ scrapeStates: {} });
+    savePreference('scrapeStates', {});
+  },
+  
+  // KB Actions
+  setKb: (kb, ingredientCount) => set({ kb, ingredientCount }),
+  
+  // Computed getters
+  getFilteredProducts: () => {
+    const { products, searchQuery, selectedCategory } = get();
+    return filterProducts(products, searchQuery, selectedCategory);
+  },
+  
+  getStats: () => {
+    const { products } = get();
+    return {
+      total: products.length,
+      kbMatch: products.filter(p => p.cobertura_kb > 0).length,
+      sinergias: products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
+    };
+  }
+}));
+
+// Cargar preferencias al inicio
+export async function loadPreferences() {
+  const [selectedCategory, scrapeStates] = await Promise.all([
+    loadPreference('selectedCategory', 'todas'),
+    loadPreference('scrapeStates', {} as ScrapingState)
+  ]);
+  
+  useAppStore.setState({ selectedCategory, scrapeStates });
+}
+
+// Exportar para uso directo
+export { prefDB };
 
 export default useAppStore;
