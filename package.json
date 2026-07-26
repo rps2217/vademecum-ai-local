@@ -51,7 +51,7 @@
     "tailwind-merge": "^3.5.0",
     "turndown": "^7.2.2",
     "vite": "^6.2.0",
-    "zustand": "^5.0.12"
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@firebase/eslint-plugin-security-rules": "^0.0.1",

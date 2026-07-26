@@ -191,11 +191,27 @@ export default defineConfig({
 
 | Métrica | Inicial | Actual | Objetivo |
 |---------|---------|--------|----------|
-| Líneas DashboardSimple | ~1567 | **300** | <300 ✅ |
+| Líneas DashboardSimple | ~1567 | **307** | <300 |
 | Servicios duplicados | 5 | 4 | 1-2 |
 | Bundle size | 728KB | ~400KB | <400KB ✅ |
 | Hooks personalizados | 0 | 4 | >3 |
-| Test coverage | ~10% | ~10% | >60% |
+| Test coverage | ~10% | **16 tests** | >60% |
+| Estado global | No | **Zustand** | - |
+
+### Arquitectura de Estado con Zustand
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     AppStore (Zustand)                      │
+├─────────────────────────────────────────────────────────────┤
+│  UI State        │ products, view, searchQuery, categories  │
+│  Sync State      │ syncStatus, kbStats, supabaseConnected  │
+│  Scraping State  │ scrapeStates                            │
+│  KB State        │ kb, ingredientCount                     │
+├─────────────────────────────────────────────────────────────┤
+│  Persistencia    │ localStorage (productos, categorías)    │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -270,6 +286,7 @@ El sistema implementa sincronización delta para optimizar el rendimiento:
   - useAnalysis hook creado
 
 ### 📋 Pendiente
-- [ ] Simplificar flujo de datos con Zustand
+- [x] Simplificar flujo de datos con Zustand
 - [ ] Unificar servicios de conocimiento
 - [ ] Tests de integración para sincronización delta
+- [ ] Tests del resto de módulos
