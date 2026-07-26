@@ -19,7 +19,7 @@ export interface AnalyzedProduct extends Product {
   ingredientes_encontrados: string[];
   cobertura_kb: number;
   sinergias_detectadas: string[];
-  antagonismos_detectados: string[];
+  antagonismos_detectados?: string[];
   categorias_inferidas?: string[];
   categoryLabels?: string[];
 }

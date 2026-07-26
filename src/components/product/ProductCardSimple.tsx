@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Pill, Loader2, Check, X, ChevronRight } from 'lucide-react';
+import { Pill, Loader2, Check, X, ChevronRight, Clock } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import type { AnalyzedProduct } from '../../types';
@@ -32,6 +32,7 @@ export const ProductCardSimple: React.FC<ProductCardSimpleProps> = React.memo(({
   };
 
   const principios = (product.principios_activos || []).slice(0, 3).join(', ');
+  const posologia = product.posologia;
 
   const getScrapeIcon = () => {
     switch (scrapeState) {
@@ -71,6 +72,14 @@ export const ProductCardSimple: React.FC<ProductCardSimpleProps> = React.memo(({
             
             <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors shrink-0" />
           </div>
+
+          {/* Posología (si está disponible) */}
+          {posologia && (
+            <div className="flex items-center gap-1.5 mt-2 text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">
+              <Clock className="w-3 h-3" />
+              <span className="line-clamp-1">{posologia}</span>
+            </div>
+          )}
 
           {/* Metadatos */}
           <div className="flex items-center gap-2 mt-2 flex-wrap">

@@ -17,6 +17,7 @@ export interface Product {
   presentacion?: string;
   imagen_url?: string;
   tipo_producto?: string;
+  posologia?: string;
   contraindicaciones?: string[];
   indicaciones?: string[];
   efectos_secundarios?: string[];
@@ -29,6 +30,7 @@ export interface AnalyzedProduct extends Product {
   ingredientes_encontrados: string[];
   cobertura_kb: number;
   sinergias_detectadas: string[];
+  antagonismos_detectados?: string[];
   kbAnalysis?: ProductAnalysis | null;
   categorias_inferidas?: string[];
   categoryLabels?: string[];
