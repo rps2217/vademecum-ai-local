@@ -1,0 +1,494 @@
+{
+  "metadata": {
+    "nombre": "Red de Sinergias",
+    "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
+    "version": "1.0.0",
+    "ultimaActualizacion": "2026-01-01",
+    "total": 80,
+    "fuente": "Vademecum AI Knowledge Base"
+  },
+  "sinergias": [
+    {
+      "id": "sin_valeriana_pasiflora",
+      "ingredienteA": "valeriana",
+      "ingredienteB": "pasiflora",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion clasica para insomnio y ansiedad. Potencian mutuamente sus efeitos sedantes.",
+      "beneficios": [
+        "Mayor eficacia sedante que cada uno por separado",
+        "Reduce latencia de inicio del sueno",
+        "Mejora calidad del sueno profundo",
+        "Efecto ansiolitico potenciado"
+      ],
+      "precauciones": [
+        "Posible somnolencia matutina",
+        "No combinar con farmacos sedantes sin supervision"
+      ],
+      "mecanismo": "Ambas modulan el receptor GABA-A, creando un efecto sinérgico por diferentes sitios de union.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_melisa_pasiflora",
+      "ingredienteA": "melisa",
+      "ingredienteB": "pasiflora",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia para ansiedad y estres con componente digestivo.",
+      "beneficios": [
+        "Efecto calmante dual (nervioso + digestivo)",
+        "Ideal para ansiedad con manifestaciones gastrointestinales",
+        "Reduce sintomas somaticos del estres"
+      ],
+      "precauciones": [
+        "Evitar en caso de hipotiroidismo"
+      ],
+      "mecanismo": "Melisa aporta efecto ansiolitico especifico para sintomatologia digestiva, mientras pasiflora actua centralmente.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso", "digestivo"]
+    },
+    {
+      "id": "sin_valeriana_melisa",
+      "ingredienteA": "valeriana",
+      "ingredienteB": "melisa",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion muy popular para insomnio leve y gangguan tidur pada anak.",
+      "beneficios": [
+        "Mejora calidad del sueno",
+        "Reduce tiempo para dormirse",
+        "Segura para uso a largo plazo"
+      ],
+      "precauciones": [
+        "Somnolencia residual posible"
+      ],
+      "mecanismo": "Sinergia en modulacion GABAergica con componentes adicionales de melisa (terpenos) que mejoran la relajacion.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_hipperico_ashwagandha",
+      "ingredienteA": "hiperico",
+      "ingredienteB": "ashwagandha",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion poderosa para depresion moderada y estres cronico.",
+      "beneficios": [
+        "Mayor eficacia antidepresiva",
+        "Efecto adaptogeno potenciado",
+        "Mejora energia y bienestar general"
+      ],
+      "precauciones": [
+        "NO combinar con antidepresivos ISRS",
+        "Monitorizar interacciones medicamentosas",
+        "No usar durante embarazo"
+      ],
+      "mecanismo": "Ambos actuan sobre el eje HPA y neurotransmisores, con mecanismos complementarios para modular el estres.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso", "endocrino"]
+    },
+    {
+      "id": "sin_ginkgo_bacopa",
+      "ingredienteA": "ginkgo",
+      "ingredienteB": "bacopa",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinacion synergica para memoria y funcion cognitiva.",
+      "beneficios": [
+        "Mejora memoria a corto y largo plazo",
+        "Aumenta flujo sanguineo cerebral",
+        "Proteccion neurocognitiva"
+      ],
+      "precauciones": [
+        "Sangrados - consultar si anticoagulantes",
+        "Cirugia: suspender 2 semanas antes"
+      ],
+      "mecanismo": "Ginkgo mejora circulacion cerebral mientras bacopa modula receptores colinergicos y plasticidad sinaptica.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_curcuma_pimienta",
+      "ingredienteA": "curcuma",
+      "ingredienteB": "pimienta",
+      "tipo": "bioactivador",
+      "nivelEvidencia": "A",
+      "descripcion": "La piperina de la pimienta negra aumenta 2000% la absorcion de curcumina.",
+      "beneficios": [
+        "Biodisponibilidad de curcumina multiplicada",
+        "Mejora efectividad antiinflamatoria",
+        "Reduce dosis necesaria"
+      ],
+      "precauciones": [
+        "Piperina puede interactuar con farmacos",
+        "Dosis altas de piperina pueden irritar"
+      ],
+      "mecanismo": "Piperina inhibe glucoronidacion hepatica y intestinal de curcumina, aumentando su vida media.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["musculoesqueletico", "inmune"]
+    },
+    {
+      "id": "sin_curcuma_omega3",
+      "ingredienteA": "curcuma",
+      "ingredienteB": "omega_3",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia antiinflamatoria potente para articulaciones.",
+      "beneficios": [
+        "Efecto antiinflamatorio potenciado",
+        "Mejora movilidad articular",
+        "Proteccion cardiovascular adicional"
+      ],
+      "precauciones": [
+        "Anticoagulantes - consultar",
+        "Cirugia: suspender antes"
+      ],
+      "mecanismo": "Ambos actuan sobre vias inflamatorias complementarias (NF-kB y eicosanoides) con efectos sinergicos.",
+      "categorias": ["fitoterapia", "vitaminas"],
+      "sistemas": ["musculoesqueletico", "cardiovascular"]
+    },
+    {
+      "id": "sin_equinacea_propoleo",
+      "ingredienteA": "equinacea",
+      "ingredienteB": "propoleo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Duo imunomodulador clasico para prevencion y tratamiento de resfriados.",
+      "beneficios": [
+        "Prevencion de infecciones respiratorias",
+        "Reducir duracion de resfriados",
+        "Estimulacion inmune synergica"
+      ],
+      "precauciones": [
+        "Alergia a productos apicolas",
+        "Enfermedades autoinmunes consultar",
+        "Asma consultar"
+      ],
+      "mecanismo": "Equinacea estimula inmunidad innata mientras propoleo tiene efectos antisepticos y immunomoduladores.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["inmune"]
+    },
+    {
+      "id": "sin_vitc_zinc",
+      "ingredienteA": "vitamina_c",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia clasica para sistema inmune y prevencion de resfriados.",
+      "beneficios": [
+        "Reduccion de duracion de resfriados",
+        "Fortalecimiento de barreras mucosas",
+        "Apoyo a funcion inmunitaria"
+      ],
+      "precauciones": [
+        "Dosis altas de zinc pueden causar nausea",
+        "Tomar con comida para minimizar irritacion gastrica"
+      ],
+      "mecanismo": "Vitamina C protege celulas inmune del estres oxidativo mientras zinc es cofactor esencial para funcion inmune.",
+      "categorias": ["vitaminas", "minerales"],
+      "sistemas": ["inmune"]
+    },
+    {
+      "id": "sin_vitd_magnesio",
+      "ingredienteA": "vitamina_d3",
+      "ingredienteB": "magnesio",
+      "tipo": "cofactor",
+      "nivelEvidencia": "A",
+      "descripcion": "El magnesio es cofactor esencial para la activacion de vitamina D.",
+      "beneficios": [
+        "Activacion optima de vitamina D",
+        "Mejora metabolismo oseo",
+        "Apoyo neuromuscular"
+      ],
+      "precauciones": [
+        "Magnesio puede_relajar demasiado",
+        "Ajustar dosis segun tolerancia"
+      ],
+      "mecanismo": "El magnesio es requerido como cofactor en las enzimas que hidroxilan la vitamina D en higado y rinon.",
+      "categorias": ["vitaminas", "minerales"],
+      "sistemas": ["musculoesqueletico", "inmune"]
+    },
+    {
+      "id": "sin_vitd_vitk2",
+      "ingredienteA": "vitamina_d3",
+      "ingredienteB": "vitamina_k",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Vitamina K2 dirige el calcio activ ado por D3 hacia huesos y lejos de arterias.",
+      "beneficios": [
+        "Salud osea optima",
+        "Prevencion de calcificacion arterial",
+        "Proteccion cardiovascular"
+      ],
+      "precauciones": [
+        "Anticoagulantes (warfarina) - consultar medico",
+        "Dosis adecuada segun peso"
+      ],
+      "mecanismo": "K2 activa osteocalcina (fija calcio en huesos) y matriz Gla-protein (elimina calcio de arterias).",
+      "categorias": ["vitaminas", "vitaminas"],
+      "sistemas": ["musculoesqueletico", "cardiovascular"]
+    },
+    {
+      "id": "sin_magnesio_vitb6",
+      "ingredienteA": "magnesio",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "cofactor",
+      "nivelEvidencia": "A",
+      "descripcion": "Vitamina B6 mejora la absorcion celular de magnesio.",
+      "beneficios": [
+        "Mayor biodisponibilidad de magnesio",
+        "Mejora funcion neurologica",
+        "Apoyo en sintesis de neurotransmisores"
+      ],
+      "precauciones": [
+        "Dosis altas de B6 pueden causar neuropatia",
+        "No exceder 100mg B6/dia"
+      ],
+      "mecanismo": "B6 facilita el transporte de magnesio al interior celular, aumentando su utilizacion.",
+      "categorias": ["minerales", "vitaminas"],
+      "sistemas": ["nervioso", "musculoesqueletico"]
+    },
+    {
+      "id": "sin_hierro_vitc",
+      "ingredienteA": "hierro",
+      "ingredienteB": "vitamina_c",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Vitamina C potencia la absorcion de hierro no-hem (vegetariano/vegano).",
+      "beneficios": [
+        "Aumenta absorcion de hierro hasta 3-6x",
+        "Reduce nauseas associadas a suplementacion",
+        "Mejora tratamiento de anemia"
+      ],
+      "precauciones": [
+        "Dosis altas de vit C pueden causar diarrea",
+        "Absorcion optimizada en ayunas"
+      ],
+      "mecanismo": "Vitamina C reduce el hierro ferrico a ferroso (mas absorbible) y previene formacion de compuestos no absorbibles.",
+      "categorias": ["minerales", "vitaminas"],
+      "sistemas": ["cardiovascular", "metabolico"]
+    },
+    {
+      "id": "sin_coq10_estatinas",
+      "ingredienteA": "coq10",
+      "ingredienteB": "simvastatina",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "CoQ10 reemplaza lo que las estatinas reducen (produccion endogena de CoQ10).",
+      "beneficios": [
+        "Reduce mialgia por estatinas",
+        "Protege musculo cardiaco",
+        "Mantiene niveles energeticos"
+      ],
+      "precauciones": [
+        "Dosis segun intensidad estatina",
+        "Consultar con cardiologo"
+      ],
+      "mecanismo": "Las estatinas inhiben HMG-CoA reductase, que juga en produccion de CoQ10. Supplementacion lo compensa.",
+      "categorias": ["vitaminas", "fitoterapia"],
+      "sistemas": ["cardiovascular", "metabolico"]
+    },
+    {
+      "id": "sin_omega3_vitd",
+      "ingredienteA": "omega_3",
+      "ingredienteB": "vitamina_d3",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia para salud cardiovascular y osea.",
+      "beneficios": [
+        "Mejora perfil lipidico",
+        "Antiinflamatorio sistemico",
+        "Salud osea potenciada"
+      ],
+      "precauciones": [
+        "Anticoagulantes consultar",
+        "Ajustar segun dieta omega-3"
+      ],
+      "mecanismo": "Omega-3 y D3 actuan sinrgicamente sobre vias antiinflamatorias y metabolismo oseo.",
+      "categorias": ["vitaminas", "vitaminas"],
+      "sistemas": ["cardiovascular", "musculoesqueletico"]
+    },
+    {
+      "id": "sin_triptofano_5htp",
+      "ingredienteA": "triptofano",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "B6 es cofactor en conversion de triptofano a serotonina.",
+      "beneficios": [
+        "Mejora sintesis de serotonina",
+        "Apoyo en transtornos del animo",
+        "Mejora calidad del sueno"
+      ],
+      "precauciones": [
+        "NO combinar con antidepresivos",
+        "Monitorizar si ansiedad"
+      ],
+      "mecanismo": "La conversion de triptofano a 5-HTP (primera etapa) requiere B6 como cofactor.",
+      "categorias": ["vitaminas", "vitaminas"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_teanina_gaba",
+      "ingredienteA": "teanina",
+      "ingredienteB": "gaba",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Teanina potencia efectos calmantes del GABA.",
+      "beneficios": [
+        "Relajacion profunda sin somnolencia",
+        "Mejora atencion post-relajacion",
+        "Reduce ansiedad sin farmacos"
+      ],
+      "precauciones": [
+        "Evitar conduccion si somnolencia",
+        "No combinar con farmacos sedantes"
+      ],
+      "mecanismo": "Teanina estimula ondas alfa cerebrales y modula receptores GABA de forma indirecta.",
+      "categorias": ["vitaminas", "vitaminas"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_reishi_ashwagandha",
+      "ingredienteA": "reishi",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo adaptogeno poderoso para estresse cronico e imunidad.",
+      "beneficios": [
+        "Adaptacion optima al estres",
+        "Fortalecimiento imunologico",
+        "Apoyo energetico sostenible"
+      ],
+      "precauciones": [
+        "Inmunosupresores consultar",
+        "Presion arterial consultar"
+      ],
+      "mecanismo": "Ambos modulan el eje HPA y sistema inmune, con mecanismos complementarios.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso", "inmune"]
+    },
+    {
+      "id": "sin_lavanda_aceite_aceite_esencial",
+      "ingredienteA": "lavanda_aceite",
+      "ingredienteB": "valeriana",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia aromaterapeutica para relajacion y sueno.",
+      "beneficios": [
+        "Efecto ansiolitico potenciado",
+        "Mejor calidad de sueno",
+        "Reduccion de latencia"
+      ],
+      "precauciones": [
+        "Posible sensibilidad de contacto",
+        "Diluir correctamente"
+      ],
+      "mecanismo": "Ambos modulan receptores GABA con perfiles de activacion complementarios.",
+      "categorias": ["aceite_esencial", "fitoterapia"],
+      "sistemas": ["nervioso"]
+    },
+    {
+      "id": "sin_ravintsara_eucalipto",
+      "ingredienteA": "ravintsara",
+      "ingredienteB": "eucalipto",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion poderosa para infecciones respiratorias.",
+      "beneficios": [
+        "Antiviral y expectorante synergizado",
+        "Descongestion nasal potente",
+        "Prevencion de infecciones"
+      ],
+      "precauciones": [
+        "No usar en bebes < 2 anos",
+        "Diluir correctamente",
+        "No usar interno"
+      ],
+      "mecanismo": "Ravintsara aporta efecto antiviral mientras eucalipto descongestiona y expectora.",
+      "categorias": ["aceite_esencial", "aceite_esencial"],
+      "sistemas": ["respiratorio", "inmune"]
+    },
+    {
+      "id": "sin_arnica_magnesio_topico",
+      "ingredienteA": "arnica",
+      "ingredienteB": "magnesio",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinacion para dolor muscular y articular.",
+      "beneficios": [
+        "Relajacion muscular profunda",
+        "Antiinflamatorio local potenciado",
+        "Recuperacion post-ejercicio"
+      ],
+      "precauciones": [
+        "No aplicar sobre heridas abiertas",
+        "Testear en piel sensible"
+      ],
+      "mecanismo": "Arnica modula inflamacion mientras magnesio relaja fibras musculares localmente.",
+      "categorias": ["homeopatia", "minerales"],
+      "sistemas": ["musculoesqueletico"]
+    },
+    {
+      "id": "sin_probioticos_prebioticos",
+      "ingredienteA": "probioticos",
+      "ingredienteB": "prebioticos",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Simbiotico clasico para salud intestinal.",
+      "beneficios": [
+        "Mayor supervivencia probiotica",
+        "Estimulacion de crecimiento bacteriano",
+        "Mejora diversidad del microbioma"
+      ],
+      "precauciones": [
+        "Gas inicial transitorio normal",
+        "Comenzar con dosis bajas"
+      ],
+      "mecanismo": "Prebioticos (FOS, inulina) son alimento de probioticos, aumentando su colonizacion.",
+      "categorias": ["probioticos", "vitaminas"],
+      "sistemas": ["digestivo", "inmune"]
+    },
+    {
+      "id": "sin_rodiola_ashwagandha",
+      "ingredienteA": "rodiola",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo adaptogeno para estresse severo y burnout.",
+      "beneficios": [
+        "Resistencia al estres potenciada",
+        "Energia sostenida sin estimulacion",
+        "Recuperacion de fatiga adrenal"
+      ],
+      "precauciones": [
+        "No tomar de noche (estimulante)",
+        "No usar en bipolar"
+      ],
+      "mecanismo": "Rodiola actua rapido sobre noradrenalina, ashwagandha modula HPA mas lentamente.",
+      "categorias": ["fitoterapia", "fitoterapia"],
+      "sistemas": ["nervioso", "endocrino"]
+    },
+    {
+      "id": "sin_sauco_vitc",
+      "ingredienteA": "sauco",
+      "ingredienteB": "vitamina_c",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia antiviral para resfriados y gripe.",
+      "beneficios": [
+        "Reduccion duracion sintomas",
+        "Actividad antiviral potenciada",
+        "Apoyo inmunologico multiple"
+      ],
+      "precauciones": [
+        "Sauco: bayas crudas son toxicas",
+        "Vit C: dosis >2000mg puede causar diarrea"
+      ],
+      "mecanismo": "Sauco inhibe entrada viral a celulas, vit C potencia funcion immune global.",
+      "categorias": ["fitoterapia", "vitaminas"],
+      "sistemas": ["inmune", "respiratorio"]
+    }
+  ]
+}
