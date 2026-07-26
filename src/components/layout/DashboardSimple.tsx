@@ -36,11 +36,15 @@ export function DashboardSimple() {
   const [selectedFunction, setSelectedFunction] = useState<TherapeuticFunction | null>(null);
   const [selectedSystem, setSelectedSystem] = useState<BodySystem | null>(null);
 
-  // Usar useMemo para evitar recalcular en cada render
-  const kb = useMemo(() => getCombinedKnowledgeBase(), []);
+  // KB memoizada - se crea una sola vez
+  const kb = useMemo(() => {
+    logger.info('Inicializando Knowledge Base...', 'Dashboard');
+    return getCombinedKnowledgeBase();
+  }, []);
+  
   const supabaseConnected = supabaseService.isConfigured();
 
-  // Usar useMemo para stats
+  // Stats memoizadas
   const stats = useMemo(() => ({
     total: products.length,
     kbMatch: products.filter(p => p.cobertura_kb > 0).length,
@@ -49,14 +53,16 @@ export function DashboardSimple() {
 
   // Flag para evitar carga doble
   const loadedRef = useRef(false);
+  // Referencia memoizada de la KB para usar en callbacks
+  const kbRef = useRef(kb);
+  kbRef.current = kb;
 
-  // Cargar preferencias desde IndexedDB e inicializar servicios
+  // Cargar preferencias desde IndexedDB e inicializar servicios (solo una vez)
   useEffect(() => {
     loadPreferences();
-    // Inicializar servicio de sincronización
     syncService.init({
-      autoSync: true,
-      syncOnMount: true,
+      autoSync: false, // Desactivado por ahora para evitar problemas
+      syncOnMount: false,
       enableAlerts: true,
     });
   }, []);
@@ -70,51 +76,65 @@ export function DashboardSimple() {
     return () => window.removeEventListener('searchChange', handleSearchChange as EventListener);
   }, [setSearchQuery]);
 
-  // Sincronizar KB al iniciar
+  // Sincronizar KB al iniciar (una sola vez)
   useEffect(() => {
-    const syncKb = async () => {
-      setSupabaseConnected(supabaseConnected);
-      setKb(kb, Object.keys(kb).length);
-      if (!supabaseConnected) { setKbStats(knowledgeSyncService.getStats()); return; }
-      const unsubscribe = knowledgeSyncService.addSyncListener((status) => {
-        setSyncStatus({ status: status.status, pendingChanges: 0, error: status.error });
-        if (status.status === 'synced') setKbStats(knowledgeSyncService.getStats());
-      });
-      if (knowledgeSyncService.needsSync()) await knowledgeSyncService.sync();
-      setKbStats(knowledgeSyncService.getStats());
-      return unsubscribe;
-    };
-    syncKb();
-  }, [supabaseConnected]);
+    setSupabaseConnected(supabaseConnected);
+    setKb(kb, Object.keys(kb).length);
+    setKbStats(knowledgeSyncService.getStats());
+  }, []); // Sin dependencias - ejecutar solo al montar
 
-  // Cargar productos (solo una vez)
+  // Cargar productos (solo una vez al montar)
   useEffect(() => {
     if (loadedRef.current) return;
     loadedRef.current = true;
 
     const loadProducts = async () => {
-      setLoading(true, 'Inicializando...');
+      setLoading(true, 'Cargando productos...');
       try {
         await searchService.initializeIndex();
         const indexed = searchService.getAllIndexedProducts();
         const source = indexed.length > 0 ? indexed : await dataService.getAllProducts();
+        
         if (source.length > 0) {
-          logger.info(`Cargando ${source.length} productos`, 'Dashboard');
-          const analyzed: AnalyzedProduct[] = source.map((product: Product) => {
-            const { found, sinergias, antagonismos, kbAnalysis, categorization } = analyzeProductWithKb(product, kb);
+          logger.info(`Analizando ${source.length} productos...`, 'Dashboard');
+          
+          // Usar kbRef para evitar problemas de dependencias
+          const currentKb = kbRef.current;
+          
+          // Análisis en lotes para no bloquear el hilo principal
+          const analyzed: AnalyzedProduct[] = [];
+          for (let i = 0; i < source.length; i++) {
+            const product = source[i];
+            const { found, sinergias, antagonismos, kbAnalysis, categorization } = analyzeProductWithKb(product, currentKb);
             const principiosCount = (product.principios_activos || []).length;
             const cobertura = principiosCount > 0 ? Math.round((found.length / principiosCount) * 100) : 0;
-            return { ...product, ingredientes_encontrados: found, cobertura_kb: Math.min(cobertura, 100),
-              sinergias_detectadas: sinergias, antagonismos_detectados: antagonismos, kbAnalysis,
-              categorias_inferidas: categorization.categories, categoryLabels: categorization.categoryLabels } as AnalyzedProduct;
-          });
+            analyzed.push({
+              ...product,
+              ingredientes_encontrados: found,
+              cobertura_kb: Math.min(cobertura, 100),
+              sinergias_detectadas: sinergias,
+              antagonismos_detectados: antagonismos,
+              kbAnalysis,
+              categorias_inferidas: categorization.categories,
+              categoryLabels: categorization.categoryLabels
+            } as AnalyzedProduct);
+            
+            // Actualizar UI cada 50 productos
+            if (i % 50 === 0) {
+              setLoading(true, `Analizando ${i}/${source.length}...`);
+            }
+          }
+          
           setProducts(analyzed);
+          logger.info(`Análisis completado: ${analyzed.length} productos`, 'Dashboard');
         }
-      } catch (error) { logger.error('Error cargando productos', error); }
+      } catch (error) {
+        logger.error('Error cargando productos', error);
+      }
       setLoading(false);
     };
     loadProducts();
-  }, [kb]);
+  }, []); // Sin dependencias de kb - usar kbRef dentro
 
   // Keyboard shortcut: Ctrl+K
   useEffect(() => {

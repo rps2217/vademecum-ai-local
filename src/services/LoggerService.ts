@@ -2,6 +2,9 @@ import { EventBus, EventType } from './EventBus';
 import { LogEntry } from '../core/types';
 import { useStore } from '../store/useStore';
 
+// Flag to prevent recursion
+let isLogging = false;
+
 class LoggerService {
   private static instance: LoggerService;
   private logs: LogEntry[] = [];
@@ -17,38 +20,40 @@ class LoggerService {
   }
 
   log(level: LogEntry['level'], message: string, module: string = 'App', details?: any) {
-    const entry: LogEntry = {
-      id: crypto.randomUUID(),
-      timestamp: Date.now(),
-      level,
-      module,
-      message,
-      details
-    };
+    // Prevent recursion
+    if (isLogging) return;
+    isLogging = true;
 
-    this.logs = [entry, ...this.logs].slice(0, this.MAX_LOGS);
-    
-    // Sync with Zustand
     try {
-      useStore.getState().addLog(entry);
-    } catch (e) {
-      // Early logging might fail if called before store is ready, ignore
+      const entry: LogEntry = {
+        id: crypto.randomUUID(),
+        timestamp: Date.now(),
+        level,
+        module,
+        message,
+        details
+      };
+
+      this.logs = [entry, ...this.logs].slice(0, this.MAX_LOGS);
+      
+      // Sync with Zustand - use direct store access to avoid hooks issues
+      try {
+        const store = useStore.getState();
+        if (typeof store.addLog === 'function') {
+          store.addLog(entry);
+        }
+      } catch (e) {
+        // Early logging might fail if called before store is ready, ignore
+      }
+      
+      // Dispatch events for both systems (LOG_ADDED is now filtered in EventBus)
+      EventBus.emit(EventType.LOG_ADDED as any, entry);
+      
+      const consoleMethod = level === 'error' ? 'error' : level === 'warn' ? 'warn' : 'log';
+      console[consoleMethod](`[${module}] ${message}`, details || '');
+    } finally {
+      isLogging = false;
     }
-    
-    // Dispatch events for both systems
-    EventBus.emit(EventType.LOG_ADDED as any, entry);
-    window.dispatchEvent(new CustomEvent('app_log', { detail: entry }));
-
-    const consoleMethod = level === 'error' ? 'error' : level === 'warn' ? 'warn' : 'log';
-    const color = {
-      info: '\x1b[34m',
-      warn: '\x1b[33m',
-      error: '\x1b[31m',
-      success: '\x1b[32m',
-      ai: '\x1b[35m'
-    }[level];
-
-    console[consoleMethod](`${color || ''}[${module}] ${message}\x1b[0m`, details || '');
   }
 
   // Helper methods for easy access

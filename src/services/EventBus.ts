@@ -1,5 +1,3 @@
-import { logger } from '../services/LoggerService';
-
 export enum EventType {
   PRODUCT_UPDATED = 'PRODUCT_UPDATED',
   PRODUCT_DELETED = 'PRODUCT_DELETED',
@@ -32,6 +30,9 @@ const allListeners = new Set<Listener<AppEvent>>();
 const eventHistory: AppEvent[] = [];
 const MAX_HISTORY = 100;
 
+// Flag to prevent logging recursion
+let isLogging = false;
+
 export const EventBus = {
   emit: <T>(type: EventType, payload: T) => {
     const event: AppEvent = { 
@@ -41,12 +42,18 @@ export const EventBus = {
       id: Math.random().toString(36).substring(2, 11)
     };
     
-    if (process.env.NODE_ENV !== 'production') {
-      logger.info(`[EventBus] ${type}`, {
-        id: event.id,
-        timestamp: new Date(event.timestamp).toISOString(),
-        payload
-      });
+    // Log only for non-LOG events and only if we're not already logging (prevent recursion)
+    if (process.env.NODE_ENV !== 'production' && !isLogging && type !== EventType.LOG_ADDED) {
+      isLogging = true;
+      try {
+        console.info(`[EventBus] ${type}`, {
+          id: event.id,
+          timestamp: new Date(event.timestamp).toISOString(),
+          payload
+        });
+      } finally {
+        isLogging = false;
+      }
     }
 
     eventHistory.push(event);
