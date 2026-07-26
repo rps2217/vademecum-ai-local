@@ -5,6 +5,7 @@
  * y proporciona una interfaz unificada para acceder a ellos.
  */
 
+// Datos JSON
 import fitoterapiaData from '../data/fitoterapia.json';
 import homeopatiaData from '../data/homeopatia.json';
 import aceitesData from '../data/aceites.json';
@@ -20,22 +21,7 @@ import type {
 } from '../data/schema';
 
 // Tipos para los datos JSON
-interface FitoterapiaData {
-  metadata: { total: number };
-  ingredientes: any[];
-}
-
-interface HomeopatiaData {
-  metadata: { total: number };
-  ingredientes: any[];
-}
-
-interface AceitesData {
-  metadata: { total: number };
-  ingredientes: any[];
-}
-
-interface VitaminasData {
+interface KBCategoryData {
   metadata: { total: number };
   ingredientes: any[];
 }
@@ -57,8 +43,8 @@ class KnowledgeLoader {
   private antagonisms: AntagonismRelation[] = [];
   
   // Índices para búsqueda rápida
-  private byCategory: Map<IngredientCategory, any[]> = new Map();
-  private bySystem: Map<BodySystem, any[]> = new Map();
+  private byCategory: Map<string, any[]> = new Map();
+  private bySystem: Map<string, any[]> = new Map();
   private byIndication: Map<string, any[]> = new Map();
   
   private loaded: boolean = false;
@@ -73,46 +59,46 @@ class KnowledgeLoader {
   }
 
   /**
-   * Cargar todos los datos
+   * Cargar todos los datos desde JSON
    */
   async load(): Promise<void> {
     if (this.loaded) return;
 
     try {
-      // Cargar datos de fitoterapia
-      const fitoterapia = fitoterapiaData as FitoterapiaData;
-      fitoterapia.ingredientes.forEach(ing => {
+      // Cargar fitoterapia
+      const fitoterapia = fitoterapiaData as KBCategoryData;
+      fitoterapia.ingredientes?.forEach((ing: any) => {
+        ing.categoria = 'fitoterapia';
         this.ingredients.set(ing.id, ing);
-        this.indexByCategory(ing, 'fitoterapia');
+        this.indexIngredient(ing);
       });
 
-      // Cargar datos de homeopatia
-      const homeopatia = homeopatiaData as HomeopatiaData;
-      homeopatia.ingredientes.forEach(ing => {
+      // Cargar homeopatia
+      const homeopatia = homeopatiaData as KBCategoryData;
+      homeopatia.ingredientes?.forEach((ing: any) => {
+        ing.categoria = 'homeopatia';
         this.ingredients.set(ing.id, ing);
-        this.indexByCategory(ing, 'homeopatia');
+        this.indexIngredient(ing);
       });
 
-      // Cargar datos de aceites
-      const aceites = aceitesData as AceitesData;
-      aceites.ingredientes.forEach(ing => {
+      // Cargar aceites esenciales
+      const aceites = aceitesData as KBCategoryData;
+      aceites.ingredientes?.forEach((ing: any) => {
+        ing.categoria = 'aceite_esencial';
         this.ingredients.set(ing.id, ing);
-        this.indexByCategory(ing, 'aceite_esencial');
+        this.indexIngredient(ing);
       });
 
-      // Cargar datos de vitaminas/minerales
-      const vitaminas = vitaminasData as VitaminasData;
-      vitaminas.ingredientes.forEach(ing => {
+      // Cargar vitaminas/minerales
+      const vitaminas = vitaminasData as KBCategoryData;
+      vitaminas.ingredientes?.forEach((ing: any) => {
         this.ingredients.set(ing.id, ing);
-        this.indexByCategory(ing, ing.categoria);
+        this.indexIngredient(ing);
       });
 
       // Cargar sinergias
       const synergies = synergiesData as SynergiesData;
-      this.synergies = synergies.sinergias;
-
-      // Indexar sinergias por ingrediente
-      this.buildSynergyIndex();
+      this.synergies = synergies.sinergias || [];
 
       this.loaded = true;
       console.log(`[KnowledgeLoader] Cargados ${this.ingredients.size} ingredientes`);
@@ -123,17 +109,20 @@ class KnowledgeLoader {
   }
 
   /**
-   * Indexar ingrediente por categoria
+   * Indexar un ingrediente para búsqueda rápida
    */
-  private indexByCategory(ingredient: any, category: IngredientCategory): void {
+  private indexIngredient(ingredient: any): void {
+    const category = ingredient.categoria;
+    
+    // Por categoría
     if (!this.byCategory.has(category)) {
       this.byCategory.set(category, []);
     }
     this.byCategory.get(category)!.push(ingredient);
 
-    // Indexar por sistemas
+    // Por sistemas corporales
     if (ingredient.sistemas) {
-      ingredient.sistemas.forEach((system: BodySystem) => {
+      ingredient.sistemas.forEach((system: string) => {
         if (!this.bySystem.has(system)) {
           this.bySystem.set(system, []);
         }
@@ -141,7 +130,7 @@ class KnowledgeLoader {
       });
     }
 
-    // Indexar por indicaciones
+    // Por indicaciones
     if (ingredient.indicaciones) {
       ingredient.indicaciones.forEach((indication: string) => {
         if (!this.byIndication.has(indication)) {
@@ -150,14 +139,6 @@ class KnowledgeLoader {
         this.byIndication.get(indication)!.push(ingredient);
       });
     }
-  }
-
-  /**
-   * Construir índice de sinergias
-   */
-  private buildSynergyIndex(): void {
-    // Por ahora las sinergias ya están indexadas por ID en el array
-    // Podríamos agregar más índices si es necesario
   }
 
   /**
