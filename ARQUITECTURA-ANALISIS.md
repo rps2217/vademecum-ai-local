@@ -191,10 +191,10 @@ export default defineConfig({
 
 | Métrica | Actual | Objetivo |
 |---------|--------|----------|
-| Líneas DashboardSimple | ~1600 | <300 |
+| Líneas DashboardSimple | ~1567 | <300 |
 | Servicios duplicados | 5 | 1-2 |
 | Bundle size | 728KB | <400KB |
-| Test coverage | 0% | >60% |
+| Test coverage | ~10% | >60% |
 | Tiempo de carga | ? | <2s |
 
 ---
@@ -206,3 +206,22 @@ export default defineConfig({
 3. **Media prioridad**: Zustand store
 4. **Media prioridad**: Code splitting
 5. **Baja prioridad**: Tests (largo plazo)
+
+---
+
+## 🚀 PLAN DE REFACTORIZACIÓN ACTUAL
+
+### ✅ Completado
+- [x] Code Splitting con Lazy Loading
+- [x] Componentes modulares (DashboardNav, DashboardSearch, DashboardStats)
+- [x] Tipos centralizados (src/types/index.ts)
+- [x] Tests unitarios con Vitest (9 tests passing)
+- [x] Optimización de chunks del bundle
+
+### 🔄 En Progreso
+- [ ] Refactorizar DashboardSimple (~1567 líneas → <300 líneas)
+
+### 📋 Pendiente
+- [ ] Extraer lógica de negocio a hooks personalizados
+- [ ] Simplificar flujo de datos con Zustand
+- [ ] Unificar servicios de conocimiento
