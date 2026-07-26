@@ -381,11 +381,43 @@ export function ProductDetailModalV2({
 
         {/* Content - scrollable */}
         <div className="flex-1 overflow-y-auto p-4">
-          {/* Ingredientes */}
+          {/* Posología - EXTENDIDA por defecto */}
+          {product.posologia && (
+            <CollapsibleSection 
+              title="Posología" 
+              icon={<Calendar className="w-4 h-4 text-amber-500" />}
+              defaultOpen={true}
+            >
+              <p className="text-sm text-gray-600 leading-relaxed bg-amber-50 -mx-1 px-1 py-2 rounded-lg">
+                {product.posologia}
+              </p>
+            </CollapsibleSection>
+          )}
+
+          {/* Indicaciones - EXTENDIDA por defecto */}
+          {product.indicaciones && product.indicaciones.length > 0 && (
+            <CollapsibleSection 
+              title="Indicaciones" 
+              icon={<CheckCircle2 className="w-4 h-4 text-emerald-500" />}
+              defaultOpen={true}
+            >
+              <ul className="space-y-1.5">
+                {product.indicaciones.slice(0, 8).map((ind: string, i: number) => (
+                  <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    {ind}
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSection>
+          )}
+
+          {/* Ingredientes - COLAPSADA por defecto */}
           {principios.length > 0 && (
             <CollapsibleSection 
-              title="Principios Activos" 
+              title={`Principios Activos (${principios.length})`}
               icon={<Pill className="w-4 h-4 text-emerald-500" />}
+              defaultOpen={false}
             >
               <div className="flex flex-wrap gap-2">
                 {principios.map((p, i) => (
@@ -399,11 +431,12 @@ export function ProductDetailModalV2({
             </CollapsibleSection>
           )}
 
-          {/* Descripción */}
+          {/* Descripción - COLAPSADA por defecto */}
           {product.descripcion && (
             <CollapsibleSection 
               title="Descripción" 
               icon={<Info className="w-4 h-4 text-blue-500" />}
+              defaultOpen={false}
             >
               <p className="text-sm text-gray-600 leading-relaxed">
                 {product.descripcion}
@@ -411,41 +444,10 @@ export function ProductDetailModalV2({
             </CollapsibleSection>
           )}
 
-          {/* Posología */}
-          {product.posologia && (
-            <CollapsibleSection 
-              title="Posología" 
-              icon={<Calendar className="w-4 h-4 text-amber-500" />}
-              defaultOpen={false}
-            >
-              <p className="text-sm text-gray-600 leading-relaxed bg-amber-50 -mx-1 px-1 py-2 rounded-lg">
-                {product.posologia}
-              </p>
-            </CollapsibleSection>
-          )}
-
-          {/* Indicaciones */}
-          {product.indicaciones && product.indicaciones.length > 0 && (
-            <CollapsibleSection 
-              title="Indicaciones" 
-              icon={<CheckCircle2 className="w-4 h-4 text-emerald-500" />}
-              defaultOpen={false}
-            >
-              <ul className="space-y-1.5">
-                {product.indicaciones.slice(0, 8).map((ind: string, i: number) => (
-                  <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    {ind}
-                  </li>
-                ))}
-              </ul>
-            </CollapsibleSection>
-          )}
-
-          {/* Sinergias */}
+          {/* Sinergias - COLAPSADA por defecto */}
           {sinergias.length > 0 && (
             <CollapsibleSection 
-              title="Sinergias" 
+              title={`Sinergias (${sinergias.length})`}
               icon={<Link2 className="w-4 h-4 text-violet-500" />}
               defaultOpen={false}
             >
