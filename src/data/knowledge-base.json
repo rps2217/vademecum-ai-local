@@ -33,7 +33,8 @@
         "Embarazo (dosis altas)",
         "Fumadores (betacaroteno)"
       ],
-      "notas": "Betacaroteno es forma mas segura. Sinergia con zinc para absorcion."
+      "notas": "Betacaroteno es forma mas segura. Sinergia con zinc para absorcion.",
+      "dosis": "700-900 mcg/día"
     },
     {
       "id": "vitamina-b1",
@@ -60,7 +61,8 @@
         "cafe"
       ],
       "contraindicaciones": [],
-      "notas": "Importante para metabolism de carbohidratos."
+      "notas": "Importante para metabolism de carbohidratos.",
+      "dosis": "1.1-1.2 mg/día"
     },
     {
       "id": "vitamina-b2",
@@ -86,7 +88,8 @@
         "luz solar"
       ],
       "contraindicaciones": [],
-      "notas": "Ayuda a absorber hierro. Sensible a la luz."
+      "notas": "Ayuda a absorber hierro. Sensible a la luz.",
+      "dosis": "1.1-1.3 mg/día"
     },
     {
       "id": "vitamina-b3",
@@ -113,7 +116,8 @@
         "Enfermedad hepatica",
         "Ulceras"
       ],
-      "notas": "Niacinamida es forma mas suave. Ayuda a reducir colesterol."
+      "notas": "Niacinamida es forma mas suave. Ayuda a reducir colesterol.",
+      "dosis": "14-16 mg/día"
     },
     {
       "id": "vitamina-b5",
@@ -136,7 +140,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Esencial para sintesis de coenzima A."
+      "notas": "Esencial para sintesis de coenzima A.",
+      "dosis": "5 mg/día"
     },
     {
       "id": "vitamina-b6",
@@ -161,7 +166,8 @@
       "contraindicaciones": [
         "Parkinson (con levodopa)"
       ],
-      "notas": "Sinergia critica con magnesio. Importante para humor."
+      "notas": "Sinergia critica con magnesio. Importante para humor.",
+      "dosis": "1.3-1.7 mg/día"
     },
     {
       "id": "vitamina-b12",
@@ -192,7 +198,8 @@
         "Cancer",
         "Enfermedad de Leber"
       ],
-      "notas": "Metilcobalamina es forma mas biodisponible. Crucial para vegetarianos."
+      "notas": "Metilcobalamina es forma mas biodisponible. Crucial para vegetarianos.",
+      "dosis": "1.1-1.2 mg/día"
     },
     {
       "id": "acido-folico",
@@ -247,7 +254,8 @@
         "huevo-crudo"
       ],
       "contraindicaciones": [],
-      "notas": "Mejora la salud de cabello y unas. Importante para metabolismo."
+      "notas": "Mejora la salud de cabello y unas. Importante para metabolismo.",
+      "dosis": "30-100 mcg/día"
     },
     {
       "id": "vitamina-c",
@@ -280,7 +288,8 @@
         "Calculos renales",
         "Deficit G6PD"
       ],
-      "notas": "Mejora absorcion de hierro no hematico. Efecto sinergico con bioflavonoides."
+      "notas": "Mejora absorcion de hierro no hematico. Efecto sinergico con bioflavonoides.",
+      "dosis": "75-90 mg/día"
     },
     {
       "id": "vitamina-d3",
@@ -311,7 +320,8 @@
         "Hipercalcemia",
         "Sarcoidosis"
       ],
-      "notas": "Sinergia critica con K2 para metabolismo oseo."
+      "notas": "Sinergia critica con K2 para metabolismo oseo.",
+      "dosis": "600-2000 UI/día"
     },
     {
       "id": "vitamina-e",
@@ -342,7 +352,8 @@
         "Anticoagulantes",
         "Cirugia"
       ],
-      "notas": "Tocotrienoles son forma mas potente. Sinergia con selenio."
+      "notas": "Tocotrienoles son forma mas potente. Sinergia con selenio.",
+      "dosis": "15 mg/día"
     },
     {
       "id": "vitamina-k2",
@@ -370,7 +381,8 @@
       "contraindicaciones": [
         "Anticoagulantes (warfarina)"
       ],
-      "notas": "K2 MK-7 es forma mas biodisponible. Esencial con vitamina D3."
+      "notas": "K2 MK-7 es forma mas biodisponible. Esencial con vitamina D3.",
+      "dosis": "90-120 mcg/día"
     },
     {
       "id": "calcio",
@@ -402,7 +414,8 @@
         "Hipercalcemia",
         "Calculos renales"
       ],
-      "notas": "Dosis separadas para mejor absorcion. Citrato o glicinato."
+      "notas": "Dosis separadas para mejor absorcion. Citrato o glicinato.",
+      "dosis": "1000-1200 mg/día"
     },
     {
       "id": "magnesio",
@@ -433,7 +446,8 @@
         "Insuficiencia renal",
         "Block cardiaco"
       ],
-      "notas": "Glicinato es mejor absorbido. Sinergia con B6."
+      "notas": "Glicinato es mejor absorbido. Sinergia con B6.",
+      "dosis": "310-420 mg/día"
     },
     {
       "id": "hierro",
@@ -467,7 +481,8 @@
         "Hemocromatosis",
         "Anemia sideroblastica"
       ],
-      "notas": "Vitamina C mejora absorcion 3-6x. Tomar con estomago vacio."
+      "notas": "Vitamina C mejora absorcion 3-6x. Tomar con estomago vacio.",
+      "dosis": "8-18 mg/día"
     },
     {
       "id": "zinc",
@@ -498,7 +513,8 @@
       "contraindicaciones": [
         "Enfermedad de Wilson"
       ],
-      "notas": "Esencial para funcion inmunologica. Sinergia con vitamina A."
+      "notas": "Esencial para funcion inmunologica. Sinergia con vitamina A.",
+      "dosis": "8-11 mg/día"
     },
     {
       "id": "selenio",
@@ -526,7 +542,8 @@
       "contraindicaciones": [
         "Dosis altas"
       ],
-      "notas": "Importante para funcion tiroidea. Dosis 200mcg/dia."
+      "notas": "Importante para funcion tiroidea. Dosis 200mcg/dia.",
+      "dosis": "55 mcg/día"
     },
     {
       "id": "yodo",
@@ -556,7 +573,8 @@
         "Hipertiroidismo",
         "Tiroiditis"
       ],
-      "notas": "Esencial para hormonas tiroideas. Evitar exceso."
+      "notas": "Esencial para hormonas tiroideas. Evitar exceso.",
+      "dosis": "150 mcg/día"
     },
     {
       "id": "potasio",
@@ -584,7 +602,8 @@
         "Insuficiencia renal",
         "Enfermedad Addison"
       ],
-      "notas": "Importante balance con sodio. Citrato es buena forma."
+      "notas": "Importante balance con sodio. Citrato es buena forma.",
+      "dosis": "2600-3400 mg/día"
     },
     {
       "id": "cromo",
@@ -607,7 +626,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Picolinato es forma mas absorbible. Para diabetes tipo 2."
+      "notas": "Picolinato es forma mas absorbible. Para diabetes tipo 2.",
+      "dosis": "25-35 mcg/día"
     },
     {
       "id": "cobre",
@@ -685,7 +705,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Mejora niveles de testosterona y estrogenos."
+      "notas": "Mejora niveles de testosterona y estrogenos.",
+      "dosis": "3 mg/día"
     },
     {
       "id": "omega-3",
@@ -718,7 +739,8 @@
         "Anticoagulantes",
         "Cirugia proxima"
       ],
-      "notas": "Proporcion EPA/DHA importante. Sinergia con vitamina D."
+      "notas": "Proporcion EPA/DHA importante. Sinergia con vitamina D.",
+      "dosis": "1000-3000 mg/día"
     },
     {
       "id": "omega-6",
@@ -800,7 +822,8 @@
         "Deficit tiamina",
         "Quimioterapia"
       ],
-      "notas": "Antioxidante unico (agua y grasa). R-LA es forma natural."
+      "notas": "Antioxidante unico (agua y grasa). R-LA es forma natural.",
+      "dosis": "300-600 mg/día"
     },
     {
       "id": "coenzima-q10",
@@ -831,7 +854,8 @@
         "Embarazo",
         "Lactancia"
       ],
-      "notas": "Estatinas reducen CoQ10. Suplementar conjuntamente."
+      "notas": "Estatinas reducen CoQ10. Suplementar conjuntamente.",
+      "dosis": "30-200 mg/día"
     },
     {
       "id": "nac",
@@ -858,7 +882,8 @@
         "carbocisteina"
       ],
       "contraindicaciones": [],
-      "notas": "Precursor de glutation. Excelente para higado y pulmones."
+      "notas": "Precursor de glutation. Excelente para higado y pulmones.",
+      "dosis": "600-1800 mg/día"
     },
     {
       "id": "glutathione",
@@ -910,7 +935,8 @@
       "contraindicaciones": [
         "Enfermedad renal"
       ],
-      "notas": "5g/dia mantenimiento. Creatina H2O para hidatacion."
+      "notas": "5g/dia mantenimiento. Creatina H2O para hidatacion.",
+      "dosis": "3-5 g/día"
     },
     {
       "id": "beta-alanina",
@@ -984,7 +1010,8 @@
         "Enfermedad hepatica",
         "Enfermedad renal"
       ],
-      "notas": "Acido mas abundante del cuerpo. Para intestino e inmunidad."
+      "notas": "Acido mas abundante del cuerpo. Para intestino e inmunidad.",
+      "dosis": "5-10 g/día"
     },
     {
       "id": "l-arginina",
@@ -1012,7 +1039,8 @@
         "Herpes virus",
         "Infarto recentemiente"
       ],
-      "notas": "Precursor de oxido nitrico. Especial para rendimiento."
+      "notas": "Precursor de oxido nitrico. Especial para rendimiento.",
+      "dosis": "2-8 g/día"
     },
     {
       "id": "l-citrulina",
@@ -1112,7 +1140,8 @@
         "Antidepresivos",
         "Enfermedad cardiaca"
       ],
-      "notas": "Precursor directo de serotonina. No combinar con antidepresivos."
+      "notas": "Precursor directo de serotonina. No combinar con antidepresivos.",
+      "dosis": "50-300 mg/día"
     },
     {
       "id": "l-teanina",
@@ -1139,7 +1168,8 @@
       "contraindicaciones": [
         "Embarazo"
       ],
-      "notas": "Reduce ansiedad sin sedacion. Sinergia perfecta con cafeina."
+      "notas": "Reduce ansiedad sin sedacion. Sinergia perfecta con cafeina.",
+      "dosis": "100-400 mg/día"
     },
     {
       "id": "gaba",
@@ -1167,7 +1197,8 @@
         "glutamato-exceso"
       ],
       "contraindicaciones": [],
-      "notas": "Neurotransmisor calmante. Sinergia con L-teanina."
+      "notas": "Neurotransmisor calmante. Sinergia con L-teanina.",
+      "dosis": "250-750 mg/día"
     },
     {
       "id": "sam-e",
@@ -1274,7 +1305,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Importante para membranas celulares. Para memoria y concentracion."
+      "notas": "Importante para membranas celulares. Para memoria y concentracion.",
+      "dosis": "100-300 mg/día"
     },
     {
       "id": "huperzina",
@@ -1418,7 +1450,8 @@
         "Embarazo",
         "Tiroides"
       ],
-      "notas": "Efecto butuh 4-6 semanas. Sinergia con ginkgo para cognicion."
+      "notas": "Efecto butuh 4-6 semanas. Sinergia con ginkgo para cognicion.",
+      "dosis": "300-450 mg/día"
     },
     {
       "id": "lion-mane",
@@ -1445,7 +1478,8 @@
       "contraindicaciones": [
         "Alergia a hongos"
       ],
-      "notas": "Estimula NGF (factor crecimiento nervioso). Unico hongo nootropico."
+      "notas": "Estimula NGF (factor crecimiento nervioso). Unico hongo nootropico.",
+      "dosis": "600-1800 mg/día"
     },
     {
       "id": "ashwagandha",
@@ -1478,7 +1512,8 @@
         "Tiroides",
         "Enfermedad autoinmune"
       ],
-      "notas": "Sinergia notable con rhodiola para estres cronico."
+      "notas": "Sinergia notable con rhodiola para estres cronico.",
+      "dosis": "300-600 mg/día"
     },
     {
       "id": "rhodiola",
@@ -1544,7 +1579,8 @@
         "Lactancia",
         "Insuficiencia cardiaca"
       ],
-      "notas": "Efecto adaptogeno potencia con rhodiola. No combinar con estimulantes."
+      "notas": "Efecto adaptogeno potencia con rhodiola. No combinar con estimulantes.",
+      "dosis": "200-400 mg/día"
     },
     {
       "id": "ginseng-siberiano",
@@ -1574,7 +1610,8 @@
         "Hipertension",
         "Enfermedad cardiaca"
       ],
-      "notas": "Diferente de Panax ginseng. Menos estimulante."
+      "notas": "Diferente de Panax ginseng. Menos estimulante.",
+      "dosis": "200-400 mg/día"
     },
     {
       "id": "schisandra",
@@ -1631,7 +1668,8 @@
         "Embarazo",
         "Cancer hormono-dependiente"
       ],
-      "notas": "Excelente para fatiga y balance hormonal. Sinergia con ashwagandha."
+      "notas": "Excelente para fatiga y balance hormonal. Sinergia con ashwagandha.",
+      "dosis": "200-400 mg/día"
     },
     {
       "id": "tulsi",
@@ -1688,7 +1726,8 @@
         "Calculos biliares",
         "Obstruccion biliar"
       ],
-      "notas": "Piperina aumenta biodisponibilidad 2000%. Sinergia con omega-3."
+      "notas": "Piperina aumenta biodisponibilidad 2000%. Sinergia con omega-3.",
+      "dosis": "500-2000 mg/día"
     },
     {
       "id": "boswellia",
@@ -1745,7 +1784,8 @@
         "Anticoagulantes",
         "Calculos biliares"
       ],
-      "notas": "Sinergia con curcuma para inflamacion. Mejora biodisponibilidad."
+      "notas": "Sinergia con curcuma para inflamacion. Mejora biodisponibilidad.",
+      "dosis": "1-2 g/día"
     },
     {
       "id": "pimienta-negra",
@@ -1800,7 +1840,8 @@
         "Embarazo",
         "Hepatotoxicidad en dosis altas"
       ],
-      "notas": "Ceylon (no Cassia) es mas segura. Sinergia con cromo para diabetes."
+      "notas": "Ceylon (no Cassia) es mas segura. Sinergia con cromo para diabetes.",
+      "dosis": "1-2 g/día"
     },
     {
       "id": "berberina",
@@ -1828,7 +1869,8 @@
         "Embarazo",
         "Bilirrubina elevada"
       ],
-      "notas": "Efecto similar a metformina. Sinergia con canela potencia efecto."
+      "notas": "Efecto similar a metformina. Sinergia con canela potencia efecto.",
+      "dosis": "900-2000 mg/día"
     },
     {
       "id": "cacao",
@@ -2062,7 +2104,8 @@
         "Alergia a margaritas",
         "Warfarina"
       ],
-      "notas": "Excelente para ansiedad y digestion. Apigenina es componente activo."
+      "notas": "Excelente para ansiedad y digestion. Apigenina es componente activo.",
+      "dosis": "5-15 CH, según necesidad"
     },
     {
       "id": "lavanda",
@@ -2123,7 +2166,8 @@
         "Embarazo",
         "Lactancia"
       ],
-      "notas": "Sinergia notable con pasiflora para insomnio. Efecto potenciado con melatonina."
+      "notas": "Sinergia notable con pasiflora para insomnio. Efecto potenciado con melatonina.",
+      "dosis": "300-600 mg/día"
     },
     {
       "id": "passiflora",
@@ -2153,7 +2197,8 @@
         "Embarazo",
         "Lactancia"
       ],
-      "notas": "Sinergia clasica con valeriana para ansiedad."
+      "notas": "Sinergia clasica con valeriana para ansiedad.",
+      "dosis": "200-500 mg/día"
     },
     {
       "id": "lupulo",
@@ -2182,7 +2227,8 @@
         "Depresion",
         "Cancer hormono-dependiente"
       ],
-      "notas": "Sinergia clasica con valeriana para insomnio."
+      "notas": "Sinergia clasica con valeriana para insomnio.",
+      "dosis": "200-500 mg/día"
     },
     {
       "id": "melatonina",
@@ -2244,7 +2290,8 @@
         "Enfermedades autoinmunes",
         "Embarazo primer trimestre"
       ],
-      "notas": "No usar mas de 8 semanas continuas. Efecto sinergico con zinc."
+      "notas": "No usar mas de 8 semanas continuas. Efecto sinergico con zinc.",
+      "dosis": "600-1800 mg/día"
     },
     {
       "id": "propoleo",
@@ -2332,7 +2379,8 @@
         "Embarazo",
         "Fiebre"
       ],
-      "notas": "Tonico inmune ideal para prevenir infecciones. Sinergia con reishi."
+      "notas": "Tonico inmune ideal para prevenir infecciones. Sinergia con reishi.",
+      "dosis": "600-1800 mg/día"
     },
     {
       "id": "reishi",
@@ -2362,7 +2410,8 @@
         "Lactancia",
         "Cirugia proxima"
       ],
-      "notas": "Rey de los adaptogenos. Sinergia potente con astragalo."
+      "notas": "Rey de los adaptogenos. Sinergia potente con astragalo.",
+      "dosis": "1500-3000 mg/día"
     },
     {
       "id": "shiitake",
@@ -2389,7 +2438,8 @@
       "contraindicaciones": [
         "Alergia a hongos"
       ],
-      "notas": "Rico en lentinano. Sinergia con reishi para sistema inmune."
+      "notas": "Rico en lentinano. Sinergia con reishi para sistema inmune.",
+      "dosis": "1000-2000 mg/día"
     },
     {
       "id": "maitake",
@@ -2417,7 +2467,8 @@
       "contraindicaciones": [
         "Alergia a hongos"
       ],
-      "notas": "Beta-glucanos potentisimos. Sinergia con otros hongos."
+      "notas": "Beta-glucanos potentisimos. Sinergia con otros hongos.",
+      "dosis": "500-1500 mg/día"
     },
     {
       "id": "cordyceps",
@@ -2445,7 +2496,8 @@
         "Enfermedad autoimmune",
         "Enfermedad renal"
       ],
-      "notas": "Excelente para rendimiento atletico y salud pulmonar."
+      "notas": "Excelente para rendimiento atletico y salud pulmonar.",
+      "dosis": "1000-3000 mg/día"
     },
     {
       "id": "andrografis",
@@ -2604,7 +2656,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Tipos I, II y III para diferentes tejidos. Peptidos pequenos mejor."
+      "notas": "Tipos I, II y III para diferentes tejidos. Peptidos pequenos mejor.",
+      "dosis": "2.5-10 g/día"
     },
     {
       "id": "hyaluronic-acid",
@@ -2755,7 +2808,8 @@
       "contraindicaciones": [
         "Cirugia proxima"
       ],
-      "notas": "Biodisponibilidad baja. Sinergia con quercetina y piperina."
+      "notas": "Biodisponibilidad baja. Sinergia con quercetina y piperina.",
+      "dosis": "150-500 mg/día"
     },
     {
       "id": "pQQ",
@@ -2803,7 +2857,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "10x mas potente que otros carotenoides. Para piel y ojos."
+      "notas": "10x mas potente que otros carotenoides. Para piel y ojos.",
+      "dosis": "4-12 mg/día"
     },
     {
       "id": "luteina",
@@ -2957,7 +3012,8 @@
       "contraindicaciones": [
         "Inmunosupresion severa"
       ],
-      "notas": "Strains diversos para diferentes beneficios. 10-50 mil millones UFC."
+      "notas": "Strains diversos para diferentes beneficios. 10-50 mil millones UFC.",
+      "dosis": "1-10 mil millones UFC/día"
     },
     {
       "id": "prebioticos",
@@ -3185,7 +3241,8 @@
       "contraindicaciones": [
         "Embarazo"
       ],
-      "notas": "Sinergia con pygeum para hiperplasia prostatica."
+      "notas": "Sinergia con pygeum para hiperplasia prostatica.",
+      "dosis": "320 mg/día"
     },
     {
       "id": "pygeum",
@@ -3291,7 +3348,8 @@
         "Cancer prostata",
         "Corazon"
       ],
-      "notas": "Aumenta testosterona naturalmente. Para hombres mayores."
+      "notas": "Aumenta testosterona naturalmente. Para hombres mayores.",
+      "dosis": "200-400 mg/día"
     },
     {
       "id": "fenugreek",
@@ -3347,7 +3405,8 @@
       "contraindicaciones": [
         "SII severo"
       ],
-      "notas": "Strain muy estudiado. Para immunity y weight management."
+      "notas": "Strain muy estudiado. Para immunity y weight management.",
+      "dosis": "1-10 mil millones UFC/día"
     },
     {
       "id": "bifidobacterium",
@@ -3376,7 +3435,8 @@
       "contraindicaciones": [
         "Inmunosupresion"
       ],
-      "notas": "Importante para colon. B. longum para cognition."
+      "notas": "Importante para colon. B. longum para cognition.",
+      "dosis": "1-10 mil millones UFC/día"
     },
     {
       "id": "saccharomyces-boulardii",
@@ -3429,7 +3489,8 @@
       "contraindicaciones": [
         "Hipersensibilidad a asteraceas"
       ],
-      "notas": "Remedio #1 para traumatismos y golpes."
+      "notas": "Remedio #1 para traumatismos y golpes.",
+      "dosis": "5-15 CH, 3 veces/día"
     },
     {
       "id": "belladonna",
@@ -3456,7 +3517,8 @@
       "contraindicaciones": [
         "Glaucoma"
       ],
-      "notas": "Para cuadros agudos con rubor y dolor pulsatil."
+      "notas": "Para cuadros agudos con rubor y dolor pulsatil.",
+      "dosis": "7-15 CH, según necesidad"
     },
     {
       "id": "nux-vomica",
@@ -3479,7 +3541,8 @@
       "contraindicaciones": [
         "Embarazo"
       ],
-      "notas": "Remedio #1 para problemas digestivos por excesos."
+      "notas": "Remedio #1 para problemas digestivos por excesos.",
+      "dosis": "5-15 CH, antes de comidas"
     },
     {
       "id": "melisa",
@@ -3505,7 +3568,8 @@
       "contraindicaciones": [
         "Hipotiroidismo"
       ],
-      "notas": "Excelente para ansiedad, insomnio y herpes."
+      "notas": "Excelente para ansiedad, insomnio y herpes.",
+      "dosis": "300-600 mg/día"
     },
     {
       "id": "hipérico",
@@ -3625,7 +3689,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Silimarina protege hepatocitos."
+      "notas": "Silimarina protege hepatocitos.",
+      "dosis": "140-280 mg/día"
     },
     {
       "id": "ajo",
@@ -4015,7 +4080,8 @@
       "contraindicaciones": [
         "Hipertension severa"
       ],
-      "notas": "Mas suave que Panax ginseng."
+      "notas": "Mas suave que Panax ginseng.",
+      "dosis": "200-400 mg/día"
     },
     {
       "id": "noni",
@@ -4077,7 +4143,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Remedio clave para mujeres y menopausia."
+      "notas": "Remedio clave para mujeres y menopausia.",
+      "dosis": "7-15 CH, 1-2 veces/día"
     },
     {
       "id": "lycopodium",
@@ -4097,7 +4164,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Para digestiones lentas e hinchazon."
+      "notas": "Para digestiones lentas e hinchazon.",
+      "dosis": "5-15 CH, antes de comer"
     },
     {
       "id": "sulphur",
@@ -4118,7 +4186,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Para enfermedades cronicas con manifestaciones cutaneas."
+      "notas": "Para enfermedades cronicas con manifestaciones cutaneas.",
+      "dosis": "5-15 CH, según patrón"
     },
     {
       "id": "pulsatilla",
@@ -4138,7 +4207,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Para temperamento dulce y secreciones amarillas."
+      "notas": "Para temperamento dulce y secreciones amarillas.",
+      "dosis": "7-15 CH, 1-2 veces/día"
     },
     {
       "id": "arsenicum-album",
@@ -4158,7 +4228,8 @@
       ],
       "antagonismos": [],
       "contraindicaciones": [],
-      "notas": "Para ansiedad, miedos e intoxicaciones."
+      "notas": "Para ansiedad, miedos e intoxicaciones.",
+      "dosis": "5-15 CH, según necesidad"
     },
     {
       "id": "capsicum",
@@ -4851,7 +4922,8 @@
       "notas": "Para memoria.",
       "sinonimos": [
         "Marking nut"
-      ]
+      ],
+      "dosis": "600-1800 mg/día"
     },
     {
       "id": "causticum",
@@ -4890,7 +4962,8 @@
       "notas": "Estimula NGF.",
       "sinonimos": [
         "Lions Mane"
-      ]
+      ],
+      "dosis": "500-1500 mg/día"
     },
     {
       "id": "chaga",
@@ -4948,7 +5021,8 @@
       "notas": "Hongo del Himalaya.",
       "sinonimos": [
         "Caterpillar fungus"
-      ]
+      ],
+      "dosis": "1000-3000 mg/día"
     },
     {
       "id": "polygala",
@@ -5087,7 +5161,8 @@
       "notas": "Para hipotiroidismo.",
       "sinonimos": [
         "Potassium iodide"
-      ]
+      ],
+      "dosis": "150 mcg/día"
     },
     {
       "id": "molibdeno",
@@ -5146,5 +5221,6 @@
         "Silicon"
       ]
     }
-  ]
+  ],
+  "dosis_info": "Información de dosis para referencia. Consultar con profesional de salud."
 }

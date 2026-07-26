@@ -1127,11 +1127,50 @@ function ProductDetailModal({
 
         {/* Content scrollable */}
         <div className="p-5 overflow-y-auto max-h-[calc(85vh-160px)] space-y-5">
-          {/* Principios activos */}
-          {principios && (
+          {/* Principios activos con dosis */}
+          {product.principios_activos && product.principios_activos.length > 0 && (
             <div className="bg-gray-50 rounded-xl p-4">
               <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">Principios Activos</h3>
-              <p className="text-sm text-gray-700">{principios}</p>
+              <div className="space-y-2">
+                {product.principios_activos?.map((principio, idx) => {
+                  // Buscar dosis para este principio activo
+                  let dosis = '';
+                  for (const [id, ing] of Object.entries(kb)) {
+                    const ingData = ing as any;
+                    const ingName = (ingData.nombre || '').toLowerCase();
+                    const principioLower = principio.toLowerCase();
+                    if (principioLower.includes(ingName) || ingName.includes(principioLower)) {
+                      if (ingData.dosis) {
+                        dosis = ingData.dosis;
+                        break;
+                      }
+                    }
+                    // Buscar en sinonimos
+                    if (ingData.sinonimos && Array.isArray(ingData.sinonimos)) {
+                      for (const sinonimo of ingData.sinonimos) {
+                        if (principioLower.includes(sinonimo.toLowerCase()) || sinonimo.toLowerCase().includes(principioLower)) {
+                          if (ingData.dosis) {
+                            dosis = ingData.dosis;
+                            break;
+                          }
+                        }
+                      }
+                    }
+                    if (dosis) break;
+                  }
+                  
+                  return (
+                    <div key={idx} className="flex items-start justify-between gap-2">
+                      <span className="text-sm text-gray-700 capitalize">{principio}</span>
+                      {dosis && (
+                        <span className="text-xs px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full whitespace-nowrap">
+                          {dosis}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
           
