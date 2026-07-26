@@ -3,7 +3,7 @@
  * Inspirado en appsimple: limpio, simple, rápido
  */
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Pill } from 'lucide-react';
 import { getCombinedKnowledgeBase } from '../../core/knowledge-base';
 import { knowledgeSyncService } from '../../services/KnowledgeSyncService';
@@ -18,31 +18,32 @@ import { DashboardHeader, DashboardSidebar } from './dashboard';
 import { useAppStore, type AnalyzedProduct, loadPreferences } from '../../store';
 import { analyzeProductWithKb } from '../../hooks/useAnalysis';
 import type { Product } from '../../types';
+import { type ProductType, type TherapeuticFunction, type BodySystem } from '../../core/categorization';
 
 export function DashboardSimple() {
   const {
     isLoading, loadingMessage, products, view, searchQuery,
-    selectedCategory, selectedProduct, scrapeStates,
+    selectedProduct, scrapeStates,
     syncStatus, kbStats, setLoading, setView, setSearchQuery,
-    setSelectedCategory, setSelectedProduct, setProducts, setScrapeState,
+    setSelectedProduct, setProducts, setScrapeState,
     setSyncStatus, setKbStats, setSupabaseConnected, setKb, updateProduct
   } = useAppStore();
+
+  // Estados para filtros jerárquicos
+  const [selectedType, setSelectedType] = useState<ProductType | null>(null);
+  const [selectedFunction, setSelectedFunction] = useState<TherapeuticFunction | null>(null);
+  const [selectedSystem, setSelectedSystem] = useState<BodySystem | null>(null);
 
   // Usar useMemo para evitar recalcular en cada render
   const kb = useMemo(() => getCombinedKnowledgeBase(), []);
   const supabaseConnected = supabaseService.isConfigured();
-  
+
   // Usar useMemo para stats
   const stats = useMemo(() => ({
     total: products.length,
     kbMatch: products.filter(p => p.cobertura_kb > 0).length,
     sinergias: products.filter(p => (p.sinergias_detectadas?.length || 0) > 0).length
   }), [products]);
-  
-  const categories = useMemo(() => 
-    [...new Set(products.flatMap(p => [p.categoria_principal, p.categoria].filter(Boolean)))].sort(),
-    [products]
-  );
 
   // Flag para evitar carga doble
   const loadedRef = useRef(false);
@@ -73,7 +74,7 @@ export function DashboardSimple() {
   useEffect(() => {
     if (loadedRef.current) return;
     loadedRef.current = true;
-    
+
     const loadProducts = async () => {
       setLoading(true, 'Inicializando...');
       try {
@@ -131,17 +132,6 @@ export function DashboardSimple() {
     } catch { setScrapeState(sku, 'error'); setTimeout(() => setScrapeState(sku, 'idle'), 3000); }
   };
 
-  // Filtrar productos
-  const filteredProducts = useMemo(() => products.filter(p => {
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      if (!p.nombre_comercial?.toLowerCase().includes(q) && !p.sku?.toLowerCase().includes(q) &&
-          !p.principios_activos?.some(pa => pa.toLowerCase().includes(q))) return false;
-    }
-    if (selectedCategory !== 'todas' && p.categoria_principal?.toLowerCase() !== selectedCategory.toLowerCase()) return false;
-    return true;
-  }), [products, searchQuery, selectedCategory]);
-
   if (isLoading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="text-center">
@@ -158,9 +148,22 @@ export function DashboardSimple() {
         <DashboardSidebar active={view} onChange={setView} stats={stats} />
         <main className="flex-1 p-4 max-w-4xl">
           <div className="animate-fade-in">
-            {view === 'buscar' && <SearchView products={filteredProducts} kb={kb} query={searchQuery} categories={categories}
-              selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} onSelectProduct={setSelectedProduct}
-              onScrapeProduct={handleScrapeProduct} scrapeStates={scrapeStates} />}
+            {view === 'buscar' && (
+              <SearchView 
+                products={products} 
+                kb={kb} 
+                query={searchQuery} 
+                selectedType={selectedType}
+                selectedFunction={selectedFunction}
+                selectedSystem={selectedSystem}
+                onTypeChange={setSelectedType}
+                onFunctionChange={setSelectedFunction}
+                onSystemChange={setSelectedSystem}
+                onSelectProduct={setSelectedProduct}
+                onScrapeProduct={handleScrapeProduct} 
+                scrapeStates={scrapeStates} 
+              />
+            )}
             {view === 'catalogo' && <CatalogView stats={stats} kbStats={kbStats} syncStatus={syncStatus} onSync={handleSyncKb} />}
             {view === 'sinergias' && <SynergyView kb={kb} />}
             {view === 'ajustes' && <SettingsView connected={supabaseConnected} />}
