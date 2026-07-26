@@ -37,7 +37,18 @@ src/
 │   │       └── SynergyEngineV2.ts     # Motor de sinergias
 │   ├── ingredient-database/      # Base legacy + sinónimos
 │   │   └── SynonymsService.ts            # 360+ sinónimos
-│   └── semantic-search/          # Búsqueda con IA
+│   ├── smart-search/             # 🔥 HERO SEARCH - Motor de chips inteligentes
+│   │   └── SmartChipEngine.ts            # Chips auto-clasificados
+│   ├── semantic-search/          # Búsqueda con IA (Transformers.js)
+│   │   ├── KBEmbeddingService.ts
+│   │   └── embedding-service.ts
+│   └── protocols/                # Protocolos de suplementación
+├── modules/
+│   ├── search/
+│   │   └── components/
+│   │       └── HeroSearch.tsx        # 🔥 BUSCADOR PROTAGONISTA
+│   └── protocols/
+│       └── ProtocolsModule.tsx
 ├── services/
 │   ├── SupabaseService.ts          # Sync productos
 │   └── SupabaseKBService.ts        # Sync base conocimiento
@@ -147,6 +158,45 @@ const suggestions = synergyEngineV2.suggestPartners('equinacea', 5);
 
 // Verificar antagonismos
 const warnings = synergyEngineV2.checkAntagonisms(['warfarin', 'ginkgo']);
+```
+
+## 🔥 Hero Search - Buscador Protagonista
+
+El buscador es el elemento central de la aplicación con chips inteligentes que se auto-clasifican.
+
+### SmartChipEngine
+
+```typescript
+import { smartChipEngine } from './core/smart-search';
+
+// Obtener chips para mostrar (se actualizan según query)
+const chips = smartChipEngine.getChips({ query: 'ansiedad', limit: 8 });
+
+// Detectar intención del usuario
+const suggestions = smartChipEngine.detectIntentAndSuggest('dormir');
+// → [{ id: 'sleep', label: '😴 Dormir mejor', intent: 'health_goal', ... }]
+
+// Registrar búsqueda para mejorar sugerencias futuras
+smartChipEngine.registerSearch('valeriana');
+```
+
+### Características del Motor de Chips
+
+- **Auto-clasificación**: Analiza la KB y genera chips automáticamente
+- **Detección de intención**: Identifica si el usuario busca objetivos, condiciones, síntomas
+- **Sinonimia inteligente**: Expandir queries con términos relacionados
+- **Historial adaptativo**: Aprende de las búsquedas del usuario
+- **Priorización dinámica**: Ordena chips por relevancia
+
+### Intenciones Detectadas
+
+```typescript
+type ChipIntent = 
+  | 'health_goal'    // Objetivos: dormir, energía, memoria
+  | 'condition'      // Condiciones: ansiedad, inflamación
+  | 'symptom'        // Síntomas: dolor, fatiga
+  | 'category'       // Categorías: vitaminas, plantas
+  | 'action';        // Acciones: prevenir, mejorar
 ```
 
 ## Búsqueda con Sinónimos

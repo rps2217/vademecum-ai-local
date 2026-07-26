@@ -7,10 +7,10 @@ const ProductDetailModal = lazy(() => import('../product/ProductDetailModal').th
 import { useTray } from '../../context/TrayContext';
 import { SearchBar } from './components/SearchBar';
 import { SearchResults } from './components/SearchResults';
-import { QuickDiscoveryTags } from './components/QuickDiscoveryTags';
 import { SemanticSearchPanel } from './components/SemanticSearchPanel';
+import { HeroSearch } from './components/HeroSearch';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
-import { Search, Grid3X3, List as ListIcon, X, Loader2, Sparkles, Brain } from 'lucide-react';
+import { Search, Grid3X3, List as ListIcon, X, Loader2, Sparkles, Brain, TrendingUp, Clock } from 'lucide-react';
 import { historyService } from '../../services/HistoryService';
 import { dataService } from '../../services/DataService';
 import { useStore } from '../../store/useStore';
@@ -21,8 +21,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 /**
- * SearchModule - Modern Medical Interface
- * Sophisticated search experience for healthcare professionals
+ * SearchModule - Hero Search Interface
+ * El buscador es el protagonista absoluto
  */
 export const SearchModule: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -48,6 +48,26 @@ export const SearchModule: React.FC = () => {
   useKeyboardShortcuts({
     'Control+Shift+S': () => setIsSemanticSearchOpen(true),
   });
+
+  // Update recent terms
+  useEffect(() => {
+    setRecentTerms(historyService.getRecentTerms());
+  }, []);
+
+  // Load all products
+  useEffect(() => {
+    const loadProducts = async () => {
+      setIsLoadingAll(true);
+      try {
+        const allProds = await dataService.getProducts();
+        setAllProducts(allProds);
+      } catch (error) {
+        logger.error('Error loading products', 'SearchModule', error);
+      }
+      setIsLoadingAll(false);
+    };
+    loadProducts();
+  }, []);
 
   // Sync viewedProductSku from store
   useEffect(() => {
@@ -144,72 +164,45 @@ export const SearchModule: React.FC = () => {
 
   return (
     <div className="w-full">
-      {/* Hero Search Section - Glass morphism */}
-      <div className="relative">
-        {/* Decorative background */}
-        <div className="absolute inset-x-0 -top-20 h-40 bg-gradient-to-b from-teal-500/5 to-transparent pointer-events-none" />
+      {/* Hero Search - EL PROTAGONISTA ABSOLUTO */}
+      <div className="relative min-h-[70vh] flex flex-col items-center justify-center px-4 py-12">
+        {/* Fondo decorativo con gradiente radial */}
+        <div className="absolute inset-0 bg-gradient-to-b from-violet-50/50 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-violet-200/20 to-transparent rounded-full blur-3xl pointer-events-none" />
         
-        <div className="max-w-3xl mx-auto px-4 pt-8 pb-10">
-          {/* Logo & Title */}
-          <div className="text-center mb-8 animate-fade-in-up">
-            <div className="inline-flex items-center gap-3 mb-4">
-              <div className="relative">
-                <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center shadow-xl shadow-teal-500/30 transform hover:scale-105 transition-transform">
-                  <Search className="w-7 h-7 text-white" />
-                </div>
-                <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-teal-400 to-teal-600 opacity-30 blur-xl -z-10" />
-              </div>
-            </div>
-            <h1 className="text-4xl font-bold text-slate-900 tracking-tight mb-2">
-              Vademécum <span className="text-gradient">Inteligente</span>
-            </h1>
-            <p className="text-slate-500 text-base font-medium">
-              Busque por nombre, principio activo o indicación médica
-            </p>
-          </div>
+        {/* Logo minimalista */}
+        <div className="mb-8 text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight mb-2">
+            Vademécum <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">IA</span>
+          </h1>
+          <p className="text-slate-500 text-lg">
+            Tu asistente inteligente de suplementación
+          </p>
+        </div>
 
-          {/* Search Input - Floating card style */}
-          <div className="relative group animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500/20 to-teal-600/20 rounded-2xl blur opacity-50 group-hover:opacity-75 transition-opacity" />
-            <div className="relative">
-              <SearchBar 
-                ref={searchInputRef}
-                query={query} 
-                setQuery={setQuery} 
-                isSearching={isSearching}
-                className="bg-white/95 backdrop-blur-lg border-0 shadow-xl rounded-2xl"
-              />
-            </div>
-            {hasQuery && (
-              <button
-                onClick={handleClear}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 hover:bg-slate-100 rounded-xl transition-all group/clear"
-              >
-                <X className="w-5 h-5 text-slate-400 group-hover/clear:text-slate-600 transition-colors" />
-              </button>
-            )}
-          </div>
+        {/* HERO SEARCH - El input más importante */}
+        <div className="w-full max-w-3xl relative z-10">
+          <HeroSearch 
+            onSearch={(q) => setQuery(q)}
+            onSelectIngredient={(ing) => console.log('Selected:', ing)}
+            placeholder="¿Qué necesitas? Ej: algo para dormir, ansiedad, defensas..."
+          />
+        </div>
 
-          {/* Botón de Búsqueda Semántica */}
-          <div className="mt-4 flex justify-center animate-fade-in-up" style={{ animationDelay: '150ms' }}>
-            <button
-              onClick={() => setIsSemanticSearchOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-500/10 to-purple-500/10 hover:from-violet-500/20 hover:to-purple-500/20 border border-violet-200/50 rounded-xl text-sm font-medium text-violet-600 transition-all"
-            >
-              <Brain className="w-4 h-4" />
-              <span>Búsqueda Semántica IA</span>
-              <kbd className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 bg-violet-100/50 rounded text-[10px] font-mono">
-                ⌘⇧S
-              </kbd>
-            </button>
+        {/* Stats rápidos */}
+        <div className="mt-8 flex items-center gap-8 text-sm text-slate-500 relative z-10">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>+200 ingredientes</span>
           </div>
-
-          {/* Quick Categories - Floating tags */}
-          {!hasQuery && (
-            <div className="mt-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              <QuickDiscoveryTags onSelect={setQuery} />
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+            <span>40+ sinergias</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+            <span>100% offline</span>
+          </div>
         </div>
       </div>
 
