@@ -111,7 +111,7 @@ export function SearchView({
     }
 
     return result.map(({ product }) => product);
-  }, [productsWithCategories, query, selectedTypes, selectedFunctions, selectedSystems, fuseIndex]);
+  }, [productsWithCategories, query, selectedTypes, selectedFunctions, selectedSystems]);
 
   // Handlers para chips
   const handleTypeToggle = useCallback((type: ProductType) => {
