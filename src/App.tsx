@@ -2,9 +2,11 @@
  * Vademecum AI - Aplicación Principal
  */
 
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
 import { errorHandler } from './services/ErrorHandlerService';
+import { appAuthService } from './services/AppAuthService';
+import AppLogin from './components/auth/AppLogin';
 
 // Lazy loading del Dashboard principal
 const DashboardSimple = lazy(() => import('./components/layout/DashboardSimple').then(m => ({ default: m.DashboardSimple })));
@@ -67,6 +69,31 @@ class ErrorBoundary extends React.Component<
 }
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Verificar estado de autenticación
+    setIsAuthenticated(appAuthService.isLoggedIn());
+    setLoading(false);
+
+    // Escuchar cambios de autenticación
+    const unsubscribe = appAuthService.onAuthChange((authenticated) => {
+      setIsAuthenticated(authenticated);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Mostrar login si no está autenticado
+  if (loading) {
+    return <LoadingFallback />;
+  }
+
+  if (!isAuthenticated) {
+    return <AppLogin onSuccess={() => setIsAuthenticated(true)} />;
+  }
+
   return (
     <ErrorBoundary>
       <Suspense fallback={<LoadingFallback />}>

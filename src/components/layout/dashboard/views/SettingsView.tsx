@@ -4,84 +4,177 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Settings, Database, RefreshCw, ExternalLink, CheckCircle, AlertCircle, Loader2, User, LogIn } from 'lucide-react';
+import { Settings, Database, RefreshCw, ExternalLink, CheckCircle, AlertCircle, Loader2, Lock, Shield } from 'lucide-react';
 import { supabaseService } from '../../../../services/SupabaseService';
 import { dataService } from '../../../../services/DataService';
 import { SyncPanel } from '../../../ui/SyncPanel';
-import { UserAuth } from '../../../auth/UserAuth';
-import { userProfileService } from '../../../../services/UserProfileService';
+import { appAuthService } from '../../../../services/AppAuthService';
 
 interface SettingsViewProps {
   connected: boolean;
 }
 
-// Componente interno para cuenta de usuario
-function UserAccountSection() {
-  const [showAuth, setShowAuth] = useState(false);
-  const [user, setUser] = useState<any>(null);
+// Componente interno para cuenta/seguridad
+function SecuritySection() {
+  const [showChangePassword, setShowChangePassword] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = userProfileService.onAuthChange((newUser) => {
-      setUser(newUser);
-    });
-    setUser(userProfileService.getCurrentUser());
-    return () => unsubscribe();
-  }, []);
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(false);
 
-  if (showAuth) {
-    return (
-      <div className="mt-4">
-        <UserAuth onClose={() => setShowAuth(false)} />
-      </div>
-    );
-  }
+    if (newPassword !== confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
 
-  if (user) {
-    return (
-      <div className="bg-gray-50 rounded-lg p-4">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-            {user.displayName?.charAt(0).toUpperCase() || 'U'}
-          </div>
-          <div>
-            <p className="font-medium text-gray-900">{user.displayName}</p>
-            <p className="text-sm text-gray-500">{user.email}</p>
-          </div>
-        </div>
-        <div className="flex gap-2">
-          <button
-            onClick={() => userProfileService.syncFromCloud().then(() => window.location.reload())}
-            className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
-          >
-            <RefreshCw className="w-4 h-4" />
-            Sincronizar
-          </button>
-          <button
-            onClick={() => userProfileService.signOut().then(() => window.location.reload())}
-            className="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-sm"
-          >
-            Cerrar sesión
-          </button>
-        </div>
-        <p className="text-xs text-gray-400 mt-2">
-          Última sync: {user.lastSyncAt ? new Date(user.lastSyncAt).toLocaleString('es-ES') : 'Nunca'}
-        </p>
-      </div>
-    );
-  }
+    if (newPassword.length < 4) {
+      setError('La contraseña debe tener al menos 4 caracteres');
+      return;
+    }
+
+    setLoading(true);
+    const result = await appAuthService.changePassword(currentPassword, newPassword);
+    setLoading(false);
+
+    if (result.success) {
+      setSuccess(true);
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+      setShowChangePassword(false);
+    } else {
+      setError(result.error || 'Error');
+    }
+  };
+
+  const handleLogout = () => {
+    if (confirm('¿Cerrar sesión? Deberás ingresar la contraseña para volver.')) {
+      appAuthService.logout();
+      window.location.reload();
+    }
+  };
+
+  const handleReset = () => {
+    if (confirm('⚠️ ¿Reset completo? Esto borrará TODOS los datos incluyendo la contraseña. ¿Continuar?')) {
+      appAuthService.resetAll();
+      window.location.reload();
+    }
+  };
+
+  const config = appAuthService.getAppConfig();
 
   return (
-    <div>
-      <p className="text-sm text-gray-600 mb-3">
-        Inicia sesión para sincronizar tus configuraciones entre dispositivos.
-      </p>
-      <button
-        onClick={() => setShowAuth(true)}
-        className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-      >
-        <LogIn className="w-4 h-4" />
-        Iniciar Sesión / Registrarse
-      </button>
+    <div className="space-y-4">
+      {/* Estado de seguridad */}
+      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+            <Shield className="w-5 h-5 text-green-600" />
+          </div>
+          <div className="flex-1">
+            <p className="font-medium text-green-800">Aplicación Protegida</p>
+            <p className="text-sm text-green-600">
+              Contraseña configurada el {config?.createdAt ? new Date(config.createdAt).toLocaleDateString('es-ES') : 'desconocido'}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Info del dispositivo */}
+      <div className="bg-gray-50 rounded-lg p-3 text-sm">
+        <p className="text-gray-600">
+          <span className="font-medium">ID Dispositivo:</span>{' '}
+          <code className="text-xs bg-gray-200 px-1 rounded">{config?.deviceId || 'N/A'}</code>
+        </p>
+      </div>
+
+      {/* Acciones */}
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => setShowChangePassword(!showChangePassword)}
+          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+        >
+          <Lock className="w-4 h-4" />
+          Cambiar Contraseña
+        </button>
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-sm"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+
+      {/* Formulario de cambio de contraseña */}
+      {showChangePassword && (
+        <form onSubmit={handleChangePassword} className="bg-gray-50 rounded-lg p-4 space-y-3">
+          <h4 className="font-medium text-gray-900">Nueva Contraseña</h4>
+          
+          <input
+            type="password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            placeholder="Contraseña actual"
+            required
+            className="w-full px-3 py-2 border rounded-lg text-sm"
+          />
+          <input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="Nueva contraseña"
+            required
+            minLength={4}
+            className="w-full px-3 py-2 border rounded-lg text-sm"
+          />
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirmar nueva contraseña"
+            required
+            minLength={4}
+            className="w-full px-3 py-2 border rounded-lg text-sm"
+          />
+
+          {error && <p className="text-red-600 text-sm">{error}</p>}
+          {success && <p className="text-green-600 text-sm">¡Contraseña actualizada!</p>}
+
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm disabled:opacity-50"
+            >
+              {loading ? 'Guardando...' : 'Guardar'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowChangePassword(false)}
+              className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-sm"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* Reset */}
+      <div className="border-t pt-4 mt-4">
+        <button
+          onClick={handleReset}
+          className="text-sm text-red-600 hover:text-red-700 hover:underline"
+        >
+          Resetear aplicación (borrar todo)
+        </button>
+      </div>
     </div>
   );
 }
@@ -207,19 +300,19 @@ export function SettingsView({ connected }: SettingsViewProps) {
         </div>
       </div>
 
-      {/* Cuenta de Usuario */}
+      {/* Seguridad */}
       <div className="bg-white border border-gray-200 rounded-xl p-5">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-            <Settings className="w-5 h-5 text-blue-600" />
+            <Shield className="w-5 h-5 text-blue-600" />
           </div>
           <div className="flex-1">
-            <h3 className="font-medium text-gray-900">Cuenta</h3>
-            <p className="text-sm text-gray-500">Sincroniza entre dispositivos</p>
+            <h3 className="font-medium text-gray-900">Seguridad</h3>
+            <p className="text-sm text-gray-500">Protección de la aplicación</p>
           </div>
         </div>
         
-        <UserAccountSection />
+        <SecuritySection />
       </div>
 
       {/* Estadísticas locales */}
