@@ -6,7 +6,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   Search, X, Clock, TrendingUp, Sparkles, 
-  ArrowRight, Mic, Filter 
+  ArrowRight, Pill, Beaker 
 } from 'lucide-react';
 import { cn } from '../../../lib/utils';
 import { categorizationService } from '../../../core/categorization';
@@ -189,16 +189,6 @@ export function SearchBar({
               <X className="w-4 h-4 text-gray-400" />
             </button>
           )}
-          
-          <div className="h-8 w-px bg-gray-200 mx-2" />
-          
-          <button 
-            onClick={() => inputRef.current?.focus()}
-            className="p-3 mr-2 hover:bg-gray-100 rounded-xl transition-colors"
-            title="Búsqueda por voz"
-          >
-            <Mic className="w-5 h-5 text-gray-400" />
-          </button>
         </div>
 
         {/* Panel de sugerencias */}
@@ -237,16 +227,36 @@ export function SearchBar({
                     <button
                       key={i}
                       onClick={() => handleSelectSuggestion(s.text)}
-                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-gray-50 rounded-lg text-left transition-colors"
+                      className="flex items-center gap-3 w-full px-3 py-2.5 hover:bg-gray-50 rounded-lg text-left transition-colors"
                     >
-                      <Search className="w-4 h-4 text-gray-300" />
+                      {s.type === 'product' ? (
+                        <Pill className="w-4 h-4 text-emerald-500" />
+                      ) : s.type === 'principio' ? (
+                        <Beaker className="w-4 h-4 text-violet-500" />
+                      ) : (
+                        <Search className="w-4 h-4 text-gray-400" />
+                      )}
                       <span className={cn(
-                        "text-sm",
+                        "flex-1 text-sm",
                         s.type === 'product' ? "text-gray-900 font-medium" : "text-gray-600"
                       )}>
                         {s.text}
                       </span>
-                      <span className="ml-auto text-xs text-gray-400 capitalize">{s.type}</span>
+                      {s.type === 'product' && (
+                        <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-medium rounded-full">
+                          Producto
+                        </span>
+                      )}
+                      {s.type === 'principio' && (
+                        <span className="px-2 py-0.5 bg-violet-100 text-violet-700 text-[10px] font-medium rounded-full">
+                          Ingrediente
+                        </span>
+                      )}
+                      {s.type === 'categoria' && (
+                        <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-medium rounded-full">
+                          Categoría
+                        </span>
+                      )}
                     </button>
                   ))}
                 </div>
