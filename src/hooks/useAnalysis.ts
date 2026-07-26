@@ -44,6 +44,67 @@ export interface ProductStats {
   avgCoverage: number;
 }
 
+// Función standalone para analizar un producto
+export function analyzeProductWithKb(product: Product, kb: Record<string, any>): {
+  found: string[];
+  sinergias: string[];
+  antagonismos: string[];
+  kbAnalysis: ProductAnalysis | null;
+  categorization: { categories: string[]; categoryLabels: string[] };
+} {
+  const found: string[] = [];
+  const principios = (product.principios_activos || []).map(p => String(p).toLowerCase());
+
+  for (const [id, ing] of Object.entries(kb)) {
+    const ingName = String((ing as any).nombre).toLowerCase();
+    for (const principio of principios) {
+      if (principio.includes(ingName) || ingName.includes(principio)) {
+        if (!found.includes(id)) found.push(id);
+      }
+    }
+  }
+
+  const sinergias: string[] = [];
+  const antagonismos: string[] = [];
+
+  for (const id of found) {
+    const sin = synergyGraphService.obtenerSinergiasDe(id);
+    for (const s of sin) {
+      if (found.includes(s.hacia)) {
+        const key = [id, s.hacia].sort().join('+');
+        if (!sinergias.some(x => x.includes(key))) {
+          sinergias.push(`${id} + ${s.hacia}`);
+        }
+      }
+    }
+    const ant = synergyGraphService.obtenerAntagonismosDe(id);
+    for (const a of ant) {
+      if (found.includes(a.hacia)) {
+        const key = [id, a.hacia].sort().join('+');
+        if (!antagonismos.some(x => x.includes(key))) {
+          antagonismos.push(`${id} + ${a.hacia}`);
+        }
+      }
+    }
+  }
+
+  const kbAnalysis = knowledgeService.analyzeProduct({
+    sku: product.sku,
+    nombre_comercial: product.nombre_comercial,
+    principios_activos: product.principios_activos
+  });
+
+  const categorization = productCategorizationService.getCategorizationDetails({
+    sku: product.sku,
+    nombre_comercial: product.nombre_comercial,
+    principios_activos: product.principios_activos,
+    descripcion: product.descripcion,
+    categoria: product.categoria_principal || product.categoria
+  });
+
+  return { found, sinergias, antagonismos, kbAnalysis, categorization };
+}
+
 export function useAnalysis(): UseAnalysisReturn {
   const kb = useMemo(() => getCombinedKnowledgeBase(), []);
   const ingredientCount = useMemo(() => Object.keys(kb).length, [kb]);
@@ -52,19 +113,15 @@ export function useAnalysis(): UseAnalysisReturn {
     const found: string[] = [];
     const principios = principiosActivos.map(p => String(p).toLowerCase());
 
-    // Buscar ingredientes en la KB
     for (const [id, ing] of Object.entries(kb)) {
       const ingName = String((ing as any).nombre).toLowerCase();
       for (const principio of principios) {
         if (principio.includes(ingName) || ingName.includes(principio)) {
-          if (!found.includes(id)) {
-            found.push(id);
-          }
+          if (!found.includes(id)) found.push(id);
         }
       }
     }
 
-    // Obtener sinergias y antagonismos
     const sinergias: string[] = [];
     const antagonismos: string[] = [];
 
@@ -75,7 +132,6 @@ export function useAnalysis(): UseAnalysisReturn {
           sinergias.push(`${id}-${s.hacia}`);
         }
       }
-
       const ant = synergyGraphService.obtenerAntagonismosDe(id);
       for (const a of ant) {
         if (found.includes(a.hacia) && !antagonismos.includes(`${id}-${a.hacia}`)) {
@@ -84,14 +140,8 @@ export function useAnalysis(): UseAnalysisReturn {
       }
     }
 
-    // Análisis de cobertura
-    const kbAnalysis = found.length > 0 
-      ? knowledgeService.analyzeIngredients(found)
-      : null;
-
-    const cobertura = principiosActivos.length > 0
-      ? (found.length / principiosActivos.length) * 100
-      : 0;
+    const kbAnalysis = found.length > 0 ? knowledgeService.analyzeIngredients(found) : null;
+    const cobertura = principiosActivos.length > 0 ? (found.length / principiosActivos.length) * 100 : 0;
 
     return { found, sinergias, antagonismos, kbAnalysis, cobertura };
   }, [kb]);
@@ -99,8 +149,7 @@ export function useAnalysis(): UseAnalysisReturn {
   const analyzeProduct = useCallback((product: Product): AnalyzedProduct => {
     const principiosActivos = product.principios_activos || [];
     const result = analyzeIngredients(principiosActivos);
-    
-    // Obtener categorización
+
     const baseProduct = {
       ...product,
       ingredientes_encontrados: result.found,
@@ -111,7 +160,7 @@ export function useAnalysis(): UseAnalysisReturn {
     };
 
     const categorization = productCategorizationService.getCategorizationDetails(baseProduct);
-    
+
     return {
       ...baseProduct,
       categorias_inferidas: categorization.categories,
@@ -138,13 +187,7 @@ export function useAnalysis(): UseAnalysisReturn {
     };
   }, []);
 
-  return {
-    analyzeProduct,
-    analyzeIngredients,
-    getProductStats,
-    kb,
-    ingredientCount
-  };
+  return { analyzeProduct, analyzeIngredients, getProductStats, kb, ingredientCount };
 }
 
 export default useAnalysis;
