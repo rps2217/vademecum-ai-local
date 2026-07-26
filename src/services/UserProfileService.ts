@@ -197,8 +197,18 @@ class UserProfileService {
         return { success: true, user: profile };
       }
 
-      // Crear perfil si no existe
-      return this.createDefaultProfile(authData.user);
+      // PERFIL NO EXISTE - Crearlo automáticamente
+      logger.info('Perfil no existe, creando...', 'UserProfile');
+      const createResult = await this.createDefaultProfile(authData.user);
+      
+      if (createResult.success && createResult.user) {
+        this.currentUser = createResult.user;
+        this.saveSession();
+        this.notifyListeners();
+        return createResult;
+      }
+
+      return createResult;
 
     } catch (error: any) {
       logger.error('Error en signIn:', 'UserProfile', error);
