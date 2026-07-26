@@ -932,6 +932,300 @@ export const SYNONYMS_MAP: Record<string, string> = {
   'clorela vulgaris': 'clorela',
   'chlorella pyrenoidosa': 'clorela',
   'chlorella tablet': 'clorela',
+
+  // ==================== FITOTERAPIA - NUEVOS ====================
+
+  // GINSENG
+  'ginseng': 'ginseng',
+  'panax ginseng': 'ginseng',
+  'ginseng coreano': 'ginseng',
+  'ginseng chino': 'ginseng',
+  'korean ginseng': 'ginseng',
+  'asian ginseng': 'ginseng',
+  'ren shen': 'ginseng',
+  'ginseng rojo': 'ginseng',
+  'ginseng blanco': 'ginseng',
+  'ginseng root': 'ginseng',
+
+  // ELEUTEROCOCO
+  'eleuterococo': 'eleuterococo',
+  'eleutherococcus': 'eleuterococo',
+  'eleutherococcus senticosus': 'eleuterococo',
+  'ginseng siberiano': 'eleuterococo',
+  'siberian ginseng': 'eleuterococo',
+  'ci wu jia': 'eleuterococo',
+  'devil shrub': 'eleuterococo',
+
+  // SCHISANDRA
+  'schisandra chinensis': 'schisandra',
+  'bayas de los cinco sabores': 'schisandra',
+  'wu wei zi': 'schisandra',
+  'five flavor berry': 'schisandra',
+
+  // SAW PALMETTO
+  'saw palmetto': 'saw_palmetto',
+  'serenoa repens': 'saw_palmetto',
+  'palmera enana americana': 'saw_palmetto',
+  'sabal': 'saw_palmetto',
+  'palmetto berry': 'saw_palmetto',
+  'cabbage palm': 'saw_palmetto',
+
+  // ORTIGA
+  'ortiga': 'ortiga',
+  'urtica dioica': 'ortiga',
+  'nettle': 'ortiga',
+  'stinging nettle': 'ortiga',
+  'hoja de ortiga': 'ortiga',
+  'urtica': 'ortiga',
+
+  // REGALIZ
+  'regaliz': 'regaliz',
+  'glycyrrhiza': 'regaliz',
+  'glycyrrhiza glabra': 'regaliz',
+  'licorice': 'regaliz',
+  'orozuz': 'regaliz',
+  'liquorice': 'regaliz',
+  'madaka': 'regaliz',
+  'gan cao': 'regaliz',
+
+  // DONG QUAI
+  'dong quai': 'dong_quai',
+  'angelica sinensis': 'dong_quai',
+  'ginseng femenino': 'dong_quai',
+  'dang gui': 'dong_quai',
+  'female ginseng': 'dong_quai',
+  'angelica china': 'dong_quai',
+
+  // CIMICIFUGA
+  'cimicifuga': 'cimicifuga',
+  'cimicifuga racemosa': 'cimicifuga',
+  'black cohosh': 'cimicifuga',
+  'cohosh negro': 'cimicifuga',
+  'actaea racemosa': 'cimicifuga',
+
+  // VITEX
+  'vitex': 'vitex',
+  'vitex agnus-castus': 'vitex',
+  'arbol casto': 'vitex',
+  'pimienta de los monjes': 'vitex',
+  'sauzgatillo': 'vitex',
+  'chasteberry': 'vitex',
+  'chaste tree': 'vitex',
+
+  // CENTELLA ASIATICA
+  'centella': 'centella',
+  'centella asiatica': 'centella',
+  'gotu kola': 'centella',
+  'gotu kola': 'centella',
+  'brahmi': 'centella',
+  'asiatic pennywort': 'centella',
+
+  // UNCARIA
+  'uncaria': 'uncaria',
+  'uncaria tomentosa': 'uncaria',
+  'uÃ±a de gato': 'uncaria',
+  'cats claw': 'uncaria',
+  'catclaw': 'uncaria',
+
+  // ==================== ACEITES ESENCIALES - NUEVOS ====================
+
+  // HELICHRYSUM
+  'helichrysum': 'helichrysum',
+  'immortelle': 'helichrysum',
+  'helichrysum italicum': 'helichrysum',
+  'everlasting': 'helichrysum',
+  'italian strawflower': 'helichrysum',
+
+  // NEROLI
+  'neroli': 'neroli',
+  'orange blossom': 'neroli',
+  'citrus aurantium': 'neroli',
+  'azahar': 'neroli',
+  'flor de naranjo': 'neroli',
+
+  // MANUKA
+  'manuka': 'manuka',
+  'leptospermum': 'manuka',
+  'leptospermum scoparium': 'manuka',
+  'tea tree neozelandes': 'manuka',
+  'new zealand tea tree': 'manuka',
+
+  // COPAIBA
+  'copaiba': 'copaiba',
+  'copaifera': 'copaiba',
+  'balsamo de copaiba': 'copaiba',
+  'copaiba oil': 'copaiba',
+  'beta caryophyllene': 'copaiba',
+
+  // PALMAROSA
+  'palmarosa': 'palmarosa',
+  'cymbopogon martinii': 'palmarosa',
+  'indian geranium': 'palmarosa',
+  'gingergrass': 'palmarosa',
+
+  // PALO DE ROSA
+  'palo de rosa': 'palo_de_rosa',
+  'rosewood': 'palo_de_rosa',
+  'aniba rosaeodora': 'palo_de_rosa',
+  'bois de rose': 'palo_de_rosa',
+
+  // CEDRO ATLAS
+  'cedro atlas': 'cedro_atlas',
+  'cedrus atlantica': 'cedro_atlas',
+  'cedarwood atlas': 'cedro_atlas',
+  'atlas cedar': 'cedro_atlas',
+
+  // ==================== VITAMINAS/MINERALES - NUEVOS ====================
+
+  // VITAMINA K2
+  'vitamina k2': 'vitamina_k2',
+  'k2': 'vitamina_k2',
+  'menaquinona': 'vitamina_k2',
+  'mk-7': 'vitamina_k2',
+  'mk7': 'vitamina_k2',
+  'mk-4': 'vitamina_k2',
+  'menaquinone': 'vitamina_k2',
+  'vitamin k2': 'vitamina_k2',
+
+  // MAGNESIO GLICINATO
+  'magnesio glicinato': 'magnesio_glicinato',
+  'magnesium glycinate': 'magnesio_glicinato',
+  'bisglicinato de magnesio': 'magnesio_glicinato',
+  'glicinato de magnesio': 'magnesio_glicinato',
+
+  // SELENIO
+  'selenio': 'selenio',
+  'selenium': 'selenio',
+  'selenometionina': 'selenio',
+  'selenite': 'selenio',
+
+  // CROMO
+  'cromo': 'cromo',
+  'chromium': 'cromo',
+  'picolinato de cromo': 'cromo',
+  'chromium picolinate': 'cromo',
+
+  // COBRE
+  'cobre': 'cobre',
+  'copper': 'cobre',
+  'copper gluconate': 'cobre',
+  'cobre quelado': 'cobre',
+
+  // MANGANESO
+  'manganeso': 'manganeso',
+  'manganese': 'manganeso',
+  'manganese gluconate': 'manganeso',
+
+  // CREATINA
+  'creatina': 'creatina',
+  'creatine': 'creatina',
+  'creatine monohydrate': 'creatina',
+  'creapure': 'creatina',
+
+  // ALFA LIPOICO
+  'alfa lipoico': 'alfa_lipoico',
+  'alpha lipoic acid': 'alfa_lipoico',
+  'ala': 'alfa_lipoico',
+  'r-ala': 'alfa_lipoico',
+  'thioctic acid': 'alfa_lipoico',
+  'acido tioctico': 'alfa_lipoico',
+
+  // FOSFATIDILSERINA
+  'fosfatidilserina': 'fosfatidilserina',
+  'phosphatidylserine': 'fosfatidilserina',
+  'ps': 'fosfatidilserina',
+
+  // LUTEINA
+  'luteina': 'luteina',
+  'lutein': 'luteina',
+  'floraglo': 'luteina',
+  'xantofila': 'luteina',
+
+  // ==================== PROBIOTICOS - NUEVOS ====================
+
+  'lactobacillus rhamnosus gg': 'lactobacillus_rhamnosus_gg',
+  'lgg': 'lactobacillus_rhamnosus_gg',
+  'bifidobacterium longum bb536': 'bifidobacterium_longum_bb536',
+  'bb536': 'bifidobacterium_longum_bb536',
+  'saccharomyces boulardii': 'saccharomyces_boulardii',
+  's. boulardii': 'saccharomyces_boulardii',
+  'florestor': 'saccharomyces_boulardii',
+  'bifidobacterium lactis bb12': 'bifidobacterium_lactis_bb12',
+  'bb-12': 'bifidobacterium_lactis_bb12',
+  'lactobacillus plantarum 299v': 'lactobacillus_plantarum_299v',
+  '299v': 'lactobacillus_plantarum_299v',
+  'akkermansia': 'akkermansia_muciniphila',
+  'akkermansia muciniphila': 'akkermansia_muciniphila',
+  'faecalibacterium prausnitzii': 'faecalibacterium_prausnitzii',
+  'f. prausnitzii': 'faecalibacterium_prausnitzii',
+
+  // ==================== ENZIMAS - NUEVOS ====================
+
+  'proteasa': 'proteasa',
+  'protease': 'proteasa',
+  'bromelaina': 'bromelaina',
+  'bromelain': 'bromelaina',
+  'pineapple enzyme': 'bromelaina',
+  'papaína': 'papaína',
+  'papain': 'papaína',
+  'papaya enzyme': 'papaína',
+  'lactasa': 'lactasa',
+  'lactase': 'lactasa',
+  'amilasa': 'amilasa',
+  'amylase': 'amilasa',
+  'lipasa': 'lipasa',
+  'lipase': 'lipasa',
+
+  // ==================== PREBIOTICOS ====================
+
+  'inulina': 'inulina',
+  'inulin': 'inulina',
+  'fructooligosaccharide': 'inulina',
+  'fos': 'fos',
+  'fructooligosacaridos': 'fos',
+  'gos': 'gos',
+  'galactooligosaccharides': 'gos',
+  'almidon resistente': 'resistant_starch',
+  'resistant starch': 'resistant_starch',
+  'beta glucanos': 'beta_glucanos',
+  'beta glucan': 'beta_glucanos',
+  'pektina': 'pektina',
+  'pectin': 'pektina',
+
+  // ==================== AMINOACIDOS - NUEVOS ====================
+
+  '5-htp': '5_htp',
+  '5 htp': '5_htp',
+  '5htp': '5_htp',
+  'hydroxytryptophan': '5_htp',
+  'griffonia': '5_htp',
+  'nac': 'nac',
+  'n-acetilcisteina': 'nac',
+  'n-acetylcysteine': 'nac',
+  'acetilcisteina': 'nac',
+  'taurina': 'taurina',
+  'taurine': 'taurina',
+  'glicina': 'glicina',
+  'glycine': 'glicina',
+  'treonina': 'treonina',
+  'threonine': 'treonina',
+  'cisteina': 'cisteina',
+  'cysteine': 'cisteina',
+  'ornitina': 'ornitina',
+  'ornithine': 'ornitina',
+  'bcaa': 'bcaa',
+  'branched chain amino acids': 'bcaa',
+  'aminoacidos ramificados': 'bcaa',
+  'leucina': 'bcaa',
+  'leucine': 'bcaa',
+  'isoleucina': 'bcaa',
+  'isoleucine': 'bcaa',
+  'valina': 'bcaa',
+  'valine': 'bcaa',
+  'glutation': 'glutation',
+  'glutathione': 'glutation',
+  'gsh': 'glutation',
+  'glutation reducido': 'glutation',
 };
 
 // Función para normalizar texto de búsqueda

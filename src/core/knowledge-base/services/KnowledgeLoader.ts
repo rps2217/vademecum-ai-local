@@ -10,7 +10,12 @@ import fitoterapiaData from '../data/fitoterapia.json';
 import homeopatiaData from '../data/homeopatia.json';
 import aceitesData from '../data/aceites.json';
 import vitaminasData from '../data/vitaminas_minerales.json';
+import probioticosData from '../data/probioticos.json';
+import enzimasData from '../data/enzimas.json';
+import prebioticosData from '../data/prebioticos.json';
+import aminoacidosData from '../data/aminoacidos.json';
 import synergiesData from '../synergies/synergies.json';
+import antagonismosData from '../data/antagonismos.json';
 
 import type {
   IngredientCategory,
@@ -29,6 +34,11 @@ interface KBCategoryData {
 interface SynergiesData {
   metadata: { total: number };
   sinergias: any[];
+}
+
+interface AntagonismsData {
+  metadata: { total: number };
+  antagonismos: any[];
 }
 
 /**
@@ -96,12 +106,50 @@ class KnowledgeLoader {
         this.indexIngredient(ing);
       });
 
+      // Cargar probioticos
+      const probioticos = probioticosData as KBCategoryData;
+      probioticos.ingredientes?.forEach((ing: any) => {
+        ing.categoria = 'probioticos';
+        this.ingredients.set(ing.id, ing);
+        this.indexIngredient(ing);
+      });
+
+      // Cargar enzimas digestivas
+      const enzimas = enzimasData as KBCategoryData;
+      enzimas.ingredientes?.forEach((ing: any) => {
+        ing.categoria = 'enzimas';
+        this.ingredients.set(ing.id, ing);
+        this.indexIngredient(ing);
+      });
+
+      // Cargar prebioticos
+      const prebioticos = prebioticosData as KBCategoryData;
+      prebioticos.ingredientes?.forEach((ing: any) => {
+        ing.categoria = 'prebioticos';
+        this.ingredients.set(ing.id, ing);
+        this.indexIngredient(ing);
+      });
+
+      // Cargar aminoacidos
+      const aminoacidos = aminoacidosData as KBCategoryData;
+      aminoacidos.ingredientes?.forEach((ing: any) => {
+        ing.categoria = 'aminoacidos';
+        this.ingredients.set(ing.id, ing);
+        this.indexIngredient(ing);
+      });
+
       // Cargar sinergias
       const synergies = synergiesData as SynergiesData;
       this.synergies = synergies.sinergias || [];
 
+      // Cargar antagonismos
+      const antagonismos = antagonismosData as AntagonismsData;
+      this.antagonisms = antagonismos.antagonismos || [];
+
       this.loaded = true;
       console.log(`[KnowledgeLoader] Cargados ${this.ingredients.size} ingredientes`);
+      console.log(`[KnowledgeLoader] Cargadas ${this.synergies.length} sinergias`);
+      console.log(`[KnowledgeLoader] Cargados ${this.antagonisms.length} antagonismos`);
     } catch (error) {
       console.error('[KnowledgeLoader] Error cargando datos:', error);
       throw error;
@@ -280,6 +328,58 @@ class KnowledgeLoader {
         };
       })
       .filter(s => s.ingredient !== undefined)
+      .slice(0, limit);
+  }
+
+  /**
+   * Obtener antagonismos de un ingrediente
+   */
+  getAntagonismsFor(ingredientId: string): AntagonismRelation[] {
+    return this.antagonisms.filter(
+      a => a.ingredienteA === ingredientId || a.ingredienteB === ingredientId
+    );
+  }
+
+  /**
+   * Encontrar antagonismo entre dos ingredientes
+   */
+  findAntagonism(idA: string, idB: string): AntagonismRelation | undefined {
+    return this.antagonisms.find(
+      a => (a.ingredienteA === idA && a.ingredienteB === idB) ||
+           (a.ingredienteA === idB && a.ingredienteB === idA)
+    );
+  }
+
+  /**
+   * Obtener todos los antagonismos
+   */
+  getAllAntagonisms(): AntagonismRelation[] {
+    return this.antagonisms;
+  }
+
+  /**
+   * Verificar si hay antagonismo entre dos ingredientes
+   */
+  hasAntagonism(idA: string, idB: string): AntagonismRelation | undefined {
+    return this.findAntagonism(idA, idB);
+  }
+
+  /**
+   * Sugerir alternativas seguras para un ingrediente que tiene antagonismo
+   */
+  suggestSafeAlternatives(ingredientId: string, limit: number = 5): any[] {
+    const antagonismos = this.getAntagonismsFor(ingredientId);
+    const antagonistsIds = antagonismos.map(a => 
+      a.ingredienteA === ingredientId ? a.ingredienteB : a.ingredienteA
+    );
+    
+    // Obtener ingredientes de la misma categoría que no tienen antagonismo
+    const ingredient = this.getById(ingredientId);
+    if (!ingredient) return [];
+    
+    const sameCategory = this.getByCategory(ingredient.categoria as IngredientCategory);
+    return sameCategory
+      .filter(ing => !antagonistsIds.includes(ing.id) && ing.id !== ingredientId)
       .slice(0, limit);
   }
 }

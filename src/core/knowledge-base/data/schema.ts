@@ -16,6 +16,7 @@ export type IngredientCategory =
   | 'minerales'         // Minerales y oligoelementos
   | 'aminoacidos'       // Aminoácidos y proteínas
   | 'probioticos'       // Bacterias beneficiosas
+  | 'prebioticos'       // Fibras prebióticas
   | 'enzimas'           // Enzimas digestivas
   | 'otros';            // Otros suplementos
 

@@ -263,23 +263,66 @@ class SynergyEngineV2 {
   /**
    * Verificar antagonismos conocidos
    */
-  checkAntagonisms(ingredientIds: string[]): string[] {
-    // Por ahora devolvemos array vacío - se puede expandir con datos de antagonismos
-    const warnings: string[] = [];
+  checkAntagonisms(ingredientIds: string[]): any[] {
+    const warnings: any[] = [];
+    const uniqueIds = [...new Set(ingredientIds)];
     
-    // Ejemplo de verificación básica
-    for (const id of ingredientIds) {
+    // Verificar antagonismos entre todos los pares de ingredientes
+    for (let i = 0; i < uniqueIds.length; i++) {
+      for (let j = i + 1; j < uniqueIds.length; j++) {
+        const idA = uniqueIds[i];
+        const idB = uniqueIds[j];
+        
+        const antagonism = knowledgeLoader.findAntagonism(idA, idB);
+        if (antagonism) {
+          warnings.push(antagonism);
+        }
+      }
+    }
+
+    // Añadir advertencias individuales de cada ingrediente
+    for (const id of uniqueIds) {
       const ing = knowledgeLoader.getById(id);
       if (ing?.advertencias) {
         ing.advertencias.forEach((warn: string) => {
-          if (!warnings.includes(warn)) {
-            warnings.push(warn);
-          }
+          warnings.push({
+            id: `warn_${id}_${warn.substring(0, 10)}`,
+            ingredienteA: id,
+            ingredienteB: 'N/A',
+            tipo: 'advertencia_individual',
+            severidad: 'info',
+            descripcion: warn,
+            mecanismo: '',
+            recomendacion: `Revisar la información del ingrediente ${ing.nombre}.`,
+            fuente: 'Base de conocimiento',
+          });
         });
       }
     }
 
     return warnings;
+  }
+
+  /**
+   * Obtener antagonismos para un ingrediente específico
+   */
+  getAntagonismsFor(ingredientId: string): any[] {
+    return knowledgeLoader.getAntagonismsFor(ingredientId);
+  }
+
+  /**
+   * Verificar si es seguro combinar ingredientes
+   */
+  isSafeToCombine(ingredientIds: string[]): { safe: boolean; severity: string; antagonisms: any[] } {
+    const antagonisms = this.checkAntagonisms(ingredientIds);
+    const highSeverity = antagonisms.filter(a => a.severidad === 'alta');
+    const mediumSeverity = antagonisms.filter(a => a.severidad === 'media');
+    
+    return {
+      safe: highSeverity.length === 0,
+      severity: highSeverity.length > 0 ? 'alta' : mediumSeverity.length > 0 ? 'media' : 'baja',
+      antagonisms,
+    };
   }
 }
 
