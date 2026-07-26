@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { cn } from '../../../lib/utils';
 import { categorizationService } from '../../../core/categorization';
-import { PRODUCT_TYPE_LABELS, THERAPEUTIC_FUNCTION_LABELS, BODY_SYSTEM_LABELS, type ProductType, type TherapeuticFunction, type BodySystem } from '../../../core/categorization';
+import { PRODUCT_TYPES, PRODUCT_TYPE_LABELS, THERAPEUTIC_FUNCTIONS, THERAPEUTIC_FUNCTION_LABELS, BODY_SYSTEM_LABELS, type ProductType, type TherapeuticFunction, type BodySystem } from '../../../core/categorization';
 import type { AnalyzedProduct } from '../../../types';
 
 interface SearchBarProps {

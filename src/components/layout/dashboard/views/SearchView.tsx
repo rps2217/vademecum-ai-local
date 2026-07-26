@@ -8,8 +8,7 @@ import type { AnalyzedProduct } from '../../../types';
 import { ProductCardSimple } from '../../../product/ProductCardSimple';
 import { SearchBar } from '../SearchBar';
 import { EmptyState } from '../EmptyState';
-import { categorizationService } from '../../../../core/categorization';
-import { PRODUCT_TYPES, type ProductType, type TherapeuticFunction, type BodySystem } from '../../../../core/categorization';
+import { categorizationService, PRODUCT_TYPES, type ProductType, type TherapeuticFunction, type BodySystem } from '../../../../core/categorization';
 import Fuse from 'fuse.js';
 
 interface ScrapingState {
