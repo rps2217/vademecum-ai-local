@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Settings, Database, RefreshCw, ExternalLink, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { supabaseService } from '../../../../services/SupabaseService';
 import { dataService } from '../../../../services/DataService';
+import { SyncPanel } from '../../../ui/SyncPanel';
 
 interface SettingsViewProps {
   connected: boolean;
@@ -67,6 +68,9 @@ export function SettingsView({ connected }: SettingsViewProps) {
           Gestiona la conexión a la nube y opciones de la aplicación.
         </p>
       </div>
+
+      {/* Panel de Sincronización */}
+      <SyncPanel />
 
       {/* Estado de Supabase */}
       <div className="bg-white border border-gray-200 rounded-xl p-5">
