@@ -9,7 +9,6 @@ import { ProductCardSimple } from '../../../product/ProductCardSimple';
 import { SearchBar } from '../SearchBar';
 import { EmptyState } from '../EmptyState';
 import { categorizationService, PRODUCT_TYPES, type ProductType, type TherapeuticFunction, type BodySystem } from '../../../../core/categorization';
-import Fuse from 'fuse.js';
 
 interface ScrapingState {
   [sku: string]: 'idle' | 'scraping' | 'success' | 'error';
@@ -50,22 +49,6 @@ export function SearchView({
   const [selectedFunctions, setSelectedFunctions] = useState<TherapeuticFunction[]>([]);
   const [selectedSystems, setSelectedSystems] = useState<BodySystem[]>([]);
 
-  // Crear índice Fuse.js para búsqueda fuzzy
-  const fuseIndex = useMemo(() => {
-    return new Fuse(products, {
-      keys: [
-        { name: 'nombre_comercial', weight: 0.4 },
-        { name: 'principios_activos', weight: 0.3 },
-        { name: 'categoria_principal', weight: 0.2 },
-        { name: 'descripcion', weight: 0.1 },
-      ],
-      threshold: 0.4,
-      distance: 100,
-      includeScore: true,
-      ignoreLocation: true,
-    });
-  }, [products]);
-
   // Calcular categorías para productos
   const productsWithCategories = useMemo(() => {
     return products.map(p => ({
@@ -74,22 +57,36 @@ export function SearchView({
     }));
   }, [products, kb]);
 
-  // Filtrar productos con búsqueda fuzzy
+  // Filtrar productos con búsqueda simple
   const filteredProducts = useMemo(() => {
     let result = productsWithCategories;
 
-    // Búsqueda con Fuse.js
-    if (query && query.length >= 2) {
-      const fuseResults = fuseIndex.search(query);
-      const matchedSkus = new Set(fuseResults.map(r => r.item.sku));
-      result = result.filter(({ product }) => matchedSkus.has(product.sku));
+    // Búsqueda simple con ordenamiento por relevancia
+    if (query && query.length >= 1) {
+      const q = query.toLowerCase();
       
-      // Ordenar por score de Fuse
-      result.sort((a, b) => {
-        const aScore = fuseResults.find(r => r.item.sku === a.product.sku)?.score || 1;
-        const bScore = fuseResults.find(r => r.item.sku === b.product.sku)?.score || 1;
-        return aScore - bScore;
-      });
+      // Ordenar: exacta > inicio > contiene > kb
+      result = result
+        .map(({ product, categories }) => {
+          const nombre = (product.nombre_comercial || '').toLowerCase();
+          const principios = (product.principios_activos || []).map(p => p.toLowerCase());
+          
+          let priority = 0;
+          
+          // Coincidencia exacta en nombre
+          if (nombre === q) priority = 4;
+          // Nombre empieza con query
+          else if (nombre.startsWith(q)) priority = 3;
+          // Nombre contiene query
+          else if (nombre.includes(q)) priority = 2;
+          // Principio activo contiene query
+          else if (principios.some(p => p.includes(q))) priority = 1;
+          
+          return { product, categories, priority };
+        })
+        .filter(r => r.priority > 0)
+        .sort((a, b) => b.priority - a.priority || b.categories.coverage - a.categories.coverage)
+        .map(r => ({ product: r.product, categories: r.categories }));
     }
 
     // Filtros por tipo
