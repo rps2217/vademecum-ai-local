@@ -6,6 +6,7 @@ import { aiService } from './AIService';
 import { dataService } from './DataService';
 import { database, productsCollection } from '../database';
 import MiniSearch from 'minisearch';
+import { findByOrganOrPathology, type OrganMapping } from '../core/knowledge/organs-pathologies-map';
 
 export interface SearchIndexItem {
   id: string; // MiniSearch requires id
@@ -272,7 +273,7 @@ export class SearchService {
   }
 
   /**
-   * Search with pagination support
+   * Search with pagination support and organ/pathology search
    */
   async search(
     query: string, 
@@ -281,6 +282,7 @@ export class SearchService {
       principle?: string;
       page?: number;
       pageSize?: number;
+      includeOrganSearch?: boolean;
     } = {}
   ): Promise<SearchResult> {
     if (!this.isInitialized) await this.initializeIndex();
@@ -291,21 +293,60 @@ export class SearchService {
     let combinedItems: { product: Product, score: number }[] = [];
     const normalizedQuery = query ? this.normalizeText(query) : '';
     
+    // Primero, buscar por órganos y patologías
+    let organMatches: OrganMapping[] = [];
+    if (normalizedQuery && normalizedQuery.trim()) {
+      organMatches = findByOrganOrPathology(normalizedQuery);
+      
+      // Si hay coincidencias de órganos, buscar productos relacionados
+      if (organMatches.length > 0 && options.includeOrganSearch !== false) {
+        const allIngredients = new Set<string>();
+        organMatches.forEach(m => {
+          m.ingredients.forEach(i => allIngredients.add(i.toLowerCase()));
+        });
+        
+        // Buscar productos que contengan estos ingredientes
+        const organProducts = this.index.filter(item => {
+          if (!item.product.principios_activos) return false;
+          const principios = item.product.principios_activos.map(p => p.toLowerCase());
+          return principios.some(p => {
+            // Buscar coincidencia exacta o parcial
+            return Array.from(allIngredients).some(ing => 
+              p.includes(ing) || ing.includes(p) ||
+              p.split(/\s+/).some(word => ing.includes(word))
+            );
+          });
+        }).map(item => ({ product: item.product, score: 10 })); // Alta puntuación para resultados de órganos
+        
+        combinedItems.push(...organProducts);
+      }
+    }
+    
+    // Búsqueda normal por texto
     if (normalizedQuery && normalizedQuery.trim()) {
         if (this.miniSearch) {
             const results = this.miniSearch.search(normalizedQuery);
-            combinedItems = results.map(res => {
+            const textResults = results.map(res => {
                 const indexItem = this.index.find(i => i.id === res.id);
                 return {
                     product: indexItem!.product,
                     score: res.score
                 };
             });
+            // Combinar resultados evitando duplicados
+            const existingSkus = new Set(combinedItems.map(c => c.product.sku));
+            textResults.forEach(r => {
+              if (!existingSkus.has(r.product.sku)) {
+                combinedItems.push(r);
+              }
+            });
         }
     } else {
         combinedItems = this.index.map(i => ({ product: i.product, score: 0 }));
     }
 
+    // Ordenar por score
+    combinedItems.sort((a, b) => b.score - a.score);
     let combined = combinedItems.map(i => i.product);
 
     // Apply Facets/Filters
@@ -328,6 +369,24 @@ export class SearchService {
       page,
       pageSize,
       hasMore: startIndex + pageSize < total
+    };
+  }
+
+  /**
+   * Get organ/pathology search results for UI display
+   */
+  async searchWithOrgans(query: string): Promise<{
+    products: Product[];
+    organMatches: OrganMapping[];
+    total: number;
+  }> {
+    const organMatches = findByOrganOrPathology(query);
+    const result = await this.search(query, { includeOrganSearch: true, pageSize: 50 });
+    
+    return {
+      products: result.products,
+      organMatches,
+      total: result.total
     };
   }
 
