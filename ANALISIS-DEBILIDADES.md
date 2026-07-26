@@ -885,3 +885,58 @@ npm run build
 
 **Documento creado por:** OpenHands Agent  
 **Última actualización:** 2026-07-26
+
+---
+
+## SISTEMA DE SINCRONIZACIÓN ENTRE DISPOSITIVOS
+
+### Problema Original
+Las credenciales de Supabase solo se guardaban en localStorage del navegador, por lo que al cambiar de dispositivo se perdían.
+
+### Solución Implementada: UserProfileService
+
+**Arquitectura:**
+- Dispositivo A (Login) -> Supabase Auth + DB <- Dispositivo B (Sync)
+
+**Archivos creados:**
+- src/services/UserProfileService.ts - Servicio de autenticación
+- src/components/auth/UserAuth.tsx - Componente UI
+- src/hooks/useUserProfile.ts - Hook React
+- supabase/migrations/001_create_user_profiles.sql - Schema BD
+
+**Datos sincronizados:**
+- Credenciales Supabase (URL, API Key)
+- Configuraciones de API (Gemini, etc.)
+- Preferencias de tema e idioma
+- Configuraciones de búsqueda
+
+### Uso
+
+```tsx
+import { useUserProfile } from './hooks/useUserProfile';
+import UserAuth from './components/auth/UserAuth';
+
+function App() {
+  const { user, isAuthenticated, syncFromCloud } = useUserProfile();
+  
+  return isAuthenticated ? <Dashboard user={user} /> : <UserAuth />;
+}
+```
+
+### Configuración SQL requerida
+
+```sql
+CREATE TABLE public.user_profiles (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  email TEXT,
+  display_name TEXT,
+  settings JSONB DEFAULT '{}',
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.user_profiles ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users manage own profile" ON public.user_profiles
+  FOR ALL USING (auth.uid() = user_id);
+```
