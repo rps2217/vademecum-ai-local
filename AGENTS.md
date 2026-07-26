@@ -76,10 +76,12 @@ EMBEDDING_MODEL=nomic-embed-text
 - [x] Sincronización con Supabase (opcional)
 - [x] Búsqueda semántica con Ollama (opcional)
 - [x] Sistema de alertas de seguridad
+- [x] PWA offline con Service Worker avanzado
+- [x] Comparador de productos
 
 ### 🔄 En Progreso
-- [ ] PWA completo para uso offline
 - [ ] Base de datos expandida de ingredientes
+- [ ] Integración de comparador en UI
 
 ## Patrones de Código
 

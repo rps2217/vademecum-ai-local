@@ -13,6 +13,7 @@ import { searchService } from '../../services/SearchService';
 import { productScrapingService } from '../../services/ProductScrapingService';
 import { logger } from '../../services/LoggerService';
 import { ProductDetailModal } from '../product/ProductDetailModal';
+import { ConnectionBanner } from '../ui/ConnectionBanner';
 import { SearchView, CatalogView, SynergyView, SettingsView } from './dashboard/views';
 import { DashboardHeader, DashboardSidebar } from './dashboard';
 import { useAppStore, type AnalyzedProduct, loadPreferences } from '../../store';
@@ -188,6 +189,9 @@ export function DashboardSimple() {
       </div>
       {selectedProduct && <ProductDetailModal product={selectedProduct} kb={kb} onClose={() => setSelectedProduct(null)}
         onScrape={handleScrapeProduct} scrapeState={scrapeStates[selectedProduct.sku] || 'idle'} />}
+      
+      {/* Banner de conexión */}
+      <ConnectionBanner />
     </div>
   );
 }

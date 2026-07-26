@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { Pill, Loader2, Check, X, ChevronRight, Clock, BookOpen } from 'lucide-react';
+import { cn } from '../../lib/utils';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { TermExpander } from '../ui/TermExpander';
@@ -19,13 +20,20 @@ interface ProductCardSimpleProps {
   onSelect: () => void;
   onScrape?: (sku: string) => void;
   scrapeState?: 'idle' | 'scraping' | 'success' | 'error';
+  // Props para comparación
+  showCompareCheckbox?: boolean;
+  isSelected?: boolean;
+  onCompareToggle?: (product: AnalyzedProduct) => void;
 }
 
 export const ProductCardSimple: React.FC<ProductCardSimpleProps> = React.memo(({
   product,
   onSelect,
   onScrape,
-  scrapeState = 'idle'
+  scrapeState = 'idle',
+  showCompareCheckbox = false,
+  isSelected = false,
+  onCompareToggle,
 }) => {
   const capitalizeFirst = (text: string) => {
     if (!text) return text;
@@ -50,10 +58,38 @@ export const ProductCardSimple: React.FC<ProductCardSimpleProps> = React.memo(({
 
   return (
     <div
-      className="group bg-white border border-slate-200 rounded-xl p-4 cursor-pointer transition-all duration-200 hover:border-emerald-300 hover:shadow-md"
+      className={cn(
+        "group bg-white border rounded-xl p-4 transition-all duration-200 hover:shadow-md",
+        isSelected
+          ? "border-emerald-400 ring-2 ring-emerald-100"
+          : "border-slate-200 hover:border-emerald-300",
+        showCompareCheckbox && "cursor-pointer"
+      )}
       onClick={onSelect}
     >
       <div className="flex items-start gap-3">
+        {/* Checkbox para comparar */}
+        {showCompareCheckbox && (
+          <div 
+            className="shrink-0 mt-1"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onCompareToggle) onCompareToggle(product);
+            }}
+          >
+            <div
+              className={cn(
+                "w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all",
+                isSelected
+                  ? "bg-emerald-500 border-emerald-500"
+                  : "border-gray-300 hover:border-emerald-400"
+              )}
+            >
+              {isSelected && <Check className="w-3 h-3 text-white" />}
+            </div>
+          </div>
+        )}
+
         {/* Icono */}
         <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center shrink-0">
           <Pill className="w-5 h-5 text-emerald-600" />

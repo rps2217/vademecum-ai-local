@@ -72,27 +72,50 @@ export default defineConfig(({mode}) => {
         manifest: {
           name: 'Vademécum Inteligente',
           short_name: 'Vademécum',
-          description: 'Consulta de medicamentos con IA Local',
-          theme_color: '#ffffff',
+          description: 'Consulta de medicamentos con IA Local - Funciona offline',
+          theme_color: '#10b981',
           background_color: '#ffffff',
           display: 'standalone',
+          orientation: 'portrait',
+          scope: '/',
+          start_url: '/',
+          categories: ['medical', 'productivity', 'utilities'],
           icons: [
             {
               src: 'icon.svg',
               sizes: '192x192',
-              type: 'image/svg+xml'
+              type: 'image/svg+xml',
+              purpose: 'any maskable'
             },
             {
               src: 'icon.svg',
               sizes: '512x512',
-              type: 'image/svg+xml'
+              type: 'image/svg+xml',
+              purpose: 'any maskable'
             }
           ]
         },
         workbox: {
-          globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2}'],
           maximumFileSizeToCacheInBytes: 10000000,
+          // Páginas offline fallback
+          navigateFallback: 'index.html',
+          navigateFallbackDenylist: [/^\/api\//],
+          // Runtime caching estrategias
           runtimeCaching: [
+            // App shell - Stale While Revalidate
+            {
+              urlPattern: /\.(?:js|css)$/,
+              handler: 'StaleWhileRevalidate',
+              options: {
+                cacheName: 'static-resources',
+                expiration: {
+                  maxEntries: 100,
+                  maxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
+                }
+              }
+            },
+            // Google Fonts
             {
               urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
               handler: 'CacheFirst',
@@ -121,6 +144,7 @@ export default defineConfig(({mode}) => {
                 }
               }
             },
+            // AI Models - Cache First con larga duración
             {
               urlPattern: /.*\.bin$|.*\.onnx$|.*\.wasm$/,
               handler: 'CacheFirst',
@@ -135,6 +159,7 @@ export default defineConfig(({mode}) => {
                 }
               }
             },
+            // Hugging Face
             {
               urlPattern: /^https:\/\/huggingface\.co\/.*/i,
               handler: 'CacheFirst',
@@ -148,8 +173,57 @@ export default defineConfig(({mode}) => {
                   statuses: [0, 200]
                 }
               }
+            },
+            // Supabase API - Network First con cache fallback
+            {
+              urlPattern: /^https:\/\/.*\.supabase\.co\/.*/i,
+              handler: 'NetworkFirst',
+              options: {
+                cacheName: 'supabase-cache',
+                networkTimeoutSeconds: 10,
+                expiration: {
+                  maxEntries: 100,
+                  maxAgeSeconds: 60 * 60 * 24 // 24 hours
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
+            },
+            // Ollama (si se usa localmente)
+            {
+              urlPattern: /^http:\/\/localhost:11434\/.*/i,
+              handler: 'NetworkFirst',
+              options: {
+                cacheName: 'ollama-cache',
+                networkTimeoutSeconds: 5,
+                expiration: {
+                  maxEntries: 20,
+                  maxAgeSeconds: 60 * 60 // 1 hour
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
+            },
+            // Imágenes
+            {
+              urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'images-cache',
+                expiration: {
+                  maxEntries: 100,
+                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                }
+              }
             }
           ]
+        },
+        // Desarrollo
+        devOptions: {
+          enabled: true,
+          type: 'module'
         }
       })
     ],
