@@ -1,11 +1,13 @@
 import { logger } from '../../services/LoggerService';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Product } from '../../core/types/product.types';
 import { ClinicalAssistant } from '../assistant/ClinicalAssistant';
-import { X, AlertTriangle, Pill, ShieldAlert, Loader2, CheckCircle2, Info, AlertCircle, Sparkles } from 'lucide-react';
+import { X, AlertTriangle, Pill, ShieldAlert, Loader2, CheckCircle2, Info, AlertCircle, Sparkles, Database } from 'lucide-react';
 import { formatArrayToString } from '../../utils/formatters';
 import { geminiService } from '../../services/GeminiService';
 import { ollamaService } from '../../services/OllamaService';
+import { synergyEngineV2 } from '../../core/knowledge-base';
+import { findIngredientByAny } from '../../core/ingredient-database/SynonymsService';
 
 interface PrescriptionAnalysisModalProps {
   products: Product[];
@@ -24,6 +26,56 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
     }[];
     resumen_clinico: string;
   } | null>(null);
+
+  // Extraer IDs de ingredientes de la base de conocimiento
+  const ingredientIds = useMemo(() => {
+    const ids: string[] = [];
+    products.forEach(product => {
+      (product.principios_activos || []).forEach(principio => {
+        const found = findIngredientByAny(principio);
+        if (found?.id) {
+          ids.push(found.id);
+        }
+      });
+    });
+    return [...new Set(ids)];
+  }, [products]);
+
+  // Verificar antagonismos con la base de conocimiento
+  const kbAntagonisms = useMemo(() => {
+    if (ingredientIds.length < 2) return [];
+    return synergyEngineV2.checkAntagonisms(ingredientIds);
+  }, [ingredientIds]);
+
+  // Map para mostrar nombres legibles
+  const ingredientNamesMap = useMemo(() => {
+    const map = new Map<string, string>();
+    products.forEach(product => {
+      (product.principios_activos || []).forEach(principio => {
+        const found = findIngredientByAny(principio);
+        if (found?.id) {
+          map.set(found.id, principio);
+        }
+      });
+    });
+    return map;
+  }, [products]);
+
+  const getAntagonismSeverityIcon = (severity: string) => {
+    switch (severity) {
+      case 'alta': return <AlertTriangle className="w-5 h-5 text-red-400" />;
+      case 'media': return <AlertCircle className="w-5 h-5 text-amber-400" />;
+      default: return <Info className="w-5 h-5 text-blue-400" />;
+    }
+  };
+
+  const getAntagonismSeverityStyle = (severity: string) => {
+    switch (severity) {
+      case 'alta': return 'bg-red-500/10 border-red-500/30 text-red-300';
+      case 'media': return 'bg-amber-500/10 border-amber-500/30 text-amber-300';
+      default: return 'bg-blue-500/10 border-blue-500/30 text-blue-300';
+    }
+  };
 
   useEffect(() => {
     const runAnalysis = async () => {
@@ -204,6 +256,70 @@ export const PrescriptionAnalysisModal: React.FC<PrescriptionAnalysisModalProps>
                     <h3 className="text-3xl font-extrabold text-foreground relative z-10">Ecosistema Seguro</h3>
                     <p className="text-muted-foreground text-lg max-w-md mx-auto relative z-10 font-medium italic">No se han detectado incompatibilidades bioquímicas significativas en esta combinación.</p>
                   </div>
+                )}
+
+                {/* Base de Conocimiento - Antagonismos */}
+                {kbAntagonisms.length > 0 && (
+                  <section className="space-y-8">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center">
+                        <Database className="w-5 h-5 text-violet-400" />
+                      </div>
+                      <div>
+                        <h3 className="clinical-label flex items-center gap-2">
+                          Alertas de Base de Conocimiento
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {kbAntagonisms.length} interacción{kbAntagonisms.length !== 1 ? 'es' : ''} antagonísticas detectadas
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 gap-4">
+                      {kbAntagonisms.map((antag, idx) => (
+                        <div 
+                          key={antag.id || idx}
+                          className={`p-6 rounded-2xl border ${getAntagonismSeverityStyle(antag.severidad)}`}
+                        >
+                          <div className="flex items-start gap-4">
+                            {getAntagonismSeverityIcon(antag.severidad)}
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="font-bold text-sm">
+                                  {ingredientNamesMap.get(antag.ingredienteA) || antag.ingredienteA}
+                                </span>
+                                <span className="text-xs opacity-60">+</span>
+                                <span className="font-bold text-sm">
+                                  {ingredientNamesMap.get(antag.ingredienteB) || antag.ingredienteB}
+                                </span>
+                                <span className={`ml-auto px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${
+                                  antag.severidad === 'alta' ? 'bg-red-500/30' : 
+                                  antag.severidad === 'media' ? 'bg-amber-500/30' : 'bg-blue-500/30'
+                                }`}>
+                                  {antag.severidad}
+                                </span>
+                              </div>
+                              <p className="text-sm mb-2 opacity-90">{antag.descripcion}</p>
+                              {antag.mecanismo && (
+                                <p className="text-xs opacity-70 mb-2">
+                                  <span className="font-medium">Mecanismo:</span> {antag.mecanismo}
+                                </p>
+                              )}
+                              {antag.recomendacion && (
+                                <div className={`mt-2 p-3 rounded-xl ${
+                                  antag.severidad === 'alta' ? 'bg-red-500/20' : 
+                                  antag.severidad === 'media' ? 'bg-amber-500/20' : 'bg-blue-500/20'
+                                }`}>
+                                  <p className="text-xs font-bold mb-1">Recomendación:</p>
+                                  <p className="text-xs">{antag.recomendacion}</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
                 )}
 
                 {/* Chat de seguimiento (Opcional) */}
