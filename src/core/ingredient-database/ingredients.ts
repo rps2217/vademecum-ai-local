@@ -25,10 +25,19 @@ export interface IngredientInfo {
 
 export type IngredientDatabase = Record<string, IngredientInfo>;
 
-// Re-export from extended database
-export { getExtendedIngredientDatabase, findExtendedIngredient, getExtendedIngredientStats, 
-         HOMEOPATHY_DATABASE, HERBAL_DATABASE } from './extended-database';
-export type { ExtendedIngredientInfo } from './extended-database';
+// Import from extended database
+import { 
+  getExtendedIngredientDatabase, 
+  findExtendedIngredient, 
+  getExtendedIngredientStats,
+  HOMEOPATHY_DATABASE,
+  HERBAL_DATABASE,
+  ExtendedIngredientInfo
+} from './extended-database';
+
+// Re-export for external use
+export { getExtendedIngredientDatabase, findExtendedIngredient, getExtendedIngredientStats, HOMEOPATHY_DATABASE, HERBAL_DATABASE };
+export type { ExtendedIngredientInfo };
 
 // Base de datos de ingredientes principales
 export const INGREDIENT_DATABASE: IngredientDatabase = {
