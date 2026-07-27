@@ -268,8 +268,8 @@ import { KBDashboard } from './components/admin';
 
 ### 🔄 En Desarrollo
 - [x] Editor visual de sinergias
+- [x] Dashboard admin para CRUD de KB
 - [ ] Motor de sugerencias IA
-- [ ] Dashboard admin para CRUD de KB
 
 ## Patrones de Código
 
