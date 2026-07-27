@@ -3,26 +3,56 @@
  * El buscador es el protagonista absoluto
  */
 
-import React, { useState, useEffect, Suspense, lazy, useCallback } from 'react';
-import { useProductSearch } from './hooks/useProductSearch';
-import { Product } from '../../core/types';
+import React, { useState, useEffect, Suspense, lazy, useCallback, useMemo } from 'react';
 import { HeroSearchSimple } from './components/HeroSearchSimple';
-import { Search, Grid3X3, List, Loader2, Plus, Check } from 'lucide-react';
+import { Grid3X3, List, Loader2, Plus, Check } from 'lucide-react';
 import { useTray } from '../../context/TrayContext';
 import { useStore } from '../../store/useStore';
+import { searchService } from '../../services/SearchService';
 import { cn } from '../../lib/utils';
+import type { Product } from '../../core/types';
 
 const ProductDetailModal = lazy(() => 
   import('../product/ProductDetailModal').then(m => ({ default: m.ProductDetailModal }))
 );
 
 export const SearchModuleSimple: React.FC = () => {
-  const { query, setQuery, isSearching, results } = useProductSearch(false);
   const { viewedProductSku, setViewedProduct, products } = useStore();
   const { toggleProduct, isInTray } = useTray();
   
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<Product[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+
+  // Productos disponibles (del store sincronizado)
+  const allProducts = useMemo(() => {
+    return products.length > 0 ? products : [];
+  }, [products]);
+
+  // Búsqueda
+  useEffect(() => {
+    const performSearch = async () => {
+      if (!query.trim()) {
+        setResults([]);
+        return;
+      }
+
+      setIsSearching(true);
+      try {
+        const searchResults = await searchService.search(query);
+        setResults(searchResults);
+      } catch (error) {
+        console.error('Error buscando:', error);
+        setResults([]);
+      }
+      setIsSearching(false);
+    };
+
+    const timeout = setTimeout(performSearch, 200);
+    return () => clearTimeout(timeout);
+  }, [query]);
 
   // Sync selected product
   useEffect(() => {
@@ -58,7 +88,6 @@ export const SearchModuleSimple: React.FC = () => {
         <HeroSearchSimple 
           onSearch={(q) => setQuery(q)}
           onSelectProduct={(p) => {
-            // Buscar producto en resultados
             const found = products.find(prod => prod.sku === p.sku);
             if (found) handleProductClick(found);
           }}
@@ -69,7 +98,7 @@ export const SearchModuleSimple: React.FC = () => {
           <div className="flex justify-center gap-6 mt-6 text-sm text-slate-500">
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              +2,196 productos
+              {allProducts.length.toLocaleString()} productos
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-violet-500" />

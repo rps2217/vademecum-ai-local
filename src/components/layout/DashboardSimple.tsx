@@ -9,6 +9,8 @@ import { HardwareProfile } from '../../core/types/hardware.types';
 import { UserMenu } from './UserMenu';
 import { FloatingTray } from '../tray/FloatingTray';
 import { OfflineIndicator } from '../common/OfflineIndicator';
+import { SettingsProvider } from '../../context/SettingsContext';
+import { AuthProvider } from '../../context/AuthContext';
 
 // Lazy load modules
 const SearchModuleSimple = lazy(() => 
@@ -137,12 +139,17 @@ export const DashboardSimple: React.FC<DashboardSimpleProps> = ({ hardware }) =>
         )}
       </header>
 
-      {/* Contenido principal */}
-      <main className="max-w-6xl mx-auto">
-        <Suspense fallback={<ModuleLoader />}>
-          {renderModule()}
-        </Suspense>
-      </main>
+      {/* Providers */}
+      <SettingsProvider>
+        <AuthProvider>
+          {/* Contenido principal */}
+          <main className="max-w-6xl mx-auto">
+            <Suspense fallback={<ModuleLoader />}>
+              {renderModule()}
+            </Suspense>
+          </main>
+        </AuthProvider>
+      </SettingsProvider>
 
       {/* Floating Tray */}
       <FloatingTray />
