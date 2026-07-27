@@ -187,20 +187,25 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
                 📦 {results.length} productos encontrados
               </div>
               <div className="space-y-1">
-                {results.map((product) => (
-                  <button
-                    key={product.sku}
-                    onClick={() => handleProductClick(product)}
-                    className="w-full p-3 text-left bg-slate-50 hover:bg-violet-50 rounded-xl transition-all group"
-                  >
-                    <p className="font-medium text-slate-800 group-hover:text-violet-700 line-clamp-1">
-                      {product.nombre_comercial || product.sku}
-                    </p>
-                    <p className="text-xs text-slate-500 line-clamp-1">
-                      {product.principios_activos?.slice(0, 2).join(', ')}
-                    </p>
-                  </button>
-                ))}
+                {results.map((product) => {
+                  const principles = Array.isArray(product.principios_activos) 
+                    ? product.principios_activos 
+                    : [];
+                  return (
+                    <button
+                      key={product.sku}
+                      onClick={() => handleProductClick(product)}
+                      className="w-full p-3 text-left bg-slate-50 hover:bg-violet-50 rounded-xl transition-all group"
+                    >
+                      <p className="font-medium text-slate-800 group-hover:text-violet-700 line-clamp-1">
+                        {product.nombre_comercial || product.sku}
+                      </p>
+                      <p className="text-xs text-slate-500 line-clamp-1">
+                        {principles.slice(0, 2).join(', ')}
+                      </p>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}

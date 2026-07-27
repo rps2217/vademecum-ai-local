@@ -198,7 +198,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode, isInTray, onView, onAdd }) => {
-  const principles = product.principios_activos || [];
+  const principles = Array.isArray(product.principios_activos) ? product.principios_activos : [];
   const firstPrinciple = principles[0] || '';
 
   return (
