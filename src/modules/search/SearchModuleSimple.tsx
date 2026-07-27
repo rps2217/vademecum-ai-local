@@ -41,8 +41,9 @@ export const SearchModuleSimple: React.FC = () => {
 
       setIsSearching(true);
       try {
-        const searchResults = await searchService.search(query);
-        setResults(searchResults);
+        const searchResult = await searchService.search(query);
+        const products = Array.isArray(searchResult.products) ? searchResult.products : [];
+        setResults(products);
       } catch (error) {
         console.error('Error buscando:', error);
         setResults([]);

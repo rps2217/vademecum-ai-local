@@ -53,8 +53,9 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
     searchTimeoutRef.current = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const searchResults = await searchService.search(query);
-        setResults(searchResults.slice(0, 8));
+        const searchResult = await searchService.search(query);
+        const products = Array.isArray(searchResult.products) ? searchResult.products : [];
+        setResults(products.slice(0, 8));
       } catch (error) {
         console.error('Error buscando:', error);
         setResults([]);
