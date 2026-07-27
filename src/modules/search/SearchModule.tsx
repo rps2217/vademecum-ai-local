@@ -10,15 +10,18 @@ import { SearchResults } from './components/SearchResults';
 import { SemanticSearchPanel } from './components/SemanticSearchPanel';
 import { HeroSearch } from './components/HeroSearch';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
-import { Search, Grid3X3, List as ListIcon, X, Loader2, Sparkles, Brain, TrendingUp, Clock } from 'lucide-react';
+import { Search, Grid3X3, List as ListIcon, X, Loader2, Sparkles, Brain, TrendingUp, Clock, FileText } from 'lucide-react';
 import { historyService } from '../../services/HistoryService';
 import { dataService } from '../../services/DataService';
 import { useStore } from '../../store/useStore';
 import { searchService } from '../../services/SearchService';
 import { logger } from '../../services/LoggerService';
+import { supabaseSyncService } from '../../services/SupabaseSyncService';
+import { ProtocolCard, ProtocolDetail } from '../protocols/components';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import type { Protocol } from '../../core/types/schema.types';
 
 /**
  * SearchModule - Hero Search Interface
@@ -43,6 +46,11 @@ export const SearchModule: React.FC = () => {
   const [isLoadingAll, setIsLoadingAll] = useState(true);
   
   const { toggleProduct, isInTray } = useTray();
+  
+  // Protocols state
+  const [protocols, setProtocols] = useState<Protocol[]>([]);
+  const [selectedProtocol, setSelectedProtocol] = useState<Protocol | null>(null);
+  const [isLoadingProtocols, setIsLoadingProtocols] = useState(true);
 
   // Abrir búsqueda semántica con Ctrl+Shift+S
   useKeyboardShortcuts({
@@ -67,6 +75,21 @@ export const SearchModule: React.FC = () => {
       setIsLoadingAll(false);
     };
     loadProducts();
+  }, []);
+
+  // Load protocols from Supabase
+  useEffect(() => {
+    const loadProtocols = async () => {
+      setIsLoadingProtocols(true);
+      try {
+        const data = await supabaseSyncService.fetchProtocols();
+        setProtocols(data.slice(0, 3)); // Solo los primeros 3 para mostrar
+      } catch (error) {
+        logger.error('Error loading protocols', 'SearchModule', error);
+      }
+      setIsLoadingProtocols(false);
+    };
+    loadProtocols();
   }, []);
 
   // Sync viewedProductSku from store
@@ -193,7 +216,7 @@ export const SearchModule: React.FC = () => {
         <div className="mt-8 flex items-center gap-8 text-sm text-slate-500 relative z-10">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>+1,309 productos</span>
+            <span>+2,196 productos</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
@@ -203,7 +226,35 @@ export const SearchModule: React.FC = () => {
             <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
             <span>40+ sinergias</span>
           </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+            <span>5 protocolos</span>
+          </div>
         </div>
+
+        {/* Protocolos Destacados */}
+        {!hasQuery && protocols.length > 0 && (
+          <div className="mt-12 w-full max-w-5xl relative z-10">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <FileText className="w-5 h-5 text-amber-600" />
+                <h3 className="text-lg font-bold text-slate-800">Protocolos Destacados</h3>
+              </div>
+              <button className="text-sm text-violet-600 hover:text-violet-700 font-medium">
+                Ver todos →
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {protocols.map(protocol => (
+                <ProtocolCard
+                  key={protocol.id}
+                  protocol={protocol}
+                  onClick={setSelectedProtocol}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Results Section */}
@@ -380,6 +431,18 @@ export const SearchModule: React.FC = () => {
             isEmbedded={true}
           />
         </Suspense>
+      )}
+
+      {/* Protocol Detail Modal */}
+      {selectedProtocol && (
+        <ProtocolDetail
+          protocol={selectedProtocol}
+          onClose={() => setSelectedProtocol(null)}
+          onStartProtocol={(protocol) => {
+            console.log('Iniciar protocolo:', protocol);
+            setSelectedProtocol(null);
+          }}
+        />
       )}
 
       {/* Semantic Search Panel */}
