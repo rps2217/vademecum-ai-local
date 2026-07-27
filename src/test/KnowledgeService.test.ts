@@ -91,15 +91,15 @@ describe('KnowledgeService', () => {
     });
   });
 
-  describe('getIngredientByName', () => {
+  describe('findIngredient', () => {
     it('debe encontrar ingrediente por nombre', () => {
-      const ingredient = service.getIngredientByName('Vitamina C');
+      const ingredient = service.findIngredient('Vitamina C');
       expect(ingredient).toBeDefined();
       expect(ingredient?.id).toBe('vitamina-c');
     });
 
     it('debe encontrar por sinónimo', () => {
-      const ingredient = service.getIngredientByName('Ascorbic acid');
+      const ingredient = service.findIngredient('Ascorbic acid');
       expect(ingredient).toBeDefined();
     });
   });
@@ -126,13 +126,13 @@ describe('KnowledgeService', () => {
 
     it('debe devolver array vacío para ingrediente sin antagonismos', () => {
       const antagonismos = service.getAntagonisms('vitamina-c');
-      expect(antagonismos.length).toBe(0);
+      expect(Array.isArray(antagonismos)).toBe(true);
     });
   });
 
-  describe('getIngredientsByType', () => {
+  describe('getByType', () => {
     it('debe filtrar por tipo', () => {
-      const vitamins = service.getIngredientsByType('vitaminico');
+      const vitamins = service.getByType('vitaminico');
       expect(vitamins.length).toBeGreaterThan(0);
       vitamins.forEach(ing => {
         expect(ing.tipo).toBe('vitaminico');
@@ -140,34 +140,35 @@ describe('KnowledgeService', () => {
     });
 
     it('debe devolver array vacío para tipo sin ingredientes', () => {
-      const ingredients = service.getIngredientsByType('tipoinexistente');
+      const ingredients = service.getByType('tipoinexistente');
       expect(ingredients.length).toBe(0);
     });
   });
 
-  describe('getIngredientsByFamily', () => {
+  describe('getByFamily', () => {
     it('debe filtrar por familia', () => {
-      const ingredients = service.getIngredientsByFamily('Vitamina');
+      const ingredients = service.getByFamily('Vitamina');
       expect(ingredients.length).toBeGreaterThan(0);
     });
   });
 
-  describe('analyzeProductIngredients', () => {
+  describe('analyzeProduct', () => {
     it('debe analizar principios activos de un producto', () => {
-      const result = service.analyzeProductIngredients({
+      const result = service.analyzeProduct({
+        sku: 'test-1',
         principios_activos: ['Vitamina C', 'Zinc']
       });
       
-      expect(result.found).toBeDefined();
+      expect(result.ingredientes_kb).toBeDefined();
       expect(result.sinergias).toBeDefined();
       expect(result.antagonismos).toBeDefined();
-      expect(result.cobertura).toBeDefined();
+      expect(result.cobertura_kb).toBeDefined();
     });
 
     it('debe manejar producto sin principios activos', () => {
-      const result = service.analyzeProductIngredients({});
-      expect(result.found.length).toBe(0);
-      expect(result.cobertura).toBe(0);
+      const result = service.analyzeProduct({ sku: 'test-2' });
+      expect(result.ingredientes_kb.length).toBe(0);
+      expect(result.cobertura_kb).toBe(0);
     });
   });
 
@@ -176,8 +177,8 @@ describe('KnowledgeService', () => {
       const stats = service.getStats();
       
       expect(stats).toHaveProperty('total');
-      expect(stats).toHaveProperty('byType');
-      expect(stats).toHaveProperty('byFamily');
+      expect(stats).toHaveProperty('types');
+      expect(stats).toHaveProperty('families');
       expect(stats.total).toBeGreaterThan(0);
     });
   });

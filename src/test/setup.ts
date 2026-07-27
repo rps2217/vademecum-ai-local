@@ -1,6 +1,21 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
+// Mock LoggerService para tests
+vi.mock('../services/LoggerService', () => ({
+  logger: {
+    debug: vi.fn(),
+    info: vi.fn(),
+    warn: vi.fn(),
+    error: vi.fn(),
+    success: vi.fn(),
+    ai: vi.fn(),
+    log: vi.fn(),
+    getLogs: vi.fn(() => []),
+    clear: vi.fn(),
+  },
+}));
+
 // Mock localStorage
 const localStorageMock = {
   getItem: vi.fn(),

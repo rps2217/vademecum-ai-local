@@ -51,10 +51,13 @@ vi.mock('../services/EventBus', () => ({
 
 vi.mock('../services/LoggerService', () => ({
   logger: {
+    debug: vi.fn(),
     info: vi.fn(),
     warn: vi.fn(),
     error: vi.fn(),
     success: vi.fn(),
+    ai: vi.fn(),
+    log: vi.fn(),
   },
 }));
 

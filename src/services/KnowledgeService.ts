@@ -90,7 +90,7 @@ function findIngredientById(id: string): KbIngredient | null {
   return kb.ingredients.find(i => i.id.toLowerCase() === id.toLowerCase()) || null;
 }
 
-class KnowledgeService {
+export class KnowledgeService {
   private ingredientMap: Map<string, KbIngredient> = new Map();
   private synonymMap: Map<string, KbIngredient> = new Map();
   private initialized = false;
@@ -119,6 +119,20 @@ class KnowledgeService {
   findIngredient(searchTerm: string): KbIngredient | null {
     const normalized = searchTerm.toLowerCase().trim();
     return this.ingredientMap.get(normalized) || this.synonymMap.get(normalized) || null;
+  }
+
+  getIngredientById(id: string): KbIngredient | undefined {
+    return findIngredientById(id) || undefined;
+  }
+
+  searchIngredients(query: string): KbIngredient[] {
+    if (!query || query.trim().length === 0) return [];
+    const normalized = query.toLowerCase().trim();
+    return kb.ingredients.filter(ing =>
+      ing.nombre.toLowerCase().includes(normalized) ||
+      ing.sinonimos.some(s => s.toLowerCase().includes(normalized)) ||
+      ing.id.toLowerCase().includes(normalized)
+    );
   }
 
   analyzeProduct(product: { sku: string; nombre_comercial?: string; principios_activos?: string[] }): ProductAnalysis {
@@ -207,10 +221,26 @@ class KnowledgeService {
     return kb.ingredients.filter(i => i.tipo.toLowerCase() === tipo.toLowerCase());
   }
 
+  getSynergies(ingredientId: string): Array<{ from: string; to: string }> {
+    const ingredient = this.findIngredient(ingredientId);
+    if (!ingredient) return [];
+    return ingredient.sinergias.map(synId => ({ from: ingredient.id, to: synId }));
+  }
+
+  getAntagonisms(ingredientId: string): Array<{ from: string; to: string }> {
+    const ingredient = this.findIngredient(ingredientId);
+    if (!ingredient) return [];
+    return ingredient.antagonismos.map(antId => ({ from: ingredient.id, to: antId }));
+  }
+
   getStats(): KnowledgeStats {
     const families = new Set(kb.ingredients.map(i => i.familia));
     const types = new Set(kb.ingredients.map(i => i.tipo));
     return { total: kb.ingredients.length, families: families.size, types: types.size };
+  }
+
+  getVersion(): string {
+    return kb.metadata?.version || '1.0.0';
   }
 
   suggestSynergies(ingredients: string[]): Array<{ ing1: string; ing2: string; reason: string }> {
