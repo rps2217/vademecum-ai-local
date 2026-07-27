@@ -267,7 +267,7 @@ import { KBDashboard } from './components/admin';
 - [x] Búsqueda semántica local (Transformers.js)
 
 ### 🔄 En Desarrollo
-- [ ] Editor visual de sinergias
+- [x] Editor visual de sinergias
 - [ ] Motor de sugerencias IA
 - [ ] Dashboard admin para CRUD de KB
 
