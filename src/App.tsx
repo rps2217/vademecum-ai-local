@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 import { errorHandler } from './services/ErrorHandlerService';
 import { appAuthService } from './services/AppAuthService';
 import AppLogin from './components/auth/AppLogin';
+import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
 
 // Lazy loading del Dashboard principal
 const DashboardSimple = lazy(() => import('./components/layout/DashboardSimple').then(m => ({ default: m.DashboardSimple })));
@@ -96,9 +97,11 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <Suspense fallback={<LoadingFallback />}>
-        <DashboardSimple />
-      </Suspense>
+      <AppBootstrapper>
+        <Suspense fallback={<LoadingFallback />}>
+          <DashboardSimple />
+        </Suspense>
+      </AppBootstrapper>
     </ErrorBoundary>
   );
 }
