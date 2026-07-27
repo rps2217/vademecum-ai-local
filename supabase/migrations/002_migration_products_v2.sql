@@ -171,22 +171,22 @@ SELECT
   p.sku,
   COALESCE(p.nombre_comercial, p.data->>'nombre_comercial'),
   p.data->>'descripcion',
-  -- Convertir JSON array a TEXT[] correctamente
+  -- Convertir JSON array a TEXT[] correctamente (usando jsonb_array_elements_text)
   CASE 
     WHEN p.data->>'principios_activos' IS NOT NULL 
-    THEN ARRAY(SELECT json_array_elements_text(p.data->'principios_activos'))
+    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'principios_activos'))
     ELSE NULL 
   END,
   CASE 
     WHEN p.data->>'indicaciones' IS NOT NULL 
-    THEN ARRAY(SELECT json_array_elements_text(p.data->'indicaciones'))
+    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'indicaciones'))
     ELSE NULL 
   END,
   p.data->>'advertencias',
   p.data->>'posologia',
   CASE 
     WHEN p.data->>'tags_ia' IS NOT NULL 
-    THEN ARRAY(SELECT json_array_elements_text(p.data->'tags_ia'))
+    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'tags_ia'))
     ELSE NULL 
   END,
   NULL, -- vectors se migran después
@@ -206,7 +206,7 @@ SELECT
   p.data->>'lock_uid',
   CASE 
     WHEN p.data->>'skus_relacionados' IS NOT NULL 
-    THEN ARRAY(SELECT json_array_elements_text(p.data->'skus_relacionados'))
+    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'skus_relacionados'))
     ELSE NULL 
   END,
   COALESCE((p.data->>'is_synced_cloud')::BOOLEAN, false),
