@@ -133,7 +133,7 @@ export class DataService {
       // 2. Contar productos en la nube
       const supabase = supabaseService.getClient();
       const { count, error: countError } = await supabase
-        .from('products')
+        .from('products_v2')
         .select('*', { count: 'exact', head: true });
       
       if (countError) {
@@ -204,15 +204,15 @@ export class DataService {
         logger.info(`Descargando lote ${page + 1}: productos ${from}-${to}`, 'DataService');
         
         const { data, error, status } = await supabase
-          .from('products')
-          .select('sku, data')
+          .from('products_v2')
+          .select('*')
           .range(from, to);
         
         if (error) {
           logger.error(`Error de Supabase (status ${status}): ${error.message}`, 'DataService', error);
           // Intentar con count para diagnóstico
           const { count, error: countError } = await supabase
-            .from('products')
+            .from('products_v2')
             .select('*', { count: 'exact', head: true });
           logger.info(`Diagnóstico: productos en Supabase = ${count}, error: ${countError?.message}`, 'DataService');
           throw error;
@@ -225,10 +225,8 @@ export class DataService {
         
         logger.info(`Recibidos ${data.length} productos en este lote`, 'DataService');
         
-        const products = data.map((r: any) => ({
-          ...r.data,
-          sku: r.sku || r.data?.sku
-        }));
+        // products_v2 tiene campos directos, no envueltos en 'data'
+        const products = data;
         
         allProducts.push(...products);
         
@@ -716,18 +714,12 @@ export class DataService {
         const now = Date.now();
         
         const payloads = products.map(product => ({
-          sku: product.sku,
-          data: {
-            ...product,
-            is_synced_cloud: true,
-            last_synced_cloud: new Date(now).toISOString(),
-            last_updated: new Date(now).toISOString()
-          },
+          ...product,
           last_updated: new Date(now).toISOString()
         }));
 
         const { error } = await supabase
-            .from('products')
+            .from('products_v2')
             .upsert(payloads);
 
         if (!error) {
@@ -763,7 +755,7 @@ export class DataService {
     if (!supabaseService.isConfigured()) return [];
     const supabase = supabaseService.getClient();
     if (!supabase) return [];
-    const { data, error } = await supabase.from('products').select('sku, last_updated');
+    const { data, error } = await supabase.from('products_v2').select('sku, last_updated');
     if (error) throw error;
     return (data || []) as { sku: string; last_updated?: string }[];
   }
@@ -773,7 +765,7 @@ export class DataService {
     const supabase = supabaseService.getClient();
     if (!supabase) return [];
     const { data, error } = await supabase
-        .from('products')
+        .from('products_v2')
         .select('sku, data')
         .in('sku', skus);
     
@@ -797,7 +789,7 @@ export class DataService {
       try {
         const supabase = supabaseService.getClient();
         if (supabase) {
-            await supabase.from('products').delete().eq('sku', sku);
+            await supabase.from('products_v2').delete().eq('sku', sku);
         }
       } catch (e) {
         logger.error('[DataService] Sync delete failed', e);
@@ -842,7 +834,7 @@ export class DataService {
         }));
 
         const { error } = await supabase
-          .from('products')
+          .from('products_v2')
           .upsert(payloads, { onConflict: 'sku' });
 
         if (error) throw error;

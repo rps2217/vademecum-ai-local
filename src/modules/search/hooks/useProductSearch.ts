@@ -38,7 +38,8 @@ export const useProductSearch = (useSemantic = false) => {
             const semanticResults = await semanticSearchService.semanticSearch(query);
             searchResults = semanticResults.map(r => r.product);
         } else {
-            searchResults = await searchService.search(query);
+            const searchResult = await searchService.search(query);
+            searchResults = Array.isArray(searchResult.products) ? searchResult.products : [];
         }
         setResults(searchResults);
       } catch (error) {

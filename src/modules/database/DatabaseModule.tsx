@@ -55,7 +55,8 @@ export const DatabaseModule: React.FC = () => {
         setFilteredProducts(products);
         return;
       }
-      const results = await searchService.search(searchTerm, {});
+      const searchResult = await searchService.search(searchTerm, {});
+      const results = Array.isArray(searchResult.products) ? searchResult.products : [];
       setFilteredProducts(results);
     };
     performSearch();
