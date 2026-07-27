@@ -1,15 +1,31 @@
-node_modules/
-build/
-dist/
-coverage/
-.DS_Store
-*.log
-.env*
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+.env
+.env.*
 !.env.example
 
-# Scraper / Python
-scraper/venv/
-scraper/__pycache__/
-scraper/*.jsonl
-scraper/urls_extraidas.txt
-scraper/*_log.txt
+# Vite
+.vite
+.turbo
+
+# Testing
+coverage
+playwright-report
+test-results
+*.log
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.local

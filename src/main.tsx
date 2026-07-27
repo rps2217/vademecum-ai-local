@@ -1,29 +1,24 @@
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
-import { registerSW } from 'virtual:pwa-register';
-import { AuthProvider } from './context/AuthContext';
-import { ComparisonProvider } from './context/ComparisonContext';
-import { ErrorBoundary } from './components/ErrorBoundary';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { ThemeProvider } from '@/app/providers/ThemeProvider';
+import { QueryProvider } from '@/app/providers/QueryProvider';
+import { ToastProvider } from '@/app/providers/ToastProvider';
+import { Router } from '@/app/router';
+import '@/styles/globals.css';
 
-// Deshabilitar Service Worker temporalmente para evitar que intercepte rutas de API con 404
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(registrations => {
-    for (const registration of registrations) {
-      registration.unregister();
-    }
-  });
+const root = document.getElementById('root');
+
+if (!root) {
+  throw new Error('Root element not found');
 }
 
-createRoot(document.getElementById('root')!).render(
+createRoot(root).render(
   <StrictMode>
-    <ErrorBoundary>
-      <AuthProvider>
-        <ComparisonProvider>
-          <App />
-        </ComparisonProvider>
-      </AuthProvider>
-    </ErrorBoundary>
-  </StrictMode>,
+    <ThemeProvider>
+      <QueryProvider>
+        <ToastProvider />
+        <Router />
+      </QueryProvider>
+    </ThemeProvider>
+  </StrictMode>
 );
