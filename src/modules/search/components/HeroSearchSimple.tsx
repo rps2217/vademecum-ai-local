@@ -4,20 +4,21 @@
  */
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Search, Loader2, ArrowRight, X, Cloud } from 'lucide-react';
-import { supabaseSyncService, type CloudProduct } from '../../../services/SupabaseSyncService';
+import { Search, Loader2, ArrowRight, X } from 'lucide-react';
+import { searchService } from '../../../services/SearchService';
 import { cn } from '../../../lib/utils';
+import type { Product } from '../../../core/types';
 
 interface HeroSearchSimpleProps {
   onSearch: (query: string) => void;
-  onSelectProduct?: (product: CloudProduct) => void;
+  onSelectProduct?: (product: Product) => void;
 }
 
 export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimpleProps) {
   const [query, setQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [products, setProducts] = useState<CloudProduct[]>([]);
+  const [results, setResults] = useState<Product[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const searchTimeoutRef = useRef<NodeJS.Timeout>();
@@ -38,10 +39,10 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Buscar productos con debounce
+  // Buscar productos con debounce usando SearchService local
   useEffect(() => {
     if (!query.trim()) {
-      setProducts([]);
+      setResults([]);
       return;
     }
 
@@ -52,11 +53,11 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
     searchTimeoutRef.current = setTimeout(async () => {
       setIsSearching(true);
       try {
-        const results = await supabaseSyncService.searchProducts(query);
-        setProducts(results.slice(0, 8));
+        const searchResults = await searchService.search(query);
+        setResults(searchResults.slice(0, 8));
       } catch (error) {
         console.error('Error buscando:', error);
-        setProducts([]);
+        setResults([]);
       }
       setIsSearching(false);
     }, 150);
@@ -78,7 +79,7 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
   };
 
   // Seleccionar producto del dropdown
-  const handleProductClick = (product: CloudProduct) => {
+  const handleProductClick = (product: Product) => {
     onSelectProduct?.(product);
     setShowDropdown(false);
     setQuery('');
@@ -87,7 +88,7 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
   // Limpiar
   const handleClear = useCallback(() => {
     setQuery('');
-    setProducts([]);
+    setResults([]);
     inputRef.current?.focus();
   }, []);
 
@@ -177,27 +178,26 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
       </form>
 
       {/* Dropdown de resultados */}
-      {showDropdown && (query.trim() || products.length > 0) && (
+      {showDropdown && (query.trim() || results.length > 0) && (
         <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden z-50">
           {/* Productos encontrados */}
-          {products.length > 0 && (
+          {results.length > 0 && (
             <div className="p-3">
               <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-slate-400 uppercase">
-                <Cloud className="w-3 h-3" />
-                {products.length} productos encontrados
+                📦 {results.length} productos encontrados
               </div>
               <div className="space-y-1">
-                {products.map((product) => (
+                {results.map((product) => (
                   <button
                     key={product.sku}
                     onClick={() => handleProductClick(product)}
                     className="w-full p-3 text-left bg-slate-50 hover:bg-violet-50 rounded-xl transition-all group"
                   >
                     <p className="font-medium text-slate-800 group-hover:text-violet-700 line-clamp-1">
-                      {product.data?.nombre_comercial || product.nombre_comercial || product.sku}
+                      {product.nombre_comercial || product.sku}
                     </p>
                     <p className="text-xs text-slate-500 line-clamp-1">
-                      {product.data?.principios_activos?.slice(0, 2).join(', ')}
+                      {product.principios_activos?.slice(0, 2).join(', ')}
                     </p>
                   </button>
                 ))}
@@ -206,10 +206,10 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
           )}
 
           {/* Sin resultados */}
-          {query.trim() && products.length === 0 && !isSearching && (
+          {query.trim() && results.length === 0 && !isSearching && (
             <div className="p-8 text-center">
               <p className="text-slate-500 mb-2">No encontramos "{query}"</p>
-              <p className="text-sm text-slate-400">Presiona Enter para buscar en la web</p>
+              <p className="text-sm text-slate-400">Presiona Enter para buscar en todos los productos</p>
             </div>
           )}
         </div>
