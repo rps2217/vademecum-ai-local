@@ -138,7 +138,7 @@ CREATE INDEX IF NOT EXISTS idx_protocols_evidence ON protocols(evidencia_level);
 -- MIGRATE DATA - De products a products_v2
 -- ============================================
 
--- Migrar productos existentes
+-- Migrar productos existentes (usando función para convertir JSON arrays)
 INSERT INTO products_v2 (
   sku,
   nombre_comercial,
@@ -171,11 +171,24 @@ SELECT
   p.sku,
   COALESCE(p.nombre_comercial, p.data->>'nombre_comercial'),
   p.data->>'descripcion',
-  (p.data->>'principios_activos')::TEXT[],
-  (p.data->>'indicaciones')::TEXT[],
+  -- Convertir JSON array a TEXT[] correctamente
+  CASE 
+    WHEN p.data->>'principios_activos' IS NOT NULL 
+    THEN ARRAY(SELECT json_array_elements_text(p.data->'principios_activos'))
+    ELSE NULL 
+  END,
+  CASE 
+    WHEN p.data->>'indicaciones' IS NOT NULL 
+    THEN ARRAY(SELECT json_array_elements_text(p.data->'indicaciones'))
+    ELSE NULL 
+  END,
   p.data->>'advertencias',
   p.data->>'posologia',
-  (p.data->>'tags_ia')::TEXT[],
+  CASE 
+    WHEN p.data->>'tags_ia' IS NOT NULL 
+    THEN ARRAY(SELECT json_array_elements_text(p.data->'tags_ia'))
+    ELSE NULL 
+  END,
   NULL, -- vectors se migran después
   COALESCE((p.data->>'synergy_analyzed')::BOOLEAN, false),
   p.data->>'sugerencia_complementaria',
@@ -191,7 +204,11 @@ SELECT
     THEN (p.data->>'lock_timestamp')::BIGINT 
     ELSE NULL END,
   p.data->>'lock_uid',
-  (p.data->>'skus_relacionados')::TEXT[],
+  CASE 
+    WHEN p.data->>'skus_relacionados' IS NOT NULL 
+    THEN ARRAY(SELECT json_array_elements_text(p.data->'skus_relacionados'))
+    ELSE NULL 
+  END,
   COALESCE((p.data->>'is_synced_cloud')::BOOLEAN, false),
   CASE WHEN p.data->>'last_synced_cloud' IS NOT NULL 
     THEN (p.data->>'last_synced_cloud')::TIMESTAMPTZ 
@@ -329,12 +346,8 @@ INSERT INTO protocols (name, description, category, objetivo_principal, duracion
   30,
   'baja',
   'B',
-  '[
-    {"nombre": "Vitamina C", "dosis": "1000mg", "momento": "mañana"},
-    {"nombre": "Zinc", "dosis": "30mg", "momento": "almuerzo"},
-    {"nombre": "Equinácea", "dosis": "500mg", "momento": "tarde"}
-  ]'::JSONB,
-  ARRAY['Alergia a algún componente', 'Enfermedades autoinmunes']::TEXT[],
+  '[{"nombre": "Vitamina C", "dosis": "1000mg", "momento": "mañana"}, {"nombre": "Zinc", "dosis": "30mg", "momento": "almuerzo"}, {"nombre": "Equinácea", "dosis": "500mg", "momento": "tarde"}]'::JSONB,
+  ARRAY['Alergia a algún componente', 'Enfermedades autoinmunes'],
   true,
   true
 ),
@@ -346,12 +359,8 @@ INSERT INTO protocols (name, description, category, objetivo_principal, duracion
   45,
   'baja',
   'B',
-  '[
-    {"nombre": "Melatonina", "dosis": "3mg", "momento": "30min antes de dormir"},
-    {"nombre": "Valeriana", "dosis": "500mg", "momento": "30min antes de dormir"},
-    {"nombre": "Magnesio", "dosis": "400mg", "momento": "cena"}
-  ]'::JSONB,
-  ARRAY['Embarazo', 'Lactancia', 'Conducción nocturna']::TEXT[],
+  '[{"nombre": "Melatonina", "dosis": "3mg", "momento": "30min antes de dormir"}, {"nombre": "Valeriana", "dosis": "500mg", "momento": "30min antes de dormir"}, {"nombre": "Magnesio", "dosis": "400mg", "momento": "cena"}]'::JSONB,
+  ARRAY['Embarazo', 'Lactancia', 'Conducción nocturna'],
   true,
   true
 ),
@@ -363,12 +372,8 @@ INSERT INTO protocols (name, description, category, objetivo_principal, duracion
   90,
   'intermedia',
   'B',
-  '[
-    {"nombre": "Colágeno", "dosis": "10g", "momento": "mañana en ayunas"},
-    {"nombre": "Glucosamina", "dosis": "1500mg", "momento": "almuerzo"},
-    {"nombre": "Omega-3", "dosis": "2000mg", "momento": "cena"}
-  ]'::JSONB,
-  ARRAY['Alergia al marisco (Omega-3)', 'Anticoagulantes']::TEXT[],
+  '[{"nombre": "Colágeno", "dosis": "10g", "momento": "mañana en ayunas"}, {"nombre": "Glucosamina", "dosis": "1500mg", "momento": "almuerzo"}, {"nombre": "Omega-3", "dosis": "2000mg", "momento": "cena"}]'::JSONB,
+  ARRAY['Alergia al marisco (Omega-3)', 'Anticoagulantes'],
   true,
   false
 ),
@@ -380,12 +385,8 @@ INSERT INTO protocols (name, description, category, objetivo_principal, duracion
   60,
   'intermedia',
   'B',
-  '[
-    {"nombre": "Ashwagandha", "dosis": "600mg", "momento": "mañana"},
-    {"nombre": "Magnesio", "dosis": "400mg", "momento": "tarde"},
-    {"nombre": "Vitamina B Complex", "dosis": "1 cápsula", "momento": "desayuno"}
-  ]'::JSONB,
-  ARRAY['Embarazo', 'Lactancia', 'Tiroides']::TEXT[],
+  '[{"nombre": "Ashwagandha", "dosis": "600mg", "momento": "mañana"}, {"nombre": "Magnesio", "dosis": "400mg", "momento": "tarde"}, {"nombre": "Vitamina B Complex", "dosis": "1 cápsula", "momento": "desayuno"}]'::JSONB,
+  ARRAY['Embarazo', 'Lactancia', 'Tiroides'],
   true,
   false
 ),
@@ -397,12 +398,8 @@ INSERT INTO protocols (name, description, category, objetivo_principal, duracion
   30,
   'baja',
   'B',
-  '[
-    {"nombre": "Vitamina B12", "dosis": "1000mcg", "momento": "mañana sublingual"},
-    {"nombre": "Hierro", "dosis": "18mg", "momento": "almuerzo"},
-    {"nombre": "CoQ10", "dosis": "100mg", "momento": "desayuno"}
-  ]'::JSONB,
-  ARRAY['Hemocromatosis', 'Embarazo']::TEXT[],
+  '[{"nombre": "Vitamina B12", "dosis": "1000mcg", "momento": "mañana sublingual"}, {"nombre": "Hierro", "dosis": "18mg", "momento": "almuerzo"}, {"nombre": "CoQ10", "dosis": "100mg", "momento": "desayuno"}]'::JSONB,
+  ARRAY['Hemocromatosis', 'Embarazo'],
   true,
   false
 );
