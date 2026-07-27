@@ -193,15 +193,15 @@ export const SearchModule: React.FC = () => {
         <div className="mt-8 flex items-center gap-8 text-sm text-slate-500 relative z-10">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>+200 ingredientes</span>
+            <span>+1,309 productos</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
-            <span>40+ sinergias</span>
+            <span>+200 ingredientes KB</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            <span>100% offline</span>
+            <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+            <span>40+ sinergias</span>
           </div>
         </div>
       </div>

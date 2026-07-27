@@ -9,38 +9,43 @@
  * - Chips inteligentes que se auto-organizan
  * - Búsqueda en tiempo real
  * - Animaciones fluidas
+ * - Integración con Supabase para productos cloud
  */
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Search, Sparkles, X, ArrowRight, Loader2, TrendingUp } from 'lucide-react';
+import { Search, Sparkles, X, ArrowRight, Loader2, TrendingUp, Cloud } from 'lucide-react';
 import { smartChipEngine, type SmartChip } from '../../../core/smart-search/SmartChipEngine';
 import { kbEmbeddingService } from '../../../core/semantic-search/KBEmbeddingService';
+import { supabaseSyncService, type CloudProduct } from '../../../services/SupabaseSyncService';
 import { cn } from '../../../lib/utils';
 
 interface HeroSearchProps {
   onSearch: (query: string) => void;
   onSelectIngredient?: (ingredient: any) => void;
+  onSelectProduct?: (product: CloudProduct) => void;
   placeholder?: string;
 }
 
-export function HeroSearch({ onSearch, onSelectIngredient, placeholder = '¿Qué necesitas hoy? Describe en pocas palabras...' }: HeroSearchProps) {
+export function HeroSearch({ onSearch, onSelectIngredient, onSelectProduct, placeholder = '¿Qué necesitas hoy? Describe en pocas palabras...' }: HeroSearchProps) {
   const [query, setQuery] = useState('');
   const [chips, setChips] = useState<SmartChip[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [cloudProducts, setCloudProducts] = useState<CloudProduct[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Inicializar motor de chips
+  // Inicializar motor de chips y Supabase
   useEffect(() => {
     const init = async () => {
       setIsLoading(true);
       try {
         await Promise.all([
           smartChipEngine.init(),
-          kbEmbeddingService.init()
+          kbEmbeddingService.init(),
+          supabaseSyncService.fetchAllProducts()
         ]);
         setChips(smartChipEngine.getChips({ limit: 10 }));
       } catch (error) {
@@ -56,6 +61,7 @@ export function HeroSearch({ onSearch, onSelectIngredient, placeholder = '¿Qué
     if (!query.trim()) {
       setChips(smartChipEngine.getChips({ limit: 10 }));
       setSuggestions([]);
+      setCloudProducts([]);
       return;
     }
 
@@ -63,12 +69,18 @@ export function HeroSearch({ onSearch, onSelectIngredient, placeholder = '¿Qué
     const relevantChips = smartChipEngine.getChipsForQuery(query).slice(0, 8);
     setChips(relevantChips);
 
-    // Buscar sugerencias de ingredientes
+    // Buscar sugerencias
     const searchSuggestions = async () => {
       setIsSearching(true);
       try {
+        // Buscar ingredientes locales
         const results = await kbEmbeddingService.search(query, 5);
         setSuggestions(results.map(r => r.ingredient));
+        
+        // Buscar productos en Supabase
+        const products = await supabaseSyncService.searchProducts(query);
+        setCloudProducts(products.slice(0, 8));
+        
         smartChipEngine.registerSearch(query);
       } catch (error) {
         console.error('Error buscando:', error);
@@ -112,6 +124,13 @@ export function HeroSearch({ onSearch, onSelectIngredient, placeholder = '¿Qué
   const handleSuggestionClick = (ingredient: any) => {
     setQuery(ingredient.nombre);
     onSelectIngredient?.(ingredient);
+    setShowSuggestions(false);
+  };
+
+  // Manejar selección de producto cloud
+  const handleProductClick = (product: CloudProduct) => {
+    setQuery(product.data?.nombre_comercial || product.nombre_comercial || product.sku);
+    onSelectProduct?.(product);
     setShowSuggestions(false);
   };
 
@@ -198,6 +217,39 @@ export function HeroSearch({ onSearch, onSelectIngredient, placeholder = '¿Qué
                     className="px-4 py-2 bg-gradient-to-r from-violet-50 to-purple-50 hover:from-violet-100 hover:to-purple-100 rounded-xl text-sm font-medium text-slate-700 transition-all hover:scale-105"
                   >
                     {ing.nombre}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Productos de la nube (Supabase) */}
+          {cloudProducts.length > 0 && (
+            <div className="p-4 border-b border-slate-100 bg-gradient-to-r from-emerald-50/30 to-teal-50/30">
+              <div className="flex items-center gap-2 mb-3">
+                <Cloud className="w-4 h-4 text-emerald-600" />
+                <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
+                  Productos ({cloudProducts.length})
+                </p>
+              </div>
+              <div className="space-y-2">
+                {cloudProducts.map((product) => (
+                  <button
+                    key={product.sku}
+                    onClick={() => handleProductClick(product)}
+                    className="w-full p-3 bg-white/80 hover:bg-white rounded-xl text-left transition-all hover:shadow-md group"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-slate-800 text-sm group-hover:text-emerald-600 transition-colors truncate">
+                          {product.data?.nombre_comercial || product.nombre_comercial || product.sku}
+                        </h4>
+                        <p className="text-xs text-slate-500 truncate">
+                          {product.data?.principios_activos?.slice(0, 2).join(', ') || 'Sin principios activos'}
+                        </p>
+                      </div>
+                      <span className="text-xs text-slate-400 font-mono">{product.sku.slice(0, 8)}...</span>
+                    </div>
                   </button>
                 ))}
               </div>
