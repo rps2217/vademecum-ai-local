@@ -397,6 +397,14 @@ export class SearchService {
     const result = await this.search(query, options);
     return result.products;
   }
+
+  /**
+   * Get all products from the index
+   */
+  async getAllProducts(): Promise<Product[]> {
+    if (!this.isInitialized) await this.initializeIndex();
+    return this.index.map(item => item.product);
+  }
 }
 
 export const searchService = SearchService.getInstance();

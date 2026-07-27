@@ -9,6 +9,7 @@ import { Grid3X3, List, Loader2, Plus, Check } from 'lucide-react';
 import { useTray } from '../../context/TrayContext';
 import { useStore } from '../../store/useStore';
 import { searchService } from '../../services/SearchService';
+import { productsCollection } from '../../database';
 import { cn } from '../../lib/utils';
 import type { Product } from '../../core/types';
 
@@ -17,7 +18,7 @@ const ProductDetailModal = lazy(() =>
 );
 
 export const SearchModuleSimple: React.FC = () => {
-  const { viewedProductSku, setViewedProduct, products } = useStore();
+  const { viewedProductSku, setViewedProduct, setProducts } = useStore();
   const { toggleProduct, isInTray } = useTray();
   
   const [query, setQuery] = useState('');
@@ -25,8 +26,38 @@ export const SearchModuleSimple: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [products, setLocalProducts] = useState<Product[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
-  // Productos disponibles (del store sincronizado)
+  // Observar productos de WatermelonDB directamente
+  useEffect(() => {
+    const loadInitialProducts = async () => {
+      try {
+        await searchService.initializeIndex();
+        const allProds = await searchService.getAllProducts();
+        setLocalProducts(allProds);
+        setProducts(allProds);
+      } catch (error) {
+        console.error('Error cargando productos:', error);
+      } finally {
+        setIsLoadingProducts(false);
+      }
+    };
+    
+    loadInitialProducts();
+
+    // Suscribirse a cambios en la base de datos
+    const subscription = productsCollection.query().observe().subscribe((records) => {
+      if (!records) return;
+      const allProducts = records.map(r => r.asJSON());
+      setLocalProducts(allProducts);
+      setProducts(allProducts);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [setProducts]);
+
+  // Productos disponibles
   const allProducts = useMemo(() => {
     return products.length > 0 ? products : [];
   }, [products]);
