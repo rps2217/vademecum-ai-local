@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS products_v2 (
   
   -- IA y Análisis
   tags_ia TEXT[],
-  vectors BLOB, -- Embeddings serializados
+  vectors BYTEA, -- Embeddings serializados (PostgreSQL usa BYTEA)
   vectors_dims INT DEFAULT 384,
   synergy_analyzed BOOLEAN DEFAULT false,
   sugerencia_complementaria TEXT,
