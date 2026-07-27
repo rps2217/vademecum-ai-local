@@ -57,6 +57,7 @@ class LoggerService {
   }
 
   // Helper methods for easy access
+  debug(message: string, module?: string, details?: any) { this.log('debug', message, module, details); }
   info(message: string, module?: string, details?: any) { this.log('info', message, module, details); }
   warn(message: string, module?: string, details?: any) { this.log('warn', message, module, details); }
   error(message: string, module?: string, details?: any) { this.log('error', message, module, details); }

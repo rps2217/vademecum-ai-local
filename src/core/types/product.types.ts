@@ -112,3 +112,20 @@ export interface LocalProduct extends Product {
   sync_status: 'local' | 'synced' | 'pending';
   updated_at: number;
 }
+
+/**
+ * Niveles de logging disponibles
+ */
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'success' | 'ai';
+
+/**
+ * Entrada de log para el sistema de logging
+ */
+export interface LogEntry {
+  id: string;
+  timestamp: number;
+  level: LogLevel;
+  module: string;
+  message: string;
+  details?: any;
+}
