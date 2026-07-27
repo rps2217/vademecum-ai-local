@@ -57,7 +57,7 @@ export function HeroSearchSimple({ onSearch, onSelectProduct }: HeroSearchSimple
         const products = Array.isArray(searchResult.products) ? searchResult.products : [];
         setResults(products.slice(0, 8));
       } catch (error) {
-        console.error('Error buscando:', error);
+        logger.error('Error buscando:', error, 'HeroSearch');
         setResults([]);
       }
       setIsSearching(false);

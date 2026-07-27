@@ -24,6 +24,7 @@ import type {
   SynergyRelation,
   AntagonismRelation,
 } from '../data/schema';
+import { logger } from '../../../services/LoggerService';
 
 // Tipos para los datos JSON
 interface KBCategoryData {
@@ -147,11 +148,11 @@ class KnowledgeLoader {
       this.antagonisms = antagonismos.antagonismos || [];
 
       this.loaded = true;
-      console.log(`[KnowledgeLoader] Cargados ${this.ingredients.size} ingredientes`);
-      console.log(`[KnowledgeLoader] Cargadas ${this.synergies.length} sinergias`);
-      console.log(`[KnowledgeLoader] Cargados ${this.antagonisms.length} antagonismos`);
+      logger.info(`Cargados ${this.ingredients.size} ingredientes`, 'KnowledgeLoader');
+      logger.info(`Cargadas ${this.synergies.length} sinergias`, 'KnowledgeLoader');
+      logger.info(`Cargados ${this.antagonisms.length} antagonismos`, 'KnowledgeLoader');
     } catch (error) {
-      console.error('[KnowledgeLoader] Error cargando datos:', error);
+      logger.error('Error cargando datos', 'KnowledgeLoader', error);
       throw error;
     }
   }

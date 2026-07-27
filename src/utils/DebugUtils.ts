@@ -8,6 +8,7 @@
 import { dataService } from '../services/DataService';
 import { cloudSyncService } from '../services/CloudSyncService';
 import { productsCollection } from '../database';
+import { logger } from '../services/LoggerService';
 import { Q } from '@nozomuikuta/h3-validations';
 
 /**
@@ -20,20 +21,20 @@ import { Q } from '@nozomuikuta/h3-validations';
    */
   async exportProducts() {
     try {
-      console.log('📤 Exportando productos...');
+      logger.info(('📤 Exportando productos...');
       const json = await dataService.exportToJSON();
       
       // Copiar al portapapeles
       await navigator.clipboard.writeText(json);
-      console.log(`✅ Exportados ${JSON.parse(json).length} productos al portapapeles`);
+      logger.info((`✅ Exportados ${JSON.parse(json).length} productos al portapapeles`);
       
       // También guardar en localStorage como backup
       localStorage.setItem('vademecum_export_backup', json);
-      console.log('💾 Backup guardado en localStorage');
+      logger.info(('💾 Backup guardado en localStorage');
       
       return json;
     } catch (error) {
-      console.error('❌ Error exportando:', error);
+      logger.error('❌ Error exportando:', error, 'DebugUtils');
       throw error;
     }
   },
@@ -43,7 +44,7 @@ import { Q } from '@nozomuikuta/h3-validations';
    */
   async downloadProducts() {
     try {
-      console.log('📥 Descargando productos como archivo...');
+      logger.info(('📥 Descargando productos como archivo...');
       const json = await dataService.exportToJSON();
       const products = JSON.parse(json);
       
@@ -57,10 +58,10 @@ import { Q } from '@nozomuikuta/h3-validations';
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       
-      console.log(`✅ Descargados ${products.length} productos`);
+      logger.info((`✅ Descargados ${products.length} productos`);
       return products.length;
     } catch (error) {
-      console.error('❌ Error descargando:', error);
+      logger.error('❌ Error descargando:', error, 'DebugUtils');
       throw error;
     }
   },
@@ -71,18 +72,18 @@ import { Q } from '@nozomuikuta/h3-validations';
    */
   async backupToCloud() {
     try {
-      console.log('☁️ Iniciando backup a la nube...');
+      logger.info(('☁️ Iniciando backup a la nube...');
       const result = await dataService.backupToCloud();
       
       if (result.success) {
-        console.log(`✅ Backup completado: ${result.count} productos`);
+        logger.info((`✅ Backup completado: ${result.count} productos`);
       } else {
-        console.error(`❌ Error en backup: ${result.error}`);
+        logger.error(`❌ Error en backup: ${result.error}`, 'DebugUtils');
       }
       
       return result;
     } catch (error) {
-      console.error('❌ Error en backup:', error);
+      logger.error('❌ Error en backup:', error, 'DebugUtils');
       throw error;
     }
   },
@@ -93,18 +94,18 @@ import { Q } from '@nozomuikuta/h3-validations';
    */
   async restoreFromCloud() {
     try {
-      console.log('☁️ Iniciando restauración desde la nube...');
+      logger.info(('☁️ Iniciando restauración desde la nube...');
       const result = await cloudSyncService.smartPull();
       
       if (result.success) {
-        console.log(`✅ Restauración completada: ${result.count} productos`);
+        logger.info((`✅ Restauración completada: ${result.count} productos`);
       } else {
-        console.error(`❌ Error en restauración: ${result.error}`);
+        logger.error(`❌ Error en restauración: ${result.error}`, 'DebugUtils');
       }
       
       return result;
     } catch (error) {
-      console.error('❌ Error en restauración:', error);
+      logger.error('❌ Error en restauración:', error, 'DebugUtils');
       throw error;
     }
   },
@@ -115,27 +116,27 @@ import { Q } from '@nozomuikuta/h3-validations';
    */
   async purgeLocal(confirm = false) {
     if (!confirm) {
-      console.warn('⚠️ Esta función es peligrosa. Para confirmar llama:');
-      console.warn('   await DebugTools.purgeLocal(true)');
+      logger.warn('⚠️ Esta función es peligrosa. Para confirmar llama:', 'DebugUtils');
+      logger.warn('   await DebugTools.purgeLocal(true, 'DebugUtils')');
       return { success: false, message: 'Confirmation required' };
     }
 
     try {
-      console.log('🗑️ Purgando datos locales...');
+      logger.info(('🗑️ Purgando datos locales...');
       
       await productsCollection.database.write(async () => {
         const all = await productsCollection.query().fetch();
-        console.log(`   Eliminando ${all.length} productos...`);
+        logger.info((`   Eliminando ${all.length} productos...`);
         
         for (const record of all) {
           await record.destroyPermanently();
         }
       });
       
-      console.log('✅ Datos locales purgados');
+      logger.info(('✅ Datos locales purgados');
       return { success: true, message: 'Local data purged' };
     } catch (error) {
-      console.error('❌ Error purgando:', error);
+      logger.error('❌ Error purgando:', error, 'DebugUtils');
       throw error;
     }
   },
@@ -148,14 +149,14 @@ import { Q } from '@nozomuikuta/h3-validations';
       const localCount = await productsCollection.query().fetchCount();
       const cloudCount = await cloudSyncService.getCloudCount();
       
-      console.log('📊 Estado de Sincronización:');
-      console.log(`   Local:  ${localCount} productos`);
-      console.log(`   Cloud:  ${cloudCount} productos`);
-      console.log(`   Sync:   ${localCount === cloudCount ? '✅ Sincronizado' : '⚠️ Diferentes'}`);
+      logger.info(('📊 Estado de Sincronización:');
+      logger.info((`   Local:  ${localCount} productos`);
+      logger.info((`   Cloud:  ${cloudCount} productos`);
+      logger.info((`   Sync:   ${localCount === cloudCount ? '✅ Sincronizado' : '⚠️ Diferentes'}`);
       
       return { local: localCount, cloud: cloudCount, synced: localCount === cloudCount };
     } catch (error) {
-      console.error('❌ Error obteniendo estado:', error);
+      logger.error('❌ Error obteniendo estado:', error, 'DebugUtils');
       throw error;
     }
   },
@@ -164,29 +165,29 @@ import { Q } from '@nozomuikuta/h3-validations';
    * Diagnóstico completo
    */
   async diagnose() {
-    console.log('🔍 Iniciando diagnóstico...\n');
+    logger.info(('🔍 Iniciando diagnóstico...\n');
     
-    console.log('=== Supabase ===');
+    logger.info(('=== Supabase ===');
     const supabase = (window as any).supabaseService;
-    console.log('Configurado:', supabase?.isConfigured() ? '✅ Sí' : '❌ No');
+    logger.info(('Configurado:', supabase?.isConfigured() ? '✅ Sí' : '❌ No');
     if (supabase?.isConfigured()) {
       const client = supabase?.getClient();
-      console.log('Cliente listo:', client ? '✅ Sí' : '❌ No');
+      logger.info(('Cliente listo:', client ? '✅ Sí' : '❌ No');
     }
     
-    console.log('\n=== Base de Datos Local ===');
+    logger.info(('\n=== Base de Datos Local ===');
     const localCount = await productsCollection.query().fetchCount();
-    console.log('Productos locales:', localCount);
+    logger.info(('Productos locales:', localCount);
     
-    console.log('\n=== Nube ===');
+    logger.info(('\n=== Nube ===');
     try {
       const cloudCount = await cloudSyncService.getCloudCount();
-      console.log('Productos en la nube:', cloudCount);
+      logger.info(('Productos en la nube:', cloudCount);
     } catch (error) {
-      console.log('Error consultando nube:', error);
+      logger.info(('Error consultando nube:', error);
     }
     
-    console.log('\n✅ Diagnóstico completado');
+    logger.info(('\n✅ Diagnóstico completado');
   },
 
   /**
@@ -195,21 +196,21 @@ import { Q } from '@nozomuikuta/h3-validations';
    */
   async forceReload() {
     try {
-      console.log('🔄 Iniciando descarga forzada desde la nube...');
+      logger.info(('🔄 Iniciando descarga forzada desde la nube...');
       
       const result = await dataService.forceReloadFromCloud();
       
       if (result.success) {
-        console.log(`✅ Descarga completada: ${result.count} productos`);
-        console.log('🔄 Recargando la página...');
+        logger.info((`✅ Descarga completada: ${result.count} productos`);
+        logger.info(('🔄 Recargando la página...');
         setTimeout(() => window.location.reload(), 1500);
       } else {
-        console.error(`❌ Error: ${result.error}`);
+        logger.error(`❌ Error: ${result.error}`, 'DebugUtils');
       }
       
       return result;
     } catch (error) {
-      console.error('❌ Error en descarga forzada:', error);
+      logger.error('❌ Error en descarga forzada:', error, 'DebugUtils');
       throw error;
     }
   }
@@ -224,7 +225,7 @@ import { Q } from '@nozomuikuta/h3-validations';
 (window as any).diagnose = () => (window as any).DebugTools.diagnose();
 (window as any).forceReload = () => (window as any).DebugTools.forceReload();
 
-console.log(`
+logger.info((`
 ╔══════════════════════════════════════════════════════════════╗
 ║  🛠️  Debug Tools Disponibles                                ║
 ╠══════════════════════════════════════════════════════════════╣

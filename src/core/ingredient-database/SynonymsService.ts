@@ -360,7 +360,6 @@ export const SYNONYMS_MAP: Record<string, string> = {
   'deadly nightshade': 'belladonna',
   'bella doncella': 'belladonna',
   'bellad': 'belladonna',
-  'belladona': 'belladonna',
   
   // LYCOPODIUM (Digestivo, cálculos)
   'lycopodium': 'lycopodium',
@@ -419,10 +418,7 @@ export const SYNONYMS_MAP: Record<string, string> = {
   'graphite': 'graphites',
   
   // CHAMOMILLA (Dientes, cólicos)
-  'chamomilla': 'chamomilla',
   'chamomile german': 'chamomilla',
-  'manzanilla alemana': 'chamomilla',
-  'matricaria chamomilla': 'chamomilla',
   
   // BRYONIA (Tos, articulaciones)
   'bryonia': 'bryonia',
@@ -960,10 +956,8 @@ export const SYNONYMS_MAP: Record<string, string> = {
   'devil shrub': 'eleuterococo',
 
   // SCHISANDRA
-  'schisandra chinensis': 'schisandra',
   'bayas de los cinco sabores': 'schisandra',
   'wu wei zi': 'schisandra',
-  'five flavor berry': 'schisandra',
 
   // SAW PALMETTO
   'saw palmetto': 'saw_palmetto',
@@ -1019,12 +1013,10 @@ export const SYNONYMS_MAP: Record<string, string> = {
   'centella': 'centella',
   'centella asiatica': 'centella',
   'gotu kola': 'centella',
-  'gotu kola': 'centella',
   'brahmi': 'centella',
   'asiatic pennywort': 'centella',
 
   // UNCARIA
-  'uncaria': 'uncaria',
   'uncaria tomentosa': 'uncaria',
   'uÃ±a de gato': 'uncaria',
   'cats claw': 'uncaria',
@@ -1081,9 +1073,7 @@ export const SYNONYMS_MAP: Record<string, string> = {
   // ==================== VITAMINAS/MINERALES - NUEVOS ====================
 
   // VITAMINA K2
-  'vitamina k2': 'vitamina_k2',
   'k2': 'vitamina_k2',
-  'menaquinona': 'vitamina_k2',
   'mk-7': 'vitamina_k2',
   'mk7': 'vitamina_k2',
   'mk-4': 'vitamina_k2',
@@ -1091,22 +1081,14 @@ export const SYNONYMS_MAP: Record<string, string> = {
   'vitamin k2': 'vitamina_k2',
 
   // MAGNESIO GLICINATO
-  'magnesio glicinato': 'magnesio_glicinato',
-  'magnesium glycinate': 'magnesio_glicinato',
   'bisglicinato de magnesio': 'magnesio_glicinato',
   'glicinato de magnesio': 'magnesio_glicinato',
 
   // SELENIO
-  'selenio': 'selenio',
-  'selenium': 'selenio',
-  'selenometionina': 'selenio',
   'selenite': 'selenio',
 
   // CROMO
-  'cromo': 'cromo',
-  'chromium': 'cromo',
   'picolinato de cromo': 'cromo',
-  'chromium picolinate': 'cromo',
 
   // COBRE
   'cobre': 'cobre',
@@ -1120,9 +1102,6 @@ export const SYNONYMS_MAP: Record<string, string> = {
   'manganese gluconate': 'manganeso',
 
   // CREATINA
-  'creatina': 'creatina',
-  'creatine': 'creatina',
-  'creatine monohydrate': 'creatina',
   'creapure': 'creatina',
 
   // ALFA LIPOICO
@@ -1147,7 +1126,6 @@ export const SYNONYMS_MAP: Record<string, string> = {
   // ==================== PROBIOTICOS - NUEVOS ====================
 
   'lactobacillus rhamnosus gg': 'lactobacillus_rhamnosus_gg',
-  'lgg': 'lactobacillus_rhamnosus_gg',
   'bifidobacterium longum bb536': 'bifidobacterium_longum_bb536',
   'bb536': 'bifidobacterium_longum_bb536',
   'saccharomyces boulardii': 'saccharomyces_boulardii',
@@ -1197,11 +1175,7 @@ export const SYNONYMS_MAP: Record<string, string> = {
 
   // ==================== AMINOACIDOS - NUEVOS ====================
 
-  '5-htp': '5_htp',
-  '5 htp': '5_htp',
-  '5htp': '5_htp',
   'hydroxytryptophan': '5_htp',
-  'griffonia': '5_htp',
   'nac': 'nac',
   'n-acetilcisteina': 'nac',
   'n-acetylcysteine': 'nac',

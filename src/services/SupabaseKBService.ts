@@ -16,6 +16,7 @@ import homeopatiaData from '../core/knowledge-base/data/homeopatia.json';
 import aceitesData from '../core/knowledge-base/data/aceites.json';
 import vitaminasData from '../core/knowledge-base/data/vitaminas_minerales.json';
 import synergiesData from '../core/knowledge-base/synergies/synergies.json';
+import { logger } from './LoggerService';
 
 export interface SyncResult {
   success: boolean;
@@ -116,7 +117,7 @@ class SupabaseKBService {
         status,
       };
     } catch (error) {
-      console.error('[SupabaseKBService] Error getting stats:', error);
+      logger.error('Error getting stats', 'SupabaseKBService', error);
       return {
         localIngredients: 0,
         remoteIngredients: 0,
@@ -267,7 +268,7 @@ class SupabaseKBService {
       });
 
     if (error) {
-      console.error(`[SupabaseKBService] Error uploading ingredient ${data.id}:`, error);
+      logger.error(`Error uploading ingredient ${data.id}`, 'SupabaseKBService', error);
       throw error;
     }
 
@@ -364,7 +365,7 @@ class SupabaseKBService {
       .single();
 
     if (!ingA || !ingB) {
-      console.warn(`[SupabaseKBService] Ingredients not found for synergy: ${data.ingredienteA} + ${data.ingredienteB}`);
+      logger.warn(`Ingredients not found for synergy: ${data.ingredienteA} + ${data.ingredienteB}`, 'SupabaseKBService');
       return;
     }
 

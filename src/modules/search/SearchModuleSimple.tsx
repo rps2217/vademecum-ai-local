@@ -12,6 +12,7 @@ import { searchService } from '../../services/SearchService';
 import { productsCollection } from '../../database';
 import { cn } from '../../lib/utils';
 import type { Product } from '../../core/types';
+import { logger } from '../../services/LoggerService';
 
 const ProductDetailModal = lazy(() => 
   import('../product/ProductDetailModal').then(m => ({ default: m.ProductDetailModal }))
@@ -38,7 +39,7 @@ export const SearchModuleSimple: React.FC = () => {
         setLocalProducts(allProds);
         setProducts(allProds);
       } catch (error) {
-        console.error('Error cargando productos:', error);
+        logger.error('Error cargando productos', 'SearchModule', error);
       } finally {
         setIsLoadingProducts(false);
       }
@@ -76,7 +77,7 @@ export const SearchModuleSimple: React.FC = () => {
         const products = Array.isArray(searchResult.products) ? searchResult.products : [];
         setResults(products);
       } catch (error) {
-        console.error('Error buscando:', error);
+        logger.error('Error buscando', 'SearchModule', error);
         setResults([]);
       }
       setIsSearching(false);

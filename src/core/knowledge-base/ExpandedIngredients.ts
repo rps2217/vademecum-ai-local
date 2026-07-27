@@ -1138,19 +1138,6 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
 
   // ==================== PREBIÓTICOS Y FIBRA ====================
   
-  'inulina': createIngredient('inulina', 'Inulina', 'prebioticos',
-    'Fibra soluble prebiótica que alimenta las bacterias beneficiosas del intestino.',
-    'Fermentada por bifidobacterias, produce ácidos grasos de cadena corta.',
-    ['Salud digestiva', 'Microbioma intestinal', 'Absorción de calcio'],
-    ['digestion'],
-    [
-      { id: 'probioticos', tipo: 'complementario', desc: 'Alimento para probióticos', nivel: 'alto' },
-      { id: 'frutoologosaccharides', tipo: 'complementario', desc: 'Sinergia prebiótica', nivel: 'alto' }
-    ],
-    { dosis: '5-10g/día', contraindicaciones: [
-      { condicion: 'SII', nivel: 'precaución', descripcion: 'Puede causar hinchazón' }
-    ]}
-  ),
 
   'fructooligosacaridos': createIngredient('fructooligosacaridos', 'Frutooligosacáridos (FOS)', 'prebioticos',
     'Prebiótico natural que estimula el crecimiento de bifidobacterias.',
@@ -1216,20 +1203,6 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
     { dosis: '500-3000 FIP/comida' }
   ),
 
-  'bromelina': createIngredient('bromelina', 'Bromelina', 'enzimas',
-    'Enzima proteolítica del tallo de piña con propiedades antiinflamatorias.',
-    'Degrada proteínas y reduce inflamación.',
-    ['Inflamación', 'Digestión', 'Recuperación muscular'],
-    ['articula', 'digestion'],
-    [
-      { id: 'curcumina', tipo: 'potenciador', desc: 'Antiinflamatorio sinérgico', nivel: 'alto' },
-      { id: 'papaina', tipo: 'complementario', desc: 'Enzimas proteolíticas combinadas', nivel: 'alto' }
-    ],
-    { dosis: '500-2000 GDU/día', contraindicaciones: [
-      { condicion: 'Alergia a piña', nivel: 'absoluta', descripcion: 'Contraindicado en alergia' },
-      { condicion: 'Anticoagulantes', nivel: 'precaución', descripcion: 'Puede potenciar efecto' }
-    ]}
-  ),
 
   'papaina': createIngredient('papaina', 'Papaina', 'enzimas',
     'Enzima proteolítica de papaya con acción digestiva.',
@@ -1245,55 +1218,9 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
 
   // ==================== ANTIOXIDANTES ESPECIALES ====================
   
-  'astaxantina': createIngredient('astaxantina', 'Astaxantina', 'antioxidantes',
-    'Carotenoide potente con propiedades antioxidantes excepcionalmente fuertes.',
-    'Neutraliza radicales libres múltiples, protege membranas celulares.',
-    ['Antioxidante', 'Piel', 'Músculos', 'Ojos'],
-    ['antiedad', 'piel'],
-    [
-      { id: 'vitamina_e', tipo: 'potenciador', desc: 'Protección sinérgica', nivel: 'alto' },
-      { id: 'luteina', tipo: 'complementario', desc: 'Antioxidantes oculares', nivel: 'medio' }
-    ],
-    { dosis: '4-12mg/día' }
-  ),
 
-  'luteina': createIngredient('luteina', 'Luteína', 'antioxidantes',
-    'Carotenoide esencial para salud ocular y visión.',
-    'Filtra luz azul, protege mácula y retina.',
-    ['Visión', 'Salud ocular', 'Antioxidante'],
-    ['vision'],
-    [
-      { id: 'zeaxantina', tipo: 'potenciador', desc: 'Pigmentos maculares combinados', nivel: 'alto' },
-      { id: 'astaxantina', tipo: 'complementario', desc: 'Antioxidante ocular', nivel: 'medio' }
-    ],
-    { dosis: '10-20mg/día' }
-  ),
 
-  'zeaxantina': createIngredient('zeaxantina', 'Zeaxantina', 'antioxidantes',
-    'Carotenoide que protege la mácula del ojo.',
-    'Componente del pigmento macular que filtra luz azul.',
-    ['Visión', 'Degeneración macular', 'Antioxidante'],
-    ['vision'],
-    [
-      { id: 'luteina', tipo: 'potenciador', desc: 'Pigmentos maculares', nivel: 'alto' },
-      { id: 'vitamina_c', tipo: 'potenciador', desc: 'Antioxidante sinérgico', nivel: 'medio' }
-    ],
-    { dosis: '2-4mg/día' }
-  ),
 
-  'resveratrol': createIngredient('resveratrol', 'Resveratrol', 'antioxidantes',
-    'Polifenol con propiedades antiinflamatorias y cardioprotectoras.',
-    'Activa sirtuinas, retrasa envejecimiento celular.',
-    ['Corazón', 'Antiedad', 'Inflamación', 'Longevidad'],
-    ['corazon', 'antiedad'],
-    [
-      { id: 'curcumina', tipo: 'potenciador', desc: 'Antiinflamatorio sinérgico', nivel: 'alto' },
-      { id: 'quercetina', tipo: 'complementario', desc: 'Flavonoides combinados', nivel: 'medio' }
-    ],
-    { dosis: '150-500mg/día', contraindicaciones: [
-      { condicion: 'Anticoagulantes', nivel: 'precaución', descripcion: 'Puede potenciar efecto' }
-    ]}
-  ),
 
   'pQQ': createIngredient('pqq', 'PQQ (Pirroloquinolina quinona)', 'antioxidantes',
     'Cofactor redox con propiedades neuroprotectoras.',
@@ -1309,20 +1236,6 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
 
   // ==================== COMPUESTOS BOTÁNICOS ESPECIALES ====================
   
-  'berberina': createIngredient('berberina', 'Berberina', 'botanicos',
-    'Alcaloide vegetal con propiedades antimicrobianas y metabólicas.',
-    'Activa AMPK, mejora sensibilidad a insulina.',
-    ['Glucosa', 'Colesterol', 'Microbioma', 'Antiinflamatorio'],
-    ['peso'],
-    [
-      { id: 'cromo', tipo: 'potenciador', desc: 'Metabolismo de glucosa', nivel: 'alto' },
-      { id: 'canela', tipo: 'complementario', desc: 'Control glucémico', nivel: 'alto' }
-    ],
-    { dosis: '1000-1500mg/día', contraindicaciones: [
-      { condicion: 'Embarazo', nivel: 'absoluta', descripcion: 'Contraindicado en embarazo' },
-      { condicion: 'Medicamentos hepáticos', nivel: 'precaución', descripcion: 'Interacción posible' }
-    ]}
-  ),
 
   'tongkat_ali': createIngredient('tongkat_ali', 'Tongkat Ali (Eurycoma longifolia)', 'botanicos',
     'Planta malaya con propiedades afrodisíacas y adaptógenas.',
@@ -1477,17 +1390,6 @@ export const KNOWLEDGE_BASE_EXPANDED: Record<string, IngredientInfo> = {
     { dosis: '100-500mg/día' }
   ),
 
-  'colina': createIngredient('colina', 'Colina', 'vitaminas',
-    'Nutriente esencial para función hepática y cerebral.',
-    'Precursor de acetilcolina y fosfatidilcolina.',
-    ['Hígado', 'Cerebro', 'Memoria', 'Músculos'],
-    ['cerebro', 'huesos'],
-    [
-      { id: 'l_teanina', tipo: 'potenciador', desc: 'Neurotransmisión', nivel: 'medio' },
-      { id: 'vitaminas_b', tipo: 'complementario', desc: 'Complejo B', nivel: 'alto' }
-    ],
-    { dosis: '425-550mg/día' }
-  ),
 
 };
 

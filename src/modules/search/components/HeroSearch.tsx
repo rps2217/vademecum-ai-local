@@ -49,7 +49,7 @@ export function HeroSearch({ onSearch, onSelectIngredient, onSelectProduct, plac
         ]);
         setChips(smartChipEngine.getChips({ limit: 10 }));
       } catch (error) {
-        console.error('Error inicializando:', error);
+        logger.error('Error inicializando:', error, 'HeroSearch');
       }
       setIsLoading(false);
     };
@@ -83,7 +83,7 @@ export function HeroSearch({ onSearch, onSelectIngredient, onSelectProduct, plac
         
         smartChipEngine.registerSearch(query);
       } catch (error) {
-        console.error('Error buscando:', error);
+        logger.error('Error buscando:', error, 'HeroSearch');
       }
       setIsSearching(false);
     };

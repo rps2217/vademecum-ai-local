@@ -207,7 +207,7 @@ export const SearchModule: React.FC = () => {
         <div className="w-full max-w-3xl relative z-10">
           <HeroSearch 
             onSearch={(q) => setQuery(q)}
-            onSelectIngredient={(ing) => console.log('Selected:', ing)}
+            onSelectIngredient={(ing) => logger.info(('Selected:', ing)}
             placeholder="¿Qué necesitas? Ej: algo para dormir, ansiedad, defensas..."
           />
         </div>
@@ -439,7 +439,7 @@ export const SearchModule: React.FC = () => {
           protocol={selectedProtocol}
           onClose={() => setSelectedProtocol(null)}
           onStartProtocol={(protocol) => {
-            console.log('Iniciar protocolo:', protocol);
+            logger.info(('Iniciar protocolo:', protocol);
             setSelectedProtocol(null);
           }}
         />

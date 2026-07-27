@@ -78,7 +78,7 @@ export const ProtocolsModule: React.FC = () => {
   };
 
   const handleStartProtocol = (protocol: Protocol) => {
-    console.log('Iniciar protocolo:', protocol);
+    logger.info(('Iniciar protocolo:', protocol);
     setSelectedProtocol(null);
   };
 

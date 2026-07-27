@@ -8,6 +8,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, Sparkles, Loader2, X } from 'lucide-react';
 import { kbEmbeddingService, type SemanticSearchResult } from '../../../core/semantic-search/KBEmbeddingService';
+import { logger } from '../../services/LoggerService';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '../../../lib/utils';
 
@@ -41,7 +42,7 @@ export function SemanticSearchPanel({ onClose, onSelectIngredient }: SemanticSea
         setIsReady(true);
         setStats(kbEmbeddingService.getStats());
       } catch (error) {
-        console.error('Error inicializando servicio:', error);
+        logger.error('Error inicializando servicio:', error, 'SemanticSearch');
       }
       setIsLoading(false);
     };
@@ -60,7 +61,7 @@ export function SemanticSearchPanel({ onClose, onSelectIngredient }: SemanticSea
       const searchResults = await kbEmbeddingService.search(searchQuery, 12);
       setResults(searchResults);
     } catch (error) {
-      console.error('Error en búsqueda:', error);
+      logger.error('Error en búsqueda:', error, 'SemanticSearch');
       setResults([]);
     }
     setIsLoading(false);
