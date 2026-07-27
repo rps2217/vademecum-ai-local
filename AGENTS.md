@@ -199,6 +199,42 @@ type ChipIntent =
   | 'action';        // Acciones: prevenir, mejorar
 ```
 
+## 🤖 Motor de Sugerencias IA
+
+```typescript
+import { suggestionEngine } from './core/ai-suggestions';
+
+// Actualizar contexto del usuario
+suggestionEngine.updateContext({ currentQuery: 'ansiedad' });
+
+// Obtener sugerencias inteligentes
+const suggestions = await suggestionEngine.getSuggestions(5);
+// → [{ type: 'synergy', title: 'Combinación sinérgica', ... }]
+
+// Registrar click para aprendizaje
+suggestionEngine.registerClick('ashwagandha');
+
+// Obtener insights de uso
+const insights = suggestionEngine.getUsageInsights();
+// → { totalSearches: 42, topSymptoms: ['estrés', 'sueño'], ... }
+```
+
+### Tipos de Sugerencias
+
+- **synergy**: Combinaciones sinérgicas conocidas entre ingredientes
+- **complementary**: Ingredientes que combinan bien con selección actual
+- **alternative**: Alternativas populares para el síntoma detectado
+- **educational**: Patrones aprendidos del historial del usuario
+
+### Detección de Síntomas
+
+El motor detecta automáticamente síntomas por palabras clave:
+- Sueño: dormir, insomnio, fatiga, cansancio
+- Dolor: dolor, inflamación, artritis, migraña
+- Estrés: estrés, ansiedad, nervios, tensión
+- Inmunidad: inmune, defensas, resfriado, gripe
+- Digestivo: digestivo, estómago, náuseas, intestino
+
 ## Búsqueda con Sinónimos
 
 ```typescript
@@ -269,7 +305,7 @@ import { KBDashboard } from './components/admin';
 ### 🔄 En Desarrollo
 - [x] Editor visual de sinergias
 - [x] Dashboard admin para CRUD de KB
-- [ ] Motor de sugerencias IA
+- [x] Motor de sugerencias IA
 
 ## Patrones de Código
 
