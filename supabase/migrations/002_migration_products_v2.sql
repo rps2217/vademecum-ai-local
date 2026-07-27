@@ -139,7 +139,22 @@ CREATE INDEX IF NOT EXISTS idx_protocols_evidence ON protocols(evidencia_level);
 -- MIGRATE DATA - De products a products_v2
 -- ============================================
 
--- Migrar productos existentes usando jsonb_array_elements_text()
+-- Función helper para convertir JSON array a TEXT[]
+CREATE OR REPLACE FUNCTION jsonb_to_text_array(val JSONB)
+RETURNS TEXT[] AS $$
+BEGIN
+  IF val IS NULL THEN
+    RETURN NULL;
+  END IF;
+  IF jsonb_typeof(val) = 'array' THEN
+    RETURN ARRAY(SELECT jsonb_array_elements_text(val));
+  END IF;
+  -- Si es scalar, envolver en array
+  RETURN ARRAY[val #>> '{}'];
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+
+-- Migrar productos existentes
 INSERT INTO products_v2 (
   sku,
   nombre_comercial,
@@ -172,23 +187,11 @@ SELECT
   p.sku,
   COALESCE(p.nombre_comercial, p.data->>'nombre_comercial'),
   p.data->>'descripcion',
-  CASE 
-    WHEN p.data->'principios_activos' IS NOT NULL 
-    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'principios_activos'))
-    ELSE NULL 
-  END,
-  CASE 
-    WHEN p.data->'indicaciones' IS NOT NULL 
-    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'indicaciones'))
-    ELSE NULL 
-  END,
+  jsonb_to_text_array(p.data->'principios_activos'),
+  jsonb_to_text_array(p.data->'indicaciones'),
   p.data->>'advertencias',
   p.data->>'posologia',
-  CASE 
-    WHEN p.data->'tags_ia' IS NOT NULL 
-    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'tags_ia'))
-    ELSE NULL 
-  END,
+  jsonb_to_text_array(p.data->'tags_ia'),
   NULL,
   COALESCE((p.data->>'synergy_analyzed')::BOOLEAN, false),
   p.data->>'sugerencia_complementaria',
@@ -204,11 +207,7 @@ SELECT
     THEN (p.data->>'lock_timestamp')::BIGINT 
     ELSE NULL END,
   p.data->>'lock_uid',
-  CASE 
-    WHEN p.data->'skus_relacionados' IS NOT NULL 
-    THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'skus_relacionados'))
-    ELSE NULL 
-  END,
+  jsonb_to_text_array(p.data->'skus_relacionados'),
   COALESCE((p.data->>'is_synced_cloud')::BOOLEAN, false),
   CASE WHEN p.data->>'last_synced_cloud' IS NOT NULL 
     THEN (p.data->>'last_synced_cloud')::TIMESTAMPTZ 
