@@ -12,7 +12,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 CREATE TABLE IF NOT EXISTS products_v2 (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  sku VARCHAR(100) UNIQUE NOT NULL,
+  sku VARCHAR(500) UNIQUE NOT NULL,
   nombre_comercial VARCHAR(500),
   
   -- Datos principales
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS products_v2 (
   advertencias TEXT,
   posologia TEXT,
   marca VARCHAR(200),
-  categoria VARCHAR(100),
+  categoria VARCHAR(500),
   
   -- Seguridad del paciente (campos booleanos)
   apto_celiacos BOOLEAN DEFAULT false,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS products_v2 (
   verified_by UUID,
   locked_by_ai BOOLEAN DEFAULT false,
   lock_timestamp BIGINT,
-  lock_uid VARCHAR(100),
+  lock_uid VARCHAR(500),
   
   -- SKUs relacionados
   skus_relacionados TEXT[],
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS protocols (
   -- Identificación
   name VARCHAR(200) NOT NULL,
   description TEXT,
-  category VARCHAR(100),
+  category VARCHAR(500),
   icon VARCHAR(50),
   color VARCHAR(20),
   
