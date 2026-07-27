@@ -1,22 +1,23 @@
 import { logger } from '../../services/LoggerService';
-import React, { useEffect, useState, useRef, useMemo } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { dataService } from '../../services/DataService';
 import { Product } from '../../core/types/product.types';
 import { Search, Info, X } from 'lucide-react';
 import { cloudSyncService } from '../../services/CloudSyncService';
 import { useAuth } from '../../context/AuthContext';
-import { EventBus, EventType } from '../../services/EventBus';
 import { ScraperModal } from './ScraperModal';
 
 import { DatabaseHeader } from './components/DatabaseHeader';
 import { ProductMobileList } from './components/ProductMobileList';
 import { ProductTable } from './components/ProductTable';
-import { SearchFilters } from './components/SearchFilters';
-import { searchService, SearchFacets } from '../../services/SearchService';
+import { searchService } from '../../services/SearchService';
 import { productsCollection } from '../../database';
-import { ActivePrinciplesTable } from './components/ActivePrinciplesTable';
 import { LayoutGrid, Beaker } from 'lucide-react';
 
+/**
+ * DatabaseModule - Catálogo Simplificado
+ * Vista limpia sin filtros complejos, solo búsqueda rápida
+ */
 export const DatabaseModule: React.FC = () => {
   const { isAdmin } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,18 +26,9 @@ export const DatabaseModule: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedPrinciple, setSelectedPrinciple] = useState<string | null>(null);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [showScraperModal, setShowScraperModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [activeTab, setActiveTab] = useState<'products' | 'principles'>('products');
-  const [facets, setFacets] = useState<SearchFacets>({ 
-      categories: [], 
-      activePrinciples: [],
-      principlesWithCounts: []
-  });
 
   const loadData = async (isManual = false) => {
     setIsLoading(true);
@@ -44,7 +36,6 @@ export const DatabaseModule: React.FC = () => {
       const cCount = await cloudSyncService.getCloudCount();
       setCloudCount(cCount);
 
-      // Check if we need to auto-restore
       const localCount = await productsCollection.query().fetchCount();
       if (localCount === 0 && cCount > 0 && !isManual) {
         setSyncStatus('Detectados datos en la nube. Restaurando automáticamente...');
@@ -57,17 +48,18 @@ export const DatabaseModule: React.FC = () => {
     }
   };
 
-  // Perform advanced search when terms or filters change
+  // Búsqueda simple
   useEffect(() => {
-     const performSearch = async () => {
-         const results = await searchService.search(searchTerm, {
-             category: selectedCategory || undefined,
-             principle: selectedPrinciple || undefined
-         });
-         setFilteredProducts(results);
-     };
-     performSearch();
-  }, [searchTerm, selectedCategory, selectedPrinciple, products]);
+    const performSearch = async () => {
+      if (!searchTerm.trim()) {
+        setFilteredProducts(products);
+        return;
+      }
+      const results = await searchService.search(searchTerm, {});
+      setFilteredProducts(results);
+    };
+    performSearch();
+  }, [searchTerm, products]);
 
   const handleSmartPull = async () => {
     setIsSyncing(true);
@@ -81,7 +73,7 @@ export const DatabaseModule: React.FC = () => {
         setSyncStatus('Ya estás al día con la nube.');
       }
     } catch (error) {
-       setSyncStatus('Error en la sincronización inteligente.');
+      setSyncStatus('Error en la sincronización inteligente.');
     } finally {
       setIsSyncing(false);
       setTimeout(() => setSyncStatus(null), 5000);
@@ -89,25 +81,17 @@ export const DatabaseModule: React.FC = () => {
   };
 
   useEffect(() => {
-    // We only call loadData() initially to get cloud counts
     loadData();
 
-    // Suscribirse a actualizaciones de WatermelonDB para refrescar la lista local
     const subscription = productsCollection.query().observe().subscribe(async (records) => {
       if (!records) return;
       const allProducts = records.map(r => r.asJSON());
       setProducts(allProducts);
+      setFilteredProducts(allProducts);
     });
-
-    // Escuchar cuando el servicio de búsqueda termina de indexar para actualizar facetas
-    const handleIndexReady = () => {
-      setFacets(searchService.getFacets());
-    };
-    window.addEventListener('search_index_ready', handleIndexReady);
 
     return () => {
       subscription.unsubscribe();
-      window.removeEventListener('search_index_ready', handleIndexReady);
     };
   }, []);
 
@@ -137,13 +121,10 @@ export const DatabaseModule: React.FC = () => {
     setSyncStatus('Limpiando base de datos local...');
     
     try {
-      // Limpiar base de datos local
       await dataService.clearAll();
       logger.info('Base de datos local limpiada', 'DatabaseModule');
       
       setSyncStatus('Descargando todos los productos desde la nube...');
-      
-      // Importar catálogo completo
       const result = await dataService.importCatalog();
       
       if (result.success && result.count > 0) {
@@ -213,85 +194,37 @@ export const DatabaseModule: React.FC = () => {
         </div>
       )}
 
-      {/* Main Layout: Filters + List */}
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
-        <SearchFilters 
-            categories={facets.categories}
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-            totalResults={filteredProducts.length}
-        />
-
-        <div className="flex-1 w-full space-y-4">
-          <div className="bg-card border border-border rounded-2xl shadow-xl overflow-hidden">
-            <div className="p-4 bg-card border-b border-border flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex items-center gap-2">
-                <span className="px-3 py-1 bg-primary text-primary rounded-full text-xs font-bold ring-1 ring-brand-primary/20">
-                  {products.length} Local
-                </span>
-                {cloudCount !== null && (
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold ring-1 ring-emerald-500/20">
-                    {cloudCount} Nube
-                  </span>
-                )}
-                {selectedPrinciple && (
-                  <span className="px-3 py-1 bg-amber-500/10 text-amber-400 rounded-full text-xs font-bold ring-1 ring-amber-500/20 flex items-center gap-1.5">
-                    <Beaker className="w-3 h-3" />
-                    {selectedPrinciple}
-                  </span>
-                )}
-                {(selectedCategory || selectedPrinciple) && (
-                  <button 
-                    onClick={() => { setSelectedCategory(null); setSelectedPrinciple(null); }}
-                    className="flex items-center gap-1.5 px-2 py-0.5 bg-card text-[10px] text-muted-foreground rounded hover:bg-slate-700"
-                  >
-                    <X className="w-3 h-3" /> Limpiar filtros
-                  </button>
-                )}
-              </div>
-              <div className="relative w-full md:w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input 
-                  type="text" placeholder="Búsqueda rápida (tolerancia a errores)..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-background border border-border rounded-xl text-sm text-foreground focus:border-primary/50 outline-none"
-                />
-              </div>
-            </div>
-
-            <div className="p-4 bg-card border-b border-border flex gap-4">
-              <button 
-                onClick={() => setActiveTab('products')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'products' ? 'bg-primary text-foreground shadow-lg shadow-brand-primary/20' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
-              >
-                <LayoutGrid className="w-4 h-4" />
-                Productos
-              </button>
-              <button 
-                onClick={() => setActiveTab('principles')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'principles' ? 'bg-primary text-foreground shadow-lg shadow-brand-primary/20' : 'text-muted-foreground hover:text-foreground hover:bg-card'}`}
-              >
-                <Beaker className="w-4 h-4" />
-                Principios Activos
-              </button>
-            </div>
-
-            {activeTab === 'products' ? (
-              <>
-                <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
-                <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
-              </>
-            ) : (
-                <ActivePrinciplesTable 
-                  principles={facets.principlesWithCounts?.map(p => ({ name: p.principle, count: p.count })) || []} 
-                  isLoading={isLoading} 
-                  onSelect={(name) => {
-                    setSelectedPrinciple(name);
-                    setActiveTab('products');
-                  }} 
-                />
+      {/* Lista simplificada sin filtros */}
+      <div className="bg-card border border-border rounded-2xl shadow-xl overflow-hidden">
+        {/* Header con búsqueda */}
+        <div className="p-4 bg-card border-b border-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-3">
+            <span className="px-3 py-1 bg-violet-500/10 text-violet-600 rounded-full text-xs font-bold">
+              {filteredProducts.length.toLocaleString()} productos
+            </span>
+            {cloudCount !== null && (
+              <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold">
+                {cloudCount.toLocaleString()} en nube
+              </span>
             )}
           </div>
+          
+          {/* Búsqueda rápida */}
+          <div className="relative w-full md:w-80">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input 
+              type="text" 
+              placeholder="Buscar productos..." 
+              value={searchTerm} 
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 outline-none transition-all"
+            />
+          </div>
         </div>
+
+        {/* Tabla de productos */}
+        <ProductMobileList products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
+        <ProductTable products={filteredProducts} isLoading={isLoading} onDelete={handleDelete} />
       </div>
 
       {showScraperModal && (
