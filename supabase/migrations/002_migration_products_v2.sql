@@ -8,21 +8,22 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 -- ============================================
 -- PRODUCTS_V2 - Productos normalizados
+-- Usamos TEXT en lugar de VARCHAR para evitar problemas de longitud
 -- ============================================
 
 CREATE TABLE IF NOT EXISTS products_v2 (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  sku VARCHAR(500) UNIQUE NOT NULL,
-  nombre_comercial VARCHAR(500),
+  sku TEXT UNIQUE NOT NULL,
+  nombre_comercial TEXT,
   
-  -- Datos principales
+  -- Datos principales (TEXT para evitar truncamiento)
   descripcion TEXT,
   principios_activos TEXT[],
   indicaciones TEXT[],
   advertencias TEXT,
   posologia TEXT,
-  marca VARCHAR(200),
-  categoria VARCHAR(500),
+  marca TEXT,
+  categoria TEXT,
   
   -- Seguridad del paciente (campos booleanos)
   apto_celiacos BOOLEAN DEFAULT false,
@@ -34,7 +35,7 @@ CREATE TABLE IF NOT EXISTS products_v2 (
   
   -- IA y Análisis
   tags_ia TEXT[],
-  vectors BYTEA, -- Embeddings serializados (PostgreSQL usa BYTEA)
+  vectors BYTEA,
   vectors_dims INT DEFAULT 384,
   synergy_analyzed BOOLEAN DEFAULT false,
   sugerencia_complementaria TEXT,
@@ -46,7 +47,7 @@ CREATE TABLE IF NOT EXISTS products_v2 (
   verified_by UUID,
   locked_by_ai BOOLEAN DEFAULT false,
   lock_timestamp BIGINT,
-  lock_uid VARCHAR(500),
+  lock_uid TEXT,
   
   -- SKUs relacionados
   skus_relacionados TEXT[],
@@ -84,22 +85,22 @@ CREATE TABLE IF NOT EXISTS protocols (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   
   -- Identificación
-  name VARCHAR(200) NOT NULL,
+  name TEXT NOT NULL,
   description TEXT,
-  category VARCHAR(500),
-  icon VARCHAR(50),
-  color VARCHAR(20),
+  category TEXT,
+  icon TEXT,
+  color TEXT,
   
   -- Objetivo
   objetivo_principal TEXT,
   duracion_dias INT,
-  dificultad VARCHAR(20) DEFAULT 'intermedia', -- baja, intermedia, alta
+  dificultad TEXT DEFAULT 'intermedia',
   
   -- Fases del protocolo
-  phases JSONB, -- [{fase: "1", nombre: "Inicio", dias: "1-7", ingredientes: [], notas: ""}]
+  phases JSONB,
   
   -- Ingredientes del protocolo
-  ingredients JSONB, -- [{sku: "", nombre: "", dosis: "", momento: "mañana", duracion: "30 dias"}]
+  ingredients JSONB,
   
   -- Resultados esperados
   resultados_esperados TEXT[],
@@ -111,7 +112,7 @@ CREATE TABLE IF NOT EXISTS protocols (
   interacciones TEXT[],
   
   -- Evidencia
-  evidencia_level VARCHAR(10) DEFAULT 'C',
+  evidencia_level TEXT DEFAULT 'C',
   referencias TEXT[],
   estudios_clinicos TEXT[],
   
@@ -138,7 +139,7 @@ CREATE INDEX IF NOT EXISTS idx_protocols_evidence ON protocols(evidencia_level);
 -- MIGRATE DATA - De products a products_v2
 -- ============================================
 
--- Migrar productos existentes (usando función para convertir JSON arrays)
+-- Migrar productos existentes usando jsonb_array_elements_text()
 INSERT INTO products_v2 (
   sku,
   nombre_comercial,
@@ -171,25 +172,24 @@ SELECT
   p.sku,
   COALESCE(p.nombre_comercial, p.data->>'nombre_comercial'),
   p.data->>'descripcion',
-  -- Convertir JSON array a TEXT[] correctamente (usando jsonb_array_elements_text)
   CASE 
-    WHEN p.data->>'principios_activos' IS NOT NULL 
+    WHEN p.data->'principios_activos' IS NOT NULL 
     THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'principios_activos'))
     ELSE NULL 
   END,
   CASE 
-    WHEN p.data->>'indicaciones' IS NOT NULL 
+    WHEN p.data->'indicaciones' IS NOT NULL 
     THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'indicaciones'))
     ELSE NULL 
   END,
   p.data->>'advertencias',
   p.data->>'posologia',
   CASE 
-    WHEN p.data->>'tags_ia' IS NOT NULL 
+    WHEN p.data->'tags_ia' IS NOT NULL 
     THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'tags_ia'))
     ELSE NULL 
   END,
-  NULL, -- vectors se migran después
+  NULL,
   COALESCE((p.data->>'synergy_analyzed')::BOOLEAN, false),
   p.data->>'sugerencia_complementaria',
   p.data->'analisis_componentes',
@@ -205,7 +205,7 @@ SELECT
     ELSE NULL END,
   p.data->>'lock_uid',
   CASE 
-    WHEN p.data->>'skus_relacionados' IS NOT NULL 
+    WHEN p.data->'skus_relacionados' IS NOT NULL 
     THEN ARRAY(SELECT jsonb_array_elements_text(p.data->'skus_relacionados'))
     ELSE NULL 
   END,
@@ -233,7 +233,6 @@ END $$;
 -- FUNCTIONS Y TRIGGERS
 -- ============================================
 
--- Función para actualizar updated_at
 CREATE OR REPLACE FUNCTION update_products_v2_timestamp()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -242,13 +241,11 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger para products_v2
 CREATE OR REPLACE TRIGGER trigger_products_v2_updated_at
   BEFORE UPDATE ON products_v2
   FOR EACH ROW
   EXECUTE FUNCTION update_products_v2_timestamp();
 
--- Función para actualizar updated_at en protocols
 CREATE OR REPLACE FUNCTION update_protocols_timestamp()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -266,7 +263,6 @@ CREATE OR REPLACE TRIGGER trigger_protocols_updated_at
 -- VISTAS ÚTILES
 -- ============================================
 
--- Vista de productos con seguridad
 CREATE OR REPLACE VIEW v_products_with_safety AS
 SELECT 
   id,
@@ -277,24 +273,19 @@ SELECT
   indicaciones,
   marca,
   categoria,
-  -- Seguridad
   CASE WHEN apto_celiacos THEN '✅' ELSE '❌' END as celiacos,
-  CASE WHEN apto_embarazo THEN '✅' ELSE '⚠️' END as embarazo,
-  CASE WHEN apto_lactancia THEN '✅' ELSE '⚠️' END as lactancia,
-  CASE WHEN apto_pediatria THEN '✅' ELSE '⚠️' END as pediatria,
-  CASE WHEN NOT apto_diabeticos THEN '✅' ELSE '⚠️' END as diabeticos,
-  -- IA
+  CASE WHEN NOT apto_embarazo THEN '⚠️' ELSE '✅' END as embarazo,
+  CASE WHEN NOT apto_lactancia THEN '⚠️' ELSE '✅' END as lactancia,
+  CASE WHEN NOT apto_pediatria THEN '⚠️' ELSE '✅' END as pediatria,
   synergy_analyzed,
   tags_ia,
   sugerencia_complementaria,
-  -- Metadatos
   is_verified,
   is_featured,
   created_at
 FROM products_v2
 WHERE is_active = true;
 
--- Vista de protocolos activos
 CREATE OR REPLACE VIEW v_protocols_active AS
 SELECT 
   id,
@@ -306,8 +297,7 @@ SELECT
   dificultad,
   evidencia_level,
   is_featured,
-  (ingredients->0->>'nombre') as primer_ingrediente,
-  array_length(ingredients, 1) as total_ingredientes
+  json_array_length(COALESCE(ingredients, '[]'::JSONB)) as total_ingredientes
 FROM protocols
 WHERE is_active = true
 ORDER BY is_featured DESC, created_at DESC;
@@ -319,14 +309,12 @@ ORDER BY is_featured DESC, created_at DESC;
 ALTER TABLE products_v2 ENABLE ROW LEVEL SECURITY;
 ALTER TABLE protocols ENABLE ROW LEVEL SECURITY;
 
--- Políticas públicas de lectura
 CREATE POLICY "Public read products_v2" ON products_v2
   FOR SELECT USING (is_active = true);
 
 CREATE POLICY "Public read protocols" ON protocols
   FOR SELECT USING (is_active = true);
 
--- Políticas de escritura para admin
 CREATE POLICY "Admin write products_v2" ON products_v2
   FOR ALL USING (true);
 
@@ -410,8 +398,6 @@ INSERT INTO protocols (name, description, category, objetivo_principal, duracion
 
 COMMENT ON TABLE products_v2 IS 'Productos normalizados - migración desde products.data JSONB';
 COMMENT ON TABLE protocols IS 'Protocolos de suplementación personalizados';
-COMMENT ON COLUMN products_v2.vectors IS 'Embeddings serializados para búsqueda semántica';
-COMMENT ON COLUMN products_v2.apto_celiacos IS 'Seguro para celíacos (certificación)';
 
 -- ============================================
 -- FIN MIGRATION V2
