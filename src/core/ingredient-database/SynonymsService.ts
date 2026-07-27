@@ -7,8 +7,11 @@
  * MÁS DE 500 SINÓNIMOS PARA BÚSQUEDAS ROBUSTAS
  */
 
-import { KNOWLEDGE_BASE } from './ingredients';
+import { INGREDIENT_DATABASE } from './ingredients';
+import { getExtendedIngredientDatabase } from './extended-database';
 import type { IngredientInfo } from './types';
+
+const KNOWLEDGE_BASE = { ...INGREDIENT_DATABASE, ...getExtendedIngredientDatabase() };
 
 // Mapa de sinónimos expandido: término normalizado -> id del ingrediente
 export const SYNONYMS_MAP: Record<string, string> = {
