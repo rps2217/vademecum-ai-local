@@ -296,7 +296,7 @@ SELECT
   dificultad,
   evidencia_level,
   is_featured,
-  json_array_length(COALESCE(ingredients, '[]'::JSONB)) as total_ingredientes
+  jsonb_array_length(COALESCE(ingredients, '[]'::JSONB)) as total_ingredientes
 FROM protocols
 WHERE is_active = true
 ORDER BY is_featured DESC, created_at DESC;
