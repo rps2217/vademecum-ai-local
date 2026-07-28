@@ -330,3 +330,6 @@ export function updateLamport(received: number): number {
   _lamport = Math.max(_lamport, received) + 1;
   return _lamport;
 }
+// Alias para compatibilidad
+export type Ingredient = DbIngredient;
+export type Synergy = DbSynergy;

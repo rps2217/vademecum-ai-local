@@ -1,7 +1,5 @@
 /**
  * Button - Componente de botón
- * 
- * Botón con variantes, tamaños y estados.
  */
 
 import React from 'react';
@@ -11,26 +9,26 @@ import { Loader2 } from 'lucide-react';
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
   size?: 'sm' | 'md' | 'lg' | 'icon';
-  loading?: boolean;
+  isLoading?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant = 'primary', 
-    size = 'md', 
-    loading = false,
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({
+    className,
+    variant = 'primary',
+    size = 'md',
+    isLoading = false,
     disabled,
     leftIcon,
     rightIcon,
     children,
-    ...props 
+    ...props
   }, ref) => {
     const baseStyles = `
-      inline-flex items-center justify-center gap-2 
-      font-medium rounded-lg 
+      inline-flex items-center justify-center gap-2
+      font-medium rounded-lg
       transition-all duration-150 ease-in-out
       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
       disabled:pointer-events-none disabled:opacity-50
@@ -73,22 +71,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(baseStyles, variants[variant], sizes[size], className)}
-        disabled={disabled || loading}
+        disabled={disabled || isLoading}
         {...props}
       >
-        {loading ? (
+        {isLoading ? (
           <Loader2 className="w-4 h-4 animate-spin" />
         ) : leftIcon ? (
           leftIcon
         ) : null}
         {children}
-        {!loading && rightIcon}
+        {!isLoading && rightIcon}
       </button>
     );
   }
 );
 
 Button.displayName = 'Button';
-
-export { Button };
-export type { ButtonProps };

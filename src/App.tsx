@@ -2,106 +2,86 @@
  * Vademecum AI - Aplicación Principal
  */
 
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { Loader2 } from 'lucide-react';
-import { errorHandler } from './services/ErrorHandlerService';
-import { appAuthService } from './services/AppAuthService';
-import AppLogin from './components/auth/AppLogin';
-import { AppBootstrapper } from './core/bootstrapper/AppBootstrapper';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AppShell } from '@/components/layout/AppShell';
+import { PageLoader } from '@/ui/PageLoader';
+import { RouteError } from '@/ui/RouteError';
+import { useE2EE } from '@/app/E2EEAuthProvider';
+import { useDb } from '@/app/DbProvider';
 
-// Lazy loading del Dashboard principal
-const DashboardSimple = lazy(() => import('./components/layout/DashboardSimple').then(m => ({ default: m.DashboardSimple })));
+// Pages
+import { LoginPage } from '@/pages/LoginPage';
+import { OnboardingPage } from '@/pages/OnboardingPage';
+import { HomePage } from '@/pages/HomePage';
+import { SearchPage } from '@/pages/SearchPage';
+import { KnowledgePage } from '@/pages/KnowledgePage';
+import { SynergiesPage } from '@/pages/SynergiesPage';
+import { AnalysisPage } from '@/pages/AnalysisPage';
+import { AdminPage } from '@/pages/AdminPage';
+import { SettingsPage } from '@/pages/SettingsPage';
 
-// Componente de carga
-function LoadingFallback() {
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, isLoading } = useE2EE();
+  
+  if (isLoading) {
+    return <PageLoader />;
+  }
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return <>{children}</>;
+}
+
+function AuthRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated, isLoading } = useE2EE();
+  
+  if (isLoading) {
+    return <PageLoader />;
+  }
+  
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+  
+  return <>{children}</>;
+}
+
+function AppRoutes() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
-      <div className="flex flex-col items-center gap-4">
-        <Loader2 className="w-10 h-10 text-emerald-600 animate-spin" />
-        <p className="text-sm text-gray-500">Cargando...</p>
-      </div>
-    </div>
+    <Routes>
+      {/* Auth routes */}
+      <Route path="/login" element={<AuthRoute><LoginPage /></AuthRoute>} />
+      <Route path="/onboarding" element={<AuthRoute><OnboardingPage /></AuthRoute>} />
+      
+      {/* Protected routes */}
+      <Route path="/" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
+        <Route index element={<HomePage />} />
+        <Route path="search" element={<SearchPage />} />
+        <Route path="knowledge" element={<KnowledgePage />} />
+        <Route path="synergies" element={<SynergiesPage />} />
+        <Route path="analysis" element={<AnalysisPage />} />
+        <Route path="admin" element={<AdminPage />} />
+        <Route path="settings" element={<SettingsPage />} />
+      </Route>
+      
+      {/* Catch all */}
+      <Route path="*" element={<RouteError />} />
+    </Routes>
   );
 }
 
-// Error boundary para componentes lazy
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  { hasError: boolean; error: Error | null }
-> {
-  constructor(props: { children: React.ReactNode }) {
-    super(props);
-    this.state = { hasError: false, error: null };
+export function App() {
+  const { isReady } = useDb();
+  
+  if (!isReady) {
+    return <PageLoader message="Inicializando base de datos..." />;
   }
-
-  static getDerivedStateFromError(error: Error) {
-    return { hasError: true, error };
-  }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    errorHandler.captureError(error, { componentStack: errorInfo.componentStack });
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50">
-          <div className="bg-white rounded-xl shadow-lg p-8 max-w-md text-center">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">Algo salió mal</h2>
-            <p className="text-sm text-gray-500 mb-4">
-              {this.state.error?.message || 'Error desconocido'}
-            </p>
-            <pre className="text-xs text-left bg-gray-100 p-2 rounded overflow-auto max-h-40">
-              {this.state.error?.stack}
-            </pre>
-            <button
-              onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors mt-4"
-            >
-              Recargar página
-            </button>
-          </div>
-        </div>
-      );
-    }
-
-    return this.props.children;
-  }
-}
-
-export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Verificar estado de autenticación
-    setIsAuthenticated(appAuthService.isLoggedIn());
-    setLoading(false);
-
-    // Escuchar cambios de autenticación
-    const unsubscribe = appAuthService.onAuthChange((authenticated) => {
-      setIsAuthenticated(authenticated);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  // Mostrar login si no está autenticado
-  if (loading) {
-    return <LoadingFallback />;
-  }
-
-  if (!isAuthenticated) {
-    return <AppLogin onSuccess={() => setIsAuthenticated(true)} />;
-  }
-
+  
   return (
-    <ErrorBoundary>
-      <AppBootstrapper>
-        <Suspense fallback={<LoadingFallback />}>
-          <DashboardSimple />
-        </Suspense>
-      </AppBootstrapper>
-    </ErrorBoundary>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }

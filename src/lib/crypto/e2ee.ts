@@ -6,7 +6,6 @@
 
 import nacl from 'tweetnacl';
 import { encodeBase64, decodeBase64 } from 'tweetnacl-util';
-import { logger } from '../../services/LoggerService';
 
 const KEY_STORAGE_KEY = 'vademecum.keypair';
 const RECOVERY_STORAGE_KEY = 'vademecum.recovery';
@@ -69,7 +68,6 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
   };
   
   localStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
-  logger.info('Par de claves generado y almacenado', 'Crypto');
 
   // Generar frase de recuperación BIP-39
   const { generateMnemonic } = await import('bip39');
@@ -108,14 +106,19 @@ export async function unlockKeyPair(password: string): Promise<Uint8Array | null
     );
     
     if (decrypted) {
-      logger.info('Claves desbloqueadas exitosamente', 'Crypto');
       return decrypted;
     }
     return null;
-  } catch (error) {
-    logger.error('Error desbloqueando claves', 'Crypto', error);
+  } catch {
     return null;
   }
+}
+
+/**
+ * Obtener clave secreta desde password (alias de unlockKeyPair)
+ */
+export async function getStoredSecretKey(password: string): Promise<Uint8Array | null> {
+  return unlockKeyPair(password);
 }
 
 /**
@@ -135,12 +138,10 @@ export async function unlockWithRecovery(phrase: string): Promise<Uint8Array | n
     );
     
     if (decrypted) {
-      logger.info('Claves restauradas desde frase de recuperación', 'Crypto');
       return decrypted;
     }
     return null;
-  } catch (error) {
-    logger.error('Error restaurando claves', 'Crypto', error);
+  } catch {
     return null;
   }
 }
@@ -173,7 +174,6 @@ export function hasKeyPair(): boolean {
 export function deleteKeyPair(): void {
   localStorage.removeItem(KEY_STORAGE_KEY);
   localStorage.removeItem(RECOVERY_STORAGE_KEY);
-  logger.warn('Par de claves eliminado', 'Crypto');
 }
 
 /**
@@ -206,7 +206,7 @@ export function decryptFrom(
   senderPublicKey: Uint8Array,
   recipientSecretKey: Uint8Array
 ): string | null {
-  const decrypted = nacl.box.open.open(
+  const decrypted = nacl.box.open(
     encrypted,
     nonce,
     senderPublicKey,

@@ -18,6 +18,7 @@ interface SearchInputProps {
   onSelectSuggestion?: (suggestion: string) => void;
   className?: string;
   autoFocus?: boolean;
+  isLoading?: boolean;
 }
 
 export function SearchInput({
@@ -30,6 +31,7 @@ export function SearchInput({
   onSelectSuggestion,
   className,
   autoFocus = false,
+  isLoading = false,
 }: SearchInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);

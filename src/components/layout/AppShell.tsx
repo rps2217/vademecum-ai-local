@@ -7,9 +7,10 @@
  * - Área de contenido principal
  */
 
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation, Outlet } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useTheme } from '@/app/ThemeProvider';
 import {
   Search,
   Plus,
@@ -31,37 +32,35 @@ import {
 interface NavItem {
   id: string;
   label: string;
-  icon: React.ElementType;
+  icon: typeof Search;
   href: string;
   badge?: string;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'search', label: 'Buscar', icon: Search, href: '/' },
+  { id: 'home', label: 'Inicio', icon: Search, href: '/' },
+  { id: 'search', label: 'Buscar', icon: Search, href: '/search' },
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
   { id: 'synergies', label: 'Sinergias', icon: Link2, href: '/synergies' },
   { id: 'analysis', label: 'Análisis', icon: BarChart3, href: '/analysis' },
   { id: 'admin', label: 'Admin', icon: Shield, href: '/admin', badge: 'KB' },
 ];
 
-interface AppShellProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export function AppShell({ children, className }: AppShellProps) {
+export function AppShell() {
   const location = useLocation();
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>('auto');
-
-  const handleThemeChange = (newTheme: 'light' | 'dark' | 'auto') => {
-    setTheme(newTheme);
-    if (newTheme === 'auto') {
-      document.documentElement.removeAttribute('data-theme');
-    } else {
-      document.documentElement.setAttribute('data-theme', newTheme);
+  const { theme, setTheme } = useTheme();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('sidebar-collapsed') === 'true';
     }
+    return false;
+  });
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleCollapsed = () => {
+    const newValue = !sidebarCollapsed;
+    setSidebarCollapsed(newValue);
+    localStorage.setItem('sidebar-collapsed', String(newValue));
   };
 
   const NavContent = ({ collapsed = false }: { collapsed?: boolean }) => (
@@ -159,7 +158,7 @@ export function AppShell({ children, className }: AppShellProps) {
               {/* Theme selector */}
               <div className="flex items-center gap-1 mt-3 px-3 py-2">
                 <button
-                  onClick={() => handleThemeChange('light')}
+                  onClick={() => setTheme('light')}
                   className={cn(
                     "p-1.5 rounded transition-colors",
                     theme === 'light' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
@@ -169,7 +168,7 @@ export function AppShell({ children, className }: AppShellProps) {
                   <Sun className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => handleThemeChange('auto')}
+                  onClick={() => setTheme('auto')}
                   className={cn(
                     "p-1.5 rounded transition-colors",
                     theme === 'auto' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
@@ -179,7 +178,7 @@ export function AppShell({ children, className }: AppShellProps) {
                   <Monitor className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => handleThemeChange('dark')}
+                  onClick={() => setTheme('dark')}
                   className={cn(
                     "p-1.5 rounded transition-colors",
                     theme === 'dark' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
@@ -199,7 +198,7 @@ export function AppShell({ children, className }: AppShellProps) {
                 <Settings className="w-5 h-5" />
               </Link>
               <button
-                onClick={() => handleThemeChange(theme === 'dark' ? 'light' : 'dark')}
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
               >
                 {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -210,7 +209,7 @@ export function AppShell({ children, className }: AppShellProps) {
 
         {/* Collapse toggle (desktop) */}
         <button
-          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          onClick={toggleCollapsed}
           className="hidden lg:flex absolute -right-3 top-20 w-6 h-6 items-center justify-center bg-sidebar-background border border-sidebar-border rounded-full shadow-sm hover:bg-sidebar-accent transition-colors"
         >
           {sidebarCollapsed ? (
@@ -271,8 +270,8 @@ export function AppShell({ children, className }: AppShellProps) {
         </header>
 
         {/* Page content */}
-        <main className={cn("p-4 lg:p-6", className)}>
-          {children}
+        <main className="p-4 lg:p-6">
+          <Outlet />
         </main>
       </div>
 
@@ -288,5 +287,3 @@ export function AppShell({ children, className }: AppShellProps) {
     </div>
   );
 }
-
-export default AppShell;

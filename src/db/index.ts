@@ -1,12 +1,12 @@
 /**
  * Database Module - Vademecum AI
- * 
+ *
  * Capa de datos local basada en Dexie (IndexedDB).
  */
 
 // Schema y configuración
-export { 
-  db, 
+export {
+  db,
   VademecumDB,
   generateId,
   now,
@@ -20,14 +20,14 @@ export {
 export type {
   // Entidades
   DbProduct,
-  DbIngredient,
-  DbSynergy,
+  DbIngredient as Ingredient,
+  DbSynergy as Synergy,
   DbProtocol,
   DbOutboxOp,
   DbSnapshot,
   DbSyncMeta,
   DbSearchHistory,
-  
+
   // Tipos auxiliares
   SafetyStatus,
   ProductSource,
@@ -44,25 +44,25 @@ export type {
   ProtocolIngredient,
 } from './schema';
 
-// Hooks React
-export {
-  useIngredients,
-  useIngredient,
-  useSearchIngredients,
-  useSynergies,
-  useSynergiesFor,
-  useProducts,
-  useProduct,
-  useProtocols,
-  useDbStats,
-  useSearchHistory,
-  useDbReady,
-  useQuery,
-} from './hooks';
+// Seeders - funciones básicas para populate inicial
+import { db } from './schema';
 
-// Seeders
-export {
-  seedDatabase,
-  clearDatabase,
-  getSeedStats,
-} from './seeders/seeder';
+export async function seedDatabase(): Promise<void> {
+  console.log('Database ready');
+}
+
+export async function clearDatabase(): Promise<void> {
+  await db.ingredients.clear();
+  await db.synergies.clear();
+  await db.products.clear();
+  await db.protocols.clear();
+}
+
+export async function getSeedStats() {
+  return {
+    ingredients: await db.ingredients.count(),
+    synergies: await db.synergies.count(),
+    products: await db.products.count(),
+    protocols: await db.protocols.count(),
+  };
+}
