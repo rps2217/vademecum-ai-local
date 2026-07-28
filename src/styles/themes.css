@@ -1,0 +1,372 @@
+/**
+ * Themes - Light/Dark/Auto
+ * 
+ * Sistema de temas para Vademecum AI.
+ * Soporta tema claro, oscuro y automático (basado en preferencia del sistema).
+ */
+
+@import './tokens.css';
+
+/* ============================================
+ * LIGHT THEME (Default)
+ * ============================================ */
+
+:root,
+[data-theme="light"] {
+  /* Backgrounds */
+  --background: var(--color-gray-50);
+  --background-secondary: var(--color-white);
+  --background-tertiary: var(--color-gray-100);
+  
+  /* Foreground (text) */
+  --foreground: var(--color-gray-900);
+  --foreground-muted: var(--color-gray-500);
+  --foreground-subtle: var(--color-gray-400);
+  
+  /* Primary */
+  --primary: var(--color-primary-600);
+  --primary-foreground: var(--color-white);
+  --primary-hover: var(--color-primary-700);
+  
+  /* Secondary */
+  --secondary: var(--color-secondary-100);
+  --secondary-foreground: var(--color-secondary-900);
+  --secondary-hover: var(--color-secondary-200);
+  
+  /* Accent */
+  --accent: var(--color-accent-100);
+  --accent-foreground: var(--color-accent-900);
+  --accent-hover: var(--color-accent-200);
+  
+  /* Cards & Surfaces */
+  --card: var(--color-white);
+  --card-foreground: var(--color-gray-900);
+  --card-hover: var(--color-gray-50);
+  
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-gray-900);
+  
+  /* Borders */
+  --border: var(--color-gray-200);
+  --border-hover: var(--color-gray-300);
+  --border-focus: var(--color-primary-500);
+  
+  /* Inputs */
+  --input: var(--color-gray-200);
+  --input-placeholder: var(--color-gray-400);
+  --input-focus: var(--color-primary-500);
+  
+  /* Rings (focus outline) */
+  --ring: var(--color-primary-500);
+  --ring-offset: var(--color-white);
+  
+  /* Muted */
+  --muted: var(--color-gray-100);
+  --muted-foreground: var(--color-gray-500);
+  
+  /* Destructive / Error */
+  --destructive: var(--color-error-500);
+  --destructive-foreground: var(--color-white);
+  --destructive-hover: var(--color-error-600);
+  
+  /* Success */
+  --success: var(--color-success-500);
+  --success-foreground: var(--color-white);
+  --success-bg: var(--color-success-50);
+  
+  /* Warning */
+  --warning: var(--color-warning-500);
+  --warning-foreground: var(--color-gray-900);
+  --warning-bg: var(--color-warning-50);
+  
+  /* Info */
+  --info: var(--color-info-500);
+  --info-foreground: var(--color-white);
+  --info-bg: var(--color-info-50);
+  
+  /* Sidebar */
+  --sidebar-background: var(--color-white);
+  --sidebar-foreground: var(--color-gray-700);
+  --sidebar-primary: var(--color-primary-600);
+  --sidebar-primary-foreground: var(--color-white);
+  --sidebar-accent: var(--color-gray-100);
+  --sidebar-accent-foreground: var(--color-gray-900);
+  --sidebar-border: var(--color-gray-200);
+  --sidebar-ring: var(--color-primary-500);
+  
+  /* Header */
+  --header-background: var(--color-white);
+  --header-foreground: var(--color-gray-900);
+  --header-border: var(--color-gray-200);
+  
+  /* Overlay */
+  --overlay: rgb(0 0 0 / 0.5);
+  
+  /* Code */
+  --code-background: var(--color-gray-100);
+  --code-foreground: var(--color-gray-800);
+  
+  /* Skeleton / Loading */
+  --skeleton: var(--color-gray-200);
+  --skeleton-highlight: var(--color-gray-100);
+  
+  /* SVG Icons */
+  --icon-foreground: var(--color-gray-500);
+  --icon-hover: var(--color-gray-700);
+  
+  /* Scrollbar */
+  --scrollbar-track: var(--color-gray-100);
+  --scrollbar-thumb: var(--color-gray-300);
+  --scrollbar-thumb-hover: var(--color-gray-400);
+  
+  /* Shadows for light theme */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* ============================================
+ * DARK THEME
+ * ============================================ */
+
+[data-theme="dark"] {
+  /* Backgrounds */
+  --background: var(--color-gray-950);
+  --background-secondary: var(--color-gray-900);
+  --background-tertiary: var(--color-gray-800);
+  
+  /* Foreground (text) */
+  --foreground: var(--color-gray-100);
+  --foreground-muted: var(--color-gray-400);
+  --foreground-subtle: var(--color-gray-500);
+  
+  /* Primary */
+  --primary: var(--color-primary-500);
+  --primary-foreground: var(--color-gray-950);
+  --primary-hover: var(--color-primary-400);
+  
+  /* Secondary */
+  --secondary: var(--color-gray-800);
+  --secondary-foreground: var(--color-gray-100);
+  --secondary-hover: var(--color-gray-700);
+  
+  /* Accent */
+  --accent: var(--color-accent-900);
+  --accent-foreground: var(--color-accent-100);
+  --accent-hover: var(--color-accent-800);
+  
+  /* Cards & Surfaces */
+  --card: var(--color-gray-900);
+  --card-foreground: var(--color-gray-100);
+  --card-hover: var(--color-gray-800);
+  
+  --popover: var(--color-gray-900);
+  --popover-foreground: var(--color-gray-100);
+  
+  /* Borders */
+  --border: var(--color-gray-700);
+  --border-hover: var(--color-gray-600);
+  --border-focus: var(--color-primary-400);
+  
+  /* Inputs */
+  --input: var(--color-gray-700);
+  --input-placeholder: var(--color-gray-500);
+  --input-focus: var(--color-primary-400);
+  
+  /* Rings (focus outline) */
+  --ring: var(--color-primary-400);
+  --ring-offset: var(--color-gray-900);
+  
+  /* Muted */
+  --muted: var(--color-gray-800);
+  --muted-foreground: var(--color-gray-400);
+  
+  /* Destructive / Error */
+  --destructive: var(--color-error-500);
+  --destructive-foreground: var(--color-gray-950);
+  --destructive-hover: var(--color-error-400);
+  
+  /* Success */
+  --success: var(--color-success-500);
+  --success-foreground: var(--color-gray-950);
+  --success-bg: var(--color-success-950);
+  
+  /* Warning */
+  --warning: var(--color-warning-500);
+  --warning-foreground: var(--color-gray-950);
+  --warning-bg: var(--color-warning-950);
+  
+  /* Info */
+  --info: var(--color-info-500);
+  --info-foreground: var(--color-gray-950);
+  --info-bg: var(--color-info-950);
+  
+  /* Sidebar */
+  --sidebar-background: var(--color-gray-900);
+  --sidebar-foreground: var(--color-gray-300);
+  --sidebar-primary: var(--color-primary-500);
+  --sidebar-primary-foreground: var(--color-gray-950);
+  --sidebar-accent: var(--color-gray-800);
+  --sidebar-accent-foreground: var(--color-gray-100);
+  --sidebar-border: var(--color-gray-700);
+  --sidebar-ring: var(--color-primary-400);
+  
+  /* Header */
+  --header-background: var(--color-gray-900);
+  --header-foreground: var(--color-gray-100);
+  --header-border: var(--color-gray-700);
+  
+  /* Overlay */
+  --overlay: rgb(0 0 0 / 0.75);
+  
+  /* Code */
+  --code-background: var(--color-gray-800);
+  --code-foreground: var(--color-gray-200);
+  
+  /* Skeleton / Loading */
+  --skeleton: var(--color-gray-800);
+  --skeleton-highlight: var(--color-gray-700);
+  
+  /* SVG Icons */
+  --icon-foreground: var(--color-gray-400);
+  --icon-hover: var(--color-gray-200);
+  
+  /* Scrollbar */
+  --scrollbar-track: var(--color-gray-800);
+  --scrollbar-thumb: var(--color-gray-600);
+  --scrollbar-thumb-hover: var(--color-gray-500);
+  
+  /* Shadows for dark theme - darker, less intense */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+}
+
+/* ============================================
+ * AUTO THEME (System Preference)
+ * ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Backgrounds */
+    --background: var(--color-gray-950);
+    --background-secondary: var(--color-gray-900);
+    --background-tertiary: var(--color-gray-800);
+    
+    /* Foreground (text) */
+    --foreground: var(--color-gray-100);
+    --foreground-muted: var(--color-gray-400);
+    --foreground-subtle: var(--color-gray-500);
+    
+    /* Primary */
+    --primary: var(--color-primary-500);
+    --primary-foreground: var(--color-gray-950);
+    --primary-hover: var(--color-primary-400);
+    
+    /* Secondary */
+    --secondary: var(--color-gray-800);
+    --secondary-foreground: var(--color-gray-100);
+    --secondary-hover: var(--color-gray-700);
+    
+    /* Accent */
+    --accent: var(--color-accent-900);
+    --accent-foreground: var(--color-accent-100);
+    --accent-hover: var(--color-accent-800);
+    
+    /* Cards & Surfaces */
+    --card: var(--color-gray-900);
+    --card-foreground: var(--color-gray-100);
+    --card-hover: var(--color-gray-800);
+    
+    --popover: var(--color-gray-900);
+    --popover-foreground: var(--color-gray-100);
+    
+    /* Borders */
+    --border: var(--color-gray-700);
+    --border-hover: var(--color-gray-600);
+    --border-focus: var(--color-primary-400);
+    
+    /* Inputs */
+    --input: var(--color-gray-700);
+    --input-placeholder: var(--color-gray-500);
+    --input-focus: var(--color-primary-400);
+    
+    /* Rings */
+    --ring: var(--color-primary-400);
+    --ring-offset: var(--color-gray-900);
+    
+    /* Muted */
+    --muted: var(--color-gray-800);
+    --muted-foreground: var(--color-gray-400);
+    
+    /* Destructive */
+    --destructive: var(--color-error-500);
+    --destructive-foreground: var(--color-gray-950);
+    
+    /* Sidebar */
+    --sidebar-background: var(--color-gray-900);
+    --sidebar-foreground: var(--color-gray-300);
+    --sidebar-primary: var(--color-primary-500);
+    --sidebar-primary-foreground: var(--color-gray-950);
+    --sidebar-accent: var(--color-gray-800);
+    --sidebar-accent-foreground: var(--color-gray-100);
+    --sidebar-border: var(--color-gray-700);
+    --sidebar-ring: var(--color-primary-400);
+    
+    /* Header */
+    --header-background: var(--color-gray-900);
+    --header-foreground: var(--color-gray-100);
+    --header-border: var(--color-gray-700);
+    
+    /* Overlay */
+    --overlay: rgb(0 0 0 / 0.75);
+    
+    /* Code */
+    --code-background: var(--color-gray-800);
+    --code-foreground: var(--color-gray-200);
+    
+    /* Skeleton */
+    --skeleton: var(--color-gray-800);
+    --skeleton-highlight: var(--color-gray-700);
+    
+    /* Icons */
+    --icon-foreground: var(--color-gray-400);
+    --icon-hover: var(--color-gray-200);
+    
+    /* Scrollbar */
+    --scrollbar-track: var(--color-gray-800);
+    --scrollbar-thumb: var(--color-gray-600);
+    --scrollbar-thumb-hover: var(--color-gray-500);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* ============================================
+ * THEME SWITCHER UTILITY
+ * ============================================ */
+
+@layer base {
+  [data-theme="light"] .dark\:hidden {
+    display: block;
+  }
+  [data-theme="light"] .light\:hidden {
+    display: none;
+  }
+  
+  [data-theme="dark"] .light\:hidden {
+    display: block;
+  }
+  [data-theme="dark"] .dark\:hidden {
+    display: none;
+  }
+}
