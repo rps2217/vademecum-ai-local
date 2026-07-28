@@ -1,122 +1,208 @@
 /**
- * SynergiesPage - Red de sinergias
+ * SynergiesPage - Red de sinergias rediseñada
+ * 
+ * Grid de sinergias con visualizacion de combinaciones.
  */
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { db } from '@/db';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { SearchInput } from '@/ui/SearchInput';
-import { Network, ArrowRight, TrendingUp } from 'lucide-react';
-import type { Synergy } from '@/db/schema';
+import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info } from 'lucide-react';
+import type { DbSynergy } from '@/db/schema';
+
+const TYPE_CONFIG: Record<string, { label: string; color: string; icon: typeof Link2 }> = {
+  sinergia: { 
+    label: 'Sinergia', 
+    color: 'bg-emerald-500/10 text-emerald-600 border-emerald-200', 
+    icon: Sparkles 
+  },
+  complemento: { 
+    label: 'Complemento', 
+    color: 'bg-blue-500/10 text-blue-600 border-blue-200', 
+    icon: Link2 
+  },
+  interaccion: { 
+    label: 'Interaccion', 
+    color: 'bg-violet-500/10 text-violet-600 border-violet-200', 
+    icon: Network 
+  },
+  antagonismo: { 
+    label: 'Antagonismo', 
+    color: 'bg-red-500/10 text-red-600 border-red-200', 
+    icon: AlertTriangle 
+  },
+};
+
+const LEVEL_CONFIG: Record<string, { label: string; color: string }> = {
+  alto: { label: 'Evidencia alta', color: 'bg-green-100 text-green-800' },
+  medio: { label: 'Evidencia media', color: 'bg-yellow-100 text-yellow-800' },
+  bajo: { label: 'Evidencia baja', color: 'bg-gray-100 text-gray-800' },
+};
 
 export function SynergiesPage() {
-  const [synergies, setSynergies] = useState<Synergy[]>([]);
-  const [query, setQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const [synergies, setSynergies] = useState<DbSynergy[]>([]);
+  const [ingredients, setIngredients] = useState<Record<string, string>>({});
+  const [query, setQuery] = useState(searchParams.get('q') || '');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function loadSynergies() {
+    async function loadData() {
       setIsLoading(true);
       try {
-        const results = await db.synergies.toArray();
-        setSynergies(results);
+        const [synergiesData, ingredientsData] = await Promise.all([
+          db.synergies.toArray(),
+          db.ingredients.toArray(),
+        ]);
+        
+        // Create a map of ingredient id to name
+        const ingredientMap: Record<string, string> = {};
+        ingredientsData.forEach(ing => {
+          ingredientMap[ing.id] = ing.nombre;
+        });
+        
+        setIngredients(ingredientMap);
+        setSynergies(synergiesData);
       } catch (error) {
         console.error('Error loading synergies:', error);
       } finally {
         setIsLoading(false);
       }
     }
-    loadSynergies();
+    loadData();
   }, []);
 
-  const filteredSynergies = synergies.filter(
-    (s) =>
-      s.ingredienteA.toLowerCase().includes(query.toLowerCase()) ||
-      s.ingredienteB.toLowerCase().includes(query.toLowerCase()) ||
-      s.tipo.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredSynergies = synergies.filter((s) => {
+    if (!query) return true;
+    const q = query.toLowerCase();
+    const nameA = ingredients[s.ingredienteA] || s.ingredienteA;
+    const nameB = ingredients[s.ingredienteB] || s.ingredienteB;
+    return (
+      nameA.toLowerCase().includes(q) ||
+      nameB.toLowerCase().includes(q) ||
+      s.tipo.toLowerCase().includes(q) ||
+      (s.mecanismo && s.mecanismo.toLowerCase().includes(q))
+    );
+  });
 
-  const getTypeColor = (tipo: string) => {
-    switch (tipo) {
-      case 'sinergia':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-      case 'complemento':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      case 'interaccion':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-    }
+  const getTypeConfig = (tipo: string) => {
+    return TYPE_CONFIG[tipo] || TYPE_CONFIG.interaccion;
   };
 
-  const getLevelColor = (nivel: string) => {
-    switch (nivel) {
-      case 'alto':
-        return 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200';
-      case 'medio':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'bajo':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-    }
+  const getLevelConfig = (nivel: string) => {
+    return LEVEL_CONFIG[nivel] || LEVEL_CONFIG.bajo;
   };
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Red de sinergias</h1>
-        <p className="text-muted-foreground mt-1">
-          {synergies.length} combinaciones sinérgicas
-        </p>
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold">Sinergias</h1>
+          <p className="text-muted-foreground mt-1">
+            {isLoading 
+              ? 'Cargando...' 
+              : `${filteredSynergies.length} combinaciones`}
+          </p>
+        </div>
       </div>
 
+      {/* Search */}
       <SearchInput
         value={query}
         onChange={setQuery}
-        placeholder="Buscar por ingrediente o tipo..."
+        placeholder="Buscar por ingrediente o mecanismo..."
       />
 
+      {/* Graph Placeholder Notice */}
+      <Card className="p-4 bg-muted/50 border-dashed">
+        <div className="flex items-start gap-3">
+          <div className="p-2 bg-muted rounded-lg">
+            <Network className="w-5 h-5 text-muted-foreground" />
+          </div>
+          <div>
+            <p className="font-medium text-sm">Vista de grafo en desarrollo</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Pronto podras visualizar las relaciones entre ingredientes como un grafo interactivo.
+            </p>
+          </div>
+        </div>
+      </Card>
+
+      {/* Results */}
       {isLoading ? (
         <div className="text-center py-12">
           <p className="text-muted-foreground">Cargando...</p>
         </div>
       ) : filteredSynergies.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredSynergies.map((synergy) => (
-            <Card key={synergy.id} className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Network className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{synergy.ingredienteA}</span>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
-                    <span className="font-medium">{synergy.ingredienteB}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {filteredSynergies.map((synergy) => {
+            const typeConfig = getTypeConfig(synergy.tipo);
+            const levelConfig = getLevelConfig(synergy.nivel);
+            const TypeIcon = typeConfig.icon;
+            const nameA = ingredients[synergy.ingredienteA] || synergy.ingredienteA;
+            const nameB = ingredients[synergy.ingredienteB] || synergy.ingredienteB;
+
+            return (
+              <Card 
+                key={synergy.id} 
+                className="p-5 hover:border-primary transition-colors cursor-pointer group"
+              >
+                {/* Header */}
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-xl ${typeConfig.color} border`}>
+                    <TypeIcon className="w-6 h-6" />
                   </div>
-                  <div className="flex items-center gap-2 mt-1">
-                    <Badge className={getTypeColor(synergy.tipo)}>
-                      {synergy.tipo}
-                    </Badge>
-                    <Badge className={getLevelColor(synergy.nivel)}>
-                      {synergy.nivel}
-                    </Badge>
+                  <div className="flex-1 min-w-0">
+                    {/* Ingredients connection */}
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-semibold">{nameA}</span>
+                      <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                      <span className="font-semibold">{nameB}</span>
+                    </div>
+                    
+                    {/* Type and Level badges */}
+                    <div className="flex flex-wrap items-center gap-2 mt-2">
+                      <Badge className={`${typeConfig.color} border text-xs`}>
+                        {typeConfig.label}
+                      </Badge>
+                      <Badge className={`${levelConfig.color} text-xs`}>
+                        {levelConfig.label}
+                      </Badge>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {synergy.mecanismo && (
-                <p className="text-sm text-muted-foreground mt-3">
-                  {synergy.mecanismo}
-                </p>
-              )}
-            </Card>
-          ))}
+
+                {/* Mechanism */}
+                {synergy.mecanismo && (
+                  <p className="text-sm text-muted-foreground mt-3 pl-[4.5rem]">
+                    {synergy.mecanismo}
+                  </p>
+                )}
+
+                {/* Evidence indicator */}
+                {synergy.evidencia && (
+                  <div className="flex items-center gap-1 mt-3 pl-[4.5rem]">
+                    <Info className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground">
+                      Evidencia: {synergy.evidencia}
+                    </span>
+                  </div>
+                )}
+              </Card>
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-12">
-          <p className="text-muted-foreground">No se encontraron sinergias</p>
+          <Network className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+          <p className="text-muted-foreground font-medium">No se encontraron sinergias</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            {query ? 'Prueba con otros terminos de busqueda' : 'No hay sinergias cargadas aun'}
+          </p>
         </div>
       )}
     </div>

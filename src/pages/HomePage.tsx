@@ -1,95 +1,198 @@
 /**
- * HomePage - Página principal
+ * HomePage - Pagina principal rediseñada
+ * 
+ * Hero search con sugerencias rapidas y stats reales.
  */
 
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { db } from '@/db';
-import { StatsCard } from '@/ui/StatsCard';
+import { SearchInput } from '@/ui/SearchInput';
 import { Card } from '@/ui/Card';
-import { Search, BookOpen, Network, Sparkles, TrendingUp, Shield, Database } from 'lucide-react';
+import { Button } from '@/ui/Button';
+import { 
+  Search, 
+  BookOpen, 
+  Network, 
+  Sparkles, 
+  Database,
+  Leaf,
+  Shield,
+  Clock,
+  CheckCircle2,
+  DatabaseZap,
+} from 'lucide-react';
+
+const QUICK_SUGGESTIONS = [
+  { label: 'Valeriana', icon: Leaf, color: 'bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20' },
+  { label: 'Equinacea', icon: Shield, color: 'bg-blue-500/10 text-blue-600 hover:bg-blue-500/20' },
+  { label: 'Magnesio', icon: Sparkles, color: 'bg-violet-500/10 text-violet-600 hover:bg-violet-500/20' },
+  { label: 'Vitamina D', icon: Sparkles, color: 'bg-amber-500/10 text-amber-600 hover:bg-amber-500/20' },
+  { label: 'Sinergias', icon: Network, color: 'bg-pink-500/10 text-pink-600 hover:bg-pink-500/20' },
+  { label: 'Pasiflora', icon: Leaf, color: 'bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20' },
+  { label: 'Omega-3', icon: Sparkles, color: 'bg-blue-500/10 text-blue-600 hover:bg-blue-500/20' },
+  { label: 'Ashwagandha', icon: Shield, color: 'bg-amber-500/10 text-amber-600 hover:bg-amber-500/20' },
+];
 
 export function HomePage() {
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     ingredients: 0,
     synergies: 0,
     categories: 0,
   });
+  const [query, setQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function loadStats() {
-      const [ingredients, synergies] = await Promise.all([
-        db.ingredients.count(),
-        db.synergies.count(),
-      ]);
-      
-      setStats({
-        ingredients,
-        synergies,
-        categories: 5, // fitoterapia, homeopatia, aceites, vitaminas, minerales
-      });
+      try {
+        const [ingredients, synergies, allIngredients] = await Promise.all([
+          db.ingredients.count(),
+          db.synergies.count(),
+          db.ingredients.toArray(),
+        ]);
+        
+        const categories = new Set(allIngredients.map(i => i.categoria));
+        
+        setStats({
+          ingredients,
+          synergies,
+          categories: categories.size,
+        });
+      } catch (err) {
+        console.error('Error loading stats:', err);
+      } finally {
+        setIsLoading(false);
+      }
     }
     loadStats();
   }, []);
 
+  const handleSearch = (value: string) => {
+    if (value.trim()) {
+      navigate(`/search?q=${encodeURIComponent(value)}`);
+    }
+  };
+
+  const handleSuggestionClick = (label: string) => {
+    navigate(`/search?q=${encodeURIComponent(label)}`);
+  };
+
+  const isDatabaseEmpty = stats.ingredients === 0 && !isLoading;
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Bienvenido</h1>
-        <p className="text-muted-foreground mt-1">
-          Tu base de conocimiento de complementos alimenticios
+    <div className="max-w-4xl mx-auto space-y-8">
+      {/* Hero Section */}
+      <div className="text-center space-y-4 pt-8">
+        <h1 className="text-4xl font-bold tracking-tight">
+          Que buscás?
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Buscá cualquier producto, ingrediente o sintoma
         </p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <StatsCard
-          title="Ingredientes"
-          value={stats.ingredients}
-          icon={<BookOpen className="w-5 h-5" />}
-          change={12}
-          changeLabel="este mes"
+      {/* Hero Search */}
+      <div className="relative max-w-2xl mx-auto">
+        <SearchInput
+          value={query}
+          onChange={setQuery}
+          placeholder="valeriana, pasiflora, ansiedad..."
+          onSearch={handleSearch}
+          isLoading={isLoading}
         />
-        <StatsCard
-          title="Sinergias"
-          value={stats.synergies}
-          icon={<Network className="w-5 h-5" />}
-        />
-        <StatsCard
-          title="Categorías"
-          value={stats.categories}
-          icon={<Shield className="w-5 h-5" />}
-        />
+        <kbd className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:inline-flex h-6 items-center gap-1 rounded border bg-muted px-2 font-mono text-xs text-muted-foreground">
+          <span>⌘</span>K
+        </kbd>
       </div>
 
-      {/* Quick actions */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Link to="/search">
-          <Card className="p-6 hover:border-primary transition-colors cursor-pointer">
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <Search className="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold">Búsqueda inteligente</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Encuentra ingredientes por nombre, síntomas o categorías
-                </p>
-              </div>
-            </div>
-          </Card>
-        </Link>
+      {/* Quick Suggestions */}
+      <div className="space-y-3">
+        <h2 className="text-sm font-medium text-muted-foreground text-center">
+          Sugerencias rapidas
+        </h2>
+        <div className="flex flex-wrap justify-center gap-2">
+          {QUICK_SUGGESTIONS.map((suggestion) => {
+            const Icon = suggestion.icon;
+            return (
+              <button
+                key={suggestion.label}
+                onClick={() => handleSuggestionClick(suggestion.label)}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${suggestion.color}`}
+              >
+                <Icon className="w-4 h-4" />
+                {suggestion.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
+      {/* Divider */}
+      <div className="border-t border-border" />
+
+      {/* Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <Card className="p-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <BookOpen className="w-5 h-5 text-primary" />
+            <span className="text-sm text-muted-foreground">Ingredientes</span>
+          </div>
+          <p className="text-3xl font-bold">{stats.ingredients}</p>
+        </Card>
+        <Card className="p-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Network className="w-5 h-5 text-violet-500" />
+            <span className="text-sm text-muted-foreground">Sinergias</span>
+          </div>
+          <p className="text-3xl font-bold">{stats.synergies}</p>
+        </Card>
+        <Card className="p-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Shield className="w-5 h-5 text-amber-500" />
+            <span className="text-sm text-muted-foreground">Categorias</span>
+          </div>
+          <p className="text-3xl font-bold">{stats.categories}</p>
+        </Card>
+      </div>
+
+      {/* Database Empty State */}
+      {isDatabaseEmpty && (
+        <Card className="p-6 border-dashed">
+          <div className="text-center space-y-4">
+            <div className="w-12 h-12 mx-auto rounded-full bg-muted flex items-center justify-center">
+              <DatabaseZap className="w-6 h-6 text-muted-foreground" />
+            </div>
+            <div>
+              <h3 className="font-semibold">Base de conocimiento vacia</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Inicializa la base para cargar los ingredientes disponibles
+              </p>
+            </div>
+            <Button onClick={() => navigate('/admin')} className="mx-auto">
+              <DatabaseZap className="w-4 h-4 mr-2" />
+              Inicializar base de conocimiento
+            </Button>
+          </div>
+        </Card>
+      )}
+
+      {/* Quick Access Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Link to="/knowledge">
-          <Card className="p-6 hover:border-primary transition-colors cursor-pointer">
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-emerald-500/10 rounded-lg">
+          <Card className="p-5 hover:border-primary transition-colors cursor-pointer group">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-emerald-500/10 rounded-xl group-hover:bg-emerald-500/20 transition-colors">
                 <Database className="w-6 h-6 text-emerald-600" />
               </div>
               <div>
-                <h3 className="font-semibold">Base de conocimiento</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Explora todos los ingredientes disponibles
+                <h3 className="font-semibold flex items-center gap-2">
+                  Base de Conocimiento
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {stats.ingredients} ingredientes disponibles
                 </p>
               </div>
             </div>
@@ -97,31 +200,18 @@ export function HomePage() {
         </Link>
 
         <Link to="/synergies">
-          <Card className="p-6 hover:border-primary transition-colors cursor-pointer">
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-violet-500/10 rounded-lg">
+          <Card className="p-5 hover:border-primary transition-colors cursor-pointer group">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-violet-500/10 rounded-xl group-hover:bg-violet-500/20 transition-colors">
                 <Network className="w-6 h-6 text-violet-600" />
               </div>
               <div>
-                <h3 className="font-semibold">Red de sinergias</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Descubre combinaciones beneficiosas
-                </p>
-              </div>
-            </div>
-          </Card>
-        </Link>
-
-        <Link to="/analysis">
-          <Card className="p-6 hover:border-primary transition-colors cursor-pointer">
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-amber-500/10 rounded-lg">
-                <Sparkles className="w-6 h-6 text-amber-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold">Motor de sugerencias</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  IA local para análisis de combinaciones
+                <h3 className="font-semibold flex items-center gap-2">
+                  Sinergias
+                  <CheckCircle2 className="w-4 h-4 text-violet-500" />
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {stats.synergies} combinaciones disponibles
                 </p>
               </div>
             </div>
@@ -129,18 +219,17 @@ export function HomePage() {
         </Link>
       </div>
 
-      {/* Recent activity placeholder */}
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="font-semibold flex items-center gap-2">
-            <TrendingUp className="w-5 h-5" />
-            Actividad reciente
-          </h2>
+      {/* Footer Info */}
+      <div className="text-center space-y-2 pt-4">
+        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+          <span>Todos los datos en tu dispositivo</span>
         </div>
-        <p className="text-muted-foreground text-center py-8">
-          No hay actividad reciente todavía. ¡Comienza buscando!
-        </p>
-      </Card>
+        <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
+          <Clock className="w-3 h-3" />
+          <span>Actualizado {new Date().toLocaleDateString('es-ES')}</span>
+        </div>
+      </div>
     </div>
   );
 }

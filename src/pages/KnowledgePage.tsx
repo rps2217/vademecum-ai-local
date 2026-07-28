@@ -1,5 +1,7 @@
 /**
- * KnowledgePage - Base de conocimiento
+ * KnowledgePage - Base de conocimiento rediseñada
+ * 
+ * Lista de ingredientes con filtros y detalle modal.
  */
 
 import { useState, useEffect } from 'react';
@@ -8,9 +10,10 @@ import { db } from '@/db';
 import { SearchInput } from '@/ui/SearchInput';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
+import { Button } from '@/ui/Button';
 import { Select } from '@/ui/Select';
 import { IngredientDetail } from '@/components/ui/IngredientDetail';
-import { Database, Filter } from 'lucide-react';
+import { Database, Filter, Plus, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import type { DbIngredient } from '@/db/schema';
 
 const CATEGORIES = [
@@ -23,18 +26,26 @@ const CATEGORIES = [
   { value: 'probiotico', label: 'Probioticos' },
 ];
 
-const CATEGORY_LABELS: Record<string, string> = {
-  fitoterapia: 'Fitoterapia',
-  homeopatia: 'Homeopatia',
-  aceite_esencial: 'Aceite esencial',
-  vitamina: 'Vitamina',
-  mineral: 'Mineral',
-  probiotico: 'Probiotico',
+const CATEGORY_CONFIG: Record<string, { label: string; icon: typeof Leaf; color: string }> = {
+  fitoterapia: { label: 'Fitoterapia', icon: Leaf, color: 'bg-emerald-500/10 text-emerald-600' },
+  homeopatia: { label: 'Homeopatia', icon: FlaskConical, color: 'bg-blue-500/10 text-blue-600' },
+  aceite_esencial: { label: 'Aceite esencial', icon: FlaskConical, color: 'bg-amber-500/10 text-amber-600' },
+  vitamina: { label: 'Vitamina', icon: BookOpen, color: 'bg-violet-500/10 text-violet-600' },
+  mineral: { label: 'Mineral', icon: BookOpen, color: 'bg-slate-500/10 text-slate-600' },
+  probiotico: { label: 'Probiotico', icon: Leaf, color: 'bg-pink-500/10 text-pink-600' },
+};
+
+const EVIDENCE_CONFIG: Record<string, { label: string; color: string }> = {
+  A: { label: 'Ev. Alta', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
+  B: { label: 'Ev. Media', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' },
+  C: { label: 'Ev. Baja', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' },
+  D: { label: 'Ev. Muy baja', color: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200' },
 };
 
 export function KnowledgePage() {
   const navigate = useNavigate();
   const [ingredients, setIngredients] = useState<DbIngredient[]>([]);
+  const [totalIngredients, setTotalIngredients] = useState(0);
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -45,12 +56,15 @@ export function KnowledgePage() {
     async function loadIngredients() {
       setIsLoading(true);
       try {
-        let results = await db.ingredients.toArray();
-        
+        const all = await db.ingredients.toArray();
+        setTotalIngredients(all.length);
+
+        let results = all;
+
         if (category) {
           results = results.filter((ing) => ing.categoria === category);
         }
-        
+
         if (query) {
           const q = query.toLowerCase();
           results = results.filter((ing) =>
@@ -59,7 +73,7 @@ export function KnowledgePage() {
             ing.indicaciones.some(i => i.toLowerCase().includes(q))
           );
         }
-        
+
         setIngredients(results);
       } catch (error) {
         console.error('Error loading ingredients:', error);
@@ -67,98 +81,153 @@ export function KnowledgePage() {
         setIsLoading(false);
       }
     }
-    
+
     loadIngredients();
   }, [query, category]);
 
+  const getCategoryConfig = (cat: string) => {
+    return CATEGORY_CONFIG[cat] || { label: cat, icon: Leaf, color: 'bg-gray-500/10 text-gray-600' };
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Base de conocimiento</h1>
-        <p className="text-muted-foreground mt-1">
-          {isLoading ? 'Cargando...' : `${ingredients.length} ingredientes disponibles`}
-        </p>
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold">Base de Conocimiento</h1>
+          <p className="text-muted-foreground mt-1">
+            {isLoading 
+              ? 'Cargando...' 
+              : `${ingredients.length} de ${totalIngredients} ingredientes`}
+          </p>
+        </div>
+        <Button onClick={() => navigate('/admin')}>
+          <Plus className="w-4 h-4 mr-2" />
+          Anadir ingrediente
+        </Button>
       </div>
 
-      <SearchInput
-        value={query}
-        onChange={setQuery}
-        placeholder="Buscar por nombre, sinonimo o indicacion..."
-      />
-
-      <button
-        onClick={() => setShowFilters(!showFilters)}
-        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-      >
-        <Filter className="w-4 h-4" />
-        Filtros {category && <Badge variant="secondary">1</Badge>}
-      </button>
+      {/* Search and Filters */}
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex-1">
+          <SearchInput
+            value={query}
+            onChange={setQuery}
+            placeholder="Buscar por nombre, sinonimo o indicacion..."
+          />
+        </div>
+        <button
+          onClick={() => setShowFilters(!showFilters)}
+          className="flex items-center justify-center gap-2 px-4 py-2 border rounded-lg text-sm hover:bg-muted transition-colors"
+        >
+          <Filter className="w-4 h-4" />
+          Filtros
+          {category && <Badge variant="secondary" className="ml-1">1</Badge>}
+        </button>
+      </div>
 
       {showFilters && (
         <Card className="p-4">
-          <Select
-            label="Categoria"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            options={CATEGORIES}
-            placeholder="Todas las categorias"
-          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <Select
+              label="Categoria"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              options={CATEGORIES}
+              placeholder="Todas las categorias"
+            />
+          </div>
         </Card>
       )}
 
+      {/* Results */}
       {isLoading ? (
         <div className="text-center py-12">
           <p className="text-muted-foreground">Cargando...</p>
         </div>
       ) : ingredients.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {ingredients.map((ingredient) => (
-            <Card 
-              key={ingredient.id} 
-              className="p-4 hover:border-primary transition-colors cursor-pointer"
-              onClick={() => setSelectedIngredient(ingredient)}
-            >
-              <div className="flex items-start justify-between">
-                <h3 className="font-semibold">{ingredient.nombre}</h3>
-                <Badge variant="secondary">
-                  {CATEGORY_LABELS[ingredient.categoria] || ingredient.categoria}
-                </Badge>
-              </div>
-              
-              {ingredient.sinonimos && ingredient.sinonimos.length > 0 && (
-                <p className="text-xs text-muted-foreground mt-1">
-                  {ingredient.sinonimos.slice(0, 2).join(', ')}
-                </p>
-              )}
-              
-              {ingredient.sistemas && ingredient.sistemas.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {ingredient.sistemas.slice(0, 3).map((sistema) => (
-                    <Badge key={sistema} variant="outline" className="text-xs">
-                      {sistema}
+          {ingredients.map((ingredient) => {
+            const catConfig = getCategoryConfig(ingredient.categoria);
+            const CatIcon = catConfig.icon;
+            const evidenceConfig = EVIDENCE_CONFIG[ingredient.evidencia] || EVIDENCE_CONFIG.C;
+            
+            return (
+              <Card
+                key={ingredient.id}
+                className="p-4 hover:border-primary transition-all cursor-pointer group"
+                onClick={() => setSelectedIngredient(ingredient)}
+              >
+                {/* Category Icon and Badge */}
+                <div className="flex items-start justify-between mb-3">
+                  <div className={`p-2 rounded-lg ${catConfig.color}`}>
+                    <CatIcon className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col items-end gap-1">
+                    <Badge variant="secondary" className="text-xs">
+                      {catConfig.label}
                     </Badge>
-                  ))}
+                    <span className={`text-xs px-1.5 py-0.5 rounded ${evidenceConfig.color}`}>
+                      {evidenceConfig.label}
+                    </span>
+                  </div>
                 </div>
-              )}
-              
-              {ingredient.indicaciones && ingredient.indicaciones.length > 0 && (
-                <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
-                  {ingredient.indicaciones.slice(0, 3).join(', ')}
-                </p>
-              )}
-            </Card>
-          ))}
+
+                {/* Name */}
+                <h3 className="font-semibold text-lg mb-1">{ingredient.nombre}</h3>
+
+                {/* Synonyms */}
+                {ingredient.sinonimos && ingredient.sinonimos.length > 0 && (
+                  <p className="text-xs text-muted-foreground mb-2 line-clamp-1">
+                    {ingredient.sinonimos.slice(0, 3).join(', ')}
+                  </p>
+                )}
+
+                {/* Body Systems */}
+                {ingredient.sistemas && ingredient.sistemas.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    {ingredient.sistemas.slice(0, 2).map((sistema) => (
+                      <Badge key={sistema} variant="outline" className="text-xs">
+                        {sistema}
+                      </Badge>
+                    ))}
+                    {ingredient.sistemas.length > 2 && (
+                      <Badge variant="outline" className="text-xs">
+                        +{ingredient.sistemas.length - 2}
+                      </Badge>
+                    )}
+                  </div>
+                )}
+
+                {/* Indications Preview */}
+                {ingredient.indicaciones && ingredient.indicaciones.length > 0 && (
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {ingredient.indicaciones.slice(0, 2).join(', ')}
+                  </p>
+                )}
+              </Card>
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-12">
           <Database className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-          <p className="text-muted-foreground">No hay ingredientes disponibles</p>
+          <p className="text-muted-foreground font-medium">No hay ingredientes disponibles</p>
           <p className="text-sm text-muted-foreground mt-1">
-            Prueba con otros filtros o busca en la base de conocimiento
+            Prueba con otros filtros o inicializa la base de conocimiento
           </p>
+          <Button 
+            variant="outline" 
+            className="mt-4" 
+            onClick={() => navigate('/admin')}
+          >
+            <Database className="w-4 h-4 mr-2" />
+            Ir a Admin
+          </Button>
         </div>
       )}
 
+      {/* Detail Modal */}
       {selectedIngredient && (
         <IngredientDetail
           ingredient={selectedIngredient}
