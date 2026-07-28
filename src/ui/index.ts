@@ -5,7 +5,7 @@
 export { Button, type ButtonProps } from './Button';
 export { Input, type InputProps } from './Input';
 export { SearchInput } from './SearchInput';
-export { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './Select';
+export { Select, type SelectProps, type SelectOption } from './Select';
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './Card';
 export { Badge } from './Badge';
 export { Modal, AlertDialog } from './Modal';

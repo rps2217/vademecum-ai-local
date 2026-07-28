@@ -1,15 +1,17 @@
 /**
  * DbProvider - Proveedor de base de datos
  * 
- * Inicializa Dexie y el seeder.
+ * Inicializa Dexie y el seeder de KB.
  */
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { db, seedDatabase } from '@/db';
+import { db } from '@/db';
+import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
 
 interface DbContextValue {
   isReady: boolean;
   error: Error | null;
+  stats?: { ingredients: number; synergies: number };
 }
 
 const DbContext = createContext<DbContextValue | null>(null);
@@ -17,6 +19,7 @@ const DbContext = createContext<DbContextValue | null>(null);
 export function DbProvider({ children }: { children: React.ReactNode }) {
   const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [stats, setStats] = useState<{ ingredients: number; synergies: number }>();
 
   useEffect(() => {
     async function initDb() {
@@ -25,9 +28,15 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
         await db.open();
         
         // Check if we need to seed
-        const count = await db.ingredients.count();
-        if (count === 0) {
-          await seedDatabase();
+        const seeded = await isKnowledgeBaseSeeded();
+        if (!seeded) {
+          const result = await seedKnowledgeBase();
+          setStats(result);
+        } else {
+          // Get existing stats
+          const ingredients = await db.ingredients.count();
+          const synergies = await db.synergies.count();
+          setStats({ ingredients, synergies });
         }
         
         setIsReady(true);
@@ -45,7 +54,7 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <DbContext.Provider value={{ isReady, error }}>
+    <DbContext.Provider value={{ isReady, error, stats }}>
       {children}
     </DbContext.Provider>
   );

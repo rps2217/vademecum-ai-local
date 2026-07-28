@@ -1,43 +1,55 @@
 /**
- * Select - Componente de selección
+ * Select - Componente de seleccion
  */
 
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 
-interface SelectProps {
-  children: React.ReactNode;
-  value?: string;
-  onValueChange?: (value: string) => void;
+export interface SelectOption {
+  value: string;
+  label: string;
 }
 
-const SelectContext = React.createContext<{ value: string; onChange: (v: string) => void } | null>(null);
+export interface SelectProps {
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  options?: SelectOption[];
+  label?: string;
+  className?: string;
+  placeholder?: string;
+}
 
-export function Select({ children, value = '', onValueChange }: SelectProps) {
+export function Select({ 
+  value = '', 
+  onChange, 
+  options = [], 
+  label,
+  className,
+  placeholder 
+}: SelectProps) {
   return (
-    <SelectContext.Provider value={{ value, onChange: onValueChange || (() => {}) }}>
+    <div className={cn('space-y-1', className)}>
+      {label && (
+        <label className="block text-sm font-medium text-foreground">
+          {label}
+        </label>
+      )}
       <select
         value={value}
-        onChange={(e) => onValueChange?.(e.target.value)}
-        className="px-4 py-2 border rounded-lg bg-background"
+        onChange={onChange}
+        className="w-full px-3 py-2 border border-input rounded-lg bg-background text-sm
+          focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1
+          disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {children}
+        {placeholder && (
+          <option value="">{placeholder}</option>
+        )}
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </select>
-    </SelectContext.Provider>
+    </div>
   );
-}
-
-export function SelectContent({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
-}
-
-export function SelectItem({ value, children }: { value: string; children: React.ReactNode }) {
-  return <option value={value}>{children}</option>;
-}
-
-export function SelectTrigger({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
-}
-
-export function SelectValue({ placeholder }: { placeholder?: string }) {
-  return <>{placeholder}</>;
 }
