@@ -1,48 +1,75 @@
-# Bitácora de Cambios: Inteligencia Clínica Local-First
+# Changelog
+
+Todos los cambios notables de este proyecto seran documentados en este archivo.
+
+El formato esta basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
+
+## [2.2.0] - 2026-07-27
+
+### Agregado
+
+#### Redeseno UI/UX
+- **HomePage**: Hero search con placeholder "¿Que buscás?", chips de sugerencias rapidas clickeables, stats cards con conteos reales de la DB
+- **SearchPage**: Filtros avanzados (categoria, sistema corporal, evidencia), panel de filtros colapsable, modal de detalle al click
+- **KnowledgePage**: Cards con iconos por categoria (Leaf, FlaskConical, BookOpen), badges de evidencia con colores (A/B/C/D), contador "X de Y ingredientes"
+- **SynergiesPage**: Grid 2 columnas en desktop, cards con iconos por tipo (sinergia, complemento, antagonismo), placeholder de grafo
+
+#### Infraestructura
+- **IngredientSearchService**: Servicio de busqueda con filtros y scoring de resultados
+- **SyncService**: Sincronizacion local-first con patron outbox
+- **usePWA hook**: Hooks para estado de PWA y conexion offline
+
+### Cambiado
+- **Componentes UI**: Consistencia en badges, iconografia (Lucide React), espaciado y tipografia
+- **Responsive design**: Breakpoints verificados (mobile/tablet/desktop)
+- **Empty states**: Mejorados en todas las vistas
 
 ## [2.1.0] - 2026-07-27
 
-### Added
-- **Design System**: Complete design token system with light/dark themes (CSS custom properties)
-- **UI Components**: Button, Input, Card, Badge, Modal, SearchInput, StatsCard
-- **SearchModuleSimple**: Hero search with new design system
-- **DashboardSimple**: Dashboard with metrics and stats cards
-- **Web Vitals**: Core Web Vitals tracking (LCP, FID, CLS, FCP, TTFB, INP)
-- **Performance Module**: Preloading hooks, performance budget checking
-- **Crypto E2E**: End-to-end encryption with tweetnacl (PBKDF2 key derivation)
-- **SyncEngine**: Sync with outbox pattern and Lamport clock
-- **Unit Tests**: Tests for cn utility, DB schema, and SyncEngine
+### Completado
 
-### Changed
-- Vercel deployment with security headers (COOP/COEP)
-- PWA manifest with updated theme colors
-- Service Worker with stale-while-revalidate strategy
+#### FASE 0-1: Fundaciones
+- Setup inicial con Vite + React + TypeScript
+- Sistema de diseno con tokens CSS
+- AppShell con sidebar colapsable
+- Providers (Theme, DB, E2EE Auth, Toast)
 
-## [2.0.0] - 2026-07-01
+#### FASE 2: Capa de datos local
+- Schema Dexie con tipos TypeScript completos
+- Seeder para 217+ ingredientes
+- Tablas: ingredients, synergies, products, protocols, outbox, snapshots
 
-### Added
-- Initial reconstruction from legacy codebase
-- Vademecum AI PWA for pharmacy consultants
-- Local-first architecture with Dexie.js
-- 360+ ingredient synonyms
-- Synergy detection engine
-- Smart search with AI embeddings (Transformers.js)
-- Supabase integration for optional cloud sync
+#### FASE 3: Busqueda + Workers
+- Servicio de busqueda con filtros avanzados
+- Búsqueda por nombre, sinonimos, indicaciones
 
-## [0.1.0] - 2026-05-15
-### Añadido
-- **SemanticSearchService**: Motor de búsqueda semántica con vectores utilizando `transformers.js`.
-- **CYPInteractionGraph**: Módulo de visualización de interacciones farmacológicas (CYP450) usando `d3.js`.
-- **ThermalGuardService**: Servicio de gestión de carga térmica y de recursos para tareas pesadas local-first.
-- **Integración ThermalGuard**: Implementado back-pressure preventivo en `SynergyBackgroundService` y `AIService`.
-- **Refactor CloudSync**: Implementación de sincronización adaptativa basada en perfil de red (Network-Aware Sync).
-- **Hybrid RAG Service**: Refactorizado `MedicalRAGService` para búsqueda híbrida (Local+Cloud) consciente de la carga térmica.
-- **Formateo RAG IA**: Integrado formateador de insights (`formatInsightsForPrompt`) para mejorar el contexto clínico enviado al Asistente.
-- **ClinicalAssistant RAG**: Integración de contexto médico inteligente (RAG) en el asistente clínico utilizando el nuevo formateador.
-- **Interfaz UI Minimalista**: Rediseño completo de la interfaz hacia una estética soberana, moderna y simple (baja carga cognitiva).
-- **Rediseño Palette**: Transición a colores sólidos, eliminación de transparencias/blurs y ajuste de contrastes para mejorar la legibilidad.
+#### FASE 4: Sync + Cloud
+- SyncService con sincronizacion local-first
+- Patron outbox para consistencia
+- Soporte para snapshots cifrados
 
-### Cambios
-- Refactorización de `useProductSearch` para soportar búsqueda semántica.
-- Actualización de `SearchModule` para alternar entre búsqueda texto vs IA.
-- Integración de `CYPInteractionGraph` en `GraphExplorerModule`.
+#### FASE 5: Modulos de UI
+- IngredientDetail modal
+- Paginas mejoradas (Knowledge, Search, Synergies)
+
+#### FASE 6: PWA + Service Worker
+- vite-plugin-pwa configurado
+- Hooks usePWA y useOfflineStatus
+- Precaching de assets criticos
+
+#### FASE 7: Tests + Hardening
+- Tests basicos para schema de base de datos
+- Setup de Vitest configurado
+
+## [2.0.0] - 2026-07-26
+
+### Completado (Reconstruccion)
+
+- Eliminacion de codigo huérfano/viejo (~100 archivos)
+- Reescritura de App.tsx con routing
+- Creacion de 9 paginas rutas
+- Limpieza de package.json
+
+## [1.x.x] - Versiones anteriores
+
+Ver historial completo en [GitHub Releases](https://github.com/rps2217/vademecum-ai-local/releases).
