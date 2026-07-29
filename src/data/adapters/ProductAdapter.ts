@@ -37,12 +37,12 @@ export interface RemoteProduct {
     updated_at_cloud?: string;
     last_synced_cloud?: string;
     // Campos de seguridad
-    apt celiacos?: string;
-    apt o_embarazo?: string;
-    apt o_lactancia?: string;
-    apt o_pediatria?: string;
-    apt o_diabeticos?: string;
-    apt o_hipertensos?: string;
+    apto_celiacos?: string;
+    apto_embarazo?: string;
+    apto_lactancia?: string;
+    apto_pediatria?: string;
+    apto_diabeticos?: string;
+    apto_hipertensos?: string;
     [key: string]: unknown;
   };
   last_updated?: string;
@@ -118,12 +118,12 @@ export function toRemote(local: DbProduct): {
       posologia: local.posologia,
       source_url: local.sourceUrl,
       vectores: local.embedding,
-      apt o_celiacos: local.celiacos === 'apto' ? 'SI' : local.celiacos === 'evitar' ? 'NO' : undefined,
-      apt o_embarazo: local.embarazo === 'apto' ? 'SI' : local.embarazo === 'evitar' ? 'NO' : undefined,
-      apt o_lactancia: local.lactancia === 'apto' ? 'SI' : local.lactancia === 'evitar' ? 'NO' : undefined,
-      apt o_pediatria: local.pediatria === 'apto' ? 'SI' : local.pediatria === 'evitar' ? 'NO' : undefined,
-      apt o_diabeticos: local.diabetes === 'apto' ? 'SI' : local.diabetes === 'evitar' ? 'NO' : undefined,
-      apt o_hipertensos: local.hipertension === 'apto' ? 'SI' : local.hipertension === 'evitar' ? 'NO' : undefined,
+      apto_celiacos: local.celiacos === 'apto' ? 'SI' : local.celiacos === 'evitar' ? 'NO' : undefined,
+      apto_embarazo: local.embarazo === 'apto' ? 'SI' : local.embarazo === 'evitar' ? 'NO' : undefined,
+      apto_lactancia: local.lactancia === 'apto' ? 'SI' : local.lactancia === 'evitar' ? 'NO' : undefined,
+      apto_pediatria: local.pediatria === 'apto' ? 'SI' : local.pediatria === 'evitar' ? 'NO' : undefined,
+      apto_diabeticos: local.diabetes === 'apto' ? 'SI' : local.diabetes === 'evitar' ? 'NO' : undefined,
+      apto_hipertensos: local.hipertension === 'apto' ? 'SI' : local.hipertension === 'evitar' ? 'NO' : undefined,
       last_updated: new Date().toISOString(),
     },
     last_updated: new Date().toISOString(),
