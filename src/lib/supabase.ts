@@ -117,18 +117,26 @@ export async function testConnection(): Promise<{
   }
 
   try {
-    // Intentar una query simple para verificar conexion
+    // Verificar tabla extended_ingredients (la que usa el sync)
     const { data, error } = await supabase
-      .from('ingredients')
-      .select('id')
+      .from('extended_ingredients')
+      .select('ingredient_key')
       .limit(1);
     
     if (error) {
-      // Si la tabla no existe, la conexion funciona pero falta el schema
+      // 406 = tabla existe pero RLS no permite (OK, sync configurado)
+      // 42P01 = tabla no existe
       if (error.code === '42P01') {
         return { 
           success: true, 
-          message: 'Conexion exitosa - schema no encontrado' 
+          message: 'Conexion exitosa - tabla extended_ingredients no existe aun' 
+        };
+      }
+      // Otros errores pueden ser por RLS, pero la conexion funciona
+      if (error.code === '406' || error.code === '42501') {
+        return { 
+          success: true, 
+          message: 'Conexion exitosa - RLS configurado' 
         };
       }
       return { 
