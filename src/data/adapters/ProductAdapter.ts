@@ -153,3 +153,13 @@ export function hasEmbeddings(product: RemoteProduct | DbProduct): boolean {
   }
   return Array.isArray(product.embedding) && product.embedding.length > 0;
 }
+
+/**
+ * Adapter para productos (compatibilidad con otros adapters)
+ */
+export const ProductAdapter = {
+  toLocal,
+  toRemote,
+  extractIngredients,
+  hasEmbeddings,
+};
