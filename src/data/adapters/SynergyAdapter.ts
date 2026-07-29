@@ -9,10 +9,10 @@ import type { RemoteSynergy } from './types';
 export class SynergyAdapter {
   /**
    * Convierte formato local (Dexie) a formato remoto (Supabase)
+   * IMPORTANTE: No incluye el campo 'id' porque Supabase genera UUID automáticamente
    */
   static toRemote(local: DbSynergy): Record<string, unknown> {
     return {
-      id: local.id,
       ingrediente1: local.ingredienteA,
       ingrediente2: local.ingredienteB,
       tipo_relacion: this.mapTipoToRemote(local.tipo),

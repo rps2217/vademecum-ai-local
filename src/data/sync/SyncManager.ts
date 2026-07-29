@@ -74,11 +74,13 @@ export class SyncManager {
       window.addEventListener('online', this.networkListenerOnline);
       window.addEventListener('offline', this.networkListenerOffline);
       
-      // Auto-iniciar si Supabase está configurado
+      // TEMPORALMENTE DESHABILITADO hasta corregir sync
+      // El usuario debe hacer sync manual desde Settings
       if (isSupabaseConfigured()) {
         this.config.enabled = true;
-        this.startAutoSync();
+        // this.startAutoSync(); // DESHABILITADO
         this.initialized = true;
+        console.log('[SyncManager] Habilitado para sync manual (auto-sync deshabilitado)');
       }
     }
   }
@@ -265,18 +267,38 @@ export class SyncManager {
       try {
         const remote = IngredientAdapter.toRemote(local);
         
-        const { error } = await supabase
+        // Verificar si ya existe para decidir upsert vs insert
+        const { data: existing } = await supabase
           .from('extended_ingredients')
-          .upsert(remote, { onConflict: 'ingredient_key' });
+          .select('id')
+          .eq('ingredient_key', local.id)
+          .single();
 
-        if (error) {
-          console.error(`[SyncManager] Error uploading ingredient ${local.id}:`, error);
-          this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+        if (existing) {
+          // Actualizar si existe
+          const { error } = await supabase
+            .from('extended_ingredients')
+            .update(remote)
+            .eq('ingredient_key', local.id);
+
+          if (error) {
+            console.error(`[SyncManager] Error updating ingredient ${local.id}:`, error);
+            this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+          }
         } else {
-          // Guardar mapping
-          await this.saveMapping('ingredients', local.id, local.id);
+          // Insertar si no existe
+          const { error } = await supabase
+            .from('extended_ingredients')
+            .insert(remote);
+
+          if (error) {
+            console.error(`[SyncManager] Error inserting ingredient ${local.id}:`, error);
+            this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+          }
         }
-        
+
+        // Guardar mapping
+        await this.saveMapping('ingredients', local.id, local.id);
         this.progress.completed++;
         this.notify();
       } catch (error) {
@@ -300,15 +322,41 @@ export class SyncManager {
       try {
         const remote = SynergyAdapter.toRemote(local);
         
-        const { error } = await supabase
-          .from('ingredient_relationships')
-          .upsert(remote, { onConflict: 'id' });
-
-        if (error) {
-          console.error(`[SyncManager] Error uploading synergy ${local.id}:`, error);
-          this.progress.errors.push(`Synergy: ${error.message}`);
-        }
+        // Crear clave única para evitar duplicados
+        const uniqueKey = `${local.ingredienteA}_${local.ingredienteB}_${local.tipo}`;
         
+        // Verificar si ya existe
+        const { data: existing } = await supabase
+          .from('ingredient_relationships')
+          .select('id')
+          .eq('ingrediente1', local.ingredienteA)
+          .eq('ingrediente2', local.ingredienteB)
+          .eq('tipo_relacion', remote.tipo_relacion as string)
+          .single();
+
+        if (existing) {
+          // Actualizar si existe
+          const { error } = await supabase
+            .from('ingredient_relationships')
+            .update(remote)
+            .eq('id', existing.id);
+
+          if (error) {
+            console.error(`[SyncManager] Error updating synergy ${local.id}:`, error);
+            this.progress.errors.push(`Synergy: ${error.message}`);
+          }
+        } else {
+          // Insertar si no existe
+          const { error } = await supabase
+            .from('ingredient_relationships')
+            .insert(remote);
+
+          if (error) {
+            console.error(`[SyncManager] Error inserting synergy ${local.id}:`, error);
+            this.progress.errors.push(`Synergy: ${error.message}`);
+          }
+        }
+
         this.progress.completed++;
         this.notify();
       } catch (error) {
@@ -329,15 +377,36 @@ export class SyncManager {
       try {
         const remote = ProtocolAdapter.toRemote(local);
         
-        const { error } = await supabase
+        // Verificar si ya existe por nombre
+        const { data: existing } = await supabase
           .from('protocols')
-          .upsert(remote, { onConflict: 'id' });
+          .select('id')
+          .eq('name', local.nombre)
+          .single();
 
-        if (error) {
-          console.error(`[SyncManager] Error uploading protocol ${local.id}:`, error);
-          this.progress.errors.push(`Protocol ${local.nombre}: ${error.message}`);
+        if (existing) {
+          // Actualizar si existe
+          const { error } = await supabase
+            .from('protocols')
+            .update(remote)
+            .eq('id', existing.id);
+
+          if (error) {
+            console.error(`[SyncManager] Error updating protocol ${local.id}:`, error);
+            this.progress.errors.push(`Protocol ${local.nombre}: ${error.message}`);
+          }
+        } else {
+          // Insertar si no existe
+          const { error } = await supabase
+            .from('protocols')
+            .insert(remote);
+
+          if (error) {
+            console.error(`[SyncManager] Error inserting protocol ${local.id}:`, error);
+            this.progress.errors.push(`Protocol ${local.nombre}: ${error.message}`);
+          }
         }
-        
+
         this.progress.completed++;
         this.notify();
       } catch (error) {

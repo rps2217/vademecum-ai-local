@@ -9,6 +9,7 @@ import type { RemoteIngredient } from './types';
 export class IngredientAdapter {
   /**
    * Convierte formato local (Dexie) a formato remoto (Supabase)
+   * IMPORTANTE: No incluye el campo 'id' porque Supabase genera UUID automáticamente
    */
   static toRemote(local: DbIngredient): Record<string, unknown> {
     // Extraer contraindicaciones de seguridad
@@ -37,15 +38,20 @@ export class IngredientAdapter {
       (s.includes('officinalis') || s.includes('extract') || /^[A-Z][a-z]+ [a-z]+/.test(s))
     );
 
+    // NO incluir 'id' - es UUID y Supabase lo genera automáticamente
+    // Asegurar que description no sea null
+    const description = local.propiedades?.[0] 
+      || local.indicaciones?.[0]
+      || `Ingrediente ${local.nombre}`;
+
     return {
-      id: local.id, // Mantener mismo ID
       ingredient_key: local.id,
       name: local.nombre,
       scientific_name: scientificName || null,
       category: local.categoria,
       origin_type: 'medicinal',
       origin_description: null,
-      description: local.propiedades?.[0] || null,
+      description: description,
       mechanism: local.propiedades?.find(p => 
         p.toLowerCase().includes('mecanismo')
       )?.replace(/^Mecanismo:?\s*/i, '') || null,
