@@ -5,6 +5,7 @@
  * Características:
  * - Offline-first: siempre funciona localmente
  * - Bidireccional: upload y download
+ * - Delta sync: solo sube/baja cambios desde última sincronización
  * - Conflict resolution con Lamport clock
  * - Mapeo de IDs entre local y remoto
  */
@@ -27,6 +28,8 @@ export interface SyncProgress {
   completed: number;
   errors: string[];
   lastSyncAt: number | null;
+  uploadedDelta: number;  // Registros subidos en delta
+  downloadedDelta: number; // Registros bajados en delta
 }
 
 export interface SyncConfig {
@@ -34,6 +37,7 @@ export interface SyncConfig {
   autoSync: boolean;
   syncInterval: number;
   syncOnStart: boolean;
+  fullSyncOnStart?: boolean; // Para forzar sync completo inicial
 }
 
 const DEFAULT_CONFIG: SyncConfig = {
@@ -41,6 +45,7 @@ const DEFAULT_CONFIG: SyncConfig = {
   autoSync: true,
   syncInterval: 30000, // 30 segundos
   syncOnStart: true,
+  fullSyncOnStart: true, // Primera vez: sync completo
 };
 
 export class SyncManager {
@@ -93,6 +98,8 @@ export class SyncManager {
       completed: 0,
       errors: [],
       lastSyncAt: null,
+      uploadedDelta: 0,
+      downloadedDelta: 0,
     };
   }
 
@@ -173,9 +180,9 @@ export class SyncManager {
   // ============ MAIN SYNC ============
 
   /**
-   * Ejecuta sincronización completa bidireccional
+   * Ejecuta sincronización bidireccional con delta sync
    */
-  async sync(): Promise<SyncProgress> {
+  async sync(fullSync: boolean = false): Promise<SyncProgress> {
     // Verificar precondiciones
     if (!navigator.onLine) {
       this.setState('offline');
@@ -194,25 +201,35 @@ export class SyncManager {
       return this.progress;
     }
 
+    const lastSync = await this.getLastSyncTime();
+    const isFullSync = fullSync || this.config.fullSyncOnStart || !lastSync || lastSync === '1970-01-01T00:00:00Z';
+
     try {
       this.setState('syncing');
       this.progress.errors = [];
       this.progress.total = 0;
       this.progress.completed = 0;
+      this.progress.uploadedDelta = 0;
+      this.progress.downloadedDelta = 0;
 
-      // 1. Upload: Local → Supabase
-      console.log('[SyncManager] Starting upload...');
-      await this.uploadAll();
+      console.log(`[SyncManager] Starting ${isFullSync ? 'FULL' : 'DELTA'} sync...`);
+      console.log(`[SyncManager] Last sync: ${lastSync}`);
 
-      // 2. Download: Supabase → Local
-      console.log('[SyncManager] Starting download...');
-      await this.downloadAll();
+      // 1. Upload: Local → Supabase (delta)
+      console.log('[SyncManager] Starting upload (delta)...');
+      const uploadResult = await this.uploadAllDelta(isFullSync);
+      this.progress.uploadedDelta = uploadResult;
+
+      // 2. Download: Supabase → Local (delta)
+      console.log('[SyncManager] Starting download (delta)...');
+      const downloadResult = await this.downloadAllDelta();
+      this.progress.downloadedDelta = downloadResult;
 
       // 3. Actualizar timestamp de sync
       this.progress.lastSyncAt = now();
       await this.saveLastSyncTime(now());
 
-      console.log('[SyncManager] Sync completed successfully');
+      console.log(`[SyncManager] Sync completed - Uploaded: ${uploadResult}, Downloaded: ${downloadResult}`);
       this.setState('idle');
 
     } catch (error) {
@@ -226,6 +243,13 @@ export class SyncManager {
   }
 
   /**
+   * Fuerza sync completo (ignora delta)
+   */
+  async forceFullSync(): Promise<SyncProgress> {
+    return this.sync(true);
+  }
+
+  /**
    * Dispara sync con debounce
    */
   triggerSync() {
@@ -236,32 +260,68 @@ export class SyncManager {
     setTimeout(() => this.sync(), 1000);
   }
 
-  // ============ UPLOAD (Local → Remote) ============
+  // ============ UPLOAD DELTA (Local → Remote) ============
 
-  private async uploadAll(): Promise<void> {
+  /**
+   * Upload con delta sync - solo sube cambios desde última sincronización
+   * @returns Total de registros subidos
+   */
+  private async uploadAllDelta(isFullSync: boolean): Promise<number> {
     const supabase = getSupabase();
     if (!supabase) {
       console.warn('[SyncManager] Supabase not available for upload');
-      return;
+      return 0;
     }
 
-    // Upload ingredients
-    await this.uploadIngredients(supabase);
+    const lastSyncTime = await this.getLastSyncTime();
+    const lastSyncMs = lastSyncTime ? new Date(lastSyncTime).getTime() : 0;
+    let totalUploaded = 0;
+
+    // Upload ingredients (delta)
+    const ingUploaded = await this.uploadIngredientsDelta(supabase, lastSyncMs, isFullSync);
+    totalUploaded += ingUploaded;
     
-    // Upload synergies
-    await this.uploadSynergies(supabase);
+    // Upload synergies (delta)
+    const synUploaded = await this.uploadSynergiesDelta(supabase, lastSyncMs, isFullSync);
+    totalUploaded += synUploaded;
     
-    // Upload protocols
-    await this.uploadProtocols(supabase);
+    // Upload protocols (delta)
+    const protUploaded = await this.uploadProtocolsDelta(supabase, lastSyncMs, isFullSync);
+    totalUploaded += protUploaded;
+
+    console.log(`[SyncManager] Delta upload complete: ${totalUploaded} records`);
+    return totalUploaded;
   }
 
-  private async uploadIngredients(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    if (!supabase) return;
+  /**
+   * Upload delta de ingredientes
+   */
+  private async uploadIngredientsDelta(
+    supabase: ReturnType<typeof getSupabase>, 
+    lastSyncMs: number,
+    isFullSync: boolean
+  ): Promise<number> {
+    if (!supabase) return 0;
 
-    const locals = await db.ingredients.toArray();
+    let locals: DbIngredient[];
+    
+    if (isFullSync) {
+      // Full sync: subir todos
+      locals = await db.ingredients.toArray();
+      console.log(`[SyncManager] Full upload: ${locals.length} ingredients`);
+    } else {
+      // Delta sync: solo los modificados desde última sync
+      locals = await db.ingredients
+        .where('updatedAt')
+        .above(lastSyncMs)
+        .toArray();
+      console.log(`[SyncManager] Delta upload: ${locals.length} ingredients modified since ${new Date(lastSyncMs).toISOString()}`);
+    }
+
+    if (locals.length === 0) return 0;
+    
     this.progress.total += locals.length;
-
-    console.log(`[SyncManager] Uploading ${locals.length} ingredients...`);
+    let uploaded = 0;
 
     for (const local of locals) {
       try {
@@ -284,6 +344,8 @@ export class SyncManager {
           if (error) {
             console.error(`[SyncManager] Error updating ingredient ${local.id}:`, error);
             this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+          } else {
+            uploaded++;
           }
         } else {
           // Insertar si no existe
@@ -294,6 +356,8 @@ export class SyncManager {
           if (error) {
             console.error(`[SyncManager] Error inserting ingredient ${local.id}:`, error);
             this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+          } else {
+            uploaded++;
           }
         }
 
@@ -307,23 +371,40 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Finished uploading ingredients`);
+    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} ingredients`);
+    return uploaded;
   }
 
-  private async uploadSynergies(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    if (!supabase) return;
+  /**
+   * Upload delta de sinergias
+   */
+  private async uploadSynergiesDelta(
+    supabase: ReturnType<typeof getSupabase>,
+    lastSyncMs: number,
+    isFullSync: boolean
+  ): Promise<number> {
+    if (!supabase) return 0;
 
-    const locals = await db.synergies.toArray();
+    let locals: DbSynergy[];
+    
+    if (isFullSync) {
+      locals = await db.synergies.toArray();
+      console.log(`[SyncManager] Full upload: ${locals.length} synergies`);
+    } else {
+      // Las sinergias no tienen updatedAt indexado, filtrar en memoria
+      const allSynergies = await db.synergies.toArray();
+      locals = allSynergies.filter(s => s.updatedAt > lastSyncMs);
+      console.log(`[SyncManager] Delta upload: ${locals.length} synergies modified since ${new Date(lastSyncMs).toISOString()}`);
+    }
+
+    if (locals.length === 0) return 0;
+    
     this.progress.total += locals.length;
-
-    console.log(`[SyncManager] Uploading ${locals.length} synergies...`);
+    let uploaded = 0;
 
     for (const local of locals) {
       try {
         const remote = SynergyAdapter.toRemote(local);
-        
-        // Crear clave única para evitar duplicados
-        const uniqueKey = `${local.ingredienteA}_${local.ingredienteB}_${local.tipo}`;
         
         // Verificar si ya existe
         const { data: existing } = await supabase
@@ -335,25 +416,25 @@ export class SyncManager {
           .single();
 
         if (existing) {
-          // Actualizar si existe
           const { error } = await supabase
             .from('ingredient_relationships')
             .update(remote)
             .eq('id', existing.id);
 
           if (error) {
-            console.error(`[SyncManager] Error updating synergy ${local.id}:`, error);
             this.progress.errors.push(`Synergy: ${error.message}`);
+          } else {
+            uploaded++;
           }
         } else {
-          // Insertar si no existe
           const { error } = await supabase
             .from('ingredient_relationships')
             .insert(remote);
 
           if (error) {
-            console.error(`[SyncManager] Error inserting synergy ${local.id}:`, error);
             this.progress.errors.push(`Synergy: ${error.message}`);
+          } else {
+            uploaded++;
           }
         }
 
@@ -363,15 +444,38 @@ export class SyncManager {
         console.error(`[SyncManager] Exception uploading synergy ${local.id}:`, error);
       }
     }
+
+    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} synergies`);
+    return uploaded;
   }
 
-  private async uploadProtocols(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    if (!supabase) return;
+  /**
+   * Upload delta de protocolos
+   */
+  private async uploadProtocolsDelta(
+    supabase: ReturnType<typeof getSupabase>,
+    lastSyncMs: number,
+    isFullSync: boolean
+  ): Promise<number> {
+    if (!supabase) return 0;
 
-    const locals = await db.protocols.toArray();
+    let locals: DbProtocol[];
+    
+    if (isFullSync) {
+      locals = await db.protocols.toArray();
+      console.log(`[SyncManager] Full upload: ${locals.length} protocols`);
+    } else {
+      locals = await db.protocols
+        .where('updatedAt')
+        .above(lastSyncMs)
+        .toArray();
+      console.log(`[SyncManager] Delta upload: ${locals.length} protocols modified since ${new Date(lastSyncMs).toISOString()}`);
+    }
+
+    if (locals.length === 0) return 0;
+    
     this.progress.total += locals.length;
-
-    console.log(`[SyncManager] Uploading ${locals.length} protocols...`);
+    let uploaded = 0;
 
     for (const local of locals) {
       try {
@@ -385,25 +489,25 @@ export class SyncManager {
           .single();
 
         if (existing) {
-          // Actualizar si existe
           const { error } = await supabase
             .from('protocols')
             .update(remote)
             .eq('id', existing.id);
 
           if (error) {
-            console.error(`[SyncManager] Error updating protocol ${local.id}:`, error);
             this.progress.errors.push(`Protocol ${local.nombre}: ${error.message}`);
+          } else {
+            uploaded++;
           }
         } else {
-          // Insertar si no existe
           const { error } = await supabase
             .from('protocols')
             .insert(remote);
 
           if (error) {
-            console.error(`[SyncManager] Error inserting protocol ${local.id}:`, error);
             this.progress.errors.push(`Protocol ${local.nombre}: ${error.message}`);
+          } else {
+            uploaded++;
           }
         }
 
@@ -413,31 +517,86 @@ export class SyncManager {
         console.error(`[SyncManager] Exception uploading protocol ${local.id}:`, error);
       }
     }
+
+    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} protocols`);
+    return uploaded;
   }
 
-  // ============ DOWNLOAD (Remote → Local) ============
+  // ============ Métodos legacy (mantener compatibilidad) ============
+  
+  private async uploadAll(): Promise<void> {
+    await this.uploadAllDelta(true); // Por defecto full sync para backwards
+  }
 
-  private async downloadAll(): Promise<void> {
+  private async uploadIngredients(supabase: ReturnType<typeof getSupabase>): Promise<void> {
+    await this.uploadIngredientsDelta(supabase, 0, true);
+  }
+
+  private async uploadSynergies(supabase: ReturnType<typeof getSupabase>): Promise<void> {
+    await this.uploadSynergiesDelta(supabase, 0, true);
+  }
+
+  private async uploadProtocols(supabase: ReturnType<typeof getSupabase>): Promise<void> {
+    await this.uploadProtocolsDelta(supabase, 0, true);
+  }
+
+  // ============ DOWNLOAD DELTA (Remote → Local) ============
+
+  private async downloadAllDelta(): Promise<number> {
     const supabase = getSupabase();
     if (!supabase) {
       console.warn('[SyncManager] Supabase not available for download');
-      return;
+      return 0;
     }
 
-    // Download ingredients
-    await this.downloadIngredients(supabase);
+    const lastSync = await this.getLastSyncTime();
+    let totalDownloaded = 0;
+
+    // Download ingredients (delta)
+    const ingDownloaded = await this.downloadIngredientsDelta(supabase, lastSync);
+    totalDownloaded += ingDownloaded;
     
-    // Download synergies
-    await this.downloadSynergies(supabase);
+    // Download synergies (delta)
+    const synDownloaded = await this.downloadSynergiesDelta(supabase, lastSync);
+    totalDownloaded += synDownloaded;
     
-    // Download protocols
-    await this.downloadProtocols(supabase);
+    // Download protocols (delta)
+    const protDownloaded = await this.downloadProtocolsDelta(supabase, lastSync);
+    totalDownloaded += protDownloaded;
+
+    console.log(`[SyncManager] Delta download complete: ${totalDownloaded} records`);
+    return totalDownloaded;
+  }
+
+  // ============ Legacy methods for backwards compatibility ============
+  
+  private async downloadAll(): Promise<void> {
+    await this.downloadAllDelta();
   }
 
   private async downloadIngredients(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    if (!supabase) return;
-
     const lastSync = await this.getLastSyncTime();
+    await this.downloadIngredientsDelta(supabase, lastSync);
+  }
+
+  private async downloadSynergies(supabase: ReturnType<typeof getSupabase>): Promise<void> {
+    const lastSync = await this.getLastSyncTime();
+    await this.downloadSynergiesDelta(supabase, lastSync);
+  }
+
+  private async downloadProtocols(supabase: ReturnType<typeof getSupabase>): Promise<void> {
+    const lastSync = await this.getLastSyncTime();
+    await this.downloadProtocolsDelta(supabase, lastSync);
+  }
+
+  // ============ Download Delta Methods ============
+
+  private async downloadIngredientsDelta(
+    supabase: ReturnType<typeof getSupabase>,
+    lastSync: string
+  ): Promise<number> {
+    if (!supabase) return 0;
+
     console.log(`[SyncManager] Downloading ingredients since ${lastSync}...`);
 
     const { data, error } = await supabase
@@ -448,26 +607,24 @@ export class SyncManager {
     if (error) {
       console.error('[SyncManager] Error downloading ingredients:', error);
       this.progress.errors.push(`Download ingredients: ${error.message}`);
-      return;
+      return 0;
     }
 
     if (!data || data.length === 0) {
       console.log('[SyncManager] No new ingredients to download');
-      return;
+      return 0;
     }
 
     console.log(`[SyncManager] Downloading ${data.length} ingredients...`);
     this.progress.total += data.length;
+    let downloaded = 0;
 
     for (const remote of data) {
       try {
         const localId = remote.ingredient_key || remote.id;
-        
-        // Verificar si existe localmente
         const existing = await db.ingredients.get(localId);
         
         if (existing) {
-          // Merge: actualizar solo si remoto es más nuevo (comparar timestamps)
           const remoteTime = new Date(remote.updated_at).getTime();
           if (remoteTime > existing.updatedAt) {
             const merged = IngredientAdapter.toLocal(remote);
@@ -476,10 +633,10 @@ export class SyncManager {
               lamport: (existing.lamport || 0) + 1,
               updatedAt: remoteTime,
             });
+            downloaded++;
             console.log(`[SyncManager] Updated ingredient: ${localId}`);
           }
         } else {
-          // Insertar nuevo
           const local = IngredientAdapter.toLocal(remote);
           const newIngredient: DbIngredient = {
             id: localId,
@@ -502,6 +659,7 @@ export class SyncManager {
           
           await db.ingredients.put(newIngredient);
           await this.saveMapping('ingredients', localId, remote.id);
+          downloaded++;
           console.log(`[SyncManager] Added new ingredient: ${localId}`);
         }
         
@@ -511,12 +669,17 @@ export class SyncManager {
         console.error(`[SyncManager] Error processing ingredient:`, error);
       }
     }
+
+    console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} ingredients`);
+    return downloaded;
   }
 
-  private async downloadSynergies(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    if (!supabase) return;
+  private async downloadSynergiesDelta(
+    supabase: ReturnType<typeof getSupabase>,
+    lastSync: string
+  ): Promise<number> {
+    if (!supabase) return 0;
 
-    const lastSync = await this.getLastSyncTime();
     console.log(`[SyncManager] Downloading synergies since ${lastSync}...`);
 
     const { data, error } = await supabase
@@ -526,16 +689,17 @@ export class SyncManager {
 
     if (error) {
       console.error('[SyncManager] Error downloading synergies:', error);
-      return;
+      return 0;
     }
 
     if (!data || data.length === 0) {
       console.log('[SyncManager] No new synergies to download');
-      return;
+      return 0;
     }
 
     console.log(`[SyncManager] Downloading ${data.length} synergies...`);
     this.progress.total += data.length;
+    let downloaded = 0;
 
     for (const remote of data) {
       try {
@@ -555,18 +719,24 @@ export class SyncManager {
         };
 
         await db.synergies.put(synergy);
+        downloaded++;
         this.progress.completed++;
         this.notify();
       } catch (error) {
         console.error(`[SyncManager] Error processing synergy:`, error);
       }
     }
+
+    console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} synergies`);
+    return downloaded;
   }
 
-  private async downloadProtocols(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    if (!supabase) return;
+  private async downloadProtocolsDelta(
+    supabase: ReturnType<typeof getSupabase>,
+    lastSync: string
+  ): Promise<number> {
+    if (!supabase) return 0;
 
-    const lastSync = await this.getLastSyncTime();
     console.log(`[SyncManager] Downloading protocols since ${lastSync}...`);
 
     const { data, error } = await supabase
@@ -577,16 +747,17 @@ export class SyncManager {
 
     if (error) {
       console.error('[SyncManager] Error downloading protocols:', error);
-      return;
+      return 0;
     }
 
     if (!data || data.length === 0) {
       console.log('[SyncManager] No new protocols to download');
-      return;
+      return 0;
     }
 
     console.log(`[SyncManager] Downloading ${data.length} protocols...`);
     this.progress.total += data.length;
+    let downloaded = 0;
 
     for (const remote of data) {
       try {
@@ -606,12 +777,16 @@ export class SyncManager {
         };
 
         await db.protocols.put(protocol);
+        downloaded++;
         this.progress.completed++;
         this.notify();
       } catch (error) {
         console.error(`[SyncManager] Error processing protocol:`, error);
       }
     }
+
+    console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} protocols`);
+    return downloaded;
   }
 
   // ============ MAPPINGS & METADATA ============
