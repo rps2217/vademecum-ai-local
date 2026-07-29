@@ -16,43 +16,50 @@ DROP POLICY IF EXISTS "Public read extended_ingredients" ON public.extended_ingr
 -- Crear políticas públicas SELECT sin restricciones
 -- (USING true permite cualquier condición de filtro)
 
--- extended_ingredients
+-- extended_ingredients (usar OR REPLACE para evitar errores)
+DROP POLICY IF EXISTS "Public can read extended_ingredients" ON public.extended_ingredients;
 CREATE POLICY "Public can read extended_ingredients" ON public.extended_ingredients
     FOR SELECT USING (true);
 
+DROP POLICY IF EXISTS "Public can insert extended_ingredients" ON public.extended_ingredients;
 CREATE POLICY "Public can insert extended_ingredients" ON public.extended_ingredients
     FOR INSERT WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Public can update extended_ingredients" ON public.extended_ingredients;
 CREATE POLICY "Public can update extended_ingredients" ON public.extended_ingredients
     FOR UPDATE USING (true);
 
+DROP POLICY IF EXISTS "Public can delete extended_ingredients" ON public.extended_ingredients;
 CREATE POLICY "Public can delete extended_ingredients" ON public.extended_ingredients
     FOR DELETE USING (true);
 
 -- ingredient_relationships
+DROP POLICY IF EXISTS "Public can read ingredient_relationships" ON public.ingredient_relationships;
 CREATE POLICY "Public can read ingredient_relationships" ON public.ingredient_relationships
     FOR SELECT USING (true);
 
+DROP POLICY IF EXISTS "Public can insert ingredient_relationships" ON public.ingredient_relationships;
 CREATE POLICY "Public can insert ingredient_relationships" ON public.ingredient_relationships
     FOR INSERT WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Public can update ingredient_relationships" ON public.ingredient_relationships;
 CREATE POLICY "Public can update ingredient_relationships" ON public.ingredient_relationships
     FOR UPDATE USING (true);
 
+DROP POLICY IF EXISTS "Public can delete ingredient_relationships" ON public.ingredient_relationships;
 CREATE POLICY "Public can delete ingredient_relationships" ON public.ingredient_relationships
     FOR DELETE USING (true);
 
 -- protocols
 DROP POLICY IF EXISTS "Public can read protocols" ON public.protocols;
-DROP POLICY IF EXISTS "Public read protocols" ON public.protocols;
-DROP POLICY IF EXISTS "Public can insert protocols" ON public.protocols;
-
 CREATE POLICY "Public can read protocols" ON public.protocols
     FOR SELECT USING (true);
 
+DROP POLICY IF EXISTS "Public can insert protocols" ON public.protocols;
 CREATE POLICY "Public can insert protocols" ON public.protocols
     FOR INSERT WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Public can update protocols" ON public.protocols;
 CREATE POLICY "Public can update protocols" ON public.protocols
     FOR UPDATE USING (true);
 
