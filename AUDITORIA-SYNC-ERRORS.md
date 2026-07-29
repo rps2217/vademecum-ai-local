@@ -200,6 +200,73 @@ await syncManager.forceFullSync();
 
 ---
 
+## ✅ IMPLEMENTACIÓN: Sync de Productos (1300+ registros)
+
+### Descripción
+Se implementó la sincronización de productos de farmacia desde Supabase.
+
+### Cambios Realizados
+
+**1. ProductAdapter.ts** - Nuevo archivo
+```typescript
+// Convierte productos de Supabase ↔ Dexie
+export function toLocal(remote: RemoteProduct): DbProduct
+export function toRemote(local: DbProduct): {...}
+```
+
+**2. SyncManager.ts** - Métodos agregados
+- `uploadProductsDelta()` - Sube productos locales a Supabase
+- `downloadProductsDelta()` - Descarga productos de Supabase
+
+**3. RLS Policies** - Script `scripts/fix-rls-products.sql`
+- SELECT, INSERT, UPDATE, DELETE públicos
+
+### Estructura de Datos
+
+```typescript
+// Remote (Supabase)
+{
+  sku: "0606110383103",
+  nombre_comercial: "Vitamina B12...",
+  data: {
+    principios_activos: [...],
+    indicaciones: [...],
+    vectores: [...],  // Embeddings
+    tags_ia: [...],
+    // ... más campos
+  },
+  last_updated: "2026-07-20T23:58:30.899Z"
+}
+
+// Local (Dexie)
+{
+  sku: "0606110383103",
+  nombreComercial: "Vitamina B12...",
+  principiosActivos: [...],
+  indicaciones: [...],
+  embedding: [...],
+  data: {...},
+  updatedAt: 1721437110899
+}
+```
+
+### Estado de Implementación
+
+| Componente | Estado |
+|------------|--------|
+| ProductAdapter | ✅ Creado |
+| uploadProductsDelta | ✅ Implementado |
+| downloadProductsDelta | ✅ Implementado |
+| RLS products | ⚠️ Requiere ejecutar script |
+
+### Acciones Requeridas
+
+1. Ejecutar `scripts/fix-rls-products.sql` en Supabase
+2. Recargar la aplicación
+3. Ejecutar sync manual
+
+---
+
 ## ✅ ACCIÓN REQUERIDA
 
 ### Ejecutar script de corrección RLS

@@ -13,10 +13,11 @@
 import { db } from '@/db';
 import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
 import { generateId, now, getDeviceId } from '@/db/schema';
-import type { DbIngredient, DbSynergy, DbProtocol } from '@/db/schema';
+import type { DbIngredient, DbSynergy, DbProtocol, DbProduct } from '@/db/schema';
 import { IngredientAdapter } from '../adapters/IngredientAdapter';
 import { SynergyAdapter } from '../adapters/SynergyAdapter';
 import { ProtocolAdapter } from '../adapters/ProtocolAdapter';
+import { ProductAdapter, type RemoteProduct } from '../adapters/ProductAdapter';
 
 export type SyncDirection = 'upload' | 'download' | 'bidirectional';
 export type SyncState = 'idle' | 'syncing' | 'error' | 'offline';
@@ -288,6 +289,12 @@ export class SyncManager {
     // Upload protocols (delta)
     const protUploaded = await this.uploadProtocolsDelta(supabase, lastSyncMs, isFullSync);
     totalUploaded += protUploaded;
+    
+    // Upload products (delta) - Solo en full sync por ahora
+    if (isFullSync) {
+      const prodUploaded = await this.uploadProductsDelta(supabase, lastSyncMs);
+      totalUploaded += prodUploaded;
+    }
 
     console.log(`[SyncManager] Delta upload complete: ${totalUploaded} records`);
     return totalUploaded;
@@ -563,6 +570,10 @@ export class SyncManager {
     // Download protocols (delta)
     const protDownloaded = await this.downloadProtocolsDelta(supabase, lastSync);
     totalDownloaded += protDownloaded;
+    
+    // Download products (full download - son muchos registros)
+    const prodDownloaded = await this.downloadProductsDelta(supabase, lastSync);
+    totalDownloaded += prodDownloaded;
 
     console.log(`[SyncManager] Delta download complete: ${totalDownloaded} records`);
     return totalDownloaded;
@@ -787,6 +798,134 @@ export class SyncManager {
 
     console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} protocols`);
     return downloaded;
+  }
+
+  // ============ PRODUCTS SYNC ============
+
+  /**
+   * Upload delta de productos (local → Supabase)
+   */
+  private async uploadProductsDelta(
+    supabase: ReturnType<typeof getSupabase>,
+    lastSyncMs: number
+  ): Promise<number> {
+    if (!supabase) return 0;
+
+    // Obtener productos locales modificados
+    const locals = await db.products
+      .where('updatedAt')
+      .above(lastSyncMs)
+      .toArray();
+
+    if (locals.length === 0) {
+      console.log('[SyncManager] No products to upload');
+      return 0;
+    }
+
+    console.log(`[SyncManager] Uploading ${locals.length} products...`);
+    this.progress.total += locals.length;
+    let uploaded = 0;
+
+    for (const local of locals) {
+      try {
+        const remote = ProductAdapter.toRemote(local);
+        
+        // Upsert por SKU
+        const { error } = await supabase
+          .from('products')
+          .upsert(remote, { onConflict: 'sku' });
+
+        if (error) {
+          console.error(`[SyncManager] Error uploading product ${local.sku}:`, error);
+          this.progress.errors.push(`Product ${local.sku}: ${error.message}`);
+        } else {
+          uploaded++;
+        }
+
+        await this.saveMapping('products', local.sku, local.sku);
+        this.progress.completed++;
+        this.notify();
+      } catch (error) {
+        console.error(`[SyncManager] Exception uploading product ${local.sku}:`, error);
+      }
+    }
+
+    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} products`);
+    return uploaded;
+  }
+
+  /**
+   * Download delta de productos (Supabase → local)
+   */
+  private async downloadProductsDelta(
+    supabase: ReturnType<typeof getSupabase>,
+    lastSync: string
+  ): Promise<number> {
+    if (!supabase) return 0;
+
+    console.log(`[SyncManager] Downloading products since ${lastSync}...`);
+
+    try {
+      // Obtener todos los productos (no hay filtro last_updated en Supabase)
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('last_updated', { ascending: false })
+        .limit(2000); // Limitar para evitar sobrecarga
+
+      if (error) {
+        console.error('[SyncManager] Error downloading products:', error);
+        return 0;
+      }
+
+      if (!data || data.length === 0) {
+        console.log('[SyncManager] No products to download');
+        return 0;
+      }
+
+      console.log(`[SyncManager] Downloading ${data.length} products...`);
+      this.progress.total += data.length;
+      let downloaded = 0;
+
+      for (const remote of data) {
+        try {
+          const local = ProductAdapter.toLocal(remote as RemoteProduct);
+          
+          // Verificar si existe y comparar timestamps
+          const existing = await db.products.get(local.sku);
+          
+          if (existing) {
+            // Actualizar solo si el remoto es más nuevo
+            const remoteTime = remote.last_updated 
+              ? new Date(remote.last_updated).getTime() 
+              : 0;
+            if (remoteTime > existing.updatedAt) {
+              await db.products.update(local.sku, {
+                ...local,
+                lamport: (existing.lamport || 0) + 1,
+              });
+              downloaded++;
+            }
+          } else {
+            // Insertar nuevo
+            await db.products.put(local);
+            await this.saveMapping('products', local.sku, local.sku);
+            downloaded++;
+          }
+
+          this.progress.completed++;
+          this.notify();
+        } catch (err) {
+          console.error(`[SyncManager] Error processing product:`, err);
+        }
+      }
+
+      console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} products`);
+      return downloaded;
+    } catch (err) {
+      console.error('[SyncManager] Error in downloadProductsDelta:', err);
+      return 0;
+    }
   }
 
   // ============ MAPPINGS & METADATA ============
