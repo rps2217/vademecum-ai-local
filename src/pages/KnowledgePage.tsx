@@ -4,15 +4,15 @@
  * Lista de ingredientes con filtros y detalle modal.
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '@/db';
 import { SearchInput } from '@/ui/SearchInput';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { Select } from '@/ui/Select';
 import { IngredientDetail } from '@/components/ui/IngredientDetail';
+import { useIngredients } from '@/hooks/useIngredients';
 import { Database, Filter, Plus, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import type { DbIngredient } from '@/db/schema';
 
@@ -44,46 +44,17 @@ const EVIDENCE_CONFIG: Record<string, { label: string; color: string }> = {
 
 export function KnowledgePage() {
   const navigate = useNavigate();
-  const [ingredients, setIngredients] = useState<DbIngredient[]>([]);
-  const [totalIngredients, setTotalIngredients] = useState(0);
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
   const [showFilters, setShowFilters] = useState(false);
 
-  useEffect(() => {
-    async function loadIngredients() {
-      setIsLoading(true);
-      try {
-        const all = await db.ingredients.toArray();
-        setTotalIngredients(all.length);
-
-        let results = all;
-
-        if (category) {
-          results = results.filter((ing) => ing.categoria === category);
-        }
-
-        if (query) {
-          const q = query.toLowerCase();
-          results = results.filter((ing) =>
-            ing.nombre.toLowerCase().includes(q) ||
-            ing.sinonimos.some(s => s.toLowerCase().includes(q)) ||
-            ing.indicaciones.some(i => i.toLowerCase().includes(q))
-          );
-        }
-
-        setIngredients(results);
-      } catch (error) {
-        console.error('Error loading ingredients:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadIngredients();
-  }, [query, category]);
+  // Usar el hook de ingredientes (soporta sync automático)
+  const { ingredients, isLoading, total, refetch } = useIngredients({
+    query,
+    category: category as any,
+    limit: 100,
+  });
 
   const getCategoryConfig = (cat: string) => {
     return CATEGORY_CONFIG[cat] || { label: cat, icon: Leaf, color: 'bg-gray-500/10 text-gray-600' };
@@ -98,7 +69,7 @@ export function KnowledgePage() {
           <p className="text-muted-foreground mt-1">
             {isLoading 
               ? 'Cargando...' 
-              : `${ingredients.length} de ${totalIngredients} ingredientes`}
+              : `${ingredients.length} de ${total} ingredientes`}
           </p>
         </div>
         <Button onClick={() => navigate('/admin')}>

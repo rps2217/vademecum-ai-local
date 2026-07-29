@@ -9,15 +9,7 @@ import { Badge } from '@/ui/Badge';
 import { useTheme } from '@/app/ThemeProvider';
 import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2, XCircle, AlertTriangle, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { syncService, type SyncStatus } from '@/core/sync';
-
-interface SyncResult {
-  success: boolean;
-  uploaded: number;
-  downloaded: number;
-  conflicts: number;
-  error?: string;
-}
+import { useSync } from '@/hooks/useSync';
 import { isSupabaseConfigured, testConnection } from '@/lib/supabase';
 
 type Tab = 'appearance' | 'sync' | 'ai' | 'data' | 'account';
@@ -164,41 +156,28 @@ export function SettingsPage() {
 
 // Componente SyncTab
 function SyncTab() {
-  const [status, setStatus] = useState<SyncStatus | null>(null);
-  const [isSyncing, setIsSyncing] = useState(false);
-  const [syncResult, setSyncResult] = useState<SyncResult | null>(null);
+  const { isOnline, isConfigured, syncState, progress, sync, lastSyncAt, errorCount } = useSync();
+  const [syncResult, setSyncResult] = useState<{ success: boolean; message: string } | null>(null);
   const [testResult, setTestResult] = useState<{ success: boolean; message: string } | null>(null);
 
-  useEffect(() => {
-    loadStatus();
-    const interval = setInterval(loadStatus, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  async function loadStatus() {
-    const newStatus = await syncService.getStatus();
-    setStatus(newStatus);
-    setIsSyncing(newStatus.isSyncing);
-  }
+  const configured = isSupabaseConfigured();
+  const isSyncing = syncState === 'syncing';
 
   async function handleSync() {
-    setIsSyncing(true);
     setSyncResult(null);
-
     try {
-      const result = await syncService.forceSync();
-      setSyncResult(result);
-      await loadStatus();
+      const result = await sync();
+      setSyncResult({
+        success: result.state === 'idle' && result.errors.length === 0,
+        message: result.state === 'idle' 
+          ? `Sincronizado: ${result.completed} registros`
+          : result.errors[0] || 'Error',
+      });
     } catch (err) {
       setSyncResult({
         success: false,
-        uploaded: 0,
-        downloaded: 0,
-        conflicts: 0,
-        error: err instanceof Error ? err.message : 'Error desconocido',
+        message: err instanceof Error ? err.message : 'Error desconocido',
       });
-    } finally {
-      setIsSyncing(false);
     }
   }
 
@@ -207,8 +186,6 @@ function SyncTab() {
     const result = await testConnection();
     setTestResult({ success: result.success, message: result.message || result.error || 'Error' });
   }
-
-  const configured = isSupabaseConfigured();
 
   return (
     <div className="space-y-6">
@@ -260,34 +237,32 @@ function SyncTab() {
       )}
 
       {/* Estadísticas */}
-      {status && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card className="p-4">
-            <p className="text-2xl font-bold">{status.pendingOps}</p>
-            <p className="text-sm text-muted-foreground">Pendientes</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm font-medium">
-              {status.lastSyncAt
-                ? new Date(status.lastSyncAt).toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' })
-                : 'Nunca'}
-            </p>
-            <p className="text-sm text-muted-foreground">Última sync</p>
-          </Card>
-          <Card className="p-4">
-            <Badge variant={status.isSyncing ? 'default' : 'secondary'}>
-              {status.isSyncing ? 'Sincronizando...' : 'Listo'}
-            </Badge>
-            <p className="text-sm text-muted-foreground mt-2">Estado</p>
-          </Card>
-          <Card className="p-4">
-            <Badge variant={status.isOnline ? 'success' : 'danger'}>
-              {status.isOnline ? 'En línea' : 'Offline'}
-            </Badge>
-            <p className="text-sm text-muted-foreground mt-2">Conexión</p>
-          </Card>
-        </div>
-      )}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card className="p-4">
+          <p className="text-2xl font-bold">{progress.completed}</p>
+          <p className="text-sm text-muted-foreground">Registros sync</p>
+        </Card>
+        <Card className="p-4">
+          <p className="text-sm font-medium">
+            {lastSyncAt
+              ? new Date(lastSyncAt).toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' })
+              : 'Nunca'}
+          </p>
+          <p className="text-sm text-muted-foreground">Última sync</p>
+        </Card>
+        <Card className="p-4">
+          <Badge variant={isSyncing ? 'default' : 'secondary'}>
+            {isSyncing ? 'Sincronizando...' : 'Listo'}
+          </Badge>
+          <p className="text-sm text-muted-foreground mt-2">Estado</p>
+        </Card>
+        <Card className="p-4">
+          <Badge variant={isOnline ? 'success' : 'danger'}>
+            {isOnline ? 'En línea' : 'Offline'}
+          </Badge>
+          <p className="text-sm text-muted-foreground mt-2">Conexión</p>
+        </Card>
+      </div>
 
       {/* Resultado de sincronización */}
       {syncResult && (
@@ -298,18 +273,19 @@ function SyncTab() {
             ) : (
               <XCircle className="w-5 h-5 text-red-600" />
             )}
-            <div>
-              <p className={syncResult.success ? 'text-green-800' : 'text-red-800'}>
-                {syncResult.success
-                  ? `Sincronizado: ${syncResult.uploaded} subidos, ${syncResult.downloaded} bajados`
-                  : syncResult.error || 'Error en sincronización'}
-              </p>
-              {syncResult.conflicts > 0 && (
-                <p className="text-sm text-amber-600">
-                  {syncResult.conflicts} conflictos detectados
-                </p>
-              )}
-            </div>
+            <p className={syncResult.success ? 'text-green-800' : 'text-red-800'}>
+              {syncResult.message}
+            </p>
+          </div>
+        </Card>
+      )}
+
+      {/* Errores */}
+      {errorCount > 0 && !syncResult && (
+        <Card className="p-4 bg-red-50 border-red-200">
+          <div className="flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-red-600" />
+            <p className="text-red-800">{errorCount} error(es) en sincronización</p>
           </div>
         </Card>
       )}

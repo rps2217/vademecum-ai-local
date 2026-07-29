@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/app/ThemeProvider';
+import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
 import {
   Search,
   Plus,
@@ -255,6 +256,9 @@ export function AppShell() {
 
             {/* Actions */}
             <div className="flex items-center gap-2">
+              {/* Sync Status */}
+              <SyncStatusBar />
+
               {/* Quick add button */}
               <button className="hidden sm:flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors">
                 <Plus className="w-4 h-4" />
