@@ -10,6 +10,8 @@ import { db } from '@/db';
 import { SearchInput } from '@/ui/SearchInput';
 import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
+import { useAsync } from '@/hooks/useAsync';
+import { ListSkeleton } from '@/ui/Skeleton';
 import { 
   BookOpen, 
   Network, 
@@ -33,40 +35,26 @@ const QUICK_SUGGESTIONS = [
   { label: 'Ashwagandha', icon: Shield, color: 'bg-amber-500/10 text-amber-600 hover:bg-amber-500/20' },
 ];
 
+type StatsData = { ingredients: number; synergies: number; categories: number };
+
 export function HomePage() {
   const navigate = useNavigate();
-  const [stats, setStats] = useState({
-    ingredients: 0,
-    synergies: 0,
-    categories: 0,
-  });
+  const { status, data, execute } = useAsync<StatsData>();
   const [query, setQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function loadStats() {
-      try {
-        const [ingredients, synergies, allIngredients] = await Promise.all([
-          db.ingredients.count(),
-          db.synergies.count(),
-          db.ingredients.toArray(),
-        ]);
-        
-        const categories = new Set(allIngredients.map(i => i.categoria));
-        
-        setStats({
-          ingredients,
-          synergies,
-          categories: categories.size,
-        });
-      } catch (err) {
-        console.error('Error loading stats:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadStats();
-  }, []);
+    execute(loadStats());
+  }, [execute]);
+
+  const loadStats = async (): Promise<StatsData> => {
+    const [ingredients, synergies, allIngredients] = await Promise.all([
+      db.ingredients.count(),
+      db.synergies.count(),
+      db.ingredients.toArray(),
+    ]);
+    const categories = new Set(allIngredients.map(i => i.categoria));
+    return { ingredients, synergies, categories: categories.size };
+  };
 
   const handleSearch = (value: string) => {
     if (value.trim()) {
@@ -78,7 +66,8 @@ export function HomePage() {
     navigate(`/search?q=${encodeURIComponent(label)}`);
   };
 
-  const isDatabaseEmpty = stats.ingredients === 0 && !isLoading;
+  const stats = data || { ingredients: 0, synergies: 0, categories: 0 };
+  const isDatabaseEmpty = stats.ingredients === 0 && status === 'success';
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
@@ -132,29 +121,33 @@ export function HomePage() {
       <div className="border-t border-border" />
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Card className="p-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <BookOpen className="w-5 h-5 text-primary" />
-            <span className="text-sm text-muted-foreground">Ingredientes</span>
-          </div>
-          <p className="text-3xl font-bold">{stats.ingredients}</p>
-        </Card>
-        <Card className="p-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <Network className="w-5 h-5 text-violet-500" />
-            <span className="text-sm text-muted-foreground">Sinergias</span>
-          </div>
-          <p className="text-3xl font-bold">{stats.synergies}</p>
-        </Card>
-        <Card className="p-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <Shield className="w-5 h-5 text-amber-500" />
-            <span className="text-sm text-muted-foreground">Categorias</span>
-          </div>
-          <p className="text-3xl font-bold">{stats.categories}</p>
-        </Card>
-      </div>
+      {status === 'loading' ? (
+        <ListSkeleton count={3} />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <Card className="p-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              <span className="text-sm text-muted-foreground">Ingredientes</span>
+            </div>
+            <p className="text-3xl font-bold">{stats.ingredients}</p>
+          </Card>
+          <Card className="p-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Network className="w-5 h-5 text-violet-500" />
+              <span className="text-sm text-muted-foreground">Sinergias</span>
+            </div>
+            <p className="text-3xl font-bold">{stats.synergies}</p>
+          </Card>
+          <Card className="p-4 text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Shield className="w-5 h-5 text-amber-500" />
+              <span className="text-sm text-muted-foreground">Categorias</span>
+            </div>
+            <p className="text-3xl font-bold">{stats.categories}</p>
+          </Card>
+        </div>
+      )}
 
       {/* Database Empty State */}
       {isDatabaseEmpty && (
