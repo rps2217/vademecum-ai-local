@@ -11,6 +11,7 @@ import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2
 import { cn } from '@/lib/utils';
 import { useSync } from '@/hooks/useSync';
 import { isSupabaseConfigured, testConnection } from '@/lib/supabase';
+import { toast } from 'sonner';
 
 type Tab = 'appearance' | 'sync' | 'ai' | 'data' | 'account';
 
@@ -165,26 +166,31 @@ function SyncTab() {
 
   async function handleSync() {
     setSyncResult(null);
+    const loadingToast = toast.loading('Sincronizando...');
     try {
       const result = await sync();
-      setSyncResult({
-        success: result.state === 'idle' && result.errors.length === 0,
-        message: result.state === 'idle' 
-          ? `Sincronizado: ${result.completed} registros`
-          : result.errors[0] || 'Error',
-      });
+      toast.dismiss(loadingToast);
+      if (result.state === 'idle' && result.errors.length === 0) {
+        toast.success(`Sincronizado: ${result.completed} registros`);
+      } else {
+        toast.error(result.errors[0] || 'Error en sincronización');
+      }
     } catch (err) {
-      setSyncResult({
-        success: false,
-        message: err instanceof Error ? err.message : 'Error desconocido',
-      });
+      toast.dismiss(loadingToast);
+      toast.error(err instanceof Error ? err.message : 'Error desconocido');
     }
   }
 
   async function handleTestConnection() {
     setTestResult(null);
+    const loadingToast = toast.loading('Probando conexión...');
     const result = await testConnection();
-    setTestResult({ success: result.success, message: result.message || result.error || 'Error' });
+    toast.dismiss(loadingToast);
+    if (result.success) {
+      toast.success('Conexión exitosa');
+    } else {
+      toast.error(result.error || 'Error en la conexión');
+    }
   }
 
   return (
