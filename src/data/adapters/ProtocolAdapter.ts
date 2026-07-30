@@ -4,7 +4,7 @@
  */
 
 import type { DbProtocol } from '@/db/schema';
-import type { RemoteProtocol } from './types';
+import type { RemoteProtocol, RemoteProtocolIngredient } from './types';
 
 export class ProtocolAdapter {
   /**
@@ -41,7 +41,7 @@ export class ProtocolAdapter {
       id: remote.id,
       nombre: remote.name,
       objetivo: remote.objetivo_principal || remote.description || '',
-      ingredientes: (remote.ingredients || []).map((ing: any) => ({
+      ingredientes: (remote.ingredients || []).map((ing: RemoteProtocolIngredient) => ({
         id: ing.nombre,
         cantidad: ing.dosis,
         momento: ing.momento,

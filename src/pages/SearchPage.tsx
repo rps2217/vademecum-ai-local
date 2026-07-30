@@ -13,7 +13,7 @@ import { Badge } from '@/ui/Badge';
 import { Select } from '@/ui/Select';
 import { Search, Filter, Star, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
-import type { DbIngredient } from '@/db/schema';
+import type { DbIngredient, IngredientCategory, BodySystem, EvidenceLevel } from '@/db/schema';
 
 const CATEGORIES = [
   { value: '', label: 'Todas las categorias' },
@@ -77,9 +77,9 @@ export function SearchPage() {
       try {
         const searchResults = await ingredientSearchService.search({
           query: query.length >= 2 ? query : undefined,
-          category: category as any || undefined,
-          system: system as any || undefined,
-          evidenceLevel: evidence as any || undefined,
+          category: category as IngredientCategory | undefined,
+          system: system as BodySystem | undefined,
+          evidenceLevel: evidence as EvidenceLevel | undefined,
         });
         setResults(searchResults);
       } catch (error) {

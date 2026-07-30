@@ -43,7 +43,7 @@ export function usePWA(): PWAState {
           
           setUpdateServiceWorker(() => updateSW);
         }
-      } catch (e) {
+      } catch {
         // PWA not available in dev mode without plugin
         logger.log('PWA registration not available');
       }

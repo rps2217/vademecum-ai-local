@@ -14,7 +14,7 @@ import { Select } from '@/ui/Select';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Database, Filter, Plus, BookOpen, Leaf, FlaskConical } from 'lucide-react';
-import type { DbIngredient } from '@/db/schema';
+import type { DbIngredient, IngredientCategory } from '@/db/schema';
 
 const CATEGORIES = [
   { value: '', label: 'Todas las categorias' },
@@ -52,7 +52,7 @@ export function KnowledgePage() {
   // Usar el hook de ingredientes (soporta sync automático)
   const { ingredients, isLoading, total } = useIngredients({
     query,
-    category: category as any,
+    category: category as IngredientCategory | undefined,
     limit: 100,
   });
 
