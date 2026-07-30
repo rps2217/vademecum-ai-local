@@ -8,6 +8,7 @@ import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { Cloud, CloudOff, RefreshCw, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 interface SyncStatusBarProps {
   className?: string;
@@ -17,6 +18,22 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
   const { isOnline, isConfigured, syncState, progress, sync, lastSyncAt, errorCount } = useSync();
 
   const isSyncing = syncState === 'syncing';
+
+  const handleSync = async () => {
+    const loadingToast = toast.loading('Sincronizando...');
+    try {
+      const result = await sync();
+      toast.dismiss(loadingToast);
+      if (result.state === 'idle' && result.errors.length === 0) {
+        toast.success(`Sincronizado: ${result.completed} registros`);
+      } else if (result.errors.length > 0) {
+        toast.error(result.errors[0] || 'Error en sincronización');
+      }
+    } catch (err) {
+      toast.dismiss(loadingToast);
+      toast.error(err instanceof Error ? err.message : 'Error desconocido');
+    }
+  };
 
   if (!isConfigured) {
     return (
@@ -69,7 +86,7 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
       <Button
         size="sm"
         variant="ghost"
-        onClick={sync}
+        onClick={handleSync}
         disabled={isSyncing || !isOnline}
         className="gap-1"
       >
