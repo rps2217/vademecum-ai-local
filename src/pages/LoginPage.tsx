@@ -2,7 +2,7 @@
  * LoginPage - Página de inicio de sesión
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useE2EE } from '@/app/E2EEAuthProvider';
 import { Button } from '@/ui/Button';
@@ -17,9 +17,15 @@ export function LoginPage() {
   const [error, setError] = useState('');
   const [isUnlocking, setIsUnlocking] = useState(false);
 
-  // Redirect to onboarding if no account exists
-  if (!isLoading && !hasAccount) {
-    navigate('/onboarding', { replace: true });
+  // Redirect to onboarding if no account exists (useEffect to avoid render-time navigation)
+  useEffect(() => {
+    if (!isLoading && !hasAccount) {
+      navigate('/onboarding', { replace: true });
+    }
+  }, [isLoading, hasAccount, navigate]);
+
+  // Show loading while checking auth state
+  if (isLoading || (!hasAccount && !isLoading)) {
     return null;
   }
 

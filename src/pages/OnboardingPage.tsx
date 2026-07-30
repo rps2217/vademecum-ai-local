@@ -2,7 +2,7 @@
  * OnboardingPage - Configuración inicial
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useE2EE } from '@/app/E2EEAuthProvider';
 import { Button } from '@/ui/Button';
@@ -12,18 +12,24 @@ import { Copy, Check, Shield, Key } from 'lucide-react';
 
 export function OnboardingPage() {
   const navigate = useNavigate();
-  const { setup, hasAccount } = useE2EE();
+  const { setup, hasAccount, isLoading } = useE2EE();
   const [step, setStep] = useState(1);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [recoveryPhrase, setRecoveryPhrase] = useState('');
   const [copied, setCopied] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // If already has account, redirect to login
-  if (hasAccount) {
-    navigate('/login', { replace: true });
+  // Redirect to login if already has account (useEffect to avoid render-time navigation)
+  useEffect(() => {
+    if (!isLoading && hasAccount) {
+      navigate('/login', { replace: true });
+    }
+  }, [isLoading, hasAccount, navigate]);
+
+  // Show loading while checking auth state
+  if (isLoading || (hasAccount && !isLoading)) {
     return null;
   }
 
@@ -43,7 +49,7 @@ export function OnboardingPage() {
 
     // Generate keypair
     setStep(2);
-    setIsLoading(true);
+    setIsSubmitting(true);
     
     try {
       const result = await setup(password);
@@ -53,7 +59,7 @@ export function OnboardingPage() {
       setError('Error al generar las claves. Intenta de nuevo.');
       setStep(1);
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -158,7 +164,7 @@ export function OnboardingPage() {
                 )}
               </Button>
 
-              <Button className="w-full" onClick={handleComplete} isLoading={isLoading}>
+              <Button className="w-full" onClick={handleComplete} isLoading={isSubmitting}>
                 Completar configuración
               </Button>
             </div>
