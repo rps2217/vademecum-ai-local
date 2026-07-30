@@ -46,8 +46,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       }
       
       setResolvedTheme(resolved);
-      root.classList.remove('light', 'dark');
-      root.classList.add(resolved);
+      // Use data-theme attribute for Tailwind v4 theme system
+      root.setAttribute('data-theme', resolved);
     };
 
     updateTheme();

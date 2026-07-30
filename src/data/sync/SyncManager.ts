@@ -80,12 +80,10 @@ export class SyncManager {
       window.addEventListener('online', this.networkListenerOnline);
       window.addEventListener('offline', this.networkListenerOffline);
       
-      // TEMPORALMENTE DESHABILITADO hasta corregir sync
-      // El usuario debe hacer sync manual desde Settings
       if (isSupabaseConfigured()) {
         this.config.enabled = true;
-        // this.startAutoSync(); // DESHABILITADO
-        logger.log('[SyncManager] Habilitado para sync manual (auto-sync deshabilitado)');
+        this.startAutoSync();
+        logger.log('[SyncManager] Habilitado con auto-sync activo');
       }
     }
   }
@@ -233,9 +231,14 @@ export class SyncManager {
       this.setState('idle');
 
     } catch (error) {
-      console.error('[SyncManager] Sync error:', error);
+      logger.error('[SyncManager] Sync error:', error);
       this.progress.errors.push(error instanceof Error ? error.message : 'Sync failed');
       this.setState('error');
+      
+      // Reintentar automáticamente si hay error de red
+      if (error instanceof Error && (error.message.includes('network') || error.message.includes('fetch'))) {
+        setTimeout(() => this.triggerSync(), 30000); // Reintentar en 30s
+      }
     }
 
     this.notify();

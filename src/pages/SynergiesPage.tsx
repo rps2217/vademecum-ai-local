@@ -1,16 +1,18 @@
 /**
  * SynergiesPage - Red de sinergias rediseñada
  * 
- * Grid de sinergias con visualizacion de combinaciones.
+ * Grid de sinergias con visualizacion de combinaciones y grafo interactivo.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { db } from '@/db';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
+import { Button } from '@/ui/Button';
 import { SearchInput } from '@/ui/SearchInput';
-import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info } from 'lucide-react';
+import { SynergyGraph } from '@/components/admin/SynergyGraph';
+import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info, LayoutGrid, GitBranch } from 'lucide-react';
 import type { DbSynergy } from '@/db/schema';
 
 const TYPE_CONFIG: Record<string, { label: string; color: string; icon: typeof Link2 }> = {
@@ -42,12 +44,16 @@ const LEVEL_CONFIG: Record<string, { label: string; color: string }> = {
   bajo: { label: 'Evidencia baja', color: 'bg-gray-100 text-gray-800' },
 };
 
+type ViewMode = 'graph' | 'grid';
+
 export function SynergiesPage() {
   const [searchParams] = useSearchParams();
   const [synergies, setSynergies] = useState<DbSynergy[]>([]);
   const [ingredients, setIngredients] = useState<Record<string, string>>({});
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [isLoading, setIsLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<ViewMode>('graph');
+  const [selectedSynergy, setSelectedSynergy] = useState<DbSynergy | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -58,7 +64,6 @@ export function SynergiesPage() {
           db.ingredients.toArray(),
         ]);
         
-        // Create a map of ingredient id to name
         const ingredientMap: Record<string, string> = {};
         ingredientsData.forEach(ing => {
           ingredientMap[ing.id] = ing.nombre;
@@ -75,18 +80,20 @@ export function SynergiesPage() {
     loadData();
   }, []);
 
-  const filteredSynergies = synergies.filter((s) => {
-    if (!query) return true;
+  const filteredSynergies = useMemo(() => {
+    if (!query) return synergies;
     const q = query.toLowerCase();
-    const nameA = ingredients[s.ingredienteA] || s.ingredienteA;
-    const nameB = ingredients[s.ingredienteB] || s.ingredienteB;
-    return (
-      nameA.toLowerCase().includes(q) ||
-      nameB.toLowerCase().includes(q) ||
-      s.tipo.toLowerCase().includes(q) ||
-      (s.mecanismo && s.mecanismo.toLowerCase().includes(q))
-    );
-  });
+    return synergies.filter((s) => {
+      const nameA = ingredients[s.ingredienteA] || s.ingredienteA;
+      const nameB = ingredients[s.ingredienteB] || s.ingredienteB;
+      return (
+        nameA.toLowerCase().includes(q) ||
+        nameB.toLowerCase().includes(q) ||
+        s.tipo.toLowerCase().includes(q) ||
+        (s.mecanismo && s.mecanismo.toLowerCase().includes(q))
+      );
+    });
+  }, [synergies, query, ingredients]);
 
   const getTypeConfig = (tipo: string) => {
     return TYPE_CONFIG[tipo] || TYPE_CONFIG.interaccion;
@@ -108,6 +115,32 @@ export function SynergiesPage() {
               : `${filteredSynergies.length} combinaciones`}
           </p>
         </div>
+
+        {/* View Mode Toggle */}
+        <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
+          <button
+            onClick={() => setViewMode('graph')}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors ${
+              viewMode === 'graph' 
+                ? 'bg-background shadow-sm font-medium' 
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <GitBranch className="w-4 h-4" />
+            <span className="hidden sm:inline">Grafo</span>
+          </button>
+          <button
+            onClick={() => setViewMode('grid')}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors ${
+              viewMode === 'grid' 
+                ? 'bg-background shadow-sm font-medium' 
+                : 'text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <LayoutGrid className="w-4 h-4" />
+            <span className="hidden sm:inline">Grid</span>
+          </button>
+        </div>
       </div>
 
       {/* Search */}
@@ -117,27 +150,105 @@ export function SynergiesPage() {
         placeholder="Buscar por ingrediente o mecanismo..."
       />
 
-      {/* Graph Placeholder Notice */}
-      <Card className="p-4 bg-muted/50 border-dashed">
-        <div className="flex items-start gap-3">
-          <div className="p-2 bg-muted rounded-lg">
-            <Network className="w-5 h-5 text-muted-foreground" />
-          </div>
-          <div>
-            <p className="font-medium text-sm">Vista de grafo en desarrollo</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Pronto podras visualizar las relaciones entre ingredientes como un grafo interactivo.
-            </p>
-          </div>
-        </div>
-      </Card>
-
-      {/* Results */}
+      {/* Content based on view mode */}
       {isLoading ? (
         <div className="text-center py-12">
           <p className="text-muted-foreground">Cargando...</p>
         </div>
-      ) : filteredSynergies.length > 0 ? (
+      ) : filteredSynergies.length === 0 ? (
+        <div className="text-center py-12">
+          <Network className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+          <p className="text-muted-foreground font-medium">No se encontraron sinergias</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            {query ? 'Prueba con otros terminos de busqueda' : 'No hay sinergias cargadas aun'}
+          </p>
+        </div>
+      ) : viewMode === 'graph' ? (
+        <>
+          {/* Graph Visualization */}
+          <Card className="p-1">
+            <SynergyGraph
+              synergies={filteredSynergies}
+              ingredients={ingredients}
+              onNodeClick={(id) => console.log('Node clicked:', id)}
+              onEdgeClick={(synergy) => setSelectedSynergy(synergy)}
+              className="h-[500px]"
+            />
+          </Card>
+
+          {/* Selected Synergy Detail */}
+          {selectedSynergy && (
+            <Card className="p-5">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  {(() => {
+                    const typeConfig = getTypeConfig(selectedSynergy.tipo);
+                    const TypeIcon = typeConfig.icon;
+                    return (
+                      <>
+                        <div className={`p-2 rounded-lg ${typeConfig.color} border`}>
+                          <TypeIcon className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold">
+                            {ingredients[selectedSynergy.ingredienteA] || selectedSynergy.ingredienteA}
+                            {' → '}
+                            {ingredients[selectedSynergy.ingredienteB] || selectedSynergy.ingredienteB}
+                          </h3>
+                          <div className="flex gap-2 mt-1">
+                            <Badge className={`${typeConfig.color} border text-xs`}>
+                              {typeConfig.label}
+                            </Badge>
+                            <Badge className={`${getLevelConfig(selectedSynergy.nivel).color} text-xs`}>
+                              {getLevelConfig(selectedSynergy.nivel).label}
+                            </Badge>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setSelectedSynergy(null)}
+                >
+                  Cerrar
+                </Button>
+              </div>
+              {selectedSynergy.mecanismo && (
+                <p className="text-sm text-muted-foreground">{selectedSynergy.mecanismo}</p>
+              )}
+            </Card>
+          )}
+
+          {/* Quick List below graph */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {filteredSynergies.slice(0, 6).map((synergy) => {
+              const typeConfig = getTypeConfig(synergy.tipo);
+              const TypeIcon = typeConfig.icon;
+              const nameA = ingredients[synergy.ingredienteA] || synergy.ingredienteA;
+              const nameB = ingredients[synergy.ingredienteB] || synergy.ingredienteB;
+
+              return (
+                <Card 
+                  key={synergy.id} 
+                  className="p-3 hover:border-primary transition-colors cursor-pointer"
+                  onClick={() => setSelectedSynergy(synergy)}
+                >
+                  <div className="flex items-center gap-2">
+                    <TypeIcon className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-medium truncate">{nameA}</span>
+                    <ArrowRight className="w-3 h-3 text-muted-foreground flex-shrink-0" />
+                    <span className="text-sm font-medium truncate">{nameB}</span>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        /* Grid View */
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {filteredSynergies.map((synergy) => {
             const typeConfig = getTypeConfig(synergy.tipo);
@@ -195,14 +306,6 @@ export function SynergiesPage() {
               </Card>
             );
           })}
-        </div>
-      ) : (
-        <div className="text-center py-12">
-          <Network className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-          <p className="text-muted-foreground font-medium">No se encontraron sinergias</p>
-          <p className="text-sm text-muted-foreground mt-1">
-            {query ? 'Prueba con otros terminos de busqueda' : 'No hay sinergias cargadas aun'}
-          </p>
         </div>
       )}
     </div>

@@ -1,6 +1,7 @@
 /**
  * Hook para obtener ingredientes de la base de datos local
  * Con soporte para filtros y recargas después de sync usando useLiveQuery
+ * OPTIMIZADO: Usa filtrado en Dexie cuando es posible
  */
 
 import { useMemo } from 'react';
@@ -26,53 +27,52 @@ export function useIngredients(options: UseIngredientsOptions = {}): UseIngredie
   const { category, system, query, limit = 100 } = options;
 
   // useLiveQuery re-renderiza automáticamente cuando los datos cambian
-  const allIngredients = useLiveQuery(
+  // OPTIMIZADO: Usa filtrado en Dexie para category
+  const ingredientsData = useLiveQuery(
     async () => {
+      let collection = db.ingredients;
+      
+      // Filtrar por categoría usando índice de Dexie
       if (category) {
-        return db.ingredients.where('categoria').equals(category).toArray();
+        collection = collection.where('categoria').equals(category);
       }
-      return db.ingredients.toArray();
+      
+      const allIngredients = await collection.toArray();
+      
+      // Filtrado en memoria para system (no hay índice) y query
+      let filtered = allIngredients;
+
+      if (system) {
+        filtered = filtered.filter(i => i.sistemas.includes(system));
+      }
+
+      if (query && query.trim()) {
+        const q = query.toLowerCase().trim();
+        filtered = filtered.filter(i =>
+          i.nombre.toLowerCase().includes(q) ||
+          i.sinonimos.some(s => s.toLowerCase().includes(q)) ||
+          i.indicaciones.some(ind => ind.toLowerCase().includes(q))
+        );
+      }
+
+      return {
+        ingredients: filtered.slice(0, limit),
+        total: filtered.length,
+      };
     },
-    [category],
+    [category, system, query, limit],
     // Valor por defecto mientras carga
-    undefined
+    { ingredients: [], total: 0 }
   );
 
-  // Filtrado y memoización
-  const { ingredients, total } = useMemo(() => {
-    if (!allIngredients) {
-      return { ingredients: [], total: 0 };
-    }
-
-    let filtered = allIngredients;
-
-    if (system) {
-      filtered = filtered.filter(i => i.sistemas.includes(system));
-    }
-
-    if (query && query.trim()) {
-      const q = query.toLowerCase().trim();
-      filtered = filtered.filter(i =>
-        i.nombre.toLowerCase().includes(q) ||
-        i.sinonimos.some(s => s.toLowerCase().includes(q)) ||
-        i.indicaciones.some(ind => ind.toLowerCase().includes(q))
-      );
-    }
-
-    return {
-      ingredients: filtered.slice(0, limit),
-      total: filtered.length,
-    };
-  }, [allIngredients, system, query, limit]);
-
-  const isLoading = allIngredients === undefined;
-  const error = null; // Dexie throws and React error boundary catches
+  const isLoading = ingredientsData === undefined || ingredientsData === null;
+  const error = null;
 
   return {
-    ingredients,
+    ingredients: ingredientsData?.ingredients || [],
     isLoading,
     error,
-    total,
+    total: ingredientsData?.total || 0,
   };
 }
 

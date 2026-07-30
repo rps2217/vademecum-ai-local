@@ -49,6 +49,7 @@ export class IngredientAdapter {
       name: local.nombre,
       scientific_name: scientificName || null,
       category: local.categoria,
+      body_systems: local.sistemas || [],
       origin_type: 'medicinal',
       origin_description: null,
       description: description,
@@ -62,6 +63,7 @@ export class IngredientAdapter {
       side_effects: null,
       synonyms: local.sinonimos || [],
       warnings: warnings.length > 0 ? warnings : null,
+      evidence_level: local.evidencia,
       created_at: new Date(local.createdAt).toISOString(),
       updated_at: new Date(local.updatedAt).toISOString(),
     };
@@ -69,6 +71,7 @@ export class IngredientAdapter {
 
   /**
    * Convierte formato remoto (Supabase) a formato local (Dexie)
+   * MEJORADO: Incluye mapeo de sistemas corporales y evidencia
    */
   static toLocal(remote: RemoteIngredient): Partial<DbIngredient> {
     return {
@@ -76,9 +79,9 @@ export class IngredientAdapter {
       nombre: remote.name,
       sinonimos: (remote.synonyms?.length ? remote.synonyms : [remote.name]) as string[],
       categoria: this.mapCategory(remote.category),
-      sistemas: [], // Supabase no tiene este campo
+      sistemas: this.mapBodySystems(remote),
       indicaciones: remote.indications || [],
-      evidencia: 'C', // Valor por defecto
+      evidencia: this.mapEvidenceLevel(remote),
       propiedades: [
         remote.description,
         remote.mechanism ? `Mecanismo: ${remote.mechanism}` : null,
@@ -88,6 +91,40 @@ export class IngredientAdapter {
       interacciones: remote.interactions || [],
       fuentes: remote.warnings ? [remote.warnings] : [],
     };
+  }
+
+  /**
+   * Mapea sistemas corporales desde remoto
+   */
+  private static mapBodySystems(remote: RemoteIngredient): string[] {
+    const validSystems = [
+      'nervioso', 'digestivo', 'inmune', 'cardiovascular',
+      'respiratorio', 'musculoesqueletico', 'endocrino'
+    ];
+    
+    const systems = (remote as Record<string, unknown>).body_systems as string[] | undefined;
+    
+    if (systems && Array.isArray(systems)) {
+      return systems
+        .map(s => s.toLowerCase().trim())
+        .filter(s => validSystems.includes(s));
+    }
+    
+    return [];
+  }
+
+  /**
+   * Mapea nivel de evidencia desde remoto
+   */
+  private static mapEvidenceLevel(remote: RemoteIngredient): 'A' | 'B' | 'C' | 'D' {
+    const evidenceMap: Record<string, 'A' | 'B' | 'C' | 'D'> = {
+      'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D',
+      'alto': 'A', 'medio': 'B', 'bajo': 'C',
+      'high': 'A', 'medium': 'B', 'low': 'C',
+    };
+    
+    const remoteEvidence = (remote as Record<string, unknown>).evidence_level as string | undefined;
+    return evidenceMap[remoteEvidence?.toLowerCase() || ''] || 'C';
   }
 
   /**

@@ -170,60 +170,85 @@ function transformSynergy(json: JsonSynergy): DbSynergy {
 async function loadFitoterapia(): Promise<number> {
   try {
     const data = await import('./data/fitoterapia.json');
+    if (!data.default?.ingredientes || !Array.isArray(data.default.ingredientes)) {
+      logger.error('Fitoterapia: datos inválidos o estructura incorrecta');
+      return 0;
+    }
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
+    logger.log(`Fitoterapia: ${ingredients.length} ingredientes cargados`);
     return ingredients.length;
   } catch (err) {
     logger.error('Error loading fitoterapia:', err);
-    return 0;
+    throw new Error(`Failed to load fitoterapia: ${err instanceof Error ? err.message : 'Unknown error'}`);
   }
 }
 
 async function loadHomeopatia(): Promise<number> {
   try {
     const data = await import('./data/homeopatia.json');
+    if (!data.default?.ingredientes || !Array.isArray(data.default.ingredientes)) {
+      logger.error('Homeopatia: datos inválidos o estructura incorrecta');
+      return 0;
+    }
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
+    logger.log(`Homeopatia: ${ingredients.length} ingredientes cargados`);
     return ingredients.length;
   } catch (err) {
     logger.error('Error loading homeopatia:', err);
-    return 0;
+    throw new Error(`Failed to load homeopatia: ${err instanceof Error ? err.message : 'Unknown error'}`);
   }
 }
 
 async function loadAceites(): Promise<number> {
   try {
     const data = await import('./data/aceites.json');
+    if (!data.default?.ingredientes || !Array.isArray(data.default.ingredientes)) {
+      logger.error('Aceites: datos inválidos o estructura incorrecta');
+      return 0;
+    }
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
+    logger.log(`Aceites esenciales: ${ingredients.length} ingredientes cargados`);
     return ingredients.length;
   } catch (err) {
     logger.error('Error loading aceites:', err);
-    return 0;
+    throw new Error(`Failed to load aceites: ${err instanceof Error ? err.message : 'Unknown error'}`);
   }
 }
 
 async function loadVitaminas(): Promise<number> {
   try {
     const data = await import('./data/vitaminas_minerales.json');
+    if (!data.default?.ingredientes || !Array.isArray(data.default.ingredientes)) {
+      logger.error('Vitaminas: datos inválidos o estructura incorrecta');
+      return 0;
+    }
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
+    logger.log(`Vitaminas y minerales: ${ingredients.length} ingredientes cargados`);
     return ingredients.length;
   } catch (err) {
     logger.error('Error loading vitaminas:', err);
-    return 0;
+    throw new Error(`Failed to load vitaminas: ${err instanceof Error ? err.message : 'Unknown error'}`);
   }
 }
 
 async function loadSinergias(): Promise<number> {
   try {
     const data = await import('./data/sinergias.json');
+    if (!data.default?.sinergias || !Array.isArray(data.default.sinergias)) {
+      logger.error('Sinergias: datos inválidos o estructura incorrecta');
+      return 0;
+    }
     const synergies = data.default.sinergias.map(transformSynergy);
     await db.synergies.bulkPut(synergies);
+    logger.log(`Sinergias: ${synergies.length} sinergias cargadas`);
     return synergies.length;
   } catch (err) {
     logger.error('Error loading sinergias:', err);
-    return 0;
+    throw new Error(`Failed to load sinergias: ${err instanceof Error ? err.message : 'Unknown error'}`);
   }
 }
 

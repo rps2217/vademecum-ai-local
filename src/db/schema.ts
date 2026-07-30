@@ -229,12 +229,16 @@ export class VademecumDB extends Dexie {
       'ingredients[categoria]': '',
       'ingredients[updatedAt]': '',
       'ingredients[tombstone]': '',
+      // Índice COMPUESTO para búsqueda optimizada por nombre + categoría
+      'ingredients[nombre+categoria]': '[nombre,categoria]',
 
       // Índices para sinergias
       'synergies[ingredienteA]': '',
       'synergies[ingredienteB]': '',
       'synergies[tipo]': '',
       'synergies[tombstone]': '',
+      // Índice compuesto para buscar sinergias por tipo
+      'synergies[tipo+nivel]': '[tipo+nivel]',
 
       // Índices para protocolos
       'protocols[updatedAt]': '',

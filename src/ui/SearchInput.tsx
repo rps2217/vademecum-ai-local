@@ -2,9 +2,10 @@
  * SearchInput - Campo de búsqueda especializado
  * 
  * Input con icono de búsqueda y sugerencias.
+ * OPTIMIZADO: Funciones memorizadas para evitar re-renders
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { Search, X, Clock, ArrowRight } from 'lucide-react';
 
@@ -41,7 +42,14 @@ export function SearchInput({
     }
   }, [autoFocus]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleSelect = useCallback((suggestion: string) => {
+    onChange(suggestion);
+    onSelectSuggestion?.(suggestion);
+    setIsFocused(false);
+    setSelectedIndex(-1);
+  }, [onChange, onSelectSuggestion]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     const allSuggestions = isFocused ? [...recentSearches, ...suggestions] : [];
 
     switch (e.key) {
@@ -68,16 +76,16 @@ export function SearchInput({
         inputRef.current?.blur();
         break;
     }
-  };
+  }, [isFocused, recentSearches, suggestions, selectedIndex, value, onSearch, handleSelect]);
 
-  const handleSelect = (suggestion: string) => {
-    onChange(suggestion);
-    onSelectSuggestion?.(suggestion);
-    setIsFocused(false);
-    setSelectedIndex(-1);
-  };
+  const handleClear = useCallback(() => {
+    onChange('');
+    inputRef.current?.focus();
+  }, [onChange]);
 
-  const showDropdown = isFocused && (recentSearches.length > 0 || suggestions.length > 0);
+  const showDropdown = useMemo(() => {
+    return isFocused && (recentSearches.length > 0 || suggestions.length > 0);
+  }, [isFocused, recentSearches.length, suggestions.length]);
 
   return (
     <div className={cn('relative w-full', className)}>
@@ -112,10 +120,7 @@ export function SearchInput({
         {value && (
           <button
             type="button"
-            onClick={() => {
-              onChange('');
-              inputRef.current?.focus();
-            }}
+            onClick={handleClear}
             className="absolute right-3 p-0.5 rounded hover:bg-accent text-muted-foreground"
           >
             <X className="w-4 h-4" />

@@ -18,9 +18,9 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       default: 'bg-muted text-muted-foreground',
       primary: 'bg-primary/10 text-primary',
       secondary: 'bg-secondary text-secondary-foreground',
-      success: 'bg-success/10 text-success-foreground',
-      warning: 'bg-warning/10 text-warning-foreground',
-      danger: 'bg-danger/10 text-danger-foreground',
+      success: 'bg-[var(--success-bg)] text-[var(--success)]',
+      warning: 'bg-[var(--warning-bg)] text-[var(--warning)]',
+      danger: 'bg-[var(--destructive)]/10 text-[var(--destructive)]',
       outline: 'border border-border bg-transparent text-foreground',
     };
 
