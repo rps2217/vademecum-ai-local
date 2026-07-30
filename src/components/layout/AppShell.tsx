@@ -120,6 +120,8 @@ export function AppShell() {
           onClick={() => setSidebarOpen(false)}
           onKeyDown={(e) => e.key === 'Escape' && setSidebarOpen(false)}
           tabIndex={0}
+          role="button"
+          aria-label="Cerrar menú"
         />
       )}
 
@@ -224,7 +226,10 @@ export function AppShell() {
         {/* Collapse toggle (desktop) */}
         <button
           onClick={toggleCollapsed}
-          className="hidden lg:flex absolute -right-3 top-20 w-6 h-6 items-center justify-center bg-sidebar-background border border-sidebar-border rounded-full shadow-sm hover:bg-sidebar-accent transition-colors"
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
+          className="hidden lg:flex absolute -right-3 top-20 w-6 h-6 items-center justify-center bg-sidebar-background border border-sidebar-border rounded-full shadow-sm hover:bg-sidebar-accent transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
+          aria-label={sidebarCollapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
+          tabIndex={0}
         >
           {sidebarCollapsed ? (
             <ChevronRight className="w-4 h-4" />
@@ -296,7 +301,9 @@ export function AppShell() {
       {sidebarOpen && (
         <button
           onClick={() => setSidebarOpen(false)}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSidebarOpen(false)}
           className="fixed top-4 right-4 z-50 lg:hidden p-2 bg-background rounded-full shadow-lg border"
+          aria-label="Cerrar sidebar"
         >
           <X className="w-5 h-5" />
         </button>
