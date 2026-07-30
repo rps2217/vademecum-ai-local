@@ -169,7 +169,7 @@ function transformSynergy(json: JsonSynergy): DbSynergy {
 
 async function loadFitoterapia(): Promise<number> {
   try {
-    const data = await import('../seeders/data/fitoterapia.json');
+    const data = await import('./data/fitoterapia.json');
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
@@ -181,7 +181,7 @@ async function loadFitoterapia(): Promise<number> {
 
 async function loadHomeopatia(): Promise<number> {
   try {
-    const data = await import('../seeders/data/homeopatia.json');
+    const data = await import('./data/homeopatia.json');
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
@@ -193,7 +193,7 @@ async function loadHomeopatia(): Promise<number> {
 
 async function loadAceites(): Promise<number> {
   try {
-    const data = await import('../seeders/data/aceites.json');
+    const data = await import('./data/aceites.json');
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
@@ -205,7 +205,7 @@ async function loadAceites(): Promise<number> {
 
 async function loadVitaminas(): Promise<number> {
   try {
-    const data = await import('../seeders/data/vitaminas_minerales.json');
+    const data = await import('./data/vitaminas_minerales.json');
     const ingredients = data.default.ingredientes.map(transformIngredient);
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
@@ -217,7 +217,7 @@ async function loadVitaminas(): Promise<number> {
 
 async function loadSinergias(): Promise<number> {
   try {
-    const data = await import('../seeders/data/sinergias.json');
+    const data = await import('./data/sinergias.json');
     const synergies = data.default.sinergias.map(transformSynergy);
     await db.synergies.bulkPut(synergies);
     return synergies.length;
