@@ -6,9 +6,21 @@
  */
 
 import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
-import { generateAndStoreKeyPair, unlockKeyPair, hasKeyPair } from '@/lib/crypto';
+import { 
+  generateAndStoreKeyPair, 
+  unlockKeyPair, 
+  unlockWithRecovery,
+  hasKeyPair,
+  nacl,
+  deriveKey,
+  encodeBase64,
+  type StoredKeyPair,
+  type RecoveryData,
+} from '@/lib/crypto';
 
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+const KEY_STORAGE_KEY = 'vademecum_keypair';
+const RECOVERY_STORAGE_KEY = 'vademecum_recovery';
 
 interface E2EEContextValue {
   isAuthenticated: boolean;
@@ -16,7 +28,7 @@ interface E2EEContextValue {
   hasAccount: boolean;
   setup: (password: string) => Promise<{ recoveryPhrase: string }>;
   unlock: (password: string) => Promise<boolean>;
-  recover: (phrase: string, newPassword: string) => Promise<boolean>;
+  recover: (phrase: string, newPassword: string) => Promise<{ recoveryPhrase: string } | false>;
   lock: () => void;
 }
 
@@ -98,11 +110,51 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const recover = async (_phrase: string, newPassword: string) => {
-    // TODO: Implement recovery with phrase
-    // For now, just set up new keypair
-    await setup(newPassword);
-    return true;
+  const recover = async (phrase: string, newPassword: string): Promise<{ recoveryPhrase: string } | false> => {
+    try {
+      // 1. Desbloquear keypair con recovery phrase
+      const secretKey = await unlockWithRecovery(phrase);
+      if (!secretKey) throw new Error('Frase de recuperación inválida');
+      
+      // 2. Re-cifrar con nueva contraseña
+      const salt = nacl.randomBytes(16);
+      const aesKey = await deriveKey(newPassword, salt);
+      const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+      const encrypted = nacl.secretbox(secretKey, nonce, aesKey);
+      
+      // 3. Guardar nuevo keypair
+      const publicKey = nacl.box.keyPair.fromSecretKey(secretKey).publicKey;
+      const stored: StoredKeyPair = {
+        publicKey: encodeBase64(publicKey),
+        secretKey: encodeBase64(encrypted),
+        nonce: encodeBase64(nonce),
+        salt: encodeBase64(salt),
+      };
+      localStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
+      
+      // 4. Generar NUEVA recovery phrase
+      const { generateMnemonic } = await import('bip39');
+      const newRecoveryPhrase = generateMnemonic(128);
+      
+      // 5. Guardar recovery data
+      const recoveryKey = await deriveKey(newRecoveryPhrase, salt);
+      const recoveryNonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+      const recoveryEncrypted = nacl.secretbox(secretKey, recoveryNonce, recoveryKey);
+      
+      const recoveryData: RecoveryData = {
+        encrypted: encodeBase64(recoveryEncrypted),
+        nonce: encodeBase64(recoveryNonce),
+        salt: encodeBase64(salt),
+      };
+      localStorage.setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
+      
+      startSession();
+      setIsAuthenticated(true);
+      return { recoveryPhrase: newRecoveryPhrase }; // Devolver nueva phrase
+    } catch (err) {
+      console.error('Recovery failed:', err);
+      return false;
+    }
   };
 
   const lock = useCallback(() => {

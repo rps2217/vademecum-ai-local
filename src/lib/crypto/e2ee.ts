@@ -250,3 +250,7 @@ export async function decryptSymmetric(
   
   return new Uint8Array(decrypted);
 }
+
+// Re-export nacl and utilities for use in other modules
+export { nacl, encodeBase64, decodeBase64 };
+
