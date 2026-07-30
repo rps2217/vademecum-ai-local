@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
 import { PageLoader } from '@/ui/PageLoader';
 import { RouteError } from '@/ui/RouteError';
+import { ErrorBoundary } from '@/ui/ErrorBoundary';
 import { useE2EE } from '@/app/E2EEAuthProvider';
 import { useDb } from '@/app/DbProvider';
 
@@ -81,7 +82,9 @@ export function App() {
   
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <ErrorBoundary>
+        <AppRoutes />
+      </ErrorBoundary>
     </BrowserRouter>
   );
 }
