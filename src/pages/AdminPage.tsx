@@ -35,7 +35,7 @@ export function AdminPage() {
 
   useEffect(() => {
     loadStats(); // eslint-disable-line react-hooks/set-state-in-effect
-  }, []);
+  }, [loadStats]);
 
   const handleReindex = async () => {
     setIsLoading(true);

@@ -21,5 +21,11 @@
   },
   "menuColor": "default",
   "menuAccent": "subtle",
+  "custom": [
+    "@/components/admin/*",
+    "@/components/auth/*",
+    "@/components/layout/*",
+    "@/components/sync/*"
+  ],
   "registries": {}
 }

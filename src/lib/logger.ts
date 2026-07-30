@@ -11,7 +11,7 @@ const isDev = import.meta.env.DEV;
 export const logger = {
   log: (...args: unknown[]) => {
     if (isDev) {
-      console.log('[vademecum]', ...args);
+      console.debug('[vademecum]', ...args);
     }
   },
   warn: (...args: unknown[]) => {
