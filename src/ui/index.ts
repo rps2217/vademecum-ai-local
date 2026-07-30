@@ -12,4 +12,5 @@ export { Modal, AlertDialog } from './Modal';
 export { StatsCard, StatsCardSkeleton } from './StatsCard';
 export { PageLoader } from './PageLoader';
 export { RouteError } from './RouteError';
+export { Skeleton, CardSkeleton, ListSkeleton } from './Skeleton';
 export { ErrorBoundary } from './ErrorBoundary';
