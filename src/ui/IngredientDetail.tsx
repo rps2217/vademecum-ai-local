@@ -24,7 +24,7 @@ export function IngredientDetail({ ingredient, onClose, onViewSynergies }: Ingre
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} onKeyDown={(e) => e.key === 'Escape' && onClose()} tabIndex={0} role="button" />
       
       <Card className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-background border-b p-4 flex items-center justify-between">

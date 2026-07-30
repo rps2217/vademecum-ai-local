@@ -55,7 +55,7 @@ export function OnboardingPage() {
       const result = await setup(password);
       setRecoveryPhrase(result.recoveryPhrase);
       setStep(3);
-    } catch (err) {
+    } catch {
       setError('Error al generar las claves. Intenta de nuevo.');
       setStep(1);
     } finally {

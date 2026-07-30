@@ -39,12 +39,8 @@ type StatsData = { ingredients: number; synergies: number; categories: number };
 
 export function HomePage() {
   const navigate = useNavigate();
-  const { status, data, execute } = useAsync<StatsData>();
+  const asyncState = useAsync<StatsData>();
   const [query, setQuery] = useState('');
-
-  useEffect(() => {
-    execute(loadStats());
-  }, [execute]);
 
   const loadStats = async (): Promise<StatsData> => {
     const [ingredients, synergies, allIngredients] = await Promise.all([
@@ -56,6 +52,11 @@ export function HomePage() {
     return { ingredients, synergies, categories: categories.size };
   };
 
+  useEffect(() => {
+    asyncState.execute(loadStats());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSearch = (value: string) => {
     if (value.trim()) {
       navigate(`/search?q=${encodeURIComponent(value)}`);
@@ -66,8 +67,8 @@ export function HomePage() {
     navigate(`/search?q=${encodeURIComponent(label)}`);
   };
 
-  const stats = data || { ingredients: 0, synergies: 0, categories: 0 };
-  const isDatabaseEmpty = stats.ingredients === 0 && status === 'success';
+  const stats = asyncState.status === 'success' ? asyncState.data : { ingredients: 0, synergies: 0, categories: 0 };
+  const isDatabaseEmpty = stats.ingredients === 0 && asyncState.status === 'success';
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
@@ -121,7 +122,7 @@ export function HomePage() {
       <div className="border-t border-border" />
 
       {/* Stats */}
-      {status === 'loading' ? (
+      {asyncState.status === 'loading' ? (
         <ListSkeleton count={3} />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
