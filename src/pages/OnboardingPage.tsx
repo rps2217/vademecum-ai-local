@@ -4,6 +4,7 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useE2EE } from '@/app/E2EEAuthProvider';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { Card } from '@/ui/Card';
@@ -11,15 +12,22 @@ import { Copy, Check, Shield, Key } from 'lucide-react';
 
 export function OnboardingPage() {
   const navigate = useNavigate();
+  const { setup, hasAccount } = useE2EE();
   const [step, setStep] = useState(1);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [recoveryPhrase] = useState('demo-phrase-123'); // Placeholder
+  const [recoveryPhrase, setRecoveryPhrase] = useState('');
   const [copied, setCopied] = useState(false);
-  const [isLoading] = useState(false); // Placeholder for loading state
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handlePasswordSubmit = (e: React.FormEvent) => {
+  // If already has account, redirect to login
+  if (hasAccount) {
+    navigate('/login', { replace: true });
+    return null;
+  }
+
+  const handlePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -33,7 +41,20 @@ export function OnboardingPage() {
       return;
     }
 
+    // Generate keypair
     setStep(2);
+    setIsLoading(true);
+    
+    try {
+      const result = await setup(password);
+      setRecoveryPhrase(result.recoveryPhrase);
+      setStep(3);
+    } catch (err) {
+      setError('Error al generar las claves. Intenta de nuevo.');
+      setStep(1);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCopy = () => {

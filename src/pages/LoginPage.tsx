@@ -3,23 +3,30 @@
  */
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useE2EE } from '@/app/E2EEAuthProvider';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { Lock, Eye, EyeOff } from 'lucide-react';
 
 export function LoginPage() {
-  const { unlock } = useE2EE();
+  const { unlock, hasAccount, isLoading } = useE2EE();
+  const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isUnlocking, setIsUnlocking] = useState(false);
+
+  // Redirect to onboarding if no account exists
+  if (!isLoading && !hasAccount) {
+    navigate('/onboarding', { replace: true });
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setIsLoading(true);
+    setIsUnlocking(true);
 
     try {
       const success = await unlock(password);
@@ -29,7 +36,7 @@ export function LoginPage() {
     } catch {
       setError('Error al desbloquear');
     } finally {
-      setIsLoading(false);
+      setIsUnlocking(false);
     }
   };
 
@@ -62,7 +69,7 @@ export function LoginPage() {
             </button>
           </div>
 
-          <Button type="submit" className="w-full" isLoading={isLoading}>
+          <Button type="submit" className="w-full" isLoading={isUnlocking}>
             Desbloquear
           </Button>
         </form>

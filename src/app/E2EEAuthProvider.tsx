@@ -6,13 +6,14 @@
  */
 
 import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
-import { generateAndStoreKeyPair, unlockKeyPair } from '@/lib/crypto';
+import { generateAndStoreKeyPair, unlockKeyPair, hasKeyPair } from '@/lib/crypto';
 
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
 
 interface E2EEContextValue {
   isAuthenticated: boolean;
   isLoading: boolean;
+  hasAccount: boolean;
   setup: (password: string) => Promise<{ recoveryPhrase: string }>;
   unlock: (password: string) => Promise<boolean>;
   recover: (phrase: string, newPassword: string) => Promise<boolean>;
@@ -24,6 +25,7 @@ const E2EEContext = createContext<E2EEContextValue | null>(null);
 export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasAccount, setHasAccount] = useState(false);
   const sessionExpiryRef = useRef<number>(0);
 
   // Check if session is still valid
@@ -41,6 +43,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
     // Always require unlock at boot - session is handled by unlock()
     const timer = setTimeout(() => {
       setIsAuthenticated(false);
+      setHasAccount(hasKeyPair());
       setIsLoading(false);
     }, 0);
     return () => clearTimeout(timer);
@@ -108,7 +111,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <E2EEContext.Provider value={{ isAuthenticated, isLoading, setup, unlock, recover, lock }}>
+    <E2EEContext.Provider value={{ isAuthenticated, isLoading, hasAccount, setup, unlock, recover, lock }}>
       {children}
     </E2EEContext.Provider>
   );
