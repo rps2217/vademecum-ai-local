@@ -63,10 +63,11 @@ function mapSafetyStatus(value: string | undefined): SafetyStatus {
  */
 export function toLocal(remote: RemoteProduct): DbProduct {
   const data = remote.data || {};
+  const nombreComercial = (data.nombre_comercial as string | undefined) || remote.sku;
   
   return {
     sku: remote.sku,
-    nombreComercial: remote.nombre_comercial || data.nombre_comercial || remote.sku,
+    nombreComercial: remote.nombre_comercial || nombreComercial,
     fabricante: undefined, // No disponible en este schema
     principiosActivos: data.principios_activos || [],
     categoria: data.categoria_principal || '',
@@ -151,7 +152,9 @@ export function hasEmbeddings(product: RemoteProduct | DbProduct): boolean {
     const vectores = (product.data as Record<string, unknown>).vectores;
     return Array.isArray(vectores) && vectores.length > 0;
   }
-  return Array.isArray(product.embedding) && product.embedding.length > 0;
+  // DbProduct tiene embedding
+  const dbProduct = product as DbProduct;
+  return Array.isArray(dbProduct.embedding) && dbProduct.embedding.length > 0;
 }
 
 /**

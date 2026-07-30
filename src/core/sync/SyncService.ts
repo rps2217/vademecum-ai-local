@@ -4,6 +4,7 @@
  */
 
 import { db } from '@/db';
+import { logger } from '@/lib/logger';
 import type {
   DbOutboxOp,
   DbSnapshot,
@@ -73,7 +74,7 @@ export class SyncService {
     if (this.syncTimer) return;
     this.syncTimer = setInterval(() => {
       if (this.isOnline && isSupabaseConfigured() && !this.syncInProgress) {
-        this.performFullSync().catch(console.error);
+        this.performFullSync().catch(logger.error);
       }
     }, this.config.syncInterval);
   }
@@ -88,7 +89,7 @@ export class SyncService {
   private handleOnline() {
     this.isOnline = true;
     if (this.config.enabled && this.config.autoSync) {
-      this.performFullSync().catch(console.error);
+      this.performFullSync().catch(logger.error);
     }
   }
 
@@ -130,7 +131,7 @@ export class SyncService {
     };
     await db.outbox.put(op);
     if (this.isOnline && !this.syncInProgress && this.config.enabled) {
-      this.performFullSync().catch(console.error);
+      this.performFullSync().catch(logger.error);
     }
     return op.id;
   }
@@ -231,7 +232,7 @@ export class SyncService {
     const lastSyncDate = lastSync ? new Date(lastSync).toISOString() : '1970-01-01T00:00:00Z';
     let downloaded = 0;
     const { data: ingredients, error: ingError } = await supabase.from('ingredients').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
-    if (ingError) console.error('Error downloading ingredients:', ingError);
+    if (ingError) logger.error('Error downloading ingredients:', ingError);
     else if (ingredients) {
       for (const ing of ingredients) {
         await this.mergeRemoteIngredient(ing);
@@ -239,7 +240,7 @@ export class SyncService {
       }
     }
     const { data: synergies, error: synError } = await supabase.from('synergies').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
-    if (synError) console.error('Error downloading synergies:', synError);
+    if (synError) logger.error('Error downloading synergies:', synError);
     else if (synergies) {
       for (const syn of synergies) {
         await this.mergeRemoteSynergy(syn);
@@ -349,7 +350,7 @@ export class SyncService {
   async restoreFromSnapshot(snapshotId: string): Promise<boolean> {
     const snapshot = await db.snapshots.get(snapshotId);
     if (!snapshot) return false;
-    console.log('Restore from snapshot:', snapshotId);
+    logger.log('Restore from snapshot:', snapshotId);
     return true;
   }
 

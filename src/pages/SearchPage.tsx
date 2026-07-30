@@ -12,7 +12,7 @@ import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Select } from '@/ui/Select';
 import { Search, Filter, Star, BookOpen, Leaf, FlaskConical } from 'lucide-react';
-import { IngredientDetail } from '@/components/ui/IngredientDetail';
+import { IngredientDetail } from '@/ui/IngredientDetail';
 import type { DbIngredient } from '@/db/schema';
 
 const CATEGORIES = [

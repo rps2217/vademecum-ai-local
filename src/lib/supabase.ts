@@ -1,9 +1,10 @@
 /**
  * Supabase Client
- * 
+ *
  * Cliente singleton para conexion con Supabase.
  */
 
+import { logger } from '@/lib/logger';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 let supabaseInstance: SupabaseClient | null = null;
@@ -54,7 +55,7 @@ export function getSupabaseAnonKey(): string | null {
  */
 export function getSupabase(): SupabaseClient | null {
   if (configError) {
-    console.warn('[Supabase] Config error:', configError);
+    logger.warn('[Supabase] Config error:', configError);
     return null;
   }
 
@@ -87,7 +88,7 @@ export function getSupabase(): SupabaseClient | null {
         },
       });
       
-      console.log('[Supabase] Client created successfully');
+      logger.log('[Supabase] Client created successfully');
     } catch (err) {
       configError = err instanceof Error ? err.message : 'Failed to create Supabase client';
       console.error('[Supabase] Creation error:', configError);
@@ -165,7 +166,7 @@ export async function testConnection(): Promise<{
 export function resetSupabaseClient(): void {
   supabaseInstance = null;
   configError = null;
-  console.log('[Supabase] Client reset');
+  logger.log('[Supabase] Client reset');
 }
 
 /**

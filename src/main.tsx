@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import { Providers } from './app/providers';
-import './index.css';
+import './styles/globals.css';
 
 // Register Service Worker
 if ('serviceWorker' in navigator) {

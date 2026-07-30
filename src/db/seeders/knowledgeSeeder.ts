@@ -2,6 +2,7 @@
  * Knowledge Base Seeder
  * Carga los datos de la KB en la base de datos Dexie.
  */
+import { logger } from '@/lib/logger';
 
 import { db } from '../schema';
 import type { 
@@ -183,7 +184,7 @@ async function loadFitoterapia(): Promise<number> {
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
   } catch (err) {
-    console.error('Error loading fitoterapia:', err);
+    logger.error('Error loading fitoterapia:', err);
     return 0;
   }
 }
@@ -195,7 +196,7 @@ async function loadHomeopatia(): Promise<number> {
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
   } catch (err) {
-    console.error('Error loading homeopatia:', err);
+    logger.error('Error loading homeopatia:', err);
     return 0;
   }
 }
@@ -207,7 +208,7 @@ async function loadAceites(): Promise<number> {
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
   } catch (err) {
-    console.error('Error loading aceites:', err);
+    logger.error('Error loading aceites:', err);
     return 0;
   }
 }
@@ -219,7 +220,7 @@ async function loadVitaminas(): Promise<number> {
     await db.ingredients.bulkPut(ingredients);
     return ingredients.length;
   } catch (err) {
-    console.error('Error loading vitaminas:', err);
+    logger.error('Error loading vitaminas:', err);
     return 0;
   }
 }
@@ -231,7 +232,7 @@ async function loadSinergias(): Promise<number> {
     await db.synergies.bulkPut(synergies);
     return synergies.length;
   } catch (err) {
-    console.error('Error loading sinergias:', err);
+    logger.error('Error loading sinergias:', err);
     return 0;
   }
 }
@@ -240,7 +241,7 @@ export async function seedKnowledgeBase(): Promise<{
   ingredients: number;
   synergies: number;
 }> {
-  console.log('Seeding knowledge base...');
+  logger.log('Seeding knowledge base...');
   const [fito, homeo, aceites, vitaminas, sinergias] = await Promise.all([
     loadFitoterapia(),
     loadHomeopatia(),
@@ -249,7 +250,7 @@ export async function seedKnowledgeBase(): Promise<{
     loadSinergias(),
   ]);
   const totalIngredients = fito + homeo + aceites + vitaminas;
-  console.log(`KB seeded: ${totalIngredients} ingredients, ${sinergias} synergies`);
+  logger.log(`KB seeded: ${totalIngredients} ingredients, ${sinergias} synergies`);
   return { ingredients: totalIngredients, synergies: sinergias };
 }
 

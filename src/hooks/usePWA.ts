@@ -1,6 +1,7 @@
 /**
  * usePWA - Hook para gestionar la PWA y actualizaciones
  */
+import { logger } from '@/lib/logger';
 
 import { useState, useEffect } from 'react';
 
@@ -33,10 +34,10 @@ export function usePWA(): PWAState {
               setOfflineReady(true);
             },
             onRegistered(registration) {
-              console.log('SW registered:', registration);
+              logger.log('SW registered:', registration);
             },
             onRegisterError(error) {
-              console.error('SW registration error:', error);
+              logger.error('SW registration error:', error);
             },
           });
           
@@ -44,7 +45,7 @@ export function usePWA(): PWAState {
         }
       } catch (e) {
         // PWA not available in dev mode without plugin
-        console.log('PWA registration not available');
+        logger.log('PWA registration not available');
       }
     };
 

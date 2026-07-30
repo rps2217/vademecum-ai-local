@@ -11,7 +11,7 @@ import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { Select } from '@/ui/Select';
-import { IngredientDetail } from '@/components/ui/IngredientDetail';
+import { IngredientDetail } from '@/ui/IngredientDetail';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Database, Filter, Plus, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import type { DbIngredient } from '@/db/schema';
@@ -50,7 +50,7 @@ export function KnowledgePage() {
   const [showFilters, setShowFilters] = useState(false);
 
   // Usar el hook de ingredientes (soporta sync automático)
-  const { ingredients, isLoading, total, refetch } = useIngredients({
+  const { ingredients, isLoading, total } = useIngredients({
     query,
     category: category as any,
     limit: 100,

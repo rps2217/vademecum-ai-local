@@ -4,6 +4,8 @@
  * Capa de datos local basada en Dexie (IndexedDB).
  */
 
+import { logger } from '@/lib/logger';
+
 // Schema y configuración
 export {
   db,
@@ -48,7 +50,7 @@ export type {
 import { db } from './schema';
 
 export async function seedDatabase(): Promise<void> {
-  console.log('Database ready');
+  logger.log('Database ready');
 }
 
 export async function clearDatabase(): Promise<void> {

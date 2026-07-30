@@ -10,6 +10,7 @@
  * - Mapeo de IDs entre local y remoto
  */
 
+import { logger } from '@/lib/logger';
 import { db } from '@/db';
 import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
 import { generateId, now, getDeviceId } from '@/db/schema';
@@ -64,7 +65,7 @@ export class SyncManager {
     
     // Listeners de red
     this.networkListenerOnline = () => {
-      console.log('[SyncManager] Online - triggering sync');
+      logger.log('[SyncManager] Online - triggering sync');
       this.setState('idle');
       if (this.config.autoSync && this.config.enabled) {
         this.triggerSync();
@@ -72,7 +73,7 @@ export class SyncManager {
     };
     
     this.networkListenerOffline = () => {
-      console.log('[SyncManager] Offline');
+      logger.log('[SyncManager] Offline');
       this.setState('offline');
     };
 
@@ -86,7 +87,7 @@ export class SyncManager {
         this.config.enabled = true;
         // this.startAutoSync(); // DESHABILITADO
         this.initialized = true;
-        console.log('[SyncManager] Habilitado para sync manual (auto-sync deshabilitado)');
+        logger.log('[SyncManager] Habilitado para sync manual (auto-sync deshabilitado)');
       }
     }
   }
@@ -128,7 +129,7 @@ export class SyncManager {
       this.stopAutoSync();
     }
     
-    console.log('[SyncManager] Config updated:', this.config);
+    logger.log('[SyncManager] Config updated:', this.config);
   }
 
   // ============ AUTO SYNC ============
@@ -136,7 +137,7 @@ export class SyncManager {
   private startAutoSync() {
     if (this.syncTimer) return;
     if (!isSupabaseConfigured()) {
-      console.log('[SyncManager] Supabase not configured, skipping auto-sync');
+      logger.log('[SyncManager] Supabase not configured, skipping auto-sync');
       return;
     }
 
@@ -146,7 +147,7 @@ export class SyncManager {
       }
     }, this.config.syncInterval);
 
-    console.log('[SyncManager] Auto-sync started');
+    logger.log('[SyncManager] Auto-sync started');
 
     // Sync inicial si está habilitado
     if (this.config.syncOnStart) {
@@ -158,7 +159,7 @@ export class SyncManager {
     if (this.syncTimer) {
       clearInterval(this.syncTimer);
       this.syncTimer = null;
-      console.log('[SyncManager] Auto-sync stopped');
+      logger.log('[SyncManager] Auto-sync stopped');
     }
   }
 
@@ -198,7 +199,7 @@ export class SyncManager {
     }
 
     if (this.state === 'syncing') {
-      console.log('[SyncManager] Sync already in progress');
+      logger.log('[SyncManager] Sync already in progress');
       return this.progress;
     }
 
@@ -213,16 +214,16 @@ export class SyncManager {
       this.progress.uploadedDelta = 0;
       this.progress.downloadedDelta = 0;
 
-      console.log(`[SyncManager] Starting ${isFullSync ? 'FULL' : 'DELTA'} sync...`);
-      console.log(`[SyncManager] Last sync: ${lastSync}`);
+      logger.log(`[SyncManager] Starting ${isFullSync ? 'FULL' : 'DELTA'} sync...`);
+      logger.log(`[SyncManager] Last sync: ${lastSync}`);
 
       // 1. Upload: Local → Supabase (delta)
-      console.log('[SyncManager] Starting upload (delta)...');
+      logger.log('[SyncManager] Starting upload (delta)...');
       const uploadResult = await this.uploadAllDelta(isFullSync);
       this.progress.uploadedDelta = uploadResult;
 
       // 2. Download: Supabase → Local (delta)
-      console.log('[SyncManager] Starting download (delta)...');
+      logger.log('[SyncManager] Starting download (delta)...');
       const downloadResult = await this.downloadAllDelta();
       this.progress.downloadedDelta = downloadResult;
 
@@ -230,7 +231,7 @@ export class SyncManager {
       this.progress.lastSyncAt = now();
       await this.saveLastSyncTime(now());
 
-      console.log(`[SyncManager] Sync completed - Uploaded: ${uploadResult}, Downloaded: ${downloadResult}`);
+      logger.log(`[SyncManager] Sync completed - Uploaded: ${uploadResult}, Downloaded: ${downloadResult}`);
       this.setState('idle');
 
     } catch (error) {
@@ -257,7 +258,7 @@ export class SyncManager {
     if (this.state === 'syncing') return;
     if (!this.canSync()) return;
     
-    console.log('[SyncManager] Sync triggered');
+    logger.log('[SyncManager] Sync triggered');
     setTimeout(() => this.sync(), 1000);
   }
 
@@ -270,7 +271,7 @@ export class SyncManager {
   private async uploadAllDelta(isFullSync: boolean): Promise<number> {
     const supabase = getSupabase();
     if (!supabase) {
-      console.warn('[SyncManager] Supabase not available for upload');
+      logger.warn('[SyncManager] Supabase not available for upload');
       return 0;
     }
 
@@ -296,7 +297,7 @@ export class SyncManager {
       totalUploaded += prodUploaded;
     }
 
-    console.log(`[SyncManager] Delta upload complete: ${totalUploaded} records`);
+    logger.log(`[SyncManager] Delta upload complete: ${totalUploaded} records`);
     return totalUploaded;
   }
 
@@ -315,14 +316,14 @@ export class SyncManager {
     if (isFullSync) {
       // Full sync: subir todos
       locals = await db.ingredients.toArray();
-      console.log(`[SyncManager] Full upload: ${locals.length} ingredients`);
+      logger.log(`[SyncManager] Full upload: ${locals.length} ingredients`);
     } else {
       // Delta sync: solo los modificados desde última sync
       locals = await db.ingredients
         .where('updatedAt')
         .above(lastSyncMs)
         .toArray();
-      console.log(`[SyncManager] Delta upload: ${locals.length} ingredients modified since ${new Date(lastSyncMs).toISOString()}`);
+      logger.log(`[SyncManager] Delta upload: ${locals.length} ingredients modified since ${new Date(lastSyncMs).toISOString()}`);
     }
 
     if (locals.length === 0) return 0;
@@ -378,7 +379,7 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} ingredients`);
+    logger.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} ingredients`);
     return uploaded;
   }
 
@@ -396,12 +397,12 @@ export class SyncManager {
     
     if (isFullSync) {
       locals = await db.synergies.toArray();
-      console.log(`[SyncManager] Full upload: ${locals.length} synergies`);
+      logger.log(`[SyncManager] Full upload: ${locals.length} synergies`);
     } else {
       // Las sinergias no tienen updatedAt indexado, filtrar en memoria
       const allSynergies = await db.synergies.toArray();
       locals = allSynergies.filter(s => s.updatedAt > lastSyncMs);
-      console.log(`[SyncManager] Delta upload: ${locals.length} synergies modified since ${new Date(lastSyncMs).toISOString()}`);
+      logger.log(`[SyncManager] Delta upload: ${locals.length} synergies modified since ${new Date(lastSyncMs).toISOString()}`);
     }
 
     if (locals.length === 0) return 0;
@@ -452,7 +453,7 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} synergies`);
+    logger.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} synergies`);
     return uploaded;
   }
 
@@ -470,13 +471,13 @@ export class SyncManager {
     
     if (isFullSync) {
       locals = await db.protocols.toArray();
-      console.log(`[SyncManager] Full upload: ${locals.length} protocols`);
+      logger.log(`[SyncManager] Full upload: ${locals.length} protocols`);
     } else {
       locals = await db.protocols
         .where('updatedAt')
         .above(lastSyncMs)
         .toArray();
-      console.log(`[SyncManager] Delta upload: ${locals.length} protocols modified since ${new Date(lastSyncMs).toISOString()}`);
+      logger.log(`[SyncManager] Delta upload: ${locals.length} protocols modified since ${new Date(lastSyncMs).toISOString()}`);
     }
 
     if (locals.length === 0) return 0;
@@ -525,7 +526,7 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} protocols`);
+    logger.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} protocols`);
     return uploaded;
   }
 
@@ -552,7 +553,7 @@ export class SyncManager {
   private async downloadAllDelta(): Promise<number> {
     const supabase = getSupabase();
     if (!supabase) {
-      console.warn('[SyncManager] Supabase not available for download');
+      logger.warn('[SyncManager] Supabase not available for download');
       return 0;
     }
 
@@ -575,7 +576,7 @@ export class SyncManager {
     const prodDownloaded = await this.downloadProductsDelta(supabase, lastSync);
     totalDownloaded += prodDownloaded;
 
-    console.log(`[SyncManager] Delta download complete: ${totalDownloaded} records`);
+    logger.log(`[SyncManager] Delta download complete: ${totalDownloaded} records`);
     return totalDownloaded;
   }
 
@@ -608,7 +609,7 @@ export class SyncManager {
   ): Promise<number> {
     if (!supabase) return 0;
 
-    console.log(`[SyncManager] Downloading ingredients since ${lastSync}...`);
+    logger.log(`[SyncManager] Downloading ingredients since ${lastSync}...`);
 
     const { data, error } = await supabase
       .from('extended_ingredients')
@@ -622,11 +623,11 @@ export class SyncManager {
     }
 
     if (!data || data.length === 0) {
-      console.log('[SyncManager] No new ingredients to download');
+      logger.log('[SyncManager] No new ingredients to download');
       return 0;
     }
 
-    console.log(`[SyncManager] Downloading ${data.length} ingredients...`);
+    logger.log(`[SyncManager] Downloading ${data.length} ingredients...`);
     this.progress.total += data.length;
     let downloaded = 0;
 
@@ -645,7 +646,7 @@ export class SyncManager {
               updatedAt: remoteTime,
             });
             downloaded++;
-            console.log(`[SyncManager] Updated ingredient: ${localId}`);
+            logger.log(`[SyncManager] Updated ingredient: ${localId}`);
           }
         } else {
           const local = IngredientAdapter.toLocal(remote);
@@ -671,7 +672,7 @@ export class SyncManager {
           await db.ingredients.put(newIngredient);
           await this.saveMapping('ingredients', localId, remote.id);
           downloaded++;
-          console.log(`[SyncManager] Added new ingredient: ${localId}`);
+          logger.log(`[SyncManager] Added new ingredient: ${localId}`);
         }
         
         this.progress.completed++;
@@ -681,7 +682,7 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} ingredients`);
+    logger.log(`[SyncManager] Downloaded ${downloaded}/${data.length} ingredients`);
     return downloaded;
   }
 
@@ -691,7 +692,7 @@ export class SyncManager {
   ): Promise<number> {
     if (!supabase) return 0;
 
-    console.log(`[SyncManager] Downloading synergies since ${lastSync}...`);
+    logger.log(`[SyncManager] Downloading synergies since ${lastSync}...`);
 
     const { data, error } = await supabase
       .from('ingredient_relationships')
@@ -704,11 +705,11 @@ export class SyncManager {
     }
 
     if (!data || data.length === 0) {
-      console.log('[SyncManager] No new synergies to download');
+      logger.log('[SyncManager] No new synergies to download');
       return 0;
     }
 
-    console.log(`[SyncManager] Downloading ${data.length} synergies...`);
+    logger.log(`[SyncManager] Downloading ${data.length} synergies...`);
     this.progress.total += data.length;
     let downloaded = 0;
 
@@ -738,7 +739,7 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} synergies`);
+    logger.log(`[SyncManager] Downloaded ${downloaded}/${data.length} synergies`);
     return downloaded;
   }
 
@@ -748,7 +749,7 @@ export class SyncManager {
   ): Promise<number> {
     if (!supabase) return 0;
 
-    console.log(`[SyncManager] Downloading protocols since ${lastSync}...`);
+    logger.log(`[SyncManager] Downloading protocols since ${lastSync}...`);
 
     const { data, error } = await supabase
       .from('protocols')
@@ -762,11 +763,11 @@ export class SyncManager {
     }
 
     if (!data || data.length === 0) {
-      console.log('[SyncManager] No new protocols to download');
+      logger.log('[SyncManager] No new protocols to download');
       return 0;
     }
 
-    console.log(`[SyncManager] Downloading ${data.length} protocols...`);
+    logger.log(`[SyncManager] Downloading ${data.length} protocols...`);
     this.progress.total += data.length;
     let downloaded = 0;
 
@@ -796,7 +797,7 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} protocols`);
+    logger.log(`[SyncManager] Downloaded ${downloaded}/${data.length} protocols`);
     return downloaded;
   }
 
@@ -818,11 +819,11 @@ export class SyncManager {
       .toArray();
 
     if (locals.length === 0) {
-      console.log('[SyncManager] No products to upload');
+      logger.log('[SyncManager] No products to upload');
       return 0;
     }
 
-    console.log(`[SyncManager] Uploading ${locals.length} products...`);
+    logger.log(`[SyncManager] Uploading ${locals.length} products...`);
     this.progress.total += locals.length;
     let uploaded = 0;
 
@@ -850,7 +851,7 @@ export class SyncManager {
       }
     }
 
-    console.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} products`);
+    logger.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} products`);
     return uploaded;
   }
 
@@ -863,7 +864,7 @@ export class SyncManager {
   ): Promise<number> {
     if (!supabase) return 0;
 
-    console.log(`[SyncManager] Downloading products since ${lastSync}...`);
+    logger.log(`[SyncManager] Downloading products since ${lastSync}...`);
 
     try {
       // Obtener todos los productos (no hay filtro last_updated en Supabase)
@@ -879,11 +880,11 @@ export class SyncManager {
       }
 
       if (!data || data.length === 0) {
-        console.log('[SyncManager] No products to download');
+        logger.log('[SyncManager] No products to download');
         return 0;
       }
 
-      console.log(`[SyncManager] Downloading ${data.length} products...`);
+      logger.log(`[SyncManager] Downloading ${data.length} products...`);
       this.progress.total += data.length;
       let downloaded = 0;
 
@@ -920,7 +921,7 @@ export class SyncManager {
         }
       }
 
-      console.log(`[SyncManager] Downloaded ${downloaded}/${data.length} products`);
+      logger.log(`[SyncManager] Downloaded ${downloaded}/${data.length} products`);
       return downloaded;
     } catch (err) {
       console.error('[SyncManager] Error in downloadProductsDelta:', err);
