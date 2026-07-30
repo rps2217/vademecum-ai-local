@@ -11,7 +11,6 @@ import { SearchInput } from '@/ui/SearchInput';
 import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { 
-  Search, 
   BookOpen, 
   Network, 
   Sparkles, 
@@ -100,7 +99,7 @@ export function HomePage() {
           onChange={setQuery}
           placeholder="valeriana, pasiflora, ansiedad..."
           onSearch={handleSearch}
-          isLoading={isLoading}
+         
         />
         <kbd className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:inline-flex h-6 items-center gap-1 rounded border bg-muted px-2 font-mono text-xs text-muted-foreground">
           <span>⌘</span>K

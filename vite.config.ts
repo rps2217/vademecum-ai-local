@@ -130,9 +130,12 @@ export default defineConfig(() => {
           manualChunks: {
             'vendor-react': ['react', 'react-dom', 'react-router-dom'],
             'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tabs'],
-            'vendor-db': ['dexie'],
+            'vendor-db': ['dexie', 'dexie-react-hooks'],
             'vendor-icons': ['lucide-react'],
             'vendor-ai': ['@xenova/transformers'],
+            'vendor-animations': ['framer-motion'],
+            'vendor-state': ['zustand'],
+            'vendor-flow': ['@xyflow/react'],
           },
         },
       },

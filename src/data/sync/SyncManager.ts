@@ -13,8 +13,8 @@
 import { logger } from '@/lib/logger';
 import { db } from '@/db';
 import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
-import { generateId, now, getDeviceId } from '@/db/schema';
-import type { DbIngredient, DbSynergy, DbProtocol, DbProduct } from '@/db/schema';
+import { now } from '@/db/schema';
+import type { DbIngredient, DbSynergy, DbProtocol } from '@/db/schema';
 import { IngredientAdapter } from '../adapters/IngredientAdapter';
 import { SynergyAdapter } from '../adapters/SynergyAdapter';
 import { ProtocolAdapter } from '../adapters/ProtocolAdapter';
@@ -58,7 +58,6 @@ export class SyncManager {
   private syncTimer: ReturnType<typeof setInterval> | null = null;
   private networkListenerOnline: () => void;
   private networkListenerOffline: () => void;
-  private initialized = false;
 
   constructor() {
     this.progress = this.createInitialProgress();
@@ -86,7 +85,6 @@ export class SyncManager {
       if (isSupabaseConfigured()) {
         this.config.enabled = true;
         // this.startAutoSync(); // DESHABILITADO
-        this.initialized = true;
         logger.log('[SyncManager] Habilitado para sync manual (auto-sync deshabilitado)');
       }
     }
@@ -530,24 +528,6 @@ export class SyncManager {
     return uploaded;
   }
 
-  // ============ Métodos legacy (mantener compatibilidad) ============
-  
-  private async uploadAll(): Promise<void> {
-    await this.uploadAllDelta(true); // Por defecto full sync para backwards
-  }
-
-  private async uploadIngredients(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    await this.uploadIngredientsDelta(supabase, 0, true);
-  }
-
-  private async uploadSynergies(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    await this.uploadSynergiesDelta(supabase, 0, true);
-  }
-
-  private async uploadProtocols(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    await this.uploadProtocolsDelta(supabase, 0, true);
-  }
-
   // ============ DOWNLOAD DELTA (Remote → Local) ============
 
   private async downloadAllDelta(): Promise<number> {
@@ -578,27 +558,6 @@ export class SyncManager {
 
     logger.log(`[SyncManager] Delta download complete: ${totalDownloaded} records`);
     return totalDownloaded;
-  }
-
-  // ============ Legacy methods for backwards compatibility ============
-  
-  private async downloadAll(): Promise<void> {
-    await this.downloadAllDelta();
-  }
-
-  private async downloadIngredients(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    const lastSync = await this.getLastSyncTime();
-    await this.downloadIngredientsDelta(supabase, lastSync);
-  }
-
-  private async downloadSynergies(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    const lastSync = await this.getLastSyncTime();
-    await this.downloadSynergiesDelta(supabase, lastSync);
-  }
-
-  private async downloadProtocols(supabase: ReturnType<typeof getSupabase>): Promise<void> {
-    const lastSync = await this.getLastSyncTime();
-    await this.downloadProtocolsDelta(supabase, lastSync);
   }
 
   // ============ Download Delta Methods ============
@@ -940,15 +899,6 @@ export class SyncManager {
       });
     } catch (error) {
       console.error('[SyncManager] Error saving mapping:', error);
-    }
-  }
-
-  private async getLocalId(table: string, remoteId: string): Promise<string | null> {
-    try {
-      const mapping = await db.syncMeta.get(`mapping_${table}_${remoteId}`);
-      return (mapping?.value as { localId: string })?.localId || null;
-    } catch {
-      return null;
     }
   }
 

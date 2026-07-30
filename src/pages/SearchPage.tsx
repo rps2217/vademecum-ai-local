@@ -119,7 +119,7 @@ export function SearchPage() {
           value={query}
           onChange={setQuery}
           placeholder="Buscar por nombre, sinonimo o indicacion..."
-          isLoading={isSearching}
+         
         />
       </div>
 

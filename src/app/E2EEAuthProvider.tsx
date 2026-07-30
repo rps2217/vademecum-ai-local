@@ -6,7 +6,7 @@
  */
 
 import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
-import { hasKeyPair, generateAndStoreKeyPair, unlockKeyPair } from '@/lib/crypto';
+import { generateAndStoreKeyPair, unlockKeyPair } from '@/lib/crypto';
 
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
 
@@ -36,29 +36,15 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
     sessionExpiryRef.current = Date.now() + SESSION_TIMEOUT_MS;
   }, []);
 
-  // Check auth on mount - require valid session
+  // Check auth on mount - always require unlock at boot
   useEffect(() => {
-    async function checkAuth() {
-      try {
-        // Check both keys exist AND session is valid
-        const hasKeys = await hasKeyPair();
-        const sessionValid = isSessionValid();
-
-        setIsAuthenticated(hasKeys && sessionValid);
-
-        // If keys exist but session expired, still require login
-        if (hasKeys && !sessionValid) {
-          setIsAuthenticated(false);
-        }
-      } catch {
-        setIsAuthenticated(false);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    checkAuth();
-  }, [isSessionValid]);
+    // Always require unlock at boot - session is handled by unlock()
+    const timer = setTimeout(() => {
+      setIsAuthenticated(false);
+      setIsLoading(false);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Reset session timer on activity
   useEffect(() => {
@@ -109,7 +95,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const recover = async (phrase: string, newPassword: string) => {
+  const recover = async (_phrase: string, newPassword: string) => {
     // TODO: Implement recovery with phrase
     // For now, just set up new keypair
     await setup(newPassword);

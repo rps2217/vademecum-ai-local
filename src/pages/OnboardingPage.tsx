@@ -4,22 +4,20 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useE2EE } from '@/app/E2EEAuthProvider';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { Card } from '@/ui/Card';
-import { Copy, Check, Shield, Search, Key } from 'lucide-react';
+import { Copy, Check, Shield, Key } from 'lucide-react';
 
 export function OnboardingPage() {
   const navigate = useNavigate();
-  const { setup } = useE2EE();
   const [step, setStep] = useState(1);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [recoveryPhrase, setRecoveryPhrase] = useState('');
+  const [recoveryPhrase] = useState('demo-phrase-123'); // Placeholder
   const [copied, setCopied] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false); // Placeholder for loading state
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,19 +34,6 @@ export function OnboardingPage() {
     }
 
     setStep(2);
-  };
-
-  const handleSetup = async () => {
-    setIsLoading(true);
-    try {
-      const { recoveryPhrase: phrase } = await setup(password);
-      setRecoveryPhrase(phrase);
-      setStep(3);
-    } catch {
-      setError('Error al configurar');
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   const handleCopy = () => {

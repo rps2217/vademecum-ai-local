@@ -24,7 +24,6 @@ export function useAccessibility(options: UseAccessibilityOptions = {}) {
   const {
     announceChanges = true,
     politeness = 'polite',
-    skipLinkId = 'main-content',
   } = options;
 
   /**

@@ -2,7 +2,7 @@
  * SettingsPage - Configuración
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { Badge } from '@/ui/Badge';
@@ -156,7 +156,7 @@ export function SettingsPage() {
 
 // Componente SyncTab
 function SyncTab() {
-  const { isOnline, isConfigured, syncState, progress, sync, lastSyncAt, errorCount } = useSync();
+  const { isOnline, syncState, progress, sync, lastSyncAt, errorCount } = useSync();
   const [syncResult, setSyncResult] = useState<{ success: boolean; message: string } | null>(null);
   const [testResult, setTestResult] = useState<{ success: boolean; message: string } | null>(null);
 

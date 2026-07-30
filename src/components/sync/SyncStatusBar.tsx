@@ -11,10 +11,9 @@ import { cn } from '@/lib/utils';
 
 interface SyncStatusBarProps {
   className?: string;
-  showDetails?: boolean;
 }
 
-export function SyncStatusBar({ className, showDetails = false }: SyncStatusBarProps) {
+export function SyncStatusBar({ className }: SyncStatusBarProps) {
   const { isOnline, isConfigured, syncState, progress, sync, lastSyncAt, errorCount } = useSync();
 
   const isSyncing = syncState === 'syncing';

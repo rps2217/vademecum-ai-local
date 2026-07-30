@@ -2,7 +2,7 @@
  * AdminPage - Gestión de base de conocimiento
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { db } from '@/db';
 import { Card } from '@/ui/Card';
 import { StatsCard } from '@/ui/StatsCard';
@@ -17,11 +17,7 @@ export function AdminPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    loadStats();
-  }, []);
-
-  const loadStats = async () => {
+  const loadStats = useCallback(async () => {
     try {
       const [ingredients, synergies] = await Promise.all([
         db.ingredients.count(),
@@ -35,7 +31,11 @@ export function AdminPage() {
     } catch (error) {
       console.error('Error loading stats:', error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadStats(); // eslint-disable-line react-hooks/set-state-in-effect
+  }, []);
 
   const handleReindex = async () => {
     setIsLoading(true);

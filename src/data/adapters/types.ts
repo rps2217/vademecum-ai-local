@@ -2,8 +2,6 @@
  * Tipos unificados para sync entre Dexie y Supabase
  */
 
-import type { DbIngredient, DbSynergy, DbProtocol } from '@/db/schema';
-
 /**
  * Estado de sincronización de un registro
  */

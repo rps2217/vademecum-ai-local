@@ -47,24 +47,15 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'admin', label: 'Admin', icon: Shield, href: '/admin', badge: 'KB' },
 ];
 
-export function AppShell() {
+interface NavContentProps {
+  collapsed: boolean;
+  onNavigate: () => void;
+}
+
+function NavContent({ collapsed, onNavigate }: NavContentProps) {
   const location = useLocation();
-  const { theme, setTheme } = useTheme();
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('sidebar-collapsed') === 'true';
-    }
-    return false;
-  });
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const toggleCollapsed = () => {
-    const newValue = !sidebarCollapsed;
-    setSidebarCollapsed(newValue);
-    localStorage.setItem('sidebar-collapsed', String(newValue));
-  };
-
-  const NavContent = ({ collapsed = false }: { collapsed?: boolean }) => (
+  return (
     <nav className="flex-1 px-2 py-4 space-y-1">
       {NAV_ITEMS.map((item) => {
         const isActive = location.pathname === item.href;
@@ -74,7 +65,7 @@ export function AppShell() {
           <Link
             key={item.id}
             to={item.href}
-            onClick={() => setSidebarOpen(false)}
+            onClick={onNavigate}
             className={cn(
               "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
               isActive
@@ -99,6 +90,26 @@ export function AppShell() {
       })}
     </nav>
   );
+}
+
+export function AppShell() {
+  useLocation(); // Used by NavContent
+  const { theme, setTheme } = useTheme();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('sidebar-collapsed') === 'true';
+    }
+    return false;
+  });
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleCollapsed = () => {
+    const newValue = !sidebarCollapsed;
+    setSidebarCollapsed(newValue);
+    localStorage.setItem('sidebar-collapsed', String(newValue));
+  };
+
+  const closeSidebar = () => setSidebarOpen(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -139,7 +150,7 @@ export function AppShell() {
         </div>
 
         {/* Navigation */}
-        <NavContent collapsed={sidebarCollapsed} />
+        <NavContent collapsed={sidebarCollapsed} onNavigate={closeSidebar} />
 
         {/* Sidebar footer */}
         <div className={cn(

@@ -1,0 +1,7 @@
+dist
+node_modules
+coverage
+.vite
+docs/historical
+*.lock
+package-lock.json

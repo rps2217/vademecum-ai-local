@@ -5,7 +5,7 @@
 
 import type { DbProduct } from '@/db/schema';
 import { SafetyStatus, ProductSource } from '@/db/schema';
-import { generateId, now, getDeviceId } from '@/db/schema';
+import { now } from '@/db/schema';
 
 // Tipo para datos remotos de Supabase
 export interface RemoteProduct {

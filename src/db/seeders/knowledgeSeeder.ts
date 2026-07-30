@@ -47,16 +47,6 @@ interface JsonSynergy {
   beneficios?: string[];
 }
 
-interface KBData {
-  metadata: { total: number };
-  ingredientes: JsonIngredient[];
-}
-
-interface SynergyData {
-  metadata: { total: number };
-  sinergias: JsonSynergy[];
-}
-
 function mapEvidenceLevel(level?: string): EvidenceLevel {
   const map: Record<string, EvidenceLevel> = {
     'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D',
