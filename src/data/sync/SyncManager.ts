@@ -351,7 +351,7 @@ export class SyncManager {
             .eq('ingredient_key', local.id);
 
           if (error) {
-            console.error(`[SyncManager] Error updating ingredient ${local.id}:`, error);
+            logger.error(`Error updating ingredient ${local.id}:`, error);
             this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
           } else {
             uploaded++;
@@ -363,7 +363,7 @@ export class SyncManager {
             .insert(remote);
 
           if (error) {
-            console.error(`[SyncManager] Error inserting ingredient ${local.id}:`, error);
+            logger.error(`Error inserting ingredient ${local.id}:`, error);
             this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
           } else {
             uploaded++;
@@ -375,7 +375,7 @@ export class SyncManager {
         this.progress.completed++;
         this.notify();
       } catch (error) {
-        console.error(`[SyncManager] Exception uploading ingredient ${local.id}:`, error);
+        logger.error(`Exception uploading ingredient ${local.id}:`, error);
         this.progress.errors.push(`Ingredient ${local.id}: ${error}`);
       }
     }
@@ -450,7 +450,7 @@ export class SyncManager {
         this.progress.completed++;
         this.notify();
       } catch (error) {
-        console.error(`[SyncManager] Exception uploading synergy ${local.id}:`, error);
+        logger.error(`Exception uploading synergy ${local.id}:`, error);
       }
     }
 
@@ -523,7 +523,7 @@ export class SyncManager {
         this.progress.completed++;
         this.notify();
       } catch (error) {
-        console.error(`[SyncManager] Exception uploading protocol ${local.id}:`, error);
+        logger.error(`Exception uploading protocol ${local.id}:`, error);
       }
     }
 
@@ -579,7 +579,7 @@ export class SyncManager {
       .gte('updated_at', lastSync);
 
     if (error) {
-      console.error('[SyncManager] Error downloading ingredients:', error);
+      logger.error('Error downloading ingredients:', error);
       this.progress.errors.push(`Download ingredients: ${error.message}`);
       return 0;
     }
@@ -640,7 +640,7 @@ export class SyncManager {
         this.progress.completed++;
         this.notify();
       } catch (error) {
-        console.error(`[SyncManager] Error processing ingredient:`, error);
+        logger.error('Error processing ingredient:', error);
       }
     }
 
@@ -662,7 +662,7 @@ export class SyncManager {
       .gte('updated_at', lastSync);
 
     if (error) {
-      console.error('[SyncManager] Error downloading synergies:', error);
+      logger.error('Error downloading synergies:', error);
       return 0;
     }
 
@@ -697,7 +697,7 @@ export class SyncManager {
         this.progress.completed++;
         this.notify();
       } catch (error) {
-        console.error(`[SyncManager] Error processing synergy:`, error);
+        logger.error('Error processing synergy:', error);
       }
     }
 
@@ -720,7 +720,7 @@ export class SyncManager {
       .gte('updated_at', lastSync);
 
     if (error) {
-      console.error('[SyncManager] Error downloading protocols:', error);
+      logger.error('Error downloading protocols:', error);
       return 0;
     }
 
@@ -755,7 +755,7 @@ export class SyncManager {
         this.progress.completed++;
         this.notify();
       } catch (error) {
-        console.error(`[SyncManager] Error processing protocol:`, error);
+        logger.error('Error processing protocol:', error);
       }
     }
 
@@ -799,7 +799,7 @@ export class SyncManager {
           .upsert(remote, { onConflict: 'sku' });
 
         if (error) {
-          console.error(`[SyncManager] Error uploading product ${local.sku}:`, error);
+          logger.error(`Error uploading product ${local.sku}:`, error);
           this.progress.errors.push(`Product ${local.sku}: ${error.message}`);
         } else {
           uploaded++;
@@ -809,7 +809,7 @@ export class SyncManager {
         this.progress.completed++;
         this.notify();
       } catch (error) {
-        console.error(`[SyncManager] Exception uploading product ${local.sku}:`, error);
+        logger.error(`Exception uploading product ${local.sku}:`, error);
       }
     }
 
@@ -837,7 +837,7 @@ export class SyncManager {
         .limit(2000); // Limitar para evitar sobrecarga
 
       if (error) {
-        console.error('[SyncManager] Error downloading products:', error);
+        logger.error('Error downloading products:', error);
         return 0;
       }
 
@@ -879,14 +879,14 @@ export class SyncManager {
           this.progress.completed++;
           this.notify();
         } catch (err) {
-          console.error(`[SyncManager] Error processing product:`, err);
+          logger.error('Error processing product:', err);
         }
       }
 
       logger.log(`[SyncManager] Downloaded ${downloaded}/${data.length} products`);
       return downloaded;
     } catch (err) {
-      console.error('[SyncManager] Error in downloadProductsDelta:', err);
+      logger.error('Error in downloadProductsDelta:', err);
       return 0;
     }
   }
@@ -901,7 +901,7 @@ export class SyncManager {
         updatedAt: now(),
       });
     } catch (error) {
-      console.error('[SyncManager] Error saving mapping:', error);
+      logger.error('Error saving mapping:', error);
     }
   }
 
@@ -922,7 +922,7 @@ export class SyncManager {
         updatedAt: now(),
       });
     } catch (error) {
-      console.error('[SyncManager] Error saving sync time:', error);
+      logger.error('Error saving sync time:', error);
     }
   }
 

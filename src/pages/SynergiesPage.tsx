@@ -170,7 +170,7 @@ export function SynergiesPage() {
             <SynergyGraph
               synergies={filteredSynergies}
               ingredients={ingredients}
-              onNodeClick={(id) => console.log('Node clicked:', id)}
+              onNodeClick={(id) => setSelectedIngredient(id)}
               onEdgeClick={(synergy) => setSelectedSynergy(synergy)}
               className="h-[500px]"
             />
