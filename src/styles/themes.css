@@ -2,7 +2,7 @@
  * Themes - Light/Dark/Auto
  * 
  * Sistema de temas para Vademecum AI.
- * Soporta tema claro, oscuro y automático (basado en preferencia del sistema).
+ * Usa class="dark" en el html element para compatibilidad con Tailwind v4.
  */
 
 @import './tokens.css';
@@ -12,7 +12,7 @@
  * ============================================ */
 
 :root,
-[data-theme="light"] {
+.light {
   /* Backgrounds */
   --background: #fafafa;
   --background-secondary: #ffffff;
@@ -131,7 +131,7 @@
  * DARK THEME
  * ============================================ */
 
-[data-theme="dark"] {
+.dark {
   /* Backgrounds - Slate 900 */
   --background: #0f172a;
   --background-secondary: #1e293b;
@@ -248,140 +248,28 @@
 
 /* ============================================
  * AUTO THEME (System Preference)
+ * Note: Handled by ThemeProvider with class="dark"
+ * The dark class is applied based on system preference when theme="auto"
  * ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    /* Backgrounds - Slate 900 */
-    --background: #0f172a;
-    --background-secondary: #1e293b;
-    --background-tertiary: #334155;
-    
-    /* Foreground (text) */
-    --foreground: #f1f5f9;
-    --foreground-muted: #94a3b8;
-    --foreground-subtle: #64748b;
-    
-    /* Primary - Emerald 500 */
-    --primary: #10b981;
-    --primary-foreground: #022c22;
-    --primary-hover: #34d399;
-    
-    /* Secondary */
-    --secondary: #334155;
-    --secondary-foreground: #f1f5f9;
-    --secondary-hover: #475569;
-    
-    /* Accent - Violet 500 */
-    --accent: #4c1d95;
-    --accent-foreground: #f3e8ff;
-    --accent-hover: #5b21b6;
-    
-    /* Cards & Surfaces */
-    --card: #1e293b;
-    --card-foreground: #f1f5f9;
-    --card-hover: #334155;
-    
-    --popover: #1e293b;
-    --popover-foreground: #f1f5f9;
-    
-    /* Borders */
-    --border: #334155;
-    --border-hover: #475569;
-    --border-focus: #10b981;
-    
-    /* Inputs */
-    --input: #334155;
-    --input-placeholder: #64748b;
-    --input-focus: #10b981;
-    
-    /* Rings */
-    --ring: #10b981;
-    --ring-offset: #0f172a;
-    
-    /* Muted */
-    --muted: #334155;
-    --muted-foreground: #94a3b8;
-    
-    /* Destructive */
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
-    
-    /* Success */
-    --success: #22c55e;
-    --success-foreground: #052e16;
-    --success-bg: #052e16;
-    
-    /* Warning */
-    --warning: #f59e0b;
-    --warning-foreground: #451a03;
-    --warning-bg: #451a03;
-    
-    /* Info */
-    --info: #3b82f6;
-    --info-foreground: #ffffff;
-    --info-bg: #172554;
-    
-    /* Sidebar */
-    --sidebar-background: #1e293b;
-    --sidebar-foreground: #cbd5e1;
-    --sidebar-primary: #10b981;
-    --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #334155;
-    --sidebar-accent-foreground: #f1f5f9;
-    --sidebar-border: #334155;
-    --sidebar-ring: #10b981;
-    
-    /* Header */
-    --header-background: #1e293b;
-    --header-foreground: #f1f5f9;
-    --header-border: #334155;
-    
-    /* Overlay */
-    --overlay: rgb(0 0 0 / 0.75);
-    
-    /* Code */
-    --code-background: #1e293b;
-    --code-foreground: #e2e8f0;
-    
-    /* Skeleton */
-    --skeleton: #334155;
-    --skeleton-highlight: #475569;
-    
-    /* Icons */
-    --icon-foreground: #94a3b8;
-    --icon-hover: #e2e8f0;
-    
-    /* Scrollbar */
-    --scrollbar-track: #1e293b;
-    --scrollbar-thumb: #475569;
-    --scrollbar-thumb-hover: #64748b;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
-  }
-}
 
 /* ============================================
  * THEME SWITCHER UTILITY
  * ============================================ */
 
 @layer base {
-  [data-theme="light"] .dark\:hidden {
+  :root .dark\:hidden,
+  .light .dark\:hidden {
     display: block;
   }
-  [data-theme="light"] .light\:hidden {
+  :root .light\:hidden,
+  .light .light\:hidden {
     display: none;
   }
   
-  [data-theme="dark"] .light\:hidden {
+  .dark .light\:hidden {
     display: block;
   }
-  [data-theme="dark"] .dark\:hidden {
+  .dark .dark\:hidden {
     display: none;
   }
 }

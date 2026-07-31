@@ -2,6 +2,7 @@
  * ThemeProvider - Proveedor de tema
  * 
  * Maneja el tema light/dark/auto.
+ * Usa class="dark" en el html element para compatibilidad con Tailwind v4.
  */
 
 import { createContext, useContext, useEffect, useState } from 'react';
@@ -19,7 +20,7 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('theme') as Theme) || 'auto';
+      return (localStorage.getItem('vademecum-theme') as Theme) || 'auto';
     }
     return 'auto';
   });
@@ -46,8 +47,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       }
       
       setResolvedTheme(resolved);
-      // Use data-theme attribute for Tailwind v4 theme system
-      root.setAttribute('data-theme', resolved);
+      // Use class="dark" for Tailwind v4 compatibility
+      root.classList.toggle('dark', resolved === 'dark');
     };
 
     updateTheme();
@@ -60,7 +61,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem('theme', newTheme);
+    localStorage.setItem('vademecum-theme', newTheme);
   };
 
   return (

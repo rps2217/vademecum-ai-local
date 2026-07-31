@@ -266,3 +266,109 @@ a {
 .animate-scale-in {
   animation: scale-in 0.2s ease-out;
 }
+
+/* ============================================
+ * SEMANTIC UTILITIES (Tailwind v4 compatibility)
+ * These utilities reference CSS variables from themes.css
+ * and work with both light and dark themes via .dark class
+ * ============================================ */
+
+@layer utilities {
+  /* Background colors */
+  .bg-background { background-color: var(--background); }
+  .bg-background-secondary { background-color: var(--background-secondary); }
+  .bg-background-tertiary { background-color: var(--background-tertiary); }
+  .bg-card { background-color: var(--card); }
+  .bg-card-hover { background-color: var(--card-hover); }
+  .bg-popover { background-color: var(--popover); }
+  .bg-muted { background-color: var(--muted); }
+  .bg-accent { background-color: var(--accent); }
+  .bg-sidebar { background-color: var(--sidebar-background); }
+  .bg-sidebar-accent { background-color: var(--sidebar-accent); }
+  .bg-header { background-color: var(--header-background); }
+  .bg-overlay { background-color: var(--overlay); }
+  .bg-primary { background-color: var(--primary); }
+  .bg-secondary { background-color: var(--secondary); }
+  .bg-input { background-color: var(--input); }
+  .bg-code { background-color: var(--code-background); }
+  .bg-skeleton { background-color: var(--skeleton); }
+  .bg-border { background-color: var(--border); }
+
+  /* Text colors */
+  .text-foreground { color: var(--foreground); }
+  .text-foreground-muted { color: var(--foreground-muted); }
+  .text-foreground-subtle { color: var(--foreground-subtle); }
+  .text-card-foreground { color: var(--card-foreground); }
+  .text-popover-foreground { color: var(--popover-foreground); }
+  .text-muted-foreground { color: var(--muted-foreground); }
+  .text-accent-foreground { color: var(--accent-foreground); }
+  .text-sidebar-foreground { color: var(--sidebar-foreground); }
+  .text-sidebar-accent-foreground { color: var(--sidebar-accent-foreground); }
+  .text-sidebar-primary { color: var(--sidebar-primary); }
+  .text-sidebar-primary-foreground { color: var(--sidebar-primary-foreground); }
+  .text-header-foreground { color: var(--header-foreground); }
+  .text-primary { color: var(--primary); }
+  .text-primary-foreground { color: var(--primary-foreground); }
+  .text-secondary { color: var(--secondary); }
+  .text-secondary-foreground { color: var(--secondary-foreground); }
+  .text-input { color: var(--input); }
+  .text-code { color: var(--code-foreground); }
+  .text-icon { color: var(--icon-foreground); }
+  .text-border { color: var(--border); }
+
+  /* Border colors */
+  .border-border { border-color: var(--border); }
+  .border-border-hover { border-color: var(--border-hover); }
+  .border-border-focus { border-color: var(--border-focus); }
+  .border-sidebar { border-color: var(--sidebar-border); }
+  .border-header { border-color: var(--header-border); }
+  .border-accent { border-color: var(--accent); }
+  .border-primary { border-color: var(--primary); }
+  .border-ring { border-color: var(--ring); }
+
+  /* Ring (focus outline) */
+  .ring-ring { --tw-ring-color: var(--ring); }
+  .ring-offset-ring { --tw-ring-offset-color: var(--ring-offset); }
+
+  /* Shadows */
+  .shadow-sm { box-shadow: var(--shadow-sm); }
+  .shadow { box-shadow: var(--shadow); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+  .shadow-lg { box-shadow: var(--shadow-lg); }
+  .shadow-xl { box-shadow: var(--shadow-xl); }
+
+  /* Scrollbar */
+  .scrollbar-track { background-color: var(--scrollbar-track); }
+  .scrollbar-thumb { background-color: var(--scrollbar-thumb); }
+  .scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover); }
+
+  /* Skeleton */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--skeleton) 0%,
+      var(--skeleton-highlight) 50%,
+      var(--skeleton) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  }
+
+  /* Icon hover states */
+  .icon-hover:hover { color: var(--icon-hover); }
+
+  /* Card hover */
+  .card-hover:hover { background-color: var(--card-hover); }
+
+  /* Button hover states */
+  .btn-primary:hover { background-color: var(--primary-hover); }
+  .btn-accent:hover { background-color: var(--accent-hover); }
+  .btn-secondary:hover { background-color: var(--secondary-hover); }
+
+  /* Input focus */
+  .input-focus:focus {
+    border-color: var(--input-focus);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring);
+  }
+}
