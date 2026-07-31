@@ -1,6 +1,6 @@
 # 💊 Vademecum AI - Guía Terapéutica para Farmacias
 
-![Version](https://img.shields.io/badge/version-2.2.0-blue)
+![Version](https://img.shields.io/badge/version-2.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![PWA](https://img.shields.io/badge/PWA-ready-60c044)
 ![Build](https://img.shields.io/badge/build-925KB-60c044)
@@ -228,6 +228,6 @@ MIT License - Ver [LICENSE](LICENSE)
 
 ---
 
-**Version:** 2.2.0  
+**Version:** 2.1.0  
 **Ultima actualizacion:** Julio 2026  
 **Rama principal:** main
