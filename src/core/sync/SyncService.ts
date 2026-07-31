@@ -15,11 +15,15 @@ import type {
 } from '@/db/schema';
 import { generateId, now, getDeviceId } from '@/db/schema';
 import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
+import { ConflictResolver, type ConflictInfo } from './ConflictResolver';
 
 export interface SyncConfig {
   enabled: boolean;
   autoSync: boolean;
   syncInterval: number;
+  maxRetries: number;
+  baseRetryDelay: number;
+  enableConflictDetection: boolean;
 }
 
 export interface SyncStatus {
@@ -29,6 +33,7 @@ export interface SyncStatus {
   pendingOps: number;
   isSyncing: boolean;
   error?: string;
+  pendingConflicts: number;
 }
 
 export interface SyncResult {
@@ -44,6 +49,9 @@ export class SyncService {
     enabled: false,
     autoSync: true,
     syncInterval: 30000,
+    maxRetries: 3,
+    baseRetryDelay: 1000,
+    enableConflictDetection: true,
   };
   private isOnline = typeof navigator !== 'undefined' ? navigator.onLine : true;
   private syncInProgress = false;
@@ -73,7 +81,6 @@ export class SyncService {
 
   subscribe(listener: (status: SyncStatus) => void): () => void {
     this.listeners.add(listener);
-    // Immediately call with current status
     this.getStatus().then(listener);
     return () => this.listeners.delete(listener);
   }
@@ -119,6 +126,10 @@ export class SyncService {
       .anyOf(['pending', 'in_flight'])
       .count();
     const lastSyncMeta = await db.syncMeta.get('lastSyncAt');
+    const pendingConflicts = await db.conflicts
+      .where('resolution')
+      .equals('pending')
+      .count();
     return {
       isOnline: this.isOnline,
       isConfigured: isSupabaseConfigured(),
@@ -126,6 +137,7 @@ export class SyncService {
       pendingOps,
       isSyncing: this.syncInProgress,
       error: this.lastError || undefined,
+      pendingConflicts,
     };
   }
 
@@ -144,6 +156,7 @@ export class SyncService {
       retries: 0,
       createdAt: now(),
       status: 'pending',
+      idempotencyKey: `${table}:${recordId}:${type}:${now()}`,
     };
     await db.outbox.put(op);
     if (this.isOnline && !this.syncInProgress && this.config.enabled) {
@@ -187,7 +200,17 @@ export class SyncService {
       return { success: false, uploaded, downloaded, conflicts, error: this.lastError };
     } finally {
       this.syncInProgress = false;
+      this.notifyListeners();
     }
+  }
+
+  /**
+   * Calcula el delay exponencial para retries
+   */
+  private calculateRetryDelay(retries: number): number {
+    const delay = this.config.baseRetryDelay * Math.pow(2, retries);
+    const jitter = Math.random() * 1000; // Añade jitter para evitar thundering herd
+    return Math.min(delay, 30000) + jitter; // Máximo 30 segundos
   }
 
   private async uploadPendingOps(): Promise<{ count: number; conflicts: number }> {
@@ -195,8 +218,19 @@ export class SyncService {
     if (!supabase) return { count: 0, conflicts: 0 };
     const pendingOps = await db.outbox.where('status').equals('pending').toArray();
     let uploaded = 0, conflicts = 0;
+    
     for (const op of pendingOps) {
+      op.status = 'in_flight';
+      op.lastAttemptAt = now();
+      await db.outbox.put(op);
+      
       try {
+        // Aplicar backoff exponencial si hay retries previos
+        if (op.retries > 0) {
+          const delay = this.calculateRetryDelay(op.retries);
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+        
         await this.syncOpToSupabase(supabase, op);
         op.status = 'synced';
         await db.outbox.put(op);
@@ -206,34 +240,101 @@ export class SyncService {
           conflicts++;
           op.status = 'conflict';
           op.lastError = 'Conflicto de sincronizacion';
+          await db.outbox.put(op);
+          
+          // Registrar conflicto si la detección está habilitada
+          if (this.config.enableConflictDetection) {
+            await this.registerConflict(op, error);
+          }
         } else if (error instanceof SchemaMismatchError) {
-          // Schema mismatch - mark as failed but log warning
           logger.warn('[SyncService] Schema mismatch during upload:', error.message);
           op.status = 'failed';
           op.retries++;
           op.lastError = error.message;
+          await db.outbox.put(op);
+        } else if (error instanceof UnauthorizedError) {
+          logger.warn('[SyncService] Unauthorized - token may need refresh');
+          op.status = 'pending'; // Reset para reintentar después de refresh
+          op.retries++;
+          op.lastError = 'Unauthorized';
+          await db.outbox.put(op);
+          // Intentar refresh de token
+          this.handleUnauthorized();
         } else {
-          op.status = 'failed';
+          op.status = op.retries >= this.config.maxRetries - 1 ? 'failed' : 'pending';
           op.retries++;
           op.lastError = error instanceof Error ? error.message : 'Unknown error';
+          await db.outbox.put(op);
+          
+          if (op.retries >= this.config.maxRetries) {
+            logger.error('[SyncService] Op reached max retries:', op.id);
+          }
         }
-        await db.outbox.put(op);
       }
     }
     return { count: uploaded, conflicts };
   }
 
+  /**
+   * Registra un conflicto detectado
+   */
+  private async registerConflict(op: DbOutboxOp, error: ConflictError): Promise<void> {
+    try {
+      const conflictInfo: ConflictInfo = {
+        table: op.table,
+        recordId: op.recordId,
+        localVersion: op.payload as Record<string, unknown>,
+        remoteVersion: {},
+        localLamport: (op.payload as Record<string, unknown>)['lamport'] as number || 0,
+        remoteLamport: 0,
+      };
+      await ConflictResolver.registerConflict(conflictInfo);
+    } catch (err) {
+      logger.error('[SyncService] Error registering conflict:', err);
+    }
+  }
+
+  /**
+   * Maneja errores de autenticación
+   */
+  private async handleUnauthorized(): Promise<void> {
+    const supabase = getSupabase();
+    if (supabase?.auth) {
+      try {
+        const { data, error } = await supabase.auth.refreshSession();
+        if (error) {
+          logger.error('[SyncService] Token refresh failed:', error);
+        } else {
+          logger.log('[SyncService] Token refreshed successfully');
+        }
+      } catch (err) {
+        logger.error('[SyncService] Token refresh error:', err);
+      }
+    }
+  }
+
   private async syncOpToSupabase(supabase: ReturnType<typeof getSupabase>, op: DbOutboxOp): Promise<void> {
     if (!supabase) throw new Error('Supabase not initialized');
+    
     const table = op.table;
     const payload = op.payload as Record<string, unknown>;
     const supabasePayload = this.toSupabaseFormat(payload);
+    
+    // Usar idempotency key si está disponible
+    const headers: Record<string, string> = {};
+    if (op.idempotencyKey) {
+      headers['x-idempotency-key'] = op.idempotencyKey;
+    }
+    
     switch (op.type) {
       case 'insert':
       case 'update': {
-        const { error } = await supabase.from(table).upsert(supabasePayload, { onConflict: 'id' });
+        const { error } = await supabase.from(table).upsert(supabasePayload, { 
+          onConflict: 'id',
+          headers 
+        });
         if (error) {
-          // Handle schema mismatch gracefully
+          if (error.code === '401') throw new UnauthorizedError('Unauthorized');
           if (error.code === '23505') throw new ConflictError('Record already exists');
           if (error.code === 'PGRST204' || error.message?.includes('column')) {
             throw new SchemaMismatchError(`Schema mismatch for table "${table}". Ensure Supabase schema includes all required columns. Sync is experimental.`);
@@ -245,6 +346,7 @@ export class SyncService {
       case 'delete': {
         const { error } = await supabase.from(table).update({ tombstone: 1, updated_at: new Date().toISOString() }).eq('id', op.recordId);
         if (error) {
+          if (error.code === '401') throw new UnauthorizedError('Unauthorized');
           if (error.code === 'PGRST204' || error.message?.includes('column')) {
             throw new SchemaMismatchError(`Schema mismatch for table "${table}". Ensure Supabase schema includes all required columns.`);
           }
@@ -266,23 +368,21 @@ export class SyncService {
     // Download ingredients
     const { data: ingredients, error: ingError } = await supabase.from('ingredients').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
     if (ingError) {
-      // Handle schema mismatch gracefully (PGRST204 = column not found)
       if (ingError.code === 'PGRST204' || ingError.message?.includes('column')) {
-        logger.warn('[SyncService] Schema mismatch: "ingredients" table columns not found. Sync is experimental - ensure Supabase schema matches local schema.');
+        logger.warn('[SyncService] Schema mismatch: "ingredients" table columns not found. Sync is experimental.');
       } else {
         logger.error('Error downloading ingredients:', ingError);
       }
     } else if (ingredients) {
       for (const ing of ingredients) {
-        await this.mergeRemoteIngredient(ing);
-        downloaded++;
+        const conflict = await this.mergeRemoteIngredient(ing);
+        if (!conflict) downloaded++;
       }
     }
     
     // Download synergies
     const { data: synergies, error: synError } = await supabase.from('synergies').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
     if (synError) {
-      // Handle schema mismatch gracefully
       if (synError.code === 'PGRST204' || synError.message?.includes('column')) {
         logger.warn('[SyncService] Schema mismatch: "synergies" table columns not found. Sync is experimental.');
       } else {
@@ -290,17 +390,41 @@ export class SyncService {
       }
     } else if (synergies) {
       for (const syn of synergies) {
-        await this.mergeRemoteSynergy(syn);
-        downloaded++;
+        const conflict = await this.mergeRemoteSynergy(syn);
+        if (!conflict) downloaded++;
       }
     }
     return { count: downloaded };
   }
 
-  private async mergeRemoteIngredient(remote: Record<string, unknown>): Promise<void> {
+  private async mergeRemoteIngredient(remote: Record<string, unknown>): Promise<boolean> {
     const local = await db.ingredients.get(remote.id as string);
     const remoteLamport = (remote.lamport as number) || 0;
     const localLamport = local?.lamport || 0;
+    
+    // Detectar conflicto si ambos tienen cambios recientes
+    if (local && this.config.enableConflictDetection) {
+      const hasConflict = ConflictResolver.detectConflict(
+        localLamport,
+        remoteLamport,
+        local.updatedAt,
+        new Date(remote.updated_at as string).getTime()
+      );
+      
+      if (hasConflict) {
+        const conflictInfo: ConflictInfo = {
+          table: 'ingredients',
+          recordId: remote.id as string,
+          localVersion: local as unknown as Record<string, unknown>,
+          remoteVersion: remote,
+          localLamport,
+          remoteLamport,
+        };
+        await ConflictResolver.registerConflict(conflictInfo);
+        return true;
+      }
+    }
+    
     if (!local || remoteLamport > localLamport) {
       const ingredient: DbIngredient = {
         id: remote.id as string,
@@ -323,12 +447,37 @@ export class SyncService {
       };
       await db.ingredients.put(ingredient);
     }
+    return false;
   }
 
-  private async mergeRemoteSynergy(remote: Record<string, unknown>): Promise<void> {
+  private async mergeRemoteSynergy(remote: Record<string, unknown>): Promise<boolean> {
     const local = await db.synergies.get(remote.id as string);
     const remoteLamport = (remote.lamport as number) || 0;
     const localLamport = local?.lamport || 0;
+    
+    // Detectar conflicto si ambos tienen cambios recientes
+    if (local && this.config.enableConflictDetection) {
+      const hasConflict = ConflictResolver.detectConflict(
+        localLamport,
+        remoteLamport,
+        local.updatedAt,
+        new Date(remote.updated_at as string).getTime()
+      );
+      
+      if (hasConflict) {
+        const conflictInfo: ConflictInfo = {
+          table: 'synergies',
+          recordId: remote.id as string,
+          localVersion: local as unknown as Record<string, unknown>,
+          remoteVersion: remote,
+          localLamport,
+          remoteLamport,
+        };
+        await ConflictResolver.registerConflict(conflictInfo);
+        return true;
+      }
+    }
+    
     if (!local || remoteLamport > localLamport) {
       const synergy: DbSynergy = {
         id: remote.id as string,
@@ -347,6 +496,7 @@ export class SyncService {
       };
       await db.synergies.put(synergy);
     }
+    return false;
   }
 
   private toSupabaseFormat(payload: Record<string, unknown>): Record<string, unknown> {
@@ -359,16 +509,18 @@ export class SyncService {
   }
 
   async retryFailedOps(): Promise<number> {
-    const failedOps = await db.outbox.where('status').equals('failed').filter((op) => op.retries < 3).toArray();
+    const failedOps = await db.outbox.where('status').equals('failed').toArray();
     for (const op of failedOps) {
-      op.status = 'pending';
-      op.retries += 1;
-      await db.outbox.put(op);
+      if (op.retries < this.config.maxRetries) {
+        op.status = 'pending';
+        op.retries += 1;
+        await db.outbox.put(op);
+      }
     }
     if (failedOps.length > 0 && this.isOnline && this.config.enabled) {
       this.triggerSync();
     }
-    return failedOps.length;
+    return failedOps.filter(op => op.retries < this.config.maxRetries).length;
   }
 
   async createBackup(encryptedBlob: Uint8Array, nonce: Uint8Array): Promise<{ success: boolean; snapshotId?: string; error?: string }> {
@@ -407,6 +559,20 @@ export class SyncService {
     await db.snapshots.bulkDelete(toDelete.map((s) => s.id));
     return toDelete.length;
   }
+
+  /**
+   * Obtiene conflictos pendientes
+   */
+  async getPendingConflicts() {
+    return ConflictResolver.getPendingConflicts();
+  }
+
+  /**
+   * Resuelve un conflicto
+   */
+  async resolveConflict(conflictId: string, resolution: 'local' | 'remote' | 'merged', mergedData?: Record<string, unknown>) {
+    return ConflictResolver.resolveConflict(conflictId, resolution, mergedData);
+  }
 }
 
 class ConflictError extends Error {
@@ -420,6 +586,13 @@ class SchemaMismatchError extends Error {
   constructor(message: string) {
     super(message);
     this.name = 'SchemaMismatchError';
+  }
+}
+
+class UnauthorizedError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'UnauthorizedError';
   }
 }
 

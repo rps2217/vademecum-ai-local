@@ -3,12 +3,16 @@
  * Componente que muestra el estado de sincronización
  */
 
+import { useState } from 'react';
 import { useSync } from '@/hooks/useSync';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '@/db';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
-import { Cloud, CloudOff, RefreshCw, Loader2 } from 'lucide-react';
+import { Cloud, CloudOff, RefreshCw, Loader2, AlertTriangle, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { ConflictList } from './SyncConflictModal';
 
 interface SyncStatusBarProps {
   className?: string;
@@ -16,8 +20,14 @@ interface SyncStatusBarProps {
 
 export function SyncStatusBar({ className }: SyncStatusBarProps) {
   const { isOnline, isConfigured, syncState, progress, sync, lastSyncAt, errorCount } = useSync();
+  const [showConflicts, setShowConflicts] = useState(false);
 
   const isSyncing = syncState === 'syncing';
+  const pendingConflicts = useLiveQuery(
+    () => db.conflicts.where('resolution').equals('pending').count(),
+    [],
+    0
+  );
 
   const handleSync = async () => {
     const loadingToast = toast.loading('Sincronizando...');
@@ -45,59 +55,105 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
   }
 
   return (
-    <div className={cn('flex items-center gap-3', className)}>
-      {/* Indicador de estado de red */}
-      <Badge variant={isOnline ? 'success' : 'danger'}>
-        {isOnline ? (
-          <>
-            <Cloud className="w-3 h-3 mr-1" />
-            Online
-          </>
-        ) : (
-          <>
-            <CloudOff className="w-3 h-3 mr-1" />
-            Offline
-          </>
-        )}
-      </Badge>
-
-      {/* Progreso de sync */}
-      {isSyncing && (
-        <span className="text-sm text-muted-foreground">
-          Sync {progress.completed}/{progress.total}
-        </span>
-      )}
-
-      {/* Indicador de sync */}
-      {syncState === 'error' && errorCount > 0 && (
-        <Badge variant="danger">
-          {errorCount} error{errorCount > 1 ? 'es' : ''}
+    <>
+      <div className={cn('flex items-center gap-3', className)}>
+        {/* Indicador de estado de red */}
+        <Badge variant={isOnline ? 'success' : 'danger'}>
+          {isOnline ? (
+            <>
+              <Cloud className="w-3 h-3 mr-1" />
+              Online
+            </>
+          ) : (
+            <>
+              <CloudOff className="w-3 h-3 mr-1" />
+              Offline
+            </>
+          )}
         </Badge>
-      )}
 
-      {/* Última sync */}
-      {lastSyncAt && !isSyncing && (
-        <span className="text-xs text-muted-foreground hidden sm:inline">
-          Hace {formatTimeAgo(lastSyncAt)}
-        </span>
-      )}
-
-      {/* Botón de sync */}
-      <Button
-        size="sm"
-        variant="ghost"
-        onClick={handleSync}
-        disabled={isSyncing || !isOnline}
-        className="gap-1"
-      >
-        {isSyncing ? (
-          <Loader2 className="w-3 h-3 animate-spin" />
-        ) : (
-          <RefreshCw className={cn('w-3 h-3', isSyncing && 'animate-spin')} />
+        {/* Estado de sync */}
+        {isSyncing && (
+          <span className="text-sm text-muted-foreground animate-pulse">
+            <Loader2 className="w-3 h-3 inline mr-1 animate-spin" />
+            Sincronizando...
+          </span>
         )}
-        <span className="hidden sm:inline">{isSyncing ? 'Sync' : 'Sync'}</span>
-      </Button>
-    </div>
+
+        {/* Progreso de sync */}
+        {!isSyncing && progress.pendingOps > 0 && (
+          <Badge variant="warning">
+            {progress.pendingOps} pendiente{progress.pendingOps > 1 ? 's' : ''}
+          </Badge>
+        )}
+
+        {/* Conflictos pendientes */}
+        {pendingConflicts > 0 && (
+          <button
+            onClick={() => setShowConflicts(true)}
+            className="flex items-center gap-1 text-amber-600 hover:text-amber-700 transition-colors"
+          >
+            <AlertTriangle className="w-3 h-3" />
+            <span className="text-sm font-medium">
+              {pendingConflicts} conflcito{pendingConflicts > 1 ? 's' : ''}
+            </span>
+          </button>
+        )}
+
+        {/* Éxito */}
+        {syncState === 'idle' && pendingConflicts === 0 && progress.pendingOps === 0 && (
+          <span className="text-green-600 flex items-center gap-1">
+            <Check className="w-3 h-3" />
+            <span className="text-sm">Sincronizado</span>
+          </span>
+        )}
+
+        {/* Indicador de error */}
+        {syncState === 'error' && errorCount > 0 && (
+          <Badge variant="danger">
+            {errorCount} error{errorCount > 1 ? 'es' : ''}
+          </Badge>
+        )}
+
+        {/* Última sync */}
+        {lastSyncAt && !isSyncing && (
+          <span className="text-xs text-muted-foreground hidden sm:inline">
+            Hace {formatTimeAgo(lastSyncAt)}
+          </span>
+        )}
+
+        {/* Botón de sync */}
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={handleSync}
+          disabled={isSyncing || !isOnline}
+          className="gap-1"
+        >
+          {isSyncing ? (
+            <Loader2 className="w-3 h-3 animate-spin" />
+          ) : (
+            <RefreshCw className={cn('w-3 h-3', isSyncing && 'animate-spin')} />
+          )}
+          <span className="hidden sm:inline">{isSyncing ? 'Sync' : 'Sync'}</span>
+        </Button>
+      </div>
+
+      {/* Modal de conflictos */}
+      {showConflicts && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-lg w-full mx-4 p-6">
+            <h2 className="text-lg font-semibold mb-4">Resolución de Conflictos</h2>
+            <ConflictList />
+            <div className="mt-4 flex justify-end">
+              <Button onClick={() => setShowConflicts(false)} variant="ghost">
+                Cerrar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
