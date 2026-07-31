@@ -17,6 +17,7 @@ import { Database, RefreshCw, Upload, Download, Trash2, Shield, Plus, Edit2, Tra
 import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
 import type { DbIngredient } from '@/db/schema';
 import { toast } from 'sonner';
+import { logger } from '@/lib/logger';
 
 type AdminTab = 'overview' | 'ingredients' | 'synergies';
 
@@ -37,7 +38,7 @@ export function AdminPage() {
       // TODO: Reindex embeddings
       toast.success('Búsqueda reindexada');
     } catch (error) {
-      console.error('Error reindexing:', error);
+      logger.error('Error reindexing:', error);
       toast.error('Error al reindexar');
     } finally {
       setIsLoading(false);
@@ -51,7 +52,7 @@ export function AdminPage() {
       const result = await seedKnowledgeBase();
       toast.success(`Base recargada: ${result.ingredients} ingredientes, ${result.synergies} sinergias`);
     } catch (error) {
-      console.error('Error reseeding:', error);
+      logger.error('Error reseeding:', error);
       toast.error('Error al recargar base de conocimiento');
     } finally {
       setIsLoading(false);

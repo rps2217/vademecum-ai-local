@@ -14,6 +14,7 @@ import { SearchInput } from '@/ui/SearchInput';
 import { SynergyGraph } from '@/components/admin/SynergyGraph';
 import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info, LayoutGrid, GitBranch } from 'lucide-react';
 import type { DbSynergy } from '@/db/schema';
+import { logger } from '@/lib/logger';
 
 const TYPE_CONFIG: Record<string, { label: string; color: string; icon: typeof Link2 }> = {
   sinergia: { 
@@ -72,7 +73,7 @@ export function SynergiesPage() {
         setIngredients(ingredientMap);
         setSynergies(synergiesData);
       } catch (error) {
-        console.error('Error loading synergies:', error);
+        logger.error('Error loading synergies:', error);
       } finally {
         setIsLoading(false);
       }

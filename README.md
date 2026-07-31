@@ -11,7 +11,8 @@
 - Detección de sinergias y antagonismos
 - Seguridad integrada (embarazo, lactancia, pediatría)
 - Cifrado E2EE opcional para datos sensibles
-- 100% offline con Service Worker
+- Offline-first con Service Worker (funciona sin conexión)
+- Sincronización opcional con Supabase (experimental)
 
 ---
 
@@ -116,16 +117,18 @@ npm run test:e2e        # Tests E2E (Playwright)
 ## 🌐 Variables de Entorno
 
 ```env
-# Supabase (opcional)
+# Supabase (opcional - sync experimental)
 VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
 VITE_SUPABASE_ANON_KEY=tu-clave
 ```
+
+> **Nota:** La sincronización con Supabase es experimental. Sin credenciales, la app funciona 100% offline.
 
 ---
 
 ## 📱 PWA
 
-La aplicación funciona 100% offline:
+La aplicación funciona offline por defecto:
 
 - **Service Worker** con precaching de assets
 - **Runtime caching** para Google Fonts
@@ -145,7 +148,9 @@ La aplicación funciona 100% offline:
 - **E2EE opcional** con tweetnacl (nacl box)
 - **PBKDF2** para derivar claves (600k iteraciones)
 - **Recovery phrase** BIP-39 de 12 palabras
-- **Datos locales** nunca salen del dispositivo (sin Supabase)
+- **Claves en sessionStorage** (se limpian al cerrar navegador)
+- **CSP** (Content Security Policy) habilitada
+- **Datos locales** nunca salen sin cifrado E2EE + Supabase configurado
 
 ---
 

@@ -91,7 +91,7 @@ export function getSupabase(): SupabaseClient | null {
       logger.log('[Supabase] Client created successfully');
     } catch (err) {
       configError = err instanceof Error ? err.message : 'Failed to create Supabase client';
-      console.error('[Supabase] Creation error:', configError);
+      logger.error('[Supabase] Creation error:', configError);
       return null;
     }
   }

@@ -49,6 +49,7 @@ export class SyncService {
   private syncInProgress = false;
   private lastError: string | null = null;
   private syncTimer: ReturnType<typeof setInterval> | null = null;
+  private listeners: Set<(status: SyncStatus) => void> = new Set();
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -70,6 +71,19 @@ export class SyncService {
     }
   }
 
+  subscribe(listener: (status: SyncStatus) => void): () => void {
+    this.listeners.add(listener);
+    // Immediately call with current status
+    this.getStatus().then(listener);
+    return () => this.listeners.delete(listener);
+  }
+
+  private notifyListeners() {
+    this.getStatus().then((status) => {
+      this.listeners.forEach((listener) => listener(status));
+    });
+  }
+
   private startAutoSync() {
     if (this.syncTimer) return;
     this.syncTimer = setInterval(() => {
@@ -88,6 +102,7 @@ export class SyncService {
 
   private handleOnline() {
     this.isOnline = true;
+    this.notifyListeners();
     if (this.config.enabled && this.config.autoSync) {
       this.performFullSync().catch(logger.error);
     }
@@ -95,6 +110,7 @@ export class SyncService {
 
   private handleOffline() {
     this.isOnline = false;
+    this.notifyListeners();
   }
 
   async getStatus(): Promise<SyncStatus> {
@@ -190,6 +206,12 @@ export class SyncService {
           conflicts++;
           op.status = 'conflict';
           op.lastError = 'Conflicto de sincronizacion';
+        } else if (error instanceof SchemaMismatchError) {
+          // Schema mismatch - mark as failed but log warning
+          logger.warn('[SyncService] Schema mismatch during upload:', error.message);
+          op.status = 'failed';
+          op.retries++;
+          op.lastError = error.message;
         } else {
           op.status = 'failed';
           op.retries++;
@@ -211,14 +233,23 @@ export class SyncService {
       case 'update': {
         const { error } = await supabase.from(table).upsert(supabasePayload, { onConflict: 'id' });
         if (error) {
+          // Handle schema mismatch gracefully
           if (error.code === '23505') throw new ConflictError('Record already exists');
+          if (error.code === 'PGRST204' || error.message?.includes('column')) {
+            throw new SchemaMismatchError(`Schema mismatch for table "${table}". Ensure Supabase schema includes all required columns. Sync is experimental.`);
+          }
           throw error;
         }
         break;
       }
       case 'delete': {
         const { error } = await supabase.from(table).update({ tombstone: 1, updated_at: new Date().toISOString() }).eq('id', op.recordId);
-        if (error) throw error;
+        if (error) {
+          if (error.code === 'PGRST204' || error.message?.includes('column')) {
+            throw new SchemaMismatchError(`Schema mismatch for table "${table}". Ensure Supabase schema includes all required columns.`);
+          }
+          throw error;
+        }
         break;
       }
     }
@@ -231,17 +262,33 @@ export class SyncService {
     const lastSync = lastSyncMeta?.value as number | undefined;
     const lastSyncDate = lastSync ? new Date(lastSync).toISOString() : '1970-01-01T00:00:00Z';
     let downloaded = 0;
+    
+    // Download ingredients
     const { data: ingredients, error: ingError } = await supabase.from('ingredients').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
-    if (ingError) logger.error('Error downloading ingredients:', ingError);
-    else if (ingredients) {
+    if (ingError) {
+      // Handle schema mismatch gracefully (PGRST204 = column not found)
+      if (ingError.code === 'PGRST204' || ingError.message?.includes('column')) {
+        logger.warn('[SyncService] Schema mismatch: "ingredients" table columns not found. Sync is experimental - ensure Supabase schema matches local schema.');
+      } else {
+        logger.error('Error downloading ingredients:', ingError);
+      }
+    } else if (ingredients) {
       for (const ing of ingredients) {
         await this.mergeRemoteIngredient(ing);
         downloaded++;
       }
     }
+    
+    // Download synergies
     const { data: synergies, error: synError } = await supabase.from('synergies').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
-    if (synError) logger.error('Error downloading synergies:', synError);
-    else if (synergies) {
+    if (synError) {
+      // Handle schema mismatch gracefully
+      if (synError.code === 'PGRST204' || synError.message?.includes('column')) {
+        logger.warn('[SyncService] Schema mismatch: "synergies" table columns not found. Sync is experimental.');
+      } else {
+        logger.error('Error downloading synergies:', synError);
+      }
+    } else if (synergies) {
       for (const syn of synergies) {
         await this.mergeRemoteSynergy(syn);
         downloaded++;
@@ -366,6 +413,13 @@ class ConflictError extends Error {
   constructor(message: string) {
     super(message);
     this.name = 'ConflictError';
+  }
+}
+
+class SchemaMismatchError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'SchemaMismatchError';
   }
 }
 

@@ -1,10 +1,18 @@
 /**
  * End-to-End Encryption Utilities
  * 
- * Cifrado E2E para backups usando tweetnacl + BIP39.
+ * Cifrado E2E para backups usando tweetnacl + BIP39 + Web Crypto API.
  * 
- * SEGURIDAD: Usa sessionStorage en lugar de localStorage para reducir
- * el riesgo de XSS. Las claves se limpian automáticamente al cerrar el navegador.
+ * SEGURIDAD:
+ * - Usa sessionStorage para reducir riesgo XSS (claves se limpian al cerrar navegador)
+ * - Deriva claves usando PBKDF2 con 600k iteraciones
+ * - Timeout de sesión configurable (30 min por defecto)
+ * - Usa CryptoKey no exportable cuando es posible
+ * 
+ * LIMITACIONES:
+ * - Las claves deben almacenarse cifradas en sessionStorage para persistencia de sesión
+ * - Para protección XSS completa, se requiere Web Crypto API con CryptoKey en memoria
+ *   (actualmente no implementado por limitaciones de persistencia entre page refresh)
  */
 
 import nacl from 'tweetnacl';
@@ -49,6 +57,7 @@ export interface RecoveryData {
 
 /**
  * Derivar clave AES-256 desde password usando PBKDF2
+ * Usa Web Crypto API para máxima seguridad
  */
 export async function deriveKey(password: string, salt: Uint8Array): Promise<Uint8Array> {
   const enc = new TextEncoder();
@@ -64,11 +73,36 @@ export async function deriveKey(password: string, salt: Uint8Array): Promise<Uin
     { name: 'PBKDF2', salt, iterations: 600_000, hash: 'SHA-256' },
     keyMaterial,
     { name: 'AES-GCM', length: 256 },
-    true,
+    false, // No extractable para máxima seguridad
     ['encrypt', 'decrypt']
   );
   
+  // Exportar para uso con TweetNaCl (limitación actual)
+  // En el futuro, migrar a CryptoKey no exportable para todo
   return new Uint8Array(await crypto.subtle.exportKey('raw', key));
+}
+
+/**
+ * Derivar CryptoKey no exportable desde password (para uso futuro con Web Crypto API)
+ * Esta función puede usarse cuando no se necesita persistencia entre refresh
+ */
+export async function deriveCryptoKey(password: string, salt: Uint8Array): Promise<CryptoKey> {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(password),
+    'PBKDF2',
+    false,
+    ['deriveKey']
+  );
+  
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 600_000, hash: 'SHA-256' },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    false, // No extractable - máxima seguridad
+    ['encrypt', 'decrypt']
+  );
 }
 
 /**

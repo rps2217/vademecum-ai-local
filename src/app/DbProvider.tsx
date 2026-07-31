@@ -7,6 +7,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { db } from '@/db';
 import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
+import { logger } from '@/lib/logger';
 
 interface DbContextValue {
   isReady: boolean;
@@ -41,7 +42,7 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
         
         setIsReady(true);
       } catch (err) {
-        console.error('Database initialization failed:', err);
+        logger.error('Database initialization failed:', err);
         setError(err instanceof Error ? err : new Error('Unknown error'));
       }
     }

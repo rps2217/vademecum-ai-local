@@ -20,6 +20,7 @@ import {
   type StoredKeyPair,
   type RecoveryData,
 } from '@/lib/crypto';
+import { logger } from '@/lib/logger';
 
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
 const KEY_STORAGE_KEY = 'vademecum_keypair';
@@ -155,7 +156,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
       setIsAuthenticated(true);
       return { recoveryPhrase: newRecoveryPhrase }; // Devolver nueva phrase
     } catch (err) {
-      console.error('Recovery failed:', err);
+      logger.error('Recovery failed:', err);
       return false;
     }
   };

@@ -3,8 +3,19 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import { syncManager, type SyncProgress, type SyncState } from '@/data/sync/SyncManager';
+import { syncService, type SyncStatus } from '@/core/sync';
 import { isSupabaseConfigured } from '@/lib/supabase';
+
+type SyncState = 'idle' | 'syncing' | 'error' | 'offline';
+
+interface SyncProgress {
+  state: SyncState;
+  direction: 'upload' | 'download' | 'bidirectional';
+  total: number;
+  completed: number;
+  errors: string[];
+  lastSyncAt: number | null;
+}
 
 export interface UseSyncResult {
   isOnline: boolean;
@@ -17,41 +28,53 @@ export interface UseSyncResult {
 }
 
 export function useSync(): UseSyncResult {
-  const [progress, setProgress] = useState<SyncProgress>(syncManager['progress']);
-  const [isOnline, setIsOnline] = useState(
-    typeof navigator !== 'undefined' ? navigator.onLine : true
-  );
+  const [status, setStatus] = useState<SyncStatus | null>(null);
   const isConfigured = isSupabaseConfigured();
 
   useEffect(() => {
-    // Suscribirse a cambios del SyncManager
-    const unsubscribe = syncManager.subscribe(setProgress);
-
-    // Listeners de red
-    const handleOnline = () => setIsOnline(true);
-    const handleOffline = () => setIsOnline(false);
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-
-    return () => {
-      unsubscribe();
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
+    // Suscribirse a cambios del SyncService
+    const unsubscribe = syncService.subscribe(setStatus);
+    return unsubscribe;
   }, []);
 
   const sync = useCallback(async () => {
-    return syncManager.sync();
+    const result = await syncService.forceSync();
+    // Refresh status after sync
+    const newStatus = await syncService.getStatus();
+    setStatus(newStatus);
+    
+    const progress: SyncProgress = {
+      state: result.success ? 'idle' : 'error',
+      direction: 'bidirectional',
+      total: result.uploaded + result.downloaded,
+      completed: result.uploaded + result.downloaded,
+      errors: result.error ? [result.error] : [],
+      lastSyncAt: newStatus.lastSyncAt,
+    };
+    return progress;
   }, []);
+
+  const isOnline = status?.isOnline ?? (typeof navigator !== 'undefined' ? navigator.onLine : true);
+  const syncState: SyncState = status?.isSyncing ? 'syncing' : 
+    (status?.error ? 'error' : 
+    (!isOnline ? 'offline' : 'idle'));
+
+  const progress: SyncProgress = {
+    state: syncState,
+    direction: 'bidirectional',
+    total: status?.pendingOps ?? 0,
+    completed: 0,
+    errors: status?.error ? [status.error] : [],
+    lastSyncAt: status?.lastSyncAt ?? null,
+  };
 
   return {
     isOnline,
     isConfigured,
-    syncState: progress.state,
+    syncState,
     progress,
     sync,
-    lastSyncAt: progress.lastSyncAt,
-    errorCount: progress.errors.length,
+    lastSyncAt: status?.lastSyncAt ?? null,
+    errorCount: status?.error ? 1 : 0,
   };
 }

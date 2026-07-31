@@ -14,6 +14,7 @@ import { Select } from '@/ui/Select';
 import { Search, Filter, Star, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import type { DbIngredient, IngredientCategory, BodySystem, EvidenceLevel } from '@/db/schema';
+import { logger } from '@/lib/logger';
 
 const CATEGORIES = [
   { value: '', label: 'Todas las categorias' },
@@ -83,7 +84,7 @@ export function SearchPage() {
         });
         setResults(searchResults);
       } catch (error) {
-        console.error('Search error:', error);
+        logger.error('Search error:', error);
       } finally {
         setIsSearching(false);
       }
