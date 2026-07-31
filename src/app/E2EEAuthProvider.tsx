@@ -3,6 +3,9 @@
  *
  * Maneja el keypair y la recuperación.
  * Sesiones expiran después de 30 minutos de inactividad.
+ * 
+ * SEGURIDAD: Usa sessionStorage en lugar de localStorage para reducir
+ * el riesgo de XSS. Las claves se limpian al cerrar el navegador.
  */
 
 import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
@@ -122,7 +125,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
       const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
       const encrypted = nacl.secretbox(secretKey, nonce, aesKey);
       
-      // 3. Guardar nuevo keypair
+      // 3. Guardar nuevo keypair en sessionStorage
       const publicKey = nacl.box.keyPair.fromSecretKey(secretKey).publicKey;
       const stored: StoredKeyPair = {
         publicKey: encodeBase64(publicKey),
@@ -130,13 +133,13 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
         nonce: encodeBase64(nonce),
         salt: encodeBase64(salt),
       };
-      localStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
+      sessionStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
       
       // 4. Generar NUEVA recovery phrase
       const { generateMnemonic } = await import('bip39');
       const newRecoveryPhrase = generateMnemonic(128);
       
-      // 5. Guardar recovery data
+      // 5. Guardar recovery data en sessionStorage
       const recoveryKey = await deriveKey(newRecoveryPhrase, salt);
       const recoveryNonce = nacl.randomBytes(nacl.secretbox.nonceLength);
       const recoveryEncrypted = nacl.secretbox(secretKey, recoveryNonce, recoveryKey);
@@ -146,7 +149,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
         nonce: encodeBase64(recoveryNonce),
         salt: encodeBase64(salt),
       };
-      localStorage.setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
+      sessionStorage.setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
       
       startSession();
       setIsAuthenticated(true);

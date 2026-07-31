@@ -9,61 +9,92 @@
 - Dashboard admin para gestionar la base de conocimiento
 - Visualización de red de relaciones entre ingredientes
 - Búsqueda semántica inteligente con IA local (100% offline)
+- E2EE (End-to-End Encryption) para backups seguros
 
 ## Arquitectura General
 
 ```
 src/
+├── app/                          # Providers de la app
+│   ├── DbProvider.tsx            # Provider de Dexie (IndexedDB)
+│   ├── E2EEAuthProvider.tsx      # Provider de autenticación E2E
+│   ├── ThemeProvider.tsx         # Provider de tema
+│   └── providers.tsx             # Composición de providers
 ├── components/
-│   ├── admin/                    # Dashboard de administración KB
-│   │   ├── KBDashboard.tsx        # Panel principal admin
-│   │   ├── SynergyGraph.tsx       # Visualización de red SVG
-│   │   └── IngredientEditor.tsx   # Editor de ingredientes
-│   ├── auth/                     # Login, autenticación
-│   ├── layout/                    # Dashboard, navegación
-│   └── ui/                       # Componentes UI reutilizables
+│   ├── admin/                    # Dashboard de administración
+│   │   ├── SynergyGraph.tsx      # Visualización de red SVG
+│   │   └── IngredientEditor.tsx  # Editor de ingredientes
+│   ├── layout/                   # Layout principal
+│   │   └── AppShell.tsx          # Shell de la app
+│   └── sync/                     # Componentes de sync
+│       └── SyncStatusBar.tsx     # Barra de estado de sync
 ├── core/
-│   ├── knowledge-base/           # Base de conocimiento modular
-│   │   ├── data/                 # Datos JSON por categoría
-│   │   │   ├── schema.ts                   # Tipos TypeScript
-│   │   │   ├── fitoterapia.json           # 25+ plantas medicinales
-│   │   │   ├── homeopatia.json           # 14+ remedios homeopáticos
-│   │   │   ├── aceites.json              # 12+ aceites esenciales
-│   │   │   └── vitaminas_minerales.json  # 12+ vitaminas/minerales
-│   │   ├── synergies/           # Red de relaciones
-│   │   │   └── synergies.json             # 25+ sinergias curadas
-│   │   └── services/
-│   │       ├── KnowledgeLoader.ts         # Carga de datos
-│   │       └── SynergyEngineV2.ts     # Motor de sinergias
-│   ├── ingredient-database/      # Base legacy + sinónimos
-│   │   └── SynonymsService.ts            # 360+ sinónimos
-│   ├── smart-search/             # 🔥 HERO SEARCH - Motor de chips inteligentes
-│   │   └── SmartChipEngine.ts            # Chips auto-clasificados
-│   ├── semantic-search/          # Búsqueda con IA (Transformers.js)
-│   │   ├── KBEmbeddingService.ts
-│   │   └── embedding-service.ts
-│   └── protocols/                # Protocolos de suplementación
-├── modules/
-│   ├── search/
-│   │   └── components/
-│   │       └── HeroSearch.tsx        # 🔥 BUSCADOR PROTAGONISTA
-│   └── protocols/
-│       └── ProtocolsModule.tsx
-├── services/
-│   ├── SupabaseService.ts          # Sync productos
-│   └── SupabaseKBService.ts        # Sync base conocimiento
-└── store/                       # Zustand stores
+│   ├── search/                   # Motor de búsqueda
+│   │   ├── IngredientSearchService.ts  # Servicio de búsqueda
+│   │   └── index.ts
+│   └── sync/                     # Motor de sincronización
+│       ├── SyncService.ts        # Servicio de sync
+│       └── index.ts
+├── data/
+│   ├── adapters/                 # Adaptadores de datos
+│   │   ├── IngredientAdapter.ts  # Adaptador para ingredientes
+│   │   ├── ProductAdapter.ts    # Adaptador para productos
+│   │   ├── SynergyAdapter.ts    # Adaptador para sinergias
+│   │   ├── ProtocolAdapter.ts   # Adaptador para protocolos
+│   │   └── types.ts             # Tipos compartidos
+│   └── sync/                     # Gestor de sincronización
+│       └── SyncManager.ts       # Manager de sync (28KB)
+├── db/                          # Base de datos Dexie
+│   ├── schema.ts                # Schema de la DB
+│   ├── index.ts                 # Exports
+│   └── seeders/                 # Seeders de datos
+│       ├── index.ts
+│       └── knowledgeSeeder.ts   # Seeder de KB
+├── lib/
+│   ├── crypto/                  # Criptografía E2E
+│   │   └── e2ee.ts              # Funciones de cifrado
+│   └── logger.ts                # Logger centralizado
+├── pages/                       # Páginas de la app
+│   ├── HomePage.tsx
+│   ├── SearchPage.tsx
+│   ├── SynergiesPage.tsx
+│   ├── KnowledgePage.tsx
+│   ├── AdminPage.tsx
+│   ├── SettingsPage.tsx
+│   ├── LoginPage.tsx
+│   ├── OnboardingPage.tsx
+│   └── AnalysisPage.tsx
+└── hooks/                       # Hooks personalizados
+    ├── useAccessibility.tsx
+    └── index.ts
 ```
 
 ## Tecnologías Principales
 
-- **React 18** + TypeScript
+- **React 19** + TypeScript
 - **Tailwind CSS** para estilos
-- **Zustand** para estado global
+- **Dexie** (IndexedDB wrapper) para almacenamiento local
 - **Transformers.js** para embeddings (100% local)
-- **Supabase** para sincronización (opcional)
+- **Supabase** para sincronización (opcional, experimental)
 - **PWA** para uso offline
-- **SVG** para visualización de red
+- **TweetNaCl** para E2EE (cifrado de extremo a extremo)
+- **@xyflow/react** para visualización de red SVG
+
+## Seguridad
+
+### E2EE (End-to-End Encryption)
+
+Las claves de cifrado se almacenan en **sessionStorage** (no localStorage) para reducir el riesgo de XSS:
+- Las claves se limpian automáticamente al cerrar el navegador
+- Sesiones expiran después de 30 minutos de inactividad
+- Las claves están cifradas con PBKDF2 (600k iteraciones)
+
+### CSP (Content Security Policy)
+
+La aplicación tiene una CSP básica configurada en `index.html`:
+```html
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; ..." />
+```
 
 ## Comandos Importantes
 
@@ -88,252 +119,102 @@ VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
 VITE_SUPABASE_ANON_KEY=tu-clave
 ```
 
-## Base de Conocimiento Modular
+## Base de Datos (Dexie/IndexedDB)
 
-### Datos por Categoría
+### Schema Principal
+
+El schema está en `src/db/schema.ts`:
 
 ```typescript
-// fitoterapia.json - Plantas medicinales
-{
-  "id": "valeriana",
-  "nombre": "Valeriana",
-  "sistemas": ["nervioso"],
-  "indicaciones": ["insomnio", "ansiedad"],
-  "parteUsada": "raiz",
-  "advertencias": ["Puede causar somnolencia"]
+export interface DbIngredient {
+  id: string;
+  nombre: string;
+  sinonimos: string[];
+  categoria: IngredientCategory;
+  sistemas: BodySystem[];
+  indicaciones: string[];
+  evidencia: EvidenceLevel;
+  // ... más campos
+  lamport: number;    // Clock de Lamport para sync
+  deviceId: string;
+  updatedAt: number;
+  tombstone: 0 | 1;   // Soft delete
 }
 
-// homeopatia.json - Remedios
-{
-  "id": "arnica",
-  "dilucionesCH": [5, 7, 9, 15, 30],
-  "sintomasClave": ["Sensacion de golpeado", "No quiere ser tocado"],
-  "modalidades": { "empeora": ["toque"], "mejora": ["acostado"] }
-}
-
-// aceites.json - Aceites esenciales
-{
-  "id": "lavanda_aceite",
-  "dilucionRecomendada": "1-3% para piel",
-  "metodosUso": ["difusion", "topico", "inhalacion"]
-}
-
-// vitaminas_minerales.json
-{
-  "id": "magnesio",
-  "dosisDiaria": "300-400mg/dia",
-  "formaQuimica": ["citrato", "glicinato", "taurato"]
+export interface DbSynergy {
+  id: string;
+  ingredienteA: string;
+  ingredienteB: string;
+  tipo: SynergyType;
+  nivel: SynergyLevel;
+  // ... más campos
 }
 ```
 
-### Schema Unificado (schema.ts)
+### Tablas Disponibles
 
-```typescript
-export type IngredientCategory = 
-  | 'fitoterapia' | 'homeopatia' | 'aceite_esencial'
-  | 'vitaminas' | 'minerales' | 'aminoacidos' | 'probioticos';
-
-export type BodySystem = 
-  | 'nervioso' | 'digestivo' | 'inmune' | 'cardiovascular'
-  | 'respiratorio' | 'musculoesqueletico' | 'endocrino';
-
-export type SynergyType = 
-  | 'potenciador' | 'complementario' | 'cofactor' | 'secuencial' | 'bioactivador';
-
-export type EvidenceLevel = 'A' | 'B' | 'C' | 'D';
-```
-
-## Motor de Sinergias
-
-```typescript
-import { synergyEngineV2 } from './core/knowledge-base';
-
-// Analizar sinergias
-const analysis = synergyEngineV2.analyze(['valeriana', 'pasiflora']);
-// → { sinergiasDetectadas: [...], puntuacion: 85, recomendacion: "..." }
-
-// Sugerir compañeros
-const suggestions = synergyEngineV2.suggestPartners('equinacea', 5);
-// → [{ ingredient: {...}, synergy: {...} ]
-
-// Verificar antagonismos
-const warnings = synergyEngineV2.checkAntagonisms(['warfarin', 'ginkgo']);
-```
-
-## 🔥 Hero Search - Buscador Protagonista
-
-El buscador es el elemento central de la aplicación con chips inteligentes que se auto-clasifican.
-
-### SmartChipEngine
-
-```typescript
-import { smartChipEngine } from './core/smart-search';
-
-// Obtener chips para mostrar (se actualizan según query)
-const chips = smartChipEngine.getChips({ query: 'ansiedad', limit: 8 });
-
-// Detectar intención del usuario
-const suggestions = smartChipEngine.detectIntentAndSuggest('dormir');
-// → [{ id: 'sleep', label: '😴 Dormir mejor', intent: 'health_goal', ... }]
-
-// Registrar búsqueda para mejorar sugerencias futuras
-smartChipEngine.registerSearch('valeriana');
-```
-
-### Características del Motor de Chips
-
-- **Auto-clasificación**: Analiza la KB y genera chips automáticamente
-- **Detección de intención**: Identifica si el usuario busca objetivos, condiciones, síntomas
-- **Sinonimia inteligente**: Expandir queries con términos relacionados
-- **Historial adaptativo**: Aprende de las búsquedas del usuario
-- **Priorización dinámica**: Ordena chips por relevancia
-
-### Intenciones Detectadas
-
-```typescript
-type ChipIntent = 
-  | 'health_goal'    // Objetivos: dormir, energía, memoria
-  | 'condition'      // Condiciones: ansiedad, inflamación
-  | 'symptom'        // Síntomas: dolor, fatiga
-  | 'category'       // Categorías: vitaminas, plantas
-  | 'action';        // Acciones: prevenir, mejorar
-```
-
-## 🤖 Motor de Sugerencias IA
-
-```typescript
-import { suggestionEngine } from './core/ai-suggestions';
-
-// Actualizar contexto del usuario
-suggestionEngine.updateContext({ currentQuery: 'ansiedad' });
-
-// Obtener sugerencias inteligentes
-const suggestions = await suggestionEngine.getSuggestions(5);
-// → [{ type: 'synergy', title: 'Combinación sinérgica', ... }]
-
-// Registrar click para aprendizaje
-suggestionEngine.registerClick('ashwagandha');
-
-// Obtener insights de uso
-const insights = suggestionEngine.getUsageInsights();
-// → { totalSearches: 42, topSymptoms: ['estrés', 'sueño'], ... }
-```
-
-### Tipos de Sugerencias
-
-- **synergy**: Combinaciones sinérgicas conocidas entre ingredientes
-- **complementary**: Ingredientes que combinan bien con selección actual
-- **alternative**: Alternativas populares para el síntoma detectado
-- **educational**: Patrones aprendidos del historial del usuario
-
-### Detección de Síntomas
-
-El motor detecta automáticamente síntomas por palabras clave:
-- Sueño: dormir, insomnio, fatiga, cansancio
-- Dolor: dolor, inflamación, artritis, migraña
-- Estrés: estrés, ansiedad, nervios, tensión
-- Inmunidad: inmune, defensas, resfriado, gripe
-- Digestivo: digestivo, estómago, náuseas, intestino
-
-## Búsqueda con Sinónimos
-
-```typescript
-import { SYNONYMS_MAP, findIngredientByAny } from './SynonymsService';
-
-// 360+ sinónimos en español, inglés, latín
-SYNONYMS_MAP['valerian']      // → 'valeriana'
-SYNONYMS_MAP['st johns wort'] // → 'hipérico'
-SYNONYMS_MAP['omega-3']      // → 'omega_3'
-SYNONYMS_MAP['l-theanine']   // → 'teanina'
-```
-
-## Servicios de Datos
-
-### KnowledgeLoader
-
-```typescript
-import { knowledgeLoader } from './core/knowledge-base';
-
-await knowledgeLoader.load();
-knowledgeLoader.search('valeriana');           // → [...]
-knowledgeLoader.getByCategory('fitoterapia');  // → [...]
-knowledgeLoader.getBySystem('nervioso');      // → [...]
-knowledgeLoader.getSynergiesFor('equinacea');   // → [...]
-```
-
-### SupabaseKBService
-
-```typescript
-import { supabaseKBService } from './services/SupabaseKBService';
-
-await supabaseKBService.syncAll();             // Sync bidireccional
-await supabaseKBService.getSyncStats();       // Estadísticas
-supabaseKBService.getCachedIngredients();    // Datos en caché
-```
-
-## Dashboard Admin
-
-```tsx
-import { KBDashboard } from './components/admin';
-
-<KBDashboard />
-```
-
-**Pestañas:**
-- **Resumen**: Stats, gráficos, categorías
-- **Ingredientes**: Lista, búsqueda, filtros
-- **Sinergias**: Grafo interactivo + lista
-- **Sync**: Estado de sincronización
+- `products` - Productos de farmacia
+- `ingredients` - Ingredientes de la KB
+- `synergies` - Relaciones entre ingredientes
+- `protocols` - Protocolos de suplementación
+- `outbox` - Cola de operaciones pendientes de sync
+- `snapshots` - Backups cifrados
+- `syncMeta` - Metadatos de sincronización
+- `searchHistory` - Historial de búsquedas
 
 ## Estado de Implementación
 
 ### ✅ Completado
-- [x] Arquitectura modular de base de conocimiento
-- [x] Schema unificado con tipos TypeScript
-- [x] Datos JSON separados por categoría
-- [x] 360+ sinónimos multilingüe
-- [x] Motor de detección de sinergias V2
-- [x] Visualización de red SVG interactiva
-- [x] Dashboard admin con estadísticas
-- [x] Editor de ingredientes
-- [x] Integración con Supabase
-- [x] Schema PostgreSQL completo
-- [x] Sincronización bidireccional
-- [x] PWA con Service Worker
-- [x] Búsqueda semántica local (Transformers.js)
+- [x] PWA con Service Worker (vite-plugin-pwa)
+- [x] Base de datos Dexie (IndexedDB) con schema v2
+- [x] Sistema de sync bidireccional (SyncManager + SyncService)
+- [x] E2EE con TweetNaCl (claves en sessionStorage)
+- [x] CSP (Content Security Policy)
+- [x] Dashboard admin (AdminPage)
+- [x] Visualización de sinergias con @xyflow/react
+- [x] Búsqueda local con IngredientSearchService
 
-### 🔄 En Desarrollo
-- [x] Editor visual de sinergias
-- [x] Dashboard admin para CRUD de KB
-- [x] Motor de sugerencias IA
+### 🔄 Pendiente / Experimental
+- [ ] Sync con Supabase (schema mismatch - ver nota abajo)
+- [ ] Tests de integración completos
+
+> **Nota sobre Supabase Sync:** El sync con Supabase es experimental. Existen diferencias de schema entre Dexie (local) y PostgreSQL (remoto) que deben resolverse en una versión futura.
 
 ## Patrones de Código
 
-### Store de Zustand
+### Provider de Database
 ```typescript
-import { create } from 'zustand';
+// Usar el hook useLiveQuery de dexie-react-hooks
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '@/db';
 
-interface AppState {
-  products: Product[];
-  setProducts: (products: Product[]) => void;
+function MyComponent() {
+  const ingredients = useLiveQuery(
+    () => db.ingredients.toArray(),
+    []
+  );
+  // ...
 }
-
-export const useAppStore = create<AppState>((set) => ({
-  products: [],
-  setProducts: (products) => set({ products }),
-}));
 ```
 
-### Componente con useMemo
+### Logger Centralizado
 ```typescript
-const expensiveResult = useMemo(() => {
-  return computeExpensiveValue(data);
-}, [data]);
+import { logger } from '@/lib/logger';
+
+// Solo log en desarrollo
+logger.debug('Debug info');
+logger.log('Info message');
+
+// Siempre visible
+logger.warn('Warning');
+logger.error('Error');
 ```
 
 ### Servicio Singleton
 ```typescript
-// Los servicios van en src/services/
-// Usar clases singleton exportadas como default
-export const searchService = new SearchService();
+// Los servicios se exportan como instancias únicas
+import { searchService } from '@/core/search';
+
+// O usando clases con getInstance
+export const syncManager = SyncManager.getInstance();
 ```

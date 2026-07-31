@@ -2,6 +2,9 @@
  * End-to-End Encryption Utilities
  * 
  * Cifrado E2E para backups usando tweetnacl + BIP39.
+ * 
+ * SEGURIDAD: Usa sessionStorage en lugar de localStorage para reducir
+ * el riesgo de XSS. Las claves se limpian automáticamente al cerrar el navegador.
  */
 
 import nacl from 'tweetnacl';
@@ -9,6 +12,27 @@ import { encodeBase64, decodeBase64 } from 'tweetnacl-util';
 
 const KEY_STORAGE_KEY = 'vademecum.keypair';
 const RECOVERY_STORAGE_KEY = 'vademecum.recovery';
+const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutos
+
+interface SessionMeta {
+  timestamp: number;
+}
+
+let _sessionExpiry: number | null = null;
+
+function getStorage(): Storage {
+  // Usar sessionStorage para reducir riesgo XSS
+  return sessionStorage;
+}
+
+function isSessionValid(): boolean {
+  if (_sessionExpiry === null) return false;
+  return Date.now() < _sessionExpiry;
+}
+
+function refreshSession(): void {
+  _sessionExpiry = Date.now() + SESSION_TIMEOUT_MS;
+}
 
 export interface StoredKeyPair {
   publicKey: string;
@@ -48,7 +72,7 @@ export async function deriveKey(password: string, salt: Uint8Array): Promise<Uin
 }
 
 /**
- * Generar par de claves y guardarlo cifrado
+ * Generar par de claves y guardarlo cifrado en sessionStorage
  */
 export async function generateAndStoreKeyPair(password: string): Promise<{
   publicKey: string;
@@ -67,7 +91,8 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
     salt: encodeBase64(salt),
   };
   
-  localStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
+  getStorage().setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
+  refreshSession();
 
   // Generar frase de recuperación BIP-39
   const { generateMnemonic } = await import('bip39');
@@ -84,7 +109,7 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
     salt: encodeBase64(salt),
   };
   
-  localStorage.setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
+  getStorage().setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
 
   return { publicKey: stored.publicKey, recoveryPhrase };
 }
@@ -93,7 +118,9 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
  * Desbloquear par de claves con password
  */
 export async function unlockKeyPair(password: string): Promise<Uint8Array | null> {
-  const raw = localStorage.getItem(KEY_STORAGE_KEY);
+  if (!isSessionValid()) return null;
+  
+  const raw = getStorage().getItem(KEY_STORAGE_KEY);
   if (!raw) return null;
   
   try {
@@ -106,6 +133,7 @@ export async function unlockKeyPair(password: string): Promise<Uint8Array | null
     );
     
     if (decrypted) {
+      refreshSession();
       return decrypted;
     }
     return null;
@@ -125,7 +153,7 @@ export async function getStoredSecretKey(password: string): Promise<Uint8Array |
  * Desbloquear con frase de recuperación
  */
 export async function unlockWithRecovery(phrase: string): Promise<Uint8Array | null> {
-  const raw = localStorage.getItem(RECOVERY_STORAGE_KEY);
+  const raw = getStorage().getItem(RECOVERY_STORAGE_KEY);
   if (!raw) return null;
   
   try {
@@ -138,6 +166,7 @@ export async function unlockWithRecovery(phrase: string): Promise<Uint8Array | n
     );
     
     if (decrypted) {
+      refreshSession();
       return decrypted;
     }
     return null;
@@ -150,7 +179,9 @@ export async function unlockWithRecovery(phrase: string): Promise<Uint8Array | n
  * Obtener clave pública
  */
 export function getPublicKey(): string | null {
-  const raw = localStorage.getItem(KEY_STORAGE_KEY);
+  if (!isSessionValid()) return null;
+  
+  const raw = getStorage().getItem(KEY_STORAGE_KEY);
   if (!raw) return null;
   
   try {
@@ -162,18 +193,26 @@ export function getPublicKey(): string | null {
 }
 
 /**
- * Verificar si existe un par de claves
+ * Verificar si existe un par de claves (sesión válida)
  */
 export function hasKeyPair(): boolean {
-  return localStorage.getItem(KEY_STORAGE_KEY) !== null;
+  return isSessionValid() && getStorage().getItem(KEY_STORAGE_KEY) !== null;
 }
 
 /**
- * Eliminar par de claves (dangerous!)
+ * Eliminar par de claves y expirar sesión
  */
 export function deleteKeyPair(): void {
-  localStorage.removeItem(KEY_STORAGE_KEY);
-  localStorage.removeItem(RECOVERY_STORAGE_KEY);
+  getStorage().removeItem(KEY_STORAGE_KEY);
+  getStorage().removeItem(RECOVERY_STORAGE_KEY);
+  _sessionExpiry = null;
+}
+
+/**
+ * Refrescar sesión manualmente
+ */
+export function extendSession(): void {
+  refreshSession();
 }
 
 /**
