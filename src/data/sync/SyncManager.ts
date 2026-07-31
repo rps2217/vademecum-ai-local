@@ -331,6 +331,7 @@ export class SyncManager {
     
     this.progress.total += locals.length;
     let uploaded = 0;
+    let schemaErrorCount = 0;
 
     for (const local of locals) {
       try {
@@ -351,8 +352,14 @@ export class SyncManager {
             .eq('ingredient_key', local.id);
 
           if (error) {
-            logger.error(`Error updating ingredient ${local.id}:`, error);
-            this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+            // PGRST204 = schema mismatch (column not found) - esto es esperado si el schema de Supabase no coincide
+            if (error.code === 'PGRST204') {
+              schemaErrorCount++;
+              logger.warn(`Schema mismatch for ingredient ${local.id}: Supabase table missing columns`);
+            } else {
+              logger.error(`Error updating ingredient ${local.id}:`, error);
+              this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+            }
           } else {
             uploaded++;
           }
@@ -363,8 +370,14 @@ export class SyncManager {
             .insert(remote);
 
           if (error) {
-            logger.error(`Error inserting ingredient ${local.id}:`, error);
-            this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+            // PGRST204 = schema mismatch (column not found)
+            if (error.code === 'PGRST204') {
+              schemaErrorCount++;
+              logger.warn(`Schema mismatch for ingredient ${local.id}: Supabase table missing columns`);
+            } else {
+              logger.error(`Error inserting ingredient ${local.id}:`, error);
+              this.progress.errors.push(`Ingredient ${local.nombre}: ${error.message}`);
+            }
           } else {
             uploaded++;
           }
@@ -380,6 +393,9 @@ export class SyncManager {
       }
     }
 
+    if (schemaErrorCount > 0) {
+      logger.warn(`[SyncManager] ${schemaErrorCount}/${locals.length} ingredients skipped due to schema mismatch. Sync is experimental.`);
+    }
     logger.log(`[SyncManager] Uploaded ${uploaded}/${locals.length} ingredients`);
     return uploaded;
   }
