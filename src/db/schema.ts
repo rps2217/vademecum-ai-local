@@ -6,12 +6,43 @@
  */
 
 import Dexie, { type EntityTable } from 'dexie';
+import type {
+  BodySystem,
+  IngredientCategory,
+  EvidenceLevel,
+  SynergyType,
+  SynergyLevel,
+  SafetyStatus,
+  ProductSource,
+  SyncOpType,
+  SyncTable,
+  OutboxStatus,
+  SnapshotType,
+  IngredientSafety,
+} from '@/types/shared-enums';
+import { logger } from '@/lib/logger';
+
+// Re-exportar tipos compartidos
+export type {
+  BodySystem,
+  IngredientCategory,
+  EvidenceLevel,
+  SynergyType,
+  SynergyLevel,
+  SafetyStatus,
+  ProductSource,
+  SyncOpType,
+  SyncTable,
+  OutboxStatus,
+  SnapshotType,
+  IngredientSafety,
+} from '@/types/shared-enums';
 
 // ============================================
 // VERSIÓN DE LA DB
 // ============================================
 
-export const DB_VERSION = 2;
+export const DB_VERSION = 4; // Incrementado: dominio pacientes/consultas
 
 // ============================================
 // INTERFACES DE ENTIDADES
@@ -116,6 +147,25 @@ export interface DbOutboxOp {
   lastError?: string;
   createdAt: number;
   status: OutboxStatus;
+  // Idempotency key para evitar duplicados
+  idempotencyKey?: string;
+  // Timestamp del último intento
+  lastAttemptAt?: number;
+}
+
+/** Conflicto de sincronización */
+export interface DbConflict {
+  id: string;
+  table: SyncTable;
+  recordId: string;
+  localVersion: Record<string, unknown>;
+  remoteVersion: Record<string, unknown>;
+  localLamport: number;
+  remoteLamport: number;
+  detectedAt: number;
+  resolvedAt?: number;
+  resolution?: 'local' | 'remote' | 'merged' | 'pending';
+  resolvedBy?: string;
 }
 
 /** Snapshot cifrado de backup */
@@ -145,42 +195,163 @@ export interface DbSearchHistory {
   timestamp: number;
 }
 
+/** Audit log para compliance */
+export interface DbAuditLog {
+  id: string;
+  timestamp: number;
+  deviceId: string;
+  userId?: string;
+  action: string;
+  targetType: string;
+  targetId: string;
+  details?: Record<string, unknown>;
+  previousHash?: string;
+  hash: string;
+}
+
+// ============================================
+// DOMINIO: PACIENTES Y CONSULTAS
+// ============================================
+
+/** Paciente */
+export interface DbPatient {
+  id: string;
+  nombre: string;
+  apellidos?: string;
+  fechaNacimiento?: number;
+  telefono?: string;
+  email?: string;
+  direccion?: string;
+  notas?: string;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
+/** Alergia de paciente */
+export interface DbPatientAllergy {
+  id: string;
+  pacienteId: string;
+  sustancia: string; // Principio activo o sustancia
+  severidad: AllergySeverity;
+  notas?: string;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
+/** Condición médica crónica */
+export interface DbPatientCondition {
+  id: string;
+  pacienteId: string;
+  condicion: string;
+  diagnosticoFecha?: number;
+  notas?: string;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
+/** Medicamento actual del paciente */
+export interface DbPatientMedication {
+  id: string;
+  pacienteId: string;
+  nombre: string;
+  principioActivo?: string;
+  dosis?: string;
+  frecuencia?: string;
+  inicioFecha?: number;
+  finFecha?: number;
+  activo: boolean;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
+/** Sesión de consulta */
+export interface DbConsultation {
+  id: string;
+  pacienteId: string;
+  fecha: number;
+  motivo: string;
+  notas: string;
+  diagnostico?: string;
+  duracionMinutos?: number;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
+/** Producto recomendado en consulta */
+export interface DbRecommendation {
+  id: string;
+  consultaId: string;
+  productoSku?: string;
+  ingredienteId?: string;
+  nombre: string;
+  cantidad?: string;
+  instrucciones?: string;
+  motivacion?: string;
+  aceptado: boolean;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
+/** Prescripción formal */
+export interface DbPrescription {
+  id: string;
+  consultaId: string;
+  pacienteId: string;
+  fecha: number;
+  instrucciones: string;
+  validezDias?: number;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
 // ============================================
 // TIPOS AUXILIARES
 // ============================================
 
-export type SafetyStatus = 'apto' | 'evitar' | 'contraindicado' | 'desconocido';
-export type ProductSource = 'local' | 'scraped' | 'supabase' | 'seed';
-export type IngredientCategory = 
-  | 'fitoterapia' 
-  | 'homeopatia' 
-  | 'aceite_esencial' 
-  | 'vitamina' 
-  | 'mineral' 
-  | 'probiotico' 
-  | 'prebiotico' 
-  | 'enzima' 
-  | 'aminoacido';
-export type BodySystem = 
-  | 'nervioso' 
-  | 'digestivo' 
-  | 'inmune' 
-  | 'cardiovascular' 
-  | 'respiratorio' 
-  | 'musculoesqueletico' 
-  | 'endocrino';
-export type EvidenceLevel = 'A' | 'B' | 'C' | 'D';
-export type SynergyType = 'sinergia' | 'antagonismo' | 'interaccion' | 'complemento';
-export type SynergyLevel = 'bajo' | 'medio' | 'alto' | 'critico';
-export type SyncOpType = 'insert' | 'update' | 'delete';
-export type SyncTable = 'products' | 'ingredients' | 'synergies' | 'protocols' | 'settings';
-export type OutboxStatus = 'pending' | 'in_flight' | 'failed' | 'synced' | 'conflict';
-export type SnapshotType = 'full' | 'products' | 'ingredients' | 'protocols';
+export type AllergySeverity = 'leve' | 'moderada' | 'grave' | ' severa';
 
-export interface IngredientSafety {
-  embarazo?: SafetyStatus;
-  lactancia?: SafetyStatus;
-  pediatria?: SafetyStatus;
+export type UserRole = 
+  | 'admin_farmacia' 
+  | 'farmaceutico' 
+  | 'asistente' 
+  | 'readonly_auditor';
+
+export interface User {
+  id: string;
+  nombre: string;
+  email: string;
+  role: UserRole;
+  farmaciaId?: string;
+  createdAt: number;
+  lastLoginAt?: number;
 }
 
 export interface ProtocolIngredient {
@@ -199,18 +370,33 @@ export class VademecumDB extends Dexie {
   synergies!: EntityTable<DbSynergy, 'id'>;
   protocols!: EntityTable<DbProtocol, 'id'>;
   outbox!: EntityTable<DbOutboxOp, 'id'>;
+  conflicts!: EntityTable<DbConflict, 'id'>;
   snapshots!: EntityTable<DbSnapshot, 'id'>;
   syncMeta!: EntityTable<DbSyncMeta, 'key'>;
   searchHistory!: EntityTable<DbSearchHistory, 'id'>;
+  auditLog!: EntityTable<DbAuditLog, 'id'>;
+  
+  // Dominio: Pacientes y Consultas
+  patients!: EntityTable<DbPatient, 'id'>;
+  patientAllergies!: EntityTable<DbPatientAllergy, 'id'>;
+  patientConditions!: EntityTable<DbPatientCondition, 'id'>;
+  patientMedications!: EntityTable<DbPatientMedication, 'id'>;
+  consultations!: EntityTable<DbConsultation, 'id'>;
+  recommendations!: EntityTable<DbRecommendation, 'id'>;
+  prescriptions!: EntityTable<DbPrescription, 'id'>;
 
   constructor() {
     super('VademecumDB');
 
-    // Migración desde versión 1 (schema corrupto)
+    // ============================================
+    // MIGRACIONES
+    // ============================================
+    
+    // Versión 1: schema corrupto - limpiar
     this.version(1).stores({});
 
-    this.version(DB_VERSION).stores({
-      // Primary keys y campos básicos
+    // Versión 2: schema base original
+    this.version(2).stores({
       products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
       ingredients: 'id, nombre, categoria, updatedAt, tombstone, [nombre+categoria]',
       synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone, [tipo+nivel]',
@@ -219,6 +405,46 @@ export class VademecumDB extends Dexie {
       snapshots: 'id, type, timestamp',
       syncMeta: 'key, updatedAt',
       searchHistory: 'id, timestamp',
+    });
+
+    // Versión 3: nuevas tablas para sync mejorado
+    this.version(3).stores({
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone, [nombre+categoria]',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone, [tipo+nivel]',
+      protocols: 'id, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table, idempotencyKey',
+      conflicts: 'id, table, recordId, detectedAt, [table+recordId]',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+      searchHistory: 'id, timestamp',
+      auditLog: 'id, timestamp, [targetType+targetId], hash',
+    });
+
+    // Versión 4: dominio de pacientes y consultas
+    this.version(4).stores({
+      // Mantener todas las tablas existentes
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone, [nombre+categoria]',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone, [tipo+nivel]',
+      protocols: 'id, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table, idempotencyKey',
+      conflicts: 'id, table, recordId, detectedAt, [table+recordId]',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+      searchHistory: 'id, timestamp',
+      auditLog: 'id, timestamp, [targetType+targetId], hash',
+      // Nuevas tablas de pacientes
+      patients: 'id, nombre, apellidos, updatedAt, tombstone',
+      patientAllergies: 'id, pacienteId, updatedAt, [pacienteId+id]',
+      patientConditions: 'id, pacienteId, updatedAt, [pacienteId+id]',
+      patientMedications: 'id, pacienteId, activo, updatedAt, [pacienteId+id]',
+      consultations: 'id, pacienteId, fecha, updatedAt, [pacienteId+id]',
+      recommendations: 'id, consultaId, updatedAt, [consultaId+id]',
+      prescriptions: 'id, consultaId, pacienteId, fecha, updatedAt, [consultaId+id]',
+    }).upgrade((tx) => {
+      logger.log('[DB] Running migration from v3 to v4');
+      return tx;
     });
   }
 }

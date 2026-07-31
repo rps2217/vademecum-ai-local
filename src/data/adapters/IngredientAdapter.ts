@@ -5,6 +5,17 @@
 
 import type { DbIngredient } from '@/db/schema';
 import type { RemoteIngredient } from './types';
+import {
+  normalizeBodySystem,
+  normalizeCategory,
+  normalizeEvidenceLevel,
+  normalizeSynergyType,
+  isValidBodySystem,
+  type BodySystem,
+  type IngredientCategory,
+  type EvidenceLevel,
+  SYNERGY_TYPES_LOCAL,
+} from '@/types/shared-enums';
 
 export class IngredientAdapter {
   /**
@@ -71,17 +82,17 @@ export class IngredientAdapter {
 
   /**
    * Convierte formato remoto (Supabase) a formato local (Dexie)
-   * MEJORADO: Incluye mapeo de sistemas corporales y evidencia
+   * MEJORADO: Usa normalización de tipos compartidos
    */
   static toLocal(remote: RemoteIngredient): Partial<DbIngredient> {
     return {
       id: remote.ingredient_key || remote.id,
       nombre: remote.name,
       sinonimos: (remote.synonyms?.length ? remote.synonyms : [remote.name]) as string[],
-      categoria: this.mapCategory(remote.category),
+      categoria: normalizeCategory(remote.category),
       sistemas: this.mapBodySystems(remote),
       indicaciones: remote.indications || [],
-      evidencia: this.mapEvidenceLevel(remote),
+      evidencia: normalizeEvidenceLevel((remote as Record<string, unknown>).evidence_level as string || 'C'),
       propiedades: [
         remote.description,
         remote.mechanism ? `Mecanismo: ${remote.mechanism}` : null,
@@ -94,43 +105,24 @@ export class IngredientAdapter {
   }
 
   /**
-   * Mapea sistemas corporales desde remoto
+   * Mapea sistemas corporales desde remoto usando tipos compartidos
    */
-  private static mapBodySystems(remote: RemoteIngredient): string[] {
-    const validSystems = [
-      'nervioso', 'digestivo', 'inmune', 'cardiovascular',
-      'respiratorio', 'musculoesqueletico', 'endocrino'
-    ];
-    
+  static mapBodySystems(remote: RemoteIngredient): BodySystem[] {
     const systems = (remote as Record<string, unknown>).body_systems as string[] | undefined;
     
     if (systems && Array.isArray(systems)) {
       return systems
         .map(s => s.toLowerCase().trim())
-        .filter(s => validSystems.includes(s));
+        .filter((s): s is BodySystem => isValidBodySystem(s));
     }
     
     return [];
   }
 
   /**
-   * Mapea nivel de evidencia desde remoto
-   */
-  private static mapEvidenceLevel(remote: RemoteIngredient): 'A' | 'B' | 'C' | 'D' {
-    const evidenceMap: Record<string, 'A' | 'B' | 'C' | 'D'> = {
-      'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D',
-      'alto': 'A', 'medio': 'B', 'bajo': 'C',
-      'high': 'A', 'medium': 'B', 'low': 'C',
-    };
-    
-    const remoteEvidence = (remote as Record<string, unknown>).evidence_level as string | undefined;
-    return evidenceMap[remoteEvidence?.toLowerCase() || ''] || 'C';
-  }
-
-  /**
    * Extrae información de seguridad del registro remoto
    */
-  private static extractSafety(remote: RemoteIngredient): DbIngredient['seguridad'] {
+  static extractSafety(remote: RemoteIngredient): DbIngredient['seguridad'] {
     const contraindications = remote.contraindications || [];
     
     return {
@@ -149,31 +141,12 @@ export class IngredientAdapter {
   }
 
   /**
-   * Mapea categoría de Supabase a Dexie
-   */
-  private static mapCategory(category: string): DbIngredient['categoria'] {
-    const categoryMap: Record<string, DbIngredient['categoria']> = {
-      'fitoterapia': 'fitoterapia',
-      'homeopatia': 'homeopatia',
-      'aceite_esencial': 'aceite_esencial',
-      'vitamina': 'vitamina',
-      'vitaminas': 'vitamina',
-      'mineral': 'mineral',
-      'minerales': 'mineral',
-      'probiotico': 'probiotico',
-      'aminoacido': 'aminoacido',
-    };
-
-    return categoryMap[category.toLowerCase()] || 'fitoterapia';
-  }
-
-  /**
    * Verifica si dos ingredientes son iguales
    */
   static areEqual(local: DbIngredient, remote: RemoteIngredient): boolean {
     return (
       local.nombre === remote.name &&
-      local.categoria === remote.category &&
+      local.categoria === normalizeCategory(remote.category) &&
       JSON.stringify(local.indicaciones.sort()) === JSON.stringify((remote.indications || []).sort())
     );
   }
