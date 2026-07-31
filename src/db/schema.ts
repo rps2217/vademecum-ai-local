@@ -11,7 +11,7 @@ import Dexie, { type EntityTable } from 'dexie';
 // VERSIÓN DE LA DB
 // ============================================
 
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 // ============================================
 // INTERFACES DE ENTIDADES
@@ -206,58 +206,19 @@ export class VademecumDB extends Dexie {
   constructor() {
     super('VademecumDB');
 
+    // Migración desde versión 1 (schema corrupto)
+    this.version(1).stores({});
+
     this.version(DB_VERSION).stores({
-      // Primary keys
-      products: 'sku',
-      ingredients: 'id',
-      synergies: 'id',
-      protocols: 'id',
-      outbox: 'id',
-      snapshots: 'id',
-      syncMeta: 'key',
-      searchHistory: 'id',
-
-      // Índices para productos
-      'products[nombreComercial]': '',
-      'products[categoria]': '',
-      'products[source]': '',
-      'products[updatedAt]': '',
-      'products[tombstone]': '',
-
-      // Índices para ingredientes
-      'ingredients[nombre]': '',
-      'ingredients[categoria]': '',
-      'ingredients[updatedAt]': '',
-      'ingredients[tombstone]': '',
-      // Índice COMPUESTO para búsqueda optimizada por nombre + categoría
-      'ingredients[nombre+categoria]': '[nombre,categoria]',
-
-      // Índices para sinergias
-      'synergies[ingredienteA]': '',
-      'synergies[ingredienteB]': '',
-      'synergies[tipo]': '',
-      'synergies[tombstone]': '',
-      // Índice compuesto para buscar sinergias por tipo
-      'synergies[tipo+nivel]': '[tipo+nivel]',
-
-      // Índices para protocolos
-      'protocols[updatedAt]': '',
-      'protocols[tombstone]': '',
-
-      // Índices para outbox
-      'outbox[status]': '',
-      'outbox[createdAt]': '',
-      'outbox[table]': '',
-
-      // Índices para snapshots
-      'snapshots[type]': '',
-      'snapshots[timestamp]': '',
-
-      // Índices para sync meta
-      'syncMeta[updatedAt]': '',
-
-      // Índices para search history
-      'searchHistory[timestamp]': '',
+      // Primary keys y campos básicos
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone, [nombre+categoria]',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone, [tipo+nivel]',
+      protocols: 'id, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+      searchHistory: 'id, timestamp',
     });
   }
 }
