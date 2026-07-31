@@ -2,13 +2,13 @@
  * OnboardingPage - Configuración inicial
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useE2EE } from '@/app/E2EEAuthProvider';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
 import { Card } from '@/ui/Card';
-import { Copy, Check, Shield, Key } from 'lucide-react';
+import { Copy, Check, Shield, Key, Eye, EyeOff } from 'lucide-react';
 
 export function OnboardingPage() {
   const navigate = useNavigate();
@@ -20,6 +20,25 @@ export function OnboardingPage() {
   const [recoveryPhrase, setRecoveryPhrase] = useState('');
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  // Calculate password strength
+  const passwordStrength = useMemo(() => {
+    if (!password) return { score: 0, label: '', color: '' };
+    
+    let score = 0;
+    if (password.length >= 8) score++;
+    if (password.length >= 12) score++;
+    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score++;
+    if (/\d/.test(password)) score++;
+    if (/[^a-zA-Z0-9]/.test(password)) score++;
+
+    if (score <= 1) return { score: 1, label: 'Débil', color: 'bg-red-500' };
+    if (score <= 2) return { score: 2, label: 'Regular', color: 'bg-orange-500' };
+    if (score <= 3) return { score: 3, label: 'Buena', color: 'bg-yellow-500' };
+    return { score: 4, label: 'Fuerte', color: 'bg-green-500' };
+  }, [password]);
 
   // Redirect to login if already has account (useEffect to avoid render-time navigation)
   useEffect(() => {
@@ -107,24 +126,65 @@ export function OnboardingPage() {
                 </p>
               </div>
 
-              <Input
-                type="password"
-                label="Contraseña"
-                placeholder="Mínimo 8 caracteres"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="relative">
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  label="Contraseña"
+                  placeholder="Mínimo 8 caracteres"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-[2.2rem] -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
 
-              <Input
-                type="password"
-                label="Confirmar contraseña"
-                placeholder="Repite la contraseña"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                error={error}
-              />
+              {/* Password strength indicator */}
+              {password && (
+                <div className="space-y-1">
+                  <div className="flex gap-1">
+                    {[1, 2, 3, 4].map((level) => (
+                      <div
+                        key={level}
+                        className={`h-1 flex-1 rounded-full transition-colors ${
+                          level <= passwordStrength.score ? passwordStrength.color : 'bg-muted'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Fortaleza: {passwordStrength.label}
+                  </p>
+                </div>
+              )}
 
-              <Button type="submit" className="w-full">
+              <div className="relative">
+                <Input
+                  type={showConfirm ? 'text' : 'password'}
+                  label="Confirmar contraseña"
+                  placeholder="Repite la contraseña"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  error={error}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                  className="absolute right-3 top-[2.2rem] -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  aria-label={showConfirm ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                >
+                  {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+
+              <Button type="submit" className="w-full" isLoading={isSubmitting}>
                 Continuar
               </Button>
             </form>
