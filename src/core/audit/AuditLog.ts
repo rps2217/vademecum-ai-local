@@ -204,11 +204,14 @@ export class AuditLogService {
    * Obtiene historial de un objetivo específico
    */
   async getHistory(targetType: string, targetId: string): Promise<DbAuditLog[]> {
-    return db.auditLog
-      .where('[targetType+targetId]')
-      .equals([targetType, targetId])
+    const allEntries = await db.auditLog
+      .orderBy('timestamp')
       .reverse()
-      .sortBy('timestamp');
+      .toArray();
+    
+    return allEntries.filter(
+      entry => entry.targetType === targetType && entry.targetId === targetId
+    );
   }
 
   /**

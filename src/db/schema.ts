@@ -410,38 +410,37 @@ export class VademecumDB extends Dexie {
     // Versión 3: nuevas tablas para sync mejorado
     this.version(3).stores({
       products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
-      ingredients: 'id, nombre, categoria, updatedAt, tombstone, [nombre+categoria]',
-      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone, [tipo+nivel]',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
       protocols: 'id, updatedAt, tombstone',
       outbox: 'id, status, createdAt, table, idempotencyKey',
-      conflicts: 'id, table, recordId, detectedAt, [table+recordId]',
+      conflicts: 'id, table, recordId, detectedAt',
       snapshots: 'id, type, timestamp',
       syncMeta: 'key, updatedAt',
       searchHistory: 'id, timestamp',
-      auditLog: 'id, timestamp, [targetType+targetId], hash',
+      auditLog: 'id, timestamp, hash',
     });
 
     // Versión 4: dominio de pacientes y consultas
     this.version(4).stores({
-      // Mantener todas las tablas existentes
       products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
-      ingredients: 'id, nombre, categoria, updatedAt, tombstone, [nombre+categoria]',
-      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone, [tipo+nivel]',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
       protocols: 'id, updatedAt, tombstone',
       outbox: 'id, status, createdAt, table, idempotencyKey',
-      conflicts: 'id, table, recordId, detectedAt, [table+recordId]',
+      conflicts: 'id, table, recordId, detectedAt',
       snapshots: 'id, type, timestamp',
       syncMeta: 'key, updatedAt',
       searchHistory: 'id, timestamp',
-      auditLog: 'id, timestamp, [targetType+targetId], hash',
+      auditLog: 'id, timestamp, hash',
       // Nuevas tablas de pacientes
-      patients: 'id, nombre, apellidos, updatedAt, tombstone',
-      patientAllergies: 'id, pacienteId, updatedAt, [pacienteId+id]',
-      patientConditions: 'id, pacienteId, updatedAt, [pacienteId+id]',
-      patientMedications: 'id, pacienteId, activo, updatedAt, [pacienteId+id]',
-      consultations: 'id, pacienteId, fecha, updatedAt, [pacienteId+id]',
-      recommendations: 'id, consultaId, updatedAt, [consultaId+id]',
-      prescriptions: 'id, consultaId, pacienteId, fecha, updatedAt, [consultaId+id]',
+      patients: 'id, nombre, updatedAt, tombstone',
+      patientAllergies: 'id, pacienteId, updatedAt',
+      patientConditions: 'id, pacienteId, updatedAt',
+      patientMedications: 'id, pacienteId, activo, updatedAt',
+      consultations: 'id, pacienteId, fecha, updatedAt',
+      recommendations: 'id, consultaId, updatedAt',
+      prescriptions: 'id, consultaId, pacienteId, fecha, updatedAt',
     }).upgrade((tx) => {
       logger.log('[DB] Running migration from v3 to v4');
       return tx;
