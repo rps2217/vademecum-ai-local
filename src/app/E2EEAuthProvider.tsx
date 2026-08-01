@@ -20,6 +20,7 @@ import {
   type StoredKeyPair,
   type RecoveryData,
 } from '@/lib/crypto';
+import { generateMnemonic } from 'bip39';
 import { logger } from '@/lib/logger';
 
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
@@ -138,7 +139,6 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
       sessionStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
       
       // 4. Generar NUEVA recovery phrase
-      const { generateMnemonic } = await import('bip39');
       const newRecoveryPhrase = generateMnemonic(128);
       
       // 5. Guardar recovery data en sessionStorage

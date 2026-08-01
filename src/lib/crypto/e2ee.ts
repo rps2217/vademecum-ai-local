@@ -17,6 +17,7 @@
 
 import nacl from 'tweetnacl';
 import { encodeBase64, decodeBase64 } from 'tweetnacl-util';
+import { generateMnemonic } from 'bip39';
 
 const KEY_STORAGE_KEY = 'vademecum.keypair';
 const RECOVERY_STORAGE_KEY = 'vademecum.recovery';
@@ -129,7 +130,6 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
   refreshSession();
 
   // Generar frase de recuperación BIP-39
-  const { generateMnemonic } = await import('bip39');
   const recoveryPhrase = generateMnemonic(128);
 
   // Guardar cifrado con recovery phrase
