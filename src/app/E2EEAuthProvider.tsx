@@ -100,6 +100,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
     const result = await generateAndStoreKeyPair(password);
     startSession();
     setIsAuthenticated(true);
+    setHasAccount(true);
     return { recoveryPhrase: result.recoveryPhrase };
   };
 
@@ -154,6 +155,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
       
       startSession();
       setIsAuthenticated(true);
+      setHasAccount(true);
       return { recoveryPhrase: newRecoveryPhrase }; // Devolver nueva phrase
     } catch (err) {
       logger.error('Recovery failed:', err);
