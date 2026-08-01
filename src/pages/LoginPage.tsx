@@ -25,7 +25,7 @@ export function LoginPage() {
   }, [isLoading, hasAccount, navigate]);
 
   // Show loading while checking auth state
-  if (isLoading || (!hasAccount && !isLoading)) {
+  if (isLoading) {
     return null;
   }
 
