@@ -227,10 +227,11 @@ export function getPublicKey(): string | null {
 }
 
 /**
- * Verificar si existe un par de claves (sesión válida)
+ * Verificar si existe un par de claves guardado
+ * NO verifica la sesión, solo si hay datos guardados
  */
 export function hasKeyPair(): boolean {
-  return isSessionValid() && getStorage().getItem(KEY_STORAGE_KEY) !== null;
+  return getStorage().getItem(KEY_STORAGE_KEY) !== null;
 }
 
 /**
