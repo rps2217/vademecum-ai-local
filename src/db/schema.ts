@@ -42,7 +42,7 @@ export type {
 // VERSIÓN DE LA DB
 // ============================================
 
-export const DB_VERSION = 4; // Incrementado: dominio pacientes/consultas
+export const DB_VERSION = 5; // Incrementado: forzar migración limpia por índices corruptos
 
 // ============================================
 // INTERFACES DE ENTIDADES
@@ -421,7 +421,7 @@ export class VademecumDB extends Dexie {
       auditLog: 'id, timestamp, hash',
     });
 
-    // Versión 4: dominio de pacientes y consultas
+    // Versión 4: dominio de pacientes y consultas (índice corregido)
     this.version(4).stores({
       products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
       ingredients: 'id, nombre, categoria, updatedAt, tombstone',
@@ -433,7 +433,6 @@ export class VademecumDB extends Dexie {
       syncMeta: 'key, updatedAt',
       searchHistory: 'id, timestamp',
       auditLog: 'id, timestamp, hash',
-      // Nuevas tablas de pacientes
       patients: 'id, nombre, updatedAt, tombstone',
       patientAllergies: 'id, pacienteId, updatedAt',
       patientConditions: 'id, pacienteId, updatedAt',
@@ -441,9 +440,44 @@ export class VademecumDB extends Dexie {
       consultations: 'id, pacienteId, fecha, updatedAt',
       recommendations: 'id, consultaId, updatedAt',
       prescriptions: 'id, consultaId, pacienteId, fecha, updatedAt',
-    }).upgrade((tx) => {
-      logger.log('[DB] Running migration from v3 to v4');
-      return tx;
+    });
+
+    // Versión 5: migración limpia - borra y recrea todo
+    this.version(5).stores({
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
+      protocols: 'id, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table, idempotencyKey',
+      conflicts: 'id, table, recordId, detectedAt',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+      searchHistory: 'id, timestamp',
+      auditLog: 'id, timestamp, hash',
+      patients: 'id, nombre, updatedAt, tombstone',
+      patientAllergies: 'id, pacienteId, updatedAt',
+      patientConditions: 'id, pacienteId, updatedAt',
+      patientMedications: 'id, pacienteId, activo, updatedAt',
+      consultations: 'id, pacienteId, fecha, updatedAt',
+      recommendations: 'id, consultaId, updatedAt',
+      prescriptions: 'id, consultaId, pacienteId, fecha, updatedAt',
+    }).upgrade(async (tx) => {
+      logger.log('[DB] Migration v5: Cleaning database due to corrupted indexes');
+      // Delete all existing stores
+      const stores = [
+        'products', 'ingredients', 'synergies', 'protocols',
+        'outbox', 'conflicts', 'snapshots', 'syncMeta',
+        'searchHistory', 'auditLog', 'patients', 'patientAllergies',
+        'patientConditions', 'patientMedications', 'consultations',
+        'recommendations', 'prescriptions'
+      ];
+      for (const store of stores) {
+        try {
+          await tx.table(store).clear();
+        } catch {
+          // Store might not exist
+        }
+      }
     });
   }
 }
