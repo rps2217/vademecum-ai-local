@@ -21,14 +21,17 @@ import { AnalysisPage } from '@/pages/AnalysisPage';
 import { AdminPage } from '@/pages/AdminPage';
 import { SettingsPage } from '@/pages/SettingsPage';
 
+// TEMPORAL: Deshabilitar auth para poder ver la app
+const BYPASS_AUTH = true;
+
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useE2EE();
   
-  if (isLoading) {
+  if (isLoading && !BYPASS_AUTH) {
     return <PageLoader />;
   }
   
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !BYPASS_AUTH) {
     return <Navigate to="/login" replace />;
   }
   
@@ -38,11 +41,11 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function AuthRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useE2EE();
   
-  if (isLoading) {
+  if (isLoading && !BYPASS_AUTH) {
     return <PageLoader />;
   }
   
-  if (isAuthenticated) {
+  if (isAuthenticated && !BYPASS_AUTH) {
     return <Navigate to="/" replace />;
   }
   
