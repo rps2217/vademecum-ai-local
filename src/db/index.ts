@@ -28,7 +28,6 @@ export type {
   DbOutboxOp,
   DbSnapshot,
   DbSyncMeta,
-  DbSearchHistory,
 
   // Tipos auxiliares
   SafetyStatus,

@@ -20,7 +20,6 @@ import type {
   SnapshotType,
   IngredientSafety,
 } from '@/types/shared-enums';
-import { logger } from '@/lib/logger';
 
 // Re-exportar tipos compartidos
 export type {
@@ -187,172 +186,9 @@ export interface DbSyncMeta {
   updatedAt: number;
 }
 
-/** Historial de búsquedas */
-export interface DbSearchHistory {
-  id: string;
-  query: string;
-  results: number;
-  timestamp: number;
-}
-
-/** Audit log para compliance */
-export interface DbAuditLog {
-  id: string;
-  timestamp: number;
-  deviceId: string;
-  userId?: string;
-  action: string;
-  targetType: string;
-  targetId: string;
-  details?: Record<string, unknown>;
-  previousHash?: string;
-  hash: string;
-}
-
-// ============================================
-// DOMINIO: PACIENTES Y CONSULTAS
-// ============================================
-
-/** Paciente */
-export interface DbPatient {
-  id: string;
-  nombre: string;
-  apellidos?: string;
-  fechaNacimiento?: number;
-  telefono?: string;
-  email?: string;
-  direccion?: string;
-  notas?: string;
-  // Metadatos de sync
-  lamport: number;
-  deviceId: string;
-  updatedAt: number;
-  createdAt: number;
-  tombstone: 0 | 1;
-}
-
-/** Alergia de paciente */
-export interface DbPatientAllergy {
-  id: string;
-  pacienteId: string;
-  sustancia: string; // Principio activo o sustancia
-  severidad: AllergySeverity;
-  notas?: string;
-  // Metadatos de sync
-  lamport: number;
-  deviceId: string;
-  updatedAt: number;
-  createdAt: number;
-  tombstone: 0 | 1;
-}
-
-/** Condición médica crónica */
-export interface DbPatientCondition {
-  id: string;
-  pacienteId: string;
-  condicion: string;
-  diagnosticoFecha?: number;
-  notas?: string;
-  // Metadatos de sync
-  lamport: number;
-  deviceId: string;
-  updatedAt: number;
-  createdAt: number;
-  tombstone: 0 | 1;
-}
-
-/** Medicamento actual del paciente */
-export interface DbPatientMedication {
-  id: string;
-  pacienteId: string;
-  nombre: string;
-  principioActivo?: string;
-  dosis?: string;
-  frecuencia?: string;
-  inicioFecha?: number;
-  finFecha?: number;
-  activo: boolean;
-  // Metadatos de sync
-  lamport: number;
-  deviceId: string;
-  updatedAt: number;
-  createdAt: number;
-  tombstone: 0 | 1;
-}
-
-/** Sesión de consulta */
-export interface DbConsultation {
-  id: string;
-  pacienteId: string;
-  fecha: number;
-  motivo: string;
-  notas: string;
-  diagnostico?: string;
-  duracionMinutos?: number;
-  // Metadatos de sync
-  lamport: number;
-  deviceId: string;
-  updatedAt: number;
-  createdAt: number;
-  tombstone: 0 | 1;
-}
-
-/** Producto recomendado en consulta */
-export interface DbRecommendation {
-  id: string;
-  consultaId: string;
-  productoSku?: string;
-  ingredienteId?: string;
-  nombre: string;
-  cantidad?: string;
-  instrucciones?: string;
-  motivacion?: string;
-  aceptado: boolean;
-  // Metadatos de sync
-  lamport: number;
-  deviceId: string;
-  updatedAt: number;
-  createdAt: number;
-  tombstone: 0 | 1;
-}
-
-/** Prescripción formal */
-export interface DbPrescription {
-  id: string;
-  consultaId: string;
-  pacienteId: string;
-  fecha: number;
-  instrucciones: string;
-  validezDias?: number;
-  // Metadatos de sync
-  lamport: number;
-  deviceId: string;
-  updatedAt: number;
-  createdAt: number;
-  tombstone: 0 | 1;
-}
-
 // ============================================
 // TIPOS AUXILIARES
 // ============================================
-
-export type AllergySeverity = 'leve' | 'moderada' | 'grave' | 'severa';
-
-export type UserRole = 
-  | 'admin_farmacia' 
-  | 'farmaceutico' 
-  | 'asistente' 
-  | 'readonly_auditor';
-
-export interface User {
-  id: string;
-  nombre: string;
-  email: string;
-  role: UserRole;
-  farmaciaId?: string;
-  createdAt: number;
-  lastLoginAt?: number;
-}
 
 export interface ProtocolIngredient {
   id: string;
@@ -373,17 +209,6 @@ export class VademecumDB extends Dexie {
   conflicts!: EntityTable<DbConflict, 'id'>;
   snapshots!: EntityTable<DbSnapshot, 'id'>;
   syncMeta!: EntityTable<DbSyncMeta, 'key'>;
-  searchHistory!: EntityTable<DbSearchHistory, 'id'>;
-  auditLog!: EntityTable<DbAuditLog, 'id'>;
-  
-  // Dominio: Pacientes y Consultas
-  patients!: EntityTable<DbPatient, 'id'>;
-  patientAllergies!: EntityTable<DbPatientAllergy, 'id'>;
-  patientConditions!: EntityTable<DbPatientCondition, 'id'>;
-  patientMedications!: EntityTable<DbPatientMedication, 'id'>;
-  consultations!: EntityTable<DbConsultation, 'id'>;
-  recommendations!: EntityTable<DbRecommendation, 'id'>;
-  prescriptions!: EntityTable<DbPrescription, 'id'>;
 
   constructor() {
     super('VademecumDB');
@@ -392,25 +217,15 @@ export class VademecumDB extends Dexie {
     // MIGRACIONES
     // ============================================
     
-    // Versión 1: Schema limpio - todas las tablas
     this.version(1).stores({
       products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
       ingredients: 'id, nombre, categoria, updatedAt, tombstone',
       synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
       protocols: 'id, updatedAt, tombstone',
       outbox: 'id, status, createdAt, table, idempotencyKey',
-      conflicts: 'id, table, recordId, detectedAt',
+      conflicts: 'id, table, recordId, detectedAt, resolution',
       snapshots: 'id, type, timestamp',
       syncMeta: 'key, updatedAt',
-      searchHistory: 'id, timestamp',
-      auditLog: 'id, timestamp, hash',
-      patients: 'id, nombre, updatedAt, tombstone',
-      patientAllergies: 'id, pacienteId, updatedAt',
-      patientConditions: 'id, pacienteId, updatedAt',
-      patientMedications: 'id, pacienteId, activo, updatedAt',
-      consultations: 'id, pacienteId, fecha, updatedAt',
-      recommendations: 'id, consultaId, updatedAt',
-      prescriptions: 'id, consultaId, pacienteId, fecha, updatedAt',
     });
   }
 }

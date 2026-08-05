@@ -1,7 +1,5 @@
-export {
-  AuditLogService,
-  auditLog,
-  type AuditAction,
-  type AuditEntry,
-  type AuditQuery,
-} from './AuditLog';
+/**
+ * Audit Module
+ * @deprecated Servicio no implementado - tabla en schema existe para futuro
+ */
+export type { DbAuditLog } from '@/db/schema';

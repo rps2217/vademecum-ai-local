@@ -1,7 +1,4 @@
 /**
  * Data Sync Module
- * 
- * Exports todos los componentes de sincronización del dominio data/
+ * @deprecated Usar @/core/sync directamente
  */
-
-export { syncManager, type SyncProgress } from './SyncManager';

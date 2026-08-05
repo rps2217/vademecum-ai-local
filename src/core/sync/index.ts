@@ -1,3 +1,8 @@
+/**
+ * Sync Module
+ * @deprecated Sync con Supabase es experimental - verificar uso real
+ */
+
 export { 
   SyncService, 
   syncService, 
@@ -12,15 +17,3 @@ export {
   type ConflictResolution,
   type ConflictResolutionResult 
 } from './ConflictResolver';
-
-export { 
-  BatchOperations, 
-  type BatchResult 
-} from './BatchOperations';
-
-export { 
-  RealtimeSync, 
-  realtimeSync, 
-  type RealtimeConfig, 
-  type RealtimeEvent 
-} from './RealtimeSync';

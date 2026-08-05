@@ -175,11 +175,6 @@ export class SyncService {
     return this.performFullSync();
   }
 
-  private triggerSync() {
-    if (this.syncInProgress || !this.config.enabled) return;
-    setTimeout(() => this.performFullSync(), 1000);
-  }
-
   private async performFullSync(): Promise<SyncResult> {
     if (this.syncInProgress) {
       return { success: false, uploaded: 0, downloaded: 0, conflicts: 0, error: 'Sync en progreso' };
@@ -506,58 +501,6 @@ export class SyncService {
       result[snakeKey] = value;
     }
     return result;
-  }
-
-  async retryFailedOps(): Promise<number> {
-    const failedOps = await db.outbox.where('status').equals('failed').toArray();
-    for (const op of failedOps) {
-      if (op.retries < this.config.maxRetries) {
-        op.status = 'pending';
-        op.retries += 1;
-        await db.outbox.put(op);
-      }
-    }
-    if (failedOps.length > 0 && this.isOnline && this.config.enabled) {
-      this.triggerSync();
-    }
-    return failedOps.filter(op => op.retries < this.config.maxRetries).length;
-  }
-
-  async createBackup(encryptedBlob: Uint8Array, nonce: Uint8Array): Promise<{ success: boolean; snapshotId?: string; error?: string }> {
-    try {
-      const snapshot: DbSnapshot = {
-        id: generateId(),
-        type: 'full',
-        deviceId: getDeviceId(),
-        timestamp: now(),
-        size: encryptedBlob.length,
-        encryptedBlob,
-        nonce,
-        recipientPubKey: new Uint8Array(),
-      };
-      await db.snapshots.put(snapshot);
-      return { success: true, snapshotId: snapshot.id };
-    } catch (error) {
-      return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
-    }
-  }
-
-  async getSnapshots() {
-    return db.snapshots.orderBy('timestamp').reverse().toArray();
-  }
-
-  async restoreFromSnapshot(snapshotId: string): Promise<boolean> {
-    const snapshot = await db.snapshots.get(snapshotId);
-    if (!snapshot) return false;
-    logger.log('Restore from snapshot:', snapshotId);
-    return true;
-  }
-
-  async pruneOldSnapshots(keepCount = 5): Promise<number> {
-    const snapshots = await db.snapshots.orderBy('timestamp').reverse().toArray();
-    const toDelete = snapshots.slice(keepCount);
-    await db.snapshots.bulkDelete(toDelete.map((s) => s.id));
-    return toDelete.length;
   }
 
   /**

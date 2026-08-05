@@ -3,5 +3,4 @@ export {
   ingredientSearchService,
   type SearchFilters, 
   type SearchResult, 
-  type SynergyResult 
 } from './IngredientSearchService';

@@ -76,19 +76,3 @@ export function StatsCard({
     </div>
   );
 }
-
-// Skeleton para loading
-export function StatsCardSkeleton() {
-  return (
-    <div className="bg-card rounded-xl border border-border p-6 animate-pulse">
-      <div className="flex items-start justify-between">
-        <div className="space-y-2">
-          <div className="h-4 w-24 bg-muted rounded" />
-          <div className="h-8 w-16 bg-muted rounded" />
-        </div>
-        <div className="h-10 w-10 bg-muted rounded-lg" />
-      </div>
-      <div className="mt-4 h-4 w-32 bg-muted rounded" />
-    </div>
-  );
-}

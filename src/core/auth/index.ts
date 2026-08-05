@@ -1,7 +1,5 @@
-export {
-  PermissionService,
-  permissionService,
-  usePermissions,
-  type Permission,
-  type RoleInfo,
-} from './PermissionService';
+/**
+ * Auth Module
+ * @deprecated Sistema de permisos simplificado
+ */
+export type { UserRole } from '@/db/schema';

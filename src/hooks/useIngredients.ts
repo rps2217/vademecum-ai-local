@@ -75,24 +75,3 @@ export function useIngredients(options: UseIngredientsOptions = {}): UseIngredie
     total: ingredientsData?.total || 0,
   };
 }
-
-/**
- * Hook para obtener un ingrediente específico usando useLiveQuery
- */
-export function useIngredient(id: string): {
-  ingredient: DbIngredient | undefined;
-  isLoading: boolean;
-  error: Error | null;
-} {
-  const ingredient = useLiveQuery(
-    () => db.ingredients.get(id),
-    [id],
-    // Valor por defecto
-    undefined
-  );
-
-  const isLoading = ingredient === undefined;
-  const error = null;
-
-  return { ingredient, isLoading, error };
-}
