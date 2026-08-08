@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 35,
-    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hahnemann)"
+    "total": 39,
+    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Boger/Farrington)"
   },
   "ingredientes": [
     {
@@ -2732,6 +2732,331 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes; Hahnemann Materia Medica Pura"
+      }
+    },
+    {
+      "id": "spigelia",
+      "nombre": "Spigelia Anthelmia",
+      "nombresAlternativos": [
+        "Spigelia",
+        "Wormseed",
+        "Pinkroot",
+        "Spigelia anthelmintica"
+      ],
+      "nombreCientifico": "Spigelia anthelmia",
+      "familia": "Loganiaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "neuralgias",
+        "neuralgia del trigemino izquierdo",
+        "palpitaciones",
+        "dolor ocular"
+      ],
+      "descripcion": "Remedio de neuralgias violentas, especialmente del trigemino izquierdo y del ojo. Tipico el dolor que aumenta y disminuye gradualmente (como reloj de arena) y mejora con el calor y la presion.",
+      "mecanismoAccion": "En homeopatia: modula las neuralgias violentas con lateralidad izquierda y el dolor que sigue un patron de intensidad creciente-decreciente; tambien palpitaciones ansiosas.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Neuralgia violenta del trigemino, lado izquierdo",
+        "Dolor que aumenta y disminuye gradualmente (reloj de arena)",
+        "Mejora con el calor, la presion y acostado con la cabeza alta",
+        "Dolor ocular como un hilo que tira hacia atras",
+        "Palpitaciones violentas con ansiedad, mejora tumbado del lado derecho",
+        "Sensacion de que el corazon late contra las costillas",
+        "Miedo y presentimientos ansiosos"
+      ],
+      "modalidades": {
+        "empeora": [
+          "toque",
+          "movimiento",
+          "ruido",
+          "frio",
+          "viento"
+        ],
+        "mejora": [
+          "calor",
+          "presion",
+          "reposo",
+          "tumbado del lado derecho"
+        ]
+      },
+      "afinidad": [
+        "nervio trigemino",
+        "ojos",
+        "corazon",
+        "sistema nervioso"
+      ],
+      "constelaciones": [
+        "Neuralgia del trigemino izquierda",
+        "Neuralgia ocular",
+        "Palpitaciones ansiosas"
+      ],
+      "advertencias": [
+        "La planta fresca es toxica (cardiotonica); solo en dilucion homeopatica",
+        "Las neuralgias intensas y persistentes requieren valoracion medica para descartar causa organica"
+      ],
+      "tags": [
+        "neuralgia",
+        "trigemino",
+        "izquierda",
+        "palpitaciones",
+        "ojo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes; Farrington Clinical Materia Medica"
+      }
+    },
+    {
+      "id": "sanguinaria",
+      "nombre": "Sanguinaria Canadensis",
+      "nombresAlternativos": [
+        "Sanguinaria",
+        "Bloodroot",
+        "Puccoon",
+        "Red root"
+      ],
+      "nombreCientifico": "Sanguinaria canadensis",
+      "familia": "Papaveraceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "migrana derecha",
+        "neuralgia facial derecha",
+        "tos seca irritativa",
+        "sofocos"
+      ],
+      "descripcion": "Remedio de la migraña derecha que comienza en la nuca y se asienta sobre el ojo derecho, con nausea y vomito, que mejora con el sueno y el vomito. Asociado a sofocos y a la menopausia.",
+      "mecanismoAccion": "En homeopatia: modula la migraña derecha con patron occipital-supraorbitario y los sofocos menopausicos; accion sobre mucosa respiratoria con tos seca.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Migraña derecha que comienza en la nuca y se asienta sobre el ojo derecho",
+        "Mejora con el sueno y el vomito",
+        "Empeora con la luz, el ruido, el movimiento y el olor de comida",
+        "Nauseas y vomito que mejoran el dolor",
+        "Sofocos con sudor y rubor, tipico de menopausia",
+        "Tos seca irritativa peor por irritacion laríngea",
+        "Dolor quemante en palmas y plantas"
+      ],
+      "modalidades": {
+        "empeora": [
+          "luz",
+          "ruido",
+          "movimiento",
+          "olor de comida",
+          "sol",
+          "cambio de tiempo"
+        ],
+        "mejora": [
+          "sueno",
+          "vomito",
+          "oscuridad",
+          "presion"
+        ]
+      },
+      "afinidad": [
+        "sistema vascular",
+        "mucosa respiratoria",
+        "estomago",
+        "piel"
+      ],
+      "constelaciones": [
+        "Migraña derecha occipital-supraorbitaria",
+        "Sofocos menopausicos",
+        "Tos seca"
+      ],
+      "advertencias": [
+        "La planta fresca es toxica (sanguinarina); solo en dilucion homeopatica",
+        "Las migrañas frecuentes requieren valoracion medica para descartar causa secundaria"
+      ],
+      "tags": [
+        "migrana",
+        "derecha",
+        "sofocos",
+        "menopausia",
+        "tos seca"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "iris_versicolor",
+      "nombre": "Iris Versicolor",
+      "nombresAlternativos": [
+        "Iris",
+        "Blue flag",
+        "Iris versicolor rhizoma",
+        "Lirio azul"
+      ],
+      "nombreCientifico": "Iris versicolor",
+      "familia": "Iridaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "migraña con alteracion visual",
+        "gastroenteritis aguda con ardor",
+        "herpes zoster derecho"
+      ],
+      "descripcion": "Remedio de la migraña precedida de alteracion visual, con nausea y vomito ardiente acido, tipica tras agotamiento mental. Tambien indicado en gastroenteritis con diarrea ardiente y herpes zoster derecho.",
+      "mecanismoAccion": "En homeopatia: modula la migraña con aura visual y el cuadro gastrico ardiente (vomito acido, diarrea ardiente), con accion sobre pancreas y vias biliares.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Migraña precedida de vision borrosa o destellos",
+        "Vomito ardiente, acido, profuso",
+        "Diarrea ardiente y acida, indolora",
+        "Sialorrea (salivacion profusa)",
+        "Migraña tras agotamiento mental (relajacion tras presion)",
+        "Mejora con el movimiento continuo",
+        "Herpes zoster derecho asociado a trastorno digestivo"
+      ],
+      "modalidades": {
+        "empeora": [
+          "reposo",
+          "tras comer",
+          "tras relajacion mental"
+        ],
+        "mejora": [
+          "movimiento continuo",
+          "aire libre"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso",
+        "pancreas",
+        "vias biliares",
+        "tracto digestivo",
+        "piel"
+      ],
+      "constelaciones": [
+        "Migraña con aura visual",
+        "Gastroenteritis ardiente",
+        "Herpes zoster derecho"
+      ],
+      "advertencias": [
+        "La planta fresca es toxica (iridina); solo en dilucion homeopatica",
+        "Las migrañas y los cuadros gastricos persistentes requieren valoracion medica"
+      ],
+      "tags": [
+        "migrana",
+        "aura visual",
+        "vomito ardiente",
+        "pancreas",
+        "herpes zoster"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Boger Synoptic Key"
+      }
+    },
+    {
+      "id": "chelidonium",
+      "nombre": "Chelidonium Majus",
+      "nombresAlternativos": [
+        "Chelidonium",
+        "Greater celandine",
+        "Celandine",
+        "Golondrinera"
+      ],
+      "nombreCientifico": "Chelidonium majus",
+      "familia": "Papaveraceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "dolor hepatico derecho",
+        "dispepsia hepatica",
+        "neuralgia facial derecha",
+        "escapulalgia derecha"
+      ],
+      "descripcion": "Remedio de afinidad hepato-biliar con lateralidad derecha: dolor que irradia desde el higado derecho hacia la escapula derecha. Indicado en dispepsia hepatica y neuralgias derechas.",
+      "mecanismoAccion": "En homeopatia: modula la disfuncion hepato-biliar con dolor que irradia a la escapula derecha y la dispepsia con plenitud en hipocondrio derecho.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Dolor en hipocondrio derecho que irradia a la escapula derecha",
+        "Lengua con saburra amarilla y marcas dentales",
+        "Dispepsia con plenitud y nausea que mejora comiendo caliente",
+        "Dolor que mejora con la presion fuerte y el calor local",
+        "Constipacion con heces fecales claras/amarillentas",
+        "Lateralidad derecha marcada",
+        "Mejora tras beber bebidas calientes y tras comer"
+      ],
+      "modalidades": {
+        "empeora": [
+          "movimiento",
+          "toque",
+          "cambio de tiempo",
+          "medianoche"
+        ],
+        "mejora": [
+          "comer caliente",
+          "bebidas calientes",
+          "presion fuerte",
+          "reposo"
+        ]
+      },
+      "afinidad": [
+        "higado",
+        "vesicula biliar",
+        "escapula derecha",
+        "sistema digestivo",
+        "piel"
+      ],
+      "constelaciones": [
+        "Dispepsia hepato-biliar derecha",
+        "Dolor hepatico con irradiacion escapular",
+        "Neuralgia facial derecha"
+      ],
+      "advertencias": [
+        "La planta fresca contiene alcaloides toxicos (hepatotoxicos en dosis altas); solo en dilucion homeopatica",
+        "Las hepatopatias requieren valoracion medica para descartar causa grave"
+      ],
+      "tags": [
+        "hepatico",
+        "vesicula",
+        "derecha",
+        "escapula",
+        "dispepsia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
       }
     }
   ]

@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 55,
-    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs on Selected Medicinal Plants"
+    "total": 60,
+    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs on Selected Medicinal Plants + ESCOP Monographs"
   },
   "ingredientes": [
     {
@@ -2844,6 +2844,281 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Ribes nigrum L., folium (Rev.1)"
+      }
+    },
+    {
+      "id": "lino",
+      "nombre": "Lino (Linaza)",
+      "nombresAlternativos": [
+        "Linum usitatissimum",
+        "Flaxseed",
+        "Linseed",
+        "Lini semen",
+        "Semilla de lino"
+      ],
+      "nombreCientifico": "Linum usitatissimum",
+      "familia": "Linaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "cardiovascular",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "estrenimiento habitual",
+        "piel y mucosas secas",
+        "hipercolesterolemia adyuvante",
+        "soporte cardiovascular"
+      ],
+      "descripcion": "Semilla con uso bien establecido para el tratamiento del estrenimiento habitual y condiciones donde se desea evacuacion facil con heces blandas. Rica en omega-3 (ALA), lignanos y mucilagos.",
+      "mecanismoAccion": "Los mucilagos absorben agua y aumentan el volumen de las heces (laxante de bulk); el acido alfa-linolenico (omega-3) y los lignanos aportan efecto cardioprotector y modulador endocrino leve.",
+      "nivelEvidencia": "A",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Semilla entera",
+        "Semilla molida",
+        "Aceite prensado en frio",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "12-24 horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Tomar con liquido abundante (150 ml por cada 10-15 g); riesgo de obstruccion sin hidratacion",
+        "No usar en impactacion fecal o dolor abdominal sin consulta medica",
+        "Separar 30-60 min de otros medicamentos orales (reduce absorcion)",
+        "Precaucion en sangrado activo o anticoagulantes (omega-3 tiene efecto antiagregante leve)",
+        "La semilla molida se oxida rapidamente; conservar refrigerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antiagregantes plaquetarios",
+        "Todos los medicamentos orales (separar la toma)"
+      ],
+      "tags": [
+        "laxante",
+        "bulk",
+        "omega-3",
+        "ALA",
+        "lignanos",
+        "estrenimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/377675/2014 (Linum usitatissimum semen, well-established use)"
+      }
+    },
+    {
+      "id": "fenogreco",
+      "nombre": "Fenogreco",
+      "nombresAlternativos": [
+        "Trigonella foenum-graecum",
+        "Fenugreek",
+        "Alholva",
+        "Trigonellae semen",
+        "Fenugrec"
+      ],
+      "nombreCientifico": "Trigonella foenum-graecum",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "perdida de apetito",
+        "dispepsia leve"
+      ],
+      "descripcion": "Semilla usada tradicionalmente para la estimulacion del apetito y el alivio de la dispepsia leve. Tambien conocida por su uso tradicional en el metabolismo de la glucosa, aunque no cubierto por la indicacion EMA.",
+      "mecanismoAccion": "Los mucilagos ejercen efecto demulcente y la galactomanana ralentiza la absorcion de glúcidos (posible efecto modulador de la glucemia postprandial); los compuestos amargos estimulan el apetito.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Semilla molida",
+        "Infusion",
+        "Extracto seco",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "dias a semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Precaucion en embarazo a dosis terapeuticas (efecto uterotonic)",
+        "Precaucion con antidiabeticos (posible hipoglucemia)",
+        "Puede dar olor corporal a arce (maple)",
+        "Posible reaccion alergica en alergia a Fabaceae"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos",
+        "Anticoagulantes cumarinicos (precaucion)"
+      ],
+      "tags": [
+        "apetito",
+        "dispepsia",
+        "glucosa",
+        "mucilagos",
+        "galactomanana"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/179591/2018 Rev.1 (Trigonella foenum-graecum semen)"
+      }
+    },
+    {
+      "id": "rusco",
+      "nombre": "Rusco (Bruco)",
+      "nombresAlternativos": [
+        "Ruscus aculeatus",
+        "Butcher's broom",
+        "Box holly",
+        "Rusci aculeati rhizoma"
+      ],
+      "nombreCientifico": "Ruscus aculeatus",
+      "familia": "Asparagaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "insuficiencia venosa cronica",
+        "piernas pesadas",
+        "hemorroides",
+        "fragilidad capilar"
+      ],
+      "descripcion": "Rizoma usado tradicionalmente para aliviar los sintomas de la insuficiencia venosa cronica (pesadez, dolor, prurito) y las molestias de hemorroides. Efecto venotonico similar al castano de indias.",
+      "mecanismoAccion": "Las saponinas esteroideas (ruscogeninas) aumentan el tono venoso y reducen la permeabilidad capilar, disminuyendo el edema y mejorando el retorno venoso.",
+      "nivelEvidencia": "C",
+      "parteUsada": "rizoma",
+      "formasPresentacion": [
+        "Extracto seco estandarizado en ruscogeninas",
+        "Capsulas",
+        "Gel topico"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Consultar al medico si aparecen ulceras, dolor intenso o hinchazon brusca de pierna",
+        "Puede causar trastornos digestivos leves (nauseas, diarrea)",
+        "No recomendado en menores de 18 anos",
+        "Precaucion en embarazo y lactancia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos (efecto aditivo leve)"
+      ],
+      "tags": [
+        "venotonico",
+        "ruscogeninas",
+        "insuficiencia venosa",
+        "hemorroides",
+        "edema"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Ruscus aculeatus rhizoma; ESCOP Monographs"
+      }
+    },
+    {
+      "id": "lúpulo",
+      "nombre": "Lupulo",
+      "nombresAlternativos": [
+        "Humulus lupulus",
+        "Hops",
+        "Humuli lupuli strobilus",
+        "Conos de lupulo"
+      ],
+      "nombreCientifico": "Humulus lupulus",
+      "familia": "Cannabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "inquietud",
+        "ansiedad leve",
+        "trastornos del sueno"
+      ],
+      "descripcion": "Cono usado tradicionalmente para el alivio de la inquietud, la ansiedad leve y los trastornos del sueno. A menudo se combina con valeriana y melisa en preparados sedativos.",
+      "mecanismoAccion": "Los compuestos amargos (humulona, lupulona) y el aceite esencial modulan el receptor GABA-A, con efecto sedante y ansiolitico leve; la EMA lo incluye en la combinacion Species sedativae.",
+      "nivelEvidencia": "C",
+      "parteUsada": "cono",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto seco",
+        "Capsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Precaucion con depresores del SNC (sedantes, alcohol)",
+        "Puede causar somnolencia; no conducir tras la toma inicial",
+        "Precaucion en embarazo y lactancia",
+        "Posible reaccion alergica en sensibilizados"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes y depresores del SNC",
+        "Alcohol"
+      ],
+      "tags": [
+        "sedante",
+        "sueno",
+        "ansiedad",
+        "GABA",
+        "Species sedativae"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Species sedativae EMA/HMPC/438183/2017 (incluye Humulus lupulus flos); ESCOP Monographs"
+      }
+    },
+    {
+      "id": "zarzaparrilla",
+      "nombre": "Zarzaparrilla",
+      "nombresAlternativos": [
+        "Smilax aspera",
+        "Sarsaparilla",
+        "Smilacis rhizoma",
+        "Zarza"
+      ],
+      "nombreCientifico": "Smilax aspera",
+      "familia": "Smilacaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "estimulacion de la diuresis",
+        "molestias urinarias leves",
+        "psoriasis adyuvante (tradicional)"
+      ],
+      "descripcion": "Rizoma usado tradicionalmente para favorecer la eliminacion renal de agua y aliviar molestias urinarias leves, tras descartar afecciones graves por un medico. Uso tradicional adyuvante en psoriasis.",
+      "mecanismoAccion": "Las saponinas esteroideas ejercen accion diuretica suave y, tradicionalmente, se les atribuye efecto depurativo y queratolitico en afecciones cutaneas cronicas.",
+      "nivelEvidencia": "D",
+      "parteUsada": "rizoma",
+      "formasPresentacion": [
+        "Decoccion",
+        "Extracto liquido",
+        "Capsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No usar en condiciones donde se recomienda ingesta reducida de liquidos (insuficiencia cardiaca o renal graves)",
+        "Consultar al medico si los sintomas urinarios empeoran o persisten",
+        "Las saponinas pueden irritar la mucosa gastrica en dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos (potencia efecto)"
+      ],
+      "tags": [
+        "diuretico",
+        "urinario",
+        "saponinas",
+        "depurativo",
+        "psoriasis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "ESCOP Monographs (Smilacis rhizoma); uso tradicional documentado en farmacopeas europeas"
       }
     }
   ]

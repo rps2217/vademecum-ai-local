@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 60,
-    "fuente": "Vademecum AI Knowledge Base"
+    "total": 71,
+    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent)"
   },
   "sinergias": [
     {
@@ -1539,6 +1539,294 @@
         "fitoterapia"
       ],
       "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_rusco_castano",
+      "ingredienteA": "rusco",
+      "ingredienteB": "castano_indias",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Doble venotonico para insuficiencia venosa cronica: las ruscogeninas del rusco y la aescina del castano aumentan el tono venoso y reducen el edema por vias complementarias.",
+      "beneficios": [
+        "Doble accion venotonica (ruscogeninas + aescina)",
+        "Reduccion del edema y la pesadez de piernas",
+        "Sinergia capilar (menos permeabilidad)"
+      ],
+      "precauciones": [
+        "Consultar al medico si aparecen ulceras, dolor intenso o hinchazon brusca",
+        "No usar en menores de 18 anos",
+        "Precaucion con anticoagulantes e antihipertensivos"
+      ],
+      "mecanismo": "Las ruscogeninas del rusco y la aescina del castano actuan sobre el tono venoso y la permeabilidad capilar por vias distintas (saponinas esteroideas vs triterpenicas), permitiendo un efecto venotonico combinado.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_rusco_vid",
+      "ingredienteA": "rusco",
+      "ingredienteB": "vid_roja",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion venotonica y antioxidante para insuficiencia venosa: las ruscogeninas del rusco aumentan el tono venoso y los antocianos de la vid protegen el endotelio.",
+      "beneficios": [
+        "Venotonico + protector endotelial",
+        "Reduccion de la fragilidad capilar",
+        "Alivio de piernas pesadas"
+      ],
+      "precauciones": [
+        "Consultar al medico si empeoran los sintomas o aparecen ulceras",
+        "Precaucion con antihipertensivos"
+      ],
+      "mecanismo": "Las ruscogeninas del rusco aumentan el tono venoso; los antocianos de la hoja de vid aportan proteccion antioxidante del endotelio capilar; efecto sinergico sobre el retorno venoso.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_lino_psyllium",
+      "ingredienteA": "lino",
+      "ingredienteB": "psyllium",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinacion de fibras solubles con uso bien establecido para el estrenimiento: los mucilagos del lino y del psyllium aumentan el volumen de las heces y suavizan la evacuacion.",
+      "beneficios": [
+        "Doble fuente de fibra soluble (mucilagos)",
+        "Laxante de bulk sin estimulacion del peristaltismo",
+        "Suave y apropiado para uso prolongado",
+        "Adyuvante en colesterol (psyllium) y omega-3 (lino)"
+      ],
+      "precauciones": [
+        "Tomar con liquido abundante (riesgo de obstruccion sin hidratacion)",
+        "Separar 30-60 min de otros medicamentos orales",
+        "No usar en impactacion fecal o dolor abdominal sin consulta"
+      ],
+      "mecanismo": "Los mucilagos de ambas semillas (lino y psyllium) absorben agua y aumentan el volumen de las heces estimulando el peristaltismo; el psyllium anade secuestro de acidos biliares (colesterol) y el lino aporta omega-3 cardioprotector.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_lupulo_valeriana",
+      "ingredienteA": "lúpulo",
+      "ingredienteB": "valeriana",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion sedativa clasica (Species sedativae EMA) para la ansiedad leve y los trastornos del sueno: el lupulo y la valeriana modulan el receptor GABA-A de forma sinergica.",
+      "beneficios": [
+        "Sinergia sedante GABAergica",
+        "Reduce la latencia de inicio del sueno",
+        "Mejora la calidad del sueno y la ansiedad leve",
+        "Combinacion reconocida por la EMA (Species sedativae)"
+      ],
+      "precauciones": [
+        "Posible somnolencia matutina",
+        "No combinar con sedantes, benzodiacepinas o alcohol sin supervision",
+        "Precaucion al conducir tras la toma inicial"
+      ],
+      "mecanismo": "Los compuestos del lupulo (humulona, lupulona) y los valerenos de la valeriana modulan el receptor GABA-A por sitios de union distintos, potenciando el efecto sedante-anxiolitico de forma sinergica.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_lupulo_melisa",
+      "ingredienteA": "lúpulo",
+      "ingredienteB": "melisa",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion sedativa y digestiva (Species sedativae EMA) para la ansiedad leve con componente digestivo: el lupulo seda y la melisa anade efecto espasmolitico gastrointestinal.",
+      "beneficios": [
+        "Sedante + espasmolitico digestivo",
+        "Util en ansiedad con nerviosismo gastrico",
+        "Combinacion reconocida por la EMA (Species sedativae)"
+      ],
+      "precauciones": [
+        "Posible somnolencia",
+        "Precaucion con depresores del SNC y alcohol"
+      ],
+      "mecanismo": "El lupulo modula GABA-A (sedante); la melisa aporta modulacion GABAergica y espasmolitico sobre el musculo liso digestivo; util cuando la ansiedad se acompana de nerviosismo gastrico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_arnica_bellis",
+      "ingredienteA": "arnica",
+      "ingredienteB": "bellis_perennis",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion clasica de traumatismos: arnica para las contusiones superficiales y bellis perennis para los tejidos profundos y la congestion venosa por compresion.",
+      "beneficios": [
+        "Cobertura de tejido superficial (arnica) y profundo (bellis)",
+        "Util en traumatismos con afectacion muscular profunda",
+        "Coadyuvante en post-quirurgico de tejidos profundos"
+      ],
+      "precauciones": [
+        "Las lesiones graves o con sospecha de fractura requieren valoracion medica",
+        "La homeopatia es coadyuvante, no sustitutiva del tratamiento medico"
+      ],
+      "mecanismo": "En homeopatia: arnica cubre la contusion superficial y el hematoma; bellis perennis se considera el complemento para tejidos profundos, musculatura y congestion venosa por causa mecanica, completando la accion de arnica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_hypericum_symphytum",
+      "ingredienteA": "hypericum",
+      "ingredienteB": "symphytum",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion clasica para traumatismos con afectacion nerviosa y osea: hypericum para el dolor neurogeno y symphytum para la consolidacion osea y el periostio.",
+      "beneficios": [
+        "Dolor neurogeno (hypericum) + consolidacion osea (symphytum)",
+        "Util en fracturas con lesion nerviosa asociada",
+        "Coadyuvante en dolor post-traumatico de zonas ricas en nervios"
+      ],
+      "precauciones": [
+        "Las fracturas requieren valoracion y reduccion medica; la homeopatia es coadyuvante",
+        "Los traumatismos neurologicos requieren valoracion medica"
+      ],
+      "mecanismo": "En homeopatia: hypericum modula el dolor neurogeno tras lesion de nervios y symphytum modula la consolidacion osea y el dolor periostico; la combinacion cubre el componente nervioso y oseo del traumatismo.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_ruta_ledum",
+      "ingredienteA": "ruta_graveolens",
+      "ingredienteB": "ledum_palustre",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion clasica para lesiones de tendones y tejidos punzantes: ruta para los tendones y ligamentos, ledum para heridas punzantes y hematomas en frio.",
+      "beneficios": [
+        "Tendones/ligamentos (ruta) + heridas punzantes/hematomas (ledum)",
+        "Util en esguinces con herida punzante asociada",
+        "Ledum indicado cuando la zona esta fria al tacto y mejora con frio"
+      ],
+      "precauciones": [
+        "Las lesiones tendinosas graves requieren valoracion medica",
+        "Ambas plantas son toxicas frescas; solo en dilucion homeopatica"
+      ],
+      "mecanismo": "En homeopatia: ruta modula la reparacion de tendones y ligamentos tras sobrecarga; ledum cubre heridas punzantes y hematomas con la particularidad de que la zona fria mejora con frio; combinacion clasica en traumatologia homeopatica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_calendula_hypericum",
+      "ingredienteA": "calendula",
+      "ingredienteB": "hypericum",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion clasica para heridas con afectacion nerviosa: calendula favorece la cicatrizacion y hypericum cubre el dolor neurogeno de la zona lesionada.",
+      "beneficios": [
+        "Cicatrizacion (calendula) + dolor neurogeno (hypericum)",
+        "Util en heridas lacerantes con dolor en descarga electrica",
+        "Coadyuvante en heridas con lesion nerviosa periferica"
+      ],
+      "precauciones": [
+        "Las heridas profundas, infectadas o que necesitan sutura requieren valoracion medica",
+        "La homeopatia es coadyuvante, no sustitutiva"
+      ],
+      "mecanismo": "En homeopatia: calendula modula la reparacion tisular de heridas y laceraciones; hypericum cubre el componente de dolor neurogeno cuando la herida afecta zonas ricas en nervios; la combinacion favorece la cicatrizacion y calma el dolor lancinante.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_calendula_symphytum",
+      "ingredienteA": "calendula",
+      "ingredienteB": "symphytum",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion para heridas con afectacion osea: calendula para la cicatrizacion de partes blandas y symphytum para la consolidacion del hueso lesionado.",
+      "beneficios": [
+        "Cicatrizacion de partes blandas (calendula) + hueso (symphytum)",
+        "Util en heridas con fractura subyacente o lesion periostica",
+        "Coadyuvante en post-quirurgico oseo"
+      ],
+      "precauciones": [
+        "Las fracturas y heridas profundas requieren valoracion medica",
+        "La homeopatia es coadyuvante, no sustitutiva"
+      ],
+      "mecanismo": "En homeopatia: calendula modula la cicatrizacion de partes blandas y symphytum modula la consolidacion osea y el dolor periostico; combinacion para heridas con componente oseo asociado.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_aconitum_belladonna",
+      "ingredienteA": "aconitum_napellus",
+      "ingredienteB": "belladonna",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion clasica en la fase inicial de la fiebre: aconitum para el inicio brusco con miedo e inquietud, seguido de belladonna cuando el cuadro se establece con calor, rubor y pulsacion.",
+      "beneficios": [
+        "Cubre la transicion fase inicial (aconitum) -> fase congestiva (belladonna)",
+        "Util en fiebres altas de inicio brusco",
+        "Aconitum para el miedo y la inquietud; belladonna para el calor pulsante"
+      ],
+      "precauciones": [
+        "Las fiebras altas en ninos y persistentes requieren valoracion medica",
+        "Ambas plantas son toxicas frescas; solo en dilucion homeopatica",
+        "La homeopatia no sustituye al tratamiento de urgencia"
+      ],
+      "mecanismo": "En homeopatia: aconitum cubre la fase inicial (inicio brusco, miedo, inquietud, piel seca) y belladonna la fase congestiva (calor, rubor, pulsacion, sed); uso secuencial o combinado segun la fase del proceso febril.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio",
         "cardiovascular"
       ]
     }
