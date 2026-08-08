@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 69,
+    "total": 81,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -3611,6 +3611,629 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "ESCOP Monographs (Eschscholzia californicae herba); German Commission E monograph"
+      }
+    },
+    {
+      "id": "bacopa",
+      "nombre": "Bacopa",
+      "nombresAlternativos": [
+        "Bacopa monnieri",
+        "Brahmi",
+        "Water hyssop",
+        "Herpestis monniera"
+      ],
+      "nombreCientifico": "Bacopa monnieri",
+      "familia": "Plantaginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ],
+      "indicaciones": [
+        "memoria",
+        "cognicion",
+        "ansiedad",
+        "concentracion",
+        "estrés"
+      ],
+      "descripcion": "Planta nootrópica de la medicina ayurvédica utilizada para mejorar memoria, concentración y función cognitiva. Evidencia clínica robusta en mejora del recall y retención.",
+      "mecanismoAccion": "Los bacosidos modulan la actividad acetilcolinesterasa, promueven la ramificación dendrítica y la neurotransmisión colinérgica. Aumenta la sinaptogénesis vía BDNF.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto estandarizado (50% bacosidos)"
+      ],
+      "tiempoEfecto": "4-12 semanas",
+      "duracionTratamiento": "8-12 semanas",
+      "advertencias": [
+        "Puede causar molestias gastrointestinales",
+        "Reducir dosis en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inhibidores de acetilcolinesterasa",
+        "Anticolinérgicos",
+        "Levodopa"
+      ],
+      "tags": [
+        "nootropico",
+        "memoria",
+        "cognicion",
+        "ayurveda",
+        "adaptogeno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "ESCOP Monographs + Clinical trials meta-analysis"
+      }
+    },
+    {
+      "id": "andrographis",
+      "nombre": "Andrographis",
+      "nombresAlternativos": [
+        "Andrographis paniculata",
+        "King of bitters",
+        "Kalmegh",
+        "Justicia paniculata"
+      ],
+      "nombreCientifico": "Andrographis paniculata",
+      "familia": "Acanthaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmunologico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "resfriado común",
+        "infección respiratoria alta",
+        "inmunidad",
+        "faringitis",
+        "amigdalitis"
+      ],
+      "descripcion": "Planta inmunomoduladora con andrografólidos. Reduce severidad y duración del resfriado común y dolor de garganta. Reconocida por TGA y farmacopeas asiáticas.",
+      "mecanismoAccion": "Los andrografólidos estimulan la respuesta inmune (proliferación linfocitaria), inhiben la inflamación vía NF-κB y tienen actividad antiviral directa.",
+      "nivelEvidencia": "A",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto estandarizado (10-30% andrografólidos)"
+      ],
+      "tiempoEfecto": "1-3 días",
+      "duracionTratamiento": "3-7 días en agudo",
+      "advertencias": [
+        "Puede causar cefalea o fatiga",
+        "Contraindicada en embarazo (efecto antifertilidad)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "inmunidad",
+        "antiviral",
+        "respiratorio",
+        "antibacterial",
+        "antiinflamatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "WHO Monographs + TGA listed"
+      }
+    },
+    {
+      "id": "pelargonium",
+      "nombre": "Pelargonium",
+      "nombresAlternativos": [
+        "Pelargonium sidoides",
+        "Umckaloabo",
+        "Geranio sudafricano",
+        "Kalobahane"
+      ],
+      "nombreCientifico": "Pelargonium sidoides",
+      "familia": "Geraniaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "bronquitis aguda",
+        "resfriado común",
+        "sinusitis",
+        "amigdalitis",
+        "tos"
+      ],
+      "descripcion": "Planta sudafricana con monografía de la EMA HMPC para bronquitis aguda. Acelera la resolución de síntomas y reduce uso de antibióticos.",
+      "mecanismoAccion": "Los cumarinas y polifenoles aumentan la actividad fagocítica, modulan citoquinas antiinflamatorias y mejoran el aclaramiento mucociliar.",
+      "nivelEvidencia": "A",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Extracto líquido (EPs 7630)",
+        "Cápsulas",
+        "Jarabe"
+      ],
+      "tiempoEfecto": "3-5 días",
+      "duracionTratamiento": "7-14 días",
+      "advertencias": [
+        "Puede aumentar sangrado en trastornos hemorrágicos",
+        "Suspender antes de cirugía"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Warfarina"
+      ],
+      "tags": [
+        "respiratorio",
+        "bronquitis",
+        "inmunidad",
+        "antibacteriano",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (bronquitis aguda)"
+      }
+    },
+    {
+      "id": "arandano_rojo",
+      "nombre": "Arándano Rojo",
+      "nombresAlternativos": [
+        "Cranberry",
+        "Vaccinium macrocarpon",
+        "Arándano americano",
+        "Oxycoccus"
+      ],
+      "nombreCientifico": "Vaccinium macrocarpon",
+      "familia": "Ericaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario"
+      ],
+      "indicaciones": [
+        "prevención ITU recurrente",
+        "cistitis",
+        "salud urinaria"
+      ],
+      "descripcion": "Arándano rojo americano con monografía EMA HMPC para prevención de infecciones del tracto urinario recurrentes. Las proantocianidinas previenen la adhesión bacteriana.",
+      "mecanismoAccion": "Las proantocianidinas tipo A inhiben la adhesión de E. coli (fimbrias tipo P) al urotelio, reduciendo la colonización bacteriana sin actividad antibacteriana directa.",
+      "nivelEvidencia": "A",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado PAC)",
+        "Zumo",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "Uso continuo profiláctico",
+      "duracionTratamiento": "3-6 meses mínimo",
+      "advertencias": [
+        "Precaución en historia de cálculos renales (oxalato)",
+        "Contiene azúcar en zumos comerciales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina (posible aumento efecto)"
+      ],
+      "tags": [
+        "ITU",
+        "urinario",
+        "cistitis",
+        "proantocianidinas",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (ITU recurrente)"
+      }
+    },
+    {
+      "id": "trebol_rojo",
+      "nombre": "Trébol Rojo",
+      "nombresAlternativos": [
+        "Red clover",
+        "Trifolium pratense",
+        "Trébol de prado",
+        "Trébol violeta"
+      ],
+      "nombreCientifico": "Trifolium pratense",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "reproductor"
+      ],
+      "indicaciones": [
+        "sofocos menopáusicos",
+        "síntomas menopausia",
+        "salud cardiovascular"
+      ],
+      "descripcion": "Leguminosa rica en isoflavonas (biochanina A, formononetina) con monografía EMA HMPC para el alivio de síntomas menopáusicos leves.",
+      "mecanismoAccion": "Las isoflavonas actúan como fitoestrógenos modulando selectivamente los receptores estrogénicos ERβ, aliviando sofocos sin estimular tejido mamario.",
+      "nivelEvidencia": "B",
+      "parteUsada": "flor/parte aérea",
+      "formasPresentacion": [
+        "Cápsulas (isoflavonas estandarizadas 40mg)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Evitar en antecedentes de cáncer hormono-dependiente sin supervisión",
+        "Precaución con anticoagulantes (cumarina)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Tamoxifeno",
+        "Estrógenos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "menopausia",
+        "isoflavonas",
+        "fitoestrogeno",
+        "sofocos",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (síntomas menopáusicos)"
+      }
+    },
+    {
+      "id": "pygeum",
+      "nombre": "Pygeum",
+      "nombresAlternativos": [
+        "Prunus africana",
+        "Pygeum africanum",
+        "Almendro africano",
+        "African plum"
+      ],
+      "nombreCientifico": "Prunus africana",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "reproductor"
+      ],
+      "indicaciones": [
+        "hiperplasia prostática benigna (HPB)",
+        "prostatitis",
+        "síntomas urinarios bajos"
+      ],
+      "descripcion": "Corteza de árbol africano con monografía EMA HMPC para alivio de síntomas urinarios de la hiperplasia prostática benigna.",
+      "mecanismoAccion": "Los fitosteroles (β-sitosterol) inhiben la 5-alfa-reductasa y la aromatasa, reduciendo la inflamación prostática y mejorando el flujo urinario.",
+      "nivelEvidencia": "B",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Cápsulas (extracto lipofílico estandarizado)"
+      ],
+      "tiempoEfecto": "4-6 semanas",
+      "duracionTratamiento": "2-3 meses mínimo",
+      "advertencias": [
+        "Conservación: especie amenazada, usar extractos de cultivo sostenible"
+      ],
+      "interaccionesMedicamentosas": [
+        "Finasterida",
+        "Bloqueadores alfa"
+      ],
+      "tags": [
+        "prostata",
+        "HPB",
+        "fitosteroles",
+        "urinario",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (HPB)"
+      }
+    },
+    {
+      "id": "semilla_calabaza",
+      "nombre": "Semilla de Calabaza",
+      "nombresAlternativos": [
+        "Pumpkin seed",
+        "Cucurbita pepo",
+        "Pepita de calabaza",
+        "Cucurbitae semen"
+      ],
+      "nombreCientifico": "Cucurbita pepo",
+      "familia": "Cucurbitaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "reproductor"
+      ],
+      "indicaciones": [
+        "vejiga hiperactiva",
+        "HPB",
+        "incontinencia urinaria",
+        "salud prostática"
+      ],
+      "descripcion": "Semillas ricas en fitosteroles, zinc y ácidos grasos con monografía EMA HMPC para vejiga hiperactiva y síntomas prostáticos leves.",
+      "mecanismoAccion": "Los fitosteroles y Δ7-esteroles inhiben la 5-alfa-reductasa; el zinc y los lignanos aportan acción antiinflamatoria prostática.",
+      "nivelEvidencia": "B",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Cápsulas (extracto oleoso)",
+        "Semillas enteras"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Generalmente bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "prostata",
+        "vejiga",
+        "fitosteroles",
+        "zinc",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (vejiga hiperactiva)"
+      }
+    },
+    {
+      "id": "cascara_sagrada",
+      "nombre": "Cáscara Sagrada",
+      "nombresAlternativos": [
+        "Cascara sagrada",
+        "Rhamnus purshianus",
+        "Frangula purshiana",
+        "Bearberry"
+      ],
+      "nombreCientifico": "Rhamnus purshianus",
+      "familia": "Rhamnaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "estreñimiento ocasional",
+        "constipación"
+      ],
+      "descripcion": "Corteza con antraquinonas (cascarósidos) con acción laxante estimulante. Monografía de farmacopeas europeas para estreñimiento ocasional de corta duración.",
+      "mecanismoAccion": "Los cascarósidos se hidrolizan en el colon a antraquinonas libres (emodina) que estimulan la motilidad colónica y la secreción de agua y electrolitos.",
+      "nivelEvidencia": "B",
+      "parteUsada": "corteza (curada al menos 1 año)",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto seco",
+        "Tabletas"
+      ],
+      "tiempoEfecto": "8-12 horas",
+      "duracionTratamiento": "Máximo 1-2 semanas",
+      "advertencias": [
+        "No usar más de 1-2 semanas",
+        "Contraindicada en obstrucción intestinal, embarazo y lactancia",
+        "Pérdida de electrolitos con uso prolongado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiarrítmicos",
+        "Diuréticos (hipopotasemia)",
+        "Digitálicos"
+      ],
+      "tags": [
+        "laxante",
+        "estreñimiento",
+        "antraquinonas",
+        "estimulante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "ESCOP Monographs + German Commission E"
+      }
+    },
+    {
+      "id": "milenrama",
+      "nombre": "Milenrama",
+      "nombresAlternativos": [
+        "Yarrow",
+        "Achillea millefolium",
+        "Aquilea",
+        "Hierba de las heridas",
+        "Hierba de San José"
+      ],
+      "nombreCientifico": "Achillea millefolium",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "reproductor"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "trastornos menstruales",
+        "espasmos digestivos",
+        "pérdida de apetito",
+        "heridas menores"
+      ],
+      "descripcion": "Planta astringente y antiespasmódica con monografía EMA HMPC para dispepsia leve y trastornos menstruales espasmódicos leves.",
+      "mecanismoAccion": "Los flavonoides y azuleno tienen acción antiespasmódica sobre músculo liso digestivo; los taninos aportan astringencia y la aquileína favorece la coagulación.",
+      "nivelEvidencia": "B",
+      "parteUsada": "parte aérea florida",
+      "formasPresentacion": [
+        "Infusión",
+        "Tintura",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "30-60 minutos (digestivo)",
+      "duracionTratamiento": "Uso puntual o 2-3 semanas",
+      "advertencias": [
+        "Reacciones alérgicas en sensibles a Asteraceae",
+        "Evitar en embarazo (efecto emenagogo)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiácidos (taninos)",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "digestivo",
+        "antiespasmodico",
+        "menstrual",
+        "astringente",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (dispepsia leve)"
+      }
+    },
+    {
+      "id": "gordolobo",
+      "nombre": "Gordolobo",
+      "nombresAlternativos": [
+        "Mullein",
+        "Verbascum thapsus",
+        "Verbascum",
+        "Gambón",
+        "Hierba del pulmón"
+      ],
+      "nombreCientifico": "Verbascum thapsus",
+      "familia": "Scrophulariaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "tos seca",
+        "irritación faríngea",
+        "bronquitis",
+        "ronquera",
+        "catarro"
+      ],
+      "descripcion": "Planta emoliente y expectorante con uso tradicional para tos irritativa y afecciones respiratorias. Reconocida en farmacopeas europeas.",
+      "mecanismoAccion": "Los mucílagos forman una película protectora sobre la mucosa respiratoria, calmándola; las saponinas facilitan la expectoración.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor/hoja",
+      "formasPresentacion": [
+        "Infusión",
+        "Tintura",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "5-7 días",
+      "advertencias": [
+        "Filtrar bien la infusión (pelos irritantes)",
+        "Reacciones alérgicas raras"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "respiratorio",
+        "tos",
+        "emoliente",
+        "expectorante",
+        "tradicional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "ESCOP Monographs + uso tradicional documentado"
+      }
+    },
+    {
+      "id": "fumaria",
+      "nombre": "Fumaria",
+      "nombresAlternativos": [
+        "Fumitory",
+        "Fumaria officinalis",
+        "Palomilla",
+        "Hierba de la sangre",
+        "Fumaria"
+      ],
+      "nombreCientifico": "Fumaria officinalis",
+      "familia": "Papaveraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "piel"
+      ],
+      "indicaciones": [
+        "trastornos hepatobiliares leves",
+        "dermatitis",
+        "eccema leve",
+        "cólicos espasmódicos"
+      ],
+      "descripcion": "Planta con alcaloides isoquinolínicos (protopina) usada tradicionalmente como colerético y antiespasmódico. Monografía EMA HMPC por uso tradicional.",
+      "mecanismoAccion": "La protopina modula el calcio intracelular ejerciendo efecto antiespasmódico; favorece el flujo biliar y la función hepatocelular.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Tintura",
+        "Cápsulas",
+        "Infusión"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "No usar en hepatopatías severas",
+        "Dosis elevadas pueden ser tóxicas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hepatotóxicos"
+      ],
+      "tags": [
+        "hepatico",
+        "biliar",
+        "antiespasmodico",
+        "piel",
+        "EMA HMPC tradicional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional)"
+      }
+    },
+    {
+      "id": "petasites",
+      "nombre": "Petasites",
+      "nombresAlternativos": [
+        "Butterbur",
+        "Petasites hybridus",
+        "Sombrerera",
+        "Hierba de San Pedro",
+        "Petasita"
+      ],
+      "nombreCientifico": "Petasites hybridus",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "prevención migraña",
+        "rinitis alérgica",
+        "asma alérgica"
+      ],
+      "descripcion": "Planta con petasinas y isopetasinas con evidencia clínica para profilaxis de migraña. Solo usar extractos libres de alcaloides pirrolizidínicos (PA-free).",
+      "mecanismoAccion": "Las petasinas inhiben la leukotrien-sintasa (LOX) reduciendo leucotrienos, modulan canales de calcio y reducen la neuroinflamación trigeminovascular.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raíz/hoja (extracto PA-free)",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado PA-free)"
+      ],
+      "tiempoEfecto": "4-8 semanas (profilaxis)",
+      "duracionTratamiento": "3-4 meses mínimo",
+      "advertencias": [
+        "USAR SOLO EXTRACTOS PA-FREE (alcaloides pirrolizidínicos son hepatotóxicos)",
+        "Contraindicado en embarazo y lactancia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hepatotóxicos"
+      ],
+      "tags": [
+        "migraña",
+        "rinitis",
+        "asma",
+        "antiinflamatorio",
+        "PA-free obligatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (migraña) + ESCOP"
       }
     }
   ]

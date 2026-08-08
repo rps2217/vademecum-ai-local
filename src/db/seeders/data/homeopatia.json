@@ -4,7 +4,7 @@
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 45,
+    "total": 50,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -3551,6 +3551,256 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "lachesis",
+      "nombre": "Lachesis mutus",
+      "nombresAlternativos": [
+        "Lachesis",
+        "Surucucu",
+        "Veneno de la cascabel muda",
+        "Bushmaster"
+      ],
+      "nombreCientifico": "Lachesis muta (veneno)",
+      "familia": "Viperidae (nosodo/homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "cardiovascular",
+        "endocrino",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "sofocos menopáusicos",
+        "trastornos de la menopausia",
+        "taquicardia",
+        "intolerancia a la constricción"
+      ],
+      "descripcion": "Policresto homeopático de uso frecuente en menopausia con sofocos intensos, piel seca y sintomatología circulatoria. Sensación de constricción y empeoramiento al despertar.",
+      "mecanismoAccion": "Nosología homeopática (patogenesia). No posee mecanismo bioquímico convencional; actúa según el principio de similitud y susceptibilidad individual.",
+      "nivelEvidencia": "C",
+      "parteUsada": "veneno dinamizado (CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH",
+        "Gotas (dilución Hahnemanniana)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "3-6 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Empeoramiento transitorio posible (repertorio homeopático)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Menta, café y aromáticos (antídotos homeopáticos según tradición)"
+      ],
+      "tags": [
+        "menopausia",
+        "sofocos",
+        "circulatorio",
+        "policresto",
+        "constricción"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas Homeopáticas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "glonoinum",
+      "nombre": "Glonoinum",
+      "nombresAlternativos": [
+        "Glonoin",
+        "Nitroglicerina homeopática",
+        "Trinitrina dynamizada",
+        "Glonoin"
+      ],
+      "nombreCientifico": "Nitroglicerina (dilución homeopática)",
+      "familia": "Químico-energético (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "sofocos menopáusicos",
+        "cefalea pulsátil",
+        "taquicardia",
+        "congestión cefálica"
+      ],
+      "descripcion": "Remedio homeopático de acción vascular marcada. Cefalea pulsátil con oleadas de calor y empeoramiento por el sol y el calor.",
+      "mecanismoAccion": "Nosología homeopática. Sin mecanismo bioquímico en dilución CH; patogenesia vascular en bajas atenuaciones.",
+      "nivelEvidencia": "C",
+      "parteUsada": "nitroglicerina dinamizada (CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "sofocos",
+        "cefalea",
+        "vascular",
+        "menopausia",
+        "calor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas Homeopáticas (Boericke)"
+      }
+    },
+    {
+      "id": "ambra_grisea",
+      "nombre": "Ambra grisea",
+      "nombresAlternativos": [
+        "Ambar gris",
+        "Ambergris",
+        "Ambergrise homeopático"
+      ],
+      "nombreCientifico": "Ambra grisea",
+      "familia": "Animal (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad senil",
+        "temblor nervioso",
+        "espasmos en ancianos",
+        "insomnio con agitación"
+      ],
+      "descripcion": "Remedio homeopático para ansiedad y nerviosismo en personas mayores, con espasmos y dificultad para conciliar el sueño por agitación.",
+      "mecanismoAccion": "Nosología homeopática. Sin mecanismo bioquímico en dilución CH; basado en patogenesia.",
+      "nivelEvidencia": "C",
+      "parteUsada": "ámbar gris dinamizado (CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "ansiedad",
+        "senil",
+        "insomnio",
+        "temblor",
+        "policresto"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas Homeopáticas (Clarke)"
+      }
+    },
+    {
+      "id": "coccus_cacti",
+      "nombre": "Coccus cacti",
+      "nombresAlternativos": [
+        "Cochinilla",
+        "Coccus cacti",
+        "Kermococcus",
+        "Coccus cacti homeopático"
+      ],
+      "nombreCientifico": "Dactylopius coccus (cochinilla)",
+      "familia": "Insecto (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "urinario"
+      ],
+      "indicaciones": [
+        "tos espasmódica",
+        "tos con cosquilleo",
+        "catarro matutino",
+        "espasmo del laringe"
+      ],
+      "descripcion": "Remedio homeopático para tos espasmódica y cosquilleo en laringe, con empeoramiento por el calor de la cama y mejoría por el frío.",
+      "mecanismoAccion": "Nosología homeopática. Sin mecanismo bioquímico en dilución CH; basado en patogenesia respiratoria.",
+      "nivelEvidencia": "C",
+      "parteUsada": "cochinilla dinamizada (CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "tos",
+        "espasmódica",
+        "laringe",
+        "respiratorio",
+        "cosquilleo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas Homeopáticas (Allen)"
+      }
+    },
+    {
+      "id": "crocus_sativus",
+      "nombre": "Crocus sativus (homeopático)",
+      "nombresAlternativos": [
+        "Azafrán homeopático",
+        "Crocus sativus",
+        "Crocus",
+        "Saffron dynamizado"
+      ],
+      "nombreCientifico": "Crocus sativus",
+      "familia": "Iridaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "fluctuaciones del humor",
+        "llanto espasmódico",
+        "síntomas menopáusicos",
+        "sensación de vacío"
+      ],
+      "descripcion": "Remedio homeopático para fluctuaciones del humor y síntomas menopáusicos con sensaciones de vacío y movimientos internos.",
+      "mecanismoAccion": "Nosología homeopática. Sin mecanismo bioquímico en dilución CH; basado en patogenesia.",
+      "nivelEvidencia": "C",
+      "parteUsada": "estigmas de azafrán dinamizados (CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "humor",
+        "menopausia",
+        "llanto",
+        "policresto",
+        "azafrán"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas Homeopáticas (Clarke)"
       }
     }
   ]

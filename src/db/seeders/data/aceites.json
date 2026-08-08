@@ -4,7 +4,7 @@
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 25,
+    "total": 33,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
   "ingredientes": [
@@ -1500,6 +1500,439 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EPA registered biopesticide repellant; CDC guidance on mosquito repellents"
+      }
+    },
+    {
+      "id": "ylang_ylang",
+      "nombre": "Aceite Esencial de Ylang Ylang",
+      "nombresAlternativos": [
+        "Ylang-ylang",
+        "Cananga odorata",
+        "Ylang Ylang completo",
+        "Flor de las flores"
+      ],
+      "nombreCientifico": "Cananga odorata",
+      "familia": "Annonaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "hipertensión leve",
+        "libido",
+        "insomnio"
+      ],
+      "descripcion": "Aceite floral sedante con action ansiolítica y reguladora de la tensión. Aroma intenso usado en aromaterapia para equilibrar el sistema nervioso.",
+      "mecanismoAccion": "Los monoterpenos (linalool, geraniol, beta-cariofileno) modulan GABA y reducen cortisol al inhalar; efecto vasodilatador leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Difusión",
+        "Dilución tópica (máx 20%)"
+      ],
+      "tiempoEfecto": "Inmediato (inhalación)",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Sensibilización posible (diluir siempre)",
+        "Uso tópico máximo 20%",
+        "Evitar en hipotensión marcada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos (potencia)"
+      ],
+      "tags": [
+        "ansiedad",
+        "aromaterapia",
+        "sedante",
+        "tension",
+        "libido"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "geranio",
+      "nombre": "Aceite Esencial de Geranio",
+      "nombresAlternativos": [
+        "Geranium",
+        "Pelargonium graveolens",
+        "Geranio rosado",
+        "Rose geranium"
+      ],
+      "nombreCientifico": "Pelargonium graveolens",
+      "familia": "Geraniaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "piel",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "equilibrio hormonal",
+        "piel madura",
+        "estrés",
+        "repelente insectos",
+        "micosis leve"
+      ],
+      "descripcion": "Aceite equilibrante con acción astringente y antifúngica. Usado en dermatología natural y para síntomas asociados al ciclo hormonal.",
+      "mecanismoAccion": "El citronelol y geraniol tienen acción antimicrobiana y astringente; modula el estrés oxidativo cutáneo y se usa en repulsión de insectos.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja/ Tallo (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 20%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato (inhalación) / días (tópico)",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Diluir siempre para uso tópico",
+        "Posible sensibilización",
+        "Evitar en primer trimestre embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "piel",
+        "hormonal",
+        "antifúngico",
+        "repelente",
+        "astringente"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "lemongrass",
+      "nombre": "Aceite Esencial de Lemongrass",
+      "nombresAlternativos": [
+        "Limoncillo",
+        "Cymbopogon citratus",
+        "Hierba limón",
+        "West Indian lemongrass"
+      ],
+      "nombreCientifico": "Cymbopogon citratus",
+      "familia": "Poaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "musculo-esqueletico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dolor muscular",
+        "micosis",
+        "mala digestión",
+        "repelente insectos",
+        "estrés"
+      ],
+      "descripcion": "Aceite rico en citral con potente acción antimicrobiana, antifúngica y relajante muscular. Fresco y tonificante en aromaterapia.",
+      "mecanismoAccion": "El citral (geranial+neral) tiene actividad antimicrobiana y antifúngica; el mirceno aporta relajación muscular; modula la inflamación.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 1-3%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Irritante cutáneo: diluir al máximo 1-3%",
+        "Evitar en embarazo",
+        "Fotosensibilidad no reportada pero precaución sol"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "antimicrobiano",
+        "antifúngico",
+        "muscular",
+        "repelente",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "pimienta_negra_aceite",
+      "nombre": "Aceite Esencial de Pimienta Negra",
+      "nombresAlternativos": [
+        "Black pepper",
+        "Piper nigrum",
+        "Pimienta",
+        "Piper EO"
+      ],
+      "nombreCientifico": "Piper nigrum",
+      "familia": "Piperaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "digestión lenta",
+        "dolor muscular",
+        "rigidez articular",
+        "circulación",
+        "náuseas"
+      ],
+      "descripcion": "Aceite cálido con piperina que estimula la digestión y alivia el dolor muscular. Potenciador de absorción de otros principios activos.",
+      "mecanismoAccion": "La piperina estimula enzimas digestivas y secreción biliar, inhibe el metabolismo de fase I (CYP) aumentando biodisponibilidad de coadyuvantes; rubefaciente tópico.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto seco (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 1-3%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato (digestivo/tópico)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Irritante: diluir bien",
+        "Evitar mucosas y ojos",
+        "Precaución con anticoagulantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Sustratos CYP3A4 (modula metabolismo)"
+      ],
+      "tags": [
+        "digestivo",
+        "rubefaciente",
+        "absorción",
+        "muscular",
+        "piperina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "mirra",
+      "nombre": "Aceite Esencial de Mirra",
+      "nombresAlternativos": [
+        "Myrrh",
+        "Commiphora myrrha",
+        "Commiphora molmol",
+        "Mirra"
+      ],
+      "nombreCientifico": "Commiphora myrrha",
+      "familia": "Burseraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "bucal",
+        "piel"
+      ],
+      "indicaciones": [
+        "salud bucal (encías)",
+        "aftas",
+        "heridas menores",
+        "micosis bucal",
+        "gengivitis"
+      ],
+      "descripcion": "Resina antiquísima con acción astringente, cicatrizante y antimicrobiana. Excelente para enjuagues bucales y heridas de la mucosa.",
+      "mecanismoAccion": "Los sesquiterpenos (furanoeudesma-1,3-dieno) y la resina tienen acción antibacteriana, antifúngica y astringente; estimula la cicatrización.",
+      "nivelEvidencia": "C",
+      "parteUsada": "resina (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Enjuague bucal diluido",
+        "Dilución tópica (máx 5%)"
+      ],
+      "tiempoEfecto": "Días (bucal/cutáneo)",
+      "duracionTratamiento": "5-7 días",
+      "advertencias": [
+        "No ingerir puro",
+        "Evitar en embarazo",
+        "Diluir para uso bucal"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos (hipoglucemia teórica)"
+      ],
+      "tags": [
+        "bucal",
+        "encías",
+        "antimicrobiano",
+        "cicatrizante",
+        "astringente"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy + traditional medicine references"
+      }
+    },
+    {
+      "id": "sandalo",
+      "nombre": "Aceite Esencial de Sándalo",
+      "nombresAlternativos": [
+        "Sandalwood",
+        "Santalum album",
+        "Sándalo blanco",
+        "Sándalo"
+      ],
+      "nombreCientifico": "Santalum album",
+      "familia": "Santalaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "bucal",
+        "piel"
+      ],
+      "indicaciones": [
+        "meditación",
+        "ansiedad",
+        "insomnio",
+        "salud bucal",
+        "piel madura"
+      ],
+      "descripcion": "Madera aromática con aroma profundo usada en meditación. Sedante del SNC y antimicrobiano en salud bucal.",
+      "mecanismoAccion": "Los santenoles (α-santalol, β-santalol) modulan GABA y reducen la ansiedad; acción antimicrobiana en mucosa bucal y cutánea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "madera (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato (inhalación)",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Especie amenazada: preferir sándalo de cultivo sostenible (S. spicatum)",
+        "Diluir para uso tópico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "meditación",
+        "sedante",
+        "bucal",
+        "piel",
+        "sostenible"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "cipres",
+      "nombre": "Aceite Esencial de Ciprés",
+      "nombresAlternativos": [
+        "Cypress",
+        "Cupressus sempervirens",
+        "Ciprés mediterráneo",
+        "Ciprés siempreverde"
+      ],
+      "nombreCientifico": "Cupressus sempervirens",
+      "familia": "Cupressaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "cardiovascular",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "insuficiencia venosa",
+        "piernas cansadas",
+        "tos seca",
+        "hemorroides",
+        "celulitis"
+      ],
+      "descripcion": "Aceite vasoconstrictor y tónico venoso por excelencia. Mejora el tono venoso y alivia la tos seca.",
+      "mecanismoAccion": "Los taninos y proantocianidinas mejoran el tono venoso y la microcirculación; acción antitusiva leve por los pinenos.",
+      "nivelEvidencia": "C",
+      "parteUsada": "rama/hoja (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Semanas (venoso)",
+      "duracionTratamiento": "Continuo en crónico",
+      "advertencias": [
+        "Evitar en embarazo (efecto emenagogo)",
+        "No usar en cáncer hormono-dependente sin supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "venoso",
+        "circulación",
+        "tos",
+        "hemorroides",
+        "tónico-venoso"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "mejorana",
+      "nombre": "Aceite Esencial de Mejorana",
+      "nombresAlternativos": [
+        "Marjoram",
+        "Origanum majorana",
+        "Mejorana dulce",
+        "Knotted marjoram"
+      ],
+      "nombreCientifico": "Origanum majorana",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "dolor muscular",
+        "tensión",
+        "digestión lenta",
+        "espasmos"
+      ],
+      "descripcion": "Hierba calmante con aceite sedante y antiespasmódico. Relaja músculos y calma el sistema nervioso.",
+      "mecanismoAccion": "El terpinen-4-ol y cis-sabineno hidrato modulan GABA (sedante) y relajan el músculo liso digestivo; cariofileno reduce la inflamación.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja/inflorescencia (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 5%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Sedación posible",
+        "Diluir para uso tópico",
+        "Evitar en embarazo a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes (potencia)"
+      ],
+      "tags": [
+        "sedante",
+        "muscular",
+        "digestivo",
+        "antiespasmodico",
+        "insomnio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
       }
     }
   ]

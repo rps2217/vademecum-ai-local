@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 90,
+    "total": 115,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -2069,6 +2069,908 @@
       "sistemas": [
         "digestivo",
         "nervioso"
+      ]
+    },
+    {
+      "id": "sin_andrographis_equinacea",
+      "ingredienteA": "andrographis",
+      "ingredienteB": "equinacea",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación inmunomoduladora para infecciones respiratorias altas agudas. Sinergia antiviral y antiinflamatoria.",
+      "beneficios": [
+        "Reducción de duración del resfriado",
+        "Efecto antiviral dual",
+        "Acción antiinflamatoria de mucosas",
+        "Inmunomodulación complementaria"
+      ],
+      "precauciones": [
+        "Suspender si fiebre alta o empeoramiento",
+        "Contraindicada andrographis en embarazo"
+      ],
+      "mecanismo": "Andrographis estimula linfocitos e inhibe NF-κB; equinacea aumenta fagocitosis y células NK. Acciones complementarias sobre la respuesta inmune innata.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_pelargonium_vitc",
+      "ingredienteA": "pelargonium",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Coadyuvante en bronquitis aguda: el pelargonium acelera la resolución y la vitamina C apoya la función inmune.",
+      "beneficios": [
+        "Acelera resolución de bronquitis aguda",
+        "Reduce tos productiva",
+        "Apoyo antioxidante mucoso"
+      ],
+      "precauciones": [
+        "Pelargonium: precaución con anticoagulantes"
+      ],
+      "mecanismo": "Pelargonium mejora el aclaramiento mucociliar y la fagocitosis; vitamina C reduce el estrés oxidativo en mucosa respiratoria.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_nac_vitc",
+      "ingredienteA": "nac",
+      "ingredienteB": "vitamina_c",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo antioxidante y mucolítico. El NAC repone glutatión y la vitamina C lo recicla, potenciando la defensa antioxidante respiratoria.",
+      "beneficios": [
+        "Efecto mucolítico sinérgico",
+        "Maximiza niveles de glutatión",
+        "Defensa antioxidante respiratoria",
+        "Apoyo en congestión crónica"
+      ],
+      "precauciones": [
+        "NAC: separar de antibióticos 2h"
+      ],
+      "mecanismo": "NAC es precursor del glutatión (donante -SH); la vitamina C recicla el glutatión oxidado (GSSG→GSH), manteniendo el pool antioxidante.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_gordolobo_tomillo",
+      "ingredienteA": "gordolobo",
+      "ingredienteB": "tomillo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación tradicional para tos irritativa: el gordolobo emoliente y el tomillo con timol antitusivo y antimicrobiano.",
+      "beneficios": [
+        "Calma la mucosa irritada",
+        "Facilita expectoración",
+        "Acción antimicrobiana leve",
+        "Reduce tos seca nocturna"
+      ],
+      "precauciones": [
+        "Filtrar bien la infusión de gordolobo"
+      ],
+      "mecanismo": "Los mucílagos del gordolobo forman película protectora; el timol del tomillo tiene acción antimicrobiana y antitusiva leve.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_arandano_probioticos",
+      "ingredienteA": "arandano_rojo",
+      "ingredienteB": "probioticos",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Estrategia dual para ITU recurrente: el arándano previene la adhesión bacteriana y los probióticos modulan la microbiota urogenital.",
+      "beneficios": [
+        "Reducción de recurrencias de ITU",
+        "Equilibrio de microbiota urogenital",
+        "Prevención de cistitis recurrente"
+      ],
+      "precauciones": [
+        "No sustituye antibiótico en ITU aguda"
+      ],
+      "mecanismo": "Las proantocianidinas del arándano bloquean la adhesión de E. coli; los lactobacilos probióticos compiten por nichos y mantienen pH vaginal-uretral ácido.",
+      "categorias": [
+        "fitoterapia",
+        "probioticos"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_beta_glucanos_vitc",
+      "ingredienteA": "beta_glucanos",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte inmunológico estacional: los β-glucanos activan la inmunidad innata y la vitamina C apoya la función de neutrófilos y linfocitos.",
+      "beneficios": [
+        "Refuerzo inmunológico estacional",
+        "Menor frecuencia de infecciones respiratorias",
+        "Acción antioxidante complementaria"
+      ],
+      "precauciones": [
+        "Considerar en enfermedades autoinmunes"
+      ],
+      "mecanismo": "Los β-glucanos activan dectina-1 en macrófagos/NK; la vitamina C apoya quimiotaxis y fagocitosis de neutrófilos.",
+      "categorias": [
+        "probioticos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_bacopa_ginkgo",
+      "ingredienteA": "bacopa",
+      "ingredienteB": "ginkgo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación nootrópica para memoria y función cognitiva en adultos. Mejora el flujo cerebral y la neurotransmisión colinérgica.",
+      "beneficios": [
+        "Mejora memoria y recall",
+        "Aumenta concentración",
+        "Mejora microcirculación cerebral",
+        "Acción neuroprotectora"
+      ],
+      "precauciones": [
+        "Ginkgo: precaución con anticoagulantes",
+        "Tomar varias semanas para efecto"
+      ],
+      "mecanismo": "Bacopa aumenta acetilcolina y sinaptogénesis (BDNF); ginkgo mejora el flujo sanguíneo cerebral y aporta flavonoides antioxidantes.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ]
+    },
+    {
+      "id": "sin_l_teanina_magnesio",
+      "ingredienteA": "l_teanina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Relajación sin sedación: la teanina induce calma con alerta y el magnesio modula la excitabilidad neuromuscular.",
+      "beneficios": [
+        "Reduce estrés sin somnolencia",
+        "Mejora concentración bajo presión",
+        "Calma muscular",
+        "Mejora calidad de sueño nocturno"
+      ],
+      "precauciones": [
+        "Generalmente bien tolerada"
+      ],
+      "mecanismo": "La teanina aumenta ondas alfa y GABA; el magnesio bloquea los receptores NMDA y modula la neurotransmisión inhibitoria.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ]
+    },
+    {
+      "id": "sin_5htp_vitb6",
+      "ingredienteA": "5_htp",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "La B6 es cofactor de la descarboxilasa que convierte 5-HTP en serotonina. Sinergia bioquímica para maximizar la síntesis serotoninérgica.",
+      "beneficios": [
+        "Optimiza la conversión a serotonina",
+        "Reduce dosis efectiva de 5-HTP",
+        "Apoya síntesis de neurotransmisores"
+      ],
+      "precauciones": [
+        "RIESGO SÍNDROME SEROTONINÉRGICO con ISRS/IMAO",
+        "No combinar con antidepresivos"
+      ],
+      "mecanismo": "La vitamina B6 (piridoxal-fosfato) es cofactor de la L-aminoácido aromático descarboxilasa que convierte 5-HTP en serotonina.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ]
+    },
+    {
+      "id": "sin_triptofano_vitb6",
+      "ingredienteA": "l_triptofano",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "La B6 es cofactor en la vía de la serotonina desde el triptófano. Mejora la síntesis de serotonina y melatonina para sueño y humor.",
+      "beneficios": [
+        "Optimiza síntesis de serotonina",
+        "Mejora calidad del sueño",
+        "Apuda humor y ansiedad leve"
+      ],
+      "precauciones": [
+        "RIESGO SÍNDROME SEROTONINÉRGICO con ISRS/IMAO"
+      ],
+      "mecanismo": "La vitamina B6 es cofactor de la triptófano hidroxilasa y descarboxilasa en la vía triptófano→5-HTP→serotonina→melatonina.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ]
+    },
+    {
+      "id": "sin_triptofano_melatonina",
+      "ingredienteA": "l_triptofano",
+      "ingredienteB": "melatonina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Vía bioquímica del sueño: el triptófano es precursor de la melatonina. Combinación para insomnio de conciliación y mantenimiento.",
+      "beneficios": [
+        "Mejora latencia de sueño",
+        "Soporta arquitectura del sueño",
+        "Vía fisiológica de melatonina endógena"
+      ],
+      "precauciones": [
+        "No combinar con ISRS/IMAO",
+        "Somnolencia posible"
+      ],
+      "mecanismo": "El triptófano se convierte en serotonina y luego en melatonina en la glándula pineal; la melatonina exógena complementa el pool endógeno.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "sueno",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_riboflavina_magnesio_migrana",
+      "ingredienteA": "riboflavina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Profilaxis natural de migraña: la riboflavina (400mg) mejora la función mitocondrial y el magnesio modula la excitabilidad y los canales iónicos.",
+      "beneficios": [
+        "Reducción de frecuencia de migraña",
+        "Mejora función mitocondrial",
+        "Modula excitabilidad neuronal",
+        "Seguro en uso prolongado"
+      ],
+      "precauciones": [
+        "Efecto tras 3-4 meses"
+      ],
+      "mecanismo": "La riboflavina (FAD) optimiza la cadena respiratoria mitocondrial (disfunción implicada en migraña); el magnesio bloquea NMDA y estabiliza canales.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_petasites_magnesio",
+      "ingredienteA": "petasites",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Profilaxis de migraña con petasites (PA-free) y magnesio. Acción antiinflamatoria y neuromoduladora combinada.",
+      "beneficios": [
+        "Reducción de frecuencia de migraña",
+        "Acción anti-leucotrienos",
+        "Modulación de la excitabilidad"
+      ],
+      "precauciones": [
+        "Petasites: USAR SOLO EXTRACTO PA-FREE",
+        "Contraindicado en embarazo"
+      ],
+      "mecanismo": "Las petasinas inhiben LOX (leucotrienos); el magnesio bloquea NMDA y reduce la propagación cortical depressiva en migraña.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_pygeum_saw_palmetto",
+      "ingredienteA": "pygeum",
+      "ingredienteB": "saw_palmetto",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación clásica para HPB: ambos inhiben la 5-alfa-reductasa por mecanismos complementarios (fitosteroles distintos).",
+      "beneficios": [
+        "Mejora flujo urinario",
+        "Reduce síntomas nocturnos",
+        "Acción antiandrogénica leve dual",
+        "Sinergia antiinflamatoria prostática"
+      ],
+      "precauciones": [
+        "No sustituye control médico de HPB",
+        "Pygeum: especie amenazada, usar cultivo sostenible"
+      ],
+      "mecanismo": "Pygeum (fitosteroles lipofílicos) y saw palmetto (liposterólicos) inhiben 5-alfa-reductasa y reducen la inflamación prostática.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_calabaza_saw_palmetto",
+      "ingredienteA": "semilla_calabaza",
+      "ingredienteB": "saw_palmetto",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte prostático con semillas de calabaza (zinc, fitosteroles) y saw palmetto. Mejora síntomas urinarios leves de HPB.",
+      "beneficios": [
+        "Mejora síntomas urinarios nocturnos",
+        "Aporte de zinc prostático",
+        "Acción antiinflamatoria dual"
+      ],
+      "precauciones": [
+        "Seguimiento médico en HPB"
+      ],
+      "mecanismo": "Las semillas aportan Δ7-esteroles y zinc; el saw palmetto inhibe la 5-alfa-reductasa. Acción complementaria sobre el tejido prostático.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_pygeum_calabaza",
+      "ingredienteA": "pygeum",
+      "ingredienteB": "semilla_calabaza",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte prostático dual con fitosteroles complementarios. Mejora el flujo urinario y la sintomatología de HPB leve.",
+      "beneficios": [
+        "Mejora flujo urinario",
+        "Acción antiinflamatoria prostática",
+        "Aporte de zinc y fitosteroles"
+      ],
+      "precauciones": [
+        "Pygeum: usar extracto sostenible"
+      ],
+      "mecanismo": "Pygeum (fitosteroles lipofílicos) y semilla de calabaza (Δ7-esteroles + zinc) inhiben la 5-alfa-reductasa por vías complementarias.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_trebol_rojo_cimicifuga",
+      "ingredienteA": "trebol_rojo",
+      "ingredienteB": "cimicifuga",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación para sofocos menopáusicos: el trébol rojo (isoflavonas) y la cimicífuga actúan por vías complementarias.",
+      "beneficios": [
+        "Reducción de sofocos",
+        "Mejora del sueño menopáusico",
+        "Acción fitoestrogénica y dopaminérgica"
+      ],
+      "precauciones": [
+        "Evitar en cáncer hormono-dependiente sin supervisión",
+        "No combinar con tamoxifeno"
+      ],
+      "mecanismo": "Las isoflavonas del trébol modulan ERβ; la cimicífuga actúa sobre receptores serotoninérgicos y dopaminérgicos centrales (no estrogénico directo).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_lachesis_sepia_menopausia",
+      "ingredienteA": "lachesis",
+      "ingredienteB": "sepia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación homeopática para sintomatología menopáusica con sofocos intensos y agotamiento. Selección individualizada.",
+      "beneficios": [
+        "Alivio de sofocos intensos",
+        "Mejora del estado anímico",
+        "Acción sobre la constricción y la fatiga"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática (patogenesia). Selección según síntomas individuales (repertorio).",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_glonoinum_belladonna_sofocos",
+      "ingredienteA": "glonoinum",
+      "ingredienteB": "belladonna",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Remedios homeopáticos para oleadas de calor con congestión cefálica y rostro enrojecido. Acción vascular marcada.",
+      "beneficios": [
+        "Reducción de oleadas de calor",
+        "Mejora de la cefalea pulsátil",
+        "Acción sobre la congestión cefálica"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática (patogenesia vascular). Selección según síntomas (repertorio).",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_vitamina_a_zinc",
+      "ingredienteA": "vitamina_a",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo esencial para inmunidad y epitelios: la vitamina A diferencia los epitelios y el zinc es cofactor de timulina y linfocitos T.",
+      "beneficios": [
+        "Refuerzo inmunológico",
+        "Integridad de piel y mucosas",
+        "Acción sinérgica en linfocitos T",
+        "Visión nocturna"
+      ],
+      "precauciones": [
+        "Evitar retinol en embarazo (teratógeno)",
+        "Exceso de zinc >40mg/día cobre"
+      ],
+      "mecanismo": "Vitamina A regula la diferenciación epitelial e inmunidad; zinc es cofactor de la timulina y modula la apoptosis de linfocitos T.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_inositol_folato",
+      "ingredienteA": "inositol",
+      "ingredienteB": "folato",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinación de primera línea en SOP: el inositol mejora la sensibilidad a insulina y el folato (metilfolato) apoya la fertilidad y homocisteína.",
+      "beneficios": [
+        "Mejora del SOP y ovulación",
+        "Reducción de resistencia a insulina",
+        "Optimiza homocisteína",
+        "Apoyo a la fertilidad"
+      ],
+      "precauciones": [
+        "Ajustar antidiabéticos"
+      ],
+      "mecanismo": "Inositol media la señalización de insulina (IP3); el folato (5-MTHF) apoya el ciclo de metilación y reduce la homocisteína.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_l_carnitina_coq10",
+      "ingredienteA": "l_carnitina",
+      "ingredienteB": "coq10",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo mitocondrial: la carnitina transporta los ácidos grasos y el CoQ10 transporta los electrones en la cadena respiratoria.",
+      "beneficios": [
+        "Optimiza producción de ATP",
+        "Mejora la energía y fatiga",
+        "Acción cardioprotectora",
+        "Soporte en estatinas (mialgia)"
+      ],
+      "precauciones": [
+        "Posible olor corporal (carnitina)",
+        "CoQ10: precaución con anticoagulantes"
+      ],
+      "mecanismo": "La carnitina transporta acil-CoA a la mitocondria (β-oxidación); el CoQ10 transporta electrones entre los complejos I/II y III.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_taurina_magnesio",
+      "ingredienteA": "taurina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte cardiovascular: la taurina estabiliza membranas y regula calcio y el magnesio modula la excitabilidad cardíaca.",
+      "beneficios": [
+        "Soporte de función cardíaca",
+        "Modulación del calcio intracelular",
+        "Antiarrítmico natural",
+        "Reducción de fatiga"
+      ],
+      "precauciones": [
+        "Precaución en insuficiencia renal"
+      ],
+      "mecanismo": "La taurina modula canales de Ca2+ y Cl- y es osmolito; el magnesio es cofactor de la Na+/K+ ATPasa y bloquea NMDA.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_msm_boswelia",
+      "ingredienteA": "msm",
+      "ingredienteB": "boswelia",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación antiinflamatoria articular: el MSM aporta azufre para colágeno y la boswelina inhibe la 5-LOX.",
+      "beneficios": [
+        "Reducción del dolor en artrosis",
+        "Acción antiinflamatoria dual (LOX + citoquinas)",
+        "Soporte de colágeno y cartílago",
+        "Bien tolerado en uso prolongado"
+      ],
+      "precauciones": [
+        "Posibles molestias gastrointestinales leves"
+      ],
+      "mecanismo": "El MSM aporta azufre y modula IL-1/TNF-α; los ácidos boswélicos inhiben la 5-lipoxigenasa (leucotrienos).",
+      "categorias": [
+        "aminoacidos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_msm_curcuma",
+      "ingredienteA": "msm",
+      "ingredienteB": "curcuma",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo antiinflamatorio articular: MSM (azufre) y cúrcuma (curcumina inhibe COX-2 y NF-κB).",
+      "beneficios": [
+        "Reducción del dolor articular",
+        "Acción antiinflamatoria dual",
+        "Soporte de colágeno"
+      ],
+      "precauciones": [
+        "Cúrcuma: precaución con anticoagulantes y cálculos biliares"
+      ],
+      "mecanismo": "El MSM aporta azufre y modula citoquinas; la curcumina inhibe COX-2, LOX y NF-κB con acción antioxidante.",
+      "categorias": [
+        "aminoacidos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_milenrama_diente_leon",
+      "ingredienteA": "milenrama",
+      "ingredienteB": "diente_de_leon",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación digestiva y hepática: la milenrama antiespasmódica y el diente de león colerético-colagogo.",
+      "beneficios": [
+        "Alivio de dispepsia espasmódica",
+        "Apoyo de la función biliar",
+        "Acción hepática suave",
+        "Reducción de hinchazón"
+      ],
+      "precauciones": [
+        "Reacciones alérgicas en sensibles a Asteraceae"
+      ],
+      "mecanismo": "La milenrama (flavonoides, azuleno) relaja el músculo liso digestivo; el diente de león (taraxasterol) estimula el flujo biliar.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_fumaria_alcachofa",
+      "ingredienteA": "fumaria",
+      "ingredienteB": "alcachofa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación hepatobiliar: la fumaria antiespasmódica de vías biliares y la alcachofa hepatoprotectora y colerética.",
+      "beneficios": [
+        "Mejora del flujo biliar",
+        "Acción hepatoprotectora",
+        "Reducción de cólicos biliares leves",
+        "Apoyo digestivo"
+      ],
+      "precauciones": [
+        "No usar en obstrucción biliar",
+        "Fumaria: dosis elevadas tóxicas"
+      ],
+      "mecanismo": "La protopina de la fumaria relaja el esfínter de Oddi; los cinaropicrinos de la alcachofa estimulan la secreción biliar y protegen el hepatocito.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_glutamina_zinc",
+      "ingredienteA": "l_glutamina",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo para integridad intestinal: la glutamina alimenta los enterocitos y el zinc sella las uniones estrechas.",
+      "beneficios": [
+        "Reparación de la mucosa intestinal",
+        "Cierre de uniones estrechas",
+        "Soporte inmunológico de GALT",
+        "Recuperación en intestino permeable"
+      ],
+      "precauciones": [
+        "Precaución en cirrosis/renal"
+      ],
+      "mecanismo": "La glutamina es sustrato energético de enterocitos y precursor del glutatión; el zinc modula la expresión de ocludina y zonulina.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_ylang_ylang_lavanda",
+      "ingredienteA": "ylang_ylang",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia aromaterapéutica ansiolítica: el ylang ylang y la lavanda potencian la relajación por modulación GABAérgica.",
+      "beneficios": [
+        "Reducción rápida de la ansiedad",
+        "Inducción del sueño",
+        "Equilibrio del sistema nervioso",
+        "Uso en difusión nocturna"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico",
+        "Evitar en hipotensión marcada"
+      ],
+      "mecanismo": "El linalool (lavanda) y los monoterpenos del ylang ylang modulan GABA y reducen el cortisol al inhalar.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_cipres_castano",
+      "ingredienteA": "cipres",
+      "ingredienteB": "castano_indias",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Tónico venoso dual para insuficiencia venosa crónica: el ciprés vasoconstrictor y el castaño de indias tónico venoso.",
+      "beneficios": [
+        "Reduce piernas cansadas",
+        "Mejora el tono venoso",
+        "Reduce edema y pesadez",
+        "Acción antiedematosa"
+      ],
+      "precauciones": [
+        "Evitar en embarazo",
+        "Uso tópico diluido + oral según indicación"
+      ],
+      "mecanismo": "El ciprés (proantocianidinas) mejora el tono venoso tópico; las escinas del castaño de indias reducen la permeabilidad capilar.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_mirra_incienso",
+      "ingredienteA": "mirra",
+      "ingredienteB": "incienso",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación resinosa clásica para salud bucal: la mirra astringente-antimicrobiana y el incienso antiinflamatorio.",
+      "beneficios": [
+        "Alivio de gingivitis",
+        "Reducción de aftas",
+        "Acción cicatrizante bucal",
+        "Antimicrobiano sin alcohol"
+      ],
+      "precauciones": [
+        "No ingerir puro",
+        "Diluir para uso bucal"
+      ],
+      "mecanismo": "Los sesquiterpenos de la mirra son astringentes y antimicrobianos; el ácido boswélico del incienso inhibe la 5-LOX en mucosa inflamada.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "bucal"
+      ]
+    },
+    {
+      "id": "sin_lemongrass_tea_tree",
+      "ingredienteA": "lemongrass",
+      "ingredienteB": "tea_tree",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano y antifúngico tópico: el citral del lemongrass y el terpinen-4-ol del tea tree potencian la acción fungicida.",
+      "beneficios": [
+        "Acción antifúngica potente",
+        "Antibacteriano tópico",
+        "Uso en micosis cutánea y ungueal",
+        "Pie de atleta"
+      ],
+      "precauciones": [
+        "Irritantes: diluir al 1-3%",
+        "Evitar mucosas"
+      ],
+      "mecanismo": "El citral (lemongrass) y el terpinen-4-ol (tea tree) dañan la membrana fúngica y bacteriana por mecanismos sinérgicos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_pimienta_jengibre_aceite",
+      "ingredienteA": "pimienta_negra_aceite",
+      "ingredienteB": "jengibre_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Aceites cálidos digestivos: la pimienta estimula enzimas y el jengibre antiemético y procinético.",
+      "beneficios": [
+        "Mejora digestión lenta",
+        "Reduce náuseas",
+        "Acción procinética",
+        "Calor tópico en dolor muscular"
+      ],
+      "precauciones": [
+        "Irritantes: diluir al 1-3%",
+        "Evitar mucosas y ojos"
+      ],
+      "mecanismo": "La piperina estimula enzimas digestivas; el zingibereno del jengibre tiene acción antiemética (5-HT3) y procinética.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "digestivo",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_sandalo_lavanda",
+      "ingredienteA": "sandalo",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia sedante para meditación y sueño: el sándalo profundo y la lavanda relajante.",
+      "beneficios": [
+        "Inducción del sueño",
+        "Reduce ansiedad",
+        "Apoyo en meditación",
+        "Relajación profunda"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico",
+        "Sándalo: preferir cultivo sostenible"
+      ],
+      "mecanismo": "Los santenoles (sándalo) y el linalool (lavanda) modulan GABA y reducen la actividad del SNC.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_mejorana_manzanilla",
+      "ingredienteA": "mejorana",
+      "ingredienteB": "manzanilla",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Relajación nerviosa y digestiva: la mejorana sedante y antiespasmódica y la manzanilla digestiva suave.",
+      "beneficios": [
+        "Calma nerviosa",
+        "Reduce espasmos digestivos",
+        "Inducción del sueño",
+        "Tensión muscular"
+      ],
+      "precauciones": [
+        "Sedación posible",
+        "Diluir mejorana para uso tópico"
+      ],
+      "mecanismo": "El terpinen-4-ol (mejorana) y los flavonoides/α-bisabolol (manzanilla) modulan GABA y relajan el músculo liso digestivo.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
       ]
     }
   ]

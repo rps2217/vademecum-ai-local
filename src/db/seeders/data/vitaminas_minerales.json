@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 38,
+    "total": 50,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -2194,6 +2194,655 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Thiamin Fact Sheet for Health Professionals (2023)"
+      }
+    },
+    {
+      "id": "vitamina_a",
+      "nombre": "Vitamina A (Retinol/β-caroteno)",
+      "nombresAlternativos": [
+        "Retinol",
+        "β-caroteno",
+        "Beta-caroteno",
+        "Provitamina A",
+        "Retinil palmitato"
+      ],
+      "nombreCientifico": "Retinol",
+      "familia": "Vitaminas liposolubles",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "inmunologico",
+        "ocular",
+        "piel"
+      ],
+      "indicaciones": [
+        "deficiencia vitamina A",
+        "inmunidad",
+        "visión nocturna",
+        "salud piel y mucosas"
+      ],
+      "descripcion": "Vitamina liposoluble esencial para visión (ciclo visual de la retina), diferenciación epitelial e inmunidad. El β-caroteno es precursor seguro.",
+      "mecanismoAccion": "Forma rodopsina en los bastones retinianos, regula la diferenciación celular epitelial y la función de neutrófilos y linfocitos T.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (retinil palmitato)",
+        "β-caroteno",
+        "Aceite de hígado de bacalao"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo según déficit",
+      "advertencias": [
+        "Hipervitaminosis A (toxicidad) con exceso de retinol",
+        "Evitar retinol en embarazo (teratógeno)",
+        "β-caroteno es seguro"
+      ],
+      "interaccionesMedicamentosas": [
+        "Retinoides sistémicos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "vision",
+        "inmunidad",
+        "piel",
+        "liposoluble",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "WHO/FNB RDAs"
+      }
+    },
+    {
+      "id": "riboflavina",
+      "nombre": "Riboflavina (Vitamina B2)",
+      "nombresAlternativos": [
+        "Vitamina B2",
+        "Lactoflavina",
+        "Vitamina G",
+        "Riboflavina-5-fosfato"
+      ],
+      "nombreCientifico": "Riboflavina",
+      "familia": "Vitaminas hidrosolubles (complejo B)",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "profilaxis migraña",
+        "energía",
+        "deficiencia B2",
+        "salud ocular",
+        "mucosas"
+      ],
+      "descripcion": "Cofactor de FAD y FMN en la cadena de transporte de electrones. Dosis altas (400mg) reducen frecuencia de migraña en profilaxis.",
+      "mecanismoAccion": "Precursor de FAD/FMN, cofactor de enzimas mitocondriales; mejora la disfunción mitocondrial implicada en la migraña. Reduce homocisteína con MTHFR.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Complejo B",
+        "Riboflavina-5-fosfato"
+      ],
+      "tiempoEfecto": "4-12 semanas (migraña)",
+      "duracionTratamiento": "3-6 meses (profilaxis migraña)",
+      "advertencias": [
+        "Colora la orina de amarillo fluorescente (inocuo)",
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidepresivos tricíclicos",
+        "Fenotiazinas",
+        "Probenecid"
+      ],
+      "tags": [
+        "migraña",
+        "energía",
+        "mitocondrial",
+        "complejo B",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (migraña) + FNB RDAs"
+      }
+    },
+    {
+      "id": "nac",
+      "nombre": "NAC (N-Acetilcisteína)",
+      "nombresAlternativos": [
+        "N-acetilcisteína",
+        "NAC",
+        "Acetilcisteína"
+      ],
+      "nombreCientifico": "N-acetilcisteína",
+      "familia": "Aminoácidos / derivados",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "respiratorio",
+        "inmunologico",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "mucolítico",
+        "desintoxicación hepática (paracetamol)",
+        "inmunidad",
+        "salud respiratoria",
+        "antioxidante"
+      ],
+      "descripcion": "Precursor del glutatión, el principal antioxidante intracelular. Antídoto de la intoxicación por paracetamol y mucolítico de elección.",
+      "mecanismoAccion": "Donante de grupos sulfhidrilo (-SH) que rompe los puentes disulfuro del moco y repone los niveles de glutatión, principal defensa antioxidante hepática.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Polvo",
+        "Solución oral/inhalatoria",
+        "Efervescente"
+      ],
+      "tiempoEfecto": "1-3 horas (mucolítico)",
+      "duracionTratamiento": "Variable según indicación",
+      "advertencias": [
+        "Tomar lejos de antibióticos (reduce absorción)",
+        "Puede causar náuseas a dosis altas",
+        "Asma: precaución con forma inhalada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Nitroglicerina (potencia vasodilatación)",
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "glutatión",
+        "mucolítico",
+        "antioxidante",
+        "hepático",
+        "paracetamol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "WHO EML + Pharmacological guidelines"
+      }
+    },
+    {
+      "id": "l_carnitina",
+      "nombre": "L-Carnitina",
+      "nombresAlternativos": [
+        "Levocarnitina",
+        "Carnitina",
+        "Acetil-L-carnitina",
+        "ALCAR",
+        "L-Carn"
+      ],
+      "nombreCientifico": "L-Carnitina",
+      "familia": "Aminoácidos / derivados",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "deficiencia de carnitina",
+        "energía mitocondrial",
+        "salud cardiovascular",
+        "neuropatía",
+        "función cognitiva (ALCAR)"
+      ],
+      "descripcion": "Transporta ácidos grasos de cadena larga a la mitocondria para β-oxidación. La forma acetilada (ALCAR) cruza la barrera hematoencefálica.",
+      "mecanismoAccion": "Transporta acil-CoA de cadena larga al interior mitocondrial vía sistema de la carnitina, permitiendo la β-oxidación y producción de ATP.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Líquido",
+        "Acetil-L-carnitina (cognitivo)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo según indicación",
+      "advertencias": [
+        "Posible olor corporal a pescado",
+        "Náuseas o diarrea a dosis altas",
+        "Precaución en insuficiencia renal"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina)",
+        "Tiroideo"
+      ],
+      "tags": [
+        "mitocondrial",
+        "energía",
+        "cardiovascular",
+        "cognitivo",
+        "ALCAR"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "WHO EML + Clinical guidelines"
+      }
+    },
+    {
+      "id": "taurina",
+      "nombre": "Taurina",
+      "nombresAlternativos": [
+        "2-aminoetanosulfónico",
+        "L-Taurina",
+        "Taurin"
+      ],
+      "nombreCientifico": "Taurina",
+      "familia": "Aminoácidos / derivados",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "salud cardiovascular",
+        "osmorregulación celular",
+        "función retiniana",
+        "ejercicio"
+      ],
+      "descripcion": "Aminoácido sulfonado abundante en tejido excitables (corazón, retina, músculo). Estabiliza membranas y regula calcio intracelular.",
+      "mecanismoAccion": "Osmolito y modulador de canales iónicos (Ca2+, Cl-); antioxidante; conjugación de ácidos biliares; neuroprotección vía glicina/GABA.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada",
+        "Precaución en insuficiencia renal"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos (potencia)"
+      ],
+      "tags": [
+        "cardiovascular",
+        "osmolito",
+        "antioxidante",
+        "neuroprotección",
+        "ejercicio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Nutritional biochemistry references"
+      }
+    },
+    {
+      "id": "l_triptofano",
+      "nombre": "L-Triptófano",
+      "nombresAlternativos": [
+        "Triptófano",
+        "L-Tryptophan",
+        "Trp",
+        "Aminoácido esencial"
+      ],
+      "nombreCientifico": "L-Triptófano",
+      "familia": "Aminoácidos esenciales",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "humor",
+        "ansiedad leve",
+        "síndrome premenstrual"
+      ],
+      "descripcion": "Aminoácido esencial precursor de la serotonina (vía 5-HTP) y la melatonina. Mejora calidad del sueño y humor con baja tasa de efectos adversos.",
+      "mecanismoAccion": "Precursor de la serotonina (hidroxilación a 5-HTP, descarboxilación a serotonina) y posteriormente melatonina en la glándula pineal.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "30-60 minutos (sueño)",
+      "duracionTratamiento": "Continuo o cíclico",
+      "advertencias": [
+        "No combinar con antidepresivos ISRS/IMAO (síndrome serotoninérgico)",
+        "Tomar alejado de proteína"
+      ],
+      "interaccionesMedicamentosas": [
+        "ISRS",
+        "IMAO",
+        "Tramadol",
+        "Litio"
+      ],
+      "tags": [
+        "serotonina",
+        "sueño",
+        "humor",
+        "melatonina",
+        "precursor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials + biochemical references"
+      }
+    },
+    {
+      "id": "l_teanina",
+      "nombre": "L-Teanina",
+      "nombresAlternativos": [
+        "Tea L-theanine",
+        "Suntheanine",
+        "γ-glutamiletilamida",
+        "L-Theanine"
+      ],
+      "nombreCientifico": "L-Teanina (γ-glutamiletilamida)",
+      "familia": "Aminoácidos no proteicos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ],
+      "indicaciones": [
+        "ansiedad leve",
+        "concentración",
+        "estrés",
+        "calma sin sedación",
+        "sueño"
+      ],
+      "descripcion": "Aminoácido del té verde que induce relajación sin somnolencia. Modula ondas α cerebrales y aumenta GABA, dopamina y serotonina.",
+      "mecanismoAccion": "Aumenta la actividad de ondas alfa (estado de alerta relajada), modula GABA, dopamina y serotonina; estructura análoga al glutamato (antagonista parcial).",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Polvo (Suntheanine)"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Generalmente muy bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estimulantes (modula cafeína: calma sin perder alerta)",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "calma",
+        "concentración",
+        "GABA",
+        "ondas-alfa",
+        "cognitivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials + Japanese research"
+      }
+    },
+    {
+      "id": "5_htp",
+      "nombre": "5-HTP",
+      "nombresAlternativos": [
+        "5-Hidroxitriptófano",
+        "5-Hydroxytryptophan",
+        "Griffonia simplicifolia",
+        "Oxitriptano"
+      ],
+      "nombreCientifico": "5-Hidroxitriptófano",
+      "familia": "Aminoácidos / derivados",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ],
+      "indicaciones": [
+        "depresión leve",
+        "insomnio",
+        "ansiedad",
+        "apetito",
+        "fibromialgia (coadyuvante)"
+      ],
+      "descripcion": "Derivado de la semilla de Griffonia simplicifolia, precursor directo de la serotonina (un paso más cerca que el triptófano). Cruza la barrera hematoencefálica.",
+      "mecanismoAccion": "Descarboxilación directa a serotonina (salta la hidroxilación del triptófano, paso limitante), aumentando los niveles de serotonina cerebral.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Extracto de semilla",
+      "formasPresentacion": [
+        "Cápsulas (50-200mg)"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "Continuo supervisado",
+      "advertencias": [
+        "RIESGO SÍNDROME SEROTONINÉRGICO con ISRS/IMAO",
+        "No combinar con antidepresivos",
+        "Precaución en enfermedad cardíaca"
+      ],
+      "interaccionesMedicamentosas": [
+        "ISRS",
+        "IMAO",
+        "Tramadol",
+        "Triptanes",
+        "Carbidopa"
+      ],
+      "tags": [
+        "serotonina",
+        "humor",
+        "sueño",
+        "ansiedad",
+        "precursor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials + pharmacology"
+      }
+    },
+    {
+      "id": "msm",
+      "nombre": "MSM (Metilsulfonilmetano)",
+      "nombresAlternativos": [
+        "Metilsulfonilmetano",
+        "MSM",
+        "Dimetilsulfona",
+        "Organic sulfur"
+      ],
+      "nombreCientifico": "Metilsulfonilmetano",
+      "familia": "Compuestos organo-azufrados",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculo-esqueletico",
+        "piel"
+      ],
+      "indicaciones": [
+        "artrosis",
+        "dolor articular",
+        "salud piel y cabello",
+        "alergias estacionales"
+      ],
+      "descripcion": "Compuesto organosulfurado con azufre biodisponible para colágeno y queratina. Evidencia para dolor articular en artrosis.",
+      "mecanismoAccion": "Fuente de azufre para síntesis de colágeno, glucosamina y queratina; modula citocinas inflamatorias (IL-1, TNF-α) y estrés oxidativo articular.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas (1000-3000mg)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posibles molestias gastrointestinales leves"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (precaución teórica)"
+      ],
+      "tags": [
+        "articular",
+        "colágeno",
+        "piel",
+        "antiinflamatorio",
+        "azufre"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (artrosis)"
+      }
+    },
+    {
+      "id": "l_glutamina",
+      "nombre": "L-Glutamina",
+      "nombresAlternativos": [
+        "Glutamina",
+        "L-Glutamine",
+        "Gln",
+        "Aminoácido condicionalmente esencial"
+      ],
+      "nombreCientifico": "L-Glutamina",
+      "familia": "Aminoácidos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "digestivo",
+        "inmunologico",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "integridad intestinal",
+        "recuperación muscular",
+        "inmunidad",
+        "síndrome de intestino permeable"
+      ],
+      "descripcion": "Aminoácido más abundante del cuerpo, combustible principal de enterocitos y células inmunes. Condicionalmente esencial en estrés catabólico.",
+      "mecanismoAccion": "Sustrato energético de enterocitos y linfocitos; precursor del glutatión intestinal; sustrato para nucleótidos y glucosa renal.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo según indicación",
+      "advertencias": [
+        "Precaución en cirrosis hepática o enfermedad renal",
+        "Puede interactuar con anticonvulsivantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Lactulosa",
+        "Anticonvulsivantes"
+      ],
+      "tags": [
+        "intestinal",
+        "intestino",
+        "inmunidad",
+        "recuperación",
+        "glutatión"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical nutrition guidelines"
+      }
+    },
+    {
+      "id": "beta_glucanos",
+      "nombre": "Beta-Glucanos",
+      "nombresAlternativos": [
+        "β-glucanos",
+        "Beta-glucans",
+        "Saccharomyces-derived",
+        "Yeast beta-glucan",
+        "Oat beta-glucan"
+      ],
+      "nombreCientifico": "β-(1,3)(1,6)-glucanos",
+      "familia": "Polisacáridos",
+      "categoria": "probioticos",
+      "sistemas": [
+        "inmunologico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "reducción colesterol",
+        "infecciones respiratorias recurrentes",
+        "cicatrización"
+      ],
+      "descripcion": "Polisacáridos de levadura, avena y hongos con acción inmunomoduladora (receptores dectina-1) y reductora de colesterol (viscosidad intestinal).",
+      "mecanismoAccion": "Los β-glucanos de levadura activan los receptores dectina-1/CR3 de macrófagos y células NK; los de avena aumentan la viscosidad intestinal reduciendo el colesterol LDL.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Extracto",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo estacional",
+      "advertencias": [
+        "Bien tolerados",
+        "Teórico riesgo autoinmune a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Estatinas (sinergia LDL)"
+      ],
+      "tags": [
+        "inmunidad",
+        "colesterol",
+        "NK",
+        "macrófagos",
+        "dectina-1"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials + EFSA health claims"
+      }
+    },
+    {
+      "id": "inositol",
+      "nombre": "Inositol",
+      "nombresAlternativos": [
+        "Mio-inositol",
+        "Vitamina B8",
+        "Inositol",
+        "MI",
+        "DCI (D-chiro-inositol)"
+      ],
+      "nombreCientifico": "Mio-inositol",
+      "familia": "Polioles (pseudo-vitamina)",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "endocrino",
+        "nervioso",
+        "reproductor"
+      ],
+      "indicaciones": [
+        "SOP (síndrome ovario poliquístico)",
+        "ansiedad",
+        "resistencia insulina",
+        "fertilidad",
+        "síndrome metabólico"
+      ],
+      "descripcion": "Poliol implicado en la transducción de señales de insulina y segundos mensajeros. Eficacia clínica en SOP y resistencia a insulina.",
+      "mecanismoAccion": "Componente de fosfatidilinositoles; mediador de la señalización de insulina (IP3) y serotonina; mejora la sensibilidad a insulina en SOP.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas (2000-4000mg)",
+        "MI:DCI 40:1"
+      ],
+      "tiempoEfecto": "8-12 semanas",
+      "duracionTratamiento": "3-6 meses mínimo",
+      "advertencias": [
+        "Bien tolerado",
+        "Efectos gastrointestinales leves a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos (ajustar)"
+      ],
+      "tags": [
+        "SOP",
+        "insulina",
+        "ansiedad",
+        "fertilidad",
+        "segundos-mensajeros"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (SOP) + International guidelines"
       }
     }
   ]
