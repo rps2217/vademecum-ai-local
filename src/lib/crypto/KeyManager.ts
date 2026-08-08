@@ -485,57 +485,5 @@ export class KeyManager {
   }
 }
 
-// ============================================
-// CONECTIVITY CHECK
-// ============================================
-
-export interface ConnectivityResult {
-  online: boolean;
-  latency: number;
-  supabaseReachable: boolean;
-  supabaseLatency: number;
-}
-
-/**
- * Verificación de conectividad mejorada
- */
-export async function checkConnectivity(): Promise<ConnectivityResult> {
-  const startOnline = performance.now();
-  const online = typeof navigator !== 'undefined' ? navigator.onLine : true;
-  const onlineLatency = online ? performance.now() - startOnline : 0;
-
-  let supabaseReachable = false;
-  let supabaseLatency = 0;
-
-  // Verificar Supabase si está configurado
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-  if (supabaseUrl && supabaseUrl !== 'yourproject.supabase.co') {
-    try {
-      const supabaseStart = performance.now();
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
-      
-      const response = await fetch(`${supabaseUrl}/rest/v1/`, {
-        method: 'HEAD',
-        signal: controller.signal,
-      });
-      
-      clearTimeout(timeoutId);
-      supabaseLatency = performance.now() - supabaseStart;
-      supabaseReachable = response.ok || response.status === 401; // 401 = ok pero requiere auth
-    } catch {
-      supabaseReachable = false;
-      supabaseLatency = 0;
-    }
-  }
-
-  return {
-    online,
-    latency: onlineLatency,
-    supabaseReachable,
-    supabaseLatency,
-  };
-}
-
 // Singleton instance
 export const keyManager = KeyManager.getInstance();

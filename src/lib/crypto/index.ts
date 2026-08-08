@@ -28,23 +28,7 @@ export {
 export {
   KeyManager,
   keyManager,
-  checkConnectivity,
   type KeyManagerConfig,
   type StoredKeyMetadata,
   type SessionKeys,
-  type ConnectivityResult,
 } from './KeyManager';
-
-// Field encryption exports
-export {
-  encryptField,
-  decryptField,
-  isEncrypted,
-  encryptRecord,
-  decryptRecord,
-  decryptFields,
-  useEncryptedField,
-  SENSITIVE_FIELDS_CONFIG,
-  type EncryptedField,
-  type FieldEncryptionConfig,
-} from './FieldEncryption';
