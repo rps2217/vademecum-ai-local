@@ -111,57 +111,6 @@
       ]
     },
     {
-      "id": "sin_ginkgo_bacopa",
-      "ingredienteA": "ginkgo",
-      "ingredienteB": "bacopa",
-      "tipo": "complementario",
-      "nivelEvidencia": "B",
-      "descripcion": "Combinacion synergica para memoria y funcion cognitiva.",
-      "beneficios": [
-        "Mejora memoria a corto y largo plazo",
-        "Aumenta flujo sanguineo cerebral",
-        "Proteccion neurocognitiva"
-      ],
-      "precauciones": [
-        "Sangrados - consultar si anticoagulantes",
-        "Cirugia: suspender 2 semanas antes"
-      ],
-      "mecanismo": "Ginkgo mejora circulacion cerebral mientras bacopa modula receptores colinergicos y plasticidad sinaptica.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "nervioso"
-      ]
-    },
-    {
-      "id": "sin_curcuma_pimienta",
-      "ingredienteA": "curcuma",
-      "ingredienteB": "pimienta",
-      "tipo": "bioactivador",
-      "nivelEvidencia": "A",
-      "descripcion": "La piperina de la pimienta negra aumenta 2000% la absorcion de curcumina.",
-      "beneficios": [
-        "Biodisponibilidad de curcumina multiplicada",
-        "Mejora efectividad antiinflamatoria",
-        "Reduce dosis necesaria"
-      ],
-      "precauciones": [
-        "Piperina puede interactuar con farmacos",
-        "Dosis altas de piperina pueden irritar"
-      ],
-      "mecanismo": "Piperina inhibe glucoronidacion hepatica y intestinal de curcumina, aumentando su vida media.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "musculoesqueletico",
-        "inmune"
-      ]
-    },
-    {
       "id": "sin_curcuma_omega3",
       "ingredienteA": "curcuma",
       "ingredienteB": "omega_3",
@@ -343,32 +292,6 @@
       ]
     },
     {
-      "id": "sin_coq10_estatinas",
-      "ingredienteA": "coq10",
-      "ingredienteB": "simvastatina",
-      "tipo": "complementario",
-      "nivelEvidencia": "A",
-      "descripcion": "CoQ10 reemplaza lo que las estatinas reducen (produccion endogena de CoQ10).",
-      "beneficios": [
-        "Reduce mialgia por estatinas",
-        "Protege musculo cardiaco",
-        "Mantiene niveles energeticos"
-      ],
-      "precauciones": [
-        "Dosis segun intensidad estatina",
-        "Consultar con cardiologo"
-      ],
-      "mecanismo": "Las estatinas inhiben HMG-CoA reductase, que juga en produccion de CoQ10. Supplementacion lo compensa.",
-      "categorias": [
-        "vitaminas",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "cardiovascular",
-        "metabolico"
-      ]
-    },
-    {
       "id": "sin_omega3_vitd",
       "ingredienteA": "omega_3",
       "ingredienteB": "vitamina_d3",
@@ -392,56 +315,6 @@
       "sistemas": [
         "cardiovascular",
         "musculoesqueletico"
-      ]
-    },
-    {
-      "id": "sin_triptofano_5htp",
-      "ingredienteA": "5_htp",
-      "ingredienteB": "vitamina_b6",
-      "tipo": "cofactor",
-      "nivelEvidencia": "B",
-      "descripcion": "B6 es cofactor en conversion de triptofano a serotonina.",
-      "beneficios": [
-        "Mejora sintesis de serotonina",
-        "Apoyo en transtornos del animo",
-        "Mejora calidad del sueno"
-      ],
-      "precauciones": [
-        "NO combinar con antidepresivos",
-        "Monitorizar si ansiedad"
-      ],
-      "mecanismo": "La conversion de triptofano a 5-HTP (primera etapa) requiere B6 como cofactor.",
-      "categorias": [
-        "vitaminas",
-        "vitaminas"
-      ],
-      "sistemas": [
-        "nervioso"
-      ]
-    },
-    {
-      "id": "sin_teanina_gaba",
-      "ingredienteA": "teanina",
-      "ingredienteB": "gaba",
-      "tipo": "complementario",
-      "nivelEvidencia": "B",
-      "descripcion": "Teanina potencia efectos calmantes del GABA.",
-      "beneficios": [
-        "Relajacion profunda sin somnolencia",
-        "Mejora atencion post-relajacion",
-        "Reduce ansiedad sin farmacos"
-      ],
-      "precauciones": [
-        "Evitar conduccion si somnolencia",
-        "No combinar con farmacos sedantes"
-      ],
-      "mecanismo": "Teanina estimula ondas alfa cerebrales y modula receptores GABA de forma indirecta.",
-      "categorias": [
-        "vitaminas",
-        "vitaminas"
-      ],
-      "sistemas": [
-        "nervioso"
       ]
     },
     {
@@ -545,32 +418,6 @@
       ],
       "sistemas": [
         "musculoesqueletico"
-      ]
-    },
-    {
-      "id": "sin_probioticos_prebioticos",
-      "ingredienteA": "probioticos",
-      "ingredienteB": "prebioticos",
-      "tipo": "complementario",
-      "nivelEvidencia": "A",
-      "descripcion": "Simbiotico clasico para salud intestinal.",
-      "beneficios": [
-        "Mayor supervivencia probiotica",
-        "Estimulacion de crecimiento bacteriano",
-        "Mejora diversidad del microbioma"
-      ],
-      "precauciones": [
-        "Gas inicial transitorio normal",
-        "Comenzar con dosis bajas"
-      ],
-      "mecanismo": "Prebioticos (FOS, inulina) son alimento de probioticos, aumentando su colonizacion.",
-      "categorias": [
-        "probioticos",
-        "vitaminas"
-      ],
-      "sistemas": [
-        "digestivo",
-        "inmune"
       ]
     },
     {
@@ -727,32 +574,7 @@
       ]
     },
     {
-      "id": "sin_ginkgo_bacopa",
-      "ingredienteA": "ginkgo",
-      "ingredienteB": "bacopa",
-      "tipo": "complementario",
-      "nivelEvidencia": "B",
-      "descripcion": "Combinacion nootropica para memoria y cognicion.",
-      "beneficios": [
-        "Memoria y concentracion mejoradas",
-        "Flujo sanguineo cerebral optimizado",
-        "Aprendizaje facilitado"
-      ],
-      "precauciones": [
-        "Pueden interactuar con anticoagulantes",
-        "Efectos aparecen despues de 4-8 semanas"
-      ],
-      "mecanismo": "Ginkgo mejora perfusión cerebral, bacopa modula receptores de memoria.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "nervioso"
-      ]
-    },
-    {
-      "id": "sin_omega3_vitd",
+      "id": "sin_omega3_vitd_2",
       "ingredienteA": "omega_3",
       "ingredienteB": "vitamina_d3",
       "tipo": "potenciador",
@@ -801,32 +623,6 @@
       "sistemas": [
         "inmune",
         "respiratorio"
-      ]
-    },
-    {
-      "id": "sin_probioticos_prebioticos",
-      "ingredienteA": "lactobacillus_rhamnosus_gg",
-      "ingredienteB": "inulina",
-      "tipo": "potenciador",
-      "nivelEvidencia": "A",
-      "descripcion": "Synbiotics: combinacion de probioticos y prebioticos.",
-      "beneficios": [
-        "Supervivencia probiotica mejorada",
-        "Crecimiento de bacterias beneficiosas",
-        "Salud intestinal optimizada"
-      ],
-      "precauciones": [
-        "Iniciar prebioticos gradualmente",
-        "Puedo causar gas inicial"
-      ],
-      "mecanismo": "Prebioticos alimentan y estimulan crecimiento de probioticos.",
-      "categorias": [
-        "probioticos",
-        "otros"
-      ],
-      "sistemas": [
-        "digestivo",
-        "inmune"
       ]
     },
     {
@@ -1006,7 +802,7 @@
       ]
     },
     {
-      "id": "sin_hierro_vitc",
+      "id": "sin_hierro_vitc_2",
       "ingredienteA": "hierro",
       "ingredienteB": "vitamina_c",
       "tipo": "potenciador",
@@ -1075,56 +871,6 @@
       "categorias": [
         "fitoterapia",
         "fitoterapia"
-      ],
-      "sistemas": [
-        "digestivo"
-      ]
-    },
-    {
-      "id": "sin_bromelaina_curcuma",
-      "ingredienteA": "bromelaina",
-      "ingredienteB": "curcuma",
-      "tipo": "potenciador",
-      "nivelEvidencia": "A",
-      "descripcion": "Potente combinacion antiinflamatoria.",
-      "beneficios": [
-        "Inflamacion reducida",
-        "Absorcion de curcumina mejorada",
-        "Dolor articular aliviado"
-      ],
-      "precauciones": [
-        "Anticoagulantes: usar con supervision",
-        "No usar en ulceras activas"
-      ],
-      "mecanismo": "Bromelain mejora absorcion intestinal de curcumina.",
-      "categorias": [
-        "enzimas",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "musculoesqueletico",
-        "digestivo"
-      ]
-    },
-    {
-      "id": "sin_lactasa_probioticos",
-      "ingredienteA": "lactasa",
-      "ingredienteB": "probioticos",
-      "tipo": "complementario",
-      "nivelEvidencia": "A",
-      "descripcion": "Ayuda completa para intolerancia a lactosa.",
-      "beneficios": [
-        "Digestion lactosa garantizada",
-        "Salud intestinal a largo plazo",
-        "Sintomas reducidos"
-      ],
-      "precauciones": [
-        "Probioticos requieren consistencia"
-      ],
-      "mecanismo": "Lactasa digiere lactosa inmediatamente, probioticos producen lactasa endogena.",
-      "categorias": [
-        "enzimas",
-        "probioticos"
       ],
       "sistemas": [
         "digestivo"

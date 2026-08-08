@@ -250,7 +250,7 @@
       }
     },
     {
-      "id": "menta",
+      "id": "menta_aceite",
       "nombre": "Aceite Esencial de Menta",
       "nombresAlternativos": [
         "Peppermint EO",
@@ -312,7 +312,7 @@
       }
     },
     {
-      "id": "romero",
+      "id": "romero_aceite",
       "nombre": "Aceite Esencial de Romero",
       "nombresAlternativos": [
         "Rosemary EO",
@@ -609,7 +609,7 @@
       }
     },
     {
-      "id": "canela",
+      "id": "canela_aceite",
       "nombre": "Aceite Esencial de Canela",
       "nombresAlternativos": [
         "Cinnamon EO",
