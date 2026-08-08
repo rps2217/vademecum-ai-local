@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 25,
-    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Hahnemann)"
+    "total": 31,
+    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hahnemann)"
   },
   "ingredientes": [
     {
@@ -1920,6 +1920,494 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; DailyMed (FDA) homeopathic product labeling"
+      }
+    },
+    {
+      "id": "aconitum_napellus",
+      "nombre": "Aconitum Napellus",
+      "nombresAlternativos": [
+        "Aconite",
+        "Aconitum",
+        "Monkshood",
+        "Wolfsbane",
+        "Aconitum napellus tuber"
+      ],
+      "nombreCientifico": "Aconitum napellus",
+      "familia": "Ranunculaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "inicio brusco de fiebre alta",
+        "estados de panico y miedo",
+        "afecciones tras frio seco",
+        "neuralgias de inicio agudo",
+        "crup tras medianoche"
+      ],
+      "descripcion": "Remedio de inicio brusco y violento, tipicamente tras exposicion a viento frio seco o un susto. El rasgo mental dominante es el miedo intenso y la agonia, sobre todo miedo a morir.",
+      "mecanismoAccion": "En homeopatia: modula la fase congestiva inicial de procesos inflamatorios agudos de aparicion violenta y el componente de ansiedad-extrema asociado.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Inicio brusco y violento, tras viento frio seco o susto",
+        "Miedo intenso y agonia, miedo a morir (predice el dia)",
+        "Inquietud intensa, se mueve sin parar",
+        "Sed intensa de agua fria en gran cantidad",
+        "Una mejilla roja y otra palida",
+        "Tos cruposa tras medianoche",
+        "Fiebre alta con piel seca y caliente",
+        "Adormecimiento y hormigueo de la zona afectada",
+        "Sin periodicidad (rasgo diferencial)"
+      ],
+      "modalidades": {
+        "empeora": [
+          "frio seco",
+          "noche",
+          "musica",
+          "emociones",
+          "al levantarse de la cama"
+        ],
+        "mejora": [
+          "aire libre",
+          "sudor abundante",
+          "reposo"
+        ]
+      },
+      "afinidad": [
+        "corazon",
+        "sistema nervioso",
+        "vasos",
+        "mucosas respiratorias"
+      ],
+      "constelaciones": [
+        "Fiebre de inicio brusco",
+        "Panico y trastorno de angustia",
+        "Crup nocturno"
+      ],
+      "advertencias": [
+        "La planta fresca es muy toxica (cardiotoxica y neurotoxica); solo en dilucion homeopatica",
+        "Las fiebres altas en ninos requieren valoracion medica",
+        "No usar como sustituto de tratamiento de urgencia en urgencias cardiovasculares"
+      ],
+      "tags": [
+        "inicio brusco",
+        "miedo",
+        "frio seco",
+        "fiebre",
+        "crup"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes; Hahnemann Materia Medica Pura"
+      }
+    },
+    {
+      "id": "calendula",
+      "nombre": "Calendula Officinalis",
+      "nombresAlternativos": [
+        "Calendula",
+        "Marigold",
+        "Maravilla",
+        "Calendulae officinalis flos"
+      ],
+      "nombreCientifico": "Calendula officinalis",
+      "familia": "Asteraceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "heridas y laceraciones",
+        "cicatrizacion de heridas",
+        "heridas con supuracion lenta",
+        "desgarros"
+      ],
+      "descripcion": "Remedio de afinidad por la piel y los tejidos lesionados, usado tradicionalmente para favorecer la cicatrizacion de heridas, laceraciones y desgarros con tendencia a supuracion lenta.",
+      "mecanismoAccion": "En homeopatia: modula la reparacion tisular de heridas y laceraciones, especialmente cuando el dolor es desproporcionado a la lesion y la cicatrizacion es lenta o supura.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        5,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Heridas y laceraciones con dolor en puntada o desproporcionado",
+        "Cicatrizacion lenta o con supuracion",
+        "Dolor peor que el esperado para la lesion",
+        "Afinidad por tejido de granulacion",
+        "Util en heridas con perdida de sustancia",
+        "Mejora con reposo, empeora con el movimiento"
+      ],
+      "modalidades": {
+        "empeora": [
+          "movimiento",
+          "toque",
+          "humedad",
+          "tiempo humedo"
+        ],
+        "mejora": [
+          "reposo",
+          "calor local"
+        ]
+      },
+      "afinidad": [
+        "piel",
+        "tejido celular subcutaneo",
+        "mucosas",
+        "capilares"
+      ],
+      "constelaciones": [
+        "Heridas lacerantes",
+        "Cicatrizacion tardia",
+        "Post-quirurgico"
+      ],
+      "advertencias": [
+        "Las heridas profundas o infectadas requieren valoracion medica",
+        "No usar como unico tratamiento en heridas que necesitan sutura"
+      ],
+      "tags": [
+        "heridas",
+        "cicatrizacion",
+        "laceracion",
+        "supuracion"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Kent Lectures on Materia Medica"
+      }
+    },
+    {
+      "id": "hypericum",
+      "nombre": "Hypericum Perforatum",
+      "nombresAlternativos": [
+        "Hypericum",
+        "St. John's wort",
+        "Hiprico",
+        "Hyperici herba (homeopatico)"
+      ],
+      "nombreCientifico": "Hypericum perforatum",
+      "familia": "Hypericaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "lesiones de nervios y dedos",
+        "dolor neurogeno tras lesion",
+        "aplastamiento de dedos",
+        "dolor en zona rica en nervios",
+        "secuelas de traumatismo craneal"
+      ],
+      "descripcion": "Remedio de afinidad por el sistema nervioso, especialmente tras lesiones de zonas ricas en terminaciones nerviosas (dedos, cola de caballo, columna). Indicado en dolor neurogeno tras traumatismos.",
+      "mecanismoAccion": "En homeopatia: modula el dolor neurogeno y la inflamacion de nervios tras traumatismos, especialmente en zonas con alta densidad nerviosa.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        5,
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Dolor tras lesion de nervios o zonas ricas en terminaciones (dedos)",
+        "Dolor lancinante, tipo descarga electrica",
+        "Aplastamiento de dedos o manos",
+        "Sensibilidad aumentada (hiperestesia)",
+        "Dolor que asciende por el nervio afectado",
+        "Secuelas de traumatismo craneoencefalico",
+        "Muy sensible al tacto y al frio"
+      ],
+      "modalidades": {
+        "empeora": [
+          "toque",
+          "frio",
+          "humedad",
+          "movimiento",
+          "niebla"
+        ],
+        "mejora": [
+          "reposo",
+          "inmovilidad"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso",
+        "medula y nervios perifericos",
+        "dedos",
+        "columna",
+        "cola de caballo"
+      ],
+      "constelaciones": [
+        "Lesiones nerviosas",
+        "Aplastamiento de dedos",
+        "Dolor post-herpetico (tradicional)"
+      ],
+      "advertencias": [
+        "El uso fitoterapico (no homeopatico) del hiprico interactua con muchos farmacos; en dilucion homeopatica el riesgo es despreciable",
+        "Los traumatismos craneales y neurologicos requieren valoracion medica"
+      ],
+      "tags": [
+        "nervios",
+        "dolor neurogeno",
+        "dedos",
+        "traumatismo",
+        "lancinante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "symphytum",
+      "nombre": "Symphytum Officinale",
+      "nombresAlternativos": [
+        "Symphytum",
+        "Comfrey",
+        "Consuelda",
+        "Knitbone",
+        "Symphyti radix"
+      ],
+      "nombreCientifico": "Symphytum officinale",
+      "familia": "Boraginaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "fracturas oseas",
+        "dolor oseo tras traumatismo",
+        "lesiones del periostio",
+        "irritacion ocular tras lesion"
+      ],
+      "descripcion": "Remedio de afinidad por el hueso y el periostio, tradicionalmente usado para favorecer la consolidacion de fracturas y aliviar el dolor oseo tras traumatismos.",
+      "mecanismoAccion": "En homeopatia: modula la consolidacion osea y el dolor periostico/oseo tras traumatismo, con afinidad por el hueso lesionado.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolor oseo punzante tras traumatismo",
+        "Fracturas con consolidacion lenta",
+        "Dolor periostico al tacto",
+        "Irritacion ocular tras golpe o lesion",
+        "Afinidad por el hueso lesionado",
+        "Sensacion de debilidad en la zona fracturada"
+      ],
+      "modalidades": {
+        "empeora": [
+          "toque",
+          "movimiento",
+          "frio"
+        ],
+        "mejora": [
+          "reposo",
+          "inmovilidad",
+          "calor local"
+        ]
+      },
+      "afinidad": [
+        "hueso",
+        "periostio",
+        "cartilago",
+        "ojo"
+      ],
+      "constelaciones": [
+        "Fracturas",
+        "Dolor oseo post-traumatico",
+        "Lesiones oculares traumaticas"
+      ],
+      "advertencias": [
+        "La planta fresca contiene alcaloides pirrolizidicos hepatotoxicos; solo en dilucion homeopatica",
+        "Las fracturas requieren valoracion y reduccion medica; la homeopatia es coadyuvante, no sustitutiva"
+      ],
+      "tags": [
+        "fracturas",
+        "hueso",
+        "periostio",
+        "consolidacion",
+        "traumatismo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "colocynthis",
+      "nombre": "Colocynthis",
+      "nombresAlternativos": [
+        "Citrullus colocynthis",
+        "Bitter apple",
+        "Bitter cucumber",
+        "Colocynthis fructus"
+      ],
+      "nombreCientifico": "Citrullus colocynthis",
+      "familia": "Cucurbitaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "dolor abdominal espastico que dobla al paciente",
+        "colicos",
+        "neuralgia facial izquierda",
+        "ciatica izquierda"
+      ],
+      "descripcion": "Remedio del dolor espastico violento que obliga a doblarse en dos, aliviado por la presion fuerte y el calor. Indicado en colicos, neuralgias y ciatica izquierdas.",
+      "mecanismoAccion": "En homeopatia: modula el dolor espastico y neurogeno que mejora con presion fuerte y calor, con lateralidad izquierda marcada.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Dolor agudo que obliga a doblarse en dos",
+        "Mejora con presion fuerte y calor",
+        "Empeora con la comida, bebida o la ira con indignacion",
+        "Neuralgia facial en oleadas, lado izquierdo",
+        "Ciatica izquierda que mejora acostado sobre el lado doloroso",
+        "Colicos que mejoran doblado y con presion"
+      ],
+      "modalidades": {
+        "empeora": [
+          "ira con indignacion",
+          "comida",
+          "bebida",
+          "medianoche"
+        ],
+        "mejora": [
+          "presion fuerte",
+          "calor",
+          "acostado sobre el lado doloroso",
+          "doblarse en dos"
+        ]
+      },
+      "afinidad": [
+        "nervios",
+        "intestino",
+        "ovarios",
+        "nervio trigemino",
+        "nervio ciatico"
+      ],
+      "constelaciones": [
+        "Colico abdominal espastico",
+        "Neuralgia facial izquierda",
+        "Ciatica izquierda"
+      ],
+      "advertencias": [
+        "El fruto fresco es un purgante drastic toxico; solo en dilucion homeopatica",
+        "Los dolores abdominales intensos requieren descartar causa quirurgica"
+      ],
+      "tags": [
+        "colico",
+        "dolor que dobla",
+        "presion mejora",
+        "ciatica izquierda",
+        "ira"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "cocculus",
+      "nombre": "Cocculus Indicus",
+      "nombresAlternativos": [
+        "Cocculus",
+        "Indian cockle",
+        "Fish berry",
+        "Anamirta cocculus"
+      ],
+      "nombreCientifico": "Anamirta cocculus",
+      "familia": "Menispermaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "mareo del viaje",
+        "nauseas y vertigo",
+        "cinetosis",
+        "agotamiento por velar nocturno",
+        "nauseas del embarazo"
+      ],
+      "descripcion": "Remedio del mareo, las nauseas por movimiento y el agotamiento por falta de sueno. Indicado en cinetosis, vertigo con nauseas y fatiga por trasnocho.",
+      "mecanismoAccion": "En homeopatia: modula la cinetosis, el vertigo con nauseas y la fatiga por privacion de sueno, con afinidad por el sistema nervioso central.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Mareo y nauseas al viajar (coche, barco)",
+        "Vertigo con nauseas y debilidad",
+        "Sensacion de hueco o vacio, como adormecido",
+        "Agotamiento por velar nocturno (trasnocho)",
+        "Debilidad que impide hablar fuerte",
+        "Tiempo que pasa demasiado rapido, absorto en ensonaciones",
+        "Nauseas con hambre o pensando en comida"
+      ],
+      "modalidades": {
+        "empeora": [
+          "viaje en coche o barco",
+          "movimiento",
+          "comer",
+          "pensar en comida",
+          "noche"
+        ],
+        "mejora": [
+          "reposo",
+          "aire libre",
+          "comer poco"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso central",
+        "oido interno",
+        "estomago",
+        "musculos"
+      ],
+      "constelaciones": [
+        "Cinetosis (mareo del viaje)",
+        "Vertigo con nauseas",
+        "Fatiga por trasnocho"
+      ],
+      "advertencias": [
+        "El vertigo intenso o persistente requiere valoracion medica para descartar causa central",
+        "La picrotoxina de la planta es toxica; solo en dilucion homeopatica"
+      ],
+      "tags": [
+        "mareo",
+        "cinetosis",
+        "nauseas",
+        "vertigo",
+        "trasnocho"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
       }
     }
   ]

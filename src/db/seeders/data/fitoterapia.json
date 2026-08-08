@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 44,
+    "total": 50,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs on Selected Medicinal Plants"
   },
   "ingredientes": [
@@ -2265,6 +2265,322 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/114583/2008"
+      }
+    },
+    {
+      "id": "psyllium",
+      "nombre": "Psyllium (Ispaghula)",
+      "nombresAlternativos": [
+        "Plantago ovata",
+        "Plantago ispaghula",
+        "Blond psyllium",
+        "Ispaghula husk",
+        "Plantaginis ovatae seminis tegumentum"
+      ],
+      "nombreCientifico": "Plantago ovata",
+      "familia": "Plantaginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "estrenimiento habitual",
+        "hemorroides",
+        "fisuras anales",
+        "sindrome de intestino irritable con estrenimiento",
+        "hipercolesterolemia adyuvante"
+      ],
+      "descripcion": "Tejumento de la semilla con accion laxante de bulk (formador de volumen). EMA lo reconoce con uso bien establecido para el estrenimiento habitual y condiciones donde se desea evacuacion facil con heces blandas.",
+      "mecanismoAccion": "Las mucilagos del tegumento absorben agua y aumentan el volumen de las heces, estimulando el peristaltismo; en adyuvancia dietetica puede reducir el colesterol LDL por secuestro de acidos biliares.",
+      "nivelEvidencia": "A",
+      "parteUsada": "tegumento de la semilla",
+      "formasPresentacion": [
+        "Polvo",
+        "Granulado",
+        "Capsulas",
+        "Sobre monodosis"
+      ],
+      "tiempoEfecto": "12-24 horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Tomar siempre con liquido abundante (30 ml de agua por cada 1 g)",
+        "No usar en impactacion fecal, dolor abdominal, nausea o vomito sin consulta medica",
+        "Tomar al menos 30-60 min antes o despues de otros medicamentos (puede reducir su absorcion)",
+        "No tomar justo antes de acostarse",
+        "Riesgo de sensibilidad (asma) al inhalar el polvo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Todos los medicamentos orales (separar la toma)"
+      ],
+      "tags": [
+        "laxante",
+        "bulk",
+        "fibra",
+        "estrenimiento",
+        "colesterol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/199774/2012 (seminis tegmentum, well-established use)"
+      }
+    },
+    {
+      "id": "llanten",
+      "nombre": "Llanten",
+      "nombresAlternativos": [
+        "Plantago lanceolata",
+        "Ribwort plantain",
+        "English plantain",
+        "Plantaginis lanceolatae folium"
+      ],
+      "nombreCientifico": "Plantago lanceolata",
+      "familia": "Plantaginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "tos seca",
+        "irritacion de garganta",
+        "inflamacion leve de mucosa oral"
+      ],
+      "descripcion": "Hoja usada tradicionalmente como demulcente y antiinflamatorio de mucosas respiratorias y orales, para el alivio de la tos seca y la irritacion faringea leve.",
+      "mecanismoAccion": "Los mucilagos forman una pelicula protectora sobre la mucosa (demulcente) y los iridoides (aucubina) ejercen accion antiinflamatoria local.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Jarabe",
+        "Extracto liquido",
+        "Pastillas"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No recomendado en menores de 3 anos por via oral",
+        "Consultar al medico si los sintomas duran mas de 1 semana"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "demulcente",
+        "tos seca",
+        "garganta",
+        "antiinflamatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/437858/2010 Rev.1 (Plantago lanceolata folium)"
+      }
+    },
+    {
+      "id": "hinojo",
+      "nombre": "Hinojo Dulce",
+      "nombresAlternativos": [
+        "Foeniculum vulgare",
+        "Fennel",
+        "Sweet fennel",
+        "Foeniculi dulcis fructus"
+      ],
+      "nombreCientifico": "Foeniculum vulgare",
+      "familia": "Apiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "dispepsia espastica leve",
+        "hinchazon",
+        "flatulencia",
+        "espasmo menstrual leve",
+        "tos y resfriado (expectorante)"
+      ],
+      "descripcion": "Fruto usado tradicionalmente para el tratamiento sintomatico de molestias gastrointestinales espasticas leves (hinchazon, flatulencia), espasmos menstruales leves y como expectorante en tos y resfriado.",
+      "mecanismoAccion": "El aceite esencial rico en trans-anetol y estragol ejerce efecto carminativo, espasmolitico (relajacion del musculo liso) y expectorante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Infusion",
+        "Fruto molido",
+        "Extracto seco",
+        "Aceite esencial"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "El estragol es genotoxico en animales; no exceder dosis ni usar prolongado en ninos pequenos",
+        "No usar en embarazo y lactancia sin supervision",
+        "Posible reaccion cruzada en alergia a Apiaceae (zanahoria, apio)",
+        "No usar el aceite esencial por via oral en lactantes (riesgo neurotoxico)"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "carminativo",
+        "espasmolitico",
+        "flatulencia",
+        "expectorante",
+        "anetol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Foeniculum vulgare var. dulce, fructus (traditional use); ESCOP Monographs"
+      }
+    },
+    {
+      "id": "alcachofa",
+      "nombre": "Alcachofa",
+      "nombresAlternativos": [
+        "Cynara scolymus",
+        "Artichoke",
+        "Globe artichoke",
+        "Cynarae folium"
+      ],
+      "nombreCientifico": "Cynara scolymus",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dispepsia leve",
+        "plenitud",
+        "flatulencia",
+        "hipercolesterolemia adyuvante"
+      ],
+      "descripcion": "Hoja usada tradicionalmente para el alivio sintomatico de trastornos digestivos como la dispepsia con sensacion de plenitud, hinchazon y flatulencia.",
+      "mecanismoAccion": "Los acidos fenolicos (cinarina, acido clorogenico) y los flavonoides estimulan la secrecion biliar (coleretico/colagogo) y en estudios pueden reducir moderadamente el colesterol LDL.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Infusion",
+        "Extracto liquido"
+      ],
+      "tiempoEfecto": "dias a semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No usar en obstruccion de vias biliares, colelitiasis o hepatopatias graves",
+        "Contraindicado en alergia a Asteraceae (Compositae)",
+        "Efectos adversos leves: diarrea, nauseas, pirosis"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "digestivo",
+        "coleretico",
+        "dispepsia",
+        "cinarina",
+        "colesterol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/150218/2009 (Cynara scolymus folium)"
+      }
+    },
+    {
+      "id": "castano_indias",
+      "nombre": "Castano de Indias",
+      "nombresAlternativos": [
+        "Aesculus hippocastanum",
+        "Horse chestnut",
+        "Horse-chestnut seed",
+        "Hippocastani semen"
+      ],
+      "nombreCientifico": "Aesculus hippocastanum",
+      "familia": "Sapindaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "insuficiencia venosa cronica",
+        "piernas pesadas",
+        "varices",
+        "hemorroides",
+        "edema leve de origen venoso"
+      ],
+      "descripcion": "Semilla usada tradicionalmente por via oral y topica para aliviar los sintomas de la insuficiencia venosa cronica (pesadez, dolor, prurito y hinchazon de piernas) y las molestias de hemorroides.",
+      "mecanismoAccion": "La aescina (saponina triterpenica) reduce la permeabilidad capilar y aumenta el tono venoso, disminuyendo el edema; inhibe enzimas que degradan la pared capilar.",
+      "nivelEvidencia": "B",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Extracto seco estandarizado en aescina",
+        "Capsulas",
+        "Gel topico",
+        "Crema"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Consultar al medico si hay inflamacion cutanea, tromboflebitis, induracion, ulceras, dolor intenso, o insuficiencia cardiaca/renal",
+        "No recomendado en menores de 18 anos",
+        "Puede causar trastornos digestivos, cefalea, mareo o reacciones alergicas",
+        "La aescina no purificada es toxica; solo usar preparados estandarizados"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (precaucion por riesgo teorico de sangrado)"
+      ],
+      "tags": [
+        "venotonico",
+        "aescina",
+        "insuficiencia venosa",
+        "edema",
+        "hemorroides"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/628242/2018 (Aesculus hippocastanum semen, Rev.1)"
+      }
+    },
+    {
+      "id": "hiedra",
+      "nombre": "Hiedra Comun",
+      "nombresAlternativos": [
+        "Hedera helix",
+        "Ivy",
+        "English ivy",
+        "Hederae helicis folium"
+      ],
+      "nombreCientifico": "Hedera helix",
+      "familia": "Araliaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "tos productiva",
+        "bronquitis",
+        "afecciones respiratorias con mucosidad"
+      ],
+      "descripcion": "Hoja usada como expectorante en la tos productiva asociada a infeccion respiratoria aguda. EMA la reconoce con uso bien establecido por evidencia clinica.",
+      "mecanismoAccion": "Las saponinas triterpenicas (hederacosidos C y B) actuan como expectorantes al aumentar la secrecion bronquial y reducir la viscosidad del moco, facilitando su expulsion.",
+      "nivelEvidencia": "A",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Jarabe",
+        "Extracto seco",
+        "Capsulas",
+        "Gotas"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "consultar si dura mas de 4-7 dias",
+      "advertencias": [
+        "Consultar al medico si la tos dura mas de 4-7 dias o si hay dificultad respiratoria",
+        "Las bayas son toxicas; no ingerir",
+        "Precaucion en menores; usar dosis pediatrica especifica",
+        "Posible reaccion alergica en sensibilizados"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "expectorante",
+        "tos productiva",
+        "saponinas",
+        "bronquitis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC assessment report EMA/HMPC/325715/2017 (Hedera helix folium, well-established use)"
       }
     }
   ]
