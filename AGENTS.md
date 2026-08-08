@@ -1,5 +1,10 @@
 # AGENTS.md - Vademecum AI
 
+> **Documentación clave:**
+> - **Metodología de KB:** `docs/KB_DATA_METHODOLOGY.md` — GUÍA OBLIGATORIA
+>   para ampliar la base de conocimiento (schema, fuentes, validación)
+> - **Seguridad:** `security_spec.md`
+
 ## Descripción del Proyecto
 
 **Vademecum AI** es una aplicación web progresiva (PWA) para consultoras de farmacia que proporciona:
@@ -251,7 +256,34 @@ existentes reciben los nuevos datos sin borrar IndexedDB.
   (ej: `menta` vs `menta_aceite`)
 - Los IDs de sinergias deben ser únicos
 - Las sinergias deben referenciar ingredientes que existen en la KB
+- Los sistemas corporales deben usar valores del enum `BODY_SYSTEMS`
+  (ver `src/types/shared-enums.ts`): nervioso, digestivo, inmune,
+  cardiovascular, respiratorio, musculoesqueletico, endocrino,
+  dermatologico, urinario, reproductivo, ocular, hepatico, metabolico
+- Las indicaciones deben usar etiquetas estandarizadas (ver § KB Data
+  Methodology) para habilitar el filtro por patología
+- El campo `metadata.total` y `metadata.ultimaActualizacion` deben
+  actualizarse tras cada expansión
 
+### KB Expansion History (Rondas 1-13)
+
+La KB se expandió en 13 rondas incrementales (ver `git log --oneline`):
+
+| Ronda | Commit | Ingredientes | Sinergias | Cambios clave |
+|-------|--------|--------------|-----------|---------------|
+| 1-7 | 541c9df→ebbb1b3 | 0→177 | 0→80 | Expansiones iniciales, fuentes científicas |
+| 8 | e51dfb0 | 177→214 | 80→115 | +37 ingredientes, +35 sinergias |
+| 9 | 5012612 | 214→260 | 115→155 | +46 ingredientes, +40 sinergias |
+| 10 | e5c86aa | 260→272 | 155→214 | +12 ingredientes, +59 sinergias (conectar huérfanos) |
+| 11 | 716aabb | 272→282 | 214→272 | +10 ingredientes, +58 sinergias (RED COMPLETA: 0 huérfanos) |
+| 12 | 514078d | 282→290 | 272→338 | +8 ingredientes, +66 sinergias, normalizar sistemas (115 correcciones) |
+| 13 | 3920f00 | 290→314 | 338→414 | +24 ingredientes, +76 sinergias, normalizar indicaciones (861 correcciones) |
+
+**Estado final:** 314 ingredientes (114 fito, 69 homeo, 44 aceites, 87
+vitaminas/compuestos), 414 sinergias, 0 huérfanos, grado medio 2.6.
+KB version: `v114-69-44-87-414`.
+
+### Otros completados
 - [x] Routing con react-router-dom v7 (con ProtectedRoute/AuthRoute — auth actualmente en BYPASS)
 - [x] Toasts con sonner (ToastProvider)
 - [x] Resolución de conflictos de sync (ConflictResolver)
@@ -275,6 +307,27 @@ existentes reciben los nuevos datos sin borrar IndexedDB.
 > **Nota sobre Supabase Sync:** El sync con Supabase es experimental. Existen diferencias
 > de schema entre Dexie (local) y PostgreSQL (remoto) que deben resolverse en una versión
 > futura. NO existe SyncManager (fue eliminado); el servicio actual es SyncService.
+
+## Filtros Planeados (UI)
+
+Los datos para estos filtros YA ESTÁN LISTOS. Falta implementar la UI
+(chips/etiquetas en SearchPage y KnowledgePage).
+
+### Filtro por Sistema Corporal
+- Campo: `sistemas` (array)
+- Valores: 13 sistemas del enum `BODY_SYSTEMS` (normalizados ronda 12)
+- Datos listos: 0 sistemas inválidos
+
+### Filtro por Patología
+- Campo: `indicaciones` (array)
+- Valores: etiquetas estandarizadas (normalizadas ronda 13)
+- Top: ansiedad(48), inmunidad(45), estrés(41), dispepsia(40), tos(40),
+  insomnio(37), articular(35), antioxidante(31), piel(29), cognitivo(27)
+- Datos listos: 275 etiquetas estandarizadas
+
+### Combinación
+Ambos filtros deben poder combinarse (ej: sistema=respiratorio +
+patología=tos). Ver `docs/KB_DATA_METHODOLOGY.md` § 14 para detalles.
 
 ## Patrones de Código
 
