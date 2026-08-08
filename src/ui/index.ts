@@ -7,6 +7,7 @@ export { Input, type InputProps } from './Input';
 export { SearchInput } from './SearchInput';
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './Card';
 export { Badge } from './Badge';
+export { FilterChips, type ChipOption } from './FilterChips';
 export { Modal, AlertDialog } from './Modal';
 export { StatsCard } from './StatsCard';
 export { PageLoader } from './PageLoader';

@@ -11,6 +11,7 @@ export interface SearchFilters {
   category?: IngredientCategory;
   system?: BodySystem;
   evidenceLevel?: 'A' | 'B' | 'C' | 'D';
+  indication?: string;
 }
 
 export interface SearchResult {
@@ -21,7 +22,7 @@ export interface SearchResult {
 
 export class IngredientSearchService {
   async search(filters: SearchFilters): Promise<SearchResult[]> {
-    const { query, category, system, evidenceLevel } = filters;
+    const { query, category, system, evidenceLevel, indication } = filters;
     
     let ingredients = await db.ingredients.toArray();
     
@@ -35,6 +36,10 @@ export class IngredientSearchService {
     
     if (evidenceLevel) {
       ingredients = ingredients.filter(i => i.evidencia === evidenceLevel);
+    }
+    
+    if (indication) {
+      ingredients = ingredients.filter(i => i.indicaciones.includes(indication));
     }
     
     if (!query || query.trim() === '') {
