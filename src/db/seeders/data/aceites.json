@@ -4,7 +4,7 @@
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 33,
+    "total": 41,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
   "ingredientes": [
@@ -1933,6 +1933,448 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "clavo",
+      "nombre": "Aceite Esencial de Clavo",
+      "nombresAlternativos": [
+        "Clove",
+        "Syzygium aromaticum",
+        "Eugenia caryophyllata",
+        "Clavo de olor",
+        "Clavero"
+      ],
+      "nombreCientifico": "Syzygium aromaticum",
+      "familia": "Myrtaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "bucal",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "dolor dental",
+        "salud bucal",
+        "antimicrobiano",
+        "micosis",
+        "infecciones respiratorias"
+      ],
+      "descripcion": "Aceite muy rico en eugenol (70-90%), potente antimicrobiano y analgésico dental. El remedio natural clásico para el dolor de muelas.",
+      "mecanismoAccion": "El eugenol tiene acción anestésica local (bloqueo de canales de sodio), antimicrobiana (membrana), antioxidante y antiinflamatoria (COX).",
+      "nivelEvidencia": "B",
+      "parteUsada": "botón floral (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 0.5-1%)",
+        "Enjuague bucal diluido"
+      ],
+      "tiempoEfecto": "Inmediato (dental)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Irritante potente: diluir mucho (máx 0.5-1%)",
+        "Toxico si se ingiere puro",
+        "Evitar en embarazo y lactancia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (eugenol)"
+      ],
+      "tags": [
+        "dental",
+        "eugenol",
+        "antimicrobiano",
+        "anestésico",
+        "bucal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Dental pharmacology + antimicrobial studies"
+      }
+    },
+    {
+      "id": "enebro",
+      "nombre": "Aceite Esencial de Enebro",
+      "nombresAlternativos": [
+        "Juniper berry",
+        "Juniperus communis",
+        "Bayas de enebro",
+        "Nebrina",
+        "Junípero"
+      ],
+      "nombreCientifico": "Juniperus communis",
+      "familia": "Cupressaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "urinario",
+        "digestivo",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "retención hídrica leve",
+        "dolor muscular",
+        "digestión",
+        "salud urinaria",
+        "celulitis"
+      ],
+      "descripcion": "Aceite de bayas con acción diurética y depurativa. Tónico renal y circulatorio en aromaterapia y uso tópico.",
+      "mecanismoAccion": "Los terpinen-4-ol y pinenos aumentan la diuresis (filtración glomerular); acción rubefaciente y antiinflamatoria tópica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "baya (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Días (diurético)",
+      "duracionTratamiento": "Ciclos cortos (1-2 semanas)",
+      "advertencias": [
+        "Evitar en insuficiencia renal o embarazo",
+        "Irritante: diluir"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos",
+        "Litio"
+      ],
+      "tags": [
+        "diurético",
+        "depurativo",
+        "muscular",
+        "renal",
+        "celulitis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy clinical references"
+      }
+    },
+    {
+      "id": "manzanilla_romana",
+      "nombre": "Aceite Esencial de Manzanilla Romana",
+      "nombresAlternativos": [
+        "Roman chamomile",
+        "Chamaemelum nobile",
+        "Anthemis nobilis",
+        "Manzanilla inglesa",
+        "Chamomile EO"
+      ],
+      "nombreCientifico": "Chamaemelum nobile",
+      "familia": "Asteraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "piel",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "insomnio infantil",
+        "ansiedad",
+        "piel sensible",
+        "dermatitis",
+        "cólicos"
+      ],
+      "descripcion": "Aceite suave y sedante, uno de los más seguros para niños y piel sensible. Relajante del SNC y antiespasmódico digestivo.",
+      "mecanismoAccion": "Los ésteres (isobutil angelato) modulan GABA (sedante) y relajan el músculo liso digestivo; antiinflamatorio cutáneo (alfa-bisabolol, chamazuleno).",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2-4%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Reacciones alérgicas en sensibles a Asteraceae",
+        "Diluir para uso tópico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes (potencia)"
+      ],
+      "tags": [
+        "sedante",
+        "infantil",
+        "piel sensible",
+        "antiespasmódico",
+        "insomnio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromaterapia clínica + uso tradicional"
+      }
+    },
+    {
+      "id": "vetiver",
+      "nombre": "Aceite Esencial de Vetiver",
+      "nombresAlternativos": [
+        "Vetiver",
+        "Chrysopogon zizanioides",
+        "Vetiveria zizanioides",
+        "Khus",
+        "Raíz de vetiver"
+      ],
+      "nombreCientifico": "Chrysopogon zizanioides",
+      "familia": "Poaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "piel"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "insomnio",
+        "TDAH (coadyuvante)",
+        "piel madura"
+      ],
+      "descripcion": "Aceite de raíz profundo y anclado ('aceite de la tranquilidad'). Sedante del SNC, útil en ansiedad y sueño.",
+      "mecanismoAccion": "El khusimol y otros sesquiterpenos modulan GABA y reducen la actividad del SNC; acción antioxidante y regeneradora cutánea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2-5%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato (inhalación)",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Aroma intenso (usar poco)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes (potencia)"
+      ],
+      "tags": [
+        "ansiedad",
+        "sedante",
+        "raíz",
+        "TDAH",
+        "tranquilidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromaterapia clínica + estudios ansiolíticos"
+      }
+    },
+    {
+      "id": "albahaca_aceite",
+      "nombre": "Aceite Esencial de Albahaca",
+      "nombresAlternativos": [
+        "Basil",
+        "Ocimum basilicum",
+        "Albahaca dulce",
+        "Sweet basil",
+        "Albahaca europea"
+      ],
+      "nombreCientifico": "Ocimum basilicum",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "fatiga mental",
+        "estrés",
+        "mala digestión",
+        "dolor muscular",
+        "trastornos menstruales"
+      ],
+      "descripcion": "Aceite tónico cerebral y digestivo. Mejora la claridad mental y la digestión, con acción antiespasmódica.",
+      "mecanismoAccion": "El linalool y eugenol modulan GABA y la inflamación; el estragol (metilchavicol) estimula la digestión; tónico del SNC.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Quimiotipos con estragole: usar con moderación (carcinógeno teórico)",
+        "Evitar en embarazo",
+        "Diluir"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "mental",
+        "digestivo",
+        "tónico",
+        "antiespasmódico",
+        "estrés"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromaterapia clínica + bioquímica"
+      }
+    },
+    {
+      "id": "niaouli",
+      "nombre": "Aceite Esencial de Niaulí",
+      "nombresAlternativos": [
+        "Niaouli",
+        "Melaleuca quinquenervia",
+        "Niauli",
+        "Gomenol",
+        "Árbol de papel"
+      ],
+      "nombreCientifico": "Melaleuca quinquenervia",
+      "familia": "Myrtaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "inmunologico",
+        "piel"
+      ],
+      "indicaciones": [
+        "sinusitis",
+        "bronquitis",
+        "heridas",
+        "micosis",
+        "infecciones respiratorias"
+      ],
+      "descripcion": "Aceite mucolítico y antimicrobiano, cercano al ravintsara pero con más acción mucolítica por el 1,8-cineol.",
+      "mecanismoAccion": "El 1,8-cineol (eucaliptol) fluidifica secreciones y es antiinflamatorio respiratorio; viridiflorol y α-pineno aportan acción antimicrobiana.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 3%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato (inhalación)",
+      "duracionTratamiento": "5-7 días",
+      "advertencias": [
+        "Diluir para uso tópico",
+        "No ingerir",
+        "Precaución en asmáticos con inhalación directa"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "respiratorio",
+        "mucolítico",
+        "antimicrobiano",
+        "1,8-cineol",
+        "sinusitis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromaterapia clínica + farmacología"
+      }
+    },
+    {
+      "id": "pachuli",
+      "nombre": "Aceite Esencial de Pachulí",
+      "nombresAlternativos": [
+        "Patchouli",
+        "Pogostemon cablin",
+        "Pachulí",
+        "Patchouly",
+        "Pogostemon"
+      ],
+      "nombreCientifico": "Pogostemon cablin",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "piel"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "piel madura",
+        "cicatrización",
+        "dermatitis"
+      ],
+      "descripcion": "Aceite profundo y anclado de aroma terroso. Estabiliza el ánimo y regenera la piel.",
+      "mecanismoAccion": "El patchoulol y α-bulneseno modulan GABA (sedante) y la inflamación; estimula la regeneración cutánea y el equilibrio sebáceo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2-5%)",
+        "Difusión"
+      ],
+      "tiempoEfecto": "Inmediato (inhalación)",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Aroma intenso",
+        "Bien tolerado tópicamente"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "ansiedad",
+        "piel",
+        "regeneración",
+        "estabilizador",
+        "terroso"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromaterapia clínica"
+      }
+    },
+    {
+      "id": "hinojo_aceite",
+      "nombre": "Aceite Esencial de Hinojo",
+      "nombresAlternativos": [
+        "Fennel",
+        "Foeniculum vulgare",
+        "Hinojo dulce",
+        "Sweet fennel",
+        "Fructus foeniculi"
+      ],
+      "nombreCientifico": "Foeniculum vulgare",
+      "familia": "Apiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "digestión lenta",
+        "gases",
+        "cólicos infantiles",
+        "lactancia",
+        "síntomas menopáusicos"
+      ],
+      "descripcion": "Aceite de semilla rico en trans-anetol, carminativo y galactógeno. Mismo principio activo del anís pero de origen distinto.",
+      "mecanismoAccion": "El trans-anetol es carminativo (relaja esfínter y favorece expulsión de gases), estrogénico suave (fitoestrógeno) y galactógeno.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 2%)",
+        "Sinergia carminativa"
+      ],
+      "tiempoEfecto": "Minutos (carminativo)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Quimiotipo estragole posible: precaución",
+        "Evitar en embarazo y epilepsia",
+        "Cáncer hormono-dependiente: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estrógenos",
+        "Tamoxifeno"
+      ],
+      "tags": [
+        "carminativo",
+        "gases",
+        "lactancia",
+        "anetol",
+        "menopausia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC + aromaterapia clínica"
       }
     }
   ]

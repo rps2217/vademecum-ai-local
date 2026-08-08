@@ -4,7 +4,7 @@
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 50,
+    "total": 62,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -3801,6 +3801,627 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas Homeopáticas (Clarke)"
+      }
+    },
+    {
+      "id": "silicea",
+      "nombre": "Silicea (Silica)",
+      "nombresAlternativos": [
+        "Silicea",
+        "Silica",
+        "Acidum silicicum",
+        "Silicea terra",
+        "Sílice homeopática"
+      ],
+      "nombreCientifico": "Dióxido de silicio (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "inmunologico",
+        "piel",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "supuraciones crónicas",
+        "fístulas",
+        "cuerpos extraños",
+        "acné",
+        "uñas y cabello frágiles",
+        "abscesos"
+      ],
+      "descripcion": "Policresto mineral y sal de Schüssler nº 12. Remedio de la supuración y de la expulsión de cuerpos extraños. Debilidad de tejido conectivo.",
+      "mecanismoAccion": "Nosología homeopática. En bioquímica tisular, el silicio participa en la síntesis de colágeno; en repertorio, actúa sobre la maduración de supuraciones y el tejido conectivo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "dióxido de silicio (dinamización CH / 6X-12X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Supresión de supuraciones sin drenaje: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "supuración",
+        "cuerpo extraño",
+        "acné",
+        "tejido conectivo",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke) + Schüssler"
+      }
+    },
+    {
+      "id": "calcarea_phosphorica",
+      "nombre": "Calcarea Phosphorica",
+      "nombresAlternativos": [
+        "Calcarea phos",
+        "Fosfato de calcio",
+        "Calc phos",
+        "Calcárea fosfórica"
+      ],
+      "nombreCientifico": "Fosfato de calcio (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculo-esqueletico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "crecimiento óseo",
+        "odontalgia del desarrollo",
+        "anemia de crecimiento",
+        "fracturas",
+        "fatiga de convalecencia"
+      ],
+      "descripcion": "Sal de Schüssler nº 2. Remedio del crecimiento y de la recuperación ósea. Útil en niños en crecimiento y convalecientes.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, regula la nutrición ósea y la hematopoyesis; indicada en fases de crecimiento y reparación.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fosfato de calcio (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/9CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "crecimiento",
+        "hueso",
+        "fractura",
+        "anemia",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
+      }
+    },
+    {
+      "id": "calcarea_fluorica",
+      "nombre": "Calcarea Fluorica",
+      "nombresAlternativos": [
+        "Calcarea fluorica",
+        "Calc fluor",
+        "Fluoruro de calcio",
+        "Calcárea fluórica"
+      ],
+      "nombreCientifico": "Fluoruro de calcio (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculo-esqueletico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "varices",
+        "hemorroides",
+        "exostosis",
+        "laxitud ligamentosa",
+        "durezas glandulares"
+      ],
+      "descripcion": "Sal de Schüssler nº 1. Remedio de la elasticidad tisular: indicada en tejidos endurecidos (varices, hemorroides, exostosis) o con laxitud.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, restaura el equilibrio entre dureza y elasticidad del tejido conectivo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fluoruro de calcio (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/12CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas a meses",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "varices",
+        "hemorroides",
+        "elasticidad",
+        "tejido conectivo",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
+      }
+    },
+    {
+      "id": "ferrum_phosphoricum",
+      "nombre": "Ferrum Phosphoricum",
+      "nombresAlternativos": [
+        "Ferrum phos",
+        "Fosfato de hierro",
+        "Fe phos",
+        "Ferrum metálico fosfórico"
+      ],
+      "nombreCientifico": "Fosfato de hierro (III) (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "inmunologico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "primera fase de inflamación",
+        "fiebre de inicio",
+        "anemia",
+        "congestión de mucosas"
+      ],
+      "descripcion": "Sal de Schüssler nº 3. Remedio del primer estadio de la inflamación (fase de congestión) y fiebre incipiente.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa en la fase congestiva de la inflamación y la hematopoyesis.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fosfato de hierro (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/9CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Días a semanas supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "inflamación",
+        "fiebre",
+        "anemia",
+        "primer estadio",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
+      }
+    },
+    {
+      "id": "kali_muriaticum",
+      "nombre": "Kali Muriaticum",
+      "nombresAlternativos": [
+        "Kali mur",
+        "Cloruro de potasio",
+        "Kalium muriaticum",
+        "Muriate de potasa"
+      ],
+      "nombreCientifico": "Cloruro de potasio (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "catarro con secreción blanca",
+        "otitis serosa",
+        "adenopatías",
+        "fase 2 de inflamación"
+      ],
+      "descripcion": "Sal de Schüssler nº 4. Remedio de las secreciones blancas y de la segunda fase de la inflamación (fase de exudación).",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa en la fase exudativa de la inflamación y la secreción mucosa blanca.",
+      "nivelEvidencia": "C",
+      "parteUsada": "cloruro de potasio (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/9CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Días a semanas supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "catarro",
+        "secreción blanca",
+        "otitis",
+        "exudación",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
+      }
+    },
+    {
+      "id": "kali_sulphuricum",
+      "nombre": "Kali Sulphuricum",
+      "nombresAlternativos": [
+        "Kali sulph",
+        "Sulfato de potasio",
+        "Kalium sulphuricum",
+        "Kali sulfúrico"
+      ],
+      "nombreCientifico": "Sulfato de potasio (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "piel"
+      ],
+      "indicaciones": [
+        "secreciones amarillas",
+        "catarro en fase de resolución",
+        "descamación cutánea",
+        "fase 3 de inflamación"
+      ],
+      "descripcion": "Sal de Schüssler nº 6. Remedio de la tercera fase de la inflamación (fase de resolución) y de las secreciones amarillas.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa en la fase de resolución de la inflamación y la epitelización.",
+      "nivelEvidencia": "C",
+      "parteUsada": "sulfato de potasio (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/9CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Días a semanas supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "secreción amarilla",
+        "resolución",
+        "piel",
+        "fase 3",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
+      }
+    },
+    {
+      "id": "natrum_phosphoricum",
+      "nombre": "Natrum Phosphoricum",
+      "nombresAlternativos": [
+        "Natrum phos",
+        "Fosfato de sodio",
+        "Nat phos",
+        "Natrum fosfórico"
+      ],
+      "nombreCientifico": "Fosfato disódico (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "acidez",
+        "reflujo",
+        "pirosis",
+        "digestión lenta con ácido",
+        "síntomas de acidificación"
+      ],
+      "descripcion": "Sal de Schüssler nº 9. Remedio del exceso de acidez: pirosis, reflujo y digestión con acidez.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, regula el equilibrio ácido-base y la secreción gástrica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fosfato disódico (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/9CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Semanas supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "acidez",
+        "reflujo",
+        "pirosis",
+        "ácido-base",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
+      }
+    },
+    {
+      "id": "natrum_sulphuricum",
+      "nombre": "Natrum Sulphuricum",
+      "nombresAlternativos": [
+        "Natrum sulph",
+        "Sulfato de sodio",
+        "Nat sulph",
+        "Glauber homeopático"
+      ],
+      "nombreCientifico": "Sulfato de sodio (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "hepatico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "asma agravada por humedad",
+        "problemas hepáticos",
+        "vómitos biliosos",
+        "cefaleas post-trauma"
+      ],
+      "descripcion": "Sal de Schüssler nº 10. Remedio del asma empeorada con la humedad y de los trastornos hepatobiliares.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la función hepatobiliar y el asma con modalidad de humedad.",
+      "nivelEvidencia": "C",
+      "parteUsada": "sulfato de sodio (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/9CH/30CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "asma",
+        "humedad",
+        "hepático",
+        "bilis",
+        "Schüssler"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
+      }
+    },
+    {
+      "id": "argentum_nitricum",
+      "nombre": "Argentum Nitricum",
+      "nombresAlternativos": [
+        "Argentum nit",
+        "Nitrato de plata",
+        "Arg nit",
+        "Argento homeopático"
+      ],
+      "nombreCientifico": "Nitrato de plata (dilución homeopática)",
+      "familia": "Mineral (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "ansiedad anticipatoria",
+        "fobia a exámenes",
+        "trastornos por hiperactividad",
+        "gases y diarrea por ansiedad",
+        "deseo de dulces"
+      ],
+      "descripcion": "Policresto de la ansiedad anticipatoria y la diarrea nerviosa. Síntomas de urgencia e impulsividad.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la ansiedad anticipatoria y la sintomatología digestiva asociada.",
+      "nivelEvidencia": "C",
+      "parteUsada": "nitrato de plata (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "ansiedad anticipatoria",
+        "diarrea nerviosa",
+        "impulsividad",
+        "policresto"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "zincum_metallicum",
+      "nombre": "Zincum Metallicum",
+      "nombresAlternativos": [
+        "Zincum met",
+        "Zinc metálico",
+        "Zinc homeopático",
+        "Zincum"
+      ],
+      "nombreCientifico": "Zinc metálico (dilución homeopática)",
+      "familia": "Mineral (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "piernas inquietas",
+        "fatiga mental",
+        "insomnio con agitación cerebral",
+        "convalecencia con agotamiento"
+      ],
+      "descripcion": "Remedio del agotamiento cerebral con hiperactividad mental: piernas inquietas e insomnio por sobreexcitación.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la fatiga del SNC y la hiperactividad motora nocturna.",
+      "nivelEvidencia": "C",
+      "parteUsada": "zinc metálico (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "piernas inquietas",
+        "fatiga mental",
+        "insomnio",
+        "agotamiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "hydrastis",
+      "nombre": "Hydrastis Canadensis",
+      "nombresAlternativos": [
+        "Hydrastis",
+        "Goldenseal",
+        "Sello de oro",
+        "Indian turmeric",
+        "Yellow puccoon"
+      ],
+      "nombreCientifico": "Hydrastis canadensis",
+      "familia": "Ranunculaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo",
+        "piel"
+      ],
+      "indicaciones": [
+        "catarro espeso amarillo",
+        "sinusitis crónica",
+        "mucosidades postnasales",
+        "estreñimiento crónico"
+      ],
+      "descripcion": "Remedio de las mucosidades espesas y amarillentas, especialmente de vías respiratorias altas y digestivo (acción sobre mucosas).",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre mucosas con secreción espesa amarilla; la berberina (patogenesia) tiene acción antimicrobiana documentada.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 5CH/9CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Especie amenazada en su hábitat"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "mucosidad amarilla",
+        "sinusitis",
+        "catarro",
+        "mucosas",
+        "berberina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "nitricum_acidum",
+      "nombre": "Nitricum Acidum",
+      "nombresAlternativos": [
+        "Nitricum acid",
+        "Ácido nítrico homeopático",
+        "Nit ac",
+        "Acidum nitricum"
+      ],
+      "nombreCientifico": "Ácido nítrico (dilución homeopática)",
+      "familia": "Mineral/ácido (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "piel",
+        "digestivo",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "fisuras anales",
+        "úlceras bucales",
+        "verrugas",
+        "hemorroides sangrantes",
+        "sensibilidad punzante"
+      ],
+      "descripcion": "Remedio de las fisuras dolorosas y las ulceraciones con punzadas punzantes (como astillas). Acción sobre piel y mucosas.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre ulceraciones, fisuras y verrugas con dolor punzante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "ácido nítrico (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "fisuras",
+        "úlceras bucales",
+        "verrugas",
+        "punzante",
+        "policresto"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
       }
     }
   ]

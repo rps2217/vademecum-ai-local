@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 81,
+    "total": 93,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -4234,6 +4234,654 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (migraña) + ESCOP"
+      }
+    },
+    {
+      "id": "nigella",
+      "nombre": "Comino Negro",
+      "nombresAlternativos": [
+        "Nigella sativa",
+        "Black seed",
+        "Black cumin",
+        "Ajenuz",
+        "Habba sawda"
+      ],
+      "nombreCientifico": "Nigella sativa",
+      "familia": "Ranunculaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmunologico",
+        "respiratorio",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "asma alérgica",
+        "rinitis alérgica",
+        "hipertensión leve",
+        "hiperglucemia leve",
+        "eccema"
+      ],
+      "descripcion": "Semilla con timoquinona, uno de los remedios naturales mejor estudiados. Evidencia clínica robusta en asma, rinitis alérgica y parámetros metabólicos.",
+      "mecanismoAccion": "La timoquinona modula NF-κB y Nrf2 (antioxidante), reduce la inflamación Th2, inhibe la histamina y mejora la sensibilidad a insulina vía AMPK.",
+      "nivelEvidencia": "A",
+      "parteUsada": "semilla / aceite prensado",
+      "formasPresentacion": [
+        "Aceite prensado en frío",
+        "Cápsulas de aceite",
+        "Semillas molidas"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Evitar en embarazo a dosis terapéuticas",
+        "Posible hipotensión leve"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Antidiabéticos",
+        "Anticoagulantes (dosis altas)"
+      ],
+      "tags": [
+        "inmunidad",
+        "asma",
+        "antialérgico",
+        "timocuinona",
+        "metabólico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials meta-analyses (asma/rinitis)"
+      }
+    },
+    {
+      "id": "cordyceps",
+      "nombre": "Cordyceps",
+      "nombresAlternativos": [
+        "Cordyceps sinensis",
+        "Cs-4",
+        "Hongos oruga",
+        "Dong Chong Xia Cao",
+        "Cordyceps militaris"
+      ],
+      "nombreCientifico": "Cordyceps sinensis / militaris",
+      "familia": "Cordycipitaceae (hongo)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "metabolico",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "rendimiento físico",
+        "fatiga crónica",
+        "función renal",
+        "asma",
+        "función respiratoria"
+      ],
+      "descripcion": "Hongo medicinal usado en medicina china para energía, rendimiento físico y soporte respiratorio. La cepa Cs-4 está fermentada y es sostenible.",
+      "mecanismoAccion": "Aumenta la producción de ATP y la utilización de oxígeno (VO2 max), mejora la función mitocondrial y modula la respuesta inmune; la cordicepina tiene acción antiinflamatoria.",
+      "nivelEvidencia": "B",
+      "parteUsada": "micelio/cuerpo fructífero",
+      "formasPresentacion": [
+        "Cápsulas (extracto Cs-4)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Trastornos autoinmunes (teórico)",
+        "Precaución en trastornos hemorrágicos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Anticoagulantes",
+        "Antidiabéticos"
+      ],
+      "tags": [
+        "energía",
+        "ATP",
+        "respiratorio",
+        "renal",
+        "adaptógeno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (rendimiento/respiratorio)"
+      }
+    },
+    {
+      "id": "hericium",
+      "nombre": "Hericium (Cola de León)",
+      "nombresAlternativos": [
+        "Lion's mane",
+        "Hericium erinaceus",
+        "Yamabushitake",
+        "Hericenonas",
+        "Erinacinas"
+      ],
+      "nombreCientifico": "Hericium erinaceus",
+      "familia": "Hericiaceae (hongo)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ],
+      "indicaciones": [
+        "función cognitiva",
+        "memoria",
+        "neuropatía periférica",
+        "humor",
+        "salud intestinal"
+      ],
+      "descripcion": "Hongo que estimula el factor de crecimiento nervioso (NGF) y la mielina. Evidencia clínica en declive cognitivo leve y neuropatía periférica.",
+      "mecanismoAccion": "Las hericenonas (micelio) y erinacinas (cuerpo fructífero) cruzan la barrera hematoencefálica y estimulan la expresión de NGF y BDNF, promoviendo la neuroplasticidad y la mielinización.",
+      "nivelEvidencia": "B",
+      "parteUsada": "cuerpo fructífero/micelio",
+      "formasPresentacion": [
+        "Cápsulas (extracto)",
+        "Polvo",
+        "Doble extracto"
+      ],
+      "tiempoEfecto": "8-16 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Bien tolerado",
+        "Posibles reacciones alérgicas leves"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (dosis altas, teórico)"
+      ],
+      "tags": [
+        "cognitivo",
+        "NGF",
+        "neuropatía",
+        "neuroplasticidad",
+        "BDNF"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (cognitivo/neuropatía)"
+      }
+    },
+    {
+      "id": "azafran",
+      "nombre": "Azafrán (Extracto)",
+      "nombresAlternativos": [
+        "Crocus sativus",
+        "Saffron",
+        "Estigmas de azafrán",
+        "Azafrán extracto"
+      ],
+      "nombreCientifico": "Crocus sativus",
+      "familia": "Iridaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "oftalmologico"
+      ],
+      "indicaciones": [
+        "depresión leve-moderada",
+        "ansiedad",
+        "humor",
+        "degeneración macular",
+        "función sexual"
+      ],
+      "descripcion": "Estigmas con crocina y safranal. Evidencia clínica comparable a ISRS/fluoxetina en depresión leve-moderada, con mejor perfil de tolerancia.",
+      "mecanismoAccion": "La crocina y safranal modulan la neurotransmisión de serotonina, dopamina y GABA; acción antioxidante retiniana y antiinflamatoria (BNDF).",
+      "nivelEvidencia": "A",
+      "parteUsada": "estigma",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado 30mg)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "6-8 semanas mínimo",
+      "advertencias": [
+        "Dosis tóxicas >5g/día (rara en suplemento)",
+        "Evitar en embarazo a dosis terapéuticas"
+      ],
+      "interaccionesMedicamentosas": [
+        "ISRS (síndrome serotoninérgico teórico)",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "depresión",
+        "humor",
+        "antioxidante",
+        "retina",
+        "serotonina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials meta-análisis (depresión)"
+      }
+    },
+    {
+      "id": "tulsi",
+      "nombre": "Albahaca Santa (Tulsi)",
+      "nombresAlternativos": [
+        "Holy basil",
+        "Ocimum sanctum",
+        "Ocimum tenuiflorum",
+        "Tulasi",
+        "Krishna tulsi"
+      ],
+      "nombreCientifico": "Ocimum sanctum",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "metabolico",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "estrés",
+        "ansiedad",
+        "hiperglucemia leve",
+        "hiperlipidemia",
+        "inmunidad"
+      ],
+      "descripcion": "Adaptógeno ayurvédico con evidencia clínica para estrés, ansiedad y parámetros metabólicos. Considerado una de las plantas sagradas de la India.",
+      "mecanismoAccion": "Modula el eje HHA y reduce el cortisol; los eugenoles y ácido ursólico tienen acción antioxidante, hipoglucemiante (AMPK) e inmunomoduladora.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto",
+        "Infusión"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Precaución en embarazo (efecto emenagogo)",
+        "Teórico efecto antifertilidad"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "adaptógeno",
+        "estrés",
+        "ansiedad",
+        "metabólico",
+        "ayurveda"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (estrés/metabólico)"
+      }
+    },
+    {
+      "id": "solidago",
+      "nombre": "Vara de Oro",
+      "nombresAlternativos": [
+        "Solidago",
+        "Goldenrod",
+        "Solidago virgaurea",
+        "Vara de oro europea",
+        "Solidago canadensis"
+      ],
+      "nombreCientifico": "Solidago virgaurea",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario"
+      ],
+      "indicaciones": [
+        "irrigación de vías urinarias",
+        "cistitis leve",
+        "cálculos renales (profilaxis)",
+        "diuresis"
+      ],
+      "descripcion": "Planta diurética y antiinflamatoria de vías urinarias con monografía EMA HMPC por uso tradicional para aumentar el volumen de orina.",
+      "mecanismoAccion": "Los flavonoides (rutina) y saponinas aumentan la diuresis y la irrigación del tracto urinario; los taninos aportan acción astringente y antiinflamatoria.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-2 semanas en agudo",
+      "advertencias": [
+        "Edema por insuficiencia cardíaca/renal: contraindicada",
+        "Reacciones alérgicas en sensibles a Asteraceae"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos",
+        "Litio"
+      ],
+      "tags": [
+        "diurético",
+        "urinario",
+        "cistitis",
+        "cálculos",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional diurético)"
+      }
+    },
+    {
+      "id": "agrimonia",
+      "nombre": "Agrimonia",
+      "nombresAlternativos": [
+        "Agrimonia",
+        "Agrimonia eupatoria",
+        "Hierba de San Guillermo",
+        "Church steeples",
+        "Agrimonia común"
+      ],
+      "nombreCientifico": "Agrimonia eupatoria",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "piel"
+      ],
+      "indicaciones": [
+        "diarrea leve",
+        "faringitis",
+        "heridas menores",
+        "glositis",
+        "estomatitis"
+      ],
+      "descripcion": "Planta astringente rica en taninos con monografía EMA HMPC por uso tradicional en diarrea leve e inflamación de mucosa bucal.",
+      "mecanismoAccion": "Los taninos condensados coagulan proteínas superficiales formando capa protectora (astringencia); los flavonoides aportan acción antiinflamatoria leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Infusión",
+        "Tintura",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "1-3 días",
+      "duracionTratamiento": "2-3 días en agudo",
+      "advertencias": [
+        "Reducir absorción de medicamentos (taninos, separar)",
+        "No usar en estreñimiento"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiácidos",
+        "Hierro (separar 2h)"
+      ],
+      "tags": [
+        "astringente",
+        "diarrea",
+        "heridas",
+        "bucal",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional)"
+      }
+    },
+    {
+      "id": "marrubium",
+      "nombre": "Marrubio",
+      "nombresAlternativos": [
+        "White horehound",
+        "Marrubium vulgare",
+        "Hierba del sapo",
+        "Marrubio común",
+        "Toronjil cuyano"
+      ],
+      "nombreCientifico": "Marrubium vulgare",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "tos productiva",
+        "bronquitis",
+        "dispepsia",
+        "pérdida de apetito"
+      ],
+      "descripcion": "Planta expectorante y amarga con monografía EMA HMPC por uso tradicional para tos productiva y bronquitis leve.",
+      "mecanismoAccion": "Las saponinas y el marrubiína fluidifican las secreciones y estimulan el reflejo tusígeno; los amargos estimulan las secreciones digestivas y biliares.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Infusión",
+        "Tintura",
+        "Caramelos/jarabe"
+      ],
+      "tiempoEfecto": "1-3 días",
+      "duracionTratamiento": "5-7 días",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Precaución en gastritis (amargos)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiarrítmicos (teorético efecto sobre calcio)"
+      ],
+      "tags": [
+        "expectorante",
+        "tos",
+        "bronquitis",
+        "amargo",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional tos)"
+      }
+    },
+    {
+      "id": "drosera",
+      "nombre": "Rocío del Sol",
+      "nombresAlternativos": [
+        "Sundew",
+        "Drosera rotundifolia",
+        "Drosera",
+        "Rocío de sol",
+        "Drosera madagascariensis"
+      ],
+      "nombreCientifico": "Drosera rotundifolia",
+      "familia": "Droseraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "tos seca irritativa",
+        "tos convulsiva (coadyuvante)",
+        "laringitis",
+        "espasmo tusígeno"
+      ],
+      "descripcion": "Planta antitusiva con naftoquinonas (plumbagonina). Monografía EMA HMPC por uso tradicional en tos seca irritativa.",
+      "mecanismoAccion": "La plumbagonina tiene acción espasmolítica sobre músculo liso bronquial y antitusiva central; reduce la tos seca irritativa.",
+      "nivelEvidencia": "C",
+      "parteUsada": "planta entera",
+      "formasPresentacion": [
+        "Tintura",
+        "Jarabe",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "1-3 días",
+      "duracionTratamiento": "5-7 días",
+      "advertencias": [
+        "Especies protegidas: usar cultivo",
+        "Precaución en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "antitusivo",
+        "tos seca",
+        "espasmolítico",
+        "respiratorio",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional tos seca)"
+      }
+    },
+    {
+      "id": "abedul",
+      "nombre": "Hoja de Abedul",
+      "nombresAlternativos": [
+        "Birch leaf",
+        "Betula pendula",
+        "Betula alba",
+        "Abedul blanco",
+        "Betulae folium"
+      ],
+      "nombreCientifico": "Betula pendula",
+      "familia": "Betulaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "piel"
+      ],
+      "indicaciones": [
+        "irrigación vías urinarias",
+        "infección urinaria leve",
+        "cálculos renales",
+        "retención hídrica leve"
+      ],
+      "descripcion": "Hoja diurética con monografía EMA HMPC por uso tradicional para irrigación de las vías urinarias y diuresis.",
+      "mecanismoAccion": "Los flavonoides (hiperosido) y saponinas aumentan el volumen de orina; acción antiinflamatoria leve de mucosa urinaria y cutánea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Edema por insuficiencia cardíaca/renal: contraindicada",
+        "Reacciones alérgicas raras"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos",
+        "Litio"
+      ],
+      "tags": [
+        "diurético",
+        "urinario",
+        "cálculos",
+        "retención",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional diurético)"
+      }
+    },
+    {
+      "id": "orthosiphon",
+      "nombre": "Té de Java",
+      "nombresAlternativos": [
+        "Orthosiphon",
+        "Orthosiphon stamineus",
+        "Java tea",
+        "Kidney tea",
+        "Cat's whiskers"
+      ],
+      "nombreCientifico": "Orthosiphon stamineus",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario"
+      ],
+      "indicaciones": [
+        "irrigación vías urinarias",
+        "infección urinaria leve",
+        "cálculos renales",
+        "edema leve"
+      ],
+      "descripcion": "Planta diurética del sudeste asiático con monografía EMA HMPC por uso tradicional como diurético e irrigante de vías urinarias.",
+      "mecanismoAccion": "Los flavonoides (sinensetina) y los diterpenos aumentan la diuresis y mejoran la eliminación de ácido úrico y urea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Edema por insuficiencia cardíaca/renal: contraindicada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos",
+        "Litio"
+      ],
+      "tags": [
+        "diurético",
+        "urinario",
+        "cálculos",
+        "java",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional diurético)"
+      }
+    },
+    {
+      "id": "alchemilla",
+      "nombre": "Pie de León",
+      "nombresAlternativos": [
+        "Lady's mantle",
+        "Alchemilla vulgaris",
+        "Alquimila",
+        "Manto de la Virgen",
+        "Alchemilla xanthoclora"
+      ],
+      "nombreCientifico": "Alchemilla vulgaris",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductor",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dolor menstrual",
+        "síndrome premenstrual",
+        "diarrea leve",
+        "heridas menores"
+      ],
+      "descripcion": "Planta astringente y reguladora del ciclo con monografía EMA HMPC por uso tradicional en molestias menstruales y diarrea leve.",
+      "mecanismoAccion": "Los taninos y flavonoides ejercen acción astringente; modula prostaglandinas uterinas reduciendo el dolor menstrual.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Infusión",
+        "Tintura",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "1-2 ciclos (menstrual)",
+      "duracionTratamiento": "3-6 ciclos",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Reducir absorción de medicamentos (taninos)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiácidos",
+        "Hierro (separar 2h)"
+      ],
+      "tags": [
+        "menstrual",
+        "astringente",
+        "SPM",
+        "diarrea",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional menstrual)"
       }
     }
   ]

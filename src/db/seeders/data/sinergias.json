@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 115,
+    "total": 155,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -2971,6 +2971,994 @@
       "sistemas": [
         "nervioso",
         "digestivo"
+      ]
+    },
+    {
+      "id": "sin_berberina_cromo",
+      "ingredienteA": "berberina",
+      "ingredienteB": "cromo",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo metabólico: la berberina activa AMPK y el cromo picolinato mejora la sensibilidad a la insulina.",
+      "beneficios": [
+        "Mejora el control glucémico",
+        "Reduce la resistencia a insulina",
+        "Sinergia AMPK + sensibilidad insulínica"
+      ],
+      "precauciones": [
+        "Ajustar antidiabéticos",
+        "Molestias GI de berberina"
+      ],
+      "mecanismo": "La berberina activa AMPK e inhibe la gluconeogénesis hepática; el cromo potencia la señalización del receptor de insulina.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_berberina_inositol",
+      "ingredienteA": "berberina",
+      "ingredienteB": "inositol",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación de primera línea en SOP: ambos mejoran la sensibilidad a insulina por vías complementarias.",
+      "beneficios": [
+        "Mejora del SOP y ovulación",
+        "Reducción de resistencia a insulina",
+        "Mejora del perfil metabólico"
+      ],
+      "precauciones": [
+        "Ajustar antidiabéticos"
+      ],
+      "mecanismo": "La berberina activa AMPK e inhibe gluconeogénesis; el inositol media la señalización de insulina (IP3). Acción dual sobre la resistencia a insulina del SOP.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_nigella_cromo",
+      "ingredienteA": "nigella",
+      "ingredienteB": "cromo",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte metabólico natural: la nigella (timoquinona) y el cromo mejoran glucosa e insulina.",
+      "beneficios": [
+        "Mejora glucosa e HbA1c",
+        "Reduce resistencia a insulina",
+        "Acción antioxidante metabólica"
+      ],
+      "precauciones": [
+        "Ajustar antidiabéticos"
+      ],
+      "mecanismo": "La timoquinona activa AMPK y mejora la señalización de insulina; el cromo potencia la acción del receptor de insulina.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "metabolico",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_nigella_vitc",
+      "ingredienteA": "nigella",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Inmunomodulador y antioxidante: la timoquinona y la vitamina C reducen la inflamación Th2 y el estrés oxidativo.",
+      "beneficios": [
+        "Soporte en rinitis/asma alérgica",
+        "Acción antioxidante sinérgica",
+        "Inmunomodulación"
+      ],
+      "precauciones": [
+        "Evitar en embarazo a dosis altas"
+      ],
+      "mecanismo": "La timoquinona inhibe NF-κB e histamina; la vitamina C reduce la oxidación y apoya la función inmune.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_glutation_vitc",
+      "ingredienteA": "glutation",
+      "ingredienteB": "vitamina_c",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "El dúo antioxidante maestro: la vitamina C recicla el glutatión oxidado (GSSG→GSH), manteniendo el pool antioxidante.",
+      "beneficios": [
+        "Maximiza el pool de glutatión",
+        "Defensa antioxidante sinérgica",
+        "Apoyo hepático y pulmonar"
+      ],
+      "precauciones": [
+        "Bien tolerado"
+      ],
+      "mecanismo": "La vitamina C reduce el glutatión oxidado (GSSG) a su forma activa (GSH); el glutatión a su vez recicla las vitaminas C y E oxidadas.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_sulforafano_glutation",
+      "ingredienteA": "sulforafano",
+      "ingredienteB": "glutation",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Detoxificación de fase II: el sulforafano induce las glutatión-S-transferasas y el glutatión es su sustrato.",
+      "beneficios": [
+        "Maximiza la detoxificación de fase II",
+        "Acción antioxidante Nrf2",
+        "Soporte hepático"
+      ],
+      "precauciones": [
+        "Posible interferencia con yodo"
+      ],
+      "mecanismo": "El sulforafano induce Nrf2→GST/NQO1 (enzimas de fase II); el glutatión es el cofactor sustrato de las glutatión-S-transferasas.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_cordyceps_reishi",
+      "ingredienteA": "cordyceps",
+      "ingredienteB": "reishi",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de hongos medicinales: el cordyceps aporta energía/ATP y el reishi modulación inmune y calmante.",
+      "beneficios": [
+        "Energía y rendimiento",
+        "Inmunomodulación",
+        "Acción adaptógena complementaria"
+      ],
+      "precauciones": [
+        "Trastornos autoinmunes (teórico)"
+      ],
+      "mecanismo": "El cordyceps aumenta ATP y VO2 max; el reishi (triterpenos y β-glucanos) modula la inmunidad y reduce el estrés (eje HHA).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_hericium_bacopa",
+      "ingredienteA": "hericium",
+      "ingredienteB": "bacopa",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación nootrópica: el hericium estimula NGF/BDNF y la bacopa mejora la neurotransmisión colinérgica.",
+      "beneficios": [
+        "Mejora memoria y neuroplasticidad",
+        "Apoyo en declive cognitivo leve",
+        "Neuroprotección dual"
+      ],
+      "precauciones": [
+        "Tomar varias semanas para efecto"
+      ],
+      "mecanismo": "El hericium estimula NGF/BDNF y mielinización; la bacopa aumenta acetilcolina y sinaptogénesis. Acción sinérgica sobre la plasticidad.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ]
+    },
+    {
+      "id": "sin_hericium_lecitina",
+      "ingredienteA": "hericium",
+      "ingredienteB": "colina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte cognitivo: el hericium estimula NGF y la colina es precursor de acetilcolina para memoria.",
+      "beneficios": [
+        "Mejora memoria y concentración",
+        "Neuroprotección",
+        "Síntesis de neurotransmisores"
+      ],
+      "precauciones": [
+        "Bien tolerado"
+      ],
+      "mecanismo": "El hericium estimula NGF/BDNF; la colina (fosfatidilcolina) es precursor de acetilcolina, neurotransmisor de la memoria.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ]
+    },
+    {
+      "id": "sin_azafran_ashwagandha",
+      "ingredienteA": "azafran",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación para humor y estrés: el azafrán modula serotonina y la ashwagandha reduce cortisol.",
+      "beneficios": [
+        "Mejora del humor",
+        "Reduce ansiedad y estrés",
+        "Acción adaptógena dual"
+      ],
+      "precauciones": [
+        "RIESGO SÍNDROME SEROTONINÉRGICO con ISRS/IMAO"
+      ],
+      "mecanismo": "El azafrán (crocina/safranal) modula serotonina y dopamina; la ashwagandha reduce el cortisol (eje HHA) y modula GABA.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_tulsi_ashwagandha",
+      "ingredienteA": "tulsi",
+      "ingredienteB": "ashwagandha",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo adaptógeno ayurvédico: el tulsi y la ashwagandha reducen el estrés y el cortisol por vías complementarias.",
+      "beneficios": [
+        "Reduce estrés y ansiedad",
+        "Modula el eje HHA",
+        "Acción metabólica complementaria"
+      ],
+      "precauciones": [
+        "Precaución en embarazo",
+        "Tiroideo (ashwagandha)"
+      ],
+      "mecanismo": "El tulsi modula el eje HHA y reduce cortisol; la ashwagandha reduce cortisol y modula GABA. Sinergia adaptógena.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_apigenina_glicina",
+      "ingredienteA": "apigenina",
+      "ingredienteB": "l_glicina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo calmante nocturno: la apigenina modula GABA-A y la glicina es neurotransmisor inhibidor y baja la temperatura corporal.",
+      "beneficios": [
+        "Inducción del sueño",
+        "Reduce latencia de sueño",
+        "Calma sin dependencia"
+      ],
+      "precauciones": [
+        "Somnolencia posible"
+      ],
+      "mecanismo": "La apigenina modula GABA-A; la glicina actúa en receptores inhibidores y baja la temperatura central nocturna (favorece el sueño).",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "sueno",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_glicina_magnesio",
+      "ingredienteA": "l_glicina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Relajación y sueño: la glicina (neurotransmisor inhibidor) y el magnesio (bloqueo NMDA) inducen calma nocturna.",
+      "beneficios": [
+        "Mejora calidad del sueño",
+        "Reduce despertares nocturnos",
+        "Relajación muscular"
+      ],
+      "precauciones": [
+        "Sedación leve"
+      ],
+      "mecanismo": "La glicina activa receptores inhibidores y baja la temperatura central; el magnesio bloquea NMDA y modula la excitabilidad.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "sueno",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_glucosamina_condroitina",
+      "ingredienteA": "glucosamina",
+      "ingredienteB": "condroitina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinación clásica para artrosis: la glucosamina (sustrato) y la condroitina (viscoelasticidad) son sinérgicas.",
+      "beneficios": [
+        "Reduce dolor en artrosis",
+        "Protege el cartílago",
+        "Mejora la función articular"
+      ],
+      "precauciones": [
+        "Origen marino (alergia)",
+        "Warfarina: monitorizar"
+      ],
+      "mecanismo": "La glucosamina es sustrato de glicosaminoglicanos; la condroitina atrae agua y inhibe MMP. Acción complementaria sobre el cartílago.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_colageno_vitc",
+      "ingredienteA": "colageno",
+      "ingredienteB": "vitamina_c",
+      "tipo": "cofactor",
+      "nivelEvidencia": "A",
+      "descripcion": "La vitamina C es cofactor esencial de las hidroxilasas de prolina/lisina en la síntesis de colágeno. Sinergia bioquímica.",
+      "beneficios": [
+        "Maximiza la síntesis de colágeno",
+        "Mejora piel y articulaciones",
+        "Acción antioxidante"
+      ],
+      "precauciones": [
+        "Bien tolerado"
+      ],
+      "mecanismo": "La vitamina C es cofactor de la prolil-hidroxilasa y lisil-hidroxilasa, enzimas esenciales para la estabilidad triple hélice del colágeno.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculo-esqueletico",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_acido_hialuronico_colageno",
+      "ingredienteA": "acido_hialuronico",
+      "ingredienteB": "colageno",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo estructural para piel y articulaciones: el colágeno aporta armazón y el ácido hialurónico hidratación.",
+      "beneficios": [
+        "Mejora elasticidad de la piel",
+        "Lubricación articular",
+        "Hidratación dermoepidérmica"
+      ],
+      "precauciones": [
+        "Bien tolerado"
+      ],
+      "mecanismo": "El colágeno aporta la red estructural; el ácido hialurónico retiene agua en la matriz extracelular y el líquido sinovial.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "piel",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_msm_glucosamina",
+      "ingredienteA": "msm",
+      "ingredienteB": "glucosamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío articular (con condroitina): el MSM (azufre) y la glucosamina (sustrato) complementan el soporte del cartílago.",
+      "beneficios": [
+        "Reduce dolor articular",
+        "Soporte de colágeno y cartílago",
+        "Acción antiinflamatoria"
+      ],
+      "precauciones": [
+        "Origen marino (alergia)"
+      ],
+      "mecanismo": "El MSM aporta azufre para colágeno y reduce citoquinas; la glucosamina es sustrato de glicosaminoglicanos.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_bromelina_curcuma",
+      "ingredienteA": "bromelina",
+      "ingredienteB": "curcuma",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Antiinflamatorio enzimático: la bromelina (proteolítica) y la cúrcuma (curcumina) potencian la acción antiinflamatoria.",
+      "beneficios": [
+        "Reduce edema e inflamación",
+        "Mejora recuperación muscular",
+        "Acción sinérgica post-lesión"
+      ],
+      "precauciones": [
+        "Bromelina: efecto antiagregante",
+        "Cúrcuma: precaución anticoagulantes"
+      ],
+      "mecanismo": "La bromelina debrida proteínas inflamatorias y reduce el edema; la curcumina inhibe COX-2 y NF-κB. Acción antiinflamatoria dual.",
+      "categorias": [
+        "aminoacidos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_citrulina_omega3",
+      "ingredienteA": "l_citrulina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte endotelial: la citrulina aumenta óxido nítrico y el omega-3 mejora la función endotelial.",
+      "beneficios": [
+        "Mejora función endotelial",
+        "Reduce presión arterial leve",
+        "Acción antiinflamatoria vascular"
+      ],
+      "precauciones": [
+        "Precaución con inhibidores PDE5 y nitratos"
+      ],
+      "mecanismo": "La citrulina aumenta NO (vasodilatación); el omega-3 reduce la inflamación endotelial y mejora el perfil lipídico.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_citrulina_taurina",
+      "ingredienteA": "l_citrulina",
+      "ingredienteB": "taurina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cardiovascular y rendimiento: la citrulina aumenta NO y la taurina estabiliza membranas y modula calcio.",
+      "beneficios": [
+        "Mejora flujo sanguíneo",
+        "Soporte cardíaco",
+        "Rendimiento físico"
+      ],
+      "precauciones": [
+        "Precaución con hipotensivos"
+      ],
+      "mecanismo": "La citrulina aumenta NO (vasodilatación); la taurina estabiliza membranas, modula Ca2+ y es osmolito cardíaco.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_same_glutation",
+      "ingredienteA": "same",
+      "ingredienteB": "glutation",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Vía de transulfuración: el SAMe es precursor de la cisteína y el glutatión. Soporte hepático y metabólico.",
+      "beneficios": [
+        "Maximiza la síntesis de glutatión",
+        "Soporte hepático",
+        "Metilación + transulfuración"
+      ],
+      "precauciones": [
+        "Tomar con B12 y folato (homocisteína)"
+      ],
+      "mecanismo": "El SAMe dona grupos metilo y se convierte en homocisteína→cisteína (vía de transulfuración), precursora del glutatión.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_cardo_mariano_same",
+      "ingredienteA": "cardo_mariano",
+      "ingredienteB": "same",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Hepatoprotección dual: la silimarina (antioxidante/estabilizante) y el SAMe (metilación + glutatión).",
+      "beneficios": [
+        "Soporte hepático",
+        "Acción hepatoprotectora",
+        "Mejora la función hepática"
+      ],
+      "precauciones": [
+        "Tomar con B12 y folato (SAMe)"
+      ],
+      "mecanismo": "La silimarina estabiliza la membrana del hepatocito y es antioxidante; el SAMe aporta metilos y aumenta el glutatión hepático.",
+      "categorias": [
+        "fitoterapia",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_pqq_coq10",
+      "ingredienteA": "pqq",
+      "ingredienteB": "coq10",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo mitocondrial: el PQQ induce la biogénesis mitocondrial y el CoQ10 transporta los electrones en la cadena respiratoria.",
+      "beneficios": [
+        "Biogénesis + función mitocondrial",
+        "Mejora energía",
+        "Soporte cardiovascular"
+      ],
+      "precauciones": [
+        "Insomnio si se toma de noche"
+      ],
+      "mecanismo": "El PQQ activa PGC-1α (biogénesis de nuevas mitocondrias); el CoQ10 transporta electrones en las mitocondrias existentes.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_pqq_l_carnitina",
+      "ingredienteA": "pqq",
+      "ingredienteB": "l_carnitina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Energía mitocondrial: el PQQ induce nuevas mitocondrias y la carnitina aporta los ácidos grasos como combustible.",
+      "beneficios": [
+        "Mejora energía y fatiga",
+        "Optimiza función mitocondrial",
+        "Soporte metabólico"
+      ],
+      "precauciones": [
+        "Insomnio si de noche (PQQ)"
+      ],
+      "mecanismo": "El PQQ induce biogénesis mitocondrial (PGC-1α); la carnitina transporta ácidos grasos a la matriz para β-oxidación.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_niacinamida_zinc_piel",
+      "ingredienteA": "niacinamida",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo para piel con acné: la niacinamida (tópica/oral) reduce sebo e inflamación y el zinc es antiinflamatorio.",
+      "beneficios": [
+        "Reduce acné y sebo",
+        "Mejora la barrera cutánea",
+        "Acción antiinflamatoria"
+      ],
+      "precauciones": [
+        "Exceso de zinc >40mg/día cobre"
+      ],
+      "mecanismo": "La niacinamida reduce la pérdida de agua, sebo e inflamación; el zinc modula la inflamación y la actividad sebácea.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_niaouli_eucalipto",
+      "ingredienteA": "niaouli",
+      "ingredienteB": "eucalipto",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo mucolítico respiratorio: ambos ricos en 1,8-cineol, fluidifican secreciones y son antimicrobianos.",
+      "beneficios": [
+        "Acción mucolítica potente",
+        "Antimicrobiano respiratorio",
+        "Sinusitis y bronquitis"
+      ],
+      "precauciones": [
+        "Precaución en asmáticos con inhalación directa"
+      ],
+      "mecanismo": "El 1,8-cineol (eucaliptol) fluidifica secreciones y es antiinflamatorio; sinergia mucolítica y antimicrobiana.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_marrubio_drosera",
+      "ingredienteA": "marrubium",
+      "ingredienteB": "drosera",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación tradicional para la tos: el marrubio expectorante y la drosera antitusiva para tos seca irritativa.",
+      "beneficios": [
+        "Reduce tos seca irritativa",
+        "Facilita expectoración",
+        "Acción antitusiva + expectorante"
+      ],
+      "precauciones": [
+        "Drosera: usar cultivo (especies protegidas)"
+      ],
+      "mecanismo": "El marrubio (saponinas) fluidifica y expectora; la drosera (plumbagonina) es espasmolítica y antitusiva.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_solidago_arandano",
+      "ingredienteA": "solidago",
+      "ingredienteB": "arandano_rojo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Estrategia dual para salud urinaria: la vara de oro irriga y el arándano previene la adhesión bacteriana.",
+      "beneficios": [
+        "Prevención de ITU recurrente",
+        "Aumenta diuresis",
+        "Acción antiinflamatoria urinaria"
+      ],
+      "precauciones": [
+        "No usar en insuficiencia renal/cardíaca"
+      ],
+      "mecanismo": "La vara de oro aumenta el volumen de orina (lavado); el arándano bloquea la adhesión de E. coli.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_enebro_solidago",
+      "ingredienteA": "enebro",
+      "ingredienteB": "solidago",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación diurética tradicional: el enebro (bayas) y la vara de oro aumentan la diuresis.",
+      "beneficios": [
+        "Aumenta la diuresis",
+        "Irriga vías urinarias",
+        "Acción depurativa"
+      ],
+      "precauciones": [
+        "Contraindicado en insuficiencia renal",
+        "Embarazo"
+      ],
+      "mecanismo": "Los terpinen-4-ol del enebro y los flavonoides de la vara de oro aumentan la diuresis por mecanismos complementarios.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_hinojo_aceite_manzanilla",
+      "ingredienteA": "hinojo_aceite",
+      "ingredienteB": "manzanilla",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Carminativo y digestivo: el hinojo (anetol) expulsa gases y la manzanilla es digestiva y antiespasmódica.",
+      "beneficios": [
+        "Reduce gases y cólicos",
+        "Mejora digestión",
+        "Calma espasmos digestivos"
+      ],
+      "precauciones": [
+        "Hinojo: evitar en embarazo y epilepsia"
+      ],
+      "mecanismo": "El anetol del hinojo es carminativo; los flavonoides y α-bisabolol de la manzanilla son antiespasmódicos y digestivos.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_bromelina_papaya",
+      "ingredienteA": "bromelina",
+      "ingredienteB": "manzanilla",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte digestivo enzimático: la bromelina (proteolítica) y la manzanilla (antiespasmódica) mejoran la digestión.",
+      "beneficios": [
+        "Mejora la digestión proteica",
+        "Reduce hinchazón",
+        "Calma el estómago"
+      ],
+      "precauciones": [
+        "Tomar bromelina con comidas (digestivo)"
+      ],
+      "mecanismo": "La bromelina hidroliza proteínas; la manzanilla (α-bisabolol) es antiespasmódica y carminativa.",
+      "categorias": [
+        "aminoacidos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_hinojo_aceite_trebol",
+      "ingredienteA": "hinojo_aceite",
+      "ingredienteB": "trebol_rojo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte fitoestrogénico: el hinojo (anetol) y el trébol rojo (isoflavonas) alivian sofocos leves.",
+      "beneficios": [
+        "Alivio de sofocos leves",
+        "Acción fitoestrogénica complementaria",
+        "Equilibrio hormonal"
+      ],
+      "precauciones": [
+        "Cáncer hormono-dependiente: precaución",
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "El anetol (fitoestrógeno) y las isoflavonas modulan los receptores estrogénicos (ERβ) por vías complementarias.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_vetiver_lavanda",
+      "ingredienteA": "vetiver",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia sedante profunda: el vetiver ancla y la lavanda relaja, ideal para insomnio rebelde.",
+      "beneficios": [
+        "Inducción del sueño profundo",
+        "Reduce ansiedad",
+        "Acción anclaje + relajación"
+      ],
+      "precauciones": [
+        "Sedación posible"
+      ],
+      "mecanismo": "El khusimol (vetiver) y el linalool (lavanda) modulan GABA; el vetiver aporta anclaje y la lavanda relajación.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_clavo_tea_tree",
+      "ingredienteA": "clavo",
+      "ingredienteB": "tea_tree",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano potente: el eugenol del clavo y el terpinen-4-ol del tea tree potencian la acción fungicida y antibacteriana.",
+      "beneficios": [
+        "Acción antifúngica potente",
+        "Antibacteriano tópico",
+        "Pie de atleta y micosis"
+      ],
+      "precauciones": [
+        "Irritantes: diluir al 0.5-1% (clavo) y 1-3% (tea tree)"
+      ],
+      "mecanismo": "El eugenol (clavo) y el terpinen-4-ol (tea tree) dañan la membrana microbiana por mecanismos sinérgicos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_manzanilla_romana_lavanda",
+      "ingredienteA": "manzanilla_romana",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo sedante suave para niños y piel sensible: la manzanilla romana y la lavanda inducen calma y sueño.",
+      "beneficios": [
+        "Calma y sueño infantil",
+        "Acción cutánea antiinflamatoria",
+        "Seguro para piel sensible"
+      ],
+      "precauciones": [
+        "Reacciones alérgicas en Asteraceae"
+      ],
+      "mecanismo": "Los ésteres de la manzanilla romana y el linalool de la lavanda modulan GABA (sedante) y son antiinflamatorios cutáneos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_pachuli_sandalo",
+      "ingredienteA": "pachuli",
+      "ingredienteB": "sandalo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación anclaje y meditación: el pachulí y el sándalo aportan calma profunda y regeneración cutánea.",
+      "beneficios": [
+        "Calma profunda y meditación",
+        "Regeneración cutánea",
+        "Equilibrio emocional"
+      ],
+      "precauciones": [
+        "Sándalo: preferir cultivo sostenible"
+      ],
+      "mecanismo": "El patchoulol y los santenoles modulan GABA y reducen el estrés; ambos son regeneradores cutáneos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_calcarea_fluorica_castano",
+      "ingredienteA": "calcarea_fluorica",
+      "ingredienteB": "castano_indias",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte venoso: la calcarea fluorica (elasticidad) y el castaño de indias (tono venoso) en insuficiencia venosa.",
+      "beneficios": [
+        "Mejora el tono venoso",
+        "Reduce varices y hemorroides",
+        "Acción sobre elasticidad y permeabilidad"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática + fitoterapia: la calcarea fluorica actúa sobre la elasticidad del tejido; las escinas del castaño reducen la permeabilidad capilar.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_silicea_saw_palmetto",
+      "ingredienteA": "silicea",
+      "ingredienteB": "saw_palmetto",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte prostático y de tejido conectivo: la silicea y el saw palmetto en HPB leve.",
+      "beneficios": [
+        "Soporte de tejido conectivo",
+        "Acción sobre próstata",
+        "Sinergia homeopática + fitoterapia"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Seguimiento médico de HPB"
+      ],
+      "mecanismo": "Nosología homeopática + fitoterapia: la silicea actúa sobre el tejido conectivo; el saw palmetto inhibe la 5-alfa-reductasa.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_ferrum_phos_belladonna",
+      "ingredienteA": "ferrum_phosphoricum",
+      "ingredienteB": "belladonna",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación para fiebre incipiente: la ferrum phos (fase congestiva) y la belladonna (fase de calor) en el primer estadio.",
+      "beneficios": [
+        "Soporte en fiebre incipiente",
+        "Acción sobre fase congestiva",
+        "Sinergia homeopática clásica"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Fiebre alta: consultar médico"
+      ],
+      "mecanismo": "Nosología homeopática: la ferrum phos actúa en la fase congestiva; la belladonna en la fase de calor/bacteriano.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_kali_mur_kali_sulph",
+      "ingredienteA": "kali_muriaticum",
+      "ingredienteB": "kali_sulphuricum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sales de Schüssler para catarro: la kali mur (secreción blanca) y la kali sulph (secreción amarilla, resolución).",
+      "beneficios": [
+        "Soporte en catarro y sinusitis",
+        "Acción sobre las fases del catarro",
+        "Sinergia de sales tisulares"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la kali mur actúa en la fase exudativa blanca; la kali sulph en la fase de resolución amarilla.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio"
       ]
     }
   ]

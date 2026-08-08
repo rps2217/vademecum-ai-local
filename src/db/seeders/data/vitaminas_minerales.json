@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 50,
+    "total": 64,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -2843,6 +2843,758 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (SOP) + International guidelines"
+      }
+    },
+    {
+      "id": "glutation",
+      "nombre": "Glutatión (Reducido/Liposomal)",
+      "nombresAlternativos": [
+        "GSH",
+        "Glutatión reducido",
+        "L-Glutatión",
+        "Glutathione",
+        "Liposomal glutathione"
+      ],
+      "nombreCientifico": "γ-L-Glutamil-L-cisteinil-glicina",
+      "familia": "Tripéptido",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "inmunologico",
+        "hepatico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "desintoxicación hepática",
+        "inmunidad",
+        "salud pulmonar",
+        "piel"
+      ],
+      "descripcion": "El principal antioxidante intracelular. La forma liposomal mejora la biodisponibilidad oral (el GSH ordinario se degrada en intestino).",
+      "mecanismoAccion": "Cofactor de glutatión peroxidasas (neutraliza peróxidos), conjugación hepática (fase II, glucuronidación), reciclaje de vitaminas C y E, mantenimiento del pool redox celular.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Liposomal",
+        "Reducido (GSH)",
+        "S-acil glutation (SAG)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible olor sulfuroso"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "antioxidante",
+        "hepático",
+        "detox",
+        "inmunidad",
+        "redox"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Biochemical + clinical references"
+      }
+    },
+    {
+      "id": "berberina",
+      "nombre": "Berberina",
+      "nombresAlternativos": [
+        "Berberine",
+        "Berberina HCl",
+        "Extracto de Berberis",
+        "Huang lian su"
+      ],
+      "nombreCientifico": "Berberina (alcaloide isoquinolínico)",
+      "familia": "Alcaloides",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "metabolico",
+        "digestivo",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "hiperglucemia",
+        "resistencia a insulina",
+        "hiperlipidemia",
+        "SOP",
+        "sobrecrecimiento bacteriano"
+      ],
+      "descripcion": "Alcaloide de Berberis con evidencia clínica comparable a metformina en control glucémico. Activa AMPK y modula microbiota.",
+      "mecanismoAccion": "Activa AMPK (sensor energético celular), inhibe la gluconeogénesis hepática, aumenta la expresión del receptor de insulina; modula microbiota (reduce SIBO).",
+      "nivelEvidencia": "A",
+      "parteUsada": "Extracto de raíz",
+      "formasPresentacion": [
+        "Cápsulas (500mg 2-3 veces/día)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Molestias gastrointestinales comunes",
+        "Evitar en embarazo",
+        "Teórico riesgo hepatotóxico a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos (hipoglucemia)",
+        "Macrólidos y sustratos CYP3A4 (inhibe)",
+        "Ciclosporina"
+      ],
+      "tags": [
+        "glucosa",
+        "AMPK",
+        "insulina",
+        "metabólico",
+        "SIBO"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials meta-análisis (glucosa/lípidos)"
+      }
+    },
+    {
+      "id": "glucosamina",
+      "nombre": "Glucosamina",
+      "nombresAlternativos": [
+        "Glucosamina sulfato",
+        "Glucosamine",
+        "Glucosamina HCl",
+        "2-amino-2-desoxi-glucosa"
+      ],
+      "nombreCientifico": "Glucosamina (sulfato)",
+      "familia": "Aminosacáridos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "artrosis",
+        "dolor articular",
+        "salud del cartílago",
+        "gonartrosis",
+        "cooxartrosis"
+      ],
+      "descripcion": "Precursor de los glicosaminoglicanos del cartílago. La forma sulfato tiene mejor evidencia. Eficacia modesta pero sostenida en artrosis.",
+      "mecanismoAccion": "Sustrato para la síntesis de glicosaminoglicanos y proteoglicanos del cartílago; acción antiinflamatoria leve (supresión de IL-1β, MMP).",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento (quitina)",
+      "formasPresentacion": [
+        "Cápsulas (sulfato)",
+        "Polvo",
+        "Combinado con condroitina"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses mínimo",
+      "advertencias": [
+        "Origen marino (alergia)",
+        "Precaución teórica en diabetes (glucosamina)",
+        "Asma: rara exacerbación"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina (potencia, monitorizar)"
+      ],
+      "tags": [
+        "artrosis",
+        "cartílago",
+        "articular",
+        "glicosaminoglicanos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "GAIT trial + Cochrane review"
+      }
+    },
+    {
+      "id": "condroitina",
+      "nombre": "Condroitina",
+      "nombresAlternativos": [
+        "Condroitín sulfato",
+        "Chondroitin sulfate",
+        "COS",
+        "Condroitina sulfato sódica"
+      ],
+      "nombreCientifico": "Condroitín sulfato",
+      "familia": "Glicosaminoglicanos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculo-esqueletico",
+        "oftalmologico"
+      ],
+      "indicaciones": [
+        "artrosis",
+        "dolor articular",
+        "salud del cartílago",
+        "sequedad ocular (colirio)"
+      ],
+      "descripcion": "Glicosaminoglicano del cartílago y córnea. Eficacia modesta sostenida en artrosis, especialmente combinada con glucosamina.",
+      "mecanismoAccion": "Atrae agua al cartílago (propiedades viscoelásticas), inhibe enzimas degradativas (MMP, aggrecanasas) y reduce la inflamación sinovial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento (cartílago bovino/marino)",
+      "formasPresentacion": [
+        "Cápsulas (sulfato)",
+        "Combinado con glucosamina",
+        "Colirio"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses mínimo",
+      "advertencias": [
+        "Origen marino/bovino (alergia)",
+        "Precaución con anticoagulantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina (potencia)"
+      ],
+      "tags": [
+        "artrosis",
+        "cartílago",
+        "articular",
+        "viscoelasticidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "GAIT trial + Cochrane review"
+      }
+    },
+    {
+      "id": "colageno",
+      "nombre": "Colágeno (Péptidos)",
+      "nombresAlternativos": [
+        "Péptidos de colágeno",
+        "Hidrolizado de colágeno",
+        "Collagen peptides",
+        "Colágeno hidrolizado",
+        "Colágeno tipo I/II"
+      ],
+      "nombreCientifico": "Péptidos de colágeno hidrolizado",
+      "familia": "Proteínas",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculo-esqueletico",
+        "piel"
+      ],
+      "indicaciones": [
+        "salud articular",
+        "elasticidad de la piel",
+        "salud del cabello y uñas",
+        "recuperación muscular"
+      ],
+      "descripcion": "Péptidos bioactivos de colágeno hidrolizado. Evidencia clínica para elasticidad cutánea y molestias articulares.",
+      "mecanismoAccion": "Los di- y tripéptidos (prolil-hidroxiprolina) estimulan la síntesis de colágeno endógeno (fibroblastos, condrocitos) y ácido hialurónico.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas",
+        "Bebida"
+      ],
+      "tiempoEfecto": "8-12 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Bien tolerado",
+        "Posibles reacciones alérgicas en origen marino/bovino"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "piel",
+        "articular",
+        "colágeno",
+        "cabello",
+        "uñas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (piel/articular)"
+      }
+    },
+    {
+      "id": "acido_hialuronico",
+      "nombre": "Ácido Hialurónico",
+      "nombresAlternativos": [
+        "Hialuronato",
+        "Hyaluronic acid",
+        "HA",
+        "Sodio hialuronato",
+        "Hialuronano"
+      ],
+      "nombreCientifico": "Ácido hialurónico (hialuronano)",
+      "familia": "Glicosaminoglicanos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculo-esqueletico",
+        "piel",
+        "oftalmologico"
+      ],
+      "indicaciones": [
+        "artrosis (oral/intraarticular)",
+        "sequedad ocular",
+        "elasticidad de la piel",
+        "cicatrización"
+      ],
+      "descripcion": "Glicosaminoglicano estructural de cartílago, piel y humor acuoso. Formas oral, tópica e intraarticular con evidencia en artrosis y piel.",
+      "mecanismoAccion": "Retiene agua (hasta 1000x su peso), aporta viscoelasticidad al líquido sinovial y al tejido cutáneo; estimula la síntesis de colágeno y reduce la inflamación sinovial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento (fermentación)",
+      "formasPresentacion": [
+        "Cápsulas (oral)",
+        "Polvo",
+        "Tópico",
+        "Inyectable"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Bien tolerado",
+        "Reacciones en el punto de inyección (intraarticular)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "articular",
+        "piel",
+        "sequedad ocular",
+        "viscoelasticidad",
+        "hialuronano"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (articular/piel)"
+      }
+    },
+    {
+      "id": "same",
+      "nombre": "SAMe (S-Adenosilmetionina)",
+      "nombresAlternativos": [
+        "S-adenosil-L-metionina",
+        "SAMe",
+        "SAM",
+        "Ademetionina",
+        "AdoMet"
+      ],
+      "nombreCientifico": "S-Adenosil-L-metionina",
+      "familia": "Metabolitos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "hepatico",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "depresión leve-moderada",
+        "salud hepática",
+        "artrosis (coadyuvante)",
+        "fibromialgia (coadyuvante)"
+      ],
+      "descripcion": "Donante de grupos metilo universal. Evidencia clínica en depresión (comparable a ISRS) y artrosis. También hepatoprotector (coleresis).",
+      "mecanismoAccion": "Donante de grupos metilo para síntesis de neurotransmisores (serotonina, dopamina), fosfolípidos y ADN; precursor de la vía de transulfuración (cisteína→glutatión).",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento (enterosoluble)",
+      "formasPresentacion": [
+        "Tabletas entéricas (200-400mg)",
+        "Butanediol-disulfonato"
+      ],
+      "tiempoEfecto": "1-2 semanas (depresión)",
+      "duracionTratamiento": "6-8 semanas",
+      "advertencias": [
+        "Puede inducir manía en bipolares",
+        "Ansiedad/insomnio si se toma de noche",
+        "Tomar con B12 y folato (evitar hiperhomocisteinemia)"
+      ],
+      "interaccionesMedicamentosas": [
+        "ISRS/IMAO (síndrome serotoninérgico)",
+        "Levodopa"
+      ],
+      "tags": [
+        "depresión",
+        "hepático",
+        "metilación",
+        "artrosis",
+        "glutatión"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (depresión/artrosis)"
+      }
+    },
+    {
+      "id": "l_citrulina",
+      "nombre": "L-Citrulina",
+      "nombresAlternativos": [
+        "Citrulina",
+        "L-Citrulline",
+        "Citrulina malato",
+        "Citrulline malate"
+      ],
+      "nombreCientifico": "L-Citrulina",
+      "familia": "Aminoácidos no esenciales",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "cardiovascular",
+        "musculo-esqueletico",
+        "reproductor"
+      ],
+      "indicaciones": [
+        "función endotelial",
+        "rendimiento físico",
+        "disfunción eréctil leve",
+        "hipertensión leve",
+        "fatiga muscular"
+      ],
+      "descripcion": "Precursor renal de la arginina (más eficaz que arginina oral) para la síntesis de óxido nítrico (NO). Mejora el flujo sanguíneo y el rendimiento.",
+      "mecanismoAccion": "Convertida en riñón a L-arginina, sustrato de la óxido nítrico sintasa endotelial (eNOS), aumentando NO, vasodilatación y flujo sanguíneo; el malato mejora el ciclo de la urea y reduce la fatiga.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas",
+        "Citrulina malato"
+      ],
+      "tiempoEfecto": "1-2 horas (agudo)",
+      "duracionTratamiento": "Continuo o puntual",
+      "advertencias": [
+        "Bien tolerada",
+        "Precaución con inhibidores PDE5 y nitratos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sildenafil (sinergia hipotensiva)",
+        "Nitratos"
+      ],
+      "tags": [
+        "óxido nítrico",
+        "cardiovascular",
+        "rendimiento",
+        "endotelio",
+        "disfunción eréctil"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (rendimiento/endotelio)"
+      }
+    },
+    {
+      "id": "l_glicina",
+      "nombre": "L-Glicina",
+      "nombresAlternativos": [
+        "Glicina",
+        "Glycine",
+        "Aminoacético",
+        "Gly",
+        "Aminoácido inhibidor"
+      ],
+      "nombreCientifico": "L-Glicina",
+      "familia": "Aminoácidos no esenciales",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "sueno",
+        "musculo-esqueletico"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "calma",
+        "recuperación muscular",
+        "salud de la piel (colágeno)",
+        "reflujo"
+      ],
+      "descripcion": "Aminoácido inhibidor del SNC (receptor de glicina) y cofactor de glutatión. Mejora calidad del sueño y sensación subjetiva al despertar.",
+      "mecanismoAccion": "Neurotransmisor inhibidor (receptor de glicina), coagonista del receptor NMDA; precursor del colágeno (~33% de los aminoácidos) y del glutatión; baja temperatura corporal nocturna.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas (3g nocturno)"
+      ],
+      "tiempoEfecto": "30-60 minutos (sueño)",
+      "duracionTratamiento": "Continuo o cíclico",
+      "advertencias": [
+        "Bien tolerada",
+        "Sedación leve posible"
+      ],
+      "interaccionesMedicamentosas": [
+        "Clozapina (reduce acción)",
+        "Antipsicóticos"
+      ],
+      "tags": [
+        "sueño",
+        "calma",
+        "colágeno",
+        "glutatión",
+        "inhibidor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (sueño) + bioquímica"
+      }
+    },
+    {
+      "id": "pqq",
+      "nombre": "PQQ (Pirroloquinolina quinona)",
+      "nombresAlternativos": [
+        "Pirroloquinolina quinona",
+        "Pyrroloquinoline quinone",
+        "Methoxatin",
+        "PQQ disodium"
+      ],
+      "nombreCientifico": "Pirroloquinolina quinona",
+      "familia": "Quinonas redox",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "biogénesis mitocondrial",
+        "energía",
+        "función cognitiva",
+        "salud cardiovascular"
+      ],
+      "descripcion": "Cofactor redox que induce la biogénesis mitocondrial (vía PGC-1α) y protege contra el estrés oxidativo mitocondrial.",
+      "mecanismoAccion": "Cofactor redox que activa PGC-1α y CREB (biogénesis mitocondrial), induce NRF2 (antioxidante) y protege las mitocondrias del daño oxidativo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (10-20mg)"
+      ],
+      "tiempoEfecto": "4-12 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Insomnio si se toma de noche"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "mitocondrial",
+        "biogénesis",
+        "energía",
+        "cognitivo",
+        "PGC-1a"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + initial clinical trials"
+      }
+    },
+    {
+      "id": "sulforafano",
+      "nombre": "Sulforafano",
+      "nombresAlternativos": [
+        "Sulforaphane",
+        "Extracto de brócoli",
+        "Glucorafanina",
+        "Moringa sulforafano",
+        "Broccoli sprout extract"
+      ],
+      "nombreCientifico": "Sulforafano (4-metilsulfinilbutil isotiocianato)",
+      "familia": "Isotiocianatos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "inmunologico",
+        "hepatico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "detoxificación hepática (fase II)",
+        "protección antioxidante",
+        "salud gastrointestinal",
+        "autismo (coadyuvante investigacional)"
+      ],
+      "descripcion": "Isotiocianato de brocoles y germinados. Potente inductor de la vía Nrf2 (enzimas de fase II: glutatión-S-transferasa, NQO1).",
+      "mecanismoAccion": "Libera sulforafano a partir de la glucorafanina (mirosinasa); el sulforafano inactiva Keap1, liberando Nrf2 que induce las enzimas de fase II (GST, NQO1, HO-1).",
+      "nivelEvidencia": "C",
+      "parteUsada": "Germinados/semillas de brócoli",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado)",
+        "Germinados"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Puede interferir con la absorción de yodo (crucíferas)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sustratos CYP (modula fase I)"
+      ],
+      "tags": [
+        "Nrf2",
+        "detox",
+        "fase-II",
+        "antioxidante",
+        "brócoli"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (Nrf2/detox)"
+      }
+    },
+    {
+      "id": "niacinamida",
+      "nombre": "Niacinamida (Vitamina B3 amida)",
+      "nombresAlternativos": [
+        "Nicotinamida",
+        "Niacinamide",
+        "Nicotinic acid amide",
+        "Vitamina PP",
+        "Vitamina B3 amida"
+      ],
+      "nombreCientifico": "Nicotinamida",
+      "familia": "Vitaminas hidrosolubles",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "piel",
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "salud de la piel",
+        "prevención de cáncer de piel no melanoma",
+        "acné",
+        "función cognitiva",
+        "energía (NAD+)"
+      ],
+      "descripcion": "Forma amida de la vitamina B3, sin rubor. Precursor del NAD+, y tópica con evidencia clínica para prevención de cáncer cutáneo no melanoma y fotoenvejecimiento.",
+      "mecanismoAccion": "Precursor del NAD+/NADP+ (transporte de electrones); tópica reduce la pérdida transepidérmica de agua, mejora la barrera cutánea y reduce la inmunosupresión UV.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Suplemento / tópico",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Tópico (crema 4-10%)",
+        "Complejo B"
+      ],
+      "tiempoEfecto": "Semanas (piel)",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada (sin rubor)",
+        "Dosis altas: hepatotoxicidad >3g/día"
+      ],
+      "interaccionesMedicamentosas": [
+        "Isoniazida",
+        "Carbamazepina"
+      ],
+      "tags": [
+        "NAD+",
+        "piel",
+        "cáncer cutáneo",
+        "fotoenvejecimiento",
+        "B3"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (cáncer cutáneo ONTRAC)"
+      }
+    },
+    {
+      "id": "bromelina",
+      "nombre": "Bromelina",
+      "nombresAlternativos": [
+        "Bromelaina",
+        "Bromelain",
+        "Extracto de piña",
+        "Ananasa",
+        "Bromelina de tallo/piña"
+      ],
+      "nombreCientifico": "Bromelina (enzima proteolítica)",
+      "familia": "Enzimas proteolíticas",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculo-esqueletico",
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inflamación y edema post-quirúrgico",
+        "sinusitis",
+        "mala digestión proteica",
+        "contusiones",
+        "DLM coadyuvante"
+      ],
+      "descripcion": "Mezcla de enzimas proteolíticas del tallo de la piña. Evidencia para edema post-quirúrgico, sinusitis y como digestivo (proteolítico).",
+      "mecanismoAccion": "Hidroliza proteínas (incluidas cininas y fibrina) reduciendo el edema; modula citocinas inflamatorias; debrida tejido necrótico y mucosidades.",
+      "nivelEvidencia": "B",
+      "parteUsada": "tallo de piña",
+      "formasPresentacion": [
+        "Cápsulas (2000-2400 GDU/g)",
+        "Enterocubierta"
+      ],
+      "tiempoEfecto": "1-3 horas",
+      "duracionTratamiento": "5-10 días en agudo",
+      "advertencias": [
+        "Tomar con comidas (digestivo) o sin (sistémico)",
+        "Posible sangrado (efecto antiagregante)",
+        "Reacciones alérgicas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina)",
+        "Tetraciclinas (aumenta absorción)"
+      ],
+      "tags": [
+        "enzima",
+        "antiinflamatorio",
+        "edema",
+        "sinusitis",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (edema/sinusitis)"
+      }
+    },
+    {
+      "id": "apigenina",
+      "nombre": "Apigenina",
+      "nombresAlternativos": [
+        "Apigenin",
+        "4',5,7-trihidroxiflavona",
+        "Extracto de manzanilla",
+        "Apigenina de perejil"
+      ],
+      "nombreCientifico": "Apigenina (4',5,7-trihidroxiflavona)",
+      "familia": "Flavonoides",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "ansiedad leve",
+        "calma nocturna",
+        "salud cognitiva"
+      ],
+      "descripcion": "Flavonoide de manzanilla, perejil y apio. Modula receptores GABA-A y induce relajación sin sedación marcada.",
+      "mecanismoAccion": "Modulador positivo del receptor GABA-A (sitio benzodiacepínico sin la dependencia), reduce la actividad del SNC; antioxidante y antiinflamatoria (Nrf2).",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto",
+      "formasPresentacion": [
+        "Cápsulas (50-100mg)"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes (sinergia)",
+        "Sustratos CYP3A4 (modesto)"
+      ],
+      "tags": [
+        "sueño",
+        "GABA",
+        "ansiedad",
+        "flavonoide",
+        "calma"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + small clinical trials"
       }
     }
   ]
