@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 42,
-    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen)"
+    "total": 45,
+    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
     {
@@ -3301,6 +3301,252 @@
         "cambiante",
         "reumatismo cronico",
         "nocturno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "magnesia_phosphorica",
+      "nombre": "Magnesia Phosphorica",
+      "nombresAlternativos": [
+        "Mag-phos",
+        "Magnesium phosphate",
+        "Fosfato de magnesio",
+        "Schuessler tissue salt No.8"
+      ],
+      "nombreCientifico": "Fosfato de magnesio (Mg3(PO4)2)",
+      "familia": "Sal de Schuessler (tissue remedy)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "colicos espasmódicos",
+        "neuralgias",
+        "calambres musculares",
+        "dolores que mejoran con calor y presion"
+      ],
+      "descripcion": "Remedio de los dolores espasmódicos, calambres y neuralgias que mejoran con el calor y la presion fuerte, y empeoran con el frio. El dolor tipo relampago a lo largo de los nervios es caracteristico. Remedio de Schuessler (tissue salt).",
+      "mecanismoAccion": "En homeopatia: modula la contractilidad muscular espasmódica y el dolor neurogeno que mejora con calor y presion; se considera el anti-espasmódico por excelencia de la materia medica.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolor espasmódico que mejora marcadamente con calor y presion fuerte",
+        "Empeora con el frio y el aire frio",
+        "Dolor tipo relampago a lo largo de los nervios",
+        "Colicos que obligan a doblarse, mejoran con calor y presion",
+        "Calambres musculares, especialmente en piernas y ninos",
+        "Hipo espasmódico",
+        "Sintomas periodicos y recurrentes",
+        "Dismenorrea espasmódica joven"
+      ],
+      "modalidades": {
+        "empeora": [
+          "frio",
+          "aire frio",
+          "noche",
+          "toque ligero"
+        ],
+        "mejora": [
+          "calor",
+          "presion fuerte",
+          "flexion",
+          "doblarse"
+        ]
+      },
+      "afinidad": [
+        "nervios",
+        "musculos",
+        "tracto digestivo",
+        "utero"
+      ],
+      "constelaciones": [
+        "Colico espasmódico",
+        "Neuralgia",
+        "Calambres musculares",
+        "Dismenorrea joven"
+      ],
+      "advertencias": [
+        "Los colicos intensos y persistentes requieren valoracion medica para descartar causa organica",
+        "Es un remedio homeopatico/sal de Schuessler; no sustituye el tratamiento medico"
+      ],
+      "tags": [
+        "espasmódico",
+        "calor mejora",
+        "presion mejora",
+        "neuralgia",
+        "calambre",
+        "colico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes; Hering Guiding Symptoms; Schuessler Biochemic therapy"
+      }
+    },
+    {
+      "id": "alumina",
+      "nombre": "Alumina",
+      "nombresAlternativos": [
+        "Alumina",
+        "Oxido de aluminio",
+        "Aluminium oxide",
+        "Argila"
+      ],
+      "nombreCientifico": "Oxido de aluminio (Al2O3)",
+      "familia": "Mineral (tierra)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "estrenimiento cronico sin deseos",
+        "confusion mental",
+        "sequedad de mucosas",
+        "sintomas que empeoran con el exceso de patatas"
+      ],
+      "descripcion": "Remedio del estrenimiento cronico sin deseos de defecar y con heces blandas, asociado a sequedad de mucosas y confusion mental con lentitud de pensamiento. Tipico en ancianos y personas agotadas.",
+      "mecanismoAccion": "En homeopatia: modula la atonia intestinal con ausencia de deseos y la confusion mental con dificultad para expresar lo que siente; accion sobre sequedad de mucosas.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Estrenimiento sin deseos de defecar, incluso con heces blandas",
+        "Evacuacion solo tras gran esfuerzo o cada varios dias",
+        "Confusion mental con dificultad para describir los sintomas",
+        "Lentitud de pensamiento y de palabra",
+        "Sensacion de que el cuerpo no le pertenece o se mueve solo",
+        "Sequedad marcada de mucosas y piel",
+        "Empeora comiendo patatas (almidon en exceso)",
+        "Temo hacer algo mal o impulsivo al ver objetos cortantes",
+        "Mejora con el aire libre y tras comer"
+      ],
+      "modalidades": {
+        "empeora": [
+          "patatas",
+          "reposo",
+          "noche",
+          "calor",
+          "frio humedo"
+        ],
+        "mejora": [
+          "aire libre",
+          "comer",
+          "manana al despertar"
+        ]
+      },
+      "afinidad": [
+        "tracto digestivo",
+        "sistema nervioso",
+        "mucosas",
+        "piel"
+      ],
+      "constelaciones": [
+        "Estrenimiento cronico sin deseos",
+        "Confusion mental",
+        "Sequedad de mucosas"
+      ],
+      "advertencias": [
+        "El estrenimiento cronico requiere valoracion medica para descartar causa organica",
+        "La confusion mental persistente requiere valoracion medica"
+      ],
+      "tags": [
+        "estrenimiento",
+        "sin deseos",
+        "confusion",
+        "sequedad",
+        "patatas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes; Vithoulkas Lectures on Materia Medica"
+      }
+    },
+    {
+      "id": "dioscorea",
+      "nombre": "Dioscorea Villosa",
+      "nombresAlternativos": [
+        "Dioscorea",
+        "Wild yam",
+        "Colic root",
+        "Nam raiz",
+        "Ignamex"
+      ],
+      "nombreCientifico": "Dioscorea villosa",
+      "familia": "Dioscoreaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "colico abdominal que mejora estirandose",
+        "dolor espasmódico biliar",
+        "neuralgias"
+      ],
+      "descripcion": "Remedio del colico abdominal espasmódico que mejora estirandose y arqueandose hacia atras, lo opuesto a colocynthis (que mejora doblado). Util en colico biliar y dolor espasmódico.",
+      "mecanismoAccion": "En homeopatia: modula el dolor espasmódico abdominal y biliar que mejora estirandose y arqueando la espalda, con accion antiespasmodica.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Colico abdominal que mejora estirandose y arqueandose hacia atras",
+        "Dolor espasmódico violento que irradia en todas direcciones",
+        "Mejora con la presion y el estiramiento (opuesto a colocynthis)",
+        "Colico biliar con dolor que irradia a la espalda",
+        "Dolor que empeora doblado y mejora recto",
+        "Sensacion de giro o retorcion en el abdomen",
+        "Palidez y sudor frio durante el colico"
+      ],
+      "modalidades": {
+        "empeora": [
+          "doblarse",
+          "movimiento",
+          "presion ligera",
+          "frio"
+        ],
+        "mejora": [
+          "estirarse",
+          "arquearse hacia atras",
+          "presion fuerte",
+          "calor"
+        ]
+      },
+      "afinidad": [
+        "tracto digestivo",
+        "vias biliares",
+        "sistema nervioso"
+      ],
+      "constelaciones": [
+        "Colico biliar",
+        "Colico que mejora estirado",
+        "Dolor espasmódico irradiante"
+      ],
+      "advertencias": [
+        "Los colicos biliares intensos y recurrentes requieren valoracion medica",
+        "La planta fresca puede ser irritante; en dilucion homeopatica el riesgo es despreciable"
+      ],
+      "tags": [
+        "colico",
+        "estirado mejora",
+        "biliar",
+        "espasmódico",
+        "opuesto colocynthis"
       ],
       "metadata": {
         "fechaCreacion": "2026-08-08",

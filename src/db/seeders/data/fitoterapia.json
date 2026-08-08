@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 65,
-    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs"
+    "total": 69,
+    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
     {
@@ -3393,6 +3393,224 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Equisetum arvense herba; ESCOP Monographs"
+      }
+    },
+    {
+      "id": "romero",
+      "nombre": "Romero",
+      "nombresAlternativos": [
+        "Rosmarinus officinalis",
+        "Rosemary",
+        "Rosmarini folium",
+        "Romero hoja"
+      ],
+      "nombreCientifico": "Rosmarinus officinalis",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "musculoesqueletico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "dispepsia leve",
+        "espasmos gastrointestinales leves",
+        "dolor muscular y articular leve (topico/bano)",
+        "circulacion periferica leve"
+      ],
+      "descripcion": "Hoja usada tradicionalmente por via oral para el alivio sintomatico de la dispepsia y los espasmos gastrointestinales leves, y como aditivo de bano para el dolor muscular y articular leve y la circulacion periferica.",
+      "mecanismoAccion": "Los acidos fenolicos (acido rosmarinico) y los flavonoides ejercen accion coleretica, espasmolitica y antioxidante; el aceite esencial (1,8-cineol, alcanfor) estimula la circulacion periferica por via topica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto liquido",
+        "Aceite esencial (topico)",
+        "Aditivo de bano"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Contraindicado en obstruccion biliar, hepatopatias graves y litiasis",
+        "No usar el aceite esencial por via oral (toxicidad)",
+        "No aplicar aceite esencial puro sobre la piel ni mucosas",
+        "Los banos completos calientes estan contraindicados en heridas grandes, fiebre alta, infecciones graves e insuficiencia cardiaca",
+        "No recomendado en embarazo y lactancia por via oral en dosis terapeuticas",
+        "Precaucion en epilepsia (alcanfor)"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "digestivo",
+        "coleretico",
+        "circulacion",
+        "dolor articular",
+        "rosmarinico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/513940/2021 Rev.1 (Rosmarini folium, traditional use); EMA/HMPC/513893/2021 (aetheroleum, topico)"
+      }
+    },
+    {
+      "id": "anis_estrellado",
+      "nombre": "Anis Estrellado",
+      "nombresAlternativos": [
+        "Illicium verum",
+        "Star anise",
+        "Chinese star anise",
+        "Anisi stellati fructus",
+        "Badiana"
+      ],
+      "nombreCientifico": "Illicium verum",
+      "familia": "Schisandraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "dispepsia espastica leve",
+        "hinchazon",
+        "flatulencia",
+        "tos y resfriado (expectorante)"
+      ],
+      "descripcion": "Fruto usado tradicionalmente para el tratamiento sintomatico de molestias gastrointestinales espasticas leves (hinchazon, flatulencia) y como expectorante en la tos y el resfriado. Rica fuente de shikimico (precursor del oseltamivir).",
+      "mecanismoAccion": "El trans-anetol del aceite esencial ejerce efecto carminativo, espasmolitico sobre el musculo liso digestivo y expectorante, similar al anis verde.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Infusion",
+        "Fruto molido",
+        "Extracto liquido",
+        "Aceite esencial"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Evitar confusion con Illicium religiosum (anis estrellado japones, toxico)",
+        "Precaucion en embarazo y lactancia (no exceder dosis alimentarias)",
+        "No usar el aceite esencial por via oral en lactantes (riesgo neurotoxico)",
+        "El estragol es genotoxico en animales; no exceder dosis"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "carminativo",
+        "espasmolitico",
+        "flatulencia",
+        "expectorante",
+        "anetol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Illicium verum fructus (traditional use); ESCOP Monographs"
+      }
+    },
+    {
+      "id": "escaramujo",
+      "nombre": "Escaramujo (Rosa silvestre)",
+      "nombresAlternativos": [
+        "Rosa canina",
+        "Dog rose",
+        "Rosehip",
+        "Rosae pseudofructus",
+        "Cinorrodon"
+      ],
+      "nombreCientifico": "Rosa canina",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "estres oxidativo",
+        "refuerzo de vitamina C",
+        "dolor articular leve (tradicional)"
+      ],
+      "descripcion": "Falso fruto (cinorrodon) rico en vitamina C natural y antioxidantes, usado tradicionalmente como fuente de vitamina C y para el estres oxidativo. Algunos estudios sugieren beneficio leve en dolor articular.",
+      "mecanismoAccion": "El alto contenido de vitamina C, flavonoides y carotenoides ejerce efecto antioxidante; los galactolipidos se asocian a un posible efecto antiinflamatorio articular leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "falso fruto (cinorrodon)",
+      "formasPresentacion": [
+        "Polvo",
+        "Capsulas",
+        "Infusion",
+        "Mermelada"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Precaucion en litiasis renal por contenido de oxalatos en semillas",
+        "Posible reaccion alergica en alergia a Rosaceae",
+        "La vitamina C en dosis altas puede interferir con tests de glucemia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hierro (aumenta absorcion por vitamina C)"
+      ],
+      "tags": [
+        "vitamina C",
+        "antioxidante",
+        "articular",
+        "galactolipidos",
+        "inmune"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Rosae pseudofructus; ESCOP Monographs; Cochrane review on rosehip for osteoarthritis"
+      }
+    },
+    {
+      "id": "amapola_californiana",
+      "nombre": "Amapola de California",
+      "nombresAlternativos": [
+        "Eschscholzia californica",
+        "California poppy",
+        "Copa de oro"
+      ],
+      "nombreCientifico": "Eschscholzia californica",
+      "familia": "Papaveraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad leve",
+        "insomnio leve",
+        "inquietud"
+      ],
+      "descripcion": "Partes aereas usadas tradicionalmente para el alivio de la ansiedad leve, la inquietud y el insomnio leve. A menudo se combina con otras plantas sedativas.",
+      "mecanismoAccion": "Los alcaloides (californidina) modulan los receptores GABA-A con efecto sedante y ansiolitico leve, similar pero mas suave que la amapola oriental.",
+      "nivelEvidencia": "C",
+      "parteUsada": "partes aereas",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Tintura",
+        "Infusion"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Precaucion con depresores del SNC y alcohol",
+        "No recomendado en embarazo y lactancia",
+        "Posible somnolencia; no conducir tras la toma inicial",
+        "No usar en menores de 12 anos sin supervision"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes y depresores del SNC",
+        "Benzodiacepinas",
+        "Alcohol"
+      ],
+      "tags": [
+        "sedante",
+        "ansiedad",
+        "insomnio",
+        "GABA",
+        "ansiolitico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "ESCOP Monographs (Eschscholzia californicae herba); German Commission E monograph"
       }
     }
   ]

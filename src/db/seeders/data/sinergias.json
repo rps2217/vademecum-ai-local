@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 82,
-    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent)"
+    "total": 90,
+    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
     {
@@ -2113,6 +2113,215 @@
       ],
       "sistemas": [
         "respiratorio",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_romero_alcachofa",
+      "ingredienteA": "romero",
+      "ingredienteB": "alcachofa",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion hepato-digestiva: el romero y la alcachofa estimulan la secrecion biliar y alivian la dispepsia leve con plenitud.",
+      "beneficios": [
+        "Doble estimulacion coleretica (acido rosmarinico + cinarina)",
+        "Alivio de dispepsia con plenitud y flatulencia",
+        "Efecto antioxidante hepatico combinado"
+      ],
+      "precauciones": [
+        "Contraindicado en obstruccion biliar y hepatopatias graves",
+        "Alergia a Asteraceae (alcachofa)",
+        "No usar el aceite esencial de romero por via oral"
+      ],
+      "mecanismo": "El acido rosmarinico del romero y la cinarina de la alcachofa estimulan la secrecion biliar y enzimas digestivas por receptores amargos; ambas plantas ejercen efecto antioxidante hepatico complementario.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_romero_sauco",
+      "ingredienteA": "romero",
+      "ingredienteB": "sauco",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion para el resfriado comun: el romero aporta efecto sudorifico y estimulante, el sauco favorece la sudoracion y alivia los sintomas del resfriado.",
+      "beneficios": [
+        "Doble accion sudorifica para el resfriado",
+        "Alivio de sintomas catarrales",
+        "Efecto antioxidante combinado"
+      ],
+      "precauciones": [
+        "No usar en embarazo y lactancia en dosis terapeuticas (romero)",
+        "Consultar al medico si la fiebre persiste"
+      ],
+      "mecanismo": "El romero (acido rosmarinico, aceite esencial) estimula la sudoracion y la circulacion; el sauco (flavonoides) favorece la sudoracion y alivia los sintomas del resfriado comun; efecto aditivo sudorifico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_anis_estrellado_anis_verde",
+      "ingredienteA": "anis_estrellado",
+      "ingredienteB": "anis_verde",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Doble anis carminativo: ambos ricos en trans-anetol, ejercen efecto espasmolitico y carminativo aditivo para la flatulencia y la dispepsia espastica.",
+      "beneficios": [
+        "Doble fuente de trans-anetol (carminativo)",
+        "Alivio potente de flatulencia y dispepsia espastica",
+        "Efecto expectorante combinado para la tos"
+      ],
+      "precauciones": [
+        "Precaucion en embarazo y lactancia (no exceder dosis)",
+        "No usar aceites esenciales por via oral en lactantes",
+        "El estragol es genotoxico en animales; no exceder dosis combinada"
+      ],
+      "mecanismo": "Ambos frutos comparten trans-anetol como componente mayoritario; el efecto carminativo y espasmolitico es aditivo sobre el musculo liso digestivo y bronquial.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_amapola_valeriana",
+      "ingredienteA": "amapola_californiana",
+      "ingredienteB": "valeriana",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion sedativa para el insomnio y la ansiedad leve: la amapola californiana modula GABA-A de forma suave y la valeriana potencia el efecto sedante.",
+      "beneficios": [
+        "Sinergia GABAergica para el sueno",
+        "Reduce latencia de inicio del sueno",
+        "Alivio de la ansiedad leve sin somnolencia excesiva"
+      ],
+      "precauciones": [
+        "Posible somnolencia matutina",
+        "No combinar con sedantes, benzodiacepinas o alcohol sin supervision",
+        "No usar en embarazo y lactancia"
+      ],
+      "mecanismo": "Los alcaloides de la amapola californiana (californidina) y los valerenos de la valeriana modulan el receptor GABA-A por sitios distintos, potenciando el efecto sedante-anxiolitico de forma sinergica.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_escaramujo_equinacea",
+      "ingredienteA": "escaramujo",
+      "ingredienteB": "equinacea",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion para el apoyo inmunologico: el escaramujo aporta vitamina C natural y antioxidantes, la equinacea modula la respuesta inmune en el resfriado comun.",
+      "beneficios": [
+        "Vitamina C + inmunomodulacion combinadas",
+        "Apoyo en el resfriado comun",
+        "Efecto antioxidante y antiinflamatorio"
+      ],
+      "precauciones": [
+        "Equinacea: no usar en enfermedades autoinmunes ni mas de 10 dias seguidos",
+        "No usar en menores de 12 anos sin supervision",
+        "Alergia a Asteraceae (ambas)"
+      ],
+      "mecanismo": "La vitamina C y los antioxidantes del escaramujo apoyan la funcion inmune celular; los derivados del acido cafeico de la equinacea modulan la fagocitosis y la inmunidad; efecto complementario en el resfriado comun.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_colocynthis_dioscorea",
+      "ingredienteA": "colocynthis",
+      "ingredienteB": "dioscorea",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Par opuesto clasico en colico abdominal: colocynthis mejora doblado y con presion; dioscorea mejora estirado y arqueado hacia atras.",
+      "beneficios": [
+        "Cubre las dos modalidades opuestas del colico",
+        "Colocynthis: doblado mejora; dioscorea: estirado mejora",
+        "Util para diferenciar y cubrir colicos mixtos"
+      ],
+      "precauciones": [
+        "Los colicos intensos y persistentes requieren valoracion medica",
+        "La planta fresca de colocynthis es toxica; solo en dilucion homeopatica"
+      ],
+      "mecanismo": "En homeopatia: colocynthis cubre el colico que mejora doblado y con presion fuerte; dioscorea cubre el colico que mejora estirado y arqueado hacia atras; son los complementarios opuestos en dolor espasmódico abdominal.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_colocynthis_magnesia_phos",
+      "ingredienteA": "colocynthis",
+      "ingredienteB": "magnesia_phosphorica",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion en colico y neuralgia: ambos mejoran con calor y presion. Magnesia phosphorica es el remedio mas cercano a colocynthis segun Nash y Clarke.",
+      "beneficios": [
+        "Doble accion antiespasmodica (calor + presion mejoran)",
+        "Util en colico y neuralgia con esa modalidad",
+        "Magnesia phos: dolor tipo relampago; colocynthis: ira con indignacion"
+      ],
+      "precauciones": [
+        "Los colicos intensos requieren valoracion medica",
+        "La planta fresca de colocynthis es toxica; solo en dilucion homeopatica"
+      ],
+      "mecanismo": "En homeopatia: ambos remedios cubren dolor que mejora con calor y presion fuerte; magnesia phosphorica anade el componente de dolor tipo relampago y calambre, colocynthis el desencadenante de ira con indignacion; combinacion clasica en colico espasmódico.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_alumina_nux_vomica",
+      "ingredienteA": "alumina",
+      "ingredienteB": "nux_vomica",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion en estrenimiento: alumina cubre el estrenimiento sin deseos con heces blandas; nux vomica cubre el estrenimiento con deseos ineficaces y espasmos.",
+      "beneficios": [
+        "Cubre dos patrones de estrenimiento distintos",
+        "Alumina: sin deseos, heces blandas; nux: deseos ineficaces",
+        "Util en estrenimiento cronico mixto"
+      ],
+      "precauciones": [
+        "El estrenimiento cronico requiere valoracion medica para descartar causa organica",
+        "La nuez vomica fresca es toxica; solo en dilucion homeopatica"
+      ],
+      "mecanismo": "En homeopatia: alumina cubre el estrenimiento sin deseos de defecar incluso con heces blandas (atonia); nux vomica cubre el estrenimiento con deseos ineficaces y sensacion de incompleto (espasmo); cubre los dos mecanismos opuestos del estrenimiento cronico.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
         "nervioso"
       ]
     }
