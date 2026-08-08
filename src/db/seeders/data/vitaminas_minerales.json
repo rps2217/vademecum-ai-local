@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 105,
+    "total": 119,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -5662,6 +5662,721 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review + clinical trials (diarrea)"
+      }
+    },
+    {
+      "id": "l_rhamnosus_gg",
+      "nombre": "Lactobacillus rhamnosus GG (LGG)",
+      "nombresAlternativos": [
+        "LGG",
+        "Lactobacillus rhamnosus ATCC 53103",
+        "L. rhamnosus GG",
+        "Lactobacillus GG"
+      ],
+      "nombreCientifico": "Lactobacillus rhamnosus GG (cepa ATCC 53103)",
+      "familia": "Lactobacillaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "diarrea",
+        "diarrea por antibióticos",
+        "diarrea del viajero",
+        "alergias",
+        "eccema"
+      ],
+      "descripcion": "Cepa probiótica más estudiada del mundo. Prevención y tratamiento de diarreas y eccema infantil.",
+      "mecanismoAccion": "Adherencia a mucosa intestinal, mejora la barrera epitelial, modula la inmunidad (IgA) y reduce la inflamación.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas (10-20 billion UFC)",
+        "Sobres",
+        "Yogur"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "1-4 semanas (agudo) / continuo (profilaxis)",
+      "advertencias": [
+        "Inmunodeprimidos: precaución",
+        "Catéter central: riesgo fungemia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "LGG",
+        "diarrea",
+        "eccema",
+        "inmunidad",
+        "cepa específica"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review + >1000 estudios clínicos"
+      }
+    },
+    {
+      "id": "l_acidophilus",
+      "nombre": "Lactobacillus acidophilus",
+      "nombresAlternativos": [
+        "L. acidophilus",
+        "Lactobacillus acidophilus NCFM",
+        "Acidófilo",
+        "L. acidophilus DDS-1"
+      ],
+      "nombreCientifico": "Lactobacillus acidophilus",
+      "familia": "Lactobacillaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "vaginal",
+        "diarrea",
+        "colesterol",
+        "inmunidad"
+      ],
+      "descripcion": "Cepa probiótica clásica para digestión, salud vaginal y metabolismo del colesterol.",
+      "mecanismoAccion": "Produce lactasa (digestión de lactosa), bacteriocinas (antimicrobiano), y reduce el colesterol (BSH).",
+      "nivelEvidencia": "B",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Yogur",
+        "Supositorios vaginales"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "acidófilo",
+        "vaginal",
+        "lactosa",
+        "colesterol",
+        "clásico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (digestivo/vaginal/colesterol)"
+      }
+    },
+    {
+      "id": "l_plantarum",
+      "nombre": "Lactobacillus plantarum",
+      "nombresAlternativos": [
+        "L. plantarum",
+        "Lactobacillus plantarum 299v",
+        "Lp299v",
+        "L. plantarum PS128"
+      ],
+      "nombreCientifico": "Lactobacillus plantarum",
+      "familia": "Lactobacillaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "SII",
+        "inflamación",
+        "ansiedad"
+      ],
+      "descripcion": "Cepa versátil con evidencia en SII y eje intestino-cerebro. Mejora la barrera intestinal.",
+      "mecanismoAccion": "Mejora la barrera intestinal (tight junctions), reduce la inflamación, modula el eje intestino-cerebro.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas (10-20 billion UFC)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "SII",
+        "barrera intestinal",
+        "eje intestino-cerebro",
+        "ansiedad",
+        "inflamación"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (SII/eje intestino-cerebro)"
+      }
+    },
+    {
+      "id": "l_casei",
+      "nombre": "Lactobacillus casei",
+      "nombresAlternativos": [
+        "L. casei",
+        "Lactobacillus casei Shirota",
+        "L. casei 431",
+        "LcS"
+      ],
+      "nombreCientifico": "Lactobacillus casei",
+      "familia": "Lactobacillaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "intestinal",
+        "gripe",
+        "infecciones respiratorias"
+      ],
+      "descripcion": "Cepa inmunomoduladora con evidencia en reducción de infecciones respiratorias.",
+      "mecanismoAccion": "Estimula las células NK y la producción de IgA; reduce la duración de infecciones respiratorias.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Bebida fermentada (Yakult)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo (invierno)",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "inmunidad",
+        "NK",
+        "respiratorio",
+        "gripe",
+        "Shirota"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (inmunidad/respiratorio)"
+      }
+    },
+    {
+      "id": "l_reuteri",
+      "nombre": "Lactobacillus reuteri",
+      "nombresAlternativos": [
+        "L. reuteri",
+        "Lactobacillus reuteri ATCC 55730",
+        "L. reuteri DSM 17938",
+        "RC-14"
+      ],
+      "nombreCientifico": "Lactobacillus reuteri",
+      "familia": "Lactobacillaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cólico infantil",
+        "intestinal",
+        "vaginal",
+        "higiene bucal"
+      ],
+      "descripcion": "Cepa que produce reuterina (antimicrobiano). Eficaz en cólico infantil y salud vaginal/bucal.",
+      "mecanismoAccion": "Produce reuterina (antimicrobiano de amplio espectro); coloniza mucosa vaginal y oral; reduce el cólico.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Gotas (infantes)",
+        "Cápsulas",
+        "Lozenges bucales"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "1-4 semanas (agudo) / continuo",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "reuterina",
+        "cólico infantil",
+        "vaginal",
+        "bucal",
+        "antimicrobiano"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (cólico/vaginal/bucal)"
+      }
+    },
+    {
+      "id": "b_longum",
+      "nombre": "Bifidobacterium longum",
+      "nombresAlternativos": [
+        "B. longum",
+        "Bifidobacterium longum BB536",
+        "B. longum subsp. infantis",
+        "B. longum 35624"
+      ],
+      "nombreCientifico": "Bifidobacterium longum",
+      "familia": "Bifidobacteriaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "SII",
+        "ansiedad",
+        "estrés",
+        "inmunidad"
+      ],
+      "descripcion": "Bifidobacteria predominante en adultos. Evidencia en SII y eje intestino-cerebro (estrés).",
+      "mecanismoAccion": "Mejora la barrera intestinal, reduce la inflamación sistémica, modula el eje HHA (estrés/ansiedad).",
+      "nivelEvidencia": "B",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas (5-10 billion UFC)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "bifido",
+        "SII",
+        "eje intestino-cerebro",
+        "estrés",
+        "barrera"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (SII/eje HHA)"
+      }
+    },
+    {
+      "id": "b_breve",
+      "nombre": "Bifidobacterium breve",
+      "nombresAlternativos": [
+        "B. breve",
+        "Bifidobacterium breve M-16V",
+        "B. breve B-3"
+      ],
+      "nombreCientifico": "Bifidobacterium breve",
+      "familia": "Bifidobacteriaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "alergias",
+        "eccema",
+        "inmunidad infantil"
+      ],
+      "descripcion": "Bifidobacteria predominante en lactantes. Eficaz en alergias y eccema pediátrico.",
+      "mecanismoAccion": "Modula la respuesta Th1/Th2 (alergias), mejora la barrera intestinal, produce ácidos grasos de cadena corta.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Gotas (infantes)",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses (alergias)",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "bifido",
+        "infantil",
+        "alergias",
+        "eccema",
+        "Th1/Th2"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (alergias pediátricas)"
+      }
+    },
+    {
+      "id": "b_bifidum",
+      "nombre": "Bifidobacterium bifidum",
+      "nombresAlternativos": [
+        "B. bifidum",
+        "Bifidobacterium bifidum Bb-02",
+        "B. bifidum MIMBb75"
+      ],
+      "nombreCientifico": "Bifidobacterium bifidum",
+      "familia": "Bifidobacteriaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "inmunidad",
+        "infecciones",
+        "barrera intestinal"
+      ],
+      "descripcion": "Bifidobacteria clave para la barrera intestinal y la inmunidad de mucosa.",
+      "mecanismoAccion": "Fortalece las tight junctions (barrera), estimula IgA, produce butirato (energía colonocito).",
+      "nivelEvidencia": "C",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "bifido",
+        "barrera",
+        "IgA",
+        "butirato",
+        "mucosa"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (barrera/inmunidad)"
+      }
+    },
+    {
+      "id": "l_helveticus",
+      "nombre": "Lactobacillus helveticus",
+      "nombresAlternativos": [
+        "L. helveticus",
+        "Lactobacillus helveticus R0052",
+        "L. helveticus NS8"
+      ],
+      "nombreCientifico": "Lactobacillus helveticus",
+      "familia": "Lactobacillaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "sueño",
+        "osteoporosis",
+        "calcio"
+      ],
+      "descripcion": "Cepa psicrobiótica con evidencia en ansiedad, sueño y absorción de calcio.",
+      "mecanismoAccion": "Modula el eje HHA (reduce cortisol), produce péptidos bioactivos (GABA), mejora la absorción de calcio.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "psicrobiótico",
+        "ansiedad",
+        "GABA",
+        "calcio",
+        "eje HHA"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (ansiedad/calcio)"
+      }
+    },
+    {
+      "id": "s_thermophilus",
+      "nombre": "Streptococcus thermophilus",
+      "nombresAlternativos": [
+        "S. thermophilus",
+        "Streptococcus salivarius subsp. thermophilus",
+        "Estreptococo termófilo"
+      ],
+      "nombreCientifico": "Streptococcus thermophilus",
+      "familia": "Streptococcaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "intolerancia a la lactosa",
+        "diarrea",
+        "intestinal",
+        "digestivo"
+      ],
+      "descripcion": "Cepa del yogur que produce lactasa. Mejora la digestión de la lactosa.",
+      "mecanismoAccion": "Produce lactasa (β-galactosidasa) que hidroliza la lactosa en el intestino; reduce los síntomas de intolerancia.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Bacteria liofilizada",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Yogur"
+      ],
+      "tiempoEfecto": "Inmediato (con lácteos)",
+      "duracionTratamiento": "Con comidas lácteas",
+      "advertencias": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "lactosa",
+        "lactasa",
+        "yogur",
+        "digestivo",
+        "intolerancia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (intolerancia lactosa)"
+      }
+    },
+    {
+      "id": "silicio",
+      "nombre": "Silicio (Silicia Orgánica)",
+      "nombresAlternativos": [
+        "Silica",
+        "Silicio orgánico",
+        "Orthosilícico",
+        "Ácido silícico",
+        "Silicio monometílico"
+      ],
+      "nombreCientifico": "Silicio (Si) - ácido ortosilícico",
+      "familia": "Minerales traza",
+      "categoria": "minerales",
+      "sistemas": [
+        "dermatologico",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "cabello",
+        "uñas",
+        "piel",
+        "colágeno",
+        "huesos"
+      ],
+      "descripcion": "Mineral traza esencial para la síntesis de colágeno y la salud de piel, uñas y huesos.",
+      "mecanismoAccion": "Cofactor de la prolil hidroxilasa (colágeno); estimula la síntesis de colágeno tipo I y elastina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento (ácido ortosilícico / cola de caballo)",
+      "formasPresentacion": [
+        "Líquido (ácido silícico)",
+        "Cápsulas (ch-OSA)"
+      ],
+      "tiempoEfecto": "4-6 meses",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "colágeno",
+        "piel",
+        "uñas",
+        "cabello",
+        "huesos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (piel/uñas/huesos)"
+      }
+    },
+    {
+      "id": "l_ornitina",
+      "nombre": "L-Ornitina",
+      "nombresAlternativos": [
+        "Ornithine",
+        "L-Ornithine",
+        "L-Ornitina",
+        "Ornitina L-aspartato",
+        "LOLA"
+      ],
+      "nombreCientifico": "L-Ornitina (aminoácido no proteinogénico)",
+      "familia": "Aminoácidos no proteinogénicos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "hepatico",
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "detox amoníaco",
+        "hepático",
+        "fatiga",
+        "sueño",
+        "rendimiento"
+      ],
+      "descripcion": "Aminoácido del ciclo de la urea que detoxifica el amoníaco. Mejora el sueño y la fatiga hepática.",
+      "mecanismoAccion": "Cofactor del ciclo de la urea (detox amoníaco); reduce la fatiga hepática; mejora la calidad del sueño.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (500-2000mg)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "amoníaco",
+        "urea",
+        "hepático",
+        "sueño",
+        "fatiga"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (hepático/sueño)"
+      }
+    },
+    {
+      "id": "teacrina",
+      "nombre": "Teacrina (TeaCrine)",
+      "nombresAlternativos": [
+        "TeaCrine",
+        "Theacrine",
+        "1,3,7,9-tetrametilúrico",
+        "Teacrina",
+        "Tetrametilúrico"
+      ],
+      "nombreCientifico": "1,3,7,9-tetrametilúrico (teacrina)",
+      "familia": "Purinas (alcaloides)",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "energía",
+        "rendimiento",
+        "concentración",
+        "fatiga"
+      ],
+      "descripcion": "Análogo de la cafeína con menor tolerancia y sin taquicardia. Energía sostenida.",
+      "mecanismoAccion": "Bloquea los receptores de adenosina (como la cafeína) pero con menor afinidad; no produce tolerancia rápida.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto de Camellia assamica / sintético",
+      "formasPresentacion": [
+        "Cápsulas (50-200mg)"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "Cíclico",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible insomnio"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estimulantes (cafeína)"
+      ],
+      "tags": [
+        "energía",
+        "adenosina",
+        "cafeína",
+        "rendimiento",
+        "sin tolerancia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (rendimiento/cognitivo)"
+      }
+    },
+    {
+      "id": "inulina",
+      "nombre": "Inulina (FOS)",
+      "nombresAlternativos": [
+        "Fructooligosacáridos",
+        "FOS",
+        "Inulina de achicoria",
+        "Prebiótico",
+        "Oligofructosa"
+      ],
+      "nombreCientifico": "Inulina (fructooligosacáridos, FOS)",
+      "familia": "Carbohidratos prebióticos",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "microbiota",
+        "tránsito",
+        "inmunidad",
+        "calcio"
+      ],
+      "descripcion": "Fibra prebiótica que alimenta a las bifidobacterias. Mejora la microbiota y la absorción de calcio.",
+      "mecanismoAccion": "Fibra fermentable que alimenta a las bifidobacterias; produce butirato (energía colonocito); mejora la absorción de calcio.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Extracto de achicoria/agave",
+      "formasPresentacion": [
+        "Polvo (3-10g)",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Posibles gases iniciales (aumentar dosis gradual)",
+        "Separar de medicamentos 2h"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "prebiótico",
+        "FOS",
+        "bifidobacterias",
+        "butirato",
+        "fibra"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (microbiota/calcio)"
       }
     }
   ]

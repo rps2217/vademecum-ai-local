@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 532,
+    "total": 588,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -13313,6 +13313,1393 @@
       ],
       "sistemas": [
         "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_lgg_l_acidophilus_probioticos",
+      "ingredienteA": "l_rhamnosus_gg",
+      "ingredienteB": "l_acidophilus",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo probiótico clásico: LGG + L. acidophilus para cobertura digestiva e inmune.",
+      "beneficios": [
+        "Microbiota dual",
+        "Diarrea",
+        "Inmunidad",
+        "Vaginal"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "El LGG previene diarreas y modula inmunidad; L. acidophilus cubre digestión y salud vaginal. Sinergia multi-cepa.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_lgg_b_longum_probioticos",
+      "ingredienteA": "l_rhamnosus_gg",
+      "ingredienteB": "b_longum",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo Lactobacillus + Bifidobacterium: LGG + B. longum para intestino y eje intestino-cerebro.",
+      "beneficios": [
+        "Microbiota equilibrada",
+        "SII",
+        "Ansiedad",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "El LGG cubre diarreas/eccema; B. longum cubre SII y eje intestino-cerebro. Sinergia Lacto+Bifido.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_acidophilus_b_bifidum_probioticos",
+      "ingredienteA": "l_acidophilus",
+      "ingredienteB": "b_bifidum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo Lacto+Bifido: L. acidophilus + B. bifidum para barrera intestinal.",
+      "beneficios": [
+        "Barrera intestinal",
+        "Vaginal",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. acidophilus produce bacteriocinas; B. bifidum refuerza las tight junctions. Sinergia de barrera.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_plantarum_b_longum_sii",
+      "ingredienteA": "l_plantarum",
+      "ingredienteB": "b_longum",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo para SII: L. plantarum + B. longum. Las dos cepas más estudiadas en SII.",
+      "beneficios": [
+        "Reduce síntomas SII",
+        "Hinchazón",
+        "Dolor abdominal",
+        "Ansiedad"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. plantarum mejora barrera; B. longum modula el eje intestino-cerebro. Sinergia SII dual.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_casei_lgg_inmune",
+      "ingredienteA": "l_casei",
+      "ingredienteB": "l_rhamnosus_gg",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunomodulador: L. casei + LGG para inmunidad invernal.",
+      "beneficios": [
+        "Inmunidad",
+        "Reduce infecciones respiratorias",
+        "Diarrea"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. casei estimula NK; LGG modula IgA. Sinergia inmunidad dual.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_helveticus_b_longum_ansiedad",
+      "ingredienteA": "l_helveticus",
+      "ingredienteB": "b_longum",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo psicrobiótico: L. helveticus + B. longum. La combinación más estudiada para ansiedad.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Mejora sueño",
+        "Reduce estrés",
+        "Eje intestino-cerebro"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. helveticus produce GABA y reduce cortisol; B. longum modula el eje HHA. Sinergia psicrobiótica.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_reuteri_l_acidophilus_vaginal",
+      "ingredienteA": "l_reuteri",
+      "ingredienteB": "l_acidophilus",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo vaginal: L. reuteri + L. acidophilus. Cepas más estudiadas para salud vaginal.",
+      "beneficios": [
+        "Salud vaginal",
+        "Candidiasis",
+        "BV",
+        "Microbiota urogenital"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. reuteri produce reuterina; L. acidophilus produce H2O2. Sinergia antimicrobiana vaginal.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_s_thermophilus_l_acidophilus_lactosa",
+      "ingredienteA": "s_thermophilus",
+      "ingredienteB": "l_acidophilus",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo digestivo: S. thermophilus + L. acidophilus para intolerancia a la lactosa.",
+      "beneficios": [
+        "Intolerancia a la lactosa",
+        "Digestión lácteos",
+        "Diarrea"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "Ambas cepas producen lactasa (β-galactosidasa). Sinergia para digestión de lactosa.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_b_breve_b_longum_infantil",
+      "ingredienteA": "b_breve",
+      "ingredienteB": "b_longum",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo bifido pediátrico: B. breve + B. longum para microbiota infantil.",
+      "beneficios": [
+        "Microbiota infantil",
+        "Alergias",
+        "Eccema",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "B. breve modula Th1/Th2 (alergias); B. longum madura la microbiota. Sinergia pediátrica.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_s_boulardii_lgg_diarrea",
+      "ingredienteA": "s_boulardii",
+      "ingredienteB": "l_rhamnosus_gg",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo antidiarreico: S. boulardii (levadura) + LGG (bacteria). Doble vía.",
+      "beneficios": [
+        "Diarrea",
+        "Diarrea por antibióticos",
+        "Diarrea del viajero"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "La levadura sobrevive a antibióticos y inactiva toxinas; LGG previene la diarrea. Sinergia dual.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_lgg_zinc_inmune",
+      "ingredienteA": "l_rhamnosus_gg",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunidad: LGG + zinc para inmunidad intestinal y sistémica.",
+      "beneficios": [
+        "Inmunidad",
+        "Diarrea",
+        "Infecciones"
+      ],
+      "precauciones": [
+        "Zinc: máx 40mg/día"
+      ],
+      "mecanismo": "LGG modula IgA intestinal; el zinc es esencial para la inmunidad celular. Sinergia inmunológica.",
+      "categorias": [
+        "probioticos",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_plantarum_psyllium_intestinal",
+      "ingredienteA": "l_plantarum",
+      "ingredienteB": "psyllium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo simbiótico: L. plantarum (probiótico) + psyllium (prebiótico).",
+      "beneficios": [
+        "Microbiota",
+        "Tránsito",
+        "SII",
+        "Barrera intestinal"
+      ],
+      "precauciones": [
+        "Separar de medicamentos 2h"
+      ],
+      "mecanismo": "El psyllium alimenta a L. plantarum (simbiótico); mejora el tránsito y la barrera intestinal.",
+      "categorias": [
+        "probioticos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_l_helveticus_magnesio_sueno",
+      "ingredienteA": "l_helveticus",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño: L. helveticus (GABA) + magnesio (relajante).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calma",
+        "Ansiedad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "L. helveticus produce GABA; el magnesio bloquea el NMDA. Sinergia psicrobiótica-mineral.",
+      "categorias": [
+        "probioticos",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_b_breve_omega3_eccema",
+      "ingredienteA": "b_breve",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antialérgico: B. breve + omega-3 para eccema pediátrico.",
+      "beneficios": [
+        "Eccema",
+        "Alergias",
+        "Inflamación"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "B. breve modula Th1/Th2; el omega-3 reduce la inflamación. Sinergia antialérgica.",
+      "categorias": [
+        "probioticos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_lgg_vitamina_c_inmune",
+      "ingredienteA": "l_rhamnosus_gg",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunidad: LGG + vitamina C para infecciones.",
+      "beneficios": [
+        "Inmunidad",
+        "Gripe",
+        "Diarrea"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "LGG modula IgA; la vitamina C estimula la inmunidad celular. Sinergia inmunológica.",
+      "categorias": [
+        "probioticos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_reuteri_b_longum_ansiedad",
+      "ingredienteA": "l_reuteri",
+      "ingredienteB": "l_helveticus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo psicrobiótico: L. reuteri + L. helveticus para ansiedad y sueño.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Mejora sueño",
+        "Eje intestino-cerebro"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "Ambas cepas modulan el eje intestino-cerebro y producen GABA. Sinergia psicrobiótica.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_silicio_colageno_piel",
+      "ingredienteA": "silicio",
+      "ingredienteB": "colageno",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del colágeno: el silicio (cofactor) y el colágeno (sustrato).",
+      "beneficios": [
+        "Síntesis de colágeno",
+        "Piel",
+        "Uñas",
+        "Cabello",
+        "Huesos"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El silicio es cofactor de la prolil hidroxilasa; el colágeno aporta los péptidos sustrato. Sinergia estructural.",
+      "categorias": [
+        "minerales",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_silicio_vitamina_c_colageno",
+      "ingredienteA": "silicio",
+      "ingredienteB": "vitamina_c",
+      "tipo": "cofactor",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del colágeno: el silicio y la vitamina C son cofactores de la síntesis.",
+      "beneficios": [
+        "Síntesis de colágeno",
+        "Piel",
+        "Uñas",
+        "Cabello"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El silicio y la vitamina C son cofactores de la prolil hidroxilasa. Sinergia cofactor dual.",
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_silicio_akg_huesos",
+      "ingredienteA": "silicio",
+      "ingredienteB": "akg",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo óseo: el silicio (colágeno) y el AKG (colágeno+longevidad).",
+      "beneficios": [
+        "Salud ósea",
+        "Colágeno",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El silicio estimula el colágeno óseo; el AKG dona carbono y inhibe el inflamasoma. Sinergia ósea.",
+      "categorias": [
+        "minerales",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_l_ornitina_nac_hepatico",
+      "ingredienteA": "l_ornitina",
+      "ingredienteB": "nac",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hepático: la L-ornitina (amoníaco) y el NAC (glutatión).",
+      "beneficios": [
+        "Detox hepático",
+        "Reduce amoníaco",
+        "Glutatión",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "NAC: olor característico"
+      ],
+      "mecanismo": "La L-ornitina detoxifica el amoníaco (ciclo urea); el NAC aumenta el glutatión. Sinergia hepatoprotectora.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_l_ornitina_l_citrulina_amoníaco",
+      "ingredienteA": "l_ornitina",
+      "ingredienteB": "l_citrulina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del ciclo de la urea: L-ornitina + L-citrulina para detox de amoníaco.",
+      "beneficios": [
+        "Reduce amoníaco",
+        "Detox hepático",
+        "Rendimiento",
+        "Fatiga"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Ambos son intermediarios del ciclo de la urea; reducen el amoníaco y mejoran el rendimiento. Sinergia metabólica.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_teacrina_cafeína_energia",
+      "ingredienteA": "teacrina",
+      "ingredienteB": "yerba_mate",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo energético: la teacrina + yerba mate (cafeína) para energía sostenida.",
+      "beneficios": [
+        "Energía sostenida",
+        "Concentración",
+        "Rendimiento"
+      ],
+      "precauciones": [
+        "Insomnio",
+        "Taquicardia"
+      ],
+      "mecanismo": "La teacrina bloquea adenosina sin tolerancia rápida; la cafeína del mate bloquea adenosina. Sinergia estimulante.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melatonina_magnesio_sueno",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo del sueño: la melatonina (ritmo) + magnesio (relajante).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calidad del sueño",
+        "Calma nocturna"
+      ],
+      "precauciones": [
+        "No conducir tras tomar (melatonina)"
+      ],
+      "mecanismo": "La melatonina regula el ritmo circadiano; el magnesio relaja el SNC (NMDA). Sinergia del sueño.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melatonina_valeriana_sueno",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "valeriana",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo del sueño: la melatonina (ritmo) + valeriana (GABA).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Conciliación del sueño",
+        "Calma"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "La melatonina regula el ritmo; la valeriana aumenta GABA. Sinergia sedante dual.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melatonina_l_helveticus_sueno",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "l_helveticus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño psicrobiótico: melatonina + L. helveticus.",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calma",
+        "Eje intestino-cerebro"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "La melatonina regula el ritmo; L. helveticus produce GABA y reduce el cortisol. Sinergia del sueño.",
+      "categorias": [
+        "vitaminas",
+        "probioticos"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melatonina_ashwagandha_sueno",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño: melatonina + ashwagandha (cortisol).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Reduce cortisol nocturno",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Tiroideo (ashwagandha)"
+      ],
+      "mecanismo": "La melatonina regula el ritmo; la ashwagandha reduce el cortisol nocturno. Sinergia del sueño-estrés.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melatonina_nmn_antioxidante",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "nmn",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antioxidante mitocondrial: melatonina + NMN.",
+      "beneficios": [
+        "Antioxidante mitocondrial",
+        "Longevidad",
+        "Sueño"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La melatonina es antioxidante mitocondrial; el NMN aumenta el NAD+. Sinergia mitocondrial.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_lgg_probioticos_multi",
+      "ingredienteA": "l_rhamnosus_gg",
+      "ingredienteB": "probioticos",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Multi-cepa: LGG + mezcla probiótica para cobertura completa.",
+      "beneficios": [
+        "Microbiota completa",
+        "Diarrea",
+        "Inmunidad",
+        "Intestinal"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "El LGG se suma a la mezcla probiótica para maximizar la diversidad y la cobertura.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_acidophilus_beta_glucanos_inmune",
+      "ingredienteA": "l_acidophilus",
+      "ingredienteB": "beta_glucanos",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunidad: L. acidophilus + beta-glucanos para inmunidad dual.",
+      "beneficios": [
+        "Inmunidad",
+        "Infecciones",
+        "Colesterol"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "L. acidophilus modula IgA; los beta-glucanos activan los macrófagos. Sinergia inmunológica.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_b_longum_lactoferrina_inmune",
+      "ingredienteA": "b_longum",
+      "ingredienteB": "lactoferrina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunidad intestinal: B. longum + lactoferrina.",
+      "beneficios": [
+        "Inmunidad intestinal",
+        "Barrera",
+        "Antimicrobiano"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "B. longum mejora la barrera; la lactoferrina es antimicrobiana e inmunomoduladora. Sinergia intestinal.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_plantarum_curcuma_inflamacion",
+      "ingredienteA": "l_plantarum",
+      "ingredienteB": "curcuma",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antiinflamatorio: L. plantarum + cúrcuma para inflamación intestinal.",
+      "beneficios": [
+        "Reduce inflamación",
+        "SII",
+        "Barrera intestinal"
+      ],
+      "precauciones": [
+        "Cúrcuma: anticoagulantes"
+      ],
+      "mecanismo": "L. plantarum mejora la barrera; la curcumina inhibe NF-κB. Sinergia antiinflamatoria intestinal.",
+      "categorias": [
+        "probioticos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_helveticus_l_teanina_ansiedad",
+      "ingredienteA": "l_helveticus",
+      "ingredienteB": "l_teanina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo ansiedad: L. helveticus (GABA) + L-teanina (GABA).",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Calma",
+        "Foco"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "L. helveticus produce GABA; la L-teanina aumenta GABA cerebral. Sinergia ansiolítica.",
+      "categorias": [
+        "probioticos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_b_longum_ashwagandha_estres",
+      "ingredienteA": "b_longum",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo estrés: B. longum (eje HHA) + ashwagandha (cortisol).",
+      "beneficios": [
+        "Reduce estrés",
+        "Ansiedad",
+        "Eje intestino-cerebro"
+      ],
+      "precauciones": [
+        "Tiroideo (ashwagandha)"
+      ],
+      "mecanismo": "B. longum modula el eje HHA; la ashwagandha reduce el cortisol. Sinergia antiestrés dual.",
+      "categorias": [
+        "probioticos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_s_thermophilus_lgg_yogur",
+      "ingredienteA": "s_thermophilus",
+      "ingredienteB": "l_rhamnosus_gg",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del yogur funcional: S. thermophilus + LGG.",
+      "beneficios": [
+        "Digestión lactosa",
+        "Diarrea",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "S. thermophilus produce lactasa; LGG previene diarreas. Sinergia lácteo-funcional.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_l_ornitina_glutamina_intestinal",
+      "ingredienteA": "l_ornitina",
+      "ingredienteB": "l_glutamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo intestinal-hepático: L-ornitina + L-glutamina.",
+      "beneficios": [
+        "Detox amoníaco",
+        "Barrera intestinal",
+        "Hepático"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La L-ornitina detoxifica el amoníaco; la L-glutamina repara la mucosa intestinal. Sinergia intestinal-hepática.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_silicio_boro_huesos",
+      "ingredienteA": "silicio",
+      "ingredienteB": "boro",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo óseo: el silicio (colágeno) y el boro (retención de minerales).",
+      "beneficios": [
+        "Salud ósea",
+        "Colágeno",
+        "Osteoporosis"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El silicio estimula el colágeno óseo; el boro retiene el calcio y magnesio. Sinergia ósea.",
+      "categorias": [
+        "minerales",
+        "minerales"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_silicio_hialuronico_piel",
+      "ingredienteA": "silicio",
+      "ingredienteB": "acido_hialuronico",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cutáneo: el silicio (colágeno) y el ácido hialurónico (hidratación).",
+      "beneficios": [
+        "Piel",
+        "Hidratación",
+        "Elasticidad",
+        "Antiedad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El silicio estimula el colágeno; el ácido hialurónico hidrata la matriz. Sinergia cutánea.",
+      "categorias": [
+        "minerales",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_melatonina_zinc_inmune",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunidad-sueño: melatonina + zinc.",
+      "beneficios": [
+        "Inmunidad",
+        "Sueño",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Zinc: máx 40mg/día"
+      ],
+      "mecanismo": "La melatonina es antioxidante e inmunomoduladora; el zinc es esencial para la inmunidad. Sinergia nocturna.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmune",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_reuteri_s_thermophilus_digestivo",
+      "ingredienteA": "l_reuteri",
+      "ingredienteB": "s_thermophilus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo digestivo: L. reuteri + S. thermophilus para digestión y barrera.",
+      "beneficios": [
+        "Digestión",
+        "Lactosa",
+        "Barrera intestinal",
+        "Bucal"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. reuteri produce reuterina; S. thermophilus produce lactasa. Sinergia digestiva.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_l_acidophilus_l_casei_digestivo",
+      "ingredienteA": "l_acidophilus",
+      "ingredienteB": "l_casei",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo digestivo-inmune: L. acidophilus + L. casei.",
+      "beneficios": [
+        "Digestión",
+        "Inmunidad",
+        "Colesterol"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. acidophilus produce lactasa; L. casei estimula NK. Sinergia Lactobacillus dual.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_b_bifidum_l_plantarum_barrera",
+      "ingredienteA": "b_bifidum",
+      "ingredienteB": "l_plantarum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo barrera intestinal: B. bifidum + L. plantarum.",
+      "beneficios": [
+        "Barrera intestinal",
+        "SII",
+        "Leaky gut",
+        "Inflamación"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "B. bifidum refuerza tight junctions; L. plantarum mejora barrera. Sinergia barrera dual.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_b_breve_lgg_eccema",
+      "ingredienteA": "b_breve",
+      "ingredienteB": "l_rhamnosus_gg",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo antialérgico pediátrico: B. breve + LGG para eccema infantil.",
+      "beneficios": [
+        "Eccema",
+        "Alergias",
+        "Inmunidad infantil"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "B. breve modula Th1/Th2; LGG previene el eccema. Sinergia antialérgica pediátrica.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_l_helveticus_melatonina_cognitivo",
+      "ingredienteA": "l_helveticus",
+      "ingredienteB": "citicolina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cognitivo: L. helveticus (GABA/eje HHA) + citicolina (acetilcolina).",
+      "beneficios": [
+        "Cognitivo",
+        "Memoria",
+        "Reduce estrés"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "L. helveticus reduce el cortisol; la citicolina aumenta la acetilcolina. Sinergia cognitiva.",
+      "categorias": [
+        "probioticos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_ornitina_same_hepatico",
+      "ingredienteA": "l_ornitina",
+      "ingredienteB": "same",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hepático: L-ornitina (amoníaco) + SAMe (metilación/glutatión).",
+      "beneficios": [
+        "Detox hepático",
+        "Reduce amoníaco",
+        "Glutatión",
+        "Metilación"
+      ],
+      "precauciones": [
+        "SAMe: tomar con B12/folato"
+      ],
+      "mecanismo": "La L-ornitina detoxifica el amoníaco; el SAMe aporta metilos y glutatión. Sinergia hepática triple.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_melatonina_pasiflora_sueno",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "pasiflora",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño: melatonina + pasiflora (GABA suave).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calma",
+        "Conciliación del sueño"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "La melatonina regula el ritmo; la pasiflora modula GABA suavemente. Sinergia del sueño.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_plantarum_l_glutamina_intestinal",
+      "ingredienteA": "l_plantarum",
+      "ingredienteB": "l_glutamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo barrera intestinal: L. plantarum + L-glutamina.",
+      "beneficios": [
+        "Barrera intestinal",
+        "Leaky gut",
+        "SII",
+        "Reparación mucosa"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "L. plantarum mejora barrera; la L-glutamina repara los enterocitos. Sinergia reparadora.",
+      "categorias": [
+        "probioticos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_s_thermophilus_b_longum_digestivo",
+      "ingredienteA": "s_thermophilus",
+      "ingredienteB": "b_longum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Trío digestivo: S. thermophilus + B. longum para digestión y microbiota.",
+      "beneficios": [
+        "Digestión lactosa",
+        "Microbiota",
+        "SII"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "S. thermophilus produce lactasa; B. longum mejora la microbiota. Sinergia digestiva.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_silicio_cola_caballo_cabello",
+      "ingredienteA": "silicio",
+      "ingredienteB": "cola_caballo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del cabello: el silicio + la cola de caballo (fuente natural).",
+      "beneficios": [
+        "Cabello",
+        "Uñas",
+        "Piel",
+        "Colágeno"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El silicio es cofactor del colágeno; la cola de caballo aporta silicio natural. Sinergia estructural.",
+      "categorias": [
+        "minerales",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_l_helveticus_valeriana_sueno",
+      "ingredienteA": "l_helveticus",
+      "ingredienteB": "valeriana",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño: L. helveticus (GABA) + valeriana (GABA-A).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calma",
+        "Ansiedad"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "L. helveticus produce GABA; la valeriana modula GABA-A. Sinergia sedante dual.",
+      "categorias": [
+        "probioticos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melatonina_magnesio_glicinato_sueno",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "magnesio_glicinato",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo del sueño premium: melatonina + magnesio glicinato (alta absorción).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calidad del sueño",
+        "Relajación muscular"
+      ],
+      "precauciones": [
+        "No conducir tras tomar"
+      ],
+      "mecanismo": "La melatonina regula el ritmo; el magnesio glicinato relaja (GABA/NMDA). Sinergia del sueño premium.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_acidophilus_l_plantarum_vaginal",
+      "ingredienteA": "l_acidophilus",
+      "ingredienteB": "l_plantarum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo vaginal-intestinal: L. acidophilus + L. plantarum.",
+      "beneficios": [
+        "Salud vaginal",
+        "Barrera intestinal",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "L. acidophilus cubre vaginal; L. plantarum cubre barrera intestinal. Sinergia urogenital-intestinal.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_b_longum_probioticos_multi",
+      "ingredienteA": "b_longum",
+      "ingredienteB": "probioticos",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Multi-cepa: B. longum + mezcla probiótica para cobertura completa.",
+      "beneficios": [
+        "Microbiota completa",
+        "SII",
+        "Ansiedad",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "B. longum se suma a la mezcla para maximizar diversidad y cobertura intestinal+cerebral.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_ornitina_magnesio_fatiga",
+      "ingredienteA": "l_ornitina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo anti-fatiga: L-ornitina (amoníaco) + magnesio (energía).",
+      "beneficios": [
+        "Reduce fatiga",
+        "Energía",
+        "Relajación muscular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La L-ornitina reduce el amoníaco (fatiga); el magnesio es cofactor del ATP. Sinergia anti-fatiga.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "metabolico",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_b_longum_inulina_intestinal",
+      "ingredienteA": "b_longum",
+      "ingredienteB": "inulina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo simbiótico: B. longum (probiótico) + inulina (prebiótico).",
+      "beneficios": [
+        "Microbiota",
+        "Butirato",
+        "Barrera intestinal",
+        "Tránsito"
+      ],
+      "precauciones": [
+        "Posibles gases iniciales"
+      ],
+      "mecanismo": "La inulina (FOS) alimenta a B. longum; produce butirato (energía del colonocito). Sinergia simbiótica.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_inulina_psyllium_transito",
+      "ingredienteA": "inulina",
+      "ingredienteB": "psyllium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de fibra: inulina (prebiótica fermentable) + psyllium (no fermentable).",
+      "beneficios": [
+        "Tránsito",
+        "Microbiota",
+        "Saciación",
+        "Colesterol"
+      ],
+      "precauciones": [
+        "Separar de medicamentos 2h",
+        "Aumentar agua"
+      ],
+      "mecanismo": "La inulina alimenta la microbiota; el psyllium mejora el tránsito. Sinergia de fibra dual.",
+      "categorias": [
+        "probioticos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_inulina_l_acidophilus_simbiotico",
+      "ingredienteA": "inulina",
+      "ingredienteB": "l_acidophilus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo simbiótico: inulina (prebiótico) + L. acidophilus (probiótico).",
+      "beneficios": [
+        "Microbiota",
+        "Digestión",
+        "Barrera intestinal"
+      ],
+      "precauciones": [
+        "Posibles gases iniciales"
+      ],
+      "mecanismo": "La inulina alimenta a L. acidophilus; mejora la colonización y la barrera intestinal.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
       ]
     }
   ]
