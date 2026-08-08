@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 71,
+    "total": 82,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent)"
   },
   "sinergias": [
@@ -1828,6 +1828,292 @@
       "sistemas": [
         "respiratorio",
         "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_tilo_lupulo",
+      "ingredienteA": "tilo",
+      "ingredienteB": "lúpulo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion sedativa tradicional para el sueno y la ansiedad leve: el tilo aporta sedacion suave y el lupulo potencia el efecto GABAergico.",
+      "beneficios": [
+        "Sinergia sedante para el sueno",
+        "Alivio del estres mental leve",
+        "Combina mucilagos suavizantes + sedante"
+      ],
+      "precauciones": [
+        "Posible somnolencia",
+        "Precaucion con depresores del SNC y alcohol"
+      ],
+      "mecanismo": "Los flavonoides del tilo modulan el SNC de forma sedante leve y los compuestos del lupulo (humulona) actuan sobre GABA-A; efecto sinergico sobre el sueno y la ansiedad leve.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_tilo_valeriana",
+      "ingredienteA": "tilo",
+      "ingredienteB": "valeriana",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion sedativa: el tilo suaviza y la valeriana aporta el componente GABAergico mas potente para el insomnio y la ansiedad leve.",
+      "beneficios": [
+        "Sedante suave + potente (tilo + valeriana)",
+        "Reduce latencia de inicio del sueno",
+        "Mejora calidad del sueno y la ansiedad leve"
+      ],
+      "precauciones": [
+        "Posible somnolencia matutina",
+        "No combinar con sedantes o alcohol sin supervision"
+      ],
+      "mecanismo": "El tilo aporta sedacion suave (flavonoides) y la valeriana modula GABA-A (valerenos); la combinacion ofrece un perfil sedante escalonado para el insomnio leve.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_anis_hinojo",
+      "ingredienteA": "anis_verde",
+      "ingredienteB": "hinojo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion carminativa clasica: ambos ricos en trans-anetol, ejercen efecto espasmolitico y carminativo sinergico para la flatulencia y la dispepsia espastica.",
+      "beneficios": [
+        "Doble accion carminativa (trans-anetol)",
+        "Alivio de flatulencia y dispepsia espastica",
+        "Efecto expectorante combinado para la tos"
+      ],
+      "precauciones": [
+        "Precaucion en embarazo y lactancia (no exceder dosis)",
+        "Posible reaccion cruzada en alergia a Apiaceae",
+        "No usar aceites esenciales por via oral en lactantes",
+        "El estragol es genotoxico en animales; no exceder dosis"
+      ],
+      "mecanismo": "Ambos frutos comparten trans-anetol como componente mayoritario del aceite esencial, ejerciendo efecto espasmolitico (relajacion del musculo liso) y carminativo; la sinergia es aditiva sobre la flatulencia y la dispepsia espastica.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_anis_malva",
+      "ingredienteA": "anis_verde",
+      "ingredienteB": "malva",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion para la tos: el anis verde aporta efecto expectorante y espasmolitico, la malva suaviza la mucosa con sus mucilagos.",
+      "beneficios": [
+        "Expectorante + demulcente para la tos",
+        "Calma la irritacion faringea al toser",
+        "Apropiado para jarabes pediatricos (mayores de 3 anos)"
+      ],
+      "precauciones": [
+        "No usar en menores de 3 anos por via oral sin supervision",
+        "No exceder dosis de anis por estragol"
+      ],
+      "mecanismo": "El trans-anetol del anis verde ejerce efecto expectorante y espasmolitico bronquico; los mucilagos de la malva forman una pelicula demulcente que protege la mucosa respiratoria irritada.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_sen_psyllium",
+      "ingredienteA": "sen",
+      "ingredienteB": "psyllium",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinacion para el estrenimiento: el psyllium aporta fibra de bulk (formador de volumen) de uso prolongado y el sen actua como laxante estimulante de rescate a corto plazo.",
+      "beneficios": [
+        "Tratamiento base (psyllium) + rescate (sen)",
+        "Reduce la dosis necesaria de sen estimulante",
+        "Permite uso prolongado seguro del psyllium",
+        "Reduce el riesgo de dependencia laxante del sen"
+      ],
+      "precauciones": [
+        "El sen no debe usarse mas de 1-2 semanas sin supervision medica",
+        "Tomar con liquido abundante (riesgo de obstruccion)",
+        "No usar en obstruccion intestinal, dolor abdominal o embarazo sin supervision",
+        "El sen puede causar hipopotasemia con uso prolongado"
+      ],
+      "mecanismo": "El psyllium (laxante de bulk, uso prolongado) aumenta el volumen de las heces de forma fisiologica; el sen (laxante estimulante, corto plazo) se reserva como rescate para el estrenimiento ocasional refractario; la estrategia escalonada reduce la dosis y el riesgo de dependencia del estimulante.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_meliloto_rusco",
+      "ingredienteA": "meliloto",
+      "ingredienteB": "rusco",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion venotonica y linfotropa: las cumarinas del meliloto y las ruscogeninas del rusco aumentan el tono venoso y reducen el edema.",
+      "beneficios": [
+        "Doble accion venotonica + linfotropa",
+        "Reduccion del edema y la pesadez de piernas",
+        "Proteccion capilar combinada"
+      ],
+      "precauciones": [
+        "Consultar al medico si aparecen ulceras o dolor intenso",
+        "Precaucion con anticoagulantes cumarinicos (meliloto)",
+        "No usar en menores de 18 anos"
+      ],
+      "mecanismo": "Las cumarinas del meliloto aumentan el tono venoso y el drenaje linfatico; las ruscogeninas del rusco reducen la permeabilidad capilar; efecto sinergico sobre el edema y la insuficiencia venosa.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_rhus_dulcamara",
+      "ingredienteA": "rhus_toxicodendron",
+      "ingredienteB": "dulcamara",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion clasica para las afecciones por frio humedo: dulcamara para el desencadenante (frio humedo, catarro) y rhus tox para la rigidez reumatica que mejora con el movimiento.",
+      "beneficios": [
+        "Cubre el desencadenante (dulcamara) y el cuadro reumatico (rhus tox)",
+        "Util en reumatismo tras frio humedo",
+        "Ambos mejoran con el movimiento"
+      ],
+      "precauciones": [
+        "Ambas plantas son toxicas frescas; solo en dilucion homeopatica",
+        "Los cuadros reumaticos persistentes requieren valoracion medica"
+      ],
+      "mecanismo": "En homeopatia: dulcamara cubre el desencadenante por frio humedo y el componente catarrales/cutaneo; rhus toxicodendron cubre la rigidez y el dolor que mejora con el movimiento continuo; combinacion clasica en reumatismo post-frio humedo.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_gelsemium_belladonna",
+      "ingredienteA": "gelsemium",
+      "ingredienteB": "belladonna",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion en la fiebre: gelsemium para la fiebre con astenia, somnolencia y sin sed; belladonna para la fiebre con calor, rubor y pulsacion.",
+      "beneficios": [
+        "Cubre dos patrones febriles distintos (astenico vs congestivo)",
+        "Util en fiebres con cuadro mixto",
+        "Gelsemium: debilidad y sin sed; belladonna: rubor y sed"
+      ],
+      "precauciones": [
+        "Las fiebras altas y persistentes requieren valoracion medica",
+        "Ambas plantas son toxicas frescas; solo en dilucion homeopatica"
+      ],
+      "mecanismo": "En homeopatia: gelsemium cubre la fiebre con gran debilidad, somnolencia y ausencia de sed; belladonna cubre la fiebre congestiva con calor, rubor, pulsacion y sed; uso segun el patron dominante del cuadro febril.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_bryonia_rhus_tox",
+      "ingredienteA": "bryonia",
+      "ingredienteB": "rhus_toxicodendron",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Par complementario clasico en reumatismo: bryonia empeora con el movimiento y mejora con el reposo; rhus tox empeora con el reposo y mejora con el movimiento continuo.",
+      "beneficios": [
+        "Cubre las dos modalidades opuestas del dolor reumatico",
+        "Bryonia: reposo mejora; rhus tox: movimiento mejora",
+        "Util para diferenciar y cubrir cuadros reumaticos mixtos"
+      ],
+      "precauciones": [
+        "Ambas plantas son toxicas frescas; solo en dilucion homeopatica",
+        "Los cuadros reumaticos persistentes requieren valoracion medica"
+      ],
+      "mecanismo": "En homeopatia: bryonia cubre el dolor que empeora con el movimiento y mejora con el reposo (puntada); rhus toxicodendron cubre el dolor que empeora con el reposo y mejora con el movimiento continuo (rigidez tipo puerta oxidada); son los complementarios opuestos en reumatismo.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_chelidonium_lycopodium",
+      "ingredienteA": "chelidonium",
+      "ingredienteB": "lycopodium",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion hepato-biliar: chelidonium para el dolor hepatico derecho con irradiacion escapular y lycopodium para la dispepsia con distension y lateralidad derecha.",
+      "beneficios": [
+        "Cubre el dolor hepatico (chelidonium) y la dispepsia derecha (lycopodium)",
+        "Util en disfuncion hepato-biliar derecha",
+        "Lateralidad derecha marcada en ambos"
+      ],
+      "precauciones": [
+        "La planta fresca de chelidonium es hepatotoxica en dosis altas; solo en dilucion homeopatica",
+        "Las hepatopatias requieren valoracion medica"
+      ],
+      "mecanismo": "En homeopatia: chelidonium cubre el dolor hepatico derecho con irradiacion a la escapula y la saburra amarilla; lycopodium cubre la distension abdominal con flatulencia y la lateralidad derecha; combinacion en cuadros hepato-biliares derechos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_phosphorus_sanguinaria",
+      "ingredienteA": "phosphorus",
+      "ingredienteB": "sanguinaria",
+      "tipo": "complemento",
+      "nivelEvidencia": "D",
+      "descripcion": "Combinacion para cuadros respiratorios derechos: phosphorus para la tos con dolor en el pecho y sensibilidad, sanguinaria para la tos seca con lateralidad derecha y sofocos.",
+      "beneficios": [
+        "Cubre la tos con dolor (phosphorus) y la tos seca derecha (sanguinaria)",
+        "Util en cuadros respiratorios derechos",
+        "Sensibilidad y lateralidad derecha en ambos"
+      ],
+      "precauciones": [
+        "Ambas sustancias son toxicas frescas; solo en dilucion homeopatica",
+        "Los cuadros respiratorios persistentes requieren valoracion medica"
+      ],
+      "mecanismo": "En homeopatia: phosphorus cubre la tos con dolor toracico y gran sensibilidad (desea compania, frio); sanguinaria cubre la tos seca con lateralidad derecha y los sofocos; combinacion en cuadros respiratorios derechos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "nervioso"
       ]
     }
   ]

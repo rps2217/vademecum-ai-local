@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 39,
-    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Boger/Farrington)"
+    "total": 42,
+    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen)"
   },
   "ingredientes": [
     {
@@ -3053,6 +3053,254 @@
         "derecha",
         "escapula",
         "dispepsia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "dulcamara",
+      "nombre": "Dulcamara",
+      "nombresAlternativos": [
+        "Solanum dulcamara",
+        "Bittersweet",
+        "Woody nightshade",
+        "Dulcamera"
+      ],
+      "nombreCientifico": "Solanum dulcamara",
+      "familia": "Solanaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "musculoesqueletico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "afecciones tras frio humedo",
+        "catarro por cambio de tiempo",
+        "diarrea por frio humedo",
+        "urticaria por frio humedo"
+      ],
+      "descripcion": "Remedio de los efectos del frio humedo y los cambios bruscos de temperatura (dias calidos y noches frias). Los sintomas aparecen tras exponerse al frio humedo y se localizan en mucosas, piel y articulaciones.",
+      "mecanismoAccion": "En homeopatia: modula la respuesta catarrales y reumatica tras exposicion al frio humedo, con hipersecrecion mucosa y afeccion cutanea (urticaria, verrugas).",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        5,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Afecciones tras frio humedo o cambio brusco de tiempo",
+        "Dias calidos y noches frias desencadenan sintomas",
+        "Catarro profuso que se asienta en ojos, vejiga o intestino",
+        "Diarrea tras frio humedo o en otono",
+        "Urticaria y verrugas",
+        "Dolor reumatico que empeora con cada cambio frio y mejora con el movimiento",
+        "Desea cosas que luego rechaza al obtenerlas"
+      ],
+      "modalidades": {
+        "empeora": [
+          "frio humedo",
+          "cambio de tiempo",
+          "reposo",
+          "noche",
+          "sudor suprimido"
+        ],
+        "mejora": [
+          "movimiento",
+          "calor",
+          "aire libre"
+        ]
+      },
+      "afinidad": [
+        "mucosas",
+        "piel",
+        "glandulas",
+        "articulaciones",
+        "vejiga",
+        "intestino"
+      ],
+      "constelaciones": [
+        "Catarro por frio humedo",
+        "Diarrea otonal",
+        "Urticaria por frio"
+      ],
+      "advertencias": [
+        "La planta fresca contiene solaninas toxicas; solo en dilucion homeopatica",
+        "Las afecciones persistentes requieren valoracion medica"
+      ],
+      "tags": [
+        "frio humedo",
+        "catarro",
+        "cambio tiempo",
+        "urticaria",
+        "reumatico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "tuberculinum",
+      "nombre": "Tuberculinum (Nosodo)",
+      "nombresAlternativos": [
+        "Tuberculinum bovinum",
+        "Tuberculinum Koch",
+        "BK nosode"
+      ],
+      "nombreCientifico": "Mycobacterium tuberculosis (nosodo homeopatico)",
+      "familia": "Nosodo (preparacion homeopatica)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "terreno tuberculinico",
+        "tendencia afecciones respiratorias recurrentes",
+        "agitacion y necesidad de cambio",
+        "retraso de crecimiento (tradicional)"
+      ],
+      "descripcion": "Nosodo homeopatico asociado al terreno tuberculinico: personas con tendencia a afecciones respiratorias recurrentes, agitacion constante y necesidad de viajar y cambiar. Se usa como remedio constitucional y de terreno, nunca como sustituto del tratamiento antituberculoso.",
+      "mecanismoAccion": "En homeopatia: modula el terreno tuberculinico (tendencia a cuadros respiratorios y debilidad con agitacion) en pacientes con historia personal o familiar de tuberculosis.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        30,
+        200,
+        "1M"
+      ],
+      "sintomasClave": [
+        "Necesidad constante de cambio, viajar y movimiento",
+        "Agotamiento con agitacion, no tolera el reposo",
+        "Tendencia a afecciones respiratorias recurrentes",
+        "Historia personal o familiar de tuberculosis",
+        "Adelgazamiento rapido, palidez azulada",
+        "Miedo a los animales (gatos en particular)",
+        "Empeora con el frio humedo y el reposo; mejora con el aire libre",
+        "Ninos con retraso de crecimiento o infecciones recurrentes (tradicional)"
+      ],
+      "modalidades": {
+        "empeora": [
+          "frio humedo",
+          "reposo",
+          "noche",
+          "clima humedo"
+        ],
+        "mejora": [
+          "aire libre",
+          "movimiento",
+          "cambio de lugar"
+        ]
+      },
+      "afinidad": [
+        "sistema respiratorio",
+        "sistema nervioso",
+        "sistema linfatico",
+        "hueso"
+      ],
+      "constelaciones": [
+        "Terreno tuberculinico",
+        "Respiratorio recurrente",
+        "Constitucional agitado"
+      ],
+      "advertencias": [
+        "Es un nosodo homeopatico, no un tratamiento de la tuberculosis; la tuberculosis activa requiere tratamiento medico especifico",
+        "No usar de forma routinaria; requiere valoracion homeopatica especializada",
+        "Los cuadros respiratorios persistentes requieren estudio medico"
+      ],
+      "tags": [
+        "nosodo",
+        "terreno tuberculinico",
+        "respiratorio",
+        "agitacion",
+        "constitucional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica (Bacillinum/Tuberculinum Burnett); Clarke Dictionary of Practical Materia Medica; Kent Lectures on Materia Medica"
+      }
+    },
+    {
+      "id": "medorrhinum",
+      "nombre": "Medorrhinum (Nosodo)",
+      "nombresAlternativos": [
+        "Medorrhinum",
+        "Gonorrhoenum",
+        "Neisseria gonorrhoeae nosode"
+      ],
+      "nombreCientifico": "Neisseria gonorrhoeae (nosodo homeopatico)",
+      "familia": "Nosodo (preparacion homeopatica)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "terreno sycotico",
+        "sintomas cambiantes",
+        "reumatismo cronico",
+        "afecciones cronicas con fallo de remedios seleccionados"
+      ],
+      "descripcion": "Nosodo homeopatico asociado al terreno sycotico: cuadros cronicos con sintomas cambiantes que no responden a remedios bien seleccionados, tendencia a reumatismo y afecciones respiratorias. Se usa como remedio de terreno.",
+      "mecanismoAccion": "En homeopatia: modula el terreno sycotico (sintomas cambiantes, reumatismo cronico, secreciones) cuando los remedios bien seleccionados no mejoran el cuadro.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        30,
+        200,
+        "1M"
+      ],
+      "sintomasClave": [
+        "Sintomas que cambian constantemente; remedios seleccionados sin efecto",
+        "Lateralidad cruzada (complaints appear diagonally: derecha arriba, izquierda abajo)",
+        "Mejora marcadamente de noche y al orinar",
+        "Empeora durante el dia y mejora al anochecer",
+        "Deseo de comer, de fumar, de cosas dulces y acidas",
+        "Miedo a la oscuridad y a estar solo",
+        "Memoria debil, olvidos con nombres y ortografia",
+        "Afecciones cronicas de mucosas con secrecion",
+        "Sensacion de atadura o banda alrededor del cuerpo"
+      ],
+      "modalidades": {
+        "empeora": [
+          "dia",
+          "humedad",
+          "reposo",
+          "frio humedo"
+        ],
+        "mejora": [
+          "noche",
+          "orinar",
+          "mar",
+          "aire libre",
+          "tormenta"
+        ]
+      },
+      "afinidad": [
+        "mucosas",
+        "sistema nervioso",
+        "articulaciones",
+        "sistema genitourinario"
+      ],
+      "constelaciones": [
+        "Terreno sycotico",
+        "Reumatismo cronico",
+        "Sintomas cambiantes"
+      ],
+      "advertencias": [
+        "Es un nosodo homeopatico, no un tratamiento de la gonococia; las infecciones activas requieren tratamiento antibiotico medico",
+        "No usar de forma routinaria; requiere valoracion homeopatica especializada",
+        "Los cuadros cronicos requieren diagnostico medico"
+      ],
+      "tags": [
+        "nosodo",
+        "terreno sycotico",
+        "cambiante",
+        "reumatismo cronico",
+        "nocturno"
       ],
       "metadata": {
         "fechaCreacion": "2026-08-08",

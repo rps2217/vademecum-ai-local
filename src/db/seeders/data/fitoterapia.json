@@ -2,10 +2,10 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 60,
-    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs on Selected Medicinal Plants + ESCOP Monographs"
+    "total": 65,
+    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs"
   },
   "ingredientes": [
     {
@@ -3119,6 +3119,280 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "ESCOP Monographs (Smilacis rhizoma); uso tradicional documentado en farmacopeas europeas"
+      }
+    },
+    {
+      "id": "tilo",
+      "nombre": "Tilo",
+      "nombresAlternativos": [
+        "Tilia cordata",
+        "Tilia platyphyllos",
+        "Lime tree",
+        "Linden flower",
+        "Tiliae flos"
+      ],
+      "nombreCientifico": "Tilia cordata",
+      "familia": "Malvaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "resfriado comun",
+        "estres mental leve",
+        "tos",
+        "inquietud"
+      ],
+      "descripcion": "Flor usada tradicionalmente para el alivio de los sintomas del resfriado comun y de los sintomas leves del estres mental. A menudo combinada con otras plantas en infusiones sedativas.",
+      "mecanismoAccion": "Los flavonoides y el aceite esencial ejercen efecto sedante leve sobre el SNC y antiespasmodico; las mucilagos suavizan la garganta irritada en el resfriado.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Extracto liquido",
+        "Mezclas sedativas"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No recomendado en menores de 12 anos sin supervision",
+        "Precaucion con depresores del SNC y alcohol (efecto sedante aditivo)",
+        "Posible reaccion alergica en sensibilizados"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes y depresores del SNC"
+      ],
+      "tags": [
+        "sedante",
+        "resfriado",
+        "estres",
+        "flavonoides",
+        "garganta"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/337066/2011 (Tiliae flos, traditional use); ESCOP Monographs"
+      }
+    },
+    {
+      "id": "anis_verde",
+      "nombre": "Anis Verde",
+      "nombresAlternativos": [
+        "Pimpinella anisum",
+        "Anise",
+        "Aniseed",
+        "Anisi vulgaris fructus",
+        "Matalahuga"
+      ],
+      "nombreCientifico": "Pimpinella anisum",
+      "familia": "Apiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "dispepsia espastica leve",
+        "hinchazon",
+        "flatulencia",
+        "tos y resfriado (expectorante)"
+      ],
+      "descripcion": "Fruto usado tradicionalmente para el tratamiento sintomatico de molestias gastrointestinales espasticas leves (hinchazon, flatulencia) y como expectorante en la tos y el resfriado.",
+      "mecanismoAccion": "El trans-anetol del aceite esencial ejerce efecto carminativo, espasmolitico sobre el musculo liso digestivo y expectorante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Infusion",
+        "Fruto molido",
+        "Extracto liquido",
+        "Aceite esencial"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Precaucion en embarazo y lactancia (no exceder dosis alimentarias)",
+        "Posible reaccion cruzada en alergia a Apiaceae (apio, zanahoria, hinojo)",
+        "No usar el aceite esencial por via oral en lactantes (riesgo neurotoxico)",
+        "El estragol es genotoxico en animales; no exceder dosis"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "carminativo",
+        "espasmolitico",
+        "flatulencia",
+        "expectorante",
+        "anetol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Pimpinella anisum fructus (traditional use); ESCOP Monographs"
+      }
+    },
+    {
+      "id": "sen",
+      "nombre": "Sen",
+      "nombresAlternativos": [
+        "Senna alexandrina",
+        "Cassia senna",
+        "Senna leaf",
+        "Sennae folium",
+        "Hoja de sen"
+      ],
+      "nombreCientifico": "Senna alexandrina",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "estrenimiento ocasional",
+        "vaciamiento intestinal antes de exploracion"
+      ],
+      "descripcion": "Hoja y fruto con uso bien establecido como laxante estimulante para el alivio a corto plazo del estrenimiento ocasional. EMA lo reconoce con uso bien establecido.",
+      "mecanismoAccion": "Las sennosidas (antraquinonas) no se absorben en el intestino delgado; en el colon las bacterias las hidrolizan a derivados de antrona que estimulan la motilidad y la secrecion, produciendo evacuacion.",
+      "nivelEvidencia": "A",
+      "parteUsada": "hoja y fruto",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto seco",
+        "Capsulas",
+        "Granulado"
+      ],
+      "tiempoEfecto": "8-12 horas",
+      "duracionTratamiento": "corto plazo (maximo 1-2 semanas)",
+      "advertencias": [
+        "No usar mas de 1-2 semanas sin supervision medica",
+        "Contraindicado en obstruccion intestinal, ileo, apendicitis, colitis aguda y dolor abdominal no diagnosticado",
+        "No usar en embarazo y lactancia sin supervision",
+        "El uso prolongado causa dependencia laxante, perdida de electrolitos (potasio) y colon melanico",
+        "Precaucion con diureticos, digitoxina y antiarritmicos (hipopotasemia potencia toxicidad)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos",
+        "Glicosidos cardiacos (digitoxina)",
+        "Antiarrmicos"
+      ],
+      "tags": [
+        "laxante",
+        "estimulante",
+        "sennosidas",
+        "estrenimiento",
+        "antraquinonas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/625849/2015 (Sennae folium, well-established use, Rev.1)"
+      }
+    },
+    {
+      "id": "meliloto",
+      "nombre": "Meliloto",
+      "nombresAlternativos": [
+        "Melilotus officinalis",
+        "Sweet clover",
+        "Yellow melilot",
+        "Meliloti herba"
+      ],
+      "nombreCientifico": "Melilotus officinalis",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "insuficiencia venosa leve",
+        "piernas pesadas",
+        "sintomas de hemorroides",
+        "edema leve"
+      ],
+      "descripcion": "Partes aereas usadas tradicionalmente para aliviar los sintomas de la insuficiencia venosa cronica (pesadez, dolor) y las molestias de hemorroides. Contiene cumarinas con accion venotonica.",
+      "mecanismoAccion": "Las cumarinas (meliloto, dicumarol) y los flavonoides aumentan el tono venoso y reducen la permeabilidad capilar, disminuyendo el edema; accion linfotropa.",
+      "nivelEvidencia": "C",
+      "parteUsada": "partes aereas",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Gel topico",
+        "Infusion"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Consultar al medico si aparecen ulceras o dolor intenso en la pierna",
+        "Precaucion con anticoagulantes cumarinicos por riesgo teorico de interaccion",
+        "Precaucion en hepatopatias",
+        "No recomendado en menores de 18 anos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes cumarinicos"
+      ],
+      "tags": [
+        "venotonico",
+        "cumarinas",
+        "insuficiencia venosa",
+        "linfotropo",
+        "edema"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "ESCOP Monographs (Meliloti herba); uso tradicional documentado en farmacopeas europeas"
+      }
+    },
+    {
+      "id": "cola_caballo",
+      "nombre": "Cola de Caballo",
+      "nombresAlternativos": [
+        "Equisetum arvense",
+        "Horsetail",
+        "Field horsetail",
+        "Equiseti herba"
+      ],
+      "nombreCientifico": "Equisetum arvense",
+      "familia": "Equisetaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "estimulacion de la diuresis",
+        "molestias urinarias leves",
+        "fragilidad ungueal (tradicional)"
+      ],
+      "descripcion": "Partes aereas usadas tradicionalmente para favorecer la eliminacion renal de agua en molestias urinarias leves, tras descartar afecciones graves por un medico. Rica en silicio, tradicionalmente usada para el fortalecimiento ungueal.",
+      "mecanismoAccion": "Los flavonoides y sales de potasio ejercen accion diuretica suave; el alto contenido de silicio organico se asocia tradicionalmente a la consolidacion del tejido conjuntivo y ungueal.",
+      "nivelEvidencia": "C",
+      "parteUsada": "partes aereas esteriles",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto liquido",
+        "Capsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No usar en condiciones donde se recomiende ingesta reducida de liquidos (insuficiencia cardiaca o renal graves)",
+        "Algunas especies relacionadas (E. palustre) contienen tiaminasa; usar solo E. arvense de fuente fiable",
+        "Consultar al medico si los sintomas empeoran o persisten"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos (potencia efecto)",
+        "Litio (precaucion por diuresis)"
+      ],
+      "tags": [
+        "diuretico",
+        "silicio",
+        "urinario",
+        "ungueal",
+        "flavonoides"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Equisetum arvense herba; ESCOP Monographs"
       }
     }
   ]
