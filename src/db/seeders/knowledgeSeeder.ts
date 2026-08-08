@@ -7,7 +7,8 @@ import { logger } from '@/lib/logger';
 import { db } from '../schema';
 import type { 
   DbIngredient, 
-  DbSynergy, 
+  DbSynergy,
+  DbPathology,
   IngredientCategory, 
   BodySystem, 
   EvidenceLevel,
@@ -26,17 +27,18 @@ import { getDeviceId, now } from '../schema';
 // Esto es crítico para despliegues en Vercel: los usuarios existentes
 // reciben los nuevos datos sin necesidad de borrar IndexedDB.
 //
-// Formato: "v{fito}-{homeo}-{aceites}-{vitaminas}-{sinergias}"
+// Formato: "v{fito}-{homeo}-{aceites}-{vitaminas}-{sinergias}-{patologias}"
 
 const KB_VERSION_KEY = 'kb_seed_version';
 
 async function computeKbVersion(): Promise<string> {
-  const [fito, homeo, aceites, vitaminas, sinergias] = await Promise.all([
+  const [fito, homeo, aceites, vitaminas, sinergias, patologias] = await Promise.all([
     import('./data/fitoterapia.json'),
     import('./data/homeopatia.json'),
     import('./data/aceites.json'),
     import('./data/vitaminas_minerales.json'),
     import('./data/sinergias.json'),
+    import('./data/patologias.json'),
   ]);
   const counts = [
     fito.default?.ingredientes?.length ?? 0,
@@ -44,6 +46,7 @@ async function computeKbVersion(): Promise<string> {
     aceites.default?.ingredientes?.length ?? 0,
     vitaminas.default?.ingredientes?.length ?? 0,
     sinergias.default?.sinergias?.length ?? 0,
+    patologias.default?.patologias?.length ?? 0,
   ];
   return `v${counts.join('-')}`;
 }
@@ -86,6 +89,31 @@ interface JsonSynergy {
   descripcion?: string;
   mecanismo?: string;
   beneficios?: string[];
+}
+
+interface JsonPathology {
+  id: string;
+  nombre: string;
+  definicion: string;
+  causas: string[];
+  sintomas: string[];
+  sistemas?: string[];
+  tratamientoAlopatico: {
+    primeraLinea: string[];
+    mecanismo: string;
+    efectosSecundarios: string[];
+  };
+  tratamientoNatural: {
+    fitoterapia: string[];
+    suplementos: string[];
+    homeopatia: string[];
+    aceites: string[];
+    cuandoPreferir: string;
+  };
+  prevencion: string[];
+  cuandoConsultar: string;
+  evidencia?: string;
+  fuentes?: string[];
 }
 
 function mapEvidenceLevel(level?: string): EvidenceLevel {
@@ -208,6 +236,55 @@ function transformSynergy(json: JsonSynergy): DbSynergy {
   };
 }
 
+function transformPathology(json: JsonPathology): DbPathology {
+  return {
+    id: json.id,
+    nombre: json.nombre,
+    definicion: json.definicion,
+    causas: json.causas || [],
+    sintomas: json.sintomas || [],
+    sistemas: mapSystems(json.sistemas),
+    tratamientoAlopatico: {
+      primeraLinea: json.tratamientoAlopatico?.primeraLinea || [],
+      mecanismo: json.tratamientoAlopatico?.mecanismo || '',
+      efectosSecundarios: json.tratamientoAlopatico?.efectosSecundarios || [],
+    },
+    tratamientoNatural: {
+      fitoterapia: json.tratamientoNatural?.fitoterapia || [],
+      suplementos: json.tratamientoNatural?.suplementos || [],
+      homeopatia: json.tratamientoNatural?.homeopatia || [],
+      aceites: json.tratamientoNatural?.aceites || [],
+      cuandoPreferir: json.tratamientoNatural?.cuandoPreferir || '',
+    },
+    prevencion: json.prevencion || [],
+    cuandoConsultar: json.cuandoConsultar || '',
+    evidencia: mapEvidenceLevel(json.evidencia),
+    fuentes: json.fuentes || [],
+    lamport: 0,
+    deviceId: getDeviceId(),
+    updatedAt: now(),
+    createdAt: now(),
+    tombstone: 0,
+  };
+}
+
+async function loadPatologias(): Promise<string[]> {
+  try {
+    const data = await import('./data/patologias.json');
+    if (!data.default?.patologias || !Array.isArray(data.default.patologias)) {
+      logger.error('Patologias: datos inválidos o estructura incorrecta');
+      return [];
+    }
+    const pathologies = data.default.patologias.map(transformPathology);
+    await db.pathologies.bulkPut(pathologies);
+    logger.log(`Patologias: ${pathologies.length} patologias cargadas`);
+    return pathologies.map(p => p.id);
+  } catch (err) {
+    logger.error('Error loading patologias:', err);
+    throw new Error(`Failed to load patologias: ${err instanceof Error ? err.message : 'Unknown error'}`);
+  }
+}
+
 async function loadFitoterapia(): Promise<string[]> {
   try {
     const data = await import('./data/fitoterapia.json');
@@ -299,21 +376,27 @@ async function loadSinergias(): Promise<string[]> {
 // ninguna siembra previa).
 const KB_SEED_IDS_KEY = 'kb_seed_ids';
 
-async function getStoredSeedIds(): Promise<{ ingredients: string[]; synergies: string[] }> {
+async function getStoredSeedIds(): Promise<{ ingredients: string[]; synergies: string[]; pathologies: string[] }> {
   const meta = await db.syncMeta.get(KB_SEED_IDS_KEY);
-  const value = meta?.value as { ingredients: string[]; synergies: string[] } | undefined;
-  return value ?? { ingredients: [], synergies: [] };
+  const value = meta?.value as { ingredients: string[]; synergies: string[]; pathologies?: string[] } | undefined;
+  return {
+    ingredients: value?.ingredients ?? [],
+    synergies: value?.synergies ?? [],
+    pathologies: value?.pathologies ?? [],
+  };
 }
 
 async function cleanupStaleSeedRecords(
   currentIngredientIds: string[],
   currentSynergyIds: string[],
+  currentPathologyIds: string[],
 ): Promise<void> {
   const stored = await getStoredSeedIds();
 
   // IDs que estaban sembrados antes pero ya no están en el JSON actual
   const staleIngredientIds = stored.ingredients.filter(id => !currentIngredientIds.includes(id));
   const staleSynergyIds = stored.synergies.filter(id => !currentSynergyIds.includes(id));
+  const stalePathologyIds = (stored.pathologies || []).filter(id => !currentPathologyIds.includes(id));
 
   if (staleIngredientIds.length > 0) {
     await db.ingredients.bulkDelete(staleIngredientIds);
@@ -323,11 +406,15 @@ async function cleanupStaleSeedRecords(
     await db.synergies.bulkDelete(staleSynergyIds);
     logger.log(`Cleaned up ${staleSynergyIds.length} stale seed synergies`);
   }
+  if (stalePathologyIds.length > 0) {
+    await db.pathologies.bulkDelete(stalePathologyIds);
+    logger.log(`Cleaned up ${stalePathologyIds.length} stale seed pathologies`);
+  }
 
   // Guardar la lista actual de IDs sembrados para la próxima limpieza
   await db.syncMeta.put({
     key: KB_SEED_IDS_KEY,
-    value: { ingredients: currentIngredientIds, synergies: currentSynergyIds },
+    value: { ingredients: currentIngredientIds, synergies: currentSynergyIds, pathologies: currentPathologyIds },
     updatedAt: now(),
   });
 }
@@ -335,22 +422,25 @@ async function cleanupStaleSeedRecords(
 export async function seedKnowledgeBase(): Promise<{
   ingredients: number;
   synergies: number;
+  pathologies: number;
 }> {
   logger.log('Seeding knowledge base...');
-  const [fitoIds, homeoIds, aceitesIds, vitaminasIds, synergyIds] = await Promise.all([
+  const [fitoIds, homeoIds, aceitesIds, vitaminasIds, synergyIds, pathologyIds] = await Promise.all([
     loadFitoterapia(),
     loadHomeopatia(),
     loadAceites(),
     loadVitaminas(),
     loadSinergias(),
+    loadPatologias(),
   ]);
   const ingredientIds = [...fitoIds, ...homeoIds, ...aceitesIds, ...vitaminasIds];
   const totalIngredients = ingredientIds.length;
   const totalSynergies = synergyIds.length;
-  logger.log(`KB seeded: ${totalIngredients} ingredients, ${totalSynergies} synergies`);
+  const totalPathologies = pathologyIds.length;
+  logger.log(`KB seeded: ${totalIngredients} ingredients, ${totalSynergies} synergies, ${totalPathologies} pathologies`);
 
   // Eliminar registros sembrados que ya no están en el JSON actual
-  await cleanupStaleSeedRecords(ingredientIds, synergyIds);
+  await cleanupStaleSeedRecords(ingredientIds, synergyIds, pathologyIds);
 
   // Guardar la versión de la KB para detectar futuras actualizaciones
   const version = await computeKbVersion();
@@ -361,7 +451,7 @@ export async function seedKnowledgeBase(): Promise<{
   });
   logger.log(`KB version stored: ${version}`);
 
-  return { ingredients: totalIngredients, synergies: totalSynergies };
+  return { ingredients: totalIngredients, synergies: totalSynergies, pathologies: totalPathologies };
 }
 
 export async function isKnowledgeBaseSeeded(): Promise<boolean> {
@@ -382,10 +472,12 @@ export async function isKnowledgeBaseSeeded(): Promise<boolean> {
 export async function getKnowledgeStats() {
   const ingredients = await db.ingredients.count();
   const synergies = await db.synergies.count();
+  const pathologies = await db.pathologies.count();
   const categories = await db.ingredients.orderBy('categoria').uniqueKeys();
   return {
     totalIngredients: ingredients,
     totalSynergies: synergies,
+    totalPathologies: pathologies,
     categories: categories.length,
   };
 }

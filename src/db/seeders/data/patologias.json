@@ -1,0 +1,1904 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "ultimaActualizacion": "2026-08-08",
+    "total": 25,
+    "descripcion": "Base de datos de patologías con contexto clínico (definición, causas, síntomas, tratamiento alopático y natural)",
+    "fuentes": [
+      "OMS",
+      "DSM-5",
+      "Rome IV",
+      "Cochrane",
+      "ESC",
+      "ADA",
+      "NICE",
+      "EAACI",
+      "ACR",
+      "OARSI"
+    ]
+  },
+  "patologias": [
+    {
+      "id": "ansiedad",
+      "nombre": "Ansiedad",
+      "definicion": "Trastorno caracterizado por preocupación excesiva y persistente, tensión, inquietud y activación del sistema nervioso autónomo, que interfiere con la vida diaria.",
+      "causas": [
+        "Factores genéticos",
+        "Estrés crónico",
+        "Desequilibrio neurotransmisores (GABA, serotonina)",
+        "Traumas",
+        "Hipertiroidismo",
+        "Cafeína/estimulantes"
+      ],
+      "sintomas": [
+        "Preocupación excesiva",
+        "Inquietud",
+        "Tensión muscular",
+        "Taquicardia",
+        "Insomnio",
+        "Dificultad de concentración",
+        "Irritabilidad",
+        "Sudoración"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "ISRS (sertralina, escitalopramam)",
+          "Buspirona",
+          "Benzodiacepinas (lorazepam, diazepam) - corta duración"
+        ],
+        "mecanismo": "ISRS: aumentan serotonina sináptica. Benzodiacepinas: modulan GABA-A. Buspirona: agonista parcial 5-HT1A.",
+        "efectosSecundarios": [
+          "ISRS: náuseas, disfunción sexual, insomnio",
+          "Benzodiacepinas: sedación, dependencia, tolerancia",
+          "Buspirona: náuseas, mareo"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "valeriana",
+          "pasiflora",
+          "melisa",
+          "hiperico",
+          "espino_blanco",
+          "ashwagandha",
+          "manzanilla",
+          "lavanda"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "litio",
+          "l_triptofano",
+          "l_teanina"
+        ],
+        "homeopatia": [
+          "ignatia",
+          "gelsemium",
+          "lycopodium",
+          "calcaria_carbonica"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "incienso",
+          "salvia_esclarea"
+        ],
+        "cuandoPreferir": "Ansiedad leve-moderada, estrés adaptativo, o como complemento al tratamiento convencional. Preferir fitoterapia antes de benzodiacepinas en cuadros leves para evitar dependencia."
+      },
+      "prevencion": [
+        "Reducir cafeína y alcohol",
+        "Ejercicio regular",
+        "Técnicas de relajación (mindfulness)",
+        "Higiene del sueño",
+        "Dieta mediterránea"
+      ],
+      "cuandoConsultar": "Si la ansiedad interfiere con la vida diaria, hay crisis de pánico, ideas de autolesión, o no mejora en 4-6 semanas.",
+      "evidencia": "A",
+      "fuentes": [
+        "OMS",
+        "DSM-5",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "insomnio",
+      "nombre": "Insomnio",
+      "definicion": "Dificultad para conciliar o mantener el sueño, o sueño no reparador, al menos 3 noches/semana durante más de 1 mes, con repercusión diurna.",
+      "causas": [
+        "Estrés",
+        "Ansiedad/depresión",
+        "Mala higiene del sueño",
+        "Cafeína",
+        "Dolor crónico",
+        "Apnea del sueño",
+        "Menopausia",
+        "Fármacos"
+      ],
+      "sintomas": [
+        "Dificultad para dormir",
+        "Despertares nocturnos",
+        "Sueño no reparador",
+        "Fatiga diurna",
+        "Dificultad de concentración",
+        "Irritabilidad"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Zolpidem",
+          "Zopiclona",
+          "Melatonina (prescripción)",
+          "Doxepina (baja dosis)",
+          "Trazodona"
+        ],
+        "mecanismo": "Zolpidem/zopiclona: moduladores GABA-A. Melatonina: ritmo circadiano. Doxepina: antihistamínico sedante.",
+        "efectosSecundarios": [
+          "Somnolencia diurna",
+          "Dependencia (zolpidem)",
+          "Sabor metálico (zopiclona)",
+          "Riesgo de caídas (ancianos)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "valeriana",
+          "pasiflora",
+          "melisa",
+          "hiperico",
+          "manzanilla",
+          "lavanda",
+          "artemisa",
+          "lúpulo"
+        ],
+        "suplementos": [
+          "magnesio",
+          "vitamina_b6",
+          "melatonina",
+          "magnesio_glicinato",
+          "l_triptofano"
+        ],
+        "homeopatia": [
+          "nux_vomica",
+          "chamomilla",
+          "ignatia",
+          "arsenicum_album"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "neroli",
+          "ylang_ylang"
+        ],
+        "cuandoPreferir": "Insomnio crónico leve, conciliación del sueño, o como coadyuvante en deshabituación de hipnóticos. La fitoterapia tiene menor riesgo de dependencia que los Z-fármacos."
+      },
+      "prevencion": [
+        "Higiene del sueño (horario fijo)",
+        "Evitar pantallas antes de dormir",
+        "Reducir cafeína tras mediodía",
+        "Ambiente fresco y oscuro",
+        "Cena ligera"
+      ],
+      "cuandoConsultar": "Si el insomnio dura más de 1 mes, hay ronquidos/apneas, somnolencia diurna severa, o sospecha de depresión subyacente.",
+      "evidencia": "A",
+      "fuentes": [
+        "ICSD-3",
+        "Cochrane review",
+        "AASM guidelines"
+      ]
+    },
+    {
+      "id": "migraña",
+      "nombre": "Migraña",
+      "definicion": "Cefalea primaria recurrente, pulsátil, unilateral, moderada-severa, acompañada de foto/fonofobia, náuseas y a veces aura.",
+      "causas": [
+        "Genética",
+        "Trastorno vascular/neuronal",
+        "Disparadores: estrés, alimentos, hormonas",
+        "Fluctuaciones estrogénicas",
+        "Falta/exceso de sueño"
+      ],
+      "sintomas": [
+        "Cefalea pulsátil unilateral",
+        "Foto/fonofobia",
+        "Náuseas y vómitos",
+        "Aura visual (20%)",
+        "Duración 4-72h"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Triptanes (sumatriptán, rizatriptán)",
+          "AINEs (ibuprofeno, naproxeno)",
+          "Paracetamol",
+          "Anti-CGRP (erenumab)",
+          "Betabloqueadores (profilaxis)"
+        ],
+        "mecanismo": "Triptanes: agonistas 5-HT1B/1D (vasoconstricción). AINEs: inhiben COX. Anti-CGRP: bloquean péptido relacionado con el gen de la calcitonina.",
+        "efectosSecundarios": [
+          "Triptanes: mareo, flushing, contraindicados en cardiopatía",
+          "AINEs: gastropatía",
+          "Betabloqueadores: fatiga, bradicardia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "petasites",
+          "feverfew"
+        ],
+        "suplementos": [
+          "magnesio",
+          "coq10",
+          "riboflavina"
+        ],
+        "homeopatia": [
+          "belladonna",
+          "gelsemium",
+          "natrum_muriaticum",
+          "kali_bichromicum",
+          "sanguinaria",
+          "glonoinum"
+        ],
+        "aceites": [
+          "menta_aceite"
+        ],
+        "cuandoPreferir": "Profilaxis migrañosa, migraña leve-moderada, o cuando los triptanes están contraindicados (cardiopatía). Magnesio y feverfew son profilácticos."
+      },
+      "prevencion": [
+        "Evitar disparadores (queso, vino, chocolate)",
+        "Horario regular de sueño",
+        "Hidratación",
+        "Ejercicio moderado",
+        "Diario de migrañas"
+      ],
+      "cuandoConsultar": "Cefalea súbita y máxima intensidad, cefalea con fiebre/rigidez de nuca, déficit neurológico, o cambio de patrón de migraña.",
+      "evidencia": "A",
+      "fuentes": [
+        "IHS (ICHD-3)",
+        "NICE guidelines",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "tos",
+      "nombre": "Tos",
+      "definicion": "Reflejo de defensa respiratorio para clearing de vías aéreas. Se clasifica en seca (no productiva) o productiva (con flema).",
+      "causas": [
+        "Infección viral (resfriado)",
+        "Alergias",
+        "Reflujo gastroesofágico",
+        "Asma",
+        "Fármacos (IECA)",
+        "Tabaquismo"
+      ],
+      "sintomas": [
+        "Tos seca o productiva",
+        "Irritación faríngea",
+        "Dolor torácico",
+        "Insomnio por tos"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Dextrometorfano (seca)",
+          "Guaifenesina (productiva)",
+          "Codeína (seca, severa)",
+          "Antihistamínicos (alérgica)"
+        ],
+        "mecanismo": "Dextrometorfano: suprime reflejo tusígeno (NMDA). Guaifenesina: expectorante. Codeína: opioide antitusivo.",
+        "efectosSecundarios": [
+          "Dextrometorfano: somnolencia, mareo",
+          "Codeína: estreñimiento, dependencia",
+          "Antihistamínicos: sedación"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "tomillo",
+          "regaliz",
+          "llanten",
+          "hinojo",
+          "hiedra",
+          "malva",
+          "tilo",
+          "anis_verde"
+        ],
+        "suplementos": [
+          "boro",
+          "folato",
+          "molibdeno"
+        ],
+        "homeopatia": [
+          "sepia",
+          "carbo_veg",
+          "calcaria_carbonica",
+          "phosphorus"
+        ],
+        "aceites": [
+          "ravintsara",
+          "eucalipto",
+          "oregano"
+        ],
+        "cuandoPreferir": "Tos seca irritativa post-viral, tos productiva leve, y en niños donde codeína está contraindicada. Miel y tomillo tienen evidencia A en tos infantil."
+      },
+      "prevencion": [
+        "Hidratación",
+        "Humidificador",
+        "Evitar irritantes (humo)",
+        "Lavado de manos",
+        "Vacunación antigripal"
+      ],
+      "cuandoConsultar": "Tos >3 semanas, tos con sangre, disnea, fiebre alta, dolor torácico, o pérdida de peso.",
+      "evidencia": "B",
+      "fuentes": [
+        "ERS guidelines",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "gripe",
+      "nombre": "Gripe y Resfriado Común",
+      "definicion": "Infección viral del tracto respiratorio superior. La gripe (influenza) es más severa; el resfriado común (rinovirus) es leve.",
+      "causas": [
+        "Virus influenza (gripe)",
+        "Rinovirus (resfriado)",
+        "Transmisión aérea y por contacto"
+      ],
+      "sintomas": [
+        "Fiebre",
+        "Mialgia",
+        "Astenia",
+        "Congestión",
+        "Tos",
+        "Dolor de garganta",
+        "Cefalea"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Paracetamol/ibuprofeno (fiebre, dolor)",
+          "Oseltamivir (gripe, <48h)",
+          "Descongestionantes tópicos (pseudoefedrina)"
+        ],
+        "mecanismo": "Paracetamol/AINEs: antitérmico-analgésico. Oseltamivir: inhibidor de neuraminidasa. Descongestionantes: vasoconstrictores alfa.",
+        "efectosSecundarios": [
+          "Paracetamol: hepatotoxicidad (dosis altas)",
+          "Pseudoefedrina: hipertensión, insomnio",
+          "Oseltamivir: náuseas"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "equinacea",
+          "sauco",
+          "menta",
+          "tomillo",
+          "ajo",
+          "sauce",
+          "ulmaria",
+          "tilo"
+        ],
+        "suplementos": [
+          "l_casei"
+        ],
+        "homeopatia": [
+          "belladonna",
+          "gelsemium",
+          "rhus_toxicodendron",
+          "mercurius"
+        ],
+        "aceites": [
+          "ravintsara"
+        ],
+        "cuandoPreferir": "Profilaxis invernal, resfriado común leve, o coadyuvante en gripe. La equinácea tiene evidencia B en reducción de duración."
+      },
+      "prevencion": [
+        "Vacunación antigripal",
+        "Lavado de manos",
+        "Vitamina D profiláctica",
+        "Evitar aglomeraciones",
+        "Zinc profiláctico"
+      ],
+      "cuandoConsultar": "Fiebre >39°C persistente, disnea, dolor torácico, empeoramiento tras mejora inicial, o grupos de riesgo (embarazo, crónicos).",
+      "evidencia": "B",
+      "fuentes": [
+        "OMS",
+        "CDC",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "dispepsia",
+      "nombre": "Dispepsia",
+      "definicion": "Molestia o dolor recurrente centrado en el abdomen superior, con plenitud, saciedad precoz, eructos o náuseas.",
+      "causas": [
+        "Funcional (60%)",
+        "Úlcera péptica",
+        "ERGE",
+        "Helicobacter pylori",
+        "Fármacos (AINEs)",
+        "Estrés",
+        "Comidas copiosas"
+      ],
+      "sintomas": [
+        "Dolor epigástrico",
+        "Plenitud postprandial",
+        "Eructos",
+        "Náuseas",
+        "Saciedad precoz",
+        "Pirosis"
+      ],
+      "sistemas": [
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "IBP (omeprazol, pantoprazol)",
+          "Antiácidos (almagato)",
+          "Procinéticos (metoclopramida)",
+          "Eradicación H. pylori (triple terapia)"
+        ],
+        "mecanismo": "IBP: inhiben bomba de protones (reducen ácido). Antiácidos: neutralizan ácido. Procinéticos: aumentan motilidad gástrica.",
+        "efectosSecundarios": [
+          "IBP: cefalea, diarrea, riesgo de osteoporosis/magnesio bajo (crónico)",
+          "Metoclopramida: efectos extrapiramidales"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "melisa",
+          "curcuma",
+          "jengibre",
+          "manzanilla",
+          "aloe_vera",
+          "menta",
+          "tomillo",
+          "artemisa"
+        ],
+        "suplementos": [
+          "probioticos",
+          "bromelina"
+        ],
+        "homeopatia": [
+          "nux_vomica",
+          "chelidonium",
+          "natrum_phosphoricum",
+          "natrum_carbonicum"
+        ],
+        "aceites": [
+          "menta_aceite",
+          "jengibre_aceite"
+        ],
+        "cuandoPreferir": "Dispepsia funcional leve, o coadyuvante con IBP. El jengibre tiene evidencia A como procinético. Evitar uso crónico de IBP sin control."
+      },
+      "prevencion": [
+        "Comidas pequeñas y frecuentes",
+        "Evitar grasas/picantes",
+        "No acostarse tras comer",
+        "Reducir café/alcohol",
+        "Masticar despacio"
+      ],
+      "cuandoConsultar": "Pérdida de peso, disfagia, vómitos persistentes, anemia, sangre en heces, o edad >55 al inicio.",
+      "evidencia": "B",
+      "fuentes": [
+        "Rome IV",
+        "ASGE guidelines"
+      ]
+    },
+    {
+      "id": "gases",
+      "nombre": "Gases y Flatulencia",
+      "definicion": "Exceso de gas intestinal que causa distensión abdominal, eructos y flatulencia. Puede ser funcional o secundario.",
+      "causas": [
+        "Aerofagia",
+        "Fermentación bacteriana",
+        "Intolerancia a lactosa",
+        "SIBO",
+        "Fibra excesiva",
+        "Bebidas carbonatadas"
+      ],
+      "sintomas": [
+        "Distensión abdominal",
+        "Eructos",
+        "Flatulencia",
+        "Borborigmos",
+        "Molestia abdominal difusa"
+      ],
+      "sistemas": [
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Simeticona",
+          "Dimeticona",
+          "Alpha-galactosidasa (Beano)"
+        ],
+        "mecanismo": "Simeticona/dimeticona: reducen tensión superficial de las burbujas de gas. Alpha-galactosidasa: digiere oligosacáridos.",
+        "efectosSecundarios": [
+          "Bien tolerados",
+          "Raramente reacciones alérgicas"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "canela",
+          "hinojo",
+          "alcachofa",
+          "anis_verde",
+          "anis_estrellado",
+          "fumaria"
+        ],
+        "suplementos": [],
+        "homeopatia": [
+          "chamomilla",
+          "lycopodium",
+          "carbo_veg",
+          "colocynthis",
+          "china_officinalis"
+        ],
+        "aceites": [
+          "manzanilla_romana",
+          "hinojo_aceite"
+        ],
+        "cuandoPreferir": "Gases leves-moderados, o como coadyuvante. Las carminativas (hinojo, anís) tienen evidencia B y uso tradicional muy sólido."
+      },
+      "prevencion": [
+        "Masticar despacio",
+        "Evitar bebidas carbonatadas",
+        "Identificar intolerancias",
+        "Probióticos",
+        "Reducir legumbres si sensibles"
+      ],
+      "cuandoConsultar": "Si se asocia a pérdida de peso, diarrea persistente, dolor severo, o sangre en heces.",
+      "evidencia": "C",
+      "fuentes": [
+        "Rome IV",
+        "ACG guidelines"
+      ]
+    },
+    {
+      "id": "estreñimiento",
+      "nombre": "Estreñimiento",
+      "definicion": "Menos de 3 deposiciones/semana, o deposiciones difíciles, duras, con esfuerzo, durante más de 3 meses.",
+      "causas": [
+        "Baja ingesta de fibra",
+        "Deshidratación",
+        "Sedentarismo",
+        "Fármacos (opioides, hierro)",
+        "Hipotiroidismo",
+        "SII-E",
+        "Embarazo"
+      ],
+      "sintomas": [
+        "Deposiciones infrecuentes",
+        "Heces duras",
+        "Esfuerzo",
+        "Sensación de evacuación incompleta",
+        "Distensión"
+      ],
+      "sistemas": [
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Laxantes osmóticos (lactulosa, macrogol)",
+          "Estimulantes (senna, bisacodilo)",
+          "Formadores de bolo (psyllium)"
+        ],
+        "mecanismo": "Osmóticos: retienen agua en luz intestinal. Estimulantes: aumentan peristaltismo. Formadores de bolo: aumentan volumen.",
+        "efectosSecundarios": [
+          "Lactulosa: flatulencia",
+          "Senna: dependencia, cólicos",
+          "Macrogol: bien tolerado"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "psyllium",
+          "lino",
+          "sen",
+          "cascara_sagrada",
+          "triphala",
+          "collinsonia"
+        ],
+        "suplementos": [
+          "magnesio_glicinato"
+        ],
+        "homeopatia": [
+          "nux_vomica",
+          "alumina",
+          "hydrastis",
+          "plumbum"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Estreñimiento crónico leve. Psyllium y semillas de lino son de primera elección. Preferir fibras naturales antes de laxantes estimulantes."
+      },
+      "prevencion": [
+        "Aumentar fibra (25-30g/día)",
+        "Hidratación (1.5-2L)",
+        "Ejercicio",
+        "Horario regular",
+        "No retrasar el reflejo"
+      ],
+      "cuandoConsultar": "Cambio de hábito intestinal reciente, sangre en heces, pérdida de peso, o estreñimiento refractario al tratamiento.",
+      "evidencia": "B",
+      "fuentes": [
+        "Rome IV",
+        "ACG guidelines"
+      ]
+    },
+    {
+      "id": "diarrea",
+      "nombre": "Diarrea",
+      "definicion": "Aumento de frecuencia (≥3/día) o disminución de consistencia de las heces. Aguda (<14 días) o crónica (>4 semanas).",
+      "causas": [
+        "Infección viral (norovirus, rotavirus)",
+        "Infección bacteriana",
+        "Intoxicación alimentaria",
+        "Fármacos (antibióticos)",
+        "SII-D",
+        "Intolerancias"
+      ],
+      "sintomas": [
+        "Heces líquidas",
+        "Aumento de frecuencia",
+        "Cólicos",
+        "Náuseas",
+        "Fiebre (infecciosa)",
+        "Deshidratación"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Loperamida",
+          "Sales de rehidratación oral (SRO)",
+          "Racecadotrilo",
+          "Antibióticos (solo si indicado)"
+        ],
+        "mecanismo": "Loperamida: agonista opioide (reduce motilidad). SRO: reponen electrolitos. Racecadotrilo: inhibe encefalinasas.",
+        "efectosSecundarios": [
+          "Loperamida: estreñimiento, íleo (si infeccioso invasivo)",
+          "Antibióticos: resistencias"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "agrimonia",
+          "alchemilla"
+        ],
+        "suplementos": [
+          "s_boulardii",
+          "l_rhamnosus_gg",
+          "l_acidophilus",
+          "s_thermophilus"
+        ],
+        "homeopatia": [
+          "mercurius",
+          "iris_versicolor",
+          "dulcamara",
+          "podophyllum",
+          "veratrum_album"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Diarrea aguda leve, diarrea por antibióticos (probióticos A), o prevención de diarrea del viajero. Loperamida no usar si fiebre/sangre."
+      },
+      "prevencion": [
+        "Higiene de manos",
+        "Seguridad alimentaria",
+        "Probióticos profilácticos",
+        "Vacunación rotavirus (infantil)"
+      ],
+      "cuandoConsultar": "Deshidratación severa, fiebre >39°C, sangre en heces, >48h sin mejora, o grupos de riesgo (niños, ancianos, inmunodeprimidos).",
+      "evidencia": "A",
+      "fuentes": [
+        "OMS",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "eccema",
+      "nombre": "Eccema (Dermatitis Atópica)",
+      "definicion": "Enfermedad inflamatoria crónica de la piel con prurito, xerosis y lesiones eccematosas. Frecuente en atópicos.",
+      "causas": [
+        "Atopia (genética)",
+        "Disfunción barrera cutánea (filagrina)",
+        "Alérgenos",
+        "Irritantes",
+        "Estrés",
+        "Clima seco"
+      ],
+      "sintomas": [
+        "Prurito intenso",
+        "Xerosis",
+        "Eritema",
+        "Vesículas",
+        "Descamación",
+        "Licuefacción"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Corticoides tópicos (hidrocortisona, betametasona)",
+          "Inhibidores calcineurina (tacrolimus)",
+          "Antihistamínicos (prurito)",
+          "Emolientes"
+        ],
+        "mecanismo": "Corticoides: antiinflamatorio. Tacrolimus: inhibe calcineurina (T-cells). Antihistamínicos: bloquean H1.",
+        "efectosSecundarios": [
+          "Corticoides tópicos: atrofia, telangiectasias",
+          "Tacrolimus: escozor inicial",
+          "Antihistamínicos: sedación"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "fumaria",
+          "nigella",
+          "bardana"
+        ],
+        "suplementos": [
+          "aceite_onagra",
+          "l_rhamnosus_gg",
+          "b_breve"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "sulphur",
+          "graphites",
+          "arsenicum_album",
+          "petroleum",
+          "mezereum"
+        ],
+        "aceites": [
+          "manuka",
+          "manzanilla_romana",
+          "pachuli"
+        ],
+        "cuandoPreferir": "Eccema leve-moderado, mantenimiento entre brotes, o en niños donde se quiere evitar corticoide crónico. Omega-3 y probióticos tienen evidencia B en profilaxis pediátrica."
+      },
+      "prevencion": [
+        "Emolientes diarios",
+        "Baños cortos y tibios",
+        "Evitar irritantes (jabones)",
+        "Ropa de algodón",
+        "Identificar alérgenos"
+      ],
+      "cuandoConsultar": "Infección secundaria (impétigo), brote severo refractario, o impacto importante en calidad de vida/sueño.",
+      "evidencia": "B",
+      "fuentes": [
+        "AAD guidelines",
+        "EAACI"
+      ]
+    },
+    {
+      "id": "candidiasis_vaginal",
+      "nombre": "Candidiasis Vaginal",
+      "definicion": "Infección vulvovaginal por Candida (mayoritariamente C. albicans) que causa prurito, leucorrea y escozor.",
+      "causas": [
+        "Sobrecrecimiento de Candida",
+        "Antibióticos",
+        "Embarazo",
+        "Diabetes",
+        "Inmunosupresión",
+        "Estrés",
+        "Ropa ajustada"
+      ],
+      "sintomas": [
+        "Prurito vulvar",
+        "Leucorrea blanca grumosa",
+        "Escozor al orinar",
+        "Dispareunia",
+        "Eritema vulvar"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Antifúngicos tópicos (clotrimazol, miconazol)",
+          "Fluconazol oral (dosis única)",
+          "Nistatina"
+        ],
+        "mecanismo": "Azoles: inhiben lanosterol 14-alfa-desmetilasa (ergosterol). Nistatina: se une a ergosterol y perfora membrana.",
+        "efectosSecundarios": [
+          "Tópicos: escozor local",
+          "Fluconazol: náuseas, hepatotoxicidad (raro)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "equinacea",
+          "propoleo",
+          "sauco"
+        ],
+        "suplementos": [
+          "l_acidophilus",
+          "l_reuteri",
+          "vitamina_c",
+          "vitamina_d3"
+        ],
+        "homeopatia": [],
+        "aceites": [],
+        "cuandoPreferir": "Candidiasis recurrente (profilaxis con probióticos), o como coadyuvante. L. acidophilus y L. reuteri tienen evidencia B en prevención de recurrencias."
+      },
+      "prevencion": [
+        "Probióticos (L. acidophilus, L. reuteri)",
+        "Ropa de algodón",
+        "Evitar duchas vaginales",
+        "Controlar glucemia",
+        "Reducir azúcares"
+      ],
+      "cuandoConsultar": "Recurrencias ≥4/año, embarazo, síntomas refractarios, o si se sospecha otra ITS.",
+      "evidencia": "A",
+      "fuentes": [
+        "CDC guidelines",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "menopausia",
+      "nombre": "Síndrome Climatérico (Menopausia)",
+      "definicion": "Conjunto de síntomas asociados al cese de la función ovárica: sofocos, sudoración nocturna, alteraciones del sueño y del humor, sequedad vaginal.",
+      "causas": [
+        "Declive estrogénico natural",
+        "Menopausia quirúrgica/quimioterapia",
+        "Insuficiencia ovárica precoz"
+      ],
+      "sintomas": [
+        "Sofocos",
+        "Sudoración nocturna",
+        "Insomnio",
+        "Sequedad vaginal",
+        "Cambios de humor",
+        "Osteoporosis",
+        "Aumento de peso"
+      ],
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "THS (estrógenos ± progestágeno)",
+          "ISRS/SNRI (sofocos)",
+          "Gabapentina",
+          "Ospemifeno (vaginal)"
+        ],
+        "mecanismo": "THS: reemplaza estrógenos. ISRS: modulan serotonina/noradrenalina (termorregulación).",
+        "efectosSecundarios": [
+          "THS: riesgo trombótico, mamario (depende de tipo/duración)",
+          "ISRS: náuseas, disfunción sexual"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "maca",
+          "dong_quai",
+          "cimicifuga",
+          "trebol_rojo",
+          "shatavari"
+        ],
+        "suplementos": [
+          "aceite_onagra"
+        ],
+        "homeopatia": [
+          "lycopodium",
+          "pulsatilla",
+          "sepia",
+          "sanguinaria",
+          "lachesis"
+        ],
+        "aceites": [
+          "salvia_esclarea",
+          "hinojo_aceite"
+        ],
+        "cuandoPreferir": "Sofocos leves-moderados, mujeres con contraindicación al THS (cáncer hormono-dependiente), o que prefieren no usar hormonas. La cimicífuga tiene evidencia B."
+      },
+      "prevencion": [
+        "Ejercicio",
+        "Dieta mediterránea",
+        "Reducción de cafeína/alcohol",
+        "Vitamina D + calcio",
+        "Técnicas de relajación"
+      ],
+      "cuandoConsultar": "Sofocos severos que afectan calidad de vida, sangrado postmenopausia, o síntomas depresivos significativos.",
+      "evidencia": "B",
+      "fuentes": [
+        "NAMS position statement",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "spm_dismenorrea",
+      "nombre": "Síndrome Premenstrual y Dismenorrea",
+      "definicion": "SPM: síntomas físicos y emocionales cíclicos en fase lútea. Dismenorrea: dolor menstrual, primaria (sin patología) o secundaria.",
+      "causas": [
+        "Fluctuaciones hormonales",
+        "Prostaglandinas (dismenorrea)",
+        "Sensibilidad estrogénica",
+        "Estrés",
+        "Deficiencia de magnesio"
+      ],
+      "sintomas": [
+        "Dolor pélvico cólico",
+        "Tensión mamaria",
+        "Hinchazón",
+        "Irritabilidad",
+        "Tristeza",
+        "Cefalea",
+        "Fatiga"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "AINEs (ibuprofeno, naproxeno)",
+          "Anticonceptivos hormonales",
+          "ESP (drospirenona)"
+        ],
+        "mecanismo": "AINEs: inhiben COX (prostaglandinas). Anticonceptivos: suprimen ovulación.",
+        "efectosSecundarios": [
+          "AINEs: gastropatía",
+          "Anticonceptivos: riesgo trombótico, amenorrea"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "dong_quai",
+          "vitex",
+          "artemisa",
+          "hinojo",
+          "milenrama",
+          "alchemilla"
+        ],
+        "suplementos": [],
+        "homeopatia": [
+          "pulsatilla",
+          "sepia",
+          "graphites",
+          "platina"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Dismenorrea primaria leve-moderada, SPM leve, o como coadyuvante. El vitex (sauzatil) tiene evidencia B en SPM."
+      },
+      "prevencion": [
+        "Ejercicio regular",
+        "Magnesio dietético",
+        "Reducir cafeína/sal",
+        "Omega-3",
+        "Técnicas de relajación"
+      ],
+      "cuandoConsultar": "Dismenorrea severa refractaria, sospecha de endometriosis, o SPM con síntomas depresivos severos (PMDD).",
+      "evidencia": "B",
+      "fuentes": [
+        "ACOG guidelines",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "artrosis",
+      "nombre": "Artrosis (Osteoartritis)",
+      "definicion": "Enfermedad degenerativa articular caracterizada por daño del cartílago, remodelación ósea y sinovitis, con dolor y rigidez.",
+      "causas": [
+        "Edad",
+        "Desgaste mecánico",
+        "Obesidad",
+        "Trauma repetido",
+        "Genética",
+        " Sexo (mujer postmenopausia)"
+      ],
+      "sintomas": [
+        "Dolor articular mecánico",
+        "Rigidez matutina (<30 min)",
+        "Limitación funcional",
+        "Crepitación",
+        "Tumefacción"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Paracetamol",
+          "AINEs tópicos (diclofenaco)",
+          "AINEs orales (ibuprofeno)",
+          "Infiltración (corticoide, ácido hialurónico)"
+        ],
+        "mecanismo": "Paracetamol: analgésico central. AINEs: inhiben COX. Corticoide intraarticular: antiinflamatorio.",
+        "efectosSecundarios": [
+          "Paracetamol: hepatotoxicidad",
+          "AINEs: gastropatía, renal, cardiovascular",
+          "Corticoide: artropatía (repetido)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "curcuma",
+          "harpagofito",
+          "ortiga",
+          "boswelia",
+          "uncaria",
+          "sauce",
+          "ulmaria",
+          "grosellero_negro"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boro",
+          "msm",
+          "glucosamina"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "calcaria_carbonica",
+          "kali_bichromicum",
+          "bryonia"
+        ],
+        "aceites": [
+          "eucalipto",
+          "romero_aceite"
+        ],
+        "cuandoPreferir": "Artrosis leve-moderada, o para reducir consumo de AINEs (riesgo gastropatía). La glucosamina/condroitina y el harpagofito tienen evidencia B."
+      },
+      "prevencion": [
+        "Control de peso",
+        "Ejercicio (fortalecer cuádriceps)",
+        "Movilidad articular",
+        "Vitamina D",
+        "Evitar sobrecarga"
+      ],
+      "cuandoConsultar": "Dolor nocturno, impotencia funcional, bloqueo articular, o signos inflamatorios marcados.",
+      "evidencia": "B",
+      "fuentes": [
+        "OARSI guidelines",
+        "ACR guidelines"
+      ]
+    },
+    {
+      "id": "dolor_muscular",
+      "nombre": "Dolor Muscular y Fascial",
+      "definicion": "Mialgia o dolor musculoesquelético de origen mecánico, postural o por tensión. Incluye contracturas y puntos gatillo.",
+      "causas": [
+        "Sobrecarga",
+        "Postura incorrecta",
+        "Estrés (tensión)",
+        "Ejercicio intenso",
+        "Falta de magnesio",
+        "Fármacos (estatinas)"
+      ],
+      "sintomas": [
+        "Dolor muscular",
+        "Tensión/contractura",
+        "Rigidez",
+        "Puntos gatillo",
+        "Limitación de movilidad"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "AINEs tópicos",
+          "AINEs orales",
+          "Miorrelajantes (ciclobenzaprina, diazepam)",
+          "Calor local"
+        ],
+        "mecanismo": "AINEs: antiinflamatorio-analgésico. Miorrelajantes: acción central (GABA).",
+        "efectosSecundarios": [
+          "AINEs: gastropatía",
+          "Miorrelajantes: sedación, dependencia (diazepam)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "propoleo",
+          "curcuma",
+          "jengibre",
+          "harpagofito",
+          "menta"
+        ],
+        "suplementos": [
+          "pea",
+          "vitamina_d3",
+          "magnesio_glicinato",
+          "creatina"
+        ],
+        "homeopatia": [
+          "bryonia",
+          "ruta_graveolens",
+          "hypericum",
+          "colocynthis"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "eucalipto",
+          "menta_aceite"
+        ],
+        "cuandoPreferir": "Mialgia leve, tensión muscular por estrés, o DOMS (dolor post-ejercicio). El magnesio es de elección en calambres/tensión."
+      },
+      "prevencion": [
+        "Estiramientos",
+        "Ejercicio progresivo",
+        "Corregir postura",
+        "Magnesio dietético",
+        "Hidratación"
+      ],
+      "cuandoConsultar": "Dolor severo traumático, debilidad progresiva, o si se asocia a fármaco (sospechar rabdomiólisis con estatinas).",
+      "evidencia": "C",
+      "fuentes": [
+        "ACR guidelines"
+      ]
+    },
+    {
+      "id": "depresion",
+      "nombre": "Depresión",
+      "definicion": "Trastorno del estado de ánimo caracterizado por tristeza persistente, anhedonia, fatiga y alteraciones cognitivas, >2 semanas.",
+      "causas": [
+        "Factores biológicos (serotonina, noradrenalina)",
+        "Genética",
+        "Estrés crónico",
+        "Trauma",
+        "Enfermedades crónicas",
+        "Hipotiroidismo"
+      ],
+      "sintomas": [
+        "Tristeza",
+        "Anhedonia",
+        "Fatiga",
+        "Insomnio/hipersomnia",
+        "Pérdida/ganancia de peso",
+        "Sentimientos de culpa",
+        "Ideación autolítica"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "ISRS (sertralina, fluoxetina)",
+          "SNRI (venlafaxina)",
+          "Bupropión",
+          "Mirtazapina"
+        ],
+        "mecanismo": "ISRS: inhiben recaptación de serotonina. SNRI: serotonina+noradrenalina. Bupropión: noradrenalina+dopamina.",
+        "efectosSecundarios": [
+          "ISRS: náuseas, disfunción sexual, insomnio",
+          "Mirtazapina: sedación, aumento de peso"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "hiperico",
+          "rodiola",
+          "hericium",
+          "azafran",
+          "mucuna"
+        ],
+        "suplementos": [
+          "vitamina_d3",
+          "litio",
+          "l_triptofano",
+          "5_htp"
+        ],
+        "homeopatia": [
+          "ignatia",
+          "sepia",
+          "natrum_muriaticum",
+          "crocus_sativus"
+        ],
+        "aceites": [
+          "palo_de_rosa"
+        ],
+        "cuandoPreferir": "Depresión leve, distimia, o como coadyuvante. El hipérico tiene evidencia A en depresión leve-moderada (interacciona con ISRS: no combinar)."
+      },
+      "prevencion": [
+        "Ejercicio",
+        "Conexión social",
+        "Sueño",
+        "Omega-3",
+        "Vitamina D",
+        "Mindfulness"
+      ],
+      "cuandoConsultar": "Ideación autolítica, síntomas psicóticos, o depresión severa con repercusión funcional importante.",
+      "evidencia": "A",
+      "fuentes": [
+        "DSM-5",
+        "NICE guidelines",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "fatiga",
+      "nombre": "Fatiga y Astenia",
+      "definicion": "Sensación de cansancio físico o mental persistente, no aliviado por el descanso. Puede ser secundaria o primaria.",
+      "causas": [
+        "Anemia",
+        "Hipotiroidismo",
+        "Déficit vitamínico (D, B12, hierro)",
+        "Estrés crónico",
+        "Insomnio",
+        "Sedentarismo",
+        "Síndrome de fatiga crónica"
+      ],
+      "sintomas": [
+        "Cansancio",
+        "Falta de energía",
+        "Dificultad de concentración",
+        "Debilidad muscular",
+        "Apatía"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Tratamiento de causa subyacente",
+          "Hierro (si anemia)",
+          "Levotiroxina (si hipotiroidismo)",
+          "Estimulantes (modafinilo - narcolepsia)"
+        ],
+        "mecanismo": "Depende de causa: hierro (hemoglobina), levotiroxina (T4), modafinilo (vigilia).",
+        "efectosSecundarios": [
+          "Hierro: estreñimiento, gastropatía",
+          "Levotiroxina: taquicardia si exceso"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "maca",
+          "ashwagandha",
+          "rodiola",
+          "ginseng",
+          "eleuterococo",
+          "schisandra",
+          "regaliz",
+          "cordyceps"
+        ],
+        "suplementos": [
+          "hierro",
+          "l_citrulina",
+          "l_ornitina",
+          "teacrina",
+          "vitamina_b12"
+        ],
+        "homeopatia": [
+          "arnica",
+          "calcaria_carbonica",
+          "phosphorus"
+        ],
+        "aceites": [
+          "ravintsara",
+          "menta_aceite"
+        ],
+        "cuandoPreferir": "Fatiga sin causa orgánica, fatiga adaptativa, o tras convalecencia. Los adaptógenos (ashwagandha, rodiola, ginseng) tienen evidencia B."
+      },
+      "prevencion": [
+        "Sueño",
+        "Ejercicio progresivo",
+        "Dieta equilibrada",
+        "Vitamina D",
+        "Hierro (si déficit)",
+        "Gestión del estrés"
+      ],
+      "cuandoConsultar": "Fatiga persistente >6 meses, pérdida de peso, disnea, o si se asocia a otros síntomas (palpitaciones, sangrado).",
+      "evidencia": "C",
+      "fuentes": [
+        "NICE guidelines"
+      ]
+    },
+    {
+      "id": "estres",
+      "nombre": "Estrés Adaptativo y Burnout",
+      "definicion": "Respuesta fisiológica y psicológica a demandas percibidas. Agudo (adaptativo) o crónico (maladaptativo, burnout).",
+      "causas": [
+        "Laboral",
+        "Familiar",
+        "Económico",
+        "Vital",
+        "Sobrecarga",
+        "Falta de control",
+        "Eje HHA activado crónicamente"
+      ],
+      "sintomas": [
+        "Tensión",
+        "Irritabilidad",
+        "Insomnio",
+        "Fatiga",
+        "Dificultad de concentración",
+        "Cefalea tensional",
+        "Palpitaciones"
+      ],
+      "sistemas": [
+        "nervioso",
+        "endocrino"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "No farmacológico (primera elección)",
+          "ISRS (si ansiedad/depresión)",
+          "Beta-bloqueadores (síntomas físicos)"
+        ],
+        "mecanismo": "ISRS: serotonina. Beta-bloqueadores: bloquean síntomas adrenérgicos.",
+        "efectosSecundarios": [
+          "ISRS: náuseas, disfunción sexual",
+          "Beta-bloqueadores: fatiga, bradicardia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "valeriana",
+          "pasiflora",
+          "melisa",
+          "hiperico",
+          "ashwagandha",
+          "rodiola",
+          "manzanilla",
+          "lavanda"
+        ],
+        "suplementos": [
+          "magnesio",
+          "vitamina_b_complejo",
+          "tirosina",
+          "fosfatidilserina"
+        ],
+        "homeopatia": [
+          "nux_vomica",
+          "kali_phosphoricum"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "salvia_esclarea",
+          "palmarosa"
+        ],
+        "cuandoPreferir": "Estrés crónico, profilaxis de burnout, o antes de recurrir a ansiolíticos. Los adaptógenos (ashwagandha, rodiola) modulan el eje HHA con evidencia B."
+      },
+      "prevencion": [
+        "Mindfulness",
+        "Ejercicio",
+        "Sueño",
+        "Técnicas de relajación",
+        "Conexión social",
+        "Límites laborales"
+      ],
+      "cuandoConsultar": "Síntomas depresivos, crisis de ansiedad, ideación autolítica, o impacto funcional significativo.",
+      "evidencia": "B",
+      "fuentes": [
+        "OMS",
+        "APA guidelines"
+      ]
+    },
+    {
+      "id": "colesterol_alto",
+      "nombre": "Hipercolesterolemia",
+      "definicion": "Elevación de colesterol LDL en sangre, factor de riesgo cardiovascular. Puede ser primaria (familiar) o secundaria.",
+      "causas": [
+        "Dieta (grasas saturadas)",
+        "Genética (hipercolesterolemia familiar)",
+        "Sedentarismo",
+        "Hipotiroidismo",
+        "Obesidad"
+      ],
+      "sintomas": [
+        "Asintomático hasta complicación",
+        "Xantomas (familiar)",
+        "Arco corneal",
+        "Aterosclerosis subclínica"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Estatinas (atorvastatina, rosuvastatina)",
+          "Ezetimiba",
+          "PCSK9i (evolocumab)",
+          "Resinas (colestiramina)"
+        ],
+        "mecanismo": "Estatinas: inhiben HMG-CoA reductasa. Ezetimiba: inhibe absorción intestinal. PCSK9i: aumentan receptores LDL.",
+        "efectosSecundarios": [
+          "Estatinas: mialgia, rabdomiólisis (raro), hepato-toxicidad",
+          "Ezetimiba: bien tolerado"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ajo",
+          "psyllium",
+          "alcachofa",
+          "lino",
+          "tulsi",
+          "picrorhiza"
+        ],
+        "suplementos": [
+          "cromo",
+          "vanadio",
+          "niacina",
+          "vitamina_e",
+          "beta_glucanos"
+        ],
+        "homeopatia": [],
+        "aceites": [],
+        "cuandoPreferir": "Hipercolesterolemia leve-moderada, intolerancia a estatinas, o como coadyuvante. El ajo, el psyllium y el cromo tienen evidencia B."
+      },
+      "prevencion": [
+        "Dieta mediterránea",
+        "Fibra soluble (avena)",
+        "Ejercicio",
+        "Reducir grasas saturadas",
+        "Omega-3"
+      ],
+      "cuandoConsultar": "LDL muy elevado (familiar), antecedentes cardiovasculares, o si no responde al tratamiento.",
+      "evidencia": "A",
+      "fuentes": [
+        "ESC/EAS guidelines",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "glucosa_alta",
+      "nombre": "Hiperglucemia y Diabetes Tipo 2",
+      "definicion": "Elevación de glucosa plasmática por resistencia a insulina. Prediabetes: 100-125 mg/dL (ayuno). Diabetes: ≥126 mg/dL.",
+      "causas": [
+        "Resistencia a insulina",
+        "Obesidad",
+        "Sedentarismo",
+        "Genética",
+        "Dieta (azúcares refinados)"
+      ],
+      "sintomas": [
+        "Poliuria",
+        "Polidipsia",
+        "Poli-fagia",
+        "Fatiga",
+        "Visión borrosa",
+        "Infecciones recurrentes"
+      ],
+      "sistemas": [
+        "metabolico",
+        "endocrino"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Metformina",
+          "SGLT2i (empagliflozina)",
+          "GLP-1 (semaglutida)",
+          "Sulfonilureas",
+          "Insulina"
+        ],
+        "mecanismo": "Metformina: reduce gluconeogénesis. SGLT2i: glucosuria. GLP-1: incretina. Sulfonilureas: estimulan insulina.",
+        "efectosSecundarios": [
+          "Metformina: GI (diarrea), B12",
+          "SGLT2i: infecciones genitales",
+          "Sulfonilureas: hipoglucemia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ginseng",
+          "ortiga",
+          "nigella",
+          "tulsi",
+          "gymnema",
+          "maitake"
+        ],
+        "suplementos": [
+          "vitamina_d3",
+          "cromo",
+          "vanadio",
+          "alfa_lipoico"
+        ],
+        "homeopatia": [],
+        "aceites": [
+          "canela_aceite"
+        ],
+        "cuandoPreferir": "Prediabetes, control glucémico subóptimo, o como coadyuvante. La canela y el cromo tienen evidencia C-B en glucemia basal."
+      },
+      "prevencion": [
+        "Dieta mediterránea",
+        "Ejercicio",
+        "Pérdida de peso",
+        "Fibra",
+        "Reducir azúcares",
+        "Cromo"
+      ],
+      "cuandoConsultar": "Glucosa >300 mg/dL, cetoacidosis (vómitos, cetosis), hipoglucemia severa, o HbA1c >9%.",
+      "evidencia": "A",
+      "fuentes": [
+        "ADA guidelines",
+        "OMS"
+      ]
+    },
+    {
+      "id": "hipertension",
+      "nombre": "Hipertensión Arterial",
+      "definicion": "Elevación persistente de la presión arterial ≥140/90 mmHg (consulta) o ≥135/85 (AMBPA). Factor de riesgo cardiovascular mayor.",
+      "causas": [
+        "Essencial (95%)",
+        "Genética",
+        "Sodio",
+        "Obesidad",
+        "Sedentarismo",
+        "Estrés",
+        "Secundaria (renal, endocrina)"
+      ],
+      "sintomas": [
+        "Asintomática hasta complicación",
+        "Cefalea",
+        "Mareo",
+        "Acúfenos",
+        "Epistaxis"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "renal"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "IECA (enalapril)",
+          "ARA2 (losartán)",
+          "Calcioantagonistas (amlodipino)",
+          "Diuréticos (hidroclorotiazida)"
+        ],
+        "mecanismo": "IECA/ARA2: eje renina-angiotensina. Calcioantagonistas: vasodilatación. Diuréticos: reducen volumen.",
+        "efectosSecundarios": [
+          "IECA: tos, hiperpotasemia",
+          "ARA2: bien tolerado",
+          "Calcioantagonistas: edema maleolar",
+          "Diuréticos: hipopotasemia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "espino_blanco",
+          "olivo",
+          "nigella",
+          "arjuna"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "l_citrulina",
+          "l_arginina"
+        ],
+        "homeopatia": [],
+        "aceites": [
+          "ylang_ylang"
+        ],
+        "cuandoPreferir": "HTA grado 1 o como coadyuvante. El magnesio y el espino blanco tienen evidencia C-B. No sustituir antihipertensivos sin control médico."
+      },
+      "prevencion": [
+        "Dieta DASH/mediterránea",
+        "Reducir sodio (<5g/día)",
+        "Ejercicio",
+        "Pérdida de peso",
+        "Reducir alcohol"
+      ],
+      "cuandoConsultar": "HTA resistente; TA >180/120 (urgencia); cefalea severa con HTA; embarazo",
+      "evidencia": "A",
+      "fuentes": [
+        "ESC/ESH guidelines",
+        "OMS"
+      ]
+    },
+    {
+      "id": "sii",
+      "nombre": "Síndrome de Intestino Irritable (SII)",
+      "definicion": "Trastorno funcional intestinal con dolor abdominal recurrente y alteración del hábito intestinal, sin causa orgánica.",
+      "causas": [
+        "Disfunción eje intestino-cerebro",
+        "Hipersensibilidad visceral",
+        "Microbiota alterada",
+        "Estrés",
+        "Infección post-enteritis",
+        "Intolerancias"
+      ],
+      "sintomas": [
+        "Dolor abdominal",
+        "Hinchazón",
+        "Diarrea/estreñimiento alternante",
+        "Moco en heces",
+        "Síntomas que mejoran con defecación"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Espasmolíticos (mebeverina, butilescopolamina)",
+          "Loperamida (SII-D)",
+          "Linaclotida (SII-E)",
+          "Antidepresivos tricíclicos (baja dosis)"
+        ],
+        "mecanismo": "Espasmolíticos: relajan músculo liso. Linaclotida: guanilato ciclasa-C. ATC: modulan dolor visceral.",
+        "efectosSecundarios": [
+          "Espasmolíticos: sequedad, visión borrosa",
+          "Linaclotida: diarrea",
+          "ATC: sedación"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "menta",
+          "canela",
+          "psyllium",
+          "hericium",
+          "trametes"
+        ],
+        "suplementos": [
+          "probioticos",
+          "l_glutamina",
+          "berberina",
+          "sulforafano",
+          "lactoferrina"
+        ],
+        "homeopatia": [
+          "nux_vomica",
+          "chelidonium",
+          "natrum_phosphoricum"
+        ],
+        "aceites": [
+          "menta_aceite",
+          "jengibre_aceite"
+        ],
+        "cuandoPreferir": "SII leve-moderado, o profilaxis. Los probióticos (L. plantarum, B. longum) tienen evidencia B en SII."
+      },
+      "prevencion": [
+        "Dieta FODMAP (baja)",
+        "Probióticos",
+        "Manejo del estrés",
+        "Ejercicio",
+        "Diario de síntomas"
+      ],
+      "cuandoConsultar": "Pérdida de peso, sangre en heces, síntomas nocturnos, anemia, o inicio >50 años.",
+      "evidencia": "B",
+      "fuentes": [
+        "Rome IV",
+        "ACG guidelines"
+      ]
+    },
+    {
+      "id": "inmunidad_baja",
+      "nombre": "Inmunidad Baja / Infecciones Recurrentes",
+      "definicion": "Susceptibilidad aumentada a infecciones respiratorias o urinarias de repetición, sin inmunodeficiencia primaria.",
+      "causas": [
+        "Déficit vitamínico (D, C, zinc)",
+        "Estrés crónico",
+        "Falta de sueño",
+        "Sedentarismo",
+        "Edad (extremos)",
+        "Malnutrición"
+      ],
+      "sintomas": [
+        "Resfriados frecuentes (>6/año)",
+        "Reactivación viral (herpes)",
+        "Fatiga",
+        "Curación lenta"
+      ],
+      "sistemas": [
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Tratamiento de causa subyacente",
+          "Suplementación vitamínica",
+          "Inmunomoduladores (bacterianos)",
+          "Vacunas"
+        ],
+        "mecanismo": "Vitamina D: inmunidad innata. Zinc: función de linfocitos. Inmunomoduladores: estimulan inmunidad mucosa.",
+        "efectosSecundarios": [
+          "Vitamina D: hipercalcemia (dosis altas)",
+          "Zinc: náuseas, cobre bajo (crónico)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "equinacea",
+          "propoleo",
+          "sauco",
+          "ashwagandha",
+          "tomillo",
+          "reishi",
+          "ginseng",
+          "eleuterococo"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "vitamina_d3",
+          "zinc",
+          "probioticos",
+          "selenio"
+        ],
+        "homeopatia": [
+          "calcaria_carbonica"
+        ],
+        "aceites": [
+          "tea_tree",
+          "ravintsara"
+        ],
+        "cuandoPreferir": "Profilaxis invernal, inmunidad subóptima, o convalecencia. La equinácea, el propóleo y los beta-glucanos tienen evidencia B."
+      },
+      "prevencion": [
+        "Vitamina D",
+        "Zinc",
+        "Sueño",
+        "Ejercicio moderado",
+        "Dieta mediterránea",
+        "Lavado de manos",
+        "Vacunación"
+      ],
+      "cuandoConsultar": "Infecciones muy frecuentes o severas, falta de respuesta a tratamiento, o sospecha de inmunodeficiencia.",
+      "evidencia": "B",
+      "fuentes": [
+        "Cochrane review",
+        "EFSA"
+      ]
+    },
+    {
+      "id": "cicatrizacion",
+      "nombre": "Retraso de Cicatrización",
+      "definicion": "Alteración del proceso de reparación tisular que prolonga la resolución de heridas agudas o crónicas.",
+      "causas": [
+        "Diabetes",
+        "Déficit nutricional (zinc, vitamina C, proteína)",
+        "Infección",
+        "Isquemia",
+        "Corticoides",
+        "Edad"
+      ],
+      "sintomas": [
+        "Herida que no cierra",
+        "Tejido de granulación deficiente",
+        "Exudado",
+        "Infección secundaria"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Cura húmeda (hidrogeles)",
+          "Antibiótico tópico (si infección)",
+          "Desbridamiento",
+          "Cura de causa (diabetes)"
+        ],
+        "mecanismo": "Cura húmeda: acelera epitelización. Antibiótico tópico: previene infección. Desbridamiento: elimina tejido necrótico.",
+        "efectosSecundarios": [
+          "Antibiótico tópico: resistencias, dermatitis"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "propoleo",
+          "aloe_vera",
+          "centella",
+          "milenrama",
+          "agrimonia",
+          "alchemilla"
+        ],
+        "suplementos": [
+          "zinc",
+          "beta_glucanos",
+          "acido_hialuronico",
+          "l_arginina"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "graphites",
+          "ledum_palustre",
+          "calendula"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "tea_tree",
+          "incienso"
+        ],
+        "cuandoPreferir": "Heridas crónicas leves, úlceras diabéticas, o profilaxis pre-quirúrgica. El aloe vera, la centella y el propóleo tienen evidencia B."
+      },
+      "prevencion": [
+        "Vitamina C",
+        "Zinc",
+        "Proteína",
+        "Control glucémico",
+        "No fumar",
+        "Hidratación"
+      ],
+      "cuandoConsultar": "Herida que no cura en 4-6 semanas, signos de infección (exudado purulento, fiebre), o úlcera isquémica.",
+      "evidencia": "C",
+      "fuentes": [
+        "EWMA guidelines"
+      ]
+    },
+    {
+      "id": "declive_cognitivo",
+      "nombre": "Declive Cognitivo Leve",
+      "definicion": "Deterioro cognitivo objetivable que no interfiere con las actividades de la vida diaria. Factor de riesgo para demencia.",
+      "causas": [
+        "Edad",
+        "Factores vasculares",
+        "Déficit vitamínico (B12, D)",
+        "Estrés/cansancio",
+        "Fármacos (anticolinérgicos)",
+        "Privación de sueño"
+      ],
+      "sintomas": [
+        "Olvidos",
+        "Dificultad de concentración",
+        "Lentitud mental",
+        "Dificultad de palabra",
+        "Desorientación leve"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Sin fármaco aprobado para DCL",
+          "Inhibidores colinesterasa (solo Alzheimer)",
+          "Memantina (moderado-severo)"
+        ],
+        "mecanismo": "IChE: aumentan acetilcolina. Memantina: antagonista NMDA.",
+        "efectosSecundarios": [
+          "IChE: náuseas, bradicardia",
+          "Memantina: mareo"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ginkgo",
+          "rodiola",
+          "ginseng",
+          "schisandra",
+          "centella",
+          "bacopa"
+        ],
+        "suplementos": [
+          "hierro",
+          "vitamina_b12",
+          "boro",
+          "tirosina",
+          "fosfatidilserina"
+        ],
+        "homeopatia": [],
+        "aceites": [
+          "romero_aceite"
+        ],
+        "cuandoPreferir": "DCL, prevención cognitiva, o fatiga mental. El ginkgo (E A), la bacopa (E B) y los omega-3 tienen evidencia en cognición."
+      },
+      "prevencion": [
+        "Ejercicio",
+        "Dieta mediterránea",
+        "Estimulación cognitiva",
+        "Vitamina B12/D",
+        "Sueño",
+        "Vida social"
+      ],
+      "cuandoConsultar": "Deterioro rápido, repercusión funcional, o síntomas psiquiátricos (alucinaciones).",
+      "evidencia": "B",
+      "fuentes": [
+        "NICE guidelines",
+        "Cochrane review"
+      ]
+    }
+  ]
+}

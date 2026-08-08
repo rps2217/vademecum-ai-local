@@ -41,7 +41,7 @@ export type {
 // VERSIÓN DE LA DB
 // ============================================
 
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 // ============================================
 // INTERFACES DE ENTIDADES
@@ -135,6 +135,38 @@ export interface DbProtocol {
   tombstone: 0 | 1;
 }
 
+/** Patología / condición clínica */
+export interface DbPathology {
+  id: string;                          // coincide con tag de indicaciones (ej: "ansiedad")
+  nombre: string;                      // "Ansiedad generalizada"
+  definicion: string;                  // definición clínica
+  causas: string[];                    // factores etiológicos
+  sintomas: string[];                  // cuadro clínico
+  sistemas: BodySystem[];              // sistemas afectados
+  tratamientoAlopatico: {
+    primeraLinea: string[];            // tratamientos convencionales
+    mecanismo: string;                 // cómo funcionan
+    efectosSecundarios: string[];
+  };
+  tratamientoNatural: {
+    fitoterapia: string[];             // IDs de ingredientes
+    suplementos: string[];             // IDs de ingredientes
+    homeopatia: string[];              // IDs de ingredientes
+    aceites: string[];                 // IDs de ingredientes
+    cuandoPreferir: string;            // cuándo preferir natural
+  };
+  prevencion: string[];                // hábitos, dieta
+  cuandoConsultar: string;             // red flags
+  evidencia: EvidenceLevel;
+  fuentes: string[];
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  createdAt: number;
+  tombstone: 0 | 1;
+}
+
 /** Operación pendiente de sync (outbox pattern) */
 export interface DbOutboxOp {
   id: string;
@@ -205,6 +237,7 @@ export class VademecumDB extends Dexie {
   ingredients!: EntityTable<DbIngredient, 'id'>;
   synergies!: EntityTable<DbSynergy, 'id'>;
   protocols!: EntityTable<DbProtocol, 'id'>;
+  pathologies!: EntityTable<DbPathology, 'id'>;
   outbox!: EntityTable<DbOutboxOp, 'id'>;
   conflicts!: EntityTable<DbConflict, 'id'>;
   snapshots!: EntityTable<DbSnapshot, 'id'>;
@@ -216,12 +249,25 @@ export class VademecumDB extends Dexie {
     // ============================================
     // MIGRACIONES
     // ============================================
-    
+
     this.version(1).stores({
       products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
       ingredients: 'id, nombre, categoria, updatedAt, tombstone',
       synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
       protocols: 'id, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table, idempotencyKey',
+      conflicts: 'id, table, recordId, detectedAt, resolution',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+    });
+
+    // v2: añade tabla pathologies para contexto clínico de patologías
+    this.version(2).stores({
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
+      protocols: 'id, updatedAt, tombstone',
+      pathologies: 'id, nombre, updatedAt, tombstone',
       outbox: 'id, status, createdAt, table, idempotencyKey',
       conflicts: 'id, table, recordId, detectedAt, resolution',
       snapshots: 'id, type, timestamp',

@@ -14,7 +14,8 @@ import { Select } from '@/ui/Select';
 import { FilterChips, type ChipOption } from '@/ui/FilterChips';
 import { Search, Filter, Star, BookOpen, Leaf, FlaskConical, X, Brain, Heart, Wind, Shield, Bone, Sparkles, Droplet, Eye, Zap, Activity, Pill } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
-import type { DbIngredient, IngredientCategory, BodySystem, EvidenceLevel } from '@/db/schema';
+import { PathologyDetail } from '@/ui/PathologyDetail';
+import type { DbIngredient, DbPathology, IngredientCategory, BodySystem, EvidenceLevel } from '@/db/schema';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
 import { logger } from '@/lib/logger';
@@ -81,6 +82,19 @@ export function SearchPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
+  const [selectedPathology, setSelectedPathology] = useState<DbPathology | null>(null);
+
+  // Load all pathologies for quick lookup by indication
+  const allPathologies = useLiveQuery(() => db.pathologies.toArray(), []);
+  const pathologyByIndication = useMemo(() => {
+    const m = new Map<string, DbPathology>();
+    if (allPathologies) {
+      for (const p of allPathologies) {
+        m.set(p.id, p);
+      }
+    }
+    return m;
+  }, [allPathologies]);
 
   // Dynamically build indication chips from the DB
   const allIngredients = useLiveQuery(() => db.ingredients.toArray(), []);
@@ -268,6 +282,16 @@ export function SearchPage() {
               </button>
             </Badge>
           )}
+          {/* Contexto clínico de la patología */}
+          {indication && pathologyByIndication.has(indication) && (
+            <button
+              onClick={() => setSelectedPathology(pathologyByIndication.get(indication)!)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 border border-primary/30 transition-colors"
+            >
+              <Pill className="w-4 h-4" />
+              Ver contexto clínico
+            </button>
+          )}
         </div>
       )}
 
@@ -399,6 +423,21 @@ export function SearchPage() {
           onViewSynergies={(id) => {
             setSelectedIngredient(null);
             navigate(`/synergies?ingredient=${id}`);
+          }}
+        />
+      )}
+
+      {/* Pathology Detail Modal */}
+      {selectedPathology && (
+        <PathologyDetail
+          pathology={selectedPathology}
+          onClose={() => setSelectedPathology(null)}
+          onIngredientClick={(id) => {
+            const ing = allIngredients?.find(i => i.id === id);
+            if (ing) {
+              setSelectedPathology(null);
+              setSelectedIngredient(ing);
+            }
           }}
         />
       )}

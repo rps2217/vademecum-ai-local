@@ -9,6 +9,7 @@ export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 export { Badge } from './Badge';
 export { FilterChips, type ChipOption } from './FilterChips';
 export { Modal, AlertDialog } from './Modal';
+export { PathologyDetail } from './PathologyDetail';
 export { StatsCard } from './StatsCard';
 export { PageLoader } from './PageLoader';
 export { RouteError } from './RouteError';
