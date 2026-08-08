@@ -56,7 +56,9 @@ export function SynergiesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>('graph');
   const [selectedSynergy, setSelectedSynergy] = useState<DbSynergy | null>(null);
-  const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(null);
+  const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(
+    searchParams.get('ingredient')
+  );
 
   useEffect(() => {
     async function loadData() {
@@ -84,19 +86,29 @@ export function SynergiesPage() {
   }, []);
 
   const filteredSynergies = useMemo(() => {
-    if (!query) return synergies;
-    const q = query.toLowerCase();
     return synergies.filter((s) => {
-      const nameA = ingredients[s.ingredienteA] || s.ingredienteA;
-      const nameB = ingredients[s.ingredienteB] || s.ingredienteB;
-      return (
-        nameA.toLowerCase().includes(q) ||
-        nameB.toLowerCase().includes(q) ||
-        s.tipo.toLowerCase().includes(q) ||
-        (s.mecanismo && s.mecanismo.toLowerCase().includes(q))
-      );
+      // Filtro por ingrediente seleccionado (desde URL o clic en nodo)
+      if (selectedIngredientId) {
+        const isInvolved =
+          s.ingredienteA === selectedIngredientId ||
+          s.ingredienteB === selectedIngredientId;
+        if (!isInvolved) return false;
+      }
+      // Filtro por texto de búsqueda
+      if (query) {
+        const q = query.toLowerCase();
+        const nameA = ingredients[s.ingredienteA] || s.ingredienteA;
+        const nameB = ingredients[s.ingredienteB] || s.ingredienteB;
+        return (
+          nameA.toLowerCase().includes(q) ||
+          nameB.toLowerCase().includes(q) ||
+          s.tipo.toLowerCase().includes(q) ||
+          (s.mecanismo && s.mecanismo.toLowerCase().includes(q))
+        );
+      }
+      return true;
     });
-  }, [synergies, query, ingredients]);
+  }, [synergies, query, ingredients, selectedIngredientId]);
 
   const getTypeConfig = (tipo: string) => {
     return TYPE_CONFIG[tipo] || TYPE_CONFIG.interaccion;
@@ -156,6 +168,26 @@ export function SynergiesPage() {
         onChange={setQuery}
         placeholder="Buscar por ingrediente o mecanismo..."
       />
+
+      {/* Active ingredient filter banner */}
+      {selectedIngredientId && (
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary/5 border border-primary/20">
+          <Link2 className="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
+          <span className="text-sm text-muted-foreground">Sinergias de</span>
+          <span className="text-sm font-semibold text-foreground">
+            {ingredients[selectedIngredientId] || selectedIngredientId}
+          </span>
+          <Badge variant="secondary" className="text-xs">
+            {filteredSynergies.length}
+          </Badge>
+          <button
+            onClick={() => setSelectedIngredientId(null)}
+            className="ml-auto text-xs text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-2 py-1"
+          >
+            ✕ Quitar filtro
+          </button>
+        </div>
+      )}
 
       {/* Content based on view mode */}
       {isLoading ? (
