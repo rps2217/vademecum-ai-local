@@ -4,7 +4,7 @@
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 69,
+    "total": 92,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -4744,6 +4744,1204 @@
         "mucositis",
         "miedo",
         "bucal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "allium_cepa",
+      "nombre": "Allium Cepa",
+      "nombresAlternativos": [
+        "Cebolla",
+        "Allium cepa",
+        "Cebolla (dilución)",
+        "Onion homeopático"
+      ],
+      "nombreCientifico": "Allium cepa (dilución homeopática)",
+      "familia": "Amaryllidaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "ocular"
+      ],
+      "indicaciones": [
+        "rinitis alérgica",
+        "coryza",
+        "lagrimeo",
+        "alergias"
+      ],
+      "descripcion": "Remedio de la coryza (secreción nasal acuosa ardiente) y lagrimeo suave. Clásico para alergias primaverales.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la mucosa nasal (secreción acuosa ardiente) y el lagrimeo suave.",
+      "nivelEvidencia": "C",
+      "parteUsada": "cebolla fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 5CH/9CH/15CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual/estacional",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "coryza",
+        "alergias",
+        "rinitis",
+        "lagrimeo",
+        "estacional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "euphrasia",
+      "nombre": "Euphrasia",
+      "nombresAlternativos": [
+        "Euphrasia officinalis",
+        "Eufrasia homeopática",
+        "Eyebright homeopático",
+        "Hierba de los ojos"
+      ],
+      "nombreCientifico": "Euphrasia officinalis (dilución homeopática)",
+      "familia": "Orobanchaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "ocular",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "conjuntivitis",
+        "lagrimeo ardiente",
+        "fatiga visual",
+        "coryza suave"
+      ],
+      "descripcion": "Remedio de los ojos: lagrimeo ardiente y secreción nasal suave (opuesto a Allium cepa).",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la conjuntiva (lagrimeo ardiente) y la mucosa nasal suave.",
+      "nivelEvidencia": "C",
+      "parteUsada": "planta fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 5CH/9CH/15CH",
+        "Gotas",
+        "Colirio homeopático"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual/estacional",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Colirio estéril"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "ocular",
+        "lagrimeo",
+        "conjuntivitis",
+        "alergias",
+        "coryza"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "hepar_sulphuris",
+      "nombre": "Hepar Sulphuris Calcareum",
+      "nombresAlternativos": [
+        "Hepar sulph",
+        "Sulfato de calcio impuro",
+        "Hepar sulphuris",
+        "Hígado de azufre"
+      ],
+      "nombreCientifico": "Sulfato de calcio (concha de ostra+azufre, dilución homeopática)",
+      "familia": "Mineral (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "dermatologico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "faringitis",
+        "abscesos",
+        "tos",
+        "hipersensibilidad",
+        "supuraciones"
+      ],
+      "descripcion": "Remedio de la hipersensibilidad (frío, ruido, dolor) y las supuraciones (pus sensible). Tos con frío.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la hipersensibilidad al frío y las supuraciones dolorosas.",
+      "nivelEvidencia": "C",
+      "parteUsada": "sulfato de calcio (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "hipersensibilidad",
+        "supuración",
+        "tos",
+        "frío",
+        "abscesos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "spongia",
+      "nombre": "Spongia Tosta",
+      "nombresAlternativos": [
+        "Spongia",
+        "Esponja tostada",
+        "Spongia tosta",
+        "Esponja de mar"
+      ],
+      "nombreCientifico": "Esponja de mar tostada (dilución homeopática)",
+      "familia": "Animal (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "cardiovascular",
+        "respiratorio",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "bocio",
+        "tos seca",
+        "palpitaciones",
+        "asma cardíaca"
+      ],
+      "descripcion": "Remedio de la tos seca 'sierra' y el bocio. Contiene yodo natural. Palpitaciones con respiración corta.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la tiroides (bocio), la tos seca y las palpitaciones.",
+      "nivelEvidencia": "C",
+      "parteUsada": "esponja de mar tostada (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "bocio",
+        "tos seca",
+        "palpitaciones",
+        "yodo",
+        "cardíaco"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "phytolacca",
+      "nombre": "Phytolacca",
+      "nombresAlternativos": [
+        "Phytolacca decandra",
+        "Hierba carmín",
+        "Poke root",
+        "Phytolacca",
+        "Granalla"
+      ],
+      "nombreCientifico": "Phytolacca decandra (dilución homeopática)",
+      "familia": "Phytolaccaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "amigdalitis",
+        "adenopatías",
+        "mastitis",
+        "dolor de garganta irradiado"
+      ],
+      "descripcion": "Remedio de la garganta oscura-vinosa y las adenopatías. Mastitis con dolor irradiado a todo el cuerpo.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la amígdala oscura-vinosa y las adenopatías.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-2 semanas supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "amigdalitis",
+        "adenopatías",
+        "mastitis",
+        "garganta",
+        "linfático"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "podophyllum",
+      "nombre": "Podophyllum",
+      "nombresAlternativos": [
+        "Podophyllum peltatum",
+        "May apple",
+        "Pie de ganso",
+        "Podophyllum",
+        "Mandrágora americana"
+      ],
+      "nombreCientifico": "Podophyllum peltatum (dilución homeopática)",
+      "familia": "Berberidaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "diarrea",
+        "función hepática",
+        "alternancia diarrea/estreñimiento",
+        "prolapso rectal"
+      ],
+      "descripcion": "Remedio de la diarrea acuosa profusa e involuntaria y la función hepatobiliar.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la diarrea profusa y el hígado.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "diarrea",
+        "hepático",
+        "bilis",
+        "prolapso",
+        "alternancia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "colchicum",
+      "nombre": "Colchicum",
+      "nombresAlternativos": [
+        "Colchicum autumnale",
+        "Cólchico",
+        "Hijo sin padre",
+        "Colchicum",
+        "Autumn crocus"
+      ],
+      "nombreCientifico": "Colchicum autumnale (dilución homeopática)",
+      "familia": "Liliaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "gota",
+        "dolor articular",
+        "náuseas",
+        "olor a cocina"
+      ],
+      "descripcion": "Remedio de la gota y los dolores articulares otoñales. Náuseas por oler comida.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la gota y la hipersensibilidad olfativa.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla/bulbo fresco (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta muy tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "gota",
+        "dolor articular",
+        "otoño",
+        "náuseas",
+        "olar"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "conium",
+      "nombre": "Conium",
+      "nombresAlternativos": [
+        "Conium maculatum",
+        "Cicuta",
+        "Conium",
+        "Hemlock",
+        "Ciguë"
+      ],
+      "nombreCientifico": "Conium maculatum (dilución homeopática)",
+      "familia": "Apiaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "inmune",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "vértigo",
+        "temblor",
+        "adenopatías",
+        "tumores mamarios (tradicional)"
+      ],
+      "descripcion": "Remedio del vértigo al mover la cabeza y los temblores. Indicado en adenopatías y tumores mamarios (tradicional).",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el vértigo posicional, el temblor y los ganglios.",
+      "nivelEvidencia": "C",
+      "parteUsada": "planta fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta muy tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "vértigo",
+        "temblor",
+        "adenopatías",
+        "tumores",
+        "movimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "baryta_carbonica",
+      "nombre": "Baryta Carbonica",
+      "nombresAlternativos": [
+        "Baryta carb",
+        "Carbonato de bario",
+        "Barium carbonate",
+        "Baryta carbónica"
+      ],
+      "nombreCientifico": "Carbonato de bario (dilución homeopática)",
+      "familia": "Mineral (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "amigdalitis crónica",
+        "retraso infantil",
+        "demencia",
+        "hipertrofia prostática"
+      ],
+      "descripcion": "Remedio de los extremos de la vida: niños con retraso y ancianos con demencia. Adenopatías y amígdalas.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el retraso en el desarrollo y la demencia senil.",
+      "nivelEvidencia": "C",
+      "parteUsada": "carbonato de bario (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Meses",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "retraso",
+        "demencia",
+        "amigdalitis",
+        "próstata",
+        "extremos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "cina",
+      "nombre": "Cina",
+      "nombresAlternativos": [
+        "Cina maritima",
+        "Artemisia cina",
+        "Ajenjo marítimo",
+        "Cina",
+        "Wormseed"
+      ],
+      "nombreCientifico": "Artemisia cina (dilución homeopática)",
+      "familia": "Asteraceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "parásitos infantiles",
+        "irritabilidad",
+        "rechinar de dientes",
+        "prurito anal"
+      ],
+      "descripcion": "Remedio de los trastornos por parásitos en niños: irritabilidad, rechinar de dientes, prurito anal.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre los trastornos del niño irritable con prurito anal.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flores no abiertas (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "parásitos",
+        "niños",
+        "irritabilidad",
+        "bruxismo",
+        "prurito anal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "sticta",
+      "nombre": "Sticta Pulmonaria",
+      "nombresAlternativos": [
+        "Sticta",
+        "Lobaria pulmonaria",
+        "Líquen pulmón",
+        "Sticta pulmonaria",
+        "Lungwort lichen"
+      ],
+      "nombreCientifico": "Sticta pulmonaria (dilución homeopática)",
+      "familia": "Liquen (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "coryza",
+        "tos seca",
+        "cefalea sinusal",
+        "irritación nasal"
+      ],
+      "descripcion": "Remedio de la coryza seca (irritación nasal) y la cefalea sinusal. Tos seca, hueca, nocturna.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la secreción nasal seca y la cefalea sinusal.",
+      "nivelEvidencia": "C",
+      "parteUsada": "liquen (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "coryza seca",
+        "cefalea sinusal",
+        "tos seca",
+        "irritación nasal",
+        "respiratorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "rumex",
+      "nombre": "Rumex Crispus",
+      "nombresAlternativos": [
+        "Rumex",
+        "Acedera rizada",
+        "Rumex crispus",
+        "Yellow dock homeopático",
+        "Lengua de vaca"
+      ],
+      "nombreCientifico": "Rumex crispus (dilución homeopática)",
+      "familia": "Polygonaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "tos seca",
+        "tos por aire frío",
+        "prurito",
+        "urticaria"
+      ],
+      "descripcion": "Remedio de la tos seca desencadenada por inspirar aire frío. Prurito al desvestirse.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la tos por aire frío y el prurito al desnudarse.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "tos seca",
+        "aire frío",
+        "prurito",
+        "urticaria",
+        "respiratorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "sarsaparilla",
+      "nombre": "Sarsaparilla (Homeopática)",
+      "nombresAlternativos": [
+        "Smilax aspera",
+        "Zarzaparrilla homeopática",
+        "Sarsaparilla",
+        "Smilax",
+        "Zarza"
+      ],
+      "nombreCientifico": "Smilax (dilución homeopática)",
+      "familia": "Smilacaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "urinario",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cálculos",
+        "cistitis",
+        "orina al final",
+        "piel",
+        "psoriasis"
+      ],
+      "descripcion": "Remedio de los trastornos urinarios con dolor al final de la micción. Cálculos y psoriasis.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el dolor al final de la micción y los cálculos.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "cálculos",
+        "cistitis",
+        "orina final",
+        "psoriasis",
+        "piel"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "veratrum_album",
+      "nombre": "Veratrum Album",
+      "nombresAlternativos": [
+        "Veratrum",
+        "Veratro blanco",
+        "Veratrum album",
+        "White hellebore",
+        "Elebor blanco"
+      ],
+      "nombreCientifico": "Veratrum album (dilución homeopática)",
+      "familia": "Liliaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "diarrea",
+        "cólera",
+        "colapso",
+        "vómitos",
+        "sudor frío"
+      ],
+      "descripcion": "Remedio del colapso con diarrea acuosa, vómitos y sudor frío. Sed de agua fría. Crisis cólera.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el colapso con sudor frío y la diarrea profusa.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta muy tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "colapso",
+        "diarrea",
+        "vómitos",
+        "sudor frío",
+        "cólera"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "stramonium",
+      "nombre": "Stramonium",
+      "nombresAlternativos": [
+        "Datura stramonium",
+        "Estramonio",
+        "Toloache",
+        "Stramonium",
+        "Jimsonweed"
+      ],
+      "nombreCientifico": "Datura stramonium (dilución homeopática)",
+      "familia": "Solanaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "terrores nocturnos",
+        "delirio",
+        "ansiedad",
+        "convulsiones",
+        "miedo a la oscuridad"
+      ],
+      "descripcion": "Remedio de los terrores nocturnos y el delirio con miedo a la oscuridad y la soledad.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre los terrores nocturnos y el delirio violento.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja fresca/semilla (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "terrores nocturnos",
+        "delirio",
+        "miedo",
+        "oscuridad",
+        "convulsiones"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "mezereum",
+      "nombre": "Mezereum",
+      "nombresAlternativos": [
+        "Daphne mezereum",
+        "Laureola",
+        "Mezereum",
+        "Mattezoon",
+        "Turco"
+      ],
+      "nombreCientifico": "Daphne mezereum (dilución homeopática)",
+      "familia": "Thymelaeaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "neuralgia",
+        "dolor óseo",
+        "eccema",
+        "herpes",
+        "prurito"
+      ],
+      "descripcion": "Remedio de las neuralgias (dolor óseo) y el eccema con costras y prurito intenso.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la neuralgia ósea y el eccema con costras.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "neuralgia",
+        "dolor óseo",
+        "eccema",
+        "herpes",
+        "costras"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "digitalis",
+      "nombre": "Digitalis",
+      "nombresAlternativos": [
+        "Digitalis purpurea",
+        "Dedalera",
+        "Digitalis",
+        "Foxglove",
+        "Dedo"
+      ],
+      "nombreCientifico": "Digitalis purpurea (dilución homeopática)",
+      "familia": "Plantaginaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "palpitaciones",
+        "bradicicardia",
+        "corazón",
+        "hígado congestivo"
+      ],
+      "descripcion": "Remedio del corazón con pulso lento e irregular. Palpitaciones al moverse. Hígado congestivo.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el pulso lento e irregular y la insuficiencia cardíaca.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia (digitálicos)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Digitálicos (Digoxina)",
+        "Diuréticos"
+      ],
+      "tags": [
+        "corazón",
+        "bradicicardia",
+        "pulso",
+        "hígado congestivo",
+        "cardíaco"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "lobelia_inflata",
+      "nombre": "Lobelia Inflata",
+      "nombresAlternativos": [
+        "Lobelia",
+        "Tabaco indio",
+        "Lobelia inflata",
+        "Indian tobacco",
+        "Asthma weed"
+      ],
+      "nombreCientifico": "Lobelia inflata (dilución homeopática)",
+      "familia": "Campanulaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "asma",
+        "disnea",
+        "tabaquismo",
+        "náuseas"
+      ],
+      "descripcion": "Remedio del asma con disnea y opresión. Antídoto del tabaco. Náuseas profundas.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el asma con opresión y la disnea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "planta fresca (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "asma",
+        "disnea",
+        "tabaco",
+        "náuseas",
+        "opresión"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "fluorica_acidica",
+      "nombre": "Acido Fluorhídrico (Fluorica Acidum)",
+      "nombresAlternativos": [
+        "Fluorica acidum",
+        "Acido fluorhídrico",
+        "Fluorica",
+        "HF",
+        "Fluoruro"
+      ],
+      "nombreCientifico": "Ácido fluorhídrico (dilución homeopática)",
+      "familia": "Ácido (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "dermatologico",
+        "musculoesqueletico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "fistulas",
+        "varices",
+        "deformación ósea",
+        "cicatrices hundidas",
+        "uñas"
+      ],
+      "descripcion": "Remedio de las fistulas y las deformaciones óseas. Cicatrices hundidas. Destructivo.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre las fistulas, las varices y las deformaciones óseas.",
+      "nivelEvidencia": "C",
+      "parteUsada": "ácido fluorhídrico (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "fistulas",
+        "varices",
+        "óseo",
+        "cicatrices",
+        "destructivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "platina",
+      "nombre": "Platina (Platino)",
+      "nombresAlternativos": [
+        "Platinum metallicum",
+        "Platino",
+        "Platina",
+        "Pt",
+        "Platinum"
+      ],
+      "nombreCientifico": "Platino metálico (dilución homeopática)",
+      "familia": "Metal (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "menstrual",
+        "óvarios",
+        "orgullo",
+        "ansiedad",
+        "histeria"
+      ],
+      "descripcion": "Remedio de la mujer con dolor menstrual y ovarios. Sensación de superioridad/desprecio.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el dolor menstrual y los ovarios.",
+      "nivelEvidencia": "C",
+      "parteUsada": "platino metálico (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "menstrual",
+        "óvarios",
+        "orgullo",
+        "histeria",
+        "nervioso"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "plumbum",
+      "nombre": "Plumbum Metallicum (Plomo)",
+      "nombresAlternativos": [
+        "Plumbum",
+        "Plomo homeopático",
+        "Plumbum metallicum",
+        "Lead",
+        "Saturnismo homeopático"
+      ],
+      "nombreCientifico": "Plomo metálico (dilución homeopática)",
+      "familia": "Metal (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "estreñimiento",
+        "neuropatía",
+        "muñeca caída",
+        "neuritis",
+        "cómolico"
+      ],
+      "descripcion": "Remedio del estreñimiento con heces en bolas y la neuropatía (muñeca caída). Cólico abdominal.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el estreñimiento y la neuritis periférica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "plomo metálico (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "estreñimiento",
+        "neuropatía",
+        "neuritis",
+        "cólico",
+        "plomo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "sabadilla",
+      "nombre": "Sabadilla",
+      "nombresAlternativos": [
+        "Schoenocaulon officinale",
+        "Sabadilla",
+        "Sabadilla officinarum",
+        "Cebadilla",
+        "Veratrum sabadilla"
+      ],
+      "nombreCientifico": "Schoenocaulon officinale (dilución homeopática)",
+      "familia": "Liliaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "rinitis alérgica",
+        "estornudos en salva",
+        "coryza",
+        "picor de garganta"
+      ],
+      "descripcion": "Remedio de los estornudos en salva y el picor de garganta. Rinitis alérgica espasmódica.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre los estornudos en salva y el picor faríngeo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual/estacional",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "estornudos",
+        "rinitis",
+        "alergias",
+        "picor",
+        "coryza"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "ipecacuanha",
+      "nombre": "Ipecacuanha",
+      "nombresAlternativos": [
+        "Ipecac",
+        "Cephaelis ipecacuanha",
+        "Ipecacuana",
+        "Raíz de ipecac",
+        "Ipecacuanha"
+      ],
+      "nombreCientifico": "Cephaelis ipecacuanha (dilución homeopática)",
+      "familia": "Rubiaceae (homeopático)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "tos",
+        "asma",
+        "náuseas",
+        "vómitos",
+        "hemorragia"
+      ],
+      "descripcion": "Remedio de las náuseas persistentes con tos y asma. Tos con sibilancias y expectoración difícil.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre las náuseas persistentes y la tos con sibilancias.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz (dinamización CH)",
+      "formasPresentacion": [
+        "Glóbulos 9CH/15CH/30CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Uso puntual supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada",
+        "Planta tóxica a dosis materia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "náuseas",
+        "tos",
+        "asma",
+        "vómitos",
+        "sibilancias"
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01",

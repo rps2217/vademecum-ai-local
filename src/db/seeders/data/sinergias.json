@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 414,
+    "total": 485,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -10418,6 +10418,1743 @@
       ],
       "sistemas": [
         "endocrino"
+      ]
+    },
+    {
+      "id": "sin_euphrasia_fito_bilberry_ocular",
+      "ingredienteA": "euphrasia_fito",
+      "ingredienteB": "bilberry",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo ocular: la eufrasia (conjuntiva) y el mirtilo (rodopsina).",
+      "beneficios": [
+        "Fatiga visual",
+        "Conjuntivitis",
+        "Salud macular"
+      ],
+      "precauciones": [
+        "Colirio: uso estéril"
+      ],
+      "mecanismo": "La eufrasia es antiinflamatoria conjuntival; las antocianinas del mirtilo regeneran la rodopsina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_euphrasia_fito_euphrasia_homeo",
+      "ingredienteA": "euphrasia_fito",
+      "ingredienteB": "euphrasia",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Doble acción ocular: eufrasia fitoterapia (colirio) + homeopatía.",
+      "beneficios": [
+        "Conjuntivitis",
+        "Lagrimeo",
+        "Irritación ocular"
+      ],
+      "precauciones": [
+        "Colirio estéril",
+        "Consulta homeopática"
+      ],
+      "mecanismo": "La fitoterapia actúa tópicamente; la homeopatía actúa sobre el terreno ocular.",
+      "categorias": [
+        "fitoterapia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_feverfew_magnesio_migraña",
+      "ingredienteA": "feverfew",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo antimigraña: la matricaria (vasodilatación) y el magnesio (tensión vascular).",
+      "beneficios": [
+        "Profilaxis migraña",
+        "Reduce frecuencia",
+        "Reduce intensidad"
+      ],
+      "precauciones": [
+        "Suspender feverfew gradualmente"
+      ],
+      "mecanismo": "El partenólido inhibe la vasodilatación meníngea; el magnesio relaja el músculo liso vascular.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_bilberry_luteina_ocular",
+      "ingredienteA": "bilberry",
+      "ingredienteB": "luteina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo ocular: el mirtilo (rodopsina) y la luteína (mácula).",
+      "beneficios": [
+        "Salud macular",
+        "Visión nocturna",
+        "Fatiga visual"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Las antocianinas del mirtilo aceleran la regeneración de la rodopsina; la luteína protege la mácula.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_bilberry_ginkgo_microcirculacion",
+      "ingredienteA": "bilberry",
+      "ingredienteB": "ginkgo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo microcirculatorio: el mirtilo (antocianinas) y el ginkgo (ginkgólidos).",
+      "beneficios": [
+        "Mejora microcirculación",
+        "Ocular",
+        "Cognitivo"
+      ],
+      "precauciones": [
+        "Anticoagulantes (ginkgo)"
+      ],
+      "mecanismo": "Las antocianinas del mirtilo y los ginkgólidos mejoran la microcirculación y el flujo sanguíneo.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_ammi_visnaga_cola_caballo_cálculos",
+      "ingredienteA": "ammi_visnaga",
+      "ingredienteB": "cola_caballo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo renal: la visnaga (relajante ureteral) y la cola de caballo (diurético).",
+      "beneficios": [
+        "Cólico renal",
+        "Cálculos",
+        "Eliminación de arenillas"
+      ],
+      "precauciones": [
+        "No en embarazo"
+      ],
+      "mecanismo": "La khellina relaja el uréter; la cola de caballo aumenta la diuresis (lavado).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_viburnum_opulus_cimicifuta_menstrual",
+      "ingredienteA": "viburnum_opulus",
+      "ingredienteB": "vitex",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo menstrual: el cramp bark (espasmos) y el vitex (hormonal).",
+      "beneficios": [
+        "Reduce cólicos menstruales",
+        "Regula ciclo",
+        "SPM"
+      ],
+      "precauciones": [
+        "Embarazo: evitar (viburnum)"
+      ],
+      "mecanismo": "El viburnum relaja el útero; el vitex estimula la progesterona. Acción dual menstrual.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_collinsonia_castano_hemorroides",
+      "ingredienteA": "collinsonia",
+      "ingredienteB": "castano_indias",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hemorroidal: la collinsonia y el castaño de indias.",
+      "beneficios": [
+        "Hemorroides",
+        "Tono venoso pélvico",
+        "Varices"
+      ],
+      "precauciones": [
+        "Anticoagulantes (castaño)"
+      ],
+      "mecanismo": "La collinsonia mejora el tono venoso pélvico; las escinas del castaño reducen la permeabilidad capilar.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_skullcap_valeriana_nervina",
+      "ingredienteA": "skullcap",
+      "ingredienteB": "valeriana",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo nervina: la escutelaria y la valeriana para ansiedad e insomnio.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Mejora sueño",
+        "Antiespasmódico"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "Los flavonoides de la escutelaria y los valepotriatos modulan GABA; sinergia nervina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_baptisia_equinacea_inmune",
+      "ingredienteA": "baptisia",
+      "ingredienteB": "equinacea",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunoestimulante: la baptisia y la equinacea para infecciones.",
+      "beneficios": [
+        "Inmunidad",
+        "Infecciones bacterianas",
+        "Faringitis"
+      ],
+      "precauciones": [
+        "Autoinmunidad (teórico)",
+        "Uso corto"
+      ],
+      "mecanismo": "La baptisia y la equinacea estimulan la inmunidad innata; acción antimicrobiana sinérgica.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_grindelia_hiedra_respiratorio",
+      "ingredienteA": "grindelia",
+      "ingredienteB": "hiedra",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo respiratorio: la grindelia (antiespasmódica) y la hiedra (mucolítica).",
+      "beneficios": [
+        "Asma",
+        "Bronquitis",
+        "Tos"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Los diterpenos de la grindelia son antiespasmódicos; las saponinas de la hiedra son mucolíticas.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_yerba_mate_guarana_energia",
+      "ingredienteA": "yerba_mate",
+      "ingredienteB": "ginseng",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo energético: el mate (cafeína) y el ginseng (adaptógeno).",
+      "beneficios": [
+        "Energía",
+        "Rendimiento",
+        "Concentración"
+      ],
+      "precauciones": [
+        "Insomnio",
+        "Taquicardia",
+        "Hipertensión (ginseng)"
+      ],
+      "mecanismo": "La cafeína del mate bloquea la adenosina; los ginsenósidos modulan el eje HHA. Sinergia estimulante.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_niacin_omega3_colesterol",
+      "ingredienteA": "niacin",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo lipídico: la niacina (HDL/LDL) y el omega-3 (triglicéridos).",
+      "beneficios": [
+        "Mejora perfil lipídico completo",
+        "Cardiovascular"
+      ],
+      "precauciones": [
+        "Estatinas: riesgo hepático (niacina)",
+        "Anticoagulantes (omega-3)"
+      ],
+      "mecanismo": "La niacina reduce LDL y aumenta HDL; el omega-3 reduce triglicéridos. Cobertura lipídica completa.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_benfotiamina_alc_lipoico_neuropatia",
+      "ingredienteA": "benfotiamina",
+      "ingredienteB": "alfa_lipoico",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo neuroprotector: la benfotiamina (AGEs) y el ácido lipoico (antioxidante/mitocondrial).",
+      "beneficios": [
+        "Neuropatía diabética",
+        "Antioxidante",
+        "Mitocondrial"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La benfotiamina reduce los AGEs; el ácido lipoico es antioxidante mitocondrial. Sinergia neuroprotectora.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_benfotiamina_carnitina_diabetico",
+      "ingredienteA": "benfotiamina",
+      "ingredienteB": "l_carnitina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo metabólico: la benfotiamina (AGEs) y la carnitina (mitocondrias).",
+      "beneficios": [
+        "Neuropatía diabética",
+        "Energía mitocondrial",
+        "Glucosa"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La benfotiamina reduce los AGEs; la carnitina mejora el metabolismo mitocondrial de ácidos grasos.",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_nmn_resveratrol_longevidad",
+      "ingredienteA": "nmn",
+      "ingredienteB": "resveratrol",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de longevidad: el NMN (NAD+) y el resveratrol (SIRT1).",
+      "beneficios": [
+        "Activación de sirtuinas",
+        "Función mitocondrial",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados",
+        "Investigación emergente"
+      ],
+      "mecanismo": "El NMN aumenta el NAD+; el resveratrol activa SIRT1 (dependiente de NAD+). Sinergia longevidad.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_nmn_pqq_mitocondrial",
+      "ingredienteA": "nmn",
+      "ingredienteB": "pqq",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo mitocondrial: el NMN (NAD+) y el PQQ (biogénesis).",
+      "beneficios": [
+        "Biogénesis + función mitocondrial",
+        "Energía",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El NMN aumenta el NAD+ (función); el PQQ induce la biogénesis mitocondrial (PGC-1α).",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_ergotioneina_glutation_antioxidante",
+      "ingredienteA": "ergotioneina",
+      "ingredienteB": "glutation",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antioxidante: la ergotioneína (mitocondrial) y el glutatión (citoplasma).",
+      "beneficios": [
+        "Antioxidante dual",
+        "Mitocondrial",
+        "Neuroprotección"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La ergotioneína se acumula en mitocondrias; el glutatión es el antioxidante citoplasmático principal.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_espermidina_fisetina_autofagia",
+      "ingredienteA": "espermidina",
+      "ingredienteB": "fisetina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de longevidad: la espermidina (autofagia) y la fisetina (senolítico).",
+      "beneficios": [
+        "Autofagia + senolisis",
+        "Longevidad",
+        "Neuroprotección"
+      ],
+      "precauciones": [
+        "Bien tolerados",
+        "Investigación emergente"
+      ],
+      "mecanismo": "La espermidina induce la autofagia; la fisetina elimina células senescentes (senolítico).",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_hidroxitirosol_olivo_polifenoles",
+      "ingredienteA": "hidroxitirosol",
+      "ingredienteB": "olivo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo de polifenoles del olivo: el hidroxitirosol y la hoja de olivo.",
+      "beneficios": [
+        "Protección LDL",
+        "Cardiovascular",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El hidroxitirosol protege el LDL; la oleuropeína del olivo vasodilata y es antioxidante.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_l_carnosina_beta_alanina",
+      "ingredienteA": "l_carnosina",
+      "ingredienteB": "beta_alanina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo de la carnosina: la β-alanina es limitante y la carnosina es el producto final.",
+      "beneficios": [
+        "Maximiza carnosina muscular",
+        "Buffer ácido láctico",
+        "Rendimiento"
+      ],
+      "precauciones": [
+        "Parestesia (β-alanina)"
+      ],
+      "mecanismo": "La β-alanina es el aminoácido limitante para la síntesis de carnosina; la carnosina suplementaria aporta directo.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_citicolina_fosfatidilcolina_cognitivo",
+      "ingredienteA": "citicolina",
+      "ingredienteB": "fosfatidilcolina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cognitivo: la citicolina (CDP-colina) y la fosfatidilcolina (membrana).",
+      "beneficios": [
+        "Función cognitiva",
+        "Membrana neuronal",
+        "Acetilcolina"
+      ],
+      "precauciones": [
+        "Insomnio si de noche"
+      ],
+      "mecanismo": "La citicolina aporta colina+citidina; la fosfatidilcolina es estructural de la membrana neuronal.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_huperzina_a_citicolina_alzheimer",
+      "ingredienteA": "huperzina_a",
+      "ingredienteB": "citicolina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo colinérgico: la huperzina (inhibe AchE) y la citicolina (aumenta acetilcolina).",
+      "beneficios": [
+        "Memoria",
+        "Alzheimer (coadyuvante)",
+        "Cognitivo"
+      ],
+      "precauciones": [
+        "Bradicicardia",
+        "Asma: precaución",
+        "Supervisión médica"
+      ],
+      "mecanismo": "La huperzina inhibe la acetilcolinesterasa; la citicolina aumenta la síntesis de acetilcolina. Sinergia colinérgica.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_d_glucarato_dim_detox_estrogenico",
+      "ingredienteA": "d_glucarato",
+      "ingredienteB": "dim",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo detox estrogénico: el D-glucarato (fase II) y el DIM (metabolismo estrogénico).",
+      "beneficios": [
+        "Eliminación de estrógenos",
+        "Detox hepático",
+        "SPM/SOP"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El D-glucarato inhibe la β-glucuronidasa (fase II); el DIM canaliza hacia 2-OH. Sinergia estrogénica.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_allium_cepa_euphrasia_alergias",
+      "ingredienteA": "allium_cepa",
+      "ingredienteB": "euphrasia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia clásica para alergias: Allium cepa (secreción nasal ardiente) y Euphrasia (lagrimeo ardiente).",
+      "beneficios": [
+        "Rinitis alérgica",
+        "Conjuntivitis alérgica",
+        "Cobertura nasal+ocular"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Allium cubre la secreción nasal ardiente; la Euphrasia el lagrimeo ardiente.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_hepar_sulphuris_silicea_abscesos",
+      "ingredienteA": "hepar_sulphuris",
+      "ingredienteB": "silicea",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para supuraciones: el Hepar sulph y la silicea.",
+      "beneficios": [
+        "Abscesos",
+        "Fístulas",
+        "Supuraciones crónicas",
+        "Adenopatías"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Hepar sulph cubre la hipersensibilidad y el pus; la silicea expulsa cuerpos extraños.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_hepar_sulphuris_mercurius_garganta",
+      "ingredienteA": "hepar_sulphuris",
+      "ingredienteB": "mercurius",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para faringitis y amigdalitis: el Hepar sulph y el Mercurius.",
+      "beneficios": [
+        "Faringitis",
+        "Amigdalitis",
+        "Supuraciones bucales"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Hepar sulph cubre la hipersensibilidad; el Mercurius la boca y la garganta.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_spongia_digitalis_corazon",
+      "ingredienteA": "spongia",
+      "ingredienteB": "digitalis",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia cardíaca: la Spongia (bocio/palpitaciones) y la Digitalis (pulso lento).",
+      "beneficios": [
+        "Palpitaciones",
+        "Corazón",
+        "Bocio"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Cardiopatía: supervisión"
+      ],
+      "mecanismo": "Nosología homeopática: la Spongia actúa sobre el bocio y las palpitaciones; la Digitalis sobre el pulso lento.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_spongia_lachesis_tiroides",
+      "ingredienteA": "spongia",
+      "ingredienteB": "lachesis",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para bocio y tiroides: la Spongia y el Lachesis.",
+      "beneficios": [
+        "Bocio",
+        "Tiroides",
+        "Sofocos"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Spongia actúa sobre el bocio; el Lachesis sobre el tiroides y los sofocos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_phytolacca_belladonna_amigdalitis",
+      "ingredienteA": "phytolacca",
+      "ingredienteB": "belladonna",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para amigdalitis: la Phytolacca (garganta oscura) y la Belladonna (fase aguda).",
+      "beneficios": [
+        "Amigdalitis",
+        "Adenopatías",
+        "Faringitis"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Phytolacca actúa sobre la amígdala oscura; la Belladonna sobre el calor y la congestión.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_phytolacca_conium_mama",
+      "ingredienteA": "phytolacca",
+      "ingredienteB": "conium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para mama: la Phytolacca (mastitis) y el Conium (tumores).",
+      "beneficios": [
+        "Mastitis",
+        "Adenopatías",
+        "Tumores mamarios (tradicional)"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Phytolacca actúa sobre la mastitis; el Conium sobre los tumores y adenopatías.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmune",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_podophyllum_china_diarrhea",
+      "ingredienteA": "podophyllum",
+      "ingredienteB": "china_officinalis",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para diarrea con debilidad: el Podophyllum y la China.",
+      "beneficios": [
+        "Diarrea profusa",
+        "Convalecencia",
+        "Debilidad"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Podophyllum actúa sobre la diarrea; la China sobre la debilidad post-pérdidas.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_podophyllum_veratrum_album_diarrea",
+      "ingredienteA": "podophyllum",
+      "ingredienteB": "veratrum_album",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para diarrea profusa con colapso: el Podophyllum y el Veratrum album.",
+      "beneficios": [
+        "Diarrea profusa",
+        "Colapso",
+        "Vómitos"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Podophyllum cubre la diarrea profusa; el Veratrum el colapso con sudor frío.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_colchicum_bryonia_gota",
+      "ingredienteA": "colchicum",
+      "ingredienteB": "bryonia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para gota y dolor articular: el Colchicum y la Bryonia.",
+      "beneficios": [
+        "Gota",
+        "Dolor articular",
+        "Inflamación"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Colchicum actúa sobre la gota; la Bryonia sobre el dolor que empeora con el movimiento.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_conium_cicuta",
+      "ingredienteA": "conium",
+      "ingredienteB": "ruta_graveolens",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para temblor y debilidad: el Conium y la Ruta.",
+      "beneficios": [
+        "Temblor",
+        "Neuropatía",
+        "Debilidad"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Conium actúa sobre el temblor; la Ruta sobre el periostio y los tendones.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_baryta_carbonica_baryta_muriatica",
+      "ingredienteA": "baryta_carbonica",
+      "ingredienteB": "calcarea_sulphurica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para adenopatías crónicas: la Baryta carb y la Calcarea sulph.",
+      "beneficios": [
+        "Adenopatías",
+        "Amigdalitis crónica",
+        "Supuraciones"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Baryta carb actúa sobre las adenopatías; la Calcarea sulph sobre las supuraciones.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_cina_cina_nux_vomica",
+      "ingredienteA": "cina",
+      "ingredienteB": "nux_vomica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para trastornos digestivos infantiles: la Cina y la Nux vomica.",
+      "beneficios": [
+        "Trastornos digestivos infantiles",
+        "Parásitos",
+        "Irritabilidad"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Cina actúa sobre los parásitos; la Nux vomica sobre la dispepsia.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_sticta_rumex_tos_seca",
+      "ingredienteA": "sticta",
+      "ingredienteB": "rumex",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para tos seca: la Sticta y el Rumex.",
+      "beneficios": [
+        "Tos seca",
+        "Tos por aire frío",
+        "Cefalea sinusal"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Sticta cubre la tos seca con irritación nasal; el Rumex la tos por aire frío.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_sarsaparilla_sepia_urinario",
+      "ingredienteA": "sarsaparilla",
+      "ingredienteB": "staphysagria",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para cistitis: la Sarsaparilla y la Staphysagria.",
+      "beneficios": [
+        "Cistitis",
+        "Dolor al final de la micción",
+        "Vejiga sensible"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Sarsaparilla actúa sobre el dolor al final de la micción; la Staphysagria sobre la vejiga sensible.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_veratrum_album_cuprum_espasmos",
+      "ingredienteA": "veratrum_album",
+      "ingredienteB": "cocculus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para colapso con vómitos y diarrea: el Veratrum album y el Cocculus.",
+      "beneficios": [
+        "Colapso",
+        "Vómitos",
+        "Diarrea",
+        "Mareo"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Veratrum cubre el colapso; el Cocculus el mareo y los vómitos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_stramonium_hyoscyamus_terrores",
+      "ingredienteA": "stramonium",
+      "ingredienteB": "belladonna",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para terrores nocturnos: el Stramonium y la Belladonna.",
+      "beneficios": [
+        "Terrores nocturnos",
+        "Delirio",
+        "Fiebre con delirio"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Stramonium cubre los terrores nocturnos; la Belladonna el calor y el delirio.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_mezereum_ranunculus_neuralgia",
+      "ingredienteA": "mezereum",
+      "ingredienteB": "hypericum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para neuralgia: el Mezereum y el Hypericum.",
+      "beneficios": [
+        "Neuralgia",
+        "Dolor óseo",
+        "Herpes zóster"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Mezereum cubre la neuralgia ósea; el Hypericum las lesiones nerviosas.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_digitalis_crataegus_corazon",
+      "ingredienteA": "digitalis",
+      "ingredienteB": "espino_blanco",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia cardíaca: la Digitalis (pulso) y el espino blanco (tónico).",
+      "beneficios": [
+        "Corazón",
+        "Palpitaciones",
+        "Cardiotónico"
+      ],
+      "precauciones": [
+        "Cardiopatía: supervisión",
+        "Consulta homeopática"
+      ],
+      "mecanismo": "Nosología homeopática: la Digitalis actúa sobre el pulso; el espino blanco mejora la perfusión coronaria.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_fluorica_acidica_calcarea_fluorica",
+      "ingredienteA": "fluorica_acidica",
+      "ingredienteB": "calcarea_fluorica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para varices y fistulas: el ácido fluorhídrico y la calcarea fluorica.",
+      "beneficios": [
+        "Varices",
+        "Fistulas",
+        "Deformación ósea"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el ácido fluorhídrico actúa sobre las fistulas y varices; la calcarea fluorica sobre los vasos débiles.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_platina_sepia_mujer",
+      "ingredienteA": "platina",
+      "ingredienteB": "pulsatilla",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para trastornos menstruales: la Platina y la Pulsatilla.",
+      "beneficios": [
+        "Dolor menstrual",
+        "Óvarios",
+        "Cambios de humor"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Platina actúa sobre los ovarios y el dolor; la Pulsatilla sobre los cambios de humor.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_plumbum_opium_estrenimiento",
+      "ingredienteA": "plumbum",
+      "ingredienteB": "nux_vomica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para estreñimiento: el Plumbum y la Nux vomica.",
+      "beneficios": [
+        "Estreñimiento",
+        "Heces en bolas",
+        "Cólico"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el Plumbum actúa sobre el estreñimiento con heces en bolas; la Nux vomica sobre la dispepsia.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_feverfew_tanacetum_jengibre_migraña",
+      "ingredienteA": "feverfew",
+      "ingredienteB": "jengibre",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimigraña: la matricaria (vasodilatación) y el jengibre (inflamación/naúsea).",
+      "beneficios": [
+        "Profilaxis migraña",
+        "Reduce náuseas",
+        "Antiinflamatorio"
+      ],
+      "precauciones": [
+        "Anticoagulantes (jengibre)"
+      ],
+      "mecanismo": "El partenólido inhibe la vasodilatación; el gingerol es antiinflamatorio y antiemético.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_bilberry_ginkgo_cognitivo",
+      "ingredienteA": "bilberry",
+      "ingredienteB": "bacopa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cognitivo-ocular: el mirtilo (antocianinas) y la bacopa (acetilcolina).",
+      "beneficios": [
+        "Cognitivo",
+        "Memoria",
+        "Ocular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Las antocianinas del mirtilo mejoran la microcirculación cerebral; la bacopa aumenta la acetilcolina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_huperzina_a_bacopa_cognitivo",
+      "ingredienteA": "huperzina_a",
+      "ingredienteB": "bacopa",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cognitivo colinérgico: la huperzina (AchE) y la bacopa (acetilcolina).",
+      "beneficios": [
+        "Memoria",
+        "Cognitivo",
+        "Alzheimer (coadyuvante)"
+      ],
+      "precauciones": [
+        "Bradicicardia",
+        "Supervisión"
+      ],
+      "mecanismo": "La huperzina inhibe la AchE; la bacopa aumenta la acetilcolina. Sinergia colinérgica.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_espermidina_nmn_longevidad",
+      "ingredienteA": "espermidina",
+      "ingredienteB": "nmn",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de longevidad: la espermidina (autofagia) y el NMN (NAD+).",
+      "beneficios": [
+        "Autofagia + NAD+",
+        "Mitocondrial",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados",
+        "Investigación emergente"
+      ],
+      "mecanismo": "La espermidina induce la autofagia; el NMN aumenta el NAD+ (sirtuinas).",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_ergotioneina_nmn_mitocondrial",
+      "ingredienteA": "ergotioneina",
+      "ingredienteB": "espermidina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de longevidad: la ergotioneína (antioxidante) y la espermidina (autofagia).",
+      "beneficios": [
+        "Antioxidante + autofagia",
+        "Mitocondrial",
+        "Neuroprotección"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La ergotioneína protege las mitocondrias; la espermidina induce la autofagia (limpieza).",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_citicolina_huperzina_omega3_cognitivo",
+      "ingredienteA": "citicolina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío cognitivo: citicolina (acetilcolina), huperzina (AchE), omega-3 (DHA).",
+      "beneficios": [
+        "Memoria",
+        "Cognitivo",
+        "Neuroprotección"
+      ],
+      "precauciones": [
+        "Insomnio si de noche"
+      ],
+      "mecanismo": "La citicolina aumenta la acetilcolina; el omega-3 (DHA) es estructural de la membrana neuronal.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_d_glucarato_same_hepatico",
+      "ingredienteA": "d_glucarato",
+      "ingredienteB": "same",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hepático: el D-glucarato (fase II) y el SAMe (metilación/glutatión).",
+      "beneficios": [
+        "Detox hepático",
+        "Metilación",
+        "Glutatión"
+      ],
+      "precauciones": [
+        "Tomar con B12/folato (SAMe)"
+      ],
+      "mecanismo": "El D-glucarato inhibe la β-glucuronidasa; el SAMe aporta metilos y aumenta el glutatión hepático.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_dim_aceite_onagra_spm",
+      "ingredienteA": "dim",
+      "ingredienteB": "aceite_onagra",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para SPM: el DIM (estrogénico) y el aceite de onagra (GLA).",
+      "beneficios": [
+        "SPM",
+        "Metabolismo estrogénico",
+        "Mastalgia"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El DIM canaliza los estrógenos hacia 2-OH; el GLA del aceite de onagra modula las prostaglandinas.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_l_carnosina_carnitina_muscular",
+      "ingredienteA": "l_carnosina",
+      "ingredienteB": "l_carnitina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo muscular: la carnosina (buffer) y la carnitina (mitocondrial).",
+      "beneficios": [
+        "Rendimiento",
+        "Recuperación",
+        "Energía mitocondrial"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La carnosina tampona el ácido láctico; la carnitina mejora el metabolismo mitocondrial de ácidos grasos.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_benfotiamina_carnosina_neuropatia",
+      "ingredienteA": "benfotiamina",
+      "ingredienteB": "l_carnosina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo neuroprotector: la benfotiamina (AGEs) y la carnosina (antiglicación).",
+      "beneficios": [
+        "Neuropatía diabética",
+        "Antiglicación",
+        "Neuroprotección"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La benfotiamina reduce los AGEs vía transquetolasa; la carnosina secuestra aldehídos reactivos.",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_hidroxitirosol_resveratrol_cardio",
+      "ingredienteA": "hidroxitirosol",
+      "ingredienteB": "resveratrol",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cardiovascular mediterráneo: el hidroxitirosol (LDL) y el resveratrol (SIRT1).",
+      "beneficios": [
+        "Protección LDL",
+        "Cardiovascular",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El hidroxitirosol protege el LDL; el resveratrol activa SIRT1. Sinergia cardiometabólica.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_niacin_hidroxitirosol_lipidos",
+      "ingredienteA": "niacin",
+      "ingredienteB": "hidroxitirosol",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo lipídico: la niacina (HDL/LDL) y el hidroxitirosol (LDL oxidado).",
+      "beneficios": [
+        "Mejora perfil lipídico",
+        "Protege LDL",
+        "Cardiovascular"
+      ],
+      "precauciones": [
+        "Estatinas: riesgo hepático (niacina)"
+      ],
+      "mecanismo": "La niacina reduce LDL/aumenta HDL; el hidroxitirosol protege el LDL de la oxidación.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_bilberry_zeaxantina_ocular",
+      "ingredienteA": "bilberry",
+      "ingredienteB": "zeaxantina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo ocular: el mirtilo (rodopsina) y la zeaxantina (mácula).",
+      "beneficios": [
+        "Salud macular",
+        "Visión nocturna",
+        "Fatiga visual"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Las antocianinas del mirtilo regeneran la rodopsina; la zeaxantina protege la mácula.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_bilberry_omega3_ocular",
+      "ingredienteA": "bilberry",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo ocular: el mirtilo (microcirculación ocular) y el omega-3 (DHA retina).",
+      "beneficios": [
+        "Fatiga visual",
+        "Microcirculación ocular",
+        "Retina"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Las antocianinas del mirtilo mejoran la microcirculación ocular; el DHA es estructural de la retina.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_euphrasia_fito_bilberry_luteina_ocular",
+      "ingredienteA": "euphrasia_fito",
+      "ingredienteB": "luteina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Trío ocular: eufrasia (conjuntiva), mirtilo (rodopsina) y luteína (mácula).",
+      "beneficios": [
+        "Conjuntivitis",
+        "Fatiga visual",
+        "Salud macular"
+      ],
+      "precauciones": [
+        "Colirio estéril"
+      ],
+      "mecanismo": "La eufrasia es antiinflamatoria conjuntival; la luteína protege la mácula.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_ammi_visnaga_cola_caballo_magnesio_cálculos",
+      "ingredienteA": "ammi_visnaga",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo renal: la visnaga (relajante) y el magnesio (prevención oxalato cálcico).",
+      "beneficios": [
+        "Cólico renal",
+        "Cálculos",
+        "Prevención de cálculos"
+      ],
+      "precauciones": [
+        "No en embarazo"
+      ],
+      "mecanismo": "La khellina relaja el uréter; el magnesio inhibe la cristalización del oxalato cálcico.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_viburnum_opulus_magnesio_espasmos",
+      "ingredienteA": "viburnum_opulus",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antiespasmódico: el cramp bark (útero) y el magnesio (músculo).",
+      "beneficios": [
+        "Cólicos menstruales",
+        "Calambres",
+        "Espasmos musculares"
+      ],
+      "precauciones": [
+        "Embarazo: evitar (viburnum)"
+      ],
+      "mecanismo": "El viburnum relaja el músculo liso uterino; el magnesio relaja el músculo estriado.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_collinsonia_rusco_hemorroides",
+      "ingredienteA": "collinsonia",
+      "ingredienteB": "rusco",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Trío venoso: collinsonia, castaño y rusco para hemorroides.",
+      "beneficios": [
+        "Hemorroides",
+        "Tono venoso",
+        "Varices"
+      ],
+      "precauciones": [
+        "Anticoagulantes"
+      ],
+      "mecanismo": "La collinsonia mejora el tono pélvico; las saponinas del rusco reducen la permeabilidad capilar.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_skullcap_pasiflora_ansiedad",
+      "ingredienteA": "skullcap",
+      "ingredienteB": "pasiflora",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo nervina: la escutelaria y la pasiflora para ansiedad sin sedación.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Calma",
+        "Antiespasmódico"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Los flavonoides de la escutelaria y la pasiflora modulan GABA; sinergia nervina suave.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_baptisia_propoleo_infeccion",
+      "ingredienteA": "baptisia",
+      "ingredienteB": "propoleo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano: la baptisia y el propóleo para infecciones.",
+      "beneficios": [
+        "Infecciones",
+        "Inmunidad",
+        "Antimicrobiano"
+      ],
+      "precauciones": [
+        "Alergia al propóleo",
+        "Uso corto"
+      ],
+      "mecanismo": "La baptisia estimula la inmunidad; los flavonoides del propóleo son antimicrobianos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_grindelia_pelargonium_respiratorio",
+      "ingredienteA": "grindelia",
+      "ingredienteB": "pelargonium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo respiratorio: la grindelia (antiespasmódica) y el pelargonium (antimicrobiano).",
+      "beneficios": [
+        "Bronquitis",
+        "Asma",
+        "Infección respiratoria"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La grindelia es antiespasmódica; el pelargonium es antibacteriano/antiviral respiratorio.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_yerba_mate_te_verde_energia",
+      "ingredienteA": "yerba_mate",
+      "ingredienteB": "te_verde",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antioxidante-estimulante: el mate y el té verde.",
+      "beneficios": [
+        "Energía",
+        "Antioxidante",
+        "Metabolismo"
+      ],
+      "precauciones": [
+        "Insomnio",
+        "Taquicardia"
+      ],
+      "mecanismo": "La cafeína del mate y las catequinas del té verde son antioxidantes y estimulantes.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_lobelia_inflata_spongia_asma",
+      "ingredienteA": "lobelia_inflata",
+      "ingredienteB": "spongia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para asma: la Lobelia inflata (disnea) y la Spongia (tos seca).",
+      "beneficios": [
+        "Asma",
+        "Disnea",
+        "Tos seca"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Lobelia actúa sobre el asma con opresión; la Spongia sobre la tos seca.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_ipecacuanha_bryonia_tos",
+      "ingredienteA": "ipecacuanha",
+      "ingredienteB": "bryonia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para tos con náuseas: la Ipecacuanha y la Bryonia.",
+      "beneficios": [
+        "Tos con náuseas",
+        "Asma",
+        "Expectoración difícil"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Ipecac cubre la tos con náuseas; la Bryonia la tos que empeora con el movimiento.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_sabadilla_allium_cepa_nux_vomica_alergias",
+      "ingredienteA": "sabadilla",
+      "ingredienteB": "nux_vomica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para rinitis espasmódica: la Sabadilla y la Nux vomica.",
+      "beneficios": [
+        "Rinitis alérgica",
+        "Estornudos en salva",
+        "Congestión matutina"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la Sabadilla cubre los estornudos en salva; la Nux vomica la congestión matutina.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio"
       ]
     }
   ]

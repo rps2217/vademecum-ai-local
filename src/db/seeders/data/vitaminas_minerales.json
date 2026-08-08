@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 87,
+    "total": 99,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -4748,6 +4748,611 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + initial clinical trials"
+      }
+    },
+    {
+      "id": "niacin",
+      "nombre": "Niacina (Ácido Nicotínico)",
+      "nombresAlternativos": [
+        "Nicotinic acid",
+        "Vitamina B3",
+        "Ácido nicotínico",
+        "Niacina de liberación inmediata"
+      ],
+      "nombreCientifico": "Ácido nicotínico (vitamina B3)",
+      "familia": "Vitaminas hidrosolubles",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "colesterol",
+        "hiperlipidemia",
+        "salud cardiovascular"
+      ],
+      "descripcion": "Forma de vitamina B3 que reduce LDL y triglicéridos y aumenta HDL. Única en elevar HDL. Provoca flushing.",
+      "mecanismoAccion": "Inhibe la lipólisis en el adipocito (reduce VLDL); aumenta HDL; la niacinamida no tiene efecto lipídico.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (liberación inmediata/prolongada)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "FLUSHING (rash, calor)",
+        "Hepatotoxicidad a dosis altas",
+        "Gota: precaución",
+        "Úlcera: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estatinas (riesgo hepático)",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "HDL",
+        "LDL",
+        "colesterol",
+        "cardiovascular",
+        "flushing"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (AIM-HIGH, HPS2-THRIVE)"
+      }
+    },
+    {
+      "id": "benfotiamina",
+      "nombre": "Benfotiamina (B1 Liposoluble)",
+      "nombresAlternativos": [
+        "Benfotiamine",
+        "S-benzoylthiamine",
+        "B1 liposoluble",
+        "Vitamina B1 fat-soluble"
+      ],
+      "nombreCientifico": "S-benzoiltiamina (benfotiamina)",
+      "familia": "Vitaminas hidrosolubles (liposoluble)",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "metabolico",
+        "ocular"
+      ],
+      "indicaciones": [
+        "neuropatía",
+        "glucosa",
+        "retinopatía diabética (coadyuvante)"
+      ],
+      "descripcion": "Forma liposoluble de vitamina B1 con mejor absorción. Usada en neuropatía diabética.",
+      "mecanismoAccion": "La benfotiamina se absorbe mejor que la tiamina; cofactor de la transquetolasa (vía de las pentosas) reduce los productos de glicación avanzada.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (150-300mg)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "neuropatía",
+        "diabético",
+        "tiamina",
+        "AGEs",
+        "liposoluble"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (neuropatía diabética)"
+      }
+    },
+    {
+      "id": "nmn",
+      "nombre": "NMN (Nicotinamida Mononucleótido)",
+      "nombresAlternativos": [
+        "Nicotinamide mononucleotide",
+        "NMN",
+        "β-NMN",
+        "Precursor de NAD+"
+      ],
+      "nombreCientifico": "Nicotinamida mononucleótido (NMN)",
+      "familia": "Nucleótidos",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "energía",
+        "antioxidante",
+        "metabolismo",
+        "envejecimiento"
+      ],
+      "descripcion": "Precursor directo del NAD+ esencial para la energía celular y la función de sirtuinas. Investigación en longevidad.",
+      "mecanismoAccion": "El NMN se convierte en NAD+; aumenta la actividad de SIRT1/SIRT3 (longevidad) y mejora la función mitocondrial.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Polvo (250-500mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Investigación emergente"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "NAD+",
+        "SIRT1",
+        "longevidad",
+        "mitocondrial",
+        "energía"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + initial clinical trials"
+      }
+    },
+    {
+      "id": "ergotioneina",
+      "nombre": "Ergotioneína (L-Ergotioneína)",
+      "nombresAlternativos": [
+        "Ergothioneine",
+        "L-Ergothioneine",
+        "ERGO",
+        "Aminoácido de los hongos"
+      ],
+      "nombreCientifico": "L-Ergotioneína (timohistidina betaina)",
+      "familia": "Aminoácidos azufrados",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "inmune"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "neuroprotección",
+        "antioxidante mitocondrial"
+      ],
+      "descripcion": "Antioxidante liposoluble acumulado en tejidos bajo estrés oxidativo (transportador OCTN1). Longevidad.",
+      "mecanismoAccion": "Antioxidante liposoluble que acumula en mitocondrias; transportador OCTN1 la concentra en tejidos estresados.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto de hongo / sintético",
+      "formasPresentacion": [
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "antioxidante",
+        "mitocondrial",
+        "OCTN1",
+        "longevidad",
+        "neuroprotección"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Pharmacological studies (antioxidante mitocondrial)"
+      }
+    },
+    {
+      "id": "espermidina",
+      "nombre": "Espermidina",
+      "nombresAlternativos": [
+        "Spermidine",
+        "Espermidina",
+        "Poli amina",
+        "Autofagia inductor"
+      ],
+      "nombreCientifico": "Espermidina (poliamina)",
+      "familia": "Poliaminas",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "autofagia",
+        "antioxidante",
+        "envejecimiento",
+        "neuroprotección"
+      ],
+      "descripcion": "Poliamina que induce la autofagia (limpieza celular). Asociada a longevidad en estudios observacionales.",
+      "mecanismoAccion": "Induce la autofagia (vía EP300/TFEB); mimetiza los efectos de la restricción calórica; neuroprotección.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto de germen de trigo / sintético",
+      "formasPresentacion": [
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Semanas a meses",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada",
+        "Investigación emergente"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "autofagia",
+        "longevidad",
+        "neuroprotección",
+        "cardiovascular",
+        "restricción calórica"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + observational studies"
+      }
+    },
+    {
+      "id": "hidroxitirosol",
+      "nombre": "Hidroxitirosol (Polifenol de Oliva)",
+      "nombresAlternativos": [
+        "Hydroxytyrosol",
+        "HT",
+        "3,4-DHPEA",
+        "Polifenol del olivo",
+        "Olive polyphenol"
+      ],
+      "nombreCientifico": "3,4-dihidroxifeniletanol (hidroxitirosol)",
+      "familia": "Polifenoles",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "colesterol",
+        "salud cardiovascular",
+        "piel"
+      ],
+      "descripcion": "Polifenol del aceite de oliva virgen extra con claim de salud EFSA para protección del LDL.",
+      "mecanismoAccion": "El hidroxitirosol protege el LDL de la oxidación; reduce la inflamación vascular; antioxidante potente.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Extracto de oliva/aceite",
+      "formasPresentacion": [
+        "Cápsulas (extracto)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "polifenol",
+        "LDL oxidado",
+        "EFSA",
+        "cardiovascular",
+        "oliva"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EFSA health claim + clinical trials (LDL protección)"
+      }
+    },
+    {
+      "id": "dim",
+      "nombre": "DIM (Diindolilmetano)",
+      "nombresAlternativos": [
+        "Diindolylmethane",
+        "DIM",
+        "3,3'-Diindolylmethane",
+        "Metabolito del brócoli",
+        "I3C metabolito"
+      ],
+      "nombreCientifico": "3,3'-diindolilmetano (DIM)",
+      "familia": "Indoles",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "endocrino",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "metabolismo estrogénico",
+        "SPM",
+        "sop",
+        "próstata"
+      ],
+      "descripcion": "Metabolito del indol-3-carbinol (brócoli) que favorece el metabolismo estrogénico hacia 2-OH (protectores).",
+      "mecanismoAccion": "Induce las enzimas de fase I (CYP1A1) que canalizan los estrógenos hacia 2-OH (protectores) en lugar de 16α-OH.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento (extracto de brócoli/sintético)",
+      "formasPresentacion": [
+        "Cápsulas (100-200mg)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Orina oscura (normal)",
+        "Molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estrógenos exógenos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "estrogénico",
+        "2-OH",
+        "brócoli",
+        "SPM",
+        "SOP"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (metabolismo estrogénico)"
+      }
+    },
+    {
+      "id": "l_carnosina",
+      "nombre": "L-Carnosina",
+      "nombresAlternativos": [
+        "Carnosine",
+        "L-Carnosine",
+        "Beta-alanyl-L-histidine",
+        "Dipeptidil"
+      ],
+      "nombreCientifico": "β-alanil-L-histidina (L-carnosina)",
+      "familia": "Dipéptidos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "neuroprotección",
+        "rendimiento",
+        "antiglicación"
+      ],
+      "descripcion": "Dipéptido (β-alanina + histidina) presente en músculo y cerebro. Antioxidante, anti-glicación y buffer muscular.",
+      "mecanismoAccion": "Tampona el ácido láctico muscular; secuestra ROS y aldehídos reactivos; reduce la glicación de proteínas.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (500mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "antioxidante",
+        "antiglicación",
+        "buffer",
+        "muscular",
+        "neuroprotección"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (muscular/cognitivo)"
+      }
+    },
+    {
+      "id": "beta_alanina",
+      "nombre": "Beta-Alanina",
+      "nombresAlternativos": [
+        "β-Alanine",
+        "Beta-alanine",
+        "Carnosine precursor",
+        "Carnosyn"
+      ],
+      "nombreCientifico": "β-Alanina",
+      "familia": "Aminoácidos no proteinogénicos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "rendimiento",
+        "fatiga muscular",
+        "resistencia"
+      ],
+      "descripcion": "Aminoácido precursor de la carnosina muscular. Aumenta el buffer del ácido láctico. Eficacia deportiva (Cochrane).",
+      "mecanismoAccion": "La β-alanina es limitante para la síntesis de carnosina muscular (buffer del H+); retrasa la fatiga anaeróbica.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas (3-6g/día)"
+      ],
+      "tiempoEfecto": "4-8 semanas (saturación)",
+      "duracionTratamiento": "Cíclico (deportivo)",
+      "advertencias": [
+        "Parestesia (hormigueo) transitoria",
+        "Usar forma de liberación lenta"
+      ],
+      "interaccionesMedicamentosas": [
+        "Taurina (competencia transportador)"
+      ],
+      "tags": [
+        "carnosina",
+        "buffer",
+        "deportivo",
+        "fatiga",
+        "anaeróbico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review + IJSNEM meta-analysis"
+      }
+    },
+    {
+      "id": "citicolina",
+      "nombre": "Citicolina (CDP-Colina)",
+      "nombresAlternativos": [
+        "Citicoline",
+        "CDP-choline",
+        "Cytidine 5-diphosphocholine",
+        "Citicolina",
+        "Cognizin"
+      ],
+      "nombreCientifico": "Citidina 5'-difosfocolina (CDP-colina)",
+      "familia": "Nucleótidos/Fosfolípidos",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "ocular"
+      ],
+      "indicaciones": [
+        "cognitivo",
+        "memoria",
+        "glaucoma (coadyuvante)",
+        "neuroprotección"
+      ],
+      "descripcion": "Precursor de la fosfatidilcolina y acetilcolina. Mejora la función cognitiva y la neuroprotección.",
+      "mecanismoAccion": "Aporta colina (acetilcolina) y citidina (CDP-colina → fosfatidilcolina); aumenta los neurotransmisores y la membrana neuronal.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (250-500mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Bien tolerada",
+        "Insomnio si de noche"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levodopa (sinergia)"
+      ],
+      "tags": [
+        "cognitivo",
+        "colina",
+        "acetilcolina",
+        "membrana",
+        "neuroprotección"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (cognitivo/glaucoma)"
+      }
+    },
+    {
+      "id": "huperzina_a",
+      "nombre": "Huperzina A",
+      "nombresAlternativos": [
+        "Huperzine A",
+        "HupA",
+        "Selagine",
+        "Extracto de Huperzia serrata"
+      ],
+      "nombreCientifico": "Huperzina A (alcaloide de Huperzia serrata)",
+      "familia": "Alcaloides",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "cognitivo",
+        "memoria",
+        "Alzheimer (coadyuvante investigacional)"
+      ],
+      "descripcion": "Inhibidor natural de la acetilcolinesterasa. Mejora la memoria. Investigación en Alzheimer.",
+      "mecanismoAccion": "Inhibe la acetilcolinesterasa (selectiva y reversible); aumenta la acetilcolina cerebral.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Extracto de Huperzia serrata",
+      "formasPresentacion": [
+        "Cápsulas (50-200μg)"
+      ],
+      "tiempoEfecto": "1-2 horas",
+      "duracionTratamiento": "3-6 meses supervisado",
+      "advertencias": [
+        "Bradicicardia",
+        "Asma: precaución",
+        "Epilepsia: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Donepezilo",
+        "Anticolinérgicos",
+        "Beta-bloqueantes"
+      ],
+      "tags": [
+        "acetilcolinesterasa",
+        "cognitivo",
+        "memoria",
+        "Alzheimer",
+        "inhibidor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (Alzheimer coadyuvante)"
+      }
+    },
+    {
+      "id": "d_glucarato",
+      "nombre": "D-Glucarato (Calcio D-Glucarato)",
+      "nombresAlternativos": [
+        "Calcium D-glucarate",
+        "D-Glucaric acid",
+        "Glucarato cálcico",
+        "Saccharo acid calcium"
+      ],
+      "nombreCientifico": "Calcio D-glucarato",
+      "familia": "Azúcares",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "hepatico",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "detox",
+        "metabolismo estrogénico",
+        "hepático",
+        "coadyuvante oncológico"
+      ],
+      "descripcion": "Inhibe la β-glucuronidasa bacteriana, favoreciendo la eliminación de tóxicos y estrógenos conjugados.",
+      "mecanismoAccion": "Inhibe la β-glucuronidasa intestinal (evita la desconjugación de estrógenos y tóxicos); favorece la eliminación (fase II).",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (500mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "detox",
+        "glucuronidación",
+        "estrogénico",
+        "hepático",
+        "β-glucuronidasa"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + mechanistic studies"
       }
     }
   ]

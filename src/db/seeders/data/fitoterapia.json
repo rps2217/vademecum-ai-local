@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 114,
+    "total": 124,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -5963,6 +5963,533 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Ayurvedic + clinical studies (lactancia)"
+      }
+    },
+    {
+      "id": "euphrasia_fito",
+      "nombre": "Eufrasia",
+      "nombresAlternativos": [
+        "Eyebright",
+        "Euphrasia officinalis",
+        "Hierba de los ojos",
+        "Eufrasia",
+        "Gafas de cristal"
+      ],
+      "nombreCientifico": "Euphrasia officinalis",
+      "familia": "Orobanchaceae (ex Scrophulariaceae)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "conjuntivitis",
+        "fatiga visual",
+        "rinitis alérgica",
+        "irritación ocular"
+      ],
+      "descripcion": "Planta tradicional para afecciones oculares e irritación de mucosas. Monografía EMA HMPC por uso tradicional.",
+      "mecanismoAccion": "Los iridoides (aucubina) y flavonoides son antiinflamatorios y astringentes; acción tópica sobre la conjuntiva.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Colirio",
+        "Comprimidos",
+        "Infusión"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Colirio: uso estéril",
+        "Lentes de contacto: retirar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "ocular",
+        "conjuntivitis",
+        "alergias",
+        "EMA HMPC",
+        "aucubina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional ocular)"
+      }
+    },
+    {
+      "id": "feverfew",
+      "nombre": "Matricaria (Feverfew)",
+      "nombresAlternativos": [
+        "Tanacetum parthenium",
+        "Feverfew",
+        "Santa María",
+        "Partenio",
+        "Matricaria"
+      ],
+      "nombreCientifico": "Tanacetum parthenium",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "migraña",
+        "cefalea",
+        "menstrual"
+      ],
+      "descripcion": "Planta con evidencia clínica en profilaxis de migraña. Monografía EMA HMPC por uso tradicional bien establecido.",
+      "mecanismoAccion": "El partenólido inhibe la liberación de serotonina y prostaglandinas; reduce la vasodilatación y la inflamación meníngea.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado partenólido)",
+        "Hoja seca"
+      ],
+      "tiempoEfecto": "4-8 semanas (profilaxis)",
+      "duracionTratamiento": "Continuo (profilaxis)",
+      "advertencias": [
+        "Suspender gradualmente (síndrome de retirada)",
+        "Úlcera gástrica: precaución",
+        "Embarazo: evitar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "AAS"
+      ],
+      "tags": [
+        "migraña",
+        "partenólido",
+        "profilaxis",
+        "EMA HMPC",
+        "cefalea"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review + EMA HMPC monograph (migraña profilaxis)"
+      }
+    },
+    {
+      "id": "bilberry",
+      "nombre": "Arándano Negro (Mirtilo)",
+      "nombresAlternativos": [
+        "Bilberry",
+        "Vaccinium myrtillus",
+        "Mirtilo",
+        "Arándano azul europeo",
+        "Blueberry europeo"
+      ],
+      "nombreCientifico": "Vaccinium myrtillus",
+      "familia": "Ericaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "cardiovascular",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "fatiga visual",
+        "salud macular",
+        "microcirculación",
+        "antioxidante"
+      ],
+      "descripcion": "Bayas ricas en antocianósidos que mejoran la visión nocturna y la microcirculación. Monografía ESCOP.",
+      "mecanismoAccion": "Las antocianinas aceleran la regeneración de la rodopsina (visión nocturna); protegen el endotelio capilar y son antioxidantes.",
+      "nivelEvidencia": "B",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Cápsulas (extracto 25% antocianósidos)",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible efecto anticoagulante leve"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antocianinas",
+        "visión nocturna",
+        "ocular",
+        "microcirculación",
+        "ESCOP"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "ESCOP monograph + clinical trials (visión/microcirculación)"
+      }
+    },
+    {
+      "id": "ammi_visnaga",
+      "nombre": "Biznaga (Visnaga)",
+      "nombresAlternativos": [
+        "Ammi visnaga",
+        "Khella",
+        "Biznaga",
+        "Visnaga",
+        "Toothpick weed"
+      ],
+      "nombreCientifico": "Ammi visnaga",
+      "familia": "Apiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "cardiovascular",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "cálculos",
+        "cólico renal leve",
+        "asma (coadyuvante)",
+        "angina (tradicional)"
+      ],
+      "descripcion": "Planta mediterránea con khellina, relajante del músculo liso. Tradicional para cólico renal y asma.",
+      "mecanismoAccion": "La khellina y visnagina relajan el músculo liso (vasodilatación coronaria, broncodilatación, relajación ureteral).",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Extracto",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Náuseas posible",
+        "Fotosensibilidad",
+        "No en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Broncodilatadores"
+      ],
+      "tags": [
+        "khellina",
+        "cálculos",
+        "broncodilatador",
+        "músculo liso",
+        "renal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional use + pharmacological studies"
+      }
+    },
+    {
+      "id": "viburnum_opulus",
+      "nombre": "Cáscara Sagrada Menor (Cramp Bark)",
+      "nombresAlternativos": [
+        "Cramp bark",
+        "Viburnum opulus",
+        "Viburno",
+        "Snowball tree",
+        "Barbasco"
+      ],
+      "nombreCientifico": "Viburnum opulus",
+      "familia": "Caprifoliaceae (ex Adoxaceae)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "menstrual",
+        "espasmos",
+        "dolor muscular",
+        "cólicos menstruales"
+      ],
+      "descripcion": "Corteza antiespasmódica para calambres musculares y cólicos menstruales. Relaja el músculo liso y estriado.",
+      "mecanismoAccion": "Las cumarinas y ácidos orgánicos relajan el músculo liso uterino e intestinal; acción antiespasmódica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Tintura",
+        "Decocción",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "Cíclico (menstrual)",
+      "advertencias": [
+        "Embarazo: evitar (abortivo tradicional)",
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (cumarinas)"
+      ],
+      "tags": [
+        "antiespasmódico",
+        "cólicos",
+        "menstrual",
+        "músculo liso",
+        "calambres"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional use + pharmacological studies"
+      }
+    },
+    {
+      "id": "collinsonia",
+      "nombre": "Collinsonia (Raíz de Piedra)",
+      "nombresAlternativos": [
+        "Collinsonia canadensis",
+        "Stone root",
+        "Raíz de piedra",
+        "Richweed",
+        "Hardhack"
+      ],
+      "nombreCientifico": "Collinsonia canadensis",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "hemorroides",
+        "estreñimiento",
+        "venoso",
+        "venas pélvicas"
+      ],
+      "descripcion": "Raíz norteamericana tradicional para hemorroides y venas pélvicas. Mejora el tono venoso y el tránsito.",
+      "mecanismoAccion": "Los flavonoides y saponinas mejoran el tono venoso pélvico y hemorroidal; acción laxante leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Tintura",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "hemorroides",
+        "venas pélvicas",
+        "venoso",
+        "estreñimiento",
+        "tónico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional herbal medicine"
+      }
+    },
+    {
+      "id": "skullcap",
+      "nombre": "Escutelaria (Skullcap)",
+      "nombresAlternativos": [
+        "Scutellaria lateriflora",
+        "Skullcap",
+        "Escutelaria",
+        "Casco",
+        "Mad dog weed"
+      ],
+      "nombreCientifico": "Scutellaria lateriflora",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "insomnio",
+        "espasmos"
+      ],
+      "descripcion": "Planta nervina tradicional americana, sedante suave. Relaja el SNC sin sedación excesiva.",
+      "mecanismoAccion": "Los flavonoides (baicaleína) modulan GABA; acción ansiolítica y antiespasmódica nerviosa.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Tintura",
+        "Cápsulas",
+        "Infusión"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Calidad: evitar adulteraciones (germandrina)",
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes (sinergia)"
+      ],
+      "tags": [
+        "nervina",
+        "ansiedad",
+        "GABA",
+        "sedante",
+        "antiespasmódico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional use + pharmacological studies"
+      }
+    },
+    {
+      "id": "baptisia",
+      "nombre": "Baptisia (Índigo Silvestre)",
+      "nombresAlternativos": [
+        "Baptisia tinctoria",
+        "Wild indigo",
+        "Índigo silvestre",
+        "Horsefly weed"
+      ],
+      "nombreCientifico": "Baptisia tinctoria",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "infecciones",
+        "faringitis",
+        "sepsis leve (tradicional)"
+      ],
+      "descripcion": "Planta inmunoestimulante tradicional americana, usada en infecciones bacterianas y sepsis leve.",
+      "mecanismoAccion": "Las glucoproteínas y polisacáridos estimulan la inmunidad innata; acción antimicrobiana in vitro.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Tintura",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "Corto (1-2 semanas)",
+      "advertencias": [
+        "Toxicidad a dosis altas",
+        "Uso corto"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "inmunoestimulante",
+        "infecciones",
+        "antimicrobiano",
+        "sepsis",
+        "tradicional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional use (Eclectic medicine)"
+      }
+    },
+    {
+      "id": "grindelia",
+      "nombre": "Grindelia (Goma de Fenal)",
+      "nombresAlternativos": [
+        "Grindelia robusta",
+        "Gumweed",
+        "Grindelia",
+        "Goma de fenal",
+        "Tarweed"
+      ],
+      "nombreCientifico": "Grindelia robusta",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "asma",
+        "bronquitis",
+        "tos",
+        "dermatitis"
+      ],
+      "descripcion": "Planta balsámica con resinas expectorantes y antiespasmódicas. Tradicional en asma y tos.",
+      "mecanismoAccion": "Los diterpenos (grindelia) son antiespasmódicos bronquiales y expectorantes; acción tópica antiinflamatoria.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aérea",
+      "formasPresentacion": [
+        "Tintura",
+        "Infusión",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Bien tolerada",
+        "Reacciones alérgicas en Asteraceae"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "balsámico",
+        "asma",
+        "bronquitis",
+        "expectorante",
+        "antiespasmódico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional use (Eclectic medicine)"
+      }
+    },
+    {
+      "id": "yerba_mate",
+      "nombre": "Yerba Mate",
+      "nombresAlternativos": [
+        "Ilex paraguariensis",
+        "Mate",
+        "Hierba mate",
+        "Tereré",
+        "Congonha"
+      ],
+      "nombreCientifico": "Ilex paraguariensis",
+      "familia": "Aquifoliaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "energía",
+        "fatiga",
+        "rendimiento",
+        "antioxidante"
+      ],
+      "descripcion": "Infusión sudamericana con cafeína, teobromina y antioxidantes. Estimulante y antioxidante.",
+      "mecanismoAccion": "La cafeína bloquea los receptores de adenosina; los polifenoles son antioxidantes; mejora el rendimiento.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusión (mate)",
+        "Extracto",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "30 minutos",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Insomnio",
+        "Taquicardia",
+        "Riesgo oncológico esofágico (infusión muy caliente)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estimulantes",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "cafeína",
+        "estimulante",
+        "antioxidante",
+        "rendimiento",
+        "energía"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (rendimiento/antioxidante)"
       }
     }
   ]
