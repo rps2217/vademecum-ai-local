@@ -3,6 +3,7 @@
  * Carga los datos de la KB en la base de datos Dexie.
  */
 import { logger } from '@/lib/logger';
+import { BODY_SYSTEMS } from '@/types/shared-enums';
 
 import { db } from '../schema';
 import type { 
@@ -146,14 +147,11 @@ function mapCategory(cat: string): IngredientCategory {
 }
 
 function mapSystems(sistemas?: string[]): BodySystem[] {
-  const validSystems: BodySystem[] = [
-    'nervioso', 'digestivo', 'inmune', 'cardiovascular',
-    'respiratorio', 'musculoesqueletico', 'endocrino'
-  ];
+  const validSystems = BODY_SYSTEMS as readonly string[];
   if (!sistemas) return [];
   return sistemas
     .map(s => s.toLowerCase().trim())
-    .filter(s => validSystems.includes(s as BodySystem)) as BodySystem[];
+    .filter(s => validSystems.includes(s)) as BodySystem[];
 }
 
 function mapSynergyType(tipo: string): SynergyType {

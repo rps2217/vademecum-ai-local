@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 25,
+    "total": 26,
     "descripcion": "Base de datos de patologías con contexto clínico (definición, causas, síntomas, tratamiento alopático y natural)",
     "fuentes": [
       "OMS",
@@ -1551,7 +1551,7 @@
       ],
       "sistemas": [
         "cardiovascular",
-        "renal"
+        "urinario"
       ],
       "tratamientoAlopatico": {
         "primeraLinea": [
@@ -1897,6 +1897,82 @@
       "evidencia": "B",
       "fuentes": [
         "NICE guidelines",
+        "Cochrane review"
+      ]
+    },
+    {
+      "id": "hipotiroidismo",
+      "nombre": "Hipotiroidismo",
+      "definicion": "Síndrome por déficit de hormonas tiroideas (T4/T3) que ralentiza el metabolismo basal. La forma más común es la tiroiditis autoinmune de Hashimoto.",
+      "causas": [
+        "Tiroiditis de Hashimoto (autoinmune)",
+        "Yatrógeno (post-tiroideoctomía, yodo radiactivo)",
+        "Déficit de yodo",
+        "Fármacos (litio, amiodarona)",
+        "Hipotiroidismo central (hipofisario)"
+      ],
+      "sintomas": [
+        "Fatiga",
+        "Astenia",
+        "Intolerancia al frío",
+        "Piel seca",
+        "Estreñimiento",
+        "Bradipsiquia",
+        "Aumento de peso",
+        "Bradarritmia",
+        "Bocio"
+      ],
+      "sistemas": [
+        "endocrino",
+        "metabolico",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Levotiroxina (T4)",
+          "Liobotironina (T3, combinada)",
+          "Desiccated thyroid (raro)"
+        ],
+        "mecanismo": "Levotiroxina: reemplaza T4 endógena, convertida a T3 periféricamente por deiodinasas (depende de selenio).",
+        "efectosSecundarios": [
+          "Taquicardia, palpitaciones (si exceso)",
+          "Osteoporosis (sobretratamiento crónico)",
+          "Insomnio, ansiedad (dosis alta)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ashwagandha",
+          "guggulu",
+          "rodiola",
+          "ginseng"
+        ],
+        "suplementos": [
+          "selenio",
+          "yodo",
+          "zinc",
+          "hierro",
+          "tirosina"
+        ],
+        "homeopatia": [
+          "calcaria_carbonica"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Hipotiroidismo subclínico o coadyuvante en tratamiento sustitutivo. El selenio (200 mcg/día) tiene evidencia B en reducir anticuerpos anti-TPO en Hashimoto. NUNCA sustituir levotiroxina sin control médico. El yodo debe usarse con cautela: exceso empeora Hashimoto."
+      },
+      "prevencion": [
+        "Selenio dietético (nueces de Brasil)",
+        "Yodo adecuado (sal yodada, pescado)",
+        "Controlar hierro/ferritina",
+        "Evitar exceso de yodo",
+        "Control periódico TSH si antecedentes"
+      ],
+      "cuandoConsultar": "TSH >10, síntomas severos, embarazo (hipotiroidismo congénito risk), bocio creciente, o sospecha de mielxedema coma (emergencia).",
+      "evidencia": "A",
+      "fuentes": [
+        "ATA guidelines",
+        "ETA guidelines",
         "Cochrane review"
       ]
     }
