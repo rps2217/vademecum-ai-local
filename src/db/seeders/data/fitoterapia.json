@@ -2,31 +2,60 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.1.0",
-    "ultimaActualizacion": "2026-07-26",
-    "total": 35,
-    "fuente": "Vademecum AI Knowledge Base"
+    "version": "1.2.0",
+    "ultimaActualizacion": "2026-08-08",
+    "total": 44,
+    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs on Selected Medicinal Plants"
   },
   "ingredientes": [
     {
       "id": "valeriana",
       "nombre": "Valeriana",
-      "nombresAlternativos": ["Valeriana officinalis", "Valerian", "Raíz de valeriana", "Nervio", "Valerianae radix"],
+      "nombresAlternativos": [
+        "Valeriana officinalis",
+        "Valerian",
+        "Raíz de valeriana",
+        "Nervio",
+        "Valerianae radix"
+      ],
       "nombreCientifico": "Valeriana officinalis",
       "familia": "Caprifoliaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso"],
-      "indicaciones": ["insomnio", "ansiedad", "estres"],
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "ansiedad",
+        "estres"
+      ],
       "descripcion": "Planta sedante y ansiolítica natural. Utilizada traditionally para tratar el insomnio y la ansiedad leve.",
       "mecanismoAccion": "Modula los receptores GABA-A, aumentando la neurotransmisión inhibitoria. Los valepotriatos tienen efectos sedantes.",
       "nivelEvidencia": "B",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Tintura", "Infusion", "Extracto seco"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Infusion",
+        "Extracto seco"
+      ],
       "tiempoEfecto": "30-60 minutos",
       "duracionTratamiento": "2-4 semanas maximo",
-      "advertencias": ["Puede causar somnolencia", "No combinar con benzodiazepinas sin supervision medica"],
-      "interaccionesMedicamentosas": ["Benzodiacepinas", "Barbituricos", "Alcohol"],
-      "tags": ["sedante", "ansiolitico", "natural", "sueno"],
+      "advertencias": [
+        "Puede causar somnolencia",
+        "No combinar con benzodiazepinas sin supervision medica"
+      ],
+      "interaccionesMedicamentosas": [
+        "Benzodiacepinas",
+        "Barbituricos",
+        "Alcohol"
+      ],
+      "tags": [
+        "sedante",
+        "ansiolitico",
+        "natural",
+        "sueno"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "OMS Monographs"
@@ -35,22 +64,50 @@
     {
       "id": "pasiflora",
       "nombre": "Pasiflora",
-      "nombresAlternativos": ["Passiflora incarnata", "Passionflower", "Flor de la pasion", "Pasionaria", "Maracuja"],
+      "nombresAlternativos": [
+        "Passiflora incarnata",
+        "Passionflower",
+        "Flor de la pasion",
+        "Pasionaria",
+        "Maracuja"
+      ],
       "nombreCientifico": "Passiflora incarnata",
       "familia": "Passifloraceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso"],
-      "indicaciones": ["ansiedad", "insomnio", "estres", "nerviosismo"],
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estres",
+        "nerviosismo"
+      ],
       "descripcion": "Planta con propiedades ansioliticas y sedantes. Eficaz para ansiedad leve y trastornos del sueno.",
       "mecanismoAccion": "Contiene flavonoides que modulan receptores GABA. Los alcaloides indicos tienen efectos ansioliticos.",
       "nivelEvidencia": "B",
       "parteUsada": "todo",
-      "formasPresentacion": ["Capsulas", "Tintura", "Infusion", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Infusion",
+        "Extracto"
+      ],
       "tiempoEfecto": "60-90 minutos",
       "duracionTratamiento": "4-6 semanas",
-      "advertencias": ["No usar en embarazo sin supervision", "Puede interactuar con anticoagulantes"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Sedantes"],
-      "tags": ["ansiolitico", "sedante", "calmante"],
+      "advertencias": [
+        "No usar en embarazo sin supervision",
+        "Puede interactuar con anticoagulantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Sedantes"
+      ],
+      "tags": [
+        "ansiolitico",
+        "sedante",
+        "calmante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -58,22 +115,51 @@
     {
       "id": "melisa",
       "nombre": "Melisa",
-      "nombresAlternativos": ["Melissa officinalis", "Lemon balm", "Toronjil", "Citronela"],
+      "nombresAlternativos": [
+        "Melissa officinalis",
+        "Lemon balm",
+        "Toronjil",
+        "Citronela"
+      ],
       "nombreCientifico": "Melissa officinalis",
       "familia": "Lamiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso", "digestivo"],
-      "indicaciones": ["ansiedad", "estres", "insomnio", "digestion", "nerviosismo"],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estres",
+        "insomnio",
+        "digestion",
+        "nerviosismo"
+      ],
       "descripcion": "Hierba limonada con propiedades calmantes y digestivas. Excelente para ansiedad asociada a problemas gastrointestinales.",
       "mecanismoAccion": "Los aceites volatiles (citronelal) modulan receptores GABA. Tiene propiedades antiespasmodicas digestivas.",
       "nivelEvidencia": "B",
       "parteUsada": "hoja",
-      "formasPresentacion": ["Infusion", "Tintura", "Capsulas", "Crema"],
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Capsulas",
+        "Crema"
+      ],
       "tiempoEfecto": "30-45 minutos",
       "duracionTratamiento": "4-8 semanas",
-      "advertencias": ["Puede causar fotosensibilidad", "No usar en hipotiroidismo"],
-      "interaccionesMedicamentosas": ["Antitiroideos", "Sedantes"],
-      "tags": ["calmante", "digestivo", "ansiolitico"],
+      "advertencias": [
+        "Puede causar fotosensibilidad",
+        "No usar en hipotiroidismo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antitiroideos",
+        "Sedantes"
+      ],
+      "tags": [
+        "calmante",
+        "digestivo",
+        "ansiolitico"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -81,22 +167,53 @@
     {
       "id": "hiperico",
       "nombre": "Hipérico",
-      "nombresAlternativos": ["Hypericum perforatum", "St. Johns Wort", "Hierba de San Juan", "Corazoncillo"],
+      "nombresAlternativos": [
+        "Hypericum perforatum",
+        "St. Johns Wort",
+        "Hierba de San Juan",
+        "Corazoncillo"
+      ],
       "nombreCientifico": "Hypericum perforatum",
       "familia": "Hypericaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso"],
-      "indicaciones": ["depresion", "ansiedad", "estres", "insomnio"],
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "depresion",
+        "ansiedad",
+        "estres",
+        "insomnio"
+      ],
       "descripcion": "Planta antidepresiva natural con eficacia demostrada en depresion leve a moderada.",
       "mecanismoAccion": "Inhibe la recaptacion de serotonina, noradrenalina y dopamina. Actua sobre receptores GABA y NMDA.",
       "nivelEvidencia": "A",
       "parteUsada": "flor",
-      "formasPresentacion": ["Capsulas", "Extracto seco", "Tintura", "Infusion"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto seco",
+        "Tintura",
+        "Infusion"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar con antidepresivos ISRS", "Puede causar fotosensibilidad", "No usar en embarazo"],
-      "interaccionesMedicamentosas": ["ISRS", "IMAOs", "Anticonceptivos", "Anticoagulantes", "Digoxina"],
-      "tags": ["antidepresivo", "ansiolitico", "natural"],
+      "advertencias": [
+        "No usar con antidepresivos ISRS",
+        "Puede causar fotosensibilidad",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "ISRS",
+        "IMAOs",
+        "Anticonceptivos",
+        "Anticoagulantes",
+        "Digoxina"
+      ],
+      "tags": [
+        "antidepresivo",
+        "ansiolitico",
+        "natural"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -104,22 +221,49 @@
     {
       "id": "ginkgo",
       "nombre": "Ginkgo",
-      "nombresAlternativos": ["Ginkgo biloba", "Maidenhair tree", "Arbol de los cuarenta escudos"],
+      "nombresAlternativos": [
+        "Ginkgo biloba",
+        "Maidenhair tree",
+        "Arbol de los cuarenta escudos"
+      ],
       "nombreCientifico": "Ginkgo biloba",
       "familia": "Ginkgoaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso", "cardiovascular"],
-      "indicaciones": ["memoria", "concentracion", "circulacion", "antienvejecimiento"],
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "memoria",
+        "concentracion",
+        "circulacion",
+        "antienvejecimiento"
+      ],
       "descripcion": "Arbol milenario con potentes efectos neuroprotectores y circulatorios.",
       "mecanismoAccion": "Mejora la circulacion cerebral y periférica. Los flavonoides son antioxidantes potentes. Los terpenoides inhiben factor de agregacion plaquetaria.",
       "nivelEvidencia": "B",
       "parteUsada": "hoja",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura"
+      ],
       "tiempoEfecto": "4-6 semanas",
       "duracionTratamiento": "3-12 meses",
-      "advertencias": ["Puede aumentar riesgo de sangrado", "Suspender antes de cirugia"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "AINE", "Antidiabeticos"],
-      "tags": ["neuroprotector", "memoria", "circulacion"],
+      "advertencias": [
+        "Puede aumentar riesgo de sangrado",
+        "Suspender antes de cirugia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "AINE",
+        "Antidiabeticos"
+      ],
+      "tags": [
+        "neuroprotector",
+        "memoria",
+        "circulacion"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -127,22 +271,48 @@
     {
       "id": "equinacea",
       "nombre": "Equinacea",
-      "nombresAlternativos": ["Echinacea purpurea", "Coneflower", "Equinac"],
+      "nombresAlternativos": [
+        "Echinacea purpurea",
+        "Coneflower",
+        "Equinac"
+      ],
       "nombreCientifico": "Echinacea purpurea",
       "familia": "Asteraceae",
       "categoria": "fitoterapia",
-      "sistemas": ["inmune"],
-      "indicaciones": ["inmunidad", "resfriado", "gripe", "infecciones"],
+      "sistemas": [
+        "inmune"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "resfriado",
+        "gripe",
+        "infecciones"
+      ],
       "descripcion": "Planta immunomoduladora que estimula las defensas naturales del organismo.",
       "mecanismoAccion": "Estimula el sistema inmune innato. Aumenta la produccion de citocinas y la actividad de fagocitos.",
       "nivelEvidencia": "B",
       "parteUsada": "todo",
-      "formasPresentacion": ["Capsulas", "Tintura", "Jarabe", "Infusion"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Jarabe",
+        "Infusion"
+      ],
       "tiempoEfecto": "Inmediato - 24 horas",
       "duracionTratamiento": "2-8 semanas maximo",
-      "advertencias": ["No usar en enfermedades autoinmunes", "No usar en embarazo sin supervision"],
-      "interaccionesMedicamentosas": ["Inmunosupresores", "Corticoides"],
-      "tags": ["inmunoestimulante", "antiviral", "resfriado"],
+      "advertencias": [
+        "No usar en enfermedades autoinmunes",
+        "No usar en embarazo sin supervision"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Corticoides"
+      ],
+      "tags": [
+        "inmunoestimulante",
+        "antiviral",
+        "resfriado"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -150,22 +320,49 @@
     {
       "id": "propoleo",
       "nombre": "Propoleo",
-      "nombresAlternativos": ["Propolis", "Bee glue", "Jalea de abeja"],
+      "nombresAlternativos": [
+        "Propolis",
+        "Bee glue",
+        "Jalea de abeja"
+      ],
       "nombreCientifico": "Propolis",
       "familia": "Apidae",
       "categoria": "fitoterapia",
-      "sistemas": ["inmune", "dermatologico"],
-      "indicaciones": ["inmunidad", "infecciones", "dolor", "heridas"],
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "infecciones",
+        "dolor",
+        "heridas"
+      ],
       "descripcion": "Sustancia resinosa producida porabejas con potentes propiedades antibacterianas y immunomoduladoras.",
       "mecanismoAccion": "Actividad antimicrobiana de amplio espectro. Estimula el sistema inmune y promueve la regeneracion tisular.",
       "nivelEvidencia": "B",
       "parteUsada": "resina",
-      "formasPresentacion": ["Tintura", "Capsulas", "Spray", "Pomada", "Colutorio"],
+      "formasPresentacion": [
+        "Tintura",
+        "Capsulas",
+        "Spray",
+        "Pomada",
+        "Colutorio"
+      ],
       "tiempoEfecto": "Inmediato - localmente",
       "duracionTratamiento": "2-4 semanas",
-      "advertencias": ["Alergia a productos apicolas", "No usar en asma"],
-      "interaccionesMedicamentosas": ["Anticoagulantes"],
-      "tags": ["antiseptico", "inmunoestimulante", "cicatrizante"],
+      "advertencias": [
+        "Alergia a productos apicolas",
+        "No usar en asma"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antiseptico",
+        "inmunoestimulante",
+        "cicatrizante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -173,22 +370,49 @@
     {
       "id": "sauco",
       "nombre": "Sauco",
-      "nombresAlternativos": ["Sambucus nigra", "Elderberry", "Elder"],
+      "nombresAlternativos": [
+        "Sambucus nigra",
+        "Elderberry",
+        "Elder"
+      ],
       "nombreCientifico": "Sambucus nigra",
       "familia": "Adoxaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["inmune", "respiratorio"],
-      "indicaciones": ["resfriado", "gripe", "infecciones", "inflamacion"],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "resfriado",
+        "gripe",
+        "infecciones",
+        "inflamacion"
+      ],
       "descripcion": "Baya negra con potentes propiedades antivirales y antiinflamatorias.",
       "mecanismoAccion": "Inhibe la replicacion viral. Los antocianos tienen propiedades antiinflamatorias y antioxidantes.",
       "nivelEvidencia": "B",
       "parteUsada": "fruto",
-      "formasPresentacion": ["Jarabe", "Capsulas", "Tintura", "Gominolas"],
+      "formasPresentacion": [
+        "Jarabe",
+        "Capsulas",
+        "Tintura",
+        "Gominolas"
+      ],
       "tiempoEfecto": "24-48 horas",
       "duracionTratamiento": "1-2 semanas",
-      "advertencias": ["Bayas crudas son toxicas", "No consumir semillas"],
-      "interaccionesMedicamentosas": ["Diureticos", "Antidiabeticos"],
-      "tags": ["antiviral", "antioxidante", "resfriado"],
+      "advertencias": [
+        "Bayas crudas son toxicas",
+        "No consumir semillas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos",
+        "Antidiabeticos"
+      ],
+      "tags": [
+        "antiviral",
+        "antioxidante",
+        "resfriado"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -196,22 +420,49 @@
     {
       "id": "espino_blanco",
       "nombre": "Espino Blanco",
-      "nombresAlternativos": ["Crataegus oxyacantha", "Hawthorn", "Espino albar"],
+      "nombresAlternativos": [
+        "Crataegus oxyacantha",
+        "Hawthorn",
+        "Espino albar"
+      ],
       "nombreCientifico": "Crataegus oxyacantha",
       "familia": "Rosaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["cardiovascular"],
-      "indicaciones": ["corazon", "presion_arterial", "circulacion", "ansiedad"],
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "corazon",
+        "presion_arterial",
+        "circulacion",
+        "ansiedad"
+      ],
       "descripcion": "Planta cardiotonica clasica con efectos positivos sobre el corazon y la circulacion.",
       "mecanismoAccion": "Vasodilatador coronario. Inotropo positivo moderado. Antioxidante cardiaco. Inhibe enzima convertidora.",
       "nivelEvidencia": "A",
       "parteUsada": "flor",
-      "formasPresentacion": ["Capsulas", "Tintura", "Infusion", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Infusion",
+        "Extracto"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-6 meses o continuo",
-      "advertencias": ["No substituir medicamentos cardiacos", "Supervision medica en problemas cardiacos"],
-      "interaccionesMedicamentosas": ["Digoxina", "Antihipertensivos", "Anticoagulantes"],
-      "tags": ["cardiotonico", "vasodilatador", "antioxidante"],
+      "advertencias": [
+        "No substituir medicamentos cardiacos",
+        "Supervision medica en problemas cardiacos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Digoxina",
+        "Antihipertensivos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "cardiotonico",
+        "vasodilatador",
+        "antioxidante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -219,22 +470,53 @@
     {
       "id": "curcuma",
       "nombre": "Curcuma",
-      "nombresAlternativos": ["Curcuma longa", "Turmeric", "Azafran de la India"],
+      "nombresAlternativos": [
+        "Curcuma longa",
+        "Turmeric",
+        "Azafran de la India"
+      ],
       "nombreCientifico": "Curcuma longa",
       "familia": "Zingiberaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["musculoesqueletico", "digestivo", "inmune"],
-      "indicaciones": ["inflamacion", "dolor", "articulaciones", "digestion", "antioxidante"],
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "inflamacion",
+        "dolor",
+        "articulaciones",
+        "digestion",
+        "antioxidante"
+      ],
       "descripcion": "Potente antiinflamatorio y antioxidante natural. Principio activo: curcumina.",
       "mecanismoAccion": "Inhibe NF-kB y COX-2. Potente antioxidante que activa Nrf2. Mejora la biodisponibilidad de farmacos.",
       "nivelEvidencia": "A",
       "parteUsada": "rizoma",
-      "formasPresentacion": ["Capsulas", "Polvo", "Extracto", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo",
+        "Extracto",
+        "Tintura"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar en obstruccion biliar", "Suspender antes de cirugia", "Mejor con pimienta negra"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Antidiabeticos", "Quimioterapia"],
-      "tags": ["antiinflamatorio", "antioxidante", "articulaciones"],
+      "advertencias": [
+        "No usar en obstruccion biliar",
+        "Suspender antes de cirugia",
+        "Mejor con pimienta negra"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antidiabeticos",
+        "Quimioterapia"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "antioxidante",
+        "articulaciones"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -242,22 +524,53 @@
     {
       "id": "jengibre",
       "nombre": "Jengibre",
-      "nombresAlternativos": ["Zingiber officinale", "Ginger", "Kion"],
+      "nombresAlternativos": [
+        "Zingiber officinale",
+        "Ginger",
+        "Kion"
+      ],
       "nombreCientifico": "Zingiber officinale",
       "familia": "Zingiberaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["digestivo", "musculoesqueletico", "inmune"],
-      "indicaciones": ["nauseas", "digestion", "dolor", "inflamacion", "energia"],
+      "sistemas": [
+        "digestivo",
+        "musculoesqueletico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "nauseas",
+        "digestion",
+        "dolor",
+        "inflamacion",
+        "energia"
+      ],
       "descripcion": "Raiz tropical con propiedades antiemeticas, digestivas y antiinflamatorias.",
       "mecanismoAccion": "Antiemetico por bloqueo de receptores 5-HT3. Antiinflamatorio por inhibicion de prostaglandinas. Carminativo.",
       "nivelEvidencia": "A",
       "parteUsada": "rizoma",
-      "formasPresentacion": ["Capsulas", "Polvo", "Tintura", "Infusion", "Caramelos"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo",
+        "Tintura",
+        "Infusion",
+        "Caramelos"
+      ],
       "tiempoEfecto": "30-60 minutos",
       "duracionTratamiento": "2-3 meses",
-      "advertencias": ["Dosis altas pueden causar reflujo", "No usar en calculos biliares"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Antidiabeticos", "Antihipertensivos"],
-      "tags": ["antiemetico", "digestivo", "antiinflamatorio"],
+      "advertencias": [
+        "Dosis altas pueden causar reflujo",
+        "No usar en calculos biliares"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antidiabeticos",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "antiemetico",
+        "digestivo",
+        "antiinflamatorio"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -265,22 +578,48 @@
     {
       "id": "harpagofito",
       "nombre": "Harpagofito",
-      "nombresAlternativos": ["Harpagophytum procumbens", "Devils Claw", "Garra del Diablo"],
+      "nombresAlternativos": [
+        "Harpagophytum procumbens",
+        "Devils Claw",
+        "Garra del Diablo"
+      ],
       "nombreCientifico": "Harpagophytum procumbens",
       "familia": "Pedaliaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["musculoesqueletico"],
-      "indicaciones": ["dolor", "articulaciones", "inflamacion", "espalda"],
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "dolor",
+        "articulaciones",
+        "inflamacion",
+        "espalda"
+      ],
       "descripcion": "Planta africana con potentes propiedades analgesicas y antiinflamatorias para articulaciones.",
       "mecanismoAccion": "Inhibe COX-2 y TNF-alfa. Los harpagosidos son analgesicos naturales.",
       "nivelEvidencia": "A",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "2-6 meses",
-      "advertencias": ["No usar en ulcera peptica", "No usar en embarazo"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "AINE", "Antidiabeticos"],
-      "tags": ["analgesico", "antiinflamatorio", "articulaciones"],
+      "advertencias": [
+        "No usar en ulcera peptica",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "AINE",
+        "Antidiabeticos"
+      ],
+      "tags": [
+        "analgesico",
+        "antiinflamatorio",
+        "articulaciones"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -288,22 +627,48 @@
     {
       "id": "maca",
       "nombre": "Maca",
-      "nombresAlternativos": ["Lepidium meyenii", "Ginseng peruano", "Maca maca"],
+      "nombresAlternativos": [
+        "Lepidium meyenii",
+        "Ginseng peruano",
+        "Maca maca"
+      ],
       "nombreCientifico": "Lepidium meyenii",
       "familia": "Brassicaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["endocrino", "metabolico"],
-      "indicaciones": ["energia", "sexual", "fatiga", "menopausia"],
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "energia",
+        "sexual",
+        "fatiga",
+        "menopausia"
+      ],
       "descripcion": "Raiz andina con propiedades adaptogenas que mejoran energia y funcion sexual.",
       "mecanismoAccion": "Modula eje HPA (hipotalamo-pituitario-adrenal). Aumenta dopamina y serotonina. Fitoesteroles regulan hormanas.",
       "nivelEvidencia": "B",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Polvo", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo",
+        "Extracto"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar en cancer hormono-dependiente", "Puede afectar tiroides"],
-      "interaccionesMedicamentosas": ["Antihipertensivos", "Anticoagulantes"],
-      "tags": ["adaptogeno", "energia", "afrodisiaco"],
+      "advertencias": [
+        "No usar en cancer hormono-dependiente",
+        "Puede afectar tiroides"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "adaptogeno",
+        "energia",
+        "afrodisiaco"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -311,22 +676,52 @@
     {
       "id": "ashwagandha",
       "nombre": "Ashwagandha",
-      "nombresAlternativos": ["Withania somnifera", "Ginseng indio", "Cereza de invierno"],
+      "nombresAlternativos": [
+        "Withania somnifera",
+        "Ginseng indio",
+        "Cereza de invierno"
+      ],
       "nombreCientifico": "Withania somnifera",
       "familia": "Solanaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso", "endocrino", "inmune"],
-      "indicaciones": ["estres", "ansiedad", "fatiga", "energia", "inmunidad"],
+      "sistemas": [
+        "nervioso",
+        "endocrino",
+        "inmune"
+      ],
+      "indicaciones": [
+        "estres",
+        "ansiedad",
+        "fatiga",
+        "energia",
+        "inmunidad"
+      ],
       "descripcion": "Raiz ayurvedica con puissants effets adaptogenes. Reduce el estres y mejora la resistencia.",
       "mecanismoAccion": "Reduce cortisol. Modula receptores GABA. Aumenta niveles de DHEA-S y testosterona. Inmunoestimulante.",
       "nivelEvidencia": "A",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Extracto", "Polvo", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Polvo",
+        "Tintura"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar con farmacos tiroideos", "No usar en embarazo"],
-      "interaccionesMedicamentosas": ["Sedantes", "Tiroideos", "Inmunosupresores"],
-      "tags": ["adaptogeno", "antiestres", "inmunoestimulante"],
+      "advertencias": [
+        "No usar con farmacos tiroideos",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes",
+        "Tiroideos",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "adaptogeno",
+        "antiestres",
+        "inmunoestimulante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -334,22 +729,49 @@
     {
       "id": "rodiola",
       "nombre": "Rodiola",
-      "nombresAlternativos": ["Rhodiola rosea", "Golden root", "Arctic root"],
+      "nombresAlternativos": [
+        "Rhodiola rosea",
+        "Golden root",
+        "Arctic root"
+      ],
       "nombreCientifico": "Rhodiola rosea",
       "familia": "Crassulaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso", "metabolico"],
-      "indicaciones": ["fatiga", "estres", "energia", "concentracion", "depresion"],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "estres",
+        "energia",
+        "concentracion",
+        "depresion"
+      ],
       "descripcion": "Planta adaptogena del Artico que mejora resistencia al estres y la fatiga mental.",
       "mecanismoAccion": "Activa serotonina y noradrenalina. Inhibe COMT. Aumenta ATP y resistencia a hipoxia.",
       "nivelEvidencia": "B",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura"
+      ],
       "tiempoEfecto": "1-2 semanas",
       "duracionTratamiento": "2-4 meses",
-      "advertencias": ["No tomar por la noche (estimulante)", "No usar en bipolar"],
-      "interaccionesMedicamentosas": ["Antidepresivos", "Estimulantes"],
-      "tags": ["adaptogeno", "energizante", "antifatiga"],
+      "advertencias": [
+        "No tomar por la noche (estimulante)",
+        "No usar en bipolar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidepresivos",
+        "Estimulantes"
+      ],
+      "tags": [
+        "adaptogeno",
+        "energizante",
+        "antifatiga"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -357,22 +779,50 @@
     {
       "id": "manzanilla",
       "nombre": "Manzanilla",
-      "nombresAlternativos": ["Chamomilla recutita", "Chamomile", "Camomila"],
+      "nombresAlternativos": [
+        "Chamomilla recutita",
+        "Chamomile",
+        "Camomila"
+      ],
       "nombreCientifico": "Matricaria chamomilla",
       "familia": "Asteraceae",
       "categoria": "fitoterapia",
-      "sistemas": ["digestivo", "nervioso"],
-      "indicaciones": ["digestion", "ansiedad", "insomnio", "inflammation", "estres"],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "digestion",
+        "ansiedad",
+        "insomnio",
+        "inflammation",
+        "estres"
+      ],
       "descripcion": "Flor medicinal clasica con propiedades calmantes y digestivas suaves.",
       "mecanismoAccion": "Los flavonoides actuan sobre receptores GABA. La chamazulena es antiinflamatoria. Carminativo.",
       "nivelEvidencia": "B",
       "parteUsada": "flor",
-      "formasPresentacion": ["Infusion", "Extracto", "Tintura", "Aceite esencial"],
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto",
+        "Tintura",
+        "Aceite esencial"
+      ],
       "tiempoEfecto": "20-30 minutos",
       "duracionTratamiento": "Ilimitado (uso seguro)",
-      "advertencias": ["Alergia a Asteraceae", "No usar con anticoagulantes en dosis altas"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Sedantes"],
-      "tags": ["calmante", "digestivo", "suave"],
+      "advertencias": [
+        "Alergia a Asteraceae",
+        "No usar con anticoagulantes en dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Sedantes"
+      ],
+      "tags": [
+        "calmante",
+        "digestivo",
+        "suave"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -380,22 +830,52 @@
     {
       "id": "aloe_vera",
       "nombre": "Aloe Vera",
-      "nombresAlternativos": ["Aloe barbadensis", "Sabila", "Acibar"],
+      "nombresAlternativos": [
+        "Aloe barbadensis",
+        "Sabila",
+        "Acibar"
+      ],
       "nombreCientifico": "Aloe barbadensis miller",
       "familia": "Asphodelaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["dermatologico", "digestivo", "inmune"],
-      "indicaciones": ["piel", "cicatrizacion", "digestion", "inflammation", "quemaduras"],
+      "sistemas": [
+        "dermatologico",
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "piel",
+        "cicatrizacion",
+        "digestion",
+        "inflammation",
+        "quemaduras"
+      ],
       "descripcion": "Planta suculenta con propiedades cicatrizantes, hidratantes y digestivas.",
       "mecanismoAccion": "Los polisacaridos aceleran cicatrizacion. El acemanano es immunomodulador. Efecto laxante por antraquinonas.",
       "nivelEvidencia": "A",
       "parteUsada": "gel",
-      "formasPresentacion": ["Gel topical", "Jugo", "Capsulas", "Spray"],
+      "formasPresentacion": [
+        "Gel topical",
+        "Jugo",
+        "Capsulas",
+        "Spray"
+      ],
       "tiempoEfecto": "Local: inmediato; Oral: 2-4 semanas",
       "duracionTratamiento": "Topico: ilimitado; Oral: 2-4 semanas maximo",
-      "advertencias": ["No usar latex de aloe internamente (laxante fuerte)", "No usar en embarazo"],
-      "interaccionesMedicamentosas": ["Antidiabeticos", "Diureticos", "Laxantes"],
-      "tags": ["cicatrizante", "hidratante", "digestivo"],
+      "advertencias": [
+        "No usar latex de aloe internamente (laxante fuerte)",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos",
+        "Diureticos",
+        "Laxantes"
+      ],
+      "tags": [
+        "cicatrizante",
+        "hidratante",
+        "digestivo"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -403,22 +883,50 @@
     {
       "id": "menta",
       "nombre": "Menta",
-      "nombresAlternativos": ["Mentha piperita", "Peppermint", "Toronjil de olor"],
+      "nombresAlternativos": [
+        "Mentha piperita",
+        "Peppermint",
+        "Toronjil de olor"
+      ],
       "nombreCientifico": "Mentha x piperita",
       "familia": "Lamiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["digestivo", "respiratorio"],
-      "indicaciones": ["digestion", "nauseas", "colon irritable", "resfriado", "dolor"],
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "digestion",
+        "nauseas",
+        "colon irritable",
+        "resfriado",
+        "dolor"
+      ],
       "descripcion": "Hierba aromatica con propiedades digestivas, antiemeticas y refrescantes.",
       "mecanismoAccion": "El mentol relaja musculo liso intestinal. Carminativo. Antiseptico respiratorio.",
       "nivelEvidencia": "B",
       "parteUsada": "hoja",
-      "formasPresentacion": ["Infusion", "Aceite esencial", "Capsulas entéricas", "Tintura"],
+      "formasPresentacion": [
+        "Infusion",
+        "Aceite esencial",
+        "Capsulas entéricas",
+        "Tintura"
+      ],
       "tiempoEfecto": "30-60 minutos",
       "duracionTratamiento": "2-3 meses",
-      "advertencias": ["No usar aceite esencial puro internamente", "No usar en reflujo severo"],
-      "interaccionesMedicamentosas": ["Antacidos", "Antihipertensivos"],
-      "tags": ["digestivo", "carminativo", "refrescante"],
+      "advertencias": [
+        "No usar aceite esencial puro internamente",
+        "No usar en reflujo severo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antacidos",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "digestivo",
+        "carminativo",
+        "refrescante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -426,22 +934,50 @@
     {
       "id": "tomillo",
       "nombre": "Tomillo",
-      "nombresAlternativos": ["Thymus vulgaris", "Thyme", "Farigola"],
+      "nombresAlternativos": [
+        "Thymus vulgaris",
+        "Thyme",
+        "Farigola"
+      ],
       "nombreCientifico": "Thymus vulgaris",
       "familia": "Lamiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["respiratorio", "digestivo", "inmune"],
-      "indicaciones": ["tos", "gripe", "resfriado", "infecciones", "digestion"],
+      "sistemas": [
+        "respiratorio",
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "tos",
+        "gripe",
+        "resfriado",
+        "infecciones",
+        "digestion"
+      ],
       "descripcion": "Hierba mediterranea con poderosas propriedades antisepticas y expectorantes.",
       "mecanismoAccion": "El timol es antiseptico de amplio espectro. Expectorante por刺激 bronchial. Carminativo.",
       "nivelEvidencia": "B",
       "parteUsada": "hoja",
-      "formasPresentacion": ["Infusion", "Tintura", "Jarabe", "Aceite esencial"],
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Jarabe",
+        "Aceite esencial"
+      ],
       "tiempoEfecto": "30-60 minutos",
       "duracionTratamiento": "2-4 semanas",
-      "advertencias": ["No usar aceite esencial puro internamente", "No usar en embarazo (alta concentracion)"],
-      "interaccionesMedicamentosas": ["Anticoagulantes"],
-      "tags": ["antiseptico", "expectorante", "antitusivo"],
+      "advertencias": [
+        "No usar aceite esencial puro internamente",
+        "No usar en embarazo (alta concentracion)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antiseptico",
+        "expectorante",
+        "antitusivo"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -449,22 +985,51 @@
     {
       "id": "lavanda",
       "nombre": "Lavanda",
-      "nombresAlternativos": ["Lavandula angustifolia", "Lavender", "Espliego"],
+      "nombresAlternativos": [
+        "Lavandula angustifolia",
+        "Lavender",
+        "Espliego"
+      ],
       "nombreCientifico": "Lavandula angustifolia",
       "familia": "Lamiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso", "dermatologico"],
-      "indicaciones": ["ansiedad", "estres", "insomnio", "piel", "dolor"],
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estres",
+        "insomnio",
+        "piel",
+        "dolor"
+      ],
       "descripcion": "Flor aromatica con propiedades calmantes, antisepticas y cicatrizantes.",
       "mecanismoAccion": "Modula receptores GABA. El linalool tiene efeitos anxioliticos. Antiseptico suave.",
       "nivelEvidencia": "B",
       "parteUsada": "flor",
-      "formasPresentacion": ["Aceite esencial", "Infusion", "Tintura", "Crema", "Difusor"],
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Infusion",
+        "Tintura",
+        "Crema",
+        "Difusor"
+      ],
       "tiempoEfecto": "30-60 minutos (aromaterapia)",
       "duracionTratamiento": "2-3 meses",
-      "advertencias": ["No usar aceite esencial puro sobre piel", "Posible alergia de contacto"],
-      "interaccionesMedicamentosas": ["Sedantes", "Anticoagulantes"],
-      "tags": ["calmante", "ansiolitico", "cicatrizante"],
+      "advertencias": [
+        "No usar aceite esencial puro sobre piel",
+        "Posible alergia de contacto"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "calmante",
+        "ansiolitico",
+        "cicatrizante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -472,22 +1037,47 @@
     {
       "id": "cardo_mariano",
       "nombre": "Cardo Mariano",
-      "nombresAlternativos": ["Silybum marianum", "Milk thistle", "Cardo lechoso"],
+      "nombresAlternativos": [
+        "Silybum marianum",
+        "Milk thistle",
+        "Cardo lechoso"
+      ],
       "nombreCientifico": "Silybum marianum",
       "familia": "Asteraceae",
       "categoria": "fitoterapia",
-      "sistemas": ["hepatico"],
-      "indicaciones": ["higado", "desintoxicacion", "antioxidante", "cirrosis"],
+      "sistemas": [
+        "hepatico"
+      ],
+      "indicaciones": [
+        "higado",
+        "desintoxicacion",
+        "antioxidante",
+        "cirrosis"
+      ],
       "descripcion": "Planta hepatoprotectora clasica. La silimarina protege y regenera el higado.",
       "mecanismoAccion": "La silimarina estabiliza membranas hepatocitos. Antioxidante potente. Estimula regeneracion hepatica.",
       "nivelEvidencia": "A",
       "parteUsada": "fruto",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-12 meses",
-      "advertencias": ["Puede causar ligero effetto laxante", "No sustituir tratamiento hepatico"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Metadona"],
-      "tags": ["hepatoprotector", "antioxidante", "detox"],
+      "advertencias": [
+        "Puede causar ligero effetto laxante",
+        "No sustituir tratamiento hepatico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Metadona"
+      ],
+      "tags": [
+        "hepatoprotector",
+        "antioxidante",
+        "detox"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -495,22 +1085,51 @@
     {
       "id": "reishi",
       "nombre": "Reishi",
-      "nombresAlternativos": ["Ganoderma lucidum", "Lingzhi", "Hongo de la inmortalidad"],
+      "nombresAlternativos": [
+        "Ganoderma lucidum",
+        "Lingzhi",
+        "Hongo de la inmortalidad"
+      ],
       "nombreCientifico": "Ganoderma lucidum",
       "familia": "Ganodermataceae",
       "categoria": "fitoterapia",
-      "sistemas": ["inmune", "nervioso", "cardiovascular"],
-      "indicaciones": ["inmunidad", "estres", "ansiedad", "energia", "antienvejecimiento"],
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "estres",
+        "ansiedad",
+        "energia",
+        "antienvejecimiento"
+      ],
       "descripcion": "Hongo medicinal con effets immunomoduladores y adaptogenos. Usado en medicina tradicional china.",
       "mecanismoAccion": "Los beta-glucanos estimulan el sistema inmune. Los triterpenos tienen effets ansioliticos e hipolipemiantes.",
       "nivelEvidencia": "B",
       "parteUsada": "todo",
-      "formasPresentacion": ["Capsulas", "Extracto", "Polvo"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Polvo"
+      ],
       "tiempoEfecto": "4-8 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar con anticoagulantes sin supervision", "Puedo causar allergia en sensibles a hongos"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Antihipertensivos", "Quimioterapia"],
-      "tags": ["inmunoestimulante", "adaptogeno", "cardiovascular"],
+      "advertencias": [
+        "No usar con anticoagulantes sin supervision",
+        "Puedo causar allergia en sensibles a hongos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antihipertensivos",
+        "Quimioterapia"
+      ],
+      "tags": [
+        "inmunoestimulante",
+        "adaptogeno",
+        "cardiovascular"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -518,22 +1137,57 @@
     {
       "id": "ginseng",
       "nombre": "Ginseng",
-      "nombresAlternativos": ["Panax ginseng", "Ginseng coreano", "Ginseng chino", "Ren Shen"],
+      "nombresAlternativos": [
+        "Panax ginseng",
+        "Ginseng coreano",
+        "Ginseng chino",
+        "Ren Shen"
+      ],
       "nombreCientifico": "Panax ginseng",
       "familia": "Araliaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["nervioso", "inmune", "endocrino", "metabolico"],
-      "indicaciones": ["fatiga", "energia", "concentracion", "memoria", "estres", "inmunidad", "diabetes"],
+      "sistemas": [
+        "nervioso",
+        "inmune",
+        "endocrino",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "energia",
+        "concentracion",
+        "memoria",
+        "estres",
+        "inmunidad",
+        "diabetes"
+      ],
       "descripcion": "Raiz adaptogena que mejora la resistencia al estres. Aumenta energia fisica y mental.",
       "mecanismoAccion": "Ginsenosidos actuan sobre eje HPA, mejorando respuesta al estres. Modula sistema inmune y metabolismo.",
       "nivelEvidencia": "A",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura", "Te"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura",
+        "Te"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3 meses maximo, descansar 1 mes",
-      "advertencias": ["No usar en embarazo", "Puede causar hipertension", "No combinar con Cafeina excesiva"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Antidiabeticos", "IMAOs"],
-      "tags": ["adaptogeno", "energizante", "inmunoestimulante"],
+      "advertencias": [
+        "No usar en embarazo",
+        "Puede causar hipertension",
+        "No combinar con Cafeina excesiva"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antidiabeticos",
+        "IMAOs"
+      ],
+      "tags": [
+        "adaptogeno",
+        "energizante",
+        "inmunoestimulante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -541,22 +1195,50 @@
     {
       "id": "eleuterococo",
       "nombre": "Eleuterococo",
-      "nombresAlternativos": ["Eleutherococcus senticosus", "Ginseng siberiano", "Ci Wu Jia"],
+      "nombresAlternativos": [
+        "Eleutherococcus senticosus",
+        "Ginseng siberiano",
+        "Ci Wu Jia"
+      ],
       "nombreCientifico": "Eleutherococcus senticosus",
       "familia": "Araliaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["inmune", "nervioso", "metabolico"],
-      "indicaciones": ["fatiga", "estres", "inmunidad", "energia", "recuperacion"],
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "estres",
+        "inmunidad",
+        "energia",
+        "recuperacion"
+      ],
       "descripcion": "Adaptogeno ruso con effets similares al ginseng pero mas suave. Ideal para fatiga cronica.",
       "mecanismoAccion": "Eleuterosidos modulan respuesta al estres. Mejoran utilization de oxigeno y metabolismo energetico.",
       "nivelEvidencia": "B",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "6 meses maximo",
-      "advertencias": ["No usar en hipertension severa", "No combinar con farmacos cardiacos sin supervision"],
-      "interaccionesMedicamentosas": ["Digoxina", "Antihipertensivos"],
-      "tags": ["adaptogeno", "energizante", "anti-fatiga"],
+      "advertencias": [
+        "No usar en hipertension severa",
+        "No combinar con farmacos cardiacos sin supervision"
+      ],
+      "interaccionesMedicamentosas": [
+        "Digoxina",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "adaptogeno",
+        "energizante",
+        "anti-fatiga"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -564,22 +1246,52 @@
     {
       "id": "schisandra",
       "nombre": "Schisandra",
-      "nombresAlternativos": ["Schisandra chinensis", "Bayas de los cinco sabores", "Wu Wei Zi"],
+      "nombresAlternativos": [
+        "Schisandra chinensis",
+        "Bayas de los cinco sabores",
+        "Wu Wei Zi"
+      ],
       "nombreCientifico": "Schisandra chinensis",
       "familia": "Schisandraceae",
       "categoria": "fitoterapia",
-      "sistemas": ["hepatico", "nervioso", "inmune"],
-      "indicaciones": ["higado", "hepatitis", "fatiga", "memoria", "estres", "antioxidante"],
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "inmune"
+      ],
+      "indicaciones": [
+        "higado",
+        "hepatitis",
+        "fatiga",
+        "memoria",
+        "estres",
+        "antioxidante"
+      ],
       "descripcion": "Baya adaptogena china que protege el higado y mejora la resistencia mental y fisica.",
       "mecanismoAccion": "Schisandrins protegen hepatocitos y mejoran funcion suprarrenal. Antioxidante potente.",
       "nivelEvidencia": "B",
       "parteUsada": "fruto",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura", "Polvo"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura",
+        "Polvo"
+      ],
       "tiempoEfecto": "4-8 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar en embarazo", "Puede interactuar con farmacos metabolizados por higado"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Antidiabeticos"],
-      "tags": ["hepatoprotector", "adaptogeno", "antioxidante"],
+      "advertencias": [
+        "No usar en embarazo",
+        "Puede interactuar con farmacos metabolizados por higado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antidiabeticos"
+      ],
+      "tags": [
+        "hepatoprotector",
+        "adaptogeno",
+        "antioxidante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -587,22 +1299,48 @@
     {
       "id": "saw_palmetto",
       "nombre": "Saw Palmetto",
-      "nombresAlternativos": ["Serenoa repens", "Palmera enana americana", "Sabal"],
+      "nombresAlternativos": [
+        "Serenoa repens",
+        "Palmera enana americana",
+        "Sabal"
+      ],
       "nombreCientifico": "Serenoa repens",
       "familia": "Arecaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["reproductivo", "urinario", "endocrino"],
-      "indicaciones": ["prostata", "hiperplasia prostatica", "calvicie androgenica", "sexual"],
+      "sistemas": [
+        "reproductivo",
+        "urinario",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "prostata",
+        "hiperplasia prostatica",
+        "calvicie androgenica",
+        "sexual"
+      ],
       "descripcion": "Palmera que mantiene la salud prostatica y hormonal masculina. Estandarizada a acidos grasos.",
       "mecanismoAccion": "Inhibe 5-alfa-reductasa, reduciendo conversion de testosterona a DHT. Antiinflamatorio prostatica.",
       "nivelEvidencia": "A",
       "parteUsada": "fruto",
-      "formasPresentacion": ["Capsulas", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto"
+      ],
       "tiempoEfecto": "4-12 semanas",
       "duracionTratamiento": "6-24 meses",
-      "advertencias": ["Puede causar molestias gastrointestinales", "No usar en mujeres embarazadas"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Tratamientos hormonales"],
-      "tags": ["prostata", "hormonal", "anticaida"],
+      "advertencias": [
+        "Puede causar molestias gastrointestinales",
+        "No usar en mujeres embarazadas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Tratamientos hormonales"
+      ],
+      "tags": [
+        "prostata",
+        "hormonal",
+        "anticaida"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -610,22 +1348,53 @@
     {
       "id": "ortiga",
       "nombre": "Ortiga",
-      "nombresAlternativos": ["Urtica dioica", "Nettle", "Hierba de los ciegos"],
+      "nombresAlternativos": [
+        "Urtica dioica",
+        "Nettle",
+        "Hierba de los ciegos"
+      ],
       "nombreCientifico": "Urtica dioica",
       "familia": "Urticaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["urinario", "inmune", "musculoesqueletico", "sangre"],
-      "indicaciones": ["prostata", "alergias", "articulaciones", "anemia", "diabetes"],
+      "sistemas": [
+        "urinario",
+        "inmune",
+        "musculoesqueletico",
+        "sangre"
+      ],
+      "indicaciones": [
+        "prostata",
+        "alergias",
+        "articulaciones",
+        "anemia",
+        "diabetes"
+      ],
       "descripcion": "Planta nutritiva y medicinal con propiedades antialergicas y antiinflamatorias.",
       "mecanismoAccion": "Histamina y flavonoides modulan respuesta inflamatoria. Rica en hierro y minerales.",
       "nivelEvidencia": "B",
       "parteUsada": "hoja",
-      "formasPresentacion": ["Infusion", "Capsulas", "Tintura", "Jugo fresco"],
+      "formasPresentacion": [
+        "Infusion",
+        "Capsulas",
+        "Tintura",
+        "Jugo fresco"
+      ],
       "tiempoEfecto": "2-4 semanas para alergias",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["Puede irritar la piel al manipularla fresca", "Interacciona con farmacos diabeticos"],
-      "interaccionesMedicamentosas": ["Antidiabeticos", "Antihipertensivos", "Litio"],
-      "tags": ["antialergico", "antiinflamatorio", "nutritivo"],
+      "advertencias": [
+        "Puede irritar la piel al manipularla fresca",
+        "Interacciona con farmacos diabeticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos",
+        "Antihipertensivos",
+        "Litio"
+      ],
+      "tags": [
+        "antialergico",
+        "antiinflamatorio",
+        "nutritivo"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -633,22 +1402,58 @@
     {
       "id": "regaliz",
       "nombre": "Regaliz",
-      "nombresAlternativos": ["Glycyrrhiza glabra", "Licorice", "Orozuz", "Madaka"],
+      "nombresAlternativos": [
+        "Glycyrrhiza glabra",
+        "Licorice",
+        "Orozuz",
+        "Madaka"
+      ],
       "nombreCientifico": "Glycyrrhiza glabra",
       "familia": "Fabaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["digestivo", "respiratorio", "inmune", "endocrino"],
-      "indicaciones": ["tos", "gastritis", "ulceras", "dolor de garganta", "fatiga adrenal", "estrogenico"],
+      "sistemas": [
+        "digestivo",
+        "respiratorio",
+        "inmune",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "tos",
+        "gastritis",
+        "ulceras",
+        "dolor de garganta",
+        "fatiga adrenal",
+        "estrogenico"
+      ],
       "descripcion": "Raiz dulce con propiedades expectorantes, antiulcerosas y adaptogenas suprarrenales.",
       "mecanismoAccion": "Glicirricina tiene effets antiinflamatorios y antivirales. Protege mucosa gastrica.",
       "nivelEvidencia": "B",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Infusion", "Extracto", "Capsulas", "Tintura"],
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto",
+        "Capsulas",
+        "Tintura"
+      ],
       "tiempoEfecto": "30-60 minutos para tos",
       "duracionTratamiento": "4-6 semanas maximo (riesgo de pseudoaldosteronismo)",
-      "advertencias": ["No usar en embarazo", "Hypertension y hipokalemia riesgo con uso prolongado", "No superar 50g/dia de glicirricina"],
-      "interaccionesMedicamentosas": ["Diureticos", "Digoxina", "Corticoides", "Antihipertensivos"],
-      "tags": ["expectorante", "antiulceroso", "antiviral", "adrenotónico"],
+      "advertencias": [
+        "No usar en embarazo",
+        "Hypertension y hipokalemia riesgo con uso prolongado",
+        "No superar 50g/dia de glicirricina"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos",
+        "Digoxina",
+        "Corticoides",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "expectorante",
+        "antiulceroso",
+        "antiviral",
+        "adrenotónico"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -656,22 +1461,51 @@
     {
       "id": "dong_quai",
       "nombre": "Dong Quai",
-      "nombresAlternativos": ["Angelica sinensis", "Ginseng femenino", "Dang Gui"],
+      "nombresAlternativos": [
+        "Angelica sinensis",
+        "Ginseng femenino",
+        "Dang Gui"
+      ],
       "nombreCientifico": "Angelica sinensis",
       "familia": "Apiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["reproductivo", "sanguineo", "nervioso"],
-      "indicaciones": ["menopausia", "sindrome premenstrual", "menstruacion irregular", "anemia"],
+      "sistemas": [
+        "reproductivo",
+        "sanguineo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "menopausia",
+        "sindrome premenstrual",
+        "menstruacion irregular",
+        "anemia"
+      ],
       "descripcion": "Hierba china fundamental para salud femenina. Regula ciclo menstrual y alivia sintomas menopausicos.",
       "mecanismoAccion": "Fitoestrogenos y ferulico actuan sobre receptores estrogenicos. Hematopoyetico y vasodilatador.",
       "nivelEvidencia": "C",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Extracto", "Tintura"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Tintura"
+      ],
       "tiempoEfecto": "4-8 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar en embarazo", "No usar con anticoagulantes", "Puede interactuar con farmacos hormonales"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Terapia hormonal", "Anticonceptivos"],
-      "tags": ["ginecologico", "femenino", "regulador"],
+      "advertencias": [
+        "No usar en embarazo",
+        "No usar con anticoagulantes",
+        "Puede interactuar con farmacos hormonales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Terapia hormonal",
+        "Anticonceptivos"
+      ],
+      "tags": [
+        "ginecologico",
+        "femenino",
+        "regulador"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -679,22 +1513,48 @@
     {
       "id": "cimicifuga",
       "nombre": "Cimicífuga",
-      "nombresAlternativos": ["Cimicifuga racemosa", "Black Cohosh", "Cohosh negro"],
+      "nombresAlternativos": [
+        "Cimicifuga racemosa",
+        "Black Cohosh",
+        "Cohosh negro"
+      ],
       "nombreCientifico": "Cimicifuga racemosa",
       "familia": "Ranunculaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["reproductivo", "nervioso"],
-      "indicaciones": ["menopausia", "sofocos", "sudores nocturnos", "ansiedad menopausica"],
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "menopausia",
+        "sofocos",
+        "sudores nocturnos",
+        "ansiedad menopausica"
+      ],
       "descripcion": "Planta eficaz para sintomas de menopausia. Alternativa natural a terapia hormonal.",
       "mecanismoAccion": "Actua sobre receptores serotoninergicos y dopaminergicos. No es fitoestrogeno directo.",
       "nivelEvidencia": "B",
       "parteUsada": "raiz",
-      "formasPresentacion": ["Capsulas", "Tintura", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Extracto"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "6 meses maximo",
-      "advertencias": ["No usar en embarazo", "No usar con farmacos hepatotoxicos", "Riesgo hepatico teorico"],
-      "interaccionesMedicamentosas": ["Metabolismo hepatico (CYP3A4)"],
-      "tags": ["menopausia", "ginecologico", "calmante"],
+      "advertencias": [
+        "No usar en embarazo",
+        "No usar con farmacos hepatotoxicos",
+        "Riesgo hepatico teorico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Metabolismo hepatico (CYP3A4)"
+      ],
+      "tags": [
+        "menopausia",
+        "ginecologico",
+        "calmante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -702,22 +1562,51 @@
     {
       "id": "vitex",
       "nombre": "Vitex",
-      "nombresAlternativos": ["Vitex agnus-castus", "Arbol casto", "Pimienta de los monjes", "Sauzgatillo"],
+      "nombresAlternativos": [
+        "Vitex agnus-castus",
+        "Arbol casto",
+        "Pimienta de los monjes",
+        "Sauzgatillo"
+      ],
       "nombreCientifico": "Vitex agnus-castus",
       "familia": "Lamiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["reproductivo", "endocrino"],
-      "indicaciones": ["sindrome premenstrual", "menstruacion irregular", "quistes ovaricos", "infertilidad"],
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "sindrome premenstrual",
+        "menstruacion irregular",
+        "quistes ovaricos",
+        "infertilidad"
+      ],
       "descripcion": "Regulador hormonal femenino que normaliza el ciclo menstrual y alivia SPM.",
       "mecanismoAccion": "Actua sobre hipofisis, aumentando progesterona y regulando eje HPO. Dopaminergico leve.",
       "nivelEvidencia": "A",
       "parteUsada": "fruto",
-      "formasPresentacion": ["Capsulas", "Tintura", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Extracto"
+      ],
       "tiempoEfecto": "3-6 ciclos menstruales",
       "duracionTratamiento": "6-18 meses",
-      "advertencias": ["No usar en embarazo", "No combinar con anticonceptivos hormonales", "Puede causar dolor de cabeza inicial"],
-      "interaccionesMedicamentosas": ["Anticonceptivos", "Terapia hormonal", "Antipsicoticos"],
-      "tags": ["ginecologico", "hormonal", "regulador"],
+      "advertencias": [
+        "No usar en embarazo",
+        "No combinar con anticonceptivos hormonales",
+        "Puede causar dolor de cabeza inicial"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticonceptivos",
+        "Terapia hormonal",
+        "Antipsicoticos"
+      ],
+      "tags": [
+        "ginecologico",
+        "hormonal",
+        "regulador"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -725,22 +1614,51 @@
     {
       "id": "artemisa",
       "nombre": "Artemisa",
-      "nombresAlternativos": ["Artemisia vulgaris", "Mugwort", "Hierba de San Juan"],
+      "nombresAlternativos": [
+        "Artemisia vulgaris",
+        "Mugwort",
+        "Hierba de San Juan"
+      ],
       "nombreCientifico": "Artemisia vulgaris",
       "familia": "Asteraceae",
       "categoria": "fitoterapia",
-      "sistemas": ["digestivo", "nervioso", "reproductivo"],
-      "indicaciones": ["digestion", "menstruacion dolorosa", "ansiedad", "insomnio", "parásitos"],
+      "sistemas": [
+        "digestivo",
+        "nervioso",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "digestion",
+        "menstruacion dolorosa",
+        "ansiedad",
+        "insomnio",
+        "parásitos"
+      ],
       "descripcion": "Planta amarga tradicional para digestion y salud femenina. Usada en moxibustion.",
       "mecanismoAccion": "Aceites volatiles estimulan digestion. Actua sobre receptores GABA para ansiedad.",
       "nivelEvidencia": "C",
       "parteUsada": "hoja",
-      "formasPresentacion": ["Infusion", "Tintura", "Capsulas"],
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Capsulas"
+      ],
       "tiempoEfecto": "30 minutos para digestion",
       "duracionTratamiento": "2-4 semanas",
-      "advertencias": ["No usar en embarazo (abortiva)", "No usar en lactancia", "Alergia a asteraceas"],
-      "interaccionesMedicamentosas": ["Anticoagulantes", "Farmacos hepatotoxicos"],
-      "tags": ["digestivo", "emenagogo", "carminativo"],
+      "advertencias": [
+        "No usar en embarazo (abortiva)",
+        "No usar en lactancia",
+        "Alergia a asteraceas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Farmacos hepatotoxicos"
+      ],
+      "tags": [
+        "digestivo",
+        "emenagogo",
+        "carminativo"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -748,22 +1666,53 @@
     {
       "id": "centella",
       "nombre": "Centella Asiática",
-      "nombresAlternativos": ["Centella asiatica", "Gotu kola", "Hierba de la tigra"],
+      "nombresAlternativos": [
+        "Centella asiatica",
+        "Gotu kola",
+        "Hierba de la tigra"
+      ],
       "nombreCientifico": "Centella asiatica",
       "familia": "Apiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["dermatologico", "nervioso", "cardiovascular"],
-      "indicaciones": ["cicatrizacion", "piel", "memoria", "varices", "celulitis", "antienvejecimiento"],
+      "sistemas": [
+        "dermatologico",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "cicatrizacion",
+        "piel",
+        "memoria",
+        "varices",
+        "celulitis",
+        "antienvejecimiento"
+      ],
       "descripcion": "Planta ayurvedica que mejora cicatrizacion, memoria y salud vascular.",
       "mecanismoAccion": "Triterpenoides estimulan colageno y angiogénesis. Mejoran sintesis de GABA.",
       "nivelEvidencia": "A",
       "parteUsada": "hoja",
-      "formasPresentacion": ["Capsulas", "Crema", "Extracto", "Infusion"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Crema",
+        "Extracto",
+        "Infusion"
+      ],
       "tiempoEfecto": "4-8 semanas para cognition",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["Posible hepatotoxicidad con dosis altas", "No usar en embarazo"],
-      "interaccionesMedicamentosas": ["Sedantes", "Antidiabeticos", "Antihipertensivos"],
-      "tags": ["cicatrizante", "nootropico", "venotonico"],
+      "advertencias": [
+        "Posible hepatotoxicidad con dosis altas",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes",
+        "Antidiabeticos",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "cicatrizante",
+        "nootropico",
+        "venotonico"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -771,22 +1720,48 @@
     {
       "id": "boswelia",
       "nombre": "Boswellia",
-      "nombresAlternativos": ["Boswellia serrata", "Incienso indio", "Shallaki"],
+      "nombresAlternativos": [
+        "Boswellia serrata",
+        "Incienso indio",
+        "Shallaki"
+      ],
       "nombreCientifico": "Boswellia serrata",
       "familia": "Burseraceae",
       "categoria": "fitoterapia",
-      "sistemas": ["musculoesqueletico", "inmune", "digestivo"],
-      "indicaciones": ["artritis", "inflamacion", "dolor articular", "colitis ulcerosa", "asma"],
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "artritis",
+        "inflamacion",
+        "dolor articular",
+        "colitis ulcerosa",
+        "asma"
+      ],
       "descripcion": "Resina con potente efecto antiinflamatorio similar a AINEs pero sin efectos gastricos.",
       "mecanismoAccion": "Acidos boswelicos inhiben via 5-lipoxigenasa, reduciendo leucotrienos inflamatorios.",
       "nivelEvidencia": "A",
       "parteUsada": "resina",
-      "formasPresentacion": ["Capsulas", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["Puede causar malestar gastrico leve", "No usar en embarazo"],
-      "interaccionesMedicamentosas": ["Anticoagulantes"],
-      "tags": ["antiinflamatorio", "articular", "natural"],
+      "advertencias": [
+        "Puede causar malestar gastrico leve",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "articular",
+        "natural"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -794,24 +1769,502 @@
     {
       "id": "uncaria",
       "nombre": "Uncaria",
-      "nombresAlternativos": ["Uncaria tomentosa", "Uña de gato", "Cat's claw"],
+      "nombresAlternativos": [
+        "Uncaria tomentosa",
+        "Uña de gato",
+        "Cat's claw"
+      ],
       "nombreCientifico": "Uncaria tomentosa",
       "familia": "Rubiaceae",
       "categoria": "fitoterapia",
-      "sistemas": ["inmune", "articaciones", "digestivo"],
-      "indicaciones": ["inmunidad", "artritis", "inflamacion", "ulceras", "infecciones virales"],
+      "sistemas": [
+        "inmune",
+        "articaciones",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "artritis",
+        "inflamacion",
+        "ulceras",
+        "infecciones virales"
+      ],
       "descripcion": "Liana amazonica con poderosas propiedades immunomoduladoras y antiinflamatorias.",
       "mecanismoAccion": "Alcaloides y glucósidos modulan respuesta inmune. Inhibe NF-kB antiinflamatorio.",
       "nivelEvidencia": "B",
       "parteUsada": "corteza",
-      "formasPresentacion": ["Capsulas", "Tintura", "Extracto"],
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Extracto"
+      ],
       "tiempoEfecto": "2-4 semanas",
       "duracionTratamiento": "3-6 meses",
-      "advertencias": ["No usar en embarazo", "Puede causar malestar gastrico", "Autoimmune: usar con precaución"],
-      "interaccionesMedicamentosas": ["Inmunosupresores", "Anticoagulantes", "Antihipertensivos"],
-      "tags": ["inmunoestimulante", "antiinflamatorio", "antiviral"],
+      "advertencias": [
+        "No usar en embarazo",
+        "Puede causar malestar gastrico",
+        "Autoimmune: usar con precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Anticoagulantes",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "inmunoestimulante",
+        "antiinflamatorio",
+        "antiviral"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "ajo",
+      "nombre": "Ajo",
+      "nombresAlternativos": [
+        "Allium sativum",
+        "Garlic",
+        "Bulbo de ajo",
+        "Allii sativi bulbus"
+      ],
+      "nombreCientifico": "Allium sativum",
+      "familia": "Amaryllidaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "inmune",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "aterosclerosis",
+        "resfriado comun",
+        "hiperlipidemia leve"
+      ],
+      "descripcion": "Bulbo tradicionalmente usado como adyuvante en la prevencion de la aterosclerosis y para el alivio de los sintomas del resfriado comun.",
+      "mecanismoAccion": "La alicina y compuestos sulfurados pueden reducir moderadamente colesterol total, trigliceridos y LDL-C, disminuir la actividad plaquetaria y la presion arterial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "bulbo",
+      "formasPresentacion": [
+        "Polvo seco",
+        "Extracto seco",
+        "Extracto liquido",
+        "Aceite"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Evitar 7 dias antes de cirugia por riesgo de sangrado post-operatorio",
+        "Contraindicado con saquinavir/ritonavir",
+        "Precaucion con anticoagulantes y antiagregantes plaquetarios"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antiagregantes plaquetarios",
+        "Saquinavir",
+        "Ritonavir",
+        "Isoniazida"
+      ],
+      "tags": [
+        "cardiovascular",
+        "inmune",
+        "antioxidante",
+        "aterosclerosis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/7685/2013; WHO Monographs on Selected Medicinal Plants Vol.1 (1999)"
+      }
+    },
+    {
+      "id": "uva_ursi",
+      "nombre": "Uva Ursi",
+      "nombresAlternativos": [
+        "Arctostaphylos uva-ursi",
+        "Bearberry",
+        "Gayuba",
+        "Uvae ursi folium"
+      ],
+      "nombreCientifico": "Arctostaphylos uva-ursi",
+      "familia": "Ericaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "infeccion urinaria leve recurrente"
+      ],
+      "descripcion": "Hoja tradicionalmente usada para el tratamiento de sintomas de infecciones urinarias bajas leves y recurrentes (escozor al orinar, frecuencia) en mujeres, tras descartar afecciones graves por un medico.",
+      "mecanismoAccion": "La arbutina se hidroliza a hidroquinona, con accion antisptica sobre la mucosa urinaria en orina alcalina.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Capsulas",
+        "Extracto seco",
+        "Tintura"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "maximo 1 semana",
+      "advertencias": [
+        "No usar mas de 1 semana sin consulta medica",
+        "No recomendado en trastornos renales",
+        "No recomendado en embarazo y lactancia",
+        "Puede teñir la orina de color verde-marron",
+        "No recomendado en menores de 18 anos ni en hombres sin supervision medica"
+      ],
+      "interaccionesMedicamentosas": [
+        "Acidificantes urinarios (reducen eficacia)"
+      ],
+      "tags": [
+        "urinario",
+        "antisptico",
+        "infeccion urinaria"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/573460/2009 Rev.2; ESCOP Monographs (2003)"
+      }
+    },
+    {
+      "id": "sauce",
+      "nombre": "Sauce",
+      "nombresAlternativos": [
+        "Salix alba",
+        "Willow bark",
+        "Corteza de sauce",
+        "Salicis cortex"
+      ],
+      "nombreCientifico": "Salix alba",
+      "familia": "Salicaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "dolor lumbar",
+        "dolor articular leve",
+        "fiebre"
+      ],
+      "descripcion": "Corteza con efecto analgesico y antipiretico, tradicionalmente usada para el alivio a corto plazo del dolor lumbar y articular leve.",
+      "mecanismoAccion": "La salicina y sus derivados se metabolizan a acido salicilico, inhibiendo COX-1 y COX-2 con efecto antiinflamatorio y analgesico dependiente de la dosis.",
+      "nivelEvidencia": "B",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Infusion"
+      ],
+      "tiempoEfecto": "horas",
+      "duracionTratamiento": "corto plazo",
+      "advertencias": [
+        "Contraindicado en embarazo y lactancia",
+        "Contraindicado en alergia a salicilatos",
+        "Precaucion en ulcera gastrica"
+      ],
+      "interaccionesMedicamentosas": [
+        "AINEs",
+        "Anticoagulantes",
+        "Salicilatos"
+      ],
+      "tags": [
+        "analgesico",
+        "antiinflamatorio",
+        "dolor",
+        "salicilato"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/80630/2016"
+      }
+    },
+    {
+      "id": "vid_roja",
+      "nombre": "Hoja de Vid",
+      "nombresAlternativos": [
+        "Vitis vinifera",
+        "Grapevine leaf",
+        "Hoja de parra",
+        "Vitis viniferae folium"
+      ],
+      "nombreCientifico": "Vitis vinifera",
+      "familia": "Vitaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "insuficiencia venosa leve",
+        "piernas pesadas",
+        "hemorroides",
+        "fragilidad capilar"
+      ],
+      "descripcion": "Hoja usada tradicionalmente para aliviar la molestia y pesadez de piernas relacionada con problemas leves de circulacion venosa, el picor y ardor de hemorroides y la fragilidad capilar cutanea.",
+      "mecanismoAccion": "Los antocianos y proantocianidinas ejercen accion venotonica y protectora del endotelio capilar, reduciendo la permeabilidad vascular.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Infusion"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Consultar al medico si los sintomas empeoran o si aparecen ulceras o dolor en la pierna"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "venotonico",
+        "capilar",
+        "circulacion",
+        "antocianos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Vitis vinifera L., folium"
+      }
+    },
+    {
+      "id": "te_verde",
+      "nombre": "Te Verde",
+      "nombresAlternativos": [
+        "Camellia sinensis",
+        "Green tea",
+        "Camelliae sinensis folium"
+      ],
+      "nombreCientifico": "Camellia sinensis",
+      "familia": "Theaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "inmune"
+      ],
+      "indicaciones": [
+        "estres oxidativo",
+        "manejo de peso"
+      ],
+      "descripcion": "Hoja rica en polifenoles (catequinas, EGCG) usada como fuente de antioxidantes y como adyuvante en programas de manejo de peso con dieta hipocalorica y ejercicio.",
+      "mecanismoAccion": "Las catequinas (EGCG) neutralizan radicales libres, estimulan enzimas de detoxificacion hepatica y pueden aumentar ligeramente el gasto energetico y la oxidacion de grasas.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Infusion"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "Precaucion con extractos concentrados por contenido de cafeina",
+        "Dosis altas de EGCG se han asociado a toxicidad hepatica; no exceder dosis recomendadas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes cumarinicos"
+      ],
+      "tags": [
+        "antioxidante",
+        "catequinas",
+        "EGCG",
+        "peso"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Health Canada NHPD Green Tea Extract monograph; EFSA scientific opinion on EGCG"
+      }
+    },
+    {
+      "id": "diente_de_leon",
+      "nombre": "Diente de Leon",
+      "nombresAlternativos": [
+        "Taraxacum officinale",
+        "Dandelion",
+        "Raiz de diente de leon",
+        "Taraxaci radix"
+      ],
+      "nombreCientifico": "Taraxacum officinale",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dispepsia leve",
+        "perdida de apetito",
+        "retencion de liquidos leve"
+      ],
+      "descripcion": "Raiz tradicionalmente usada para estimular el apetito, aliviar molestias digestivas leves (plenitud, flatulencia) y favorecer la eliminacion de liquidos.",
+      "mecanismoAccion": "Las lactonas sesquiterpenicas amargas estimulan la secrecion biliar (coleretico/colagogo) y la diuresis.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Raiz seca",
+        "Extracto liquido",
+        "Tintura",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No recomendado en obstruccion de las vias biliares, colangitis, litiasis biliar o hepatopatias",
+        "Contraindicado en alergia a Asteraceae"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos (potencia efecto)"
+      ],
+      "tags": [
+        "digestivo",
+        "diuretico",
+        "coleretico",
+        "hepatico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/475726/2020; ESCOP Monographs"
+      }
+    },
+    {
+      "id": "boldo",
+      "nombre": "Boldo",
+      "nombresAlternativos": [
+        "Peumus boldus",
+        "Boldu",
+        "Boldo tree",
+        "Peumus boldus folium"
+      ],
+      "nombreCientifico": "Peumus boldus",
+      "familia": "Monimiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dispepsia leve"
+      ],
+      "descripcion": "Hoja tradicionalmente usada para aliviar alteraciones digestivas y dispepsia leve.",
+      "mecanismoAccion": "La boldina y alcaloides relacionados ejercen efecto coleretico, colagogo y espasmolitico sobre la musculatura lisa digestiva.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Hoja seca",
+        "Extracto liquido",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No recomendado en obstruccion biliar o hepatopatias graves",
+        "No usar durante el embarazo por efecto uterotonic estimulante"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "digestivo",
+        "coleretico",
+        "dispepsia",
+        "boldina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Peumus boldus Molina, folium (2016); ESCOP Monographs"
+      }
+    },
+    {
+      "id": "canela",
+      "nombre": "Canela",
+      "nombresAlternativos": [
+        "Cinnamomum verum",
+        "Cinnamon",
+        "Canela de Ceilan",
+        "Cinnamomi cortex"
+      ],
+      "nombreCientifico": "Cinnamomum verum",
+      "familia": "Lauraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "disconfort gastrointestinal espastico leve",
+        "flatulencia",
+        "hinchazon"
+      ],
+      "descripcion": "Corteza tradicionalmente usada para el tratamiento sintomatico de molestias gastrointestinales espasticas leves, incluyendo hinchazon y flatulencia.",
+      "mecanismoAccion": "El aceite esencial y los taninos ejercen efecto carminativo y espasmolitico; algunos estudios sugieren un modesto efecto reductor de la glucemia postprandial.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Corteza molida",
+        "Extracto seco",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "La canela Cassia contiene cumarina; dosis altas prolongadas pueden afectar el higado",
+        "Preferir canela de Ceilan (C. verum) por menor contenido de cumarina"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos (monitorizar glucemia)"
+      ],
+      "tags": [
+        "digestivo",
+        "carminativo",
+        "glucosa",
+        "espasmolitico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/246774/2009; WHO Monographs on Selected Medicinal Plants Vol.1 (1999)"
+      }
+    },
+    {
+      "id": "hamamelis",
+      "nombre": "Hamamelis",
+      "nombresAlternativos": [
+        "Hamamelis virginiana",
+        "Witch hazel",
+        "Hazel nut",
+        "Hamamelidis cortex/folium"
+      ],
+      "nombreCientifico": "Hamamelis virginiana",
+      "familia": "Hamamelidaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "hemorroides",
+        "fragilidad capilar",
+        "varices leves"
+      ],
+      "descripcion": "Corteza y hoja usadas tradicionalmente por via topica y oral como astringente y venotonico para hemorroides, fragilidad capilar y molestias venosas leves.",
+      "mecanismoAccion": "Los taninos (galotaninos) ejercen accion astringente, antiinflamatoria y venotopica, reduciendo la permeabilidad capilar.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza y hoja",
+      "formasPresentacion": [
+        "Tintura",
+        "Extracto liquido",
+        "Uso topico",
+        "Supositorios"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No usar sobre heridas abiertas grandes sin consulta medica",
+        "La seguridad en embarazo y lactancia no esta establecida"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "astringente",
+        "venotonico",
+        "hemorroides",
+        "capilar"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/114583/2008"
       }
     }
   ]

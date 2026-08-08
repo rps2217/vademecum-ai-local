@@ -2,25 +2,44 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.1.0",
-    "ultimaActualizacion": "2026-07-26",
-    "total": 20,
-    "fuente": "Vademecum AI Knowledge Base"
+    "version": "1.2.0",
+    "ultimaActualizacion": "2026-08-08",
+    "total": 25,
+    "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Hahnemann)"
   },
   "ingredientes": [
     {
       "id": "arnica",
       "nombre": "Arnica Montana",
-      "nombresAlternativos": ["Arnica", "Mountain tobacco", "Leopard's bane"],
+      "nombresAlternativos": [
+        "Arnica",
+        "Mountain tobacco",
+        "Leopard's bane"
+      ],
       "nombreCientifico": "Arnica montana",
       "familia": "Asteraceae",
       "categoria": "homeopatia",
-      "sistemas": ["musculoesqueletico", "nervioso"],
-      "indicaciones": ["traumatismos", "golpes", "fatiga muscular", "post-operatorio", "hematomas"],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "traumatismos",
+        "golpes",
+        "fatiga muscular",
+        "post-operatorio",
+        "hematomas"
+      ],
       "descripcion": "Remedio para traumatismos, golpes y fatiga muscular. El remedy mas conocido de la homeopatia.",
       "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria post-traumatica. Reduce hematomas y aliviana dolor.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [5, 7, 9, 15, 30],
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Sensacion de golpeado",
         "No quiere ser tocado",
@@ -28,13 +47,37 @@
         "Olor a queso en el aliento"
       ],
       "modalidades": {
-        "empeora": ["toque", "movimiento", "alcohol", "noche"],
-        "mejora": ["acostado", "cabeza baja", "frio local"]
+        "empeora": [
+          "toque",
+          "movimiento",
+          "alcohol",
+          "noche"
+        ],
+        "mejora": [
+          "acostado",
+          "cabeza baja",
+          "frio local"
+        ]
       },
-      "afinidad": ["musculos", "nervios periféricos", "vasos capilares"],
-      "constelaciones": ["Traumatismos", "Post-cirugia"],
-      "advertencias": ["No aplicar sobre heridas abiertas", "Diluciones altas para uso interno"],
-      "tags": ["traumatismo", "golpe", "deporte", "post-operatorio"],
+      "afinidad": [
+        "musculos",
+        "nervios periféricos",
+        "vasos capilares"
+      ],
+      "constelaciones": [
+        "Traumatismos",
+        "Post-cirugia"
+      ],
+      "advertencias": [
+        "No aplicar sobre heridas abiertas",
+        "Diluciones altas para uso interno"
+      ],
+      "tags": [
+        "traumatismo",
+        "golpe",
+        "deporte",
+        "post-operatorio"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -42,16 +85,36 @@
     {
       "id": "nux_vomica",
       "nombre": "Nux Vomica",
-      "nombresAlternativos": ["Nux v", "Strychnos nux-vomica", "Vomito de nuez"],
+      "nombresAlternativos": [
+        "Nux v",
+        "Strychnos nux-vomica",
+        "Vomito de nuez"
+      ],
       "nombreCientifico": "Strychnos nux-vomica",
       "familia": "Loganiaceae",
       "categoria": "homeopatia",
-      "sistemas": ["digestivo", "nervioso"],
-      "indicaciones": ["resaca", "digestion lenta", "estreñimiento", "estrés", "insomnio", "náuseas"],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "resaca",
+        "digestion lenta",
+        "estreñimiento",
+        "estrés",
+        "insomnio",
+        "náuseas"
+      ],
       "descripcion": "Remedio para transtornos digestivos por excessos y para perfiles competitivos y ambiciosos.",
       "mecanismoAccion": "Regula el eje intestino-cerebro. Normaliza el transito intestinal y reduce nauseas.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [5, 7, 9, 15, 30],
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Nauseas matutinas",
         "Sensibilidad al ruido y luz",
@@ -60,14 +123,43 @@
         "Evacuacion incompleta"
       ],
       "modalidades": {
-        "empeora": ["amanecer", "estrés", "alcohol", "café", "frío", "toque"],
-        "mejora": ["calor", "descanso", "noche", "estómago vacío"]
+        "empeora": [
+          "amanecer",
+          "estrés",
+          "alcohol",
+          "café",
+          "frío",
+          "toque"
+        ],
+        "mejora": [
+          "calor",
+          "descanso",
+          "noche",
+          "estómago vacío"
+        ]
       },
-      "afinidad": ["tubo digestivo", "nervios esplacnicos", "higado"],
-      "constelaciones": ["Digestivo por excessos", "Higado congestionado"],
-      "advertencias": ["No automedicar para condiciones cronicas"],
-      "interaccionesMedicamentosas": ["Estimulantes", "Antidepresivos"],
-      "tags": ["digestivo", "resaca", "estrés", "estreñimiento"],
+      "afinidad": [
+        "tubo digestivo",
+        "nervios esplacnicos",
+        "higado"
+      ],
+      "constelaciones": [
+        "Digestivo por excessos",
+        "Higado congestionado"
+      ],
+      "advertencias": [
+        "No automedicar para condiciones cronicas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estimulantes",
+        "Antidepresivos"
+      ],
+      "tags": [
+        "digestivo",
+        "resaca",
+        "estrés",
+        "estreñimiento"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -75,16 +167,35 @@
     {
       "id": "belladonna",
       "nombre": "Belladonna",
-      "nombresAlternativos": ["Bell", "Deadly nightshade", "Bella doncella"],
+      "nombresAlternativos": [
+        "Bell",
+        "Deadly nightshade",
+        "Bella doncella"
+      ],
       "nombreCientifico": "Atropa belladonna",
       "familia": "Solanaceae",
       "categoria": "homeopatia",
-      "sistemas": ["nervioso", "respiratorio"],
-      "indicaciones": ["fiebre alta", "otitis", "amigdalitis", "cefalea pulsatil", "insolacion"],
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "fiebre alta",
+        "otitis",
+        "amigdalitis",
+        "cefalea pulsatil",
+        "insolacion"
+      ],
       "descripcion": "Remedio para processos agudos con inicio brusco, calor, enrojecimiento y dolor pulsatil.",
       "mecanismoAccion": "Modula el sistema nervioso autonomo. Regula fiebre e inflamacion aguda.",
       "nivelEvidencia": "C",
-      "dilucionesCH": [5, 7, 9, 15, 30],
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Inicio repentino",
         "Fiebre alta con cara roja",
@@ -93,13 +204,39 @@
         "Agitacion con delirium"
       ],
       "modalidades": {
-        "empeora": ["movimiento", "ruido", "luz", "tacto", "3am-3pm"],
-        "mejora": ["descanso", "oscuridad", "presion", "acostado"]
+        "empeora": [
+          "movimiento",
+          "ruido",
+          "luz",
+          "tacto",
+          "3am-3pm"
+        ],
+        "mejora": [
+          "descanso",
+          "oscuridad",
+          "presion",
+          "acostado"
+        ]
       },
-      "afinidad": ["oido medio", "garganta", "cabeza", "piel"],
-      "constelaciones": ["Procesos agudos febriles", "Otitis", "Amigdalitis"],
-      "advertencias": ["Tóxico en estado bruto - solo diluciones homeopaticas"],
-      "tags": ["agudo", "fiebre", "inflammation"],
+      "afinidad": [
+        "oido medio",
+        "garganta",
+        "cabeza",
+        "piel"
+      ],
+      "constelaciones": [
+        "Procesos agudos febriles",
+        "Otitis",
+        "Amigdalitis"
+      ],
+      "advertencias": [
+        "Tóxico en estado bruto - solo diluciones homeopaticas"
+      ],
+      "tags": [
+        "agudo",
+        "fiebre",
+        "inflammation"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -107,16 +244,34 @@
     {
       "id": "chamomilla",
       "nombre": "Chamomilla",
-      "nombresAlternativos": ["Cham", "Manzanilla alemana", "Camomila"],
+      "nombresAlternativos": [
+        "Cham",
+        "Manzanilla alemana",
+        "Camomila"
+      ],
       "nombreCientifico": "Matricaria chamomilla",
       "familia": "Asteraceae",
       "categoria": "homeopatia",
-      "sistemas": ["nervioso", "digestivo"],
-      "indicaciones": ["dolor de dientes", "colicos", "irritabilidad", "insomnio del bebe", "otitis"],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dolor de dientes",
+        "colicos",
+        "irritabilidad",
+        "insomnio del bebe",
+        "otitis"
+      ],
       "descripcion": "Remedio para ninos irritables e intranquilos con dolor insoportable.",
       "mecanismoAccion": "Calma el sistema nervioso de ninos. Modula la percepcion del dolor.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [5, 7, 9, 15],
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15
+      ],
       "sintomasClave": [
         "Nino muy irritable",
         "Dolor insoportable",
@@ -125,13 +280,36 @@
         "Dientes erupcionando"
       ],
       "modalidades": {
-        "empeora": ["denticion", "21h-3h", "calor", "cafe"],
-        "mejora": ["siendo cargado", "llanto", "climas humedos"]
+        "empeora": [
+          "denticion",
+          "21h-3h",
+          "calor",
+          "cafe"
+        ],
+        "mejora": [
+          "siendo cargado",
+          "llanto",
+          "climas humedos"
+        ]
       },
-      "afinidad": ["dientes", "oidos", "tubo digestivo de ninos"],
-      "constelaciones": ["Denticion", "Colicos del lactante"],
-      "advertencias": ["No automedicar ninos sin supervision profesional"],
-      "tags": ["pediatria", "denticion", "colicos", "irritabilidad"],
+      "afinidad": [
+        "dientes",
+        "oidos",
+        "tubo digestivo de ninos"
+      ],
+      "constelaciones": [
+        "Denticion",
+        "Colicos del lactante"
+      ],
+      "advertencias": [
+        "No automedicar ninos sin supervision profesional"
+      ],
+      "tags": [
+        "pediatria",
+        "denticion",
+        "colicos",
+        "irritabilidad"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -139,16 +317,34 @@
     {
       "id": "ignatia",
       "nombre": "Ignatia",
-      "nombresAlternativos": ["Ign", "Haba de San Ignacio", "St. Ignatius bean"],
+      "nombresAlternativos": [
+        "Ign",
+        "Haba de San Ignacio",
+        "St. Ignatius bean"
+      ],
       "nombreCientifico": "Strychnos ignatii",
       "familia": "Loganiaceae",
       "categoria": "homeopatia",
-      "sistemas": ["nervioso"],
-      "indicaciones": ["duelo", "ansiedad", "depresion reactiva", "histeria", "insomnio", "globulo histerico"],
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "duelo",
+        "ansiedad",
+        "depresion reactiva",
+        "histeria",
+        "insomnio",
+        "globulo histerico"
+      ],
       "descripcion": "Remedio para emociones reprimidas, especialmente duelo y perdidas. Perfiles contradictorios.",
       "mecanismoAccion": "Modula la respuesta emocional. Regula el tono emocional en transtornos reactivos.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [7, 9, 15, 30],
+      "dilucionesCH": [
+        7,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Suspira constantemente",
         "Nudo en la garganta",
@@ -157,13 +353,39 @@
         "Aversion a烟草"
       ],
       "modalidades": {
-        "empeora": ["emociones", "tabaco", "cafe", "olor fuerte", "mañana"],
-        "mejora": ["calor", "comida", "distraccion", "presion local"]
+        "empeora": [
+          "emociones",
+          "tabaco",
+          "cafe",
+          "olor fuerte",
+          "mañana"
+        ],
+        "mejora": [
+          "calor",
+          "comida",
+          "distraccion",
+          "presion local"
+        ]
       },
-      "afinidad": ["sistema nervioso", "garganta (globulo)", "estomago"],
-      "constelaciones": ["Duelo", "Transtornos emocionales", "Histeria"],
-      "advertencias": ["No automedicar transtornos emocionales serios"],
-      "tags": ["emociones", "duelo", "ansiedad", "contradictorio"],
+      "afinidad": [
+        "sistema nervioso",
+        "garganta (globulo)",
+        "estomago"
+      ],
+      "constelaciones": [
+        "Duelo",
+        "Transtornos emocionales",
+        "Histeria"
+      ],
+      "advertencias": [
+        "No automedicar transtornos emocionales serios"
+      ],
+      "tags": [
+        "emociones",
+        "duelo",
+        "ansiedad",
+        "contradictorio"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -171,16 +393,34 @@
     {
       "id": "gelsemium",
       "nombre": "Gelsemium",
-      "nombresAlternativos": ["Gels", "Jazmin amarillo", "Yellow jasmine"],
+      "nombresAlternativos": [
+        "Gels",
+        "Jazmin amarillo",
+        "Yellow jasmine"
+      ],
       "nombreCientifico": "Gelsemium sempervirens",
       "familia": "Loganiaceae",
       "categoria": "homeopatia",
-      "sistemas": ["nervioso", "musculoesqueletico"],
-      "indicaciones": ["gripe", "ansiedad anticipatoria", "migraña", "fiebre lenta", "paralisis"],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "gripe",
+        "ansiedad anticipatoria",
+        "migraña",
+        "fiebre lenta",
+        "paralisis"
+      ],
       "descripcion": "Remedio para debilidad y paralisis, especialmente en transtornos virales y ansiedad.",
       "mecanismoAccion": "Actua sobre medula espinal y nervios perifericos. Reduce debilidad y temblores.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Debilidad extrema",
         "Pesadez de parpados",
@@ -189,13 +429,39 @@
         "Cefalea occipital"
       ],
       "modalidades": {
-        "empeora": ["tiempo humedo", "11am", "emociones", "tabaco"],
-        "mejora": ["orina abundante", "sudor", "despues de dormir", "bebidas calientes"]
+        "empeora": [
+          "tiempo humedo",
+          "11am",
+          "emociones",
+          "tabaco"
+        ],
+        "mejora": [
+          "orina abundante",
+          "sudor",
+          "despues de dormir",
+          "bebidas calientes"
+        ]
       },
-      "afinidad": ["musculos", "nervios", "parpados", "cabeza"],
-      "constelaciones": ["Gripe", "Ansiedad anticipatoria", "Migraña"],
-      "advertencias": ["Planta toxica en estado bruto"],
-      "tags": ["debilidad", "gripe", "ansiedad", "temblores"],
+      "afinidad": [
+        "musculos",
+        "nervios",
+        "parpados",
+        "cabeza"
+      ],
+      "constelaciones": [
+        "Gripe",
+        "Ansiedad anticipatoria",
+        "Migraña"
+      ],
+      "advertencias": [
+        "Planta toxica en estado bruto"
+      ],
+      "tags": [
+        "debilidad",
+        "gripe",
+        "ansiedad",
+        "temblores"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -203,16 +469,34 @@
     {
       "id": "lycopodium",
       "nombre": "Lycopodium",
-      "nombresAlternativos": ["Lyc", "Licopodio", "Club moss"],
+      "nombresAlternativos": [
+        "Lyc",
+        "Licopodio",
+        "Club moss"
+      ],
       "nombreCientifico": "Lycopodium clavatum",
       "familia": "Lycopodiaceae",
       "categoria": "homeopatia",
-      "sistemas": ["digestivo", "urogenital"],
-      "indicaciones": ["flatulencia", "distension abdominal", "calculos", "ansiedad", "menopausia"],
+      "sistemas": [
+        "digestivo",
+        "urogenital"
+      ],
+      "indicaciones": [
+        "flatulencia",
+        "distension abdominal",
+        "calculos",
+        "ansiedad",
+        "menopausia"
+      ],
       "descripcion": "Remedio para transtornos digestivos con flatulencia y perfiles con baja autoestima.",
       "mecanismoAccion": "Regula funciones hepaticas y digestivas. Actua sobre uretra y prostata.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Abdomen distendido luego de comer",
         "Flatulencia con olor fuerte",
@@ -221,13 +505,38 @@
         "Ansiedad por responsabilidad"
       ],
       "modalidades": {
-        "empeora": ["16h-20h", "alimentos harinosos", "frio", "estrangulamien"],
-        "mejora": ["descubierto", "bebidas calientes", "orina abundante"]
+        "empeora": [
+          "16h-20h",
+          "alimentos harinosos",
+          "frio",
+          "estrangulamien"
+        ],
+        "mejora": [
+          "descubierto",
+          "bebidas calientes",
+          "orina abundante"
+        ]
       },
-      "afinidad": ["higado derecho", "intestinos", "uretra", "prostata"],
-      "constelaciones": ["Dispepsia flatulenta", "Calculos", "Menopausia"],
-      "advertencias": ["Requiere prescription de profesional"],
-      "tags": ["digestivo", "flatulencia", "calculos", "ansiedad"],
+      "afinidad": [
+        "higado derecho",
+        "intestinos",
+        "uretra",
+        "prostata"
+      ],
+      "constelaciones": [
+        "Dispepsia flatulenta",
+        "Calculos",
+        "Menopausia"
+      ],
+      "advertencias": [
+        "Requiere prescription de profesional"
+      ],
+      "tags": [
+        "digestivo",
+        "flatulencia",
+        "calculos",
+        "ansiedad"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -235,16 +544,35 @@
     {
       "id": "pulsatilla",
       "nombre": "Pulsatilla",
-      "nombresAlternativos": ["Puls", "Flor del viento", "Anemone"],
+      "nombresAlternativos": [
+        "Puls",
+        "Flor del viento",
+        "Anemone"
+      ],
       "nombreCientifico": "Pulsatilla pratensis",
       "familia": "Ranunculaceae",
       "categoria": "homeopatia",
-      "sistemas": ["reproductivo", "respiratorio", "digestivo"],
-      "indicaciones": ["infecciones ORL", "transtornos menstruales", "menopausia", "varicela", "otitis"],
+      "sistemas": [
+        "reproductivo",
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "infecciones ORL",
+        "transtornos menstruales",
+        "menopausia",
+        "varicela",
+        "otitis"
+      ],
       "descripcion": "Remedio para personas dulces, emocionalmente dependientes y de temperamento pacífico.",
       "mecanismoAccion": "Modula mucosas y regulacion hormonal feminina.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Lagrimeo mucoso amarillo",
         "Sed nula",
@@ -253,13 +581,39 @@
         "Menstruacion atrasada"
       ],
       "modalidades": {
-        "empeora": ["habitacion caliente", "estomago vacio", "emanera", "grasoso"],
-        "mejora": ["aire libre", "consuelo", "movimiento lento", "frente fria"]
+        "empeora": [
+          "habitacion caliente",
+          "estomago vacio",
+          "emanera",
+          "grasoso"
+        ],
+        "mejora": [
+          "aire libre",
+          "consuelo",
+          "movimiento lento",
+          "frente fria"
+        ]
       },
-      "afinidad": ["mucosas", "ojos", "oidos", "organos sexuales femenina"],
-      "constelaciones": ["Infecciones ORL", "Transtornos menstruales", "Otitis"],
-      "advertencias": ["No automedicar transtornos hormonales"],
-      "tags": ["mucosidades", "femenino", "dulce", "emocional"],
+      "afinidad": [
+        "mucosas",
+        "ojos",
+        "oidos",
+        "organos sexuales femenina"
+      ],
+      "constelaciones": [
+        "Infecciones ORL",
+        "Transtornos menstruales",
+        "Otitis"
+      ],
+      "advertencias": [
+        "No automedicar transtornos hormonales"
+      ],
+      "tags": [
+        "mucosidades",
+        "femenino",
+        "dulce",
+        "emocional"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -267,16 +621,35 @@
     {
       "id": "rhus_toxicodendron",
       "nombre": "Rhus Toxicodendron",
-      "nombresAlternativos": ["Rhus-tox", "Hiedra venenosa", "Poison ivy"],
+      "nombresAlternativos": [
+        "Rhus-tox",
+        "Hiedra venenosa",
+        "Poison ivy"
+      ],
       "nombreCientifico": "Rhus toxicodendron",
       "familia": "Anacardiaceae",
       "categoria": "homeopatia",
-      "sistemas": ["musculoesqueletico", "piel"],
-      "indicaciones": ["artritis", "lumbago", "esguinces", "heridas", "fiebre reumatica", "eczema"],
+      "sistemas": [
+        "musculoesqueletico",
+        "piel"
+      ],
+      "indicaciones": [
+        "artritis",
+        "lumbago",
+        "esguinces",
+        "heridas",
+        "fiebre reumatica",
+        "eczema"
+      ],
       "descripcion": "Remedio para rigidez y dolor que mejora con movimiento lento y calor local.",
       "mecanismoAccion": "Modula respuesta inflamatoria de articulaciones y piel.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Rigidez peor al inicio del movimiento",
         "Mejora con movimiento continuo",
@@ -285,13 +658,39 @@
         "Lengua con saburra en triangulo"
       ],
       "modalidades": {
-        "empeora": ["descanso prolongado", "noche", "frio", "humedad"],
-        "mejora": ["movimiento", "calor", "masaje", "cambio de posicion"]
+        "empeora": [
+          "descanso prolongado",
+          "noche",
+          "frio",
+          "humedad"
+        ],
+        "mejora": [
+          "movimiento",
+          "calor",
+          "masaje",
+          "cambio de posicion"
+        ]
       },
-      "afinidad": ["articulaciones", "ligamentos", "piel"],
-      "constelaciones": ["Artritis", "Lumbago", "Esguinces", "Eczema"],
-      "advertencias": ["Planta altamente alergenica en estado bruto"],
-      "tags": ["articulaciones", "rigidez", "movimiento", "dolor"],
+      "afinidad": [
+        "articulaciones",
+        "ligamentos",
+        "piel"
+      ],
+      "constelaciones": [
+        "Artritis",
+        "Lumbago",
+        "Esguinces",
+        "Eczema"
+      ],
+      "advertencias": [
+        "Planta altamente alergenica en estado bruto"
+      ],
+      "tags": [
+        "articulaciones",
+        "rigidez",
+        "movimiento",
+        "dolor"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -299,16 +698,35 @@
     {
       "id": "sepia",
       "nombre": "Sepia",
-      "nombresAlternativos": ["Sep", "Tinta de calamar", "Cuttlefish"],
+      "nombresAlternativos": [
+        "Sep",
+        "Tinta de calamar",
+        "Cuttlefish"
+      ],
       "nombreCientifico": "Sepia officinalis",
       "familia": "Sepiidae",
       "categoria": "homeopatia",
-      "sistemas": ["reproductivo", "digestivo", "nervioso"],
-      "indicaciones": ["menopausia", "transtornos menstruales", "depresion post-parto", "constipacion", "ptosis"],
+      "sistemas": [
+        "reproductivo",
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "menopausia",
+        "transtornos menstruales",
+        "depresion post-parto",
+        "constipacion",
+        "ptosis"
+      ],
       "descripcion": "Remedio para mujeres agotadas con transtornos hormonales y sensacion de hundimiento pelvico.",
       "mecanismoAccion": "Regula eje hormonal femenino. Actua sobre musculo liso uterino.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [7, 9, 15, 30],
+      "dilucionesCH": [
+        7,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Sensacion de hundimiento pelvico",
         "Aversion al sexo",
@@ -317,13 +735,39 @@
         "Frialdad con deseos de calor"
       ],
       "modalidades": {
-        "empeora": ["frio", "sopa cafe", "embarazo", "estomago vacio", "tarde"],
-        "mejora": ["ejercicio", "calor", "bailar", "dormir del lado derecho"]
+        "empeora": [
+          "frio",
+          "sopa cafe",
+          "embarazo",
+          "estomago vacio",
+          "tarde"
+        ],
+        "mejora": [
+          "ejercicio",
+          "calor",
+          "bailar",
+          "dormir del lado derecho"
+        ]
       },
-      "afinidad": ["organos pelvicos", "higado", "piel"],
-      "constelaciones": ["Menopausia", "Transtornos menstruales", "Post-parto"],
-      "advertencias": ["No automedicar transtornos hormonales"],
-      "tags": ["femenino", "hormonas", "agotamiento", "ptosis"],
+      "afinidad": [
+        "organos pelvicos",
+        "higado",
+        "piel"
+      ],
+      "constelaciones": [
+        "Menopausia",
+        "Transtornos menstruales",
+        "Post-parto"
+      ],
+      "advertencias": [
+        "No automedicar transtornos hormonales"
+      ],
+      "tags": [
+        "femenino",
+        "hormonas",
+        "agotamiento",
+        "ptosis"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -331,16 +775,37 @@
     {
       "id": "sulphur",
       "nombre": "Sulphur",
-      "nombresAlternativos": ["Sulf", "Azufre", "Brimstone"],
+      "nombresAlternativos": [
+        "Sulf",
+        "Azufre",
+        "Brimstone"
+      ],
       "nombreCientifico": "Sulphur",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["dermatologico", "digestivo", "nervioso"],
-      "indicaciones": ["eczema", "psoriasis", "acne", "picores", "transtornos hepaticos", "constipacion"],
+      "sistemas": [
+        "dermatologico",
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "eczema",
+        "psoriasis",
+        "acne",
+        "picores",
+        "transtornos hepaticos",
+        "constipacion"
+      ],
       "descripcion": "Remedio fundamental para transtornos cronicos con manifestacion cutanea y constitucional sucia.",
       "mecanismoAccion": "Modula respuesta inflamatoria cronica. Actua sobre organos de eliminacion (piel, intestino).",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30, 200],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30,
+        200
+      ],
       "sintomasClave": [
         "Persona sucia y desaliñada",
         "Picores peores en la cama",
@@ -349,13 +814,40 @@
         "Abdomen放量"
       ],
       "modalidades": {
-        "empeora": ["bao", "11am", "calor", "ropa ajustada", "dormir"],
-        "mejora": ["aire libre", "frio local", "sacar la mano de la cama"]
+        "empeora": [
+          "bao",
+          "11am",
+          "calor",
+          "ropa ajustada",
+          "dormir"
+        ],
+        "mejora": [
+          "aire libre",
+          "frio local",
+          "sacar la mano de la cama"
+        ]
       },
-      "afinidad": ["piel", "higado", "intestino", "pulmones"],
-      "constelaciones": ["Eccema", "Psoriasis", "Acne", "Transtornos hepaticos"],
-      "advertencias": ["Remedio profundo - requiere supervision profesional"],
-      "tags": ["cronico", "piel", "hepatica", "constitucional"],
+      "afinidad": [
+        "piel",
+        "higado",
+        "intestino",
+        "pulmones"
+      ],
+      "constelaciones": [
+        "Eccema",
+        "Psoriasis",
+        "Acne",
+        "Transtornos hepaticos"
+      ],
+      "advertencias": [
+        "Remedio profundo - requiere supervision profesional"
+      ],
+      "tags": [
+        "cronico",
+        "piel",
+        "hepatica",
+        "constitucional"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -363,16 +855,35 @@
     {
       "id": "mercurius",
       "nombre": "Mercurius",
-      "nombresAlternativos": ["Merc", "Azogue", "Quicksilver"],
+      "nombresAlternativos": [
+        "Merc",
+        "Azogue",
+        "Quicksilver"
+      ],
       "nombreCientifico": "Mercurius solubilis",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["oro-faríngeo", "digestivo", "inmune"],
-      "indicaciones": ["amigdalitis", "estomatitis", "gingivitis", "diarrea", "fiebre con sudor"],
+      "sistemas": [
+        "oro-faríngeo",
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "amigdalitis",
+        "estomatitis",
+        "gingivitis",
+        "diarrea",
+        "fiebre con sudor"
+      ],
       "descripcion": "Remedio para infecciones con tendencia supurativa y manifestacion en mucosas y glandulas.",
       "mecanismoAccion": "Modula respuesta inflamatoria supurativa. Actua sobre glandulas salivales y amigdalas.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 12, 15],
+      "dilucionesCH": [
+        6,
+        9,
+        12,
+        15
+      ],
       "sintomasClave": [
         "Lengua con marcas de dientes",
         "Halitosis",
@@ -381,13 +892,37 @@
         "Sed con deseo de bebidas frias"
       ],
       "modalidades": {
-        "empeora": ["noche", "transpiracion", "temp extremas", "acostado sobre lado derecho"],
-        "mejora": ["descanso", "temp moderada"]
+        "empeora": [
+          "noche",
+          "transpiracion",
+          "temp extremas",
+          "acostado sobre lado derecho"
+        ],
+        "mejora": [
+          "descanso",
+          "temp moderada"
+        ]
       },
-      "afinidad": ["garganta", "encias", "glandulas", "intestino"],
-      "constelaciones": ["Amigdalitis", "Estomatitis", "Gingivitis"],
-      "advertencias": ["Remedio toxico - solo diluciones homeopaticas"],
-      "tags": ["infeccion", "supuracion", "garganta", "encias"],
+      "afinidad": [
+        "garganta",
+        "encias",
+        "glandulas",
+        "intestino"
+      ],
+      "constelaciones": [
+        "Amigdalitis",
+        "Estomatitis",
+        "Gingivitis"
+      ],
+      "advertencias": [
+        "Remedio toxico - solo diluciones homeopaticas"
+      ],
+      "tags": [
+        "infeccion",
+        "supuracion",
+        "garganta",
+        "encias"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -395,16 +930,34 @@
     {
       "id": "carbo_veg",
       "nombre": "Carbo Vegetabilis",
-      "nombresAlternativos": ["Carb-v", "Carbon vegetal", "Vegetable charcoal"],
+      "nombresAlternativos": [
+        "Carb-v",
+        "Carbon vegetal",
+        "Vegetable charcoal"
+      ],
       "nombreCientifico": "Carbo vegetabilis",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["digestivo", "cardiovascular"],
-      "indicaciones": ["flatulencia masiva", "eructos", "asfixia", "colicos", "colapso"],
+      "sistemas": [
+        "digestivo",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "flatulencia masiva",
+        "eructos",
+        "asfixia",
+        "colicos",
+        "colapso"
+      ],
       "descripcion": "Remedio para transtornos digestivos con flatulencia extrema y perfiles friolentos y agotados.",
       "mecanismoAccion": "Actua sobre mucosa digestiva y circulacion. Antagonista de Mercurius.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Flatulencia que no sale",
         "Eructos dopo meals",
@@ -413,13 +966,40 @@
         "Agotamiento total"
       ],
       "modalidades": {
-        "empeora": ["grasoso", "leche", "tabaco", "cafe", "acostado", "frio humedo"],
-        "mejora": ["eructos", "aire fresco", "ventilador", "frotando rodillas"]
+        "empeora": [
+          "grasoso",
+          "leche",
+          "tabaco",
+          "cafe",
+          "acostado",
+          "frio humedo"
+        ],
+        "mejora": [
+          "eructos",
+          "aire fresco",
+          "ventilador",
+          "frotando rodillas"
+        ]
       },
-      "afinidad": ["estomago", "intestinos", "sangre venosa"],
-      "constelaciones": ["Dispepsia flatulenta", "Colico", "Colapso"],
-      "advertencias": ["No confundir con carbon medicinal convencional"],
-      "tags": ["digestivo", "flatulencia", "agotamiento", "colapso"],
+      "afinidad": [
+        "estomago",
+        "intestinos",
+        "sangre venosa"
+      ],
+      "constelaciones": [
+        "Dispepsia flatulenta",
+        "Colico",
+        "Colapso"
+      ],
+      "advertencias": [
+        "No confundir con carbon medicinal convencional"
+      ],
+      "tags": [
+        "digestivo",
+        "flatulencia",
+        "agotamiento",
+        "colapso"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -427,16 +1007,34 @@
     {
       "id": "graphites",
       "nombre": "Graphites",
-      "nombresAlternativos": ["Graph", "Grafito", "Black lead"],
+      "nombresAlternativos": [
+        "Graph",
+        "Grafito",
+        "Black lead"
+      ],
       "nombreCientifico": "Graphites",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["dermatologico", "digestivo"],
-      "indicaciones": ["eczema", "heridas que no cicatrizan", "constipacion", "obesidad", "trastornos menstrual"],
+      "sistemas": [
+        "dermatologico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "eczema",
+        "heridas que no cicatrizan",
+        "constipacion",
+        "obesidad",
+        "trastornos menstrual"
+      ],
       "descripcion": "Remedio para transtornos cronicos de piel con secretion espesa y perfiles obesos y friolentos.",
       "mecanismoAccion": "Modula metabolismo y respuesta cutanea cronica.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Eccema con secretion espesa",
         "Heridas que secrecion miel",
@@ -445,13 +1043,37 @@
         "Piel seca y agrietada"
       ],
       "modalidades": {
-        "empeora": ["frio", "noche", " menstruacion", "sudor"],
-        "mejora": ["calor", "despues de comer", "bebidas calientes"]
+        "empeora": [
+          "frio",
+          "noche",
+          " menstruacion",
+          "sudor"
+        ],
+        "mejora": [
+          "calor",
+          "despues de comer",
+          "bebidas calientes"
+        ]
       },
-      "afinidad": ["piel", "intestinos", "glandulas"],
-      "constelaciones": ["Eccema", "Heridas cronicas", "Constipacion"],
-      "advertencias": ["Remedio para transtornos cronicos"],
-      "tags": ["cronico", "piel", "obsesidad", "constipacion"],
+      "afinidad": [
+        "piel",
+        "intestinos",
+        "glandulas"
+      ],
+      "constelaciones": [
+        "Eccema",
+        "Heridas cronicas",
+        "Constipacion"
+      ],
+      "advertencias": [
+        "Remedio para transtornos cronicos"
+      ],
+      "tags": [
+        "cronico",
+        "piel",
+        "obsesidad",
+        "constipacion"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -459,16 +1081,37 @@
     {
       "id": "calcaria_carbonica",
       "nombre": "Calcarea Carbonica",
-      "nombresAlternativos": ["Calc carb", "Carbonato de calcio", "Ostra shell"],
+      "nombresAlternativos": [
+        "Calc carb",
+        "Carbonato de calcio",
+        "Ostra shell"
+      ],
       "nombreCientifico": "Calcarea carbonica",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["musculoesqueletico", "metabolico", "inmune"],
-      "indicaciones": ["ansiedad", "obesidad", "fatiga", "articaciones", "infecciones recurrentes", "niños friolentos"],
+      "sistemas": [
+        "musculoesqueletico",
+        "metabolico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "obesidad",
+        "fatiga",
+        "articaciones",
+        "infecciones recurrentes",
+        "niños friolentos"
+      ],
       "descripcion": "Remedio constitucional para personas lentas, friolentas y propensas a ganhar peso facilmente.",
       "mecanismoAccion": "Modula metabolismo oseo y respuesta immune. Regulator de calcium.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30, 200],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30,
+        200
+      ],
       "sintomasClave": [
         "Fatiga cronica con necesidad de descanso",
         "Frio intenso, especialmente en cabeza y pies",
@@ -477,13 +1120,35 @@
         "Aniedad por anticipacion"
       ],
       "modalidades": {
-        "empeora": ["frio", "humedad", "esfuerzo fisico", "denticion"],
-        "mejora": ["clima seco", "acostado de lado"]
+        "empeora": [
+          "frio",
+          "humedad",
+          "esfuerzo fisico",
+          "denticion"
+        ],
+        "mejora": [
+          "clima seco",
+          "acostado de lado"
+        ]
       },
-      "afinidad": ["huesos", "ganglios", "metabolismo"],
-      "constelaciones": ["Ansiedad", "Obesidad", "Infecciones recurrentes"],
-      "advertencias": ["Remedio constitucional de uso crónico"],
-      "tags": ["constitucional", "metabolismo", "friolento"],
+      "afinidad": [
+        "huesos",
+        "ganglios",
+        "metabolismo"
+      ],
+      "constelaciones": [
+        "Ansiedad",
+        "Obesidad",
+        "Infecciones recurrentes"
+      ],
+      "advertencias": [
+        "Remedio constitucional de uso crónico"
+      ],
+      "tags": [
+        "constitucional",
+        "metabolismo",
+        "friolento"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -491,16 +1156,36 @@
     {
       "id": "phosphorus",
       "nombre": "Phosphorus",
-      "nombresAlternativos": ["Phos", "Fósforo", "Phosphorus"],
+      "nombresAlternativos": [
+        "Phos",
+        "Fósforo",
+        "Phosphorus"
+      ],
       "nombreCientifico": "Phosphorus",
       "familia": "No aplica (elemento)",
       "categoria": "homeopatia",
-      "sistemas": ["nervioso", "respiratorio", "sanguineo"],
-      "indicaciones": ["hemorragias", "tos", "faringitis", "ansiedad social", "fatiga adrenal"],
+      "sistemas": [
+        "nervioso",
+        "respiratorio",
+        "sanguineo"
+      ],
+      "indicaciones": [
+        "hemorragias",
+        "tos",
+        "faringitis",
+        "ansiedad social",
+        "fatiga adrenal"
+      ],
       "descripcion": "Remedio para personas sensibles, kreativas y ansiosas que tienden a sangrar facilmente.",
       "mecanismoAccion": "Afecta coagulacion, mucosa respiratoria y sistema nervioso.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30, 200],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30,
+        200
+      ],
       "sintomasClave": [
         "Hemorragiasfaciles (sangrado nasal)",
         "Tos seca con cosquilleo laríngeo",
@@ -509,13 +1194,36 @@
         "Agotamiento después de esfuerzo"
       ],
       "modalidades": {
-        "empeora": ["anochecer", "acostado sobre lado izquierdo", "clima frio"],
-        "mejora": ["dormir", "comidas frias", "agua fria"]
+        "empeora": [
+          "anochecer",
+          "acostado sobre lado izquierdo",
+          "clima frio"
+        ],
+        "mejora": [
+          "dormir",
+          "comidas frias",
+          "agua fria"
+        ]
       },
-      "afinidad": ["sangre", "pulmones", "nervios"],
-      "constelaciones": ["Hemorragia", "Tos", "Angustia"],
-      "advertencias": [" personas muy sensibles y sugestionables"],
-      "tags": ["hemorragias", "tos", "ansiedad", "sensible"],
+      "afinidad": [
+        "sangre",
+        "pulmones",
+        "nervios"
+      ],
+      "constelaciones": [
+        "Hemorragia",
+        "Tos",
+        "Angustia"
+      ],
+      "advertencias": [
+        " personas muy sensibles y sugestionables"
+      ],
+      "tags": [
+        "hemorragias",
+        "tos",
+        "ansiedad",
+        "sensible"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -523,16 +1231,37 @@
     {
       "id": "natrum_muriaticum",
       "nombre": "Natrum Muriaticum",
-      "nombresAlternativos": ["Nat mur", "Cloruro de sodio", "Sal marina"],
+      "nombresAlternativos": [
+        "Nat mur",
+        "Cloruro de sodio",
+        "Sal marina"
+      ],
       "nombreCientifico": "Natrum muriaticum",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["nervioso", "digestivo", "dermatologico"],
-      "indicaciones": ["depresion", "migrana", "constipacion", "herpes labial", "tristeza", "afrontamiento de perdidas"],
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "depresion",
+        "migrana",
+        "constipacion",
+        "herpes labial",
+        "tristeza",
+        "afrontamiento de perdidas"
+      ],
       "descripcion": "Remedio para personas reservadas que ocultan emociones, especial para duelos no resueltos.",
       "mecanismoAccion": "Afecta metabolism de agua y electrolitos. Regulator emocional.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30, 200],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30,
+        200
+      ],
       "sintomasClave": [
         "Pena y tristeza ocultas",
         "Migrana por exposición solar",
@@ -541,13 +1270,36 @@
         "Necesidad de soledad"
       ],
       "modalidades": {
-        "empeora": ["consolacion", "calor", "9-11h"],
-        "mejora": ["sudor", "despues de dormir", "ayuno"]
+        "empeora": [
+          "consolacion",
+          "calor",
+          "9-11h"
+        ],
+        "mejora": [
+          "sudor",
+          "despues de dormir",
+          "ayuno"
+        ]
       },
-      "afinidad": ["mente", "labios", "genitales"],
-      "constelaciones": ["Depresión", "Migraña", "Duelo"],
-      "advertencias": ["Remedio profundo para perturbaciones emocionales"],
-      "tags": ["emocional", "duelo", "migrana", "reservado"],
+      "afinidad": [
+        "mente",
+        "labios",
+        "genitales"
+      ],
+      "constelaciones": [
+        "Depresión",
+        "Migraña",
+        "Duelo"
+      ],
+      "advertencias": [
+        "Remedio profundo para perturbaciones emocionales"
+      ],
+      "tags": [
+        "emocional",
+        "duelo",
+        "migrana",
+        "reservado"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -555,16 +1307,35 @@
     {
       "id": "arsenicum_album",
       "nombre": "Arsenicum Album",
-      "nombresAlternativos": ["Ars alb", "Trióxido de arsénico", "Arsénico blanco"],
+      "nombresAlternativos": [
+        "Ars alb",
+        "Trióxido de arsénico",
+        "Arsénico blanco"
+      ],
       "nombreCientifico": "Arsenicum album",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["digestivo", "respiratorio", "psiquico"],
-      "indicaciones": ["intoxicacion alimentaria", "ansiedad", "insomnio", "asma", "eczema"],
+      "sistemas": [
+        "digestivo",
+        "respiratorio",
+        "psiquico"
+      ],
+      "indicaciones": [
+        "intoxicacion alimentaria",
+        "ansiedad",
+        "insomnio",
+        "asma",
+        "eczema"
+      ],
       "descripcion": "Remedio clave para estados agudos con agotamiento intenso y ansiedad por la salud.",
       "mecanismoAccion": "Afecta mucosa gastrointestinal y respiratoria. Modula ansiedad.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Diarrea y vomiting con agotamento",
         "Ansiedad extrema por la salud",
@@ -573,13 +1344,36 @@
         "Quemaduras y eczemas con picor intenso"
       ],
       "modalidades": {
-        "empeora": ["media noche", "frio", "consumir"],
-        "mejora": ["calor", "posicion elevada", "agua caliente"]
+        "empeora": [
+          "media noche",
+          "frio",
+          "consumir"
+        ],
+        "mejora": [
+          "calor",
+          "posicion elevada",
+          "agua caliente"
+        ]
       },
-      "afinidad": ["estomago", "intestinos", "piel"],
-      "constelaciones": ["Intoxicación", "Ansiedad", "Asma"],
-      "advertencias": ["Remedio agudo importante"],
-      "tags": ["agudo", "intoxicacion", "ansiedad", "agotamiento"],
+      "afinidad": [
+        "estomago",
+        "intestinos",
+        "piel"
+      ],
+      "constelaciones": [
+        "Intoxicación",
+        "Ansiedad",
+        "Asma"
+      ],
+      "advertencias": [
+        "Remedio agudo importante"
+      ],
+      "tags": [
+        "agudo",
+        "intoxicacion",
+        "ansiedad",
+        "agotamiento"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -587,16 +1381,35 @@
     {
       "id": "thuja",
       "nombre": "Thuja",
-      "nombresAlternativos": ["Thuya", "Arbol de la vida", "Thuja occidentalis"],
+      "nombresAlternativos": [
+        "Thuya",
+        "Arbol de la vida",
+        "Thuja occidentalis"
+      ],
       "nombreCientifico": "Thuja occidentalis",
       "familia": "Cupressaceae",
       "categoria": "homeopatia",
-      "sistemas": ["urinario", "dermatologico", "inmune"],
-      "indicaciones": ["verrugas", "efectos secundarios de vacunas", "cistitis cronica", "gripe"],
+      "sistemas": [
+        "urinario",
+        "dermatologico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "verrugas",
+        "efectos secundarios de vacunas",
+        "cistitis cronica",
+        "gripe"
+      ],
       "descripcion": "Remedio para transtornos después de vaccionaciones, fungales y verrugas.",
       "mecanismoAccion": "Modula respuesta immune aberrante. Antifungico e immunomodulador.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30, 200],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30,
+        200
+      ],
       "sintomasClave": [
         "Verrugas pedunculadas en cualquier parte",
         "Efectos adversos após vaccionación",
@@ -605,13 +1418,35 @@
         "Sensación de delgadez en partes del cuerpo"
       ],
       "modalidades": {
-        "empeora": ["tiempo frio y humedo", "a noche", "por чай"],
-        "mejora": ["despertar", "calor seco"]
+        "empeora": [
+          "tiempo frio y humedo",
+          "a noche",
+          "por чай"
+        ],
+        "mejora": [
+          "despertar",
+          "calor seco"
+        ]
       },
-      "afinidad": ["piel", "vias urinarias", "glándulas"],
-      "constelaciones": ["Verrugas", "Post-vaccinal", "Cistitis"],
-      "advertencias": ["No usar aceite esencial de thuja (tóxico)"],
-      "tags": ["verrugas", "pos-vaccinal", "fungico", "cistitis"],
+      "afinidad": [
+        "piel",
+        "vias urinarias",
+        "glándulas"
+      ],
+      "constelaciones": [
+        "Verrugas",
+        "Post-vaccinal",
+        "Cistitis"
+      ],
+      "advertencias": [
+        "No usar aceite esencial de thuja (tóxico)"
+      ],
+      "tags": [
+        "verrugas",
+        "pos-vaccinal",
+        "fungico",
+        "cistitis"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -619,16 +1454,33 @@
     {
       "id": "kali_bichromicum",
       "nombre": "Kali Bichromicum",
-      "nombresAlternativos": ["Kali bic", "Bicromato de potasio"],
+      "nombresAlternativos": [
+        "Kali bic",
+        "Bicromato de potasio"
+      ],
       "nombreCientifico": "Kali bichromicum",
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
-      "sistemas": ["respiratorio", "digestivo", "articaciones"],
-      "indicaciones": ["sinusitis", "migraña", "ulceras gastricas", "artritis"],
+      "sistemas": [
+        "respiratorio",
+        "digestivo",
+        "articaciones"
+      ],
+      "indicaciones": [
+        "sinusitis",
+        "migraña",
+        "ulceras gastricas",
+        "artritis"
+      ],
       "descripcion": "Remedio para condições con secretion viscosa amarilla y dolores localizados.",
       "mecanismoAccion": "Afecta mucosas con secreciones densas. Analgésico localized.",
       "nivelEvidencia": "B",
-      "dilucionesCH": [6, 9, 15, 30],
+      "dilucionesCH": [
+        6,
+        9,
+        15,
+        30
+      ],
       "sintomasClave": [
         "Secreción nasal espesa, amarilla-verde",
         "Dolor de cabeza en un punto (migrana)",
@@ -637,15 +1489,437 @@
         "Tos con flema difícil de expectorar"
       ],
       "modalidades": {
-        "empeora": ["frio", "verano", "alcohol"],
-        "mejora": ["calor", "presion"]
+        "empeora": [
+          "frio",
+          "verano",
+          "alcohol"
+        ],
+        "mejora": [
+          "calor",
+          "presion"
+        ]
       },
-      "afinidad": ["mucosas", "estomago", "articulaciones"],
-      "constelaciones": ["Sinusitis", "Migraña", "Ulceras"],
-      "advertencias": ["Remedio para secretion densa"],
-      "tags": ["sinusitis", "migrana", "ulceras", "viscoso"],
+      "afinidad": [
+        "mucosas",
+        "estomago",
+        "articulaciones"
+      ],
+      "constelaciones": [
+        "Sinusitis",
+        "Migraña",
+        "Ulceras"
+      ],
+      "advertencias": [
+        "Remedio para secretion densa"
+      ],
+      "tags": [
+        "sinusitis",
+        "migrana",
+        "ulceras",
+        "viscoso"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "bryonia",
+      "nombre": "Bryonia Alba",
+      "nombresAlternativos": [
+        "Bryonia",
+        "Wild hops",
+        "Bryonia alba radix"
+      ],
+      "nombreCientifico": "Bryonia alba",
+      "familia": "Cucurbitaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dolores punzantes",
+        "empeora con el movimiento",
+        "afecciones reumaticas",
+        "tos seca",
+        "pleuritis"
+      ],
+      "descripcion": "Remedio de dolores punzantes (en puntada) que empeoran con el movimiento y mejoran con el reposo y la presion. Indicado en procesos inflamatorios con sequedad de mucosas.",
+      "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria de dolores punzantes que empeoran con el minimo movimiento. El paciente tiende a la immovilidad y al aislamiento.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        5,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolor punzante que empeora con el movimiento",
+        "Mejora con el reposo y la presion firme",
+        "Sequedad marcada de mucosas",
+        "Desea estar quieto y solo",
+        "Irritabilidad al ser molestado",
+        "Sed de grandes cantidades de agua fria"
+      ],
+      "modalidades": {
+        "empeora": [
+          "movimiento",
+          "toque",
+          "calor",
+          "comer"
+        ],
+        "mejora": [
+          "reposo",
+          "inmovilidad",
+          "presion",
+          "aire fresco"
+        ]
+      },
+      "afinidad": [
+        "articulaciones",
+        "serosas",
+        "mucosas respiratorias",
+        "sistema digestivo"
+      ],
+      "constelaciones": [
+        "Procesos reumaticos agudos",
+        "Pleuritis",
+        "Tos seca irritativa"
+      ],
+      "advertencias": [
+        "La planta fresca es toxica; solo usar en dilucion homeopatica",
+        "No usar en embarazo y lactancia en dosis no homeopaticas"
+      ],
+      "tags": [
+        "dolor punzante",
+        "reumatico",
+        "empeora movimiento",
+        "sequedad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Materia Medica Pura (Hahnemann); Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica"
+      }
+    },
+    {
+      "id": "ruta_graveolens",
+      "nombre": "Ruta Graveolens",
+      "nombresAlternativos": [
+        "Ruta",
+        "Rue",
+        "Herb-of-grace",
+        "Rutae herba"
+      ],
+      "nombreCientifico": "Ruta graveolens",
+      "familia": "Rutaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "tendinitis",
+        "lesiones de tendones",
+        "esguinces",
+        "fatiga muscular",
+        "dolor periostico"
+      ],
+      "descripcion": "Remedio de afinidad por tendones, ligamentos y periostio. Indicado en lesiones por sobrecarga, tendinitis y dolores en inserciones tendinosas.",
+      "mecanismoAccion": "En homeopatia: modula la reparacion de tejidos conectivos densos (tendones, ligamentos, cartilago) tras sobrecarga o traumatismo.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        5,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolor en tendones e inserciones tras sobrecarga",
+        "Sensacion de debilidad y pesadez en la zona afectada",
+        "Dolor periostico al tacto",
+        "Espasmos musculares por fatiga",
+        "Mejora con el reposo prolongado"
+      ],
+      "modalidades": {
+        "empeora": [
+          "toque",
+          "movimiento",
+          "frio humedo",
+          "esfuerzo"
+        ],
+        "mejora": [
+          "reposo",
+          "calor local",
+          "inmovilidad"
+        ]
+      },
+      "afinidad": [
+        "tendones",
+        "ligamentos",
+        "periostio",
+        "musculos",
+        "ojo"
+      ],
+      "constelaciones": [
+        "Tendinitis",
+        "Esguinces recurrentes",
+        "Fatiga muscular por overwork"
+      ],
+      "advertencias": [
+        "La planta fresca es fotosensibilizante y toxica; solo en dilucion homeopatica",
+        "Evitar contacto directo con la planta fresca"
+      ],
+      "tags": [
+        "tendones",
+        "esguince",
+        "sobrecarga",
+        "periostio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; DailyMed (FDA) homeopathic product labeling"
+      }
+    },
+    {
+      "id": "apis_mellifica",
+      "nombre": "Apis Mellifica",
+      "nombresAlternativos": [
+        "Apis",
+        "Honeybee",
+        "Apis mellifera"
+      ],
+      "nombreCientifico": "Apis mellifica",
+      "familia": "Apidae (insecto)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "inmune",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "picaduras de insectos",
+        "edema inflamatorio",
+        "urticaria",
+        "inflamacion de garganta",
+        "afecciones de inicio brusco"
+      ],
+      "descripcion": "Remedio del edema rosado, inflamacion de inicio brusco y dolor punzante ardiente. El cuadro reproduce los efectos de la picadura de abeja.",
+      "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria aguda con edema, rubor y dolor punzante ardiente; afinidad por piel, mucosas y serosas.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Edema blando rosado y brillante",
+        "Dolor punzante ardiente, como agujas calientes",
+        "Inicio brusco (rapidez)",
+        "Extrema sensibilidad al tacto",
+        "Sin sed, incluso con fiebre",
+        "Empeora con el calor y despues de dormir",
+        "Mejora con frio y aire libre",
+        "Lateralidad derecha, se extiende de derecha a izquierda"
+      ],
+      "modalidades": {
+        "empeora": [
+          "calor",
+          "toque",
+          "despues de dormir",
+          "tarde (16 h)"
+        ],
+        "mejora": [
+          "frio",
+          "aire libre",
+          "desabrigarse",
+          "bano frio"
+        ]
+      },
+      "afinidad": [
+        "piel",
+        "mucosas",
+        "serosas",
+        "sistema linfatico",
+        "ojo"
+      ],
+      "constelaciones": [
+        "Picaduras de insectos",
+        "Urticaria aguda",
+        "Edema angioneurotico"
+      ],
+      "advertencias": [
+        "En reacciones alergicas graves (anafilaxia) buscar atencion medica urgente; la homeopatia no sustituye al tratamiento de emergencia"
+      ],
+      "tags": [
+        "edema",
+        "picadura",
+        "urticaria",
+        "inicio brusco",
+        "mejora frio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Hahnemann Materia Medica Pura"
+      }
+    },
+    {
+      "id": "causticum",
+      "nombre": "Causticum",
+      "nombresAlternativos": [
+        "Causticum",
+        "Hahnemann's causticum",
+        "Kali bisulfuricum (tintura)"
+      ],
+      "nombreCientifico": "Causticum (preparacion de Hahnemann)",
+      "familia": "Preparacion compuesta (Hahnemann)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "paralisis progresiva",
+        "afectacion de cuerdas vocales",
+        "quemaduras antiguas mal curadas",
+        "incontinencia urinaria",
+        "tos seca"
+      ],
+      "descripcion": "Remedio de debilidad progresiva y tendencia paralitica, con afinidad por la voz, la vejiga y las quemaduras cronicas. El paciente es muy sensible a la injusticia.",
+      "mecanismoAccion": "En homeopatia: modula la degeneracion progresiva y la paralisis de origen neurogeno, asi como la reparacion de tejidos dañados por quemaduras antiguas.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Debilidad progresiva con tendencia a la paralisis",
+        "Ronquera matinal y afonia en profesionales de la voz",
+        "Incontinencia urinaria al toser o estornudar",
+        "Quemaduras antiguas que no cicatrizan bien",
+        "Dolor como de herida o corte",
+        "Tendencia a las contracturas y rigidez articular",
+        "Gran sensibilidad a la injusticia y empataia profunda"
+      ],
+      "modalidades": {
+        "empeora": [
+          "viento frio seco",
+          "tiempo despejado",
+          "tarde-noche"
+        ],
+        "mejora": [
+          "tiempo humedo",
+          "calor",
+          "agua fria (la tos)"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso",
+        "laringe",
+        "vejiga",
+        "piel",
+        "articulaciones"
+      ],
+      "constelaciones": [
+        "Paralisis facial por frio",
+        "Disodia profesional",
+        "Enuresis"
+      ],
+      "advertencias": [
+        "Las paralisis y afectaciones neurologicas requieren diagnostico medico previo"
+      ],
+      "tags": [
+        "paralisis",
+        "ronquera",
+        "quemadura",
+        "incontinencia",
+        "contractura"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Kent Lectures on Materia Medica"
+      }
+    },
+    {
+      "id": "ledum_palustre",
+      "nombre": "Ledum Palustre",
+      "nombresAlternativos": [
+        "Ledum",
+        "Marsh tea",
+        "Wild rosemary",
+        "Ledum palustre herba"
+      ],
+      "nombreCientifico": "Ledum palustre",
+      "familia": "Ericaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "picaduras de insectos",
+        "heridas punzantes",
+        "hematomas",
+        "esguinces",
+        "reumatismo con frio local"
+      ],
+      "descripcion": "Remedio de heridas punzantes, picaduras y hematomas en frio. Afinidad por tejidos lesionados que no se calientan y mejoran con frio.",
+      "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria de heridas punzantes y hematomas; la zona afectada esta fria al tacto pero mejora con aplicaciones frias.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        5,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Heridas punzantes y picaduras de insectos",
+        "Hematomas y contusiones que no se calientan",
+        "La zona afectada esta fria al tacto",
+        "Mejora con frio local (paradojico)",
+        "Dolor que asciende desde los pies",
+        "Reumatismo con frio en la articulacion"
+      ],
+      "modalidades": {
+        "empeora": [
+          "calor",
+          "movimiento",
+          "noche",
+          "bebidas calientes"
+        ],
+        "mejora": [
+          "frio",
+          "inmersion en agua fria",
+          "reposo"
+        ]
+      },
+      "afinidad": [
+        "piel",
+        "tejido celular subcutaneo",
+        "articulaciones perifericas",
+        "ojos"
+      ],
+      "constelaciones": [
+        "Picaduras de insectos",
+        "Hematoma post-traumatico",
+        "Reumatismo ascendente"
+      ],
+      "advertencias": [
+        "La planta fresca es toxica; solo en dilucion homeopatica"
+      ],
+      "tags": [
+        "picadura",
+        "herida punzante",
+        "hematoma",
+        "frio local",
+        "reumatismo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; DailyMed (FDA) homeopathic product labeling"
       }
     }
   ]
