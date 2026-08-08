@@ -51,7 +51,7 @@ export function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-            <Lock className="w-8 h-8 text-primary" />
+            <Lock className="w-8 h-8 text-primary" aria-hidden="true" />
           </div>
           <h1 className="text-2xl font-bold">Vademecum AI</h1>
           <p className="text-muted-foreground mt-2">Ingresa tu contraseña para continuar</p>
@@ -70,10 +70,10 @@ export function LoginPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-[2.2rem] -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              className="absolute right-3 top-9 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
               aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
             >
-              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {showPassword ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
             </button>
           </div>
 

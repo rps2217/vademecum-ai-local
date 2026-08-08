@@ -21,7 +21,7 @@ export function AnalysisPage() {
         <Card className="p-6">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-primary/10 rounded-lg">
-              <Brain className="w-6 h-6 text-primary" />
+              <Brain className="w-6 h-6 text-primary" aria-hidden="true" />
             </div>
             <div>
               <h3 className="font-semibold">Análisis semántico</h3>
@@ -35,7 +35,7 @@ export function AnalysisPage() {
         <Card className="p-6">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-emerald-500/10 rounded-lg">
-              <Cpu className="w-6 h-6 text-emerald-600" />
+              <Cpu className="w-6 h-6 text-emerald-600" aria-hidden="true" />
             </div>
             <div>
               <h3 className="font-semibold">Procesamiento 100% local</h3>
@@ -49,7 +49,7 @@ export function AnalysisPage() {
         <Card className="p-6">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-amber-500/10 rounded-lg">
-              <Sparkles className="w-6 h-6 text-amber-600" />
+              <Sparkles className="w-6 h-6 text-amber-600" aria-hidden="true" />
             </div>
             <div>
               <h3 className="font-semibold">Sugerencias personalizadas</h3>
@@ -63,7 +63,7 @@ export function AnalysisPage() {
         <Card className="p-6">
           <div className="flex items-start gap-4">
             <div className="p-3 bg-violet-500/10 rounded-lg">
-              <Zap className="w-6 h-6 text-violet-600" />
+              <Zap className="w-6 h-6 text-violet-600" aria-hidden="true" />
             </div>
             <div>
               <h3 className="font-semibold">Respuestas rápidas</h3>

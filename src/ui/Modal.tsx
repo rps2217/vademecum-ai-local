@@ -44,8 +44,8 @@ export function Modal({ open, onClose, title, description, children, size = 'md'
                 {description && <p className="text-sm text-muted-foreground mt-1">{description}</p>}
               </div>
               <Dialog.Close asChild>
-                <Button variant="ghost" size="icon" className="-mr-2 -mt-2">
-                  <X className="w-4 h-4" />
+                <Button variant="ghost" size="icon" className="-mr-2 -mt-2" aria-label="Cerrar">
+                  <X className="w-4 h-4" aria-hidden="true" />
                 </Button>
               </Dialog.Close>
             </div>
@@ -80,7 +80,7 @@ export function AlertDialog({
   onConfirm,
   variant = 'info',
 }: AlertDialogProps) {
-  const buttonVariant = variant === 'danger' ? 'destructive' : variant === 'warning' ? 'secondary' : 'primary';
+  const buttonVariant = variant === 'danger' ? 'destructive' : variant === 'warning' ? 'secondary' : 'default';
 
   return (
     <Dialog.Root open={open} onOpenChange={onClose}>

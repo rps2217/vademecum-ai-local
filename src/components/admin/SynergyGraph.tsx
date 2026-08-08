@@ -192,12 +192,14 @@ const SynergyGraphComponent = ({
                     stroke={colors.stroke}
                     strokeWidth={isHovered || isHighlighted ? 3 : 1.5}
                     strokeOpacity={isHighlighted || !hoveredNode ? 0.6 : 0.2}
-                    className="transition-all duration-200 cursor-pointer"
-                    style={{ filter: isHovered ? `url(#glow-${edge.synergy.tipo})` : 'none' }}
+                    className="transition-all duration-200 cursor-pointer focus-visible:outline-none"
+                    filter={isHovered ? `url(#glow-${edge.synergy.tipo})` : 'none'}
                     onMouseEnter={() => setHoveredEdge(edgeId)}
                     onMouseLeave={() => setHoveredEdge(null)}
                     onClick={() => onEdgeClick?.(edge.synergy)}
-                  />
+                  >
+                    <title>{`${edge.synergy.tipo}`}</title>
+                  </line>
                   {/* Indicador de tipo en el centro */}
                   {(isHovered || isHighlighted) && (
                     <circle
@@ -248,9 +250,7 @@ const SynergyGraphComponent = ({
                     stroke={isHovered ? colors.stroke : 'var(--border)'}
                     strokeWidth={isHovered ? 3 : 2}
                     className="transition-all duration-200"
-                    style={{
-                      filter: isHovered ? `url(#glow-${node.type})` : 'none'
-                    }}
+                    filter={isHovered ? `url(#glow-${node.type})` : 'none'}
                   />
                   {/* Texto del nodo */}
                   <text
@@ -262,10 +262,7 @@ const SynergyGraphComponent = ({
                       'text-xs font-medium fill-current pointer-events-none',
                       isHovered ? 'text-foreground' : 'text-muted-foreground'
                     )}
-                    style={{
-                      transform: `rotate(-45, ${node.x}, ${node.y})`,
-                      transformOrigin: `${node.x}px ${node.y}px`,
-                    }}
+                    transform={`rotate(-45 ${node.x} ${node.y})`}
                   >
                     {node.name.length > 12 ? node.name.slice(0, 12) + '...' : node.name}
                   </text>
@@ -276,7 +273,7 @@ const SynergyGraphComponent = ({
                       cy={node.y - radius + 5}
                       r={8}
                       fill={colors.fill}
-                      className="text-[8px]"
+                      className="fill-current text-xs"
                     />
                   )}
                 </g>
@@ -291,10 +288,9 @@ const SynergyGraphComponent = ({
         <p className="font-semibold mb-2">Leyenda</p>
         {Object.entries(TYPE_COLORS).map(([type, colors]) => (
           <div key={type} className="flex items-center gap-2">
-            <div
-              className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: colors.fill }}
-            />
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+              <circle cx="6" cy="6" r="6" fill={colors.fill} />
+            </svg>
             <span className="capitalize">{type}</span>
           </div>
         ))}
@@ -304,19 +300,22 @@ const SynergyGraphComponent = ({
       <div className="absolute bottom-4 right-4 flex flex-col gap-1">
         <button
           onClick={() => setTransform((p) => ({ ...p, scale: Math.min(2, p.scale * 1.2) }))}
-          className="w-8 h-8 bg-background/80 backdrop-blur-sm rounded flex items-center justify-center text-sm hover:bg-accent transition-colors"
+          className="w-8 h-8 bg-background/80 backdrop-blur-sm rounded flex items-center justify-center text-sm hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent"
+          aria-label="Acercar"
         >
           +
         </button>
         <button
           onClick={() => setTransform((p) => ({ ...p, scale: Math.max(0.3, p.scale * 0.8) }))}
-          className="w-8 h-8 bg-background/80 backdrop-blur-sm rounded flex items-center justify-center text-sm hover:bg-accent transition-colors"
+          className="w-8 h-8 bg-background/80 backdrop-blur-sm rounded flex items-center justify-center text-sm hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent"
+          aria-label="Alejar"
         >
           −
         </button>
         <button
           onClick={() => setTransform({ x: 0, y: 0, scale: 1 })}
-          className="w-8 h-8 bg-background/80 backdrop-blur-sm rounded flex items-center justify-center text-xs hover:bg-accent transition-colors"
+          className="w-8 h-8 bg-background/80 backdrop-blur-sm rounded flex items-center justify-center text-xs hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent"
+          aria-label="Restablecer vista"
         >
           ⟲
         </button>

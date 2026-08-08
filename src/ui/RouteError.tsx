@@ -17,13 +17,13 @@ export function RouteError() {
         </p>
         <div className="flex gap-3 justify-center">
           <Link to="/">
-            <Button variant="primary">
-              <Home className="w-4 h-4 mr-2" />
+            <Button variant="default">
+              <Home className="w-4 h-4 mr-2" aria-hidden="true" />
               Ir al inicio
             </Button>
           </Link>
           <Button variant="outline" onClick={() => window.history.back()}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
             Volver atrás
           </Button>
         </div>

@@ -15,6 +15,7 @@ import { Search, Filter, Star, BookOpen, Leaf, FlaskConical } from 'lucide-react
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import type { DbIngredient, IngredientCategory, BodySystem, EvidenceLevel } from '@/db/schema';
 import { logger } from '@/lib/logger';
+import { cn } from '@/lib/utils';
 
 const CATEGORIES = [
   { value: '', label: 'Todas las categorias' },
@@ -128,9 +129,10 @@ export function SearchPage() {
       <div className="flex items-center justify-between">
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 px-4 py-2 border rounded-lg text-sm hover:bg-muted transition-colors"
+          className="flex items-center gap-2 px-4 py-2 border rounded-lg text-sm hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-muted"
+          aria-expanded={showFilters}
         >
-          <Filter className="w-4 h-4" />
+          <Filter className="w-4 h-4" aria-hidden="true" />
           Filtros
           {activeFiltersCount > 0 && (
             <Badge variant="secondary" className="ml-1">{activeFiltersCount}</Badge>
@@ -200,17 +202,17 @@ export function SearchPage() {
             return (
               <Card 
                 key={result.ingredient.id} 
-                className="p-4 hover:border-primary transition-all cursor-pointer"
+                className="p-4 hover:border-primary transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 onClick={() => setSelectedIngredient(result.ingredient)}
               >
                 {/* Header with Icon */}
                 <div className="flex items-start justify-between mb-3">
-                  <div className={`p-2 rounded-lg ${catConfig.color}`}>
-                    <CatIcon className="w-4 h-4" />
+                  <div className={cn('p-2 rounded-lg', catConfig.color)}>
+                    <CatIcon className="w-4 h-4" aria-hidden="true" />
                   </div>
                   {result.score > 50 && (
                     <Badge variant="secondary" className="flex items-center gap-1">
-                      <Star className="w-3 h-3" />
+                      <Star className="w-3 h-3" aria-hidden="true" />
                       {result.score}
                     </Badge>
                   )}
@@ -261,7 +263,7 @@ export function SearchPage() {
         </div>
       ) : query.length >= 2 && !isSearching ? (
         <div className="text-center py-12">
-          <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+          <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <p className="text-muted-foreground font-medium">
             No se encontraron resultados para "{query}"
           </p>
@@ -275,7 +277,7 @@ export function SearchPage() {
                 setSystem('');
                 setEvidence('');
               }}
-              className="mt-4 text-sm text-primary hover:underline"
+              className="mt-4 text-sm text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
             >
               Limpiar filtros
             </button>
@@ -283,7 +285,7 @@ export function SearchPage() {
         </div>
       ) : (
         <div className="text-center py-12">
-          <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+          <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <p className="text-muted-foreground">
             Escribe al menos 2 caracteres para buscar
           </p>

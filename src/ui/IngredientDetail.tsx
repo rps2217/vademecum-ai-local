@@ -63,8 +63,8 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
               </p>
             )}
           </div>
-          <Button variant="ghost" size="icon" onClick={handleClose}>
-            <X className="w-5 h-5" />
+          <Button variant="ghost" size="icon" onClick={handleClose} aria-label="Cerrar">
+            <X className="w-5 h-5" aria-hidden="true" />
           </Button>
         </div>
 
@@ -88,7 +88,7 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
           {sistemasBadges && sistemasBadges.length > 0 && (
             <div>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                <Info className="w-4 h-4" />
+                <Info className="w-4 h-4" aria-hidden="true" />
                 Sistemas corporales
               </h3>
               <div className="flex flex-wrap gap-1">
@@ -121,7 +121,7 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
           {ingredient.seguridad && (
             <div>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-500" />
+                <AlertTriangle className="w-4 h-4 text-amber-500" aria-hidden="true" />
                 Seguridad
               </h3>
               <div className="space-y-2">
@@ -160,7 +160,7 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
           {interaccionesBadges && interaccionesBadges.length > 0 && (
             <div>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-red-500" />
+                <AlertTriangle className="w-4 h-4 text-red-500" aria-hidden="true" />
                 Interacciones medicamentosas
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -176,7 +176,7 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
               className="flex-1"
               onClick={handleViewSynergies}
             >
-              <LinkIcon className="w-4 h-4 mr-2" />
+              <LinkIcon className="w-4 h-4 mr-2" aria-hidden="true" />
               Ver sinergias
             </Button>
           </div>

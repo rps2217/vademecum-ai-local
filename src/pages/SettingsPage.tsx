@@ -46,12 +46,13 @@ export function SettingsPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(
                   'w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-muted',
                   activeTab === tab.id
                     ? 'bg-primary/10 text-primary font-medium'
                     : 'text-muted-foreground hover:bg-muted'
                 )}
               >
-                <tab.icon className="w-4 h-4" />
+                <tab.icon className="w-4 h-4" aria-hidden="true" />
                 {tab.label}
               </button>
             ))}
@@ -68,19 +69,22 @@ export function SettingsPage() {
                   <button
                     key={t}
                     onClick={() => setTheme(t)}
+                    aria-label={`Tema ${t === 'light' ? 'claro' : t === 'auto' ? 'automático' : 'oscuro'}`}
+                    aria-pressed={theme === t}
                     className={cn(
                       'flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-colors',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:opacity-80',
                       theme === t
                         ? 'border-primary bg-primary/5'
                         : 'border-border hover:border-primary/50'
                     )}
                   >
                     {t === 'light' ? (
-                      <Sun className="w-6 h-6" />
+                      <Sun className="w-6 h-6" aria-hidden="true" />
                     ) : t === 'auto' ? (
-                      <Monitor className="w-6 h-6" />
+                      <Monitor className="w-6 h-6" aria-hidden="true" />
                     ) : (
-                      <Moon className="w-6 h-6" />
+                      <Moon className="w-6 h-6" aria-hidden="true" />
                     )}
                     <span className="text-sm">
                       {t === 'light' ? 'Claro' : t === 'auto' ? 'Automático' : 'Oscuro'}
@@ -207,9 +211,9 @@ function SyncTab() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {configured ? (
-              <CheckCircle2 className="w-5 h-5 text-green-600" />
+              <CheckCircle2 className="w-5 h-5 text-green-600" aria-hidden="true" />
             ) : (
-              <AlertTriangle className="w-5 h-5 text-amber-600" />
+              <AlertTriangle className="w-5 h-5 text-amber-600" aria-hidden="true" />
             )}
             <div>
               <p className="font-medium">
@@ -231,9 +235,9 @@ function SyncTab() {
         <div className={`p-3 rounded-lg ${testResult.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
           <div className="flex items-center gap-2">
             {testResult.success ? (
-              <CheckCircle2 className="w-4 h-4 text-green-600" />
+              <CheckCircle2 className="w-4 h-4 text-green-600" aria-hidden="true" />
             ) : (
-              <XCircle className="w-4 h-4 text-red-600" />
+              <XCircle className="w-4 h-4 text-red-600" aria-hidden="true" />
             )}
             <span className={testResult.success ? 'text-green-800' : 'text-red-800'}>
               {testResult.message}
@@ -275,9 +279,9 @@ function SyncTab() {
         <Card className={`p-4 ${syncResult.success ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
           <div className="flex items-center gap-2">
             {syncResult.success ? (
-              <CheckCircle2 className="w-5 h-5 text-green-600" />
+              <CheckCircle2 className="w-5 h-5 text-green-600" aria-hidden="true" />
             ) : (
-              <XCircle className="w-5 h-5 text-red-600" />
+              <XCircle className="w-5 h-5 text-red-600" aria-hidden="true" />
             )}
             <p className={syncResult.success ? 'text-green-800' : 'text-red-800'}>
               {syncResult.message}
@@ -290,7 +294,7 @@ function SyncTab() {
       {errorCount > 0 && !syncResult && (
         <Card className="p-4 bg-red-50 border-red-200">
           <div className="flex items-center gap-2">
-            <AlertTriangle className="w-4 h-4 text-red-600" />
+            <AlertTriangle className="w-4 h-4 text-red-600" aria-hidden="true" />
             <p className="text-red-800">{errorCount} error(es) en sincronización</p>
           </div>
         </Card>
@@ -298,8 +302,8 @@ function SyncTab() {
 
       {/* Acciones */}
       <div className="flex gap-3">
-        <Button onClick={handleSync} disabled={isSyncing || !configured} className="flex items-center gap-2">
-          {isSyncing ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+        <Button onClick={handleSync} disabled={isSyncing || !configured} className="flex items-center gap-2" isLoading={isSyncing}>
+          {isSyncing ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : <RefreshCw className="w-4 h-4" aria-hidden="true" />}
           {isSyncing ? 'Sincronizando...' : 'Sincronizar ahora'}
         </Button>
       </div>

@@ -68,13 +68,14 @@ function NavContent({ collapsed, onNavigate }: NavContentProps) {
             onClick={onNavigate}
             className={cn(
               "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               isActive
                 ? "bg-primary text-primary-foreground font-medium"
                 : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
               collapsed && "justify-center px-2"
             )}
           >
-            <Icon className={cn("w-5 h-5 flex-shrink-0", isActive && "text-primary-foreground")} />
+            <Icon className={cn("w-5 h-5 flex-shrink-0", isActive && "text-primary-foreground")} aria-hidden="true" />
             {!collapsed && (
               <>
                 <span className="flex-1">{item.label}</span>
@@ -141,14 +142,14 @@ export function AppShell() {
           {!sidebarCollapsed && (
             <Link to="/" className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-primary-foreground" />
+                <Sparkles className="w-5 h-5 text-primary-foreground" aria-hidden="true" />
               </div>
               <span className="font-semibold text-lg">Vademecum</span>
             </Link>
           )}
           {sidebarCollapsed && (
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
+              <Sparkles className="w-5 h-5 text-primary-foreground" aria-hidden="true" />
             </div>
           )}
         </div>
@@ -165,9 +166,9 @@ export function AppShell() {
             <>
               <Link
                 to="/settings"
-                className="flex items-center gap-3 px-3 py-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+                className="flex items-center gap-3 px-3 py-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <Settings className="w-5 h-5" />
+                <Settings className="w-5 h-5" aria-hidden="true" />
                 <span>Configuración</span>
               </Link>
               
@@ -177,31 +178,37 @@ export function AppShell() {
                   onClick={() => setTheme('light')}
                   className={cn(
                     "p-1.5 rounded transition-colors",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent",
                     theme === 'light' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
                   )}
+                  aria-label="Tema claro"
                   title="Tema claro"
                 >
-                  <Sun className="w-4 h-4" />
+                  <Sun className="w-4 h-4" aria-hidden="true" />
                 </button>
                 <button
                   onClick={() => setTheme('auto')}
                   className={cn(
                     "p-1.5 rounded transition-colors",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent",
                     theme === 'auto' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
                   )}
+                  aria-label="Tema automático"
                   title="Tema automático"
                 >
-                  <Monitor className="w-4 h-4" />
+                  <Monitor className="w-4 h-4" aria-hidden="true" />
                 </button>
                 <button
                   onClick={() => setTheme('dark')}
                   className={cn(
                     "p-1.5 rounded transition-colors",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent",
                     theme === 'dark' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
                   )}
+                  aria-label="Tema oscuro"
                   title="Tema oscuro"
                 >
-                  <Moon className="w-4 h-4" />
+                  <Moon className="w-4 h-4" aria-hidden="true" />
                 </button>
               </div>
             </>
@@ -209,15 +216,17 @@ export function AppShell() {
             <div className="flex flex-col items-center gap-2">
               <Link
                 to="/settings"
-                className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+                className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                aria-label="Configuración"
               >
-                <Settings className="w-5 h-5" />
+                <Settings className="w-5 h-5" aria-hidden="true" />
               </Link>
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+                className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent"
+                aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
               >
-                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {theme === 'dark' ? <Sun className="w-5 h-5" aria-hidden="true" /> : <Moon className="w-5 h-5" aria-hidden="true" />}
               </button>
             </div>
           )}
@@ -252,21 +261,23 @@ export function AppShell() {
             {/* Mobile menu button */}
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent"
+              aria-label="Abrir menú"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
 
             {/* Search (desktop) */}
             <div className="hidden lg:flex flex-1 max-w-xl">
               <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
                 <input
                   type="search"
                   placeholder="Buscar ingredientes, síntomas..."
+                  aria-label="Buscar ingredientes, síntomas"
                   className="w-full pl-10 pr-4 py-2 bg-muted border-0 rounded-lg text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
-                <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+                <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium text-muted-foreground">
                   <span className="text-xs">⌘</span>K
                 </kbd>
               </div>
@@ -278,14 +289,14 @@ export function AppShell() {
               <SyncStatusBar />
 
               {/* Quick add button */}
-              <button className="hidden sm:flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors">
-                <Plus className="w-4 h-4" />
+              <button className="hidden sm:flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:bg-primary-hover">
+                <Plus className="w-4 h-4" aria-hidden="true" />
                 <span className="hidden md:inline">Nuevo</span>
               </button>
 
               {/* Mobile search button */}
-              <button className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors">
-                <Search className="w-5 h-5" />
+              <button className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent" aria-label="Buscar">
+                <Search className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -302,10 +313,10 @@ export function AppShell() {
         <button
           onClick={() => setSidebarOpen(false)}
           onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSidebarOpen(false)}
-          className="fixed top-4 right-4 z-50 lg:hidden p-2 bg-background rounded-full shadow-lg border"
+          className="fixed top-4 right-4 z-50 lg:hidden p-2 bg-background rounded-full border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent"
           aria-label="Cerrar sidebar"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" aria-hidden="true" />
         </button>
       )}
     </div>
