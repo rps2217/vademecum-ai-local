@@ -217,7 +217,7 @@ export interface DbSynergy {
 
 ### ✅ Completado
 - [x] PWA con Service Worker (vite-plugin-pwa)
-- [x] Base de datos Dexie (IndexedDB) con schema **versión 1**
+- [x] Base de datos Dexie (IndexedDB) con schema **versión 2** (tabla `pathologies`)
 - [x] E2EE con TweetNaCl (claves en sessionStorage) — e2ee.ts, KeyManager.ts, FieldEncryption.ts
 - [x] CSP (Content Security Policy)
 - [x] Dashboard admin (AdminPage) con IngredientEditor
@@ -225,6 +225,9 @@ export interface DbSynergy {
 - [x] Búsqueda local con IngredientSearchService
 - [x] Re-siembra automática de KB al detectar cambios de versión
 - [x] Sistema de design UI propio en src/ui/ (Button, Input, Card, Modal, Badge, etc.)
+- [x] Filtros combinables por chips (sistema corporal, evidencia, patología/indicación) — commit 23c5f70
+- [x] Base de datos de patologías (25 patologías con contexto clínico) — commit 77220e0
+- [x] Modal PathologyDetail con tratamiento alopático vs natural + red flags
 
 ### Re-siembra Automática de KB
 
@@ -233,7 +236,7 @@ cuando los datos JSON cambiaron y re-siembra la KB sin borrar datos del
 usuario. Mecanismo:
 
 1. `computeKbVersion()` calcula un hash de versión desde los conteos de
-   los JSON (`v{fito}-{homeo}-{aceites}-{vitaminas}-{sinergias}`)
+   los JSON (`v{fito}-{homeo}-{aceites}-{vitaminas}-{sinergias}-{patologias}`)
 2. `isKnowledgeBaseSeeded()` compara la versión almacenada en `syncMeta`
    (key `kb_seed_version`) con la versión actual. Si no coinciden,
    devuelve false → `DbProvider` llama a `seedKnowledgeBase()`
