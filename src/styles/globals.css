@@ -101,63 +101,66 @@
 
 /* ============================================
  * BASE RESETS
+ *
+ * IMPORTANT: These MUST live inside `@layer base` so that Tailwind's
+ * utility classes (which are emitted in `@layer utilities`) can override
+ * them. Unlayered rules always win over layered ones, so an unlayered
+ * `* { margin: 0; padding: 0 }` would silently break every Tailwind
+ * spacing utility (p-4, pl-64, etc.), collapsing the whole layout.
  * ============================================ */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: var(--border);
-}
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--border);
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-}
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+  body {
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    background-color: var(--background);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
 
-body {
-  font-family: var(--font-sans);
-  color: var(--foreground);
-  background-color: var(--background);
-  min-height: 100vh;
-  line-height: 1.5;
-}
+  a {
+    color: var(--primary);
+    text-decoration: none;
+  }
 
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
 
-::selection {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-}
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: var(--radius-full);
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--radius-full);
+  }
 }
 
 /* ============================================

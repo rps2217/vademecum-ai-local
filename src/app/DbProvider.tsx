@@ -49,9 +49,11 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
 
     initDb();
 
-    return () => {
-      db.close();
-    };
+    // NOTE: Do NOT close the database on cleanup. `db` is an app-global Dexie
+    // singleton meant to live for the entire app lifetime. Closing it here
+    // breaks React 19 StrictMode's mount → unmount → remount cycle in dev,
+    // where the cleanup closes the DB while init is still in flight, causing
+    // a "DatabaseClosedError: Database has been closed".
   }, []);
 
   return (

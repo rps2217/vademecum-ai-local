@@ -1,14 +1,14 @@
 /**
  * AppShell - Contenedor principal de la aplicación
- * 
- * Layout base que incluye:
- * - Sidebar con navegación
- * - Header con búsqueda y acciones
- * - Área de contenido principal
+ *
+ * Layout dividido con:
+ * - Sidebar fija (colapsable en desktop, deslizable en mobile)
+ * - Header superior limpio con una única barra de búsqueda
+ * - Área de contenido principal desplazada por la sidebar
  */
 
 import { useState } from 'react';
-import { Link, useLocation, Outlet } from 'react-router-dom';
+import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/app/ThemeProvider';
 import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
@@ -56,46 +56,58 @@ function NavContent({ collapsed, onNavigate }: NavContentProps) {
   const location = useLocation();
 
   return (
-    <nav className="flex-1 px-2 py-4 space-y-1">
-      {NAV_ITEMS.map((item) => {
-        const isActive = location.pathname === item.href;
-        const Icon = item.icon;
+    <nav className="flex-1 overflow-y-auto px-3 py-4">
+      <ul className="flex flex-col gap-1">
+        {NAV_ITEMS.map((item) => {
+          const isActive = location.pathname === item.href;
+          const Icon = item.icon;
 
-        return (
-          <Link
-            key={item.id}
-            to={item.href}
-            onClick={onNavigate}
-            className={cn(
-              "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-              isActive
-                ? "bg-primary text-primary-foreground font-medium"
-                : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-              collapsed && "justify-center px-2"
-            )}
-          >
-            <Icon className={cn("w-5 h-5 flex-shrink-0", isActive && "text-primary-foreground")} aria-hidden="true" />
-            {!collapsed && (
-              <>
-                <span className="flex-1">{item.label}</span>
-                {item.badge && (
-                  <span className="px-1.5 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded">
-                    {item.badge}
-                  </span>
+          return (
+            <li key={item.id}>
+              <Link
+                to={item.href}
+                onClick={onNavigate}
+                title={collapsed ? item.label : undefined}
+                className={cn(
+                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  isActive
+                    ? 'bg-primary text-primary-foreground font-medium shadow-sm'
+                    : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                  collapsed && 'justify-center px-2'
                 )}
-              </>
-            )}
-          </Link>
-        );
-      })}
+              >
+                <Icon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                {!collapsed && (
+                  <>
+                    <span className="flex-1 truncate">{item.label}</span>
+                    {item.badge && (
+                      <span
+                        className={cn(
+                          'rounded px-1.5 py-0.5 text-xs font-medium',
+                          isActive
+                            ? 'bg-background text-foreground'
+                            : 'bg-accent text-accent-foreground'
+                        )}
+                      >
+                        {item.badge}
+                      </span>
+                    )}
+                  </>
+                )}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 }
 
 export function AppShell() {
-  useLocation(); // Used by NavContent
   const { theme, setTheme } = useTheme();
+  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('sidebar-collapsed') === 'true';
@@ -112,16 +124,21 @@ export function AppShell() {
 
   const closeSidebar = () => setSidebarOpen(false);
 
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
-        <div
+        <button
+          type="button"
           className="fixed inset-0 z-40 bg-black/50 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-          onKeyDown={(e) => e.key === 'Escape' && setSidebarOpen(false)}
-          tabIndex={0}
-          role="button"
+          onClick={closeSidebar}
           aria-label="Cerrar menú"
         />
       )}
@@ -129,104 +146,86 @@ export function AppShell() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 z-50 h-screen bg-sidebar-background border-r border-sidebar-border transition-all duration-300",
-          sidebarCollapsed ? "w-16" : "w-64",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          'fixed left-0 top-0 z-50 flex h-screen flex-col border-r border-sidebar bg-sidebar transition-all duration-300',
+          sidebarCollapsed ? 'w-16' : 'w-64',
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         )}
       >
         {/* Logo */}
-        <div className={cn(
-          "flex items-center h-16 px-4 border-b border-sidebar-border",
-          sidebarCollapsed ? "justify-center" : "justify-between"
-        )}>
-          {!sidebarCollapsed && (
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-primary-foreground" aria-hidden="true" />
-              </div>
-              <span className="font-semibold text-lg">Vademecum</span>
-            </Link>
+        <div
+          className={cn(
+            'flex h-16 flex-shrink-0 items-center border-b border-sidebar px-4',
+            sidebarCollapsed ? 'justify-center' : 'justify-between'
           )}
-          {sidebarCollapsed && (
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-primary-foreground" aria-hidden="true" />
+        >
+          <Link to="/" className="flex items-center gap-2" onClick={closeSidebar}>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+              <Sparkles className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
             </div>
-          )}
+            {!sidebarCollapsed && (
+              <span className="text-lg font-semibold text-foreground">Vademecum</span>
+            )}
+          </Link>
         </div>
 
         {/* Navigation */}
         <NavContent collapsed={sidebarCollapsed} onNavigate={closeSidebar} />
 
         {/* Sidebar footer */}
-        <div className={cn(
-          "p-4 border-t border-sidebar-border",
-          sidebarCollapsed && "px-2"
-        )}>
+        <div className={cn('flex-shrink-0 border-t border-sidebar p-3', sidebarCollapsed && 'px-2')}>
           {!sidebarCollapsed ? (
             <>
               <Link
                 to="/settings"
-                className="flex items-center gap-3 px-3 py-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                onClick={closeSidebar}
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <Settings className="w-5 h-5" aria-hidden="true" />
+                <Settings className="h-5 w-5" aria-hidden="true" />
                 <span>Configuración</span>
               </Link>
-              
+
               {/* Theme selector */}
-              <div className="flex items-center gap-1 mt-3 px-3 py-2">
-                <button
-                  onClick={() => setTheme('light')}
-                  className={cn(
-                    "p-1.5 rounded transition-colors",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent",
-                    theme === 'light' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
-                  )}
-                  aria-label="Tema claro"
-                  title="Tema claro"
-                >
-                  <Sun className="w-4 h-4" aria-hidden="true" />
-                </button>
-                <button
-                  onClick={() => setTheme('auto')}
-                  className={cn(
-                    "p-1.5 rounded transition-colors",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent",
-                    theme === 'auto' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
-                  )}
-                  aria-label="Tema automático"
-                  title="Tema automático"
-                >
-                  <Monitor className="w-4 h-4" aria-hidden="true" />
-                </button>
-                <button
-                  onClick={() => setTheme('dark')}
-                  className={cn(
-                    "p-1.5 rounded transition-colors",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent",
-                    theme === 'dark' ? "bg-sidebar-accent text-sidebar-accent-foreground" : "hover:bg-sidebar-accent"
-                  )}
-                  aria-label="Tema oscuro"
-                  title="Tema oscuro"
-                >
-                  <Moon className="w-4 h-4" aria-hidden="true" />
-                </button>
+              <div className="mt-2 flex items-center gap-1 rounded-lg bg-sidebar-accent p-1">
+                {([
+                  { value: 'light', icon: Sun, label: 'Tema claro' },
+                  { value: 'auto', icon: Monitor, label: 'Tema automático' },
+                  { value: 'dark', icon: Moon, label: 'Tema oscuro' },
+                ] as const).map(({ value, icon: Icon, label }) => (
+                  <button
+                    key={value}
+                    onClick={() => setTheme(value)}
+                    className={cn(
+                      'flex flex-1 items-center justify-center rounded-md py-1.5 transition-colors',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                      theme === value
+                        ? 'bg-card text-foreground shadow-sm'
+                        : 'text-sidebar-foreground hover:text-foreground'
+                    )}
+                    aria-label={label}
+                    aria-pressed={theme === value}
+                    title={label}
+                  >
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                ))}
               </div>
             </>
           ) : (
             <div className="flex flex-col items-center gap-2">
               <Link
                 to="/settings"
-                className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                onClick={closeSidebar}
+                className="rounded-lg p-2 text-sidebar-foreground transition-colors hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label="Configuración"
               >
-                <Settings className="w-5 h-5" aria-hidden="true" />
+                <Settings className="h-5 w-5" aria-hidden="true" />
               </Link>
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-sidebar-accent"
+                className="rounded-lg p-2 text-sidebar-foreground transition-colors hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
               >
-                {theme === 'dark' ? <Sun className="w-5 h-5" aria-hidden="true" /> : <Moon className="w-5 h-5" aria-hidden="true" />}
+                {theme === 'dark' ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
               </button>
             </div>
           )}
@@ -235,75 +234,65 @@ export function AppShell() {
         {/* Collapse toggle (desktop) */}
         <button
           onClick={toggleCollapsed}
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCollapsed()}
-          className="hidden lg:flex absolute -right-3 top-20 w-6 h-6 items-center justify-center bg-sidebar-background border border-sidebar-border rounded-full shadow-sm hover:bg-sidebar-accent transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
-          aria-label={sidebarCollapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
-          tabIndex={0}
+          className="absolute -right-3 top-20 hidden h-6 w-6 items-center justify-center rounded-full border border-sidebar bg-sidebar text-sidebar-foreground shadow-sm transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring lg:flex"
+          aria-label={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
         >
-          {sidebarCollapsed ? (
-            <ChevronRight className="w-4 h-4" />
-          ) : (
-            <ChevronLeft className="w-4 h-4" />
-          )}
+          {sidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </button>
       </aside>
 
       {/* Main content area */}
-      <div
-        className={cn(
-          "min-h-screen transition-all duration-300",
-          sidebarCollapsed ? "lg:pl-16" : "lg:pl-64"
-        )}
-      >
+      <div className={cn('flex min-h-screen flex-col transition-all duration-300', sidebarCollapsed ? 'lg:pl-16' : 'lg:pl-64')}>
         {/* Header */}
-        <header className="sticky top-0 z-30 h-16 bg-header-background border-b border-header-border backdrop-blur-sm">
-          <div className="flex items-center justify-between h-full px-4 lg:px-6">
-            {/* Mobile menu button */}
+        <header className="sticky top-0 z-30 flex h-16 flex-shrink-0 items-center gap-3 border-b border-header bg-header px-4 lg:px-6">
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="rounded-lg p-2 text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
+            aria-label="Abrir menú"
+          >
+            <Menu className="h-5 w-5" aria-hidden="true" />
+          </button>
+
+          {/* Single consolidated search bar */}
+          <form onSubmit={handleSearchSubmit} className="flex flex-1 justify-start" role="search">
+            <div className="relative w-full max-w-xl">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar ingredientes, síntomas o sinergias..."
+                aria-label="Buscar ingredientes, síntomas o sinergias"
+                className="h-10 w-full rounded-lg border border-border bg-muted pl-10 pr-14 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+              <kbd className="pointer-events-none absolute right-3 top-1/2 hidden h-5 -translate-y-1/2 items-center gap-1 rounded border border-border bg-card px-1.5 font-mono text-xs text-muted-foreground sm:inline-flex">
+                <span aria-hidden="true">⌘</span>K
+              </kbd>
+            </div>
+          </form>
+
+          {/* Actions */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <SyncStatusBar className="hidden md:flex" />
+
             <button
-              onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent"
-              aria-label="Abrir menú"
+              onClick={() => navigate('/admin')}
+              className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
-              <Menu className="w-5 h-5" aria-hidden="true" />
+              <Plus className="h-4 w-4" aria-hidden="true" />
+              <span className="hidden sm:inline">Nuevo</span>
             </button>
-
-            {/* Search (desktop) */}
-            <div className="hidden lg:flex flex-1 max-w-xl">
-              <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-                <input
-                  type="search"
-                  placeholder="Buscar ingredientes, síntomas..."
-                  aria-label="Buscar ingredientes, síntomas"
-                  className="w-full pl-10 pr-4 py-2 bg-muted border-0 rounded-lg text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                />
-                <kbd className="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium text-muted-foreground">
-                  <span className="text-xs">⌘</span>K
-                </kbd>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex items-center gap-2">
-              {/* Sync Status */}
-              <SyncStatusBar />
-
-              {/* Quick add button */}
-              <button className="hidden sm:flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:bg-primary-hover">
-                <Plus className="w-4 h-4" aria-hidden="true" />
-                <span className="hidden md:inline">Nuevo</span>
-              </button>
-
-              {/* Mobile search button */}
-              <button className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent" aria-label="Buscar">
-                <Search className="w-5 h-5" aria-hidden="true" />
-              </button>
-            </div>
           </div>
         </header>
 
+        {/* Mobile-only sync bar */}
+        <div className="flex items-center border-b border-border px-4 py-2 md:hidden">
+          <SyncStatusBar />
+        </div>
+
         {/* Page content */}
-        <main className="p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-8">
           <Outlet />
         </main>
       </div>
@@ -311,12 +300,11 @@ export function AppShell() {
       {/* Mobile sidebar close button */}
       {sidebarOpen && (
         <button
-          onClick={() => setSidebarOpen(false)}
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSidebarOpen(false)}
-          className="fixed top-4 right-4 z-50 lg:hidden p-2 bg-background rounded-full border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent"
-          aria-label="Cerrar sidebar"
+          onClick={closeSidebar}
+          className="fixed right-4 top-4 z-50 rounded-full border border-border bg-card p-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
+          aria-label="Cerrar menú"
         >
-          <X className="w-5 h-5" aria-hidden="true" />
+          <X className="h-5 w-5" aria-hidden="true" />
         </button>
       )}
     </div>
