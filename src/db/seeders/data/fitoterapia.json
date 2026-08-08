@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 129,
+    "total": 139,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -6762,6 +6762,528 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "TCM pharmacopoeia + pharmacological studies"
+      }
+    },
+    {
+      "id": "pasionaria",
+      "nombre": "Pasiflora (Pasiónaria)",
+      "nombresAlternativos": [
+        "Passiflora incarnata",
+        "Passionflower",
+        "Pasiflora",
+        "Maracuyá medicinal"
+      ],
+      "nombreCientifico": "Passiflora incarnata",
+      "familia": "Passifloraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estrés",
+        "nerviosismo"
+      ],
+      "descripcion": "Planta ansiolítica y sedante suave. Evidencia clínica para ansiedad generalizada. No produce dependencia.",
+      "mecanismoAccion": "Los flavonoides (crisina, vitexina) modulan receptores GABA-A y opioides, con efecto ansiolítico sin sedación excesiva.",
+      "nivelEvidencia": "B",
+      "parteUsada": "parte aerea",
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Infusion",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Potencia efecto de sedantes",
+        "Embarazo: evitar (falta datos)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Benzodiacepinas",
+        "Barbitúricos",
+        "Alcohol"
+      ],
+      "tags": [
+        "ansiolitico",
+        "sedante",
+        "sueno",
+        "natural"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review"
+      }
+    },
+    {
+      "id": "genciana",
+      "nombre": "Genciana",
+      "nombresAlternativos": [
+        "Gentiana lutea",
+        "Gentian",
+        "Genciana amarilla",
+        "Gentianae radix"
+      ],
+      "nombreCientifico": "Gentiana lutea",
+      "familia": "Gentianaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "inapetencia",
+        "gases",
+        "digestión lenta"
+      ],
+      "descripcion": "Amargo tonificante clásico. Estimula secreciones digestivas y apetito. La más potente de las plantas amargas.",
+      "mecanismoAccion": "Los iridoides amargos (gentiopicrina) estimulan receptores T2R de la lengua → reflejo vagal → aumento de saliva, jugos gástricos y bilis.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Tintura",
+        "Extracto seco",
+        "Decocción"
+      ],
+      "tiempoEfecto": "15-30 minutos (antes de comidas)",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Contraindicada en úlcera péptica activa",
+        "No usar en hipertensión portal"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiácidos (antagonismo)"
+      ],
+      "tags": [
+        "amargo",
+        "digestivo",
+        "apetito",
+        "colagogo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "zaragatona",
+      "nombre": "Zaragatona",
+      "nombresAlternativos": [
+        "Plantago psyllium",
+        "Psyllium",
+        "Ispaghula",
+        "Plantago ovata"
+      ],
+      "nombreCientifico": "Plantago ovata",
+      "familia": "Plantaginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "estreñimiento",
+        "colesterol",
+        "diarrea",
+        "SII",
+        "saciedad"
+      ],
+      "descripcion": "Mucílago con fibra soluble. Laxante osmótico suave y reductor de colesterol LDL.",
+      "mecanismoAccion": "El mucílago (fibra soluble) forma gel en el intestino → aumenta volumen del bolo → estimula peristaltismo. Secuestra ácidos biliares → reduce colesterol.",
+      "nivelEvidencia": "A",
+      "parteUsada": "semilla (tegumento)",
+      "formasPresentacion": [
+        "Polvo",
+        "Capsulas",
+        "Granulado"
+      ],
+      "tiempoEfecto": "12-72 horas (laxante), 4-8 semanas (colesterol)",
+      "duracionTratamiento": "Indefinido (uso crónico OK)",
+      "advertencias": [
+        "Tomar con abundante agua (200ml+)",
+        "Obstrucción intestinal: contraindicada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Reduce absorción de fármacos (separar 2h)",
+        "Anticoagulantes",
+        "Antidiabéticos"
+      ],
+      "tags": [
+        "laxante",
+        "fibra",
+        "colesterol",
+        "estreñimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review"
+      }
+    },
+    {
+      "id": "malvavisco",
+      "nombre": "Malvavisco",
+      "nombresAlternativos": [
+        "Althaea officinalis",
+        "Marshmallow",
+        "Raíz de malvavisco",
+        "Althaeae radix"
+      ],
+      "nombreCientifico": "Althaea officinalis",
+      "familia": "Malvaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "tos",
+        "garganta irritada",
+        "gastritis",
+        "piel",
+        "cicatrización",
+        "reflujo"
+      ],
+      "descripcion": "Mucílago demulcente que suaviza mucosas irritadas. Traditionally usado para tos seca y gastritis.",
+      "mecanismoAccion": "Los mucílagos (polisacáridos) forman película protectora sobre mucosas, reduciendo irritación. Estimula mucociliar y macrófagos.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Decocción",
+        "Jarabe",
+        "Tintura"
+      ],
+      "tiempoEfecto": "Inmediato (efecto demulcente)",
+      "duracionTratamiento": "7-14 días",
+      "advertencias": [
+        "Puede reducir absorción de fármacos (separar 2h)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Reduce absorción oral de fármacos"
+      ],
+      "tags": [
+        "demulcente",
+        "mucilago",
+        "tos",
+        "gastritis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "diente_leon",
+      "nombre": "Diente de León",
+      "nombresAlternativos": [
+        "Taraxacum officinale",
+        "Dandelion",
+        "Taraxacum",
+        "Amargón"
+      ],
+      "nombreCientifico": "Taraxacum officinale",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "diuresis",
+        "hígado",
+        "digestión",
+        "colesterol",
+        "retención"
+      ],
+      "descripcion": "Diurético y hepatoprotector. Estimula producción de bilis y función hepática.",
+      "mecanismoAccion": "Los sesquiterpenos amargos (taraxasterol) estimulan secreción biliar. Inulina (prebiótico). Alto contenido de potasio compensa pérdida diurética.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz y hoja",
+      "formasPresentacion": [
+        "Capsulas",
+        "Tintura",
+        "Infusion",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "1-2 horas (diurético)",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Obstrucción biliar: contraindicada",
+        "Úlcera: usar con caution"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos (potencia efecto)",
+        "Litio (reduce excreción)"
+      ],
+      "tags": [
+        "diuretico",
+        "hepatico",
+        "colagogo",
+        "prebiotico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "borraja",
+      "nombre": "Borraja",
+      "nombresAlternativos": [
+        "Borago officinalis",
+        "Borage",
+        "Aceite de borraja",
+        "Boraginis oleum"
+      ],
+      "nombreCientifico": "Borago officinalis",
+      "familia": "Boraginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "dermatologico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "piel",
+        "SPM",
+        "menopausia",
+        "eccema",
+        "inflamación"
+      ],
+      "descripcion": "Aceite rico en GLA (ácido gamma-linolénico). Antiinflamatorio para piel y SPM.",
+      "mecanismoAccion": "El GLA (ácido gamma-linolénico, omega-6) se convierte en PGE1 (prostaglandina antiinflamatoria). Mejora barrera cutánea y regula ciclo menstrual.",
+      "nivelEvidencia": "B",
+      "parteUsada": "semilla (aceite)",
+      "formasPresentacion": [
+        "Capsulas (aceite)",
+        "Aceite líquido"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Alcaloides pirrolizidínicos en hojas (hepatotóxicos): usar solo aceite de semilla purificado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (efecto aditivo por omega)"
+      ],
+      "tags": [
+        "GLA",
+        "antiinflamatorio",
+        "piel",
+        "SPM"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "nogal",
+      "nombre": "Nogal",
+      "nombresAlternativos": [
+        "Juglans regia",
+        "Walnut",
+        "Nogal común",
+        "Juglandis folium"
+      ],
+      "nombreCientifico": "Juglans regia",
+      "familia": "Juglandaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "piel",
+        "parásitos",
+        "digestión",
+        "antifúngico",
+        "garganta"
+      ],
+      "descripcion": "Antifúngico y antiparasitario natural. La juglona tiene propiedades antimicrobianas.",
+      "mecanismoAccion": "La juglona (naftoquinona) inhibe enzimas bacterianas y fúngicas. Los taninos astringentes.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Tintura",
+        "Infusion",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Uso prolongado: toxicidad hepática",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Fármacos hepatotóxicos"
+      ],
+      "tags": [
+        "antifungico",
+        "antiparasitario",
+        "piel",
+        "juglona"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "fresno",
+      "nombre": "Fresno",
+      "nombresAlternativos": [
+        "Fraxinus excelsior",
+        "Ash tree",
+        "Fresno común",
+        "Fraxini folium"
+      ],
+      "nombreCientifico": "Fraxinus excelsior",
+      "familia": "Oleaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "musculoesqueletico",
+        "urinario"
+      ],
+      "indicaciones": [
+        "reuma",
+        "ácido úrico",
+        "articulaciones",
+        "diuresis",
+        "gota"
+      ],
+      "descripcion": "Antiinflamatorio y diurético. Traditionally usado para reuma y gota.",
+      "mecanismoAccion": "Los iridoides y flavonoides tienen efecto antiinflamatorio. Actúa como uricosúrico suave aumentando excreción de ácido úrico.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Capsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "3-6 semanas",
+      "advertencias": [
+        "Falta datos de seguridad en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos",
+        "Alopurinol (sinergia uricosúrica)"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "uricosurico",
+        "reuma",
+        "gota"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "verbasco",
+      "nombre": "Verbasco (Gordolobo)",
+      "nombresAlternativos": [
+        "Verbascum thapsus",
+        "Mullein",
+        "Gordolobo",
+        "Verbasci flos"
+      ],
+      "nombreCientifico": "Verbascum thapsus",
+      "familia": "Scrophulariaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "tos",
+        "garganta",
+        "bronquitis",
+        "oídos"
+      ],
+      "descripcion": "Demulcente y expectorante respiratorio. Suaviza garganta y vías respiratorias.",
+      "mecanismoAccion": "Los mucílagos y saponinas suavizan mucosas respiratorias. La verbascosida tiene acción antiviral y antiinflamatoria.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor",
+      "formasPresentacion": [
+        "Infusion",
+        "Jarabe",
+        "Extracto seco",
+        "Aceite (ótico)"
+      ],
+      "tiempoEfecto": "Inmediato (demulcente)",
+      "duracionTratamiento": "7-14 días",
+      "advertencias": [
+        "Filtrar infusion para eliminar pelos irritantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida"
+      ],
+      "tags": [
+        "demulcente",
+        "expectorante",
+        "tos",
+        "respiratorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "liquen_islandia",
+      "nombre": "Líquen de Islandia",
+      "nombresAlternativos": [
+        "Cetraria islandica",
+        "Iceland moss",
+        "Líquen islandico",
+        "Lichen islandicus"
+      ],
+      "nombreCientifico": "Cetraria islandica",
+      "familia": "Parmeliaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "tos",
+        "garganta",
+        "gastritis",
+        "apetito",
+        "bronquitis"
+      ],
+      "descripcion": "Demulcente y nutritivo. Rico en mucílagos y ácido úsnico (antibiótico suave).",
+      "mecanismoAccion": "Los mucílagos (lichenina, isolichenina) suavizan mucosas. El ácido úsnico tiene acción antibiótica local.",
+      "nivelEvidencia": "C",
+      "parteUsada": "talo",
+      "formasPresentacion": [
+        "Decocción",
+        "Jarabe",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "Inmediato (demulcente)",
+      "duracionTratamiento": "7-14 días",
+      "advertencias": [
+        "Ácido úsnico: dosis altas hepatotóxicas",
+        "Usar formas purificadas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Fármacos hepatotóxicos"
+      ],
+      "tags": [
+        "demulcente",
+        "antibiotico",
+        "tos",
+        "nutritivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
       }
     }
   ]

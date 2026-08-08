@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 119,
+    "total": 130,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -6377,6 +6377,681 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (microbiota/calcio)"
+      }
+    },
+    {
+      "id": "colageno_hidrolizado",
+      "nombre": "Colágeno Hidrolizado",
+      "nombresAlternativos": [
+        "Péptidos de colágeno",
+        "Hydrolyzed collagen",
+        "Colágeno tipo I y II",
+        "Gelatina hidrolizada"
+      ],
+      "nombreCientifico": "Péptidos de colágeno",
+      "familia": "Proteína",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "musculoesqueletico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "articulaciones",
+        "piel",
+        "cabello",
+        "uñas",
+        "huesos",
+        "cicatrización"
+      ],
+      "descripcion": "Péptidos bioactivos de colágeno. Mejora elasticidad de piel y salud articular.",
+      "mecanismoAccion": "Los péptidos (Pro-Hyp, Hyp-Gly) estimulan fibroblastos → sintesis de colágeno y ácido hialurónico. Mejora matriz cartilaginosa.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "5-15g/día",
+      "dosisMaxima": "20g/día",
+      "formaQuimica": [
+        "Colágeno tipo I (piel/huesos)",
+        "Colágeno tipo II (cartílago)",
+        "Colágeno hidrolizado",
+        "Verisol®",
+        "Fortigel®"
+      ],
+      "biodisponibilidad": "Alta (hidrolizado: 90%+ absorbido)",
+      "momentoToma": [
+        "Con el estómago vacío (mejor absorción)",
+        "Con Vitamina C"
+      ],
+      "tomarCon": [
+        "Vitamina C (cofactor síntesis)",
+        "Ácido hialurónico"
+      ],
+      "evitarCon": [
+        "Proteínas competidoras (separar)"
+      ],
+      "advertencias": [
+        "Posible sabor desagradable"
+      ],
+      "tags": [
+        "colágeno",
+        "piel",
+        "articulaciones",
+        "fibroblastos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "acerola",
+      "nombre": "Acerola",
+      "nombresAlternativos": [
+        "Malpighia emarginata",
+        "Cereza de Barbados",
+        "Acerola cherry",
+        "Semucaro"
+      ],
+      "nombreCientifico": "Malpighia emarginata",
+      "familia": "Malpighiaceae",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "antioxidante",
+        "fatiga",
+        "resfriado",
+        "piel"
+      ],
+      "descripcion": "Fruta con la mayor concentración natural de Vitamina C (hasta 1700mg/100g, 30x más que naranja).",
+      "mecanismoAccion": "Vitamina C natural con cofactores (bioflavonoides, antocianinas) → mejor biodisponibilidad que ácido ascórbico sintético. Estimula leucocitos y síntesis de colágeno.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "500-2000mg extracto (proporciona 100-400mg vit C)",
+      "dosisMaxima": "3000mg/día",
+      "formaQuimica": [
+        "Extracto seco",
+        "Polvo",
+        "Cápsulas",
+        "Jugo liofilizado"
+      ],
+      "biodisponibilidad": "Superior a ácido ascórbico sintético (cofactores naturales)",
+      "momentoToma": [
+        "Con comidas",
+        "Dividir en 2-3 tomas"
+      ],
+      "tomarCon": [
+        "Hierro (sinergia absorción)",
+        "Zinc (sinergia inmune)"
+      ],
+      "evitarCon": [
+        "Cobre (antagonismo)"
+      ],
+      "advertencias": [
+        "Dosis altas: diarrea osmótica",
+        "Riesgo de cálculos renales (oxalatos)"
+      ],
+      "tags": [
+        "vitamina C",
+        "antioxidante",
+        "inmune",
+        "natural"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "USDA, EFSA"
+      }
+    },
+    {
+      "id": "camu_camu",
+      "nombre": "Camu Camu",
+      "nombresAlternativos": [
+        "Myrciaria dubia",
+        "Camucamu",
+        "Cacari",
+        "Myrciaria paraensis"
+      ],
+      "nombreCientifico": "Myrciaria dubia",
+      "familia": "Myrtaceae",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "antioxidante",
+        "humor",
+        "glucosa",
+        "hígado"
+      ],
+      "descripcion": "Fruta amazónica con altísima concentración de Vitamina C (2000-3000mg/100g) y antocianinas.",
+      "mecanismoAccion": "Vitamina C + elagitaninos + antocianinas. Efecto antioxidante sinérgico. Mejora marcadores inflamatorios y oxidativos.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "500-1000mg polvo",
+      "dosisMaxima": "3000mg/día",
+      "formaQuimica": [
+        "Polvo liofilizado",
+        "Cápsulas",
+        "Extracto"
+      ],
+      "biodisponibilidad": "Buena",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Hierro (sinergia Vit C)"
+      ],
+      "evitarCon": [
+        "Cobre"
+      ],
+      "advertencias": [
+        "Falta datos en embarazo/lactancia"
+      ],
+      "tags": [
+        "vitamina C",
+        "antioxidante",
+        "amazonico",
+        "inmune"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "espirulina",
+      "nombre": "Espirulina",
+      "nombresAlternativos": [
+        "Arthrospira platensis",
+        "Spirulina",
+        "Alga azul-verde",
+        "Cianobacteria"
+      ],
+      "nombreCientifico": "Arthrospira platensis",
+      "familia": "Cyanophyceae",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "metabolico",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "colesterol",
+        "inmunidad",
+        "detox",
+        "anemia",
+        "saciedad"
+      ],
+      "descripcion": "Microalga con 60-70% proteína completa. Rica en ficocianina, hierro y B12 análogos.",
+      "mecanismoAccion": "La ficocianina (pigmento) tiene efecto antioxidante e inmunomodulador. Reduce LDL y triglicéridos. Estimula NK cells.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "3-5g/día",
+      "dosisMaxima": "10g/día",
+      "formaQuimica": [
+        "Polvo",
+        "Cápsulas",
+        "Tabletas",
+        "Extracto"
+      ],
+      "biodisponibilidad": "Buena",
+      "momentoToma": [
+        "Con comidas",
+        "Mañana"
+      ],
+      "tomarCon": [
+        "Vitamina C (mejora absorción de hierro)"
+      ],
+      "evitarCon": [
+        "No específicas"
+      ],
+      "advertencias": [
+        "Contamina con microcistinas si no purificada",
+        "B12 no biodisponible (análogos)",
+        "Fenilcetonuria: contiene fenilalanina"
+      ],
+      "tags": [
+        "alga",
+        "proteína",
+        "antioxidante",
+        "ficocianina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "WHO, EFSA"
+      }
+    },
+    {
+      "id": "chlorella",
+      "nombre": "Chlorella",
+      "nombresAlternativos": [
+        "Chlorella vulgaris",
+        "Chlorella pyrenoidosa",
+        "Alga verde unicelular"
+      ],
+      "nombreCientifico": "Chlorella vulgaris",
+      "familia": "Chlorellaceae",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "hepatico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "detox",
+        "colesterol",
+        "inmunidad",
+        "metales pesados",
+        "hígado",
+        "glucosa"
+      ],
+      "descripcion": "Alga verde unicelular con clorofila y factor de crecimiento. Quelante de metales pesados.",
+      "mecanismoAccion": "La pared celular (espina) quel metales pesados. El CGF (Chlorella Growth Factor) estimula regeneración celular. Reduce colesterol por fibra y clorofila.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "3-5g/día",
+      "dosisMaxima": "10g/día",
+      "formaQuimica": [
+        "Polvo",
+        "Cápsulas",
+        "Tabletas",
+        "Chlorella rota (broken cell wall)"
+      ],
+      "biodisponibilidad": "Baja (necesita pared celular rota)",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Vitamina C"
+      ],
+      "evitarCon": [
+        "No específicas"
+      ],
+      "advertencias": [
+        "Must ser 'broken cell wall' para absorción",
+        "Falta datos en embarazo"
+      ],
+      "tags": [
+        "detox",
+        "alga",
+        "clorofila",
+        "quelante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "jalea_real",
+      "nombre": "Jalea Real",
+      "nombresAlternativos": [
+        "Royal Jelly",
+        "Jalea real de abejas",
+        "Apilac"
+      ],
+      "nombreCientifico": "Jalea real (secreción de glándulas de abejas obreras)",
+      "familia": "Producto apícola",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "endocrino",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "inmunidad",
+        "longevidad",
+        "humor",
+        "colesterol",
+        "fertilidad"
+      ],
+      "descripcion": "Alimento de la abeja reina. Rica en proteína realactina, vitaminas B y 10-HDA.",
+      "mecanismoAccion": "La proteína realactina estimula sistema inmune. El 10-HDA tiene actividad antibiótica y estimula diferenciación neural. Modula hormonalmente.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "500-1000mg/día",
+      "dosisMaxima": "3000mg/día",
+      "formaQuimica": [
+        "Jalea fresca",
+        "Liofilizada",
+        "Cápsulas",
+        "Extracto"
+      ],
+      "biodisponibilidad": "Buena",
+      "momentoToma": [
+        "Mañana con el estómago vacío",
+        "Sublingual"
+      ],
+      "tomarCon": [
+        "Miel",
+        "Propóleo (sinergia apícola)"
+      ],
+      "evitarCon": [
+        "No específicas"
+      ],
+      "advertencias": [
+        "ALTA PROBABILIDAD ALERGIA en alérgicos a abejas/veneno",
+        "Asma: usar con caution"
+      ],
+      "tags": [
+        "apícola",
+        "inmune",
+        "fatiga",
+        "longevidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "polen",
+      "nombre": "Polen de Abeja",
+      "nombresAlternativos": [
+        "Bee pollen",
+        "Polen apícola",
+        "Pollen",
+        "Polen crudo"
+      ],
+      "nombreCientifico": "Polen apícola (mezcla de granos de polen)",
+      "familia": "Producto apícola",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "inmunidad",
+        "alergias",
+        "saciedad",
+        "nutrición",
+        "deportivo"
+      ],
+      "descripcion": "Superfood con todos los aminoácidos esenciales, vitaminas y minerales. Inmunomodulador.",
+      "mecanismoAccion": "Rico en proteínas (25%), lecitina, vitaminas B, rutina. Reduce histamina por exposición gradual (inmunoterapia oral natural).",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "5-15g/día",
+      "dosisMaxima": "30g/día",
+      "formaQuimica": [
+        "Gránulos crudos",
+        "Polvo",
+        "Cápsulas"
+      ],
+      "biodisponibilidad": "Buena (masticar bien)",
+      "momentoToma": [
+        "Mañana",
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Miel",
+        "Jalea real"
+      ],
+      "evitarCon": [
+        "No específicas"
+      ],
+      "advertencias": [
+        "ALTA PROBABILIDAD ALERGIA en alérgicos a polen/abejas",
+        "Empezar con dosis mínima"
+      ],
+      "tags": [
+        "apícola",
+        "superfood",
+        "inmune",
+        "alergias"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "USDA"
+      }
+    },
+    {
+      "id": "propoleo",
+      "nombre": "Propóleo",
+      "nombresAlternativos": [
+        "Propolis",
+        "Propóleo de abejas",
+        "Bálsamo de abejas",
+        "Propolis resina"
+      ],
+      "nombreCientifico": "Propóleo (resina recolectada por abejas)",
+      "familia": "Producto apícola",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "dermatologico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "garganta",
+        "inmunidad",
+        "heridas",
+        "antibiótico",
+        "gripe",
+        "boca"
+      ],
+      "descripcion": "Resina con +300 compuestos activos. Antibacteriano, antiviral y cicatrizante natural.",
+      "mecanismoAccion": "La pinocembrina y galangina (flavonoides) inhiben bacterias y virus. El ácido cafeico estimula inmunidad. Acelera epitelización.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "500-1000mg extracto (o 20-30 gotas tintura)",
+      "dosisMaxima": "2000mg/día",
+      "formaQuimica": [
+        "Tintura (alcohol)",
+        "Extracto seco",
+        "Spray",
+        "Cápsulas",
+        "Extracto blando (BPC)"
+      ],
+      "biodisponibilidad": "Variable (tintura mejor que crudo)",
+      "momentoToma": [
+        "Con comidas",
+        "Sublingual"
+      ],
+      "tomarCon": [
+        "Vitamina C",
+        "Zinc (sinergia inmune)"
+      ],
+      "evitarCon": [
+        "No específicas"
+      ],
+      "advertencias": [
+        "ALTA PROBABILIDAD ALERGIA en alérgicos a abejas",
+        "No usar en embarazo sin supervisión"
+      ],
+      "tags": [
+        "antibiótico",
+        "inmune",
+        "garganta",
+        "apícola"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review"
+      }
+    },
+    {
+      "id": "shilajit",
+      "nombre": "Shilajit",
+      "nombresAlternativos": [
+        "Mumijo",
+        "Shilajit",
+        "Mineral pitch",
+        "Betún mineral",
+        "Silažit"
+      ],
+      "nombreCientifico": "Materia orgánica fósil (ácidos fúlvicos/húmicos)",
+      "familia": "Compuesto organomineral",
+      "categoria": "minerales",
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "testosterona",
+        "cognitivo",
+        "longevidad",
+        "energía",
+        "hígado"
+      ],
+      "descripcion": "Resina mineral del Himalaya. Rica en ácido fúlvico (>60%), DCP y minerales.",
+      "mecanismoAccion": "El ácido fúlvico mejora transporte de nutrientes a células y mitocondrias. El dibenzo-α-pirona (DCP) estimula ATP y función mitocondrial.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "250-500mg/día (resina purificada)",
+      "dosisMaxima": "1000mg/día",
+      "formaQuimica": [
+        "Resina purificada",
+        "Polvo",
+        "Cápsulas (extracto)"
+      ],
+      "biodisponibilidad": "Alta (ácido fúlvico enhances transport)",
+      "momentoToma": [
+        "Mañana con leche tibia o agua",
+        "Con el estómago vacío"
+      ],
+      "tomarCon": [
+        "Ashwagandha (sinergia adaptógena)",
+        "Triphala"
+      ],
+      "evitarCon": [
+        "No específicas"
+      ],
+      "advertencias": [
+        "Must ser purificado (plomo/arsénico en crudo)",
+        "Falta datos en embarazo"
+      ],
+      "tags": [
+        "adaptógeno",
+        "energía",
+        "testosterona",
+        "longevidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "lecitina",
+      "nombre": "Lecitina (Fosfatidilcolina)",
+      "nombresAlternativos": [
+        "Lecitina de soja",
+        "Phosphatidylcholine",
+        "PC",
+        "Lecitina de girasol"
+      ],
+      "nombreCientifico": "Fosfatidilcolina",
+      "familia": "Fosfolípido",
+      "categoria": "vitamina",
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "hígado",
+        "colesterol",
+        "memoria",
+        "colesterol",
+        "vesícula",
+        "hígado graso"
+      ],
+      "descripcion": "Fosfolípido esencial para membranas celulares y transporte de colesterol. Colina precursor de acetilcolina.",
+      "mecanismoAccion": "La fosfatidilcolina repara membranas hepatocelulares. Estimula exportación de triglicéridos hepáticos (VLDL). La colina → acetilcolina (neurotransmisor memoria).",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "1200-3000mg/día",
+      "dosisMaxima": "5000mg/día",
+      "formaQuimica": [
+        "Lecitina de soja",
+        "Lecitina de girasol",
+        "Fosfatidilcolina pura",
+        "Granulada"
+      ],
+      "biodisponibilidad": "Alta",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Vitamina B12",
+        "Omega-3"
+      ],
+      "evitarCon": [
+        "No específicas"
+      ],
+      "advertencias": [
+        "Soja: posible alergia",
+        "Fishy odor (colina metabolizada por microbioma)"
+      ],
+      "tags": [
+        "fosfolípido",
+        "hígado",
+        "memoria",
+        "colina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EFSA"
+      }
+    },
+    {
+      "id": "triptofano",
+      "nombre": "L-Triptófano",
+      "nombresAlternativos": [
+        "L-Tryptophan",
+        "Triptófano",
+        "Trp",
+        "L-Trp"
+      ],
+      "nombreCientifico": "L-Triptófano",
+      "familia": "Aminoácido esencial",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "depresión",
+        "ansiedad",
+        "humor",
+        "sueño"
+      ],
+      "descripcion": "Aminoácido esencial precursor de serotonina y melatonina. Mejora sueño y humor.",
+      "mecanismoAccion": "Triptófano → 5-HTP → serotonina → melatonina. Cruzar BHE mediante transporte de aminoácidos neutros. Requiere B6, hierro y BH4 como cofactores.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "500-2000mg/día (sueño: 1g antes de dormir)",
+      "dosisMaxima": "3000mg/día",
+      "formaQuimica": [
+        "L-Triptófano libre",
+        "L-Triptófano USP"
+      ],
+      "biodisponibilidad": "Moderada oral (competencia con otros aminoácidos)",
+      "momentoToma": [
+        "Con el estómago vacío (mejor paso BHE)",
+        "Antes de dormir",
+        "Separar de proteínas"
+      ],
+      "tomarCon": [
+        "Vitamina B6 + Magnesio (cofactores)",
+        "Carbohidratos (mejora paso BHE)"
+      ],
+      "evitarCon": [
+        "ISRS/IMAO (síndrome serotoninérgico)",
+        "5-HTP (redundancia)"
+      ],
+      "advertencias": [
+        "Síndrome serotoninérgico con antidepresivos",
+        "Embarazo: consultar"
+      ],
+      "tags": [
+        "serotonina",
+        "melatonina",
+        "sueño",
+        "humor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review"
       }
     }
   ]

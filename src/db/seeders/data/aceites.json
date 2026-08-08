@@ -4,7 +4,7 @@
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 47,
+    "total": 55,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
   "ingredientes": [
@@ -2690,6 +2690,489 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Pharmacological studies (regeneración)"
+      }
+    },
+    {
+      "id": "hisopo",
+      "nombre": "Aceite Esencial de Hisopo",
+      "nombresAlternativos": [
+        "Hyssop oil",
+        "Hyssopus officinalis EO",
+        "Hisopo"
+      ],
+      "nombreCientifico": "Hyssopus officinalis",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "bronquitis",
+        "tos",
+        "gripe",
+        "digestión",
+        "cicatrización"
+      ],
+      "descripcion": "Antiviral y expectorante respiratorio. Traditionally usado para afecciones bronquiales.",
+      "mecanismoAccion": "La pinocanfona (cetona) tiene efecto mucolítico y antiviral. Los flavonoides estimulan inmunidad.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "sumidad florida",
+      "metodoExtraccion": [
+        "Destilación por arrastre de vapor"
+      ],
+      "quimiotipo": "Pinocanfona / 1,8-cineol",
+      "dilucionRecomendada": "0.5-1% para piel (máximo)",
+      "precaucionesTopico": [
+        "Irritante en piel sensible",
+        "Máximo 1% dilución",
+        "No en niños/epilépticos"
+      ],
+      "metodosUso": [
+        "difusión",
+        "inhalación"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Eucalipto",
+        "Romero"
+      ],
+      "advertencias": [
+        "Cetona neurotóxica: NO usar en epilepsia, embarazo, niños",
+        "Uso interno: prohibido"
+      ],
+      "tags": [
+        "antiviral",
+        "expectorante",
+        "bronquitis",
+        "respiratorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "ajo_aceite",
+      "nombre": "Aceite Esencial de Ajo",
+      "nombresAlternativos": [
+        "Garlic oil",
+        "Allium sativum EO",
+        "Aceite de ajo"
+      ],
+      "nombreCientifico": "Allium sativum",
+      "familia": "Amaryllidaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "cardiovascular",
+        "inmune"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "inmunidad",
+        "antibiótico",
+        "colesterol",
+        "hipertensión"
+      ],
+      "descripcion": "Potente antimicrobiano y cardioprotector. Alicina y sulfóxidos.",
+      "mecanismoAccion": "Los compuestos sulfurados (dialil sulfuros) inhiben HMG-CoA reductasa → reduce colesterol. Vasodilatador por óxido nítrico. Antimicrobiano amplio espectro.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "bulbo",
+      "metodoExtraccion": [
+        "Destilación por vapor",
+        "Maceración en aceite"
+      ],
+      "quimiotipo": "Dialil sulfuros / Alicina",
+      "dilucionRecomendada": "0.5% para piel (máximo, irritante)",
+      "precaucionesTopico": [
+        "Irritante potente: diluir bien",
+        "Testear siempre"
+      ],
+      "metodosUso": [
+        "difusión",
+        "ingesta (cápsulas entéricas)"
+      ],
+      "compatibilidad": [
+        "Orégano",
+        "Tomillo"
+      ],
+      "advertencias": [
+        "Anticoagulante: usar con caution con warfarina",
+        "Irrita mucosas",
+        "Olor persistente"
+      ],
+      "tags": [
+        "cardiovascular",
+        "antimicrobiano",
+        "colesterol",
+        "alicina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review"
+      }
+    },
+    {
+      "id": "ajedrea",
+      "nombre": "Aceite Esencial de Ajedrea",
+      "nombresAlternativos": [
+        "Savory oil",
+        "Satureja EO",
+        "Ajedrea común"
+      ],
+      "nombreCientifico": "Satureja hortensis",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "digestión",
+        "gases",
+        "hongos",
+        "antibiótico",
+        "parásitos"
+      ],
+      "descripcion": "Antimicrobiano potente (carvacrol). Digestiva y antiparasitaria.",
+      "mecanismoAccion": "El carvacrol y timol destruyen membranas bacterianas y fúngicas. Espasmolítico digestivo.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "sumidad florida",
+      "metodoExtraccion": [
+        "Destilación por arrastre de vapor"
+      ],
+      "quimiotipo": "Carvacrol / Timol",
+      "dilucionRecomendada": "1-2% para piel (máximo, irritante)",
+      "precaucionesTopico": [
+        "Irritante dermal: diluir bien",
+        "Evitar en niños"
+      ],
+      "metodosUso": [
+        "difusión",
+        "ingesta supervisada"
+      ],
+      "compatibilidad": [
+        "Orégano",
+        "Tomillo",
+        "Romero"
+      ],
+      "advertencias": [
+        "Irritante potente",
+        "Embarazo: evitar",
+        "Uso interno: solo supervisión"
+      ],
+      "tags": [
+        "antimicrobiano",
+        "digestivo",
+        "carvacrol",
+        "antifúngico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "benjuu",
+      "nombre": "Aceite Esencial de Benjuí",
+      "nombresAlternativos": [
+        "Benzoin oil",
+        "Styrax tonkinensis EO",
+        "Benjuí",
+        "Resina de benjuí"
+      ],
+      "nombreCientifico": "Styrax tonkinensis",
+      "familia": "Styracaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "tos",
+        "garganta",
+        "piel",
+        "cicatrización",
+        "grietas",
+        "ansiedad"
+      ],
+      "descripcion": "Bálsamo cicatrizante y antitusivo. Suaviza piel agrietada y mucosas.",
+      "mecanismoAccion": "El ácido benzoico y coniferina tienen efecto antiséptico y cicatrizante. Los esteres balsámicos suavizan.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "resina (oleoresina)",
+      "metodoExtraccion": [
+        "Destilación por vapor",
+        "Extracción con disolvente"
+      ],
+      "quimiotipo": "Ácido benzoico / Coniferil benzoato",
+      "dilucionRecomendada": "2-5% para piel",
+      "precaucionesTopico": [
+        "Posible sensibilización",
+        "Usar diluido"
+      ],
+      "metodosUso": [
+        "inhalación",
+        "topico",
+        "difusión"
+      ],
+      "compatibilidad": [
+        "Mirra",
+        "Incienso",
+        "Sándalo"
+      ],
+      "advertencias": [
+        "Posible alergia",
+        "Viscoso: calentar para usar"
+      ],
+      "tags": [
+        "cicatrizante",
+        "bálsamo",
+        "tos",
+        "piel"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "valeriana_aceite",
+      "nombre": "Aceite Esencial de Valeriana",
+      "nombresAlternativos": [
+        "Valerian oil",
+        "Valeriana officinalis EO",
+        "Raíz de valeriana EO"
+      ],
+      "nombreCientifico": "Valeriana officinalis",
+      "familia": "Caprifoliaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "ansiedad",
+        "estrés",
+        "nerviosismo"
+      ],
+      "descripcion": "Sedante y ansiolítico por aromaterapia. El aceite destilado de raíz.",
+      "mecanismoAccion": "Los sesquiterpenos (isovaleraldehído, ácido isovalérico) modulan receptores GABA-A por vía olfativa.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "raíz",
+      "metodoExtraccion": [
+        "Destilación por arrastre de vapor"
+      ],
+      "quimiotipo": "Isovaleraldehído / Bornil acetato",
+      "dilucionRecomendada": "1-3% para piel",
+      "precaucionesTopico": [
+        "Olor fuerte (poco atractivo)",
+        "Testear en piel"
+      ],
+      "metodosUso": [
+        "difusión",
+        "inhalación",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Manzanilla",
+        "Bergamota"
+      ],
+      "advertencias": [
+        "Somnolencia",
+        "No combinar con sedantes farmacológicos"
+      ],
+      "tags": [
+        "sedante",
+        "insomnio",
+        "ansiolítico",
+        "GABA"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "perejil_aceite",
+      "nombre": "Aceite Esencial de Perejil",
+      "nombresAlternativos": [
+        "Parsley oil",
+        "Petroselinum sativum EO",
+        "Perejil semilla"
+      ],
+      "nombreCientifico": "Petroselinum crispum",
+      "familia": "Apiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "urinario"
+      ],
+      "indicaciones": [
+        "digestión",
+        "diuresis",
+        "menstrual",
+        "hígado"
+      ],
+      "descripcion": "Diurético y digestivo. La miristicina estimula secreciones.",
+      "mecanismoAccion": "La miristicina y apiol estimulan peristaltismo y secreción biliar. Diurético por irritación renal suave.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "semilla (y hoja)",
+      "metodoExtraccion": [
+        "Destilación por arrastre de vapor"
+      ],
+      "quimiotipo": "Apiol / Miristicina",
+      "dilucionRecomendada": "0.5-1% para piel (máximo)",
+      "precaucionesTopico": [
+        "Irritante: diluir bien",
+        "Fotosensibilidad leve"
+      ],
+      "metodosUso": [
+        "difusión",
+        "ingesta supervisada"
+      ],
+      "compatibilidad": [
+        "Hinojo",
+        "Eneldo",
+        "Romero"
+      ],
+      "advertencias": [
+        "Embarazo: PROHIBIDO (apiol abortivo)",
+        "Nefropatía: evitar",
+        "Irritante renal"
+      ],
+      "tags": [
+        "diurético",
+        "digestivo",
+        "apiol",
+        "menstrual"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "azahar_aceite",
+      "nombre": "Aceite Esencial de Azahar (Naranjo)",
+      "nombresAlternativos": [
+        "Neroli petitgrain",
+        "Orange blossom oil",
+        "Azahar",
+        "Citrus aurantium flor"
+      ],
+      "nombreCientifico": "Citrus aurantium var. amara (flor)",
+      "familia": "Rutaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estrés",
+        "depresión",
+        "choque"
+      ],
+      "descripcion": "Calmante floral suave. Relaja sin sedar. Ideal para ansiedad y insomnio.",
+      "mecanismoAccion": "El linalool y acetato de linalilo modulan GABA-A. La presencia de flavonoides en extractos reduces ansiedad. Reduce cortisol.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "flores (azahar)",
+      "metodoExtraccion": [
+        "Destilación por vapor",
+        "Enfleurage (tradicional)"
+      ],
+      "quimiotipo": "Linalool / Linalyl acetato / Nerolidol",
+      "dilucionRecomendada": "2-5% para piel",
+      "precaucionesTopico": [
+        "Seguro tópico",
+        "No fotosensible (vs bergamota)"
+      ],
+      "metodosUso": [
+        "difusión",
+        "inhalación",
+        "topico",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Bergamota",
+        "Sándalo",
+        "Ylang Ylang"
+      ],
+      "advertencias": [
+        "Seguro en general",
+        "Coste elevado (flor)"
+      ],
+      "tags": [
+        "calmante",
+        "ansiedad",
+        "insomnio",
+        "floral"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "galbano",
+      "nombre": "Aceite Esencial de Gálbano",
+      "nombresAlternativos": [
+        "Galbanum oil",
+        "Ferula gummosa EO",
+        "Gálbano resina"
+      ],
+      "nombreCientifico": "Ferula gummosa",
+      "familia": "Apiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "tos",
+        "bronquitis",
+        "dolor",
+        "reuma",
+        "muscular"
+      ],
+      "descripcion": "Bálsamo antiespasmódico y antiinflamatorio. Traditionally para tos y dolor muscular.",
+      "mecanismoAccion": "Los sesquiterpenos (β-bisaboleno) tienen efecto antiinflamatorio. La oleorresina es expectorante.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "oleorresina (tallo)",
+      "metodoExtraccion": [
+        "Destilación por vapor",
+        "Extracción con disolvente"
+      ],
+      "quimiotipo": "β-bisaboleno / Mirceno",
+      "dilucionRecomendada": "1-3% para piel",
+      "precaucionesTopico": [
+        "Posible sensibilización",
+        "Testear"
+      ],
+      "metodosUso": [
+        "difusión",
+        "topico"
+      ],
+      "compatibilidad": [
+        "Incienso",
+        "Mirra",
+        "Geranio"
+      ],
+      "advertencias": [
+        "Falta datos en embarazo",
+        "Posible alergia"
+      ],
+      "tags": [
+        "antiespasmódico",
+        "bálsamo",
+        "tos",
+        "antiinflamatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials"
       }
     }
   ]

@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 588,
+    "total": 615,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -14700,6 +14700,689 @@
       ],
       "sistemas": [
         "digestivo"
+      ]
+    },
+    {
+      "id": "sin_pasionaria_valeriana",
+      "ingredienteA": "pasionaria",
+      "ingredienteB": "valeriana",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación clásica ansiolítica. Mejora sinergia GABA-A para ansiedad e insomnio sin dependencia.",
+      "beneficios": [
+        "Efecto ansiolítico potenciado",
+        "Mejor calidad de sueño",
+        "Sin dependencia vs benzodiacepinas"
+      ],
+      "precauciones": [
+        "Somnolencia",
+        "No combinar con sedantes farmacológicos"
+      ],
+      "mecanismo": "Ambas modulan GABA-A por diferentes vías: valeriana (valepotriatos) + pasiflora (flavonoides crisina).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_pasionaria_melisa",
+      "ingredienteA": "pasionaria",
+      "ingredienteB": "melisa",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Ansiedad con tensión digestiva. Pasiflora calma, melisa relaja espasmos gastrointestinales.",
+      "beneficios": [
+        "Reduce ansiedad gastrointestinal",
+        "Mejora digestión nerviosa"
+      ],
+      "precauciones": [
+        "Somnolencia leve"
+      ],
+      "mecanismo": "Pasiflora (GABA-A) + melisa (espasmolítico via ACE-inhibición).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_zaragatona_probiotico",
+      "ingredienteA": "zaragatona",
+      "ingredienteB": "b_longum",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Fibra prebiótica + probiótico. Psyllium alimenta bifidobacterias → efecto simbiótico.",
+      "beneficios": [
+        "Mejora microbiota intestinal",
+        "Reduce estreñimiento",
+        "Mejora SII",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Separar 2h de fármacos"
+      ],
+      "mecanismo": "Psyllium (fibra fermentable) → butirato → alimenta Bifidobacterium → SCFA antiinflamatorio.",
+      "categorias": [
+        "fitoterapia",
+        "probiotico"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_sauco_zinc",
+      "ingredienteA": "sauco",
+      "ingredienteB": "zinc",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Combo antigripal potente. Saúco antiviral + zinc inhibe replicación viral.",
+      "beneficios": [
+        "Reduce duración resfriado 3-4 días",
+        "Antiviral sinérgico",
+        "Mejor inmunidad"
+      ],
+      "precauciones": [
+        "Zinc >40mg: náuseas",
+        "Tomar zinc con comida"
+      ],
+      "mecanismo": "Saúco (antocianinas inhiben hemaglutinina) + zinc (inhibe polimerasa RNA viral).",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_sauco_propoleo",
+      "ingredienteA": "sauco",
+      "ingredienteB": "propoleo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Antiviral + antibacteriano. Sinergia apícola-vegetal para gripe y garganta.",
+      "beneficios": [
+        "Reduce gripe/resfriado",
+        "Alivia garganta",
+        "Antimicrobiano amplio"
+      ],
+      "precauciones": [
+        "Alérgicos a abejas",
+        "Tomar con vitamina C"
+      ],
+      "mecanismo": "Saúco (antiviral) + propóleo (antibacteriano/antiviral por flavonoides). Triple acción.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_genciana_alcachofa",
+      "ingredienteA": "genciana",
+      "ingredienteB": "alcachofa",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Digestión lenta y dispepsia. Genciana estimula secreciones, alcachofa colagoga.",
+      "beneficios": [
+        "Mejor digestión",
+        "Reduce gases",
+        "Estimula apetito",
+        "Protege hígado"
+      ],
+      "precauciones": [
+        "Úlcera: evitar",
+        "Obstrucción biliar: evitar"
+      ],
+      "mecanismo": "Genciana (amargo → reflejo vagal) + alcachofa (cinarina → colagoga).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_malvavisco_llanten",
+      "ingredienteA": "malvavisco",
+      "ingredienteB": "llanten",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Tos seca y garganta irritada. Doble demulcente para mucosas respiratorias.",
+      "beneficios": [
+        "Alivia tos seca",
+        "Suaviza garganta",
+        "Cicatrizante mucosas"
+      ],
+      "precauciones": [
+        "Separar 2h de fármacos"
+      ],
+      "mecanismo": "Mucílagos de ambas forman película protectora. Llantén añade aucubina (antibacteriano).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_diente_leon_alcachofa",
+      "ingredienteA": "diente_leon",
+      "ingredienteB": "alcachofa",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Hepatoprotección y detox. Estimulación biliar sinérgica.",
+      "beneficios": [
+        "Mejor función hepática",
+        "Reduce colesterol",
+        "Detox",
+        "Digestión"
+      ],
+      "precauciones": [
+        "Obstrucción biliar: evitar"
+      ],
+      "mecanismo": "Diente de león (taraxasterol colagogo) + alcachofa (cinarina hepatoprotectora).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_cola_caballo_zinc",
+      "ingredienteA": "cola_caballo",
+      "ingredienteB": "zinc",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Cabello y uñas débiles. Sílice + zinc estimulan queratina y crecimiento.",
+      "beneficios": [
+        "Reduce caída capilar",
+        "Fortalece uñas",
+        "Mejor piel"
+      ],
+      "precauciones": [
+        "Zinc >40mg: náuseas"
+      ],
+      "mecanismo": "Sílice (síntesis colágeno/queratina) + zinc (cofactor +300 enzimas, crecimiento celular).",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_nac_vitamina_c",
+      "ingredienteA": "nac",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Maximiza glutatión. NAC (precursor) + Vit C (recicla glutatión oxidado).",
+      "beneficios": [
+        "Mayor antioxidante",
+        "Detox hepático",
+        "Inmunidad",
+        "Reduce mucosidad"
+      ],
+      "precauciones": [
+        "Separar de antibióticos 2h"
+      ],
+      "mecanismo": "NAC (donador sulfhidrilo → GSH) + Vit C (recicla GSSG → GSH). Triple efecto antioxidante.",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "hepatico",
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_colageno_vitamina_c",
+      "ingredienteA": "colageno_hidrolizado",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Síntesis de colágeno. Vit C es cofactor esencial de hidroxilación de prolina.",
+      "beneficios": [
+        "Mayor síntesis colágeno",
+        "Mejor piel y articulaciones",
+        "Cicatrización"
+      ],
+      "precauciones": [
+        "Ninguna"
+      ],
+      "mecanismo": "Colágeno (péptidos Pro-Hyp) + Vit C (cofactor prolyl-hydroxylase → colágeno estable).",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_acerola_zinc",
+      "ingredienteA": "acerola",
+      "ingredienteB": "zinc",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Inmunidad potente. Vit C natural + zinc = combo antigripal clásico.",
+      "beneficios": [
+        "Reduce duración resfriado",
+        "Mejor inmunidad",
+        "Antioxidante sinérgico"
+      ],
+      "precauciones": [
+        "Zinc >40mg: náuseas"
+      ],
+      "mecanismo": "Vit C (estimula leucocitos) + zinc (cofactor тимозина → NK cells).",
+      "categorias": [
+        "vitamina",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_espirulina_clorela",
+      "ingredienteA": "espirulina",
+      "ingredienteB": "chlorella",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Detox completo. Espirulina (ficocianina) + chlorella (quelante metales).",
+      "beneficios": [
+        "Detox metales pesados",
+        "Energía",
+        "Mejor colesterol",
+        "Nutrición"
+      ],
+      "precauciones": [
+        "Falta datos en embarazo",
+        "Usar chlorella 'broken cell wall'"
+      ],
+      "mecanismo": "Chlorella (quel metales) + espirulina (ficocianina antioxidante/hepatoprotectora).",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "hepatico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_lecitina_omega3",
+      "ingredienteA": "lecitina",
+      "ingredienteB": "omega_3",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Cerebro y hígado. Fosfatidilcolina + DHA/EPA para membranas neuronales.",
+      "beneficios": [
+        "Mejor memoria",
+        "Hígado graso",
+        "Reduce colesterol",
+        "Cognitivo"
+      ],
+      "precauciones": [
+        "Soja: posible alergia"
+      ],
+      "mecanismo": "Lecitina (PC → membranas) + omega-3 (DHA → fluididez neuronal). Sinergia estructural.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "nervioso",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_same_b12_acidofolico",
+      "ingredienteA": "same",
+      "ingredienteB": "vitamina_b12",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Metilación completa. SAMe dona metilo, B12 + folato reciclan homocisteína.",
+      "beneficios": [
+        "Mejor humor",
+        "Detox hepático",
+        "Reduce homocisteína",
+        "Energía"
+      ],
+      "precauciones": [
+        "Con ISRS: riesgo síndrome serotoninérgico"
+      ],
+      "mecanismo": "SAMe (donador metilo) + B12 (metionina sintasa → recicla SAMe). Ciclo metilo.",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "nervioso",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_triptofano_b6_magnesio",
+      "ingredienteA": "triptofano",
+      "ingredienteB": "magnesio",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Sueño y humor. Triptófano (precursor serotonina) + Mg + B6 (cofactores).",
+      "beneficios": [
+        "Mejor sueño",
+        "Reduce ansiedad",
+        "Estabiliza humor"
+      ],
+      "precauciones": [
+        "Con ISRS: síndrome serotoninérgico"
+      ],
+      "mecanismo": "Triptófano → serotonina requiere B6 (decarboxilasa) + Fe + BH4. Mg estabiliza nervioso.",
+      "categorias": [
+        "aminoacido",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_shilajit_ashwagandha",
+      "ingredienteA": "shilajit",
+      "ingredienteB": "ashwagandha",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Adaptógenos sinérgicos. Shilajit (mitocondrial) + ashwagandha (cortisol).",
+      "beneficios": [
+        "Más energía",
+        "Reduce estrés",
+        "Testosterona",
+        "Cognitivo"
+      ],
+      "precauciones": [
+        "Embarazo: evitar ashwagandha"
+      ],
+      "mecanismo": "Shilajit (DCP → ATP mitocondrial) + ashwagandha (reduce cortisol, adaptógeno).",
+      "categorias": [
+        "minerales",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_jalea_real_polen",
+      "ingredienteA": "jalea_real",
+      "ingredienteB": "polen",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combo apícola. Jalea real + polen = energético e inmunomodulador completo.",
+      "beneficios": [
+        "Más energía",
+        "Mejor inmunidad",
+        "Nutrición completa"
+      ],
+      "precauciones": [
+        "ALTA PROBABILIDAD ALERGIA: probar dosis mínima"
+      ],
+      "mecanismo": "Jalea real (realactina + 10-HDA) + polen (aminoácidos + lecitina). Sinergia nutricional.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_hisopo_eucalipto",
+      "ingredienteA": "hisopo",
+      "ingredienteB": "eucalipto",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Bronquitis y tos. Hisopo (mucolítico) + eucalipto (1,8-cineol antibacteriano).",
+      "beneficios": [
+        "Mejor tos productiva",
+        "Descongestiona",
+        "Antibacteriano"
+      ],
+      "precauciones": [
+        "Hisopo: NO epilepsia/niños",
+        "Eucalipto: no en lactantes"
+      ],
+      "mecanismo": "Hisopo (pinocanfona mucolítica) + eucalipto (1,8-cineol expectorante).",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_ajo_aceite_omega3",
+      "ingredienteA": "ajo_aceite",
+      "ingredienteB": "omega_3",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Cardioprotección total. Ajo (colesterol) + omega-3 (triglicéridos).",
+      "beneficios": [
+        "Reduce LDL y TG",
+        "Antiinflamatorio",
+        "Mejor endothelio"
+      ],
+      "precauciones": [
+        "Ajo: anticoagulante aditivo con omega-3",
+        "Olor"
+      ],
+      "mecanismo": "Ajo (inhibe HMG-CoA reductasa) + omega-3 (reduce TG hepáticos).",
+      "categorias": [
+        "aceite_esencial",
+        "vitamina"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_azahar_lavanda",
+      "ingredienteA": "azahar_aceite",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Ansiedad e insomnio por aromaterapia. Azahar + lavanda = calmante floral.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Mejor sueño",
+        "Sin sedación diurna"
+      ],
+      "precauciones": [
+        "Seguro en general"
+      ],
+      "mecanismo": "Azahar (linalool + nerolidol) + lavanda (linalool + linalyl acetato). Sinergia GABA-A.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_valeriana_aceite_lavanda",
+      "ingredienteA": "valeriana_aceite",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Insomnio rebelde. Valeriana (sedante) + lavanda (ansiolítica) por difusión.",
+      "beneficios": [
+        "Reduce latencia sueño",
+        "Calma mente",
+        "Mejor calidad sueño"
+      ],
+      "precauciones": [
+        "Olor fuerte valeriana",
+        "Somnolencia"
+      ],
+      "mecanismo": "Valeriana (isovaleraldehído GABA-A) + lavanda (linalool GABA-A).",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_benjuu_mirra",
+      "ingredienteA": "benjuu",
+      "ingredienteB": "mirra",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Cicatrización de piel agrietada. Benjuí + mirra = bálsamo cicatrizante.",
+      "beneficios": [
+        "Cicatrización grietas",
+        "Pieles secas",
+        "Antiséptico"
+      ],
+      "precauciones": [
+        "Posible sensibilización",
+        "Diluir"
+      ],
+      "mecanismo": "Benjuí (ácido benzoico) + mirra (furanoeudesma). Doble bálsamo cicatrizante.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_ajedrea_oregano",
+      "ingredienteA": "ajedrea",
+      "ingredienteB": "oregano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Antimicrobiano potente. Ajedrea + orégano = alto carvacrol para infecciones.",
+      "beneficios": [
+        "Antibacteriano amplio",
+        "Antifúngico",
+        "Parásitos"
+      ],
+      "precauciones": [
+        "Irritantes: diluir bien",
+        "No uso prolongado",
+        "Embarazo: evitar"
+      ],
+      "mecanismo": "Ambas ricas en carvacrol → destruyen membranas bacterianas. Sinergia aditiva.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_zaragatona_inulina",
+      "ingredienteA": "zaragatona",
+      "ingredienteB": "inulina",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Fibra doble para estreñimiento. Psyllium + inulina = prebiótico + laxante.",
+      "beneficios": [
+        "Mejor tránsito",
+        "Alimenta microbiota",
+        "Reduce colesterol"
+      ],
+      "precauciones": [
+        "Gas inicial",
+        "Agua abundante"
+      ],
+      "mecanismo": "Psyllium (gel osmótico) + inulina (prebiótico → butirato).",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_pasionaria_magnesio",
+      "ingredienteA": "pasionaria",
+      "ingredienteB": "magnesio",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Ansiedad con tensión muscular. Pasiflora + magnesio relaja cuerpo y mente.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Relaja músculos",
+        "Mejor sueño"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "Pasiflora (GABA-A) + magnesio (bloquea NMDA, relaja músculo).",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_acerola_propoleo",
+      "ingredienteA": "acerola",
+      "ingredienteB": "propoleo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Inmunidad total. Vit C natural + propóleo = antiviral + inmunoestimulante.",
+      "beneficios": [
+        "Reduce resfriado",
+        "Antioxidante",
+        "Garganta"
+      ],
+      "precauciones": [
+        "Alérgicos abejas"
+      ],
+      "mecanismo": "Vit C (leucocitos) + propóleo (flavonoides antivirales). Inmunidad potente.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "inmune"
       ]
     }
   ]
