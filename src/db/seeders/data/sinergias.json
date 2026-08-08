@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.1.0",
-    "ultimaActualizacion": "2026-07-26",
-    "total": 45,
+    "version": "1.2.0",
+    "ultimaActualizacion": "2026-08-08",
+    "total": 50,
     "fuente": "Vademecum AI Knowledge Base"
   },
   "sinergias": [
@@ -26,8 +26,13 @@
         "No combinar con farmacos sedantes sin supervision"
       ],
       "mecanismo": "Ambas modulan el receptor GABA-A, creando un efecto sinérgico por diferentes sitios de union.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_melisa_pasiflora",
@@ -45,8 +50,14 @@
         "Evitar en caso de hipotiroidismo"
       ],
       "mecanismo": "Melisa aporta efecto ansiolitico especifico para sintomatologia digestiva, mientras pasiflora actua centralmente.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso", "digestivo"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ]
     },
     {
       "id": "sin_valeriana_melisa",
@@ -64,8 +75,13 @@
         "Somnolencia residual posible"
       ],
       "mecanismo": "Sinergia en modulacion GABAergica con componentes adicionales de melisa (terpenos) que mejoran la relajacion.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_hipperico_ashwagandha",
@@ -85,8 +101,14 @@
         "No usar durante embarazo"
       ],
       "mecanismo": "Ambos actuan sobre el eje HPA y neurotransmisores, con mecanismos complementarios para modular el estres.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso", "endocrino"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "endocrino"
+      ]
     },
     {
       "id": "sin_ginkgo_bacopa",
@@ -105,8 +127,13 @@
         "Cirugia: suspender 2 semanas antes"
       ],
       "mecanismo": "Ginkgo mejora circulacion cerebral mientras bacopa modula receptores colinergicos y plasticidad sinaptica.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_curcuma_pimienta",
@@ -125,8 +152,14 @@
         "Dosis altas de piperina pueden irritar"
       ],
       "mecanismo": "Piperina inhibe glucoronidacion hepatica y intestinal de curcumina, aumentando su vida media.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["musculoesqueletico", "inmune"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune"
+      ]
     },
     {
       "id": "sin_curcuma_omega3",
@@ -145,8 +178,14 @@
         "Cirugia: suspender antes"
       ],
       "mecanismo": "Ambos actuan sobre vias inflamatorias complementarias (NF-kB y eicosanoides) con efectos sinergicos.",
-      "categorias": ["fitoterapia", "vitaminas"],
-      "sistemas": ["musculoesqueletico", "cardiovascular"]
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ]
     },
     {
       "id": "sin_equinacea_propoleo",
@@ -166,8 +205,13 @@
         "Asma consultar"
       ],
       "mecanismo": "Equinacea estimula inmunidad innata mientras propoleo tiene efectos antisepticos y immunomoduladores.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["inmune"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
     },
     {
       "id": "sin_vitc_zinc",
@@ -186,8 +230,13 @@
         "Tomar con comida para minimizar irritacion gastrica"
       ],
       "mecanismo": "Vitamina C protege celulas inmune del estres oxidativo mientras zinc es cofactor esencial para funcion inmune.",
-      "categorias": ["vitaminas", "minerales"],
-      "sistemas": ["inmune"]
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
     },
     {
       "id": "sin_vitd_magnesio",
@@ -206,8 +255,14 @@
         "Ajustar dosis segun tolerancia"
       ],
       "mecanismo": "El magnesio es requerido como cofactor en las enzimas que hidroxilan la vitamina D en higado y rinon.",
-      "categorias": ["vitaminas", "minerales"],
-      "sistemas": ["musculoesqueletico", "inmune"]
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune"
+      ]
     },
     {
       "id": "sin_vitd_vitk2",
@@ -226,8 +281,14 @@
         "Dosis adecuada segun peso"
       ],
       "mecanismo": "K2 activa osteocalcina (fija calcio en huesos) y matriz Gla-protein (elimina calcio de arterias).",
-      "categorias": ["vitaminas", "vitaminas"],
-      "sistemas": ["musculoesqueletico", "cardiovascular"]
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ]
     },
     {
       "id": "sin_magnesio_vitb6",
@@ -246,8 +307,14 @@
         "No exceder 100mg B6/dia"
       ],
       "mecanismo": "B6 facilita el transporte de magnesio al interior celular, aumentando su utilizacion.",
-      "categorias": ["minerales", "vitaminas"],
-      "sistemas": ["nervioso", "musculoesqueletico"]
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
     },
     {
       "id": "sin_hierro_vitc",
@@ -266,8 +333,14 @@
         "Absorcion optimizada en ayunas"
       ],
       "mecanismo": "Vitamina C reduce el hierro ferrico a ferroso (mas absorbible) y previene formacion de compuestos no absorbibles.",
-      "categorias": ["minerales", "vitaminas"],
-      "sistemas": ["cardiovascular", "metabolico"]
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
     },
     {
       "id": "sin_coq10_estatinas",
@@ -286,8 +359,14 @@
         "Consultar con cardiologo"
       ],
       "mecanismo": "Las estatinas inhiben HMG-CoA reductase, que juga en produccion de CoQ10. Supplementacion lo compensa.",
-      "categorias": ["vitaminas", "fitoterapia"],
-      "sistemas": ["cardiovascular", "metabolico"]
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
     },
     {
       "id": "sin_omega3_vitd",
@@ -306,8 +385,14 @@
         "Ajustar segun dieta omega-3"
       ],
       "mecanismo": "Omega-3 y D3 actuan sinrgicamente sobre vias antiinflamatorias y metabolismo oseo.",
-      "categorias": ["vitaminas", "vitaminas"],
-      "sistemas": ["cardiovascular", "musculoesqueletico"]
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "musculoesqueletico"
+      ]
     },
     {
       "id": "sin_triptofano_5htp",
@@ -326,8 +411,13 @@
         "Monitorizar si ansiedad"
       ],
       "mecanismo": "La conversion de triptofano a 5-HTP (primera etapa) requiere B6 como cofactor.",
-      "categorias": ["vitaminas", "vitaminas"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_teanina_gaba",
@@ -346,8 +436,13 @@
         "No combinar con farmacos sedantes"
       ],
       "mecanismo": "Teanina estimula ondas alfa cerebrales y modula receptores GABA de forma indirecta.",
-      "categorias": ["vitaminas", "vitaminas"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_reishi_ashwagandha",
@@ -366,8 +461,14 @@
         "Presion arterial consultar"
       ],
       "mecanismo": "Ambos modulan el eje HPA y sistema inmune, con mecanismos complementarios.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso", "inmune"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "inmune"
+      ]
     },
     {
       "id": "sin_lavanda_aceite_aceite_esencial",
@@ -386,8 +487,13 @@
         "Diluir correctamente"
       ],
       "mecanismo": "Ambos modulan receptores GABA con perfiles de activacion complementarios.",
-      "categorias": ["aceite_esencial", "fitoterapia"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_ravintsara_eucalipto",
@@ -407,8 +513,14 @@
         "No usar interno"
       ],
       "mecanismo": "Ravintsara aporta efecto antiviral mientras eucalipto descongestiona y expectora.",
-      "categorias": ["aceite_esencial", "aceite_esencial"],
-      "sistemas": ["respiratorio", "inmune"]
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ]
     },
     {
       "id": "sin_arnica_magnesio_topico",
@@ -427,8 +539,13 @@
         "Testear en piel sensible"
       ],
       "mecanismo": "Arnica modula inflamacion mientras magnesio relaja fibras musculares localmente.",
-      "categorias": ["homeopatia", "minerales"],
-      "sistemas": ["musculoesqueletico"]
+      "categorias": [
+        "homeopatia",
+        "minerales"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
     },
     {
       "id": "sin_probioticos_prebioticos",
@@ -447,8 +564,14 @@
         "Comenzar con dosis bajas"
       ],
       "mecanismo": "Prebioticos (FOS, inulina) son alimento de probioticos, aumentando su colonizacion.",
-      "categorias": ["probioticos", "vitaminas"],
-      "sistemas": ["digestivo", "inmune"]
+      "categorias": [
+        "probioticos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
     },
     {
       "id": "sin_rodiola_ashwagandha",
@@ -467,8 +590,14 @@
         "No usar en bipolar"
       ],
       "mecanismo": "Rodiola actua rapido sobre noradrenalina, ashwagandha modula HPA mas lentamente.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso", "endocrino"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "endocrino"
+      ]
     },
     {
       "id": "sin_sauco_vitc",
@@ -487,8 +616,14 @@
         "Vit C: dosis >2000mg puede causar diarrea"
       ],
       "mecanismo": "Sauco inhibe entrada viral a celulas, vit C potencia funcion immune global.",
-      "categorias": ["fitoterapia", "vitaminas"],
-      "sistemas": ["inmune", "respiratorio"]
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
     },
     {
       "id": "sin_curcuma_piperina",
@@ -507,8 +642,14 @@
         "Dosis altas pueden causar malestar gastrico"
       ],
       "mecanismo": "Jengibre mejora biodisponibilidad de curcumina. Ambos inhiben NF-kB.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["musculoesqueletico", "digestivo"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo"
+      ]
     },
     {
       "id": "sin_magnesio_vitamina_b6",
@@ -526,8 +667,14 @@
         "B6 en dosis >100mg/dia por largos periodos puede causar neuropatia"
       ],
       "mecanismo": "B6 es cofactor para sintesis de GABA y activacion de magnesio.",
-      "categorias": ["minerales", "vitaminas"],
-      "sistemas": ["nervioso", "musculoesqueletico"]
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
     },
     {
       "id": "sin_vitd3_k2",
@@ -546,8 +693,14 @@
         "Monitorizar niveles de vitamina D"
       ],
       "mecanismo": "K2 activa osteocalcina y MGP dependentes de D3 para mineralizacion osea.",
-      "categorias": ["vitaminas", "vitaminas"],
-      "sistemas": ["musculoesqueletico", "cardiovascular"]
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ]
     },
     {
       "id": "sin_zinc_vitc",
@@ -565,8 +718,13 @@
         "Zinc >40mg/dia largo plazo puede causar deficiencia de cobre"
       ],
       "mecanismo": "Ambos actuan sobre diferentes vias immunes, potenciando respuesta global.",
-      "categorias": ["minerales", "vitaminas"],
-      "sistemas": ["inmune"]
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
     },
     {
       "id": "sin_ginkgo_bacopa",
@@ -585,8 +743,13 @@
         "Efectos aparecen despues de 4-8 semanas"
       ],
       "mecanismo": "Ginkgo mejora perfusión cerebral, bacopa modula receptores de memoria.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_omega3_vitd",
@@ -605,8 +768,14 @@
         "Dosis altas de omega pueden afectar coagulacion"
       ],
       "mecanismo": "Omega-3 mejora biodisponibilidad de D3 (liposoluble). D3 potencia efeito antiinflamatario.",
-      "categorias": ["vitaminas", "vitaminas"],
-      "sistemas": ["cardiovascular", "inmune"]
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "inmune"
+      ]
     },
     {
       "id": "sin_equinacea_zinc",
@@ -625,8 +794,14 @@
         "No usar continuo >8 semanas"
       ],
       "mecanismo": "Equinacea modula innate immunity, zinc bloquea replicacion viral.",
-      "categorias": ["fitoterapia", "minerales"],
-      "sistemas": ["inmune", "respiratorio"]
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
     },
     {
       "id": "sin_probioticos_prebioticos",
@@ -645,8 +820,14 @@
         "Puedo causar gas inicial"
       ],
       "mecanismo": "Prebioticos alimentan y estimulan crecimiento de probioticos.",
-      "categorias": ["probioticos", "otros"],
-      "sistemas": ["digestivo", "inmune"]
+      "categorias": [
+        "probioticos",
+        "otros"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
     },
     {
       "id": "sin_boswelia_curcuma",
@@ -665,8 +846,13 @@
         "No usar en embarazo"
       ],
       "mecanismo": "Boswellia inhibe 5-LOX, curcumina inhibe COX-2: doble bloqueo antiinflamatorio.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["musculoesqueletico"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
     },
     {
       "id": "sin_ginseng_eleuterococo",
@@ -686,8 +872,14 @@
         "Ciclos de 3 meses con descanso"
       ],
       "mecanismo": "Ambos modulan eje HPA pero por vias ligeramente diferentes.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["nervioso", "metabolico"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
     },
     {
       "id": "sin_valeriana_magnesio",
@@ -706,8 +898,13 @@
         "No combinar con farmacos sedantes"
       ],
       "mecanismo": "Valeriana modula GABA, magnesio activa receptores GABA.",
-      "categorias": ["fitoterapia", "minerales"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_melisa_lavanda",
@@ -725,8 +922,13 @@
         "Lavanda: dilution adecuada para uso topico"
       ],
       "mecanismo": "Ambos modulan receptores GABA por diferentes compuestos.",
-      "categorias": ["fitoterapia", "aceite_esencial"],
-      "sistemas": ["nervioso"]
+      "categorias": [
+        "fitoterapia",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
     },
     {
       "id": "sin_cardo_mariano_nac",
@@ -745,8 +947,13 @@
         "Tirosina: no combinar con MAOIs"
       ],
       "mecanismo": "Silimarina protege hepatocitos, NAC proporciona glutatión.",
-      "categorias": ["fitoterapia", "aminoacidos"],
-      "sistemas": ["hepatico"]
+      "categorias": [
+        "fitoterapia",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
     },
     {
       "id": "sin_ashwagandha_magnesio",
@@ -764,8 +971,14 @@
         "No combinar con farmacos tiroideos sin supervision"
       ],
       "mecanismo": "Ashwagandha modula HPA, magnesio modula receptores GABA.",
-      "categorias": ["fitoterapia", "minerales"],
-      "sistemas": ["nervioso", "endocrino"]
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso",
+        "endocrino"
+      ]
     },
     {
       "id": "sin_coq10_magnesio",
@@ -783,8 +996,14 @@
         "CoQ10 puede interactuar con warfarina"
       ],
       "mecanismo": "CoQ10 es esencial en cadena respiratoria, magnesio necesario para ATP.",
-      "categorias": ["vitaminas", "minerales"],
-      "sistemas": ["cardiovascular", "metabolico"]
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
     },
     {
       "id": "sin_hierro_vitc",
@@ -803,8 +1022,13 @@
         "El exceso de hierro es toxico"
       ],
       "mecanismo": "Vit C reduce Fe3+ a Fe2+ absorbible en intestino.",
-      "categorias": ["minerales", "vitaminas"],
-      "sistemas": ["sanguineo"]
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "sanguineo"
+      ]
     },
     {
       "id": "sin_reishi_vitd",
@@ -823,8 +1047,13 @@
         "Puede tener efectos anticoagulantes"
       ],
       "mecanismo": "Reishi modula vias immunes, D3 potencia immunity innata.",
-      "categorias": ["fitoterapia", "vitaminas"],
-      "sistemas": ["inmune"]
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
     },
     {
       "id": "sin_cefiro_menta",
@@ -843,8 +1072,13 @@
         "Jengibre: anticoagulante leve"
       ],
       "mecanismo": "Mentol relaja musculo liso, jengibre antiemetico y carminativo.",
-      "categorias": ["fitoterapia", "fitoterapia"],
-      "sistemas": ["digestivo"]
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
     },
     {
       "id": "sin_bromelaina_curcuma",
@@ -863,8 +1097,14 @@
         "No usar en ulceras activas"
       ],
       "mecanismo": "Bromelain mejora absorcion intestinal de curcumina.",
-      "categorias": ["enzimas", "fitoterapia"],
-      "sistemas": ["musculoesqueletico", "digestivo"]
+      "categorias": [
+        "enzimas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo"
+      ]
     },
     {
       "id": "sin_lactasa_probioticos",
@@ -882,8 +1122,165 @@
         "Probioticos requieren consistencia"
       ],
       "mecanismo": "Lactasa digiere lactosa inmediatamente, probioticos producen lactasa endogena.",
-      "categorias": ["enzimas", "probioticos"],
-      "sistemas": ["digestivo"]
+      "categorias": [
+        "enzimas",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_ajo_te_verde",
+      "ingredienteA": "ajo",
+      "ingredienteB": "te_verde",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion antioxidante cardiovascular: ambos aportan polifenoles y compuestos sulfurados que protegen el endotelio y modulan el perfil lipidico.",
+      "beneficios": [
+        "Sinergia antioxidante sobre LDL-C",
+        "Proteccion endotelial vascular combinada",
+        "Apoyo a la prevencion de aterosclerosis"
+      ],
+      "precauciones": [
+        "Ambos pueden potenciar el efecto de anticoagulantes",
+        "Precaucion en dosis altas de te verde por EGCG hepatico"
+      ],
+      "mecanismo": "Las catequinas del te verde y los compuestos sulfurados del ajo actuan en cascadas antioxidantes complementarias; el ajo inhibe la peroxidacion lipidica y el te verde secuestra radicales libres en fase acuosa.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_diente_leon_boldo",
+      "ingredienteA": "diente_de_leon",
+      "ingredienteB": "boldo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion coleretica y digestiva clasica: ambas plantas amargas estimulan la secrecion biliar y alivian la dispepsia leve.",
+      "beneficios": [
+        "Estimulacion sinergica de la secrecion biliar",
+        "Alivio de plenitud y flatulencia posprandial",
+        "Accion espasmolitica digestiva combinada"
+      ],
+      "precauciones": [
+        "Contraindicado en obstruccion biliar, colangitis o litiasis",
+        "No usar en hepatopatias graves sin supervision medica"
+      ],
+      "mecanismo": "Las lactonas sesquiterpenicas del diente de leon y la boldina del boldo estimulan receptores amargos que activan la secrecion de colecistokinina y el flujo biliar; el boldo anade efecto espasmolitico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_vid_hamamelis",
+      "ingredienteA": "vid_roja",
+      "ingredienteB": "hamamelis",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion venotonica y astringente: ambos protegen el endotelio capilar y reducen la permeabilidad venosa, util en insuficiencia venosa leve y hemorroides.",
+      "beneficios": [
+        "Refuerzo del tono venoso y capilar",
+        "Reduccion de la fragilidad capilar",
+        "Alivio de piernas pesadas y molestias hemorroidales"
+      ],
+      "precauciones": [
+        "Consultar al medico si aparecen ulceras o dolor en pierna"
+      ],
+      "mecanismo": "Los antocianos de la hoja de vid y los taninos galotaninos de hamamelis reducen la permeabilidad capilar y estabilizan la pared venosa por vias complementarias (venotonico + astringente).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_sauce_curcuma",
+      "ingredienteA": "sauce",
+      "ingredienteB": "curcuma",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion antiinflamatoria para dolor articular y lumbar: el salicilato del sauce y los curcuminoides inhiben la cascada inflamatoria por vias distintas.",
+      "beneficios": [
+        "Doble bloqueo antiinflamatorio (COX + NF-kB)",
+        "Alivio del dolor articular y lumbar leve",
+        "Permite reducir dosis de cada componente"
+      ],
+      "precauciones": [
+        "Contraindicado en alergia a salicilatos",
+        "Precaucion en embarazo, lactancia y ulcera gastrica",
+        "Potencia efecto de AINEs y anticoagulantes"
+      ],
+      "mecanismo": "La salicina del sauce se metaboliza a acido salicilico (inhibicion COX-1/COX-2) y la curcumina inhibe NF-kB y enzimas inflamatorias downstream; el bloqueo de dos puntos de la cascada permite efecto antiinflamatorio a dosis menores.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_te_verde_vitamina_c",
+      "ingredienteA": "te_verde",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia antioxidante: la vitamina C regenera las catequinas del te verde oxidadas, prolongando su capacidad secuestrante de radicales libres.",
+      "beneficios": [
+        "Regeneracion de catequinas (EGCG) por vitamina C",
+        "Mayor proteccion antioxidante sostenida",
+        "Sinergia protectora del endotelio vascular"
+      ],
+      "precauciones": [
+        "Dosis altas de EGCG se han asociado a toxicidad hepatica"
+      ],
+      "mecanismo": "La vitamina C (antioxidante hidrosoluble) reduce las catequinas oxidadas del te verde, reciclendolas a su forma activa y prolongando la proteccion antioxidante en fase acuosa.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_ajo_canela",
+      "ingredienteA": "ajo",
+      "ingredienteB": "canela",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion para el sindrome metabolico: el ajo modera lipidos y presion, la canela modera la glucemia postprandial; enfoque complementario de factores de riesgo cardiovascular.",
+      "beneficios": [
+        "Abordaje complementario de lipidos y glucosa",
+        "Efecto antioxidante combinado",
+        "Apoyo al perfil cardiovascular en riesgo metabolico"
+      ],
+      "precauciones": [
+        "La canela Cassia contiene cumarina; preferir C. verum en uso prolongado",
+        "Ajo: evitar antes de cirugia y con anticoagulantes",
+        "Monitorizar glucemia si se usan antidiabeticos"
+      ],
+      "mecanismo": "El ajo (alicina/compuestos sulfurados) actua sobre lipidos y presion arterial; la canela (polifenoles tipo A) mejora la sensibilidad a la insulina y reduce la glucemia postprandial; actuan sobre factores de riesgo distintos del sindrome metabolico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "endocrino"
+      ]
     }
   ]
 }

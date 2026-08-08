@@ -2,33 +2,70 @@
   "metadata": {
     "nombre": "Base de Datos de Aceites Esenciales",
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
-    "version": "1.1.0",
-    "ultimaActualizacion": "2026-07-26",
-    "total": 20,
-    "fuente": "Vademecum AI Knowledge Base"
+    "version": "1.2.0",
+    "ultimaActualizacion": "2026-08-08",
+    "total": 25,
+    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
   "ingredientes": [
     {
       "id": "lavanda_aceite",
       "nombre": "Aceite Esencial de Lavanda",
-      "nombresAlternativos": ["Lavender essential oil", "Lavandula EO", "Espliego"],
+      "nombresAlternativos": [
+        "Lavender essential oil",
+        "Lavandula EO",
+        "Espliego"
+      ],
       "nombreCientifico": "Lavandula angustifolia",
       "familia": "Lamiaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["nervioso", "dermatologico"],
-      "indicaciones": ["ansiedad", "insomnio", "estres", "quemaduras", "heridas", "dolor"],
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estres",
+        "quemaduras",
+        "heridas",
+        "dolor"
+      ],
       "descripcion": "El aceite esencial mas versatile y seguro. Propiedades calmantes, antisepticas y analgesicas.",
       "mecanismoAccion": "Los compuestos (linalool, linalyl acetate) modulan receptores GABA. Analgesico local por via topica.",
       "nivelEvidencia": "A",
       "parteDestilada": "flores",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Linalool / Linalyl acetate",
       "dilucionRecomendada": "1-3% para piel, 100% para aromaterapia",
-      "precaucionesTopico": ["Testear en piel sensible", "No usar en gatos", "Photosensibilidad baja"],
-      "metodosUso": ["difusion", "inhalacion", "topico", "bano"],
-      "compatibilidad": [" Manzanilla", "Rosa", "Bergamota"],
-      "advertencias": ["No usar interno sin supervision", "Dermatitis de contacto posible"],
-      "tags": ["calmante", "cicatrizante", "ansiolitico", "dolor"],
+      "precaucionesTopico": [
+        "Testear en piel sensible",
+        "No usar en gatos",
+        "Photosensibilidad baja"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico",
+        "bano"
+      ],
+      "compatibilidad": [
+        " Manzanilla",
+        "Rosa",
+        "Bergamota"
+      ],
+      "advertencias": [
+        "No usar interno sin supervision",
+        "Dermatitis de contacto posible"
+      ],
+      "tags": [
+        "calmante",
+        "cicatrizante",
+        "ansiolitico",
+        "dolor"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -36,24 +73,58 @@
     {
       "id": "tea_tree",
       "nombre": "Aceite Esencial de Tea Tree",
-      "nombresAlternativos": ["Melaleuca", "TTO", "Arbol del te"],
+      "nombresAlternativos": [
+        "Melaleuca",
+        "TTO",
+        "Arbol del te"
+      ],
       "nombreCientifico": "Melaleuca alternifolia",
       "familia": "Myrtaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["inmune", "dermatologico"],
-      "indicaciones": ["infecciones", "acne", "heridas", "infecciones fungicas", "caspa", "cortes"],
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "infecciones",
+        "acne",
+        "heridas",
+        "infecciones fungicas",
+        "caspa",
+        "cortes"
+      ],
       "descripcion": "Potente antiseptico natural de amplio espectro. Eficaz contra bacterias, hongos y virus.",
       "mecanismoAccion": "Actividad antimicrobiana de amplio espectro. Estimula sistema inmune local.",
       "nivelEvidencia": "A",
       "parteDestilada": "hojas",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Terpinen-4-ol",
       "dilucionRecomendada": "5-10% para piel, 100% en casos agudos puntuales",
-      "precaucionesTopico": ["Puede irritar pieles sensibles", "No usar en mucosas"],
-      "metodosUso": ["topico", "inhalacion"],
-      "compatibilidad": ["Lavanda", "Romero", "Geranio"],
-      "advertencias": ["No usar interno", "Evitar en embarazo primer trimestre"],
-      "tags": ["antiseptico", "antifungico", "cicatrizante", "acne"],
+      "precaucionesTopico": [
+        "Puede irritar pieles sensibles",
+        "No usar en mucosas"
+      ],
+      "metodosUso": [
+        "topico",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Romero",
+        "Geranio"
+      ],
+      "advertencias": [
+        "No usar interno",
+        "Evitar en embarazo primer trimestre"
+      ],
+      "tags": [
+        "antiseptico",
+        "antifungico",
+        "cicatrizante",
+        "acne"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -61,24 +132,59 @@
     {
       "id": "ravintsara",
       "nombre": "Aceite Esencial de Ravintsara",
-      "nombresAlternativos": ["Ravensara", "Cinamomo"],
+      "nombresAlternativos": [
+        "Ravensara",
+        "Cinamomo"
+      ],
       "nombreCientifico": "Cinnamomum camphora",
       "familia": "Lauraceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["inmune", "respiratorio"],
-      "indicaciones": ["resfriado", "gripe", "tos", "infecciones virales", "fatiga", "inmunitario"],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "resfriado",
+        "gripe",
+        "tos",
+        "infecciones virales",
+        "fatiga",
+        "inmunitario"
+      ],
       "descripcion": "Rey de los aceites antivirales. Excelente para prevencion y tratamiento de resfriados y gripe.",
       "mecanismoAccion": "Potente antiviral e immunomodulador. Expectorante y anticatarral.",
       "nivelEvidencia": "A",
       "parteDestilada": "hojas",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "1,8-Cineole / Sabinene",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["Bien tolerado generalmente", "No usar en bebes < 3 meses"],
-      "metodosUso": ["difusion", "inhalacion", "topico", "bano"],
-      "compatibilidad": ["Eucalipto", "Niaouli", "Pino"],
-      "advertencias": ["No usar interno sin supervision", "Compatible con bebes (diluido)"],
-      "tags": ["antiviral", "inmunoestimulante", "respiratorio", "gripe"],
+      "precaucionesTopico": [
+        "Bien tolerado generalmente",
+        "No usar en bebes < 3 meses"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Eucalipto",
+        "Niaouli",
+        "Pino"
+      ],
+      "advertencias": [
+        "No usar interno sin supervision",
+        "Compatible con bebes (diluido)"
+      ],
+      "tags": [
+        "antiviral",
+        "inmunoestimulante",
+        "respiratorio",
+        "gripe"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -86,24 +192,59 @@
     {
       "id": "eucalipto",
       "nombre": "Aceite Esencial de Eucalipto",
-      "nombresAlternativos": ["Eucalyptus globulus", "Gomme"],
+      "nombresAlternativos": [
+        "Eucalyptus globulus",
+        "Gomme"
+      ],
       "nombreCientifico": "Eucalyptus globulus",
       "familia": "Myrtaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["respiratorio", "musculoesqueletico"],
-      "indicaciones": ["congestion nasal", "tos", "bronquitis", "sinusitis", "dolores musculares", "artritis"],
+      "sistemas": [
+        "respiratorio",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "congestion nasal",
+        "tos",
+        "bronquitis",
+        "sinusitis",
+        "dolores musculares",
+        "artritis"
+      ],
       "descripcion": "Descongestionante respiratorio potent. Expectorante y analgesico muscular.",
       "mecanismoAccion": "1,8-Cineole (eucaliptol) como expectorante. Antiinflamatorio local.",
       "nivelEvidencia": "A",
       "parteDestilada": "hojas",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "1,8-Cineole (>70%)",
       "dilucionRecomendada": "2-5% para piel, 100% en difusion",
-      "precaucionesTopico": ["Irritante para piel sensible", "No usar en asma severa"],
-      "metodosUso": ["difusion", "inhalacion", "topico"],
-      "compatibilidad": ["Menta", "Romero", "Lavanda"],
-      "advertencias": ["No usar en bebes < 2 anos", "No usar interno", "No usar en epilessia"],
-      "tags": ["expectorante", "descongestionante", "analgesico", "respiratorio"],
+      "precaucionesTopico": [
+        "Irritante para piel sensible",
+        "No usar en asma severa"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico"
+      ],
+      "compatibilidad": [
+        "Menta",
+        "Romero",
+        "Lavanda"
+      ],
+      "advertencias": [
+        "No usar en bebes < 2 anos",
+        "No usar interno",
+        "No usar en epilessia"
+      ],
+      "tags": [
+        "expectorante",
+        "descongestionante",
+        "analgesico",
+        "respiratorio"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -111,24 +252,61 @@
     {
       "id": "menta",
       "nombre": "Aceite Esencial de Menta",
-      "nombresAlternativos": ["Peppermint EO", "Mentha piperita"],
+      "nombresAlternativos": [
+        "Peppermint EO",
+        "Mentha piperita"
+      ],
       "nombreCientifico": "Mentha x piperita",
       "familia": "Lamiaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["digestivo", "nervioso", "musculoesqueletico"],
-      "indicaciones": ["nauseas", "cefalea", "digestion lenta", "dolor muscular", "fatiga mental", "sinusitis"],
+      "sistemas": [
+        "digestivo",
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "nauseas",
+        "cefalea",
+        "digestion lenta",
+        "dolor muscular",
+        "fatiga mental",
+        "sinusitis"
+      ],
       "descripcion": "Aceite esencial revitalizante. Excelente para nauseas, dolor de cabeza y agotamiento mental.",
       "mecanismoAccion": "Mentol activa receptores TRPM8 (fro). Antiemetico por inhalacion. Analgesico topico.",
       "nivelEvidencia": "A",
       "parteDestilada": "planta entera",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Menthol / Menthone",
       "dilucionRecomendada": "1-3% para piel, 100% en difusion corta",
-      "precaucionesTopico": ["Irritante en alta concentracion", "No aplicar cerca de ojos"],
-      "metodosUso": ["difusion", "inhalacion", "topico", "oral (diluido)"],
-      "compatibilidad": ["Lavanda", "Eucalipto", "Romero"],
-      "advertencias": ["No usar en bebes/niños", "No usar en cardiacos", "No usar en glaucoma"],
-      "tags": ["antiemetico", "analgesico", "revitalizante", "digestivo"],
+      "precaucionesTopico": [
+        "Irritante en alta concentracion",
+        "No aplicar cerca de ojos"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico",
+        "oral (diluido)"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Eucalipto",
+        "Romero"
+      ],
+      "advertencias": [
+        "No usar en bebes/niños",
+        "No usar en cardiacos",
+        "No usar en glaucoma"
+      ],
+      "tags": [
+        "antiemetico",
+        "analgesico",
+        "revitalizante",
+        "digestivo"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -136,24 +314,60 @@
     {
       "id": "romero",
       "nombre": "Aceite Esencial de Romero",
-      "nombresAlternativos": ["Rosemary EO", "Rosmarinus"],
+      "nombresAlternativos": [
+        "Rosemary EO",
+        "Rosmarinus"
+      ],
       "nombreCientifico": "Rosmarinus officinalis",
       "familia": "Lamiaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["nervioso", "musculoesqueletico"],
-      "indicaciones": ["memoria", "concentracion", "dolores musculares", "artritis", "caida de cabello", "fatiga"],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "memoria",
+        "concentracion",
+        "dolores musculares",
+        "artritis",
+        "caida de cabello",
+        "fatiga"
+      ],
       "descripcion": "Stimulante intelectual y analgesico muscular. Clasico para mejorar memoria y concentracion.",
       "mecanismoAccion": "Neuroestimulante por inhibicion de acetilcolinesterasa. Analgesico e antiinflamatorio local.",
       "nivelEvidencia": "B",
       "parteDestilada": "flores",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Camphor / 1,8-Cineole",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["No usar en epilessia", "Hipertension consultar"],
-      "metodosUso": ["difusion", "inhalacion", "topico", "bano"],
-      "compatibilidad": ["Menta", "Eucalipto", "Lavanda"],
-      "advertencias": ["No usar en epilessia", "No usar en embarazo", "No usar interno"],
-      "tags": ["estimulante", "memoria", "analgesico", " cabello"],
+      "precaucionesTopico": [
+        "No usar en epilessia",
+        "Hipertension consultar"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Menta",
+        "Eucalipto",
+        "Lavanda"
+      ],
+      "advertencias": [
+        "No usar en epilessia",
+        "No usar en embarazo",
+        "No usar interno"
+      ],
+      "tags": [
+        "estimulante",
+        "memoria",
+        "analgesico",
+        " cabello"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -161,24 +375,60 @@
     {
       "id": "incienso",
       "nombre": "Aceite Esencial de Incienso",
-      "nombresAlternativos": ["Frankincense", "Boswellia", "Olibano"],
+      "nombresAlternativos": [
+        "Frankincense",
+        "Boswellia",
+        "Olibano"
+      ],
       "nombreCientifico": "Boswellia carterii",
       "familia": "Burseraceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["inmune", "nervioso", "dermatologico"],
-      "indicaciones": ["meditacion", "ansiedad", "infecciones", "artritis", "cicatrizacion", "inflammation"],
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "meditacion",
+        "ansiedad",
+        "infecciones",
+        "artritis",
+        "cicatrizacion",
+        "inflammation"
+      ],
       "descripcion": "Aceite sagrado con profundas propriedades antiinflamatorias e immunomoduladoras.",
       "mecanismoAccion": "Los acidos boswellicos inhiben 5-lipoxigenasa. Potente antiinflamatorio.",
       "nivelEvidencia": "B",
       "parteDestilada": "resina",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Alpha-pinene / Limonene",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["Generalmente bien tolerado", "Test en piel sensible"],
-      "metodosUso": ["difusion", "inhalacion", "topico"],
-      "compatibilidad": ["Lavanda", "Rosa", "Neroli"],
-      "advertencias": ["Calidad variable", "Verificar origen"],
-      "tags": ["antiinflamatorio", "inmunoestimulante", "meditativo", "antiartritico"],
+      "precaucionesTopico": [
+        "Generalmente bien tolerado",
+        "Test en piel sensible"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Rosa",
+        "Neroli"
+      ],
+      "advertencias": [
+        "Calidad variable",
+        "Verificar origen"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "inmunoestimulante",
+        "meditativo",
+        "antiartritico"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -186,24 +436,59 @@
     {
       "id": "jengibre_aceite",
       "nombre": "Aceite Esencial de Jengibre",
-      "nombresAlternativos": ["Ginger EO", "Zingiber"],
+      "nombresAlternativos": [
+        "Ginger EO",
+        "Zingiber"
+      ],
       "nombreCientifico": "Zingiber officinale",
       "familia": "Zingiberaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["digestivo", "musculoesqueletico"],
-      "indicaciones": ["nauseas", "vomitos", "dolor muscular", "artritis", "digestion lenta", " mareo"],
+      "sistemas": [
+        "digestivo",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "nauseas",
+        "vomitos",
+        "dolor muscular",
+        "artritis",
+        "digestion lenta",
+        " mareo"
+      ],
       "descripcion": "Calentador y analgesico. Excelente para nauseas, digestion y dolores articulares.",
       "mecanismoAccion": "Calentador local. Antiemetico. Antiinflamatorio por via topica.",
       "nivelEvidencia": "B",
       "parteDestilada": "rizoma",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Zingiberene / Geranial",
       "dilucionRecomendada": "2-3% para piel",
-      "precaucionesTopico": ["Puede irritar piel sensible", "Photosensibilidad moderada"],
-      "metodosUso": ["topico", "difusion", "inhalacion", "bano"],
-      "compatibilidad": ["Lavanda", "Bergamota", "Naranja"],
-      "advertencias": ["No usar interno", "Diluir bien antes de uso topico"],
-      "tags": ["antiemetico", "calentador", "digestivo", "analgesico"],
+      "precaucionesTopico": [
+        "Puede irritar piel sensible",
+        "Photosensibilidad moderada"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion",
+        "inhalacion",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Bergamota",
+        "Naranja"
+      ],
+      "advertencias": [
+        "No usar interno",
+        "Diluir bien antes de uso topico"
+      ],
+      "tags": [
+        "antiemetico",
+        "calentador",
+        "digestivo",
+        "analgesico"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -211,24 +496,56 @@
     {
       "id": "oregano",
       "nombre": "Aceite Esencial de Oregano",
-      "nombresAlternativos": ["Oreganum vulgare", "Origanum"],
+      "nombresAlternativos": [
+        "Oreganum vulgare",
+        "Origanum"
+      ],
       "nombreCientifico": "Origanum compactum",
       "familia": "Lamiaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["inmune", "digestivo"],
-      "indicaciones": ["infecciones severas", "parasitos", "infecciones fungicas", "inmunitud"],
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "infecciones severas",
+        "parasitos",
+        "infecciones fungicas",
+        "inmunitud"
+      ],
       "descripcion": "Potente antiseptico de amplio espectro. Uso restricto por su alta concentracion.",
       "mecanismoAccion": "Carvacrol y timol como potentes antimicrobianos.",
       "nivelEvidencia": "A",
       "parteDestilada": "planta entera",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Carvacrol / Thymol",
       "dilucionRecomendada": "1% maximo (MUY IRRITANTE)",
-      "precaucionesTopico": ["MUY IRRITANTE - diluir mucho", "Solo en casos severos"],
-      "metodosUso": ["topico (diluido)", "oral (bajo supervision)"],
-      "compatibilidad": ["Lavanda (diluido)", "Toma interna solo con supervision"],
-      "advertencias": ["PUEDE QUEMAR PIEL", "No usar en embarazo", "No usar en ninos", "Uso interno con extrema precaution"],
-      "tags": ["antiseptico", "antiparasitario", "antifungico", "potente"],
+      "precaucionesTopico": [
+        "MUY IRRITANTE - diluir mucho",
+        "Solo en casos severos"
+      ],
+      "metodosUso": [
+        "topico (diluido)",
+        "oral (bajo supervision)"
+      ],
+      "compatibilidad": [
+        "Lavanda (diluido)",
+        "Toma interna solo con supervision"
+      ],
+      "advertencias": [
+        "PUEDE QUEMAR PIEL",
+        "No usar en embarazo",
+        "No usar en ninos",
+        "Uso interno con extrema precaution"
+      ],
+      "tags": [
+        "antiseptico",
+        "antiparasitario",
+        "antifungico",
+        "potente"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -236,24 +553,57 @@
     {
       "id": "salvia_esclarea",
       "nombre": "Aceite Esencial de Salvia Esclarea",
-      "nombresAlternativos": ["Clary sage", "Salvia sclarea"],
+      "nombresAlternativos": [
+        "Clary sage",
+        "Salvia sclarea"
+      ],
       "nombreCientifico": "Salvia sclarea",
       "familia": "Lamiaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["reproductivo", "nervioso"],
-      "indicaciones": ["menopausia", "calambres", "ansiedad", "estrés", "menstruacion"],
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "menopausia",
+        "calambres",
+        "ansiedad",
+        "estrés",
+        "menstruacion"
+      ],
       "descripcion": "Regulador hormonal femenino y anxiolitico suave. Aceite de eleccion para mujer.",
       "mecanismoAccion": "Sclareol modula receptores hormonales. Linalool y linalyl acetate calman.",
       "nivelEvidencia": "B",
       "parteDestilada": "flores",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Linalool / Linalyl acetate / Sclareol",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["Bien tolerado", "No confundir con Salvia officinalis (tuyona)"],
-      "metodosUso": ["difusion", "topico", "bano"],
-      "compatibilidad": ["Lavanda", "Rosa", "Geranio"],
-      "advertencias": ["No usar durante embarazo", "No usar con cancer hormono-dependiente"],
-      "tags": ["hormonal", "ansiolitico", "calmante", "femenino"],
+      "precaucionesTopico": [
+        "Bien tolerado",
+        "No confundir con Salvia officinalis (tuyona)"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Rosa",
+        "Geranio"
+      ],
+      "advertencias": [
+        "No usar durante embarazo",
+        "No usar con cancer hormono-dependiente"
+      ],
+      "tags": [
+        "hormonal",
+        "ansiolitico",
+        "calmante",
+        "femenino"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -261,24 +611,62 @@
     {
       "id": "canela",
       "nombre": "Aceite Esencial de Canela",
-      "nombresAlternativos": ["Cinnamon EO", "Cinnamomum"],
+      "nombresAlternativos": [
+        "Cinnamon EO",
+        "Cinnamomum"
+      ],
       "nombreCientifico": "Cinnamomum zeylanicum",
       "familia": "Lauraceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["inmune", "digestivo"],
-      "indicaciones": ["infecciones", "diabetes", "digestion", "inflammation", "antioxidante"],
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "infecciones",
+        "diabetes",
+        "digestion",
+        "inflammation",
+        "antioxidante"
+      ],
       "descripcion": "Potente antiseptico y reguldor metabolico. Alta concentracion - usar con precaution.",
       "mecanismoAccion": "Cinnamaldehyde tiene atividade antimicrobiana y antidiabetica.",
       "nivelEvidencia": "B",
-      "parteDestilada": ["corteza", "hojas"],
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "parteDestilada": [
+        "corteza",
+        "hojas"
+      ],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Cinnamaldehyde / Eugenol",
       "dilucionRecomendada": "0.5-1% para piel (MUY IRRITANTE)",
-      "precaucionesTopico": ["MUY IRRITANTE", "Fotosensibilizante", "No usar en mucosas"],
-      "metodosUso": ["difusion (diluido)", "topico (MUY diluido)", "oral (supervision)"],
-      "compatibilidad": ["Naranja", "Clavo", "Cardamomo"],
-      "advertencias": ["Dermatitis de contacto frecuente", "No usar en embarazo", "No usar en ninos"],
-      "tags": ["antiseptico", "antidiabetico", "calentador", "potente"],
+      "precaucionesTopico": [
+        "MUY IRRITANTE",
+        "Fotosensibilizante",
+        "No usar en mucosas"
+      ],
+      "metodosUso": [
+        "difusion (diluido)",
+        "topico (MUY diluido)",
+        "oral (supervision)"
+      ],
+      "compatibilidad": [
+        "Naranja",
+        "Clavo",
+        "Cardamomo"
+      ],
+      "advertencias": [
+        "Dermatitis de contacto frecuente",
+        "No usar en embarazo",
+        "No usar en ninos"
+      ],
+      "tags": [
+        "antiseptico",
+        "antidiabetico",
+        "calentador",
+        "potente"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -286,24 +674,55 @@
     {
       "id": "nilo_rosada",
       "nombre": "Aceite de Rosa Mosqueta",
-      "nombresAlternativos": ["Rose hip oil", "Rosa rubiginosa"],
+      "nombresAlternativos": [
+        "Rose hip oil",
+        "Rosa rubiginosa"
+      ],
       "nombreCientifico": "Rosa rubiginosa",
       "familia": "Rosaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["dermatologico"],
-      "indicaciones": ["cicatrices", "arrugas", "quemaduras", "manchas", "piel seca", "estrias"],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cicatrices",
+        "arrugas",
+        "quemaduras",
+        "manchas",
+        "piel seca",
+        "estrias"
+      ],
       "descripcion": "Aceite vegetal regenerador celular. Rico en acidos grasos esenciales y retinol natural.",
       "mecanismoAccion": "Alto contenido en acido linoleico y transretinoico natural. Regenera celulas de piel.",
       "nivelEvidencia": "A",
       "parteDestilada": "semillas",
-      "metodoExtraccion": ["Prensado en frio"],
+      "metodoExtraccion": [
+        "Prensado en frio"
+      ],
       "quimiotipo": "Linoleic acid / Alpha-linolenic acid",
       "dilucionRecomendada": "100% (ya listo para uso)",
-      "precaucionesTopico": ["Puede manchar ropa", "Aceptar olor caracteristico"],
-      "metodosUso": ["topico"],
-      "compatibilidad": ["Lavanda", "Neroli", "Helichrysum"],
-      "advertencias": ["Conservar en refrigeracion", "Riesgo oxidacion"],
-      "tags": ["regenerador", "cicatrizante", "antiaging", "vitaminas"],
+      "precaucionesTopico": [
+        "Puede manchar ropa",
+        "Aceptar olor caracteristico"
+      ],
+      "metodosUso": [
+        "topico"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Neroli",
+        "Helichrysum"
+      ],
+      "advertencias": [
+        "Conservar en refrigeracion",
+        "Riesgo oxidacion"
+      ],
+      "tags": [
+        "regenerador",
+        "cicatrizante",
+        "antiaging",
+        "vitaminas"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -311,24 +730,58 @@
     {
       "id": "palmarosa",
       "nombre": "Aceite Esencial de Palmarosa",
-      "nombresAlternativos": ["Indian geranium", "Cymbopogon martinii"],
+      "nombresAlternativos": [
+        "Indian geranium",
+        "Cymbopogon martinii"
+      ],
       "nombreCientifico": "Cymbopogon martinii",
       "familia": "Poaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["dermatologico", "inmune"],
-      "indicaciones": ["acne", "piel grasa", "cicatrices", "infecciones fungicas", "estres"],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "acne",
+        "piel grasa",
+        "cicatrices",
+        "infecciones fungicas",
+        "estres"
+      ],
       "descripcion": "Aceite hidratante y antiseptico con aroma a rosa. Excelente para piel y calma la mente.",
       "mecanismoAccion": "Geraniol tiene propiedades antisepticas y hidratantes. Equilibra produccion de sebo.",
       "nivelEvidencia": "B",
       "parteDestilada": "hierba",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Geraniol / Geranyl acetate",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["Bien tolerado", "No usar en embarazo primer trimestre"],
-      "metodosUso": ["topico", "difusion", "inhalacion"],
-      "compatibilidad": ["Lavanda", "Geranio", "Bergamota", "Sandal"],
-      "advertencias": ["Dermocautico leve", "Conservar protegido de luz"],
-      "tags": ["hidratante", "antiseptico", "equilibrante", "cicatrizante"],
+      "precaucionesTopico": [
+        "Bien tolerado",
+        "No usar en embarazo primer trimestre"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Geranio",
+        "Bergamota",
+        "Sandal"
+      ],
+      "advertencias": [
+        "Dermocautico leve",
+        "Conservar protegido de luz"
+      ],
+      "tags": [
+        "hidratante",
+        "antiseptico",
+        "equilibrante",
+        "cicatrizante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -336,24 +789,58 @@
     {
       "id": "helichrysum",
       "nombre": "Aceite Esencial de Helichrysum",
-      "nombresAlternativos": ["Immortelle", "Everlasting", "Helichrysum italicum"],
+      "nombresAlternativos": [
+        "Immortelle",
+        "Everlasting",
+        "Helichrysum italicum"
+      ],
       "nombreCientifico": "Helichrysum italicum",
       "familia": "Asteraceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["dermatologico", "inmune", "musculoesqueletico"],
-      "indicaciones": ["cicatrices", "hematomas", "dolores musculares", "artritis", "higado"],
+      "sistemas": [
+        "dermatologico",
+        "inmune",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "cicatrices",
+        "hematomas",
+        "dolores musculares",
+        "artritis",
+        "higado"
+      ],
       "descripcion": "Aceite raro y precioso con puissants efectos regeneradores y analgesicos.",
       "mecanismoAccion": "Neryl acetate modula inflamacion. Regenerador hepatocelular potente.",
       "nivelEvidencia": "A",
       "parteDestilada": "flores",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Neryl acetate / Italidione",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["Bien tolerado generalmente", "Raro causar irritacion"],
-      "metodosUso": ["topico", "inhalacion"],
-      "compatibilidad": ["Lavanda", "Rosa Mosqueta", "Geranio"],
-      "advertencias": ["Muy caro - verificar autenticidad", "No usar interno"],
-      "tags": ["regenerador", "analgesico", "hepatoprotector", "antiaging"],
+      "precaucionesTopico": [
+        "Bien tolerado generalmente",
+        "Raro causar irritacion"
+      ],
+      "metodosUso": [
+        "topico",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Rosa Mosqueta",
+        "Geranio"
+      ],
+      "advertencias": [
+        "Muy caro - verificar autenticidad",
+        "No usar interno"
+      ],
+      "tags": [
+        "regenerador",
+        "analgesico",
+        "hepatoprotector",
+        "antiaging"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -361,24 +848,58 @@
     {
       "id": "cedro_atlas",
       "nombre": "Aceite Esencial de Cedro del Atlas",
-      "nombresAlternativos": ["Cedarwood atlas", "Cedrus atlantica"],
+      "nombresAlternativos": [
+        "Cedarwood atlas",
+        "Cedrus atlantica"
+      ],
       "nombreCientifico": "Cedrus atlantica",
       "familia": "Pinaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["dermatologico", "respiratorio", "nervioso"],
-      "indicaciones": ["celulitis", "caida de cabello", "infecciones respiratorias", "ansiedad", "estres"],
+      "sistemas": [
+        "dermatologico",
+        "respiratorio",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "celulitis",
+        "caida de cabello",
+        "infecciones respiratorias",
+        "ansiedad",
+        "estres"
+      ],
       "descripcion": "Aceite lenitivo con aroma amaderado. Excelente para cuidado capilar y lymphatico.",
       "mecanismoAccion": "Alpha-himachalene tiene propiedades antiinflamatorias y lipoliticas.",
       "nivelEvidencia": "B",
       "parteDestilada": "madera",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Himachalenes / Atlantone",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["No usar en rostro", "No usar en embarazo", "Toxico si ingerido"],
-      "metodosUso": ["topico", "difusion"],
-      "compatibilidad": ["Bergamota", "Lavanda", " Romero"],
-      "advertencias": ["No usar en gatos", "Solo uso externo"],
-      "tags": ["anticelulitico", "capilar", "linfatico", "calmante"],
+      "precaucionesTopico": [
+        "No usar en rostro",
+        "No usar en embarazo",
+        "Toxico si ingerido"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Bergamota",
+        "Lavanda",
+        " Romero"
+      ],
+      "advertencias": [
+        "No usar en gatos",
+        "Solo uso externo"
+      ],
+      "tags": [
+        "anticelulitico",
+        "capilar",
+        "linfatico",
+        "calmante"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -386,24 +907,60 @@
     {
       "id": "neroli",
       "nombre": "Aceite Esencial de Neroli",
-      "nombresAlternativos": ["Orange blossom", "Citrus aurantium"],
+      "nombresAlternativos": [
+        "Orange blossom",
+        "Citrus aurantium"
+      ],
       "nombreCientifico": "Citrus aurantium var. amara",
       "familia": "Rutaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["nervioso", "dermatologico", "cardiovascular"],
-      "indicaciones": ["ansiedad", "insomnio", "estrategia", "arrugas", "rosacea", "cicatrices"],
+      "sistemas": [
+        "nervioso",
+        "dermatologico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estrategia",
+        "arrugas",
+        "rosacea",
+        "cicatrices"
+      ],
       "descripcion": "Aceite floral exquisito con propiedades ansioliticas y regeneradoras de piel.",
       "mecanismoAccion": "Linalool y linalyl acetate modulan GABA. Regenera celulas de piel.",
       "nivelEvidencia": "A",
       "parteDestilada": "flores de naranjo amargo",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Linalool / Limonene / Linalyl acetate",
       "dilucionRecomendada": "1-3% para piel",
-      "precaucionesTopico": ["Fotosensibilizante bajo", "Testear en pieles sensibles"],
-      "metodosUso": ["topico", "difusion", "inhalacion"],
-      "compatibilidad": ["Lavanda", "Geranio", "Bergamota", "Sandal"],
-      "advertencias": ["Muy caro", "Posible irritacion en pieles muy sensibles"],
-      "tags": ["ansiolitico", "regenerador", "antiaging", "lujoso"],
+      "precaucionesTopico": [
+        "Fotosensibilizante bajo",
+        "Testear en pieles sensibles"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Geranio",
+        "Bergamota",
+        "Sandal"
+      ],
+      "advertencias": [
+        "Muy caro",
+        "Posible irritacion en pieles muy sensibles"
+      ],
+      "tags": [
+        "ansiolitico",
+        "regenerador",
+        "antiaging",
+        "lujoso"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -411,24 +968,58 @@
     {
       "id": "palo_de_rosa",
       "nombre": "Aceite Esencial de Palo de Rosa",
-      "nombresAlternativos": ["Rosewood", "Aniba rosaeodora", "Bois de rose"],
+      "nombresAlternativos": [
+        "Rosewood",
+        "Aniba rosaeodora",
+        "Bois de rose"
+      ],
       "nombreCientifico": "Aniba rosaeodora",
       "familia": "Lauraceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["nervioso", "dermatologico", "inmune"],
-      "indicaciones": ["ansiedad", "depresion", "piel seca", "infecciones", "fatiga"],
+      "sistemas": [
+        "nervioso",
+        "dermatologico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "depresion",
+        "piel seca",
+        "infecciones",
+        "fatiga"
+      ],
       "descripcion": "Aceite suave y floral con efeitos energetizantes y regeneradores.",
       "mecanismoAccion": "Linalool modula sistema nervioso. Antiseptico natural.",
       "nivelEvidencia": "B",
       "parteDestilada": "madera",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Linalool / alpha-terpineol",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["Bien tolerado", "Sostenible - madera reciclada"],
-      "metodosUso": ["topico", "difusion", "inhalacion"],
-      "compatibilidad": ["Lavanda", "Bergamota", "YLlang Ylang"],
-      "advertencias": ["Verificar sostenibilidad del origen"],
-      "tags": ["regenerador", "antiseptico", "equilibrante", "suave"],
+      "precaucionesTopico": [
+        "Bien tolerado",
+        "Sostenible - madera reciclada"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Bergamota",
+        "YLlang Ylang"
+      ],
+      "advertencias": [
+        "Verificar sostenibilidad del origen"
+      ],
+      "tags": [
+        "regenerador",
+        "antiseptico",
+        "equilibrante",
+        "suave"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -436,24 +1027,58 @@
     {
       "id": "inmale",
       "nombre": "Aceite Esencial de Inmale",
-      "nombresAlternativos": ["Elemi", "Canarium luzonicum"],
+      "nombresAlternativos": [
+        "Elemi",
+        "Canarium luzonicum"
+      ],
       "nombreCientifico": "Canarium luzonicum",
       "familia": "Burseraceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["respiratorio", "musculoesqueletico", "inmune"],
-      "indicaciones": ["tos", "bronquitis", "dolores musculares", "cicatrizacion", "infecciones"],
+      "sistemas": [
+        "respiratorio",
+        "musculoesqueletico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "tos",
+        "bronquitis",
+        "dolores musculares",
+        "cicatrizacion",
+        "infecciones"
+      ],
       "descripcion": "Aceite resinoso con propiedades expectorantes y analgesicas.",
       "mecanismoAccion": "Limonene y elemol tienen propriedades antisepticas y analgesicas.",
       "nivelEvidencia": "B",
       "parteDestilada": "resina",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Limonene / Elemol / Elemene",
       "dilucionRecomendada": "3-5% para piel",
-      "precaucionesTopico": ["Bien tolerado", "No usar interno"],
-      "metodosUso": ["topico", "difusion", "inhalacion"],
-      "compatibilidad": ["Ravintsara", "Eucalipto", "Romero"],
-      "advertencias": ["No usar en embarazo", "No usar en epilessia"],
-      "tags": ["expectorante", "analgesico", "antiseptico", "resinoso"],
+      "precaucionesTopico": [
+        "Bien tolerado",
+        "No usar interno"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Ravintsara",
+        "Eucalipto",
+        "Romero"
+      ],
+      "advertencias": [
+        "No usar en embarazo",
+        "No usar en epilessia"
+      ],
+      "tags": [
+        "expectorante",
+        "analgesico",
+        "antiseptico",
+        "resinoso"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -461,24 +1086,57 @@
     {
       "id": "manuka",
       "nombre": "Aceite Esencial de Manuka",
-      "nombresAlternativos": ["Leptospermum scoparium", "New Zealand tea tree"],
+      "nombresAlternativos": [
+        "Leptospermum scoparium",
+        "New Zealand tea tree"
+      ],
       "nombreCientifico": "Leptospermum scoparium",
       "familia": "Myrtaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["dermatologico", "inmune"],
-      "indicaciones": ["acne", "eczema", "heridas", "infecciones fungicas", " herpes", "infecciones"],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "acne",
+        "eczema",
+        "heridas",
+        "infecciones fungicas",
+        " herpes",
+        "infecciones"
+      ],
       "descripcion": "Aceite neozelandes con propiedades antisepticas superiores al tea tree.",
       "mecanismoAccion": "Leptospermone y flavesone tienen atividade antimicrobiana de amplio espectro.",
       "nivelEvidencia": "A",
       "parteDestilada": "ramas y hojas",
-      "metodoExtraccion": ["Destilacion por arrastre de vapor"],
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
       "quimiotipo": "Leptospermone / Flavesone / Sesquiterpenes",
       "dilucionRecomendada": "2-5% para piel",
-      "precaucionesTopico": ["Bien tolerado", "Mas suave que tea tree"],
-      "metodosUso": ["topico", "inhalacion"],
-      "compatibilidad": ["Lavanda", "Tea tree", "Kunzea"],
-      "advertencias": ["No usar interno sin supervision", "Conservar en lugar fresco"],
-      "tags": ["antiseptico", "antifungico", "antiacne", "heridas"],
+      "precaucionesTopico": [
+        "Bien tolerado",
+        "Mas suave que tea tree"
+      ],
+      "metodosUso": [
+        "topico",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Tea tree",
+        "Kunzea"
+      ],
+      "advertencias": [
+        "No usar interno sin supervision",
+        "Conservar en lugar fresco"
+      ],
+      "tags": [
+        "antiseptico",
+        "antifungico",
+        "antiacne",
+        "heridas"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
       }
@@ -486,26 +1144,362 @@
     {
       "id": "copaiba",
       "nombre": "Aceite Esencial de Copaiba",
-      "nombresAlternativos": ["Copaifera reticulata", "Bálsamo de copaiba"],
+      "nombresAlternativos": [
+        "Copaifera reticulata",
+        "Bálsamo de copaiba"
+      ],
       "nombreCientifico": "Copaifera langsdorffii",
       "familia": "Fabaceae",
       "categoria": "aceite_esencial",
-      "sistemas": ["musculoesqueletico", "digestivo", "inmune"],
-      "indicaciones": ["artritis", "dolor articular", "heridas", "ulceras", "gastritis", "infecciones"],
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "artritis",
+        "dolor articular",
+        "heridas",
+        "ulceras",
+        "gastritis",
+        "infecciones"
+      ],
       "descripcion": "Balsamo con potentes propriedades antiinflamatorias y cicatrizantes.",
       "mecanismoAccion": "Beta-cariofileno activa receptores CB2, reduciendo inflamacion. Antimicrobiano.",
       "nivelEvidencia": "A",
       "parteDestilada": "resina (oleorresina)",
-      "metodoExtraccion": ["Percolacion de tronco"],
+      "metodoExtraccion": [
+        "Percolacion de tronco"
+      ],
       "quimiotipo": "Beta-caryophyllene / Alpha-humulene",
       "dilucionRecomendada": "5-10% para piel",
-      "precaucionesTopico": ["Bien tolerado", "Testear en pieles sensibles"],
-      "metodosUso": ["topico", "oral (grado alimentario)"],
-      "compatibilidad": ["Lavanda", "Sandal", "Jengibre"],
-      "advertencias": ["Verificar grado para uso interno", "No usar en embarazo sin supervision"],
-      "tags": ["antiinflamatorio", "analgesico", "cicatrizante", "antimicrobiano"],
+      "precaucionesTopico": [
+        "Bien tolerado",
+        "Testear en pieles sensibles"
+      ],
+      "metodosUso": [
+        "topico",
+        "oral (grado alimentario)"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Sandal",
+        "Jengibre"
+      ],
+      "advertencias": [
+        "Verificar grado para uso interno",
+        "No usar en embarazo sin supervision"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "analgesico",
+        "cicatrizante",
+        "antimicrobiano"
+      ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      }
+    },
+    {
+      "id": "pino_silvestre",
+      "nombre": "Aceite Esencial de Pino Silvestre",
+      "nombresAlternativos": [
+        "Pine essential oil",
+        "Scots pine EO",
+        "Pini silvestris aetheroleum"
+      ],
+      "nombreCientifico": "Pinus sylvestris",
+      "familia": "Pinaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "congestion nasal",
+        "catarro",
+        "sinusitis",
+        "bronquitis leve"
+      ],
+      "descripcion": "Aceite esencial con accion expectorante y antiseptica respiratoria por via inhalatoria. Tradicionalmente usado para aliviar la congestion de vas respiratorias.",
+      "mecanismoAccion": "El alfa-pineno y el delta-3-careno actuan como expectorantes y mucoliticos por estimulacion del epitelio respiratorio al inhalar; accion antisptica sobre vias areas.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "agujas y ramas",
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
+      "quimiotipo": "Alfa-pineno / delta-3-careno",
+      "dilucionRecomendada": "Inhalacion en difusion; topico 1-2% diluido en aceite portador",
+      "precaucionesTopico": [
+        "Irritante puro; siempre diluir",
+        "Evitar en asmaticos por riesgo de broncoespasmo con inhalacion directa",
+        "Testear en piel sensible"
+      ],
+      "metodosUso": [
+        "inhalacion",
+        "difusion",
+        "topico",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Eucalipto",
+        "Ravintsara",
+        "Tea tree"
+      ],
+      "advertencias": [
+        "No ingerir",
+        "Evitar en epilepsia y asma con dosis altas",
+        "No aplicar en cara de ninos pequenos ni en menores de 6 anos"
+      ],
+      "tags": [
+        "respiratorio",
+        "expectorante",
+        "antiseptico",
+        "pineno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Pini silvestris aetheroleum"
+      }
+    },
+    {
+      "id": "tomillo_quimiotipo",
+      "nombre": "Aceite Esencial de Tomillo (CT Timol)",
+      "nombresAlternativos": [
+        "Thyme essential oil",
+        "Thymi aetheroleum",
+        "Red thyme oil"
+      ],
+      "nombreCientifico": "Thymus vulgaris",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "infeccion respiratoria leve",
+        "antisptico",
+        "catarro"
+      ],
+      "descripcion": "Aceite esencial potente de quimiotipo timol, con fuerte accion antisptica y antimicrobiana. Usar con precaucion por su potencia e irritacion.",
+      "mecanismoAccion": "El timol y carvacrol ejercen accion antimicrobiana de amplio espectro y estimulan la inmunidad local; el timol es uno de los antispticos naturales mas potentes.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "sumidades floridas",
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
+      "quimiotipo": "Timol / carvacrol",
+      "dilucionRecomendada": "Topico 0.5-1% maximo (muy irritante puro); inhalacion en difusion corta",
+      "precaucionesTopico": [
+        "Muy irritante: siempre diluir al maximo 1%",
+        "Precaucion en pieles sensibles y ninos",
+        "Puede sensibilizar con uso prolongado"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Ravintsara",
+        "Eucalipto",
+        "Lavanda"
+      ],
+      "advertencias": [
+        "No usar en embarazo, lactancia ni menores de 6 anos (quimiotipo timol)",
+        "No ingerir sin supervision profesional",
+        "Contraindicado en epilepsia"
+      ],
+      "tags": [
+        "antisptico",
+        "antimicrobiano",
+        "timol",
+        "respiratorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Thymi herba; ESCOP Monographs (aceite esencial CT timol)"
+      }
+    },
+    {
+      "id": "naranja_dulce",
+      "nombre": "Aceite Esencial de Naranja Dulce",
+      "nombresAlternativos": [
+        "Sweet orange essential oil",
+        "Citrus dulcis EO",
+        "Aurantii dulcis aetheroleum"
+      ],
+      "nombreCientifico": "Citrus sinensis",
+      "familia": "Rutaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "ansiedad leve",
+        "estres",
+        "tranquilidad",
+        "dispepsia leve"
+      ],
+      "descripcion": "Aceite esencial suave y seguro, con aroma tonificante y ligeramente calmante. Apropiado para ninos y aromaterapia difundida. Reconocido GRAS.",
+      "mecanismoAccion": "El d-limoneno (mayoritario) modula el estado de animo por via olfatoria y ejerce efecto carminativo; perfil de seguridad alto.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "corteza del fruto",
+      "metodoExtraccion": [
+        "Prensado en frio",
+        "Destilacion por arrastre de vapor"
+      ],
+      "quimiotipo": "d-Limoneno",
+      "dilucionRecomendada": "Difusion libre; topico 2-5% diluido",
+      "precaucionesTopico": [
+        "Oxida rapidamente; conservar en frasco oscuro y fresco",
+        "El aceite oxidado es mas irritante",
+        "Fotosensibilidad baja (menor que bergamota)"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico",
+        "inhalacion",
+        "bano"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Bergamota",
+        "Canela",
+        "Romero"
+      ],
+      "advertencias": [
+        "Evitar aplicacion topica antes de sol prolongada si esta oxidado",
+        "Precaucion en alergia a Citrus"
+      ],
+      "tags": [
+        "calmante",
+        "tonificante",
+        "limoneno",
+        "seguro",
+        "ninos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "FDA GRAS (21 CFR); EFSA scientific opinion on limonene"
+      }
+    },
+    {
+      "id": "bergamota",
+      "nombre": "Aceite Esencial de Bergamota",
+      "nombresAlternativos": [
+        "Bergamot essential oil",
+        "Bergaptene-free bergamot",
+        "Citrus bergamia EO"
+      ],
+      "nombreCientifico": "Citrus bergamia",
+      "familia": "Rutaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estres",
+        "estado de animo bajo"
+      ],
+      "descripcion": "Aceite esencial citrico muy valorado en aromaterapia por su efecto regulador del estado de animo. Requiere precaucion por fotosensibilidad (bergapteno).",
+      "mecanismoAccion": "El limoneno y el acetato de linalilo modulan el eje estres-animimo por via olfatoria; el bergapteno (furanocumarina) es el responsable de la fotosensibilidad.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "corteza del fruto",
+      "metodoExtraccion": [
+        "Prensado en frio"
+      ],
+      "quimiotipo": "Limoneno / acetato de linalilo / bergapteno",
+      "dilucionRecomendada": "Difusion libre; topico max 0.5% si contiene bergapteno, o usar variedad bergaptene-free (FCF) al 2%",
+      "precaucionesTopico": [
+        "Fotosensible: NO aplicar antes de exposicion solar (riesgo de fitofotodermatitis)",
+        "Usar variedad bergaptene-free (FCF) para uso topico seguro",
+        "Testear en piel sensible"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Naranja dulce",
+        "Geranio",
+        "Incienso"
+      ],
+      "advertencias": [
+        "Fitofotodermatitis grave si se aplica y se expone al sol",
+        "Preferir bergamota sin bergapteno (FCF) para uso cutaneo",
+        "No usar en ninos menores de 2 anos topico"
+      ],
+      "tags": [
+        "ansiedad",
+        "estado animimo",
+        "fotosensible",
+        "bergapteno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "CIR (Cosmetic Ingredient Review) safety assessment of Citrus-derived peel oils; IFRA standard on bergamot"
+      }
+    },
+    {
+      "id": "citronela",
+      "nombre": "Aceite Esencial de Citronela",
+      "nombresAlternativos": [
+        "Citronella essential oil",
+        "Cymbopogon nardus EO",
+        "Repelente natural"
+      ],
+      "nombreCientifico": "Cymbopogon nardus",
+      "familia": "Poaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "repelente de insectos",
+        "mosquitos"
+      ],
+      "descripcion": "Aceite esencial reconocido como repelente de insectos de eficacia moderada. Registrado por la EPA como biopesticida repelente.",
+      "mecanismoAccion": "El citronelal y los monoterpenos enmascaran los atrayentes humanos para los mosquitos, ofreciendo repelencia de duracion corta a moderada.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "hojas",
+      "metodoExtraccion": [
+        "Destilacion por arrastre de vapor"
+      ],
+      "quimiotipo": "Citronelal / geraniol",
+      "dilucionRecomendada": "Topico 5-10% diluido en aceite portador; velas y difusion para ambiente",
+      "precaucionesTopico": [
+        "Reaplicar cada 1-2 horas (repelencia corta)",
+        "Testear en piel sensible; puede irritar puro",
+        "Preferir formulaciones registradas EPA para eficacia"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Eucalipto limonado",
+        "Lavanda",
+        "Geranio"
+      ],
+      "advertencias": [
+        "Eficacia repelente inferior a DEET; no sustituye proteccion en zonas de alto riesgo de enfermedades transmitidas por vectores",
+        "No ingerir",
+        "Precaucion en ninos pequenos topico"
+      ],
+      "tags": [
+        "repelente",
+        "mosquitos",
+        "citronelal",
+        "EPA"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EPA registered biopesticide repellant; CDC guidance on mosquito repellents"
       }
     }
   ]
