@@ -15,6 +15,7 @@ import { IngredientDetail } from '@/ui/IngredientDetail';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Database, Filter, Plus, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import type { DbIngredient, IngredientCategory } from '@/db/schema';
+import { cn } from '@/lib/utils';
 
 const CATEGORIES = [
   { value: '', label: 'Todas las categorias' },
@@ -73,7 +74,7 @@ export function KnowledgePage() {
           </p>
         </div>
         <Button onClick={() => navigate('/admin')}>
-          <Plus className="w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4 mr-2" aria-hidden="true" />
           Anadir ingrediente
         </Button>
       </div>
@@ -89,9 +90,10 @@ export function KnowledgePage() {
         </div>
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center justify-center gap-2 px-4 py-2 border rounded-lg text-sm hover:bg-muted transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 border rounded-lg text-sm hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-muted"
+          aria-expanded={showFilters}
         >
-          <Filter className="w-4 h-4" />
+          <Filter className="w-4 h-4" aria-hidden="true" />
           Filtros
           {category && <Badge variant="secondary" className="ml-1">1</Badge>}
         </button>
@@ -126,13 +128,13 @@ export function KnowledgePage() {
             return (
               <Card
                 key={ingredient.id}
-                className="p-4 hover:border-primary transition-all cursor-pointer group"
+                className="p-4 hover:border-primary transition-all cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 onClick={() => setSelectedIngredient(ingredient)}
               >
                 {/* Category Icon and Badge */}
                 <div className="flex items-start justify-between mb-3">
-                  <div className={`p-2 rounded-lg ${catConfig.color}`}>
-                    <CatIcon className="w-4 h-4" />
+                  <div className={cn('p-2 rounded-lg', catConfig.color)}>
+                    <CatIcon className="w-4 h-4" aria-hidden="true" />
                   </div>
                   <div className="flex flex-col items-end gap-1">
                     <Badge variant="secondary" className="text-xs">
@@ -182,7 +184,7 @@ export function KnowledgePage() {
         </div>
       ) : (
         <div className="text-center py-12">
-          <Database className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+          <Database className="w-12 h-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <p className="text-muted-foreground font-medium">No hay ingredientes disponibles</p>
           <p className="text-sm text-muted-foreground mt-1">
             Prueba con otros filtros o inicializa la base de conocimiento
@@ -192,7 +194,7 @@ export function KnowledgePage() {
             className="mt-4" 
             onClick={() => navigate('/admin')}
           >
-            <Database className="w-4 h-4 mr-2" />
+            <Database className="w-4 h-4 mr-2" aria-hidden="true" />
             Ir a Admin
           </Button>
         </div>

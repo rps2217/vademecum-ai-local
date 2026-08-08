@@ -15,6 +15,7 @@ import { SynergyGraph } from '@/components/admin/SynergyGraph';
 import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info, LayoutGrid, GitBranch } from 'lucide-react';
 import type { DbSynergy } from '@/db/schema';
 import { logger } from '@/lib/logger';
+import { cn } from '@/lib/utils';
 
 const TYPE_CONFIG: Record<string, { label: string; color: string; icon: typeof Link2 }> = {
   sinergia: { 
@@ -55,6 +56,7 @@ export function SynergiesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>('graph');
   const [selectedSynergy, setSelectedSynergy] = useState<DbSynergy | null>(null);
+  const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -121,24 +123,28 @@ export function SynergiesPage() {
         <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
           <button
             onClick={() => setViewMode('graph')}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors ${
-              viewMode === 'graph' 
-                ? 'bg-background shadow-sm font-medium' 
+            className={cn(
+              'flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-background',
+              viewMode === 'graph'
+                ? 'bg-background shadow-sm font-medium'
                 : 'text-muted-foreground hover:text-foreground'
-            }`}
+            )}
           >
-            <GitBranch className="w-4 h-4" />
+            <GitBranch className="w-4 h-4" aria-hidden="true" />
             <span className="hidden sm:inline">Grafo</span>
           </button>
           <button
             onClick={() => setViewMode('grid')}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors ${
-              viewMode === 'grid' 
-                ? 'bg-background shadow-sm font-medium' 
+            className={cn(
+              'flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-background',
+              viewMode === 'grid'
+                ? 'bg-background shadow-sm font-medium'
                 : 'text-muted-foreground hover:text-foreground'
-            }`}
+            )}
           >
-            <LayoutGrid className="w-4 h-4" />
+            <LayoutGrid className="w-4 h-4" aria-hidden="true" />
             <span className="hidden sm:inline">Grid</span>
           </button>
         </div>
@@ -158,7 +164,7 @@ export function SynergiesPage() {
         </div>
       ) : filteredSynergies.length === 0 ? (
         <div className="text-center py-12">
-          <Network className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+          <Network className="w-12 h-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <p className="text-muted-foreground font-medium">No se encontraron sinergias</p>
           <p className="text-sm text-muted-foreground mt-1">
             {query ? 'Prueba con otros terminos de busqueda' : 'No hay sinergias cargadas aun'}
@@ -171,10 +177,24 @@ export function SynergiesPage() {
             <SynergyGraph
               synergies={filteredSynergies}
               ingredients={ingredients}
-              onNodeClick={(id) => setSelectedIngredient(id)}
+              onNodeClick={(id) => setSelectedIngredientId(id)}
               onEdgeClick={(synergy) => setSelectedSynergy(synergy)}
-              className="h-[500px]"
+              className="h-96"
             />
+            {selectedIngredientId && (
+              <div className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">
+                  {ingredients[selectedIngredientId] || selectedIngredientId}
+                </span>
+                <span className="text-xs">seleccionado</span>
+                <button
+                  onClick={() => setSelectedIngredientId(null)}
+                  className="ml-auto text-xs text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                >
+                  Limpiar
+                </button>
+              </div>
+            )}
           </Card>
 
           {/* Selected Synergy Detail */}
@@ -187,8 +207,8 @@ export function SynergiesPage() {
                     const TypeIcon = typeConfig.icon;
                     return (
                       <>
-                        <div className={`p-2 rounded-lg ${typeConfig.color} border`}>
-                          <TypeIcon className="w-5 h-5" />
+                        <div className={cn('p-2 rounded-lg border', typeConfig.color)}>
+                          <TypeIcon className="w-5 h-5" aria-hidden="true" />
                         </div>
                         <div>
                           <h3 className="font-semibold">
@@ -197,10 +217,10 @@ export function SynergiesPage() {
                             {ingredients[selectedSynergy.ingredienteB] || selectedSynergy.ingredienteB}
                           </h3>
                           <div className="flex gap-2 mt-1">
-                            <Badge className={`${typeConfig.color} border text-xs`}>
+                            <Badge className={cn(typeConfig.color, 'border text-xs')}>
                               {typeConfig.label}
                             </Badge>
-                            <Badge className={`${getLevelConfig(selectedSynergy.nivel).color} text-xs`}>
+                            <Badge className={cn(getLevelConfig(selectedSynergy.nivel).color, 'text-xs')}>
                               {getLevelConfig(selectedSynergy.nivel).label}
                             </Badge>
                           </div>
@@ -238,9 +258,9 @@ export function SynergiesPage() {
                   onClick={() => setSelectedSynergy(synergy)}
                 >
                   <div className="flex items-center gap-2">
-                    <TypeIcon className="w-4 h-4 text-muted-foreground" />
+                    <TypeIcon className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
                     <span className="text-sm font-medium truncate">{nameA}</span>
-                    <ArrowRight className="w-3 h-3 text-muted-foreground flex-shrink-0" />
+                    <ArrowRight className="w-3 h-3 text-muted-foreground flex-shrink-0" aria-hidden="true" />
                     <span className="text-sm font-medium truncate">{nameB}</span>
                   </div>
                 </Card>
@@ -261,27 +281,27 @@ export function SynergiesPage() {
             return (
               <Card 
                 key={synergy.id} 
-                className="p-5 hover:border-primary transition-colors cursor-pointer group"
+                className="p-5 hover:border-primary transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {/* Header */}
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-xl ${typeConfig.color} border`}>
-                    <TypeIcon className="w-6 h-6" />
+                  <div className={cn('p-3 rounded-xl border', typeConfig.color)}>
+                    <TypeIcon className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <div className="flex-1 min-w-0">
                     {/* Ingredients connection */}
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="font-semibold">{nameA}</span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
                       <span className="font-semibold">{nameB}</span>
                     </div>
                     
                     {/* Type and Level badges */}
                     <div className="flex flex-wrap items-center gap-2 mt-2">
-                      <Badge className={`${typeConfig.color} border text-xs`}>
+                      <Badge className={cn(typeConfig.color, 'border text-xs')}>
                         {typeConfig.label}
                       </Badge>
-                      <Badge className={`${levelConfig.color} text-xs`}>
+                      <Badge className={cn(levelConfig.color, 'text-xs')}>
                         {levelConfig.label}
                       </Badge>
                     </div>
@@ -290,15 +310,15 @@ export function SynergiesPage() {
 
                 {/* Mechanism */}
                 {synergy.mecanismo && (
-                  <p className="text-sm text-muted-foreground mt-3 pl-[4.5rem]">
+                  <p className="text-sm text-muted-foreground mt-3 pl-16">
                     {synergy.mecanismo}
                   </p>
                 )}
 
                 {/* Evidence indicator */}
                 {synergy.evidencia && (
-                  <div className="flex items-center gap-1 mt-3 pl-[4.5rem]">
-                    <Info className="w-3 h-3 text-muted-foreground" />
+                  <div className="flex items-center gap-1 mt-3 pl-16">
+                    <Info className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
                     <span className="text-xs text-muted-foreground">
                       Evidencia: {synergy.evidencia}
                     </span>

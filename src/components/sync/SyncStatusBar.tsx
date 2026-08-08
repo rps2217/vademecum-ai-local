@@ -48,7 +48,7 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
   if (!isConfigured) {
     return (
       <div className={cn('flex items-center gap-2 text-amber-600', className)}>
-        <CloudOff className="w-4 h-4" />
+        <CloudOff className="w-4 h-4" aria-hidden="true" />
         <span className="text-sm">Sync no configurado</span>
       </div>
     );
@@ -61,12 +61,12 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
         <Badge variant={isOnline ? 'success' : 'danger'}>
           {isOnline ? (
             <>
-              <Cloud className="w-3 h-3 mr-1" />
+              <Cloud className="w-3 h-3 mr-1" aria-hidden="true" />
               Online
             </>
           ) : (
             <>
-              <CloudOff className="w-3 h-3 mr-1" />
+              <CloudOff className="w-3 h-3 mr-1" aria-hidden="true" />
               Offline
             </>
           )}
@@ -75,7 +75,7 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
         {/* Estado de sync */}
         {isSyncing && (
           <span className="text-sm text-muted-foreground animate-pulse">
-            <Loader2 className="w-3 h-3 inline mr-1 animate-spin" />
+            <Loader2 className="w-3 h-3 inline mr-1 animate-spin" aria-hidden="true" />
             Sincronizando...
           </span>
         )}
@@ -91,9 +91,10 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
         {pendingConflicts > 0 && (
           <button
             onClick={() => setShowConflicts(true)}
-            className="flex items-center gap-1 text-amber-600 hover:text-amber-700 transition-colors"
+            className="flex items-center gap-1 text-amber-600 hover:text-amber-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-amber-50"
+            aria-label={`${pendingConflicts} conflictos pendientes`}
           >
-            <AlertTriangle className="w-3 h-3" />
+            <AlertTriangle className="w-3 h-3" aria-hidden="true" />
             <span className="text-sm font-medium">
               {pendingConflicts} conflcito{pendingConflicts > 1 ? 's' : ''}
             </span>
@@ -103,7 +104,7 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
         {/* Éxito */}
         {syncState === 'idle' && pendingConflicts === 0 && progress.pendingOps === 0 && (
           <span className="text-green-600 flex items-center gap-1">
-            <Check className="w-3 h-3" />
+            <Check className="w-3 h-3" aria-hidden="true" />
             <span className="text-sm">Sincronizado</span>
           </span>
         )}
@@ -128,21 +129,19 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
           variant="ghost"
           onClick={handleSync}
           disabled={isSyncing || !isOnline}
+          isLoading={isSyncing}
           className="gap-1"
+          aria-label="Sincronizar ahora"
         >
-          {isSyncing ? (
-            <Loader2 className="w-3 h-3 animate-spin" />
-          ) : (
-            <RefreshCw className={cn('w-3 h-3', isSyncing && 'animate-spin')} />
-          )}
-          <span className="hidden sm:inline">{isSyncing ? 'Sync' : 'Sync'}</span>
+          <RefreshCw className={cn('w-3 h-3', isSyncing && 'animate-spin')} aria-hidden="true" />
+          <span className="hidden sm:inline">Sync</span>
         </Button>
       </div>
 
       {/* Modal de conflictos */}
       {showConflicts && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-lg w-full mx-4 p-6">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" role="dialog" aria-modal="true" aria-label="Resolución de conflictos">
+          <div className="bg-background rounded-xl border border-border shadow-lg max-w-lg w-full mx-4 p-6">
             <h2 className="text-lg font-semibold mb-4">Resolución de Conflictos</h2>
             <ConflictList />
             <div className="mt-4 flex justify-end">

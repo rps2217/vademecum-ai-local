@@ -12,6 +12,7 @@ import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { useAsync } from '@/hooks/useAsync';
 import { ListSkeleton } from '@/ui/Skeleton';
+import { cn } from '@/lib/utils';
 import { 
   BookOpen, 
   Network, 
@@ -89,10 +90,9 @@ export function HomePage() {
           onChange={setQuery}
           placeholder="valeriana, pasiflora, ansiedad..."
           onSearch={handleSearch}
-         
         />
-        <kbd className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:inline-flex h-6 items-center gap-1 rounded border bg-muted px-2 font-mono text-xs text-muted-foreground">
-          <span>⌘</span>K
+        <kbd className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:inline-flex h-6 items-center gap-1 rounded border bg-muted px-2 font-mono text-xs text-muted-foreground pointer-events-none">
+          <span aria-hidden="true">⌘</span>K
         </kbd>
       </div>
 
@@ -108,9 +108,13 @@ export function HomePage() {
               <button
                 key={suggestion.label}
                 onClick={() => handleSuggestionClick(suggestion.label)}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${suggestion.color}`}
+                className={cn(
+                  'inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all',
+                  'hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:scale-100',
+                  suggestion.color
+                )}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-4 h-4" aria-hidden="true" />
                 {suggestion.label}
               </button>
             );
@@ -128,21 +132,21 @@ export function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card className="p-4 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <BookOpen className="w-5 h-5 text-primary" />
+              <BookOpen className="w-5 h-5 text-primary" aria-hidden="true" />
               <span className="text-sm text-muted-foreground">Ingredientes</span>
             </div>
             <p className="text-3xl font-bold">{stats.ingredients}</p>
           </Card>
           <Card className="p-4 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <Network className="w-5 h-5 text-violet-500" />
+              <Network className="w-5 h-5 text-violet-500" aria-hidden="true" />
               <span className="text-sm text-muted-foreground">Sinergias</span>
             </div>
             <p className="text-3xl font-bold">{stats.synergies}</p>
           </Card>
           <Card className="p-4 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <Shield className="w-5 h-5 text-amber-500" />
+              <Shield className="w-5 h-5 text-amber-500" aria-hidden="true" />
               <span className="text-sm text-muted-foreground">Categorias</span>
             </div>
             <p className="text-3xl font-bold">{stats.categories}</p>
@@ -155,7 +159,7 @@ export function HomePage() {
         <Card className="p-6 border-dashed">
           <div className="text-center space-y-4">
             <div className="w-12 h-12 mx-auto rounded-full bg-muted flex items-center justify-center">
-              <DatabaseZap className="w-6 h-6 text-muted-foreground" />
+              <DatabaseZap className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
             </div>
             <div>
               <h3 className="font-semibold">Base de conocimiento vacia</h3>
@@ -164,7 +168,7 @@ export function HomePage() {
               </p>
             </div>
             <Button onClick={() => navigate('/admin')} className="mx-auto">
-              <DatabaseZap className="w-4 h-4 mr-2" />
+              <DatabaseZap className="w-4 h-4 mr-2" aria-hidden="true" />
               Inicializar base de conocimiento
             </Button>
           </div>
@@ -174,15 +178,15 @@ export function HomePage() {
       {/* Quick Access Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Link to="/knowledge">
-          <Card className="p-5 hover:border-primary transition-colors cursor-pointer group">
+          <Card className="p-5 hover:border-primary transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-emerald-500/10 rounded-xl group-hover:bg-emerald-500/20 transition-colors">
-                <Database className="w-6 h-6 text-emerald-600" />
+                <Database className="w-6 h-6 text-emerald-600" aria-hidden="true" />
               </div>
               <div>
                 <h3 className="font-semibold flex items-center gap-2">
                   Base de Conocimiento
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" aria-hidden="true" />
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   {stats.ingredients} ingredientes disponibles
@@ -193,15 +197,15 @@ export function HomePage() {
         </Link>
 
         <Link to="/synergies">
-          <Card className="p-5 hover:border-primary transition-colors cursor-pointer group">
+          <Card className="p-5 hover:border-primary transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-violet-500/10 rounded-xl group-hover:bg-violet-500/20 transition-colors">
-                <Network className="w-6 h-6 text-violet-600" />
+                <Network className="w-6 h-6 text-violet-600" aria-hidden="true" />
               </div>
               <div>
                 <h3 className="font-semibold flex items-center gap-2">
                   Sinergias
-                  <CheckCircle2 className="w-4 h-4 text-violet-500" />
+                  <CheckCircle2 className="w-4 h-4 text-violet-500" aria-hidden="true" />
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   {stats.synergies} combinaciones disponibles
@@ -215,11 +219,11 @@ export function HomePage() {
       {/* Footer Info */}
       <div className="text-center space-y-2 pt-4">
         <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+          <CheckCircle2 className="w-4 h-4 text-emerald-500" aria-hidden="true" />
           <span>Todos los datos en tu dispositivo</span>
         </div>
         <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
-          <Clock className="w-3 h-3" />
+          <Clock className="w-3 h-3" aria-hidden="true" />
           <span>Actualizado {new Date().toLocaleDateString('es-ES')}</span>
         </div>
       </div>

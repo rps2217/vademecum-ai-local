@@ -18,6 +18,7 @@ import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
 import type { DbIngredient } from '@/db/schema';
 import { toast } from 'sonner';
 import { logger } from '@/lib/logger';
+import { cn } from '@/lib/utils';
 
 type AdminTab = 'overview' | 'ingredients' | 'synergies';
 
@@ -155,13 +156,15 @@ export function AdminPage() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm transition-colors ${
+            className={cn(
+              'flex items-center gap-2 px-4 py-2 rounded-md text-sm transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-background',
               activeTab === tab.id
                 ? 'bg-background shadow-sm font-medium'
                 : 'text-muted-foreground hover:text-foreground'
-            }`}
+            )}
           >
-            <tab.icon className="w-4 h-4" />
+            <tab.icon className="w-4 h-4" aria-hidden="true" />
             {tab.label}
           </button>
         ))}
@@ -175,17 +178,17 @@ export function AdminPage() {
             <StatsCard
               title="Ingredientes"
               value={ingredientsCount}
-              icon={<Database className="w-5 h-5" />}
+              icon={<Database className="w-5 h-5" aria-hidden="true" />}
             />
             <StatsCard
               title="Sinergias"
               value={synergiesCount}
-              icon={<Shield className="w-5 h-5" />}
+              icon={<Shield className="w-5 h-5" aria-hidden="true" />}
             />
             <StatsCard
               title="Categorías"
               value={7}
-              icon={<Database className="w-5 h-5" />}
+              icon={<Database className="w-5 h-5" aria-hidden="true" />}
             />
           </div>
 
@@ -198,8 +201,9 @@ export function AdminPage() {
                 className="justify-start"
                 onClick={handleReindex}
                 disabled={isLoading}
+                isLoading={isLoading}
               >
-                <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+                <RefreshCw className="w-4 h-4 mr-2" aria-hidden="true" />
                 Reindexar búsqueda
               </Button>
               <Button
@@ -207,16 +211,17 @@ export function AdminPage() {
                 className="justify-start"
                 onClick={handleReseed}
                 disabled={isLoading}
+                isLoading={isLoading}
               >
-                <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+                <RefreshCw className="w-4 h-4 mr-2" aria-hidden="true" />
                 Recargar datos
               </Button>
               <Button variant="outline" className="justify-start" onClick={handleImport}>
-                <Upload className="w-4 h-4 mr-2" />
+                <Upload className="w-4 h-4 mr-2" aria-hidden="true" />
                 Importar datos
               </Button>
               <Button variant="outline" className="justify-start" onClick={handleExport}>
-                <Download className="w-4 h-4 mr-2" />
+                <Download className="w-4 h-4 mr-2" aria-hidden="true" />
                 Exportar datos
               </Button>
             </div>
@@ -227,7 +232,7 @@ export function AdminPage() {
             <h2 className="font-semibold mb-4">Gestión rápida</h2>
             <div className="flex gap-3">
               <Button onClick={() => setShowEditor(true)} className="gap-2">
-                <Plus className="w-4 h-4" />
+                <Plus className="w-4 h-4" aria-hidden="true" />
                 Nuevo Ingrediente
               </Button>
               <Button variant="outline" onClick={() => setActiveTab('ingredients')}>
@@ -327,7 +332,8 @@ function IngredientsTab({
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="h-10 px-3 rounded-lg border border-border bg-background text-sm"
+            aria-label="Filtrar por categoría"
+            className="h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
           >
             <option value="">Todas</option>
             <option value="fitoterapia">Fitoterapia</option>
@@ -338,7 +344,7 @@ function IngredientsTab({
           </select>
         </div>
         <Button onClick={onNew} className="gap-2">
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4" aria-hidden="true" />
           Nuevo
         </Button>
       </div>
@@ -347,7 +353,7 @@ function IngredientsTab({
       <div className="space-y-2">
         {ingredients.length === 0 ? (
           <Card className="p-8 text-center">
-            <Database className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
+            <Database className="w-12 h-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
             <p className="text-muted-foreground">No hay ingredientes</p>
             <Button variant="outline" className="mt-4" onClick={onNew}>
               Crear el primero
@@ -375,16 +381,18 @@ function IngredientsTab({
                     variant="ghost"
                     size="icon"
                     onClick={() => onEdit(ingredient)}
+                    aria-label={`Editar ${ingredient.nombre}`}
                   >
-                    <Edit2 className="w-4 h-4" />
+                    <Edit2 className="w-4 h-4" aria-hidden="true" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => onDelete(ingredient)}
                     className="text-destructive hover:text-destructive"
+                    aria-label={`Eliminar ${ingredient.nombre}`}
                   >
-                    <Trash className="w-4 h-4" />
+                    <Trash className="w-4 h-4" aria-hidden="true" />
                   </Button>
                 </div>
               </div>

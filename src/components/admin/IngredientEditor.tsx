@@ -12,6 +12,7 @@ import { Badge } from '@/ui/Badge';
 import { X, Plus, Save } from 'lucide-react';
 import type { DbIngredient, IngredientCategory, EvidenceLevel, BodySystem } from '@/db/schema';
 import { generateId, now, getDeviceId } from '@/db/schema';
+import { cn } from '@/lib/utils';
 
 const CATEGORIES: { value: IngredientCategory; label: string }[] = [
   { value: 'fitoterapia', label: 'Fitoterapia' },
@@ -155,8 +156,8 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
           <h2 className="text-xl font-semibold">
             {ingredient ? 'Editar Ingrediente' : 'Nuevo Ingrediente'}
           </h2>
-          <Button variant="ghost" size="icon" onClick={onCancel}>
-            <X className="w-5 h-5" />
+          <Button variant="ghost" size="icon" onClick={onCancel} aria-label="Cerrar editor">
+            <X className="w-5 h-5" aria-hidden="true" />
           </Button>
         </div>
 
@@ -192,6 +193,7 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
               <select
                 value={form.categoria}
                 onChange={(e) => handleChange('categoria', e.target.value as IngredientCategory)}
+                aria-label="Categoría"
                 className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 {CATEGORIES.map((cat) => (
@@ -220,11 +222,14 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
                   key={sys.value}
                   type="button"
                   onClick={() => toggleSystem(sys.value)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  aria-pressed={form.sistemas.includes(sys.value)}
+                  className={cn(
+                    'px-3 py-1.5 rounded-full text-xs font-medium transition-colors',
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:opacity-80',
                     form.sistemas.includes(sys.value)
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                  }`}
+                  )}
                 >
                   {sys.label}
                 </button>
@@ -238,6 +243,7 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
             <select
               value={form.evidencia}
               onChange={(e) => handleChange('evidencia', e.target.value as EvidenceLevel)}
+              aria-label="Nivel de evidencia"
               className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {EVIDENCE_LEVELS.map((level) => (
@@ -272,6 +278,7 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
               onChange={(e) => handleChange('propiedades', e.target.value)}
               placeholder="Ej: Sedante natural&#10;Relajante muscular"
               rows={3}
+              aria-label="Propiedades"
               className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
             />
           </div>
@@ -298,6 +305,7 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
                 <select
                   value={form.seguridadEmbarazo}
                   onChange={(e) => handleChange('seguridadEmbarazo', e.target.value)}
+                  aria-label="Seguridad en embarazo"
                   className="w-full h-9 px-2 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="">No especificado</option>
@@ -311,6 +319,7 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
                 <select
                   value={form.seguridadLactancia}
                   onChange={(e) => handleChange('seguridadLactancia', e.target.value)}
+                  aria-label="Seguridad en lactancia"
                   className="w-full h-9 px-2 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="">No especificado</option>
@@ -324,6 +333,7 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
                 <select
                   value={form.seguridadPediatria}
                   onChange={(e) => handleChange('seguridadPediatria', e.target.value)}
+                  aria-label="Seguridad en pediatría"
                   className="w-full h-9 px-2 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="">No especificado</option>

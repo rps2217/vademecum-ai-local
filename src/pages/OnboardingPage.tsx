@@ -120,7 +120,7 @@ export function OnboardingPage() {
           {step === 1 && (
             <form onSubmit={handlePasswordSubmit} className="space-y-4">
               <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
-                <Shield className="w-5 h-5 text-blue-600 mt-0.5" />
+                <Shield className="w-5 h-5 text-blue-600 mt-0.5" aria-hidden="true" />
                 <p className="text-sm text-blue-800 dark:text-blue-200">
                   Tu contraseña protege el acceso a tus datos. Debe tener al menos 8 caracteres.
                 </p>
@@ -138,10 +138,10 @@ export function OnboardingPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-[2.2rem] -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-3 top-9 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
                   aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
                 </button>
               </div>
 
@@ -177,10 +177,10 @@ export function OnboardingPage() {
                 <button
                   type="button"
                   onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-3 top-[2.2rem] -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-3 top-9 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
                   aria-label={showConfirm ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 >
-                  {showConfirm ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showConfirm ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
                 </button>
               </div>
 
@@ -200,7 +200,7 @@ export function OnboardingPage() {
           {step === 3 && (
             <div className="space-y-4">
               <div className="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-950/30 rounded-lg">
-                <Key className="w-5 h-5 text-amber-600 mt-0.5" />
+                <Key className="w-5 h-5 text-amber-600 mt-0.5" aria-hidden="true" />
                 <p className="text-sm text-amber-800 dark:text-amber-200">
                   Guarda estas 12 palabras en un lugar seguro. Las necesitarás para recuperar tu cuenta.
                 </p>
@@ -213,12 +213,12 @@ export function OnboardingPage() {
               <Button variant="outline" className="w-full" onClick={handleCopy}>
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 mr-2" />
+                    <Check className="w-4 h-4 mr-2" aria-hidden="true" />
                     Copiado
                   </>
                 ) : (
                   <>
-                    <Copy className="w-4 h-4 mr-2" />
+                    <Copy className="w-4 h-4 mr-2" aria-hidden="true" />
                     Copiar al portapapeles
                   </>
                 )}

@@ -96,7 +96,7 @@ export function SearchInput({
           isFocused ? 'border-ring ring-2 ring-ring/20' : 'border-transparent'
         )}
       >
-        <Search className="absolute left-3 w-4 h-4 text-muted-foreground" />
+        <Search className="absolute left-3 w-4 h-4 text-muted-foreground" aria-hidden="true" />
         
         <input
           ref={inputRef}
@@ -115,21 +115,23 @@ export function SearchInput({
           role="combobox"
           aria-expanded={showDropdown}
           aria-controls="search-suggestions"
+          aria-label={placeholder}
         />
 
         {value && (
           <button
             type="button"
             onClick={handleClear}
-            className="absolute right-3 p-0.5 rounded hover:bg-accent text-muted-foreground"
+            className="absolute right-3 p-0.5 rounded hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring text-muted-foreground active:bg-accent"
+            aria-label="Limpiar búsqueda"
           >
-            <X className="w-4 h-4" />
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         )}
 
         <kbd className="absolute right-3 hidden sm:flex items-center gap-0.5">
           {!value && (
-            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono bg-border/50 rounded">
+            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-0.5 text-xs font-mono bg-border/50 rounded">
               <span className="text-xs">⌘</span>K
             </span>
           )}
@@ -159,11 +161,11 @@ export function SearchInput({
                   onClick={() => handleSelect(search)}
                   className={cn(
                     'flex items-center gap-2 w-full px-2 py-2 rounded-md text-sm',
-                    'hover:bg-accent text-left',
+                    'hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent text-left',
                     selectedIndex === idx && 'bg-accent'
                   )}
                 >
-                  <Clock className="w-4 h-4 text-muted-foreground" />
+                  <Clock className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
                   <span>{search}</span>
                 </button>
               ))}
@@ -184,13 +186,13 @@ export function SearchInput({
                     onClick={() => handleSelect(suggestion)}
                     className={cn(
                       'flex items-center gap-2 w-full px-2 py-2 rounded-md text-sm',
-                      'hover:bg-accent text-left',
+                      'hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-accent text-left',
                       selectedIndex === globalIdx && 'bg-accent'
                     )}
                   >
-                    <Search className="w-4 h-4 text-muted-foreground" />
+                    <Search className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
                     <span className="flex-1">{suggestion}</span>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100" />
+                    <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100" aria-hidden="true" />
                   </button>
                 );
               })}
