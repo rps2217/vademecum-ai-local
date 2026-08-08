@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 70,
+    "total": 76,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -3906,6 +3906,319 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical senolytic + Mayo Clinic trials"
+      }
+    },
+    {
+      "id": "betaina",
+      "nombre": "Betaína (TMG)",
+      "nombresAlternativos": [
+        "Trimetilglicina",
+        "TMG",
+        "Betaine",
+        "Glicina betaina",
+        "N,N,N-trimetilglicina"
+      ],
+      "nombreCientifico": "Trimetilglicina (TMG)",
+      "familia": "Metilantes",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "metabolico",
+        "hepatico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "hiperhomocisteinemia",
+        "salud hepática",
+        "esteatosis hepática",
+        "metilación"
+      ],
+      "descripcion": "Donante de grupos metilo que reduce la homocisteína vía betaina-homocisteína-metiltransferasa (BHMT). Eficacia en hiperhomocisteinemia.",
+      "mecanismoAccion": "Donante de grupos metilo vía BHMT (remetila homocisteína→metionina en hígado); osmolito que protege el hepatocito (esteatosis).",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo (TMG HCl)",
+        "Cápsulas (1-6g)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Posible olor corporal (Pseudocholinesterase)",
+        "Precaución en colesterol elevado (sube LDL en algunos)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "metilación",
+        "homocisteína",
+        "hepático",
+        "TMG",
+        "BHMT"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (homocisteína/esteatosis)"
+      }
+    },
+    {
+      "id": "l_metionina",
+      "nombre": "L-Metionina",
+      "nombresAlternativos": [
+        "Metionina",
+        "L-Methionine",
+        "Met",
+        "Aminoácido azufrado esencial"
+      ],
+      "nombreCientifico": "L-Metionina",
+      "familia": "Aminoácidos esenciales",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "hepatico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "salud hepática",
+        "metilación",
+        "uñas y cabello",
+        "quelación orgánica"
+      ],
+      "descripcion": "Aminoácido azufrado esencial, precursor del SAMe y la cisteína (vía transulfuración). Importante para la metilación y el hígado.",
+      "mecanismoAccion": "Precursor del SAMe (donante universal de metilo) y de la cisteína/glutatión (vía transulfuración); dona azufre para queratina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (500mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable",
+      "advertencias": [
+        "Exceso: hiperhomocisteinemia (usar con B12/folato/betaina)",
+        "Precaución en enfermedad cardíaca"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levodopa"
+      ],
+      "tags": [
+        "metilación",
+        "hepático",
+        "SAMe",
+        "azufrado",
+        "glutatión"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Bioquímica nutricional"
+      }
+    },
+    {
+      "id": "l_treonina",
+      "nombre": "L-Treonina",
+      "nombresAlternativos": [
+        "Treonina",
+        "L-Threonine",
+        "Thr",
+        "Aminoácido esencial"
+      ],
+      "nombreCientifico": "L-Treonina",
+      "familia": "Aminoácidos esenciales",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "salud intestinal (mucina)",
+        "inmunidad",
+        "síntesis de colágeno",
+        "función cognitiva"
+      ],
+      "descripcion": "Aminoácido esencial abundante en mucinas intestinales y glucoproteínas. Soporte de la barrera intestinal y la inmunidad.",
+      "mecanismoAccion": "Componente principal de las mucinas intestinales (barrera mucosa); precursor de glicina (vía treonina-aldolasa); síntesis de colágeno.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Variable",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "intestinal",
+        "mucina",
+        "inmunidad",
+        "colágeno",
+        "esencial"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Nutritional biochemistry"
+      }
+    },
+    {
+      "id": "gaba",
+      "nombre": "GABA (Ácido γ-aminobutírico)",
+      "nombresAlternativos": [
+        "GABA",
+        "Ácido gamma-aminobutírico",
+        "Gamma-aminobutyric acid",
+        "GABA suplemento"
+      ],
+      "nombreCientifico": "Ácido γ-aminobutírico (GABA)",
+      "familia": "Neurotransmisores/aminoácidos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "insomnio",
+        "tensión",
+        "relajación"
+      ],
+      "descripcion": "Principal neurotransmisor inhibitorio del SNC. El suplemento oral cruza mal la barrera hematoencefálica pero tiene efectos sistémicos (eje entero-cerebral).",
+      "mecanismoAccion": "Activa los receptores GABA-A (canal de Cl-) y GABA-B (GPCR); el GABA oral puede actuar vía nervio vago (eje intestino-cerebro) y reducir la actividad del SNC.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (100-750mg)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Sedación posible",
+        "Eficacia oral debatida (paso BBB limitado)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Benzodiacepinas",
+        "Anticonvulsivantes",
+        "Alcohol"
+      ],
+      "tags": [
+        "ansiedad",
+        "GABA",
+        "inhibitorio",
+        "sueño",
+        "relajación"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (ansiedad/estrés)"
+      }
+    },
+    {
+      "id": "honokiol",
+      "nombre": "Honokiol",
+      "nombresAlternativos": [
+        "Honokiol",
+        "Magnolol",
+        "Extracto de Magnolia",
+        "Magnolia officinalis",
+        "Houpo"
+      ],
+      "nombreCientifico": "Honokiol (bifenol neolignano)",
+      "familia": "Lignanos",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estrés",
+        "calma nocturna",
+        "antioxidante"
+      ],
+      "descripcion": "Lignano de la corteza de Magnolia con acción moduladora del receptor GABA-A (sin dependencia). Anxiolítico natural.",
+      "mecanismoAccion": "Modulador positivo del receptor GABA-A (sitio distinto a benzodiacepinas), induce relajación sin sedación marcada ni dependencia; antioxidante (Nrf2).",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto de corteza de Magnolia",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado)"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "Uso puntual o continuo",
+      "advertencias": [
+        "Sedación posible",
+        "Evitar con sedantes sin supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "Benzodiacepinas",
+        "Sedantes",
+        "Alcohol"
+      ],
+      "tags": [
+        "ansiedad",
+        "GABA-A",
+        "magnolia",
+        "sueño",
+        "lignano"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + small clinical trials"
+      }
+    },
+    {
+      "id": "postbioticos",
+      "nombre": "Postbióticos (Butirato)",
+      "nombresAlternativos": [
+        "Butirato",
+        "Ácido butírico",
+        "Tributirina",
+        "Postbiotics",
+        "Butyrate"
+      ],
+      "nombreCientifico": "Ácido butírico / Tributirina",
+      "familia": "Ácidos grasos de cadena corta",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "integridad intestinal",
+        "intestino permeable",
+        "microbiota",
+        "inflamación intestinal"
+      ],
+      "descripcion": "Ácidos grasos de cadena corta (AGCC) producidos por la microbiota. El butirato alimenta los colonocitos y reduce la inflamación intestinal.",
+      "mecanismoAccion": "El butirato es el principal combustible de los colonocitos; inhibe la HDAC (antiinflamatorio epigenético) y refuerza las uniones estrechas intestinales.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento (tributirina)",
+      "formasPresentacion": [
+        "Cápsulas (tributirina, butirato sódico)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible olor (butirato)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "intestinal",
+        "butirato",
+        "AGCC",
+        "colonocitos",
+        "HDAC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (intestino/inflamación)"
       }
     }
   ]

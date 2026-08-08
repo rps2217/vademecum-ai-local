@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 214,
+    "total": 272,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -5414,6 +5414,1488 @@
       ],
       "sistemas": [
         "nervioso"
+      ]
+    },
+    {
+      "id": "sin_menta_aceite_eucalipto",
+      "ingredienteA": "menta_aceite",
+      "ingredienteB": "eucalipto",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo respiratorio refrescante: la menta y el eucalipto liberan las vías respiratorias altas.",
+      "beneficios": [
+        "Libera la nariz",
+        "Reduce congestión",
+        "Efecto refrescante",
+        "Cefalea tensional"
+      ],
+      "precauciones": [
+        "No aplicar cerca de ojos (mentol)",
+        "Precaución en asmáticos"
+      ],
+      "mecanismo": "El mentol activa los receptores TRPM8 (sensación de fresco y descongestión); el 1,8-cineol del eucalipto fluidifica secreciones.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_romero_aceite_menta_aceite",
+      "ingredienteA": "romero_aceite",
+      "ingredienteB": "menta_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de claridad mental: el romero y la menta estimulan la concentración y la memoria.",
+      "beneficios": [
+        "Mejora concentración",
+        "Reduce fatiga mental",
+        "Energía matutina",
+        "Cefalea"
+      ],
+      "precauciones": [
+        "Romero: evitar en epilepsia y embarazo",
+        "No aplicar en ojos"
+      ],
+      "mecanismo": "El 1,8-cineol del romero mejora el flujo cerebral; el mentol de la menta activa TRPM8 (alerta).",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ]
+    },
+    {
+      "id": "sin_oregano_tea_tree",
+      "ingredienteA": "oregano",
+      "ingredienteB": "tea_tree",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano potente: el orégano (carvacrol) y el tea tree (terpinen-4-ol) potencian la acción fungicida y bactericida.",
+      "beneficios": [
+        "Acción antifúngica potente",
+        "Antibacteriano tópico",
+        "Micosis y pie de atleta"
+      ],
+      "precauciones": [
+        "Irritantes: diluir al 1-3%",
+        "Orégano: irritante hepático si se ingiere"
+      ],
+      "mecanismo": "El carvacrol (orégano) y el terpinen-4-ol (tea tree) dañan la membrana microbiana por mecanismos sinérgicos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_salvia_esclarea_lavanda_aceite",
+      "ingredienteA": "salvia_esclarea",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hormonal y sedante: la salvia esclarea y la lavanda alivian sofocos y calman.",
+      "beneficios": [
+        "Alivio de sofocos",
+        "Reduce estrés",
+        "Equilibrio hormonal",
+        "Insomnio"
+      ],
+      "precauciones": [
+        "Salvia esclarea: evitar en embarazo",
+        "Diluir para uso tópico"
+      ],
+      "mecanismo": "El esclareol de la salvia esclarea modula el estrógeno; el linalool de la lavanda modula GABA (sedante).",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_canela_aceite_clavo",
+      "ingredienteA": "canela_aceite",
+      "ingredienteB": "clavo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cálido y antimicrobiano: la canela (cinnamaldehído) y el clavo (eugenol) potencian la acción.",
+      "beneficios": [
+        "Acción antimicrobiana",
+        "Calor tópico en dolor muscular",
+        "Salud bucal"
+      ],
+      "precauciones": [
+        "Irritantes potentes: diluir al 0.5-1%",
+        "Evitar en embarazo",
+        "No ingerir"
+      ],
+      "mecanismo": "El cinnamaldehído (canela) y el eugenol (clavo) son antimicrobianos y rubefacientes por mecanismos sinérgicos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_rosa_mosqueta_helichrysum",
+      "ingredienteA": "nilo_rosada",
+      "ingredienteB": "helichrysum",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo regenerador cutáneo: la rosa mosqueta y el helichrysum potencian la cicatrización y la piel madura.",
+      "beneficios": [
+        "Regeneración cutánea",
+        "Reduce cicatrices y estrías",
+        "Piel madura",
+        "Hematomas"
+      ],
+      "precauciones": [
+        "Diluir helichrysum",
+        "Rosa mosqueta: usar como aceite portador"
+      ],
+      "mecanismo": "Los ácidos grasos omega de la rosa mosqueta nutren la piel; los di-ketones del helichrysum estimulan la regeneración.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_palmarosa_geranio",
+      "ingredienteA": "palmarosa",
+      "ingredienteB": "geranio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo floral para la piel: la palmarosa y el geranio equilibran e hidratan la piel.",
+      "beneficios": [
+        "Hidrata y equilibra la piel",
+        "Acción antifúngica",
+        "Piel madura",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico"
+      ],
+      "mecanismo": "El geraniol (común en ambos) es antimicrobiano y astringente; sinergia floral regeneradora cutánea.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_cedro_atlas_cipres",
+      "ingredienteA": "cedro_atlas",
+      "ingredienteB": "cipres",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para cabello y circulación: el cedro y el ciprés mejoran cuero cabelludo y tono venoso.",
+      "beneficios": [
+        "Reduce caída del cabello",
+        "Tono venoso",
+        "Caspa y seborrea",
+        "Circulación"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico",
+        "Ciprés: evitar en embarazo"
+      ],
+      "mecanismo": "Los cedrenos del cedro regulan la seborrea; las proantocianidinas del ciprés mejoran el tono venoso.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_neroli_lavanda_aceite",
+      "ingredienteA": "neroli",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo ansiolítico floral: el neroli y la lavanda calman la ansiedad y el insomnio.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Inducción del sueño",
+        "Calma emocional",
+        "Taquicardia nerviosa"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico"
+      ],
+      "mecanismo": "El linalool y acetato de linalilo (neroli/lavanda) modulan GABA; el neroli reduce la taquicardia de origen nervioso.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_palo_de_rosa_geranio",
+      "ingredienteA": "palo_de_rosa",
+      "ingredienteB": "geranio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano y cutáneo: el palo de rosa y el geranio para piel y estrés.",
+      "beneficios": [
+        "Acción antifúngica",
+        "Piel equilibrada",
+        "Acné leve",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico"
+      ],
+      "mecanismo": "El linalool del palo de rosa y el geraniol del geranio son antimicrobianos y regeneradores cutáneos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_inmale_incienso",
+      "ingredienteA": "inmale",
+      "ingredienteB": "incienso",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de resinas cicatrizantes: el elemí (inmale) y el incienso para piel y meditación.",
+      "beneficios": [
+        "Regeneración cutánea",
+        "Cicatrización",
+        "Meditación",
+        "Salud bucal"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico"
+      ],
+      "mecanismo": "Los terpenos de las resinas (elemí e incienso) son cicatrizantes y antiinflamatorios cutáneos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_manuka_tea_tree",
+      "ingredienteA": "manuka",
+      "ingredienteB": "tea_tree",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano de Oceanía: el manuka y el tea tree, ambos con acción frente a S. aureus (incluido MRSA).",
+      "beneficios": [
+        "Acción antibacteriana potente",
+        "Acné y heridas",
+        "Micosis",
+        "Piel"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico (tea tree)"
+      ],
+      "mecanismo": "Los β-tricetonos del manuka y el terpinen-4-ol del tea tree son sinérgicos contra bacterias gram-positivas.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_copaiba_incienso",
+      "ingredienteA": "copaiba",
+      "ingredienteB": "incienso",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de resinas antiinflamatorias: la copaiba y el incienso reducen la inflamación cutánea y articular.",
+      "beneficios": [
+        "Acción antiinflamatoria",
+        "Piel y cicatrización",
+        "Dolor articular tópico"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico"
+      ],
+      "mecanismo": "El β-cariofileno de la copaiba (agonista CB2) y el ácido boswélico del incienso (5-LOX) son antiinflamatorios.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_pino_silvestre_eucalipto",
+      "ingredienteA": "pino_silvestre",
+      "ingredienteB": "eucalipto",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo balsámico respiratorio: el pino silvestre y el eucalipto para bronquitis y sinusitis.",
+      "beneficios": [
+        "Acción balsámica",
+        "Reduce congestión",
+        "Bronquitis y sinusitis"
+      ],
+      "precauciones": [
+        "Precaución en asmáticos con inhalación directa"
+      ],
+      "mecanismo": "Los pinenos del pino y el 1,8-cineol del eucalipto fluidifican secreciones y son antisépticos respiratorios.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_tomillo_ct_oregano",
+      "ingredienteA": "tomillo_quimiotipo",
+      "ingredienteB": "oregano",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano fenólico: el tomillo CT timol y el orégano (carvacrol) son los antimicrobianos más potentes.",
+      "beneficios": [
+        "Acción antimicrobiana máxima",
+        "Infecciones respiratorias",
+        "Antifúngico"
+      ],
+      "precauciones": [
+        "Irritantes: diluir mucho",
+        "Tomar solo con supervisión profesional",
+        "No en embarazo"
+      ],
+      "mecanismo": "El timol y carvacrol (fenoles isómeros) dañan la membrana microbiana; potente sinergia antimicrobiana.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_naranja_dulce_lavanda_aceite",
+      "ingredienteA": "naranja_dulce",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo calmante y alegre: la naranja dulce y la lavanda elevan el ánimo y relajan.",
+      "beneficios": [
+        "Mejora el ánimo",
+        "Reduce ansiedad",
+        "Inducción del sueño",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Naranja: posible fotosensibilidad tópica",
+        "Diluir"
+      ],
+      "mecanismo": "El limoneno (naranja) eleva el ánimo; el linalool (lavanda) modula GABA y relaja. Sinergia cítrico-floral.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_bergamota_lavanda_aceite",
+      "ingredienteA": "bergamota",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo ansiolítico y del ánimo: la bergamota y la lavanda (base del clásico aceite de 'rescue').",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Eleva el ánimo",
+        "Insomnio",
+        "Depresión leve"
+      ],
+      "precauciones": [
+        "Bergamota: fotosensibilidad tópica (BPF)",
+        "Diluir"
+      ],
+      "mecanismo": "El limoneno y linalool (bergamota) modulan el ánimo; el linalool (lavanda) modula GABA. Sinergia calmante.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_citronela_eucalipto",
+      "ingredienteA": "citronela",
+      "ingredienteB": "eucalipto",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo repelente de insectos: la citronela y el eucalipto repelen mosquitos de forma natural.",
+      "beneficios": [
+        "Repelente de insectos natural",
+        "Reduce picaduras",
+        "Balsámico"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico",
+        "Reaplicar cada 2-3h"
+      ],
+      "mecanismo": "El citronelol (citronela) y el 1,8-cineol (eucalipto) repelen insectos por su aroma intenso.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_albahaca_aceite_romero_aceite",
+      "ingredienteA": "albahaca_aceite",
+      "ingredienteB": "romero_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de claridad mental y digestiva: la albahaca y el romero estimulan la mente y la digestión.",
+      "beneficios": [
+        "Claridad mental",
+        "Reduce fatiga",
+        "Digestión",
+        "Cefalea"
+      ],
+      "precauciones": [
+        "Albahaca: quimiotipo estragole, usar con moderación",
+        "Romero: epilepsia"
+      ],
+      "mecanismo": "El estragol/metilchavicol (albahaca) y el 1,8-cineol (romero) estimulan la concentración y la secreción digestiva.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_geranio_citronela",
+      "ingredienteA": "geranio",
+      "ingredienteB": "citronela",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo repelente y floral: el geranio y la citronela repelen insectos y cuidan la piel.",
+      "beneficios": [
+        "Repelente natural",
+        "Cuida la piel",
+        "Reduce picaduras"
+      ],
+      "precauciones": [
+        "Diluir para uso tópico"
+      ],
+      "mecanismo": "El geraniol (geranio) y el citronelol (citronela) repelen insectos y son suaves con la piel.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_lavanda_valeriana",
+      "ingredienteA": "lavanda",
+      "ingredienteB": "valeriana",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación sedante clásica: la lavanda y la valeriana para insomnio y ansiedad.",
+      "beneficios": [
+        "Mejora calidad del sueño",
+        "Reduce latencia",
+        "Ansiedad",
+        "Calma"
+      ],
+      "precauciones": [
+        "Somnolencia posible",
+        "No combinar con sedantes sin supervisión"
+      ],
+      "mecanismo": "El linalool (lavanda) y los valepotriatos (valeriana) modulan GABA-A; sinergia sedante.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ]
+    },
+    {
+      "id": "sin_schisandra_ashwagandha",
+      "ingredienteA": "schisandra",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo adaptógeno: la schisandra y la ashwagandha modulan el estrés y la energía.",
+      "beneficios": [
+        "Reduce estrés",
+        "Mejora energía y resistencia",
+        "Adaptógeno dual",
+        "Función hepática"
+      ],
+      "precauciones": [
+        "Tiroideo (ashwagandha)"
+      ],
+      "mecanismo": "La schisandra modula el eje HHA y protege el hígado; la ashwagandha reduce el cortisol. Sinergia adaptógena.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_dong_quai_vitex",
+      "ingredienteA": "dong_quai",
+      "ingredienteB": "vitex",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Equilibrio hormonal femenino: el dong quai y el vitex en trastornos menstruales.",
+      "beneficios": [
+        "Regula el ciclo",
+        "Reduce dolor menstrual",
+        "SPM",
+        "Perimenopausia"
+      ],
+      "precauciones": [
+        "Evitar en embarazo",
+        "Anticoagulantes (dong quai)"
+      ],
+      "mecanismo": "El dong quai modula el flujo sanguíneo uterino; el vitex estimula la dopamina (aumenta progesterona).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductor",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_zarzaparrilla_cola_caballo",
+      "ingredienteA": "zarzaparrilla",
+      "ingredienteB": "cola_caballo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación depurativa: la zarzaparrilla y la cola de caballo para la retención hídrica.",
+      "beneficios": [
+        "Acción depurativa",
+        "Diurético suave",
+        "Piel",
+        "Retención hídrica"
+      ],
+      "precauciones": [
+        "No usar en insuficiencia renal/cardíaca"
+      ],
+      "mecanismo": "Las saponinas de la zarzaparrilla y los flavonoides/silicio de la cola de caballo favorecen la diuresis y la depuración.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_cascara_sagrada_sen",
+      "ingredienteA": "cascara_sagrada",
+      "ingredienteB": "sen",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo laxante estimulante: la cáscara sagrada y el sen para estreñimiento ocasional rebelde.",
+      "beneficios": [
+        "Eficacia en estreñimiento",
+        "Acción estimulante dual",
+        "Uso corto"
+      ],
+      "precauciones": [
+        "No usar más de 1-2 semanas",
+        "Contraindicado en obstrucción, embarazo",
+        "Pérdida de electrolitos"
+      ],
+      "mecanismo": "Los cascarósidos y los senósidos (antraquinonas) estimulan la motilidad colónica por mecanismos similares.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_agrimonia_milenrama",
+      "ingredienteA": "agrimonia",
+      "ingredienteB": "milenrama",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo astringente digestivo: la agrimonia y la milenrama para diarrea leve y dispepsia.",
+      "beneficios": [
+        "Reduce diarrea leve",
+        "Acción astringente",
+        "Dispepsia",
+        "Heridas menores"
+      ],
+      "precauciones": [
+        "Taninos: separar de medicamentos 2h"
+      ],
+      "mecanismo": "Los taninos de la agrimonia y la milenrama coagulan proteínas superficiales (astringencia); acción antiespasmódica leve.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_abedul_solidago",
+      "ingredienteA": "abedul",
+      "ingredienteB": "solidago",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo diurético renal: el abedul y la vara de oro aumentan la diuresis y lavan las vías urinarias.",
+      "beneficios": [
+        "Aumenta la diuresis",
+        "Irriga vías urinarias",
+        "Prevención de cálculos",
+        "Cistitis leve"
+      ],
+      "precauciones": [
+        "Contraindicado en insuficiencia cardíaca/renal"
+      ],
+      "mecanismo": "Los flavonoides del abedul y la vara de oro aumentan el volumen de orina por mecanismos complementarios.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_orthosiphon_abedul",
+      "ingredienteA": "orthosiphon",
+      "ingredienteB": "abedul",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo diurético: el té de Java y el abedul para la irrigación de vías urinarias.",
+      "beneficios": [
+        "Diuresis aumentada",
+        "Eliminación de ácido úrico",
+        "Cálculos renales"
+      ],
+      "precauciones": [
+        "Contraindicado en insuficiencia cardíaca/renal"
+      ],
+      "mecanismo": "Los flavonoides del té de Java y el abedul aumentan la diuresis y la eliminación de urea/ácido úrico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_alchemilla_cimicifuga",
+      "ingredienteA": "alchemilla",
+      "ingredienteB": "cimicifuga",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para trastornos menstruales: la alchemilla y la cimicífuga en SPM y perimenopausia.",
+      "beneficios": [
+        "Reduce dolor menstrual",
+        "Regula el ciclo",
+        "Sofocos",
+        "SPM"
+      ],
+      "precauciones": [
+        "Cimicífuga: evitar en cáncer hormono-dependiente sin supervisión"
+      ],
+      "mecanismo": "La alchemilla (taninos) modula el ciclo y reduce el sangrado; la cimicífuga actúa sobre los receptores serotoninérgicos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductor",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_chamomilla_belladonna",
+      "ingredienteA": "chamomilla",
+      "ingredienteB": "belladonna",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para dentición y fiebre infantil: la chamomilla (irritabilidad) y la belladonna (calor).",
+      "beneficios": [
+        "Dentición infantil",
+        "Reduce fiebre incipiente",
+        "Irritabilidad",
+        "Cólicos"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Fiebre alta: médico"
+      ],
+      "mecanismo": "Nosología homeopática: la chamomilla actúa sobre la irritabilidad y el dolor; la belladonna sobre la fase de calor.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_iris_versicolor_sanguinaria",
+      "ingredienteA": "iris_versicolor",
+      "ingredienteB": "sanguinaria",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para cefaleas y migraña: el iris y la sanguinaria.",
+      "beneficios": [
+        "Reduce migraña",
+        "Cefalea vascular",
+        "Neuralgia facial"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el iris actúa sobre la migraña con síntomas visuales; la sanguinaria sobre la hemicránea derecha.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_tuberculinum_calcarea_phosphorica",
+      "ingredienteA": "tuberculinum",
+      "ingredienteB": "calcarea_phosphorica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia constitucional para niños con tendencias respiratorias: el tuberculinum y la calcarea phos.",
+      "beneficios": [
+        "Constitución sensible",
+        "Tendencias respiratorias",
+        "Crecimiento"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Nosodo: uso especializado"
+      ],
+      "mecanismo": "Nosología homeopática: el tuberculinum (nosodo) actúa sobre la diátesis respiratoria; la calcarea phos sobre el crecimiento.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_medorrhinum_thuja",
+      "ingredienteA": "medorrhinum",
+      "ingredienteB": "thuja",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia de nosodo y policresto: el medorrhinum y la thuja en trastornos crónicos genitourinarios.",
+      "beneficios": [
+        "Trastornos crónicos",
+        "Verrugas",
+        "Diátesis genitourinaria"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Nosodo: uso especializado"
+      ],
+      "mecanismo": "Nosología homeopática: el medorrhinum (nosodo) actúa sobre la diátesis; la thuja sobre verrugas y excrecencias.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_ambra_grisea_argentum_nitricum",
+      "ingredienteA": "ambra_grisea",
+      "ingredienteB": "argentum_nitricum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para ansiedad senil y anticipatoria: la ambra grisea y el argentum nitricum.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Ansiedad anticipatoria",
+        "Espasmos en ancianos",
+        "Insomnio"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la ambra grisea actúa sobre la ansiedad senil; el argentum nitricum sobre la anticipatoria.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_coccus_cacti_drosera",
+      "ingredienteA": "coccus_cacti",
+      "ingredienteB": "drosera",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para tos espasmódica: el coccus cacti y la drosera.",
+      "beneficios": [
+        "Reduce tos seca espasmódica",
+        "Tos convulsiva (coadyuvante)",
+        "Cosquilleo laríngeo"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el coccus cacti actúa sobre la tos espasmódica matutina; la drosera sobre la tos seca irritativa.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_crocus_sativus_lachesis",
+      "ingredienteA": "crocus_sativus",
+      "ingredienteB": "lachesis",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para menopausia con fluctuaciones del humor: el crocus sativus y el lachesis.",
+      "beneficios": [
+        "Estabilidad del humor",
+        "Sofocos",
+        "Sensación de constricción"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el crocus actúa sobre las fluctuaciones del humor; el lachesis sobre los sofocos y la constricción.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_natrum_phosphoricum_natrum_sulphuricum",
+      "ingredienteA": "natrum_phosphoricum",
+      "ingredienteB": "natrum_sulphuricum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de sales de Schüssler: la natrum phos (acidez) y la natrum sulph (hepático/asma).",
+      "beneficios": [
+        "Equilibrio ácido-base",
+        "Soporte hepático",
+        "Reflujo y asma"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la natrum phos regula la acidez; la natrum sulph actúa sobre el hígado y el asma con humedad.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_natrum_sulphuricum_chelidonium",
+      "ingredienteA": "natrum_sulphuricum",
+      "ingredienteB": "chelidonium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia hepatobiliar: la natrum sulph y el chelidonium para la función hepática.",
+      "beneficios": [
+        "Soporte hepático",
+        "Función biliar",
+        "Asma con componente hepático"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la natrum sulph actúa sobre el hígado; el chelidonium sobre el hígado y las vías biliares.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_argentum_nitricum_gelsemium",
+      "ingredienteA": "argentum_nitricum",
+      "ingredienteB": "gelsemium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para ansiedad anticipatoria: el argentum nitricum y el gelsemium.",
+      "beneficios": [
+        "Reduce ansiedad anticipatoria",
+        "Fobia a exámenes",
+        "Temblores",
+        "Vértigo"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el argentum nitricum actúa sobre la ansiedad anticipatoria con diarrea; el gelsemium sobre el temblor y el vértigo.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_zincum_metallicum_kali_phosphoricum",
+      "ingredienteA": "zincum_metallicum",
+      "ingredienteB": "kali_phosphoricum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para fatiga mental y piernas inquietas: el zincum y la kali phos.",
+      "beneficios": [
+        "Reduce piernas inquietas",
+        "Mejora fatiga mental",
+        "Insomnio por agotamiento"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el zincum actúa sobre el agotamiento cerebral y las piernas inquietas; la kali phos sobre la fatiga nerviosa.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_vitamina_b_complejo_vitamina_c",
+      "ingredienteA": "vitamina_b_complejo",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo energético e inmunológico: el complejo B y la vitamina C apoyan energía y la inmunidad.",
+      "beneficios": [
+        "Energía y metabolismo",
+        "Inmunidad",
+        "Reduce fatiga",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Las vitaminas B son cofactores del ciclo de Krebs y la neurotransmisión; la vitamina C es antioxidante y cofactor de la síntesis de catecolaminas.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_niacina_omega3",
+      "ingredienteA": "niacina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo lipídico: la niacina (sube HDL, baja LDL) y el omega-3 (baja triglicéridos) mejoran el perfil lipídico.",
+      "beneficios": [
+        "Mejora perfil lipídico",
+        "Sube HDL",
+        "Baja triglicéridos",
+        "Cardiovascular"
+      ],
+      "precauciones": [
+        "Niacina: rubor, hepatotoxicidad a dosis altas",
+        "Gota (niacina)"
+      ],
+      "mecanismo": "La niacina reduce la lipólisis hepática (HDL↑, LDL↓); el omega-3 reduce la síntesis de triglicéridos hepáticos.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_biotina_zinc",
+      "ingredienteA": "biotina",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para cabello, piel y uñas: la biotina y el zinc son cofactores de la queratina.",
+      "beneficios": [
+        "Fortalece cabello y uñas",
+        "Piel",
+        "Caída del cabello"
+      ],
+      "precauciones": [
+        "Biotina: interferencia con tests de laboratorio (separar)",
+        "Zinc: máx 40mg/día"
+      ],
+      "mecanismo": "La biotina es cofactor de las carboxilasas (queratina); el zinc modula la división celular folicular y la queratinización.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_acido_pantotenico_vitamina_c",
+      "ingredienteA": "acido_pantotenico",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo adrenal: el ácido pantoténico (CoA) y la vitamina C apoyan la función suprarrenal y el estrés.",
+      "beneficios": [
+        "Soporte adrenal",
+        "Reduce fatiga",
+        "Síntesis de cortisol",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El ácido pantoténico es precursor del CoA (síntesis de hormonas esteroideas); la vitamina C es cofactor de la dopamina-β-hidroxilasa y el colesterol-cortisol.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_tiamina_magnesio",
+      "ingredienteA": "tiamina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo neurometabólico: la tiamina (B1) y el magnesio son cofactores de la energía y la función nerviosa.",
+      "beneficios": [
+        "Energía y metabolismo",
+        "Función nerviosa",
+        "Reduce fatiga",
+        "Glucosa"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La tiamina pirofosfato es cofactor de la piruvato deshidrogenasa y transcetolasa; el magnesio es cofactor de la tiamina y de >300 enzimas.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_magnesio_glicinato_melatonina",
+      "ingredienteA": "magnesio_glicinato",
+      "ingredienteB": "melatonina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño: el magnesio glicinato (relajación + glicina) y la melatonina (ritmo circadiano).",
+      "beneficios": [
+        "Mejora calidad del sueño",
+        "Reduce despertares",
+        "Relajación muscular",
+        "Calma"
+      ],
+      "precauciones": [
+        "Somnolencia posible"
+      ],
+      "mecanismo": "El magnesio bloquea NMDA y la glicina (quelante) es inhibidora; la melatonina regula el ritmo circadiano y la temperatura nocturna.",
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "sueno",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_vanadio_cromo",
+      "ingredienteA": "vanadio",
+      "ingredienteB": "cromo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo metabólico: el vanadio (efecto insulínico) y el cromo (sensibilidad a insulina).",
+      "beneficios": [
+        "Soporte glucémico",
+        "Sensibilidad a insulina",
+        "Metabólico"
+      ],
+      "precauciones": [
+        "Vanadio: toxicidad a dosis altas",
+        "Usar bajo supervisión"
+      ],
+      "mecanismo": "El vanadio imita la acción de la insulina (fosfotirosina fosfatasas); el cromo potencia la señalización del receptor de insulina.",
+      "categorias": [
+        "minerales",
+        "minerales"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_tribulus_maca",
+      "ingredienteA": "tribulus",
+      "ingredienteB": "maca",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo vitalizante masculino: el tribulus y la maca para libido y energía.",
+      "beneficios": [
+        "Libido",
+        "Vitalidad",
+        "Energía",
+        "Función sexual"
+      ],
+      "precauciones": [
+        "Evitar en trastornos hormono-dependientes"
+      ],
+      "mecanismo": "Las saponinas del tribulus modulan el NO; la maca modula el eje HHA y la energía. Acción complementaria.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductor",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_pau_d_arco_oregano",
+      "ingredienteA": "pau_d_arco",
+      "ingredienteB": "oregano",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antifúngico: el pau d'arco (lapachol) y el orégano (carvacrol) para candidiasis (coadyuvante).",
+      "beneficios": [
+        "Acción antifúngica",
+        "Antimicrobiano",
+        "Candidiasis coadyuvante"
+      ],
+      "precauciones": [
+        "Orégano: irritante, diluir",
+        "No uso prolongado sin supervisión"
+      ],
+      "mecanismo": "El lapachol del pau d'arco inhibe la respiración fúngica; el carvacrol del orégano daña la membrana fúngica.",
+      "categorias": [
+        "fitoterapia",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_picrorhiza_cardo_mariano",
+      "ingredienteA": "picrorhiza",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Hepatoprotección dual: la picrorhiza (picrosidos) y el cardo mariano (silimarina).",
+      "beneficios": [
+        "Hepatoprotección",
+        "Acción antioxidante hepática",
+        "Función biliar"
+      ],
+      "precauciones": [
+        "Precaución en cálculos biliares"
+      ],
+      "mecanismo": "Los picrosidos inducen enzimas de fase II; la silimarina estabiliza la membrana del hepatocito y es antioxidante.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_musgo_islandia_gordolobo",
+      "ingredienteA": "musgo_islandia",
+      "ingredienteB": "gordolobo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo emoliente respiratorio: el musgo de islandia y el gordolobo para tos irritativa.",
+      "beneficios": [
+        "Calma la mucosa irritada",
+        "Tos seca",
+        "Irritación faríngea"
+      ],
+      "precauciones": [
+        "Mucílagos: separar de medicamentos 2h"
+      ],
+      "mecanismo": "Los mucílagos del musgo de islandia y el gordolobo forman una película protectora sobre la mucosa respiratoria.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_betaina_folato",
+      "ingredienteA": "betaina",
+      "ingredienteB": "folato",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Vía de la metilación: la betaína (TMG) y el folato (5-MTHF) reducen la homocisteína por vías complementarias.",
+      "beneficios": [
+        "Reduce homocisteína",
+        "Soporte de la metilación",
+        "Salud cardiovascular"
+      ],
+      "precauciones": [
+        "Monitorizar en colesterol elevado (betaina)"
+      ],
+      "mecanismo": "La betaína remetila homocisteína vía BHMT (hígado); el folato vía metionina sintasa (B12-dependiente). Vías paralelas.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_l_metionina_same",
+      "ingredienteA": "l_metionina",
+      "ingredienteB": "same",
+      "tipo": "cofactor",
+      "nivelEvidencia": "C",
+      "descripcion": "Vía de la metilación: la metionina es precursor del SAMe (donante universal de metilo).",
+      "beneficios": [
+        "Soporte de la metilación",
+        "Salud hepática",
+        "Glutatión"
+      ],
+      "precauciones": [
+        "Exceso de metionina: hiperhomocisteinemia (usar con B12/folato/betaina)"
+      ],
+      "mecanismo": "La metionina se convierte en SAMe (donante de metilo) vía metionina adenosiltransferasa; el SAMe es el donante universal de grupos metilo.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_l_treonina_glutamina",
+      "ingredienteA": "l_treonina",
+      "ingredienteB": "l_glutamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Reparación de la barrera intestinal: la treonina (mucinas) y la glutamina (enterocitos).",
+      "beneficios": [
+        "Reparación de mucosa intestinal",
+        "Barrera mucosa",
+        "Intestino permeable"
+      ],
+      "precauciones": [
+        "Bien toleradas"
+      ],
+      "mecanismo": "La treonina es componente de las mucinas (capa mucosa); la glutamina alimenta los enterocitos y repara las uniones estrechas.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_gaba_l_teanina",
+      "ingredienteA": "gaba",
+      "ingredienteB": "l_teanina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo calmante: el GABA (inhibitorio) y la teanina (ondas alfa) para ansiedad y estrés.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Calma sin sedación",
+        "Estrés",
+        "Relajación"
+      ],
+      "precauciones": [
+        "Sedación posible"
+      ],
+      "mecanismo": "El GABA activa receptores GABA-A/B; la teanina aumenta las ondas alfa y modula GABA. Sinergia ansiolítica.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_honokiol_magnesio",
+      "ingredienteA": "honokiol",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo calmante nocturno: el honokiol (GABA-A) y el magnesio (NMDA) para ansiedad y sueño.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Inducción del sueño",
+        "Calma sin dependencia"
+      ],
+      "precauciones": [
+        "Sedación posible",
+        "Evitar con sedantes sin supervisión"
+      ],
+      "mecanismo": "El honokiol modula GABA-A (sin dependencia); el magnesio bloquea NMDA y modula la excitabilidad.",
+      "categorias": [
+        "vitaminas",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso",
+        "sueno"
+      ]
+    },
+    {
+      "id": "sin_postbioticos_probioticos",
+      "ingredienteA": "postbioticos",
+      "ingredienteB": "probioticos",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo microbiota: los postbióticos (butirato) y los probióticos regeneran la microbiota y la barrera intestinal.",
+      "beneficios": [
+        "Reparación de la microbiota",
+        "Integridad intestinal",
+        "Antiinflamatorio",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Los probióticos colonizan y los postbióticos (butirato) alimentan los colonocitos e inhiben la HDAC (antiinflamatorio).",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_postbioticos_glutamina",
+      "ingredienteA": "postbioticos",
+      "ingredienteB": "l_glutamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Reparación intestinal profunda: el butirato y la glutamina regeneran el colon y el enterocito.",
+      "beneficios": [
+        "Reparación de mucosa",
+        "Intestino permeable",
+        "Antiinflamatorio"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El butirato alimenta los colonocitos e inhibe la HDAC; la glutamina alimenta los enterocitos y repara las uniones estrechas.",
+      "categorias": [
+        "probioticos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "digestivo"
       ]
     }
   ]

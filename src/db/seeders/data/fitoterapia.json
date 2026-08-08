@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 98,
+    "total": 102,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -5152,6 +5152,221 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (inmunidad/metabólico)"
+      }
+    },
+    {
+      "id": "tribulus",
+      "nombre": "Tribulus",
+      "nombresAlternativos": [
+        "Tribulus terrestris",
+        "Abrojo",
+        "Tribule",
+        "Videira-terrestre",
+        "Calthrop"
+      ],
+      "nombreCientifico": "Tribulus terrestris",
+      "familia": "Zygophyllaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductor",
+        "urinario"
+      ],
+      "indicaciones": [
+        "libido",
+        "función sexual",
+        "salud urinaria",
+        "vitalidad"
+      ],
+      "descripcion": "Planta con saponinas esteroidales (protodioscina) usada para libido y vitalidad. Evidencia mixta pero uso popular extendido.",
+      "mecanismoAccion": "Las saponinas esteroidales (protodioscina) modulan la producción de testosterona (debatido) y aumentan el óxido nítrico, mejorando la función sexual.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto/raíz",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado saponinas)",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Precaución en trastornos hormono-dependientes",
+        "Insomnio posible"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "libido",
+        "vitalidad",
+        "saponinas",
+        "urinario",
+        "sexual"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (libido, evidencia mixta)"
+      }
+    },
+    {
+      "id": "pau_d_arco",
+      "nombre": "Pau d'Arco",
+      "nombresAlternativos": [
+        "Tabebuia",
+        "Handroanthus impetiginosus",
+        "Lapacho",
+        "Taheebo",
+        "Ipe roxo"
+      ],
+      "nombreCientifico": "Handroanthus impetiginosus",
+      "familia": "Bignoniaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmunologico",
+        "piel"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "infecciones fúngicas",
+        "piel",
+        "candidiasis (coadyuvante)"
+      ],
+      "descripcion": "Corteza sudamericana con naftoquinonas (lapachol) de acción antimicrobiana y antifúngica. Uso tradicional en infecciones.",
+      "mecanismoAccion": "El lapachol y β-lapachona inhiben la respiración microbiana (generación de ROS) y tienen acción antifúngica y antiviral; inmunomodulación leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza interna",
+      "formasPresentacion": [
+        "Decocción",
+        "Cápsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Posible toxicidad por lapachol a dosis altas",
+        "Anticoagulante teórico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antifúngico",
+        "antimicrobiano",
+        "candidiasis",
+        "lapachol",
+        "inmunidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional use + antimicrobial studies"
+      }
+    },
+    {
+      "id": "picrorhiza",
+      "nombre": "Picrorhiza",
+      "nombresAlternativos": [
+        "Picrorhiza kurroa",
+        "Kutki",
+        "Picrorhiza",
+        "Indian gentian",
+        "Katuki"
+      ],
+      "nombreCientifico": "Picrorhiza kurroa",
+      "familia": "Plantaginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "salud hepática",
+        "hepatoprotección",
+        "dispepsia",
+        "colesterol",
+        "astenia"
+      ],
+      "descripcion": "Raíz amarga ayurvédica con iridoides (picrosido I/II) hepatoprotectores. Protege el hígado y mejora la función digestiva.",
+      "mecanismoAccion": "Los picrosidos I y II son antioxidantes hepáticos, inducen enzimas de fase II y protegen el hepatocito; los amargos estimulan la secreción biliar.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Cápsulas (extracto)",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Precaución en cálculos biliares"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hepatotóxicos"
+      ],
+      "tags": [
+        "hepático",
+        "hepatoprotector",
+        "amargo",
+        "picrosidos",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Ayurvedic pharmacopoeia + hepatoprotection studies"
+      }
+    },
+    {
+      "id": "musgo_islandia",
+      "nombre": "Musgo de Islandia",
+      "nombresAlternativos": [
+        "Iceland moss",
+        "Cetraria islandica",
+        "Líquen de Islandia",
+        "Cetraria",
+        "Musgo islandés"
+      ],
+      "nombreCientifico": "Cetraria islandica",
+      "familia": "Parmeliaceae (líquen)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "tos seca",
+        "irritación faríngea",
+        "gastritis",
+        "dispepsia",
+        "pérdida de apetito"
+      ],
+      "descripcion": "Líquen con mucílagos y ácido usnico, emoliente de mucosas respiratorias y digestivas. Monografía EMA HMPC por uso tradicional.",
+      "mecanismoAccion": "Los mucílagos forman una película protectora sobre mucosas irritadas; el ácido usnico tiene acción antimicrobiana leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "talo",
+      "formasPresentacion": [
+        "Decocción",
+        "Cápsulas",
+        "Jarabe"
+      ],
+      "tiempoEfecto": "1-3 días",
+      "duracionTratamiento": "5-7 días",
+      "advertencias": [
+        "Amargor intenso (macerar o decocción)",
+        "Reacciones alérgicas raras"
+      ],
+      "interaccionesMedicamentosas": [
+        "Reducen absorción (mucílagos, separar 2h)"
+      ],
+      "tags": [
+        "emoliente",
+        "tos",
+        "respiratorio",
+        "mucílagos",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional)"
       }
     }
   ]
