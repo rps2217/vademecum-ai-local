@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 50,
+    "total": 60,
     "fuente": "Vademecum AI Knowledge Base"
   },
   "sinergias": [
@@ -1280,6 +1280,266 @@
       "sistemas": [
         "cardiovascular",
         "endocrino"
+      ]
+    },
+    {
+      "id": "sin_castano_vid",
+      "ingredienteA": "castano_indias",
+      "ingredienteB": "vid_roja",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion venotonica de primera linea para la insuficiencia venosa leve: la aescina del castano reduce el edema capilar y los antocianos de la vid protegen el endotelio venoso.",
+      "beneficios": [
+        "Doble accion venotonica (aescina + antocianos)",
+        "Reduccion del edema y la pesadez de piernas",
+        "Proteccion combinada del endotelio capilar"
+      ],
+      "precauciones": [
+        "Consultar al medico si aparecen ulceras, dolor intenso o hinchazon brusca",
+        "Castano de indias: no usar en menores de 18 anos ni en obstruccion",
+        "Precaucion con anticoagulantes"
+      ],
+      "mecanismo": "La aescina del castano reduce la permeabilidad capilar y aumenta el tono venoso; los antocianos de la hoja de vid refuerzan la proteccion endotelial por via antioxidante; ambas plantas convergen en mejorar el retorno venoso.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_castano_hamamelis",
+      "ingredienteA": "castano_indias",
+      "ingredienteB": "hamamelis",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion para hemorroides e insuficiencia venosa: la aescina del castano y los taninos de hamamelis reducen el edema, la inflamacion y el sangrado leve.",
+      "beneficios": [
+        "Reduccion del edema y la inflamacion hemorroidal",
+        "Efecto astringente que frena el sangrado leve",
+        "Venotonico + astringente combinados"
+      ],
+      "precauciones": [
+        "Sangrado rectal persistente requiere descartar patologia",
+        "Castano de indias: no usar en menores de 18 anos",
+        "No aplicar hamamelis sobre heridas grandes sin consulta"
+      ],
+      "mecanismo": "La aescina del castano reduce la permeabilidad capilar y el edema venoso; los taninos galotaninos de hamamelis ejercen accion astringente y hemostatica local; la combinacion es util en hemorroides y varices leves.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_hiedra_tomillo",
+      "ingredienteA": "hiedra",
+      "ingredienteB": "tomillo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinacion expectorante clasica para la tos productiva: las saponinas de la hiedra fluidifican el moco y los fenoles del tomillo (timol) ejercen accion antisptica bronquial.",
+      "beneficios": [
+        "Doble accion expectorante (saponinas + timol)",
+        "Antisptico bronquial por el tomillo",
+        "Eficacia reconocida en tos productiva"
+      ],
+      "precauciones": [
+        "Consultar al medico si la tos dura mas de 4-7 dias o hay dificultad respiratoria",
+        "No usar en menores de 4-6 anos sin dosis pediatrica especifica",
+        "El aceite esencial de tomillo puede irritar; usar preparaciones orales estandarizadas"
+      ],
+      "mecanismo": "Las saponinas triterpenicas de la hiedra aumentan la secrecion bronquial y reducen la viscosidad del moco (expectorante); los compuestos fenolicos del tomillo (timol, carvacrol) anaden efecto antimicrobiano bronquial.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_hiedra_llanten",
+      "ingredienteA": "hiedra",
+      "ingredienteB": "llanten",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion para la tos productiva con irritacion faringea: la hiedra fluidifica el moco y el llanten demulce y calma la mucosa irritada.",
+      "beneficios": [
+        "Expectorante + demulcente combinados",
+        "Calma la irritacion de garganta al toser",
+        "Apropiado para tos con picor faringeo"
+      ],
+      "precauciones": [
+        "Consultar al medico si los sintomas duran mas de 1 semana",
+        "No usar en menores de 3 anos por via oral sin supervision"
+      ],
+      "mecanismo": "Las saponinas de la hiedra actuan como expectorante fluidificante; los mucilagos del llanten forman una pelicula demulcente que protege la mucosa faringea irritada por la tos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_llanten_malva",
+      "ingredienteA": "llanten",
+      "ingredienteB": "malva",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion demulcente para la tos seca y la irritacion de boca y garganta: ambos aportan mucilagos que protegen y calman la mucosa.",
+      "beneficios": [
+        "Doble accion demulcente (mucilagos)",
+        "Calma la tos seca y la irritacion faringea",
+        "Apropiado para gargarismos y jarabes"
+      ],
+      "precauciones": [
+        "No usar en menores de 3 anos por via oral sin supervision",
+        "Consultar al medico si los sintomas duran mas de 1 semana"
+      ],
+      "mecanismo": "Los mucilagos de ambas plantas (aucubina/iridoides del llanten y mucilagos de malva) forman una pelicula protectora sobre la mucosa respiratoria y oral, reduciendo la irritacion y la tos seca por accion sinergica.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_ulmaria_sauce",
+      "ingredienteA": "ulmaria",
+      "ingredienteB": "sauce",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion analgesica/antiinflamatoria natural: ambos contienen precursores de acido salicilico que reducen el dolor articular y la fiebre leve por vias similares.",
+      "beneficios": [
+        "Doble fuente de salicilatos (efecto antiinflamatorio)",
+        "Alivio del dolor articular y lumbar leve",
+        "Efecto antipiretico combinado"
+      ],
+      "precauciones": [
+        "Contraindicado en alergia a salicilatos",
+        "Precaucion en embarazo, lactancia y ulcera gastrica",
+        "Potencia el efecto de AINEs y anticoagulantes",
+        "No usar en menores de 16 anos por riesgo teorico de sindrome de Reye"
+      ],
+      "mecanismo": "Tanto la ulmaria como el sauce aportan salicilatos que se metabolizan a acido salicilico, inhibiendo COX-1/COX-2; la combinacion ofrece efecto analgesico y antipiretico similar a la aspirina natural, permitiendo dosis menores de cada planta.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_alcachofa_diente_leon",
+      "ingredienteA": "alcachofa",
+      "ingredienteB": "diente_de_leon",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion hepato-digestiva: la alcachofa (cinarina) y el diente de leon (lactonas amargas) estimulan la secrecion biliar y alivian la dispepsia con plenitud.",
+      "beneficios": [
+        "Doble estimulacion coleretica/colagoga",
+        "Alivio de plenitud, flatulencia y dispepsia",
+        "Apoyo a la funcion hepatobiliar"
+      ],
+      "precauciones": [
+        "Contraindicado en obstruccion biliar, colelitiasis o hepatopatias graves",
+        "Alergia a Asteraceae (ambas son Compositae)",
+        "Precaucion en embarazo y lactancia"
+      ],
+      "mecanismo": "La cinarina de la alcachofa y las lactonas sesquiterpenicas del diente de leon estimulan la secrecion de bilis y enzimas digestivas por receptores amargos, mejorando la dispepsia con plenitud y flatulencia.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_alcachofa_boldo",
+      "ingredienteA": "alcachofa",
+      "ingredienteB": "boldo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion coleretica y hepatoprotectora: la alcachofa y el boldo estimulan la bilis y alivian la dispepsia leve de origen hepatobiliar.",
+      "beneficios": [
+        "Estimulacion coleretica combinada",
+        "Efecto espasmolitico por el boldo",
+        "Alivio de dispepsia y pesadez digestiva"
+      ],
+      "precauciones": [
+        "No usar en obstruccion biliar o hepatopatias graves",
+        "Alergia a Asteraceae (alcachofa)",
+        "Boldo: no usar en embarazo por efecto uterotonic"
+      ],
+      "mecanismo": "La cinarina de la alcachofa y la boldina del boldo estimulan la secrecion biliar; el boldo anade efecto espasmolitico sobre la musculatura lisa digestiva, completando el efecto coleretico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_olivo_grosellero",
+      "ingredienteA": "olivo",
+      "ingredienteB": "grosellero_negro",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion diuretica suave para la retencion de liquidos leve: la hoja de olivo y el grosellero negro favorecen la eliminacion renal de agua.",
+      "beneficios": [
+        "Doble accion diuretica suave",
+        "Alivio de la retencion de liquidos leve",
+        "Efecto antioxidante combinado (oleuropeina + flavonoides)"
+      ],
+      "precauciones": [
+        "No usar en insuficiencia cardiaca o renal graves (donde se restringe liquidos)",
+        "Precaucion con medicacion diuretica e hipotensora (potencia efecto)",
+        "Descartar afecciones graves por un medico"
+      ],
+      "mecanismo": "La oleuropeina del olivo y los flavonoides del grosellero negro ejercen accion diuretica suave por vias complementarias, favoreciendo la eliminacion renal de agua en retencion leve.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_olivo_ajo",
+      "ingredienteA": "olivo",
+      "ingredienteB": "ajo",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion para el apoyo cardiovascular: el ajo modera lipidos y presion, el olivo aporta efecto diuretico e hipotensor; enfoque complementario del riesgo cardiovascular.",
+      "beneficios": [
+        "Abordaje complementario de presion arterial",
+        "Efecto antioxidante vascular combinado",
+        "Apoyo al perfil cardiovascular"
+      ],
+      "precauciones": [
+        "Ajo: evitar 7 dias antes de cirugia y con anticoagulantes",
+        "Ambos pueden potenciar el efecto de antihipertensivos; monitorizar",
+        "No usar en insuficiencia cardiaca/renal graves sin supervision"
+      ],
+      "mecanismo": "El ajo (alicina/compuestos sulfurados) reduce lipidos y presion; el olivo (oleuropeina) aporta diuresis y vasodilatacion; ambos convergen en la modulacion de la tension arterial y la proteccion vascular.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
       ]
     }
   ]

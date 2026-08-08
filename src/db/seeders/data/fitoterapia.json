@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 50,
+    "total": 55,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs on Selected Medicinal Plants"
   },
   "ingredientes": [
@@ -2581,6 +2581,269 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC assessment report EMA/HMPC/325715/2017 (Hedera helix folium, well-established use)"
+      }
+    },
+    {
+      "id": "salvia",
+      "nombre": "Salvia",
+      "nombresAlternativos": [
+        "Salvia officinalis",
+        "Common sage",
+        "Salviae officinalis folium",
+        "Salvia comun"
+      ],
+      "nombreCientifico": "Salvia officinalis",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "sudoracion excesiva",
+        "inflamacion de boca y garganta",
+        "dispepsia leve"
+      ],
+      "descripcion": "Hoja usada tradicionalmente para la inflamacion leve de boca y garganta, la dispepsia leve y la sudoracion excesiva. Tambien conocida por su uso tradicional en la memoria, aunque no cubierto por la indicacion EMA.",
+      "mecanismoAccion": "Los taninos ejercen accion astringente (reduce sudoracion y secreciones), el aceite esencial (tuyona) es espasmolitico y antiinflamatorio local; algunos estudios sugieren efecto colinergico sobre la cognicion.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto liquido",
+        "Gargarismos",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "dias a semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "El aceite esencial contiene tuyona (neurotoxica); no exceder dosis ni usar prolongado",
+        "Contraindicado en embarazo y lactancia por accion emenagoga y tuyona",
+        "Precaucion en epilepsia",
+        "No recomendado en menores de 18 anos para sudoracion",
+        "Usar como maximo 2 semanas en sudoracion sin supervision medica"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "astringente",
+        "sudoracion",
+        "garganta",
+        "tuyona",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/277152/2015 Rev.1 (Salvia officinalis folium); ESCOP Monographs"
+      }
+    },
+    {
+      "id": "malva",
+      "nombre": "Malva",
+      "nombresAlternativos": [
+        "Malva sylvestris",
+        "Common mallow",
+        "Malve",
+        "Malvae sylvestris flos",
+        "Flor de malva"
+      ],
+      "nombreCientifico": "Malva sylvestris",
+      "familia": "Malvaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "tos seca",
+        "irritacion de boca y garganta",
+        "tos y resfriado"
+      ],
+      "descripcion": "Flor usada tradicionalmente como demulcente y emoliente para el alivio de la tos seca, la irritacion de boca y garganta y la tos asociada al resfriado comun.",
+      "mecanismoAccion": "Los mucilagos forman una pelicula protectora sobre la mucosa (demulcente) que calma la irritacion y suaviza la tos seca; accion antiinflamatoria leve local.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor",
+      "formasPresentacion": [
+        "Infusion",
+        "Jarabe",
+        "Gargarismos",
+        "Extracto liquido"
+      ],
+      "tiempoEfecto": "minutos a horas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No recomendado en menores de 3 anos por via oral sin supervision",
+        "Consultar al medico si los sintomas duran mas de 1 semana",
+        "No recomendado en embarazo y lactancia por falta de datos"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "demulcente",
+        "emoliente",
+        "tos seca",
+        "garganta",
+        "mucilagos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/749511/2016 (Malva sylvestris flos)"
+      }
+    },
+    {
+      "id": "ulmaria",
+      "nombre": "Ulmaria (Reina de los Prados)",
+      "nombresAlternativos": [
+        "Filipendula ulmaria",
+        "Meadowsweet",
+        "Spiraea ulmaria",
+        "Filipendulae ulmariae herba"
+      ],
+      "nombreCientifico": "Filipendula ulmaria",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "musculoesqueletico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "resfriado comun adyuvante",
+        "dolor articular leve",
+        "afecciones reumaticas leves"
+      ],
+      "descripcion": "Partes aereas usadas tradicionalmente como apoyo en el resfriado comun y para el alivio del dolor articular leve.",
+      "mecanismoAccion": "Contiene salicilatos ( precursor de acido salicilico) con efecto analgesico y antiinflamatorio, ademas de taninos astringentes.",
+      "nivelEvidencia": "C",
+      "parteUsada": "partes aereas",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto liquido",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "horas",
+      "duracionTratamiento": "corto plazo",
+      "advertencias": [
+        "Contraindicado en alergia a salicilatos",
+        "Precaucion en embarazo, lactancia y ulcera gastrica",
+        "Puede potenciar el efecto de AINEs y anticoagulantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "AINEs",
+        "Anticoagulantes",
+        "Salicilatos"
+      ],
+      "tags": [
+        "salicilato",
+        "analgesico",
+        "antiinflamatorio",
+        "resfriado",
+        "articular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph EMA/HMPC/434881/2010 (Filipendula ulmaria herba)"
+      }
+    },
+    {
+      "id": "olivo",
+      "nombre": "Hoja de Olivo",
+      "nombresAlternativos": [
+        "Olea europaea",
+        "Olive leaf",
+        "Oleae folium",
+        "Hoja de olivo"
+      ],
+      "nombreCientifico": "Olea europaea",
+      "familia": "Oleaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "retencion de liquidos leve",
+        "eliminacion renal de agua",
+        "tension arterial moderada"
+      ],
+      "descripcion": "Hoja usada tradicionalmente para promover la eliminacion de agua por los riñones en casos leves de retencion de liquidos, tras descartar afecciones graves por un medico. Algunos estudios sugieren efecto hipotensor moderado.",
+      "mecanismoAccion": "La oleuropeina y derivados ejercen accion diuretica suave y vasodilatadora (posible bloqueo de canales de calcio), con efecto hipotensor modesto y antioxidante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Infusion"
+      ],
+      "tiempoEfecto": "semanas",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No usar en condiciones donde se recomienda ingesta reducida de liquidos (insuficiencia cardiaca o renal graves)",
+        "Precaucion con medicacion antihipertensiva (potencia efecto)",
+        "Monitorizar la tension arterial si se combina con hipotensores"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Diureticos"
+      ],
+      "tags": [
+        "diuretico",
+        "hipotensor",
+        "oleuropeina",
+        "antioxidante",
+        "retencion liquidos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Olea europaea L., folium (2017)"
+      }
+    },
+    {
+      "id": "grosellero_negro",
+      "nombre": "Grosellero Negro",
+      "nombresAlternativos": [
+        "Ribes nigrum",
+        "Blackcurrant leaf",
+        "Ribis nigri folium",
+        "Hoja de grosellero negro"
+      ],
+      "nombreCientifico": "Ribes nigrum",
+      "familia": "Grossulariaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "retencion de liquidos leve",
+        "molestias urinarias leves",
+        "articulaciones"
+      ],
+      "descripcion": "Hoja usada tradicionalmente para aumentar la cantidad de orina, como adyuvante en problemas leves urinarios y para la retencion de liquidos leve, tras descartar afecciones graves por un medico.",
+      "mecanismoAccion": "Los flavonoides y taninos ejercen accion diuretica suave y antiinflamatoria; tradicionalmente se le atribuye efecto venotonico y articular.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto seco",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "dias",
+      "duracionTratamiento": "uso prolongado",
+      "advertencias": [
+        "No usar en condiciones donde se recomienda ingesta reducida de liquidos (insuficiencia cardiaca o renal graves)",
+        "Consultar al medico si los sintomas empeoran o persisten"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos (potencia efecto)"
+      ],
+      "tags": [
+        "diuretico",
+        "urinario",
+        "articular",
+        "flavonoides",
+        "retencion liquidos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph on Ribes nigrum L., folium (Rev.1)"
       }
     }
   ]

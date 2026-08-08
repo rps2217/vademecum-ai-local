@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 31,
+    "total": 35,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hahnemann)"
   },
   "ingredientes": [
@@ -2408,6 +2408,330 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "bellis_perennis",
+      "nombre": "Bellis Perennis",
+      "nombresAlternativos": [
+        "Bellis",
+        "Daisy",
+        "Marguerite",
+        "May flower",
+        "Bellis perennis herba"
+      ],
+      "nombreCientifico": "Bellis perennis",
+      "familia": "Asteraceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "lesiones de tejidos profundos",
+        "contusiones musculares",
+        "congestion venosa por causa mecanica",
+        "post-quirurgico"
+      ],
+      "descripcion": "Remedio de lesiones en tejidos profundos, contusiones musculares y congestion venosa por causas mecanicas (compresion, traumatismo). Se considera un complemento de Arnica para tejidos profundos y lesiones abdominales/pelvicas.",
+      "mecanismoAccion": "En homeopatia: modula la reparacion de tejidos profundos y la congestion venosa tras traumatismo, con accion sobre la musculatura y los vasos.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        5,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Lesiones de tejidos profundos y contusiones musculares",
+        "Sensacion de torcedura o esguince",
+        "Congestion venosa por compresion o traumatismo",
+        "Dolor que empeora con el movimiento y mejora con el reposo",
+        "Molestias post-quirurgicas y traumatismos abdominales/pelvicos",
+        "Agrava con el frio y el lavado en agua fria"
+      ],
+      "modalidades": {
+        "empeora": [
+          "movimiento",
+          "frio",
+          "agua fria",
+          "antes de las menstruaciones"
+        ],
+        "mejora": [
+          "reposo",
+          "inmovilidad",
+          "calor local"
+        ]
+      },
+      "afinidad": [
+        "musculos",
+        "tejido celular subcutaneo",
+        "vasos venosos",
+        "pelvis",
+        "abdomen"
+      ],
+      "constelaciones": [
+        "Contusiones profundas",
+        "Post-quirurgico",
+        "Traumatismo pelvico"
+      ],
+      "advertencias": [
+        "Las lesiones graves o con sospecha de fractura requieren valoracion medica",
+        "Alergia posible a Asteraceae"
+      ],
+      "tags": [
+        "contusion",
+        "tejidos profundos",
+        "post-quirurgico",
+        "congestion venosa"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica"
+      }
+    },
+    {
+      "id": "staphysagria",
+      "nombre": "Staphysagria",
+      "nombresAlternativos": [
+        "Staphysagria",
+        "Delphinium staphisagria",
+        "Stavesacre",
+        "Lice seed"
+      ],
+      "nombreCientifico": "Delphinium staphisagria",
+      "familia": "Ranunculaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "heridas quirurgicas",
+        "heridas de borde limpio",
+        "irritabilidad suprimida",
+        "trastornos tras emociones suprimidas",
+        "cistitis post-coito"
+      ],
+      "descripcion": "Remedio de heridas de bordes limpios (quirurgicas) y de trastornos tras emociones suprimidas (ira contenida, indignacion). Indicado en la cistitis post-coito de las recien casadas y la irritabilidad de emociones reprimidas.",
+      "mecanismoAccion": "En homeopatia: modula la cicatrizacion de heridas de borde limpio y la sintomatologia neurovegetativa tras emociones suprimidas.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Heridas de bordes limpios (corte, quirurgicas)",
+        "Sintomas tras emociones suprimidas (ira contenida, indignacion)",
+        "Irritabilidad con arrojamiento de objetos",
+        "Cistitis post-coito (recien casadas)",
+        "Sensacion de peso en pelvis o vejiga",
+        "Dolor tipo corte, muy sensible al tacto",
+        "Tics y estremecimientos en ninos"
+      ],
+      "modalidades": {
+        "empeora": [
+          "ira",
+          "indignacion",
+          "tocar",
+          "emociones suprimidas",
+          "medianoche"
+        ],
+        "mejora": [
+          "desayunar",
+          "cena",
+          "reposo"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso",
+        "vejiga",
+        "uretra",
+        "piel",
+        "encias"
+      ],
+      "constelaciones": [
+        "Heridas quirurgicas",
+        "Cistitis post-coito",
+        "Trastornos por emociones suprimidas"
+      ],
+      "advertencias": [
+        "La planta fresca es toxica; solo en dilucion homeopatica",
+        "Las cistitis recurrentes requieren estudio urologico"
+      ],
+      "tags": [
+        "heridas quirurgicas",
+        "emociones suprimidas",
+        "ira",
+        "cistitis",
+        "borde limpio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "eupatorium",
+      "nombre": "Eupatorium Perfoliatum",
+      "nombresAlternativos": [
+        "Eupatorium",
+        "Boneset",
+        "Thoroughwort",
+        "Ague weed"
+      ],
+      "nombreCientifico": "Eupatorium perfoliatum",
+      "familia": "Asteraceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "dolor oseo intenso",
+        "fiebre con dolor de huesos",
+        "gripe",
+        "tos con dolor de pecho"
+      ],
+      "descripcion": "Remedio de la fiebre con dolor oseo profundo (como si los huesos se rompieran), tipico de la gripe. El dolor oseo que mejora con el sudor y la conversacion es caracteristico.",
+      "mecanismoAccion": "En homeopatia: modula la fiebre con mialgias y dolor oseo intenso, y la tos con dolor de pecho.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolor oseo profundo, como si los huesos se rompieran",
+        "Fiebre con escalofrios intensos",
+        "Dolor que mejora con el sudor",
+        "Gran sed de bebidas frias durante el escalofrio",
+        "Tos con dolor de pecho y cabeza",
+        "Dolor que mejora conversando (distraido)",
+        "Temblor y escalofrios matinales"
+      ],
+      "modalidades": {
+        "empeora": [
+          "periodicamente",
+          "frio",
+          "aire frio",
+          "olor de comida",
+          "despues de medianoche"
+        ],
+        "mejora": [
+          "conversacion",
+          "sudor",
+          "apoyo de las manos"
+        ]
+      },
+      "afinidad": [
+        "hueso",
+        "musculos",
+        "sistema respiratorio",
+        "higado"
+      ],
+      "constelaciones": [
+        "Gripe con dolor oseo",
+        "Fiebre con escalofrios",
+        "Tos con dolor de pecho"
+      ],
+      "advertencias": [
+        "La planta fresca contiene alcaloides pirrolizidicos; solo en dilucion homeopatica",
+        "Las fiebres altas y persistentes requieren valoracion medica"
+      ],
+      "tags": [
+        "dolor oseo",
+        "fiebre",
+        "gripe",
+        "escalofrios",
+        "tos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes"
+      }
+    },
+    {
+      "id": "china_officinalis",
+      "nombre": "China Officinalis (Cinchona)",
+      "nombresAlternativos": [
+        "China",
+        "Cinchona officinalis",
+        "Peruvian bark",
+        "Quinine bark",
+        "Cinchona"
+      ],
+      "nombreCientifico": "Cinchona officinalis",
+      "familia": "Rubicaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "debilidad tras perdida de liquidos",
+        "sensibilidad aumentada",
+        "distension abdominal por gases",
+        "periodicidad de los sintomas"
+      ],
+      "descripcion": "Remedio de la debilidad y el agotamiento tras perdidas de liquidos orgánicos (sangre, diarrea, lactancia, sudor). Hipersensibilidad sensorial y distension abdominal por gases son caracteristicas.",
+      "mecanismoAccion": "En homeopatia: modula la debilidad por perdida de liquidos orgánicos y la hipersensibilidad, con accion sobre el tracto digestivo y la periodizacion de los sintomas.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Debilidad tras perdida de liquidos orgánicos (sangre, diarrea, sudor)",
+        "Hipersensibilidad de los sentidos (vista, oido, tacto)",
+        "Distension abdominal por gases, peor tras comer fruta",
+        "Sintomas periodicos (cada dia a la misma hora, cada dos dias)",
+        "Dolor que mejora con la presion fuerte",
+        "Palpitaciones con debilidad"
+      ],
+      "modalidades": {
+        "empeora": [
+          "toque",
+          "corriente de aire",
+          "perdida de liquidos",
+          "fruta",
+          "medianoche"
+        ],
+        "mejora": [
+          "presion fuerte",
+          "reposo",
+          "calor"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso",
+        "tracto digestivo",
+        "sangre",
+        "bazo",
+        "corazon"
+      ],
+      "constelaciones": [
+        "Debilidad post-hemorragica",
+        "Distension por gases",
+        "Sensibilidad aumentada"
+      ],
+      "advertencias": [
+        "La debilidad tras hemorragia o perdidas graves requiere valoracion medica",
+        "La cinchona fresca contiene quinina; solo en dilucion homeopatica"
+      ],
+      "tags": [
+        "debilidad",
+        "perdida de liquidos",
+        "gases",
+        "hipersensibilidad",
+        "periodico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Boericke Pocket Manual of Materia Medica; Clarke Dictionary of Practical Materia Medica; Allen Keynotes; Hahnemann Materia Medica Pura"
       }
     }
   ]
