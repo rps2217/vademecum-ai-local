@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 106,
+    "total": 114,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -27,7 +27,7 @@
       "indicaciones": [
         "insomnio",
         "ansiedad",
-        "estres"
+        "estrés"
       ],
       "descripcion": "Planta sedante y ansiolítica natural. Utilizada traditionally para tratar el insomnio y la ansiedad leve.",
       "mecanismoAccion": "Modula los receptores GABA-A, aumentando la neurotransmisión inhibitoria. Los valepotriatos tienen efectos sedantes.",
@@ -80,7 +80,7 @@
       "indicaciones": [
         "ansiedad",
         "insomnio",
-        "estres",
+        "estrés",
         "nerviosismo"
       ],
       "descripcion": "Planta con propiedades ansioliticas y sedantes. Eficaz para ansiedad leve y trastornos del sueno.",
@@ -130,9 +130,9 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "estres",
+        "estrés",
         "insomnio",
-        "digestion",
+        "dispepsia",
         "nerviosismo"
       ],
       "descripcion": "Hierba limonada con propiedades calmantes y digestivas. Excelente para ansiedad asociada a problemas gastrointestinales.",
@@ -180,9 +180,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "depresion",
+        "depresión",
         "ansiedad",
-        "estres",
+        "estrés",
         "insomnio"
       ],
       "descripcion": "Planta antidepresiva natural con eficacia demostrada en depresion leve a moderada.",
@@ -234,10 +234,9 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "memoria",
-        "concentracion",
-        "circulacion",
-        "antienvejecimiento"
+        "cognitivo",
+        "circulación",
+        "antioxidante"
       ],
       "descripcion": "Arbol milenario con potentes efectos neuroprotectores y circulatorios.",
       "mecanismoAccion": "Mejora la circulacion cerebral y periférica. Los flavonoides son antioxidantes potentes. Los terpenoides inhiben factor de agregacion plaquetaria.",
@@ -284,9 +283,7 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "resfriado",
-        "gripe",
-        "infecciones"
+        "gripe"
       ],
       "descripcion": "Planta immunomoduladora que estimula las defensas naturales del organismo.",
       "mecanismoAccion": "Estimula el sistema inmune innato. Aumenta la produccion de citocinas y la actividad de fagocitos.",
@@ -334,9 +331,8 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "infecciones",
         "dolor",
-        "heridas"
+        "cicatrización"
       ],
       "descripcion": "Sustancia resinosa producida porabejas con potentes propiedades antibacterianas y immunomoduladoras.",
       "mecanismoAccion": "Actividad antimicrobiana de amplio espectro. Estimula el sistema inmune y promueve la regeneracion tisular.",
@@ -383,10 +379,9 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "resfriado",
         "gripe",
-        "infecciones",
-        "inflamacion"
+        "inmunidad",
+        "inflamación"
       ],
       "descripcion": "Baya negra con potentes propiedades antivirales y antiinflamatorias.",
       "mecanismoAccion": "Inhibe la replicacion viral. Los antocianos tienen propiedades antiinflamatorias y antioxidantes.",
@@ -432,9 +427,9 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "corazon",
-        "presion_arterial",
-        "circulacion",
+        "cardiovascular",
+        "hipertensión",
+        "circulación",
         "ansiedad"
       ],
       "descripcion": "Planta cardiotonica clasica con efectos positivos sobre el corazon y la circulacion.",
@@ -484,10 +479,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "inflamacion",
+        "inflamación",
         "dolor",
-        "articulaciones",
-        "digestion",
+        "articular",
+        "dispepsia",
         "antioxidante"
       ],
       "descripcion": "Potente antiinflamatorio y antioxidante natural. Principio activo: curcumina.",
@@ -538,11 +533,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "nauseas",
-        "digestion",
+        "náuseas",
+        "dispepsia",
         "dolor",
-        "inflamacion",
-        "energia"
+        "inflamación",
+        "energía"
       ],
       "descripcion": "Raiz tropical con propiedades antiemeticas, digestivas y antiinflamatorias.",
       "mecanismoAccion": "Antiemetico por bloqueo de receptores 5-HT3. Antiinflamatorio por inhibicion de prostaglandinas. Carminativo.",
@@ -591,9 +586,8 @@
       ],
       "indicaciones": [
         "dolor",
-        "articulaciones",
-        "inflamacion",
-        "espalda"
+        "articular",
+        "inflamación"
       ],
       "descripcion": "Planta africana con potentes propiedades analgesicas y antiinflamatorias para articulaciones.",
       "mecanismoAccion": "Inhibe COX-2 y TNF-alfa. Los harpagosidos son analgesicos naturales.",
@@ -640,8 +634,8 @@
         "metabolico"
       ],
       "indicaciones": [
-        "energia",
-        "sexual",
+        "energía",
+        "libido",
         "fatiga",
         "menopausia"
       ],
@@ -690,10 +684,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "estres",
+        "estrés",
         "ansiedad",
         "fatiga",
-        "energia",
+        "energía",
         "inmunidad"
       ],
       "descripcion": "Raiz ayurvedica con puissants effets adaptogenes. Reduce el estres y mejora la resistencia.",
@@ -743,10 +737,10 @@
       ],
       "indicaciones": [
         "fatiga",
-        "estres",
-        "energia",
-        "concentracion",
-        "depresion"
+        "estrés",
+        "energía",
+        "cognitivo",
+        "depresión"
       ],
       "descripcion": "Planta adaptogena del Artico que mejora resistencia al estres y la fatiga mental.",
       "mecanismoAccion": "Activa serotonina y noradrenalina. Inhibe COMT. Aumenta ATP y resistencia a hipoxia.",
@@ -792,11 +786,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "digestion",
+        "dispepsia",
         "ansiedad",
         "insomnio",
-        "inflammation",
-        "estres"
+        "inflamación",
+        "estrés"
       ],
       "descripcion": "Flor medicinal clasica con propiedades calmantes y digestivas suaves.",
       "mecanismoAccion": "Los flavonoides actuan sobre receptores GABA. La chamazulena es antiinflamatoria. Carminativo.",
@@ -845,9 +839,9 @@
       ],
       "indicaciones": [
         "piel",
-        "cicatrizacion",
-        "digestion",
-        "inflammation",
+        "cicatrización",
+        "dispepsia",
+        "inflamación",
         "quemaduras"
       ],
       "descripcion": "Planta suculenta con propiedades cicatrizantes, hidratantes y digestivas.",
@@ -896,10 +890,10 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "digestion",
-        "nauseas",
-        "colon irritable",
-        "resfriado",
+        "dispepsia",
+        "náuseas",
+        "intestinal",
+        "gripe",
         "dolor"
       ],
       "descripcion": "Hierba aromatica con propiedades digestivas, antiemeticas y refrescantes.",
@@ -950,9 +944,8 @@
       "indicaciones": [
         "tos",
         "gripe",
-        "resfriado",
-        "infecciones",
-        "digestion"
+        "inmunidad",
+        "dispepsia"
       ],
       "descripcion": "Hierba mediterranea con poderosas propriedades antisepticas y expectorantes.",
       "mecanismoAccion": "El timol es antiseptico de amplio espectro. Expectorante por刺激 bronchial. Carminativo.",
@@ -999,7 +992,7 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "estres",
+        "estrés",
         "insomnio",
         "piel",
         "dolor"
@@ -1049,10 +1042,8 @@
         "hepatico"
       ],
       "indicaciones": [
-        "higado",
-        "desintoxicacion",
-        "antioxidante",
-        "cirrosis"
+        "hepático",
+        "antioxidante"
       ],
       "descripcion": "Planta hepatoprotectora clasica. La silimarina protege y regenera el higado.",
       "mecanismoAccion": "La silimarina estabiliza membranas hepatocitos. Antioxidante potente. Estimula regeneracion hepatica.",
@@ -1100,10 +1091,10 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "estres",
+        "estrés",
         "ansiedad",
-        "energia",
-        "antienvejecimiento"
+        "energía",
+        "antioxidante"
       ],
       "descripcion": "Hongo medicinal con effets immunomoduladores y adaptogenos. Usado en medicina tradicional china.",
       "mecanismoAccion": "Los beta-glucanos estimulan el sistema inmune. Los triterpenos tienen effets ansioliticos e hipolipemiantes.",
@@ -1154,12 +1145,11 @@
       ],
       "indicaciones": [
         "fatiga",
-        "energia",
-        "concentracion",
-        "memoria",
-        "estres",
+        "energía",
+        "cognitivo",
+        "estrés",
         "inmunidad",
-        "diabetes"
+        "glucosa"
       ],
       "descripcion": "Raiz adaptogena que mejora la resistencia al estres. Aumenta energia fisica y mental.",
       "mecanismoAccion": "Ginsenosidos actuan sobre eje HPA, mejorando respuesta al estres. Modula sistema inmune y metabolismo.",
@@ -1210,10 +1200,10 @@
       ],
       "indicaciones": [
         "fatiga",
-        "estres",
+        "estrés",
         "inmunidad",
-        "energia",
-        "recuperacion"
+        "energía",
+        "rendimiento"
       ],
       "descripcion": "Adaptogeno ruso con effets similares al ginseng pero mas suave. Ideal para fatiga cronica.",
       "mecanismoAccion": "Eleuterosidos modulan respuesta al estres. Mejoran utilization de oxigeno y metabolismo energetico.",
@@ -1260,11 +1250,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "higado",
-        "hepatitis",
+        "hepático",
         "fatiga",
-        "memoria",
-        "estres",
+        "cognitivo",
+        "estrés",
         "antioxidante"
       ],
       "descripcion": "Baya adaptogena china que protege el higado y mejora la resistencia mental y fisica.",
@@ -1314,9 +1303,8 @@
       ],
       "indicaciones": [
         "prostata",
-        "hiperplasia prostatica",
-        "calvicie androgenica",
-        "sexual"
+        "cabello",
+        "libido"
       ],
       "descripcion": "Palmera que mantiene la salud prostatica y hormonal masculina. Estandarizada a acidos grasos.",
       "mecanismoAccion": "Inhibe 5-alfa-reductasa, reduciendo conversion de testosterona a DHT. Antiinflamatorio prostatica.",
@@ -1365,9 +1353,9 @@
       "indicaciones": [
         "prostata",
         "alergias",
-        "articulaciones",
+        "articular",
         "anemia",
-        "diabetes"
+        "glucosa"
       ],
       "descripcion": "Planta nutritiva y medicinal con propiedades antialergicas y antiinflamatorias.",
       "mecanismoAccion": "Histamina y flavonoides modulan respuesta inflamatoria. Rica en hierro y minerales.",
@@ -1421,9 +1409,9 @@
         "tos",
         "gastritis",
         "ulceras",
-        "dolor de garganta",
-        "fatiga adrenal",
-        "estrogenico"
+        "faringitis",
+        "fatiga",
+        "hormonal"
       ],
       "descripcion": "Raiz dulce con propiedades expectorantes, antiulcerosas y adaptogenas suprarrenales.",
       "mecanismoAccion": "Glicirricina tiene effets antiinflamatorios y antivirales. Protege mucosa gastrica.",
@@ -1476,8 +1464,8 @@
       ],
       "indicaciones": [
         "menopausia",
-        "sindrome premenstrual",
-        "menstruacion irregular",
+        "spm",
+        "menstrual",
         "anemia"
       ],
       "descripcion": "Hierba china fundamental para salud femenina. Regula ciclo menstrual y alivia sintomas menopausicos.",
@@ -1526,10 +1514,7 @@
         "nervioso"
       ],
       "indicaciones": [
-        "menopausia",
-        "sofocos",
-        "sudores nocturnos",
-        "ansiedad menopausica"
+        "menopausia"
       ],
       "descripcion": "Planta eficaz para sintomas de menopausia. Alternativa natural a terapia hormonal.",
       "mecanismoAccion": "Actua sobre receptores serotoninergicos y dopaminergicos. No es fitoestrogeno directo.",
@@ -1576,10 +1561,10 @@
         "endocrino"
       ],
       "indicaciones": [
-        "sindrome premenstrual",
-        "menstruacion irregular",
+        "spm",
+        "menstrual",
         "quistes ovaricos",
-        "infertilidad"
+        "femenino"
       ],
       "descripcion": "Regulador hormonal femenino que normaliza el ciclo menstrual y alivia SPM.",
       "mecanismoAccion": "Actua sobre hipofisis, aumentando progesterona y regulando eje HPO. Dopaminergico leve.",
@@ -1628,11 +1613,11 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "digestion",
-        "menstruacion dolorosa",
+        "dispepsia",
+        "menstrual",
         "ansiedad",
         "insomnio",
-        "parásitos"
+        "antimicrobiano"
       ],
       "descripcion": "Planta amarga tradicional para digestion y salud femenina. Usada en moxibustion.",
       "mecanismoAccion": "Aceites volatiles estimulan digestion. Actua sobre receptores GABA para ansiedad.",
@@ -1680,12 +1665,12 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "cicatrizacion",
+        "cicatrización",
         "piel",
-        "memoria",
-        "varices",
+        "cognitivo",
+        "venoso",
         "celulitis",
-        "antienvejecimiento"
+        "antioxidante"
       ],
       "descripcion": "Planta ayurvedica que mejora cicatrizacion, memoria y salud vascular.",
       "mecanismoAccion": "Triterpenoides estimulan colageno y angiogénesis. Mejoran sintesis de GABA.",
@@ -1734,9 +1719,8 @@
         "digestivo"
       ],
       "indicaciones": [
-        "artritis",
-        "inflamacion",
-        "dolor articular",
+        "articular",
+        "inflamación",
         "colitis ulcerosa",
         "asma"
       ],
@@ -1784,8 +1768,8 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "artritis",
-        "inflamacion",
+        "articular",
+        "inflamación",
         "ulceras",
         "infecciones virales"
       ],
@@ -1837,9 +1821,9 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "aterosclerosis",
-        "resfriado comun",
-        "hiperlipidemia leve"
+        "cardiovascular",
+        "gripe",
+        "colesterol"
       ],
       "descripcion": "Bulbo tradicionalmente usado como adyuvante en la prevencion de la aterosclerosis y para el alivio de los sintomas del resfriado comun.",
       "mecanismoAccion": "La alicina y compuestos sulfurados pueden reducir moderadamente colesterol total, trigliceridos y LDL-C, disminuir la actividad plaquetaria y la presion arterial.",
@@ -1892,7 +1876,7 @@
         "digestivo"
       ],
       "indicaciones": [
-        "infeccion urinaria leve recurrente"
+        "urinario"
       ],
       "descripcion": "Hoja tradicionalmente usada para el tratamiento de sintomas de infecciones urinarias bajas leves y recurrentes (escozor al orinar, frecuencia) en mujeres, tras descartar afecciones graves por un medico.",
       "mecanismoAccion": "La arbutina se hidroliza a hidroquinona, con accion antisptica sobre la mucosa urinaria en orina alcalina.",
@@ -1943,9 +1927,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "dolor lumbar",
-        "dolor articular leve",
-        "fiebre"
+        "articular",
+        "gripe"
       ],
       "descripcion": "Corteza con efecto analgesico y antipiretico, tradicionalmente usada para el alivio a corto plazo del dolor lumbar y articular leve.",
       "mecanismoAccion": "La salicina y sus derivados se metabolizan a acido salicilico, inhibiendo COX-1 y COX-2 con efecto antiinflamatorio y analgesico dependiente de la dosis.",
@@ -1996,7 +1979,7 @@
       ],
       "indicaciones": [
         "insuficiencia venosa leve",
-        "piernas pesadas",
+        "venoso",
         "hemorroides",
         "fragilidad capilar"
       ],
@@ -2042,8 +2025,8 @@
         "inmune"
       ],
       "indicaciones": [
-        "estres oxidativo",
-        "manejo de peso"
+        "antioxidante",
+        "peso"
       ],
       "descripcion": "Hoja rica en polifenoles (catequinas, EGCG) usada como fuente de antioxidantes y como adyuvante en programas de manejo de peso con dieta hipocalorica y ejercicio.",
       "mecanismoAccion": "Las catequinas (EGCG) neutralizan radicales libres, estimulan enzimas de detoxificacion hepatica y pueden aumentar ligeramente el gasto energetico y la oxidacion de grasas.",
@@ -2090,8 +2073,8 @@
         "digestivo"
       ],
       "indicaciones": [
-        "dispepsia leve",
-        "perdida de apetito",
+        "dispepsia",
+        "apetito",
         "retencion de liquidos leve"
       ],
       "descripcion": "Raiz tradicionalmente usada para estimular el apetito, aliviar molestias digestivas leves (plenitud, flatulencia) y favorecer la eliminacion de liquidos.",
@@ -2140,7 +2123,7 @@
         "digestivo"
       ],
       "indicaciones": [
-        "dispepsia leve"
+        "dispepsia"
       ],
       "descripcion": "Hoja tradicionalmente usada para aliviar alteraciones digestivas y dispepsia leve.",
       "mecanismoAccion": "La boldina y alcaloides relacionados ejercen efecto coleretico, colagogo y espasmolitico sobre la musculatura lisa digestiva.",
@@ -2186,9 +2169,8 @@
         "endocrino"
       ],
       "indicaciones": [
-        "disconfort gastrointestinal espastico leve",
-        "flatulencia",
-        "hinchazon"
+        "intestinal",
+        "gases"
       ],
       "descripcion": "Corteza tradicionalmente usada para el tratamiento sintomatico de molestias gastrointestinales espasticas leves, incluyendo hinchazon y flatulencia.",
       "mecanismoAccion": "El aceite esencial y los taninos ejercen efecto carminativo y espasmolitico; algunos estudios sugieren un modesto efecto reductor de la glucemia postprandial.",
@@ -2237,7 +2219,7 @@
       "indicaciones": [
         "hemorroides",
         "fragilidad capilar",
-        "varices leves"
+        "venoso"
       ],
       "descripcion": "Corteza y hoja usadas tradicionalmente por via topica y oral como astringente y venotonico para hemorroides, fragilidad capilar y molestias venosas leves.",
       "mecanismoAccion": "Los taninos (galotaninos) ejercen accion astringente, antiinflamatoria y venotopica, reduciendo la permeabilidad capilar.",
@@ -2284,11 +2266,11 @@
         "digestivo"
       ],
       "indicaciones": [
-        "estrenimiento habitual",
+        "estreñimiento",
         "hemorroides",
-        "fisuras anales",
-        "sindrome de intestino irritable con estrenimiento",
-        "hipercolesterolemia adyuvante"
+        "fisuras",
+        "intestinal",
+        "colesterol"
       ],
       "descripcion": "Tejumento de la semilla con accion laxante de bulk (formador de volumen). EMA lo reconoce con uso bien establecido para el estrenimiento habitual y condiciones donde se desea evacuacion facil con heces blandas.",
       "mecanismoAccion": "Las mucilagos del tegumento absorben agua y aumentan el volumen de las heces, estimulando el peristaltismo; en adyuvancia dietetica puede reducir el colesterol LDL por secuestro de acidos biliares.",
@@ -2341,9 +2323,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "tos seca",
-        "irritacion de garganta",
-        "inflamacion leve de mucosa oral"
+        "tos",
+        "faringitis",
+        "bucal"
       ],
       "descripcion": "Hoja usada tradicionalmente como demulcente y antiinflamatorio de mucosas respiratorias y orales, para el alivio de la tos seca y la irritacion faringea leve.",
       "mecanismoAccion": "Los mucilagos forman una pelicula protectora sobre la mucosa (demulcente) y los iridoides (aucubina) ejercen accion antiinflamatoria local.",
@@ -2390,11 +2372,10 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "dispepsia espastica leve",
-        "hinchazon",
-        "flatulencia",
-        "espasmo menstrual leve",
-        "tos y resfriado (expectorante)"
+        "dispepsia",
+        "gases",
+        "menstrual",
+        "tos"
       ],
       "descripcion": "Fruto usado tradicionalmente para el tratamiento sintomatico de molestias gastrointestinales espasticas leves (hinchazon, flatulencia), espasmos menstruales leves y como expectorante en tos y resfriado.",
       "mecanismoAccion": "El aceite esencial rico en trans-anetol y estragol ejerce efecto carminativo, espasmolitico (relajacion del musculo liso) y expectorante.",
@@ -2443,10 +2424,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "dispepsia leve",
-        "plenitud",
-        "flatulencia",
-        "hipercolesterolemia adyuvante"
+        "dispepsia",
+        "gases",
+        "colesterol"
       ],
       "descripcion": "Hoja usada tradicionalmente para el alivio sintomatico de trastornos digestivos como la dispepsia con sensacion de plenitud, hinchazon y flatulencia.",
       "mecanismoAccion": "Los acidos fenolicos (cinarina, acido clorogenico) y los flavonoides estimulan la secrecion biliar (coleretico/colagogo) y en estudios pueden reducir moderadamente el colesterol LDL.",
@@ -2495,10 +2475,8 @@
       ],
       "indicaciones": [
         "insuficiencia venosa cronica",
-        "piernas pesadas",
-        "varices",
-        "hemorroides",
-        "edema leve de origen venoso"
+        "venoso",
+        "hemorroides"
       ],
       "descripcion": "Semilla usada tradicionalmente por via oral y topica para aliviar los sintomas de la insuficiencia venosa cronica (pesadez, dolor, prurito y hinchazon de piernas) y las molestias de hemorroides.",
       "mecanismoAccion": "La aescina (saponina triterpenica) reduce la permeabilidad capilar y aumenta el tono venoso, disminuyendo el edema; inhibe enzimas que degradan la pared capilar.",
@@ -2549,9 +2527,9 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "tos productiva",
+        "tos",
         "bronquitis",
-        "afecciones respiratorias con mucosidad"
+        "respiratorio"
       ],
       "descripcion": "Hoja usada como expectorante en la tos productiva asociada a infeccion respiratoria aguda. EMA la reconoce con uso bien establecido por evidencia clinica.",
       "mecanismoAccion": "Las saponinas triterpenicas (hederacosidos C y B) actuan como expectorantes al aumentar la secrecion bronquial y reducir la viscosidad del moco, facilitando su expulsion.",
@@ -2600,9 +2578,9 @@
         "endocrino"
       ],
       "indicaciones": [
-        "sudoracion excesiva",
-        "inflamacion de boca y garganta",
-        "dispepsia leve"
+        "hiperhidrosis",
+        "faringitis",
+        "dispepsia"
       ],
       "descripcion": "Hoja usada tradicionalmente para la inflamacion leve de boca y garganta, la dispepsia leve y la sudoracion excesiva. Tambien conocida por su uso tradicional en la memoria, aunque no cubierto por la indicacion EMA.",
       "mecanismoAccion": "Los taninos ejercen accion astringente (reduce sudoracion y secreciones), el aceite esencial (tuyona) es espasmolitico y antiinflamatorio local; algunos estudios sugieren efecto colinergico sobre la cognicion.",
@@ -2654,9 +2632,8 @@
         "digestivo"
       ],
       "indicaciones": [
-        "tos seca",
-        "irritacion de boca y garganta",
-        "tos y resfriado"
+        "tos",
+        "faringitis"
       ],
       "descripcion": "Flor usada tradicionalmente como demulcente y emoliente para el alivio de la tos seca, la irritacion de boca y garganta y la tos asociada al resfriado comun.",
       "mecanismoAccion": "Los mucilagos forman una pelicula protectora sobre la mucosa (demulcente) que calma la irritacion y suaviza la tos seca; accion antiinflamatoria leve local.",
@@ -2705,9 +2682,8 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "resfriado comun adyuvante",
-        "dolor articular leve",
-        "afecciones reumaticas leves"
+        "gripe",
+        "articular"
       ],
       "descripcion": "Partes aereas usadas tradicionalmente como apoyo en el resfriado comun y para el alivio del dolor articular leve.",
       "mecanismoAccion": "Contiene salicilatos ( precursor de acido salicilico) con efecto analgesico y antiinflamatorio, ademas de taninos astringentes.",
@@ -2760,8 +2736,8 @@
       ],
       "indicaciones": [
         "retencion de liquidos leve",
-        "eliminacion renal de agua",
-        "tension arterial moderada"
+        "diurético",
+        "hipertensión"
       ],
       "descripcion": "Hoja usada tradicionalmente para promover la eliminacion de agua por los riñones en casos leves de retencion de liquidos, tras descartar afecciones graves por un medico. Algunos estudios sugieren efecto hipotensor moderado.",
       "mecanismoAccion": "La oleuropeina y derivados ejercen accion diuretica suave y vasodilatadora (posible bloqueo de canales de calcio), con efecto hipotensor modesto y antioxidante.",
@@ -2813,8 +2789,8 @@
       ],
       "indicaciones": [
         "retencion de liquidos leve",
-        "molestias urinarias leves",
-        "articulaciones"
+        "urinario",
+        "articular"
       ],
       "descripcion": "Hoja usada tradicionalmente para aumentar la cantidad de orina, como adyuvante en problemas leves urinarios y para la retencion de liquidos leve, tras descartar afecciones graves por un medico.",
       "mecanismoAccion": "Los flavonoides y taninos ejercen accion diuretica suave y antiinflamatoria; tradicionalmente se le atribuye efecto venotonico y articular.",
@@ -2865,10 +2841,10 @@
         "endocrino"
       ],
       "indicaciones": [
-        "estrenimiento habitual",
-        "piel y mucosas secas",
-        "hipercolesterolemia adyuvante",
-        "soporte cardiovascular"
+        "estreñimiento",
+        "sequedad",
+        "colesterol",
+        "cardiovascular"
       ],
       "descripcion": "Semilla con uso bien establecido para el tratamiento del estrenimiento habitual y condiciones donde se desea evacuacion facil con heces blandas. Rica en omega-3 (ALA), lignanos y mucilagos.",
       "mecanismoAccion": "Los mucilagos absorben agua y aumentan el volumen de las heces (laxante de bulk); el acido alfa-linolenico (omega-3) y los lignanos aportan efecto cardioprotector y modulador endocrino leve.",
@@ -2925,8 +2901,8 @@
         "endocrino"
       ],
       "indicaciones": [
-        "perdida de apetito",
-        "dispepsia leve"
+        "apetito",
+        "dispepsia"
       ],
       "descripcion": "Semilla usada tradicionalmente para la estimulacion del apetito y el alivio de la dispepsia leve. Tambien conocida por su uso tradicional en el metabolismo de la glucosa, aunque no cubierto por la indicacion EMA.",
       "mecanismoAccion": "Los mucilagos ejercen efecto demulcente y la galactomanana ralentiza la absorcion de glúcidos (posible efecto modulador de la glucemia postprandial); los compuestos amargos estimulan el apetito.",
@@ -2979,7 +2955,7 @@
       ],
       "indicaciones": [
         "insuficiencia venosa cronica",
-        "piernas pesadas",
+        "venoso",
         "hemorroides",
         "fragilidad capilar"
       ],
@@ -3032,8 +3008,8 @@
       ],
       "indicaciones": [
         "inquietud",
-        "ansiedad leve",
-        "trastornos del sueno"
+        "ansiedad",
+        "insomnio"
       ],
       "descripcion": "Cono usado tradicionalmente para el alivio de la inquietud, la ansiedad leve y los trastornos del sueno. A menudo se combina con valeriana y melisa en preparados sedativos.",
       "mecanismoAccion": "Los compuestos amargos (humulona, lupulona) y el aceite esencial modulan el receptor GABA-A, con efecto sedante y ansiolitico leve; la EMA lo incluye en la combinacion Species sedativae.",
@@ -3085,9 +3061,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "estimulacion de la diuresis",
-        "molestias urinarias leves",
-        "psoriasis adyuvante (tradicional)"
+        "diurético",
+        "urinario",
+        "piel"
       ],
       "descripcion": "Rizoma usado tradicionalmente para favorecer la eliminacion renal de agua y aliviar molestias urinarias leves, tras descartar afecciones graves por un medico. Uso tradicional adyuvante en psoriasis.",
       "mecanismoAccion": "Las saponinas esteroideas ejercen accion diuretica suave y, tradicionalmente, se les atribuye efecto depurativo y queratolitico en afecciones cutaneas cronicas.",
@@ -3139,8 +3115,8 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "resfriado comun",
-        "estres mental leve",
+        "gripe",
+        "estrés",
         "tos",
         "inquietud"
       ],
@@ -3194,10 +3170,9 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "dispepsia espastica leve",
-        "hinchazon",
-        "flatulencia",
-        "tos y resfriado (expectorante)"
+        "dispepsia",
+        "gases",
+        "tos"
       ],
       "descripcion": "Fruto usado tradicionalmente para el tratamiento sintomatico de molestias gastrointestinales espasticas leves (hinchazon, flatulencia) y como expectorante en la tos y el resfriado.",
       "mecanismoAccion": "El trans-anetol del aceite esencial ejerce efecto carminativo, espasmolitico sobre el musculo liso digestivo y expectorante.",
@@ -3247,8 +3222,7 @@
         "digestivo"
       ],
       "indicaciones": [
-        "estrenimiento ocasional",
-        "vaciamiento intestinal antes de exploracion"
+        "estreñimiento"
       ],
       "descripcion": "Hoja y fruto con uso bien establecido como laxante estimulante para el alivio a corto plazo del estrenimiento ocasional. EMA lo reconoce con uso bien establecido.",
       "mecanismoAccion": "Las sennosidas (antraquinonas) no se absorben en el intestino delgado; en el colon las bacterias las hidrolizan a derivados de antrona que estimulan la motilidad y la secrecion, produciendo evacuacion.",
@@ -3304,8 +3278,8 @@
       ],
       "indicaciones": [
         "insuficiencia venosa leve",
-        "piernas pesadas",
-        "sintomas de hemorroides",
+        "venoso",
+        "hemorroides",
         "edema leve"
       ],
       "descripcion": "Partes aereas usadas tradicionalmente para aliviar los sintomas de la insuficiencia venosa cronica (pesadez, dolor) y las molestias de hemorroides. Contiene cumarinas con accion venotonica.",
@@ -3358,9 +3332,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "estimulacion de la diuresis",
-        "molestias urinarias leves",
-        "fragilidad ungueal (tradicional)"
+        "diurético",
+        "urinario",
+        "cabello"
       ],
       "descripcion": "Partes aereas usadas tradicionalmente para favorecer la eliminacion renal de agua en molestias urinarias leves, tras descartar afecciones graves por un medico. Rica en silicio, tradicionalmente usada para el fortalecimiento ungueal.",
       "mecanismoAccion": "Los flavonoides y sales de potasio ejercen accion diuretica suave; el alto contenido de silicio organico se asocia tradicionalmente a la consolidacion del tejido conjuntivo y ungueal.",
@@ -3413,10 +3387,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "dispepsia leve",
-        "espasmos gastrointestinales leves",
-        "dolor muscular y articular leve (topico/bano)",
-        "circulacion periferica leve"
+        "dispepsia",
+        "espasmos",
+        "muscular",
+        "cardiovascular"
       ],
       "descripcion": "Hoja usada tradicionalmente por via oral para el alivio sintomatico de la dispepsia y los espasmos gastrointestinales leves, y como aditivo de bano para el dolor muscular y articular leve y la circulacion periferica.",
       "mecanismoAccion": "Los acidos fenolicos (acido rosmarinico) y los flavonoides ejercen accion coleretica, espasmolitica y antioxidante; el aceite esencial (1,8-cineol, alcanfor) estimula la circulacion periferica por via topica.",
@@ -3469,10 +3443,9 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "dispepsia espastica leve",
-        "hinchazon",
-        "flatulencia",
-        "tos y resfriado (expectorante)"
+        "dispepsia",
+        "gases",
+        "tos"
       ],
       "descripcion": "Fruto usado tradicionalmente para el tratamiento sintomatico de molestias gastrointestinales espasticas leves (hinchazon, flatulencia) y como expectorante en la tos y el resfriado. Rica fuente de shikimico (precursor del oseltamivir).",
       "mecanismoAccion": "El trans-anetol del aceite esencial ejerce efecto carminativo, espasmolitico sobre el musculo liso digestivo y expectorante, similar al anis verde.",
@@ -3523,9 +3496,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "estres oxidativo",
-        "refuerzo de vitamina C",
-        "dolor articular leve (tradicional)"
+        "antioxidante",
+        "inmunidad",
+        "articular"
       ],
       "descripcion": "Falso fruto (cinorrodon) rico en vitamina C natural y antioxidantes, usado tradicionalmente como fuente de vitamina C y para el estres oxidativo. Algunos estudios sugieren beneficio leve en dolor articular.",
       "mecanismoAccion": "El alto contenido de vitamina C, flavonoides y carotenoides ejerce efecto antioxidante; los galactolipidos se asocian a un posible efecto antiinflamatorio articular leve.",
@@ -3574,8 +3547,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "ansiedad leve",
-        "insomnio leve",
+        "ansiedad",
+        "insomnio",
         "inquietud"
       ],
       "descripcion": "Partes aereas usadas tradicionalmente para el alivio de la ansiedad leve, la inquietud y el insomnio leve. A menudo se combina con otras plantas sedativas.",
@@ -3629,10 +3602,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "memoria",
+        "cognitivo",
         "cognicion",
         "ansiedad",
-        "concentracion",
         "estrés"
       ],
       "descripcion": "Planta nootrópica de la medicina ayurvédica utilizada para mejorar memoria, concentración y función cognitiva. Evidencia clínica robusta en mejora del recall y retención.",
@@ -3683,8 +3655,8 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "resfriado común",
-        "infección respiratoria alta",
+        "gripe",
+        "respiratorio",
         "inmunidad",
         "faringitis",
         "amigdalitis"
@@ -3736,8 +3708,8 @@
         "inmune"
       ],
       "indicaciones": [
-        "bronquitis aguda",
-        "resfriado común",
+        "bronquitis",
+        "gripe",
         "sinusitis",
         "amigdalitis",
         "tos"
@@ -3789,9 +3761,7 @@
         "urinario"
       ],
       "indicaciones": [
-        "prevención ITU recurrente",
-        "cistitis",
-        "salud urinaria"
+        "urinario"
       ],
       "descripcion": "Arándano rojo americano con monografía EMA HMPC para prevención de infecciones del tracto urinario recurrentes. Las proantocianidinas previenen la adhesión bacteriana.",
       "mecanismoAccion": "Las proantocianidinas tipo A inhiben la adhesión de E. coli (fimbrias tipo P) al urotelio, reduciendo la colonización bacteriana sin actividad antibacteriana directa.",
@@ -3840,9 +3810,8 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "sofocos menopáusicos",
-        "síntomas menopausia",
-        "salud cardiovascular"
+        "menopausia",
+        "cardiovascular"
       ],
       "descripcion": "Leguminosa rica en isoflavonas (biochanina A, formononetina) con monografía EMA HMPC para el alivio de síntomas menopáusicos leves.",
       "mecanismoAccion": "Las isoflavonas actúan como fitoestrógenos modulando selectivamente los receptores estrogénicos ERβ, aliviando sofocos sin estimular tejido mamario.",
@@ -3891,9 +3860,7 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "hiperplasia prostática benigna (HPB)",
-        "prostatitis",
-        "síntomas urinarios bajos"
+        "prostata"
       ],
       "descripcion": "Corteza de árbol africano con monografía EMA HMPC para alivio de síntomas urinarios de la hiperplasia prostática benigna.",
       "mecanismoAccion": "Los fitosteroles (β-sitosterol) inhiben la 5-alfa-reductasa y la aromatasa, reduciendo la inflamación prostática y mejorando el flujo urinario.",
@@ -3940,10 +3907,8 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "vejiga hiperactiva",
-        "HPB",
-        "incontinencia urinaria",
-        "salud prostática"
+        "urinario",
+        "prostata"
       ],
       "descripcion": "Semillas ricas en fitosteroles, zinc y ácidos grasos con monografía EMA HMPC para vejiga hiperactiva y síntomas prostáticos leves.",
       "mecanismoAccion": "Los fitosteroles y Δ7-esteroles inhiben la 5-alfa-reductasa; el zinc y los lignanos aportan acción antiinflamatoria prostática.",
@@ -3989,7 +3954,7 @@
         "digestivo"
       ],
       "indicaciones": [
-        "estreñimiento ocasional",
+        "estreñimiento",
         "constipación"
       ],
       "descripcion": "Corteza con antraquinonas (cascarósidos) con acción laxante estimulante. Monografía de farmacopeas europeas para estreñimiento ocasional de corta duración.",
@@ -4043,10 +4008,9 @@
       ],
       "indicaciones": [
         "dispepsia",
-        "trastornos menstruales",
-        "espasmos digestivos",
-        "pérdida de apetito",
-        "heridas menores"
+        "menstrual",
+        "apetito",
+        "cicatrización"
       ],
       "descripcion": "Planta astringente y antiespasmódica con monografía EMA HMPC para dispepsia leve y trastornos menstruales espasmódicos leves.",
       "mecanismoAccion": "Los flavonoides y azuleno tienen acción antiespasmódica sobre músculo liso digestivo; los taninos aportan astringencia y la aquileína favorece la coagulación.",
@@ -4096,7 +4060,7 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "tos seca",
+        "tos",
         "irritación faríngea",
         "bronquitis",
         "ronquera",
@@ -4150,10 +4114,9 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "trastornos hepatobiliares leves",
-        "dermatitis",
-        "eccema leve",
-        "cólicos espasmódicos"
+        "hepático",
+        "eccema",
+        "gases"
       ],
       "descripcion": "Planta con alcaloides isoquinolínicos (protopina) usada tradicionalmente como colerético y antiespasmódico. Monografía EMA HMPC por uso tradicional.",
       "mecanismoAccion": "La protopina modula el calcio intracelular ejerciendo efecto antiespasmódico; favorece el flujo biliar y la función hepatocelular.",
@@ -4203,9 +4166,9 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "prevención migraña",
-        "rinitis alérgica",
-        "asma alérgica"
+        "migraña",
+        "alergias",
+        "asma"
       ],
       "descripcion": "Planta con petasinas y isopetasinas con evidencia clínica para profilaxis de migraña. Solo usar extractos libres de alcaloides pirrolizidínicos (PA-free).",
       "mecanismoAccion": "Las petasinas inhiben la leukotrien-sintasa (LOX) reduciendo leucotrienos, modulan canales de calcio y reducen la neuroinflamación trigeminovascular.",
@@ -4255,10 +4218,10 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "asma alérgica",
-        "rinitis alérgica",
-        "hipertensión leve",
-        "hiperglucemia leve",
+        "asma",
+        "alergias",
+        "hipertensión",
+        "glucosa",
         "eccema"
       ],
       "descripcion": "Semilla con timoquinona, uno de los remedios naturales mejor estudiados. Evidencia clínica robusta en asma, rinitis alérgica y parámetros metabólicos.",
@@ -4312,11 +4275,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "rendimiento físico",
-        "fatiga crónica",
-        "función renal",
+        "rendimiento",
+        "fatiga",
+        "cálculos",
         "asma",
-        "función respiratoria"
+        "respiratorio"
       ],
       "descripcion": "Hongo medicinal usado en medicina china para energía, rendimiento físico y soporte respiratorio. La cepa Cs-4 está fermentada y es sostenible.",
       "mecanismoAccion": "Aumenta la producción de ATP y la utilización de oxígeno (VO2 max), mejora la función mitocondrial y modula la respuesta inmune; la cordicepina tiene acción antiinflamatoria.",
@@ -4366,11 +4329,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "función cognitiva",
-        "memoria",
-        "neuropatía periférica",
-        "humor",
-        "salud intestinal"
+        "cognitivo",
+        "neuropatía",
+        "depresión",
+        "intestinal"
       ],
       "descripcion": "Hongo que estimula el factor de crecimiento nervioso (NGF) y la mielina. Evidencia clínica en declive cognitivo leve y neuropatía periférica.",
       "mecanismoAccion": "Las hericenonas (micelio) y erinacinas (cuerpo fructífero) cruzan la barrera hematoencefálica y estimulan la expresión de NGF y BDNF, promoviendo la neuroplasticidad y la mielinización.",
@@ -4419,11 +4381,10 @@
         "ocular"
       ],
       "indicaciones": [
-        "depresión leve-moderada",
+        "depresión",
         "ansiedad",
-        "humor",
-        "degeneración macular",
-        "función sexual"
+        "ocular",
+        "libido"
       ],
       "descripcion": "Estigmas con crocina y safranal. Evidencia clínica comparable a ISRS/fluoxetina en depresión leve-moderada, con mejor perfil de tolerancia.",
       "mecanismoAccion": "La crocina y safranal modulan la neurotransmisión de serotonina, dopamina y GABA; acción antioxidante retiniana y antiinflamatoria (BNDF).",
@@ -4475,8 +4436,8 @@
       "indicaciones": [
         "estrés",
         "ansiedad",
-        "hiperglucemia leve",
-        "hiperlipidemia",
+        "glucosa",
+        "colesterol",
         "inmunidad"
       ],
       "descripcion": "Adaptógeno ayurvédico con evidencia clínica para estrés, ansiedad y parámetros metabólicos. Considerado una de las plantas sagradas de la India.",
@@ -4527,10 +4488,9 @@
         "urinario"
       ],
       "indicaciones": [
-        "irrigación de vías urinarias",
-        "cistitis leve",
-        "cálculos renales (profilaxis)",
-        "diuresis"
+        "urinario",
+        "cálculos",
+        "diurético"
       ],
       "descripcion": "Planta diurética y antiinflamatoria de vías urinarias con monografía EMA HMPC por uso tradicional para aumentar el volumen de orina.",
       "mecanismoAccion": "Los flavonoides (rutina) y saponinas aumentan la diuresis y la irrigación del tracto urinario; los taninos aportan acción astringente y antiinflamatoria.",
@@ -4581,11 +4541,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "diarrea leve",
+        "diarrea",
         "faringitis",
-        "heridas menores",
-        "glositis",
-        "estomatitis"
+        "cicatrización",
+        "bucal"
       ],
       "descripcion": "Planta astringente rica en taninos con monografía EMA HMPC por uso tradicional en diarrea leve e inflamación de mucosa bucal.",
       "mecanismoAccion": "Los taninos condensados coagulan proteínas superficiales formando capa protectora (astringencia); los flavonoides aportan acción antiinflamatoria leve.",
@@ -4636,10 +4595,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "tos productiva",
+        "tos",
         "bronquitis",
         "dispepsia",
-        "pérdida de apetito"
+        "apetito"
       ],
       "descripcion": "Planta expectorante y amarga con monografía EMA HMPC por uso tradicional para tos productiva y bronquitis leve.",
       "mecanismoAccion": "Las saponinas y el marrubiína fluidifican las secreciones y estimulan el reflejo tusígeno; los amargos estimulan las secreciones digestivas y biliares.",
@@ -4688,10 +4647,9 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "tos seca irritativa",
-        "tos convulsiva (coadyuvante)",
+        "tos",
         "laringitis",
-        "espasmo tusígeno"
+        "espasmos"
       ],
       "descripcion": "Planta antitusiva con naftoquinonas (plumbagonina). Monografía EMA HMPC por uso tradicional en tos seca irritativa.",
       "mecanismoAccion": "La plumbagonina tiene acción espasmolítica sobre músculo liso bronquial y antitusiva central; reduce la tos seca irritativa.",
@@ -4741,10 +4699,9 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "irrigación vías urinarias",
-        "infección urinaria leve",
-        "cálculos renales",
-        "retención hídrica leve"
+        "urinario",
+        "cálculos",
+        "retención"
       ],
       "descripcion": "Hoja diurética con monografía EMA HMPC por uso tradicional para irrigación de las vías urinarias y diuresis.",
       "mecanismoAccion": "Los flavonoides (hiperosido) y saponinas aumentan el volumen de orina; acción antiinflamatoria leve de mucosa urinaria y cutánea.",
@@ -4794,9 +4751,8 @@
         "urinario"
       ],
       "indicaciones": [
-        "irrigación vías urinarias",
-        "infección urinaria leve",
-        "cálculos renales",
+        "urinario",
+        "cálculos",
         "edema leve"
       ],
       "descripcion": "Planta diurética del sudeste asiático con monografía EMA HMPC por uso tradicional como diurético e irrigante de vías urinarias.",
@@ -4846,10 +4802,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "dolor menstrual",
-        "síndrome premenstrual",
-        "diarrea leve",
-        "heridas menores"
+        "menstrual",
+        "spm",
+        "diarrea",
+        "cicatrización"
       ],
       "descripcion": "Planta astringente y reguladora del ciclo con monografía EMA HMPC por uso tradicional en molestias menstruales y diarrea leve.",
       "mecanismoAccion": "Los taninos y flavonoides ejercen acción astringente; modula prostaglandinas uterinas reduciendo el dolor menstrual.",
@@ -4902,10 +4858,10 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "fatiga crónica",
-        "función renal",
-        "salud cardiovascular",
-        "recuperación"
+        "fatiga",
+        "cálculos",
+        "cardiovascular",
+        "rendimiento"
       ],
       "descripcion": "Raíz adaptógena de la medicina china, uno de los inmunomoduladores más estudiados. Los astragalósidos y polisacáridos modulan la inmunidad y protegen el corazón.",
       "mecanismoAccion": "Los polisacáridos (APS) aumentan la proliferación de linfocitos T y la actividad NK; los astragalósidos son cardioprotectores y mejoran la función mitocondrial.",
@@ -4957,10 +4913,7 @@
         "digestivo"
       ],
       "indicaciones": [
-        "hiperglucemia",
-        "antojo de azúcar",
-        "resistencia a insulina",
-        "diabetes tipo 2 (coadyuvante)"
+        "glucosa"
       ],
       "descripcion": "Planta ayurvédica que reduce el antojo de dulces (bloquea receptores dulces de la lengua) y mejora el control glucémico. Evidencia clínica en diabetes tipo 2.",
       "mecanismoAccion": "El ácido gimnémico aumenta la secreción de insulina (regeneración de células β?), reduce la absorción intestinal de glucosa y bloquea los receptores dulces periféricos de la lengua.",
@@ -5012,10 +4965,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "fatiga crónica",
-        "función cognitiva",
-        "energía mitocondrial",
-        "salud masculina",
+        "fatiga",
+        "cognitivo",
+        "energía",
+        "masculino",
         "estrés"
       ],
       "descripcion": "Resina mineral del Himalaya rica en ácido fúlvico y dibenzo-α-pironas. Adaptógeno ayurvédico que mejora la función mitocondrial y el ATP.",
@@ -5066,9 +5019,8 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "coadyuvante oncológico",
-        "infecciones recurrentes",
-        "salud intestinal"
+        "oncológico",
+        "intestinal"
       ],
       "descripcion": "Hongo con β-glucanos (PSK/PSP) usado como coadyuvante oncológico en Japón. Inmunomodulador potente con amplia evidencia clínica.",
       "mecanismoAccion": "Los β-glucanos PSK/PSP activan los receptores dectina-1 y CR3 de macrófagos/NK/T, estimulando la inmunidad celular y la apoptosis tumoral.",
@@ -5118,9 +5070,8 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "hiperglucemia leve",
-        "salud metabólica",
-        "infecciones recurrentes"
+        "glucosa",
+        "metabolico"
       ],
       "descripcion": "Hongo japonés con β-glucanos (D-fraction) inmunomoduladores. Mejora la respuesta inmune y tiene acción hipoglucemiante leve.",
       "mecanismoAccion": "Los β-glucanos D-fraction activan macrófagos y células NK vía dectina-1; mejora la sensibilidad a insulina (receptor de insulina).",
@@ -5171,9 +5122,8 @@
       ],
       "indicaciones": [
         "libido",
-        "función sexual",
-        "salud urinaria",
-        "vitalidad"
+        "urinario",
+        "energía"
       ],
       "descripcion": "Planta con saponinas esteroidales (protodioscina) usada para libido y vitalidad. Evidencia mixta pero uso popular extendido.",
       "mecanismoAccion": "Las saponinas esteroidales (protodioscina) modulan la producción de testosterona (debatido) y aumentan el óxido nítrico, mejorando la función sexual.",
@@ -5225,9 +5175,8 @@
       ],
       "indicaciones": [
         "inmunidad",
-        "infecciones fúngicas",
-        "piel",
-        "candidiasis (coadyuvante)"
+        "antifúngico",
+        "piel"
       ],
       "descripcion": "Corteza sudamericana con naftoquinonas (lapachol) de acción antimicrobiana y antifúngica. Uso tradicional en infecciones.",
       "mecanismoAccion": "El lapachol y β-lapachona inhiben la respiración microbiana (generación de ROS) y tienen acción antifúngica y antiviral; inmunomodulación leve.",
@@ -5278,8 +5227,7 @@
         "digestivo"
       ],
       "indicaciones": [
-        "salud hepática",
-        "hepatoprotección",
+        "hepático",
         "dispepsia",
         "colesterol",
         "astenia"
@@ -5331,11 +5279,11 @@
         "digestivo"
       ],
       "indicaciones": [
-        "tos seca",
+        "tos",
         "irritación faríngea",
         "gastritis",
         "dispepsia",
-        "pérdida de apetito"
+        "apetito"
       ],
       "descripcion": "Líquen con mucílagos y ácido usnico, emoliente de mucosas respiratorias y digestivas. Monografía EMA HMPC por uso tradicional.",
       "mecanismoAccion": "Los mucílagos forman una película protectora sobre mucosas irritadas; el ácido usnico tiene acción antimicrobiana leve.",
@@ -5389,7 +5337,7 @@
         "antioxidante",
         "energía",
         "nutrición",
-        "hiperglucemia leve",
+        "glucosa",
         "inmunidad"
       ],
       "descripcion": "Árbol tropical de hojas muy ricas en nutrientes (vitaminas, minerales, aminoácidos). Considerado uno de los superalimentos más completos.",
@@ -5442,7 +5390,6 @@
       "indicaciones": [
         "antioxidante",
         "inmunidad",
-        "estrés oxidativo",
         "energía"
       ],
       "descripcion": "Hongo parásito del abedul, uno de los antioxidantes más potentes (betulinina, melanina). Tradicional en Siberia y Rusia.",
@@ -5496,7 +5443,7 @@
       "indicaciones": [
         "inmunidad",
         "colesterol",
-        "salud cardiovascular",
+        "cardiovascular",
         "fatiga"
       ],
       "descripcion": "Hongo comestible japonés con lentinana (β-glucano) inmunomoduladora y eritadenina que reduce el colesterol.",
@@ -5550,7 +5497,7 @@
       "indicaciones": [
         "piel",
         "depurativo",
-        "función hepática",
+        "hepático",
         "eccema",
         "acné"
       ],
@@ -5582,6 +5529,440 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional cutáneo)"
+      }
+    },
+    {
+      "id": "sea_buckthorn",
+      "nombre": "Espino Amarillo",
+      "nombresAlternativos": [
+        "Sea buckthorn",
+        "Hippophae rhamnoides",
+        "Falsa espino",
+        "Olivar spinoso",
+        "Sandro"
+      ],
+      "nombreCientifico": "Hippophae rhamnoides",
+      "familia": "Elaeagnaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "dermatologico",
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "piel",
+        "mucosas",
+        "cicatrización",
+        "cardiovascular",
+        "inmunidad"
+      ],
+      "descripcion": "Bayas ricas en omega-7 (ácido palmitoleico), vitamina C y betacarotenos. Regenera piel y mucosas.",
+      "mecanismoAccion": "El ácido palmitoleico (omega-7) regenera piel y mucosas; los carotenoides y vitamina C son antioxidantes; flavonoides cardioprotectores.",
+      "nivelEvidencia": "C",
+      "parteUsada": "baya/aceite de semilla y pulpa",
+      "formasPresentacion": [
+        "Aceite de pulpa",
+        "Cápsulas (aceite)",
+        "Aceite tópico"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible coloración amarillenta"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (omega)"
+      ],
+      "tags": [
+        "omega-7",
+        "piel",
+        "mucosas",
+        "antioxidante",
+        "cicatrización"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical studies (piel/mucosas)"
+      }
+    },
+    {
+      "id": "jiaogulan",
+      "nombre": "Jiaogulan",
+      "nombresAlternativos": [
+        "Gynostemma pentaphyllum",
+        "Hierba de la inmortalidad",
+        "Gynostemma",
+        "Xiancao",
+        "Southern ginseng"
+      ],
+      "nombreCientifico": "Gynostemma pentaphyllum",
+      "familia": "Cucurbitaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "colesterol",
+        "energía",
+        "estrés",
+        "glucosa",
+        "antioxidante"
+      ],
+      "descripcion": "Adaptógeno chino conocido como 'hierba de la inmortalidad', rico en saponinas gypenósidos similares a los del ginseng.",
+      "mecanismoAccion": "Los gypenósidos activan AMPK (glucosa/lípidos), modulan el eje HHA (estrés) y aumentan el NO (vascular); antioxidante (SOD).",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas",
+        "Extracto"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible efecto anticoagulante"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "adaptógeno",
+        "AMPK",
+        "colesterol",
+        "gypenósidos",
+        "energía"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (lípidos/glucosa)"
+      }
+    },
+    {
+      "id": "kava",
+      "nombre": "Kava",
+      "nombresAlternativos": [
+        "Piper methysticum",
+        "Kava kava",
+        "Pimienta intoxicante",
+        "Kava pepper",
+        "Awa"
+      ],
+      "nombreCientifico": "Piper methysticum",
+      "familia": "Piperaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estrés",
+        "muscular"
+      ],
+      "descripcion": "Raíz del Pacífico Sur con kavalactonas, ansiolítico potente. Eficacia clínica comparable a benzodiacepinas. Precaución por hepatotoxicidad.",
+      "mecanismoAccion": "Las kavalactonas modulan los receptores GABA-A (canal de Cl-), inhiben la recaptación de noradrenalina y dopamina; acción ansiolítica sin dependencia.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Extracto estandarizado (kavalactonas 30%)",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "Corto (1-3 meses, supervisión hepática)",
+      "advertencias": [
+        "HEPATOTOXICIDAD reportada (rara pero grave)",
+        "Evitar en hepatopatía y alcohol",
+        "Suspender si ictericia",
+        "No combinar con alcohol o sedantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Benzodiacepinas",
+        "Alcohol",
+        "Paracetamol",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "ansiedad",
+        "kavalactonas",
+        "GABA",
+        "insomnio",
+        "hepatotoxicidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (ansiedad); EMA/ FDA hepatotoxicity warnings"
+      }
+    },
+    {
+      "id": "mucuna",
+      "nombre": "Mucuna",
+      "nombresAlternativos": [
+        "Mucuna pruriens",
+        "Habas de terciopelo",
+        "Kapikacchu",
+        "L-DOPA natural",
+        "Cowhage"
+      ],
+      "nombreCientifico": "Mucuna pruriens",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "parkinson",
+        "depresión",
+        "libido",
+        "motivación"
+      ],
+      "descripcion": "Legumbre con L-DOPA natural (5-9%). Precursor directo de la dopamina. Uso en Parkinson como coadyuvante y para motivación.",
+      "mecanismoAccion": "La L-DOPA cruza la barrera hematoencefálica y se convierte en dopamina vía DOPA decarboxilasa; aumenta la dopamina cerebral.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado L-DOPA)"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Supervisión médica (especialmente en Parkinson)",
+      "advertencias": [
+        "No combinar con IMAO",
+        "Puede interferir con levodopa farmacológica (ajustar)",
+        "Precaución en psicosis"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levodopa/Carbidopa",
+        "IMAO",
+        "Antipsicóticos"
+      ],
+      "tags": [
+        "L-DOPA",
+        "dopamina",
+        "Parkinson",
+        "humor",
+        "libido"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (Parkinson coadyuvante)"
+      }
+    },
+    {
+      "id": "triphala",
+      "nombre": "Triphala",
+      "nombresAlternativos": [
+        "Triphala",
+        "Trifala",
+        "Tres frutas",
+        "Amalaki+Bibhitaki+Haritaki",
+        "Phyllanthus+Terminalia"
+      ],
+      "nombreCientifico": "Formulación ayurvédica (Emblica officinalis + Terminalia bellirica + Terminalia chebula)",
+      "familia": "Formulación (Ayurveda)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "hepatico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "estreñimiento",
+        "dispepsia",
+        "hepático",
+        "piel",
+        "antioxidante"
+      ],
+      "descripcion": "Fórmula ayurvédica clásica de tres frutas (amalaki, bibhitaki, haritaki). Tónico digestivo, antioxidante y depurativo.",
+      "mecanismoAccion": "Combina vitamina C (amalaki), taninos y anthraquinonas (haritaki/bibhitaki); tónico digestivo, hepatoprotector y antioxidante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto seco (tres frutas)",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas",
+        "Decocción"
+      ],
+      "tiempoEfecto": "1-3 días (digestivo)",
+      "duracionTratamiento": "Continuo (tónico)",
+      "advertencias": [
+        "Embarazo: evitar (anthraquinonas)",
+        "Diarrea posible a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Reducir absorción (taninos, separar 2h)"
+      ],
+      "tags": [
+        "digestivo",
+        "tónico",
+        "ayurveda",
+        "antioxidante",
+        "estreñimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Ayurvedic pharmacopoeia + studies"
+      }
+    },
+    {
+      "id": "guggulu",
+      "nombre": "Guggul",
+      "nombresAlternativos": [
+        "Guggulu",
+        "Commiphora mukul",
+        "Guggulipid",
+        "Goma guggul",
+        "Commiphora"
+      ],
+      "nombreCientifico": "Commiphora mukul",
+      "familia": "Burseraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "colesterol",
+        "tiroides",
+        "acné",
+        "peso"
+      ],
+      "descripcion": "Resina ayurvédica con guggulsteronas que reducen el colesterol y modulan el tiroides. Usada en hiperlipidemia.",
+      "mecanismoAccion": "Las guggulsteronas activan el receptor TLR4 (lipidos), modulan la conversión de T4→T3 (tiroides) y reducen la síntesis de colesterol hepático.",
+      "nivelEvidencia": "B",
+      "parteUsada": "resina purificada",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado guggulsteronas)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Molestias gastrointestinales",
+        "Posible hipotiroidismo subclínico: monitorizar",
+        "Erupciones cutáneas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estatinas",
+        "Levotiroxina",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "colesterol",
+        "guggulsteronas",
+        "tiroides",
+        "metabólico",
+        "ayurveda"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (lípidos)"
+      }
+    },
+    {
+      "id": "arjuna",
+      "nombre": "Arjuna",
+      "nombresAlternativos": [
+        "Terminalia arjuna",
+        "Arjuna",
+        "Corteza de Arjuna",
+        "Kakubha",
+        "Terminalia"
+      ],
+      "nombreCientifico": "Terminalia arjuna",
+      "familia": "Combretaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "hipertensión",
+        "colesterol"
+      ],
+      "descripcion": "Corteza ayurvédica cardiotónica. Tónico del corazón con evidencia clínica en insuficiencia cardíaca leve como coadyuvante.",
+      "mecanismoAccion": "Los triterpenos y flavonoides mejoran la contractilidad cardíaca (inotropismo positivo), reducen la PA y el colesterol; antioxidante vascular.",
+      "nivelEvidencia": "B",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Cápsulas (extracto)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo (supervisión)",
+      "advertencias": [
+        "Cardiopatía: solo como coadyuvante con supervisión médica",
+        "Hipotensión posible"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Digoxina",
+        "Cardiotónicos"
+      ],
+      "tags": [
+        "cardiotónico",
+        "corazón",
+        "hipertensión",
+        "ayurveda",
+        "inotropismo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (insuficiencia cardíaca)"
+      }
+    },
+    {
+      "id": "shatavari",
+      "nombre": "Shatavari",
+      "nombresAlternativos": [
+        "Asparagus racemosus",
+        "Shatavari",
+        "Espárrago silvestre",
+        "Satavari",
+        "Asparagus root"
+      ],
+      "nombreCientifico": "Asparagus racemosus",
+      "familia": "Asparagaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "femenino",
+        "menopausia",
+        "lactancia",
+        "dispepsia"
+      ],
+      "descripcion": "Raíz ayurvédica considerada el tónico femenino por excelencia. Fitoestrógeno suave y galactógeno.",
+      "mecanismoAccion": "Las saponinas esteroidales (shatavarinas) tienen acción fitoestrogénica suave; galactógeno (prolactina); tónico digestivo y adaptógeno.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas",
+        "Extracto"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Cáncer hormono-dependiente: supervisión",
+        "Embarazo: evitar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos (sinergia)"
+      ],
+      "tags": [
+        "femenino",
+        "fitoestrógeno",
+        "lactancia",
+        "ayurveda",
+        "menopausia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Ayurvedic + clinical studies (lactancia)"
       }
     }
   ]

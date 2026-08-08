@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 338,
+    "total": 414,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -8541,6 +8541,1883 @@
       ],
       "sistemas": [
         "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_sea_buckthorn_omega7",
+      "ingredienteA": "sea_buckthorn",
+      "ingredienteB": "omega_7",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia omega-7: el espino amarillo es la fuente natural y el omega-7 concentra el ácido palmitoleico.",
+      "beneficios": [
+        "Regenera piel y mucosas",
+        "Sequedad ocular y vaginal",
+        "Antiinflamatorio"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El espino amarillo aporta omega-7, carotenoides y vitamina C; el omega-7 concentrado maximiza el ácido palmitoleico.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_sea_buckthorn_centella",
+      "ingredienteA": "sea_buckthorn",
+      "ingredienteB": "centella",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo regenerador cutáneo: el espino amarillo (omega-7) y la centella (colágeno).",
+      "beneficios": [
+        "Regeneración cutánea",
+        "Cicatrización",
+        "Estrías y piel madura"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El omega-7 del espino amarillo regenera la barrera cutánea; los triterpenos de la centella estimulan el colágeno.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_jiaogulan_gynostemma_ginseng",
+      "ingredienteA": "jiaogulan",
+      "ingredienteB": "ginseng",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Adaptógenos con saponinas: el jiaogulan y el ginseng comparten ginsenósidos-like.",
+      "beneficios": [
+        "Energía y resistencia",
+        "Colesterol",
+        "Adaptógeno"
+      ],
+      "precauciones": [
+        "Hipertensión (ginseng)"
+      ],
+      "mecanismo": "Los gypenósidos del jiaogulan y los ginsenósidos del ginseng modulan el eje HHA y AMPK; sinergia adaptógena.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_jiaogulan_omega3",
+      "ingredienteA": "jiaogulan",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cardiovascular: el jiaogulan (NO/colesterol) y el omega-3 (triglicéridos).",
+      "beneficios": [
+        "Mejora perfil lipídico",
+        "Cardiovascular",
+        "Antiinflamatorio"
+      ],
+      "precauciones": [
+        "Anticoagulantes (omega-3)"
+      ],
+      "mecanismo": "El jiaogulan activa AMPK y aumenta el NO; el omega-3 reduce triglicéridos y es antiinflamatorio vascular.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_kava_valeriana",
+      "ingredienteA": "kava",
+      "ingredienteB": "valeriana",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo ansiolítico: el kava y la valeriana modulan GABA-A por vías complementarias.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Mejora sueño",
+        "Calma potente"
+      ],
+      "precauciones": [
+        "HEPATOTOXICIDAD del kava (supervisión)",
+        "No combinar con alcohol/sedantes"
+      ],
+      "mecanismo": "Las kavalactonas y los valepotriatos modulan GABA-A; sinergia ansiolítica potente.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_kava_l_teanina",
+      "ingredienteA": "kava",
+      "ingredienteB": "l_teanina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Ansiedad sin sedación: el kava (GABA) y la teanina (ondas alfa).",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Calma sin somnolencia",
+        "Concentración relajada"
+      ],
+      "precauciones": [
+        "Hepatotoxicidad del kava",
+        "Supervisión"
+      ],
+      "mecanismo": "El kava modula GABA-A; la teanina aumenta las ondas alfa (alerta relajada).",
+      "categorias": [
+        "fitoterapia",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_mucuna_maca",
+      "ingredienteA": "mucuna",
+      "ingredienteB": "maca",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo dopaminérgico: la mucuna (L-DOPA) y la maca (energía/libido).",
+      "beneficios": [
+        "Motivación y libido",
+        "Energía",
+        "Humor"
+      ],
+      "precauciones": [
+        "No combinar con IMAO",
+        "Psicosis: precaución"
+      ],
+      "mecanismo": "La L-DOPA de la mucuna aumenta la dopamina; la maca modula el eje HHA y la libido.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_triphala_probioticos",
+      "ingredienteA": "triphala",
+      "ingredienteB": "probioticos",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Salud intestinal: la triphala (tónico/prebiótico) y los probióticos repueblan la microbiota.",
+      "beneficios": [
+        "Mejora microbiota",
+        "Tránsito intestinal",
+        "Digestión"
+      ],
+      "precauciones": [
+        "Separar de antibióticos"
+      ],
+      "mecanismo": "La triphala es tónico digestivo y prebiótico; los probióticos aportan cepas beneficiosas.",
+      "categorias": [
+        "fitoterapia",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_guggulu_berberina",
+      "ingredienteA": "guggulu",
+      "ingredienteB": "berberina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo metabólico: el guggul y la berberina mejoran el perfil lipídico y glucémico.",
+      "beneficios": [
+        "Reduce colesterol",
+        "Mejora glucosa",
+        "Metabólico"
+      ],
+      "precauciones": [
+        "Estatinas: supervisión",
+        "Molestias GI (berberina)"
+      ],
+      "mecanismo": "Las guggulsteronas y la berberina activan AMPK y modulan el metabolismo lipídico/glucémico.",
+      "categorias": [
+        "fitoterapia",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_arjuna_espino_blanco",
+      "ingredienteA": "arjuna",
+      "ingredienteB": "espino_blanco",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cardiotónico: el arjuna y el espino blanco mejoran la función cardíaca.",
+      "beneficios": [
+        "Función cardíaca",
+        "Cardiotónico dual",
+        "Hipertensión leve"
+      ],
+      "precauciones": [
+        "Cardiopatía: supervisión médica",
+        "Antihipertensivos"
+      ],
+      "mecanismo": "El arjuna mejora la contractilidad; el espino blanco mejora la perfusión coronaria. Sinergia cardiotónica.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_arjuna_coq10",
+      "ingredienteA": "arjuna",
+      "ingredienteB": "coq10",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Cardioprotección: el arjuna y el CoQ10 protegen el corazón.",
+      "beneficios": [
+        "Función cardíaca",
+        "Energía mitocondrial cardíaca",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Cardiopatía: supervisión"
+      ],
+      "mecanismo": "El arjuna mejora la contractilidad; el CoQ10 transporta electrones en la cadena respiratoria del miocardio.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_shatavari_dong_quai",
+      "ingredienteA": "shatavari",
+      "ingredienteB": "dong_quai",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo femenino ayurvédico-chino: la shatavari y el dong quai para salud femenina.",
+      "beneficios": [
+        "Salud femenina",
+        "Menopausia",
+        "Fertilidad",
+        "Ciclo menstrual"
+      ],
+      "precauciones": [
+        "Embarazo: evitar",
+        "Hormono-dependiente: supervisión"
+      ],
+      "mecanismo": "Las shatavarinas y los cumarinos del dong quai modulan el equilibrio hormonal femenino.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_shatavari_vitex",
+      "ingredienteA": "shatavari",
+      "ingredienteB": "vitex",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo femenino: la shatavari (fitoestrógeno) y el vitex (progesterona).",
+      "beneficios": [
+        "Regula ciclo",
+        "SPM",
+        "Lactancia",
+        "Fertilidad"
+      ],
+      "precauciones": [
+        "Hormono-dependiente: supervisión"
+      ],
+      "mecanismo": "La shatavari es fitoestrogénica; el vitex estimula la progesterona (dopamina). Equilibrio hormonal.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_molibdeno_nac",
+      "ingredienteA": "molibdeno",
+      "ingredienteB": "nac",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Detox de sulfitos: el molibdeno (sulfito oxidasa) y el NAC (glutatión/detox).",
+      "beneficios": [
+        "Detoxificación",
+        "Sensibilidad a sulfitos",
+        "Salud hepática"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El molibdeno es cofactor de la sulfito oxidasa (sulfito→sulfato); el NAC aporta cisteína para el glutatión.",
+      "categorias": [
+        "minerales",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_l_cisteina_vitamina_c",
+      "ingredienteA": "l_cisteina",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Síntesis de glutatión: la cisteína (limitante) y la vitamina C (reciclaje).",
+      "beneficios": [
+        "Maximiza glutatión",
+        "Antioxidante",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La cisteína es el aminoácido limitante del glutatión; la vitamina C recicla el glutatión oxidado.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_fosfatidilcolina_same",
+      "ingredienteA": "fosfatidilcolina",
+      "ingredienteB": "same",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Hepático y metilación: la fosfatidilcolina y el SAMe protegen el hígado.",
+      "beneficios": [
+        "Salud hepática",
+        "Esteatosis hepática",
+        "Metilación"
+      ],
+      "precauciones": [
+        "Tomar con B12/folato (SAMe)"
+      ],
+      "mecanismo": "La fosfatidilcolina es lipotrópica (previene esteatosis); el SAMe aporta metilos y aumenta el glutatión hepático.",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_fosfatidilcolina_omega3",
+      "ingredienteA": "fosfatidilcolina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Estructura neuronal: la fosfatidilcolina y el omega-3 (DHA) son estructurales de las membranas.",
+      "beneficios": [
+        "Función cognitiva",
+        "Membrana neuronal",
+        "Hepático"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La fosfatidilcolina y el DHA son componentes estructurales de las membranas neuronales y hepatocelulares.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_vitamina_k1_k2",
+      "ingredienteA": "vitamina_k1",
+      "ingredienteB": "vitamina_k2",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Equilibrio K1/K2: la K1 (coagulación) y la K2 (calcificación ósea/vascular).",
+      "beneficios": [
+        "Coagulación",
+        "Salud ósea",
+        "Evita calcificación vascular"
+      ],
+      "precauciones": [
+        "ANTICOAGULANTES ORALES: NO suplementar sin supervisión"
+      ],
+      "mecanismo": "La K1 carboxila factores de coagulación; la K2 carboxila la osteocalcina (hueso) y la MGP (evita calcificación vascular).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_aceite_onagra_omega3",
+      "ingredienteA": "aceite_onagra",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo antiinflamatorio: el aceite de onagra (GLA) y el omega-3 (EPA/DHA).",
+      "beneficios": [
+        "Reduce inflamación",
+        "SPM",
+        "Eccema",
+        "Artritis reumatoide (coadyuvante)"
+      ],
+      "precauciones": [
+        "Anticoagulantes (ambos)"
+      ],
+      "mecanismo": "El GLA se convierte en PGE1 (antiinflamatoria); el omega-3 genera resolvinas. Sinergia antiinflamatoria dual.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_aceite_onagra_vitex",
+      "ingredienteA": "aceite_onagra",
+      "ingredienteB": "vitex",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "SPM: el aceite de onagra y el vitex para el síndrome premenstrual.",
+      "beneficios": [
+        "Reduce SPM",
+        "Mastalgia cíclica",
+        "Equilibrio hormonal"
+      ],
+      "precauciones": [
+        "Hormono-dependiente: supervisión"
+      ],
+      "mecanismo": "El GLA del aceite de onagra modula las prostaglandinas; el vitex estimula la progesterona. Acción dual en SPM.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_omega_7_sea_buckthorn_mucosas",
+      "ingredienteA": "omega_7",
+      "ingredienteB": "vitamina_a",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Regeneración de mucosas: el omega-7 y la vitamina A.",
+      "beneficios": [
+        "Sequedad ocular y vaginal",
+        "Regenera mucosas",
+        "Piel"
+      ],
+      "precauciones": [
+        "Vitamina A: no exceder en embarazo"
+      ],
+      "mecanismo": "El ácido palmitoleico regenera mucosas; la vitamina A es esencial para el epitelio mucoso.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_pectina_modificada_glutation",
+      "ingredienteA": "pectina_modificada",
+      "ingredienteB": "glutation",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Detox: la pectina modificada (quelante) y el glutatión (fase II).",
+      "beneficios": [
+        "Quelación de metales pesados",
+        "Detox hepático",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Separar de medicamentos 2h"
+      ],
+      "mecanismo": "La pectina modificada quela metales pesados; el glutatión los conjuga (fase II) y los elimina.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_abeto_balsamico_pino_silvestre",
+      "ingredienteA": "abeto_balsamico",
+      "ingredienteB": "pino_silvestre",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo balsámico de coníferas: el abeto y el pino silvestre para la respiración.",
+      "beneficios": [
+        "Acción balsámica",
+        "Reduce congestión",
+        "Bronquitis"
+      ],
+      "precauciones": [
+        "Asmáticos: precaución con inhalación"
+      ],
+      "mecanismo": "El bornil acetato del abeto y los pinenos del pino son balsámicos y antisépticos respiratorios.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_cilantro_aceite_hinojo",
+      "ingredienteA": "cilantro_aceite",
+      "ingredienteB": "hinojo_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo carminativo de semillas: el cilantro y el hinojo para la digestión.",
+      "beneficios": [
+        "Reduce gases",
+        "Mejora digestión",
+        "Calma espasmos"
+      ],
+      "precauciones": [
+        "Hinojo: embarazo/epilepsia"
+      ],
+      "mecanismo": "El linalool del cilantro y el anetol del hinojo son carminativos y antiespasmódicos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_lavandin_lavanda_aceite",
+      "ingredienteA": "lavandin",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo calmante: el lavandín (más energético) y la lavanda fina (más sedante).",
+      "beneficios": [
+        "Calma y relajación",
+        "Insomnio",
+        "Dolor muscular"
+      ],
+      "precauciones": [
+        "Lavandín: alcanfor, evitar en niños/embarazo/epilepsia"
+      ],
+      "mecanismo": "El linalool (común) modula GABA; el lavandín aporta alcanfor (balsámico/analgesia tópica).",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_calcarea_sulphurica_silicea",
+      "ingredienteA": "calcarea_sulphurica",
+      "ingredienteB": "silicea",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para supuraciones: la calcarea sulph y la silicea en abscesos y fístulas.",
+      "beneficios": [
+        "Supuraciones crónicas",
+        "Abscesos",
+        "Fase de resolución"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la calcarea sulph actúa sobre el pus en resolución; la silicea expulsa cuerpos extraños y supuraciones.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_kali_carbonicum_natrum_sulphuricum",
+      "ingredienteA": "kali_carbonicum",
+      "ingredienteB": "natrum_sulphuricum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para asma: el kali carb y el natrum sulph en asma crónica.",
+      "beneficios": [
+        "Reduce asma",
+        "Modalidad de humedad",
+        "2-4 AM"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el kali carb actúa sobre el asma (2-4 AM); el natrum sulph sobre el asma con humedad.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_natrum_carbonicum_cocculus",
+      "ingredienteA": "natrum_carbonicum",
+      "ingredienteB": "cocculus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para mareo y sensibilidad: la natrum carb y el cocculus.",
+      "beneficios": [
+        "Mareo por viaje",
+        "Sensibilidad al clima",
+        "Debilidad por calor"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la natrum carb actúa sobre la sensibilidad climática; el cocculus sobre el vértigo y el mareo.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_petroleum_graphites",
+      "ingredienteA": "petroleum",
+      "ingredienteB": "graphites",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para piel seca y fisurada: el petroleum y los graphites.",
+      "beneficios": [
+        "Piel agrietada",
+        "Eccema invernal",
+        "Fisuras dolorosas"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el petroleum actúa sobre la piel agrietada en invierno; los graphites sobre la piel seca y fisurada.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_tabacum_cocculus_mareo",
+      "ingredienteA": "tabacum",
+      "ingredienteB": "cocculus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para mareo por viaje: el tabacum y el cocculus.",
+      "beneficios": [
+        "Reduce mareo",
+        "Náuseas de viaje",
+        "Palidez"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el tabacum actúa sobre el mareo con palidez; el cocculus sobre el vértigo y la náusea de viaje.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_borax_mercurius_bucal",
+      "ingredienteA": "borax",
+      "ingredienteB": "mercurius",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para aftas y candidiasis oral: el borax y el mercurius.",
+      "beneficios": [
+        "Reduce aftas",
+        "Candidiasis oral",
+        "Mucositis"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el borax actúa sobre la candidiasis oral; el mercurius sobre la boca y la garganta.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_propoleo_propoleo_equinacea_2",
+      "ingredienteA": "propoleo",
+      "ingredienteB": "andrographis",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunológico: el propóleo y la andrographis potencian la inmunidad respiratoria.",
+      "beneficios": [
+        "Refuerzo inmunológico",
+        "Infecciones respiratorias",
+        "Antimicrobiano"
+      ],
+      "precauciones": [
+        "Alergia al propóleo"
+      ],
+      "mecanismo": "Los flavonoides del propóleo y los andrografólidos de la andrographis son inmunomoduladores y antimicrobianos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_equinacea_astragalus",
+      "ingredienteA": "equinacea",
+      "ingredienteB": "astragalus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunomodulador: la equinacea y el astrágalo.",
+      "beneficios": [
+        "Refuerzo inmunológico",
+        "Infecciones recurrentes",
+        "Inmunidad innata y adaptativa"
+      ],
+      "precauciones": [
+        "Autoinmunidad (teórico)"
+      ],
+      "mecanismo": "La equinacea activa la inmunidad innata; el astrágalo modula la inmunidad adaptativa (T/NK).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_sauco_equinacea_gripe",
+      "ingredienteA": "sauco",
+      "ingredienteB": "equinacea",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo para síndromes gripales: el saúco (antiviral) y la equinacea (inmunidad).",
+      "beneficios": [
+        "Reduce síntomas gripales",
+        "Antiviral",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Autoinmunidad (teórico)"
+      ],
+      "mecanismo": "Las antocianinas del saúco inhiben la replicación viral; la equinacea activa la inmunidad innata.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_pelargonium_hiedra",
+      "ingredienteA": "pelargonium",
+      "ingredienteB": "hiedra",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo bronquítico: el pelargonium y la hiedra para bronquitis.",
+      "beneficios": [
+        "Bronquitis",
+        "Tos productiva",
+        "Antimicrobiano respiratorio"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El pelargonium es antibacteriano/antiviral respiratorio; las saponinas de la hiedra son mucolíticas.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_marrubio_hiedra_tos",
+      "ingredienteA": "marrubium",
+      "ingredienteB": "hiedra",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para tos: el marrubio (expectorante) y la hiedra (mucolítico).",
+      "beneficios": [
+        "Facilita expectoración",
+        "Reduce tos",
+        "Bronquitis"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Las saponinas del marrubio y la hiedra fluidifican secreciones y facilitan la expectoración.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_tomillo_propoleo_gargarismos",
+      "ingredienteA": "tomillo",
+      "ingredienteB": "propoleo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antimicrobiano para gargarismos: el tomillo y el propóleo.",
+      "beneficios": [
+        "Faringitis",
+        "Gargarismos",
+        "Antimicrobiano bucal"
+      ],
+      "precauciones": [
+        "Alergia al propóleo"
+      ],
+      "mecanismo": "El timol del tomillo y los flavonoides del propóleo son antimicrobianos orales.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_regaliz_hiedra_tos",
+      "ingredienteA": "regaliz",
+      "ingredienteB": "hiedra",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antitusivo: el regaliz (emoliente) y la hiedra (mucolítico).",
+      "beneficios": [
+        "Calma la tos",
+        "Fluidifica secreciones",
+        "Bronquitis"
+      ],
+      "precauciones": [
+        "Regaliz DGL: evitar glicirricina en hipertensión"
+      ],
+      "mecanismo": "Los mucílagos del regaliz calman la mucosa; las saponinas de la hiedra fluidifican secreciones.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_pau_d_arco_trametes",
+      "ingredienteA": "pau_d_arco",
+      "ingredienteB": "trametes",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo inmunomodulador: el pau d'arco y el trametes para inmunidad.",
+      "beneficios": [
+        "Inmunidad",
+        "Antimicrobiano",
+        "Coadyuvante oncológico"
+      ],
+      "precauciones": [
+        "Autoinmunidad (teórico)"
+      ],
+      "mecanismo": "El lapachol del pau d'arco es antimicrobiano; los β-glucanos PSK/PSP del trametes activan la inmunidad.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_nigella_pelargonium",
+      "ingredienteA": "nigella",
+      "ingredienteB": "pelargonium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo respiratorio: la nigella y el pelargonium para infecciones respiratorias.",
+      "beneficios": [
+        "Bronquitis",
+        "Asma alérgica",
+        "Antimicrobiano respiratorio"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La timoquinona de la nigella es antiinflamatoria/antialérgica; el pelargonium es antibacteriano respiratorio.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_alcachofa_boldo_hepatico",
+      "ingredienteA": "alcachofa",
+      "ingredienteB": "boldo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hepatobiliar: la alcachofa y el boldo estimulan la función hepática y biliar.",
+      "beneficios": [
+        "Función hepática",
+        "Función biliar",
+        "Dispepsia",
+        "Colesterol"
+      ],
+      "precauciones": [
+        "Cálculos biliares: precaución"
+      ],
+      "mecanismo": "La cinarina de la alcachofa y la boldina del boldo estimulan la secreción biliar y protegen el hígado.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_diente_de_leon_cardo_mariano",
+      "ingredienteA": "diente_de_leon",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hepático: el diente de león y el cardo mariano.",
+      "beneficios": [
+        "Función hepática",
+        "Detox",
+        "Función biliar"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El diente de león estimula la secreción biliar; la silimarina del cardo mariano protege el hepatocito.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_picrorhiza_boswellia",
+      "ingredienteA": "picrorhiza",
+      "ingredienteB": "curcuma",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Hepático + antiinflamatorio: la picrorhiza y la cúrcuma.",
+      "beneficios": [
+        "Hepatoprotección",
+        "Antiinflamatorio",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Cúrcuma: anticoagulantes"
+      ],
+      "mecanismo": "Los picrosidos son hepatoprotectores; la curcumina es antiinflamatoria (NF-κB) y antioxidante hepática.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_ajo_canela_circulacion",
+      "ingredienteA": "ajo",
+      "ingredienteB": "canela",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo circulatorio y metabólico: el ajo y la canela.",
+      "beneficios": [
+        "Cardiovascular",
+        "Glucosa",
+        "Circulación"
+      ],
+      "precauciones": [
+        "Anticoagulantes (ajo)",
+        "Canela: preferir Ceylon"
+      ],
+      "mecanismo": "La alicina del ajo reduce el colesterol/PA; el MHCP de la canela mejora la sensibilidad a insulina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_castano_hamamelis_rusco_venas",
+      "ingredienteA": "castano_indias",
+      "ingredienteB": "rusco",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Trío venoso: el castaño de indias y el rusco para insuficiencia venosa.",
+      "beneficios": [
+        "Tono venoso",
+        "Varices",
+        "Hemorroides",
+        "Piernas pesadas"
+      ],
+      "precauciones": [
+        "Anticoagulantes"
+      ],
+      "mecanismo": "Las escinas del castaño y las saponinas del rusco reducen la permeabilidad capilar y mejoran el tono venoso.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_ginkgo_ajo_circulacion",
+      "ingredienteA": "ginkgo",
+      "ingredienteB": "ajo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo circulatorio: el ginkgo y el ajo mejoran la microcirculación y el perfil lipídico.",
+      "beneficios": [
+        "Microcirculación",
+        "Colesterol",
+        "Cardiovascular"
+      ],
+      "precauciones": [
+        "Anticoagulantes (ambos)"
+      ],
+      "mecanismo": "El ginkgo mejora la microcirculación; el ajo reduce el colesterol y la agregación plaquetaria.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_bacopa_omega3_cognitivo",
+      "ingredienteA": "bacopa",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cognitivo: la bacopa y el omega-3 (DHA) para memoria y neuroprotección.",
+      "beneficios": [
+        "Mejora memoria",
+        "Neuroprotección",
+        "Estructura neuronal"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La bacopa aumenta la acetilcolina; el DHA es estructural de la membrana neuronal y modula la inflamación.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_hericium_omega3",
+      "ingredienteA": "hericium",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Neuroprotección: el hericium (NGF) y el omega-3 (DHA) para el cerebro.",
+      "beneficios": [
+        "Neuroprotección",
+        "NGF",
+        "Estructura neuronal"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El hericium estimula NGF/BDNF; el DHA mantiene la fluidez de la membrana neuronal.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_rodiola_eleuterococo",
+      "ingredienteA": "rodiola",
+      "ingredienteB": "eleuterococo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo adaptógeno: la rodiola y el eleuterococo para fatiga física y mental.",
+      "beneficios": [
+        "Reduce fatiga",
+        "Resistencia",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Insomnio si de noche"
+      ],
+      "mecanismo": "La rodiola modula serotonina/dopamina; el eleuterococo modula el eje HHA. Sinergia adaptógena.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_trebol_rojo_dong_quai",
+      "ingredienteA": "trebol_rojo",
+      "ingredienteB": "dong_quai",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo fitoestrogénico: el trébol rojo y el dong quai para menopausia.",
+      "beneficios": [
+        "Sofocos",
+        "Menopausia",
+        "Equilibrio hormonal"
+      ],
+      "precauciones": [
+        "Hormono-dependiente: supervisión",
+        "Anticoagulantes (dong quai)"
+      ],
+      "mecanismo": "Las isoflavonas del trébol y los cumarinos del dong quai modulan los receptores estrogénicos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_cimicifuga_shatavari",
+      "ingredienteA": "cimicifuga",
+      "ingredienteB": "shatavari",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo menopáusico: la cimicífuga y la shatavari para sofocos y salud femenina.",
+      "beneficios": [
+        "Sofocos",
+        "Menopausia",
+        "Salud femenina"
+      ],
+      "precauciones": [
+        "Hormono-dependiente: supervisión"
+      ],
+      "mecanismo": "La cimicífuga modula la serotonina; la shatavari es fitoestrogénica. Acción dual menopáusica.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_azafran_mucuna_humor",
+      "ingredienteA": "azafran",
+      "ingredienteB": "mucuna",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del humor: el azafrán (serotonina) y la mucuna (dopamina).",
+      "beneficios": [
+        "Mejora el humor",
+        "Motivación",
+        "Depresión leve"
+      ],
+      "precauciones": [
+        "RIESGO SÍNDROME SEROTONINÉRGICO con ISRS",
+        "No con IMAO"
+      ],
+      "mecanismo": "El azafrán modula la serotonina; la mucuna aumenta la dopamina (L-DOPA). Equilibrio serotoninérgico-dopaminérgico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_canela_nigella_glucosa",
+      "ingredienteA": "canela",
+      "ingredienteB": "nigella",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo glucémico: la canela y la nigella mejoran el control glucémico.",
+      "beneficios": [
+        "Reduce glucosa",
+        "Mejora insulina",
+        "Metabólico"
+      ],
+      "precauciones": [
+        "Canela: Ceylon",
+        "Antidiabéticos: ajustar"
+      ],
+      "mecanismo": "El MHCP de la canela activa los receptores de insulina; la timoquinona activa AMPK.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_gymnema_nigella_canela",
+      "ingredienteA": "gymnema",
+      "ingredienteB": "canela",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Trío glucémico natural: el gymnema, la nigella y la canela.",
+      "beneficios": [
+        "Reduce glucosa",
+        "Antojo de dulces",
+        "Metabólico"
+      ],
+      "precauciones": [
+        "Antidiabéticos: ajustar"
+      ],
+      "mecanismo": "El ácido gimnémica aumenta la insulina; el MHCP y la timoquinona mejoran la sensibilidad a insulina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_chaga_astaxantina",
+      "ingredienteA": "chaga",
+      "ingredienteB": "astaxantina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antioxidante potente: el chaga (SOD) y la astaxantina (membrana).",
+      "beneficios": [
+        "Antioxidante potente",
+        "Estrés oxidativo",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Los betulinianos del chaga inducen SOD; la astaxantina neutraliza ROS en la membrana.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_resveratrol_pterostilbeno_omega3",
+      "ingredienteA": "resveratrol",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antioxidante: el resveratrol (SIRT1) y la vitamina C (reciclaje).",
+      "beneficios": [
+        "Activación de SIRT1",
+        "Antioxidante",
+        "Cardiovascular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El resveratrol activa SIRT1; la vitamina C recicla los antioxidantes oxidados y es cofactor.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_boswelia_harpagofito_curcuma",
+      "ingredienteA": "boswelia",
+      "ingredienteB": "harpagofito",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío antiinflamatorio articular: la boswellia, el harpagófito y la cúrcuma.",
+      "beneficios": [
+        "Reduce dolor articular",
+        "Antiinflamatorio triple",
+        "Artrosis"
+      ],
+      "precauciones": [
+        "Harpagófito: anticoagulantes"
+      ],
+      "mecanismo": "Ácidos boswélicos (5-LOX), harpagósido (COX-2) y curcumina (NF-κB) bloquean la inflamación por vías múltiples.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_colageno_msm_silicio",
+      "ingredienteA": "colageno",
+      "ingredienteB": "msm",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo estructural: el colágeno y el MSM (azufre) para piel y articulaciones.",
+      "beneficios": [
+        "Síntesis de colágeno",
+        "Piel y articulaciones",
+        "Cabello y uñas"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El colágeno aporta péptidos sustrato; el MSM aporta azufre para los puentes disulfuro del colágeno/queratina.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_bardana_burdock_pau_d_arco_piel",
+      "ingredienteA": "bardana",
+      "ingredienteB": "pau_d_arco",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo depurativo y antifúngico: la bardana y el pau d'arco para piel y candidiasis.",
+      "beneficios": [
+        "Piel",
+        "Acné",
+        "Candidiasis (coadyuvante)",
+        "Depurativo"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Los lignanos de la bardana son depurativos; el lapachol del pau d'arco es antifúngico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_zinc_niacinamida_acne",
+      "ingredienteA": "zinc",
+      "ingredienteB": "niacinamida",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo anti-acné: el zinc y la niacinamida reducen la inflamación y el sebo.",
+      "beneficios": [
+        "Reduce acné",
+        "Controla sebo",
+        "Antiinflamatorio cutáneo"
+      ],
+      "precauciones": [
+        "Zinc: máx 40mg/día",
+        "Niacinamida: hepatotoxicidad >3g"
+      ],
+      "mecanismo": "El zinc modula la inflamación y la actividad sebácea; la niacinamida reduce la pérdida de agua, el sebo y la inflamación.",
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_sepia_lachesis_menopausia_homeo",
+      "ingredienteA": "sepia",
+      "ingredienteB": "lachesis",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para menopausia: la sepia y el lachesis en sofocos y cambios de humor.",
+      "beneficios": [
+        "Sofocos",
+        "Cambios de humor",
+        "Apatía/constricción"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la sepia actúa sobre la apatía y el agotamiento; el lachesis sobre los sofocos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_argentum_nitricum_tabacum_ansiedad",
+      "ingredienteA": "argentum_nitricum",
+      "ingredienteB": "ambra_grisea",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para ansiedad: el argentum nitricum y la ambra grisea.",
+      "beneficios": [
+        "Ansiedad anticipatoria",
+        "Ansiedad senil",
+        "Espasmos"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el argentum nitricum actúa sobre la ansiedad anticipatoria; la ambra grisea sobre la senil.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_phosphorus_china_anemia",
+      "ingredienteA": "phosphorus",
+      "ingredienteB": "calcarea_phosphorica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia constitucional: el phosphorus y la calcarea phosphorica.",
+      "beneficios": [
+        "Constitución",
+        "Crecimiento",
+        "Sistema hemático"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el phosphorus actúa sobre el sistema hemático; la calcarea phos sobre el crecimiento.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_ignatia_natrum_muriaticum",
+      "ingredienteA": "ignatia",
+      "ingredienteB": "natrum_muriaticum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para duelo y emociones suprimidas: la ignatia y la natrum muriaticum.",
+      "beneficios": [
+        "Gestión emocional",
+        "Duelo",
+        "Resentimiento",
+        "Síntomas psicosomáticos"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la ignatia actúa sobre la reactividad emocional; la natrum mur sobre las emociones suprimidas.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_gelsemium_ignatia_ansiedad",
+      "ingredienteA": "gelsemium",
+      "ingredienteB": "ignatia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para ansiedad con síntomas físicos: el gelsemium y la ignatia.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Temblores",
+        "Espasmos emocionales",
+        "Parálisis por miedo"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el gelsemium actúa sobre el temblor y la parálisis por miedo; la ignatia sobre los espasmos emocionales.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_causticum_phosphorus_respiratorio",
+      "ingredienteA": "causticum",
+      "ingredienteB": "sulphur",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para tos crónica y piel: el causticum y el sulphur.",
+      "beneficios": [
+        "Tos crónica",
+        "Piel crónica",
+        "Ronquera"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el causticum actúa sobre la tos crónica y la ronquera; el sulphur sobre la piel crónica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_calcarea_carbonica_sulphur_constitucion",
+      "ingredienteA": "calcaria_carbonica",
+      "ingredienteB": "sulphur",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia constitucional: la calcarea carb y el sulphur son policrestos complementarios.",
+      "beneficios": [
+        "Constitución",
+        "Equilibrio metabólico",
+        "Dermatosis",
+        "Fatiga"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la calcarea carb actúa sobre la constitución; el sulphur es el policresto de bloqueos metabólicos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_arnica_hypericum_trauma_nervioso",
+      "ingredienteA": "arnica",
+      "ingredienteB": "hypericum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para trauma con componente nervioso: la arnica y el hypericum.",
+      "beneficios": [
+        "Hematomas",
+        "Trauma nervioso",
+        "Dolor punzante",
+        "Ciática"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la arnica actúa sobre los hematomas; el hypericum sobre las lesiones nerviosas.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_shilajit_pqq_mitocondrial",
+      "ingredienteA": "shilajit",
+      "ingredienteB": "pqq",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo mitocondrial: el shilajit (función mitocondrial) y el PQQ (biogénesis).",
+      "beneficios": [
+        "Biogénesis + función mitocondrial",
+        "Energía",
+        "Fatiga crónica"
+      ],
+      "precauciones": [
+        "Usar shilajit purificado",
+        "Insomnio si de noche"
+      ],
+      "mecanismo": "El shilajit mejora la función mitocondrial (ácido fúlvico); el PQQ induce la biogénesis (PGC-1α).",
+      "categorias": [
+        "fitoterapia",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_cordyceps_shilajit_energia",
+      "ingredienteA": "cordyceps",
+      "ingredienteB": "shilajit",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo energético: el cordyceps (ATP/VO2) y el shilajit (mitocondrial).",
+      "beneficios": [
+        "Energía y rendimiento",
+        "Función mitocondrial",
+        "Fatiga"
+      ],
+      "precauciones": [
+        "Autoinmunidad (teórico)"
+      ],
+      "mecanismo": "El cordyceps aumenta el ATP y el VO2 max; el shilajit mejora la función mitocondrial (ácido fúlvico).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_melisa_valeriana_pasiflora",
+      "ingredienteA": "melisa",
+      "ingredienteB": "pasiflora",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío sedante clásico: la melisa, la pasiflora y la valeriana para insomnio.",
+      "beneficios": [
+        "Inducción del sueño",
+        "Reduce ansiedad",
+        "Calma nocturna"
+      ],
+      "precauciones": [
+        "Somnolencia",
+        "No con sedates sin supervisión"
+      ],
+      "mecanismo": "El ácido rosmarínico (melisa), los flavonoides (pasiflora) y los valepotriatos (valeriana) modulan GABA.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_ashwagandha_valeriana",
+      "ingredienteA": "ashwagandha",
+      "ingredienteB": "valeriana",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo calma-estrés: la ashwagandha (cortisol) y la valeriana (GABA/sueño).",
+      "beneficios": [
+        "Reduce estrés",
+        "Mejora sueño",
+        "Calma"
+      ],
+      "precauciones": [
+        "Somnolencia",
+        "Tiroideo (ashwagandha)"
+      ],
+      "mecanismo": "La ashwagandha reduce el cortisol; la valeriana modula GABA-A. Sinergia calma-estrés.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_zeaxantina_omega3_ocular",
+      "ingredienteA": "zeaxantina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo ocular: la zeaxantina (mácula) y el omega-3 (DHA retina + sequedad).",
+      "beneficios": [
+        "Protege la mácula",
+        "Sequedad ocular",
+        "Degeneración macular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La zeaxantina protege la mácula; el DHA es estructural de la retina y reduce la inflamación ocular.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_luteina_omega3_ocular",
+      "ingredienteA": "luteina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo ocular: la luteína (mácula) y el omega-3 (DHA retina).",
+      "beneficios": [
+        "Protege la mácula",
+        "Fatiga visual",
+        "Sequedad ocular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La luteína forma el pigmento macular; el DHA es estructural de la retina y reduce la inflamación.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_fenogreco_shatavari_lactancia",
+      "ingredienteA": "fenogreco",
+      "ingredienteB": "shatavari",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo galactógeno: el fenogreco y la shatavari estimulan la producción de leche.",
+      "beneficios": [
+        "Aumenta producción láctea",
+        "Galactógeno dual",
+        "Salud femenina"
+      ],
+      "precauciones": [
+        "Embarazo: evitar",
+        "Hipotiroidismo: fenogreco"
+      ],
+      "mecanismo": "Las saponinas del fenogreco estimulan la prolactina; las shatavarinas son galactógenas ayurvédicas.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_ashwagandha_selenio_tiroides",
+      "ingredienteA": "ashwagandha",
+      "ingredienteB": "selenio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte tiroideo: la ashwagandha y el selenio en hipotiroidismo subclínico.",
+      "beneficios": [
+        "Función tiroidea",
+        "Conversión T4→T3",
+        "Estrés"
+      ],
+      "precauciones": [
+        "Hipertiroidismo: evitar",
+        "Selenio: máx 400μg"
+      ],
+      "mecanismo": "La ashwagandha modula el eje HHA (TSH); el selenio es cofactor de la deiodinasa (T4→T3).",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "endocrino"
       ]
     }
   ]
