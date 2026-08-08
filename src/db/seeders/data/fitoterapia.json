@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 124,
+    "total": 129,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -6490,6 +6490,278 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (rendimiento/antioxidante)"
+      }
+    },
+    {
+      "id": "goji",
+      "nombre": "Goji",
+      "nombresAlternativos": [
+        "Lycium barbarum",
+        "Bayas de Goji",
+        "Wolfberry",
+        "Gou qi zi",
+        "Lycio"
+      ],
+      "nombreCientifico": "Lycium barbarum",
+      "familia": "Solanaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "hepatico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "ocular",
+        "antioxidante",
+        "inmunidad",
+        "hepático"
+      ],
+      "descripcion": "Bayas TCM ricas en zeaxantina y polisacáridos (Lycium barbarum polysaccharides, LBP). Tónico hepático y ocular.",
+      "mecanismoAccion": "La zeaxantina protege la mácula; los LBP son inmunomoduladores y antioxidantes; hepatoprotector (TCM).",
+      "nivelEvidencia": "C",
+      "parteUsada": "baya",
+      "formasPresentacion": [
+        "Baya seca",
+        "Cápsulas (extracto)",
+        "Zumo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Interacción teórica con anticoagulantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina (teórico)",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "zeaxantina",
+        "ocular",
+        "TCM",
+        "LBP",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "TCM pharmacopoeia + clinical studies (ocular/inmunidad)"
+      }
+    },
+    {
+      "id": "he_shou_wu",
+      "nombre": "He Shou Wu",
+      "nombresAlternativos": [
+        "Polygonum multiflorum",
+        "Fo-ti",
+        "He shou wu",
+        "Raíz de la longevidad",
+        "Fleeceflower root"
+      ],
+      "nombreCientifico": "Polygonum multiflorum",
+      "familia": "Polygonaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "dermatologico",
+        "hepatico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "cabello",
+        "longevidad",
+        "hepático",
+        "energía"
+      ],
+      "descripcion": "Raíz TCM para cabello, longevidad y energía. Tónico hepático y renal (Yin). Precaución por hepatotoxicidad.",
+      "mecanismoAccion": "Los leucoantocianos y antraquinonas son antioxidantes; tónico hepático/renal (TCM); estimula la melanogénesis.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz (curada)",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas",
+        "Decocción"
+      ],
+      "tiempoEfecto": "Meses",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "HEPATOTOXICIDAD reportada (forma no curada o exceso)",
+        "Usar forma curada (preparada)",
+        "Diarrea posible"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hepatotóxicos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "cabello",
+        "longevidad",
+        "TCM",
+        "hepatotóxico",
+        "tónico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "TCM pharmacopoeia + hepatotoxicity reports"
+      }
+    },
+    {
+      "id": "danshen",
+      "nombre": "Danshen (Salvia Miltiorrhiza)",
+      "nombresAlternativos": [
+        "Salvia miltiorrhiza",
+        "Danshen",
+        "Salvia roja china",
+        "Dan shen",
+        "Chinese sage"
+      ],
+      "nombreCientifico": "Salvia miltiorrhiza",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "angina (coadyuvante)",
+        "hepático",
+        "microcirculación"
+      ],
+      "descripcion": "Raíz TCM para el corazón y la circulación. Evidencia clínica en angina como coadyuvante. Contiene tanshinas.",
+      "mecanismoAccion": "Las tanshinas (I, IIA) son antiagregantes, vasodilatadoras y antioxidantes; mejoran la microcirculación coronaria.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Cápsulas (extracto)",
+        "Decocción"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo (supervisión)",
+      "advertencias": [
+        "Anticoagulantes: precaución (antiagregante)",
+        "Cardiopatía: supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina",
+        "AAS",
+        "Clopidogrel"
+      ],
+      "tags": [
+        "tanshinas",
+        "corazón",
+        "angina",
+        "TCM",
+        "microcirculación"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (angina/microcirculación)"
+      }
+    },
+    {
+      "id": "white_peony",
+      "nombre": "Peonía Blanca",
+      "nombresAlternativos": [
+        "Paeonia lactiflora",
+        "Bai shao",
+        "Peonía blanca",
+        "White peony root",
+        "Radix Paeoniae Alba"
+      ],
+      "nombreCientifico": "Paeonia lactiflora",
+      "familia": "Paeoniaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "menstrual",
+        "dolor",
+        "espasmos",
+        "ansiedad"
+      ],
+      "descripcion": "Raíz TCM para regular la menstruación y calmar el dolor. Antiespasmódica y analgésica.",
+      "mecanismoAccion": "La paeoniflorina modula la neurotransmisión (GABA/dopamina); antiespasmódica y analgésica; equilibra hormonas.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Cápsulas (extracto)",
+        "Decocción"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Cíclico",
+      "advertencias": [
+        "Embarazo: evitar",
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (teórico)"
+      ],
+      "tags": [
+        "menstrual",
+        "TCM",
+        "paeoniflorina",
+        "antiespasmódico",
+        "dolor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "TCM pharmacopoeia + pharmacological studies"
+      }
+    },
+    {
+      "id": "jujube",
+      "nombre": "Jujube (Dátiles Rojos)",
+      "nombresAlternativos": [
+        "Ziziphus jujuba",
+        "Dátil rojo chino",
+        "Zao",
+        "Azufaifo",
+        "Red date"
+      ],
+      "nombreCientifico": "Ziziphus jujuba",
+      "familia": "Rhamnaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "ansiedad",
+        "digestivo",
+        "inmunidad"
+      ],
+      "descripcion": "Fruto TCM para calmar la mente y mejorar el sueño. Tónico digestivo e inmunomodulador.",
+      "mecanismoAccion": "Los triterpenos (jujubósidos) modulan GABA y la serotonina; los polisacáridos son inmunomoduladores.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Fruto seco",
+        "Decocción",
+        "Cápsulas (extracto)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Azúcar: diabéticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "sueño",
+        "TCM",
+        "GABA",
+        "tónico",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "TCM pharmacopoeia + pharmacological studies"
       }
     }
   ]

@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 99,
+    "total": 105,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -5353,6 +5353,315 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + mechanistic studies"
+      }
+    },
+    {
+      "id": "pea",
+      "nombre": "PEA (Palmitoiletanolamida)",
+      "nombresAlternativos": [
+        "Palmitoylethanolamide",
+        "PEA",
+        "Palmidrol",
+        "N-palmitoiletanolamina",
+        "Endocannabinoide"
+      ],
+      "nombreCientifico": "N-palmitoiletanolamida (PEA)",
+      "familia": "N-acetiletanolaminas",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "dolor",
+        "neuropatía",
+        "inflamación",
+        "ciática",
+        "dolor crónico"
+      ],
+      "descripcion": "Lipido endógeno con acción analgésica y antiinflamatoria. Modula el sistema endocannabinoide y los mastocitos.",
+      "mecanismoAccion": "Modula el sistema endocannabinoide (PPAR-α), estabiliza los mastocitos y reduce la neuroinflamación.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (300-600mg)"
+      ],
+      "tiempoEfecto": "2-6 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "dolor",
+        "endocannabinoide",
+        "neuropatía",
+        "PPAR-α",
+        "antiinflamatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (dolor neuropático/crónico)"
+      }
+    },
+    {
+      "id": "urolithin_a",
+      "nombre": "Urolitina A",
+      "nombresAlternativos": [
+        "Urolithin A",
+        "UA",
+        "Metabolito de granada",
+        "Mitofagia inductor",
+        "Pomegranate metabolite"
+      ],
+      "nombreCientifico": "Urolitina A (metabolito de elagitáninos)",
+      "familia": "Metabolitos de polifenoles",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "autofagia",
+        "mitocondrial",
+        "longevidad",
+        "muscular"
+      ],
+      "descripcion": "Metabolito bacteriano de los elagitáninos (granada) que induce la mitofagia (limpieza mitocondrial).",
+      "mecanismoAccion": "Induce la mitofagia (eliminación de mitocondrias dañadas) vía PINK1/Parkin; mejora la función mitocondrial.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento (sintético/extracto)",
+      "formasPresentacion": [
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Investigación emergente"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "mitofagia",
+        "longevidad",
+        "mitocondrial",
+        "PINK1",
+        "granada"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (mitocondrial/muscular)"
+      }
+    },
+    {
+      "id": "nr",
+      "nombre": "NR (Nicotinamida Ribósido)",
+      "nombresAlternativos": [
+        "Nicotinamide riboside",
+        "NR",
+        "Niagen",
+        "NAD+ precursor",
+        "Ribósido de niacinamida"
+      ],
+      "nombreCientifico": "Nicotinamida ribósido (NR)",
+      "familia": "Nucleósidos",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "energía",
+        "longevidad",
+        "antioxidante",
+        "metabolismo"
+      ],
+      "descripcion": "Precursor de NAD+ con mejor absorción que la niacinamida. Aumenta el NAD+ celular de forma segura.",
+      "mecanismoAccion": "El NR se convierte en NAD+ (vía NRK1/2); aumenta la actividad de SIRT1/SIRT3 y la función mitocondrial.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (300mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Insomnio si de noche"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "NAD+",
+        "SIRT1",
+        "longevidad",
+        "mitocondrial",
+        "energía"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (NAD+ en humanos)"
+      }
+    },
+    {
+      "id": "i3c",
+      "nombre": "I3C (Indol-3-Carbinol)",
+      "nombresAlternativos": [
+        "Indole-3-carbinol",
+        "I3C",
+        "Indol-3-carbinol",
+        "Crucífero",
+        "Brócoli metabolito"
+      ],
+      "nombreCientifico": "Indol-3-carbinol (I3C)",
+      "familia": "Indoles",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "endocrino",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "metabolismo estrogénico",
+        "SPM",
+        "SOP",
+        "próstata"
+      ],
+      "descripcion": "Compuesto de las crucíferas que se convierte en DIM en el estómago. Favorece el metabolismo estrogénico.",
+      "mecanismoAccion": "Se convierte en DIM en el estómago; induce las enzimas CYP1A1 que canalizan los estrógenos hacia 2-OH.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento (extracto de brócoli)",
+      "formasPresentacion": [
+        "Cápsulas (200-400mg)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Orina oscura (normal)",
+        "Molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estrógenos exógenos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "estrogénico",
+        "crucíferas",
+        "2-OH",
+        "I3C→DIM",
+        "brócoli"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (metabolismo estrogénico)"
+      }
+    },
+    {
+      "id": "akg",
+      "nombre": "AKG (Alfa-Cetoglutarato)",
+      "nombresAlternativos": [
+        "Alpha-ketoglutarate",
+        "AKG",
+        "Calcio α-cetoglutarato",
+        "α-KG",
+        "Oxoglutarato"
+      ],
+      "nombreCientifico": "Ácido α-cetoglutárico (calcio α-cetoglutarato)",
+      "familia": "Cetoácidos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "metabolico",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "longevidad",
+        "síntesis de colágeno",
+        "metabolismo",
+        "detox amoníaco"
+      ],
+      "descripcion": "Intermediario del ciclo de Krebs con investigación en longevidad. Reduce la inflamación y el amoníaco.",
+      "mecanismoAccion": "Intermediario del ciclo de Krebs (ATP); donante de carbono para el colágeno; reduce el amoníaco; inhibe el inflamasoma.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento (calcio AKG)",
+      "formasPresentacion": [
+        "Cápsulas (300-1000mg)"
+      ],
+      "tiempoEfecto": "Semanas a meses",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "Krebs",
+        "longevidad",
+        "colágeno",
+        "amoniaco",
+        "inflamasoma"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + initial clinical trials"
+      }
+    },
+    {
+      "id": "s_boulardii",
+      "nombre": "Saccharomyces boulardii",
+      "nombresAlternativos": [
+        "Saccharomyces boulardii",
+        "S. boulardii",
+        "Levadura probiótica",
+        "Floratior",
+        "Enterol"
+      ],
+      "nombreCientifico": "Saccharomyces boulardii (levadura)",
+      "familia": "Saccharomycetaceae",
+      "categoria": "probioticos",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "diarrea",
+        "diarrea del viajero",
+        "diarrea por antibióticos",
+        "intestinal",
+        "candidiasis (coadyuvante)"
+      ],
+      "descripcion": "Levadura probiótica no patógena que sobrevive a los antibióticos. Prevención y tratamiento de diarreas.",
+      "mecanismoAccion": "Protege la mucosa intestinal, inactiva las toxinas bacterianas (receptor), modula la microbiota y la inmunidad.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Levadura liofilizada",
+      "formasPresentacion": [
+        "Cápsulas/Sobres (250-500mg)"
+      ],
+      "tiempoEfecto": "Días",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Inmunodeprimidos: precaución (riesgo fungemia)",
+        "Catéter venoso central: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antifúngicos orales (la levadura es sensible)"
+      ],
+      "tags": [
+        "diarrea",
+        "antibióticos",
+        "levadura",
+        "viajero",
+        "probiótico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Cochrane review + clinical trials (diarrea)"
       }
     }
   ]

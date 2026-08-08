@@ -4,7 +4,7 @@
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 44,
+    "total": 47,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
   "ingredientes": [
@@ -2527,6 +2527,169 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica"
+      }
+    },
+    {
+      "id": "gaulteria",
+      "nombre": "Aceite Esencial de Gaulteria",
+      "nombresAlternativos": [
+        "Wintergreen",
+        "Gaultheria procumbens",
+        "Té del Canadá",
+        "Wintergreen oil",
+        "Metil salicilato natural"
+      ],
+      "nombreCientifico": "Gaultheria procumbens",
+      "familia": "Ericaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "dolor muscular",
+        "dolor articular",
+        "inflamación",
+        "esguinces"
+      ],
+      "descripcion": "Aceite con 98% de metil salicilato (AINE natural). Analgésico tópico potente para músculos y articulaciones.",
+      "mecanismoAccion": "El metil salicilato inhibe la COX y reduce la prostaglandina inflamatoria; acción analgésica tópica similar a la aspirina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 5%)",
+        "Ungüentos"
+      ],
+      "tiempoEfecto": "30 minutos (tópico)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "TÓXICO si se ingiere",
+        "No usar en niños",
+        "No en embarazo",
+        "No en piel lesionada",
+        "Anticoagulantes: precaución"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (AINE)"
+      ],
+      "tags": [
+        "metil salicilato",
+        "analgésico",
+        "tópico",
+        "AINE natural",
+        "muscular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Pharmacological studies (metil salicilato)"
+      }
+    },
+    {
+      "id": "rosa",
+      "nombre": "Aceite Esencial de Rosa Damascena",
+      "nombresAlternativos": [
+        "Rosa damascena",
+        "Rosa de Damasco",
+        "Rose otto",
+        "Damask rose",
+        "Aceite de rosa"
+      ],
+      "nombreCientifico": "Rosa damascena",
+      "familia": "Rosaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "dermatologico",
+        "nervioso",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "piel",
+        "ansiedad",
+        "hormonal",
+        "libido"
+      ],
+      "descripcion": "Uno de los aceites más preciados. Tónico para piel madura, calmante y afrodisíaco.",
+      "mecanismoAccion": "El citronelol y geraniol son antioxidantes y antiinflamatorios; acción calmante (GABA) y tónica cutánea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 1%)",
+        "Hidrolato (agua de rosas)"
+      ],
+      "tiempoEfecto": "Inmediato",
+      "duracionTratamiento": "Uso puntual/continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Premium: cuidar adulteraciones"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "piel madura",
+        "calma",
+        "afrodisíaco",
+        "premium",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Aromatherapy + clinical studies (ansiedad)"
+      }
+    },
+    {
+      "id": "helicriso",
+      "nombre": "Aceite Esencial de Helicriso",
+      "nombresAlternativos": [
+        "Helichrysum",
+        "Helichrysum italicum",
+        "Siempreviva",
+        "Immortelle",
+        "Curry plant"
+      ],
+      "nombreCientifico": "Helichrysum italicum",
+      "familia": "Asteraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "dermatologico",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "cicatrización",
+        "hematomas",
+        "piel",
+        "espasmos"
+      ],
+      "descripcion": "Aceite premium regenerador cutáneo. Antiinflamatorio y cicatrizante potente. Reduce hematomas.",
+      "mecanismoAccion": "Las italidiones y acetato de nerilo son antiinflamatorios y regeneradores; reduce los hematomas y la inflamación.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor (destilación)",
+      "formasPresentacion": [
+        "Aceite esencial puro",
+        "Dilución tópica (máx 5%)"
+      ],
+      "tiempoEfecto": "Horas a días",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Bien tolerado",
+        "Premium: cuidar precio/adulteración"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (leve)"
+      ],
+      "tags": [
+        "cicatrizante",
+        "hematomas",
+        "premium",
+        "regenerador",
+        "antiinflamatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Pharmacological studies (regeneración)"
       }
     }
   ]

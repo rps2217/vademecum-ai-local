@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 485,
+    "total": 532,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -12155,6 +12155,1164 @@
       ],
       "sistemas": [
         "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_gaulteria_abeto_muscular",
+      "ingredienteA": "gaulteria",
+      "ingredienteB": "abeto_balsamico",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo analgésico tópico: la gaulteria (metil salicilato) y el abeto (balsámico).",
+      "beneficios": [
+        "Dolor muscular",
+        "Esguinces",
+        "Dolor articular"
+      ],
+      "precauciones": [
+        "TÓXICO si se ingiere",
+        "No en niños/embarazo",
+        "Diluir"
+      ],
+      "mecanismo": "El metil salicilato de la gaulteria es AINE tópico; el abeto es balsámico y relajante.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_gaulteria_harpagofito_dolor",
+      "ingredienteA": "gaulteria",
+      "ingredienteB": "harpagofito",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo articular: la gaulteria (tópico) y el harpagófito (oral).",
+      "beneficios": [
+        "Dolor articular",
+        "Antiinflamatorio dual",
+        "Artrosis"
+      ],
+      "precauciones": [
+        "TÓXICO si se ingiere (gaulteria)",
+        "Anticoagulantes"
+      ],
+      "mecanismo": "El metil salicilato actúa tópicamente; el harpagósido inhibe COX-2 oralmente. Doble vía.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_helicriso_incienso_piel",
+      "ingredienteA": "helicriso",
+      "ingredienteB": "incienso",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo regenerador cutáneo premium: el helicriso y el incienso.",
+      "beneficios": [
+        "Cicatrización",
+        "Regeneración cutánea",
+        "Piel madura",
+        "Hematomas"
+      ],
+      "precauciones": [
+        "Diluir",
+        "Premium: cuidar precio"
+      ],
+      "mecanismo": "Las italidiones del helicriso son regeneradoras; los triterpenos del incienso son antiinflamatorios.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_helicriso_rosa_piel_madura",
+      "ingredienteA": "helicriso",
+      "ingredienteB": "rosa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo facial premium: el helicriso (regeneración) y la rosa (antioxidante).",
+      "beneficios": [
+        "Piel madura",
+        "Regeneración",
+        "Antioxidante cutáneo",
+        "Arrugas"
+      ],
+      "precauciones": [
+        "Diluir (rosa máx 1%)",
+        "Premium"
+      ],
+      "mecanismo": "El helicriso regenera; la rosa es antioxidante y tónica cutánea. Sinergia facial premium.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_rosa_geranio_hormonal",
+      "ingredienteA": "rosa",
+      "ingredienteB": "geranio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo floral hormonal: la rosa y el geranio para piel y hormonas.",
+      "beneficios": [
+        "Equilibrio hormonal",
+        "Piel",
+        "Menopausia",
+        "Calma"
+      ],
+      "precauciones": [
+        "Diluir"
+      ],
+      "mecanismo": "La rosa y el geranio son tónicos hormonales y cutáneos; sinergia floral femenina.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_goji_luteina_ocular",
+      "ingredienteA": "goji",
+      "ingredienteB": "luteina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo ocular: el goji (zeaxantina) y la luteína (mácula).",
+      "beneficios": [
+        "Salud macular",
+        "Visión",
+        "Antioxidante ocular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El goji aporta zeaxantina; la luteína completa el pigmento macular. Sinergia macular.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_goji_bilberry_ocular",
+      "ingredienteA": "goji",
+      "ingredienteB": "bilberry",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo ocular TCM-europeo: el goji (zeaxantina) y el mirtilo (rodopsina).",
+      "beneficios": [
+        "Salud ocular",
+        "Visión nocturna",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El goji aporta zeaxantina (mácula); el mirtilo regenera la rodopsina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_goji_schisandra_hepatico",
+      "ingredienteA": "goji",
+      "ingredienteB": "schisandra",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hepático TCM: el goji y la schisandra.",
+      "beneficios": [
+        "Salud hepática",
+        "Antioxidante",
+        "Tónico"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El goji es tónico hepático (LBP); la schisandra es hepatoprotectora (lignanos).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_he_shou_wu_shatavari_cabello",
+      "ingredienteA": "he_shou_wu",
+      "ingredienteB": "shatavari",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo tónico: el He Shou Wu (cabello) y la shatavari (reproductivo).",
+      "beneficios": [
+        "Cabello",
+        "Longevidad",
+        "Tónico Yin"
+      ],
+      "precauciones": [
+        "HEPATOTOXICIDAD del He Shou Wu (usar forma curada)"
+      ],
+      "mecanismo": "El He Shou Wu tónico del Yin (cabello); la shatavari tónica femenina. Sinergia tónica TCM-Ayurveda.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_danshen_omega3_cardio",
+      "ingredienteA": "danshen",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cardiovascular TCM: el danshen (microcirculación) y el omega-3.",
+      "beneficios": [
+        "Cardiovascular",
+        "Microcirculación",
+        "Antiinflamatorio"
+      ],
+      "precauciones": [
+        "Anticoagulantes (ambos)"
+      ],
+      "mecanismo": "Las tanshinas mejoran la microcirculación coronaria; el omega-3 reduce triglicéridos e inflamación.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_danshen_ginkgo_microcirculacion",
+      "ingredienteA": "danshen",
+      "ingredienteB": "ginkgo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo microcirculatorio: el danshen y el ginkgo.",
+      "beneficios": [
+        "Microcirculación",
+        "Cardiovascular",
+        "Cognitivo"
+      ],
+      "precauciones": [
+        "Anticoagulantes (ambos)"
+      ],
+      "mecanismo": "Las tanshinas y los ginkgólidos mejoran la microcirculación y el flujo sanguíneo.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_white_peony_vitex_menstrual",
+      "ingredienteA": "white_peony",
+      "ingredienteB": "vitex",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo menstrual TCM-europeo: la peonía blanca y el vitex.",
+      "beneficios": [
+        "Regula ciclo",
+        "Reduce dolor menstrual",
+        "SPM"
+      ],
+      "precauciones": [
+        "Embarazo: evitar"
+      ],
+      "mecanismo": "La paeoniflorina es antiespasmódica; el vitex estimula la progesterona. Acción dual menstrual.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_white_peony_cimicifuga_menopausia",
+      "ingredienteA": "white_peony",
+      "ingredienteB": "cimicifuga",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para menopausia: la peonía blanca y la cimicífuga.",
+      "beneficios": [
+        "Sofocos",
+        "Dolor menstrual",
+        "Equilibrio hormonal"
+      ],
+      "precauciones": [
+        "Hormono-dependiente: supervisión"
+      ],
+      "mecanismo": "La paeoniflorina modula la neurotransmisión; la cimicífuga modula la serotonina. Acción dual.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_jujube_valeriana_sueno",
+      "ingredienteA": "jujube",
+      "ingredienteB": "valeriana",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño: el jujube (GABA) y la valeriana (GABA-A).",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calma nocturna",
+        "Ansiedad"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "Los jujubósidos y los valepotriatos modulan GABA; sinergia sedante natural.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_jujube_ashwagandha_estrés",
+      "ingredienteA": "jujube",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo adaptógeno-calma: el jujube y la ashwagandha.",
+      "beneficios": [
+        "Reduce estrés",
+        "Mejora sueño",
+        "Calma"
+      ],
+      "precauciones": [
+        "Tiroideo (ashwagandha)"
+      ],
+      "mecanismo": "El jujube calma la mente (GABA); la ashwagandha reduce el cortisol. Sinergia adaptógena.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_pea_cbd_dolor",
+      "ingredienteA": "pea",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antiinflamatorio: la PEA (endocannabinoide) y el omega-3 (resolvinas).",
+      "beneficios": [
+        "Reduce dolor crónico",
+        "Antiinflamatorio",
+        "Neuropatía"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La PEA modula el sistema endocannabinoide; el omega-3 genera resolvinas. Sinergia antiinflamatoria.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_pea_benfotiamina_neuropatia",
+      "ingredienteA": "pea",
+      "ingredienteB": "benfotiamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo para neuropatía diabética: la PEA (dolor) y la benfotiamina (AGEs).",
+      "beneficios": [
+        "Neuropatía diabética",
+        "Reduce dolor neuropático",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La PEA reduce el dolor neuropático (PPAR-α); la benfotiamina reduce los AGEs.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_pea_magnesio_dolor",
+      "ingredienteA": "pea",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para dolor crónico: la PEA y el magnesio.",
+      "beneficios": [
+        "Reduce dolor crónico",
+        "Relajante muscular",
+        "Neuropatía"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La PEA modula el endocannabinoide; el magnesio bloquea el NMDA (dolor). Sinergia analgésica.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_urolithin_a_espermidina_mitofagia",
+      "ingredienteA": "urolithin_a",
+      "ingredienteB": "espermidina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo mitofagia+autofagia: la urolitina A y la espermidina.",
+      "beneficios": [
+        "Limpieza celular dual",
+        "Mitocondrial",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados",
+        "Investigación emergente"
+      ],
+      "mecanismo": "La urolitina A induce mitofagia (mitocondrias); la espermidina induce autofagia general.",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_urolithin_a_nmn_mitocondrial",
+      "ingredienteA": "urolithin_a",
+      "ingredienteB": "nmn",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo mitocondrial: la urolitina A (mitofagia) y el NMN (NAD+).",
+      "beneficios": [
+        "Mitocondrias nuevas + funcionales",
+        "Energía",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La urolitina A renueva mitocondrias (mitofagia); el NMN aumenta el NAD+ (función).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_nr_resveratrol_longevidad",
+      "ingredienteA": "nr",
+      "ingredienteB": "resveratrol",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de longevidad: el NR (NAD+) y el resveratrol (SIRT1).",
+      "beneficios": [
+        "Activación de sirtuinas",
+        "Función mitocondrial",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El NR aumenta el NAD+; el resveratrol activa SIRT1 (dependiente de NAD+). Sinergia longevidad.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_nr_nmn_nad",
+      "ingredienteA": "nr",
+      "ingredienteB": "nmn",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de NAD+: el NR y el NMN son los dos precursores más estudiados.",
+      "beneficios": [
+        "Maximiza NAD+",
+        "Energía",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados",
+        "Insomnio si de noche"
+      ],
+      "mecanismo": "El NR (vía NRK) y el NMN (vía directa) aumentan el NAD+ por vías complementarias.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_i3c_dim_estrogenico",
+      "ingredienteA": "i3c",
+      "ingredienteB": "dim",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del metabolismo estrogénico: el I3C es el precursor del DIM.",
+      "beneficios": [
+        "Metabolismo estrogénico",
+        "SPM",
+        "SOP"
+      ],
+      "precauciones": [
+        "Orina oscura (normal)"
+      ],
+      "mecanismo": "El I3C se convierte en DIM en el estómago; el DIM directo canaliza hacia 2-OH. Sinergia estrogénica.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_akg_citicolina_colageno",
+      "ingredienteA": "akg",
+      "ingredienteB": "colageno",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del colágeno: el AKG (donante de carbono) y el colágeno (sustrato).",
+      "beneficios": [
+        "Síntesis de colágeno",
+        "Piel",
+        "Articulaciones"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El AKG dona carbono para la síntesis de colágeno; el colágeno aporta péptidos sustrato.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_akg_vitamina_c_colageno",
+      "ingredienteA": "akg",
+      "ingredienteB": "vitamina_c",
+      "tipo": "cofactor",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del colágeno: el AKG (carbono) y la vitamina C (cofactor).",
+      "beneficios": [
+        "Síntesis de colágeno",
+        "Piel",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El AKG dona carbono; la vitamina C es cofactor de la prolil hidroxilasa (colágeno).",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_s_boulardii_probioticos_intestinal",
+      "ingredienteA": "s_boulardii",
+      "ingredienteB": "probioticos",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo probiótico: la levadura S. boulardii y las bacterias probióticas para el intestino.",
+      "beneficios": [
+        "Microbiota dual",
+        "Diarrea",
+        "Salud intestinal"
+      ],
+      "precauciones": [
+        "Inmunodeprimidos: precaución"
+      ],
+      "mecanismo": "La levadura sobrevive a los antibióticos y protege la mucosa; las bacterias repueblan la microbiota.",
+      "categorias": [
+        "probioticos",
+        "probioticos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_s_boulardii_psyllium_intestinal",
+      "ingredienteA": "s_boulardii",
+      "ingredienteB": "psyllium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo intestinal: la S. boulardii y el psyllium (prebiótico).",
+      "beneficios": [
+        "Microbiota",
+        "Tránsito",
+        "Salud intestinal"
+      ],
+      "precauciones": [
+        "Separar de medicamentos 2h"
+      ],
+      "mecanismo": "La levadura modula la microbiota; el psyllium es fibra prebiótica que la alimenta.",
+      "categorias": [
+        "probioticos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_incienso_mirra_bucal",
+      "ingredienteA": "incienso",
+      "ingredienteB": "mirra",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo milenario: el incienso y la mirra para boca y piel.",
+      "beneficios": [
+        "Bucal",
+        "Encías",
+        "Piel",
+        "Meditación"
+      ],
+      "precauciones": [
+        "Diluir",
+        "No en embarazo (mirra)"
+      ],
+      "mecanismo": "Los triterpenos del incienso y los sesquiterpenos de la mirra son antimicrobianos y antiinflamatorios.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_bergamota_lavanda_ansiedad",
+      "ingredienteA": "bergamota",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo calmante cítrico-floral: la bergamota y la lavanda.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Mejora humor",
+        "Calma"
+      ],
+      "precauciones": [
+        "Bergamota: FCF-free o evitar sol"
+      ],
+      "mecanismo": "El limoneno (bergamota) y el linalool (lavanda) modulan GABA y la serotonina. Sinergia calmante.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_ylang_ylang_bergamota_hipertension",
+      "ingredienteA": "ylang_ylang",
+      "ingredienteB": "bergamota",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hipotensor: el ylang ylang y la bergamota reducen la PA.",
+      "beneficios": [
+        "Reduce tensión",
+        "Calma",
+        "Taquicardia"
+      ],
+      "precauciones": [
+        "Antihipertensivos (sinergia)",
+        "Bergamota: FCF-free"
+      ],
+      "mecanismo": "El ylang ylang reduce la PA y la frecuencia cardíaca; la bergamota es calmante. Sinergia hipotensora.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_manzanilla_romana_lavanda_sueno",
+      "ingredienteA": "manzanilla_romana",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo del sueño floral: la manzanilla romana y la lavanda.",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calma",
+        "Apto para niños (diluido)"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Los ésteres (manzanilla) y el linalool (lavanda) son calmantes y sedantes.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_mejorana_manzanilla_romana_relajante",
+      "ingredienteA": "mejorana",
+      "ingredienteB": "manzanilla_romana",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo relajante muscular: la mejorana y la manzanilla romana.",
+      "beneficios": [
+        "Relajante muscular",
+        "Calma",
+        "Espasmos"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El terpinen-4-ol (mejorana) y los ésteres (manzanilla) son antiespasmódicos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_geranio_salvia_hormonal",
+      "ingredienteA": "geranio",
+      "ingredienteB": "salvia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo hormonal femenino: el geranio (EO) y la salvia (fito).",
+      "beneficios": [
+        "Menopausia",
+        "Equilibrio hormonal",
+        "Sofocos"
+      ],
+      "precauciones": [
+        "Salvia: no en embarazo/epilepsia",
+        "Hormono-dependiente: supervisión"
+      ],
+      "mecanismo": "El geranio es equilibrante; la salvia es fitoestrogénica. Sinergia hormonal.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_rosa_damascena_centella_piel",
+      "ingredienteA": "rosa",
+      "ingredienteB": "centella",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo facial: la rosa (antioxidante) y la centella (colágeno).",
+      "beneficios": [
+        "Piel madura",
+        "Regeneración",
+        "Arrugas"
+      ],
+      "precauciones": [
+        "Diluir (rosa máx 1%)"
+      ],
+      "mecanismo": "La rosa es antioxidante cutánea; los triterpenos de la centella estimulan el colágeno.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_goji_zeaxantina_ocular",
+      "ingredienteA": "goji",
+      "ingredienteB": "zeaxantina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo macular: el goji (fuente natural) y la zeaxantina (concentrada).",
+      "beneficios": [
+        "Protege la mácula",
+        "Degeneración macular",
+        "Antioxidante ocular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El goji aporta zeaxantina natural; la zeaxantina concentrada maximiza el pigmento macular.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_danshen_arjuna_corazon",
+      "ingredienteA": "danshen",
+      "ingredienteB": "arjuna",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cardiotónico TCM-Ayurveda: el danshen y el arjuna.",
+      "beneficios": [
+        "Cardiovascular",
+        "Microcirculación coronaria",
+        "Contractilidad"
+      ],
+      "precauciones": [
+        "Cardiopatía: supervisión",
+        "Anticoagulantes"
+      ],
+      "mecanismo": "Las tanshinas mejoran la microcirculación; el arjuna mejora la contractilidad. Sinergia cardíaca.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_jujube_melisa_sueno",
+      "ingredienteA": "jujube",
+      "ingredienteB": "melisa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo calmante: el jujube y la melisa para el sueño.",
+      "beneficios": [
+        "Reduce insomnio",
+        "Calma",
+        "Ansiedad"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "Los jujubósidos y el ácido rosmarínico modulan GABA. Sinergia sedante suave.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_white_peony_dong_quai_menstrual",
+      "ingredienteA": "white_peony",
+      "ingredienteB": "dong_quai",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo menstrual TCM: la peonía blanca y el dong quai.",
+      "beneficios": [
+        "Regula ciclo",
+        "Reduce dolor menstrual",
+        "Fertilidad"
+      ],
+      "precauciones": [
+        "Embarazo: evitar",
+        "Anticoagulantes (dong quai)"
+      ],
+      "mecanismo": "La paeoniflorina y los cumarinos del dong quai regulan el ciclo. Sinergia menstrual TCM.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_he_shou_wu_goji_cabello",
+      "ingredienteA": "he_shou_wu",
+      "ingredienteB": "goji",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo TCM del cabello y longevidad: el He Shou Wu y el goji.",
+      "beneficios": [
+        "Cabello",
+        "Longevidad",
+        "Tónico hepático"
+      ],
+      "precauciones": [
+        "HEPATOTOXICIDAD del He Shou Wu (usar forma curada)"
+      ],
+      "mecanismo": "El He Shou Wu estimula la melanogénesis; el goji es tónico hepático. Sinergia TCM.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_urolithin_a_resveratrol_longevidad",
+      "ingredienteA": "urolithin_a",
+      "ingredienteB": "resveratrol",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de longevidad: la urolitina A (mitofagia) y el resveratrol (SIRT1).",
+      "beneficios": [
+        "Mitocondrial + SIRT1",
+        "Longevidad",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La urolitina A renueva mitocondrias; el resveratrol activa SIRT1. Sinergia longevidad.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_akg_nmn_longevidad",
+      "ingredienteA": "akg",
+      "ingredienteB": "nmn",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de longevidad: el AKG (Krebs/inflamasoma) y el NMN (NAD+).",
+      "beneficios": [
+        "Energía + longevidad",
+        "Mitocondrial",
+        "Antiinflamatorio"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El AKG inhibe el inflamasoma y dona carbono; el NMN aumenta el NAD+. Sinergia longevidad.",
+      "categorias": [
+        "aminoacidos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_pea_curcuma_inflamacion",
+      "ingredienteA": "pea",
+      "ingredienteB": "curcuma",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antiinflamatorio: la PEA (endocannabinoide) y la cúrcuma (NF-κB).",
+      "beneficios": [
+        "Reduce inflamación",
+        "Dolor crónico",
+        "Antiinflamatorio dual"
+      ],
+      "precauciones": [
+        "Cúrcuma: anticoagulantes"
+      ],
+      "mecanismo": "La PEA modula el endocannabinoide; la curcumina inhibe NF-κB. Doble vía antiinflamatoria.",
+      "categorias": [
+        "aminoacidos",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_s_boulardii_zinc_intestinal",
+      "ingredienteA": "s_boulardii",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo intestinal-inmune: la S. boulardii y el zinc.",
+      "beneficios": [
+        "Microbiota",
+        "Inmunidad intestinal",
+        "Diarrea"
+      ],
+      "precauciones": [
+        "Zinc: máx 40mg/día"
+      ],
+      "mecanismo": "La levadura modula la microbiota; el zinc es esencial para la inmunidad intestinal.",
+      "categorias": [
+        "probioticos",
+        "minerales"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_nr_pqq_mitocondrial",
+      "ingredienteA": "nr",
+      "ingredienteB": "pqq",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo mitocondrial: el NR (NAD+) y el PQQ (biogénesis).",
+      "beneficios": [
+        "Biogénesis + función",
+        "Energía",
+        "Longevidad"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El NR aumenta el NAD+ (función); el PQQ induce la biogénesis mitocondrial.",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_i3c_sulforafano_detox",
+      "ingredienteA": "i3c",
+      "ingredienteB": "sulforafano",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de las crucíferas: el I3C y el sulforafano.",
+      "beneficios": [
+        "Detox hepático",
+        "Metabolismo estrogénico",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Orina oscura (normal)"
+      ],
+      "mecanismo": "El I3C canaliza los estrógenos; el sulforafano induce Nrf2 (fase II). Sinergia crucífera.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "hepatico",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_gaulteria_mezclado_muscular",
+      "ingredienteA": "gaulteria",
+      "ingredienteB": "mejorana",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo analgésico-relajante: la gaulteria y la mejorana.",
+      "beneficios": [
+        "Dolor muscular",
+        "Relajante",
+        "Espasmos"
+      ],
+      "precauciones": [
+        "TÓXICO si se ingiere (gaulteria)",
+        "Diluir"
+      ],
+      "mecanismo": "El metil salicilato (gaulteria) es AINE; la mejorana es relajante muscular.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_helicriso_mirra_cicatrizacion",
+      "ingredienteA": "helicriso",
+      "ingredienteB": "mirra",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo cicatrizante premium: el helicriso y la mirra.",
+      "beneficios": [
+        "Cicatrización",
+        "Piel",
+        "Hematomas"
+      ],
+      "precauciones": [
+        "Diluir",
+        "No en embarazo (mirra)"
+      ],
+      "mecanismo": "Las italidiones del helicriso y los sesquiterpenos de la mirra son regeneradores y antimicrobianos.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico"
       ]
     }
   ]
