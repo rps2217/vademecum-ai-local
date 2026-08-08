@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 64,
+    "total": 70,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -3595,6 +3595,317 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + small clinical trials"
+      }
+    },
+    {
+      "id": "l_lisina",
+      "nombre": "L-Lisina",
+      "nombresAlternativos": [
+        "Lisina",
+        "L-Lysine",
+        "Lys",
+        "Aminoácido esencial"
+      ],
+      "nombreCientifico": "L-Lisina",
+      "familia": "Aminoácidos esenciales",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "inmunologico",
+        "piel"
+      ],
+      "indicaciones": [
+        "profilaxis herpes simple",
+        "recuperación muscular",
+        "absorción de calcio",
+        "salud cutánea"
+      ],
+      "descripcion": "Aminoácido esencial que antagoniza la arginina, reduciendo la replicación del virus del herpes simple. Evidencia clínica en profilaxis de herpes labial recurrente.",
+      "mecanismoAccion": "La lisina antagoniza la arginina (requerida por el HSV para replicarse), reduciendo la replicación viral; mejora la absorción intestinal de calcio y la síntesis de colágeno.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Cápsulas (500-1000mg)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "Días a semanas",
+      "duracionTratamiento": "Profiláctico continuo o al inicio de brote",
+      "advertencias": [
+        "Bien tolerada",
+        "Dosis altas: molestias gastrointestinales",
+        "Reducir arginina en dieta"
+      ],
+      "interaccionesMedicamentosas": [
+        "Aminoglucósidos",
+        "Calcio (sinergia)"
+      ],
+      "tags": [
+        "herpes",
+        "profilaxis",
+        "HSV",
+        "colágeno",
+        "calcio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (herpes recurrente)"
+      }
+    },
+    {
+      "id": "lactoferrina",
+      "nombre": "Lactoferrina",
+      "nombresAlternativos": [
+        "Lactoferrin",
+        "Lactotransferrina",
+        "Lf",
+        "Apo-lactoferrina",
+        "Bovine lactoferrin"
+      ],
+      "nombreCientifico": "Lactoferrina",
+      "familia": "Glicoproteínas",
+      "categoria": "probioticos",
+      "sistemas": [
+        "inmunologico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "infecciones recurrentes",
+        "salud gastrointestinal",
+        "acné",
+        "transporte de hierro"
+      ],
+      "descripcion": "Glicoproteína de la leche con acción antimicrobiana e inmunomoduladora. Mejora la respuesta inmune y el transporte de hierro.",
+      "mecanismoAccion": "Quela hierro (privando bacterias), activa la inmunidad innata (NK, macrófagos), modula la microbiota y tiene acción antiviral directa.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento (bovino)",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo estacional",
+      "advertencias": [
+        "Bien tolerada",
+        "Origen lácteo (alergia)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos (separar 2h)"
+      ],
+      "tags": [
+        "inmunidad",
+        "antimicrobiano",
+        "hierro",
+        "antiviral",
+        "microbiota"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (infecciones/acné)"
+      }
+    },
+    {
+      "id": "bcaa",
+      "nombre": "BCAA (Aminoácidos Ramificados)",
+      "nombresAlternativos": [
+        "Branched-chain amino acids",
+        "Leucina/Isoleucina/Valina",
+        "BCAAs",
+        "Aminoácidos de cadena ramificada"
+      ],
+      "nombreCientifico": "L-Leucina, L-Isoleucina, L-Valina",
+      "familia": "Aminoácidos esenciales",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "musculo-esqueletico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "recuperación muscular",
+        "catabolismo",
+        "rendimiento deportivo",
+        "sarcopenia"
+      ],
+      "descripcion": "Aminoácidos esenciales ramificados metabolizados en el músculo. La leucina activa mTOR, estimulando la síntesis proteica muscular.",
+      "mecanismoAccion": "La leucina activa mTORC1 (sintesis proteica); los BCAA se metabolizan en músculo (no hepático) y reducen el catabolismo durante el ejercicio.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo (2:1:1)",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "Inmediato (anabólico)",
+      "duracionTratamiento": "Uso deportivo",
+      "advertencias": [
+        "Precaución en ELA (enfermedad de motoneurona)",
+        "Competencia con triptófano (serotonina)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levodopa"
+      ],
+      "tags": [
+        "muscular",
+        "mTOR",
+        "leucina",
+        "recuperación",
+        "anabólico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Sports nutrition clinical trials"
+      }
+    },
+    {
+      "id": "luteolina",
+      "nombre": "Luteolina",
+      "nombresAlternativos": [
+        "Luteolin",
+        "3',4',5,7-tetrahidroxiflavona",
+        "Extracto de apio",
+        "Extracto de perejil"
+      ],
+      "nombreCientifico": "Luteolina (3',4',5,7-tetrahidroxiflavona)",
+      "familia": "Flavonoides",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "neuroinflamación",
+        "función cognitiva",
+        "alergias",
+        "inflamación crónica",
+        "autismo (coadyuvante investigacional)"
+      ],
+      "descripcion": "Flavonoide de apio, perejil y romero. Potente antiinflamatorio que inhibe mastocitos y modula la neuroinflamación.",
+      "mecanismoAccion": "Inhibe la degranulación de mastocitos, modula NF-κB y la neuroinflamación (microglía), reduce citoquinas Th2; antioxidante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto",
+      "formasPresentacion": [
+        "Cápsulas (100mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "neuroinflamación",
+        "mastocitos",
+        "alergias",
+        "flavonoide",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical + initial clinical trials"
+      }
+    },
+    {
+      "id": "pterostilbeno",
+      "nombre": "Pterostilbeno",
+      "nombresAlternativos": [
+        "Pterostilbene",
+        "Pterostilbeno",
+        "Dimetilresveratrol",
+        "Análogo de resveratrol",
+        "Ptero"
+      ],
+      "nombreCientifico": "Pterostilbeno (3,5-dimetoxi-4'-hidroxiestilbeno)",
+      "familia": "Estilbenos",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "salud cardiovascular",
+        "función cognitiva",
+        "hiperlipidemia",
+        "antioxidante",
+        "hiperglucemia leve"
+      ],
+      "descripcion": "Análogo dimetilado del resveratrol con mejor biodisponibilidad oral. Activa sirtuinas (SIRT1) y mejora el perfil lipídico.",
+      "mecanismoAccion": "Activa SIRT1 (longevidad), AMPK y Nrf2; el grupo dimetilo mejora la lipofilicidad y la vida media respecto al resveratrol.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto (Pterocarpus)",
+      "formasPresentacion": [
+        "Cápsulas (50-250mg)"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible reducción de presión arterial"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "SIRT1",
+        "antioxidante",
+        "cardiovascular",
+        "cognitivo",
+        "biodisponibilidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (lípidos/cognitivo)"
+      }
+    },
+    {
+      "id": "fisetina",
+      "nombre": "Fisetina",
+      "nombresAlternativos": [
+        "Fiseting",
+        "Fisetin",
+        "3,7,3',4'-tetrahidroxiflavona",
+        "Extracto de fresa",
+        "Senolítico"
+      ],
+      "nombreCientifico": "Fisetina (3,7,3',4'-tetrahidroxiflavona)",
+      "familia": "Flavonoides",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "senescencia celular (senolítico)",
+        "función cognitiva",
+        "longevidad",
+        "antioxidante"
+      ],
+      "descripcion": "Flavonoide de fresas y manzanas, uno de los senolíticos naturales más potentes (elimina células senescentes). Investigado en longevidad.",
+      "mecanismoAccion": "Induce apoptosis selectiva de células senescentes (senolítico), inhibe PI3K/AKT/mTOR, antioxidante y neuroprotector.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Extracto",
+      "formasPresentacion": [
+        "Cápsulas (100-500mg)"
+      ],
+      "tiempoEfecto": "Días (senolítico pulso)",
+      "duracionTratamiento": "Pulsos mensuales (senolítico)",
+      "advertencias": [
+        "Bien tolerada en pulsos",
+        "Datos clínicos limitados"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "senolítico",
+        "longevidad",
+        "senescencia",
+        "antioxidante",
+        "neuroprotector"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Preclinical senolytic + Mayo Clinic trials"
       }
     }
   ]

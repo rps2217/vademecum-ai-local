@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 93,
+    "total": 98,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -4882,6 +4882,276 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional menstrual)"
+      }
+    },
+    {
+      "id": "astragalus",
+      "nombre": "Astrágalo",
+      "nombresAlternativos": [
+        "Astragalus membranaceus",
+        "Huang qi",
+        "Astragalus",
+        "Raíz de astrágalo",
+        "Mongolian milkvetch"
+      ],
+      "nombreCientifico": "Astragalus membranaceus",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmunologico",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "fatiga crónica",
+        "función renal",
+        "salud cardiovascular",
+        "recuperación"
+      ],
+      "descripcion": "Raíz adaptógena de la medicina china, uno de los inmunomoduladores más estudiados. Los astragalósidos y polisacáridos modulan la inmunidad y protegen el corazón.",
+      "mecanismoAccion": "Los polisacáridos (APS) aumentan la proliferación de linfocitos T y la actividad NK; los astragalósidos son cardioprotectores y mejoran la función mitocondrial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado)",
+        "Decocción",
+        "Polvo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Trastornos autoinmunes (teórico)",
+        "Evitar en fase aguda de infección (médico)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Litio",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "inmunidad",
+        "adaptógeno",
+        "TCM",
+        "astragalósidos",
+        "cardioprotector"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials + TCM pharmacopoeia"
+      }
+    },
+    {
+      "id": "gymnema",
+      "nombre": "Gymnema",
+      "nombresAlternativos": [
+        "Gymnema sylvestre",
+        "Gurmar",
+        "Destructor de azúcar",
+        "Meshashringi",
+        "Gymnema"
+      ],
+      "nombreCientifico": "Gymnema sylvestre",
+      "familia": "Apocynaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "hiperglucemia",
+        "antojo de azúcar",
+        "resistencia a insulina",
+        "diabetes tipo 2 (coadyuvante)"
+      ],
+      "descripcion": "Planta ayurvédica que reduce el antojo de dulces (bloquea receptores dulces de la lengua) y mejora el control glucémico. Evidencia clínica en diabetes tipo 2.",
+      "mecanismoAccion": "El ácido gimnémico aumenta la secreción de insulina (regeneración de células β?), reduce la absorción intestinal de glucosa y bloquea los receptores dulces periféricos de la lengua.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Cápsulas (extracto estandarizado)",
+        "Polvo",
+        "Tintura"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Hipoglucemia si se combina con antidiabéticos",
+        "Reducir antojo de dulces (efecto inmediato en lengua)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos",
+        "Insulina"
+      ],
+      "tags": [
+        "glucosa",
+        "antidiabético",
+        "gurmar",
+        "antojo-dulce",
+        "ayurveda"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (diabetes tipo 2)"
+      }
+    },
+    {
+      "id": "shilajit",
+      "nombre": "Shilajit",
+      "nombresAlternativos": [
+        "Shilajeet",
+        "Mumijo",
+        "Mineral pitch",
+        "Asfalto mineral",
+        "Salsa de roca"
+      ],
+      "nombreCientifico": "Shilajit (resina mineral)",
+      "familia": "Resina mineral/orgánica",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "fatiga crónica",
+        "función cognitiva",
+        "energía mitocondrial",
+        "salud masculina",
+        "estrés"
+      ],
+      "descripcion": "Resina mineral del Himalaya rica en ácido fúlvico y dibenzo-α-pironas. Adaptógeno ayurvédico que mejora la función mitocondrial y el ATP.",
+      "mecanismoAccion": "El ácido fúlvico mejora el transporte de nutrientes a la célula; las dibenzo-α-pironas estimulan la función mitocondrial y el ATP; antioxidante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "resina purificada",
+      "formasPresentacion": [
+        "Resina",
+        "Cápsulas (purificado)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Usar solo purificado (metales pesados en crudo)",
+        "Posibles molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "adaptógeno",
+        "mitocondrial",
+        "ácido-fúlvico",
+        "energía",
+        "ayurveda"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials + Ayurvedic pharmacopoeia"
+      }
+    },
+    {
+      "id": "trametes",
+      "nombre": "Trametes (Cola de Pavo)",
+      "nombresAlternativos": [
+        "Turkey tail",
+        "Trametes versicolor",
+        "Coriolus versicolor",
+        "PSK/PSP",
+        "Yun zhi"
+      ],
+      "nombreCientifico": "Trametes versicolor",
+      "familia": "Polyporaceae (hongo)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmunologico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "coadyuvante oncológico",
+        "infecciones recurrentes",
+        "salud intestinal"
+      ],
+      "descripcion": "Hongo con β-glucanos (PSK/PSP) usado como coadyuvante oncológico en Japón. Inmunomodulador potente con amplia evidencia clínica.",
+      "mecanismoAccion": "Los β-glucanos PSK/PSP activan los receptores dectina-1 y CR3 de macrófagos/NK/T, estimulando la inmunidad celular y la apoptosis tumoral.",
+      "nivelEvidencia": "A",
+      "parteUsada": "cuerpo fructífero/micelio",
+      "formasPresentacion": [
+        "Cápsulas (extracto)",
+        "Polvo",
+        "PSK/PSP estandarizado"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Trastornos autoinmunes (teórico)",
+        "Posibles molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "inmunidad",
+        "β-glucanos",
+        "PSK",
+        "PSP",
+        "oncológico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (coadyuvante oncológico)"
+      }
+    },
+    {
+      "id": "maitake",
+      "nombre": "Maitake",
+      "nombresAlternativos": [
+        "Grifola frondosa",
+        "Hen of the woods",
+        "Dancing mushroom",
+        "Maitake D-fraction"
+      ],
+      "nombreCientifico": "Grifola frondosa",
+      "familia": "Meripilaceae (hongo)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmunologico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "hiperglucemia leve",
+        "salud metabólica",
+        "infecciones recurrentes"
+      ],
+      "descripcion": "Hongo japonés con β-glucanos (D-fraction) inmunomoduladores. Mejora la respuesta inmune y tiene acción hipoglucemiante leve.",
+      "mecanismoAccion": "Los β-glucanos D-fraction activan macrófagos y células NK vía dectina-1; mejora la sensibilidad a insulina (receptor de insulina).",
+      "nivelEvidencia": "B",
+      "parteUsada": "cuerpo fructífero/micelio",
+      "formasPresentacion": [
+        "Cápsulas (D-fraction)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Trastornos autoinmunes (teórico)",
+        "Hipoglucemia con antidiabéticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "inmunidad",
+        "β-glucanos",
+        "D-fraction",
+        "metabólico",
+        "NK"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (inmunidad/metabólico)"
       }
     }
   ]

@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "1.6.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 155,
+    "total": 214,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -3959,6 +3959,1461 @@
       ],
       "sistemas": [
         "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_espino_blanco_olivo",
+      "ingredienteA": "espino_blanco",
+      "ingredienteB": "olivo",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo cardiovascular: el espino blanco (corazón) y la hoja de olivo (presión arterial) actúan sinérgicamente.",
+      "beneficios": [
+        "Soporte cardiovascular dual",
+        "Regulación de la presión arterial",
+        "Mejora del tono cardíaco"
+      ],
+      "precauciones": [
+        "Monitorear tensión con antihipertensivos",
+        "Suspender antes de cirugía"
+      ],
+      "mecanismo": "El espino blanco mejora el inotropismo y la perfusión coronaria; el olivo (oleuropeína) vasodilata y reduce la PA.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_espino_blanco_magnesio",
+      "ingredienteA": "espino_blanco",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte cardíaco: el espino blanco y el magnesio modulan la excitabilidad cardíaca y la tensión.",
+      "beneficios": [
+        "Función cardíaca",
+        "Antiarrítmico natural",
+        "Reducción de tensión"
+      ],
+      "precauciones": [
+        "Antihipertensivos: monitorizar"
+      ],
+      "mecanismo": "El espino blanco mejora la perfusión coronaria; el magnesio modula la excitabilidad y la Na+/K+ ATPasa cardíaca.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_harpagofito_boswelia",
+      "ingredienteA": "harpagofito",
+      "ingredienteB": "boswelia",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo antiinflamatorio articular: el harpagófito (COX) y la boswellia (5-LOX) bloquean vías complementarias.",
+      "beneficios": [
+        "Reduce dolor articular",
+        "Acción antiinflamatoria dual (COX+LOX)",
+        "Bien tolerado"
+      ],
+      "precauciones": [
+        "Harpagófito: precaución con anticoagulantes y úlceras"
+      ],
+      "mecanismo": "El harpagósido inhibe COX-2; los ácidos boswélicos inhiben 5-LOX. Bloqueo dual de la inflamación.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_maca_ashwagandha",
+      "ingredienteA": "maca",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo adaptógeno y vitalizante: la maca (energía/libido) y la ashwagandha (estrés/cortisol).",
+      "beneficios": [
+        "Energía y vitalidad",
+        "Reduce estrés",
+        "Soporte hormonal"
+      ],
+      "precauciones": [
+        "Tiroideo (ashwagandha)"
+      ],
+      "mecanismo": "La maca modula el eje HHA y la energía; la ashwagandha reduce el cortisol y modula GABA.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_aloe_vera_glutamina",
+      "ingredienteA": "aloe_vera",
+      "ingredienteB": "l_glutamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Reparación de la mucosa intestinal: el aloe vera (antiinflamatorio) y la glutamina (sustrato de enterocitos).",
+      "beneficios": [
+        "Reparación de mucosa intestinal",
+        "Reduce inflamación intestinal",
+        "Soporte en intestino permeable"
+      ],
+      "precauciones": [
+        "Aloe: usar gel decolorado (sin aloína)"
+      ],
+      "mecanismo": "Los polisacáridos del aloe reducen la inflamación mucosa; la glutamina alimenta los enterocitos y repara las uniones estrechas.",
+      "categorias": [
+        "fitoterapia",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_ortiga_hierro",
+      "ingredienteA": "ortiga",
+      "ingredienteB": "hierro",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "La ortiga aporta hierro biodisponible y vitaminas; combinación tradicional para la anemia leve.",
+      "beneficios": [
+        "Aporte de hierro y clorofila",
+        "Soporte en anemia leve",
+        "Rica en minerales"
+      ],
+      "precauciones": [
+        "Hierro: separar de suplementos y comidas ricas en fitatos"
+      ],
+      "mecanismo": "La ortiga aporta hierro, clorofila y vitamina C que mejora la absorción del hierro suplementario.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_regaliz_hinojo",
+      "ingredienteA": "regaliz",
+      "ingredienteB": "hinojo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Coadyuvante en gastritis y reflujo: el regaliz (DGL) protege la mucosa y el hinojo es carminativo.",
+      "beneficios": [
+        "Protección de mucosa gástrica",
+        "Reduce gases",
+        "Mejora digestión"
+      ],
+      "precauciones": [
+        "Usar regaliz DGL (sin glicirricina) en hipertensión",
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "El regaliz DGL estimula el moco gástrico protector; el hinojo (anetol) es carminativo y antiespasmódico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_vitex_maca",
+      "ingredienteA": "vitex",
+      "ingredienteB": "maca",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Equilibrio hormonal femenino: el vitex (progesterona) y la maca (eje HHA/energía) en SPM y perimenopausia.",
+      "beneficios": [
+        "Regula ciclo menstrual",
+        "Reduce SPM",
+        "Aporta energía y vitalidad"
+      ],
+      "precauciones": [
+        "Vitex: evitar en terapia hormonal sin supervisión"
+      ],
+      "mecanismo": "El vitex estimula la dopamina hipofisaria (reduce prolactina, aumenta progesterona); la maca modula el eje HHA.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_centella_colageno",
+      "ingredienteA": "centella",
+      "ingredienteB": "colageno",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Regeneración de tejido conectivo: la centella estimula la síntesis de colágeno y el colágeno aporta sustrato.",
+      "beneficios": [
+        "Mejora elasticidad de la piel",
+        "Cicatrización",
+        "Salud de tejido conectivo"
+      ],
+      "precauciones": [
+        "Bien tolerado"
+      ],
+      "mecanismo": "Los triterpenos de la centella estimulan la síntesis de colágeno tipo I/III; el colágeno hidrolizado aporta péptidos sustrato.",
+      "categorias": [
+        "fitoterapia",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "piel",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_uncaria_curcuma",
+      "ingredienteA": "uncaria",
+      "ingredienteB": "curcuma",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antiinflamatorio: la uña de gato (inmunomodulador) y la cúrcuma (antiinflamatorio).",
+      "beneficios": [
+        "Reduce inflamación crónica",
+        "Inmunomodulación",
+        "Soporte articular"
+      ],
+      "precauciones": [
+        "Trastornos autoinmunes (teórico)",
+        "Cúrcuma: anticoagulantes"
+      ],
+      "mecanismo": "Los alcaloides oxindólicos de la uña de gato modulan la inmunidad; la curcumina inhibe COX-2 y NF-κB.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_uva_ursi_arandano",
+      "ingredienteA": "uva_ursi",
+      "ingredienteB": "arandano_rojo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo urinario: la uva ursi (antimicrobiana) y el arándano (antiadhesión) en cistitis leve.",
+      "beneficios": [
+        "Acción antibacteriana urinaria",
+        "Previene adhesión bacteriana",
+        "Cistitis leve"
+      ],
+      "precauciones": [
+        "No usar más de 5 días la uva ursi",
+        "Embarazo: precaución"
+      ],
+      "mecanismo": "La arbutina de la uva ursi se convierte en hidroquinona (antiséptico urinario); las PAC del arándano bloquean la adhesión bacteriana.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_salvia_alfalfa",
+      "ingredienteA": "salvia",
+      "ingredienteB": "trebol_rojo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo para sofocos menopáusicos: la salvia (sudoración) y el trébol rojo (fitoestrógenos).",
+      "beneficios": [
+        "Reduce sofocos",
+        "Regula sudoración",
+        "Acción fitoestrogénica"
+      ],
+      "precauciones": [
+        "Cáncer hormono-dependiente: precaución"
+      ],
+      "mecanismo": "La salvia reduce la sudoración (acción antihidrótica); las isoflavonas del trébol modulan los receptores estrogénicos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_fenogreco_fenogreco_lactancia",
+      "ingredienteA": "fenogreco",
+      "ingredienteB": "hinojo_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo galactógeno: el fenogreco y el hinojo estimulan la producción de leche materna.",
+      "beneficios": [
+        "Aumenta producción láctea",
+        "Acción galactógena dual",
+        "Reduce cólicos del bebé (hinojo)"
+      ],
+      "precauciones": [
+        "Embarazo: evitar (efecto emenagogo)",
+        "Hipotiroidismo: fenogreco precaución"
+      ],
+      "mecanismo": "Las saponinas del fenogreco estimulan la prolactina; el anetol del hinojo es galactógeno y reduce cólicos.",
+      "categorias": [
+        "fitoterapia",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_cola_caballo_silice",
+      "ingredienteA": "cola_caballo",
+      "ingredienteB": "silicea",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte de tejido conectivo: la cola de caballo (silicio orgánico) y la silicea homeopática.",
+      "beneficios": [
+        "Fortalece cabello y uñas",
+        "Salud del tejido conectivo",
+        "Cicatrización"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "La cola de caballo aporta silicio orgánico (sílice); la silicea actúa en repertorio sobre el tejido conectivo.",
+      "categorias": [
+        "fitoterapia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "piel",
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_artemisa_hinojo",
+      "ingredienteA": "artemisa",
+      "ingredienteB": "hinojo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Regulación del ciclo menstrual: la artemisa (emenagoga) y el hinojo (espasmolítico).",
+      "beneficios": [
+        "Regula ciclo menstrual",
+        "Reduce dolor menstrual",
+        "Acción espasmolítica"
+      ],
+      "precauciones": [
+        "Embarazo: evitar (emenagogas)"
+      ],
+      "mecanismo": "La artemisa es emenagoga (regula el ciclo); el hinojo es espasmolítico uterino y digestivo.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductor"
+      ]
+    },
+    {
+      "id": "sin_vitb12_folato",
+      "ingredienteA": "vitamina_b12",
+      "ingredienteB": "folato",
+      "tipo": "cofactor",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo hematopoyético: la B12 y el folato son cofactores en la síntesis de ADN y la metilación. Esencial administrar juntos.",
+      "beneficios": [
+        "Síntesis de glóbulos rojos",
+        "Reduce homocisteína",
+        "Salud neurológica"
+      ],
+      "precauciones": [
+        "Enmascara déficit de B12 si se da solo folato",
+        "Usar metilfolato y metilcobalamina"
+      ],
+      "mecanismo": "La B12 (cobalamina) y el folato (5-MTHF) son cofactores de la metionina sintasa (homocisteína→metionina) y la síntesis de timidilato.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_vitamina_e_vitamina_c",
+      "ingredienteA": "vitamina_e",
+      "ingredienteB": "vitamina_c",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo antioxidante liposoluble + hidrosoluble: la vitamina E y la vitamina C se reciclan mutuamente.",
+      "beneficios": [
+        "Defensa antioxidante sinérgica",
+        "Protección lipídica y acuosa",
+        "Salud cardiovascular"
+      ],
+      "precauciones": [
+        "Vitamina E: precaución con anticoagulantes a dosis altas"
+      ],
+      "mecanismo": "La vitamina C recicla el tocoferol oxidado (vitamina E) en la membrana, regenerando su acción antioxidante lipídica.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_selenio_vitamina_e",
+      "ingredienteA": "selenio",
+      "ingredienteB": "vitamina_e",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Sistema antioxidante glutatión-peroxidasa: el selenio es cofactor de GPx y la vitamina E protege las membranas.",
+      "beneficios": [
+        "Defensa antioxidante sinérgica",
+        "Protección de membranas",
+        "Salud tiroidea"
+      ],
+      "precauciones": [
+        "Selenio: toxicidad >400μg/día"
+      ],
+      "mecanismo": "El selenio es cofactor de la glutatión peroxidasa (GPx, neutraliza peróxidos); la vitamina E previene la peroxidación lipídica.",
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_zinc_cobre",
+      "ingredienteA": "zinc",
+      "ingredienteB": "cobre",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Equilibrio zinc-cobre: la SOD requiere ambos. El zinc alto prolongado depleta cobre; balancearlos es esencial.",
+      "beneficios": [
+        "Función de la superóxido dismutasa",
+        "Equilibrio inmunológico",
+        "Salud cardiovascular"
+      ],
+      "precauciones": [
+        "Exceso de zinc (>40mg) depleta cobre",
+        "Exceso de cobre: toxicidad"
+      ],
+      "mecanismo": "La SOD (superóxido dismutasa) citosólica requiere zinc y cobre como cofactores; mantener la proporción evita deficiencias.",
+      "categorias": [
+        "minerales",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_manganeso_glucosamina",
+      "ingredienteA": "manganeso",
+      "ingredienteB": "glucosamina",
+      "tipo": "cofactor",
+      "nivelEvidencia": "C",
+      "descripcion": "Síntesis de cartílago: el manganeso es cofactor de la glicosiltransferasa y la glucosamina es sustrato.",
+      "beneficios": [
+        "Síntesis de glicosaminoglicanos",
+        "Soporte del cartílago",
+        "Salud articular"
+      ],
+      "precauciones": [
+        "Manganeso: neurotoxicidad por inhalación (no oral)"
+      ],
+      "mecanismo": "El manganeso es cofactor de la glicosiltransferasa (síntesis de proteoglicanos); la glucosamina es sustrato de los glicosaminoglicanos.",
+      "categorias": [
+        "minerales",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_astaxantina_omega3",
+      "ingredienteA": "astaxantina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo antiinflamatorio y antioxidante ocular: la astaxantina y el omega-3 protegen la retina y reducen la inflamación.",
+      "beneficios": [
+        "Protección retiniana",
+        "Reduce inflamación ocular",
+        "Salud cardiovascular"
+      ],
+      "precauciones": [
+        "Bien tolerado"
+      ],
+      "mecanismo": "La astaxantina neutraliza ROS en la retina; el DHA es estructural de la retina y modula la inflamación (resolvinas).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "oftalmologico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_luteina_zeaxantina",
+      "ingredienteA": "luteina",
+      "ingredienteB": "astaxantina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Pigmentos maculares: la luteína y la astaxantina protegen la mácula y la retina del daño oxidativo.",
+      "beneficios": [
+        "Densidad del pigmento macular",
+        "Protección de la retina",
+        "Reduce fatiga visual"
+      ],
+      "precauciones": [
+        "Bien tolerado"
+      ],
+      "mecanismo": "La luteína y la astaxantina se acumulan en la mácula y filtran la luz azul, protegiendo la retina del estrés oxidativo.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "oftalmologico"
+      ]
+    },
+    {
+      "id": "sin_resveratrol_quercetina",
+      "ingredienteA": "resveratrol",
+      "ingredienteB": "quercetina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo polifenólico antiinflamatorio: el resveratrol (SIRT1) y la quercetina (senolítico/antiinflamatorio) potencian la acción.",
+      "beneficios": [
+        "Activación de SIRT1",
+        "Acción antiinflamatoria",
+        "Potencial senolítico"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El resveratrol activa SIRT1; la quercetina inhibe la degranulación de mastocitos y es senolítica. Sinergia polifenólica.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_quercetina_vitamina_c",
+      "ingredienteA": "quercetina",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antialérgico: la quercetina (inhibe mastocitos) y la vitamina C (antihistamínico natural).",
+      "beneficios": [
+        "Reduce síntomas alérgicos",
+        "Acción antihistamínica natural",
+        "Antioxidante sinérgico"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La quercetina inhibe la degranulación de mastocitos (histamina); la vitamina C degrada la histamina circulante.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_curcumina_piperina",
+      "ingredienteA": "curcumina",
+      "ingredienteB": "pimienta_negra_aceite",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "La piperina aumenta la biodisponibilidad de la curcumina hasta 2000%. Sinergia clásica de absorción.",
+      "beneficios": [
+        "Aumenta absorción de curcumina (20x)",
+        "Maximiza efecto antiinflamatorio",
+        "Reduce dosis efectiva"
+      ],
+      "precauciones": [
+        "Pimienta: irritante, moderar",
+        "Curcumina: anticoagulantes"
+      ],
+      "mecanismo": "La piperina inhibe la glucuronidación hepática e intestinal de la curcumina, aumentando drásticamente su biodisponibilidad oral.",
+      "categorias": [
+        "vitaminas",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "musculo-esqueletico",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_creatina_magnesio",
+      "ingredienteA": "creatina",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte energético muscular: la creatina (ATP) y el magnesio (cofactor de la creatina quinasa).",
+      "beneficios": [
+        "Mejora la producción de ATP",
+        "Reduce fatiga muscular",
+        "Rendimiento deportivo"
+      ],
+      "precauciones": [
+        "Creatina: hidratación adecuada"
+      ],
+      "mecanismo": "La creatina alimenta la fosfocreatina (reserva de ATP); el magnesio es cofactor de la creatina quinasa y la ATPasa.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "musculo-esqueletico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_alfa_lipoico_acido_alfa_glutation",
+      "ingredienteA": "alfa_lipoico",
+      "ingredienteB": "glutation",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo antioxidante universal: el ácido alfa lipoico recicla el glutatión y es soluble en agua y grasa.",
+      "beneficios": [
+        "Reciclaje de glutatión",
+        "Antioxidante universal (agua+grasa)",
+        "Salud neurológica"
+      ],
+      "precauciones": [
+        "Acido alfa lipoico: hipoglucemia teórica"
+      ],
+      "mecanismo": "El ácido alfa lipoico recicla el glutatión oxidado (GSSG→GSH) y otros antioxidantes (vitamina C/E); cruza la barrera hematoencefálica.",
+      "categorias": [
+        "vitaminas",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "nervioso",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_fosfatidilserina_omega3",
+      "ingredienteA": "fosfatidilserina",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte cognitivo: la fosfatidilserina y el omega-3 (DHA) son estructurales de las membranas neuronales.",
+      "beneficios": [
+        "Mejora memoria y cognición",
+        "Estructura de la membrana neuronal",
+        "Reduce declive cognitivo"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "La fosfatidilserina es estructural de la membrana neuronal y modula la apoptosis; el DHA mantiene la fluidez de la membrana.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cognitivo"
+      ]
+    },
+    {
+      "id": "sin_boro_vitamina_d3",
+      "ingredienteA": "boro",
+      "ingredienteB": "vitamina_d3",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte óseo: el boro mejora la actividad de la vitamina D y reduce la excreción de calcio y magnesio.",
+      "beneficios": [
+        "Salud ósea",
+        "Mejora la actividad de vitamina D",
+        "Reduce pérdida de calcio"
+      ],
+      "precauciones": [
+        "Boro: toxicidad >20mg/día"
+      ],
+      "mecanismo": "El boro reduce la excreción urinaria de calcio/magnesio y aumenta la hidroxilación de la vitamina D (activación).",
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_yodo_selenio",
+      "ingredienteA": "yodo",
+      "ingredienteB": "selenio",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia tiroidea: el yodo es sustrato de las hormonas tiroideas y el selenio es cofactor de la deiodinasa.",
+      "beneficios": [
+        "Síntesis de hormonas tiroideas",
+        "Conversión T4→T3",
+        "Equilibrio tiroideo"
+      ],
+      "precauciones": [
+        "Exceso de yodo: hipertiroidismo/autoinmunidad",
+        "Selenio: toxicidad >400μg"
+      ],
+      "mecanismo": "El yodo es componente de T4/T3; el selenio es cofactor de la yodotironina deiodinasa (conversión T4→T3) y protege el tiroides.",
+      "categorias": [
+        "minerales",
+        "minerales"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_litio_oligo_vitamina_b12",
+      "ingredienteA": "litio",
+      "ingredienteB": "vitamina_b12",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte del humor: el litio oligoelemento y la B12 (neurológica) en estabilidad anímica leve.",
+      "beneficios": [
+        "Estabilidad del humor",
+        "Soporte neurológico",
+        "Bienestar mental"
+      ],
+      "precauciones": [
+        "Usar litio oligoelemento (no farmacológico) sin supervisión médica"
+      ],
+      "mecanismo": "El litio oligoelemento modula el humor (neuroprotección, BDNF); la B12 es esencial para la mielina y la metilación neurológica.",
+      "categorias": [
+        "minerales",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_astragalus_trametes",
+      "ingredienteA": "astragalus",
+      "ingredienteB": "trametes",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo inmunomodulador: el astrágalo (polisacáridos APS) y el trametes (β-glucanos PSK/PSP) potencian la inmunidad.",
+      "beneficios": [
+        "Refuerzo inmunológico potente",
+        "Acción sobre NK y linfocitos T",
+        "Infecciones recurrentes"
+      ],
+      "precauciones": [
+        "Trastornos autoinmunes (teórico)"
+      ],
+      "mecanismo": "Los polisacáridos del astrágalo y los β-glucanos PSK/PSP del trametes activan macrófagos y NK vía dectina-1/complemento.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_astragalus_vitamina_c",
+      "ingredienteA": "astragalus",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Inmunidad estacional: el astrágalo y la vitamina C potencian la respuesta inmune innata.",
+      "beneficios": [
+        "Refuerzo inmunológico",
+        "Antioxidante",
+        "Infecciones respiratorias recurrentes"
+      ],
+      "precauciones": [
+        "Autoinmunidad (teórico)"
+      ],
+      "mecanismo": "Los polisacáridos del astrágalo estimulan linfocitos T/NK; la vitamina C apoya la función de neutrófilos y es antioxidante.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_gymnema_cromo",
+      "ingredienteA": "gymnema",
+      "ingredienteB": "cromo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte glucémico: el gymnema (secreción de insulina) y el cromo (sensibilidad a insulina).",
+      "beneficios": [
+        "Reduce glucosa",
+        "Mejora la sensibilidad a insulina",
+        "Reduce antojo de dulces"
+      ],
+      "precauciones": [
+        "Hipoglucemia con antidiabéticos"
+      ],
+      "mecanismo": "El ácido gimnémico aumenta la secreción de insulina; el cromo potencia la señalización del receptor de insulina.",
+      "categorias": [
+        "fitoterapia",
+        "minerales"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_shilajit_coq10",
+      "ingredienteA": "shilajit",
+      "ingredienteB": "coq10",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Energía mitocondrial: el shilajit mejora la función del CoQ10 y la producción de ATP.",
+      "beneficios": [
+        "Aumenta energía",
+        "Optimiza la función mitocondrial",
+        "Reduce fatiga"
+      ],
+      "precauciones": [
+        "Usar shilajit purificado"
+      ],
+      "mecanismo": "El ácido fúlvico del shilajit mejora el transporte electrónico mitocondrial y la estabilidad del CoQ10; sinergia en la cadena respiratoria.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_trametes_maitake",
+      "ingredienteA": "trametes",
+      "ingredienteB": "maitake",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de hongos inmunomoduladores: el trametes (PSK) y el maitake (D-fraction) potencian la inmunidad.",
+      "beneficios": [
+        "Refuerzo inmunológico",
+        "Acción sobre NK y macrófagos",
+        "Salud metabólica"
+      ],
+      "precauciones": [
+        "Autoinmunidad (teórico)"
+      ],
+      "mecanismo": "Los β-glucanos PSK (trametes) y D-fraction (maitake) activan receptores complemento/dectina-1 de la inmunidad innata.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_l_lisina_zinc_herpes",
+      "ingredienteA": "l_lisina",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Profilaxis del herpes: la lisina (antagoniza arginina) y el zinc (antiviral) en herpes recurrente.",
+      "beneficios": [
+        "Reduce brotes de herpes",
+        "Acción antiviral dual",
+        "Cicatrización más rápida"
+      ],
+      "precauciones": [
+        "Reducir arginina en dieta (chocolate, frutos secos)"
+      ],
+      "mecanismo": "La lisina antagoniza la arginina (requerida por el HSV); el zinc inhibe la replicación viral y acelera la cicatrización.",
+      "categorias": [
+        "aminoacidos",
+        "minerales"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_lactoferrina_vitamina_c",
+      "ingredienteA": "lactoferrina",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Inmunidad y hierro: la lactoferrina (transporte de hierro) y la vitamina C (absorción de hierro).",
+      "beneficios": [
+        "Mejora la absorción de hierro",
+        "Refuerzo inmunológico",
+        "Antimicrobiano natural"
+      ],
+      "precauciones": [
+        "Separar de antibióticos 2h"
+      ],
+      "mecanismo": "La lactoferrina quela y transporta el hierro; la vitamina C reduce el hierro férrico a ferroso (más absorbible) y apoya la inmunidad.",
+      "categorias": [
+        "probioticos",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_bcaa_creatina",
+      "ingredienteA": "bcaa",
+      "ingredienteB": "creatina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo anabólico: los BCAA (síntesis proteica vía mTOR) y la creatina (ATP) para rendimiento.",
+      "beneficios": [
+        "Síntesis proteica muscular",
+        "Energía para entrenamiento",
+        "Recuperación"
+      ],
+      "precauciones": [
+        "Hidratación adecuada (creatina)"
+      ],
+      "mecanismo": "La leucina (BCAA) activa mTOR (síntesis proteica); la creatina aumenta la fosfocreatina (ATP) para el trabajo muscular.",
+      "categorias": [
+        "aminoacidos",
+        "aminoacidos"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_luteolina_quercetina",
+      "ingredienteA": "luteolina",
+      "ingredienteB": "quercetina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo flavonólico antialérgico: la luteolina y la quercetina inhiben los mastocitos y la neuroinflamación.",
+      "beneficios": [
+        "Reduce alergias",
+        "Neuroinflamación",
+        "Antioxidante sinérgico"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "Ambos flavonoides inhiben la degranulación de mastocitos (histamina) y modulan NF-κB; sinergia neuroinmunomoduladora.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_pterostilbeno_resveratrol",
+      "ingredienteA": "pterostilbeno",
+      "ingredienteB": "resveratrol",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo de estilbenos: el pterostilbeno (biodisponibilidad) y el resveratrol potencian la activación de SIRT1.",
+      "beneficios": [
+        "Activación de SIRT1",
+        "Antioxidante sinérgico",
+        "Salud cardiovascular"
+      ],
+      "precauciones": [
+        "Bien tolerados"
+      ],
+      "mecanismo": "El pterostilbeno (dimetilado, más biodisponible) y el resveratrol activan SIRT1 y Nrf2 por vías complementarias.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_fisetina_quercetina",
+      "ingredienteA": "fisetina",
+      "ingredienteB": "quercetina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo senolítico: la fisetina y la quercetina eliminan células senescentes por vías complementarias.",
+      "beneficios": [
+        "Eliminación de células senescentes",
+        "Potencial de longevidad",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Datos clínicos limitados",
+        "Uso en pulsos"
+      ],
+      "mecanismo": "Ambos flavonoides inducen apoptosis selectiva de células senescentes (senolítico) por mecanismos complementarios (PI3K/mTOR, BCL-2).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_kali_phosphoricum_ignatia",
+      "ingredienteA": "kali_phosphoricum",
+      "ingredienteB": "ignatia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia homeopática para estrés y agotamiento emocional: la kali phos (fatiga nerviosa) y la ignatia (emoción).",
+      "beneficios": [
+        "Reduce fatiga mental",
+        "Calma la emocionalidad",
+        "Insomnio por agotamiento"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la kali phos actúa sobre la fatiga nerviosa; la ignatia sobre la reactividad emocional.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_nux_vomica_carbo_veg",
+      "ingredienteA": "nux_vomica",
+      "ingredienteB": "carbo_veg",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para dispepsia y excesos: la nux vomica (exceso) y el carbo veg (distensión, gases).",
+      "beneficios": [
+        "Mejora digestión tras excesos",
+        "Reduce distensión abdominal",
+        "Calma náuseas y gases"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la nux vomica actúa sobre la dispepsia por excesos; el carbo veg sobre la distensión y la fermentación.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_ignatia_pulsatilla",
+      "ingredienteA": "ignatia",
+      "ingredienteB": "pulsatilla",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para cambios de humor y sensibilidad emocional: la ignatia y la pulsatilla.",
+      "beneficios": [
+        "Estabilidad emocional",
+        "Reduce cambios de humor",
+        "Calma sensibilidad"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la ignatia actúa sobre la reactividad emocional; la pulsatilla sobre la sensibilidad y los cambios de humor.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_sulphur_graphites",
+      "ingredienteA": "sulphur",
+      "ingredienteB": "graphites",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para dermatosis crónicas: el sulphur y los graphites actúan sobre la piel crónica.",
+      "beneficios": [
+        "Mejora dermatosis crónica",
+        "Reduce picor",
+        "Acción sobre piel seca y fisurada"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el sulphur actúa sobre dermatosis con picor; los graphites sobre piel seca, fisurada y eccemas crónicos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_natrum_mur_kali_phos",
+      "ingredienteA": "natrum_muriaticum",
+      "ingredienteB": "kali_phosphoricum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para agotamiento tras estrés emocional: la natrum mur y la kali phos.",
+      "beneficios": [
+        "Reduce fatiga tras duelo/estrés",
+        "Mejora el sueño",
+        "Reequilibra el sistema nervioso"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la natrum mur actúa sobre el agotamiento emocional; la kali phos sobre la fatiga nerviosa.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_thuja_nitricum_acidum",
+      "ingredienteA": "thuja",
+      "ingredienteB": "nitricum_acidum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para verrugas y lesiones cutáneas: la thuja y el nitricum acidum.",
+      "beneficios": [
+        "Acción sobre verrugas",
+        "Cicatrización de fisuras",
+        "Lesiones cutáneas crónicas"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la thuja actúa sobre verrugas y excrecencias; el nitricum acidum sobre fisuras y ulceraciones.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "piel",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_apis_mellifica_belladonna",
+      "ingredienteA": "apis_mellifica",
+      "ingredienteB": "belladonna",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para inflamación aguda con edema y calor: la apis (edema) y la belladonna (calor).",
+      "beneficios": [
+        "Reduce inflamación aguda",
+        "Calor y edema",
+        "Fase aguda"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Fiebre alta: médico"
+      ],
+      "mecanismo": "Nosología homeopática: la apis actúa sobre el edema; la belladonna sobre el calor y la fase de inflamación aguda.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmunologico",
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_rhus_toxicodendron_ruta",
+      "ingredienteA": "rhus_toxicodendron",
+      "ingredienteB": "ruta_graveolens",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para dolor articular y tendinitis: el rhus tox y la ruta graveolens.",
+      "beneficios": [
+        "Reduce dolor articular",
+        "Mejora tendinitis",
+        "Rigidez matutina"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el rhus tox actúa sobre la rigidez y el dolor articular; la ruta sobre tendones y periostio.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculo-esqueletico"
+      ]
+    },
+    {
+      "id": "sin_causticum_staphysagria",
+      "ingredienteA": "causticum",
+      "ingredienteB": "staphysagria",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para cicatrización quirúrgica y cortes: el causticum y la staphysagria.",
+      "beneficios": [
+        "Mejora cicatrización post-quirúrgica",
+        "Reduce dolor de cortes",
+        "Acción sobre tejido cicatricial"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el causticum actúa sobre la cicatrización y los cortes; la staphysagria sobre heridas limpias y cortes.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "piel"
+      ]
+    },
+    {
+      "id": "sin_cocculus_nux_vomica",
+      "ingredienteA": "cocculus",
+      "ingredienteB": "nux_vomica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para náuseas y mareo: el cocculus (vértigo) y la nux vomica (náuseas por excesos).",
+      "beneficios": [
+        "Reduce náuseas y vértigo",
+        "Mareo por viaje",
+        "Digestión alterada"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el cocculus actúa sobre el vértigo y el mareo; la nux vomica sobre las náuseas y la dispepsia.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_china_officinalis_ferrum_phosphoricum",
+      "ingredienteA": "china_officinalis",
+      "ingredienteB": "ferrum_phosphoricum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para convalecencia y astenia: la china (agotamiento) y la ferrum phos (anemia/fase inicial).",
+      "beneficios": [
+        "Recuperación tras enfermedad",
+        "Reduce astenia",
+        "Soporte anémico"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la china actúa sobre el agotamiento tras pérdidas/convalecencia; la ferrum phos sobre la fase congestiva y la anemia.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_arsenicum_album_nux_vomica",
+      "ingredienteA": "arsenicum_album",
+      "ingredienteB": "nux_vomica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para gastroenteritis y malestar digestivo: el arsenicum y la nux vomica.",
+      "beneficios": [
+        "Reduce diarrea y vómitos",
+        "Calma malestar digestivo",
+        "Recuperación"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Gastroenteritis severa: médico"
+      ],
+      "mecanismo": "Nosología homeopática: el arsenicum actúa sobre diarrea y vómito; la nux vomica sobre la dispepsia y la náusea.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_calcaria_carbonica_calcaria_phosphorica",
+      "ingredienteA": "calcaria_carbonica",
+      "ingredienteB": "calcarea_phosphorica",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para crecimiento y desarrollo óseo: la calcarea carb y la calcarea phos.",
+      "beneficios": [
+        "Soporte del crecimiento",
+        "Salud ósea",
+        "Desarrollo en niños"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la calcarea carb actúa sobre el crecimiento y la constitución; la calcarea phos sobre la nutrición ósea.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "musculo-esqueletico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_chelidonium_mercurius",
+      "ingredienteA": "chelidonium",
+      "ingredienteB": "mercurius",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para hepatobiliar y boca: el chelidonium (hígado/vías biliares) y el mercurius (boca/garganta).",
+      "beneficios": [
+        "Soporte hepatobiliar",
+        "Reduce síntomas bucales",
+        "Acción sobre mucosas"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el chelidonium actúa sobre el hígado y las vías biliares; el mercurius sobre la boca y la garganta.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_eupatorium_gelsemium",
+      "ingredienteA": "eupatorium",
+      "ingredienteB": "gelsemium",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para síndromes gripales: el eupatorium (dolor óseo) y el gelsemium (astenia, escalofríos).",
+      "beneficios": [
+        "Reduce dolor gripal",
+        "Mejora astenia",
+        "Síndrome gripal"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada",
+        "Fiebre alta: médico"
+      ],
+      "mecanismo": "Nosología homeopática: el eupatorium actúa sobre el dolor óseo; el gelsemium sobre la astenia y los escalofríos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmunologico"
+      ]
+    },
+    {
+      "id": "sin_kali_bichromicum_hydrastis",
+      "ingredienteA": "kali_bichromicum",
+      "ingredienteB": "hydrastis",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para sinusitis con moco espeso: el kali bich y el hydrastis.",
+      "beneficios": [
+        "Reduce sinusitis crónica",
+        "Moco espeso y amarillo",
+        "Acción sobre mucosas"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: el kali bich actúa sobre secreciones espesas y filamentosas; el hydrastis sobre mucosidad espesa amarilla.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_spigelia_sanguinaria",
+      "ingredienteA": "spigelia",
+      "ingredienteB": "sanguinaria",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para cefaleas neurálgicas: la spigelia (trigémino) y la sanguinaria (migraña derecha).",
+      "beneficios": [
+        "Reduce neuralgia",
+        "Cefalea vascular",
+        "Acción sobre el trigémino"
+      ],
+      "precauciones": [
+        "Consulta homeopática individualizada"
+      ],
+      "mecanismo": "Nosología homeopática: la spigelia actúa sobre la neuralgia del trigémino; la sanguinaria sobre la cefalea vascular (hemicránea derecha).",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
       ]
     }
   ]

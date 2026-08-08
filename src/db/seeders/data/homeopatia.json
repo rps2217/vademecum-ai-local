@@ -4,7 +4,7 @@
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 62,
+    "total": 63,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -4422,6 +4422,57 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "kali_phosphoricum",
+      "nombre": "Kali Phosphoricum",
+      "nombresAlternativos": [
+        "Kali phos",
+        "Fosfato de potasio",
+        "Kalium phosphoricum",
+        "Kali fosfórico"
+      ],
+      "nombreCientifico": "Fosfato de potasio (dilución homeopática)",
+      "familia": "Mineral (homeopático / Schüssler)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "fatiga mental",
+        "estrés",
+        "insomnio por agotamiento",
+        "debilidad nerviosa",
+        "convalecencia"
+      ],
+      "descripcion": "Sal de Schüssler nº 5. Remedio del agotamiento cerebral y nervioso: fatiga mental, estrés e insomnio por sobreexcitación.",
+      "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el sistema nervioso fatigado y la recuperación tras estrés.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fosfato de potasio (dinamización CH / 6X Schüssler)",
+      "formasPresentacion": [
+        "Glóbulos 6CH/9CH",
+        "Tabletas Schüssler 6X",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Semanas",
+      "duracionTratamiento": "1-3 meses supervisado",
+      "advertencias": [
+        "Consulta homeopática individualizada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa a diluciones homeopáticas"
+      ],
+      "tags": [
+        "fatiga mental",
+        "estrés",
+        "insomnio",
+        "Schüssler",
+        "nervioso"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Materias Médicas (Boericke) + Schüssler"
       }
     }
   ]
