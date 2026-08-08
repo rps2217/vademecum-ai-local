@@ -11,7 +11,7 @@ import { Card } from '@/ui/Card';
 import { StatsCard } from '@/ui/StatsCard';
 import { Button } from '@/ui/Button';
 import { Badge } from '@/ui/Badge';
-import { SearchInput } from '@/ui/SearchInput';
+import { useSearch } from '@/contexts/SearchContext';
 import { IngredientEditor } from '@/components/admin/IngredientEditor';
 import { Database, RefreshCw, Upload, Download, Trash2, Shield, Plus, Edit2, Trash, Leaf } from 'lucide-react';
 import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
@@ -288,7 +288,7 @@ function IngredientsTab({
   onDelete: (ingredient: DbIngredient) => void;
   onNew: () => void;
 }) {
-  const [query, setQuery] = useState('');
+  const { query } = useSearch();
   const [category, setCategory] = useState('');
 
   const ingredients = useLiveQuery(async () => {
@@ -323,12 +323,6 @@ function IngredientsTab({
       {/* Header */}
       <div className="flex flex-col sm:flex-row gap-4 justify-between">
         <div className="flex-1 flex gap-3">
-          <SearchInput
-            value={query}
-            onChange={setQuery}
-            placeholder="Buscar ingredientes..."
-            className="flex-1 max-w-md"
-          />
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}

@@ -10,7 +10,7 @@ import { db } from '@/db';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
-import { SearchInput } from '@/ui/SearchInput';
+import { useSearch } from '@/contexts/SearchContext';
 import { SynergyGraph } from '@/components/admin/SynergyGraph';
 import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info, LayoutGrid, GitBranch } from 'lucide-react';
 import type { DbSynergy } from '@/db/schema';
@@ -50,11 +50,11 @@ type ViewMode = 'graph' | 'grid';
 
 export function SynergiesPage() {
   const [searchParams] = useSearchParams();
+  const { query } = useSearch();
   const [synergies, setSynergies] = useState<DbSynergy[]>([]);
   const [ingredients, setIngredients] = useState<Record<string, string>>({});
-  const [query, setQuery] = useState(searchParams.get('q') || '');
   const [isLoading, setIsLoading] = useState(true);
-  const [viewMode, setViewMode] = useState<ViewMode>('graph');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [selectedSynergy, setSelectedSynergy] = useState<DbSynergy | null>(null);
   const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(
     searchParams.get('ingredient')
@@ -161,13 +161,6 @@ export function SynergiesPage() {
           </button>
         </div>
       </div>
-
-      {/* Search */}
-      <SearchInput
-        value={query}
-        onChange={setQuery}
-        placeholder="Buscar por ingrediente o mecanismo..."
-      />
 
       {/* Active ingredient filter banner */}
       {selectedIngredientId && (

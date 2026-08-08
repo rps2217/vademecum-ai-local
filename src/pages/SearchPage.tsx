@@ -7,7 +7,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ingredientSearchService, type SearchResult } from '@/core/search';
-import { SearchInput } from '@/ui/SearchInput';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Select } from '@/ui/Select';
@@ -15,6 +14,7 @@ import { FilterChips, type ChipOption } from '@/ui/FilterChips';
 import { Search, Filter, Star, BookOpen, Leaf, FlaskConical, X, Brain, Heart, Wind, Shield, Bone, Sparkles, Droplet, Eye, Zap, Activity, Pill } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
+import { useSearch } from '@/contexts/SearchContext';
 import type { DbIngredient, DbPathology, IngredientCategory, BodySystem, EvidenceLevel } from '@/db/schema';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
@@ -73,7 +73,17 @@ const EVIDENCE_CONFIG: Record<string, { label: string; color: string }> = {
 export function SearchPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [query, setQuery] = useState(searchParams.get('q') || '');
+  const { query, setQuery } = useSearch();
+
+  // Sincronizar query inicial desde URL (?q=) al contexto
+  useEffect(() => {
+    const urlQuery = searchParams.get('q');
+    if (urlQuery && urlQuery !== query) {
+      setQuery(urlQuery);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
   const [category, setCategory] = useState('');
   const [system, setSystem] = useState('');
   const [evidence, setEvidence] = useState('');
@@ -160,16 +170,6 @@ export function SearchPage() {
         <p className="text-muted-foreground mt-1">
           Encuentra ingredientes, sintomas y categorias
         </p>
-      </div>
-
-      {/* Search Input */}
-      <div className="max-w-2xl">
-        <SearchInput
-          value={query}
-          onChange={setQuery}
-          placeholder="Buscar por nombre, sinonimo o indicacion..."
-         
-        />
       </div>
 
       {/* Chips bar + count */}

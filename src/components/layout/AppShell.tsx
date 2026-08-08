@@ -7,10 +7,11 @@
  * - Área de contenido principal desplazada por la sidebar
  */
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/app/ThemeProvider';
+import { useSearch } from '@/contexts/SearchContext';
 import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
 import {
   Search,
@@ -107,7 +108,8 @@ function NavContent({ collapsed, onNavigate }: NavContentProps) {
 export function AppShell() {
   const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
+  const location = useLocation();
+  const { query, setQuery } = useSearch();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('sidebar-collapsed') === 'true';
@@ -115,6 +117,16 @@ export function AppShell() {
     return false;
   });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Placeholder contextual según la página actual
+  const searchPlaceholder = useMemo(() => {
+    const path = location.pathname;
+    if (path.startsWith('/synergies')) return 'Buscar sinergias por ingrediente...';
+    if (path.startsWith('/knowledge')) return 'Buscar por nombre, sinónimo o indicación...';
+    if (path.startsWith('/admin')) return 'Buscar ingredientes...';
+    if (path.startsWith('/analysis')) return 'Buscar para análisis...';
+    return 'Buscar ingredientes, síntomas o sinergias...';
+  }, [location.pathname]);
 
   const toggleCollapsed = () => {
     const newValue = !sidebarCollapsed;
@@ -124,9 +136,11 @@ export function AppShell() {
 
   const closeSidebar = () => setSidebarOpen(false);
 
+  // Páginas que filtran en sitio al escribir (no navegan)
+  const SEARCH_PAGES = ['/search', '/synergies', '/knowledge', '/admin', '/analysis'];
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (query.trim()) {
+    if (query.trim() && !SEARCH_PAGES.some((p) => location.pathname.startsWith(p))) {
       navigate(`/search?q=${encodeURIComponent(query.trim())}`);
     }
   };
@@ -262,8 +276,8 @@ export function AppShell() {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar ingredientes, síntomas o sinergias..."
-                aria-label="Buscar ingredientes, síntomas o sinergias"
+                placeholder={searchPlaceholder}
+                aria-label={searchPlaceholder}
                 className="h-10 w-full rounded-lg border border-border bg-muted pl-10 pr-14 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
               />
               <kbd className="pointer-events-none absolute right-3 top-1/2 hidden h-5 -translate-y-1/2 items-center gap-1 rounded border border-border bg-card px-1.5 font-mono text-xs text-muted-foreground sm:inline-flex">

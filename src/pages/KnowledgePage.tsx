@@ -6,12 +6,12 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SearchInput } from '@/ui/SearchInput';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { Select } from '@/ui/Select';
 import { IngredientDetail } from '@/ui/IngredientDetail';
+import { useSearch } from '@/contexts/SearchContext';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Database, Filter, Plus, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import type { DbIngredient, IngredientCategory } from '@/db/schema';
@@ -45,7 +45,7 @@ const EVIDENCE_CONFIG: Record<string, { label: string; color: string }> = {
 
 export function KnowledgePage() {
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
+  const { query } = useSearch();
   const [category, setCategory] = useState('');
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
   const [showFilters, setShowFilters] = useState(false);
@@ -81,13 +81,7 @@ export function KnowledgePage() {
 
       {/* Search and Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <div className="flex-1">
-          <SearchInput
-            value={query}
-            onChange={setQuery}
-            placeholder="Buscar por nombre, sinonimo o indicacion..."
-          />
-        </div>
+        <div className="flex-1" />
         <button
           onClick={() => setShowFilters(!showFilters)}
           className="flex items-center justify-center gap-2 px-4 py-2 border rounded-lg text-sm hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-muted"
