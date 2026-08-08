@@ -1569,7 +1569,7 @@
       "familia": "Geraniaceae",
       "categoria": "aceite_esencial",
       "sistemas": [
-        "piel",
+        "dermatologico",
         "endocrino"
       ],
       "indicaciones": [
@@ -1623,7 +1623,7 @@
       "familia": "Poaceae",
       "categoria": "aceite_esencial",
       "sistemas": [
-        "musculo-esqueletico",
+        "musculoesqueletico",
         "digestivo"
       ],
       "indicaciones": [
@@ -1678,7 +1678,7 @@
       "categoria": "aceite_esencial",
       "sistemas": [
         "digestivo",
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "digestión lenta",
@@ -1732,8 +1732,8 @@
       "familia": "Burseraceae",
       "categoria": "aceite_esencial",
       "sistemas": [
-        "bucal",
-        "piel"
+        "digestivo",
+        "dermatologico"
       ],
       "indicaciones": [
         "salud bucal (encías)",
@@ -1787,8 +1787,8 @@
       "categoria": "aceite_esencial",
       "sistemas": [
         "nervioso",
-        "bucal",
-        "piel"
+        "digestivo",
+        "dermatologico"
       ],
       "indicaciones": [
         "meditación",
@@ -1895,7 +1895,7 @@
       "sistemas": [
         "nervioso",
         "digestivo",
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "insomnio",
@@ -1949,8 +1949,8 @@
       "familia": "Myrtaceae",
       "categoria": "aceite_esencial",
       "sistemas": [
-        "bucal",
-        "inmunologico"
+        "digestivo",
+        "inmune"
       ],
       "indicaciones": [
         "dolor dental",
@@ -2006,7 +2006,7 @@
       "sistemas": [
         "urinario",
         "digestivo",
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "retención hídrica leve",
@@ -2061,7 +2061,7 @@
       "categoria": "aceite_esencial",
       "sistemas": [
         "nervioso",
-        "piel",
+        "dermatologico",
         "digestivo"
       ],
       "indicaciones": [
@@ -2116,7 +2116,7 @@
       "categoria": "aceite_esencial",
       "sistemas": [
         "nervioso",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "ansiedad",
@@ -2171,7 +2171,7 @@
       "sistemas": [
         "nervioso",
         "digestivo",
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "fatiga mental",
@@ -2226,8 +2226,8 @@
       "categoria": "aceite_esencial",
       "sistemas": [
         "respiratorio",
-        "inmunologico",
-        "piel"
+        "inmune",
+        "dermatologico"
       ],
       "indicaciones": [
         "sinusitis",
@@ -2282,7 +2282,7 @@
       "categoria": "aceite_esencial",
       "sistemas": [
         "nervioso",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "ansiedad",

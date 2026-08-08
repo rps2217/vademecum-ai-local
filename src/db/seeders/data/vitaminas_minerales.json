@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "1.2.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 76,
+    "total": 80,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -317,7 +317,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "cardiovascular",
-        "cerebro",
+        "nervioso",
         "musculoesqueletico",
         "inmune"
       ],
@@ -379,7 +379,7 @@
       "sistemas": [
         "nervioso",
         "metabolico",
-        "sangre"
+        "cardiovascular"
       ],
       "indicaciones": [
         "anemia",
@@ -498,8 +498,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "nervioso",
-        "metabolico",
-        "energia"
+        "metabolico"
       ],
       "indicaciones": [
         "energia",
@@ -555,7 +554,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "cardiovascular",
-        "cerebro",
+        "nervioso",
         "metabolico"
       ],
       "indicaciones": [
@@ -670,7 +669,7 @@
       "sistemas": [
         "musculoesqueletico",
         "inmune",
-        "cerebro",
+        "nervioso",
         "cardiovascular"
       ],
       "indicaciones": [
@@ -1302,8 +1301,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "metabolico",
-        "hepatico",
-        "antioxidante"
+        "hepatico"
       ],
       "indicaciones": [
         "antioxidante",
@@ -1359,8 +1357,7 @@
       "familia": "No aplica (fosfolipido)",
       "categoria": "vitaminas",
       "sistemas": [
-        "nervioso",
-        "cognitivo"
+        "nervioso"
       ],
       "indicaciones": [
         "memoria",
@@ -1417,8 +1414,8 @@
       "categoria": "minerales",
       "sistemas": [
         "inmune",
-        "tiroides",
-        "antioxidante"
+        "endocrino",
+        "metabolico"
       ],
       "indicaciones": [
         "tiroides",
@@ -1475,7 +1472,7 @@
       "categoria": "minerales",
       "sistemas": [
         "inmune",
-        "huesos",
+        "musculoesqueletico",
         "nervioso"
       ],
       "indicaciones": [
@@ -1533,9 +1530,8 @@
       "familia": "No aplica (mineral traza)",
       "categoria": "minerales",
       "sistemas": [
-        "huesos",
-        "metabolico",
-        "antioxidante"
+        "musculoesqueletico",
+        "metabolico"
       ],
       "indicaciones": [
         "huesos",
@@ -1592,7 +1588,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "ocular",
-        "piel",
+        "dermatologico",
         "musculoesqueletico"
       ],
       "indicaciones": [
@@ -1703,7 +1699,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "cardiovascular",
-        "antioxidante"
+        "metabolico"
       ],
       "indicaciones": [
         "corazon",
@@ -1758,7 +1754,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "inmune",
-        "antioxidante"
+        "metabolico"
       ],
       "indicaciones": [
         "alergias",
@@ -2210,9 +2206,9 @@
       "familia": "Vitaminas liposolubles",
       "categoria": "vitaminas",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "ocular",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "deficiencia vitamina A",
@@ -2320,7 +2316,7 @@
       "categoria": "aminoacidos",
       "sistemas": [
         "respiratorio",
-        "inmunologico",
+        "inmune",
         "hepatico"
       ],
       "indicaciones": [
@@ -2484,8 +2480,7 @@
       "familia": "Aminoácidos esenciales",
       "categoria": "aminoacidos",
       "sistemas": [
-        "nervioso",
-        "sueno"
+        "nervioso"
       ],
       "indicaciones": [
         "insomnio",
@@ -2538,8 +2533,7 @@
       "familia": "Aminoácidos no proteicos",
       "categoria": "aminoacidos",
       "sistemas": [
-        "nervioso",
-        "cognitivo"
+        "nervioso"
       ],
       "indicaciones": [
         "ansiedad leve",
@@ -2590,8 +2584,7 @@
       "familia": "Aminoácidos / derivados",
       "categoria": "aminoacidos",
       "sistemas": [
-        "nervioso",
-        "sueno"
+        "nervioso"
       ],
       "indicaciones": [
         "depresión leve",
@@ -2646,8 +2639,8 @@
       "familia": "Compuestos organo-azufrados",
       "categoria": "aminoacidos",
       "sistemas": [
-        "musculo-esqueletico",
-        "piel"
+        "musculoesqueletico",
+        "dermatologico"
       ],
       "indicaciones": [
         "artrosis",
@@ -2698,8 +2691,8 @@
       "categoria": "aminoacidos",
       "sistemas": [
         "digestivo",
-        "inmunologico",
-        "musculo-esqueletico"
+        "inmune",
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "integridad intestinal",
@@ -2751,7 +2744,7 @@
       "familia": "Polisacáridos",
       "categoria": "probioticos",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "cardiovascular"
       ],
       "indicaciones": [
@@ -2806,7 +2799,7 @@
       "sistemas": [
         "endocrino",
         "nervioso",
-        "reproductor"
+        "reproductivo"
       ],
       "indicaciones": [
         "SOP (síndrome ovario poliquístico)",
@@ -2859,7 +2852,7 @@
       "familia": "Tripéptido",
       "categoria": "aminoacidos",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "hepatico",
         "respiratorio"
       ],
@@ -2968,7 +2961,7 @@
       "familia": "Aminosacáridos",
       "categoria": "aminoacidos",
       "sistemas": [
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "artrosis",
@@ -3020,8 +3013,8 @@
       "familia": "Glicosaminoglicanos",
       "categoria": "aminoacidos",
       "sistemas": [
-        "musculo-esqueletico",
-        "oftalmologico"
+        "musculoesqueletico",
+        "ocular"
       ],
       "indicaciones": [
         "artrosis",
@@ -3072,8 +3065,8 @@
       "familia": "Proteínas",
       "categoria": "aminoacidos",
       "sistemas": [
-        "musculo-esqueletico",
-        "piel"
+        "musculoesqueletico",
+        "dermatologico"
       ],
       "indicaciones": [
         "salud articular",
@@ -3125,9 +3118,9 @@
       "familia": "Glicosaminoglicanos",
       "categoria": "aminoacidos",
       "sistemas": [
-        "musculo-esqueletico",
-        "piel",
-        "oftalmologico"
+        "musculoesqueletico",
+        "dermatologico",
+        "ocular"
       ],
       "indicaciones": [
         "artrosis (oral/intraarticular)",
@@ -3182,7 +3175,7 @@
       "sistemas": [
         "nervioso",
         "hepatico",
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "depresión leve-moderada",
@@ -3235,8 +3228,8 @@
       "categoria": "aminoacidos",
       "sistemas": [
         "cardiovascular",
-        "musculo-esqueletico",
-        "reproductor"
+        "musculoesqueletico",
+        "reproductivo"
       ],
       "indicaciones": [
         "función endotelial",
@@ -3291,8 +3284,7 @@
       "categoria": "aminoacidos",
       "sistemas": [
         "nervioso",
-        "sueno",
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "insomnio",
@@ -3396,7 +3388,7 @@
       "familia": "Isotiocianatos",
       "categoria": "aminoacidos",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "hepatico",
         "digestivo"
       ],
@@ -3449,7 +3441,7 @@
       "familia": "Vitaminas hidrosolubles",
       "categoria": "vitaminas",
       "sistemas": [
-        "piel",
+        "dermatologico",
         "metabolico",
         "nervioso"
       ],
@@ -3505,7 +3497,7 @@
       "familia": "Enzimas proteolíticas",
       "categoria": "aminoacidos",
       "sistemas": [
-        "musculo-esqueletico",
+        "musculoesqueletico",
         "respiratorio",
         "digestivo"
       ],
@@ -3560,8 +3552,7 @@
       "familia": "Flavonoides",
       "categoria": "vitaminas",
       "sistemas": [
-        "nervioso",
-        "sueno"
+        "nervioso"
       ],
       "indicaciones": [
         "insomnio",
@@ -3610,8 +3601,8 @@
       "familia": "Aminoácidos esenciales",
       "categoria": "aminoacidos",
       "sistemas": [
-        "inmunologico",
-        "piel"
+        "inmune",
+        "dermatologico"
       ],
       "indicaciones": [
         "profilaxis herpes simple",
@@ -3664,7 +3655,7 @@
       "familia": "Glicoproteínas",
       "categoria": "probioticos",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "digestivo"
       ],
       "indicaciones": [
@@ -3716,7 +3707,7 @@
       "familia": "Aminoácidos esenciales",
       "categoria": "aminoacidos",
       "sistemas": [
-        "musculo-esqueletico",
+        "musculoesqueletico",
         "metabolico"
       ],
       "indicaciones": [
@@ -3768,7 +3759,7 @@
       "categoria": "vitaminas",
       "sistemas": [
         "nervioso",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "neuroinflamación",
@@ -4026,7 +4017,7 @@
       "sistemas": [
         "nervioso",
         "digestivo",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "salud intestinal (mucina)",
@@ -4075,8 +4066,7 @@
       "familia": "Neurotransmisores/aminoácidos",
       "categoria": "aminoacidos",
       "sistemas": [
-        "nervioso",
-        "sueno"
+        "nervioso"
       ],
       "indicaciones": [
         "ansiedad",
@@ -4130,8 +4120,7 @@
       "familia": "Lignanos",
       "categoria": "vitaminas",
       "sistemas": [
-        "nervioso",
-        "sueno"
+        "nervioso"
       ],
       "indicaciones": [
         "ansiedad",
@@ -4185,7 +4174,7 @@
       "categoria": "probioticos",
       "sistemas": [
         "digestivo",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "integridad intestinal",
@@ -4219,6 +4208,219 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (intestino/inflamación)"
+      }
+    },
+    {
+      "id": "zeaxantina",
+      "nombre": "Zeaxantina",
+      "nombresAlternativos": [
+        "Zeaxanthin",
+        "Zeaxantina",
+        "3R,3'R-zeaxantina",
+        "Pigmento macular",
+        "Xantofila"
+      ],
+      "nombreCientifico": "Zeaxantina (3R,3'R-β,β-caroten-3,3'-diol)",
+      "familia": "Xantofilas (carotenoides)",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "ocular"
+      ],
+      "indicaciones": [
+        "salud macular",
+        "degeneración macular",
+        "fatiga visual",
+        "protección retina"
+      ],
+      "descripcion": "Carotenoide que junto con la luteína forma el pigmento macular. Eficacia clínica en degeneración macular (AREDS2).",
+      "mecanismoAccion": "Se acumula en la mácula (con la luteína), filtra la luz azul dañina y neutraliza los ROS; reduce el riesgo de degeneración macular (AREDS2).",
+      "nivelEvidencia": "A",
+      "parteUsada": "Extracto (tagete/maíz)",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Combinado con luteína"
+      ],
+      "tiempoEfecto": "Meses",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada",
+        "Posible coloración amarillenta de la piel a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Colestiramina (reduce absorción)"
+      ],
+      "tags": [
+        "macular",
+        "retina",
+        "luz azul",
+        "AREDS2",
+        "carotenoide"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "AREDS2 clinical trial"
+      }
+    },
+    {
+      "id": "mct",
+      "nombre": "Aceite MCT (Triglicéridos de Cadena Media)",
+      "nombresAlternativos": [
+        "MCT oil",
+        "Medium chain triglycerides",
+        "Triglicéridos de cadena media",
+        "Aceite de coco fraccionado",
+        "C8/C10 MCT"
+      ],
+      "nombreCientifico": "Triglicéridos de cadena media (C8-C10)",
+      "familia": "Lípidos",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "energía rápida",
+        "cetogénesis",
+        "función cognitiva",
+        "control de peso"
+      ],
+      "descripcion": "Ácidos grasos de cadena media (C8/C10) que se absorben rápido y se convierten en cetonas, combustible cerebral alternativo a la glucosa.",
+      "mecanismoAccion": "Los MCT (ácido caprílico C8, ácido cáprico C10) se absorben vía porta al hígado y se convierten en cetonas (β-hidroxibutirato), combustible cerebral y muscular.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Aceite (coco/palma fraccionado)",
+      "formasPresentacion": [
+        "Aceite líquido",
+        "Cápsulas",
+        "Polvo MCT"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Molestias gastrointestinales (empezar con dosis baja)",
+        "No exceder 30g/día"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa conocida"
+      ],
+      "tags": [
+        "cetonas",
+        "energía",
+        "cognitivo",
+        "ceto",
+        "C8"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (cognitivo/energía)"
+      }
+    },
+    {
+      "id": "krill_oil",
+      "nombre": "Aceite de Krill",
+      "nombresAlternativos": [
+        "Krill oil",
+        "Euphausia superba",
+        "Omega-3 fosfolipídico",
+        "Fosfolípidos marinos",
+        "Krill"
+      ],
+      "nombreCientifico": "Euphausia superba (aceite)",
+      "familia": "Lípidos marinos",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso",
+        "inmune"
+      ],
+      "indicaciones": [
+        "salud cardiovascular",
+        "función cognitiva",
+        "inflamación articular",
+        "lípidos",
+        "PMS"
+      ],
+      "descripcion": "Omega-3 (EPA/DHA) en forma fosfolipídica con mejor absorción que el aceite de pescado, más astaxantina antioxidante.",
+      "mecanismoAccion": "El EPA/DHA en forma de fosfolípidos se absorben mejor (no requieren sales biliares) y cruzan la barrera hematoencefálica; la astaxantina es antioxidante.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Aceite de krill antártico",
+      "formasPresentacion": [
+        "Cápsulas (500-1000mg)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Alergia a crustáceos/marisco",
+        "Anticoagulantes (omega-3)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "omega-3",
+        "fosfolípidos",
+        "EPA",
+        "DHA",
+        "astaxantina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (lípidos/articular)"
+      }
+    },
+    {
+      "id": "l_arginina",
+      "nombre": "L-Arginina",
+      "nombresAlternativos": [
+        "Arginina",
+        "L-Arginine",
+        "Arg",
+        "Aminoácido semi-esencial"
+      ],
+      "nombreCientifico": "L-Arginina",
+      "familia": "Aminoácidos",
+      "categoria": "aminoacidos",
+      "sistemas": [
+        "cardiovascular",
+        "reproductivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "función endotelial",
+        "disfunción eréctil leve",
+        "cicatrización",
+        "presión arterial",
+        "rendimiento"
+      ],
+      "descripcion": "Precursor directo del óxido nítrico (NO). Aunque la citrulina es más eficaz oral, la arginina sigue siendo útil en cicatrización y función endotelial.",
+      "mecanismoAccion": "Sustrato de la óxido nítrico sintasa (eNOS) para producir NO (vasodilatación); precursor de creatina; estimula la liberación de hormona de crecimiento.",
+      "nivelEvidencia": "C",
+      "parteUsada": "Suplemento",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "1-2 horas (agudo)",
+      "duracionTratamiento": "Cíclico",
+      "advertencias": [
+        "Biodisponibilidad oral baja (citrulina mejor)",
+        "Precaución con herpes (arginina favorece HSV)",
+        "Herpes simplex: reducir"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sildenafil (sinergia hipotensiva)",
+        "Nitratos",
+        "Lisina (antagonismo)"
+      ],
+      "tags": [
+        "óxido nítrico",
+        "endotelio",
+        "cicatrización",
+        "disfunción eréctil",
+        "vasodilatación"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (endotelio/cicatrización)"
       }
     }
   ]

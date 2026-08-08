@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "1.7.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 102,
+    "total": 106,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -1360,7 +1360,7 @@
         "urinario",
         "inmune",
         "musculoesqueletico",
-        "sangre"
+        "cardiovascular"
       ],
       "indicaciones": [
         "prostata",
@@ -1471,7 +1471,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "reproductivo",
-        "sanguineo",
+        "cardiovascular",
         "nervioso"
       ],
       "indicaciones": [
@@ -1779,7 +1779,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "inmune",
-        "articaciones",
+        "musculoesqueletico",
         "digestivo"
       ],
       "indicaciones": [
@@ -3626,8 +3626,7 @@
       "familia": "Plantaginaceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "nervioso",
-        "cognitivo"
+        "nervioso"
       ],
       "indicaciones": [
         "memoria",
@@ -3680,7 +3679,7 @@
       "familia": "Acanthaceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "respiratorio"
       ],
       "indicaciones": [
@@ -3734,7 +3733,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "respiratorio",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "bronquitis aguda",
@@ -3838,7 +3837,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "endocrino",
-        "reproductor"
+        "reproductivo"
       ],
       "indicaciones": [
         "sofocos menopáusicos",
@@ -3889,7 +3888,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "urinario",
-        "reproductor"
+        "reproductivo"
       ],
       "indicaciones": [
         "hiperplasia prostática benigna (HPB)",
@@ -3938,7 +3937,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "urinario",
-        "reproductor"
+        "reproductivo"
       ],
       "indicaciones": [
         "vejiga hiperactiva",
@@ -4040,7 +4039,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "digestivo",
-        "reproductor"
+        "reproductivo"
       ],
       "indicaciones": [
         "dispepsia",
@@ -4148,7 +4147,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "digestivo",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "trastornos hepatobiliares leves",
@@ -4250,7 +4249,7 @@
       "familia": "Ranunculaceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "respiratorio",
         "metabolico"
       ],
@@ -4310,7 +4309,7 @@
       "sistemas": [
         "respiratorio",
         "metabolico",
-        "musculo-esqueletico"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "rendimiento físico",
@@ -4364,8 +4363,7 @@
       "familia": "Hericiaceae (hongo)",
       "categoria": "fitoterapia",
       "sistemas": [
-        "nervioso",
-        "cognitivo"
+        "nervioso"
       ],
       "indicaciones": [
         "función cognitiva",
@@ -4418,7 +4416,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "nervioso",
-        "oftalmologico"
+        "ocular"
       ],
       "indicaciones": [
         "depresión leve-moderada",
@@ -4472,7 +4470,7 @@
       "sistemas": [
         "nervioso",
         "metabolico",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "estrés",
@@ -4580,7 +4578,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "digestivo",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "diarrea leve",
@@ -4740,7 +4738,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "urinario",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "irrigación vías urinarias",
@@ -4844,7 +4842,7 @@
       "familia": "Rosaceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "reproductor",
+        "reproductivo",
         "digestivo"
       ],
       "indicaciones": [
@@ -4898,7 +4896,7 @@
       "familia": "Fabaceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "cardiovascular",
         "metabolico"
       ],
@@ -5011,7 +5009,7 @@
       "sistemas": [
         "metabolico",
         "nervioso",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "fatiga crónica",
@@ -5064,7 +5062,7 @@
       "familia": "Polyporaceae (hongo)",
       "categoria": "fitoterapia",
       "sistemas": [
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "inmunidad",
@@ -5115,7 +5113,7 @@
       "familia": "Meripilaceae (hongo)",
       "categoria": "fitoterapia",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "metabolico"
       ],
       "indicaciones": [
@@ -5168,7 +5166,7 @@
       "familia": "Zygophyllaceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "reproductor",
+        "reproductivo",
         "urinario"
       ],
       "indicaciones": [
@@ -5222,8 +5220,8 @@
       "familia": "Bignoniaceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "inmunologico",
-        "piel"
+        "inmune",
+        "dermatologico"
       ],
       "indicaciones": [
         "inmunidad",
@@ -5367,6 +5365,223 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional)"
+      }
+    },
+    {
+      "id": "moringa",
+      "nombre": "Moringa",
+      "nombresAlternativos": [
+        "Moringa oleifera",
+        "Árbol de la vida",
+        "Rábano picante",
+        "Moringa",
+        "Mirango"
+      ],
+      "nombreCientifico": "Moringa oleifera",
+      "familia": "Moringaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "energía",
+        "nutrición",
+        "hiperglucemia leve",
+        "inmunidad"
+      ],
+      "descripcion": "Árbol tropical de hojas muy ricas en nutrientes (vitaminas, minerales, aminoácidos). Considerado uno de los superalimentos más completos.",
+      "mecanismoAccion": "Rica en polifenoles (quercetina, ácido clorogénico) antioxidantes; aporta vitaminas A, C, E, hierro y aminoácidos completos; reduce la glucosa (α-glucosidasa).",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Polvo de hoja",
+        "Cápsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerada",
+        "Raíz: precaución por alcaloides"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "superalimento",
+        "antioxidante",
+        "nutrición",
+        "metabólico",
+        "polifenoles"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Nutritional studies + clinical trials"
+      }
+    },
+    {
+      "id": "chaga",
+      "nombre": "Chaga",
+      "nombresAlternativos": [
+        "Inonotus obliquus",
+        "Hongo del abedul",
+        "Clinker polypore",
+        "Chaga mushroom",
+        "Tchaga"
+      ],
+      "nombreCientifico": "Inonotus obliquus",
+      "familia": "Hymenochaetaceae (hongo)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "inmunidad",
+        "estrés oxidativo",
+        "energía"
+      ],
+      "descripcion": "Hongo parásito del abedul, uno de los antioxidantes más potentes (betulinina, melanina). Tradicional en Siberia y Rusia.",
+      "mecanismoAccion": "Los betulinianos y polisacáridos son antioxidantes potentes (SOD); modulan la inmunidad (NK); la betulina del abedul tiene acción citotóxica selectiva.",
+      "nivelEvidencia": "C",
+      "parteUsada": "esclerocio (extracto)",
+      "formasPresentacion": [
+        "Extracto",
+        "Cápsulas",
+        "Decocción"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Precaución con betulina en cálculos renales (oxalatos)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antioxidante",
+        "SOD",
+        "betulina",
+        "inmunidad",
+        "hongo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Traditional use + preclinical studies"
+      }
+    },
+    {
+      "id": "shiitake",
+      "nombre": "Shiitake",
+      "nombresAlternativos": [
+        "Lentinula edodes",
+        "Hongos negros chinos",
+        "Shiitake",
+        "Lentinan",
+        "Hongo del roble"
+      ],
+      "nombreCientifico": "Lentinula edodes",
+      "familia": "Marasmiaceae (hongo)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "colesterol",
+        "salud cardiovascular",
+        "fatiga"
+      ],
+      "descripcion": "Hongo comestible japonés con lentinana (β-glucano) inmunomoduladora y eritadenina que reduce el colesterol.",
+      "mecanismoAccion": "La lentinana (β-glucano) activa la inmunidad innata (NK/macrófagos); la eritadenina inhibe la síntesis de colesterol hepático.",
+      "nivelEvidencia": "B",
+      "parteUsada": "cuerpo fructífero/micelio",
+      "formasPresentacion": [
+        "Cápsulas (extracto)",
+        "Polvo",
+        "Culinario"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Bien tolerado",
+        "Posible reacción shiitake (dermatitis por ingesta excesiva cruda)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "inmunidad",
+        "lentinana",
+        "β-glucanos",
+        "colesterol",
+        "cardiovascular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "Clinical trials (colesterol/inmunidad)"
+      }
+    },
+    {
+      "id": "bardana",
+      "nombre": "Bardana",
+      "nombresAlternativos": [
+        "Burdock",
+        "Arctium lappa",
+        "Lampazo mayor",
+        "Bardana mayor",
+        "Gordo lobo"
+      ],
+      "nombreCientifico": "Arctium lappa",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "dermatologico",
+        "hepatico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "piel",
+        "depurativo",
+        "función hepática",
+        "eccema",
+        "acné"
+      ],
+      "descripcion": "Raíz depurativa y dermatológica con monografía EMA HMPC por uso tradicional en afecciones cutáneas leves.",
+      "mecanismoAccion": "Los lignanos y polifenoles son antioxidantes y depurativos hepatobiliares; los inulina/prebióticos mejoran la microbiota; acción antiinflamatoria cutánea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Decocción",
+        "Cápsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-2 meses",
+      "advertencias": [
+        "Reacciones alérgicas en sensibles a Asteraceae",
+        "Precaución en cálculos biliares"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos (sinergia)"
+      ],
+      "tags": [
+        "depurativo",
+        "piel",
+        "acné",
+        "hepático",
+        "EMA HMPC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01",
+        "fuente": "EMA HMPC monograph (uso tradicional cutáneo)"
       }
     }
   ]

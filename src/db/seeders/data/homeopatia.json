@@ -479,7 +479,7 @@
       "categoria": "homeopatia",
       "sistemas": [
         "digestivo",
-        "urogenital"
+        "urinario"
       ],
       "indicaciones": [
         "flatulencia",
@@ -631,7 +631,7 @@
       "categoria": "homeopatia",
       "sistemas": [
         "musculoesqueletico",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "artritis",
@@ -864,7 +864,7 @@
       "familia": "No aplica (mineral)",
       "categoria": "homeopatia",
       "sistemas": [
-        "oro-faríngeo",
+        "respiratorio",
         "digestivo",
         "inmune"
       ],
@@ -1167,7 +1167,7 @@
       "sistemas": [
         "nervioso",
         "respiratorio",
-        "sanguineo"
+        "cardiovascular"
       ],
       "indicaciones": [
         "hemorragias",
@@ -1318,7 +1318,7 @@
       "sistemas": [
         "digestivo",
         "respiratorio",
-        "psiquico"
+        "nervioso"
       ],
       "indicaciones": [
         "intoxicacion alimentaria",
@@ -1464,7 +1464,7 @@
       "sistemas": [
         "respiratorio",
         "digestivo",
-        "articaciones"
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "sinusitis",
@@ -3817,9 +3817,9 @@
       "familia": "Mineral (homeopático / Schüssler)",
       "categoria": "homeopatia",
       "sistemas": [
-        "inmunologico",
-        "piel",
-        "musculo-esqueletico"
+        "inmune",
+        "dermatologico",
+        "musculoesqueletico"
       ],
       "indicaciones": [
         "supuraciones crónicas",
@@ -3872,7 +3872,7 @@
       "familia": "Mineral (homeopático / Schüssler)",
       "categoria": "homeopatia",
       "sistemas": [
-        "musculo-esqueletico",
+        "musculoesqueletico",
         "metabolico"
       ],
       "indicaciones": [
@@ -3924,7 +3924,7 @@
       "familia": "Mineral (homeopático / Schüssler)",
       "categoria": "homeopatia",
       "sistemas": [
-        "musculo-esqueletico",
+        "musculoesqueletico",
         "cardiovascular"
       ],
       "indicaciones": [
@@ -3976,7 +3976,7 @@
       "familia": "Mineral (homeopático / Schüssler)",
       "categoria": "homeopatia",
       "sistemas": [
-        "inmunologico",
+        "inmune",
         "metabolico"
       ],
       "indicaciones": [
@@ -4028,7 +4028,7 @@
       "categoria": "homeopatia",
       "sistemas": [
         "respiratorio",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "catarro con secreción blanca",
@@ -4079,7 +4079,7 @@
       "categoria": "homeopatia",
       "sistemas": [
         "respiratorio",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "secreciones amarillas",
@@ -4284,7 +4284,7 @@
       "categoria": "homeopatia",
       "sistemas": [
         "nervioso",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "piernas inquietas",
@@ -4335,7 +4335,7 @@
       "sistemas": [
         "respiratorio",
         "digestivo",
-        "piel"
+        "dermatologico"
       ],
       "indicaciones": [
         "catarro espeso amarillo",
@@ -4385,9 +4385,9 @@
       "familia": "Mineral/ácido (homeopático)",
       "categoria": "homeopatia",
       "sistemas": [
-        "piel",
+        "dermatologico",
         "digestivo",
-        "inmunologico"
+        "inmune"
       ],
       "indicaciones": [
         "fisuras anales",
