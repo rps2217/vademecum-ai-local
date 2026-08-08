@@ -218,7 +218,40 @@ export interface DbSynergy {
 - [x] Dashboard admin (AdminPage) con IngredientEditor
 - [x] Visualización de sinergias con **SVG nativo** (SynergyGraph.tsx)
 - [x] Búsqueda local con IngredientSearchService
+- [x] Re-siembra automática de KB al detectar cambios de versión
 - [x] Sistema de design UI propio en src/ui/ (Button, Input, Card, Modal, Badge, etc.)
+
+### Re-siembra Automática de KB
+
+El seeder (`src/db/seeders/knowledgeSeeder.ts`) detecta automáticamente
+cuando los datos JSON cambiaron y re-siembra la KB sin borrar datos del
+usuario. Mecanismo:
+
+1. `computeKbVersion()` calcula un hash de versión desde los conteos de
+   los JSON (`v{fito}-{homeo}-{aceites}-{vitaminas}-{sinergias}`)
+2. `isKnowledgeBaseSeeded()` compara la versión almacenada en `syncMeta`
+   (key `kb_seed_version`) con la versión actual. Si no coinciden,
+   devuelve false → `DbProvider` llama a `seedKnowledgeBase()`
+3. `seedKnowledgeBase()` usa `bulkPut` (upsert) para insertar/actualizar
+   todos los registros, y `cleanupStaleSeedRecords()` elimina los
+   registros sembrados que ya no están en el JSON (preserva los creados
+   por el usuario). La lista de IDs sembrados se guarda en `syncMeta`
+   (key `kb_seed_ids`).
+
+**Importante para despliegues en Vercel:** al pushear a `main`, Vercel
+despliega, los chunks JS cambian de hash, el SW (`autoUpdate` +
+`skipWaiting`) se actualiza, y en el próximo arranque la app detecta
+el mismatch de versión y re-siembra automáticamente. Los usuarios
+existentes reciben los nuevos datos sin borrar IndexedDB.
+
+**Reglas de datos JSON:**
+- Los IDs de ingredientes deben ser únicos entre todos los archivos
+  (fitoterapia, homeopatia, aceites, vitaminas_minerales). Los aceites
+  esenciales que comparten nombre con fitoterapia usan sufijo `_aceite`
+  (ej: `menta` vs `menta_aceite`)
+- Los IDs de sinergias deben ser únicos
+- Las sinergias deben referenciar ingredientes que existen en la KB
+
 - [x] Routing con react-router-dom v7 (con ProtectedRoute/AuthRoute — auth actualmente en BYPASS)
 - [x] Toasts con sonner (ToastProvider)
 - [x] Resolución de conflictos de sync (ConflictResolver)
