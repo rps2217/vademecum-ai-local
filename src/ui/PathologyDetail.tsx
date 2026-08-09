@@ -1,8 +1,8 @@
 /**
  * PathologyDetail - Modal de detalle de patología con contexto clínico
  *
- * Muestra: definición, causas, síntomas, tratamiento alopático vs natural,
- * prevención y cuándo consultar al médico.
+ * Foco en consulta rápida de farmacia: resumen + tratamiento natural +
+ * alertas de seguridad. Información clínica detallada bajo demanda.
  */
 
 import { useMemo, useState } from 'react';
@@ -12,8 +12,8 @@ import type { DbPathology, DbIngredient } from '@/db/schema';
 import { Badge } from '@/ui/Badge';
 import {
   X, AlertTriangle, Pill, Leaf, FlaskConical, Home, Droplet,
-  Shield, Activity, Stethoscope, BookOpen, Lightbulb, ChevronRight,
-  Microscope, Users, AlertOctagon, ClipboardList, ChevronDown,
+  Shield, Stethoscope, BookOpen, Lightbulb, ChevronRight,
+  Users, AlertOctagon, ChevronDown,
 } from 'lucide-react';
 
 interface PathologyDetailProps {
@@ -122,7 +122,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
         </div>
 
         <div className="px-6 py-4 space-y-4">
-          {/* Resumen clínico — definición + síntomas + causas fusionados */}
+          {/* Resumen clínico — definición + síntomas (reconocimiento rápido) */}
           <section className="space-y-2">
             <div className="flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-primary" />
@@ -133,13 +133,6 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
               <div className="flex flex-wrap gap-1.5">
                 {pathology.sintomas.map((s, i) => (
                   <span key={i} className="px-2 py-0.5 rounded-full text-xs font-medium bg-sky-500/10 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/20">{s}</span>
-                ))}
-              </div>
-            )}
-            {pathology.causas.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
-                {pathology.causas.map((c, i) => (
-                  <span key={i} className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/20">{c}</span>
                 ))}
               </div>
             )}
@@ -300,66 +293,6 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
             </div>
           </details>
 
-          {/* Factores de riesgo — contraído */}
-          {pathology.factoresRiesgo && pathology.factoresRiesgo.length > 0 && (
-            <details className="group rounded-lg border border-orange-200 dark:border-orange-900 bg-orange-50/40 dark:bg-orange-950/20">
-              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                <AlertOctagon className="w-4 h-4 text-orange-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Factores de riesgo</h3>
-                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="px-3 pb-3 pt-1">
-                <div className="flex flex-wrap gap-2">
-                  {pathology.factoresRiesgo.map((fr, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs bg-orange-50 dark:bg-orange-950/30">{fr}</Badge>
-                  ))}
-                </div>
-              </div>
-            </details>
-          )}
-
-          {/* Diagnóstico — contraído por defecto */}
-          {pathology.diagnostico && (
-            <details className="group rounded-lg border border-purple-200 dark:border-purple-900 bg-purple-50/40 dark:bg-purple-950/20">
-              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                <Microscope className="w-4 h-4 text-purple-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Diagnóstico</h3>
-                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="px-3 pb-3 pt-1 space-y-2">
-                <p className="text-sm text-foreground leading-relaxed">{pathology.diagnostico}</p>
-                {pathology.criteriosDiagnostico && pathology.criteriosDiagnostico.length > 0 && (
-                  <ul className="space-y-1">
-                    {pathology.criteriosDiagnostico.map((crit, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="text-purple-500 mt-0.5">•</span>
-                        {crit}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </details>
-          )}
-
-          {/* Diagnóstico diferencial — contraído por defecto */}
-          {pathology.diagnosticoDiferencial && pathology.diagnosticoDiferencial.length > 0 && (
-            <details className="group rounded-lg border border-rose-200 dark:border-rose-900 bg-rose-50/40 dark:bg-rose-950/20">
-              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                <ClipboardList className="w-4 h-4 text-rose-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Diagnóstico diferencial</h3>
-                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="px-3 pb-3 pt-1">
-                <div className="flex flex-wrap gap-2">
-                  {pathology.diagnosticoDiferencial.map((dd, i) => (
-                    <Badge key={i} variant="secondary" className="text-xs bg-rose-50 dark:bg-rose-950/30">{dd}</Badge>
-                  ))}
-                </div>
-              </div>
-            </details>
-          )}
-
           {/* Prevención — contraído */}
           {pathology.prevencion.length > 0 && (
             <details className="group rounded-lg border border-indigo-200 dark:border-indigo-900 bg-indigo-50/40 dark:bg-indigo-950/20">
@@ -374,20 +307,6 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
                     <Badge key={i} variant="secondary" className="text-xs">{prev}</Badge>
                   ))}
                 </div>
-              </div>
-            </details>
-          )}
-
-          {/* Pronóstico — contraído por defecto */}
-          {pathology.pronostico && (
-            <details className="group rounded-lg border border-green-200 dark:border-green-900 bg-green-50/40 dark:bg-green-950/20">
-              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
-                <Activity className="w-4 h-4 text-green-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Pronóstico</h3>
-                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="px-3 pb-3 pt-1">
-                <p className="text-sm text-foreground leading-relaxed">{pathology.pronostico}</p>
               </div>
             </details>
           )}
@@ -411,14 +330,11 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
             </details>
           )}
 
-          {/* Fuentes */}
+          {/* Fuentes — pie discreto */}
           {pathology.fuentes.length > 0 && (
-            <div className="pt-2 border-t">
-              <p className="text-xs text-muted-foreground">
-                <span className="font-medium">Fuentes: </span>
-                {pathology.fuentes.join(', ')}
-              </p>
-            </div>
+            <p className="text-[10px] text-muted-foreground/60 pt-1">
+              {pathology.fuentes.join(' · ')}
+            </p>
           )}
         </div>
       </div>
