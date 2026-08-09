@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.6.0",
+    "version": "1.8.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 615,
+    "total": 630,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -15382,6 +15382,387 @@
         "vitamina"
       ],
       "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_dmanosa_arandano",
+      "ingredienteA": "d_manosa",
+      "ingredienteB": "arandano_rojo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinación profiláctica óptima para ITU recurrente: D-manosa bloquea FimH de E. coli, arándano rojo (PACs A) inhibe adhesión fimbrial tipo P.",
+      "beneficios": [
+        "Reducción de recurrencias de ITU hasta 75%",
+        "Mecanismos complementarios (FimH + fimbrias P)",
+        "Reduce consumo de antibióticos",
+        "Seguro en embarazo"
+      ],
+      "precauciones": [
+        "No sustituye antibiótico en ITU aguda con fiebre"
+      ],
+      "mecanismo": "D-manosa satura adhesina FimH (fimbrias tipo 1); proantocianidinas A del arándano inhiben adhesión fimbrias tipo P. Doble bloqueo de la adhesión de E. coli al urotelio.",
+      "categorias": [
+        "vitamina",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_diosmina_pycnogenol",
+      "ingredienteA": "diosmina",
+      "ingredienteB": "pycnogenol",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinación venotónica de elección en insuficiencia venosa crónica y hemorroides: diosmina aumenta tono venoso, pycnogenol refuerza pared capilar.",
+      "beneficios": [
+        "Mayor reducción de edema que monoterapia",
+        "Mejora microcirculación",
+        "Alivio síntomas hemorroidales",
+        "Reducción de dolor y pesadez"
+      ],
+      "precauciones": [
+        "Posible efecto antiagregante leve (vigilar anticoagulados)"
+      ],
+      "mecanismo": "Diosmina reduce permeabilidad capilar y mejora tono venoso (inhibición NOR-1); pycnogenol duplica SOD/catalasa y refuerza endotelio capilar. Sinergia flebotónica + antioxidante vascular.",
+      "categorias": [
+        "vitamina",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_pycnogenol_vitamina_c",
+      "ingredienteA": "pycnogenol",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Pycnogenol regenera y protege la vitamina C, prolongando su actividad antioxidante.",
+      "beneficios": [
+        "Prolonga vida media de la vitamina C",
+        "Sinergia antioxidante (reciclaje)",
+        "Mejora función endotelial",
+        "Protección UV"
+      ],
+      "precauciones": [],
+      "mecanismo": "Las proantocianidinas del pycnogenol reciclan la vitamina C oxidada (dehidroascorbato) de vuelta a su forma activa (ascorbato), multiplicando la capacidad antioxidante. También protegen vitamina E.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_cayena_cúrcuma",
+      "ingredienteA": "pimienta_cayena",
+      "ingredienteB": "curcuma",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "La capsaicina de la cayena y la piperina (presente en mezclas) aumentan la absorción de la curcumina; combo antiinflamatorio de elección.",
+      "beneficios": [
+        "Aumenta biodisponibilidad de curcumina",
+        "Sinergia antiinflamatoria (COX-2 + TRPV1)",
+        "Alivio del dolor articular",
+        "Mejora circulatoria"
+      ],
+      "precauciones": [
+        "Cayena tópica: ardor inicial",
+        "Alta dosis oral: gastrolesivo"
+      ],
+      "mecanismo": "La capsaicina activa TRPV1 y agota sustancia P; la curcumina inhibe COX-2, LOX y TNF-α. Ambos reducen inflamación por vías complementarias. La capsaicina/piperina aumenta absorción de curcumina (hasta 2000%).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_kanna_omega3",
+      "ingredienteA": "kanna",
+      "ingredienteB": "omega_3",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Kanna (inhibidor SERT) + omega-3 (neuroprotección y membrana) para depresión leve-moderada.",
+      "beneficios": [
+        "Abordaje dual serotonérgico + antiinflamatorio neuro",
+        "Mejora del humor y cognición",
+        "Menor inflamación neuroglial",
+        "Perfil seguro"
+      ],
+      "precauciones": [
+        "Kanna con ISRS: riesgo síndrome serotoninérgico"
+      ],
+      "mecanismo": "Mesembrina (kanna) inhibe recaptación de serotonina (SERT, Ki=1.4 nM); EPA/DHA reducen inflamación neuroglial y mejoran fluidez de membrana neuronal. Complementario en depresión.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_kudzu_kanna",
+      "ingredienteA": "kudzu",
+      "ingredienteB": "kanna",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo para alcoholismo: kudzu reduce deseo, kanna mejora estado anímico (comorbilidad ansiosa/depresiva frecuente).",
+      "beneficios": [
+        "Reducción del craving por alcohol",
+        "Mejora del estado anímico",
+        "Abordaje dual (deseo + ansiedad)",
+        "Sin riesgo de dependencia"
+      ],
+      "precauciones": [
+        "Kanna con ISRS: riesgo síndrome serotoninérgico",
+        "Kudzu: fitoestrógenos"
+      ],
+      "mecanismo": "Daidzina/puerarina (kudzu) inhiben ALDH2 y modulan SNC reduciendo craving; mesembrina (kanna) inhibe SERT mejorando humor. Abordaje integral de la dependencia con comorbilidad afectiva.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_amla_vitamina_c",
+      "ingredienteA": "amla",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Amla (rica en vitamina C natural + taninos) + vitamina C sintética: sinergia antioxidante con estabilidad mejorada.",
+      "beneficios": [
+        "Antioxidante sinérgico (taninos estabilizan vit C)",
+        "Mejora función inmune",
+        "Protección hepática",
+        "Colágeno"
+      ],
+      "precauciones": [],
+      "mecanismo": "Los taninos del amla (emblicanina A/B) estabilizan la vitamina C y prolongan su actividad, evitando oxidación rápida. Vitamina C natural + sintética con biodisponibilidad mejorada.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "inmune",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_olmo_malvavisco",
+      "ingredienteA": "olmo_america",
+      "ingredienteB": "malvavisco",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo demulcente de elección para gastritis, reflujo y tos seca: mucílagos que recubren mucosas irritadas.",
+      "beneficios": [
+        "Alivio rápido de ardor gástrico",
+        "Protección mucosa esofágica (reflujo)",
+        "Sedante de tos seca",
+        "Seguro en embarazo"
+      ],
+      "precauciones": [
+        "Espaciar 2h de medicamentos orales (absorción)"
+      ],
+      "mecanismo": "Ambos ricos en mucílagos (polisacáridos hidrofílicos) que forman película protectora gelatinosa sobre mucosas. Sinergia demulcente en tracto digestivo y respiratorio superior.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_lisina_zinc",
+      "ingredienteA": "l_lisina",
+      "ingredienteB": "zinc",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinación antiviral para herpes labial recurrente: lisina antagoniza arginina (HSV), zinc inhibe replicación viral.",
+      "beneficios": [
+        "Reducción de recurrencias herpéticas",
+        "Acortar duración del brote",
+        "Mecanismos complementarios",
+        "Inmunidad mejorada"
+      ],
+      "precauciones": [
+        "Zinc >40mg: deficiencia cobre"
+      ],
+      "mecanismo": "L-lisina antagoniza la arginina (requerida por HSV para replicación); zinc inhibe ADN polimerasa viral y acelera cicatrización. Doble acción antiviral + inmunomoduladora.",
+      "categorias": [
+        "aminoacido",
+        "mineral"
+      ],
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_creatina_beta_alanina",
+      "ingredienteA": "creatina",
+      "ingredienteB": "beta_alanina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Combo ergogénico de elección para sarcopenia y rendimiento: creatina (ATP fosfocreatina) + beta-alanina (carnosina, tampón ácido).",
+      "beneficios": [
+        "Aumenta masa y fuerza muscular",
+        "Mejora rendimiento de fuerza y resistencia",
+        "Retrasa fatiga",
+        "Beneficio en sarcopenia"
+      ],
+      "precauciones": [
+        "Beta-alanina: parestesia (flush) - dosis divididas"
+      ],
+      "mecanismo": "Creatina aumenta fosfocreatina (reserva ATP); beta-alanina aumenta carnosina muscular (tampón ácido láctico). Vías complementarias: energía + antifatiga.",
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_inositol_acido_folico",
+      "ingredienteA": "inositol",
+      "ingredienteB": "folato",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinación de elección en SOP: inositol (myo+DCI) mejora insulinorresistencia, folato apoya ovulación.",
+      "beneficios": [
+        "Mejora sensibilidad a insulina",
+        "Restaura ciclos ovulatorios",
+        "Mejora calidad ovocitaria",
+        "Seguro en embarazo"
+      ],
+      "precauciones": [],
+      "mecanismo": "Myo-inositol y D-chiro-inositol (40:1) median la señal de insulina en ovario; folato (5-MTHF) apoya metilación y ovulación. Sinergia endocrina + metabólica.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_berberina_cromo",
+      "ingredienteA": "berberina",
+      "ingredienteB": "cromo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo para síndrome metabólico: berberina (AMPK) + cromo (sensibilizador insulina).",
+      "beneficios": [
+        "Reduce glucosa basal y HbA1c",
+        "Mejora perfil lipídico",
+        "Apoyo peso",
+        "Mecanismos complementarios"
+      ],
+      "precauciones": [
+        "Berberina: interacción con macrolidos (CYP3A4)"
+      ],
+      "mecanismo": "Berberina activa AMPK (sensor energético, mejora captación glucucosa); cromo picolinato potencia acción insulina. Sinergia metabólica dual en vía AMPK + insulina.",
+      "categorias": [
+        "fitoterapia",
+        "mineral"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_l_citrulina_l_arginina",
+      "ingredienteA": "l_citrulina",
+      "ingredienteB": "l_arginina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación óptima para óxido nítrico (disfunción eréctil, rendimiento): citrulina se convierte en arginina (NO sintasa).",
+      "beneficios": [
+        "Aumenta biodisponibilidad de NO",
+        "Mejora flujo sanguíneo",
+        "Efecto más prolongado que arginina sola",
+        "Mejora función endotelial"
+      ],
+      "precauciones": [
+        "Herpes activo: arginina puede reactivar HSV"
+      ],
+      "mecanismo": "L-citrulina se convierte renalmente en L-arginina (sustrato de la óxido nítrico sintasa); bypass del metabolismo hepático que degrada arginina oral. Sinergia sostenida en producción de NO.",
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_ginkgo_piridoxina",
+      "ingredienteA": "ginkgo",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "complemento",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación para vértigo y tinnitus: ginkgo mejora microcirculación laberíntica, B6 estabiliza nervio.",
+      "beneficios": [
+        "Mejora perfusión laberíntica",
+        "Reduce vértigo periférico",
+        "Neuroprotección",
+        "Mejora tinnitus asociado"
+      ],
+      "precauciones": [
+        "Ginkgo: efecto antiagregante (vigilar anticoagulados)"
+      ],
+      "mecanismo": "Ginkgo (ginkgólidos/bilobálida) mejora microcirculación y antagoniza PAF; B6 cofactor en neurotransmisión (GABA, serotonina). Complemento en trastornos vestibulares.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_boswellia_curcuma",
+      "ingredienteA": "boswelia",
+      "ingredienteB": "curcuma",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Combo antiinflamatorio natural de elección: boswellia (inhibe 5-LOX) + curcumina (inhibe COX-2). Vías complementarias.",
+      "beneficios": [
+        "Sinergia dual COX-2 + 5-LOX",
+        "Alivio de dolor articular",
+        "Reduce necesidad de AINEs",
+        "Seguro a largo plazo"
+      ],
+      "precauciones": [
+        "Posible GI leve"
+      ],
+      "mecanismo": "Ácido boswélico (boswellia) inhibe 5-lipoxigenasa (leucotrienos); curcumina inhibe COX-2 (prostaglandinas). Bloquea ambas vías de la cascada inflamatoria de araquidonato.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
         "inmune"
       ]
     }

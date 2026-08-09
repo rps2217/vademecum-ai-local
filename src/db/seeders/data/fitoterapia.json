@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 139,
+    "total": 147,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -7284,6 +7284,453 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      }
+    },
+    {
+      "id": "pimienta_cayena",
+      "nombre": "Pimienta de Cayena (Capsicum)",
+      "nombresAlternativos": [
+        "Capsicum annuum",
+        "Cayenne pepper",
+        "Chile",
+        "Ají",
+        "Capsici fructus"
+      ],
+      "nombreCientifico": "Capsicum annuum L. var. minimum (Miller) Heiser",
+      "familia": "Solanaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dolor_muscular",
+        "artrosis",
+        "neuralgia",
+        "lumbalgia",
+        "fibromialgia",
+        "circulacion"
+      ],
+      "descripcion": "Fruto picante rico en capsaicinoides. Aprobado por la EMA HMPC (Capsici fructus) para el alivio del dolor muscular y articular mediante uso cutáneo.",
+      "mecanismoAccion": "La capsaicina es agonista selectivo del receptor TRPV1 (vanilloide-1) en nociceptores. La sobreestimulación produce desensibilización de los receptores del dolor, agotando la sustancia P.",
+      "nivelEvidencia": "A",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Crema topica",
+        "Parche transdermico",
+        "Tintura",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "1-2 semanas (topico)",
+      "duracionTratamiento": "hasta 3 semanas, luego pausa de 2 semanas",
+      "advertencias": [
+        "Uso topico: no aplicar sobre piel lesionada o heridas",
+        "Evitar contacto con ojos y mucosas",
+        "Puede causar ardor y eritema inicial",
+        "Lavar manos tras aplicación"
+      ],
+      "interaccionesMedicamentosas": [
+        "IECA (tos por capsaicina)",
+        "Anticoagulantes (alta dosis oral)"
+      ],
+      "tags": [
+        "EMA HMPC",
+        "capsaicina",
+        "TRPV1",
+        "analgesico",
+        "circulatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC monograph Capsici fructus (EMA/HMPC/674139/2013)"
+      }
+    },
+    {
+      "id": "pycnogenol",
+      "nombre": "Pycnogenol (Corteza de Pino Marítimo)",
+      "nombresAlternativos": [
+        "Pinus pinaster",
+        "French maritime pine bark",
+        "Pine bark extract",
+        "Corteza de pino marítimo francés"
+      ],
+      "nombreCientifico": "Pinus pinaster Aiton subsp. atlantica",
+      "familia": "Pinaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico",
+        "inmune",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "insuficiencia_venosa",
+        "hemorroides",
+        "varices",
+        "edema",
+        "antioxidante",
+        "cognitivo"
+      ],
+      "descripcion": "Extracto patentado de corteza de pino marítimo francés, rico en proantocianidinas, bioflavonoides y ácidos orgánicos. Más de 220 estudios publicados.",
+      "mecanismoAccion": "Duplica la síntesis intracelular de enzimas antioxidantes (SOD, catalasa), secuestrador de radicales libres. Regenera y protege vitaminas C y E. Mejora la microcirculación y refuerza la pared venosa.",
+      "nivelEvidencia": "A",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto seco",
+        "Crema topica"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Evitar en embarazo y lactancia por falta de datos",
+        "Posibles efectos leves: mareo, molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (efecto antiagregante leve)"
+      ],
+      "tags": [
+        "proantocianidinas",
+        "antioxidante",
+        "venotopico",
+        "flebotonico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Scientific and Clinical Monograph for Pycnogenol (American Botanical Council, 2019)"
+      }
+    },
+    {
+      "id": "damiana",
+      "nombre": "Damiana",
+      "nombresAlternativos": [
+        "Turnera diffusa",
+        "Turnera aphrodisiaca",
+        "Damiana aphrodisiaca",
+        "Hierba del venado"
+      ],
+      "nombreCientifico": "Turnera diffusa Willd. ex Schult.",
+      "familia": "Passifloraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "libido_bajo",
+        "disfuncion_ erectil",
+        "ansiedad",
+        "depresion"
+      ],
+      "descripcion": "Arbusto aromático de Centroamérica usado tradicionalmente como afrodisíaco y tónico nervioso. Incluido en la Farmacopea Brasileña.",
+      "mecanismoAccion": "Contiene damianina, flavonoides (acacetina, apigenina), arbutina y β-sitosterol. Efecto tónico-nervioso y ligera acción relajante del SNC. Posible modulation de la circulación pélvica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Capsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Evitar en embarazo (efecto emenagogo)",
+        "Posibles efectos hipoglucemiantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos",
+        "Hierbas sedantes"
+      ],
+      "tags": [
+        "afrodisiaco",
+        "tonico_nervioso",
+        "libido",
+        "Farmacopea Brasileña"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Commission E monographs + Brazilian Pharmacopeia"
+      }
+    },
+    {
+      "id": "muira_puama",
+      "nombre": "Muira Puama (Madera de la Potencia)",
+      "nombresAlternativos": [
+        "Ptychopetalum olacoides",
+        "Ptychopetalum uncinatum",
+        "Potency wood",
+        "Marapuama",
+        "Muira-puama"
+      ],
+      "nombreCientifico": "Ptychopetalum olacoides Benth.",
+      "familia": "Olacaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "libido_bajo",
+        "disfuncion_erectil",
+        "fatiga",
+        "depresion"
+      ],
+      "descripcion": "Árbol amazónico cuya corteza y raíz se usan tradicionalmente como afrodisíaco y tónico. Incluido en la Farmacopea Brasileña desde los años 1950 y en los monographs de la Commission E.",
+      "mecanismoAccion": "Contiene esteroides vegetales (β-sitosterol), ácidos grasos y alcaloides. Posible estimulación de la circulación pélvica y efecto adaptógeno sobre el SNC.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza y raiz",
+      "formasPresentacion": [
+        "Tintura",
+        "Capsulas",
+        "Decoccion"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar en embarazo y lactancia",
+        "Insomnio si se toma de noche"
+      ],
+      "interaccionesMedicamentosas": [
+        "Estimulantes",
+        "Antidepresivos"
+      ],
+      "tags": [
+        "afrodisiaco",
+        "adaptogeno",
+        "libido",
+        "Commission E",
+        "Farmacopea Brasileña"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Commission E monographs + Brazilian Pharmacopeia"
+      }
+    },
+    {
+      "id": "kudzu",
+      "nombre": "Kudzu",
+      "nombresAlternativos": [
+        "Pueraria lobata",
+        "Pueraria montana",
+        "Kudzu root",
+        "Ge gen",
+        "Fen kudzu"
+      ],
+      "nombreCientifico": "Pueraria lobata (Willd.) Ohwi",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "alcoholismo",
+        "ansiedad",
+        "glucosa_alta",
+        "migraña",
+        "menopausia"
+      ],
+      "descripcion": "Enredadera asiática usada en la MTC (Ge gen) desde el siglo I. La raíz es rica en isoflavonas (puerarin, daidzin, daidzein). Monografiada en la Farmacopea Europea.",
+      "mecanismoAccion": "La puerarina y daidzina inhiben la aldehído deshidrogenasa 2 (ALDH2) y modulan el SNC, reduciendo el deseo de alcohol. Las isoflavonas tienen efecto fitoestrogénico leve.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto seco",
+        "Polvo"
+      ],
+      "tiempoEfecto": "1-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar en cáncer hormono-dependiente (fitoestrogenos)",
+        "Posibles efectos estrogénicos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Tamoxifeno",
+        "Terapia hormonal"
+      ],
+      "tags": [
+        "isoflavonas",
+        "puerarin",
+        "MTc",
+        "Farmacopea Europea",
+        "alcohol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "European Pharmacopoeia monograph Kudzu vine root + PubMed (Keung WM)"
+      }
+    },
+    {
+      "id": "kanna",
+      "nombre": "Kanna (Sceletium)",
+      "nombresAlternativos": [
+        "Sceletium tortuosum",
+        "Sceletium",
+        "Kanna",
+        "Kougoed",
+        "Canna"
+      ],
+      "nombreCientifico": "Sceletium tortuosum (L.) N.E.Br.",
+      "familia": "Aizoaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "depresion",
+        "estres",
+        "TDAH"
+      ],
+      "descripcion": "Planta suculenta sudafricana usada tradicionalmente por los pueblos Khoi y San como ansiolítico y eutímico. Rica en alcaloides mesembrina y mesembrenona.",
+      "mecanismoAccion": "La mesembrina es un inhibidor de la recaptación de serotonina (SERT, Ki=1.4 nM). La mesembrenona inhibe la PDE4. Efecto ansiolítico y antidepresivo sin efecto psicodélico.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "1-2 horas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar con ISRS/IMAO (riesgo de sindrome serotoninergico)",
+        "No combinar con otros serotonergicos"
+      ],
+      "interaccionesMedicamentosas": [
+        "ISRS",
+        "IMAO",
+        "Tramadol",
+        "Triptanos"
+      ],
+      "tags": [
+        "mesembrina",
+        "SERT",
+        "serotonina",
+        "ansiolitico",
+        "antidepresivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Mesembrine SRI Ki=1.4 nM) + Restorative Medicine Monograph"
+      }
+    },
+    {
+      "id": "amla",
+      "nombre": "Amla (Grosellero Indio)",
+      "nombresAlternativos": [
+        "Phyllanthus emblica",
+        "Emblica officinalis",
+        "Indian gooseberry",
+        "Amla",
+        "Amalaki"
+      ],
+      "nombreCientifico": "Phyllanthus emblica L.",
+      "familia": "Phyllanthaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "hepatico",
+        "metabolico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "colesterol_alto",
+        "glucosa_alta",
+        "inmunidad_baja",
+        "piel"
+      ],
+      "descripcion": "Fruto reverenciado en el Ayurveda (Rasayana). Una de las fuentes naturales más ricas en vitamina C (4.7x la IDR por 100g) y taninos con actividad antioxidante.",
+      "mecanismoAccion": "Rica en polifenoles, taninos (emblicanina A/B, punigluconina) y vitamina C. Mejora el estado antioxidante y la actividad del sistema de defensa endógeno (SOD, catalasa, glutatión).",
+      "nivelEvidencia": "B",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Polvo",
+        "Capsulas",
+        "Extracto",
+        "Jugo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Posibles efectos hipoglucemiantes",
+        "Evitar en ulcera peptica activa alta dosis"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "vitamina C",
+        "polifenoles",
+        "antioxidante",
+        "Ayurveda",
+        "Rasayana"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Health Canada NHP Monograph Amla + PubMed PMC9137578"
+      }
+    },
+    {
+      "id": "olmo_america",
+      "nombre": "Olmo Americano (Slippery Elm)",
+      "nombresAlternativos": [
+        "Ulmus rubra",
+        "Slippery elm",
+        "Olmo resbaladizo",
+        "Olmo rojo"
+      ],
+      "nombreCientifico": "Ulmus rubra Muhl.",
+      "familia": "Ulmaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "gastritis",
+        "reflujo",
+        "tos",
+        "estreñimiento",
+        "diarrea",
+        "piel"
+      ],
+      "descripcion": "Corteza interna rica en mucilago (polisacáridos) con acción demulcente. Aprobada por la FDA como demulcente en productos OTC. Usada tradicionalmente por nativos americanos.",
+      "mecanismoAccion": "El mucilago forma una película protectora sobre las mucosas irritadas (gastrointestinal y respiratoria), suavizando la inflamación y el dolor. Efecto demulcente y emoliente.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza interna",
+      "formasPresentacion": [
+        "Polvo",
+        "Capsulas",
+        "Lozenges",
+        "Te"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "segun necesidad",
+      "advertencias": [
+        "Puede reducir absorcion de medicamentos (tomar separado 2h)",
+        "Evitar en obstruccion intestinal"
+      ],
+      "interaccionesMedicamentosas": [
+        "Todos los medicamentos orales (espaciar 2h)"
+      ],
+      "tags": [
+        "mucilago",
+        "demulcente",
+        "emoliente",
+        "FDA OTC",
+        "protector mucosas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "FDA OTC demulcente + Commission E (Ulmus rubra)"
       }
     }
   ]

@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
-    "version": "1.2.0",
+    "version": "1.8.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 130,
+    "total": 134,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -7052,6 +7052,208 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review"
+      }
+    },
+    {
+      "id": "d_manosa",
+      "nombre": "D-Manosa",
+      "nombresAlternativos": [
+        "D-Mannose",
+        "Manosa",
+        "Carbohidrato simple"
+      ],
+      "nombreCientifico": "D-Mannose (C6H12O6)",
+      "familia": "Monosacárido",
+      "categoria": "vitamina",
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ],
+      "indicaciones": [
+        "cistitis",
+        "infeccion_urinaria",
+        "candidiasis_vaginal"
+      ],
+      "descripcion": "Azúcar simple (monosacárido) que se excreta rapidamente por vía renal. Meta-análisis Cochrane y ensayos clínicos (Kranjčec 2014) respaldan su uso en prevención de ITU recurrente.",
+      "mecanismoAccion": "Satura la adhesina FimH de las fimbrias tipo 1 de E. coli uropatógena, impidiendo la adherencia al urotelio. La bacteria es eliminada por micción.",
+      "nivelEvidencia": "A",
+      "parteUsada": "sintetico/natural (frutas)",
+      "formasPresentacion": [
+        "Polvo",
+        "Capsulas",
+        "Sobres"
+      ],
+      "tiempoEfecto": "1-2 horas (concentración urinaria)",
+      "duracionTratamiento": "6 meses (profilaxis)",
+      "advertencias": [
+        "Generalmente bien tolerada",
+        "Dosis altas pueden causar diarrea leve"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa"
+      ],
+      "tags": [
+        "FimH",
+        "E coli",
+        "ITU",
+        "Cochrane",
+        "profilaxis",
+        "no-antibiotico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Cochrane Review PMC9427198 + PubMed PMC7395894 (Kranjčec 2014)"
+      }
+    },
+    {
+      "id": "diosmina",
+      "nombre": "Diosmina (Flavonoide Micronizado)",
+      "nombresAlternativos": [
+        "Diosmin",
+        "Daflon",
+        "Flavonoide purificado micronizado",
+        "MPFF"
+      ],
+      "nombreCientifico": "Diosmin (3',5,7-trihidroxiflavona-7-rutinósido)",
+      "familia": "Flavonoide",
+      "categoria": "vitamina",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "hemorroides",
+        "insuficiencia_venosa",
+        "varices",
+        "edema"
+      ],
+      "descripcion": "Flavonoide semisintético derivado de la hesperidina. Combinación 90% diosmina + 10% hesperidina (MPFF) es el flebotónico más estudiado, con más de 50 ensayos clínicos.",
+      "mecanismoAccion": "Aumenta el tono venoso (inhibición de NOR-1), reduce la permeabilidad capilar y la fragilidad, mejora el drenaje linfático. Efecto antiinflamatorio (inhibición de leucotrienos/prostaglandinas).",
+      "nivelEvidencia": "A",
+      "parteUsada": "semisintetico",
+      "formasPresentacion": [
+        "Tabletas micronizadas",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "2-6 meses",
+      "advertencias": [
+        "Posibles efectos leves: mareo, cefalea, molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa"
+      ],
+      "tags": [
+        "flavonoide",
+        "flebotonico",
+        "venotopico",
+        "MPFF",
+        "Daflon"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed PMC9138579 + FDA GRAS + Diosmin Monograph (Alt Med Rev 2004)"
+      }
+    },
+    {
+      "id": "l_cisteina",
+      "nombre": "L-Cisteína (NAC precursor)",
+      "nombresAlternativos": [
+        "L-Cysteine",
+        "Cys",
+        "Aminoácido sulfurado"
+      ],
+      "nombreCientifico": "L-Cysteine (C3H7NO2S)",
+      "familia": "Aminoácido",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "hepatico",
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "higado_graso",
+        "antioxidante",
+        "inmunidad_baja",
+        "tos"
+      ],
+      "descripcion": "Aminoácido sulfurado precursor del glutatión (GSH). Forma el tripéptido glutatión junto con ácido glutámico y glicina, principal antioxidante endógeno.",
+      "mecanismoAccion": "Precursor limitante de la síntesis de glutatión (GSH). Mucolítico (rompe puentes disulfuro del moco). Quelante de metales pesados.",
+      "nivelEvidencia": "B",
+      "parteUsada": "sintetico",
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo",
+        "Nebulizacion"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Olor sulfuroso",
+        "Posibles molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Nitroglicerina (hipotension)",
+        "Antitusivos (sinergia mucolitica)"
+      ],
+      "tags": [
+        "glutatión",
+        "antioxidante",
+        "mucolitico",
+        "quelante",
+        "sulfurado"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed + WHO Monographs"
+      }
+    },
+    {
+      "id": "l_prolina",
+      "nombre": "L-Prolina (y L-Hidroxiprolina)",
+      "nombresAlternativos": [
+        "L-Proline",
+        "Pro",
+        "Hidroxiprolina",
+        "Aminoácido del colágeno"
+      ],
+      "nombreCientifico": "L-Proline (C5H9NO2)",
+      "familia": "Aminoácido",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "musculoesqueletico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cicatrizacion",
+        "artrosis",
+        "piel",
+        "osteoporosis"
+      ],
+      "descripcion": "Aminoácido que constituye aproximadamente el 25% de las cadenas de colágeno. La hidroxiprolina es única del colágeno y marcador de su síntesis.",
+      "mecanismoAccion": "Componente estructural esencial del colágeno (junto con glicina y hidroxiprolina). Estabiliza la triple hélice del colágeno mediante hidroxilación dependiente de vitamina C.",
+      "nivelEvidencia": "C",
+      "parteUsada": "sintetico",
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Generalmente bien tolerada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa"
+      ],
+      "tags": [
+        "colageno",
+        "cicatrizacion",
+        "pelle",
+        "articular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed + Nutritional Science"
       }
     }
   ]
