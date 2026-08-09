@@ -277,9 +277,9 @@ existentes reciben los nuevos datos sin borrar IndexedDB.
 - El campo `metadata.total` y `metadata.ultimaActualizacion` deben
   actualizarse tras cada expansión
 
-### KB Expansion History (Rondas 1-13)
+### KB Expansion History (Rondas 1-15)
 
-La KB se expandió en 13 rondas incrementales (ver `git log --oneline`):
+La KB se expandió en 15 rondas incrementales (ver `git log --oneline`):
 
 | Ronda | Commit | Ingredientes | Sinergias | Cambios clave |
 |-------|--------|--------------|-----------|---------------|
@@ -290,10 +290,21 @@ La KB se expandió en 13 rondas incrementales (ver `git log --oneline`):
 | 11 | 716aabb | 272→282 | 214→272 | +10 ingredientes, +58 sinergias (RED COMPLETA: 0 huérfanos) |
 | 12 | 514078d | 282→290 | 272→338 | +8 ingredientes, +66 sinergias, normalizar sistemas (115 correcciones) |
 | 13 | 3920f00 | 290→314 | 338→414 | +24 ingredientes, +76 sinergias, normalizar indicaciones (861 correcciones) |
+| 14 | 754dee8 | 537→536 | 707→824 | +117 sinergias netas (eliminar 78 huérfanos), normalizar 146 cats/sys, dedup preexistentes |
+| 15 | 34a2807 | 536→545 | 824→867 | +9 ingredientes (sistemas poco cubiertos), +43 sinergias grado-1 |
 
-**Estado final:** 314 ingredientes (114 fito, 69 homeo, 44 aceites, 87
-vitaminas/compuestos), 414 sinergias, 0 huérfanos, grado medio 2.6.
-KB version: `v114-69-44-87-414`.
+**Estado final:** 545 ingredientes (191 fito, 107 homeo, 82 aceites, 165
+vitaminas/compuestos), 867 sinergias, 0 huérfanos, grado medio 3.18.
+KB version: `v191-107-82-165-867-146-126`.
+
+> **Nota rondas 14-15:** La ronda 14 detectó que el estado real de la KB
+> (537 ingredientes, 707 sinergias) difería del documentado en AGENTS.md
+> (314/414) debido a expansiones previas no reflejadas. La ronda 14
+> normalizó categorías/sistemas (146 ingredientes), eliminó 78 huérfanos
+> con sinergias curadas, y limpió duplicados preexistentes (propoleo,
+> shilajit, l_cisteina, sin_berberina_cromo, 3 refs inválidas a diosmina).
+> La ronda 15 añadió ingredientes para sistemas poco cubiertos
+> (ocular, urinario, reproductivo, hepático, endocrino).
 
 ### Otros completados
 - [x] Routing con react-router-dom v7 (con ProtectedRoute/AuthRoute — auth actualmente en BYPASS)

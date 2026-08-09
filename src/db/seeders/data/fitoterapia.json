@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-08",
-    "total": 165,
+    "ultimaActualizacion": "2026-08-09",
+    "total": 191,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -309,55 +309,6 @@
         "inmunoestimulante",
         "antiviral",
         "resfriado"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01"
-      }
-    },
-    {
-      "id": "propoleo",
-      "nombre": "Propoleo",
-      "nombresAlternativos": [
-        "Propolis",
-        "Bee glue",
-        "Jalea de abeja"
-      ],
-      "nombreCientifico": "Propolis",
-      "familia": "Apidae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "inmune",
-        "dermatologico"
-      ],
-      "indicaciones": [
-        "inmunidad",
-        "dolor",
-        "cicatrización"
-      ],
-      "descripcion": "Sustancia resinosa producida porabejas con potentes propiedades antibacterianas y immunomoduladoras.",
-      "mecanismoAccion": "Actividad antimicrobiana de amplio espectro. Estimula el sistema inmune y promueve la regeneracion tisular.",
-      "nivelEvidencia": "B",
-      "parteUsada": "resina",
-      "formasPresentacion": [
-        "Tintura",
-        "Capsulas",
-        "Spray",
-        "Pomada",
-        "Colutorio"
-      ],
-      "tiempoEfecto": "Inmediato - localmente",
-      "duracionTratamiento": "2-4 semanas",
-      "advertencias": [
-        "Alergia a productos apicolas",
-        "No usar en asma"
-      ],
-      "interaccionesMedicamentosas": [
-        "Anticoagulantes"
-      ],
-      "tags": [
-        "antiseptico",
-        "inmunoestimulante",
-        "cicatrizante"
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
@@ -4947,61 +4898,6 @@
       }
     },
     {
-      "id": "shilajit",
-      "nombre": "Shilajit",
-      "nombresAlternativos": [
-        "Shilajeet",
-        "Mumijo",
-        "Mineral pitch",
-        "Asfalto mineral",
-        "Salsa de roca"
-      ],
-      "nombreCientifico": "Shilajit (resina mineral)",
-      "familia": "Resina mineral/orgánica",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "metabolico",
-        "nervioso",
-        "inmune"
-      ],
-      "indicaciones": [
-        "fatiga",
-        "cognitivo",
-        "energía",
-        "masculino",
-        "estrés"
-      ],
-      "descripcion": "Resina mineral del Himalaya rica en ácido fúlvico y dibenzo-α-pironas. Adaptógeno ayurvédico que mejora la función mitocondrial y el ATP.",
-      "mecanismoAccion": "El ácido fúlvico mejora el transporte de nutrientes a la célula; las dibenzo-α-pironas estimulan la función mitocondrial y el ATP; antioxidante.",
-      "nivelEvidencia": "C",
-      "parteUsada": "resina purificada",
-      "formasPresentacion": [
-        "Resina",
-        "Cápsulas (purificado)",
-        "Polvo"
-      ],
-      "tiempoEfecto": "2-4 semanas",
-      "duracionTratamiento": "Continuo",
-      "advertencias": [
-        "Usar solo purificado (metales pesados en crudo)",
-        "Posibles molestias gastrointestinales"
-      ],
-      "interaccionesMedicamentosas": [
-        "Ninguna significativa conocida"
-      ],
-      "tags": [
-        "adaptógeno",
-        "mitocondrial",
-        "ácido-fúlvico",
-        "energía",
-        "ayurveda"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01",
-        "fuente": "Clinical trials + Ayurvedic pharmacopoeia"
-      }
-    },
-    {
       "id": "trametes",
       "nombre": "Trametes (Cola de Pavo)",
       "nombresAlternativos": [
@@ -8995,7 +8891,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "dermatologico",
-        "venoso"
+        "cardiovascular"
       ],
       "indicaciones": [
         "cicatrizacion",
@@ -9628,6 +9524,420 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Adv Pharmacol Sci 2020"
+      }
+    },
+    {
+      "id": "buchu",
+      "nombre": "Buchu",
+      "nombresAlternativos": [
+        "Agathosma betulina",
+        "Barosma betulina",
+        "Buchu leaf"
+      ],
+      "nombreCientifico": "Agathosma betulina",
+      "familia": "Rutaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "urinario",
+        "cistitis",
+        "infección",
+        "diuresis",
+        "dispepsia"
+      ],
+      "descripcion": "Arbusto sudafricano con aceite esencial rico en diosfenol y pulegona. Antiséptico urinario clásico.",
+      "mecanismoAccion": "Diosfenol y limoneno con accion antimicrobiana urinaria; diuretico suave.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "2-3 dias",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Evitar en embarazo",
+        "No usar en insuficiencia renal",
+        "Posible irritacion gastrica"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos farmacologicos"
+      ],
+      "tags": [
+        "antiséptico",
+        "urinario",
+        "diurético"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "EMA HMPC assessment + South African Materia Medica"
+      }
+    },
+    {
+      "id": "cola_de_caballo",
+      "nombre": "Cola de Caballo",
+      "nombresAlternativos": [
+        "Equisetum arvense",
+        "Horsetail",
+        "Cauda equina"
+      ],
+      "nombreCientifico": "Equisetum arvense",
+      "familia": "Equisetaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "musculoesqueletico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "urinario",
+        "litiasis",
+        "cabello",
+        "huesos",
+        "cicatrización",
+        "edema"
+      ],
+      "descripcion": "Planta rica en silicio organico y flavonoides. Diuretico y remineralizante.",
+      "mecanismoAccion": "Silicio organico y equisetonina con accion diuretica y remineralizante osea.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aerea esteril",
+      "formasPresentacion": [
+        "Infusion",
+        "Capsulas",
+        "Extracto"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "3-6 semanas",
+      "advertencias": [
+        "Evitar en insuficiencia renal y cardiaca",
+        "Contiene trazas de nicotina",
+        "No prolongar sin supervisar potasio"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos",
+        "Litio"
+      ],
+      "tags": [
+        "diurético",
+        "silicio",
+        "remineralizante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "EMA HMPC monograph + ESCOP"
+      }
+    },
+    {
+      "id": "bupleurum",
+      "nombre": "Bupleurum",
+      "nombresAlternativos": [
+        "Bupleurum chinense",
+        "Chai Hu",
+        "Bupleuri radix"
+      ],
+      "nombreCientifico": "Bupleurum chinense",
+      "familia": "Apiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "inmune"
+      ],
+      "indicaciones": [
+        "hepático",
+        "estrés",
+        "inmunidad",
+        "hígado_graso",
+        "depresión"
+      ],
+      "descripcion": "Raiz usada en MTC (Chai Hu) para armonizar hígado y liberar estres. Hepatoprotector y adaptogeno.",
+      "mecanismoAccion": "Saikosaponinas con accion hepatoprotectora, antiinflamatoria y moduladora del eje HPA.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Decoccion",
+        "Capsulas",
+        "Extracto estandarizado"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Evitar en corticoides sin supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "Corticoides",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "hepatoprotector",
+        "adaptógeno",
+        "MTC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Chinese Pharmacopoeia + clinical trials (PubMed)"
+      }
+    },
+    {
+      "id": "antocianinas_arandano",
+      "nombre": "Antocianinas de Arándano Negro",
+      "nombresAlternativos": [
+        "Vaccinium myrtillus anthocyanins",
+        "Bilberry extract",
+        "Mirtilo estandarizado"
+      ],
+      "nombreCientifico": "Vaccinium myrtillus",
+      "familia": "Ericaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "ojo_seco",
+        "dmae",
+        "visión_nocturna",
+        "antioxidante",
+        "capilar",
+        "glucosa"
+      ],
+      "descripcion": "Extracto estandarizado (25% antocianinas) para salud ocular y microcirculacion.",
+      "mecanismoAccion": "Antocianinas regeneran rodopsina y protegen la retina del estres oxidativo; mejoran microcirculacion capilar.",
+      "nivelEvidencia": "B",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Capsulas estandarizadas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Puede interferir con anticoagulantes a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "ocular",
+        "antocianinas",
+        "antioxidante",
+        "microcirculación"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "EMA HMPC + clinical trials (PubMed meta-analysis)"
+      }
+    },
+    {
+      "id": "marrubio",
+      "nombre": "Marrubio",
+      "nombresAlternativos": [
+        "Marrubium vulgare",
+        "Horehound",
+        "Marrubio blanco"
+      ],
+      "nombreCientifico": "Marrubium vulgare",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "digestivo",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "tos",
+        "digestión",
+        "apetito",
+        "glucosa",
+        "colesterol"
+      ],
+      "descripcion": "Planta amara con accion expectorante, digestiva y moderada accion hipoglucemiante.",
+      "mecanismoAccion": "Marrubina coleretica y expectorante; diterpenos con actividad hipoglucemiante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aerea florida",
+      "formasPresentacion": [
+        "Infusion",
+        "Jarabe",
+        "Tintura"
+      ],
+      "tiempoEfecto": "varios dias",
+      "duracionTratamiento": "1-3 semanas",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Dosis altas pueden ser cardiotoxicas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiarritmicos",
+        "Hipoglucemiantes"
+      ],
+      "tags": [
+        "expectorante",
+        "amargo",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "EMA HMPC + German Commission E"
+      }
+    },
+    {
+      "id": "hierba_luisa",
+      "nombre": "Hierba Luisa",
+      "nombresAlternativos": [
+        "Aloysia citrodora",
+        "Lippia citriodora",
+        "Verbena de limón",
+        "Lemon verbena"
+      ],
+      "nombreCientifico": "Aloysia citrodora",
+      "familia": "Verbenaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "espasmos",
+        "ansiedad",
+        "insomnio",
+        "gases"
+      ],
+      "descripcion": "Planta aromatica con accion digestiva y sedante suave. Antiespasmodica.",
+      "mecanismoAccion": "Citral y limoneno relajan musculo liso; flavonoides con accion ansiolitica leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Evitar aceite esencial puro en embarazo y ninos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes"
+      ],
+      "tags": [
+        "digestivo",
+        "antiespasmódico",
+        "sedante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "EMA HMPC monograph"
+      }
+    },
+    {
+      "id": "olivo_hoja",
+      "nombre": "Hoja de Olivo",
+      "nombresAlternativos": [
+        "Olea europaea leaf",
+        "Olive leaf",
+        "Oleuropeína"
+      ],
+      "nombreCientifico": "Olea europaea",
+      "familia": "Oleaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "hipertensión",
+        "colesterol",
+        "antioxidante",
+        "inmunidad"
+      ],
+      "descripcion": "Hoja rica en oleuropeina con accion antihipertensiva, hipoglucemiante y antimicrobiana.",
+      "mecanismoAccion": "Oleuropeina y hidroxitirosol inhiben ECA, mejoran sensibilidad insulinica y son antioxidantes.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Puede bajar la presion arterial",
+        "Monitorizar glucemia en medicacion"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Hipoglucemiantes",
+        "Insulina"
+      ],
+      "tags": [
+        "antihipertensivo",
+        "antioxidante",
+        "metabólico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "EMA HMPC + clinical trials (PubMed meta-analysis)"
+      }
+    },
+    {
+      "id": "vinca",
+      "nombre": "Vincapervinca",
+      "nombresAlternativos": [
+        "Vinca minor",
+        "Vinca major",
+        "Hierba doncella",
+        "Lesser periwinkle"
+      ],
+      "nombreCientifico": "Vinca minor",
+      "familia": "Apocynaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular",
+        "ocular"
+      ],
+      "indicaciones": [
+        "cognitivo",
+        "memoria",
+        "circulación",
+        "migraña",
+        "ojo_seco"
+      ],
+      "descripcion": "Planta con alcaloides vincaminicos que mejoran microcirculacion cerebral.",
+      "mecanismoAccion": "Vincamina mejora flujo sanguineo cerebral y oxigenacion; antioxidante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Posible hipotension",
+        "No combinar con antihipertensivos sin supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "cognitivo",
+        "microcirculación",
+        "vincamina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "German Commission E + clinical trials"
       }
     }
   ]
