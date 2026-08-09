@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Reset KB</title></head>
+<body>
+<h1>Reset KB y SW…</h1>
+<script>
+(async () => {
+  const log = (msg) => { const p = document.createElement('p'); p.textContent = msg; document.body.appendChild(p); };
+  try {
+    if ('serviceWorker' in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const r of regs) { await r.unregister(); log('SW desregistrado: ' + r.scope); }
+    }
+    if (indexedDB.databases) {
+      const dbs = await indexedDB.databases();
+      for (const db of dbs) {
+        if (db.name) { indexedDB.deleteDatabase(db.name); log('DB borrada: ' + db.name); }
+      }
+    } else {
+      indexedDB.deleteDatabase('VademecumDB');
+      log('VademecumDB borrada (fallback)');
+    }
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      for (const k of keys) { await caches.delete(k); log('Cache borrado: ' + k); }
+    }
+    log('Reset completado. Redirigiendo en 2s…');
+    setTimeout(() => location.href = '/', 2000);
+  } catch (e) { log('Error: ' + e.message); }
+})();
+</script>
+</body></html>

@@ -114,7 +114,10 @@ export default defineConfig(() => {
           ]
         },
         devOptions: {
-          enabled: true,
+          // SW deshabilitado en dev: evita que cachee el bundle viejo y
+          // bloquee la re-siembra de IndexedDB al cambiar la lógica del seeder.
+          // El SW sigue activo en producción (build).
+          enabled: false,
           type: 'module'
         }
       })

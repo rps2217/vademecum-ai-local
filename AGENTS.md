@@ -388,3 +388,30 @@ logger.error('Error');
 import { searchService } from '@/core/search';
 import { syncService } from '@/core/sync';  // SyncService (NO SyncManager, fue eliminado)
 ```
+
+## Notas de UI/UX — Rediseño Mostrador (Phase 1+2)
+
+### Bug de normalización de indicaciones (resuelto)
+- `IngredientSearchService.indexIngredient` guarda `indications` con
+  `canonicalIndication(ind)` (forma con acentos), NO `normalize(ind)`.
+- El filtro por indicación (`searchInternal`) compara normalizando ambos lados:
+  `normalize(entry.ind) === normInd`.
+- `humanize()` en `src/lib/text.ts` usa `(^|\s)\S` en vez de `\b\w` porque
+  `\b` no reconoce caracteres acentuados como letras (capitaliza la "s" de "estrés").
+
+### Perfil de cliente y marcado de seguridad
+- `ClientProfileContext` expone `profile`, `setProfile`, `evaluateSafety`.
+- `evaluateSafety(ing)` devuelve `'apto' | 'precaucion' | 'contraindicado' | null`.
+- `safetyVerdictBadge(verdict)` → `{label, className} | null` (null si apto).
+- `safetyVerdictStyle(verdict)` → clases de borde/fondo para cards.
+- El perfil se persiste en `localStorage['vademecum-client-profile']`.
+- `ConditionCard` y el grid de `SearchPage` usan `evaluateSafety` para marcar cards.
+
+### Iconos semánticos por indicación
+- `INDICATION_ICONS` en `SearchPage.tsx` mapea indicaciones normalizadas → iconos lucide.
+- `indicationIcon(value)` busca por `normalize(value)`, fallback `Activity`.
+- lucide-react NO exporta `Lung`; usar `Wind` para indicaciones respiratorias.
+
+### SW en desarrollo
+- `vite.config.ts`: `devOptions.enabled: false` para evitar caché de JS viejo.
+- `public/reset-dev.html`: utilidad para unregister SW + clear IndexedDB.

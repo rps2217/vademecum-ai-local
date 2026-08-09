@@ -15,7 +15,7 @@
 
 import { db } from '@/db';
 import type { DbIngredient, IngredientCategory, BodySystem } from '@/db/schema';
-import { normalize, tokenize } from '@/lib/text';
+import { normalize, tokenize, canonicalIndication } from '@/lib/text';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 export interface SearchFilters {
@@ -71,7 +71,7 @@ export class IngredientSearchService {
     for (const prop of ing.propiedades ?? []) addTokens(prop, 20);
 
     const indications = new Set<string>();
-    for (const ind of ing.indicaciones ?? []) indications.add(normalize(ind));
+    for (const ind of ing.indicaciones ?? []) indications.add(canonicalIndication(ind));
 
     this.index.set(ing.id, {
       tokens,
@@ -141,7 +141,11 @@ export class IngredientSearchService {
       const normInd = normalize(indication);
       const ids = new Set<string>();
       for (const [id, entry] of this.index) {
-        if (entry.indications.has(normInd)) ids.add(id);
+        // entry.indications guarda la forma canónica (con acentos);
+        // comparamos normalizando ambos lados.
+        for (const ind of entry.indications) {
+          if (normalize(ind) === normInd) { ids.add(id); break; }
+        }
       }
       candidateIds = ids;
     }

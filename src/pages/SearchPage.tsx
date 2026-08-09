@@ -19,7 +19,10 @@ import { ConditionCard } from '@/ui/ConditionCard';
 import {
   Search, Star, BookOpen, Leaf, FlaskConical, X, ChevronDown,
   ChevronRight, Loader2, Pill, Clock,
+  Brain, HeartPulse, Wind, Moon, Zap, Utensils, Shield, Sparkles,
+  Bone, Eye, Droplet, Activity, Flame, ShieldCheck, Baby,
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
 import { ClientProfileSelector } from '@/ui/ClientProfileSelector';
@@ -62,8 +65,55 @@ const EVIDENCE_CONFIG: Record<string, { label: string; color: string; title: str
 };
 
 const EVIDENCE_RANK: Record<string, number> = { A: 0, B: 1, C: 2, D: 3 };
-const RESULTS_PAGE_SIZE = 24;
-const CHIPS_COLLAPSED_COUNT = 10;
+const RESULTS_PAGE_SIZE = 12;
+const CHIPS_COLLAPSED_COUNT = 6;
+
+const INDICATION_ICONS: Record<string, LucideIcon> = {
+  ansiedad: Brain,
+  insomnio: Moon,
+  estres: Brain,
+  cognitivo: Brain,
+  depresion: Brain,
+  fatiga: Zap,
+  energia: Zap,
+  energetico: Zap,
+  inmunidad: Shield,
+  antioxidante: Sparkles,
+  tos: Wind,
+  respiratorio: Wind,
+  bronquitis: Wind,
+  gripe: Wind,
+  alergias: Wind,
+  cardiovascular: HeartPulse,
+  colesterol: HeartPulse,
+  hipertension: HeartPulse,
+  circulacion: HeartPulse,
+  coagulacion: HeartPulse,
+  glucosa: Activity,
+  metabolico: Activity,
+  digestion: Utensils,
+  digestivo: Utensils,
+  dispepsia: Utensils,
+  intestinal: Utensils,
+  diarrea: Droplet,
+  urinario: Droplet,
+  hepatico: Droplet,
+  piel: ShieldCheck,
+  dermatologico: ShieldCheck,
+  cicatrizacion: ShieldCheck,
+  articular: Bone,
+  muscular: Bone,
+  inflamacion: Flame,
+  ocular: Eye,
+  fertilidad: Baby,
+  menstrual: Baby,
+  menopausia: Baby,
+  hormonal: Baby,
+};
+
+function indicationIcon(value: string): LucideIcon {
+  return INDICATION_ICONS[normalize(value)] ?? Activity;
+}
 
 export function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -108,7 +158,7 @@ export function SearchPage() {
     return Array.from(counts.entries())
       .sort((a, b) => b[1] - a[1])
       .slice(0, 30)
-      .map(([value, count]) => ({ value, label: `${humanize(value)} (${count})` }));
+      .map(([value, count]) => ({ value, count }));
   }, [ready]);
 
   // Búsqueda con debounce corto (el índice hace que sea casi instantánea)
@@ -169,13 +219,29 @@ export function SearchPage() {
   }, [allPathologies, pathologyByIndication, indication, query]);
 
   const sortedResults = useMemo(() => {
+    const normQuery = query ? normalize(query) : '';
+    const normIndication = indication ? normalize(indication) : '';
     return [...results].sort((a, b) => {
+      // Eje E — Relevancia: ingredientes con la indicación/nombre que coincide
+      // exactamente con el query van primero (sólo cuando hay texto de búsqueda)
+      if (normQuery) {
+        const aName = normalize(a.ingredient.nombre);
+        const bName = normalize(b.ingredient.nombre);
+        const aNameMatch = aName === normQuery ? 0 : aName.startsWith(normQuery) ? 1 : 2;
+        const bNameMatch = bName === normQuery ? 0 : bName.startsWith(normQuery) ? 1 : 2;
+        if (aNameMatch !== bNameMatch) return aNameMatch - bNameMatch;
+
+        const aHasInd = a.ingredient.indicaciones?.some(i => normalize(i) === normQuery || normalize(i) === normIndication) ? 0 : 1;
+        const bHasInd = b.ingredient.indicaciones?.some(i => normalize(i) === normQuery || normalize(i) === normIndication) ? 0 : 1;
+        if (aHasInd !== bHasInd) return aHasInd - bHasInd;
+      }
+      // Luego por evidencia
       const rankA = EVIDENCE_RANK[a.ingredient.evidencia] ?? 3;
       const rankB = EVIDENCE_RANK[b.ingredient.evidencia] ?? 3;
       if (rankA !== rankB) return rankA - rankB;
       return b.score - a.score;
     });
-  }, [results]);
+  }, [results, query, indication]);
 
   const visibleResults = sortedResults.slice(0, visibleCount);
   const hasMore = sortedResults.length > visibleCount;
@@ -197,80 +263,92 @@ export function SearchPage() {
   const visibleChips = showAllChips ? indicationChips : indicationChips.slice(0, CHIPS_COLLAPSED_COUNT);
 
   return (
-    <div className="space-y-5 max-w-6xl mx-auto">
+    <div className="space-y-4 max-w-6xl mx-auto">
       {/* Perfil del cliente (filtro de seguridad para asesoría) */}
       <ClientProfileSelector />
 
-      {/* Filtro primario: Patología/Indicación — colapsable */}
-      {indicationChips.length > 0 && (
-        <div className="relative">
-          {activeFiltersCount > 0 && (
-            <button
-              onClick={clearAll}
-              className="absolute right-0 top-0 z-10 text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
-            >
-              <X className="w-3 h-3" />
-              Limpiar
-            </button>
-          )}
-          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
-            <BookOpen className="w-3 h-3" />
-            Patología / Indicación
-          </p>
+      {/* ===== Barra de filtros compacta (Eje B) ===== */}
+      <div className="space-y-2.5">
+        {/* Patología/Indicación — colapsable, top 6 con iconos */}
+        {indicationChips.length > 0 && (
+          <div className="relative">
+            {activeFiltersCount > 0 && (
+              <button
+                onClick={clearAll}
+                className="absolute right-0 top-0 z-10 text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-1 py-0.5"
+              >
+                <X className="w-3.5 h-3.5" />
+                Limpiar
+              </button>
+            )}
+            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
+              <BookOpen className="w-3.5 h-3.5" />
+              Patología / Indicación
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {visibleChips.map((chip) => {
+                const isActive = indication === chip.value;
+                const Icon = indicationIcon(chip.value);
+                return (
+                  <button
+                    key={chip.value}
+                    onClick={() => { setIndication(isActive ? '' : chip.value); setShowAllChips(false); }}
+                    className={cn(
+                      'inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all border',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                      isActive
+                        ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                        : 'bg-transparent text-foreground border-border hover:bg-muted hover:border-primary/40'
+                    )}
+                    aria-pressed={isActive}
+                  >
+                    <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                    {humanize(chip.value)}
+                    <span className={cn('text-xs tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                      {chip.count}
+                    </span>
+                  </button>
+                );
+              })}
+              {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
+                <button
+                  onClick={() => setShowAllChips(!showAllChips)}
+                  className="inline-flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium border border-dashed border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  {showAllChips ? 'Ver menos' : `+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
+                  <ChevronDown className={cn('w-4 h-4 transition-transform', showAllChips && 'rotate-180')} />
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Categoría — fila única compacta */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Categoría</span>
           <div className="flex flex-wrap gap-1.5">
-            {visibleChips.map((chip) => {
-              const isActive = indication === chip.value;
+            {CATEGORIES.map(cat => {
+              const isActive = category === cat.value;
+              const cfg = cat.value ? CATEGORY_CONFIG[cat.value] : null;
+              const Icon = cfg?.icon ?? Pill;
               return (
                 <button
-                  key={chip.value}
-                  onClick={() => { setIndication(isActive ? '' : chip.value); setShowAllChips(false); }}
+                  key={cat.value}
+                  onClick={() => setCategory(cat.value)}
                   className={cn(
-                    'px-3 py-1.5 rounded-full text-xs font-medium transition-all border',
+                    'inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-sm font-medium transition-colors',
                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                     isActive
-                      ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                      : 'bg-transparent text-muted-foreground border-border hover:bg-muted hover:text-foreground'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
                   )}
-                  aria-pressed={isActive}
                 >
-                  {chip.label}
+                  {cat.value && <Icon className="w-3.5 h-3.5" aria-hidden="true" />}
+                  {cat.label}
                 </button>
               );
             })}
-            {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
-              <button
-                onClick={() => setShowAllChips(!showAllChips)}
-                className="px-3 py-1.5 rounded-full text-xs font-medium border border-dashed border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all flex items-center gap-1"
-              >
-                {showAllChips ? 'Ver menos' : `+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
-                <ChevronDown className={cn('w-3 h-3 transition-transform', showAllChips && 'rotate-180')} />
-              </button>
-            )}
           </div>
-        </div>
-      )}
-
-      {/* Filtro secundario: Categoría */}
-      <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-xs text-muted-foreground shrink-0">Categoría:</span>
-        <div className="flex flex-wrap gap-1.5">
-          {CATEGORIES.map(cat => {
-            const isActive = category === cat.value;
-            return (
-              <button
-                key={cat.value}
-                onClick={() => setCategory(cat.value)}
-                className={cn(
-                  'px-2.5 py-1 rounded-full text-xs font-medium transition-colors',
-                  isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground hover:bg-muted/70'
-                )}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
         </div>
       </div>
 
@@ -312,27 +390,27 @@ export function SearchPage() {
 
           {/* Estado de carga */}
           {isSearching && sortedResults.length === 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="p-3 rounded-lg border border-border bg-card animate-pulse">
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded bg-muted" />
-                      <div className="h-3 w-20 rounded bg-muted" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="p-4 rounded-xl border-2 border-border bg-card animate-pulse min-h-[110px]">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-lg bg-muted" />
+                      <div className="h-4 w-24 rounded bg-muted" />
                     </div>
-                    <div className="w-6 h-4 rounded bg-muted" />
+                    <div className="w-7 h-7 rounded-lg bg-muted" />
                   </div>
-                  <div className="h-2.5 w-full rounded bg-muted/70 mt-2" />
-                  <div className="h-2.5 w-1/2 rounded bg-muted/70 mt-1" />
+                  <div className="h-3.5 w-full rounded bg-muted/70 mb-2" />
+                  <div className="h-3 w-1/3 rounded bg-muted/70" />
                 </div>
               ))}
             </div>
           )}
 
-          {/* Grid de ingredientes */}
+          {/* Grid de ingredientes — Eje A: cards grandes, legibles a distancia */}
           {ingredientsExpanded && sortedResults.length > 0 && !isSearching && (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {visibleResults.map((result) => {
                   const catConfig = getCategoryConfig(result.ingredient.categoria);
                   const evConfig = getEvidenceConfig(result.ingredient.evidencia);
@@ -340,49 +418,54 @@ export function SearchPage() {
                   const verdict = evaluateSafety(result.ingredient);
                   const safetyStyle = safetyVerdictStyle(verdict);
                   const safetyBadge = safetyVerdictBadge(verdict);
+                  const topIndication = result.ingredient.indicaciones?.[0];
                   return (
                     <button
                       key={result.ingredient.id}
                       className={cn(
-                        'text-left p-3 rounded-lg bg-card border border-border hover:border-primary hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group',
+                        'text-left p-4 rounded-xl bg-card border-2 border-border hover:border-primary hover:shadow-lg transition-all',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group min-h-[110px]',
                         safetyStyle
                       )}
                       onClick={() => setSelectedIngredient(result.ingredient)}
                     >
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <div className="flex items-center gap-1.5 min-w-0">
-                          <div className={cn('p-1 rounded shrink-0', catConfig.color)}>
-                            <CatIcon className="w-3 h-3" aria-hidden="true" />
+                      {/* Fila 1: icono categoría + nombre + badge evidencia (separados) */}
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <div className={cn('p-1.5 rounded-lg shrink-0', catConfig.color)}>
+                            <CatIcon className="w-4 h-4" aria-hidden="true" />
                           </div>
-                          <h4 className="font-medium text-sm truncate group-hover:text-primary transition-colors">
+                          <h4 className="font-heading font-semibold text-base truncate group-hover:text-primary transition-colors leading-tight">
                             {result.ingredient.nombre}
                           </h4>
                         </div>
                         <span
-                          className={cn('px-1.5 py-0.5 rounded text-xs shrink-0 cursor-help', evConfig.color)}
+                          className={cn('flex items-center justify-center w-7 h-7 rounded-lg text-sm font-bold shrink-0', evConfig.color)}
                           title={evConfig.title}
                         >
                           {evConfig.label}
                         </span>
                       </div>
-                      {result.ingredient.indicaciones && result.ingredient.indicaciones.length > 0 && (
-                        <p className="text-xs text-muted-foreground truncate">
-                          {humanize(result.ingredient.indicaciones[0])}
+                      {/* Fila 2: indicación principal */}
+                      {topIndication && (
+                        <p className="text-sm text-muted-foreground truncate mb-2">
+                          {humanize(topIndication)}
                         </p>
                       )}
-                      <div className="flex items-center justify-between mt-1">
-                        <span className="text-[10px] text-muted-foreground/70 capitalize">
+                      {/* Fila 3: categoría + badge seguridad + score */}
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs text-muted-foreground/80 capitalize">
                           {result.ingredient.categoria.replace('_', ' ')}
                         </span>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-2">
                           {safetyBadge && (
-                            <span className={cn('px-1.5 py-0.5 rounded text-[10px] font-medium', safetyBadge.className)}>
+                            <span className={cn('px-2 py-0.5 rounded-full text-xs font-semibold', safetyBadge.className)}>
                               {safetyBadge.label}
                             </span>
                           )}
                           {result.score > 50 && (
-                            <span className="flex items-center gap-0.5 text-[10px] text-muted-foreground/70">
-                              <Star className="w-2.5 h-2.5" aria-hidden="true" />
+                            <span className="flex items-center gap-0.5 text-xs text-muted-foreground/70">
+                              <Star className="w-3 h-3 fill-current" aria-hidden="true" />
                               {result.score}
                             </span>
                           )}
@@ -398,7 +481,7 @@ export function SearchPage() {
                 <div className="flex justify-center pt-2">
                   <button
                     onClick={() => setVisibleCount(visibleCount + RESULTS_PAGE_SIZE)}
-                    className="px-4 py-2 rounded-lg border border-border text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="px-5 py-2.5 rounded-xl border-2 border-border text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground hover:border-primary/40 transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Ver más ({sortedResults.length - visibleCount} restantes)
                     <ChevronDown className="w-4 h-4" />

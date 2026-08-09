@@ -9,7 +9,9 @@
 import { useMemo } from 'react';
 import type { DbPathology, DbIngredient } from '@/db/schema';
 import { ingredientSearchService } from '@/core/search';
+import { useClientProfile, safetyVerdictBadge, safetyVerdictStyle, CLIENT_PROFILES } from '@/contexts/ClientProfileContext';
 import { Stethoscope, Leaf, AlertTriangle, ChevronRight, BookOpen } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface ConditionCardProps {
   pathology: DbPathology;
@@ -50,6 +52,8 @@ const SYSTEM_LABELS: Record<string, string> = {
 };
 
 export function ConditionCard({ pathology, onIngredientClick, onExpand }: ConditionCardProps) {
+  const { evaluateSafety, profile } = useClientProfile();
+  const activeProfile = profile !== 'ninguno' ? CLIENT_PROFILES.find(p => p.value === profile) : null;
   // Cargar ingredientes referenciados desde el índice cacheado (sin query Dexie)
   const allReferencedIds = useMemo(() => {
     const ids = new Set<string>();
@@ -131,32 +135,55 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
           )}
         </div>
 
-        {/* Recomendar: top 5 por evidencia */}
+        {/* Recomendar: top 5 por evidencia — con marcado de seguridad por perfil */}
         {topRecommendations.length > 0 && (
           <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60">
-            <div className="flex items-center gap-1.5 mb-2">
-              <Leaf className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              <span className="text-xs font-bold uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
-                Recomendar
-              </span>
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-1.5">
+                <Leaf className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-xs font-bold uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
+                  Recomendar
+                </span>
+              </div>
+              {activeProfile && (
+                <span className="text-xs text-emerald-700 dark:text-emerald-400 font-medium">
+                  Filtrado: {activeProfile.label}
+                </span>
+              )}
             </div>
-            <div className="space-y-1">
-              {topRecommendations.map(ing => (
-                <button
-                  key={ing.id}
-                  onClick={() => onIngredientClick?.(ing.id)}
-                  className="w-full flex items-center justify-between gap-2 px-2 py-1.5 rounded-md bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors text-left group ring-1 ring-emerald-200/60 dark:ring-white/10"
-                >
-                  <span className="text-sm font-medium text-foreground truncate">{ing.nombre}</span>
-                  <div className="flex items-center gap-1 shrink-0">
-                    <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${ING_EVIDENCE_COLORS[ing.evidencia] || ING_EVIDENCE_COLORS.C}`}>
-                      {ing.evidencia}
-                    </span>
-                    <span className="text-[10px] text-muted-foreground capitalize hidden sm:inline">{ing.categoria.replace('_', ' ')}</span>
-                    <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
-                  </div>
-                </button>
-              ))}
+            <div className="space-y-1.5">
+              {topRecommendations.map(ing => {
+                const verdict = evaluateSafety(ing);
+                const safetyBadge = safetyVerdictBadge(verdict);
+                const safetyStyle = safetyVerdictStyle(verdict);
+                return (
+                  <button
+                    key={ing.id}
+                    onClick={() => onIngredientClick?.(ing.id)}
+                    className={cn(
+                      'w-full flex items-center justify-between gap-2 px-3 py-2 rounded-lg transition-colors text-left group',
+                      'ring-1 ring-emerald-200/60 dark:ring-white/10',
+                      safetyStyle,
+                    )}
+                  >
+                    <span className="text-sm font-medium text-foreground truncate">{ing.nombre}</span>
+                    <div className="flex items-center gap-2 shrink-0">
+                      {safetyBadge && (
+                        <span className={cn('px-2 py-0.5 rounded-full text-xs font-semibold', safetyBadge.className)}>
+                          {safetyBadge.label}
+                        </span>
+                      )}
+                      <span className={cn(
+                        'flex items-center justify-center w-6 h-6 rounded-md text-xs font-bold',
+                        ING_EVIDENCE_COLORS[ing.evidencia] || ING_EVIDENCE_COLORS.C
+                      )}>
+                        {ing.evidencia}
+                      </span>
+                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}

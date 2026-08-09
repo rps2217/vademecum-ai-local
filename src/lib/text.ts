@@ -95,10 +95,11 @@ export function normalizeIndications(list: string[]): string[] {
   return out.sort((a, b) => a.localeCompare(b, 'es'));
 }
 
-/** Escribe en Title Case legible: "aceite_esencial" → "Aceite esencial". */
+/** Escribe en Title Case legible: "aceite_esencial" → "Aceite esencial".
+ *  Usa una regex que respeta caracteres acentuados (UTF-16 safe). */
 export function humanize(s: string): string {
   return s
     .replace(/[_-]+/g, ' ')
     .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+    .replace(/(^|\s)\S/g, (m) => m.toUpperCase());
 }
