@@ -68,7 +68,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sedantes y benzodiacepinas (efecto aditivo sedante)",
+        "Anestésicos generales (potencia efecto sedante)",
+        "Antidepresivos (sinergia)",
+        "No usar interno sin supervisión profesional",
+        "Precaución en niños (puede causar ginecomastia prepuberal con uso prolongado)"
+      ]
     },
     {
       "id": "tea_tree",
@@ -127,7 +134,13 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas (uso tópico)",
+        "No ingerir (toxicidad sistémica)",
+        "Puede haber sinergia con antifúngicos tópicos",
+        "Precaución en gatos (toxicidad)"
+      ]
     },
     {
       "id": "ravintsara",
@@ -186,7 +199,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "No usar interno sin supervisión profesional"
+      ]
     },
     {
       "id": "eucalipto",
@@ -246,7 +263,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Fármacos metabolizados por CYP3A4 (eucaliptol puede inducir)",
+        "Anestésicos (puede afectar metabolismo)",
+        "No usar en niños menores de 6 años (riesgo de espasmo laringeo)",
+        "Precaución en asma (puede desencadenar broncoespasmo en inhalación directa)",
+        "No ingerir (toxicidad: convulsiones, depresión respiratoria)"
+      ]
     },
     {
       "id": "menta_aceite",
@@ -308,7 +332,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antiácidos e IBP (mentol puede reducir eficacia de antiácidos)",
+        "Fármacos metabolizados por CYP3A4 (mentol inhibe)",
+        "Ciclosporina (puede aumentar niveles)",
+        "No aplicar en rostro de lactantes y niños menores de 6 años (riesgo de espasmo laringeo)",
+        "Gastroesofágico: puede relajar esfínter esofágico (empeora reflujo)"
+      ]
     },
     {
       "id": "romero_aceite",
@@ -368,7 +399,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Diuréticos (potencia efecto diurético)",
+        "Antihipertensivos (puede subir o bajar presión según variedad)",
+        "Epilepsia (puede bajar umbral convulsivo en dosis altas)",
+        "Embarazo (efecto uterotónico en dosis altas)"
+      ]
     },
     {
       "id": "incienso",
@@ -429,7 +467,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "Anticoagulantes (precaución teórica)"
+      ]
     },
     {
       "id": "jengibre_aceite",
@@ -487,7 +529,13 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina - efecto antiagregante aditivo)",
+        "Antiagregantes plaquetarios (aspirina)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "Antihipertensivos (puede potenciar)"
+      ]
     },
     {
       "id": "oregano",
@@ -544,7 +592,13 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Hierro (puede reducir absorción por taninos)",
+        "Antibióticos (sinergia antimicrobiana teórica)",
+        "No usar en embarazo a dosis terapéuticas"
+      ]
     },
     {
       "id": "salvia_esclarea",
@@ -602,7 +656,12 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Estrógenos y anticonceptivos (actividad estrogénica)",
+        "Sedantes (efecto aditivo)",
+        "No usar en embarazo (efecto uterotónico)"
+      ]
     },
     {
       "id": "canela_aceite",
@@ -665,7 +724,13 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (cumarina - efecto aditivo)",
+        "Hepatotoxicidad con dosis altas (cumarina en Cassia)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "No usar en embarazo a dosis terapéuticas"
+      ]
     },
     {
       "id": "nilo_rosada",
@@ -721,7 +786,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "Sin interacciones sistémicas significativas (uso principalmente tópico)"
+      ]
     },
     {
       "id": "palmarosa",
@@ -780,7 +849,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "No usar interno sin supervisión profesional"
+      ]
     },
     {
       "id": "helichrysum",
@@ -839,7 +912,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "No usar interno sin supervisión profesional"
+      ]
     },
     {
       "id": "cedro_atlas",
@@ -898,7 +975,12 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "No usar en embarazo a dosis terapéuticas",
+        "No usar interno sin supervisión"
+      ]
     },
     {
       "id": "neroli",
@@ -959,7 +1041,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sedantes y benzodiacepinas (efecto aditivo sedante)",
+        "No usar interno sin supervisión profesional"
+      ]
     },
     {
       "id": "palo_de_rosa",
@@ -1018,7 +1104,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "No usar en embarazo a dosis terapéuticas"
+      ]
     },
     {
       "id": "inmale",
@@ -1077,7 +1167,10 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas"
+      ]
     },
     {
       "id": "manuka",
@@ -1135,7 +1228,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "Antibióticos (sinergia antimicrobiana teórica)"
+      ]
     },
     {
       "id": "copaiba",
@@ -1193,7 +1290,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "Antiinflamatorios (sinergia)"
+      ]
     },
     {
       "id": "pino_silvestre",
@@ -1254,7 +1355,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Pini silvestris aetheroleum"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No usar en niños menores de 6 años (riesgo de espasmo laringeo)",
+        "No ingerir (toxicidad)",
+        "Asma (precaución en inhalación directa)"
+      ]
     },
     {
       "id": "tomillo_quimiotipo",
@@ -1314,7 +1420,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Thymi herba; ESCOP Monographs (aceite esencial CT timol)"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Hormona tiroidea (timol puede interferir)",
+        "No usar en embarazo a dosis terapéuticas"
+      ]
     },
     {
       "id": "naranja_dulce",
@@ -1378,7 +1489,11 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "FDA GRAS (21 CFR); EFSA scientific opinion on limonene"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "Fotosensibilidad (si es exprimido en frío, aplicar diluido)"
+      ]
     },
     {
       "id": "bergamota",
@@ -1438,7 +1553,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "CIR (Cosmetic Ingredient Review) safety assessment of Citrus-derived peel oils; IFRA standard on bergamot"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Fotosensibilidad severa (bergapteno - evitar sol 12h después de aplicación tópica)",
+        "Usar formato bergaptene-free (FCF) para uso tópico",
+        "Sin interacciones sistémicas en aromaterapia"
+      ]
     },
     {
       "id": "citronela",
@@ -1494,7 +1614,11 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EPA registered biopesticide repellant; CDC guidance on mosquito repellents"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "Puede irritar piel sensible (diluir)"
+      ]
     },
     {
       "id": "ylang_ylang",
@@ -2750,7 +2874,12 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Epilepsia (puede bajar umbral convulsivo - contraindicado)",
+        "No usar en embarazo",
+        "No ingerir (toxicidad: convulsiones)"
+      ]
     },
     {
       "id": "ajo_aceite",
@@ -2810,7 +2939,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "ajedrea",
@@ -2870,7 +3005,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "benjuu",
@@ -2933,7 +3074,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "valeriana_aceite",
@@ -2991,7 +3138,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "perejil_aceite",
@@ -3050,7 +3203,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "azahar_aceite",
@@ -3113,7 +3272,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "galbano",
@@ -3173,7 +3338,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "laurel_aceite",
@@ -3590,7 +3761,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Prog Neuropsychopharmacol Biol Psychiatry 2013"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "neroli_bigarade",
@@ -3646,7 +3823,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2013"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "frankincense_boswellia_serrata",
@@ -3703,7 +3886,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Phytomedicine 2019"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "houttuynia_aceite",
@@ -3757,7 +3946,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Molecules 2022"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "raiz_angelica_aceite",
@@ -3811,7 +4006,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2014"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "abrojo_aceite",
@@ -3863,7 +4064,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Food Chem Toxicol 2017"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "albahaca_sagrada_aceite",
@@ -3918,7 +4125,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ayurveda Integr Med 2014"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "melissa_true_aceite",
@@ -3972,7 +4185,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Phytomedicine 2004"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "pino_maritimo_aceite",
@@ -4026,7 +4245,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Arch Dermatol Res 2010"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "vetiver_haiti_aceite",
@@ -4080,7 +4305,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Med Food 2016"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "valeriana_jatamansi_aceite",
@@ -4132,7 +4363,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Phytomedicine 2013"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "tomillo_geraniol_aceite",
@@ -4185,7 +4422,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Lett Appl Microbiol 2019"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "ajedrea_montana_aceite",
@@ -4239,7 +4482,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Med Microbiol 2018"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "leche_eneldo_aceite",
@@ -4292,7 +4541,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2015"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "cipres_azul_aceite",
@@ -4345,7 +4600,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Essent Oil Res 2018"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "romero_verbenona_aceite",
@@ -4399,7 +4660,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Skinmed 2015"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "citronela_java_aceite",
@@ -4452,7 +4719,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "PLoS One 2011"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "palo_santo_bursera_aceite",
@@ -4505,7 +4778,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2017"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "eucalipto_citriodora_aceite",
@@ -4558,7 +4837,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Am Mosq Control Assoc 2006"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     },
     {
       "id": "manuka_leptospermum_aceite",
@@ -4612,7 +4897,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Int J Antimicrob Agents 2013"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "No ingerir sin supervisión profesional (toxicidad potencial)",
+        "Diluir antes de aplicación tópica",
+        "Precaución en embarazo, lactancia y pediatría",
+        "Realizar test de tolerancia cutánea"
+      ]
     }
   ]
 }

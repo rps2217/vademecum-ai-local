@@ -64,7 +64,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Aumenta absorción de hierro (beneficioso en anemia, riesgo en hemocromatosis)",
+        "Dosis altas (>500mg) pueden degradar vitamina B12 en tracto digestivo",
+        "Antiácidos con aluminio (vitamina C aumenta absorción de aluminio)",
+        "Probenecid (reduce excreción de vitamina C)",
+        "Dosis altas pueden acidificar orina (riesgo de litiasis oxálica)"
+      ]
     },
     {
       "id": "vitamina_d3",
@@ -121,7 +128,16 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Atorvastatina (vitamina D puede reducir eficacia del estatina)",
+        "Digoxina (hipercalcemia puede precipitar arritmias)",
+        "Diuréticos tiazídicos (riesgo de hipercalcemia)",
+        "Corticosteroides (reducen absorción de vitamina D)",
+        "Orlistat (reduce absorción de vitaminas liposolubles)",
+        "Fenitoína/barbitúricos (aumentan metabolismo de vitamina D)",
+        "Colestiramina (reduce absorción)"
+      ]
     },
     {
       "id": "magnesio",
@@ -181,7 +197,17 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Bisfosfonatos (reduce absorción, separar 2h)",
+        "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2-4h)",
+        "Levotiroxina (reduce absorción, separar 4h)",
+        "Diuréticos (desequilibrio electrolítico)",
+        "Gabapentina (reduce absorción)",
+        "IECA/ARA-II (riesgo de hipotensión)",
+        "Relajantes musculares (efecto aditivo)",
+        "Digoxina (hipermagnesemia aumenta toxicidad)"
+      ]
     },
     {
       "id": "zinc",
@@ -240,7 +266,16 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Fluoroquinolonas (ciprofloxacino - reduce absorción, separar 2h)",
+        "Tetraciclinas (doxiciclina - reduce absorción, separar 2h)",
+        "Penicilamina (reduce absorción de ambos, separar 2h)",
+        "Diuréticos tiazídicos (aumentan excreción urinaria de zinc)",
+        "Hierro (>25mg reduce absorción de zinc)",
+        "Cobre (zinc crónico >30mg/día causa deficiencia de cobre)",
+        "IECA (pueden reducir zinc)"
+      ]
     },
     {
       "id": "hierro",
@@ -301,7 +336,18 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Levotiroxina (reduce absorción, separar 4h)",
+        "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2h)",
+        "Bisfosfonatos (reduce absorción)",
+        "Antiácidos e IBP (reducen absorción de hierro)",
+        "Calcio (>300mg reduce absorción, separar 2h)",
+        "Vitamina E (dosis altas antagonizan)",
+        "Penicilamina (reduce absorción de ambos)",
+        "Levodopa/carbidopa (reduce absorción)",
+        "Contraindicado en hemocromatosis y anemias no ferropénicas"
+      ]
     },
     {
       "id": "omega_3",
@@ -363,7 +409,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes orales (warfarina - aumenta riesgo de sangrado, monitorizar INR)",
+        "Antiagregantes plaquetarios (aspirina, clopidogrel - riesgo aditivo)",
+        "AINE (riesgo aditivo de sangrado gastrointestinal)",
+        "Ciclosporina (dosis altas pueden reducir inmunosupresión)",
+        "Orlistat (reduce absorción)"
+      ]
     },
     {
       "id": "vitamina_b12",
@@ -422,7 +475,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metformina (reduce absorción de B12)",
+        "IBP crónicos (omeprazol - reducen absorción)",
+        "Ácido fólico (puede enmascarar deficiencia de B12)",
+        "Colchicina (reduce absorción)",
+        "Neomicina (reduce absorción)",
+        "Óxido nitroso (inactiva B12)"
+      ]
     },
     {
       "id": "vitamina_b6",
@@ -483,7 +544,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Levodopa sin carbidopa (reduce eficacia antiparkinsoniana)",
+        "Fenitoína/fenobarbital (puede reducir niveles plasmáticos)",
+        "Anticonceptivos orales (aumentan necesidad de B6)",
+        "Isoniazida (antagoniza B6, suplementar)",
+        "Penicilamina (aumenta necesidad de B6)",
+        "Ciclosporina (reduce inmunosupresión)"
+      ]
     },
     {
       "id": "vitamina_b_complejo",
@@ -539,7 +608,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metformina (reduce absorción de B12)",
+        "IBP crónicos (reducen absorción de B12)",
+        "Fenitoína/fenobarbital (B6 puede reducir niveles)",
+        "Isoniazida (antagoniza B6)",
+        "Levodopa sin carbidopa (B6 reduce eficacia)"
+      ]
     },
     {
       "id": "coq10",
@@ -595,7 +671,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Warfarina (puede reducir efecto anticoagulante, monitorizar INR)",
+        "Antihipertensivos (efecto aditivo hipotensor)",
+        "Estatinas (sinergia: CoQ10 reduce miopatía por estatinas)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "Doxorrubicina (puede reducir cardiotoxicidad)"
+      ]
     },
     {
       "id": "probioticos",
@@ -652,7 +735,12 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores (riesgo teórico de infección por microorganismos vivos)",
+        "Antibióticos (reducen eficacia del probiótico, separar 2h)",
+        "Antifúngicos sistémicos"
+      ]
     },
     {
       "id": "curcumina",
@@ -711,7 +799,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina - efecto antiagregante aditivo)",
+        "Antiagregantes plaquetarios",
+        "Antihipertensivos (puede potenciar)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "Inhibidores CYP3A4 (curcumina inhibe)",
+        "Tacrolimus (puede aumentar niveles)"
+      ]
     },
     {
       "id": "melatonina",
@@ -766,7 +862,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores (teóricamente antagoniza)",
+        "Anticoagulantes (puede afectar coagulación)",
+        "Sedantes/benzodiacepinas (efecto aditivo sedante)",
+        "Nifedipino (puede aumentar presión)",
+        "Flumazenilo (antagoniza)",
+        "Antidepresivos ISRS (interacción variable)"
+      ]
     },
     {
       "id": "vitamina_k2",
@@ -823,7 +927,12 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes orales (warfarina - antagoniza efecto, monitorizar INR estrechamente)",
+        "Anticoagulantes de acción directa (puede interferir)",
+        "Trombolíticos"
+      ]
     },
     {
       "id": "magnesio_glicinato",
@@ -883,7 +992,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Bisfosfonatos (reduce absorción, separar 2h)",
+        "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2-4h)",
+        "Levotiroxina (reduce absorción, separar 4h)",
+        "Diuréticos (desequilibrio electrolítico)",
+        "Gabapentina (reduce absorción)",
+        "IECA/ARA-II (riesgo de hipotensión)"
+      ]
     },
     {
       "id": "boro",
@@ -938,7 +1055,12 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Estrógenos y anticonceptivos (sinergia: boro aumenta estrógenos)",
+        "Antidiabéticos (puede afectar glucosa)",
+        "Dosis altas tóxicas (renal, reproductivo)"
+      ]
     },
     {
       "id": "yodo",
@@ -994,7 +1116,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antitiroideos (metimazol, propiltiouracilo - antagonizan)",
+        "Litio (sinergia antitiroidea - riesgo de hipotiroidismo)",
+        "Warfarina (yodo puede afectar coagulación)",
+        "Amiodarona (contiene yodo - riesgo de hipertiroidismo/hipotiroidismo)",
+        "Exceso crónico causa tiroiditis de Hashimoto o bocio"
+      ]
     },
     {
       "id": "cromo",
@@ -1049,7 +1178,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Insulina y antidiabéticos (puede reducir glucosa, ajustar dosis)",
+        "Levotiroxina (reduce absorción, separar 3-4h)",
+        "Antiácidos (reducen absorción)",
+        "Corticosteroides (aumentan excreción)",
+        "Beta-bloqueantes (puede potenciar hipoglucemia)"
+      ]
     },
     {
       "id": "vanadio",
@@ -1103,7 +1239,13 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos e insulina (efecto hipoglicemiante aditivo)",
+        "Hierro (antagoniza absorción)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Dosis altas tóxicas (renal, hepático)"
+      ]
     },
     {
       "id": "litio",
@@ -1161,7 +1303,16 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Diuréticos (tiazídicos y de asa aumentan toxicidad de litio)",
+        "AINE (aumentan niveles de litio)",
+        "IECA/ARA-II (aumentan niveles de litio)",
+        "Antidepresivos ISRS (riesgo de síndrome serotoninérgico)",
+        "Bloqueadores de canales de calcio",
+        "Metotrexato",
+        "Contraindicado en embarazo (cardiopatía fetal Ebstein)"
+      ]
     },
     {
       "id": "tirosina",
@@ -1221,7 +1372,13 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "IMAO (fenelzina, tranilcipromina - riesgo de crisis hipertensiva)",
+        "Levodopa (competencia de absorción)",
+        "Hormona tiroidea (sinergia)",
+        "Antidepresivos ISRS (síndrome serotoninérgico)"
+      ]
     },
     {
       "id": "creatina",
@@ -1279,7 +1436,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Diuréticos (riesgo de deshidratación y disfunción renal)",
+        "AINE (riesgo renal aditivo)",
+        "Cafeína (puede reducir eficacia y aumentar riesgo de lesión)",
+        "Cimetidina (reduce eliminación)",
+        "Probeneicid (reduce eliminación)",
+        "Puede aumentar creatinina sérica (falso positivo de daño renal)"
+      ]
     },
     {
       "id": "alfa_lipoico",
@@ -1336,7 +1501,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Insulina y antidiabéticos (puede potenciar hipoglucemia)",
+        "Hormona tiroidea (puede reducir eficacia)",
+        "Quimioterapia (puede interferir con radioterapia/quimioterapia)",
+        "Hierro, calcio, magnesio (quelación - separar)",
+        "Warfarina (puede afectar coagulación)"
+      ]
     },
     {
       "id": "fosfatidilserina",
@@ -1391,7 +1563,13 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina - puede afectar coagulación)",
+        "Antihipertensivos (puede potenciar efecto hipotensor)",
+        "Colina (sinergia colinérgica)",
+        "Inhibidores de acetilcolinesterasa (sinergia)"
+      ]
     },
     {
       "id": "selenio",
@@ -1449,7 +1627,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo antiagregante)",
+        "Inmunosupresores (selenio estimula inmunidad)",
+        "Niacina + estatinas (sinergia: riesgo de toxicidad)",
+        "Dosis altas crónicas >400mcg/día causan selenosis (alopecia, uñas frágiles, neuropatía)",
+        "Medicamentos radiométricos (puede interferir)"
+      ]
     },
     {
       "id": "cobre",
@@ -1508,7 +1693,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Penicilamina (quelación - reduce cobre)",
+        "Zinc crónico (antagoniza absorción de cobre)",
+        "Hierro (competencia de absorción)",
+        "Etilendiaminotetracetato (EDTA - quelación)",
+        "Antiácidos (reducen absorción)",
+        "Contraindicado en enfermedad de Wilson"
+      ]
     },
     {
       "id": "manganeso",
@@ -1565,7 +1758,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Fluoroquinolonas (reducción mutua de absorción)",
+        "Hierro (competencia)",
+        "Calcio (competencia)",
+        "Antipsicóticos atípicos (depleción asociada)",
+        "Dosis altas crónicas causan neurotoxicidad (síndrome de manganismo)"
+      ]
     },
     {
       "id": "astaxantina",
@@ -1622,7 +1822,12 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (dosis altas pueden tener efecto antiagregante)",
+        "Antihipertensivos (puede potenciar efecto hipotensor)",
+        "Estatinas (sinergia antioxidante)"
+      ]
     },
     {
       "id": "luteina",
@@ -1675,7 +1880,11 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas",
+        "Betacaroteno (competencia de absorción a dosis altas)"
+      ]
     },
     {
       "id": "resveratrol",
@@ -1729,7 +1938,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina - efecto antiagregante aditivo)",
+        "Antihipertensivos (puede potenciar)",
+        "Inhibidores CYP3A4 (resveratrol inhibe, puede aumentar niveles de fármacos)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "Estrógenos (puede tener actividad estrogénica débil)"
+      ]
     },
     {
       "id": "quercetina",
@@ -1785,7 +2001,15 @@
       ],
       "metadata": {
         "fechaCreacion": "2026-07-26"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina - efecto antiagregante)",
+        "Ciclosporina (aumenta niveles)",
+        "Inhibidores CYP3A4 (quercetina inhibe)",
+        "Fluoroquinolonas (puede antagonizar)",
+        "Digoxina (puede aumentar niveles)",
+        "Antidiabéticos (puede reducir glucosa)"
+      ]
     },
     {
       "id": "folato",
@@ -1845,7 +2069,15 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Folate Fact Sheet for Health Professionals (2022)"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metotrexato (antagoniza efecto del folato)",
+        "Fenitoína (reduce niveles plasmáticos del antiepiléptico)",
+        "Sulfasalazina (reduce absorción de folato)",
+        "Metformina (reduce absorción)",
+        "Trimetoprim (antagoniza)",
+        "Puede enmascarar deficiencia de B12"
+      ]
     },
     {
       "id": "niacina",
@@ -1902,7 +2134,15 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Niacin Fact Sheet for Health Professionals (2022)"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Estatinas (riesgo aumentado de miopatía y rabdomiólisis)",
+        "Aspirina (reduce flushing)",
+        "Antidiabéticos (puede aumentar glucosa)",
+        "Alcohol (potencia flushing y hepatotoxicidad)",
+        "Antihipertensivos (potencia hipotensión)",
+        "Hepatotoxicidad con dosis altas sostenidas"
+      ]
     },
     {
       "id": "colina",
@@ -1958,7 +2198,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Choline Fact Sheet for Health Professionals (2022); IOM DRI 1998"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metotrexato (puede antagonizar)",
+        "Antidepresivos tricíclicos (colina alta puede empeorar depresión)",
+        "Atropina (antagoniza efectos colinérgicos)"
+      ]
     },
     {
       "id": "biotina",
@@ -2009,7 +2254,13 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Biotin Fact Sheet for Health Professionals (2022)"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Dosis altas interfieren con ensayos de laboratorio (troponina, TSH, T4, T3, prolactina, vitamina B12 - suspenda 48h antes de análisis)",
+        "Anticonvulsivantes (carbamazepina, fenitoína, primidona - reducen biotina)",
+        "Lipoato (competencia)",
+        "IBP crónicos (reducen absorción)"
+      ]
     },
     {
       "id": "acido_pantotenico",
@@ -2063,7 +2314,10 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Pantothenic Acid Fact Sheet for Health Professionals (2026)"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas a dosis fisiológicas"
+      ]
     },
     {
       "id": "vitamina_e",
@@ -2121,7 +2375,15 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Vitamin E Fact Sheet for Health Professionals (2021)"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina - aumenta riesgo de sangrado)",
+        "Antiagregantes plaquetarios (aspirina, clopidogrel)",
+        "Ciclosporina (reduce niveles)",
+        "Estatinas (dosis altas pueden antagonizar efecto hipolipemiante)",
+        "Vitamina K (antagoniza a dosis altas)",
+        "AINE (riesgo aditivo de sangrado)"
+      ]
     },
     {
       "id": "tiamina",
@@ -2180,7 +2442,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "NIH ODS Thiamin Fact Sheet for Health Professionals (2023)"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Diuréticos (furosemida - depleción de B1)",
+        "Alcoholismo crónico (depleción)",
+        "Fluorouracilo (depleción)"
+      ]
     },
     {
       "id": "vitamina_a",
@@ -6387,7 +6654,10 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas"
+      ]
     },
     {
       "id": "acerola",
@@ -6448,7 +6718,12 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "USDA, EFSA"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antiácidos con aluminio (vitamina C aumenta absorción de aluminio)",
+        "Dosis altas pueden acidificar orina (litiasis oxálica)",
+        "Probenecid"
+      ]
     },
     {
       "id": "camu_camu",
@@ -6505,7 +6780,11 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antiácidos con aluminio (vitamina C aumenta absorción de aluminio)",
+        "Dosis altas pueden acidificar orina"
+      ]
     },
     {
       "id": "espirulina",
@@ -6568,7 +6847,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "WHO, EFSA"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores (estimulación inmunológica teórica)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Fenilcetonuria (contiene fenilalanina)",
+        "Puede contener microcistinas si no está purificada"
+      ]
     },
     {
       "id": "chlorella",
@@ -6628,7 +6913,12 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (contiene vitamina K)",
+        "Inmunosupresores (estimulación inmunológica)",
+        "Puede contener yodo (precaución en tiroides)"
+      ]
     },
     {
       "id": "jalea_real",
@@ -6690,7 +6980,12 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Asmáticos y alérgicos (riesgo de reacción alérgica severa)",
+        "Estrógenos (actividad estrogénica débil)"
+      ]
     },
     {
       "id": "polen",
@@ -6751,7 +7046,12 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "USDA"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Alérgicos (riesgo de anafilaxia en personas sensibles)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Inmunosupresores"
+      ]
     },
     {
       "id": "propoleo",
@@ -6815,7 +7115,12 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Alérgicos (riesgo de dermatitis de contacto y reacción sistémica)",
+        "Asma (casos reportados de empeoramiento)"
+      ]
     },
     {
       "id": "shilajit",
@@ -6878,7 +7183,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos (puede reducir glucosa)",
+        "Gota (contiene ácido úrico)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Hierro (sinergia: mejora absorción)",
+        "Puede contener metales pesados si no purificado"
+      ]
     },
     {
       "id": "lecitina",
@@ -6940,7 +7252,10 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EFSA"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas"
+      ]
     },
     {
       "id": "triptofano",
@@ -7000,7 +7315,15 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "IMAO (crisis hipertensiva - contraindicado)",
+        "ISRS y IRSN (síndrome serotoninérgico)",
+        "Sedantes y benzodiacepinas (efecto aditivo sedante)",
+        "Tramadol (síndrome serotoninérgico)",
+        "Litio (síndrome serotoninérgico)",
+        "Dextrometorfano"
+      ]
     },
     {
       "id": "d_manosa",
@@ -7526,7 +7849,10 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutrition Reviews 2011"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas a dosis fisiológicas"
+      ]
     },
     {
       "id": "metilfolato",
@@ -7581,7 +7907,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Mol Psychiatry 2011"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metotrexato (antagoniza efecto del folato)",
+        "Fenitoína (reduce niveles plasmáticos)",
+        "Sulfasalazina (reduce absorción)",
+        "Metformina (reduce absorción)",
+        "Puede enmascarar deficiencia de B12"
+      ]
     },
     {
       "id": "metilcobalamina",
@@ -7632,7 +7965,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Cochrane Database 2018"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metformina (reduce absorción de B12)",
+        "IBP crónicos (omeprazol - reducen absorción)",
+        "Ácido fólico (puede enmascarar deficiencia de B12)",
+        "Colchicina (reduce absorción)"
+      ]
     },
     {
       "id": "pipquinafosfolipidos",
@@ -7683,7 +8022,11 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutrients 2018"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (puede afectar coagulación)",
+        "Antihipertensivos (puede potenciar)"
+      ]
     },
     {
       "id": "pqq_pyrroloquinoline",
@@ -7732,7 +8075,11 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Adv Nutr 2022"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas",
+        "Anticoagulantes (precaución teórica)"
+      ]
     },
     {
       "id": "polen_abeja_ext",
@@ -7783,7 +8130,12 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Evid Based Complement Alternat Med 2021"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Alérgicos (riesgo de anafilaxia)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Inmunosupresores"
+      ]
     },
     {
       "id": "lactoferrina_bovina",
@@ -7834,7 +8186,11 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Front Immunol 2020"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas",
+        "Antibióticos (sinergia antimicrobiana teórica)"
+      ]
     },
     {
       "id": "colageno_tipo2",
@@ -7881,7 +8237,11 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutr J 2013"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas",
+        "Inmunosupresores (efecto inmunomodulador teórico)"
+      ]
     },
     {
       "id": "nmn_nicotinamide",
@@ -7930,7 +8290,11 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Cell Metab 2019"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas a dosis fisiológicas",
+        "Dosis altas pueden afectar función hepática"
+      ]
     },
     {
       "id": "astaxantina_haematococcus",
@@ -7982,7 +8346,11 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Mar Drugs 2014"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (dosis altas pueden tener efecto antiagregante)",
+        "Antihipertensivos (puede potenciar efecto hipotensor)"
+      ]
     },
     {
       "id": "lut_max",
@@ -8032,7 +8400,11 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "AREDS2 Study 2013"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas",
+        "Betacaroteno (competencia de absorción a dosis altas)"
+      ]
     },
     {
       "id": "magnesio_treonato",
@@ -8081,7 +8453,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Neuron 2010"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Bisfosfonatos (reduce absorción, separar 2h)",
+        "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2-4h)",
+        "Levotiroxina (reduce absorción, separar 4h)",
+        "Diuréticos (desequilibrio electrolítico)",
+        "Gabapentina (reduce absorción)"
+      ]
     },
     {
       "id": "zinc_picolinato",
@@ -8137,7 +8516,15 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Cochrane Database 2012"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Fluoroquinolonas (reduce absorción, separar 2h)",
+        "Tetraciclinas (reduce absorción, separar 2h)",
+        "Penicilamina (reduce absorción de ambos, separar 2h)",
+        "Diuréticos tiazídicos (aumentan excreción urinaria de zinc)",
+        "Hierro (>25mg reduce absorción de zinc)",
+        "Cobre (zinc crónico >30mg/día causa deficiencia de cobre)"
+      ]
     },
     {
       "id": "potasio_citrato_bis",
@@ -8190,7 +8577,16 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Urol 2016"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "IECA y ARA-II (riesgo de hiperpotasemia)",
+        "Diuréticos ahorradores de potasio (espironolactona, eplerenona)",
+        "Digoxina (hiperpotasemia aumenta toxicidad)",
+        "Heparina (aumenta potasio)",
+        "AINE (riesgo de hiperpotasemia)",
+        "Tacrolimus y ciclosporina (hiperpotasemia)",
+        "Bloqueadores beta"
+      ]
     },
     {
       "id": "hierro_bisglicinato",
@@ -8243,7 +8639,15 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Rev Bras Hematol Hemoter 2017"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Levotiroxina (reduce absorción, separar 4h)",
+        "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2h)",
+        "Bisfosfonatos (reduce absorción)",
+        "Antiácidos e IBP (reducen absorción de hierro)",
+        "Calcio (>300mg reduce absorción, separar 2h)",
+        "Contraindicado en hemocromatosis"
+      ]
     },
     {
       "id": "yoduro_potasio_lugol",
@@ -8294,7 +8698,15 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Thyroid 2017"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antitiroideos (metimazol, propiltiouracilo - antagonizan)",
+        "Litio (sinergia antitiroidea)",
+        "Amiodarona (contiene yodo)",
+        "IECA/ARA-II (con yodo puede causar hiperpotasemia)",
+        "Diuréticos ahorradores de potasio (hiperpotasemia)",
+        "Exceso crónico causa tiroiditis"
+      ]
     },
     {
       "id": "silicio_ortosilicico",
@@ -8346,7 +8758,10 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutr Metab (Lond) 2018"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas significativas documentadas"
+      ]
     },
     {
       "id": "calcio_microcristalino",
@@ -8399,7 +8814,15 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Calcif Tissue Int 2015"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Levotiroxina (reduce absorción, separar 4h)",
+        "Bisfosfonatos (reduce absorción, separar 2h)",
+        "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2h)",
+        "Diuréticos tiazídicos (aumentan retención de calcio - hipercalcemia)",
+        "Bloqueadores de canales de calcio (puede antagonizar)",
+        "Hierro (reduce absorción de hierro)"
+      ]
     },
     {
       "id": "vanadyl_sulfato",
@@ -8446,7 +8869,12 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Mol Cell Biochem 2017"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos e insulina (efecto hipoglicemiante aditivo)",
+        "Hierro (antagoniza absorción)",
+        "Dosis altas tóxicas (renal, hepático)"
+      ]
     },
     {
       "id": "biotina_crinip",
@@ -8495,7 +8923,12 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Mult Scler J 2017"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Dosis altas interfieren con ensayos de laboratorio (troponina, TSH, T4, T3, prolactina - suspenda 48h antes de análisis)",
+        "Anticonvulsivantes (reducen biotina)",
+        "IBP crónicos (reducen absorción)"
+      ]
     },
     {
       "id": "complejo_b_50",
@@ -8550,7 +8983,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutrients 2016"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metformina (reduce absorción de B12)",
+        "IBP crónicos (reducen absorción de B12)",
+        "Fenitoína/fenobarbital (B6 puede reducir niveles)",
+        "Isoniazida (antagoniza B6)",
+        "Levodopa sin carbidopa (B6 reduce eficacia)"
+      ]
     },
     {
       "id": "vitamina_d3_k2",
@@ -8603,7 +9043,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Osteoporos Int 2013"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes orales (K2 antagoniza warfarina)",
+        "Atorvastatina (D3 puede reducir eficacia)",
+        "Diuréticos tiazídicos (riesgo de hipercalcemia por D3)",
+        "Corticosteroides (reducen absorción de D3)",
+        "Orlistat (reduce absorción)"
+      ]
     },
     {
       "id": "omega3_phospholipid",
@@ -8657,7 +9104,12 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Lipids Health Dis 2015"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes orales (warfarina - aumenta riesgo de sangrado)",
+        "Antiagregantes plaquetarios (aspirina, clopidogrel)",
+        "AINE (riesgo aditivo de sangrado)"
+      ]
     },
     {
       "id": "gaba_pharma",
@@ -8707,7 +9159,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Biofactors 2018"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Sedantes y benzodiacepinas (efecto aditivo sedante)",
+        "Alcohol (potencia sedación)",
+        "Antiepilépticos (efecto aditivo)",
+        "Antihipertensivos (puede reducir presión)"
+      ]
     },
     {
       "id": "magnesio_glicerofosfato",
@@ -8757,7 +9215,13 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutrients 2021"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Bisfosfonatos (reduce absorción, separar 2h)",
+        "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2-4h)",
+        "Levotiroxina (reduce absorción, separar 4h)",
+        "Diuréticos (desequilibrio electrolítico)"
+      ]
     },
     {
       "id": "l_cisteina",
@@ -8866,7 +9330,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EFSA health claims + IOM Dietary Reference Intakes"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Metotrexato (puede antagonizar)",
+        "Antidepresivos tricíclicos (colina alta puede empeorar depresión)",
+        "Atropina (antagoniza efectos colinérgicos)"
+      ]
     },
     {
       "id": "d_ribose",
@@ -8923,7 +9392,11 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "Clinical trials (fibromialgia/CFS) + NIH"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos (puede reducir glucosa)",
+        "Antihipertensivos (puede reducir presión)"
+      ]
     },
     {
       "id": "indole_3_carbinol",
@@ -8980,7 +9453,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "Clinical trials (CIN, HPV) + NIH OAM"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Estrógenos y tamoxifeno (puede alterar metabolismo de estrógenos)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Inmunosupresores (efecto inmunomodulador)"
+      ]
     },
     {
       "id": "leucina_pura",
@@ -9036,7 +9514,12 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "Clinical trials (sarcopenia) + IOM DRI"
-      }
+      },
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos e insulina (puede afectar regulación de glucosa)",
+        "Levodopa (competencia de absorción)",
+        "Corticosteroides (aumentan catabolismo)"
+      ]
     }
   ]
 }

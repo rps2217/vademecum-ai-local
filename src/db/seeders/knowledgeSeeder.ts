@@ -57,11 +57,9 @@ async function computeKbVersion(): Promise<string> {
     patCount,
     patWithCtx,
   ];
-  // Sufijo "n4" = campo posologia añadido a DbIngredient (buildPosologia extrae
-  // dosis/dilución/duración de los JSON por categoría). Cambiar este sufijo
-  // fuerza re-siembra cuando la lógica de transformación cambia aunque los
-  // conteos del JSON sean iguales.
-  return `v${counts.join('-')}-n4`;
+  // Sufijo "n5" = interacciones medicamentosas completadas al 100% (561/561)
+  // + nota genérica para homeopatía y aceites sin interacciones específicas
+  return `v${counts.join('-')}-n5`;
 }
 
 export async function getStoredKbVersion(): Promise<string | null> {

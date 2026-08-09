@@ -1948,7 +1948,12 @@
       "advertencias": [
         "Consultar al medico si los sintomas empeoran o si aparecen ulceras o dolor en la pierna"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina - efecto antiagregante del resveratrol)",
+        "Antiagregantes plaquetarios",
+        "Inhibidores CYP3A4 (resveratrol inhibe)",
+        "Antidiabéticos (puede reducir glucosa)"
+      ],
       "tags": [
         "venotonico",
         "capilar",
@@ -2091,7 +2096,11 @@
         "No recomendado en obstruccion biliar o hepatopatias graves",
         "No usar durante el embarazo por efecto uterotonic estimulante"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Fármacos hepatotóxicos (sinergia tóxica hepática)",
+        "Diuréticos (potencia efecto diurético)"
+      ],
       "tags": [
         "digestivo",
         "coleretico",
@@ -2188,7 +2197,10 @@
         "No usar sobre heridas abiertas grandes sin consulta medica",
         "La seguridad en embarazo y lactancia no esta establecida"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas (uso principalmente tópico)",
+        "Taninos pueden reducir absorción de fármacos orales (separar 2h)"
+      ],
       "tags": [
         "astringente",
         "venotonico",
@@ -2294,7 +2306,10 @@
         "No recomendado en menores de 3 anos por via oral",
         "Consultar al medico si los sintomas duran mas de 1 semana"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "Mucílagos pueden reducir absorción de fármacos orales (separar 1h)"
+      ],
       "tags": [
         "demulcente",
         "tos seca",
@@ -2346,7 +2361,12 @@
         "Posible reaccion cruzada en alergia a Apiaceae (zanahoria, apio)",
         "No usar el aceite esencial por via oral en lactantes (riesgo neurotoxico)"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Estrógenos y anticonceptivos (actividad estrogénica débil)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Ciprofloxacino (hinojo puede reducir absorción)",
+        "Fármacos sensibles a CYP3A4 (puede inhibir)"
+      ],
       "tags": [
         "carminativo",
         "espasmolitico",
@@ -2396,7 +2416,12 @@
         "Contraindicado en alergia a Asteraceae (Compositae)",
         "Efectos adversos leves: diarrea, nauseas, pirosis"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Estatinas (sinergia hipolipemiante)",
+        "Diuréticos (potencia efecto diurético)",
+        "Fármacos con metabolismo hepático CYP3A4 (puede inhibir)"
+      ],
       "tags": [
         "digestivo",
         "coleretico",
@@ -2500,7 +2525,11 @@
         "Precaucion en menores; usar dosis pediatrica especifica",
         "Posible reaccion alergica en sensibilizados"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Antitusivos y expectorantes (sinergia)",
+        "Antibióticos en infecciones respiratorias (uso coadyuvante)",
+        "Beta-2 agonistas (sinergia broncodilatadora)"
+      ],
       "tags": [
         "expectorante",
         "tos productiva",
@@ -2552,7 +2581,12 @@
         "No recomendado en menores de 18 anos para sudoracion",
         "Usar como maximo 2 semanas en sudoracion sin supervision medica"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticonvulsivantes (salvia puede tener actividad anticonvulsivante - sinergia)",
+        "Hipoglucemiantes (puede reducir glucosa)",
+        "Sedantes y benzodiacepinas (efecto aditivo)",
+        "Estrógenos (actividad estrogénica débil)"
+      ],
       "tags": [
         "astringente",
         "sudoracion",
@@ -2603,7 +2637,10 @@
         "Consultar al medico si los sintomas duran mas de 1 semana",
         "No recomendado en embarazo y lactancia por falta de datos"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones sistémicas significativas documentadas",
+        "Mucílagos pueden reducir absorción de fármacos orales (separar 1h)"
+      ],
       "tags": [
         "demulcente",
         "emoliente",
@@ -3143,7 +3180,10 @@
         "No usar el aceite esencial por via oral en lactantes (riesgo neurotoxico)",
         "El estragol es genotoxico en animales; no exceder dosis"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Estrógenos y anticonceptivos (actividad estrogénica débil)",
+        "Anticoagulantes (posible efecto aditivo)"
+      ],
       "tags": [
         "carminativo",
         "espasmolitico",
@@ -3363,7 +3403,13 @@
         "No recomendado en embarazo y lactancia por via oral en dosis terapeuticas",
         "Precaucion en epilepsia (alcanfor)"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto antiagregante)",
+        "Diuréticos (potencia efecto diurético)",
+        "Antihipertensivos (puede afectar presión)",
+        "Epilepsia (puede bajar umbral convulsivo en dosis altas)",
+        "Hierro (puede reducir absorción por taninos)"
+      ],
       "tags": [
         "digestivo",
         "coleretico",
@@ -3416,7 +3462,11 @@
         "No usar el aceite esencial por via oral en lactantes (riesgo neurotoxico)",
         "El estragol es genotoxico en animales; no exceder dosis"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Estrógenos y anticonceptivos (actividad estrogénica débil)",
+        "Anticoagulantes (posible efecto aditivo)",
+        "Tamoxifeno (puede antagonizar)"
+      ],
       "tags": [
         "carminativo",
         "espasmolitico",
@@ -8729,7 +8779,11 @@
       "advertencias": [
         "Insomnio si se toma tarde"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "Inmunosupresores (efecto adaptógeno inmunomodulador)",
+        "Antidiabéticos (puede afectar glucosa)"
+      ],
       "tags": [
         "adaptogeno",
         "anabolico",
@@ -8820,7 +8874,12 @@
       "advertencias": [
         "Evitar en embarazo"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "Fármacos hepatotóxicos (sinergia - hepatoprotector)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "Inmunosupresores (estimulación inmunológica)"
+      ],
       "tags": [
         "hepatoprotector",
         "ayurveda",
@@ -8911,7 +8970,13 @@
       "advertencias": [
         "Posible dermatitis de contacto topico"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "Sedantes (sinergia con efecto sedante)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "Colesterol (sinergia hipolipemiante)",
+        "Fármacos hepatotóxicos (hepatoprotector)"
+      ],
       "tags": [
         "cicatrizante",
         "venotonic",
@@ -8956,7 +9021,11 @@
         "Nausea si exceso",
         "No en lactantes sin supervisión"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Antitusivos y expectorantes (sinergia)",
+        "Antibióticos en infecciones respiratorias (uso coadyuvante)",
+        "Beta-2 agonistas (sinergia broncodilatadora)"
+      ],
       "tags": [
         "expectorante",
         "broncodilatador",
@@ -9144,7 +9213,11 @@
       "advertencias": [
         "Datos clínicos limitados en occidente"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "Antidiabéticos (puede afectar glucosa)",
+        "Inmunosupresores (efecto inmunomodulador)"
+      ],
       "tags": [
         "tonificante",
         "cognitivo",
@@ -9188,7 +9261,12 @@
       "advertencias": [
         "Evidencia clínica limitada en occidente"
       ],
-      "interaccionesMedicamentosas": [],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (posible efecto aditivo)",
+        "Antidiabéticos (puede reducir glucosa)",
+        "Antihipertensivos (puede potenciar)",
+        "Inmunosupresores"
+      ],
       "tags": [
         "tonificante",
         "libido",
