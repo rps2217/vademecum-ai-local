@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-09",
-    "total": 164,
+    "total": 165,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -8810,6 +8810,62 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed + WHO Monographs"
+      }
+    },
+    {
+      "id": "colina_estandar",
+      "nombre": "Colina (Bitartrato)",
+      "nombresAlternativos": [
+        "Choline bitartrate",
+        "Trimetiletilammonium"
+      ],
+      "nombreCientifico": "Colina bitartrato",
+      "familia": "No aplica",
+      "categoria": "vitamina",
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "hepático",
+        "hígado_graso",
+        "cognitivo",
+        "memoria",
+        "colina"
+      ],
+      "descripcion": "Nutriente esencial lipotropico y precursor de acetilcolina. Esencial para higado graso.",
+      "mecanismoAccion": "Lipotropico (previene acumulacion grasa hepatica); precursor de fosfatidilcolina y acetilcolina.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "425-550mg/dia (AI)",
+      "dosisMaxima": "3500mg/dia (UL)",
+      "formaQuimica": [
+        "Bitartrato",
+        "Citrato",
+        "Fosfatidilcolina",
+        "Alpha-GPC"
+      ],
+      "biodisponibilidad": "Buena absorcion",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Inositol",
+        "Metionina (lipotropicos)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Dosis >3g: odor corporal a pescado",
+        "Dosis >10g: hipotension, depresion"
+      ],
+      "tags": [
+        "lipotrópico",
+        "cognitivo",
+        "hepático"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "EFSA health claims + IOM Dietary Reference Intakes"
       }
     }
   ]
