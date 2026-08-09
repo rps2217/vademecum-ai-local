@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-08",
-    "total": 165,
+    "ultimaActualizacion": "2026-08-09",
+    "total": 183,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -309,55 +309,6 @@
         "inmunoestimulante",
         "antiviral",
         "resfriado"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01"
-      }
-    },
-    {
-      "id": "propoleo",
-      "nombre": "Propoleo",
-      "nombresAlternativos": [
-        "Propolis",
-        "Bee glue",
-        "Jalea de abeja"
-      ],
-      "nombreCientifico": "Propolis",
-      "familia": "Apidae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "inmune",
-        "dermatologico"
-      ],
-      "indicaciones": [
-        "inmunidad",
-        "dolor",
-        "cicatrización"
-      ],
-      "descripcion": "Sustancia resinosa producida porabejas con potentes propiedades antibacterianas y immunomoduladoras.",
-      "mecanismoAccion": "Actividad antimicrobiana de amplio espectro. Estimula el sistema inmune y promueve la regeneracion tisular.",
-      "nivelEvidencia": "B",
-      "parteUsada": "resina",
-      "formasPresentacion": [
-        "Tintura",
-        "Capsulas",
-        "Spray",
-        "Pomada",
-        "Colutorio"
-      ],
-      "tiempoEfecto": "Inmediato - localmente",
-      "duracionTratamiento": "2-4 semanas",
-      "advertencias": [
-        "Alergia a productos apicolas",
-        "No usar en asma"
-      ],
-      "interaccionesMedicamentosas": [
-        "Anticoagulantes"
-      ],
-      "tags": [
-        "antiseptico",
-        "inmunoestimulante",
-        "cicatrizante"
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
@@ -4947,61 +4898,6 @@
       }
     },
     {
-      "id": "shilajit",
-      "nombre": "Shilajit",
-      "nombresAlternativos": [
-        "Shilajeet",
-        "Mumijo",
-        "Mineral pitch",
-        "Asfalto mineral",
-        "Salsa de roca"
-      ],
-      "nombreCientifico": "Shilajit (resina mineral)",
-      "familia": "Resina mineral/orgánica",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "metabolico",
-        "nervioso",
-        "inmune"
-      ],
-      "indicaciones": [
-        "fatiga",
-        "cognitivo",
-        "energía",
-        "masculino",
-        "estrés"
-      ],
-      "descripcion": "Resina mineral del Himalaya rica en ácido fúlvico y dibenzo-α-pironas. Adaptógeno ayurvédico que mejora la función mitocondrial y el ATP.",
-      "mecanismoAccion": "El ácido fúlvico mejora el transporte de nutrientes a la célula; las dibenzo-α-pironas estimulan la función mitocondrial y el ATP; antioxidante.",
-      "nivelEvidencia": "C",
-      "parteUsada": "resina purificada",
-      "formasPresentacion": [
-        "Resina",
-        "Cápsulas (purificado)",
-        "Polvo"
-      ],
-      "tiempoEfecto": "2-4 semanas",
-      "duracionTratamiento": "Continuo",
-      "advertencias": [
-        "Usar solo purificado (metales pesados en crudo)",
-        "Posibles molestias gastrointestinales"
-      ],
-      "interaccionesMedicamentosas": [
-        "Ninguna significativa conocida"
-      ],
-      "tags": [
-        "adaptógeno",
-        "mitocondrial",
-        "ácido-fúlvico",
-        "energía",
-        "ayurveda"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01",
-        "fuente": "Clinical trials + Ayurvedic pharmacopoeia"
-      }
-    },
-    {
       "id": "trametes",
       "nombre": "Trametes (Cola de Pavo)",
       "nombresAlternativos": [
@@ -8995,7 +8891,7 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "dermatologico",
-        "venoso"
+        "cardiovascular"
       ],
       "indicaciones": [
         "cicatrizacion",

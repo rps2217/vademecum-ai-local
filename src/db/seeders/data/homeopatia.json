@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.8.0",
-    "ultimaActualizacion": "2026-08-08",
-    "total": 97,
+    "ultimaActualizacion": "2026-08-09",
+    "total": 107,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [

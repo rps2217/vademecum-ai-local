@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-08",
-    "total": 141,
+    "ultimaActualizacion": "2026-08-09",
+    "total": 164,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -18,7 +18,7 @@
       ],
       "nombreCientifico": "Acido L-ascorbico",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "inmune",
         "dermatologico",
@@ -76,7 +76,7 @@
       ],
       "nombreCientifico": "Colecalciferol",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "musculoesqueletico",
         "inmune",
@@ -132,7 +132,7 @@
       ],
       "nombreCientifico": "Magnesio",
       "familia": "No aplica (mineral)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "nervioso",
         "musculoesqueletico",
@@ -192,7 +192,7 @@
       ],
       "nombreCientifico": "Zinc",
       "familia": "No aplica (mineral)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "inmune",
         "dermatologico",
@@ -252,7 +252,7 @@
       ],
       "nombreCientifico": "Hierro",
       "familia": "No aplica (mineral)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "cardiovascular",
         "metabolico"
@@ -314,7 +314,7 @@
       ],
       "nombreCientifico": "Acidos grasos omega-3",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "nervioso",
@@ -375,7 +375,7 @@
       ],
       "nombreCientifico": "Cobalamina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico",
@@ -436,7 +436,7 @@
       ],
       "nombreCientifico": "Piridoxina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico",
@@ -495,7 +495,7 @@
       ],
       "nombreCientifico": "Complejo vitaminico B",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico"
@@ -551,7 +551,7 @@
       ],
       "nombreCientifico": "Ubiquinona-10",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "nervioso",
@@ -607,7 +607,7 @@
       ],
       "nombreCientifico": "Bacterias lacticas",
       "familia": "Lactobacillaceae / Bifidobacteriaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune"
@@ -664,7 +664,7 @@
       ],
       "nombreCientifico": "Curcumina",
       "familia": "Zingiberaceae",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "musculoesqueletico",
         "inmune",
@@ -723,7 +723,7 @@
       ],
       "nombreCientifico": "Melatonina",
       "familia": "No aplica (hormona)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso"
       ],
@@ -779,7 +779,7 @@
       ],
       "nombreCientifico": "Menaquinona-7",
       "familia": "No aplica (vitamina liposoluble)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "musculoesqueletico"
@@ -835,7 +835,7 @@
       ],
       "nombreCientifico": "Bisglicinato de magnesio",
       "familia": "No aplica (mineral quelado)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "nervioso",
         "musculoesqueletico",
@@ -894,7 +894,7 @@
       ],
       "nombreCientifico": "Boro elementall",
       "familia": "No aplica (mineral traza)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "musculoesqueletico",
         "endocrino"
@@ -950,7 +950,7 @@
       ],
       "nombreCientifico": "Yodo elemental / Yoduro de potasio",
       "familia": "No aplica (mineral halogeno)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "endocrino",
         "inmune"
@@ -1006,7 +1006,7 @@
       ],
       "nombreCientifico": "Cromo trivalente",
       "familia": "No aplica (mineral traza)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "metabolico",
         "endocrino"
@@ -1061,7 +1061,7 @@
       ],
       "nombreCientifico": "Vanadilo sulfato",
       "familia": "No aplica (mineral traza)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "metabolico",
         "endocrino"
@@ -1115,7 +1115,7 @@
       ],
       "nombreCientifico": "Litio orotato",
       "familia": "No aplica (mineral alcalino)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "nervioso",
         "endocrino"
@@ -1173,7 +1173,7 @@
       ],
       "nombreCientifico": "L-Tirosina",
       "familia": "No aplica (aminoacido)",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso",
         "endocrino",
@@ -1233,7 +1233,7 @@
       ],
       "nombreCientifico": "Creatine monohydrate",
       "familia": "No aplica (acido aminoico)",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico",
         "metabolico",
@@ -1292,7 +1292,7 @@
       ],
       "nombreCientifico": "R/S-Alpha Lipoic acid",
       "familia": "No aplica (acido ditiolano)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "hepatico"
@@ -1348,7 +1348,7 @@
       ],
       "nombreCientifico": "Phosphatidylserine",
       "familia": "No aplica (fosfolipido)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso"
       ],
@@ -1403,7 +1403,7 @@
       ],
       "nombreCientifico": "Selenium",
       "familia": "No aplica (mineral traza)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "inmune",
         "endocrino",
@@ -1461,7 +1461,7 @@
       ],
       "nombreCientifico": "Copper",
       "familia": "No aplica (mineral traza)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "inmune",
         "musculoesqueletico",
@@ -1520,7 +1520,7 @@
       ],
       "nombreCientifico": "Manganese",
       "familia": "No aplica (mineral traza)",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "musculoesqueletico",
         "metabolico"
@@ -1577,7 +1577,7 @@
       ],
       "nombreCientifico": "Astaxanthin",
       "familia": "No aplica (carotenoide)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "ocular",
         "dermatologico",
@@ -1634,7 +1634,7 @@
       ],
       "nombreCientifico": "Lutein",
       "familia": "No aplica (xantofila)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "ocular"
       ],
@@ -1687,7 +1687,7 @@
       ],
       "nombreCientifico": "Trans-resveratrol",
       "familia": "No aplica (polifenol)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "metabolico"
@@ -1741,7 +1741,7 @@
       ],
       "nombreCientifico": "Quercetin",
       "familia": "No aplica (flavonoide)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "inmune",
         "metabolico"
@@ -1799,7 +1799,7 @@
       ],
       "nombreCientifico": "Acido pteroilglutamico",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "inmune",
         "cardiovascular"
@@ -1859,7 +1859,7 @@
       ],
       "nombreCientifico": "Acido nicotinico / nicotinamida",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "nervioso"
@@ -1914,7 +1914,7 @@
       ],
       "nombreCientifico": "Colina (trimetil-beta-hidroxietilamonio)",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "digestivo"
@@ -1971,7 +1971,7 @@
       ],
       "nombreCientifico": "Biotina (hexahidro-2-oxo-1H-tieno[3,4-d]imidazol-4-acido pentanoico)",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "digestivo"
@@ -2022,7 +2022,7 @@
       ],
       "nombreCientifico": "Acido pantotenico",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "digestivo"
@@ -2076,7 +2076,7 @@
       ],
       "nombreCientifico": "Alfa-tocoferol (RRR- o all-rac-)",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "inmune",
         "cardiovascular"
@@ -2135,7 +2135,7 @@
       ],
       "nombreCientifico": "Clorhidrato de tiamina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "cardiovascular"
@@ -2194,7 +2194,7 @@
       ],
       "nombreCientifico": "Retinol",
       "familia": "Vitaminas liposolubles",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "inmune",
         "ocular",
@@ -2249,7 +2249,7 @@
       ],
       "nombreCientifico": "Riboflavina",
       "familia": "Vitaminas hidrosolubles (complejo B)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico"
@@ -2303,7 +2303,7 @@
       ],
       "nombreCientifico": "N-acetilcisteína",
       "familia": "Aminoácidos / derivados",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "respiratorio",
         "inmune",
@@ -2361,7 +2361,7 @@
       ],
       "nombreCientifico": "L-Carnitina",
       "familia": "Aminoácidos / derivados",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "cardiovascular",
         "metabolico",
@@ -2416,7 +2416,7 @@
       ],
       "nombreCientifico": "Taurina",
       "familia": "Aminoácidos / derivados",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "cardiovascular",
         "nervioso",
@@ -2468,7 +2468,7 @@
       ],
       "nombreCientifico": "L-Triptófano",
       "familia": "Aminoácidos esenciales",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso"
       ],
@@ -2521,7 +2521,7 @@
       ],
       "nombreCientifico": "L-Teanina (γ-glutamiletilamida)",
       "familia": "Aminoácidos no proteicos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso"
       ],
@@ -2571,7 +2571,7 @@
       ],
       "nombreCientifico": "5-Hidroxitriptófano",
       "familia": "Aminoácidos / derivados",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso"
       ],
@@ -2626,7 +2626,7 @@
       ],
       "nombreCientifico": "Metilsulfonilmetano",
       "familia": "Compuestos organo-azufrados",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico",
         "dermatologico"
@@ -2676,7 +2676,7 @@
       ],
       "nombreCientifico": "L-Glutamina",
       "familia": "Aminoácidos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "digestivo",
         "inmune",
@@ -2729,7 +2729,7 @@
       ],
       "nombreCientifico": "β-(1,3)(1,6)-glucanos",
       "familia": "Polisacáridos",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "inmune",
         "cardiovascular"
@@ -2782,7 +2782,7 @@
       ],
       "nombreCientifico": "Mio-inositol",
       "familia": "Polioles (pseudo-vitamina)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "endocrino",
         "nervioso",
@@ -2837,7 +2837,7 @@
       ],
       "nombreCientifico": "γ-L-Glutamil-L-cisteinil-glicina",
       "familia": "Tripéptido",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "inmune",
         "hepatico",
@@ -2891,7 +2891,7 @@
       ],
       "nombreCientifico": "Berberina (alcaloide isoquinolínico)",
       "familia": "Alcaloides",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "metabolico",
         "digestivo",
@@ -2945,7 +2945,7 @@
       ],
       "nombreCientifico": "Glucosamina (sulfato)",
       "familia": "Aminosacáridos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico"
       ],
@@ -2993,7 +2993,7 @@
       ],
       "nombreCientifico": "Condroitín sulfato",
       "familia": "Glicosaminoglicanos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico",
         "ocular"
@@ -3043,7 +3043,7 @@
       ],
       "nombreCientifico": "Péptidos de colágeno hidrolizado",
       "familia": "Proteínas",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico",
         "dermatologico"
@@ -3096,7 +3096,7 @@
       ],
       "nombreCientifico": "Ácido hialurónico (hialuronano)",
       "familia": "Glicosaminoglicanos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico",
         "dermatologico",
@@ -3151,7 +3151,7 @@
       ],
       "nombreCientifico": "S-Adenosil-L-metionina",
       "familia": "Metabolitos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso",
         "hepatico",
@@ -3205,7 +3205,7 @@
       ],
       "nombreCientifico": "L-Citrulina",
       "familia": "Aminoácidos no esenciales",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "cardiovascular",
         "musculoesqueletico",
@@ -3261,7 +3261,7 @@
       ],
       "nombreCientifico": "L-Glicina",
       "familia": "Aminoácidos no esenciales",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso",
         "musculoesqueletico"
@@ -3314,7 +3314,7 @@
       ],
       "nombreCientifico": "Pirroloquinolina quinona",
       "familia": "Quinonas redox",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "metabolico",
         "nervioso",
@@ -3366,7 +3366,7 @@
       ],
       "nombreCientifico": "Sulforafano (4-metilsulfinilbutil isotiocianato)",
       "familia": "Isotiocianatos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "inmune",
         "hepatico",
@@ -3419,7 +3419,7 @@
       ],
       "nombreCientifico": "Nicotinamida",
       "familia": "Vitaminas hidrosolubles",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "dermatologico",
         "metabolico",
@@ -3474,7 +3474,7 @@
       ],
       "nombreCientifico": "Bromelina (enzima proteolítica)",
       "familia": "Enzimas proteolíticas",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico",
         "respiratorio",
@@ -3529,7 +3529,7 @@
       ],
       "nombreCientifico": "Apigenina (4',5,7-trihidroxiflavona)",
       "familia": "Flavonoides",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso"
       ],
@@ -3577,7 +3577,7 @@
       ],
       "nombreCientifico": "L-Lisina",
       "familia": "Aminoácidos esenciales",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "inmune",
         "dermatologico"
@@ -3631,7 +3631,7 @@
       ],
       "nombreCientifico": "Lactoferrina",
       "familia": "Glicoproteínas",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "inmune",
         "digestivo"
@@ -3682,7 +3682,7 @@
       ],
       "nombreCientifico": "L-Leucina, L-Isoleucina, L-Valina",
       "familia": "Aminoácidos esenciales",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico",
         "metabolico"
@@ -3732,7 +3732,7 @@
       ],
       "nombreCientifico": "Luteolina (3',4',5,7-tetrahidroxiflavona)",
       "familia": "Flavonoides",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "inmune"
@@ -3782,7 +3782,7 @@
       ],
       "nombreCientifico": "Pterostilbeno (3,5-dimetoxi-4'-hidroxiestilbeno)",
       "familia": "Estilbenos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "metabolico",
@@ -3835,7 +3835,7 @@
       ],
       "nombreCientifico": "Fisetina (3,7,3',4'-tetrahidroxiflavona)",
       "familia": "Flavonoides",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico"
@@ -3884,7 +3884,7 @@
       ],
       "nombreCientifico": "Trimetilglicina (TMG)",
       "familia": "Metilantes",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "metabolico",
         "hepatico",
@@ -3935,7 +3935,7 @@
       ],
       "nombreCientifico": "L-Metionina",
       "familia": "Aminoácidos esenciales",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "hepatico",
         "metabolico"
@@ -3985,7 +3985,7 @@
       ],
       "nombreCientifico": "L-Treonina",
       "familia": "Aminoácidos esenciales",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso",
         "digestivo",
@@ -4036,7 +4036,7 @@
       ],
       "nombreCientifico": "Ácido γ-aminobutírico (GABA)",
       "familia": "Neurotransmisores/aminoácidos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso"
       ],
@@ -4089,7 +4089,7 @@
       ],
       "nombreCientifico": "Honokiol (bifenol neolignano)",
       "familia": "Lignanos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso"
       ],
@@ -4141,7 +4141,7 @@
       ],
       "nombreCientifico": "Ácido butírico / Tributirina",
       "familia": "Ácidos grasos de cadena corta",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune"
@@ -4189,7 +4189,7 @@
       ],
       "nombreCientifico": "Zeaxantina (3R,3'R-β,β-caroten-3,3'-diol)",
       "familia": "Xantofilas (carotenoides)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "ocular"
       ],
@@ -4237,7 +4237,7 @@
       ],
       "nombreCientifico": "Triglicéridos de cadena media (C8-C10)",
       "familia": "Lípidos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "nervioso"
@@ -4289,7 +4289,7 @@
       ],
       "nombreCientifico": "Euphausia superba (aceite)",
       "familia": "Lípidos marinos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "nervioso",
@@ -4341,7 +4341,7 @@
       ],
       "nombreCientifico": "L-Arginina",
       "familia": "Aminoácidos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "cardiovascular",
         "reproductivo",
@@ -4397,7 +4397,7 @@
       ],
       "nombreCientifico": "Molibdeno (oligoelemento)",
       "familia": "Minerales traza",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "metabolico",
         "hepatico"
@@ -4437,58 +4437,6 @@
       }
     },
     {
-      "id": "l_cisteina",
-      "nombre": "L-Cisteína",
-      "nombresAlternativos": [
-        "Cisteína",
-        "L-Cysteine",
-        "Cys",
-        "NAC precursor",
-        "Aminoácido azufrado"
-      ],
-      "nombreCientifico": "L-Cisteína",
-      "familia": "Aminoácidos",
-      "categoria": "aminoacidos",
-      "sistemas": [
-        "metabolico",
-        "hepatico",
-        "dermatologico"
-      ],
-      "indicaciones": [
-        "síntesis de glutatión",
-        "hepático",
-        "cabello",
-        "respiratorio"
-      ],
-      "descripcion": "Aminoácido azufrado limitante para la síntesis de glutatión. El NAC es su forma acetilada más estable.",
-      "mecanismoAccion": "Precursor directo de la cisteína (limitante para el glutatión); componente de la queratina (cabello/uñas); dona azufre.",
-      "nivelEvidencia": "C",
-      "parteUsada": "Suplemento",
-      "formasPresentacion": [
-        "Cápsulas (500mg)"
-      ],
-      "tiempoEfecto": "Semanas",
-      "duracionTratamiento": "Variable",
-      "advertencias": [
-        "Bien tolerada",
-        "Preferir NAC (más estable)"
-      ],
-      "interaccionesMedicamentosas": [
-        "Ninguna significativa conocida"
-      ],
-      "tags": [
-        "glutatión",
-        "azufrado",
-        "queratina",
-        "hepático",
-        "antioxidante"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01",
-        "fuente": "Bioquímica nutricional"
-      }
-    },
-    {
       "id": "fosfatidilcolina",
       "nombre": "Fosfatidilcolina",
       "nombresAlternativos": [
@@ -4500,7 +4448,7 @@
       ],
       "nombreCientifico": "Fosfatidilcolina (PC)",
       "familia": "Fosfolípidos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "hepatico",
         "nervioso",
@@ -4554,7 +4502,7 @@
       ],
       "nombreCientifico": "Filoquinona (vitamina K1)",
       "familia": "Vitaminas liposolubles",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "cardiovascular"
@@ -4606,7 +4554,7 @@
       ],
       "nombreCientifico": "Oenothera biennis (aceite)",
       "familia": "Onagraceae",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "endocrino",
         "dermatologico",
@@ -4660,7 +4608,7 @@
       ],
       "nombreCientifico": "Ácido palmitoleico (C16:1)",
       "familia": "Ácidos grasos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "dermatologico",
         "metabolico",
@@ -4711,7 +4659,7 @@
       ],
       "nombreCientifico": "Pectina cítrica modificada (bajo peso molecular)",
       "familia": "Polisacáridos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "metabolico",
         "inmune"
@@ -4761,7 +4709,7 @@
       ],
       "nombreCientifico": "Ácido nicotínico (vitamina B3)",
       "familia": "Vitaminas hidrosolubles",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "metabolico"
@@ -4813,7 +4761,7 @@
       ],
       "nombreCientifico": "S-benzoiltiamina (benfotiamina)",
       "familia": "Vitaminas hidrosolubles (liposoluble)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico",
@@ -4862,7 +4810,7 @@
       ],
       "nombreCientifico": "Nicotinamida mononucleótido (NMN)",
       "familia": "Nucleótidos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "nervioso"
@@ -4913,7 +4861,7 @@
       ],
       "nombreCientifico": "L-Ergotioneína (timohistidina betaina)",
       "familia": "Aminoácidos azufrados",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "metabolico",
         "nervioso",
@@ -4962,7 +4910,7 @@
       ],
       "nombreCientifico": "Espermidina (poliamina)",
       "familia": "Poliaminas",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "metabolico",
         "nervioso",
@@ -5014,7 +4962,7 @@
       ],
       "nombreCientifico": "3,4-dihidroxifeniletanol (hidroxitirosol)",
       "familia": "Polifenoles",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "metabolico",
@@ -5065,7 +5013,7 @@
       ],
       "nombreCientifico": "3,3'-diindolilmetano (DIM)",
       "familia": "Indoles",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "endocrino",
         "reproductivo"
@@ -5116,7 +5064,7 @@
       ],
       "nombreCientifico": "β-alanil-L-histidina (L-carnosina)",
       "familia": "Dipéptidos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso",
         "musculoesqueletico",
@@ -5166,7 +5114,7 @@
       ],
       "nombreCientifico": "β-Alanina",
       "familia": "Aminoácidos no proteinogénicos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "musculoesqueletico"
       ],
@@ -5216,7 +5164,7 @@
       ],
       "nombreCientifico": "Citidina 5'-difosfocolina (CDP-colina)",
       "familia": "Nucleótidos/Fosfolípidos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "ocular"
@@ -5266,7 +5214,7 @@
       ],
       "nombreCientifico": "Huperzina A (alcaloide de Huperzia serrata)",
       "familia": "Alcaloides",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso"
       ],
@@ -5317,7 +5265,7 @@
       ],
       "nombreCientifico": "Calcio D-glucarato",
       "familia": "Azúcares",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "hepatico",
         "endocrino"
@@ -5367,7 +5315,7 @@
       ],
       "nombreCientifico": "N-palmitoiletanolamida (PEA)",
       "familia": "N-acetiletanolaminas",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "nervioso",
         "musculoesqueletico",
@@ -5419,7 +5367,7 @@
       ],
       "nombreCientifico": "Urolitina A (metabolito de elagitáninos)",
       "familia": "Metabolitos de polifenoles",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "nervioso",
@@ -5471,7 +5419,7 @@
       ],
       "nombreCientifico": "Nicotinamida ribósido (NR)",
       "familia": "Nucleósidos",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "nervioso"
@@ -5522,7 +5470,7 @@
       ],
       "nombreCientifico": "Indol-3-carbinol (I3C)",
       "familia": "Indoles",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "endocrino",
         "reproductivo"
@@ -5574,7 +5522,7 @@
       ],
       "nombreCientifico": "Ácido α-cetoglutárico (calcio α-cetoglutarato)",
       "familia": "Cetoácidos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "metabolico",
         "musculoesqueletico"
@@ -5624,7 +5572,7 @@
       ],
       "nombreCientifico": "Saccharomyces boulardii (levadura)",
       "familia": "Saccharomycetaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune"
@@ -5675,7 +5623,7 @@
       ],
       "nombreCientifico": "Lactobacillus rhamnosus GG (cepa ATCC 53103)",
       "familia": "Lactobacillaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune",
@@ -5729,7 +5677,7 @@
       ],
       "nombreCientifico": "Lactobacillus acidophilus",
       "familia": "Lactobacillaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune",
@@ -5782,7 +5730,7 @@
       ],
       "nombreCientifico": "Lactobacillus plantarum",
       "familia": "Lactobacillaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune",
@@ -5832,7 +5780,7 @@
       ],
       "nombreCientifico": "Lactobacillus casei",
       "familia": "Lactobacillaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune"
@@ -5882,7 +5830,7 @@
       ],
       "nombreCientifico": "Lactobacillus reuteri",
       "familia": "Lactobacillaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune",
@@ -5934,7 +5882,7 @@
       ],
       "nombreCientifico": "Bifidobacterium longum",
       "familia": "Bifidobacteriaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune",
@@ -5984,7 +5932,7 @@
       ],
       "nombreCientifico": "Bifidobacterium breve",
       "familia": "Bifidobacteriaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune",
@@ -6034,7 +5982,7 @@
       ],
       "nombreCientifico": "Bifidobacterium bifidum",
       "familia": "Bifidobacteriaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune"
@@ -6082,7 +6030,7 @@
       ],
       "nombreCientifico": "Lactobacillus helveticus",
       "familia": "Lactobacillaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "nervioso",
         "digestivo",
@@ -6132,7 +6080,7 @@
       ],
       "nombreCientifico": "Streptococcus thermophilus",
       "familia": "Streptococcaceae",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo"
       ],
@@ -6182,7 +6130,7 @@
       ],
       "nombreCientifico": "Silicio (Si) - ácido ortosilícico",
       "familia": "Minerales traza",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "dermatologico",
         "musculoesqueletico"
@@ -6234,7 +6182,7 @@
       ],
       "nombreCientifico": "L-Ornitina (aminoácido no proteinogénico)",
       "familia": "Aminoácidos no proteinogénicos",
-      "categoria": "aminoacidos",
+      "categoria": "aminoacido",
       "sistemas": [
         "hepatico",
         "metabolico",
@@ -6287,7 +6235,7 @@
       ],
       "nombreCientifico": "1,3,7,9-tetrametilúrico (teacrina)",
       "familia": "Purinas (alcaloides)",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico"
@@ -6338,7 +6286,7 @@
       ],
       "nombreCientifico": "Inulina (fructooligosacáridos, FOS)",
       "familia": "Carbohidratos prebióticos",
-      "categoria": "probioticos",
+      "categoria": "probiotico",
       "sistemas": [
         "digestivo",
         "inmune"
@@ -6881,7 +6829,7 @@
       ],
       "nombreCientifico": "Materia orgánica fósil (ácidos fúlvicos/húmicos)",
       "familia": "Compuesto organomineral",
-      "categoria": "minerales",
+      "categoria": "mineral",
       "sistemas": [
         "metabolico",
         "nervioso",
@@ -7103,108 +7051,6 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Cochrane Review PMC9427198 + PubMed PMC7395894 (Kranjčec 2014)"
-      }
-    },
-    {
-      "id": "diosmina",
-      "nombre": "Diosmina (Flavonoide Micronizado)",
-      "nombresAlternativos": [
-        "Diosmin",
-        "Daflon",
-        "Flavonoide purificado micronizado",
-        "MPFF"
-      ],
-      "nombreCientifico": "Diosmin (3',5,7-trihidroxiflavona-7-rutinósido)",
-      "familia": "Flavonoide",
-      "categoria": "vitamina",
-      "sistemas": [
-        "cardiovascular"
-      ],
-      "indicaciones": [
-        "hemorroides",
-        "insuficiencia_venosa",
-        "varices",
-        "edema"
-      ],
-      "descripcion": "Flavonoide semisintético derivado de la hesperidina. Combinación 90% diosmina + 10% hesperidina (MPFF) es el flebotónico más estudiado, con más de 50 ensayos clínicos.",
-      "mecanismoAccion": "Aumenta el tono venoso (inhibición de NOR-1), reduce la permeabilidad capilar y la fragilidad, mejora el drenaje linfático. Efecto antiinflamatorio (inhibición de leucotrienos/prostaglandinas).",
-      "nivelEvidencia": "A",
-      "parteUsada": "semisintetico",
-      "formasPresentacion": [
-        "Tabletas micronizadas",
-        "Capsulas"
-      ],
-      "tiempoEfecto": "1-2 semanas",
-      "duracionTratamiento": "2-6 meses",
-      "advertencias": [
-        "Posibles efectos leves: mareo, cefalea, molestias gastrointestinales"
-      ],
-      "interaccionesMedicamentosas": [
-        "Ninguna significativa"
-      ],
-      "tags": [
-        "flavonoide",
-        "flebotonico",
-        "venotopico",
-        "MPFF",
-        "Daflon"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-08",
-        "fuente": "PubMed PMC9138579 + FDA GRAS + Diosmin Monograph (Alt Med Rev 2004)"
-      }
-    },
-    {
-      "id": "l_cisteina",
-      "nombre": "L-Cisteína (NAC precursor)",
-      "nombresAlternativos": [
-        "L-Cysteine",
-        "Cys",
-        "Aminoácido sulfurado"
-      ],
-      "nombreCientifico": "L-Cysteine (C3H7NO2S)",
-      "familia": "Aminoácido",
-      "categoria": "aminoacido",
-      "sistemas": [
-        "hepatico",
-        "respiratorio",
-        "inmune"
-      ],
-      "indicaciones": [
-        "higado_graso",
-        "antioxidante",
-        "inmunidad_baja",
-        "tos"
-      ],
-      "descripcion": "Aminoácido sulfurado precursor del glutatión (GSH). Forma el tripéptido glutatión junto con ácido glutámico y glicina, principal antioxidante endógeno.",
-      "mecanismoAccion": "Precursor limitante de la síntesis de glutatión (GSH). Mucolítico (rompe puentes disulfuro del moco). Quelante de metales pesados.",
-      "nivelEvidencia": "B",
-      "parteUsada": "sintetico",
-      "formasPresentacion": [
-        "Capsulas",
-        "Polvo",
-        "Nebulizacion"
-      ],
-      "tiempoEfecto": "1-2 semanas",
-      "duracionTratamiento": "3-6 meses",
-      "advertencias": [
-        "Olor sulfuroso",
-        "Posibles molestias gastrointestinales"
-      ],
-      "interaccionesMedicamentosas": [
-        "Nitroglicerina (hipotension)",
-        "Antitusivos (sinergia mucolitica)"
-      ],
-      "tags": [
-        "glutatión",
-        "antioxidante",
-        "mucolitico",
-        "quelante",
-        "sulfurado"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-08",
-        "fuente": "PubMed + WHO Monographs"
       }
     },
     {
@@ -7640,7 +7486,7 @@
       ],
       "nombreCientifico": "Calcio D-pantotenato",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "dermatologico",
@@ -7693,7 +7539,7 @@
       ],
       "nombreCientifico": "L-5-metiltetrahidrofolato",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "cardiovascular",
@@ -7747,7 +7593,7 @@
       ],
       "nombreCientifico": "Metilcobalamina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "metabolico"
@@ -7798,7 +7644,7 @@
       ],
       "nombreCientifico": "Fosfatidilcolina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "hepatico",
         "nervioso",
@@ -7849,7 +7695,7 @@
       ],
       "nombreCientifico": "Pirroloquinolina quinona",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "nervioso"
@@ -7898,7 +7744,7 @@
       ],
       "nombreCientifico": "Mixto (polen entomofilo)",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "inmune"
@@ -7949,7 +7795,7 @@
       ],
       "nombreCientifico": "Lactoferrina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "inmune",
         "digestivo"
@@ -8000,7 +7846,7 @@
       ],
       "nombreCientifico": "Colágeno tipo II no desnaturalizado",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "musculoesqueletico"
       ],
@@ -8047,7 +7893,7 @@
       ],
       "nombreCientifico": "β-Nicotinamida mononucleótido",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "nervioso"
@@ -8096,7 +7942,7 @@
       ],
       "nombreCientifico": "Astaxantina (3S,3'S)",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "ocular",
         "dermatologico",
@@ -8148,7 +7994,7 @@
       ],
       "nombreCientifico": "Luteína + Zeaxantina + Meso-zeaxantina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "ocular"
       ],
@@ -8198,7 +8044,7 @@
       ],
       "nombreCientifico": "L-Treonato de magnesio",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso"
       ],
@@ -8247,7 +8093,7 @@
       ],
       "nombreCientifico": "Picolinato de zinc",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "inmune",
         "dermatologico",
@@ -8302,9 +8148,9 @@
       ],
       "nombreCientifico": "Citrato tripotásico",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
-        "renal",
+        "urinario",
         "cardiovascular",
         "musculoesqueletico"
       ],
@@ -8356,7 +8202,7 @@
       ],
       "nombreCientifico": "Bisglicinato ferroso",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico"
       ],
@@ -8409,7 +8255,7 @@
       ],
       "nombreCientifico": "Yoduro potásico",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "endocrino",
         "inmune"
@@ -8461,7 +8307,7 @@
       ],
       "nombreCientifico": "Acido ortosilícico estabilizado",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "dermatologico",
         "musculoesqueletico"
@@ -8512,7 +8358,7 @@
       ],
       "nombreCientifico": "Hidroxiapatita microcristalina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "musculoesqueletico"
       ],
@@ -8565,7 +8411,7 @@
       ],
       "nombreCientifico": "Sulfato de oxovanadio (IV)",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico"
       ],
@@ -8613,7 +8459,7 @@
       ],
       "nombreCientifico": "D-Biotina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "dermatologico"
@@ -8661,7 +8507,7 @@
       ],
       "nombreCientifico": "Complejo B 50mg/50mcg",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "metabolico",
         "nervioso"
@@ -8716,7 +8562,7 @@
       ],
       "nombreCientifico": "Colecalciferol + Menaquinona-7",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "musculoesqueletico",
         "inmune",
@@ -8769,7 +8615,7 @@
       ],
       "nombreCientifico": "EPA/DHA unidos a fosfatidilcolina",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "cardiovascular",
         "nervioso",
@@ -8823,7 +8669,7 @@
       ],
       "nombreCientifico": "Acido γ-aminobutírico",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso"
       ],
@@ -8872,7 +8718,7 @@
       ],
       "nombreCientifico": "Glicerofosfato de magnesio",
       "familia": "No aplica",
-      "categoria": "vitaminas",
+      "categoria": "vitamina",
       "sistemas": [
         "nervioso",
         "musculoesqueletico"
@@ -8911,6 +8757,59 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutrients 2021"
+      }
+    },
+    {
+      "id": "l_cisteina",
+      "nombre": "L-Cisteína (NAC precursor)",
+      "nombresAlternativos": [
+        "L-Cysteine",
+        "Cys",
+        "Aminoácido sulfurado"
+      ],
+      "nombreCientifico": "L-Cysteine (C3H7NO2S)",
+      "familia": "Aminoácido",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "hepatico",
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "higado_graso",
+        "antioxidante",
+        "inmunidad_baja",
+        "tos"
+      ],
+      "descripcion": "Aminoácido sulfurado precursor del glutatión (GSH). Forma el tripéptido glutatión junto con ácido glutámico y glicina, principal antioxidante endógeno.",
+      "mecanismoAccion": "Precursor limitante de la síntesis de glutatión (GSH). Mucolítico (rompe puentes disulfuro del moco). Quelante de metales pesados.",
+      "nivelEvidencia": "B",
+      "parteUsada": "sintetico",
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo",
+        "Nebulizacion"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Olor sulfuroso",
+        "Posibles molestias gastrointestinales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Nitroglicerina (hipotension)",
+        "Antitusivos (sinergia mucolitica)"
+      ],
+      "tags": [
+        "glutatión",
+        "antioxidante",
+        "mucolitico",
+        "quelante",
+        "sulfurado"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed + WHO Monographs"
       }
     }
   ]
