@@ -16,6 +16,7 @@ import { Database, RefreshCw, Upload, Download, Shield, Plus, Edit2, Trash, Leaf
 import { Badge } from '@/ui/Badge';
 import { seedKnowledgeBase } from '@/db/seeders';
 import { saveIngredient, deleteIngredient } from '@/core/sync/writeHelpers';
+import { ingredientSearchService } from '@/core/search';
 import type { DbIngredient } from '@/db/schema';
 import { toast } from 'sonner';
 import { logger } from '@/lib/logger';
@@ -37,7 +38,7 @@ export function AdminPage() {
     setIsLoading(true);
     try {
       toast.info('Reindexando búsqueda...');
-      // TODO: Reindex embeddings
+      await ingredientSearchService.buildIndex();
       toast.success('Búsqueda reindexada');
     } catch (error) {
       logger.error('Error reindexing:', error);

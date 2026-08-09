@@ -1,6 +1,9 @@
 /**
  * Sync Module
- * @deprecated Sync con Supabase es experimental - verificar uso real
+ *
+ * Sincronización offline-first con Supabase como backend opcional.
+ * El hook useSync expone el estado; cuando Supabase no está configurado
+ * (isSupabaseConfigured() === false), la app funciona 100% local.
  */
 
 export { 
