@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "2.0.0",
+    "version": "2.1.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 116,
+    "total": 126,
     "descripcion": "Base de datos de patologías con contexto clínico (definición, causas, síntomas, tratamiento alopático y natural)",
     "fuentes": [
       "OMS",
@@ -17883,6 +17883,1144 @@
         "DIU con levonorgestrel: útil en endometriosis",
         "Opioides: evitar (crónico)",
         "Ácido tranexámico: si sangrado abundante"
+      ]
+    },
+    {
+      "id": "diverticulosis",
+      "nombre": "Diverticulosis y Diverticulitis",
+      "definicion": "Presencia de divertículos (sacos en la pared colónica). La diverticulosis es asintomática; la diverticulitis es su inflamación/infección con dolor abdominal.",
+      "causas": [
+        "Dieta baja en fibre",
+        "Estreñimiento crónico",
+        "Aumento presión intraluminal",
+        "Edad",
+        "Sedentarismo"
+      ],
+      "sintomas": [
+        "Dolor abdominal (fosa iliaca izquierda)",
+        "Fiebre",
+        "Estreñimiento o diarrea",
+        "Meteorismo",
+        "Náuseas"
+      ],
+      "sistemas": [
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Dieta rica en fibra (diverticulosis)",
+          "Antibióticos (metronidazol + amoxicilina/clavulánico)",
+          "Paracetamol (dolor)"
+        ],
+        "mecanismo": "Fibra ablanda heces y reduce presión. Antibióticos cubren anaerobios y Gram-negativos.",
+        "efectosSecundarios": [
+          "Antibióticos: náuseas, diarrea",
+          "Metronidazol: sabor metálico, interacción alcohol"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "psyllium",
+          "lino",
+          "manzanilla",
+          "melisa",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "probioticos",
+          "inulina",
+          "l_glutamina"
+        ],
+        "homeopatia": [
+          "nux_vomica",
+          "colocynthis",
+          "bryonia"
+        ],
+        "aceites": [
+          "manzanilla_romana",
+          "mejorana"
+        ],
+        "cuandoPreferir": "Diverticulosis asintomática (fibra preventiva) y recuperación tras diverticulitis leve (probióticos, mucílagos)."
+      },
+      "prevencion": [
+        "Dieta alta en fibra (25-30 g/día)",
+        "Hidratación abundante",
+        "Ejercicio regular",
+        "Evitar estreñimiento"
+      ],
+      "cuandoConsultar": "Fiebre alta, dolor intenso, sangrado rectal, vómitos o signos de peritonitis → urgencias.",
+      "evidencia": "B",
+      "fuentes": [
+        "AGA Guidelines",
+        "NICE Diverticular Disease",
+        "PubMed (fibra probióticos diverticular)"
+      ],
+      "epidemiologia": "Prevalencia 50% >50 años, 70% >80 años en países occidentales. 10-25% desarrollan diverticulitis.",
+      "factoresRiesgo": [
+        "Edad >50",
+        "Dieta baja en fibra",
+        "Obesidad",
+        "Sedentarismo",
+        "Tabaquismo",
+        "AINEs"
+      ],
+      "diagnostico": "Clínico + TC abdominal (diverticulitis). Colonoscopia tras episodio (descartar cáncer).",
+      "criteriosDiagnostico": [
+        "Dolor fosa iliaca izquierda",
+        "Fiebre",
+        "Leucocitosis",
+        "Confirmación por TC"
+      ],
+      "escalasClinicas": [],
+      "diagnosticoDiferencial": [
+        "Apendicitis (derecha)",
+        "Colitis isquémica",
+        "Cáncer colorrectal",
+        "Enfermedad inflamatoria intestinal",
+        "Gastroenteritis"
+      ],
+      "pronostico": "Diverticulosis: benigna con fibra. Diverticulitis leve: buena respuesta. 20% recurrencia. Complicaciones: absceso, perforación, fístula.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Anciano",
+          "consideraciones": "Mayor riesgo de complicaciones y presentación atípica (sin fiebre)."
+        },
+        {
+          "poblacion": "Inmunodeprimido",
+          "consideraciones": "Mayor riesgo de perforación; ingreso precoz."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Metronidazol: evitar alcohol (efecto antabús)",
+        "AINEs: evitar en fase aguda (riesgo perforación)",
+        "Fibra: NO en diverticulitis aguda (sí en diverticulosis)",
+        "Vigilar signos de peritonitis: derivar urgencias"
+      ]
+    },
+    {
+      "id": "eii",
+      "nombre": "Enfermedad Inflamatoria Intestinal (EII)",
+      "definicion": "Grupo de enfermedades inflamatorias crónicas del intestino: enfermedad de Crohn (todo el tracto, transmural) y colitis ulcerosa (recto-colón, mucosa).",
+      "causas": [
+        "Autoinmune/inmunoregulación alterada",
+        "Genética",
+        "Microbiota",
+        "Factores ambientales"
+      ],
+      "sintomas": [
+        "Diarrea crónica",
+        "Sangre en heces (CU)",
+        "Dolor abdominal",
+        "Pérdida de peso",
+        "Fatiga",
+        "Fiebre"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Mesalazina (5-ASA)",
+          "Corticoides (brotes)",
+          "Inmunosupresores (azatioprina)",
+          "Biológicos (anti-TNF: infliximab, adalimumab)"
+        ],
+        "mecanismo": "5-ASA antiinflamatorio tópico. Corticoides generales. Inmunosupresores y anti-TNF en moderada-grave.",
+        "efectosSecundarios": [
+          "Mesalazina: náuseas",
+          "Corticoides: osteoporosis, infección",
+          "Anti-TNF: infección, reacción infusiones"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "boswelia",
+          "curcuma",
+          "olmo_america",
+          "malvavisco",
+          "manzanilla"
+        ],
+        "suplementos": [
+          "probioticos",
+          "omega_3",
+          "vitamina_d3",
+          "hierro",
+          "zinc"
+        ],
+        "homeopatia": [
+          "mercurius",
+          "nux_vomica",
+          "phosphorus"
+        ],
+        "aceites": [
+          "manzanilla_romana",
+          "lavanda_aceite"
+        ],
+        "cuandoPreferir": "Coadyuvante en remisión: curcumina (mantenimiento), Boswellia (antiinflamatorio), probióticos. Nunca sustituir 5-ASA/biológicos."
+      },
+      "prevencion": [
+        "No fumar (protector en CU, perjudicial en Crohn)",
+        "Dieta mediterránea",
+        "Vitamina D",
+        "Probióticos bajo criterio"
+      ],
+      "cuandoConsultar": "Sangrado abundante, fiebre, deshidratación, pérdida de peso rápida, dolor intenso → digestivo/urgencias.",
+      "evidencia": "A",
+      "fuentes": [
+        "ECCO Guidelines",
+        "AGA Guidelines",
+        "Cochrane (curcumina, probióticos EII)"
+      ],
+      "epidemiologia": "Incidencia creciente. CU: 10-20/100.000/año. Crohn: 5-10/100.000/año. Pico 20-40 años.",
+      "factoresRiesgo": [
+        "Genética (NOD2)",
+        "Familiares",
+        "Tabaco (Crohn)",
+        "Antibióticos en infancia",
+        "Dietética occidental",
+        "Apéndice ( protector CU)"
+      ],
+      "diagnostico": "Endoscopia + biopsia. Analítica (calprotectina fecal). Tránsito/TC/MRI enterografía.",
+      "criteriosDiagnostico": [
+        "Diarrea crónica >4 sem",
+        "Sangre en heces",
+        "Calprotectina fecal elevada",
+        "Endoscopia con biopsia"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Mayo Score (CU)",
+          "uso": "Actividad colitis ulcerosa",
+          "rango": "0-12",
+          "interpretacion": "Remisión <2, leve 3-5, moderada 6-10, grave 11-12"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Gastroenteritis infecciosa",
+        "Diverticulitis",
+        "SII",
+        "Colitis isquémica",
+        "Cáncer colorrectal"
+      ],
+      "pronostico": "Crónica-intermitente. Brotes y remisiones. Riesgo cáncer colorrectal tras 8-10 años. Cirugía en 20-30% (CU) y 50-70% (Crohn) a largo plazo.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Mesalazina segura. Evitar metotrexato. Anti-TNF con criterio. Mantener remisión pre-concepción."
+        },
+        {
+          "poblacion": "Pediatría",
+          "consideraciones": "Riesgo retraso crecimiento. Nutrición enteral como inducción en Crohn pediátrico."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Mesalazina: vigilar función renal",
+        "Corticoides: no suprimir bruscamente, osteoporosis",
+        "Anti-TNF: screening TB y hepatitis B antes de iniciar",
+        "Curcumina: interacciona con anticoagulantes",
+        "No suspender 5-ASA ni biológicos sin indicación médica"
+      ]
+    },
+    {
+      "id": "blefaritis",
+      "nombre": "Blefaritis",
+      "definicion": "Inflamación crónica de los párpados (margen palpebral) que produce picor, escozor, descamación y sensación de cuerpo extraño.",
+      "causas": [
+        "Disfunción glándulas de Meibomio",
+        "Bacteriana (Staphylococcus)",
+        "Seborreica",
+        "Demodex",
+        "Rosácea ocular"
+      ],
+      "sintomas": [
+        "Picor/escozor ocular",
+        "Descamación pestañas",
+        "Enrojecimiento margen palpebral",
+        "Sensación cuerpo extraño",
+        "Lagrimeo",
+        "Fotofobia"
+      ],
+      "sistemas": [
+        "ocular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Higiene palpebral (compresas tibias + masaje)",
+          "Lágrimas artificiales",
+          "Antibiótico tópico (eritromicina/azitromicina)",
+          "Doxiciclina baja dosis (crónica)"
+        ],
+        "mecanismo": "Higiene limpia escamas y mejora flujo meibomiano. Antibiótico tópico anti-Staph. Doxiciclina antiinflamatorio/modulador meibomiano.",
+        "efectosSecundarios": [
+          "Doxiciclina: fotosensibilidad, GI",
+          "Antibiótico tópico: resistencia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "euphrasia_fito",
+          "manzanilla",
+          "hamamelis"
+        ],
+        "suplementos": [
+          "omega_3",
+          "omega_7",
+          "vitamina_a"
+        ],
+        "homeopatia": [
+          "euphrasia",
+          "hepar_sulphuris"
+        ],
+        "aceites": [
+          "manzanilla_romana",
+          "tea_tree"
+        ],
+        "cuandoPreferir": "Coadyuvante crónico: omega-3 (mejora meibomio), Eufrasia (colutorio ocular), compresas de manzanilla."
+      },
+      "prevencion": [
+        "Higiene palpebral diaria",
+        "Omega-3",
+        "Evitar maquillaje expirado",
+        "Pausas en pantallas",
+        "Humedad ambiental"
+      ],
+      "cuandoConsultar": "Dolor intenso, visión borrosa, úlcera corneal, no mejora en 1-2 semanas → oftalmología.",
+      "evidencia": "B",
+      "fuentes": [
+        "AAO Preferred Practice Pattern",
+        "TFOS DEWS II",
+        "PubMed (omega-3 blepharitis)"
+      ],
+      "epidemiologia": "Una de las causas más frecuentes de consulta oftalmológica. Prevalencia estimada 37-47% en adultos.",
+      "factoresRiesgo": [
+        "Rosácea",
+        "Ojo seco",
+        "Edad",
+        "Lentes de contacto",
+        "Maquillaje",
+        "Pantallas prolongadas"
+      ],
+      "diagnostico": "Clínico. Examen con lámpara de hendidura. Tira meibomiana. Descartar Demodex.",
+      "criteriosDiagnostico": [
+        "Descamación pestañas",
+        "Enrojecimiento margen",
+        "Tapones meibomianos",
+        "Síntomas crónicos"
+      ],
+      "escalasClinicas": [],
+      "diagnosticoDiferencial": [
+        "Conjuntivitis",
+        "Ojo seco",
+        "Orzuelo/chalazión",
+        "Dacriocistitis",
+        "Herpes zóster oftálmico"
+      ],
+      "pronostico": "Crónico recurrente. Requiere higiene continuada. Buen control con manejo persistente.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Rosácea",
+          "consideraciones": "Blefaritis y disfunción meibomiana frecuentes; tratar rosácea concomitante."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Doxiciclina: fotosensibilidad, separar lácteos",
+        "Antibiótico tópico: no usar >2 semanas sin control",
+        "Lágrimas sin conservantes si uso >4/día",
+        "Derivar si sospecha úlcera corneal"
+      ]
+    },
+    {
+      "id": "orzuelo_chalazion",
+      "nombre": "Orzuelo y Chalazión",
+      "definicion": "Orzuelo (hordeolum): infección aguda de glándula de Zeis/Moll (externo) o Meibomio (interno). Chalazión: granuloma crónico por retención meibomiana.",
+      "causas": [
+        "Infección bacteriana (S. aureus)",
+        "Obstrucción glándula Meibomio",
+        "Blefaritis crónica",
+        "Higiene deficiente"
+      ],
+      "sintomas": [
+        "Nódulo doloroso párpado (orzuelo)",
+        "Nódulo no doloroso (chalazión)",
+        "Enrojecimiento local",
+        "Lagrimeo",
+        "Sensación cuerpo extraño"
+      ],
+      "sistemas": [
+        "ocular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Compresas tibias + masaje",
+          "Antibiótico tópico (cloranfenicol/eritromicina) si orzuelo",
+          "Cirugía si chalazión persistente"
+        ],
+        "mecanismo": "Calor drena glándula. Antibiótico anti-S. aureus. Incisión y legrado en chalazión refractario.",
+        "efectosSecundarios": [
+          "Antibiótico tópico: alergia",
+          "Cirugía: sangrado, recurrencia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "euphrasia_fito",
+          "manzanilla"
+        ],
+        "suplementos": [
+          "omega_3"
+        ],
+        "homeopatia": [
+          "staphysagria",
+          "pulsatilla",
+          "hepar_sulphuris"
+        ],
+        "aceites": [
+          "manzanilla_romana",
+          "tea_tree"
+        ],
+        "cuandoPreferir": "Fase precoz: compresas de manzanilla + masaje. Homeopatía (Staphysagria) en recurrencias."
+      },
+      "prevencion": [
+        "Higiene palpebral",
+        "No maquillaje vencido",
+        "Tratar blefaritis",
+        "Compresas tibias"
+      ],
+      "cuandoConsultar": "Visión afectada, dolor intenso, extensión celulitis periorbitaria, chalazión >2 meses → oftalmología.",
+      "evidencia": "C",
+      "fuentes": [
+        "AAO",
+        "PubMed (compresas tibias hordeolum)"
+      ],
+      "epidemiologia": "Frecuente en todas las edades. Orzuelo más en niños; chalazión en adultos con blefaritis.",
+      "factoresRiesgo": [
+        "Blefaritis",
+        "Rosácea",
+        "Deficiencia inmunológica",
+        "Diabetes",
+        "Higiene ocular deficiente"
+      ],
+      "diagnostico": "Clínico. Inspección y palpación del párpado.",
+      "criteriosDiagnostico": [
+        "Nódulo palpebral",
+        "Dolor (orzuelo)",
+        "Crónico no doloroso (chalazión)"
+      ],
+      "escalasClinicas": [],
+      "diagnosticoDiferencial": [
+        "Celulitis periorbitaria",
+        "Tumor palpebral",
+        "Dacriocistitis",
+        "Herpes simple"
+      ],
+      "pronostico": "Orzuelo: resolución en 1-2 semanas. Chalazión: semanas-meses, puede persistir y requerir cirugía.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Niños",
+          "consideraciones": "Frecuente; vigilar celulitis periorbitaria (urgente)."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Compresas tibias: 4 veces/día 10 min",
+        "No exprimir orzuelo (riesgo celulitis)",
+        "Antibiótico tópico si signos infecciosos",
+        "Derivar si celulitis periorbitaria (urgente)"
+      ]
+    },
+    {
+      "id": "dmae",
+      "nombre": "Degeneración Macular Asociada a la Edad (DMAE)",
+      "definicion": "Enfermedad degenerativa crónica de la mácula (retina central) que causa pérdida de visión central. Formas: atrófica (seca) y neovascular (húmeda).",
+      "causas": [
+        "Edad",
+        "Genética",
+        "Oxidación retina",
+        "Tabaco",
+        "Luz azul/UV",
+        "Cardiovascular"
+      ],
+      "sintomas": [
+        "Visión borrosa central",
+        "Metamorfopsias (líneas torcidas)",
+        "Escotoma central",
+        "Dificultad lectura",
+        "Necesita más luz"
+      ],
+      "sistemas": [
+        "ocular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Suplementación AREDS2 (luteína+zeaxantina+zinc+cobre+vits C/E)",
+          "Anti-VEGF intravítreo (húmeda)"
+        ],
+        "mecanismo": "AREDS2 reduce progresión a avanzada en moderada. Anti-VEGF inhibe neovasos en húmeda.",
+        "efectosSecundarios": [
+          "Zinc: nauseas, cobre deficiencia",
+          "Anti-VEGF: endoftalmitis, AVC"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ginkgo",
+          "bilberry",
+          "arandano_rojo",
+          "te_verde"
+        ],
+        "suplementos": [
+          "luteina",
+          "zeaxantina",
+          "astaxantina",
+          "omega_3",
+          "vitamina_d3"
+        ],
+        "homeopatia": [
+          "ruta_graveolens",
+          "conium"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Prevención y estadios leves-moderados (AREDS2 natural). Nunca sustituir anti-VEGF en húmeda."
+      },
+      "prevencion": [
+        "No fumar",
+        "Dieta mediterránea (pescado, verduras hoja verde)",
+        "Gafas solares UV/azul",
+        "Control cardiovascular",
+        "AREDS2 si moderada"
+      ],
+      "cuandoConsultar": "Cambios bruscos de visión, líneas torcidas, escotoma → oftalmología urgente (húmeda).",
+      "evidencia": "A",
+      "fuentes": [
+        "AREDS2 (NEI)",
+        "AAO Preferred Practice Pattern",
+        "Cochrane (luteína, anti-VEGF)"
+      ],
+      "epidemiologia": "Causa principal de ceguera legal en >50 años en países desarrollados. Prevalencia 8-10% >55 años.",
+      "factoresRiesgo": [
+        "Edad >60",
+        "Tabaco",
+        "Historia familiar",
+        "Ojos claros",
+        "Cardiovascular",
+        "Bajo índice masa corporal (macros), obesidad"
+      ],
+      "diagnostico": "Fondo de ojo, OCT, angiografía (húmeda). Rejilla de Amsler (autocontrol).",
+      "criteriosDiagnostico": [
+        "Drusas",
+        "Alteración pigmento retinal",
+        "Neovasos coroideos (húmeda)",
+        "Amsler alterada"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Rejilla de Amsler",
+          "uso": "Autocontrol visión central",
+          "rango": "cualitativo",
+          "interpretacion": "Líneas torcidas o escotoma: alerta"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Edema macular diabético",
+        "Membrana epirretiniana",
+        "Miopía degenerativa",
+        "Coriorretinopatía serosa central"
+      ],
+      "pronostico": "Seca: progresión lenta. Húmeda: pérdida rápida si no trata. AREDS2 reduce 25% progresión. Anti-VEGF estabiliza húmeda.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Familiar",
+          "consideraciones": "Mayor riesgo; cribado precoz y AREDS2 si signos."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AREDS2: no usar beta-caroteno en fumadores (riesgo cáncer pulmón)",
+        "Zinc: nausea, vigilar cobre",
+        "Anti-VEGF: urgente si húmeda; no retrasar",
+        "Amsler: enseñar autocontrol a pacientes"
+      ]
+    },
+    {
+      "id": "raynaud",
+      "nombre": "Fenómeno de Raynaud",
+      "definicion": "Trastorno vasospástico episódico de arteriolas digitales que produce palidez-cianosis-rubor de dedos ante frío o estrés. Primario o secundario (esclerodermia, LES).",
+      "causas": [
+        "Vasospasmo",
+        "Disautonomía",
+        "Frío/estrés",
+        "Enfermedad autoinmune (secundario)",
+        "Fármacos (beta-bloqueantes)"
+      ],
+      "sintomas": [
+        "Palidez dedos (frío)",
+        "Cianosis",
+        "Rubor tras recuperación",
+        "Hormigueo",
+        "Dolor"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Nifedipino (calcioantagonista)",
+          "Amlodipino",
+          "Losartán",
+          "Pentoxifilina"
+        ],
+        "mecanismo": "Calcioantagonistas vasodilatan arteriolas. Losartán mejora flujo. Pentoxifilina mejora reología.",
+        "efectosSecundarios": [
+          "Nifedipino: cefalea, edemas, rubor",
+          "Amlodipino: similares"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ginkgo",
+          "ajo",
+          "pimienta_cayena",
+          "espino_blanco",
+          "jengibre"
+        ],
+        "suplementos": [
+          "omega_3",
+          "magnesio_glicinato",
+          "l_arginina",
+          "vitamina_e"
+        ],
+        "homeopatia": [
+          "agaricus_muscarius",
+          "carbo_veg",
+          "carbo_veg"
+        ],
+        "aceites": [
+          "romero_aceite",
+          "pimienta_negra_aceite"
+        ],
+        "cuandoPreferir": "Primario leve: mejorar circulación con Ginkgo, ajo, cayena, omega-3. Secundario: solo coadyuvante."
+      },
+      "prevencion": [
+        "Evitar frío (guantes, calcetines)",
+        "No fumar",
+        "Reducir cafeína",
+        "Manejo del estrés",
+        "Protección trastornos"
+      ],
+      "cuandoConsultar": "Úlceras digitales, gangrena, asimetría, síntomas sistémicos → reumatología/urgencias.",
+      "evidencia": "B",
+      "fuentes": [
+        "EULAR",
+        "PubMed (Ginkgo Raynaud RCT)"
+      ],
+      "epidemiologia": "Primario: 3-5% población, mujeres jóvenes. Secundario: con esclerodermia, LES.",
+      "factoresRiesgo": [
+        "Sexo femenino",
+        "Edad joven (primario)",
+        "Enfermedad autoinmune",
+        "Vibración (laboral)",
+        "Fármacos vasospásticos",
+        "Fumadores"
+      ],
+      "diagnostico": "Clínico. Capilaroscopia periungueal (secundario). Antinucleares (descartar autoinmune).",
+      "criteriosDiagnostico": [
+        "Palidez episódica bilateral (primario)",
+        "Asimetría/úlceras (secundario)",
+        "Capilaroscopia anormal"
+      ],
+      "escalasClinicas": [],
+      "diagnosticoDiferencial": [
+        "Síndrome dedo azul",
+        "Trombosis arterial",
+        "Acrocianosis",
+        "Crioglobulinemia"
+      ],
+      "pronostico": "Primario: benigno. Secundario: depende de enfermedad de base; riesgo úlceras.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Nifedipino con criterio; preferir medidas físicas."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Evitar beta-bloqueantes (empeoran)",
+        "Nifedipino: cefalea frecuente al inicio",
+        "Vigilar úlceras digitales en secundario",
+        "Descartar causa autoinmune si Raynaud >30 años o atípico"
+      ]
+    },
+    {
+      "id": "neuropatia_diabetica",
+      "nombre": "Neuropatía Diabética",
+      "definicion": "Daño nervioso por hiperglucemia crónica, más frecuente polineuropatía sensitivo-motora distal simétrica. Causa dolor, parestesias y pérdida sensitiva en pies.",
+      "causas": [
+        "Hiperglucemia crónica",
+        "Daño microvascular",
+        "Estrés oxidativo",
+        "Deficiencias B12 (metformina)"
+      ],
+      "sintomas": [
+        "Parestesias (hormigueos)",
+        "Dolor quemante pies",
+        "Hipoestesia",
+        "Disestesias",
+        "Deformidades pie",
+        "Úlceras"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Control glucémico estricto",
+          "Duloxetina/pregabalina/gabapentina (dolor)",
+          "Tramadol (rescate)"
+        ],
+        "mecanismo": "Control glucémico reduce progresión. Pregabalina/gabapentina modulan canales calcio. Duloxetina inhibe recaptación serotonina/noradrenalina.",
+        "efectosSecundarios": [
+          "Pregabalina: somnolencia, edema",
+          "Duloxetina: náuseas",
+          "Tramadol: estreñimiento, riesgo dependencia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ginkgo",
+          "centella",
+          "hiperico",
+          "canela"
+        ],
+        "suplementos": [
+          "alfa_lipoico",
+          "vitamina_b12",
+          "vitamina_b6",
+          "folato",
+          "l_carnitina",
+          "omega_3"
+        ],
+        "homeopatia": [
+          "hypericum",
+          "agaricus_muscarius",
+          "rhus_toxicodendron"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "menta_aceite"
+        ],
+        "cuandoPreferir": "Coadyuvante: ALA (evidencia A en dolor neuropático diabético), B12 (especialmente con metformina), Ginkgo."
+      },
+      "prevencion": [
+        "Control glucémico",
+        "Examen pies diario",
+        "Calzado adecuado",
+        "No caminar descalzo",
+        "Dejar de fumar"
+      ],
+      "cuandoConsultar": "Úlcera pie, infección, dolor refractario, signos de pie de Charcot → urgencias/diabetología.",
+      "evidencia": "A",
+      "fuentes": [
+        "ADA Standards",
+        "Cochrane (ALA en neuropatía diabética)",
+        "NICE Neuropatía diabética"
+      ],
+      "epidemiologia": "Hasta 50% de diabéticos a lo largo de la vida. Principal causa de amputación no traumática.",
+      "factoresRiesgo": [
+        "Diabetes mal controlada",
+        "Tiempo evolución",
+        "Tabaco",
+        "Hipertensión",
+        "Dislipemia",
+        "Metformina (B12)"
+      ],
+      "diagnostico": "Clínico + exploración neurológica (monofilamento, diapasón). Electromiografía. HbA1c.",
+      "criteriosDiagnostico": [
+        "Diabetes",
+        "Síntomas simétricos distales",
+        "Hipoestesia monofilamento",
+        "Reflejos aquileanos abolidos"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Escala de Toronto",
+          "uso": "Diagnóstico polineuropatía diabética",
+          "rango": "0-8",
+          "interpretacion": "≥6 probable; combina síntomas, reflejos, umbral vibratorio"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Neuropatía alcohólica",
+        "Neuropatía B12",
+        "Neuropatía tóxica",
+        "Claudicación vascular",
+        "CIDP"
+      ],
+      "pronostico": "Progresiva si no control glucémico. Dolor difícil de tratar. Riesgo úlceras/amputación.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Anciano",
+          "consideraciones": "Mayor riesgo caídas por hipoestesia; vigilar B12 si metformina."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Pregabalina: ajustar en insuficiencia renal",
+        "Metformina: vigilar B12 a largo plazo",
+        "Ácido alfa lipoico: efecto hipoglucemiante leve",
+        "Examen de pies en cada visita",
+        "Duloxetina: vigilar en insuficiencia hepática"
+      ]
+    },
+    {
+      "id": "bruxismo",
+      "nombre": "Bruxismo",
+      "definicion": "Hábito de apretar o rechinar los dientes (diurno o nocturno) que produce desgaste dental, dolor facial y articular temporomandibular (ATM).",
+      "causas": [
+        "Estrés/ansiedad",
+        "Trastornos sueño",
+        "Maloclusión",
+        "Cafeína",
+        "Alcohol",
+        "Fármacos (ISRS, estimulantes)"
+      ],
+      "sintomas": [
+        "Rechinar dientes (nocturno)",
+        "Dolor mandibular",
+        "Cefalea matutina",
+        "Desgaste dental",
+        "Sensibilidad dental",
+        "Ruido ATM"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Férula de descarga nocturna",
+          "Paracetamol/IBU (dolor)",
+          "Relajantes musculares (ciclobenzaprina)"
+        ],
+        "mecanismo": "Férula protege dientes y reduce tensión muscular. AINEs dolor. Relajantes nocturnos.",
+        "efectosSecundarios": [
+          "Férula: hipersalivación inicial",
+          "Ciclobenzaprina: somnolencia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "valeriana",
+          "pasiflora",
+          "melisa",
+          "manzanilla",
+          "kava"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "l_teanina",
+          "l_triptofano"
+        ],
+        "homeopatia": [
+          "ignatia",
+          "nux_vomica",
+          "coccus_cacti"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana"
+        ],
+        "cuandoPreferir": "Bruxismo por estrés: sedantes naturales (valeriana, magnesio) + férula. Ansiolíticos naturales antes de benzodiacepinas."
+      },
+      "prevencion": [
+        "Gestión del estrés",
+        "Higiene del sueño",
+        "Reducir cafeína/alcohol",
+        "Consciencia diurna (no apretar)",
+        "Férula nocturna"
+      ],
+      "cuandoConsultar": "Dolor ATM severo, limitación apertura, fractura dental → odontología/maxilofacial.",
+      "evidencia": "B",
+      "fuentes": [
+        "AASM",
+        "PubMed (bruxismo management)",
+        "International Classification of Sleep Disorders"
+      ],
+      "epidemiologia": "Prevalencia 8-31% adultos (nocturno 8-10%). Frecuente en jóvenes y con estrés.",
+      "factoresRiesgo": [
+        "Estrés",
+        "Ansiedad",
+        "Trastornos sueño",
+        "Tabaco/alcohol/cafeína",
+        "ISRS",
+        "Maloclusión"
+      ],
+      "diagnostico": "Clínico (desgaste, síntomas, informador). Polisomnografía si grave.",
+      "criteriosDiagnostico": [
+        "Rechinar documentado",
+        "Desgaste dental",
+        "Dolor mandibular matutino",
+        "Hipertrofia maseterina"
+      ],
+      "escalasClinicas": [],
+      "diagnosticoDiferencial": [
+        "Trastorno ATM",
+        "Cefalea tensional",
+        "Sinusitis",
+        "Dental (caries, absceso)"
+      ],
+      "pronostico": "Crónico-intermitente según estrés. Buena respuesta con férula + manejo estrés.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Niños",
+          "consideraciones": "Frecuente y suele remitir espontáneamente; vigilar desgaste."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Férula: revisar ajuste periódico",
+        "ISRS pueden agravar bruxismo",
+        "Kava: hepatotoxicidad (restringido)",
+        "Kava: no combinar con benzodiacepinas",
+        "Ciclobenzaprina: somnolencia, no conducir"
+      ]
+    },
+    {
+      "id": "vejiga_hiperactiva",
+      "nombre": "Vejiga Hiperactiva",
+      "definicion": "Síndrome de urgencia miccional, frecuencia y nicturia, con o sin incontinencia de urgencia, sin causa infecciosa o metabólica.",
+      "causas": [
+        "Disfunción detrusor",
+        "Aging",
+        "Obstrucción prostática",
+        "Neuropatía",
+        "Idiopático"
+      ],
+      "sintomas": [
+        "Urgencia miccional",
+        "Frecuencia (≥8/día)",
+        "Nicturia",
+        "Incontinencia urgencia",
+        "Disuria no infecciosa"
+      ],
+      "sistemas": [
+        "urinario"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Antimuscarínicos (oxibutinina, tolterodina, solifenacina)",
+          "Mirabegrón (β3-agonista)",
+          "Entrenamiento vesical"
+        ],
+        "mecanismo": "Antimuscarínicos relajan detrusor. Mirabegrón relaja vía β3. Entrenamiento incrementa capacidad.",
+        "efectosSecundarios": [
+          "Antimuscarínicos: boca seca, estreñimiento, confusión (anciano)",
+          "Mirabegrón: hipertensión"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "azafran",
+          "viburnum_opulus",
+          "semilla_calabaza",
+          "ortiga",
+          "saw_palmetto"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "vitamina_d3",
+          "beta_glucanos"
+        ],
+        "homeopatia": [
+          "causticum",
+          "sepia",
+          "staphysagria"
+        ],
+        "aceites": [
+          "salvia_esclarea",
+          "cipres"
+        ],
+        "cuandoPreferir": "Leve-moderado o como coadyuvante: semilla de calabaza (evidencia B), magnesio. Evitar fitoterapia con actividad antimuscarínica fuerte sin control."
+      },
+      "prevencion": [
+        "Control peso",
+        "Ejercicios suelo pélvico (Kegel)",
+        "Reducir cafeína/alcohol",
+        "Entrenamiento vesical",
+        "No fumar"
+      ],
+      "cuandoConsultar": "Hematuria, dolor, fiebre, retención → urología. Síntomas de inicio brusco.",
+      "evidencia": "B",
+      "fuentes": [
+        "EAU Guidelines",
+        "AUA/SUFU",
+        "PubMed (pumpkin seed OAB)"
+      ],
+      "epidemiologia": "Prevalencia 12-17% adultos, aumenta con edad. Impacto calidad de vida importante.",
+      "factoresRiesgo": [
+        "Edad",
+        "Hiperplasia benigna próstata",
+        "Obesidad",
+        "Diabetes",
+        "Neuropatía",
+        "Menopausia"
+      ],
+      "diagnostico": "Clínico + diario miccional. Descartar ITU, diabetes, hematuria. Flujometría/ecografía si sospecha obstrucción.",
+      "criteriosDiagnostico": [
+        "Urgencia (síntoma clave)",
+        "Frecuencia ≥8/día",
+        "Nicturia",
+        "Sin infección"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "OAB-q",
+          "uso": "Calidad de vida relacionada con vejiga hiperactiva",
+          "rango": "0-100",
+          "interpretacion": "Mayor puntaje síntomas = peor calidad de vida"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "ITU",
+        "Diabetes (polidipsia)",
+        "HBP",
+        "Cistitis intersticial",
+        "Cáncer vesical",
+        "Fármacos diuréticos"
+      ],
+      "pronostico": "Crónico. Manejo conservador + farmacológico. Botox/neuroestimulación en refractario.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Anciano",
+          "consideraciones": "Antimuscarínicos: riesgo confusión; preferir mirabegrón o solifenacina baja dosis."
+        },
+        {
+          "poblacion": "Hombre",
+          "consideraciones": "Descartar HBP obstructiva antes de tratar como VH."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antimuscarínicos: boca seca, estreñimiento, confusión en anciano",
+        "Mirabegrón: vigilar hipertensión",
+        "Descartar ITU antes de tratar",
+        "Diario miccional antes y durante tratamiento"
+      ]
+    },
+    {
+      "id": "prostatitis_cronica",
+      "nombre": "Prostatitis Crónica (Síndrome Dolor Pélvico Crónico)",
+      "definicion": "Dolor pélvico/perineal crónico ≥3 meses sin infección demostrable, asociado a síntomas urinarios y sexuales. Categoría III NIH (abacteriana).",
+      "causas": [
+        "Inflamación no infecciosa",
+        "Disfunción suelo pélvico",
+        "Neuropatía visceral",
+        "Estrés",
+        "Autoinmune"
+      ],
+      "sintomas": [
+        "Dolor perineal",
+        "Dolor pélvico",
+        "Disuria",
+        "Urgencia",
+        "Dolor eyaculación",
+        "Disfunción eréctil"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "AINEs (dolor)",
+          "Alfa-bloqueantes (tamsulosina)",
+          "Fisioterapia suelo pélvico",
+          "Antibiótico empírico (4-6 sem) si sospecha"
+        ],
+        "mecanismo": "AINEs antiinflamatorio. Alfa-bloqueantes relajan próstata/cuello. Fisio relaja músculo elevador.",
+        "efectosSecundarios": [
+          "AINEs: GI, renal",
+          "Tamsulosina: hipotensión ortostática, eyaculación retrógrada"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "saw_palmetto",
+          "pygeum",
+          "semilla_calabaza",
+          "ortiga",
+          "uncaria",
+          "quercetina"
+        ],
+        "suplementos": [
+          "zinc",
+          "beta_glucanos",
+          "omega_3",
+          "vitamina_d3",
+          "curcumina"
+        ],
+        "homeopatia": [
+          "staphysagria",
+          "conium",
+          "thuja"
+        ],
+        "aceites": [
+          "romero_aceite",
+          "palo_santo_aceite"
+        ],
+        "cuandoPreferir": "Coadyuvante: quercetina (antiinflamatorio, evidencia C), Saw palmetto, zinc. Fisioterapia suelo pélvico esencial."
+      },
+      "prevencion": [
+        "Evitar sedestación prolongada",
+        "Ejercicio",
+        "Reducción estrés",
+        "Fisio suelo pélvico",
+        "Dieta antiinflamatoria"
+      ],
+      "cuandoConsultar": "Fiebre, hematuria, retención aguda, dolor severo → urología/urgencias.",
+      "evidencia": "B",
+      "fuentes": [
+        "EAU Guidelines Urological Infections",
+        "NIH Classification",
+        "Cochrane (alpha-blockers CP/CPPS)"
+      ],
+      "epidemiologia": "Prevalencia 2-10% hombres. Categoría III: 90% de prostatitis. Principal urológico <50 años.",
+      "factoresRiesgo": [
+        "Edad 30-50",
+        "Estrés",
+        "Sedestación prolongada",
+        "Ciclismo",
+        "Ansiedad/depresión",
+        "Disfunción suelo pélvico"
+      ],
+      "diagnostico": "Clínico (NIH-CPSI). Examen prostático. Cultivo orina/semen. Descartar ITU/cáncer.",
+      "criteriosDiagnostico": [
+        "Dolor pélvico ≥3 meses",
+        "Cultivos negativos",
+        "NIH-CPSI elevado"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "NIH-CPSI",
+          "uso": "Síntomas prostatitis crónica",
+          "rango": "0-43",
+          "interpretacion": "Leve 0-14, moderada 15-29, severa 30-43"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "ITU",
+        "HBP",
+        "Cáncer próstata",
+        "Dolor pélvico neuropático",
+        "Cistitis intersticial"
+      ],
+      "pronostico": "Crónico-intermitente. Difícil de curar; objetivo control síntomas. Multimodal.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Joven",
+          "consideraciones": "Principal causa urológica <50; abordaje multimodal."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINEs crónicos: proteger GI y vigilar renal",
+        "Tamsulosina: hipotensión ortostática, primera dosis",
+        "Antibiótico solo si sospecha bacteriana",
+        "Vigilar PSA y descartar cáncer si edad"
       ]
     }
   ]

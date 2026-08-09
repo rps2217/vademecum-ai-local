@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Aceites Esenciales",
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 55,
+    "total": 62,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
   "ingredientes": [
@@ -3173,6 +3173,368 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials"
+      }
+    },
+    {
+      "id": "laurel_aceite",
+      "nombre": "Aceite Esencial de Laurel",
+      "nombresAlternativos": [
+        "Bay laurel oil",
+        "Laurus nobilis EO",
+        "Laurel noble",
+        "Lauro"
+      ],
+      "nombreCientifico": "Laurus nobilis L.",
+      "familia": "Lauraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "gripe",
+        "respiratorio",
+        "inmunidad",
+        "dolor_muscular"
+      ],
+      "descripcion": "Aceite esencial con fuerte acción antiséptica respiratoria, mucolítica y antialérgica. Usado en difusión para congestión y en fricción muscular.",
+      "mecanismoAccion": "1,8-cineol (eucaliptol) mucolítico y broncodilatador. Pineno expectorante. Antiséptico respiratorio por fenoles (metileugenol trazas). Tónico digestivo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Difusion",
+        "Friccion topica diluida"
+      ],
+      "tiempoEfecto": "30 minutos (difusion)",
+      "duracionTratamiento": "5-7 dias (respiratorio)",
+      "advertencias": [
+        "Diluir siempre (cutáneo)",
+        "Evitar en embarazo y lactancia",
+        "No interno sin supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida (uso externo)"
+      ],
+      "tags": [
+        "1,8-cineol",
+        "mucolitico",
+        "antiseptico",
+        "respiratorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Laurus nobilis EO antimicrobial)"
+      }
+    },
+    {
+      "id": "limon_aceite",
+      "nombre": "Aceite Esencial de Limón",
+      "nombresAlternativos": [
+        "Lemon oil",
+        "Citrus limon EO",
+        "Limón amarillo",
+        "Citron de limón"
+      ],
+      "nombreCientifico": "Citrus limon (L.) Osbeck",
+      "familia": "Rutaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "inmune",
+        "digestivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "inmunidad",
+        "acne"
+      ],
+      "descripcion": "Aceite esencial cítrico reconfortante y antiséptico. Mejora estado anímico, limpia el ambiente y es astringente cutáneo. Antioxidante (d-limoneno).",
+      "mecanismoAccion": "D-limoneno (mayoritario) con efecto ansiolítico leve y antioxidante. Antiséptico atmosférico. Astringente cutáneo. Estimula digestión (aroma).",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza del fruto (exprimido en frio)",
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Difusion",
+        "Topico diluido"
+      ],
+      "tiempoEfecto": "Inmediato (aromaterapia)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Fotosensibilizante: no exponer al sol 12h tras aplicación cutánea",
+        "Diluir siempre"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida (uso externo)"
+      ],
+      "tags": [
+        "d-limoneno",
+        "anitmico",
+        "antiseptico",
+        "fotosensibilizante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Citrus limon EO anxiolytic)"
+      }
+    },
+    {
+      "id": "cardamomo_aceite",
+      "nombre": "Aceite Esencial de Cardamomo",
+      "nombresAlternativos": [
+        "Cardamom oil",
+        "Elettaria cardamomum EO",
+        "Cardamomo verde",
+        "Cardamomo de Malabar"
+      ],
+      "nombreCientifico": "Elettaria cardamomum (L.) Maton",
+      "familia": "Zingiberaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "gases",
+        "halitosis",
+        "tos"
+      ],
+      "descripcion": "Aceite esencial carminativo y antiséptico. Alivia dispepsia, flatulencia y halitosis. Mucolítico leve para tos productiva.",
+      "mecanismoAccion": "1,8-cineol mucolítico y broncodilatador. Terpinilo acetate carminativo y antiespasmódico digestivo. Antiséptico bucal.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Difusion",
+        "Topico diluido (abdomen)"
+      ],
+      "tiempoEfecto": "30 minutos (digestivo)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Diluir siempre",
+        "Evitar en embarazo en dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida (uso externo)"
+      ],
+      "tags": [
+        "carminativo",
+        "mucolitico",
+        "1,8-cineol",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Elettaria cardamomum EO)"
+      }
+    },
+    {
+      "id": "pomelo_aceite",
+      "nombre": "Aceite Esencial de Pomelo",
+      "nombresAlternativos": [
+        "Grapefruit oil",
+        "Citrus paradisi EO",
+        "Citrus × paradisi",
+        "Toronja"
+      ],
+      "nombreCientifico": "Citrus × paradisi Macfad.",
+      "familia": "Rutaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "metabolico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "estrés",
+        "obesidad",
+        "celulitis",
+        "acne"
+      ],
+      "descripcion": "Aceite esencial cítrico reconfortante, drenante linfático y astringente. Mejora estado anímico, se usa en celulitis y acné tópico.",
+      "mecanismoAccion": "Limoneno con efecto ansiolítico leve y antioxidante. Estimula drenaje linfático (masaje). Astringente y antiséptico cutáneo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza del fruto (exprimido en frio)",
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Difusion",
+        "Topico diluido"
+      ],
+      "tiempoEfecto": "Inmediato (aromaterapia)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Fotosensibilizante: no exponer al sol 12h tras aplicación cutánea",
+        "Diluir siempre"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida (uso externo; a diferencia del zumo, el AE no inhibe CYP3A4 significativamente)"
+      ],
+      "tags": [
+        "limoneno",
+        "drenante",
+        "astringente",
+        "fotosensibilizante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Citrus paradisi EO)"
+      }
+    },
+    {
+      "id": "mirto_aceite",
+      "nombre": "Aceite Esencial de Mirto",
+      "nombresAlternativos": [
+        "Myrtle oil",
+        "Myrtus communis EO",
+        "Arrayán",
+        "Murta"
+      ],
+      "nombreCientifico": "Myrtus communis L.",
+      "familia": "Myrtaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "respiratorio",
+        "tos",
+        "acne",
+        "eccema"
+      ],
+      "descripcion": "Aceite esencial suave mucolítico y antiséptico, especialmente indicado en respiratorio pediátrico por su tolerancia. Antiacneico tópico.",
+      "mecanismoAccion": "1,8-cineol mucolítico y broncodilatador. Mirtol antiséptico respiratorio. Astringente cutáneo (taninos). Antiinflamatorio.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Difusion",
+        "Topico diluido"
+      ],
+      "tiempoEfecto": "30 minutos (difusion)",
+      "duracionTratamiento": "5-7 dias (respiratorio)",
+      "advertencias": [
+        "Diluir siempre",
+        "Apto pediatrico en difusion diluida"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida (uso externo)"
+      ],
+      "tags": [
+        "mirtol",
+        "1,8-cineol",
+        "mucolitico",
+        "pediatrico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Myrtus communis EO)"
+      }
+    },
+    {
+      "id": "petitgrain_aceite",
+      "nombre": "Aceite Esencial de Petitgrain",
+      "nombresAlternativos": [
+        "Petitgrain oil",
+        "Citrus aurantium EO petitgrain",
+        "Petit grain",
+        "Hoja de naranjo amargo"
+      ],
+      "nombreCientifico": "Citrus aurantium L. (hoja)",
+      "familia": "Rutaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estrés",
+        "acne"
+      ],
+      "descripcion": "Aceite esencial destilado de las hojas del naranjo amargo. Ansiolítico y sedante suave, antiseborreico y antiacneico. Alternativa económica al neroli.",
+      "mecanismoAccion": "Acetato de linalilo y linalool con efecto sedante y ansiolítico (modulación GABAérgica). Antiséptico y regenerante cutáneo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Difusion",
+        "Topico diluido"
+      ],
+      "tiempoEfecto": "30 minutos (aromaterapia)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Diluir siempre"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida (uso externo)"
+      ],
+      "tags": [
+        "linalool",
+        "ansiolitico",
+        "sedante",
+        "antiacneico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Citrus aurantium petitgrain anxiolytic)"
+      }
+    },
+    {
+      "id": "palo_santo_aceite",
+      "nombre": "Aceite Esencial de Palo Santo",
+      "nombresAlternativos": [
+        "Palo santo oil",
+        "Bursera graveolens EO",
+        "Madera sagrada",
+        "Ligno sanctum"
+      ],
+      "nombreCientifico": "Bursera graveolens (Kunth) Triana & Planch.",
+      "familia": "Burseraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "inmune",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "estrés",
+        "ansiedad",
+        "dolor_muscular",
+        "inmunidad"
+      ],
+      "descripcion": "Aceite esencial aromático de madera sagrada sudamericana. Sedante, meditativo, antiinflamatorio y antimicrobiano. Usado en aromaterapia espiritual.",
+      "mecanismoAccion": "Limoneno (mayoritario) sedante e inmunomodulador. Antiinflamatorio tópico (fricción muscular). Antimicrobiano atmosférico.",
+      "nivelEvidencia": "C",
+      "parteUsada": "madera",
+      "formasPresentacion": [
+        "Aceite esencial",
+        "Difusion",
+        "Topico diluido"
+      ],
+      "tiempoEfecto": "Inmediato (aromaterapia)",
+      "duracionTratamiento": "Uso puntual",
+      "advertencias": [
+        "Diluir siempre",
+        "Sostenibilidad: usar madera certificada (árboles caídos naturalmente)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida (uso externo)"
+      ],
+      "tags": [
+        "limoneno",
+        "sedante",
+        "meditativo",
+        "antiinflamatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Ethnobotanical studies + PubMed (Bursera graveolens)"
       }
     }
   ]

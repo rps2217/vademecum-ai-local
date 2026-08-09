@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 92,
+    "total": 97,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -5946,6 +5946,258 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      }
+    },
+    {
+      "id": "opium",
+      "nombre": "Opium",
+      "nombresAlternativos": [
+        "Opium homeopático",
+        "Opio (homeopático)",
+        "Papaver somniferum (homeopático)"
+      ],
+      "nombreCientifico": "Papaver somniferum L. (latex desecado, homeopático)",
+      "familia": "Papaveraceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "estrenimiento",
+        "dolor"
+      ],
+      "descripcion": "Remedio homeopático para insomnio con somnolencia profunda, estreñimiento atónico y dolor con insensibilidad. No confundir con opio farmacológico.",
+      "mecanismoAccion": "En dilución homeopática, patrón de letargo, estupor y motilidad intestinal reducida. Indicado cuando hay 'apatía al dolor'. Sin acción farmacológica opioidergica en dilución.",
+      "nivelEvidencia": "C",
+      "parteUsada": "latex desecado",
+      "formasPresentacion": [
+        "Globulos",
+        "Gotas",
+        "Comprimidos"
+      ],
+      "tiempoEfecto": "Variable (dosis homeopática)",
+      "duracionTratamiento": "Segun criterio homeopata",
+      "advertencias": [
+        "Solo en formulación homeopática (dilución)",
+        "No confundir con opio farmacológico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida en dilución homeopática"
+      ],
+      "tags": [
+        "insomnio",
+        "estrenimiento",
+        "estupor",
+        "homeopatia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Materia Medica Homeopática (Clarke, Allen)"
+      }
+    },
+    {
+      "id": "agaricus_muscarius",
+      "nombre": "Agaricus Muscarius",
+      "nombresAlternativos": [
+        "Agaricus",
+        "Amanita muscaria (homeopático)",
+        "Fly agaric (homeopático)",
+        "Matamoscas"
+      ],
+      "nombreCientifico": "Amanita muscaria (homeopático)",
+      "familia": "Amanitaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "temblor_nervioso",
+        "dolor_neuropatico"
+      ],
+      "descripcion": "Remedio homeopático para trastornos neurológicos con temblores, tics, espasmos y hipersensibilidad. Útil en ansiedad con somatización motora.",
+      "mecanismoAccion": "En dilución homeopática, patrón de temblor, mioclonías, picor errático y ansiedad con hipersensibilidad. Sin acción muscarínica farmacológica en dilución.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hongo entero",
+      "formasPresentacion": [
+        "Globulos",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Variable (dosis homeopática)",
+      "duracionTratamiento": "Segun criterio homeopata",
+      "advertencias": [
+        "Solo en formulación homeopática (dilución)",
+        "El hongo fresco es tóxico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida en dilución homeopática"
+      ],
+      "tags": [
+        "temblor",
+        "tics",
+        "ansiedad",
+        "neuropatico",
+        "homeopatia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Materia Medica Homeopática (Clarke, Phatak)"
+      }
+    },
+    {
+      "id": "croton_tiglium",
+      "nombre": "Croton Tiglium",
+      "nombresAlternativos": [
+        "Croton tig",
+        "Croton (homeopático)",
+        "Tilia toxicaria",
+        "Purgante croton"
+      ],
+      "nombreCientifico": "Croton tiglium L. (semilla, homeopático)",
+      "familia": "Euphorbiaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "diarrea",
+        "eccema",
+        "dermatitis"
+      ],
+      "descripcion": "Remedio homeopático para diarrea acuosa explosiva y dermatitis vesiculosa con picor intenso. Cuadros cutáneos con vesículas.",
+      "mecanismoAccion": "En dilución homeopática, patrón de diarrea acuosa, ardor perianal y erupciones vesiculosas con prurito. Sin acción purgante farmacológica en dilución.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla (aceite, homeopático)",
+      "formasPresentacion": [
+        "Globulos",
+        "Gotas",
+        "Unguento topico"
+      ],
+      "tiempoEfecto": "Variable (dosis homeopática)",
+      "duracionTratamiento": "Segun criterio homeopata",
+      "advertencias": [
+        "Solo en formulación homeopática (dilución)",
+        "El aceite puro es tóxico irritante"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida en dilución homeopática"
+      ],
+      "tags": [
+        "diarrea",
+        "vesicula",
+        "dermatitis",
+        "homeopatia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Materia Medica Homeopática (Clarke, Boericke)"
+      }
+    },
+    {
+      "id": "magnesia_carbonica",
+      "nombre": "Magnesia Carbonica",
+      "nombresAlternativos": [
+        "Magnesia carb",
+        "Mag carb",
+        "Carbonato de magnesio (homeopático)",
+        "Magnesia muriatica"
+      ],
+      "nombreCientifico": "Magnesium carbonate (homeopático)",
+      "familia": "Mineral",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "dispepsia",
+        "migraña"
+      ],
+      "descripcion": "Remedio homeopático para ansiedad con hiperreactividad nerviosa, insomnio infantil y dispepsia ácida. Frecuentemente indicado en mujeres y niños nerviosos.",
+      "mecanismoAccion": "En dilución homeopática, patrón de nerviosismo, hipersensibilidad al dolor, insomnio y acidez gástrica. Sin acción farmacológica del carbonato en dilución.",
+      "nivelEvidencia": "C",
+      "parteUsada": "carbonato de magnesio (mineral)",
+      "formasPresentacion": [
+        "Globulos",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Variable (dosis homeopática)",
+      "duracionTratamiento": "Segun criterio homeopata",
+      "advertencias": [
+        "Solo en formulación homeopática (dilución)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida en dilución homeopática"
+      ],
+      "tags": [
+        "ansiedad",
+        "insomnio",
+        "nerviosismo",
+        "infantil",
+        "homeopatia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Materia Medica Homeopática (Clarke, Nash)"
+      }
+    },
+    {
+      "id": "crotalus_horridus",
+      "nombre": "Crotalus Horridus",
+      "nombresAlternativos": [
+        "Crotalus hor",
+        "Crot-h",
+        "Cascabel (homeopático)",
+        "Timber rattlesnake (homeopático)"
+      ],
+      "nombreCientifico": "Crotalus horridus (veneno, homeopático)",
+      "familia": "Viperidae (animal)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "hemorragia",
+        "eccema",
+        "sepsis"
+      ],
+      "descripcion": "Remedio homeopático para trastornos hemorrágicos, púrpura y sepsis con tendencia hemorrágica. También en afecciones cutáneas con descamación.",
+      "mecanismoAccion": "En dilución homeopática, patrón de hemorragias, púrpura, shock séptico y erupciones. Sin acción toxica del veneno en dilución.",
+      "nivelEvidencia": "C",
+      "parteUsada": "veneno de cascabel (homeopático)",
+      "formasPresentacion": [
+        "Globulos",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Variable (dosis homeopática)",
+      "duracionTratamiento": "Segun criterio homeopata",
+      "advertencias": [
+        "Solo en formulación homeopática (dilución)",
+        "El veneno fresco es letal"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida en dilución homeopática"
+      ],
+      "tags": [
+        "hemorragia",
+        "purpura",
+        "sepsis",
+        "animal",
+        "homeopatia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Materia Medica Homeopática (Clarke, Farrington)"
       }
     }
   ]

@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
-    "version": "1.9.0",
+    "version": "2.0.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 138,
+    "total": 141,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -7471,6 +7471,163 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Alpha-GPC dementia) + EMA medicamento"
+      }
+    },
+    {
+      "id": "bacillus_coagulans",
+      "nombre": "Bacillus coagulans",
+      "nombresAlternativos": [
+        "B. coagulans",
+        "Lactobacillus sporogenes",
+        "Probiótico esporulado",
+        "BC"
+      ],
+      "nombreCientifico": "Bacillus coagulans",
+      "familia": "Bacillaceae (bacteria)",
+      "categoria": "probiotico",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "SII",
+        "dispepsia",
+        "inmunidad"
+      ],
+      "descripcion": "Probiótico esporulado resistente a calor y antibióticos, con alta supervivencia gástrica. Eficaz en SII, disbiosis por antibióticos e inmunidad.",
+      "mecanismoAccion": "Espora sobrevive pH gástrico y germina en intestino produciendo ácido láctico. Modula microbiota, reduce gases SII y refuerza barrera inmune (IgA).",
+      "nivelEvidencia": "B",
+      "parteUsada": "biomasa (esporas)",
+      "formasPresentacion": [
+        "Capsulas",
+        "Comprimidos",
+        "Sobres"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Seguro en inmunodeprimidos a dosis estándar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Puede tomarse con antibióticos (resistente)"
+      ],
+      "tags": [
+        "esporulado",
+        "resistente",
+        "SII",
+        "inmunidad",
+        "probiotico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Bacillus coagulans RCT IBS)"
+      }
+    },
+    {
+      "id": "lactobacillus_gasseri",
+      "nombre": "Lactobacillus gasseri",
+      "nombresAlternativos": [
+        "L. gasseri",
+        "Lactobacillus gasseri SBT2055",
+        "LG",
+        "L. gasseri LG36"
+      ],
+      "nombreCientifico": "Lactobacillus gasseri",
+      "familia": "Lactobacillaceae (bacteria)",
+      "categoria": "probiotico",
+      "sistemas": [
+        "digestivo",
+        "metabolico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "obesidad",
+        "glucosa",
+        "inmunidad",
+        "vaginosis"
+      ],
+      "descripcion": "Probiótico con acción sobre adiposidad y glucemia. Reduce grasa visceral y mejora perfil metabólico. También urogenital en candidiasis/recurrente.",
+      "mecanismoAccion": "Modula absorción de grasa, reduce adiposidad visceral (RCT). Mejora sensibilidad insulínica. Protege urogenital por H2O2 anti-Candida.",
+      "nivelEvidencia": "B",
+      "parteUsada": "biomasa (liofilizado)",
+      "formasPresentacion": [
+        "Capsulas",
+        "Capsulas vaginales"
+      ],
+      "tiempoEfecto": "4-12 semanas (adiposidad)",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Seguro a dosis estándar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibióticos concomitantes (separar 2h)"
+      ],
+      "tags": [
+        "adiposidad",
+        "metabolico",
+        "glucosa",
+        "urogenital",
+        "probiotico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (L. gasseri adiposity RCT)"
+      }
+    },
+    {
+      "id": "mangosteen",
+      "nombre": "Mangosteen (Mangostán)",
+      "nombresAlternativos": [
+        "Garcinia mangostana",
+        "Mangostán",
+        "Xanthones",
+        "Mangostana",
+        "Jugo de mangostán"
+      ],
+      "nombreCientifico": "Garcinia mangostana L.",
+      "familia": "Clusiaceae",
+      "categoria": "vitamina",
+      "sistemas": [
+        "inmune",
+        "dermatologico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "antioxidante",
+        "acne",
+        "inflamacion"
+      ],
+      "descripcion": "Fruto tropical rico en xantonas (α-mangostina) con potente actividad antioxidante, antiinflamatoria y antimicrobiana. Usado en acné, inflamación e inmunidad.",
+      "mecanismoAccion": "Xantonas (α-mangostina) inhiben COX-2, NF-κB y son antioxidantes potentes. Antimicrobiano (P. acnes). Hepatoprotectora.",
+      "nivelEvidencia": "C",
+      "parteUsada": "pericarpio (corteza del fruto)",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Zumo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-2 meses",
+      "advertencias": [
+        "Posible hipoglucemia leve",
+        "Calidad variable del extracto"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hipoglucemiantes",
+        "Anticoagulantes (teórico)"
+      ],
+      "tags": [
+        "xantonas",
+        "antioxidante",
+        "antiinflamatorio",
+        "antimicrobiano",
+        "tropical"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Garcinia mangostana xanthones)"
       }
     }
   ]

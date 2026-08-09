@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.9.0",
+    "version": "2.0.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 645,
+    "total": 663,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -16205,6 +16205,474 @@
         "articular",
         "capsaicina",
         "curcumina"
+      ]
+    },
+    {
+      "id": "sin_chanca_piedra_cranberry",
+      "ingredienteA": "chanca_piedra",
+      "ingredienteB": "arandano_rojo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación renal: expulsión de cálculos (chanca piedra) + prevención ITU recurrente (arándano). Sinérgico en litiasis con ITU recurrente.",
+      "beneficios": [
+        "Litolítica + antiadhesiva bacteriana",
+        "Doble acción renal",
+        "Reduce recurrencia de cálculos e ITU",
+        "Mejora confort urinario"
+      ],
+      "precauciones": [
+        "Diurético combinado: hidratar bien",
+        "Vigilar en obstrucción"
+      ],
+      "mecanismo": "Chanca piedra inhibe cristalización de oxalato; arándano impide adhesión E. coli a urotelio. Sinergia renal complementaria.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_graviola_ashwagandha",
+      "ingredienteA": "graviola",
+      "ingredienteB": "ashwagandha",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Combo adaptógeno-inmunomodulador: graviola (inmuno/antioxidante) + ashwagandha (adaptógeno/ansiedad). Útil en estrés con inmunidad baja.",
+      "beneficios": [
+        "Inmunomodulación dual",
+        "Reduce ansiedad y fatiga",
+        "Antioxidante sinérgico",
+        "Soporte en estrés crónico"
+      ],
+      "precauciones": [
+        "No usar >3 meses (graviola, neurotoxicidad teórica)",
+        "Evitar en Parkinson"
+      ],
+      "mecanismo": "Graviola aporta acetogeninas inmunomoduladoras; ashwagandha regula cortisol y adaptógeno. Complementario estrés-inmunidad.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_nopal_chia_pata_vaca",
+      "ingredienteA": "nopal",
+      "ingredienteB": "chia",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo metabólico: fibra soluble de nopal + omega-3 de chía. Potente en hiperglucemia e hipercolesterolemia combinadas.",
+      "beneficios": [
+        "Reducción glucosa posprandial",
+        "Mejora perfil lipídico (ALA + fibra)",
+        "Sacietógeno doble",
+        "Mejora tránsito"
+      ],
+      "precauciones": [
+        "Aumentar líquidos (fibra)",
+        "Separar fármacos 2h (absorción)"
+      ],
+      "mecanismo": "Nopal (mucílagos) retarda absorción glucosa; chía (ALA + fibra) reduce triglicéridos y sacia. Sinergia fibra + omega-3.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_pata_vaca_canela",
+      "ingredienteA": "pata_de_vaca",
+      "ingredienteB": "canela",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia hipoglucemiante: pata de vaca + canela (sensibilizante insulina). Coadyuvante en prediabetes/diabetes tipo 2.",
+      "beneficios": [
+        "Reducción glucosa doble",
+        "Mejora sensibilidad insulínica",
+        "Ligero perfil lipídico"
+      ],
+      "precauciones": [
+        "Riesgo hipoglucemia si combina con antidiabéticos",
+        "Monitorizar glucosa"
+      ],
+      "mecanismo": "Pata de vaca mejora captación celular; canela sensibiliza vía tirosina quinasa. Doble vía hipoglucemiante.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_chuchuhuasi_harpagofito",
+      "ingredienteA": "chuchuhuasi",
+      "ingredienteB": "harpagofito",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Combo antiinflamatorio-analgésico natural para dolor articular y muscular. Alternativa o coadyuvante de AINEs.",
+      "beneficios": [
+        "Antiinflamatorio dual (COX/LOX)",
+        "Reduce dolor articular",
+        "Ahorro de AINEs",
+        "Tónico reconstituyente"
+      ],
+      "precauciones": [
+        "Vigilar gastritis (combos amargos)",
+        "Posible interacción con anticoagulantes"
+      ],
+      "mecanismo": "Chuchuhuasi (triterpenos) y harpagofito (harpagósidos) inhiben rutas inflamatorias complementarias.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_limon_petitgrain_lavanda",
+      "ingredienteA": "limon_aceite",
+      "ingredienteB": "petitgrain_aceite",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Blend cítrico-hoja ansiolítico: limón (anímico) + petitgrain (sedante). Combina con lavanda para sinergia total ansiedad-insomnio.",
+      "beneficios": [
+        "Mejora estado anímico",
+        "Reduce ansiedad",
+        "Mejora calidad sueño",
+        "Aromaterapia agradable"
+      ],
+      "precauciones": [
+        "Fotosensibilidad si aplicación cutánea (limón)",
+        "Diluir siempre"
+      ],
+      "mecanismo": "Limoneno (limón) + acetato linalilo (petitgrain) + linalool (lavanda): triple modulación GABAérgica y serotoninérgica.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_laurel_mirto_eucalipto",
+      "ingredienteA": "laurel_aceite",
+      "ingredienteB": "mirto_aceite",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Blend respiratorio antiséptico-mucolítico pediátrico: laurel + mirto (suave). Combinable con eucalipto en adultos.",
+      "beneficios": [
+        "Mucolítico potente (1,8-cineol doble)",
+        "Antiséptico respiratorio",
+        "Tolerancia pediátrica",
+        "Reduce congestión"
+      ],
+      "precauciones": [
+        "Diluir siempre",
+        "Asmáticos: uso cauteloso (1,8-cineol)"
+      ],
+      "mecanismo": "1,8-cineol sinérgico de laurel y mirto broncodilata y fluidifica secreciones; mirtol antiséptico.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_cardamomo_jengibre_digestivo",
+      "ingredienteA": "cardamomo_aceite",
+      "ingredienteB": "jengibre",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Combo carminativo digestivo: cardamomo + jengibre. Sinérgico en dispepsia, gases y náuseas.",
+      "beneficios": [
+        "Carminativo potente",
+        "Reduce náuseas",
+        "Mejora motilidad gástrica",
+        "Antiinflamatorio digestivo"
+      ],
+      "precauciones": [
+        "Reflujo: vigilar (jengibre)"
+      ],
+      "mecanismo": "Terpinilo acetato (cardamomo) antiespasmódico + gingeroles (jengibre) procinético y antiemético. Sinergia digestiva.",
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_bacillus_coagulans_sacc_boulardii",
+      "ingredienteA": "bacillus_coagulans",
+      "ingredienteB": "s_boulardii",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo probiótico doble (esporulado + levadura): restauración microbiota en diarrea por antibióticos y SII.",
+      "beneficios": [
+        "Supervivencia gástrica alta",
+        "Acción antibiótico-resistente (ambos)",
+        "Reduce diarrea asociada antibióticos",
+        "Mejora SII"
+      ],
+      "precauciones": [
+        "Seguro; S. boulardii suspender si fungemia en inmunodeprimido central"
+      ],
+      "mecanismo": "B. coagulans (esporulado, Á-láctico) + S. boulardii (levadura, antitóxica): doble mecanismo de microbiota.",
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_lactobacillus_gasseri_inulina",
+      "ingredienteA": "lactobacillus_gasseri",
+      "ingredienteB": "inulina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Probiótico + prebiótico (simbiótico) metabólico: L. gasseri (adiposidad) + inulina (prebiótico, fibra).",
+      "beneficios": [
+        "Sinergia simbiótica",
+        "Mejora microbiota",
+        "Reducción grasa visceral",
+        "Mejora perfil glucémico"
+      ],
+      "precauciones": [
+        "Inulina: gases iniciales (ajustar dosis)"
+      ],
+      "mecanismo": "Inulina fermenta colónica (SCFA) alimentando a L. gasseri; combinación potencializa efecto adiposidad/glucosa.",
+      "categorias": [
+        "probiotico",
+        "prebiotico"
+      ],
+      "sistemas": [
+        "metabolico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_mangosteen_curcumina",
+      "ingredienteA": "mangosteen",
+      "ingredienteB": "curcumina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Combo antioxidante-antiinflamatorio: xantonas (mangosteen) + curcuminoides. Potente en inflamación crónica e inmunidad.",
+      "beneficios": [
+        "Antioxidante dual",
+        "Inhibición NF-κB sinérgica",
+        "Hepatoprotector",
+        "Mejora acné inflamatorio"
+      ],
+      "precauciones": [
+        "Curcumina: interacción anticoagulantes",
+        "Mangosteen: hipoglucemia leve"
+      ],
+      "mecanismo": "Xantonas y curcumina inhiben NF-κB y COX-2 por vías complementarias; potente sinergia antioxidante.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_ala_neuropatia_b12",
+      "ingredienteA": "alfa_lipoico",
+      "ingredienteB": "vitamina_b12",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Combo neuroprotector para neuropatía diabética: ALA (dolor neuropático) + B12 (remielinización). Especialmente con metformina.",
+      "beneficios": [
+        "Reduce dolor neuropático",
+        "Mejora conducción nerviosa",
+        "Corrige B12 (metformina)",
+        "Antioxidante mitocondrial"
+      ],
+      "precauciones": [
+        "B12: vigilar causa déficit",
+        "ALA: hipoglucemia leve"
+      ],
+      "mecanismo": "ALA (antioxidante mitocondrial, reduce dolor) + B12 (metilo en mielina): sinergia neuroprotectora.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_luteina_astaxantina_omega3",
+      "ingredienteA": "luteina",
+      "ingredienteB": "astaxantina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo antioxidante ocular DMAE: luteína + zeaxantina (mácula) + astaxantina (retina/vascular). Base de AREDS2 natural.",
+      "beneficios": [
+        "Protección macular dual",
+        "Mejora densidad pigmento macular",
+        "Antioxidante retiniano",
+        "Combina con omega-3"
+      ],
+      "precauciones": [
+        "No exceder dosis (coloración piel)"
+      ],
+      "mecanismo": "Luteína/zeaxantina filtran luz azul; astaxantina antioxidante retiniano y vascular; omega-3 estructura fotorreceptores.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_magnesio_valeriana_bruxismo",
+      "ingredienteA": "magnesio_glicinato",
+      "ingredienteB": "valeriana",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo relajante muscular + sedante para bruxismo nocturno por estrés: magnesio (muscular) + valeriana (GABA).",
+      "beneficios": [
+        "Reduce apretar mandíbula nocturno",
+        "Mejora sueño",
+        "Relajación muscular",
+        "Menos cefalea matutina"
+      ],
+      "precauciones": [
+        "Valeriana: somnolencia",
+        "No combinar con benzodiacepinas"
+      ],
+      "mecanismo": "Magnesio relaja músculo (bloquea calcio); valeriana modula GABA-A sedante. Sinergia relajante-sedante.",
+      "categorias": [
+        "mineral",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_pumpkin_seed_saw_palmetto",
+      "ingredienteA": "semilla_calabaza",
+      "ingredienteB": "saw_palmetto",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo prostático-urinario: semilla de calabaza + saw palmetto. Sinérgico en HBP y prostatitis crónica.",
+      "beneficios": [
+        "Mejora flujo urinario",
+        "Reduce nicturia",
+        "Antiinflamatorio prostático",
+        "Sin efectos sexuales"
+      ],
+      "precauciones": [
+        "Vigilar PSA antes de atribuir a fitoterapia"
+      ],
+      "mecanismo": "Saw palmetto inhibe 5-alfa-reductasa; semilla calabaza (fitoesteroles) reduce inflamación prostática. Sinergia dual.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_quercetina_zinc_prostatitis",
+      "ingredienteA": "quercetina",
+      "ingredienteB": "zinc",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Combo antiinflamatorio prostático: quercetina + zinc. Coadyuvante en prostatitis crónica (categoría III).",
+      "beneficios": [
+        "Reduce dolor pélvico",
+        "Antiinflamatorio prostático",
+        "Mejora síntomas urinarios",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Quercetina: interacción anticoagulantes",
+        "Zinc: no exceder 30-40 mg/día largo plazo"
+      ],
+      "mecanismo": "Quercetina inhibe inflamación (COX/LOX/mastocitos); zinc concentrado en próstata con rol antioxidante-antiinflamatorio.",
+      "categorias": [
+        "vitamina",
+        "mineral"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_ginkgo_cayena_raynaud",
+      "ingredienteA": "ginkgo",
+      "ingredienteB": "pimienta_cayena",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Combo vasodilatador periférico para Raynaud: ginkgo (vasodilatación) + cayena (capsaicina, vasodilatación local).",
+      "beneficios": [
+        "Mejora flujo digital",
+        "Reduce episodios vasospásticos",
+        "Calienta extremidades"
+      ],
+      "precauciones": [
+        "Cayena: irritación GI, cutánea",
+        "Anticoagulantes: vigilancia (ginkgo)"
+      ],
+      "mecanismo": "Ginkgo (óxido nítrico) + capsaicina (depleción sustancia P, vasodilatación): sinergia digital.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_omega3_omega7_ojo_seco",
+      "ingredienteA": "omega_3",
+      "ingredienteB": "omega_7",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Combo lipídico para ojo seco y blefaritis: omega-3 + omega-7 (palmitoleico). Mejora glándula meibomiana y mucosa.",
+      "beneficios": [
+        "Mejora calidad lágrima",
+        "Reduce inflamación ocular",
+        "Mejora meibomio",
+        "Menor sequedad"
+      ],
+      "precauciones": [
+        "Anticoagulantes: vigilancia (omega-3)"
+      ],
+      "mecanismo": "Omega-3 reduce inflamación y mejora meibomio; omega-7 hidrata mucosa. Sinergia lipídica ocular.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "ocular"
       ]
     }
   ]

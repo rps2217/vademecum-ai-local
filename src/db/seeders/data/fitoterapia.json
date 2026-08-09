@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.9.0",
+    "version": "2.0.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 157,
+    "total": 165,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -8274,6 +8274,434 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Chinese Pharmacopoeia + PubMed (Cnidium monnieri)"
+      }
+    },
+    {
+      "id": "chanca_piedra",
+      "nombre": "Chanca Piedra",
+      "nombresAlternativos": [
+        "Phyllanthus niruri",
+        "Breakstone",
+        "Stone breaker",
+        "Quebra-pedra"
+      ],
+      "nombreCientifico": "Phyllanthus niruri L.",
+      "familia": "Phyllanthaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "litiasis_renal",
+        "colesterol",
+        "hepatico",
+        "calculos_biliares"
+      ],
+      "descripcion": "Planta tradicional sudamericana usada para expulsar cálculos renales y biliares ('piedra que quiebra'). Hepatoprotectora y antiviral (VHB).",
+      "mecanismoAccion": "Inhibe la cristalización de oxalato cálcico (reducción de litiasis). Espasmolítico ureteral facilitando expulsión de cálculos. Hepatoprotector por filantina y antioxidantes.",
+      "nivelEvidencia": "B",
+      "parteUsada": "parte aerea",
+      "formasPresentacion": [
+        "Capsulas",
+        "Infusion",
+        "Extracto seco",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Diurético: aumentar ingesta hídrica",
+        "Evitar en litiasis obstructiva con fiebre"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos",
+        "Litio (diurético)"
+      ],
+      "tags": [
+        "litolitica",
+        "hepatoprotector",
+        "renal",
+        "antiviral",
+        "fitolizina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "WHO Monographs + PubMed (Phyllanthus niruri)"
+      }
+    },
+    {
+      "id": "graviola",
+      "nombre": "Graviola",
+      "nombresAlternativos": [
+        "Annona muricata",
+        "Guanábana",
+        "Soursop",
+        "Corossol"
+      ],
+      "nombreCientifico": "Annona muricata L.",
+      "familia": "Annonaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "inflamacion",
+        "ansiedad",
+        "parasitos_intestinales"
+      ],
+      "descripcion": "Árbol tropical cuyo fruto y hojas se usan como antiinflamatorio, inmunomodulador y sedante leve. Tradicionalmente usada en oncología complementaria.",
+      "mecanismoAccion": "Acetogeninas (anonacinas) con actividad citotóxica selectiva. Sedante por modulación serotoninérgica. Antiespasmódico digestivo. Hepatoprotector.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja, fruto",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Hoja seca infusion"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses maximo",
+      "advertencias": [
+        "Neurotoxicidad teórica por anonacinas (evitar uso prolongado >3 meses)",
+        "Evitar en Parkinson",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos",
+        "Hipoglucemiantes",
+        "Antidepresivos"
+      ],
+      "tags": [
+        "anonacinas",
+        "acetogeninas",
+        "inmuno",
+        "sedante",
+        "tropical"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Annona muricata acetogenins) + EMA traditional use"
+      }
+    },
+    {
+      "id": "condurango",
+      "nombre": "Condurango",
+      "nombresAlternativos": [
+        "Marsdenia condurango",
+        "Gonolobus condurango",
+        "Eagle vine",
+        "Condur"
+      ],
+      "nombreCientifico": "Marsdenia condurango",
+      "familia": "Apocynaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "gastritis",
+        "ulcera_peptica",
+        "inapetencia"
+      ],
+      "descripcion": "Liana sudamericana usada como amargo digestivo, gastroprotector y aperitivo. Mejora dispepsia y gastritis por acción demulcente y estimulante de secreción gástrica.",
+      "mecanismoAccion": "Glucósidos (condurangina) con efecto amargo estimulante de secreción gástrica y bilis. Acción demulcente (mucílagos) protege mucosa gástrica. Tónico digestivo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Tintura",
+        "Extracto",
+        "Infusion"
+      ],
+      "tiempoEfecto": "30 minutos tras ingesta",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Evitar en embarazo (glucósidos)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiácidos (puede antagonizar)"
+      ],
+      "tags": [
+        "amargo",
+        "gastroprotector",
+        "aperitivo",
+        "demulcente"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "German Commission E + ESCOP"
+      }
+    },
+    {
+      "id": "chuchuhuasi",
+      "nombre": "Chuchuhuasi",
+      "nombresAlternativos": [
+        "Maytenus laevis",
+        "Chuchuasi",
+        "Chuchuwasi",
+        "Mata palo"
+      ],
+      "nombreCientifico": "Maytenus laevis (M. macrocarpa)",
+      "familia": "Celastraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "dolor_muscular",
+        "articular",
+        "inflamacion",
+        "libido_bajo"
+      ],
+      "descripcion": "Corteza amazónica usada como antiinflamatorio, analgésico y tónico reconstituyente. Popular para dolor articular y muscular, y como afrodisíaco.",
+      "mecanismoAccion": "Triterpenos y taninos con actividad antiinflamatoria (inhibición COX/LOX). Alcaloides con efecto analgésico. Tónico adrenal leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Extracto",
+        "Capsulas",
+        "Tintura",
+        "Macerado alcoholico"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-2 meses",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Cafeína contenida (insomnio)"
+      ],
+      "interaccionesMedicamentosas": [
+        "AINEs (sinergia antiinflamatoria)"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "analgésico",
+        "amazonico",
+        "tónico",
+        "afrodisiaco"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Ethnobotanical studies + PubMed (Maytenus)"
+      }
+    },
+    {
+      "id": "pata_de_vaca",
+      "nombre": "Pata de Vaca",
+      "nombresAlternativos": [
+        "Bauhinia forficata",
+        "Cow's hoof",
+        "Pezuña de vaca",
+        "Bauhinia"
+      ],
+      "nombreCientifico": "Bauhinia forficata Link",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "colesterol",
+        "diabetes_tipo2"
+      ],
+      "descripcion": "Árbol sudamericano cuyas hojas tienen reconocida acción hipoglucemiante y diurética. Usado en diabetes tipo 2 e hipercolesterolemia como coadyuvante.",
+      "mecanismoAccion": "Flavonoides (quercetina, rutina) y glicósidos con efecto hipoglucemiante (mejora captación celular de glucosa). Diurético. Hipocolesterolémico por fibras y flavonoides.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Capsulas",
+        "Infusion",
+        "Extracto"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Riesgo hipoglucemia si combina con antidiabéticos (monitorizar glucosa)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Insulina",
+        "Metformina",
+        "Sulfonilureas"
+      ],
+      "tags": [
+        "hipoglucemiante",
+        "diurético",
+        "diabetes",
+        "flavonoides"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Bauhinia forficata hypoglycemic)"
+      }
+    },
+    {
+      "id": "nopal",
+      "nombre": "Nopal (Cladodio)",
+      "nombresAlternativos": [
+        "Opuntia ficus-indica",
+        "Prickly pear",
+        "Higo chumbo",
+        "Tuna",
+        "Nopalitos"
+      ],
+      "nombreCientifico": "Opuntia ficus-indica (L.) Mill.",
+      "familia": "Cactaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "colesterol",
+        "obesidad",
+        "resaca"
+      ],
+      "descripcion": "Cactus mexicano cuyos cladodios (paletas) son ricos en fibra soluble (mucílagos) que modera la absorción de glucosa y colesterol. También usado en resaca.",
+      "mecanismoAccion": "Fibra soluble (mucílagos, pectinas) retarda absorción intestinal de glucosa (reducción pico posprandial). Secuestra ácidos biliares (reduce colesterol). Sacietógeno. Hepatoprotector en resaca.",
+      "nivelEvidencia": "B",
+      "parteUsada": "cladodio (hoja)",
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo",
+        "Fresco (alimento)"
+      ],
+      "tiempoEfecto": "Inmediato (fibra posprandial)",
+      "duracionTratamiento": "Continuo como coadyuvante",
+      "advertencias": [
+        "Aumentar líquidos (fibra)",
+        "Puede reducir absorción de fármacos (separar 2h)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hipoglucemiantes",
+        "Hipolipemiantes",
+        "Fármacos orales (absorción)"
+      ],
+      "tags": [
+        "fibra",
+        "mucilago",
+        "glucosa",
+        "colesterol",
+        "saciogeno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Opuntia ficus-indica meta-analysis)"
+      }
+    },
+    {
+      "id": "chia",
+      "nombre": "Chía (Semilla)",
+      "nombresAlternativos": [
+        "Salvia hispanica",
+        "Chian",
+        "Salvia chia",
+        "Spanish sage"
+      ],
+      "nombreCientifico": "Salvia hispanica L.",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "cardiovascular",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "colesterol",
+        "glucosa",
+        "obesidad",
+        "estrenimiento"
+      ],
+      "descripcion": "Semilla mesoamericana rica en omega-3 (ALA), fibra soluble y proteínas. Mejora perfil lipídico, glucemia y saciedad. Súper-alimento funcional.",
+      "mecanismoAccion": "ALA (omega-3 vegetal) reduce triglicéridos y LDL. Fibra soluble (formando gel) retarda vaciado gástrico y absorción de glucosa. Sacietógeno. Mejora tránsito intestinal.",
+      "nivelEvidencia": "B",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Semilla entera",
+        "Harina",
+        "Aceite",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "4-8 semanas (perfil lipídico)",
+      "duracionTratamiento": "Continuo como alimento",
+      "advertencias": [
+        "Aumentar líquidos si semilla entera",
+        "Anticoagulantes: vigilancia (omega-3)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (omega-3)",
+        "Hipoglucemiantes"
+      ],
+      "tags": [
+        "omega3",
+        "ALA",
+        "fibra",
+        "saciogeno",
+        "superfood"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Salvia hispanica RCT)"
+      }
+    },
+    {
+      "id": "cuscuta",
+      "nombre": "Cúscuta (Semilla)",
+      "nombresAlternativos": [
+        "Cuscuta chinensis",
+        "Dodder seed",
+        "Tu si zi",
+        "Semilla de cuscuta"
+      ],
+      "nombreCientifico": "Cuscuta chinensis Lam.",
+      "familia": "Convolvulaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "urinario",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "libido_bajo",
+        "fatiga",
+        "hepatico",
+        "disfuncion_erectil"
+      ],
+      "descripcion": "Planta parásita de la MTC usada como tónico renal-jing y hepático. Mejora libido, fatiga y función visual (según medicina tradicional china).",
+      "mecanismoAccion": "Flavonoides (hiperosido, quercetina) con efecto antioxidante hepático. Tónico adrenal y renal (MTC). Efecto fitoestrogénico leve. Mejora espermatogénesis en modelos.",
+      "nivelEvidencia": "C",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto",
+        "Decoccion"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Planta parásita: calidad variable"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (flavonoides)"
+      ],
+      "tags": [
+        "tónico",
+        "renal",
+        "jing",
+        "MTc",
+        "libido",
+        "hepatoprotector"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Chinese Pharmacopoeia + PubMed (Cuscuta)"
       }
     }
   ]
