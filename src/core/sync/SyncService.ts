@@ -15,6 +15,8 @@ import type {
 import { generateId, now } from '@/db/schema';
 import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
 import { ConflictResolver, type ConflictInfo } from './ConflictResolver';
+import { ConflictError, SchemaMismatchError, UnauthorizedError } from './errors';
+import { toSupabaseFormat } from './transform';
 
 export interface SyncConfig {
   enabled: boolean;
@@ -312,7 +314,7 @@ export class SyncService {
     
     const table = op.table;
     const payload = op.payload as Record<string, unknown>;
-    const supabasePayload = this.toSupabaseFormat(payload);
+    const supabasePayload = toSupabaseFormat(payload);
     
     // Usar idempotency key si está disponible
     const headers: Record<string, string> = {};
@@ -494,15 +496,6 @@ export class SyncService {
     return false;
   }
 
-  private toSupabaseFormat(payload: Record<string, unknown>): Record<string, unknown> {
-    const result: Record<string, unknown> = {};
-    for (const [key, value] of Object.entries(payload)) {
-      const snakeKey = key.replace(/([A-Z])/g, '_$1').toLowerCase();
-      result[snakeKey] = value;
-    }
-    return result;
-  }
-
   /**
    * Obtiene conflictos pendientes
    */
@@ -515,27 +508,6 @@ export class SyncService {
    */
   async resolveConflict(conflictId: string, resolution: 'local' | 'remote' | 'merged', mergedData?: Record<string, unknown>) {
     return ConflictResolver.resolveConflict(conflictId, resolution, mergedData);
-  }
-}
-
-class ConflictError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'ConflictError';
-  }
-}
-
-class SchemaMismatchError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'SchemaMismatchError';
-  }
-}
-
-class UnauthorizedError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'UnauthorizedError';
   }
 }
 

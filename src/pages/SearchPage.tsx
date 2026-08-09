@@ -16,17 +16,15 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ingredientSearchService, useSearchIndex } from '@/core/search';
 import type { SearchResult } from '@/core/search';
 import { ConditionCard } from '@/ui/ConditionCard';
+import { IngredientResultCard } from '@/ui/IngredientResultCard';
 import {
-  Search, Star, BookOpen, Leaf, FlaskConical, X, ChevronDown,
-  ChevronRight, Loader2, Pill, Clock,
-  Brain, HeartPulse, Wind, Moon, Zap, Utensils, Shield, Sparkles,
-  Bone, Eye, Droplet, Activity, Flame, ShieldCheck, Baby,
+  Search, BookOpen, X, ChevronDown, ChevronRight,
+  Loader2, Pill, Clock,
 } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
 import { ClientProfileSelector } from '@/ui/ClientProfileSelector';
-import { useClientProfile, safetyVerdictStyle, safetyVerdictBadge } from '@/contexts/ClientProfileContext';
+import { useClientProfile } from '@/contexts/ClientProfileContext';
 import { useSearch } from '@/contexts/SearchContext';
 import { useConsultationHistory } from '@/hooks/useConsultationHistory';
 import type { DbIngredient, DbPathology, IngredientCategory } from '@/db/schema';
@@ -35,85 +33,14 @@ import { db } from '@/db';
 import { logger } from '@/lib/logger';
 import { cn } from '@/lib/utils';
 import { humanize, normalize } from '@/lib/text';
-
-const CATEGORIES: { value: string; label: string }[] = [
-  { value: '', label: 'Todas' },
-  { value: 'fitoterapia', label: 'Fitoterapia' },
-  { value: 'homeopatia', label: 'Homeopatía' },
-  { value: 'aceite_esencial', label: 'Aceites' },
-  { value: 'vitamina', label: 'Vitaminas' },
-  { value: 'mineral', label: 'Minerales' },
-  { value: 'aminoacido', label: 'Aminoácidos' },
-  { value: 'probiotico', label: 'Probióticos' },
-];
-
-const CATEGORY_CONFIG: Record<string, { icon: typeof Leaf; color: string }> = {
-  fitoterapia: { icon: Leaf, color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' },
-  homeopatia: { icon: FlaskConical, color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400' },
-  aceite_esencial: { icon: FlaskConical, color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400' },
-  vitamina: { icon: Pill, color: 'bg-violet-500/10 text-violet-600 dark:text-violet-400' },
-  mineral: { icon: Pill, color: 'bg-slate-500/10 text-slate-600 dark:text-slate-400' },
-  aminoacido: { icon: Pill, color: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400' },
-  probiotico: { icon: Leaf, color: 'bg-pink-500/10 text-pink-600 dark:text-pink-400' },
-};
-
-const EVIDENCE_CONFIG: Record<string, { label: string; color: string; title: string }> = {
-  A: { label: 'A', color: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30 font-semibold', title: 'Evidencia alta: meta-análisis / ensayos clínicos' },
-  B: { label: 'B', color: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30 font-semibold', title: 'Evidencia media: estudios controlados' },
-  C: { label: 'C', color: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20', title: 'Evidencia baja: estudios observacionales' },
-  D: { label: 'D', color: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20', title: 'Evidencia muy baja: uso tradicional' },
-};
-
-const EVIDENCE_RANK: Record<string, number> = { A: 0, B: 1, C: 2, D: 3 };
-const RESULTS_PAGE_SIZE = 12;
-const CHIPS_COLLAPSED_COUNT = 6;
-
-const INDICATION_ICONS: Record<string, LucideIcon> = {
-  ansiedad: Brain,
-  insomnio: Moon,
-  estres: Brain,
-  cognitivo: Brain,
-  depresion: Brain,
-  fatiga: Zap,
-  energia: Zap,
-  energetico: Zap,
-  inmunidad: Shield,
-  antioxidante: Sparkles,
-  tos: Wind,
-  respiratorio: Wind,
-  bronquitis: Wind,
-  gripe: Wind,
-  alergias: Wind,
-  cardiovascular: HeartPulse,
-  colesterol: HeartPulse,
-  hipertension: HeartPulse,
-  circulacion: HeartPulse,
-  coagulacion: HeartPulse,
-  glucosa: Activity,
-  metabolico: Activity,
-  digestion: Utensils,
-  digestivo: Utensils,
-  dispepsia: Utensils,
-  intestinal: Utensils,
-  diarrea: Droplet,
-  urinario: Droplet,
-  hepatico: Droplet,
-  piel: ShieldCheck,
-  dermatologico: ShieldCheck,
-  cicatrizacion: ShieldCheck,
-  articular: Bone,
-  muscular: Bone,
-  inflamacion: Flame,
-  ocular: Eye,
-  fertilidad: Baby,
-  menstrual: Baby,
-  menopausia: Baby,
-  hormonal: Baby,
-};
-
-function indicationIcon(value: string): LucideIcon {
-  return INDICATION_ICONS[normalize(value)] ?? Activity;
-}
+import {
+  CATEGORIES,
+  getCategoryConfig,
+  EVIDENCE_RANK,
+  RESULTS_PAGE_SIZE,
+  CHIPS_COLLAPSED_COUNT,
+  indicationIcon,
+} from '@/ui/searchConfig';
 
 export function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -256,10 +183,6 @@ export function SearchPage() {
     setQuery('');
   }, [setQuery]);
 
-  const getCategoryConfig = (cat: string) =>
-    CATEGORY_CONFIG[cat] || { icon: Leaf, color: 'bg-gray-500/10 text-gray-600 dark:text-gray-400' };
-  const getEvidenceConfig = (ev: string) => EVIDENCE_CONFIG[ev] || EVIDENCE_CONFIG.C;
-
   const visibleChips = showAllChips ? indicationChips : indicationChips.slice(0, CHIPS_COLLAPSED_COUNT);
 
   return (
@@ -329,7 +252,7 @@ export function SearchPage() {
           <div className="flex flex-wrap gap-1.5">
             {CATEGORIES.map(cat => {
               const isActive = category === cat.value;
-              const cfg = cat.value ? CATEGORY_CONFIG[cat.value] : null;
+              const cfg = cat.value ? getCategoryConfig(cat.value) : null;
               const Icon = cfg?.icon ?? Pill;
               return (
                 <button
@@ -411,69 +334,14 @@ export function SearchPage() {
           {ingredientsExpanded && sortedResults.length > 0 && !isSearching && (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {visibleResults.map((result) => {
-                  const catConfig = getCategoryConfig(result.ingredient.categoria);
-                  const evConfig = getEvidenceConfig(result.ingredient.evidencia);
-                  const CatIcon = catConfig.icon;
-                  const verdict = evaluateSafety(result.ingredient);
-                  const safetyStyle = safetyVerdictStyle(verdict);
-                  const safetyBadge = safetyVerdictBadge(verdict);
-                  const topIndication = result.ingredient.indicaciones?.[0];
-                  return (
-                    <button
-                      key={result.ingredient.id}
-                      className={cn(
-                        'text-left p-4 rounded-xl bg-card border-2 border-border hover:border-primary hover:shadow-lg transition-all',
-                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group min-h-[110px]',
-                        safetyStyle
-                      )}
-                      onClick={() => setSelectedIngredient(result.ingredient)}
-                    >
-                      {/* Fila 1: icono categoría + nombre + badge evidencia (separados) */}
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <div className={cn('p-1.5 rounded-lg shrink-0', catConfig.color)}>
-                            <CatIcon className="w-4 h-4" aria-hidden="true" />
-                          </div>
-                          <h4 className="font-heading font-semibold text-base truncate group-hover:text-primary transition-colors leading-tight">
-                            {result.ingredient.nombre}
-                          </h4>
-                        </div>
-                        <span
-                          className={cn('flex items-center justify-center w-7 h-7 rounded-lg text-sm font-bold shrink-0', evConfig.color)}
-                          title={evConfig.title}
-                        >
-                          {evConfig.label}
-                        </span>
-                      </div>
-                      {/* Fila 2: indicación principal */}
-                      {topIndication && (
-                        <p className="text-sm text-muted-foreground truncate mb-2">
-                          {humanize(topIndication)}
-                        </p>
-                      )}
-                      {/* Fila 3: categoría + badge seguridad + score */}
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs text-muted-foreground/80 capitalize">
-                          {result.ingredient.categoria.replace('_', ' ')}
-                        </span>
-                        <div className="flex items-center gap-2">
-                          {safetyBadge && (
-                            <span className={cn('px-2 py-0.5 rounded-full text-xs font-semibold', safetyBadge.className)}>
-                              {safetyBadge.label}
-                            </span>
-                          )}
-                          {result.score > 50 && (
-                            <span className="flex items-center gap-0.5 text-xs text-muted-foreground/70">
-                              <Star className="w-3 h-3 fill-current" aria-hidden="true" />
-                              {result.score}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </button>
-                  );
-                })}
+                {visibleResults.map((result) => (
+                  <IngredientResultCard
+                    key={result.ingredient.id}
+                    result={result}
+                    verdict={evaluateSafety(result.ingredient)}
+                    onClick={setSelectedIngredient}
+                  />
+                ))}
               </div>
 
               {/* Paginación: ver más */}

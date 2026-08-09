@@ -36,7 +36,7 @@ export const CLIENT_PROFILES: ClientProfileInfo[] = [
   { value: 'diabetico', label: 'Diabético', short: 'DM', description: 'Precauciones en diabetes' },
 ];
 
-type SafetyVerdict = 'apto' | 'precaucion' | 'contraindicado';
+export type SafetyVerdict = 'apto' | 'precaucion' | 'contraindicado';
 
 interface ClientProfileContextValue {
   profile: ClientProfile;
