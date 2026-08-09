@@ -7,9 +7,8 @@
  */
 
 import { useMemo } from 'react';
-import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db/schema';
 import type { DbPathology, DbIngredient } from '@/db/schema';
+import { ingredientSearchService } from '@/core/search';
 import { Stethoscope, Leaf, AlertTriangle, ChevronRight, BookOpen } from 'lucide-react';
 
 interface ConditionCardProps {
@@ -51,7 +50,7 @@ const SYSTEM_LABELS: Record<string, string> = {
 };
 
 export function ConditionCard({ pathology, onIngredientClick, onExpand }: ConditionCardProps) {
-  // Cargar ingredientes referenciados en tratamiento natural (todas las categorías)
+  // Cargar ingredientes referenciados desde el índice cacheado (sin query Dexie)
   const allReferencedIds = useMemo(() => {
     const ids = new Set<string>();
     const tn = pathology.tratamientoNatural;
@@ -61,13 +60,10 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
     return Array.from(ids);
   }, [pathology]);
 
-  const ingredients = useLiveQuery(
-    async () => {
-      if (allReferencedIds.length === 0) return [] as (DbIngredient | undefined)[];
-      return db.ingredients.bulkGet(allReferencedIds);
-    },
-    [allReferencedIds],
-  );
+  const ingredients = useMemo<(DbIngredient | undefined)[]>(() => {
+    return allReferencedIds
+      .map(id => ingredientSearchService.getIngredient(id));
+  }, [allReferencedIds]);
 
   // Top 5 ingredientes por evidencia (A primero)
   const topRecommendations = useMemo(() => {
@@ -89,7 +85,7 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
       <div className="px-4 py-3 bg-primary/5 border-b border-primary/10 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 min-w-0">
           <Stethoscope className="w-5 h-5 text-primary shrink-0" />
-          <h2 className="text-lg font-bold truncate">{pathology.nombre}</h2>
+          <h2 className="text-lg font-bold truncate font-heading">{pathology.nombre}</h2>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${evidenceColor}`}>

@@ -1,12 +1,11 @@
 /**
- * Hook para obtener ingredientes de la base de datos local
- * Con soporte para filtros y recargas después de sync usando useLiveQuery
- * OPTIMIZADO: Usa filtrado en Dexie cuando es posible
+ * Hook para obtener ingredientes de la base de datos local.
+ * Usa el motor de búsqueda indexado (índice invertido) en vez de
+ * toArray+filter en memoria. Reacciona a cambios de la KB via useSearchIndex.
  */
 
 import { useMemo } from 'react';
-import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db';
+import { ingredientSearchService, useSearchIndex } from '@/core/search';
 import type { DbIngredient, IngredientCategory, BodySystem } from '@/db/schema';
 
 export interface UseIngredientsOptions {
@@ -25,53 +24,27 @@ export interface UseIngredientsResult {
 
 export function useIngredients(options: UseIngredientsOptions = {}): UseIngredientsResult {
   const { category, system, query, limit = 100 } = options;
+  const { ready } = useSearchIndex();
 
-  // useLiveQuery re-renderiza automáticamente cuando los datos cambian
-  // OPTIMIZADO: Usa filtrado en Dexie para category
-  const ingredientsData = useLiveQuery(
-    async () => {
-      let collection = db.ingredients;
-      
-      // Filtrar por categoría usando índice de Dexie
-      if (category) {
-        collection = collection.where('categoria').equals(category);
-      }
-      
-      const allIngredients = await collection.toArray();
-      
-      // Filtrado en memoria para system (no hay índice) y query
-      let filtered = allIngredients;
-
-      if (system) {
-        filtered = filtered.filter(i => i.sistemas.includes(system));
-      }
-
-      if (query && query.trim()) {
-        const q = query.toLowerCase().trim();
-        filtered = filtered.filter(i =>
-          i.nombre.toLowerCase().includes(q) ||
-          i.sinonimos.some(s => s.toLowerCase().includes(q)) ||
-          i.indicaciones.some(ind => ind.toLowerCase().includes(q))
-        );
-      }
-
-      return {
-        ingredients: filtered.slice(0, limit),
-        total: filtered.length,
-      };
-    },
-    [category, system, query, limit],
-    // Valor por defecto mientras carga
-    { ingredients: [], total: 0 }
-  );
-
-  const isLoading = ingredientsData === undefined || ingredientsData === null;
-  const error = null;
+  const data = useMemo(() => {
+    if (!ready) return { ingredients: [] as DbIngredient[], total: 0 };
+    const results = ingredientSearchService.searchSync({
+      query,
+      category,
+      system,
+    });
+    const ingredients = results.map(r => r.ingredient);
+    return {
+      ingredients: ingredients.slice(0, limit),
+      total: ingredients.length,
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, category, system, query, limit]);
 
   return {
-    ingredients: ingredientsData?.ingredients || [],
-    isLoading,
-    error,
-    total: ingredientsData?.total || 0,
+    ingredients: data.ingredients,
+    isLoading: !ready,
+    error: null,
+    total: data.total,
   };
 }

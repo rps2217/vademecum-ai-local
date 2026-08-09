@@ -15,3 +15,5 @@ export { PageLoader } from './PageLoader';
 export { RouteError } from './RouteError';
 export { Skeleton, CardSkeleton, ListSkeleton } from './Skeleton';
 export { ErrorBoundary } from './ErrorBoundary';
+export { CommandPalette } from './CommandPalette';
+export { ClientProfileSelector } from './ClientProfileSelector';

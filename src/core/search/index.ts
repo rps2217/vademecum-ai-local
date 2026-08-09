@@ -1,6 +1,7 @@
-export { 
-  IngredientSearchService, 
+export {
+  IngredientSearchService,
   ingredientSearchService,
-  type SearchFilters, 
-  type SearchResult, 
+  useSearchIndex,
+  type SearchFilters,
+  type SearchResult,
 } from './IngredientSearchService';

@@ -1,34 +1,25 @@
 /**
- * AppShell - Contenedor principal de la aplicación
+ * AppShell - Contenedor principal, optimizado para mostrador de farmacia.
  *
- * Layout dividido con:
- * - Sidebar fija (colapsable en desktop, deslizable en mobile)
- * - Header superior limpio con una única barra de búsqueda
- * - Área de contenido principal desplazada por la sidebar
+ * - Sidebar fija en desktop wide, deslizable en mobile/tablet.
+ * - Header con búsqueda unificada + atajo ⌘K (command palette real).
+ * - Botón "Nuevo" contextual.
+ * - Layout que prioriza el área de contenido (el farmacéutico necesita
+ *   ver resultados, no chrome de navegación).
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/app/ThemeProvider';
 import { useSearch } from '@/contexts/SearchContext';
+import { useSearchIndex } from '@/core/search';
 import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
+import { CommandPalette } from '@/ui/CommandPalette';
 import {
-  Search,
-  Plus,
-  Settings,
-  Database,
-  Link2,
-  Sparkles,
-  BarChart3,
-  Shield,
-  Menu,
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Sun,
-  Moon,
-  Monitor,
+  Search, Plus, Settings, Database, Link2, Sparkles, BarChart3,
+  Shield, Menu, X, ChevronLeft, ChevronRight, Sun, Moon, Monitor,
+  Command,
 } from 'lucide-react';
 
 interface NavItem {
@@ -40,28 +31,21 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'home', label: 'Inicio', icon: Search, href: '/' },
+  { id: 'home', label: 'Buscar', icon: Search, href: '/' },
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
   { id: 'synergies', label: 'Sinergias', icon: Link2, href: '/synergies' },
   { id: 'analysis', label: 'Análisis', icon: BarChart3, href: '/analysis' },
   { id: 'admin', label: 'Admin', icon: Shield, href: '/admin', badge: 'KB' },
 ];
 
-interface NavContentProps {
-  collapsed: boolean;
-  onNavigate: () => void;
-}
-
-function NavContent({ collapsed, onNavigate }: NavContentProps) {
+function NavContent({ collapsed, onNavigate }: { collapsed: boolean; onNavigate: () => void }) {
   const location = useLocation();
-
   return (
     <nav className="flex-1 overflow-y-auto px-3 py-4">
       <ul className="flex flex-col gap-1">
         {NAV_ITEMS.map((item) => {
           const isActive = location.pathname === item.href;
           const Icon = item.icon;
-
           return (
             <li key={item.id}>
               <Link
@@ -82,14 +66,10 @@ function NavContent({ collapsed, onNavigate }: NavContentProps) {
                   <>
                     <span className="flex-1 truncate">{item.label}</span>
                     {item.badge && (
-                      <span
-                        className={cn(
-                          'rounded px-1.5 py-0.5 text-xs font-medium',
-                          isActive
-                            ? 'bg-background text-foreground'
-                            : 'bg-accent text-accent-foreground'
-                        )}
-                      >
+                      <span className={cn(
+                        'rounded px-1.5 py-0.5 text-xs font-medium',
+                        isActive ? 'bg-background text-foreground' : 'bg-accent text-accent-foreground'
+                      )}>
                         {item.badge}
                       </span>
                     )}
@@ -109,6 +89,7 @@ export function AppShell() {
   const navigate = useNavigate();
   const location = useLocation();
   const { query, setQuery } = useSearch();
+  const { ready } = useSearchIndex();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('sidebar-collapsed') === 'true';
@@ -116,15 +97,27 @@ export function AppShell() {
     return false;
   });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
 
-  // Placeholder contextual según la página actual
+  // Atajo ⌘K / Ctrl+K para abrir command palette
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPaletteOpen(o => !o);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
   const searchPlaceholder = useMemo(() => {
     const path = location.pathname;
     if (path.startsWith('/synergies')) return 'Buscar sinergias por ingrediente...';
     if (path.startsWith('/knowledge')) return 'Buscar por nombre, sinónimo o indicación...';
     if (path.startsWith('/admin')) return 'Buscar ingredientes...';
     if (path.startsWith('/analysis')) return 'Buscar para análisis...';
-    return 'Buscar ingredientes, síntomas o sinergias...';
+    return 'Buscar ingredientes, síntomas o patologías...';
   }, [location.pathname]);
 
   const toggleCollapsed = () => {
@@ -135,9 +128,9 @@ export function AppShell() {
 
   const closeSidebar = () => setSidebarOpen(false);
 
-  // Páginas que filtran en sitio al escribir (no navegan)
   const isSearchPage = (path: string) =>
     path === '/' || ['/synergies', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim() && !isSearchPage(location.pathname)) {
@@ -158,20 +151,16 @@ export function AppShell() {
       )}
 
       {/* Sidebar */}
-      <aside
-        className={cn(
-          'fixed left-0 top-0 z-50 flex h-screen flex-col border-r border-sidebar bg-sidebar transition-all duration-300',
-          sidebarCollapsed ? 'w-16' : 'w-64',
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-        )}
-      >
+      <aside className={cn(
+        'fixed left-0 top-0 z-50 flex h-screen flex-col border-r border-sidebar bg-sidebar transition-all duration-300',
+        sidebarCollapsed ? 'w-16' : 'w-64',
+        sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      )}>
         {/* Logo */}
-        <div
-          className={cn(
-            'flex h-16 flex-shrink-0 items-center border-b border-sidebar px-4',
-            sidebarCollapsed ? 'justify-center' : 'justify-between'
-          )}
-        >
+        <div className={cn(
+          'flex h-16 flex-shrink-0 items-center border-b border-sidebar px-4',
+          sidebarCollapsed ? 'justify-center' : 'justify-between'
+        )}>
           <Link to="/" className="flex items-center gap-2" onClick={closeSidebar}>
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Sparkles className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
@@ -182,10 +171,9 @@ export function AppShell() {
           </Link>
         </div>
 
-        {/* Navigation */}
         <NavContent collapsed={sidebarCollapsed} onNavigate={closeSidebar} />
 
-        {/* Sidebar footer */}
+        {/* Footer */}
         <div className={cn('flex-shrink-0 border-t border-sidebar p-3', sidebarCollapsed && 'px-2')}>
           {!sidebarCollapsed ? (
             <>
@@ -197,8 +185,6 @@ export function AppShell() {
                 <Settings className="h-5 w-5" aria-hidden="true" />
                 <span>Configuración</span>
               </Link>
-
-              {/* Theme selector */}
               <div className="mt-2 flex items-center gap-1 rounded-lg bg-sidebar-accent p-1">
                 {([
                   { value: 'light', icon: Sun, label: 'Tema claro' },
@@ -211,9 +197,7 @@ export function AppShell() {
                     className={cn(
                       'flex flex-1 items-center justify-center rounded-md py-1.5 transition-colors',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                      theme === value
-                        ? 'bg-card text-foreground shadow-sm'
-                        : 'text-sidebar-foreground hover:text-foreground'
+                      theme === value ? 'bg-card text-foreground shadow-sm' : 'text-sidebar-foreground hover:text-foreground'
                     )}
                     aria-label={label}
                     aria-pressed={theme === value}
@@ -255,11 +239,10 @@ export function AppShell() {
         </button>
       </aside>
 
-      {/* Main content area */}
+      {/* Main content */}
       <div className={cn('flex min-h-screen flex-col transition-all duration-300', sidebarCollapsed ? 'lg:pl-16' : 'lg:pl-64')}>
         {/* Header */}
-        <header className="sticky top-0 z-30 flex h-16 flex-shrink-0 items-center gap-3 border-b border-header bg-header px-4 lg:px-6">
-          {/* Mobile menu button */}
+        <header className="sticky top-0 z-30 flex h-16 flex-shrink-0 items-center gap-3 border-b border-header bg-header/95 backdrop-blur px-4 lg:px-6">
           <button
             onClick={() => setSidebarOpen(true)}
             className="rounded-lg p-2 text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
@@ -268,7 +251,7 @@ export function AppShell() {
             <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
 
-          {/* Single consolidated search bar */}
+          {/* Search bar */}
           <form onSubmit={handleSearchSubmit} className="flex flex-1 justify-start" role="search">
             <div className="relative w-full max-w-xl">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
@@ -280,16 +263,22 @@ export function AppShell() {
                 aria-label={searchPlaceholder}
                 className="h-10 w-full rounded-lg border border-border bg-muted pl-10 pr-14 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
               />
-              <kbd className="pointer-events-none absolute right-3 top-1/2 hidden h-5 -translate-y-1/2 items-center gap-1 rounded border border-border bg-card px-1.5 font-mono text-xs text-muted-foreground sm:inline-flex">
-                <span aria-hidden="true">⌘</span>K
-              </kbd>
+              <button
+                type="button"
+                onClick={() => setPaletteOpen(true)}
+                className="pointer-events-auto absolute right-2 top-1/2 -translate-y-1/2 flex h-6 items-center gap-0.5 rounded border border-border bg-card px-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-primary/50"
+                aria-label="Abrir búsqueda rápida (⌘K)"
+                title="Búsqueda rápida ⌘K"
+              >
+                <Command className="h-3 w-3" aria-hidden="true" />
+                <span>K</span>
+              </button>
             </div>
           </form>
 
           {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
             <SyncStatusBar className="hidden md:flex" />
-
             <button
               onClick={() => navigate('/admin')}
               className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
@@ -300,18 +289,16 @@ export function AppShell() {
           </div>
         </header>
 
-        {/* Mobile-only sync bar */}
         <div className="flex items-center border-b border-border px-4 py-2 md:hidden">
           <SyncStatusBar />
         </div>
 
-        {/* Page content */}
         <main className="flex-1 p-4 lg:p-8">
           <Outlet />
         </main>
       </div>
 
-      {/* Mobile sidebar close button */}
+      {/* Mobile sidebar close */}
       {sidebarOpen && (
         <button
           onClick={closeSidebar}
@@ -321,6 +308,16 @@ export function AppShell() {
           <X className="h-5 w-5" aria-hidden="true" />
         </button>
       )}
+
+      {/* Indicador de índice listo (sutil) */}
+      {!ready && (
+        <div className="fixed bottom-4 right-4 z-30 flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-xs text-muted-foreground shadow-md">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-amber-500" />
+          Indexando base de conocimiento…
+        </div>
+      )}
+
+      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
     </div>
   );
 }

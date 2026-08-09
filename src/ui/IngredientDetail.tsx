@@ -1,14 +1,28 @@
 /**
- * IngredientDetail - Modal de detalle de ingrediente
- * OPTIMIZADO: Memoizado para evitar re-renders innecesarios
+ * IngredientDetail - Ficha de ingrediente con jerarquía clínica.
+ *
+ * Estructura optimizada para decisión en mostrador:
+ *   1. Encabezado: nombre + sinónimos + badges (evidencia/categoría/familia)
+ *   2. Seguridad (semáforo): embarazo / lactancia / pediatría — lo primero que
+ *      un farmacéutico comprueba antes de recomendar.
+ *   3. Indicaciones + propiedades (qué trata y cómo)
+ *   4. Sistemas corporales
+ *   5. Interacciones medicamentosas (alertas)
+ *   6. Fuentes
+ *
+ * Memoizado para evitar re-renders innecesarios.
  */
 
 import { memo, useMemo } from 'react';
-import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
-import { X, AlertTriangle, Info, Link as LinkIcon } from 'lucide-react';
-import type { DbIngredient } from '@/db/schema';
+import {
+  X, AlertTriangle, Info, Link as LinkIcon, Leaf, Shield,
+  CheckCircle2, XCircle, AlertCircle, BookOpen, FlaskConical,
+} from 'lucide-react';
+import type { DbIngredient, IngredientSafety, SafetyStatus } from '@/db/schema';
+import { humanize } from '@/lib/text';
+import { cn } from '@/lib/utils';
 
 interface IngredientDetailProps {
   ingredient: DbIngredient;
@@ -16,177 +30,190 @@ interface IngredientDetailProps {
   onViewSynergies?: (id: string) => void;
 }
 
-const EVIDENCE_COLORS = {
-  A: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  B: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  C: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-  D: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
-} as const;
+const EVIDENCE_CONFIG: Record<string, { label: string; color: string; title: string }> = {
+  A: { label: 'Evidencia A', color: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30', title: 'Alta: meta-análisis / ECA' },
+  B: { label: 'Evidencia B', color: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30', title: 'Media: estudios controlados' },
+  C: { label: 'Evidencia C', color: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/30', title: 'Baja: observacional / tradicional' },
+  D: { label: 'Evidencia D', color: 'bg-gray-500/15 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20', title: 'Muy baja: uso tradicional' },
+};
+
+const SAFETY_CONFIG: Record<SafetyStatus, { icon: typeof CheckCircle2; color: string; label: string }> = {
+  apto: { icon: CheckCircle2, color: 'text-emerald-600 dark:text-emerald-400', label: 'Apto' },
+  evitar: { icon: AlertCircle, color: 'text-amber-600 dark:text-amber-400', label: 'Evitar / precaución' },
+  contraindicado: { icon: XCircle, color: 'text-red-600 dark:text-red-400', label: 'Contraindicado' },
+  desconocido: { icon: AlertCircle, color: 'text-gray-400 dark:text-gray-500', label: 'Datos limitados' },
+};
+
+function SafetyRow({ label, status }: { label: string; status: SafetyStatus | undefined }) {
+  const config = SAFETY_CONFIG[status ?? 'desconocido'];
+  const Icon = config.icon;
+  return (
+    <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-card border border-border">
+      <Icon className={cn('w-4 h-4 shrink-0', config.color)} aria-hidden="true" />
+      <span className="text-sm font-medium text-foreground flex-1">{label}</span>
+      <span className={cn('text-xs font-medium', config.color)}>{config.label}</span>
+    </div>
+  );
+}
 
 const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: IngredientDetailProps) => {
-  // Memoizar datos calculados
-  const evidenceColor = useMemo(() => EVIDENCE_COLORS[ingredient.evidencia] || EVIDENCE_COLORS.C, [ingredient.evidencia]);
-  const sinonimosDisplay = useMemo(() => ingredient.sinonimos?.slice(0, 3).join(', '), [ingredient.sinonimos]);
-  const sistemasBadges = useMemo(() => ingredient.sistemas?.map(sys => (
-    <Badge key={sys} variant="secondary">{sys}</Badge>
-  )), [ingredient.sistemas]);
-  const indicacionesList = useMemo(() => ingredient.indicaciones?.map((ind, idx) => (
-    <li key={idx} className="text-sm text-muted-foreground">{ind}</li>
-  )), [ingredient.indicaciones]);
-  const propiedadesList = useMemo(() => ingredient.propiedades?.map((prop, idx) => (
-    <p key={idx} className="text-sm text-muted-foreground">{prop}</p>
-  )), [ingredient.propiedades]);
-  const interaccionesBadges = useMemo(() => ingredient.interacciones?.map((int, idx) => (
-    <Badge key={idx} variant="danger">{int}</Badge>
-  )), [ingredient.interacciones]);
-
-  const handleClose = () => onClose();
-  const handleViewSynergies = () => onViewSynergies?.(ingredient.id);
+  const evidenceConfig = useMemo(
+    () => EVIDENCE_CONFIG[ingredient.evidencia] || EVIDENCE_CONFIG.D,
+    [ingredient.evidencia]
+  );
+  const sinonimosDisplay = useMemo(
+    () => ingredient.sinonimos?.slice(0, 4).join(', '),
+    [ingredient.sinonimos]
+  );
+  const seguridad = ingredient.seguridad as IngredientSafety | undefined;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div 
-        className="absolute inset-0 bg-black/50" 
-        onClick={handleClose} 
-        onKeyDown={(e) => e.key === 'Escape' && handleClose()} 
-        tabIndex={0} 
-        role="button" 
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+        onKeyDown={(e) => e.key === 'Escape' && onClose()}
+        tabIndex={0}
+        role="button"
+        aria-label="Cerrar ficha"
       />
-      
-      <Card className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
-        <div className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10">
-          <div>
-            <h2 className="text-xl font-bold">{ingredient.nombre}</h2>
+
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card shadow-2xl animate-scale-in">
+        {/* Encabezado pegajoso */}
+        <div className="sticky top-0 z-10 bg-card border-b border-border px-6 py-4 flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span
+                className={cn('px-2 py-0.5 rounded-full text-xs font-semibold cursor-help', evidenceConfig.color)}
+                title={evidenceConfig.title}
+              >
+                {evidenceConfig.label}
+              </span>
+              <Badge variant="outline" className="text-xs capitalize">
+                {humanize(ingredient.categoria)}
+              </Badge>
+            </div>
+            <h2 className="text-2xl font-bold font-heading truncate">{ingredient.nombre}</h2>
             {sinonimosDisplay && (
-              <p className="text-sm text-muted-foreground">
-                {sinonimosDisplay}
-              </p>
+              <p className="text-sm text-muted-foreground truncate">{sinonimosDisplay}</p>
             )}
           </div>
-          <Button variant="ghost" size="icon" onClick={handleClose} aria-label="Cerrar">
+          <Button variant="ghost" size="icon" onClick={onClose} aria-label="Cerrar">
             <X className="w-5 h-5" aria-hidden="true" />
           </Button>
         </div>
 
-        <div className="p-6 space-y-6">
-          {/* Badges */}
-          <div className="flex flex-wrap gap-2">
-            <Badge className={evidenceColor}>
-              Evidencia {ingredient.evidencia}
-            </Badge>
-            <Badge variant="outline">
-              {ingredient.categoria.replace('_', ' ')}
-            </Badge>
-            {ingredient.familia && (
-              <Badge variant="secondary">
-                {ingredient.familia}
-              </Badge>
-            )}
-          </div>
-
-          {/* Sistemas */}
-          {sistemasBadges && sistemasBadges.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                <Info className="w-4 h-4" aria-hidden="true" />
-                Sistemas corporales
+        <div className="px-6 py-5 space-y-6">
+          {/* SEGURIDAD — semáforo (lo primero que revisa el farmacéutico) */}
+          {seguridad && (
+            <section>
+              <h3 className="text-sm font-semibold mb-2 flex items-center gap-2 text-foreground">
+                <Shield className="w-4 h-4 text-primary" aria-hidden="true" />
+                Seguridad
               </h3>
-              <div className="flex flex-wrap gap-1">
-                {sistemasBadges}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <SafetyRow label="Embarazo" status={seguridad.embarazo} />
+                <SafetyRow label="Lactancia" status={seguridad.lactancia} />
+                <SafetyRow label="Pediatría" status={seguridad.pediatria} />
               </div>
-            </div>
+            </section>
           )}
 
           {/* Indicaciones */}
-          {indicacionesList && indicacionesList.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold mb-2">Indicaciones</h3>
-              <ul className="list-disc list-inside space-y-1">
-                {indicacionesList}
-              </ul>
-            </div>
-          )}
-
-          {/* Propiedades */}
-          {propiedadesList && propiedadesList.length > 0 && (
-            <div>
-              <h3 className="text-sm font-semibold mb-2">Propiedades</h3>
-              <div className="space-y-2">
-                {propiedadesList}
-              </div>
-            </div>
-          )}
-
-          {/* Seguridad */}
-          {ingredient.seguridad && (
-            <div>
+          {ingredient.indicaciones && ingredient.indicaciones.length > 0 && (
+            <section>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-500" aria-hidden="true" />
-                Seguridad
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                Indicaciones
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {ingredient.indicaciones.map((ind) => (
+                  <span key={ind} className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/20">
+                    {humanize(ind)}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Propiedades / mecanismo */}
+          {ingredient.propiedades && ingredient.propiedades.length > 0 && (
+            <section>
+              <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
+                <Info className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                Propiedades y mecanismo
               </h3>
               <div className="space-y-2">
-                {ingredient.seguridad.embarazo && (
-                  <div className={`p-3 rounded-lg ${
-                    ingredient.seguridad.embarazo === 'evitar' 
-                      ? 'bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200'
-                      : 'bg-green-50 text-green-800 dark:bg-green-900/30 dark:text-green-200'
-                  }`}>
-                    <strong>Embarazo:</strong> {ingredient.seguridad.embarazo}
-                  </div>
-                )}
-                {ingredient.seguridad.lactancia && (
-                  <div className={`p-3 rounded-lg ${
-                    ingredient.seguridad.lactancia === 'evitar' 
-                      ? 'bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200'
-                      : 'bg-green-50 text-green-800 dark:bg-green-900/30 dark:text-green-200'
-                  }`}>
-                    <strong>Lactancia:</strong> {ingredient.seguridad.lactancia}
-                  </div>
-                )}
-                {ingredient.seguridad.pediatria && (
-                  <div className={`p-3 rounded-lg ${
-                    ingredient.seguridad.pediatria === 'evitar' 
-                      ? 'bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200'
-                      : 'bg-green-50 text-green-800 dark:bg-green-900/30 dark:text-green-200'
-                  }`}>
-                    <strong>Pediatria:</strong> {ingredient.seguridad.pediatria}
-                  </div>
-                )}
+                {ingredient.propiedades.map((prop, idx) => (
+                  <p key={idx} className="text-sm text-muted-foreground leading-relaxed">{prop}</p>
+                ))}
               </div>
-            </div>
+            </section>
           )}
 
-          {/* Interacciones */}
-          {interaccionesBadges && interaccionesBadges.length > 0 && (
-            <div>
+          {/* Sistemas corporales */}
+          {ingredient.sistemas && ingredient.sistemas.length > 0 && (
+            <section>
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-red-500" aria-hidden="true" />
+                <FlaskConical className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                Sistemas corporales
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {ingredient.sistemas.map((sys) => (
+                  <Badge key={sys} variant="secondary" className="capitalize">{humanize(sys)}</Badge>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Interacciones medicamentosas */}
+          {ingredient.interacciones && ingredient.interacciones.length > 0 && (
+            <section className="rounded-lg bg-red-500/5 border border-red-500/20 p-4">
+              <h3 className="text-sm font-semibold mb-2 flex items-center gap-2 text-red-700 dark:text-red-400">
+                <AlertTriangle className="w-4 h-4" aria-hidden="true" />
                 Interacciones medicamentosas
               </h3>
               <div className="flex flex-wrap gap-2">
-                {interaccionesBadges}
+                {ingredient.interacciones.map((int, idx) => (
+                  <span key={idx} className="px-2.5 py-1 rounded-full text-xs font-medium bg-red-500/10 text-red-700 dark:text-red-300 ring-1 ring-red-500/20">
+                    {int}
+                  </span>
+                ))}
               </div>
-            </div>
+            </section>
+          )}
+
+          {/* Fuentes */}
+          {ingredient.fuentes && ingredient.fuentes.length > 0 && (
+            <section>
+              <h3 className="text-sm font-semibold mb-2 flex items-center gap-2 text-muted-foreground">
+                <BookOpen className="w-4 h-4" aria-hidden="true" />
+                Fuentes
+              </h3>
+              <ul className="space-y-1">
+                {ingredient.fuentes.map((fuente, idx) => (
+                  <li key={idx} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                    <Leaf className="w-3 h-3 mt-0.5 shrink-0" aria-hidden="true" />
+                    {fuente}
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
 
           {/* Acciones */}
-          <div className="flex gap-3 pt-4 border-t">
-            <Button 
-              variant="outline" 
-              className="flex-1"
-              onClick={handleViewSynergies}
-            >
+          <div className="flex gap-3 pt-2 border-t border-border">
+            <Button variant="outline" className="flex-1" onClick={() => onViewSynergies?.(ingredient.id)}>
               <LinkIcon className="w-4 h-4 mr-2" aria-hidden="true" />
               Ver sinergias
             </Button>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };
 
-// Memoizar el componente para evitar re-renders innecesarios
 export const IngredientDetail = memo(IngredientDetailComponent, (prevProps, nextProps) => {
   return prevProps.ingredient.id === nextProps.ingredient.id &&
          prevProps.ingredient.updatedAt === nextProps.ingredient.updatedAt;

@@ -4,6 +4,7 @@
  */
 import { logger } from '@/lib/logger';
 import { BODY_SYSTEMS } from '@/types/shared-enums';
+import { normalizeIndications } from '@/lib/text';
 
 import { db } from '../schema';
 import type { 
@@ -54,7 +55,10 @@ async function computeKbVersion(): Promise<string> {
     patCount,
     patWithCtx,
   ];
-  return `v${counts.join('-')}`;
+  // Sufijo "n2" = normalización de indicaciones (acentos canónicos).
+  // Cambiar este sufijo fuerza re-siembra cuando la lógica de transformación
+  // cambia aunque los conteos del JSON sean iguales.
+  return `v${counts.join('-')}-n2`;
 }
 
 export async function getStoredKbVersion(): Promise<string | null> {
@@ -203,7 +207,7 @@ function transformIngredient(json: JsonIngredient): DbIngredient {
     categoria: mapCategory(json.categoria),
     familia: json.familia,
     sistemas: mapSystems(json.sistemas),
-    indicaciones: json.indicaciones || [],
+    indicaciones: normalizeIndications(json.indicaciones || []),
     evidencia: mapEvidenceLevel(json.nivelEvidencia),
     propiedades: [
       json.descripcion,
