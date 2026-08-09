@@ -1,7 +1,9 @@
 /**
- * SearchPage - Pagina de busqueda rediseñada
- * 
- * Busqueda con filtros avanzados y resultados visualizados.
+ * SearchPage - Página de búsqueda optimizada para el mostrador de farmacia
+ *
+ * Paradigma condición-céntrico: al buscar un síntoma, la ficha de condición
+ * aparece como resultado primario (reconocer → recomendar → proteger → derivar).
+ * Los ingredientes se ordenan por evidencia (A primero) en cards compactas.
  */
 
 import { useState, useEffect, useMemo } from 'react';
@@ -11,6 +13,7 @@ import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Select } from '@/ui/Select';
 import { FilterChips, type ChipOption } from '@/ui/FilterChips';
+import { ConditionCard } from '@/ui/ConditionCard';
 import { Search, Filter, Star, BookOpen, Leaf, FlaskConical, X, Brain, Heart, Wind, Shield, Bone, Sparkles, Droplet, Eye, Zap, Activity, Pill } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
@@ -63,12 +66,16 @@ const CATEGORY_CONFIG: Record<string, { icon: typeof Leaf; color: string }> = {
   probiotico: { icon: Leaf, color: 'bg-pink-500/10 text-pink-600' },
 };
 
+// Semántica de decisión: verde=recomendar, azul=informar, gris=precaución/baja
 const EVIDENCE_CONFIG: Record<string, { label: string; color: string }> = {
-  A: { label: 'Alta', color: 'bg-green-100 text-green-800' },
-  B: { label: 'Media', color: 'bg-blue-100 text-blue-800' },
-  C: { label: 'Baja', color: 'bg-yellow-100 text-yellow-800' },
-  D: { label: 'Muy baja', color: 'bg-gray-100 text-gray-800' },
+  A: { label: 'A', color: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30 font-medium' },
+  B: { label: 'B', color: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30 font-medium' },
+  C: { label: 'C', color: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20' },
+  D: { label: 'D', color: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20' },
 };
+
+// Orden de evidencia para sorting (A primero)
+const EVIDENCE_RANK: Record<string, number> = { A: 0, B: 1, C: 2, D: 3 };
 
 export function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -143,6 +150,56 @@ export function SearchPage() {
 
     return () => clearTimeout(searchTimeout);
   }, [query, category, system, evidence, indication]);
+
+  // Detectar patología coincidente: por indicación seleccionada, por query,
+  // o por coincidencia de nombre/síntomas
+  const matchedPathology = useMemo(() => {
+    if (!allPathologies) return null;
+
+    // 1) Si hay indicación seleccionada y coincide con un ID de patología
+    if (indication && pathologyByIndication.has(indication)) {
+      return pathologyByIndication.get(indication)!;
+    }
+
+    // 2) Si la query coincide exactamente con un ID de patología
+    if (query.length >= 2) {
+      const q = query.toLowerCase().trim();
+      // Coincidencia exacta de ID
+      const exact = allPathologies.find(p => p.id === q);
+      if (exact) return exact;
+
+      // Coincidencia de nombre (contains, flexible con acentos)
+      const normalize = (s: string) => s.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const nq = normalize(q);
+      const nameMatch = allPathologies.find(p => {
+        const np = normalize(p.nombre);
+        return np === nq || np.includes(nq) || nq.includes(np);
+      });
+      if (nameMatch) return nameMatch;
+
+      // Coincidencia con síntomas
+      const symptomMatch = allPathologies.find(p =>
+        p.sintomas.some(s => {
+          const ns = normalize(s);
+          return ns === nq || ns.includes(nq);
+        })
+      );
+      if (symptomMatch) return symptomMatch;
+    }
+
+    return null;
+  }, [allPathologies, pathologyByIndication, indication, query]);
+
+  // Resultados ordenados por evidencia (A primero), luego por score
+  const sortedResults = useMemo(() => {
+    return [...results].sort((a, b) => {
+      const rankA = EVIDENCE_RANK[a.ingredient.evidencia] ?? 3;
+      const rankB = EVIDENCE_RANK[b.ingredient.evidencia] ?? 3;
+      if (rankA !== rankB) return rankA - rankB;
+      return b.score - a.score;
+    });
+  }, [results]);
 
   const activeFiltersCount = [category, system, evidence, indication].filter(Boolean).length;
   const hasActiveChips = system || evidence || indication;
@@ -282,110 +339,88 @@ export function SearchPage() {
               </button>
             </Badge>
           )}
-          {/* Contexto clínico de la patología */}
-          {indication && pathologyByIndication.has(indication) && (
-            <button
-              onClick={() => setSelectedPathology(pathologyByIndication.get(indication)!)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 border border-primary/30 transition-colors"
-            >
-              <Pill className="w-4 h-4" />
-              Ver contexto clínico
-            </button>
-          )}
+          {/* Contexto clínico de la patología — ahora como ficha primaria, no botón */}
         </div>
       )}
 
-      {/* Results */}
-      {results.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {results.map((result) => {
-            const catConfig = getCategoryConfig(result.ingredient.categoria);
-            const evConfig = getEvidenceConfig(result.ingredient.evidencia);
-            const CatIcon = catConfig.icon;
+      {/* Ficha de condición como resultado primario (mostrador) */}
+      {matchedPathology && (query.length >= 2 || indication) && (
+        <ConditionCard
+          pathology={matchedPathology}
+          onIngredientClick={(id) => {
+            const ing = allIngredients?.find(i => i.id === id);
+            if (ing) setSelectedIngredient(ing);
+          }}
+          onExpand={(p) => setSelectedPathology(p)}
+        />
+      )}
 
-            return (
-              <Card 
-                key={result.ingredient.id} 
-                className="p-4 hover:border-primary transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                onClick={() => setSelectedIngredient(result.ingredient)}
-              >
-                {/* Header with Icon */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className={cn('p-2 rounded-lg', catConfig.color)}>
-                    <CatIcon className="w-4 h-4" aria-hidden="true" />
+      {/* Ingredientes — ordenados por evidencia (A primero) */}
+      {sortedResults.length > 0 ? (
+        <div className="space-y-3">
+          {/* Contador compacto */}
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+              Ingredientes
+            </h3>
+            <span className="text-xs text-muted-foreground">
+              {sortedResults.length} · ordenado por evidencia
+            </span>
+          </div>
+
+          {/* Grid de cards compactas */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">
+            {sortedResults.map((result) => {
+              const catConfig = getCategoryConfig(result.ingredient.categoria);
+              const evConfig = getEvidenceConfig(result.ingredient.evidencia);
+              const CatIcon = catConfig.icon;
+
+              return (
+                <button
+                  key={result.ingredient.id}
+                  className="text-left p-3 rounded-lg bg-card border border-border hover:border-primary hover:shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group"
+                  onClick={() => setSelectedIngredient(result.ingredient)}
+                >
+                  {/* Línea 1: icono + nombre + evidencia (escaneo rápido) */}
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <div className={cn('p-1 rounded shrink-0', catConfig.color)}>
+                        <CatIcon className="w-3 h-3" aria-hidden="true" />
+                      </div>
+                      <h4 className="font-medium text-sm truncate group-hover:text-primary transition-colors">
+                        {result.ingredient.nombre}
+                      </h4>
+                    </div>
+                    <span className={cn('px-1.5 py-0.5 rounded text-xs shrink-0', evConfig.color)}>
+                      {evConfig.label}
+                    </span>
                   </div>
-                  {result.score > 50 && (
-                    <Badge variant="secondary" className="flex items-center gap-1">
-                      <Star className="w-3 h-3" aria-hidden="true" />
-                      {result.score}
-                    </Badge>
+
+                  {/* Línea 2: 1 indicación principal (la relevante) */}
+                  {result.ingredient.indicaciones && result.ingredient.indicaciones.length > 0 && (
+                    <p className="text-xs text-muted-foreground truncate">
+                      {result.ingredient.indicaciones[0].replace(/_/g, ' ')}
+                    </p>
                   )}
-                </div>
 
-                {/* Name */}
-                <h3 className="font-semibold text-lg mb-1">
-                  {result.ingredient.nombre}
-                </h3>
-
-                {/* Synonyms */}
-                {result.ingredient.sinonimos && result.ingredient.sinonimos.length > 0 && (
-                  <p className="text-xs text-muted-foreground mb-2 line-clamp-1">
-                    {result.ingredient.sinonimos.slice(0, 3).join(', ')}
-                  </p>
-                )}
-
-                {/* Badges */}
-                <div className="flex flex-wrap gap-1 mb-2">
-                  <Badge variant="secondary" className="text-xs">
-                    {result.ingredient.categoria}
-                  </Badge>
-                  <span className={`text-xs px-1.5 py-0.5 rounded ${evConfig.color}`}>
-                    Ev. {evConfig.label}
-                  </span>
-                </div>
-
-                {/* Systems */}
-                {result.ingredient.sistemas && result.ingredient.sistemas.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
-                    {result.ingredient.sistemas.slice(0, 3).map((sys) => (
-                      <Badge
-                        key={sys}
-                        variant="outline"
-                        className={cn('text-xs cursor-pointer', system === sys && 'bg-primary text-primary-foreground border-primary')}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSystem(system === sys ? '' : sys);
-                        }}
-                      >
-                        {sys}
-                      </Badge>
-                    ))}
+                  {/* Línea 3: score + categoría (sutil) */}
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="text-[10px] text-muted-foreground/70 capitalize">
+                      {result.ingredient.categoria.replace('_', ' ')}
+                    </span>
+                    {result.score > 50 && (
+                      <span className="flex items-center gap-0.5 text-[10px] text-muted-foreground/70">
+                        <Star className="w-2.5 h-2.5" aria-hidden="true" />
+                        {result.score}
+                      </span>
+                    )}
                   </div>
-                )}
-
-                {/* Indications Preview */}
-                {result.ingredient.indicaciones && result.ingredient.indicaciones.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {result.ingredient.indicaciones.slice(0, 3).map((ind) => (
-                      <Badge
-                        key={ind}
-                        variant="outline"
-                        className={cn('text-xs cursor-pointer', indication === ind && 'bg-primary text-primary-foreground border-primary')}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIndication(indication === ind ? '' : ind);
-                        }}
-                      >
-                        {ind}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-              </Card>
-            );
-          })}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      ) : (query.length >= 2 || hasActiveChips) && !isSearching ? (
+      ) : (query.length >= 2 || hasActiveChips) && !isSearching && !matchedPathology ? (
         <div className="text-center py-12">
           <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <p className="text-muted-foreground font-medium">
@@ -410,7 +445,7 @@ export function SearchPage() {
             Escribe al menos 2 caracteres o usa los filtros para explorar
           </p>
           <p className="text-sm text-muted-foreground mt-1">
-            {allIngredients?.length || 0} ingredientes en la base de conocimiento
+            {allIngredients?.length || 0} ingredientes · {allPathologies?.length || 0} patologías en la base de conocimiento
           </p>
         </div>
       ) : null}
