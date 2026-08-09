@@ -198,6 +198,7 @@ export function KnowledgePage() {
       {selectedIngredient && (
         <IngredientDetail
           ingredient={selectedIngredient}
+          activeIndication={query}
           onClose={() => setSelectedIngredient(null)}
           onViewSynergies={(id) => {
             setSelectedIngredient(null);

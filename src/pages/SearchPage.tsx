@@ -431,6 +431,7 @@ export function SearchPage() {
       {selectedIngredient && (
         <IngredientDetail
           ingredient={selectedIngredient}
+          activeIndication={indication || query}
           onClose={() => setSelectedIngredient(null)}
           onViewSynergies={(id) => {
             setSelectedIngredient(null);

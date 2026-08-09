@@ -16,18 +16,22 @@
 import { memo, useMemo } from 'react';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
+import { HighlightText } from '@/ui/HighlightText';
 import {
   X, AlertTriangle, Info, Link as LinkIcon, Leaf, Shield,
   CheckCircle2, XCircle, AlertCircle, BookOpen, FlaskConical,
 } from 'lucide-react';
 import type { DbIngredient, IngredientSafety, SafetyStatus } from '@/db/schema';
 import { humanize } from '@/lib/text';
+import { buildHighlightTerms } from '@/lib/highlightTerms';
 import { cn } from '@/lib/utils';
 
 interface IngredientDetailProps {
   ingredient: DbIngredient;
   onClose: () => void;
   onViewSynergies?: (id: string) => void;
+  /** Indicación o query activa al abrir la ficha — resalta términos relacionados. */
+  activeIndication?: string;
 }
 
 const EVIDENCE_CONFIG: Record<string, { label: string; color: string; title: string }> = {
@@ -56,7 +60,7 @@ function SafetyRow({ label, status }: { label: string; status: SafetyStatus | un
   );
 }
 
-const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: IngredientDetailProps) => {
+const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activeIndication }: IngredientDetailProps) => {
   const evidenceConfig = useMemo(
     () => EVIDENCE_CONFIG[ingredient.evidencia] || EVIDENCE_CONFIG.D,
     [ingredient.evidencia]
@@ -66,6 +70,10 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
     [ingredient.sinonimos]
   );
   const seguridad = ingredient.seguridad as IngredientSafety | undefined;
+  const highlightTerms = useMemo(
+    () => buildHighlightTerms(activeIndication),
+    [activeIndication]
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -128,7 +136,15 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {ingredient.indicaciones.map((ind) => (
-                  <span key={ind} className="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/20">
+                  <span
+                    key={ind}
+                    className={cn(
+                      'px-2.5 py-1 rounded-full text-xs font-medium ring-1',
+                      highlightTerms.length > 0 && ind.toLowerCase() === (activeIndication ?? '').toLowerCase()
+                        ? 'bg-yellow-200/80 dark:bg-yellow-500/30 text-foreground ring-yellow-500/40'
+                        : 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 ring-emerald-500/20'
+                    )}
+                  >
                     {humanize(ind)}
                   </span>
                 ))}
@@ -142,10 +158,17 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
               <h3 className="text-sm font-semibold mb-2 flex items-center gap-2">
                 <Info className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
                 Propiedades y mecanismo
+                {highlightTerms.length > 0 && (
+                  <span className="text-xs font-normal text-muted-foreground">
+                    (resaltado según indicación seleccionada)
+                  </span>
+                )}
               </h3>
               <div className="space-y-2">
                 {ingredient.propiedades.map((prop, idx) => (
-                  <p key={idx} className="text-sm text-muted-foreground leading-relaxed">{prop}</p>
+                  <p key={idx} className="text-sm text-muted-foreground leading-relaxed">
+                    <HighlightText text={prop} terms={highlightTerms} />
+                  </p>
                 ))}
               </div>
             </section>
@@ -216,5 +239,6 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies }: Ing
 
 export const IngredientDetail = memo(IngredientDetailComponent, (prevProps, nextProps) => {
   return prevProps.ingredient.id === nextProps.ingredient.id &&
-         prevProps.ingredient.updatedAt === nextProps.ingredient.updatedAt;
+         prevProps.ingredient.updatedAt === nextProps.ingredient.updatedAt &&
+         prevProps.activeIndication === nextProps.activeIndication;
 });
