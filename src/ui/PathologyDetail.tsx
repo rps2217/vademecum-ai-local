@@ -23,10 +23,10 @@ interface PathologyDetailProps {
 }
 
 const EVIDENCE_COLORS = {
-  A: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  B: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  C: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-  D: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
+  A: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30',
+  B: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30',
+  C: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/30',
+  D: 'bg-gray-500/15 text-gray-600 dark:text-gray-300 ring-1 ring-gray-500/30',
 } as const;
 
 const SYSTEM_LABELS: Record<string, string> = {
@@ -132,30 +132,30 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
             {pathology.sintomas.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {pathology.sintomas.map((s, i) => (
-                  <span key={i} className="px-2 py-0.5 rounded-full text-xs bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200">{s}</span>
+                  <span key={i} className="px-2 py-0.5 rounded-full text-xs font-medium bg-sky-500/10 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/20">{s}</span>
                 ))}
               </div>
             )}
             {pathology.causas.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {pathology.causas.map((c, i) => (
-                  <span key={i} className="px-2 py-0.5 rounded-full text-xs bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200">{c}</span>
+                  <span key={i} className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/20">{c}</span>
                 ))}
               </div>
             )}
           </section>
 
           {/* Tratamiento Natural — sección hero (protagonista) */}
-          <section className="p-4 rounded-xl bg-green-50 dark:bg-green-950/20 border-2 border-green-300 dark:border-green-800">
+          <section className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60">
             <div className="flex items-center gap-2 mb-3">
-              <Leaf className="w-5 h-5 text-green-600 dark:text-green-400" />
-              <h3 className="font-bold text-sm uppercase tracking-wide text-green-800 dark:text-green-300">
+              <Leaf className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <h3 className="font-bold text-sm uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
                 Tratamiento Natural
               </h3>
             </div>
 
             {/* Tabs */}
-            <div className="flex flex-wrap gap-1 mb-3 border-b border-green-200 dark:border-green-800">
+            <div className="flex flex-wrap gap-1 mb-3 border-b border-emerald-200 dark:border-emerald-800/60">
               {NATURAL_TABS.map(tab => {
                 const count = pathology.tratamientoNatural[tab.key]?.length || 0;
                 if (count === 0) return null;
@@ -167,7 +167,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
                     onClick={() => setActiveTab(tab.key)}
                     className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                       isActive
-                        ? 'border-green-600 text-green-700 dark:text-green-300'
+                        ? 'border-emerald-600 text-emerald-700 dark:text-emerald-300'
                         : 'border-transparent text-muted-foreground hover:text-foreground'
                     }`}
                   >
@@ -188,10 +188,10 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
                     <button
                       key={id}
                       onClick={() => onIngredientClick?.(id)}
-                      className="w-full text-left flex items-center justify-between gap-2 p-3 rounded-lg bg-white dark:bg-card hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors group border border-green-100 dark:border-green-900"
+                      className="w-full text-left flex items-center justify-between gap-2 p-3 rounded-lg bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors group ring-1 ring-emerald-200/60 dark:ring-white/10"
                     >
                       <div className="flex-1 min-w-0">
-                        <p className="font-medium text-sm truncate">{ing?.nombre || id}</p>
+                        <p className="font-medium text-sm truncate text-foreground">{ing?.nombre || id}</p>
                         {ing && (
                           <p className="text-xs text-muted-foreground truncate">
                             {ing.sinonimos?.slice(0, 2).join(', ')}
@@ -203,7 +203,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
                           <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${EVIDENCE_COLORS[ing.evidencia] || EVIDENCE_COLORS.C}`}>
                             {ing.evidencia}
                           </span>
-                          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
                         </div>
                       )}
                     </button>
@@ -216,9 +216,9 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
 
             {/* Cuándo preferir natural */}
             {pathology.tratamientoNatural.cuandoPreferir && (
-              <div className="mt-3 p-3 rounded-lg bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800">
+              <div className="mt-3 p-3 rounded-lg bg-emerald-100/70 dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800/60">
                 <div className="flex items-start gap-2">
-                  <Lightbulb className="w-4 h-4 text-green-600 mt-0.5 shrink-0" />
+                  <Lightbulb className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" />
                   <p className="text-sm text-foreground">
                     <span className="font-medium">¿Cuándo preferir lo natural? </span>
                     {pathology.tratamientoNatural.cuandoPreferir}
@@ -230,11 +230,11 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
 
           {/* Alertas farmacéuticas — visible (safety) */}
           {pathology.alertasFarmaceuticas && pathology.alertasFarmaceuticas.length > 0 && (
-            <div className="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
+            <div className="p-4 rounded-lg bg-amber-500/10 ring-1 ring-amber-500/30">
               <div className="flex items-start gap-2">
-                <AlertOctagon className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" />
+                <AlertOctagon className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-semibold text-sm text-amber-900 dark:text-amber-200 mb-1">
+                  <p className="font-semibold text-sm text-amber-800 dark:text-amber-200 mb-1">
                     Alertas farmacéuticas
                   </p>
                   <ul className="space-y-1">
@@ -252,11 +252,11 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
 
           {/* Cuándo consultar - Red Flags — visible (safety) */}
           {pathology.cuandoConsultar && (
-            <div className="p-4 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900">
+            <div className="p-4 rounded-lg bg-red-500/10 ring-1 ring-red-500/30">
               <div className="flex items-start gap-2">
-                <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
+                <AlertTriangle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-semibold text-sm text-red-900 dark:text-red-200 mb-1">
+                  <p className="font-semibold text-sm text-red-800 dark:text-red-200 mb-1">
                     ¿Cuándo consultar al médico?
                   </p>
                   <p className="text-sm text-foreground">{pathology.cuandoConsultar}</p>
