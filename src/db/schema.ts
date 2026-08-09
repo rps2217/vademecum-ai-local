@@ -359,18 +359,46 @@ export function getDeviceId(): string {
 }
 
 /**
- * Obtener siguiente Lamport clock
+ * Obtener siguiente Lamport clock.
+ *
+ * El Lamport clock se persiste en `syncMeta` para sobrevivir recargas de
+ * página. Si la DB aún no se ha inicializado, usa el valor en memoria
+ * (que se hidrata async en `initLamportFromDb`).
  */
 let _lamport = 0;
 
 export function nextLamport(): number {
   _lamport += 1;
+  void persistLamport();
   return _lamport;
 }
 
 export function updateLamport(received: number): number {
   _lamport = Math.max(_lamport, received) + 1;
+  void persistLamport();
   return _lamport;
+}
+
+/**
+ * Hidrata el Lamport clock desde la DB al arrancar la app.
+ * Debe llamarse una vez tras `db.open()`.
+ */
+export async function initLamportFromDb(): Promise<void> {
+  const meta = await db.syncMeta.get('lamport_clock');
+  const stored = (meta?.value as number) ?? 0;
+  if (stored > _lamport) _lamport = stored;
+}
+
+async function persistLamport(): Promise<void> {
+  try {
+    await db.syncMeta.put({
+      key: 'lamport_clock',
+      value: _lamport,
+      updatedAt: Date.now(),
+    });
+  } catch {
+    // Ignorar errores de persistencia (la DB puede no estar abierta aún).
+  }
 }
 // Alias para compatibilidad
 export type Ingredient = DbIngredient;

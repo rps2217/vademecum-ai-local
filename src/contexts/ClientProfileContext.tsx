@@ -7,7 +7,7 @@
  * ESE cliente. No persiste datos personales del cliente — solo el flag.
  */
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import type { DbIngredient, SafetyStatus } from '@/db/schema';
 
 export type ClientProfile =
@@ -73,19 +73,22 @@ export function ClientProfileProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('storage', handler);
   }, []);
 
-  const evaluateSafety = (ingredient: DbIngredient): SafetyVerdict | null => {
+  const evaluateSafety = useCallback((ingredient: DbIngredient): SafetyVerdict | null => {
     if (profile === 'ninguno') return null;
     const seg = ingredient.seguridad;
+    // 1. Campo directo de seguridad si existe (embarazo, lactancia, pediatria, hipertension, diabetes, celiacos)
     const statusFor: SafetyStatus | undefined =
       profile === 'embarazada' ? seg?.embarazo :
       profile === 'lactante' ? seg?.lactancia :
       profile === 'pediatrico' ? seg?.pediatria :
+      profile === 'hipertenso' ? seg?.hipertension :
+      profile === 'diabetico' ? seg?.diabetes :
       undefined;
 
     if (statusFor === 'contraindicado') return 'contraindicado';
     if (statusFor === 'evitar') return 'precaucion';
 
-    // Perfiles sin campo directo (anciano/hipertenso/diabetico): revisar interacciones
+    // 2. Perfiles sin campo directo o sin datos: revisar interacciones por texto
     if (profile === 'hipertenso' || profile === 'diabetico' || profile === 'anciano') {
       const inter = ingredient.interacciones ?? [];
       const term = profile === 'hipertenso' ? /hipertens|antihipertens|tens/i :
@@ -94,7 +97,7 @@ export function ClientProfileProvider({ children }: { children: ReactNode }) {
       if (inter.some(i => term.test(i))) return 'precaucion';
     }
     return 'apto';
-  };
+  }, [profile]);
 
   return (
     <ClientProfileContext.Provider value={{ profile, setProfile, evaluateSafety }}>

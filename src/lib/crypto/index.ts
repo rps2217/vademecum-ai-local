@@ -4,7 +4,6 @@
  * Utilidades de cifrado E2E.
  */
 
-// E2EE legacy exports
 export {
   deriveKey,
   generateAndStoreKeyPair,
@@ -23,12 +22,3 @@ export {
   type StoredKeyPair,
   type RecoveryData,
 } from './e2ee';
-
-// KeyManager exports
-export {
-  KeyManager,
-  keyManager,
-  type KeyManagerConfig,
-  type StoredKeyMetadata,
-  type SessionKeys,
-} from './KeyManager';

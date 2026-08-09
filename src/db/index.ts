@@ -16,6 +16,7 @@ export {
   getDeviceId,
   nextLamport,
   updateLamport,
+  initLamportFromDb,
   DB_VERSION,
 } from './schema';
 

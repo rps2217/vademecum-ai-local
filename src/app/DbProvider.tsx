@@ -5,7 +5,7 @@
  */
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { db } from '@/db';
+import { db, initLamportFromDb } from '@/db';
 import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
 import { logger } from '@/lib/logger';
 
@@ -27,6 +27,8 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
       try {
         // Open database
         await db.open();
+        // Hidratar Lamport clock desde la DB (para sync correcto entre recargas)
+        await initLamportFromDb();
         
         // Check if we need to seed
         const seeded = await isKnowledgeBaseSeeded();

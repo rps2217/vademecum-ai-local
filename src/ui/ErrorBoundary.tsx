@@ -17,14 +17,14 @@ interface Props {
 interface State {
   hasError: boolean;
   error: Error | null;
-  errorInfo: string;
+  errorInfo: React.ErrorInfo | null;
 }
 
 export class ErrorBoundary extends Component<Props, State> {
-  override state: State = { hasError: false, error: null, errorInfo: '' };
+  override state: State = { hasError: false, error: null, errorInfo: null };
 
   static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, error, errorInfo: String(error) };
+    return { hasError: true, error, errorInfo: null };
   }
 
   override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
@@ -34,19 +34,13 @@ export class ErrorBoundary extends Component<Props, State> {
       stack: error?.stack,
       componentStack: errorInfo?.componentStack
     }, null, 2);
-    
-    logger.error('ErrorBoundary caught:', errorString);
+
+    logger.error('ErrorBoundary caught:', errorString, error, errorInfo);
     this.setState({ errorInfo });
-    
-    // Mostrar en consola para debug
-    console.error('=== ERROR DETAILS ===');
-    console.error(error);
-    console.error(errorInfo);
-    console.error('===================');
   }
 
   handleRetry = () => {
-    this.setState({ hasError: false, error: null, errorInfo: '' });
+    this.setState({ hasError: false, error: null, errorInfo: null });
   };
 
   override render() {
@@ -60,7 +54,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <AlertTriangle className="w-16 h-16 mx-auto text-destructive" />
             <h2 className="text-2xl font-bold">Algo salió mal</h2>
             <pre className="text-left text-xs bg-muted p-4 rounded overflow-auto max-h-64">
-              {this.state.errorInfo || this.state.error?.message || 'Error inesperado'}
+              {this.state.errorInfo?.componentStack || this.state.error?.message || 'Error inesperado'}
             </pre>
             <Button onClick={this.handleRetry} leftIcon={<RefreshCw className="w-4 h-4" />}>
               Reintentar

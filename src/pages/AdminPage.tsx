@@ -4,17 +4,18 @@
  * CRUD funcional para ingredientes y gestión de sinergias.
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
 import { Card } from '@/ui/Card';
 import { StatsCard } from '@/ui/StatsCard';
 import { Button } from '@/ui/Button';
-import { Badge } from '@/ui/Badge';
 import { useSearch } from '@/contexts/SearchContext';
 import { IngredientEditor } from '@/components/admin/IngredientEditor';
-import { Database, RefreshCw, Upload, Download, Trash2, Shield, Plus, Edit2, Trash, Leaf } from 'lucide-react';
-import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
+import { Database, RefreshCw, Upload, Download, Shield, Plus, Edit2, Trash, Leaf } from 'lucide-react';
+import { Badge } from '@/ui/Badge';
+import { seedKnowledgeBase } from '@/db/seeders';
+import { saveIngredient, deleteIngredient } from '@/core/sync/writeHelpers';
 import type { DbIngredient } from '@/db/schema';
 import { toast } from 'sonner';
 import { logger } from '@/lib/logger';
@@ -110,7 +111,7 @@ export function AdminPage() {
 
   const handleSaveIngredient = async (ingredient: DbIngredient) => {
     try {
-      await db.ingredients.put(ingredient);
+      await saveIngredient(ingredient);
       toast.success(`Ingrediente "${ingredient.nombre}" guardado`);
       setShowEditor(false);
       setEditingIngredient(undefined);
@@ -128,7 +129,7 @@ export function AdminPage() {
     if (!confirm(`¿Eliminar "${ingredient.nombre}"?`)) return;
     
     try {
-      await db.ingredients.update(ingredient.id, { tombstone: 1, updatedAt: Date.now() });
+      await deleteIngredient(ingredient.id);
       toast.success(`Ingrediente "${ingredient.nombre}" eliminado`);
     } catch (error) {
       toast.error('Error al eliminar ingrediente');
@@ -292,11 +293,13 @@ function IngredientsTab({
   const [category, setCategory] = useState('');
 
   const ingredients = useLiveQuery(async () => {
-    let collection = db.ingredients;
+    let result: Promise<DbIngredient[]>;
     if (category) {
-      collection = collection.where('categoria').equals(category);
+      result = db.ingredients.where('categoria').equals(category).toArray();
+    } else {
+      result = db.ingredients.toArray();
     }
-    const all = await collection.toArray();
+    const all = await result;
     
     if (query) {
       const q = query.toLowerCase();

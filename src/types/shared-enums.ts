@@ -159,6 +159,28 @@ export type SynergyLevel = typeof SYNERGY_LEVELS[number];
 export const SAFETY_STATUSES = ['apto', 'evitar', 'contraindicado', 'desconocido'] as const;
 export type SafetyStatus = typeof SAFETY_STATUSES[number];
 
+/**
+ * Perfil de seguridad de un ingrediente por población especial.
+ * Cada campo indica el estado de seguridad para esa población.
+ * `undefined` significa "sin datos" (se trata como desconocido).
+ */
+export interface IngredientSafety {
+  embarazo?: SafetyStatus;
+  lactancia?: SafetyStatus;
+  pediatria?: SafetyStatus;
+  hipertension?: SafetyStatus;
+  diabetes?: SafetyStatus;
+  celiacos?: SafetyStatus;
+}
+
+/**
+ * Tipo de snapshot cifrado de backup.
+ * - 'full': snapshot completo de la KB.
+ * - 'incremental': cambios desde el último snapshot.
+ */
+export const SNAPSHOT_TYPES = ['full', 'incremental'] as const;
+export type SnapshotType = typeof SNAPSHOT_TYPES[number];
+
 // ============================================
 // PRODUCT SOURCE (Origen del Producto)
 // ============================================

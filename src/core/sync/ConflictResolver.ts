@@ -6,7 +6,7 @@
 
 import { db } from '@/db';
 import { generateId, now } from '@/db/schema';
-import type { DbConflict, SyncTable } from '@/db/schema';
+import type { DbConflict, DbIngredient, DbSynergy, DbProduct, DbProtocol, SyncTable } from '@/db/schema';
 import { logger } from '@/lib/logger';
 
 export type ConflictResolution = 'local' | 'remote' | 'merged' | 'pending';
@@ -110,16 +110,23 @@ export class ConflictResolver {
     table: SyncTable,
     data: Record<string, unknown>
   ): Promise<void> {
-    const tables: Record<SyncTable, typeof db.ingredients> = {
-      ingredients: db.ingredients,
-      synergies: db.synergies,
-      products: db.products,
-      protocols: db.protocols,
-    };
-    
-    const dbTable = tables[table];
-    if (dbTable) {
-      await dbTable.put({ ...data, updatedAt: now(), tombstone: 0 } as any);
+    const record = { ...data, updatedAt: now(), tombstone: 0 } as Record<string, unknown>;
+    switch (table) {
+      case 'ingredients':
+        await db.ingredients.put(record as unknown as DbIngredient);
+        break;
+      case 'synergies':
+        await db.synergies.put(record as unknown as DbSynergy);
+        break;
+      case 'products':
+        await db.products.put(record as unknown as DbProduct);
+        break;
+      case 'protocols':
+        await db.protocols.put(record as unknown as DbProtocol);
+        break;
+      case 'settings':
+        logger.warn('[ConflictResolver] settings table no soportada en applyRemoteData');
+        break;
     }
   }
 }

@@ -23,10 +23,6 @@ const KEY_STORAGE_KEY = 'vademecum.keypair';
 const RECOVERY_STORAGE_KEY = 'vademecum.recovery';
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutos
 
-interface SessionMeta {
-  timestamp: number;
-}
-
 let _sessionExpiry: number | null = null;
 
 function getStorage(): Storage {

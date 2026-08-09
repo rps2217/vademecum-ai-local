@@ -6,7 +6,7 @@
 
 import { useMemo, useState, useCallback, memo } from 'react';
 import { cn } from '@/lib/utils';
-import type { DbSynergy, DbIngredient } from '@/db/schema';
+import type { DbSynergy } from '@/db/schema';
 
 interface SynergyGraphProps {
   synergies: DbSynergy[];
@@ -22,7 +22,7 @@ interface Node {
   x: number;
   y: number;
   connections: number;
-  type: 'synergia' | 'complemento' | 'interaccion' | 'antagonismo';
+  type: 'sinergia' | 'complemento' | 'interaccion' | 'antagonismo';
 }
 
 interface Edge {
@@ -157,7 +157,7 @@ const SynergyGraphComponent = ({
         onWheel={handleWheel}
       >
         <defs>
-          {Object.entries(TYPE_COLORS).map(([type, colors]) => (
+          {Object.entries(TYPE_COLORS).map(([type]) => (
             <filter key={type} id={`glow-${type}`} x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="4" result="coloredBlur" />
               <feMerge>
@@ -171,7 +171,7 @@ const SynergyGraphComponent = ({
         <g transform={`translate(${transform.x}, ${transform.y}) scale(${transform.scale})`}>
           {/* Aristas (edges) */}
           <g className="edges">
-            {edges.map((edge, idx) => {
+            {edges.map((edge) => {
               const sourceNode = nodes.find((n) => n.id === edge.source);
               const targetNode = nodes.find((n) => n.id === edge.target);
               if (!sourceNode || !targetNode) return null;

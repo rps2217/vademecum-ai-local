@@ -7,15 +7,17 @@ import { BODY_SYSTEMS } from '@/types/shared-enums';
 import { normalizeIndications } from '@/lib/text';
 
 import { db } from '../schema';
-import type { 
-  DbIngredient, 
+import type {
+  DbIngredient,
   DbSynergy,
   DbPathology,
-  IngredientCategory, 
-  BodySystem, 
+  IngredientCategory,
+  BodySystem,
   EvidenceLevel,
   SynergyType,
-  SynergyLevel
+  SynergyLevel,
+  IngredientSafety,
+  SafetyStatus,
 } from '../schema';
 import { getDeviceId, now } from '../schema';
 
@@ -55,10 +57,10 @@ async function computeKbVersion(): Promise<string> {
     patCount,
     patWithCtx,
   ];
-  // Sufijo "n2" = normalización de indicaciones (acentos canónicos).
-  // Cambiar este sufijo fuerza re-siembra cuando la lógica de transformación
-  // cambia aunque los conteos del JSON sean iguales.
-  return `v${counts.join('-')}-n2`;
+  // Sufijo "n3" = inferSafety completa 6 campos de seguridad (hipertension, diabetes, celiacos)
+  // además de embarazo/lactancia/pediatria. Cambiar este sufijo fuerza re-siembra
+  // cuando la lógica de transformación cambia aunque los conteos del JSON sean iguales.
+  return `v${counts.join('-')}-n3`;
 }
 
 export async function getStoredKbVersion(): Promise<string | null> {
@@ -193,6 +195,73 @@ function mapSynergyLevel(nivel?: string): SynergyLevel {
   return 'medio';
 }
 
+/**
+ * Patrones de términos en advertencias que indican riesgo para cada población.
+ * Si una advertencia contiene el término, se marca como 'evitar' (precaución).
+ * Términos marcados como "duros" (contraindicado) se manejan por separado.
+ */
+const SAFETY_PATTERNS: Array<{
+  field: keyof IngredientSafety;
+  terms: RegExp;
+  contraindicated?: RegExp;
+}> = [
+  // Embarazo: "no usar en embarazo", "evitar en embarazo", "contraindicado en embarazo"
+  {
+    field: 'embarazo',
+    terms: /embarazo/i,
+    contraindicated: /contraindicad[oa]|prohibid[oa]/i,
+  },
+  // Lactancia
+  {
+    field: 'lactancia',
+    terms: /lactancia/i,
+    contraindicated: /contraindicad[oa]|prohibid[oa]/i,
+  },
+  // Pediatría: incluye "niño", "menores de"
+  {
+    field: 'pediatria',
+    terms: /pediatria|ni[ñn]os?|menores\s+de/i,
+    contraindicated: /contraindicad[oa]|prohibid[oa]/i,
+  },
+  // Hipertensión: "hipertens", "tensión arterial", "antihipertens", "hipotens" (riesgo por interacción)
+  {
+    field: 'hipertension',
+    terms: /hipertens|antihipertens|tensi[oó]n\s+arterial|hipotens/i,
+  },
+  // Diabetes: "diabet", "insulin", "glucos", "hipogluc"
+  {
+    field: 'diabetes',
+    terms: /diabet|insulin|glucos|hipogluc/i,
+  },
+  // Celiaquía: "gluten", "celia"
+  {
+    field: 'celiacos',
+    terms: /gluten|celia/i,
+  },
+];
+
+/**
+ * Infiere el perfil de seguridad de un ingrediente desde sus advertencias.
+ * - Si una advertencia menciona la población Y términos como "contraindicado"/"prohibido",
+ *   se marca 'contraindicado'.
+ * - Si solo la menciona (o términos de interacción), se marca 'evitar' (precaución).
+ * - Si no hay mención, el campo queda `undefined` (sin datos).
+ */
+export function inferSafety(advertencias?: string[]): IngredientSafety {
+  const safety: IngredientSafety = {};
+  if (!advertencias || advertencias.length === 0) return safety;
+  const text = advertencias.join(' | ');
+  for (const pattern of SAFETY_PATTERNS) {
+    if (pattern.terms.test(text)) {
+      const status: SafetyStatus = pattern.contraindicated && pattern.contraindicated.test(text)
+        ? 'contraindicado'
+        : 'evitar';
+      safety[pattern.field] = status;
+    }
+  }
+  return safety;
+}
+
 function transformIngredient(json: JsonIngredient): DbIngredient {
   const sinonimos = [
     json.nombre,
@@ -216,15 +285,7 @@ function transformIngredient(json: JsonIngredient): DbIngredient {
       json.tiempoEfecto ? `Tiempo de efecto: ${json.tiempoEfecto}` : undefined,
       json.duracionTratamiento ? `Duracion: ${json.duracionTratamiento}` : undefined,
     ].filter(Boolean) as string[],
-    seguridad: {
-      embarazo: json.advertencias?.some(a => a.toLowerCase().includes('embarazo'))
-        ? 'evitar' : undefined,
-      lactancia: json.advertencias?.some(a => a.toLowerCase().includes('lactancia'))
-        ? 'evitar' : undefined,
-      pediatria: json.advertencias?.some(a => 
-        a.toLowerCase().includes('pediatria') || a.toLowerCase().includes('nino')
-      ) ? 'evitar' : undefined,
-    },
+    seguridad: inferSafety(json.advertencias),
     interacciones: json.interaccionesMedicamentosas || [],
     fuentes: json.tags || [],
     lamport: 0,

@@ -7,13 +7,12 @@ import { db } from '@/db';
 import { logger } from '@/lib/logger';
 import type {
   DbOutboxOp,
-  DbSnapshot,
   DbIngredient,
   DbSynergy,
   SyncOpType,
   SyncTable
 } from '@/db/schema';
-import { generateId, now, getDeviceId } from '@/db/schema';
+import { generateId, now } from '@/db/schema';
 import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
 import { ConflictResolver, type ConflictInfo } from './ConflictResolver';
 
@@ -273,7 +272,7 @@ export class SyncService {
   /**
    * Registra un conflicto detectado
    */
-  private async registerConflict(op: DbOutboxOp, error: ConflictError): Promise<void> {
+  private async registerConflict(op: DbOutboxOp, _error: ConflictError): Promise<void> {
     try {
       const conflictInfo: ConflictInfo = {
         table: op.table,
@@ -296,7 +295,7 @@ export class SyncService {
     const supabase = getSupabase();
     if (supabase?.auth) {
       try {
-        const { data, error } = await supabase.auth.refreshSession();
+        const { error } = await supabase.auth.refreshSession();
         if (error) {
           logger.error('[SyncService] Token refresh failed:', error);
         } else {
@@ -324,10 +323,11 @@ export class SyncService {
     switch (op.type) {
       case 'insert':
       case 'update': {
-        const { error } = await supabase.from(table).upsert(supabasePayload, { 
+        const { error } = await supabase.from(table).upsert(supabasePayload, {
           onConflict: 'id',
-          headers 
-        });
+          headers,
+        // headers es soportado por Supabase-js aunque el tipo local no lo refleje; sync es experimental.
+        } as Record<string, unknown>);
         if (error) {
           if (error.code === '401') throw new UnauthorizedError('Unauthorized');
           if (error.code === '23505') throw new ConflictError('Record already exists');
