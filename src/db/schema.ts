@@ -86,6 +86,7 @@ export interface DbIngredient {
   indicaciones: string[];
   evidencia: EvidenceLevel;
   propiedades: string[];
+  posologia?: string;
   seguridad: IngredientSafety;
   interacciones: string[];
   fuentes: string[];

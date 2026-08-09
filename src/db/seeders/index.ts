@@ -9,4 +9,5 @@ export {
   getStoredKbVersion,
   getCurrentKbVersion,
   inferSafety,
+  buildPosologia,
 } from './knowledgeSeeder';

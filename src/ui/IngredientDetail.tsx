@@ -166,6 +166,19 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activ
             </section>
           )}
 
+          {/* Posología — dosis práctica para el mostrador */}
+          {ingredient.posologia && (
+            <section className="rounded-lg bg-primary/5 border border-primary/20 p-4">
+              <h3 className="text-sm font-semibold mb-2 flex items-center gap-2 text-primary">
+                <FlaskConical className="w-4 h-4" aria-hidden="true" />
+                Posología
+              </h3>
+              <p className="text-sm text-foreground leading-relaxed">
+                {ingredient.posologia}
+              </p>
+            </section>
+          )}
+
           {/* Propiedades / mecanismo */}
           {ingredient.propiedades && ingredient.propiedades.length > 0 && (
             <section>

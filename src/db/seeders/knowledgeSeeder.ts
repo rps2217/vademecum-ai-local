@@ -57,10 +57,11 @@ async function computeKbVersion(): Promise<string> {
     patCount,
     patWithCtx,
   ];
-  // Sufijo "n3" = inferSafety completa 6 campos de seguridad (hipertension, diabetes, celiacos)
-  // además de embarazo/lactancia/pediatria. Cambiar este sufijo fuerza re-siembra
-  // cuando la lógica de transformación cambia aunque los conteos del JSON sean iguales.
-  return `v${counts.join('-')}-n3`;
+  // Sufijo "n4" = campo posologia añadido a DbIngredient (buildPosologia extrae
+  // dosis/dilución/duración de los JSON por categoría). Cambiar este sufijo
+  // fuerza re-siembra cuando la lógica de transformación cambia aunque los
+  // conteos del JSON sean iguales.
+  return `v${counts.join('-')}-n4`;
 }
 
 export async function getStoredKbVersion(): Promise<string | null> {
@@ -90,6 +91,13 @@ interface JsonIngredient {
   advertencias?: string[];
   interaccionesMedicamentosas?: string[];
   tags?: string[];
+  // Campos de posología específicos por categoría
+  dilucionRecomendada?: string;
+  metodosUso?: string[];
+  dilucionesCH?: (string | number)[];
+  dosisDiaria?: string;
+  dosisMaxima?: string;
+  precaucionesTopico?: string[];
 }
 
 interface JsonSynergy {
@@ -262,6 +270,36 @@ export function inferSafety(advertencias?: string[]): IngredientSafety {
   return safety;
 }
 
+/**
+ * Construye un string de posología legible para el farmacéutico,
+ * combinando los campos de dosis disponibles según la categoría.
+ */
+export function buildPosologia(json: JsonIngredient): string | undefined {
+  const parts: string[] = [];
+
+  // Vitaminas / Minerales: dosis diaria + máxima
+  if (json.dosisDiaria) parts.push(`Dosis diaria: ${json.dosisDiaria}`);
+  if (json.dosisMaxima) parts.push(`Dosis máxima: ${json.dosisMaxima}`);
+
+  // Aceites esenciales: dilución + métodos de uso
+  if (json.dilucionRecomendada) parts.push(`Dilución: ${json.dilucionRecomendada}`);
+  if (json.metodosUso && json.metodosUso.length > 0) {
+    parts.push(`Vías: ${json.metodosUso.join(', ')}`);
+  }
+
+  // Homeopatía: diluciones CH
+  if (json.dilucionesCH && json.dilucionesCH.length > 0) {
+    parts.push(`Diluciones CH: ${json.dilucionesCH.join(', ')}`);
+  }
+
+  // Fitoterapia y通用: parte usada + tiempo + duración
+  if (json.parteUsada) parts.push(`Parte usada: ${json.parteUsada}`);
+  if (json.tiempoEfecto) parts.push(`Tiempo de efecto: ${json.tiempoEfecto}`);
+  if (json.duracionTratamiento) parts.push(`Duración: ${json.duracionTratamiento}`);
+
+  return parts.length > 0 ? parts.join(' · ') : undefined;
+}
+
 function transformIngredient(json: JsonIngredient): DbIngredient {
   const sinonimos = [
     json.nombre,
@@ -281,10 +319,8 @@ function transformIngredient(json: JsonIngredient): DbIngredient {
     propiedades: [
       json.descripcion,
       json.mecanismoAccion,
-      json.parteUsada ? `Parte usada: ${json.parteUsada}` : undefined,
-      json.tiempoEfecto ? `Tiempo de efecto: ${json.tiempoEfecto}` : undefined,
-      json.duracionTratamiento ? `Duracion: ${json.duracionTratamiento}` : undefined,
     ].filter(Boolean) as string[],
+    posologia: buildPosologia(json),
     seguridad: inferSafety(json.advertencias),
     interacciones: json.interaccionesMedicamentosas || [],
     fuentes: json.tags || [],
