@@ -228,6 +228,13 @@ export interface DbSynergy {
 - [x] Filtros combinables por chips (sistema corporal, evidencia, patología/indicación) — commit 23c5f70
 - [x] Base de datos de patologías (25 patologías con contexto clínico) — commit 77220e0
 - [x] Modal PathologyDetail con tratamiento alopático vs natural + red flags
+- [x] Contexto clínico extendido en 100% de patologías (116/116) — commits 8563969 + f2de1a0
+  - 9 campos: epidemiologia, factoresRiesgo, diagnostico, criteriosDiagnostico,
+    escalasClinicas, diagnosticoDiferencial, pronostico, poblacionesEspeciales,
+    alertasFarmaceuticas
+  - 1044 campos clínicos totales, escalas validadas (GAD-7, PHQ-9, MIDAS, PASI,
+    DEXA/FRAX, FIB-4, SCORAD/EASI, WOMAC, Oswestry, y más)
+  - Fuentes: DSM-5, ICD-11, NICE, ADA, GINA/GOLD, ESC/ESH, ACR, EAU, Cochrane, EMA
 
 ### Re-siembra Automática de KB
 
