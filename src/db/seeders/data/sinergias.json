@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-09",
-    "total": 978,
+    "total": 1013,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -23775,6 +23775,877 @@
       "sistemas": [
         "cardiovascular",
         "urinario"
+      ]
+    },
+    {
+      "id": "syn_kb17_estigma_maiz_breu",
+      "ingredienteA": "estigma_maiz",
+      "ingredienteB": "brezo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Estigma de maiz y brezo combinan accion diuretica y antiséptica urinaria para cistitis y litiasis.",
+      "beneficios": [
+        "Aumenta diuresis suave",
+        "Acción antiséptica urinaria",
+        "Prevención de litiasis"
+      ],
+      "precauciones": [
+        "Evitar en insuficiencia renal severa",
+        "Monitorizar glucemia en diabéticos"
+      ],
+      "mecanismo": "Mucílagos del estigma (emoliente) + arbutina del brezo (antiséptico) + flavonoides diuréticos de ambos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "syn_kb17_estigma_maiz_uva_ursi",
+      "ingredienteA": "estigma_maiz",
+      "ingredienteB": "uva_ursi",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Estigma de maiz (diuretico) + uva de oso (antiséptico) para infecciones urinarias.",
+      "beneficios": [
+        "Lavado de vías urinarias",
+        "Acción antimicrobiana",
+        "Cistitis recurrente"
+      ],
+      "precauciones": [
+        "No prolongar >7-10 días sin supervisar"
+      ],
+      "mecanismo": "Diuresis del estigma facilita acción de arbutina de uva_ursi en vías urinarias.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "syn_kb17_estigma_maiz_cola_caballo",
+      "ingredienteA": "estigma_maiz",
+      "ingredienteB": "cola_de_caballo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinacion diuretica sinergica para edema y retencion de liquidos.",
+      "beneficios": [
+        "Diuresis suave sostenida",
+        "Silicio (cola de caballo) + mucílagos",
+        "Edema leve"
+      ],
+      "precauciones": [
+        "Monitorizar potasio",
+        "Evitar en insuficiencia renal"
+      ],
+      "mecanismo": "Flavonoides diuréticos de ambos + silicio orgánico de cola de caballo.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "syn_kb17_brezo_ortiga",
+      "ingredienteA": "brezo",
+      "ingredienteB": "ortiga",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Brezo y ortiga combinan accion diuretica y depurativa para prostatitis y vias urinarias.",
+      "beneficios": [
+        "Diuresis",
+        "Acción antiinflamatoria prostática",
+        "Depurativo"
+      ],
+      "precauciones": [
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "Arbutina del brezo + flavonoides y lignanos de ortiga con accion prostática.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "syn_kb17_brezo_mirtilo",
+      "ingredienteA": "brezo",
+      "ingredienteB": "antocianinas_arandano",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Brezo (antiséptico urinario) + antocianinas de arandano (antiadherencia) para cistitis recurrente.",
+      "beneficios": [
+        "Prevención de cistitis recurrente",
+        "Antiadherencia bacteriana",
+        "Acción antiséptica"
+      ],
+      "precauciones": [
+        "No sustituye antibiótico en infección aguda"
+      ],
+      "mecanismo": "Arbutina antiséptica + proantocianidinas que inhiben adherencia de E. coli.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ]
+    },
+    {
+      "id": "syn_kb17_diosmina_rusco",
+      "ingredienteA": "diosmina",
+      "ingredienteB": "rusco",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Diosmina + rusco: combinacion venotona de primera linea para insuficiencia venosa cronica.",
+      "beneficios": [
+        "Mejora tono venoso",
+        "Reduce edema y pesadez",
+        "Hemorroides"
+      ],
+      "precauciones": [
+        "Separar toma de otros medicamentos"
+      ],
+      "mecanismo": "Diosmina inhibe leucocito-endothelial adhesion; ruscoesgenina mejora tono venoso.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "syn_kb17_diosmina_castano",
+      "ingredienteA": "diosmina",
+      "ingredienteB": "castano_indias",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Diosmina + castaño de Indias para insuficiencia venosa cronica y varices.",
+      "beneficios": [
+        "Reduce permeabilidad capilar",
+        "Mejora sintomas venosos",
+        "Varices"
+      ],
+      "precauciones": [
+        "Posible interacción con anticoagulantes"
+      ],
+      "mecanismo": "Diosmina + escina del castaño: sinergia venotona y antiinflamatoria capilar.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "syn_kb17_diosmina_vitc",
+      "ingredienteA": "diosmina",
+      "ingredienteB": "vitamina_c",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Vitamina C como cofactor de colágeno capilar potencia accion venotona de diosmina.",
+      "beneficios": [
+        "Refuerza pared capilar",
+        "Síntesis de colágeno",
+        "Antioxidante vascular"
+      ],
+      "precauciones": [],
+      "mecanismo": "Vit C cofactor de hidroxiprolina del colágeno; diosmina reduce permeabilidad capilar.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "syn_kb17_d_ribose_coq10",
+      "ingredienteA": "d_ribose",
+      "ingredienteB": "coq10",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "D-Ribosa + CoQ10 para fatiga cronica y fibromialgia: energia mitocondrial sinergica.",
+      "beneficios": [
+        "Mejora producción de ATP",
+        "Función mitocondrial",
+        "Fatiga crónica"
+      ],
+      "precauciones": [
+        "Posible hipoglucemia (d-ribose)"
+      ],
+      "mecanismo": "D-Ribosa acelera resíntesis de ATP; CoQ10 mejora transporte de electrones mitocondrial.",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "metabolico",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "syn_kb17_d_ribose_l_carnitina",
+      "ingredienteA": "d_ribose",
+      "ingredienteB": "l_carnitina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "D-Ribosa + L-Carnitina para energia mitocondrial en fatiga y cardiopatia.",
+      "beneficios": [
+        "Energía mitocondrial",
+        "Función cardíaca",
+        "Recuperación muscular"
+      ],
+      "precauciones": [
+        "Monitorizar en hipotiroidismo (l-carnitina)"
+      ],
+      "mecanismo": "Ribosa (ATP) + carnitina (transporte de ácidos grasos a mitocondria) = sinergia energetica.",
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "syn_kb17_d_ribose_magnesio",
+      "ingredienteA": "d_ribose",
+      "ingredienteB": "magnesio_glicinato",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "D-Ribosa + magnesio para fibromialgia y fatiga cronica.",
+      "beneficios": [
+        "Energía + relajación muscular",
+        "Reduce dolor fibromiálgico",
+        "Sueño"
+      ],
+      "precauciones": [
+        "Magnesio: posible diarrea en dosis altas"
+      ],
+      "mecanismo": "Ribosa (ATP) + magnesio (cofactor de >300 enzimas, incluido ATPasa) = sinergia energetica.",
+      "categorias": [
+        "aminoacido",
+        "mineral"
+      ],
+      "sistemas": [
+        "metabolico",
+        "musculoesqueletico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "syn_kb17_i3c_dim",
+      "ingredienteA": "indole_3_carbinol",
+      "ingredienteB": "sulforafano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "I3C + sulforafano: sinergia de cruciferas para detox y prevencion oncologica.",
+      "beneficios": [
+        "Modulación de estrógenos",
+        "Detox hepático (fase II)",
+        "Quimioprevención"
+      ],
+      "precauciones": [
+        "No en embarazo/lactancia sin supervisar"
+      ],
+      "mecanismo": "I3C induce CYP1A1/1A2 (metabolismo estrogénico protector); sulforafano induce Nrf2/fase II detox.",
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "endocrino",
+        "hepatico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "syn_kb17_i3c_cardo_mariano",
+      "ingredienteA": "indole_3_carbinol",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "I3C + cardo mariano para detox hepatico y modulacion estrogenica.",
+      "beneficios": [
+        "Detox hepático",
+        "Protección hepatocelular",
+        "Equilibrio estrogénico"
+      ],
+      "precauciones": [],
+      "mecanismo": "Silimarina hepatoprotectora + I3C modulador del metabolismo estrogénico hepático.",
+      "categorias": [
+        "aminoacido",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "syn_kb17_i3c_curcuma",
+      "ingredienteA": "indole_3_carbinol",
+      "ingredienteB": "curcuma",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "I3C + curcumina: sinergia antiinflamatoria y quimiopreventiva.",
+      "beneficios": [
+        "Antiinflamatorio",
+        "Antioxidante",
+        "Quimioprevención"
+      ],
+      "precauciones": [
+        "Curcumina: posible interacción con anticoagulantes"
+      ],
+      "mecanismo": "Curcumina inhibe NF-kB; I3C modula estrógenos. Sinergia en inflamación crónica y oncología.",
+      "categorias": [
+        "aminoacido",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "inmune",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "syn_kb17_leucina_vitd3",
+      "ingredienteA": "leucina_pura",
+      "ingredienteB": "vitamina_d3",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Leucina + vitamina D para sarcopenia y masa muscular.",
+      "beneficios": [
+        "Síntesis proteica",
+        "Función muscular",
+        "Sarcopenia"
+      ],
+      "precauciones": [
+        "Vit D: hipercalcemia en dosis extremas"
+      ],
+      "mecanismo": "Leucina activa mTOR; vit D regula genes de síntesis proteica muscular.",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "syn_kb17_leucina_omega3",
+      "ingredienteA": "leucina_pura",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Leucina + omega-3 para masa muscular y recuperación.",
+      "beneficios": [
+        "Anabolismo muscular",
+        "Antiinflamatorio",
+        "Recuperación"
+      ],
+      "precauciones": [],
+      "mecanismo": "Leucina (mTOR) + omega-3 (antiinflamatorio, mejora sensibilidad muscular a insulina).",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "syn_kb17_aurum_ignatia",
+      "ingredienteA": "aurum_metallicum",
+      "ingredienteB": "ignatia",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Aurum met + Ignatia: combinacion homeopatica para depresion reactiva con tristeza profunda.",
+      "beneficios": [
+        "Modulación del humor",
+        "Tristeza reactiva",
+        "Ansiedad asociada"
+      ],
+      "precauciones": [
+        "No en ideación suicida aguda sin atención médica"
+      ],
+      "mecanismo": "Aurum (depresión profunda) + Ignatia (duelo, reactive) según materia médica homeopática.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "syn_kb17_aurum_natri_mur",
+      "ingredienteA": "aurum_metallicum",
+      "ingredienteB": "natrum_muriaticum",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Aurum met + Natrum mur para depresion con cerrazon y tendencia suicida en homeopatia.",
+      "beneficios": [
+        "Depresión crónica",
+        "Represso emocional",
+        "Migraña asociada"
+      ],
+      "precauciones": [
+        "Solo bajo prescripción homeopática"
+      ],
+      "mecanismo": "Sinergia homeopatica sobre diatesis depresiva.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "syn_kb17_thyroidinum_calcarea_iodata",
+      "ingredienteA": "thyroidinum",
+      "ingredienteB": "calcarea_iodata",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Thyroidinum + Calcarea iodata: abordaje homeopatico de desequilibrios tiroideos.",
+      "beneficios": [
+        "Modulación del eje tiroideo",
+        "Hipotiroidismo subclínico",
+        "Bocio"
+      ],
+      "precauciones": [
+        "No sustituye tratamiento tiroideo farmacológico"
+      ],
+      "mecanismo": "Organoterapia tiroidea + sal yodada homeopática según materia médica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "syn_kb17_thyroidinum_selenio",
+      "ingredienteA": "thyroidinum",
+      "ingredienteB": "selenio",
+      "tipo": "cofactor",
+      "nivelEvidencia": "C",
+      "descripcion": "Thyroidinum + selenio: apoyo nutricional al eje tiroideo.",
+      "beneficios": [
+        "Función tiroidea",
+        "Hashimoto (coadyuvante)",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "No exceder selenio (>200mcg/dia riesgo toxicidad)"
+      ],
+      "mecanismo": "Selenio cofactor de deiodinasa (T4→T3); thyroidinum modulación homeopática.",
+      "categorias": [
+        "homeopatia",
+        "mineral"
+      ],
+      "sistemas": [
+        "endocrino",
+        "inmune"
+      ]
+    },
+    {
+      "id": "syn_kb17_psorinum_sulfur",
+      "ingredienteA": "psorinum",
+      "ingredienteB": "sulphur",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Psorinum + Sulphur: combinacion homeopatica clasica para diatesis cronica cutanea.",
+      "beneficios": [
+        "Eccema crónico",
+        "Dermatitis",
+        "Inmunidad"
+      ],
+      "precauciones": [
+        "Solo bajo prescripción homeopática",
+        "Embarazo: consultar"
+      ],
+      "mecanismo": "Nosodo + policresto Sulphur segun Chronic Diseases de Hahnemann.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "syn_kb17_picricum_rodiola",
+      "ingredienteA": "picricum_acidum",
+      "ingredienteB": "rodiola",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Picricum ac (homeopatico) + Rodiola (fitoterapia) para fatiga cronica.",
+      "beneficios": [
+        "Adaptógeno + modulación homeopática",
+        "Energía",
+        "Resistencia al estrés"
+      ],
+      "precauciones": [
+        "Rodiola: insomnio si se toma tarde"
+      ],
+      "mecanismo": "Adaptógeno (rodiola) + modulación homeopática del agotamiento.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "syn_kb17_syzygium_cromo",
+      "ingredienteA": "syzygium",
+      "ingredienteB": "cromo",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Syzygium + cromo para apoyo glucémico en diabetes tipo 2 (coadyuvante).",
+      "beneficios": [
+        "Glucemia",
+        "Sensibilidad a insulina",
+        "Coadyuvante diabetes"
+      ],
+      "precauciones": [
+        "No sustituye medicación antidiabética",
+        "Monitorizar glucemia"
+      ],
+      "mecanismo": "Cromo potencia acción insulina; syzygium modulación homeopática glucémica.",
+      "categorias": [
+        "homeopatia",
+        "mineral"
+      ],
+      "sistemas": [
+        "metabolico",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "syn_kb17_syzygium_canela",
+      "ingredienteA": "syzygium",
+      "ingredienteB": "canela",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Syzygium (homeopatico) + canela (fitoterapia) para apoyo glucémico.",
+      "beneficios": [
+        "Glucemia",
+        "Sensibilidad a insulina",
+        "Diabetes tipo 2 coadyuvante"
+      ],
+      "precauciones": [
+        "Monitorizar glucemia"
+      ],
+      "mecanismo": "Canela mejora sensibilidad a insulina; syzygium modulación homeopática glucémica.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "syn_kb17_uranium_syzygium",
+      "ingredienteA": "uranium_nitricum",
+      "ingredienteB": "syzygium",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Uranium nit + Syzygium: abordaje homeopático de la diatesis diabetica.",
+      "beneficios": [
+        "Coadyuvante diabetes",
+        "Síntomas urinarios",
+        "Fatiga"
+      ],
+      "precauciones": [
+        "No sustituye tratamiento diabético"
+      ],
+      "mecanismo": "Sinergia homeopática sobre diátesis diabética.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "urinario"
+      ]
+    },
+    {
+      "id": "syn_kb17_calcarea_iodata_spongia",
+      "ingredienteA": "calcarea_iodata",
+      "ingredienteB": "spongia",
+      "tipo": "sinergia",
+      "nivelEvidencia": "D",
+      "descripcion": "Calcarea iodata + Spongia: combinacion homeopatica clasica para bocio y tiroides.",
+      "beneficios": [
+        "Bocio",
+        "Hipotiroidismo subclínico",
+        "Tos seca"
+      ],
+      "precauciones": [
+        "Evitar en hipertiroidismo no controlado"
+      ],
+      "mecanismo": "Spongia (esponja marina, yodo) + Calcarea iodata (yodo+calcio) según materia médica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "syn_kb17_crataegus_homeo_espino_blanco",
+      "ingredienteA": "crataegus_homeo",
+      "ingredienteB": "espino_blanco",
+      "tipo": "potenciador",
+      "nivelEvidencia": "C",
+      "descripcion": "Crataegus homeopatico + espino blanco fitoterapia: doble via para apoyo cardiaco.",
+      "beneficios": [
+        "Función cardíaca",
+        "Taquicardia ansiosa",
+        "Hipertensión leve"
+      ],
+      "precauciones": [
+        "Potencia acción de digitalicos y antihipertensivos"
+      ],
+      "mecanismo": "Misma planta (espino blanco) en dos formas: fitoterapia (dosis) + homeopatia (modulación).",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "syn_kb17_crataegus_homeo_coq10",
+      "ingredienteA": "crataegus_homeo",
+      "ingredienteB": "coq10",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Crataegus + CoQ10 para apoyo cardiovascular (cardiopatia, insuficiencia leve).",
+      "beneficios": [
+        "Energía cardíaca",
+        "Función miocárdica",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Supervisión en insuficiencia cardíaca"
+      ],
+      "mecanismo": "Flavonoides espino (tono cardiaco) + CoQ10 (ATP miocárdico).",
+      "categorias": [
+        "homeopatia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "syn_kb17_berberis_homeo_estigma_maiz",
+      "ingredienteA": "berberis_homeo",
+      "ingredienteB": "estigma_maiz",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Berberis homeopatico + estigma de maiz para litiasis renal y dolor lumbar.",
+      "beneficios": [
+        "Litiasis renal",
+        "Dolor lumbar irradiado",
+        "Diuresis"
+      ],
+      "precauciones": [
+        "Embarazo: evitar (berberina)"
+      ],
+      "mecanismo": "Berberis (litiasis) + diuresis suave del estigma de maiz.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "syn_kb17_merc_sol_belladonna",
+      "ingredienteA": "merc_sol",
+      "ingredienteB": "belladonna",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Merc sol + Belladonna: combinacion homeopatica clasica para amigdalitis aguda.",
+      "beneficios": [
+        "Amigdalitis",
+        "Fiebre con exudado",
+        "Garganta"
+      ],
+      "precauciones": [
+        "Solo en potencias homeopáticas"
+      ],
+      "mecanismo": "Belladonna (fase aguda, calor, rojo) + Merc sol (exudado, ulceración) según materia médica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "syn_kb17_picricum_rodiola_alt",
+      "ingredienteA": "picricum_acidum",
+      "ingredienteB": "ginseng",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Picricum ac + Ginseng para fatiga cronica y agotamiento.",
+      "beneficios": [
+        "Fatiga cronica",
+        "Energia",
+        "Resistencia"
+      ],
+      "precauciones": [
+        "Ginseng: hipertension"
+      ],
+      "mecanismo": "Modulacion homeopatica del agotamiento + adaptogeno.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "syn_kb17_psorinum_graphites",
+      "ingredienteA": "psorinum",
+      "ingredienteB": "graphites",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Psorinum + Graphites para eccema cronico y diatesis cutanea en homeopatia.",
+      "beneficios": [
+        "Eccema cronico",
+        "Piel agrietada",
+        "Dermatitis"
+      ],
+      "precauciones": [
+        "Solo prescripcion homeopatica"
+      ],
+      "mecanismo": "Nosodo + policresto Graphites sobre diatesis cutanea cronica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "syn_kb17_berberis_homeo_orthosiphon",
+      "ingredienteA": "berberis_homeo",
+      "ingredienteB": "orthosiphon",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Berberis homeopatico + orthosiphon para litiasis renal y diuresis.",
+      "beneficios": [
+        "Litiasis renal",
+        "Diuresis",
+        "Dolor lumbar"
+      ],
+      "precauciones": [
+        "Embarazo: evitar (berberina)"
+      ],
+      "mecanismo": "Berberis (litiasis) + diuresis del te de Java.",
+      "categorias": [
+        "homeopatia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "syn_kb17_merc_sol_lachesis",
+      "ingredienteA": "merc_sol",
+      "ingredienteB": "lachesis",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Merc sol + Lachesis para afecciones de mucosas con tendencia supurativa.",
+      "beneficios": [
+        "Mucosas",
+        "Supuracion",
+        "Garganta"
+      ],
+      "precauciones": [
+        "Solo potencias homeopaticas"
+      ],
+      "mecanismo": "Sinergia homeopatica sobre mucosas y supuracion.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "syn_kb17_uranium_thyroidinum",
+      "ingredienteA": "uranium_nitricum",
+      "ingredienteB": "thyroidinum",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Uranium nit + Thyroidinum: diatesis metabolica endocrina en homeopatia.",
+      "beneficios": [
+        "Coadyuvante diabetes",
+        "Funcion tiroidea",
+        "Metabolismo"
+      ],
+      "precauciones": [
+        "No sustituye tratamiento farmacologico"
+      ],
+      "mecanismo": "Sinergia homeopatica sobre diatesis metabolica-endocrina.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "endocrino"
       ]
     }
   ]

@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "2.1.0",
-    "ultimaActualizacion": "2026-08-08",
-    "total": 126,
+    "ultimaActualizacion": "2026-08-09",
+    "total": 146,
     "descripcion": "Base de datos de patologías con contexto clínico (definición, causas, síntomas, tratamiento alopático y natural)",
     "fuentes": [
       "OMS",
@@ -65,24 +65,31 @@
           "espino_blanco",
           "ashwagandha",
           "manzanilla",
-          "lavanda"
+          "lavanda",
+          "lúpulo",
+          "amapola_californiana"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "litio",
           "l_triptofano",
-          "l_teanina"
+          "l_teanina",
+          "gaba"
         ],
         "homeopatia": [
           "ignatia",
           "gelsemium",
           "lycopodium",
-          "calcaria_carbonica"
+          "calcaria_carbonica",
+          "crataegus_homeo",
+          "chamomilla"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
-          "salvia_esclarea"
+          "salvia_esclarea",
+          "mejorana",
+          "neroli"
         ],
         "cuandoPreferir": "Ansiedad leve-moderada, estrés adaptativo, o como complemento al tratamiento convencional. Preferir fitoterapia antes de benzodiacepinas en cuadros leves para evitar dependencia."
       },
@@ -227,25 +234,32 @@
           "manzanilla",
           "lavanda",
           "artemisa",
-          "lúpulo"
+          "lúpulo",
+          "ashwagandha",
+          "rodiola"
         ],
         "suplementos": [
           "magnesio",
           "vitamina_b6",
           "melatonina",
           "magnesio_glicinato",
-          "l_triptofano"
+          "l_triptofano",
+          "l_ornitina",
+          "teacrina"
         ],
         "homeopatia": [
           "nux_vomica",
           "chamomilla",
           "ignatia",
-          "arsenicum_album"
+          "arsenicum_album",
+          "zincum_metallicum",
+          "kali_phosphoricum"
         ],
         "aceites": [
           "lavanda_aceite",
           "neroli",
-          "ylang_ylang"
+          "ylang_ylang",
+          "menta_aceite"
         ],
         "cuandoPreferir": "Insomnio crónico leve, conciliación del sueño, o como coadyuvante en deshabituación de hipnóticos. La fitoterapia tiene menor riesgo de dependencia que los Z-fármacos."
       },
@@ -375,12 +389,16 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "petasites",
-          "feverfew"
+          "feverfew",
+          "kudzu",
+          "vinca"
         ],
         "suplementos": [
           "magnesio",
           "coq10",
-          "riboflavina"
+          "riboflavina",
+          "magnesio_glicerofosfato",
+          "omega_3"
         ],
         "homeopatia": [
           "belladonna",
@@ -388,10 +406,13 @@
           "natrum_muriaticum",
           "kali_bichromicum",
           "sanguinaria",
-          "glonoinum"
+          "glonoinum",
+          "ipecacuanha",
+          "nux_vomica"
         ],
         "aceites": [
-          "menta_aceite"
+          "menta_aceite",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Profilaxis migrañosa, migraña leve-moderada, o cuando los triptanes están contraindicados (cardiopatía). Magnesio y feverfew son profilácticos."
       },
@@ -535,23 +556,30 @@
           "hiedra",
           "malva",
           "tilo",
-          "anis_verde"
+          "anis_verde",
+          "gordolobo",
+          "musgo_islandia"
         ],
         "suplementos": [
           "boro",
           "folato",
-          "molibdeno"
+          "molibdeno",
+          "l_cisteina"
         ],
         "homeopatia": [
           "sepia",
           "carbo_veg",
           "calcaria_carbonica",
-          "phosphorus"
+          "phosphorus",
+          "bryonia",
+          "kali_carbonicum"
         ],
         "aceites": [
           "ravintsara",
           "eucalipto",
-          "oregano"
+          "oregano",
+          "galbano",
+          "cardamomo_aceite"
         ],
         "cuandoPreferir": "Tos seca irritativa post-viral, tos productiva leve, y en niños donde codeína está contraindicada. Miel y tomillo tienen evidencia A en tos infantil."
       },
@@ -690,19 +718,26 @@
           "ajo",
           "sauce",
           "ulmaria",
-          "tilo"
+          "tilo",
+          "elderberry_ext",
+          "pelargonium_ext"
         ],
         "suplementos": [
-          "l_casei"
+          "l_casei",
+          "propoleo",
+          "pea"
         ],
         "homeopatia": [
           "belladonna",
           "gelsemium",
           "rhus_toxicodendron",
-          "mercurius"
+          "mercurius",
+          "aconitum_napellus"
         ],
         "aceites": [
-          "ravintsara"
+          "ravintsara",
+          "laurel_aceite",
+          "clavo"
         ],
         "cuandoPreferir": "Profilaxis invernal, resfriado común leve, o coadyuvante en gripe. La equinácea tiene evidencia B en reducción de duración."
       },
@@ -844,21 +879,28 @@
           "aloe_vera",
           "menta",
           "tomillo",
-          "artemisa"
+          "artemisa",
+          "evodia",
+          "diente_de_leon"
         ],
         "suplementos": [
           "probioticos",
-          "bromelina"
+          "bromelina",
+          "bacillus_coagulans"
         ],
         "homeopatia": [
           "nux_vomica",
           "chelidonium",
           "natrum_phosphoricum",
-          "natrum_carbonicum"
+          "natrum_carbonicum",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "menta_aceite",
-          "jengibre_aceite"
+          "jengibre_aceite",
+          "pimienta_negra_aceite",
+          "canela_aceite"
         ],
         "cuandoPreferir": "Dispepsia funcional leve, o coadyuvante con IBP. El jengibre tiene evidencia A como procinético. Evitar uso crónico de IBP sin control."
       },
@@ -994,19 +1036,27 @@
           "alcachofa",
           "anis_verde",
           "anis_estrellado",
-          "fumaria"
+          "fumaria",
+          "genciana",
+          "ajenjo"
         ],
-        "suplementos": [],
+        "suplementos": [
+          "sulforafano"
+        ],
         "homeopatia": [
           "chamomilla",
           "lycopodium",
           "carbo_veg",
           "colocynthis",
-          "china_officinalis"
+          "china_officinalis",
+          "medorrhinum",
+          "magnesia_phosphorica"
         ],
         "aceites": [
           "manzanilla_romana",
-          "hinojo_aceite"
+          "hinojo_aceite",
+          "mejorana",
+          "cilantro_aceite"
         ],
         "cuandoPreferir": "Gases leves-moderados, o como coadyuvante. Las carminativas (hinojo, anís) tienen evidencia B y uso tradicional muy sólido."
       },
@@ -1142,18 +1192,26 @@
           "sen",
           "cascara_sagrada",
           "triphala",
-          "collinsonia"
+          "collinsonia",
+          "zaragatona",
+          "olmo_america"
         ],
         "suplementos": [
-          "magnesio_glicinato"
+          "magnesio_glicinato",
+          "probioticos"
         ],
         "homeopatia": [
           "nux_vomica",
           "alumina",
           "hydrastis",
-          "plumbum"
+          "plumbum",
+          "podophyllum",
+          "nux_vomica_amp"
         ],
-        "aceites": [],
+        "aceites": [
+          "mejorana",
+          "menta_aceite"
+        ],
         "cuandoPreferir": "Estreñimiento crónico leve. Psyllium y semillas de lino son de primera elección. Preferir fibras naturales antes de laxantes estimulantes."
       },
       "prevencion": [
@@ -1297,22 +1355,30 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "agrimonia",
-          "alchemilla"
+          "alchemilla",
+          "jengibre",
+          "menta"
         ],
         "suplementos": [
           "s_boulardii",
           "l_rhamnosus_gg",
           "l_acidophilus",
-          "s_thermophilus"
+          "s_thermophilus",
+          "l_reuteri",
+          "probioticos"
         ],
         "homeopatia": [
           "mercurius",
           "iris_versicolor",
           "dulcamara",
           "podophyllum",
-          "veratrum_album"
+          "veratrum_album",
+          "merc_sol",
+          "nux_vomica"
         ],
-        "aceites": [],
+        "aceites": [
+          "menta_aceite"
+        ],
         "cuandoPreferir": "Diarrea aguda leve, diarrea por antibióticos (probióticos A), o prevención de diarrea del viajero. Loperamida no usar si fiebre/sangre."
       },
       "prevencion": [
@@ -1450,12 +1516,15 @@
         "fitoterapia": [
           "fumaria",
           "nigella",
-          "bardana"
+          "bardana",
+          "rooibos",
+          "borraja"
         ],
         "suplementos": [
           "aceite_onagra",
           "l_rhamnosus_gg",
-          "b_breve"
+          "b_breve",
+          "vitamina_c"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
@@ -1463,12 +1532,16 @@
           "graphites",
           "arsenicum_album",
           "petroleum",
-          "mezereum"
+          "mezereum",
+          "crotalus_horridus",
+          "psorinum"
         ],
         "aceites": [
           "manuka",
           "manzanilla_romana",
-          "pachuli"
+          "pachuli",
+          "mirto_aceite",
+          "tea_tree"
         ],
         "cuandoPreferir": "Eccema leve-moderado, mantenimiento entre brotes, o en niños donde se quiere evitar corticoide crónico. Omega-3 y probióticos tienen evidencia B en profilaxis pediátrica."
       },
@@ -1611,16 +1684,25 @@
         "fitoterapia": [
           "equinacea",
           "propoleo",
-          "sauco"
+          "sauco",
+          "cnidium",
+          "chuchuhuasi"
         ],
         "suplementos": [
           "l_acidophilus",
           "l_reuteri",
           "vitamina_c",
-          "vitamina_d3"
+          "vitamina_d3",
+          "s_boulardii"
         ],
-        "homeopatia": [],
-        "aceites": [],
+        "homeopatia": [
+          "medorrhinum_amp",
+          "thuja_occidentalis_amp"
+        ],
+        "aceites": [
+          "tomillo_geraniol_aceite",
+          "manuka_leptospermum_aceite"
+        ],
         "cuandoPreferir": "Candidiasis recurrente (profilaxis con probióticos), o como coadyuvante. L. acidophilus y L. reuteri tienen evidencia B en prevención de recurrencias."
       },
       "prevencion": [
@@ -1760,21 +1842,28 @@
           "dong_quai",
           "cimicifuga",
           "trebol_rojo",
-          "shatavari"
+          "shatavari",
+          "valeriana",
+          "pasiflora"
         ],
         "suplementos": [
-          "aceite_onagra"
+          "aceite_onagra",
+          "triptofano",
+          "jalea_real"
         ],
         "homeopatia": [
           "lycopodium",
           "pulsatilla",
           "sepia",
           "sanguinaria",
-          "lachesis"
+          "lachesis",
+          "magnesia_carbonica",
+          "nux_vomica"
         ],
         "aceites": [
           "salvia_esclarea",
-          "hinojo_aceite"
+          "hinojo_aceite",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Sofocos leves-moderados, mujeres con contraindicación al THS (cáncer hormono-dependiente), o que prefieren no usar hormonas. La cimicífuga tiene evidencia B."
       },
@@ -1918,16 +2007,25 @@
           "artemisa",
           "hinojo",
           "milenrama",
-          "alchemilla"
+          "alchemilla",
+          "white_peony"
         ],
-        "suplementos": [],
+        "suplementos": [
+          "pea",
+          "5_htp"
+        ],
         "homeopatia": [
           "pulsatilla",
           "sepia",
           "graphites",
-          "platina"
+          "platina",
+          "chamomilla",
+          "ruta_graveolens"
         ],
-        "aceites": [],
+        "aceites": [
+          "gaulteria",
+          "lavanda_aceite"
+        ],
         "cuandoPreferir": "Dismenorrea primaria leve-moderada, SPM leve, o como coadyuvante. El vitex (sauzatil) tiene evidencia B en SPM."
       },
       "prevencion": [
@@ -2072,24 +2170,31 @@
           "uncaria",
           "sauce",
           "ulmaria",
-          "grosellero_negro"
+          "grosellero_negro",
+          "pimienta_cayena",
+          "chuchuhuasi"
         ],
         "suplementos": [
           "omega_3",
           "curcumina",
           "boro",
           "msm",
-          "glucosamina"
+          "glucosamina",
+          "pea"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "calcaria_carbonica",
           "kali_bichromicum",
-          "bryonia"
+          "bryonia",
+          "ruta_graveolens",
+          "colchicum"
         ],
         "aceites": [
           "eucalipto",
-          "romero_aceite"
+          "romero_aceite",
+          "gaulteria",
+          "jengibre_aceite"
         ],
         "cuandoPreferir": "Artrosis leve-moderada, o para reducir consumo de AINEs (riesgo gastropatía). La glucosamina/condroitina y el harpagofito tienen evidencia B."
       },
@@ -2235,24 +2340,31 @@
           "curcuma",
           "jengibre",
           "harpagofito",
-          "menta"
+          "menta",
+          "white_peony",
+          "lavanda"
         ],
         "suplementos": [
           "pea",
           "vitamina_d3",
           "magnesio_glicinato",
-          "creatina"
+          "creatina",
+          "same"
         ],
         "homeopatia": [
           "bryonia",
           "ruta_graveolens",
           "hypericum",
-          "colocynthis"
+          "colocynthis",
+          "colchicum",
+          "magnesia_phosphorica"
         ],
         "aceites": [
           "lavanda_aceite",
           "eucalipto",
-          "menta_aceite"
+          "menta_aceite",
+          "mejorana",
+          "gaulteria"
         ],
         "cuandoPreferir": "Mialgia leve, tensión muscular por estrés, o DOMS (dolor post-ejercicio). El magnesio es de elección en calambres/tensión."
       },
@@ -2400,22 +2512,29 @@
           "rodiola",
           "hericium",
           "azafran",
-          "mucuna"
+          "mucuna",
+          "valeriana"
         ],
         "suplementos": [
           "vitamina_d3",
           "litio",
           "l_triptofano",
-          "5_htp"
+          "5_htp",
+          "triptofano",
+          "magnesio"
         ],
         "homeopatia": [
           "ignatia",
           "sepia",
           "natrum_muriaticum",
-          "crocus_sativus"
+          "crocus_sativus",
+          "zincum_metallicum",
+          "kali_phosphoricum"
         ],
         "aceites": [
-          "palo_de_rosa"
+          "palo_de_rosa",
+          "azahar_aceite",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Depresión leve, distimia, o como coadyuvante. El hipérico tiene evidencia A en depresión leve-moderada (interacciona con ISRS: no combinar)."
       },
@@ -2569,23 +2688,30 @@
           "eleuterococo",
           "schisandra",
           "regaliz",
-          "cordyceps"
+          "cordyceps",
+          "yerba_mate",
+          "guarana"
         ],
         "suplementos": [
           "hierro",
           "l_citrulina",
           "l_ornitina",
           "teacrina",
-          "vitamina_b12"
+          "vitamina_b12",
+          "vitamina_b_complejo",
+          "creatina"
         ],
         "homeopatia": [
           "arnica",
           "calcaria_carbonica",
-          "phosphorus"
+          "phosphorus",
+          "thyroidinum"
         ],
         "aceites": [
           "ravintsara",
-          "menta_aceite"
+          "menta_aceite",
+          "romero_aceite",
+          "albahaca_aceite"
         ],
         "cuandoPreferir": "Fatiga sin causa orgánica, fatiga adaptativa, o tras convalecencia. Los adaptógenos (ashwagandha, rodiola, ginseng) tienen evidencia B."
       },
@@ -2734,22 +2860,29 @@
           "ashwagandha",
           "rodiola",
           "manzanilla",
-          "lavanda"
+          "lavanda",
+          "ginseng",
+          "eleuterococo"
         ],
         "suplementos": [
           "magnesio",
           "vitamina_b_complejo",
           "tirosina",
-          "fosfatidilserina"
+          "fosfatidilserina",
+          "gaba",
+          "l_teanina"
         ],
         "homeopatia": [
           "nux_vomica",
-          "kali_phosphoricum"
+          "kali_phosphoricum",
+          "chamomilla"
         ],
         "aceites": [
           "lavanda_aceite",
           "salvia_esclarea",
-          "palmarosa"
+          "palmarosa",
+          "vetiver",
+          "ylang_ylang"
         ],
         "cuandoPreferir": "Estrés crónico, profilaxis de burnout, o antes de recurrir a ansiolíticos. Los adaptógenos (ashwagandha, rodiola) modulan el eje HHA con evidencia B."
       },
@@ -2893,17 +3026,26 @@
           "alcachofa",
           "lino",
           "tulsi",
-          "picrorhiza"
+          "picrorhiza",
+          "astragalus",
+          "jiaogulan"
         ],
         "suplementos": [
           "cromo",
           "vanadio",
           "niacina",
           "vitamina_e",
-          "beta_glucanos"
+          "beta_glucanos",
+          "hierro",
+          "vitamina_b12"
         ],
-        "homeopatia": [],
-        "aceites": [],
+        "homeopatia": [
+          "carbo_veg",
+          "calcaria_carbonica"
+        ],
+        "aceites": [
+          "neroli"
+        ],
         "cuandoPreferir": "Hipercolesterolemia leve-moderada, intolerancia a estatinas, o como coadyuvante. El ajo, el psyllium y el cromo tienen evidencia B."
       },
       "prevencion": [
@@ -3050,17 +3192,25 @@
           "nigella",
           "tulsi",
           "gymnema",
-          "maitake"
+          "maitake",
+          "maca",
+          "ashwagandha"
         ],
         "suplementos": [
           "vitamina_d3",
           "cromo",
           "vanadio",
-          "alfa_lipoico"
+          "alfa_lipoico",
+          "shilajit",
+          "hierro"
         ],
-        "homeopatia": [],
+        "homeopatia": [
+          "uranium_nitricum",
+          "thyroidinum"
+        ],
         "aceites": [
-          "canela_aceite"
+          "canela_aceite",
+          "geranio"
         ],
         "cuandoPreferir": "Prediabetes, control glucémico subóptimo, o como coadyuvante. La canela y el cromo tienen evidencia C-B en glucemia basal."
       },
@@ -3209,16 +3359,24 @@
           "espino_blanco",
           "olivo",
           "nigella",
-          "arjuna"
+          "arjuna",
+          "olivo_hoja",
+          "ortiga"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "l_citrulina",
-          "l_arginina"
+          "l_arginina",
+          "vitamina_k2",
+          "citrato_potasio"
         ],
-        "homeopatia": [],
+        "homeopatia": [
+          "lycopodium"
+        ],
         "aceites": [
-          "ylang_ylang"
+          "ylang_ylang",
+          "ajo_aceite",
+          "neroli"
         ],
         "cuandoPreferir": "HTA grado 1 o como coadyuvante. El magnesio y el espino blanco tienen evidencia C-B. No sustituir antihipertensivos sin control médico."
       },
@@ -3364,23 +3522,30 @@
           "canela",
           "psyllium",
           "hericium",
-          "trametes"
+          "trametes",
+          "meliloto",
+          "collinsonia"
         ],
         "suplementos": [
           "probioticos",
           "l_glutamina",
           "berberina",
           "sulforafano",
-          "lactoferrina"
+          "lactoferrina",
+          "s_boulardii",
+          "l_rhamnosus_gg"
         ],
         "homeopatia": [
           "nux_vomica",
           "chelidonium",
-          "natrum_phosphoricum"
+          "natrum_phosphoricum",
+          "hypericum",
+          "natrum_muriaticum"
         ],
         "aceites": [
           "menta_aceite",
-          "jengibre_aceite"
+          "jengibre_aceite",
+          "gaulteria"
         ],
         "cuandoPreferir": "SII leve-moderado, o profilaxis. Los probióticos (L. plantarum, B. longum) tienen evidencia B en SII."
       },
@@ -3521,21 +3686,28 @@
           "tomillo",
           "reishi",
           "ginseng",
-          "eleuterococo"
+          "eleuterococo",
+          "astragalus",
+          "shiitake"
         ],
         "suplementos": [
           "vitamina_c",
           "vitamina_d3",
           "zinc",
           "probioticos",
-          "selenio"
+          "selenio",
+          "acerola",
+          "espirulina"
         ],
         "homeopatia": [
-          "calcaria_carbonica"
+          "calcaria_carbonica",
+          "psorinum",
+          "zincum_metallicum"
         ],
         "aceites": [
           "tea_tree",
-          "ravintsara"
+          "ravintsara",
+          "palo_de_rosa"
         ],
         "cuandoPreferir": "Profilaxis invernal, inmunidad subóptima, o convalecencia. La equinácea, el propóleo y los beta-glucanos tienen evidencia B."
       },
@@ -3677,24 +3849,31 @@
           "centella",
           "milenrama",
           "agrimonia",
-          "alchemilla"
+          "alchemilla",
+          "pycnogenol",
+          "cola_de_caballo"
         ],
         "suplementos": [
           "zinc",
           "beta_glucanos",
           "acido_hialuronico",
-          "l_arginina"
+          "l_arginina",
+          "vitamina_a"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "graphites",
           "ledum_palustre",
-          "calendula"
+          "calendula",
+          "natrum_muriaticum",
+          "phytolacca"
         ],
         "aceites": [
           "lavanda_aceite",
           "tea_tree",
-          "incienso"
+          "incienso",
+          "palo_de_rosa",
+          "manuka"
         ],
         "cuandoPreferir": "Heridas crónicas leves, úlceras diabéticas, o profilaxis pre-quirúrgica. El aloe vera, la centella y el propóleo tienen evidencia B."
       },
@@ -3842,18 +4021,26 @@
           "ginseng",
           "schisandra",
           "centella",
-          "bacopa"
+          "bacopa",
+          "hericium",
+          "saffron_crocin"
         ],
         "suplementos": [
           "hierro",
           "vitamina_b12",
           "boro",
           "tirosina",
-          "fosfatidilserina"
+          "fosfatidilserina",
+          "colina"
         ],
-        "homeopatia": [],
+        "homeopatia": [
+          "picricum_acidum",
+          "arnica"
+        ],
         "aceites": [
-          "romero_aceite"
+          "romero_aceite",
+          "romero_verbenona_aceite",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "DCL, prevención cognitiva, o fatiga mental. El ginkgo (E A), la bacopa (E B) y los omega-3 tienen evidencia en cognición."
       },
@@ -4001,19 +4188,27 @@
           "ashwagandha",
           "guggulu",
           "rodiola",
-          "ginseng"
+          "ginseng",
+          "guarana",
+          "maca"
         ],
         "suplementos": [
           "selenio",
           "yodo",
           "zinc",
           "hierro",
-          "tirosina"
+          "tirosina",
+          "shilajit",
+          "magnesio_glicinato"
         ],
         "homeopatia": [
-          "calcaria_carbonica"
+          "calcaria_carbonica",
+          "lachesis",
+          "thyroidinum"
         ],
-        "aceites": [],
+        "aceites": [
+          "palo_de_rosa"
+        ],
         "cuandoPreferir": "Hipotiroidismo subclínico o coadyuvante en tratamiento sustitutivo. El selenio (200 mcg/día) tiene evidencia B en reducir anticuerpos anti-TPO en Hashimoto. NUNCA sustituir levotiroxina sin control médico. El yodo debe usarse con cautela: exceso empeora Hashimoto."
       },
       "prevencion": [
@@ -4158,21 +4353,29 @@
           "orthosiphon",
           "psyllium",
           "orthosiphon",
-          "d_manosa"
+          "d_manosa",
+          "pycnogenol",
+          "jengibre"
         ],
         "suplementos": [
           "d_manosa",
           "probioticos",
           "vitamina_c",
-          "d_manosa"
+          "d_manosa",
+          "s_boulardii",
+          "l_rhamnosus_gg"
         ],
         "homeopatia": [
           "staphysagria",
           "staphysagria",
           "sarsaparilla",
-          "hydrastis"
+          "hydrastis",
+          "silicea",
+          "lycopodium_clavatum_amp"
         ],
-        "aceites": [],
+        "aceites": [
+          "palmarosa"
+        ],
         "cuandoPreferir": "Profilaxis de ITU recurrente (≥3/año) para reducir consumo de antibióticos. No sustituye al antibiótico en ITU aguda con fiebre o afectación renal."
       },
       "prevencion": [
@@ -4321,22 +4524,30 @@
           "malvavisco",
           "manzanilla",
           "melisa",
-          "regaliz"
+          "regaliz",
+          "jengibre",
+          "menta"
         ],
         "suplementos": [
           "zinc",
           "glutation",
           "l_cisteina",
-          "probioticos"
+          "probioticos",
+          "sulforafano"
         ],
         "homeopatia": [
           "nux_vomica",
           "carbo_veg",
           "phosphorus",
           "argentum_nitricum",
-          "iris_versicolor"
+          "iris_versicolor",
+          "colchicum",
+          "ipecacuanha"
         ],
-        "aceites": [],
+        "aceites": [
+          "menta_aceite",
+          "jengibre_aceite"
+        ],
         "cuandoPreferir": "Gastritis leve, dispepsia funcional, prevención de recurrencias, o como complemento a la erradicación de H. pylori. No suspender IBP sin supervisión."
       },
       "prevencion": [
@@ -4481,20 +4692,28 @@
           "olmo_america",
           "malvavisco",
           "manzanilla",
-          "jengibre"
+          "jengibre",
+          "menta",
+          "curcuma"
         ],
         "suplementos": [
           "melatonina",
           "probioticos",
-          "betaina"
+          "betaina",
+          "bromelina"
         ],
         "homeopatia": [
           "iris_versicolor",
           "iris_versicolor",
           "nux_vomica",
-          "carbo_veg"
+          "carbo_veg",
+          "colchicum",
+          "bryonia"
         ],
-        "aceites": [],
+        "aceites": [
+          "laurel_aceite",
+          "clavo"
+        ],
         "cuandoPreferir": "ERGE leve-moderada, síntomas intermitentes, prevención de rebote al suspender IBP, durante el embarazo (bajo supervisión)."
       },
       "prevencion": [
@@ -4644,24 +4863,31 @@
           "hamamelis",
           "rusco",
           "hamamelis",
-          "pycnogenol"
+          "pycnogenol",
+          "meliloto",
+          "pimienta_cayena"
         ],
         "suplementos": [
           "diosmina",
           "vitamina_c",
           "colageno",
-          "psyllium"
+          "psyllium",
+          "berberina"
         ],
         "homeopatia": [
           "castano_indias",
           "nux_vomica",
           "collinsonia",
           "hamamelis",
-          "hamamelis"
+          "hamamelis",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "cipres",
-          "cipres"
+          "cipres",
+          "clavo",
+          "laurel_aceite"
         ],
         "cuandoPreferir": "Hemorroides grado I-II, profilaxis postquirúrgica, durante el embarazo (bajo supervisión), síntomas leves."
       },
@@ -4797,7 +5023,9 @@
           "curcuma",
           "canela",
           "boldo",
-          "zarzaparrilla"
+          "zarzaparrilla",
+          "bardana",
+          "aloe_vera"
         ],
         "suplementos": [
           "zinc",
@@ -4805,19 +5033,24 @@
           "omega_3",
           "vitamina_a",
           "probioticos",
-          "lactoferrina"
+          "lactoferrina",
+          "vitamina_c"
         ],
         "homeopatia": [
           "silicea",
           "sulphur",
           "hepar_sulphuris",
           "pulsatilla",
-          "ipecacuanha"
+          "ipecacuanha",
+          "calcarea_sulphurica",
+          "fluorica_acidica"
         ],
         "aceites": [
           "tea_tree",
           "lavanda_aceite",
-          "incienso"
+          "incienso",
+          "palmarosa",
+          "nilo_rosada"
         ],
         "cuandoPreferir": "Acné leve-moderado, como complemento al tratamiento tópico, en adolescentes (evitar isotretinoína), en embarazadas (no retinoides)."
       },
@@ -4970,7 +5203,9 @@
           "petasites",
           "sauco",
           "ortiga",
-          "milenrama"
+          "milenrama",
+          "euphrasia_fito",
+          "ammi_visnaga"
         ],
         "suplementos": [
           "quercetina",
@@ -4978,7 +5213,9 @@
           "omega_3",
           "probioticos",
           "nac",
-          "bromelina"
+          "bromelina",
+          "vitamina_a",
+          "sulforafano"
         ],
         "homeopatia": [
           "allium_cepa",
@@ -4986,13 +5223,16 @@
           "sabadilla",
           "natrum_muriaticum",
           "lycopodium",
-          "kali_bichromicum"
+          "kali_bichromicum",
+          "sticta",
+          "aconitum_napellus"
         ],
         "aceites": [
           "ravintsara",
           "eucalipto",
           "menta_aceite",
-          "menta_aceite"
+          "menta_aceite",
+          "inmale"
         ],
         "cuandoPreferir": "Rinitis leve-moderada, complemento a corticoides nasales, profilaxis estacional, pacientes que rechazan antihistamínicos."
       },
@@ -5137,23 +5377,31 @@
           "semilla_calabaza",
           "orthosiphon",
           "psyllium",
-          "orthosiphon"
+          "orthosiphon",
+          "pycnogenol",
+          "fresno"
         ],
         "suplementos": [
           "vitamina_c",
           "quercetina",
           "omega_3",
           "semilla_calabaza",
-          "bromelina"
+          "bromelina",
+          "alpha_gpc",
+          "akg"
         ],
         "homeopatia": [
           "colchicum",
           "ledum_palustre",
           "nitricum_acidum",
           "lycopodium",
-          "hydrastis"
+          "hydrastis",
+          "colocynthis",
+          "dulcamara"
         ],
-        "aceites": [],
+        "aceites": [
+          "pomelo_aceite"
+        ],
         "cuandoPreferir": "Profilaxis, hiperuricemia asintomática leve, complemento a alopurinol, ataques leves, pacientes con intolerancia a AINEs."
       },
       "prevencion": [
@@ -5309,7 +5557,9 @@
           "diente_de_leon",
           "diente_de_leon",
           "nac",
-          "milenrama"
+          "milenrama",
+          "dong_quai",
+          "guarana"
         ],
         "suplementos": [
           "hierro",
@@ -5317,16 +5567,22 @@
           "folato",
           "vitamina_b12",
           "vitamina_b12",
-          "lactoferrina"
+          "lactoferrina",
+          "metilfolato",
+          "zinc"
         ],
         "homeopatia": [
           "ferrum_phosphoricum",
           "china_officinalis",
           "natrum_muriaticum",
           "calcarea_phosphorica",
-          "pulsatilla"
+          "pulsatilla",
+          "lachesis",
+          "glonoinum"
         ],
-        "aceites": [],
+        "aceites": [
+          "neroli"
+        ],
         "cuandoPreferir": "Anemia leve, profilaxis (embarazo, vegetarianos), intolerancia al hierro oral, complemento al tratamiento. No sustituye investigación de causa."
       },
       "prevencion": [
@@ -5473,7 +5729,8 @@
         "fitoterapia": [
           "cola_caballo",
           "romero",
-          "salvia"
+          "salvia",
+          "epimedium"
         ],
         "suplementos": [
           "boro",
@@ -5483,17 +5740,23 @@
           "boro",
           "boro",
           "colageno",
-          "l_prolina"
+          "l_prolina",
+          "pea",
+          "l_helveticus"
         ],
         "homeopatia": [
           "calcarea_phosphorica",
           "calcarea_fluorica",
           "silicea",
           "symphytum",
-          "rhus_toxicodendron"
+          "rhus_toxicodendron",
+          "colchicum",
+          "bryonia"
         ],
         "aceites": [
-          "salvia_esclarea"
+          "salvia_esclarea",
+          "gaulteria",
+          "galbano"
         ],
         "cuandoPreferir": "Profilaxis, osteopenia, complemento a bisfosfonatos, postmenopausia, intolerancia a fármacos. No sustituye antirresortivos en osteoporosis establecida con fractura."
       },
@@ -5641,7 +5904,9 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "euphrasia_fito",
-          "manzanilla"
+          "manzanilla",
+          "azafran",
+          "saffron_crocin"
         ],
         "suplementos": [
           "omega_3",
@@ -5649,13 +5914,16 @@
           "vitamina_a",
           "luteina",
           "astaxantina",
-          "vitamina_d3"
+          "vitamina_d3",
+          "lut_max",
+          "zeaxantina"
         ],
         "homeopatia": [
           "euphrasia",
           "apis_mellifica",
           "natrum_muriaticum",
-          "aconitum_napellus"
+          "aconitum_napellus",
+          "allium_cepa"
         ],
         "aceites": [
           "manzanilla",
@@ -5812,25 +6080,32 @@
           "mirra",
           "propoleo",
           "tomillo",
-          "romero"
+          "romero",
+          "curcuma"
         ],
         "suplementos": [
           "vitamina_c",
           "coq10",
           "probioticos",
-          "zinc"
+          "zinc",
+          "sulforafano",
+          "s_boulardii"
         ],
         "homeopatia": [
           "mercurius",
           "sanguinaria",
           "phytolacca",
           "borax",
-          "silicea"
+          "silicea",
+          "merc_sol",
+          "medorrhinum"
         ],
         "aceites": [
           "tea_tree",
           "clavo",
-          "mirra"
+          "mirra",
+          "cardamomo_aceite",
+          "oregano"
         ],
         "cuandoPreferir": "Gingivitis leve, mantenimiento tras raspado, profilaxis, embarazo (gingivitis del embarazo), intolerancia a clorhexidina."
       },
@@ -5986,7 +6261,8 @@
           "propoleo",
           "regaliz",
           "equinacea",
-          "olmo_america"
+          "olmo_america",
+          "curcuma"
         ],
         "suplementos": [
           "l_lisina",
@@ -5994,20 +6270,26 @@
           "zinc",
           "lactoferrina",
           "vitamina_d3",
-          "l_lisina"
+          "l_lisina",
+          "pea",
+          "vitamina_a"
         ],
         "homeopatia": [
           "natrum_muriaticum",
           "rhus_toxicodendron",
           "sanguinaria",
           "mezereum",
-          "graphites"
+          "graphites",
+          "phytolacca",
+          "kali_muriaticum"
         ],
         "aceites": [
           "tea_tree",
           "melisa",
           "clavo",
-          "menta_aceite"
+          "menta_aceite",
+          "manuka",
+          "manuka_leptospermum_aceite"
         ],
         "cuandoPreferir": "Episodios leves, pródromos (inicio), profilaxis de recurrencias (>6/año), embarazadas (bajo supervisión), intolerancia a antivirales."
       },
@@ -6160,7 +6442,9 @@
           "pasiflora",
           "curcuma",
           "jengibre",
-          "harpagofito"
+          "harpagofito",
+          "white_peony",
+          "hiperico"
         ],
         "suplementos": [
           "magnesio_glicinato",
@@ -6170,21 +6454,26 @@
           "same",
           "5_htp",
           "l_triptofano",
-          "omega_3"
+          "omega_3",
+          "triptofano",
+          "pea"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "causticum",
           "arnica",
           "nux_vomica",
-          "phosphorus"
+          "phosphorus",
+          "ruta_graveolens"
         ],
         "aceites": [
           "lavanda_aceite",
           "mejorana",
           "incienso",
           "eucalipto",
-          "romero_aceite"
+          "romero_aceite",
+          "palo_de_rosa",
+          "gaulteria"
         ],
         "cuandoPreferir": "Complemento al tratamiento farmacológico, síndrome leve-moderado, intolerancia a fármacos, fatigue y sueño. El abordaje debe ser multidisciplinar (ejercicio Cognitivo-Conductual)."
       },
@@ -6338,7 +6627,9 @@
           "romero",
           "jengibre",
           "curcuma",
-          "olmo_america"
+          "olmo_america",
+          "white_peony",
+          "lavanda"
         ],
         "suplementos": [
           "omega_3",
@@ -6347,7 +6638,9 @@
           "msm",
           "glucosamina",
           "vitamina_d3",
-          "magnesio_glicinato"
+          "magnesio_glicinato",
+          "pea",
+          "same"
         ],
         "homeopatia": [
           "arnica",
@@ -6355,14 +6648,17 @@
           "rhus_toxicodendron",
           "bryonia",
           "symphytum",
-          "hypericum"
+          "hypericum",
+          "colchicum",
+          "colocynthis"
         ],
         "aceites": [
           "menta_aceite",
           "romero_aceite",
           "clavo",
           "gaulteria",
-          "lavanda_aceite"
+          "lavanda_aceite",
+          "palo_santo_aceite"
         ],
         "cuandoPreferir": "Lumbalgia mecánica aguda, crónica no específica, complemento a AINEs, profilaxis de recurrencias, ciática leve, pacientes con intolerancia gástrica a AINEs."
       },
@@ -6520,14 +6816,17 @@
           "pasiflora",
           "feverfew",
           "lavanda",
-          "menta"
+          "menta",
+          "jengibre"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "riboflavina",
           "coq10",
           "l_teanina",
-          "5_htp"
+          "5_htp",
+          "pea",
+          "magnesio"
         ],
         "homeopatia": [
           "nux_vomica",
@@ -6535,12 +6834,16 @@
           "gelsemium",
           "ignatia",
           "natrum_muriaticum",
-          "sanguinaria"
+          "sanguinaria",
+          "colchicum",
+          "bryonia"
         ],
         "aceites": [
           "menta_aceite",
           "lavanda_aceite",
-          "romero_aceite"
+          "romero_aceite",
+          "gaulteria",
+          "mejorana"
         ],
         "cuandoPreferir": "Cefalea tensional episódica, profilaxis de crónica, pacientes con abuso de analgésicos (cefalea por medicación), estrés como desencadenante."
       },
@@ -6677,7 +6980,8 @@
           "jengibre",
           "ginkgo",
           "feverfew",
-          "pimienta_cayena"
+          "pimienta_cayena",
+          "valeriana"
         ],
         "suplementos": [
           "ginkgo",
@@ -6685,7 +6989,9 @@
           "magnesio_glicinato",
           "zinc",
           "ginkgo",
-          "l_teanina"
+          "l_teanina",
+          "litio",
+          "5_htp"
         ],
         "homeopatia": [
           "conium",
@@ -6693,12 +6999,16 @@
           "gelsemium",
           "tabacum",
           "bryonia",
-          "phosphorus"
+          "phosphorus",
+          "veratrum_album",
+          "ipecacuanha"
         ],
         "aceites": [
           "lavanda_aceite",
           "menta_aceite",
-          "jengibre_aceite"
+          "jengibre_aceite",
+          "vetiver",
+          "romero_aceite"
         ],
         "cuandoPreferir": "Vértigo periférico leve, profilaxis Ménière, náuseas asociadas, mareo cervical, complemento a betahistina."
       },
@@ -6835,7 +7145,9 @@
           "ginkgo",
           "feverfew",
           "melisa",
-          "valeriana"
+          "valeriana",
+          "pasiflora",
+          "hiperico"
         ],
         "suplementos": [
           "zinc",
@@ -6844,7 +7156,8 @@
           "ginkgo",
           "nac",
           "melatonina",
-          "coq10"
+          "coq10",
+          "l_triptofano"
         ],
         "homeopatia": [
           "sulphur",
@@ -6852,12 +7165,16 @@
           "sulphur",
           "sulphur",
           "conium",
-          "graphites"
+          "graphites",
+          "crataegus_homeo",
+          "ignatia"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
-          "helichrysum"
+          "helichrysum",
+          "neroli",
+          "ylang_ylang"
         ],
         "cuandoPreferir": "Tinnitus crónico no pulsátil, complemento a TRT, insomnio/ansiedad asociada, profilaxis, intolerancia al ruido."
       },
@@ -6997,7 +7314,9 @@
           "romero",
           "cola_caballo",
           "salvia",
-          "semilla_calabaza"
+          "semilla_calabaza",
+          "he_shou_wu",
+          "cola_de_caballo"
         ],
         "suplementos": [
           "zinc",
@@ -7008,7 +7327,9 @@
           "l_metionina",
           "colageno",
           "vitamina_d3",
-          "saw_palmetto"
+          "saw_palmetto",
+          "zinc_picolinato",
+          "msm"
         ],
         "homeopatia": [
           "silicea",
@@ -7016,14 +7337,17 @@
           "lycopodium",
           "phosphorus",
           "zincum_metallicum",
-          "natrum_muriaticum"
+          "natrum_muriaticum",
+          "borax",
+          "rhus_toxicodendron"
         ],
         "aceites": [
           "romero_aceite",
           "cedro_atlas",
           "lavanda_aceite",
           "menta_aceite",
-          "clavo"
+          "clavo",
+          "romero_verbenona_aceite"
         ],
         "cuandoPreferir": "Alopecia androgenética leve-moderada, telógena (estrés/deficiencia), complemento a minoxidil, profilaxis, mujeres (evitar finasterida), pacientes que prefieren natural."
       },
@@ -7180,7 +7504,9 @@
           "dong_quai",
           "nigella",
           "mercurius",
-          "regaliz"
+          "regaliz",
+          "guggulu",
+          "pycnogenol"
         ],
         "suplementos": [
           "inositol",
@@ -7189,7 +7515,9 @@
           "cromo",
           "magnesio_glicinato",
           "nac",
-          "zinc"
+          "zinc",
+          "akg",
+          "tirosina"
         ],
         "homeopatia": [
           "pulsatilla",
@@ -7197,9 +7525,13 @@
           "lycopodium",
           "calcaria_carbonica",
           "natrum_muriaticum",
-          "andrographis"
+          "andrographis",
+          "thyroidinum",
+          "crocus_sativus"
         ],
-        "aceites": [],
+        "aceites": [
+          "salvia_esclarea"
+        ],
         "cuandoPreferir": "SOP leve, complemento a metformina, insulinorresistencia, pacientes que buscan embarazo (no AOC), intolerancia a fármacos, mantenimiento."
       },
       "prevencion": [
@@ -7351,7 +7683,9 @@
           "melisa",
           "melisa",
           "valeriana",
-          "pasiflora"
+          "pasiflora",
+          "kava",
+          "pasionaria"
         ],
         "suplementos": [
           "l_carnitina",
@@ -7360,18 +7694,23 @@
           "magnesio_glicinato",
           "selenio",
           "omega_3",
-          "l_teanina"
+          "l_teanina",
+          "vitamina_b6"
         ],
         "homeopatia": [
           "spongia",
           "spongia",
           "spongia",
           "lachesis",
-          "natrum_muriaticum"
+          "natrum_muriaticum",
+          "crataegus_homeo",
+          "chamomilla"
         ],
         "aceites": [
           "lavanda_aceite",
-          "melisa"
+          "melisa",
+          "menta_aceite",
+          "romero_aceite"
         ],
         "cuandoPreferir": "Síntomas adrenérgicos (taquiciedad, ansiedad) coadyuvante, pre-operatorio, intolerancia a antitiroideos, fatiga muscular. NO sustituye antitiroideos."
       },
@@ -7524,7 +7863,9 @@
           "curcuma",
           "jengibre",
           "diente_de_leon",
-          "bardana"
+          "bardana",
+          "maca",
+          "rodiola"
         ],
         "suplementos": [
           "nac",
@@ -7534,18 +7875,23 @@
           "fosfatidilcolina",
           "cardo_mariano",
           "glutation",
-          "l_cisteina"
+          "l_cisteina",
+          "shilajit",
+          "lecitina"
         ],
         "homeopatia": [
           "chelidonium",
           "lycopodium",
           "phosphorus",
           "nux_vomica",
-          "cardo_mariano"
+          "cardo_mariano",
+          "calcaria_carbonica",
+          "calcarea_phosphorica"
         ],
         "aceites": [
           "naranja_dulce",
-          "romero_aceite"
+          "romero_aceite",
+          "pomelo_aceite"
         ],
         "cuandoPreferir": "NAFLD leve-moderada, profilaxis, complemento a pérdida de peso, elevación leve de transaminasas, intolerancia a fármacos. Pérdida de peso sigue siendo el pilar."
       },
@@ -7703,7 +8049,9 @@
           "cordyceps",
           "ginseng",
           "maca",
-          "rodiola"
+          "rodiola",
+          "tongkat_ali",
+          "eleuterococo"
         ],
         "suplementos": [
           "creatina",
@@ -7715,18 +8063,23 @@
           "beta_alanina",
           "beta_alanina",
           "magnesio_glicinato",
-          "coq10"
+          "coq10",
+          "leucina_pura",
+          "urolithin_a"
         ],
         "homeopatia": [
           "arnica",
           "calcarea_phosphorica",
           "silicea",
           "phosphorus",
-          "gelsemium"
+          "gelsemium",
+          "calcaria_carbonica"
         ],
         "aceites": [
           "romero_aceite",
-          "menta_aceite"
+          "menta_aceite",
+          "albahaca_aceite",
+          "mejorana"
         ],
         "cuandoPreferir": "Prevención en >60 años, fragilidad leve, complemento a ejercicio, recuperación posthospitalización, sarcopenia establecida. Sin ejercicio, los suplementos son poco eficaces."
       },
@@ -7892,7 +8245,9 @@
           "ginkgo",
           "tribulus",
           "ashwagandha",
-          "rodiola"
+          "rodiola",
+          "azafran",
+          "reishi"
         ],
         "suplementos": [
           "l_arginina",
@@ -7901,7 +8256,8 @@
           "omega_3",
           "vitamina_d3",
           "coq10",
-          "magnesio_glicinato"
+          "magnesio_glicinato",
+          "inositol"
         ],
         "homeopatia": [
           "lycopodium",
@@ -7909,14 +8265,18 @@
           "vitex",
           "phosphorus",
           "nux_vomica",
-          "lachesis"
+          "lachesis",
+          "platina",
+          "medorrhinum_amp"
         ],
         "aceites": [
           "romero_aceite",
           "ylang_ylang",
           "sandalo",
           "neroli",
-          "pachuli"
+          "pachuli",
+          "rosa",
+          "salvia_esclarea"
         ],
         "cuandoPreferir": "DE leve, psicógena, complemento a PDE5, pacientes con contraindicación a PDE5 (nitratos), mantenimiento, perfil cardiovascular."
       },
@@ -8079,7 +8439,9 @@
           "ginseng",
           "gymnema",
           "fenogreco",
-          "olmo_america"
+          "olmo_america",
+          "te_rojo",
+          "chia"
         ],
         "suplementos": [
           "omega_3",
@@ -8091,18 +8453,23 @@
           "nac",
           "probioticos",
           "vitamina_c",
-          "alfa_lipoico"
+          "alfa_lipoico",
+          "shilajit",
+          "camu_camu"
         ],
         "homeopatia": [
           "lycopodium",
           "phosphorus",
           "calcaria_carbonica",
           "thuja",
-          "nux_vomica"
+          "nux_vomica",
+          "thyroidinum",
+          "digitalis"
         ],
         "aceites": [
           "canela_aceite",
-          "naranja_dulce"
+          "naranja_dulce",
+          "pomelo_aceite"
         ],
         "cuandoPreferir": "Profilaxis en pacientes con riesgo, síndrome metabólico leve, complemento a fármacos, resistencia a la insulina, hígado graso asociado. Estilo de vida es el pilar."
       },
@@ -8260,7 +8627,9 @@
           "gordolobo",
           "hisopo",
           "grindelia",
-          "ajo"
+          "ajo",
+          "cordyceps",
+          "pulmonaria"
         ],
         "suplementos": [
           "omega_3",
@@ -8271,7 +8640,8 @@
           "quercetina",
           "bromelina",
           "zinc",
-          "probioticos"
+          "probioticos",
+          "sulforafano"
         ],
         "homeopatia": [
           "arsenicum_album",
@@ -8279,14 +8649,18 @@
           "natrum_sulphuricum",
           "lobelia_inflata",
           "ipecacuanha",
-          "spongia"
+          "spongia",
+          "euphrasia",
+          "psorinum"
         ],
         "aceites": [
           "ravintsara",
           "eucalipto",
           "menta_aceite",
           "tomillo",
-          "pino_silvestre"
+          "pino_silvestre",
+          "inmale",
+          "niaouli"
         ],
         "cuandoPreferir": "Asma leve intermitente, profilaxis, complemento a corticoides, bronquitis aguda/coadyuvante, intolerancia a montelukast. NUNCA sustituir broncodilatador de rescate."
       },
@@ -8432,23 +8806,31 @@
           "uva_ursi",
           "orthosiphon",
           "orthosiphon",
-          "solidago"
+          "solidago",
+          "estigma_maiz",
+          "ammi_visnaga"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "magnesio_glicinato",
           "vitamina_b6",
           "probioticos",
-          "l_citrulina"
+          "l_citrulina",
+          "citrato_potasio",
+          "l_fenilalanina"
         ],
         "homeopatia": [
           "hydrastis",
           "lycopodium",
           "sarsaparilla",
           "colocynthis",
-          "tabacum"
+          "tabacum",
+          "uranium_nitricum",
+          "lycopodium_clavatum_amp"
         ],
-        "aceites": [],
+        "aceites": [
+          "enebro"
+        ],
         "cuandoPreferir": "Profilaxis de recurrencias, cálculos pequeños (<5mm) en expulsión, hipocitraturia, complemento a tamsulosina, intolerancia a AINEs."
       },
       "prevencion": [
@@ -8606,7 +8988,9 @@
           "bacopa",
           "kanna",
           "ginseng",
-          "pasiflora"
+          "pasiflora",
+          "guarana",
+          "valeriana"
         ],
         "suplementos": [
           "omega_3",
@@ -8618,7 +9002,8 @@
           "vitamina_b6",
           "tirosina",
           "l_teanina",
-          "fosfatidilserina"
+          "fosfatidilserina",
+          "litio"
         ],
         "homeopatia": [
           "stramonium",
@@ -8626,14 +9011,18 @@
           "cina",
           "tuberculinum",
           "medorrhinum",
-          "lycopodium"
+          "lycopodium",
+          "argentum_nitricum",
+          "natrum_carbonicum"
         ],
         "aceites": [
           "lavanda_aceite",
           "vetiver",
           "cedro_atlas",
           "menta_aceite",
-          "romero_aceite"
+          "romero_aceite",
+          "vetiver_haiti_aceite",
+          "incienso"
         ],
         "cuandoPreferir": "TDAH leve, complemento a estimulantes, adultos con rechazo a estimulantes, deficiencias nutricionales, abordaje integrativo. No sustituir estimulantes en casos moderados-graves."
       },
@@ -8784,7 +9173,9 @@
           "jengibre",
           "pycnogenol",
           "alchemilla",
-          "feverfew"
+          "feverfew",
+          "viburnum_opulus",
+          "white_peony"
         ],
         "suplementos": [
           "omega_3",
@@ -8794,7 +9185,9 @@
           "zinc",
           "vitamina_b6",
           "curcumina",
-          "i3c"
+          "i3c",
+          "pea",
+          "jalea_real"
         ],
         "homeopatia": [
           "sepia",
@@ -8802,13 +9195,16 @@
           "lycopodium",
           "pulsatilla",
           "cimicifuga",
-          "belladonna"
+          "belladonna",
+          "calcaria_carbonica",
+          "zincum_metallicum"
         ],
         "aceites": [
           "clavo",
           "salvia_esclarea",
           "geranio",
-          "ylang_ylang"
+          "ylang_ylang",
+          "ravintsara"
         ],
         "cuandoPreferir": "Dolor leve-moderado, complemento a hormonales, profilaxis, intolerancia a hormonales, mejora calidad de vida. Abordaje multidisciplinar (dieta, fisio)."
       },
@@ -8969,7 +9365,8 @@
           "pimienta_cayena",
           "nigella",
           "curcuma",
-          "regaliz"
+          "regaliz",
+          "pensamiento"
         ],
         "suplementos": [
           "omega_3",
@@ -8980,7 +9377,9 @@
           "glutation",
           "nac",
           "probioticos",
-          "vitamina_b12"
+          "vitamina_b12",
+          "silicio",
+          "colageno_hidrolizado"
         ],
         "homeopatia": [
           "sulphur",
@@ -8988,13 +9387,17 @@
           "graphites",
           "sepia",
           "sulphur",
-          "rhus_toxicodendron"
+          "rhus_toxicodendron",
+          "fluorica_acidica",
+          "silicea"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
           "tea_tree",
-          "geranio"
+          "geranio",
+          "helichrysum",
+          "palmarosa"
         ],
         "cuandoPreferir": "Psoriasis leve-moderada, complemento a tópicos, mantenimiento, calidad de vida, embarazo, intolerancia a sistémicos. Abordaje integral (dieta, estrés)."
       },
@@ -9152,14 +9555,17 @@
           "manzanilla",
           "menta",
           "melisa",
-          "vitex"
+          "vitex",
+          "artemisa"
         ],
         "suplementos": [
           "vitamina_b6",
           "magnesio_glicinato",
           "zinc",
           "probioticos",
-          "l_cisteina"
+          "l_cisteina",
+          "5_htp",
+          "same"
         ],
         "homeopatia": [
           "ipecacuanha",
@@ -9167,13 +9573,17 @@
           "sepia",
           "sepia",
           "cocculus",
-          "tabacum"
+          "tabacum",
+          "colchicum",
+          "medorrhinum"
         ],
         "aceites": [
           "menta_aceite",
           "lavanda_aceite",
           "jengibre_aceite",
-          "naranja_dulce"
+          "naranja_dulce",
+          "mejorana",
+          "pimienta_negra_aceite"
         ],
         "cuandoPreferir": "Náuseas leves-moderadas del embarazo (primera elección B6 + jengibre), cinetosis, postoperatorio leve, intolerancia a antieméticos, profilaxis."
       },
@@ -9324,26 +9734,33 @@
           "salvia",
           "tea_tree",
           "aloe_vera",
-          "ortiga"
+          "ortiga",
+          "grindelia",
+          "pensamiento"
         ],
         "suplementos": [
           "zinc",
           "vitamina_b6",
           "biotina",
           "omega_3",
-          "probioticos"
+          "probioticos",
+          "acido_undecilenico"
         ],
         "homeopatia": [
           "sulphur",
           "graphites",
           "sulphur",
           "carbo_veg",
-          "thuja"
+          "thuja",
+          "rumex",
+          "mezereum"
         ],
         "aceites": [
           "tea_tree",
           "lavanda_aceite",
-          "romero_aceite"
+          "romero_aceite",
+          "vetiver",
+          "incienso"
         ],
         "cuandoPreferir": "Caspa leve, mantenimiento, cara (evitar corticoides crónicos), profilaxis, intolerancia a antifúngicos químicos."
       },
@@ -9454,25 +9871,32 @@
           "ajo",
           "olmo_america",
           "oregano",
-          "lavanda"
+          "lavanda",
+          "pycnogenol",
+          "diosmina"
         ],
         "suplementos": [
           "acido_undecilenico",
           "biotina",
           "zinc",
           "selenio",
-          "probioticos"
+          "probioticos",
+          "vitamina_a"
         ],
         "homeopatia": [
           "silicea",
           "graphites",
           "thuja",
-          "nitricum_acidum"
+          "nitricum_acidum",
+          "natrum_muriaticum",
+          "phytolacca"
         ],
         "aceites": [
           "tea_tree",
           "oregano",
-          "lavanda_aceite"
+          "lavanda_aceite",
+          "palo_de_rosa",
+          "incienso"
         ],
         "cuandoPreferir": "Onicomicosis leve (<50% uña), profilaxis, prevención recurrencia, intolerancia a antifúngicos orales (hepatotoxicidad), embarazo (no orales)."
       },
@@ -9595,23 +10019,30 @@
           "chelidonium",
           "sauco",
           "propoleo",
-          "propoleo"
+          "propoleo",
+          "curcuma",
+          "jengibre"
         ],
         "suplementos": [
           "zinc",
           "vitamina_c",
           "vitamina_a",
           "reishi",
-          "selenio"
+          "selenio",
+          "pea",
+          "l_lisina"
         ],
         "homeopatia": [
           "thuja",
           "nitricum_acidum",
-          "causticum"
+          "causticum",
+          "phytolacca",
+          "thuja_occidentalis_amp"
         ],
         "aceites": [
           "tea_tree",
-          "oregano"
+          "oregano",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Verrugas comunes leves, niños (evitar crioterapia agresiva), múltiples, profilaxis, intolerancia a queratolíticos."
       },
@@ -9725,26 +10156,33 @@
           "ajo",
           "oregano",
           "lavanda",
-          "olmo_america"
+          "olmo_america",
+          "diosmina",
+          "bardana"
         ],
         "suplementos": [
           "acido_undecilenico",
           "zinc",
           "probioticos",
-          "omega_3"
+          "omega_3",
+          "vitamina_a"
         ],
         "homeopatia": [
           "silicea",
           "graphites",
           "thuja",
           "thuja",
-          "sepia"
+          "sepia",
+          "natrum_muriaticum",
+          "kali_sulphuricum"
         ],
         "aceites": [
           "tea_tree",
           "oregano",
           "lavanda_aceite",
-          "palmarosa"
+          "palmarosa",
+          "palo_de_rosa",
+          "nilo_rosada"
         ],
         "cuandoPreferir": "Tiña pedis interdigital leve-moderada, profilaxis (deportistas), intolerancia a antifúngicos químicos, prevención recurrencia. La higiene es clave."
       },
@@ -9857,7 +10295,8 @@
           "regaliz",
           "equinacea",
           "ajo",
-          "propoleo"
+          "propoleo",
+          "lavanda"
         ],
         "suplementos": [
           "l_lisina",
@@ -9865,18 +10304,24 @@
           "zinc",
           "vitamina_d3",
           "lactoferrina",
-          "reishi"
+          "reishi",
+          "pea",
+          "lecitina"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "mezereum",
           "arsenicum_album",
-          "hypericum"
+          "hypericum",
+          "colocynthis",
+          "magnesia_phosphorica"
         ],
         "aceites": [
           "tea_tree",
           "melisa",
-          "ravintsara"
+          "ravintsara",
+          "gaulteria",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Complemento a antivirales (no sustituir), neuralgia postherpética, profilaxis recurrencia, intolerancia a antivirales, mantenimiento inmunidad."
       },
@@ -9989,26 +10434,33 @@
           "aloe_vera",
           "te_verde",
           "lavanda",
-          "calendula"
+          "calendula",
+          "centella",
+          "bilberry"
         ],
         "suplementos": [
           "omega_3",
           "zinc",
           "niacinamida",
           "probioticos",
-          "vitamina_c"
+          "vitamina_c",
+          "vitamina_a",
+          "taurina"
         ],
         "homeopatia": [
           "carbo_veg",
           "sulphur",
           "pulsatilla",
           "calcaria_carbonica",
-          "ledum_palustre"
+          "ledum_palustre",
+          "spigelia",
+          "nitricum_acidum"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
-          "incienso"
+          "incienso",
+          "neroli"
         ],
         "cuandoPreferir": "Rosácea leve-moderada, mantenimiento, intolerancia a metronidazol, profilaxis estacional, eritema (Brimonidina rebote)."
       },
@@ -10125,7 +10577,9 @@
           "regaliz",
           "petasites",
           "quercetina",
-          "sauco"
+          "sauco",
+          "pycnogenol",
+          "cola_de_caballo"
         ],
         "suplementos": [
           "quercetina",
@@ -10133,18 +10587,23 @@
           "omega_3",
           "vitamina_d3",
           "probioticos",
-          "bromelina"
+          "bromelina",
+          "zinc"
         ],
         "homeopatia": [
           "apis_mellifica",
           "ortiga",
           "rhus_toxicodendron",
           "pulsatilla",
-          "sulphur"
+          "sulphur",
+          "rumex",
+          "mezereum"
         ],
         "aceites": [
           "lavanda_aceite",
-          "manzanilla_romana"
+          "manzanilla_romana",
+          "tea_tree",
+          "incienso"
         ],
         "cuandoPreferir": "Urticaria leve, profilaxis, complemento a anti-H1, pacientes que rechazan antihistamínicos, urticaria física crónica."
       },
@@ -10264,7 +10723,9 @@
           "manzanilla",
           "olmo_america",
           "malvavisco",
-          "olivo"
+          "olivo",
+          "lavanda",
+          "centella"
         ],
         "suplementos": [
           "omega_3",
@@ -10273,20 +10734,25 @@
           "vitamina_a",
           "omega_3",
           "colageno",
-          "biotina"
+          "biotina",
+          "astaxantina"
         ],
         "homeopatia": [
           "sulphur",
           "graphites",
           "petroleum",
           "arsenicum_album",
-          "calcaria_carbonica"
+          "calcaria_carbonica",
+          "nitricum_acidum",
+          "kali_sulphuricum"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
           "rosa",
-          "geranio"
+          "geranio",
+          "nilo_rosada",
+          "palmarosa"
         ],
         "cuandoPreferir": "Xerosis leve-moderada, piel sensible, atópica, prevención (invierno), mantenimiento, embarazo (no corticoides crónicos)."
       },
@@ -10400,7 +10866,9 @@
           "aloe_vera",
           "hiperico",
           "pensamiento",
-          "olmo_america"
+          "olmo_america",
+          "pycnogenol",
+          "diosmina"
         ],
         "suplementos": [
           "omega_3",
@@ -10409,19 +10877,24 @@
           "zinc",
           "probioticos",
           "niacinamida",
-          "quercetina"
+          "quercetina",
+          "vitamina_a"
         ],
         "homeopatia": [
           "sulphur",
           "graphites",
           "rhus_toxicodendron",
           "petroleum",
-          "apis_mellifica"
+          "apis_mellifica",
+          "nitricum_acidum",
+          "phytolacca"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
-          "incienso"
+          "incienso",
+          "palo_de_rosa",
+          "clavo"
         ],
         "cuandoPreferir": "Dermatitis contacto leve, manos, mantenimiento tras corticoide, piel sensible, profilaxis profesional, embarazo (no corticoides fuertes)."
       },
@@ -10535,7 +11008,9 @@
           "propoleo",
           "regaliz",
           "manzanilla",
-          "olmo_america"
+          "olmo_america",
+          "curcuma",
+          "jengibre"
         ],
         "suplementos": [
           "vitamina_b12",
@@ -10544,19 +11019,24 @@
           "zinc",
           "l_lisina",
           "probioticos",
-          "folato"
+          "folato",
+          "pea",
+          "l_reuteri"
         ],
         "homeopatia": [
           "borax",
           "mercurius",
           "nitricum_acidum",
           "hydrastis",
-          "kali_muriaticum"
+          "kali_muriaticum",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "tea_tree",
           "mirra",
-          "clavo"
+          "clavo",
+          "laurel_aceite"
         ],
         "cuandoPreferir": "Aftas menores recurrentes, profilaxis, intolerancia a corticoides tópicos, niños, complemento a investigación de causa (descartar celiaquía/B12)."
       },
@@ -10670,7 +11150,9 @@
           "manzanilla",
           "calendula",
           "regaliz",
-          "olmo_america"
+          "olmo_america",
+          "curcuma",
+          "jengibre"
         ],
         "suplementos": [
           "riboflavina",
@@ -10678,18 +11160,23 @@
           "hierro",
           "zinc",
           "probioticos",
-          "vitamina_b12"
+          "vitamina_b12",
+          "omega_7"
         ],
         "homeopatia": [
           "borax",
           "nitricum_acidum",
           "graphites",
-          "sulphur"
+          "sulphur",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "tea_tree",
           "lavanda_aceite",
-          "mirra"
+          "mirra",
+          "clavo",
+          "laurel_aceite"
         ],
         "cuandoPreferir": "Boqueras leves, profilaxis, mantenimiento, intolerancia a miconazol, deficiencias nutricionales, prótesis (complemento a ajuste)."
       },
@@ -10805,26 +11292,33 @@
           "clavo",
           "eucalipto",
           "tomillo",
-          "hinojo"
+          "hinojo",
+          "regaliz"
         ],
         "suplementos": [
           "probioticos",
           "zinc",
           "vitamina_c",
-          "bromelina"
+          "bromelina",
+          "propoleo",
+          "colina"
         ],
         "homeopatia": [
           "carbo_veg",
           "sulphur",
           "pulsatilla",
           "nux_vomica",
-          "mercurius"
+          "mercurius",
+          "colchicum",
+          "arsenicum_album"
         ],
         "aceites": [
           "menta_aceite",
           "eucalipto",
           "clavo",
-          "perejil_aceite"
+          "perejil_aceite",
+          "cardamomo_aceite",
+          "hisopo"
         ],
         "cuandoPreferir": "Halitosis oral leve, profilaxis, mantenimiento, complemento a higiene, xerostomía, después de comidas (chicles de menta)."
       },
@@ -10940,25 +11434,32 @@
           "llanten",
           "regaliz",
           "tomillo",
-          "aloe_vera"
+          "aloe_vera",
+          "gordolobo",
+          "cordyceps"
         ],
         "suplementos": [
           "vitamina_c",
           "zinc",
           "probioticos",
-          "jengibre"
+          "jengibre",
+          "bromelina"
         ],
         "homeopatia": [
           "spongia",
           "drosera",
           "rumex",
           "phosphorus",
-          "causticum"
+          "causticum",
+          "euphrasia",
+          "sabadilla"
         ],
         "aceites": [
           "incienso",
           "mirra",
-          "salvia_esclarea"
+          "salvia_esclarea",
+          "ravintsara",
+          "benjuu"
         ],
         "cuandoPreferir": "Laringitis aguda, mantenimiento, RFL (complemento a IBP), profilaxis profesional vocal, aftersurgery, intolerancia a corticoides."
       },
@@ -11085,26 +11586,33 @@
           "olivo",
           "ortiga",
           "regaliz",
-          "lavanda"
+          "lavanda",
+          "ammi_visnaga"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "vitamina_d3",
           "omega_3",
           "melatonina",
-          "probioticos"
+          "probioticos",
+          "5_htp",
+          "magnesio"
         ],
         "homeopatia": [
           "spongia",
           "drosera",
           "glonoinum",
-          "nux_vomica"
+          "nux_vomica",
+          "sticta",
+          "phosphorus"
         ],
         "aceites": [
           "eucalipto",
           "ravintsara",
           "menta_aceite",
-          "incienso"
+          "incienso",
+          "vetiver",
+          "neroli"
         ],
         "cuandoPreferir": "Ronquido simple (no AOS), AOS leve, complemento a CPAP, intolerancia a CPAP (mantenimiento), profilaxis, posicional. NO sustituir CPAP en AOS moderada-grave."
       },
@@ -11234,7 +11742,9 @@
           "valeriana",
           "pasiflora",
           "rodiola",
-          "ashwagandha"
+          "ashwagandha",
+          "hiperico",
+          "melisa"
         ],
         "suplementos": [
           "hierro",
@@ -11244,18 +11754,23 @@
           "vitamina_d3",
           "tirosina",
           "omega_3",
-          "ginkgo"
+          "ginkgo",
+          "triptofano",
+          "l_triptofano"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "zincum_metallicum",
           "vitex",
-          "causticum"
+          "causticum",
+          "chamomilla",
+          "ignatia"
         ],
         "aceites": [
           "lavanda_aceite",
           "romero_aceite",
-          "mejorana"
+          "mejorana",
+          "azahar_aceite"
         ],
         "cuandoPreferir": "SPI leve, déficit de hierro/magnesio, embarazo (no agonistas dopamina), profilaxis, complemento a agonistas, augmentation (reducir dosis)."
       },
@@ -11380,7 +11895,8 @@
         "fitoterapia": [
           "pasiflora",
           "valeriana",
-          "romero"
+          "romero",
+          "white_peony"
         ],
         "suplementos": [
           "magnesio_glicinato",
@@ -11389,19 +11905,25 @@
           "vitamina_e",
           "vitamina_b_complejo",
           "zinc",
-          "omega_3"
+          "omega_3",
+          "pea",
+          "l_helveticus"
         ],
         "homeopatia": [
           "magnesia_phosphorica",
           "nux_vomica",
           "sulphur",
-          "vitex"
+          "vitex",
+          "colchicum",
+          "ruta_graveolens"
         ],
         "aceites": [
           "lavanda_aceite",
           "romero_aceite",
           "mejorana",
-          "menta_aceite"
+          "menta_aceite",
+          "gaulteria",
+          "palo_santo_aceite"
         ],
         "cuandoPreferir": "Calambres idiopáticos, profilaxis nocturna, embarazo (Magnesio), intolerancia a quinina (retirada), pacientes con diuréticos, ancianos."
       },
@@ -11520,25 +12042,32 @@
           "llanten",
           "hamamelis",
           "calendula",
-          "te_verde"
+          "te_verde",
+          "euphrasia_fito",
+          "pycnogenol"
         ],
         "suplementos": [
           "vitamina_a",
           "vitamina_c",
           "omega_3",
           "zinc",
-          "probioticos"
+          "probioticos",
+          "vitamina_d3"
         ],
         "homeopatia": [
           "euphrasia",
           "allium_cepa",
           "apis_mellifica",
           "pulsatilla",
-          "argentum_nitricum"
+          "argentum_nitricum",
+          "mercurius",
+          "calcaria_carbonica"
         ],
         "aceites": [
           "manzanilla_romana",
-          "lavanda_aceite"
+          "lavanda_aceite",
+          "tea_tree",
+          "ravintsara"
         ],
         "cuandoPreferir": "Conjuntivitis vírica leve (complemento a lubricantes), alérgica (complemento), profilaxis, irritativa. NUNCA usar corticoides sin descartar herpes."
       },
@@ -11653,27 +12182,34 @@
           "eucalipto",
           "llanten",
           "gordolobo",
-          "tea_tree"
+          "tea_tree",
+          "curcuma"
         ],
         "suplementos": [
           "vitamina_c",
           "zinc",
           "vitamina_d3",
           "probioticos",
-          "omega_3"
+          "omega_3",
+          "pea",
+          "sulforafano"
         ],
         "homeopatia": [
           "pulsatilla",
           "chamomilla",
           "belladonna",
           "aconitum_napellus",
-          "ferrum_phosphoricum"
+          "ferrum_phosphoricum",
+          "sabadilla",
+          "kali_muriaticum"
         ],
         "aceites": [
           "tea_tree",
           "lavanda_aceite",
           "romero_aceite",
-          "ajo_aceite"
+          "ajo_aceite",
+          "laurel_aceite",
+          "clavo"
         ],
         "cuandoPreferir": "Otitis externa leve, profilaxis (nadadores), complemento a antibiótico, prevención recurrencia (niños), adultos con otitis externa. NO en otitis media con perforación."
       },
@@ -11788,26 +12324,33 @@
           "equinacea",
           "jengibre",
           "tomillo",
-          "llanten"
+          "llanten",
+          "curcuma"
         ],
         "suplementos": [
           "vitamina_c",
           "zinc",
           "vitamina_d3",
           "probioticos",
-          "bromelina"
+          "bromelina",
+          "pea",
+          "nac"
         ],
         "homeopatia": [
           "belladonna",
           "mercurius",
           "hepar_sulphuris",
           "phytolacca",
-          "apis_mellifica"
+          "apis_mellifica",
+          "kali_muriaticum",
+          "merc_sol"
         ],
         "aceites": [
           "tea_tree",
           "ravintsara",
-          "eucalipto"
+          "eucalipto",
+          "laurel_aceite",
+          "clavo"
         ],
         "cuandoPreferir": "Faringitis viral (80%), profilaxis, complemento a antibiótico en bacteriana, recurrente (mantenimiento), voz profesional. No retrasar antibiótico si Streptococcus confirmado."
       },
@@ -11938,7 +12481,9 @@
           "milenrama",
           "borraja",
           "romero",
-          "sauco"
+          "sauco",
+          "ajenjo",
+          "curcuma"
         ],
         "suplementos": [
           "vitamina_c",
@@ -11946,20 +12491,25 @@
           "vitamina_d3",
           "probioticos",
           "ajo",
-          "equinacea"
+          "equinacea",
+          "omega_3"
         ],
         "homeopatia": [
           "aconitum_napellus",
           "belladonna",
           "ferrum_phosphoricum",
           "gelsemium",
-          "eupatorium"
+          "eupatorium",
+          "mercurius",
+          "calcaria_carbonica"
         ],
         "aceites": [
           "eucalipto",
           "menta_aceite",
           "ravintsara",
-          "lavanda_aceite"
+          "lavanda_aceite",
+          "tea_tree",
+          "incienso"
         ],
         "cuandoPreferir": "Febrícula o fiebre <38.5, pacientes que rechazan antipiréticos, complemento a antipiréticos, profilaxis (inmunidad). La fiebre en sí es defensa; tratar el malestar, no la cifra."
       },
@@ -12099,7 +12649,9 @@
           "manzanilla",
           "regaliz",
           "alcachofa",
-          "kudzu"
+          "kudzu",
+          "ganoderma_lucidum",
+          "ashwagandha"
         ],
         "suplementos": [
           "vitamina_c",
@@ -12108,18 +12660,23 @@
           "glutation",
           "citrato_potasio",
           "magnesio_glicinato",
-          "l_cisteina"
+          "l_cisteina",
+          "teacrina"
         ],
         "homeopatia": [
           "nux_vomica",
           "lobelia_inflata",
           "lycopodium",
-          "arsenicum_album"
+          "arsenicum_album",
+          "cocculus",
+          "nux_vomica_amp"
         ],
         "aceites": [
           "menta_aceite",
           "lavanda_aceite",
-          "jengibre_aceite"
+          "jengibre_aceite",
+          "raiz_angelica_aceite",
+          "palo_de_rosa"
         ],
         "cuandoPreferir": "Resaca leve-moderada, profilaxis (antes/durante), intolerancia a AINEs (gastrolesivo), protectores hepáticos, rehidratación con electrolitos."
       },
@@ -12241,7 +12798,9 @@
           "pasiflora",
           "valeriana",
           "centella",
-          "regaliz"
+          "regaliz",
+          "melisa",
+          "hiperico"
         ],
         "suplementos": [
           "vitamina_c",
@@ -12251,19 +12810,24 @@
           "tirosina",
           "5_htp",
           "omega_3",
-          "vitamina_b_complejo"
+          "vitamina_b_complejo",
+          "magnesio_glicinato"
         ],
         "homeopatia": [
           "sepia",
           "tabacum",
           "lobelia_inflata",
           "nux_vomica",
-          "staphysagria"
+          "staphysagria",
+          "arsenicum_album",
+          "chamomilla"
         ],
         "aceites": [
           "pimienta_negra_aceite",
           "menta_aceite",
-          "ravintsara"
+          "ravintsara",
+          "lavanda_aceite",
+          "neroli"
         ],
         "cuandoPreferir": "Complemento a TSN/vareniclina, manejo del craving, ansiedad asociada, profilaxis recaída, pacientes que rechazan fármacos, detox (NAC, antioxidantes)."
       },
@@ -12394,7 +12958,9 @@
           "canela",
           "fenogreco",
           "gymnema",
-          "kudzu"
+          "kudzu",
+          "maca",
+          "ginseng"
         ],
         "suplementos": [
           "omega_3",
@@ -12405,18 +12971,23 @@
           "inositol",
           "berberina",
           "l_carnitina",
-          "alfa_lipoico"
+          "alfa_lipoico",
+          "hierro",
+          "shilajit"
         ],
         "homeopatia": [
           "calcaria_carbonica",
           "graphites",
           "lycopodium",
           "nux_vomica",
-          "natrum_muriaticum"
+          "natrum_muriaticum",
+          "thyroidinum",
+          "phosphorus"
         ],
         "aceites": [
           "menta_aceite",
-          "enebro"
+          "enebro",
+          "pomelo_aceite"
         ],
         "cuandoPreferir": "Sobrepeso/obesidad leve, complemento a dieta/ejercicio, resistencia a la insulina, intolerancia a GLP-1, mantenimiento post-bariátrica. La dieta y el ejercicio son el pilar; los suplementos son coadyuvantes."
       },
@@ -12542,7 +13113,9 @@
           "vid_roja",
           "pycnogenol",
           "centella",
-          "milenrama"
+          "milenrama",
+          "meliloto",
+          "collinsonia"
         ],
         "suplementos": [
           "diosmina",
@@ -12550,7 +13123,8 @@
           "vitamina_c",
           "colageno",
           "nac",
-          "vitamina_e"
+          "vitamina_e",
+          "potasio_citrato_bis"
         ],
         "homeopatia": [
           "castano_indias",
@@ -12558,13 +13132,17 @@
           "pulsatilla",
           "lycopodium",
           "viburnum_opulus",
-          "fluorica_acidica"
+          "fluorica_acidica",
+          "calcarea_fluorica",
+          "arnica_montana_amp"
         ],
         "aceites": [
           "cipres",
           "lavanda_aceite",
           "romero_aceite",
-          "helichrysum"
+          "helichrysum",
+          "pino_maritimo_aceite",
+          "neroli"
         ],
         "cuandoPreferir": "IVC CEAP C0-C3, profilaxis, embarazo (compresión + fito), postescleroterapia/ablación, mantenimiento, intolerancia a medias."
       },
@@ -12695,26 +13273,33 @@
           "sauco",
           "grosellero_negro",
           "enebro",
-          "hamamelis"
+          "hamamelis",
+          "diosmina",
+          "ammi_visnaga"
         ],
         "suplementos": [
           "citrato_potasio",
           "magnesio_glicinato",
           "vitamina_b6",
           "omega_3",
-          "probioticos"
+          "probioticos",
+          "same",
+          "sulforafano"
         ],
         "homeopatia": [
           "apis_mellifica",
           "natrum_muriaticum",
           "pulsatilla",
           "lycopodium",
-          "arsenicum_album"
+          "arsenicum_album",
+          "aconitum_napellus",
+          "lycopodium_clavatum_amp"
         ],
         "aceites": [
           "cipres",
           "enebro",
-          "romero_aceite"
+          "romero_aceite",
+          "neroli"
         ],
         "cuandoPreferir": "Edema leve idiopático, premenstrual, complemento a diuréticos (vigilar potasio), profilaxis venosa. NUNCA sustituir a tratamiento de causa cardíaca/renal/hepática."
       },
@@ -12835,14 +13420,17 @@
           "ortiga",
           "pygeum",
           "semilla_calabaza",
-          "ortiga"
+          "ortiga",
+          "abedul",
+          "orthosiphon"
         ],
         "suplementos": [
           "zinc",
           "selenio",
           "omega_3",
           "vitamina_d3",
-          "cromo"
+          "cromo",
+          "inositol"
         ],
         "homeopatia": [
           "saw_palmetto",
@@ -12850,11 +13438,15 @@
           "lycopodium",
           "pulsatilla",
           "thuja",
-          "sarsaparilla"
+          "sarsaparilla",
+          "sepia",
+          "coccus_cacti"
         ],
         "aceites": [
           "saw_palmetto",
-          "romero_aceite"
+          "romero_aceite",
+          "enebro",
+          "salvia_esclarea"
         ],
         "cuandoPreferir": "HBP leve-moderada (IPSS <20), profilaxis, complemento a finasterida, pacientes que rechazan fármacos, PSA normal + STUI. NO sustituir si PSA alto o retención."
       },
@@ -12977,25 +13569,32 @@
           "lúpulo",
           "vitex",
           "calendula",
-          "rosa"
+          "rosa",
+          "saw_palmetto",
+          "pygeum"
         ],
         "suplementos": [
           "vitamina_d3",
           "magnesio_glicinato",
           "colageno",
           "zinc",
-          "probioticos"
+          "probioticos",
+          "d_manosa",
+          "citrato_potasio"
         ],
         "homeopatia": [
           "sepia",
           "pulsatilla",
           "causticum",
           "sarsaparilla",
-          "ferrum_phosphoricum"
+          "ferrum_phosphoricum",
+          "causticum_amp",
+          "lycopodium"
         ],
         "aceites": [
           "salvia_esclarea",
-          "cipres"
+          "cipres",
+          "enebro"
         ],
         "cuandoPreferir": "IU esfuerzo leve, complemento a Kegel, profilaxis postparto, mantenimiento, intolerancia a antimuscarínicos (ancianos), embarazo (no fármacos)."
       },
@@ -13118,24 +13717,31 @@
           "viburnum_opulus",
           "lúpulo",
           "ortiga",
-          "sauco"
+          "sauco",
+          "ashwagandha",
+          "rodiola"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "melatonina",
           "vitamina_d3",
-          "zinc"
+          "zinc",
+          "l_ornitina",
+          "l_helveticus"
         ],
         "homeopatia": [
           "lycopodium",
           "sepia",
           "sarsaparilla",
           "pulsatilla",
-          "aconitum_napellus"
+          "aconitum_napellus",
+          "uranium_nitricum",
+          "arnica"
         ],
         "aceites": [
           "lavanda_aceite",
-          "salvia_esclarea"
+          "salvia_esclarea",
+          "menta_aceite"
         ],
         "cuandoPreferir": "Nicturia leve, complemento a tratamiento de causa (HBP, ICC), profilaxis, ancianos (cuidado con desmopresina), embarazo. Identificar y tratar la causa."
       },
@@ -13262,7 +13868,9 @@
           "harpagofito",
           "romero",
           "sauce",
-          "calendula"
+          "calendula",
+          "curcuma",
+          "jengibre"
         ],
         "suplementos": [
           "omega_3",
@@ -13272,7 +13880,9 @@
           "glucosamina",
           "vitamina_c",
           "zinc",
-          "bromelina"
+          "bromelina",
+          "pea",
+          "same"
         ],
         "homeopatia": [
           "arnica",
@@ -13280,14 +13890,17 @@
           "rhus_toxicodendron",
           "symphytum",
           "bellis_perennis",
-          "hypericum"
+          "hypericum",
+          "colchicum",
+          "bryonia"
         ],
         "aceites": [
           "lavanda_aceite",
           "romero_aceite",
           "menta",
           "clavo",
-          "gaulteria"
+          "gaulteria",
+          "galbano"
         ],
         "cuandoPreferir": "Esguince grado I-II, tendinitis aguda, complemento a RICE/fisioterapia, pacientes con intolerancia a AINEs (gastrolesivo), mantenimiento, deportistas."
       },
@@ -13410,7 +14023,9 @@
           "harpagofito",
           "romero",
           "sauce",
-          "hiperico"
+          "hiperico",
+          "curcuma",
+          "jengibre"
         ],
         "suplementos": [
           "omega_3",
@@ -13420,21 +14035,26 @@
           "colageno",
           "vitamina_c",
           "glucosamina",
-          "vitamina_d3"
+          "vitamina_d3",
+          "pea",
+          "magnesio"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "ruta_graveolens",
           "symphytum",
           "ledum_palustre",
-          "arnica"
+          "arnica",
+          "colchicum",
+          "bryonia"
         ],
         "aceites": [
           "lavanda_aceite",
           "romero_aceite",
           "menta",
           "clavo",
-          "gaulteria"
+          "gaulteria",
+          "mejorana"
         ],
         "cuandoPreferir": "Fascitis leve-moderada, complemento a estiramientos, profilaxis (deportistas), mantenimiento, intolerancia a AINEs, evita corticoide (riesgo rotura)."
       },
@@ -13551,7 +14171,8 @@
         "fitoterapia": [
           "hiperico",
           "harpagofito",
-          "pimienta_cayena"
+          "pimienta_cayena",
+          "white_peony"
         ],
         "suplementos": [
           "vitamina_b6",
@@ -13560,20 +14181,26 @@
           "omega_3",
           "magnesio_glicinato",
           "curcumina",
-          "boswelia"
+          "boswelia",
+          "pea",
+          "l_fenilalanina"
         ],
         "homeopatia": [
           "hypericum",
           "rhus_toxicodendron",
           "causticum",
           "ruta_graveolens",
-          "phosphorus"
+          "phosphorus",
+          "colchicum",
+          "colocynthis"
         ],
         "aceites": [
           "lavanda_aceite",
           "menta",
           "romero_aceite",
-          "incienso"
+          "incienso",
+          "gaulteria",
+          "palo_santo_aceite"
         ],
         "cuandoPreferir": "STC leve-moderado, complemento a férula, profilaxis (embarazo, trabajos), intolerancia a corticoides, prevención post-cirugía, neuropatía asociada."
       },
@@ -13695,7 +14322,9 @@
           "harpagofito",
           "romero",
           "sauce",
-          "pimienta_cayena"
+          "pimienta_cayena",
+          "curcuma",
+          "jengibre"
         ],
         "suplementos": [
           "omega_3",
@@ -13704,21 +14333,26 @@
           "msm",
           "colageno",
           "vitamina_c",
-          "glucosamina"
+          "glucosamina",
+          "pea",
+          "akg"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "ruta_graveolens",
           "symphytum",
           "arnica",
-          "sanguinaria"
+          "sanguinaria",
+          "hypericum",
+          "colchicum"
         ],
         "aceites": [
           "lavanda_aceite",
           "romero_aceite",
           "menta",
           "clavo",
-          "gaulteria"
+          "gaulteria",
+          "galbano"
         ],
         "cuandoPreferir": "Epicondilitis aguda/crónica leve-moderada, complemento a fisioterapia, profilaxis (deportistas), intolerancia a AINEs, evita corticoides (rotura tendón)."
       },
@@ -13836,24 +14470,31 @@
           "aloe_vera",
           "hiperico",
           "olmo_america",
-          "hamamelis"
+          "hamamelis",
+          "grindelia",
+          "pensamiento"
         ],
         "suplementos": [
           "probioticos",
           "omega_3",
           "vitamina_d3",
-          "zinc"
+          "zinc",
+          "l_rhamnosus_gg",
+          "acido_undecilenico"
         ],
         "homeopatia": [
           "borax",
           "sulphur",
           "graphites",
-          "petroleum"
+          "petroleum",
+          "nitricum_acidum",
+          "croton_tiglium"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
-          "calendula"
+          "calendula",
+          "tea_tree"
         ],
         "cuandoPreferir": "Dermatitis pañal leve-moderada, profilaxis, intolerancia a cremas convencionales, complemento a cambios frecuentes, sobreinfección fúngica leve."
       },
@@ -13970,25 +14611,32 @@
           "lavanda",
           "romero",
           "ajo",
-          "tomillo"
+          "tomillo",
+          "aloe_vera",
+          "pau_d_arco"
         ],
         "suplementos": [
           "probioticos",
           "vitamina_c",
-          "zinc"
+          "zinc",
+          "vitamina_a"
         ],
         "homeopatia": [
           "staphysagria",
           "staphysagria",
           "sulphur",
-          "sulphur"
+          "sulphur",
+          "phytolacca",
+          "kali_muriaticum"
         ],
         "aceites": [
           "tea_tree",
           "lavanda_aceite",
           "eucalipto",
           "romero_aceite",
-          "clavo"
+          "clavo",
+          "incienso",
+          "palmarosa"
         ],
         "cuandoPreferir": "Profilaxis, complemento a lendrera, intolerancia a químicos, brote escolar, primera elección en algunos padres, repetición tratamiento (resistencia)."
       },
@@ -14103,25 +14751,32 @@
           "manzanilla",
           "hinojo",
           "melisa",
-          "llanten"
+          "llanten",
+          "artemisa"
         ],
         "suplementos": [
           "probioticos",
           "l_reuteri",
           "vitamina_d3",
-          "omega_3"
+          "omega_3",
+          "gaba",
+          "s_boulardii"
         ],
         "homeopatia": [
           "chamomilla",
           "colocynthis",
           "dioscorea",
           "magnesia_phosphorica",
-          "belladonna"
+          "belladonna",
+          "crocus_sativus",
+          "stramonium"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
-          "albahaca_aceite"
+          "albahaca_aceite",
+          "mejorana",
+          "leche_eneldo_aceite"
         ],
         "cuandoPreferir": "Cólico leve-moderado, profilaxis, complemento a consuelo, intolerancia a simeticona, lactancia (dieta madre + fitoterapia suave). Evitar aceites esenciales en lactantes (tóxicos)."
       },
@@ -14243,26 +14898,33 @@
           "semilla_calabaza",
           "nigella",
           "ajenjo",
-          "ruta_graveolens"
+          "ruta_graveolens",
+          "jengibre",
+          "menta"
         ],
         "suplementos": [
           "probioticos",
           "zinc",
           "vitamina_a",
           "vitamina_c",
-          "folato"
+          "folato",
+          "s_boulardii",
+          "l_rhamnosus_gg"
         ],
         "homeopatia": [
           "cina",
           "spigelia",
           "thuja",
           "cina",
-          "calcaria_carbonica"
+          "calcaria_carbonica",
+          "chamomilla",
+          "colchicum"
         ],
         "aceites": [
           "ajedrea",
           "tomillo",
-          "oregano"
+          "oregano",
+          "mejorana"
         ],
         "cuandoPreferir": "Profilaxis, complemento a antihelmíntico, prevención reinfestación, intolerancia a mebendazol, oxiuros leves (higiene + fitoterapia). No sustituir en infestación grave o Giardia."
       },
@@ -14372,24 +15034,31 @@
           "manzanilla",
           "hinojo",
           "melisa",
-          "llanten"
+          "llanten",
+          "pimienta_cayena",
+          "curcuma"
         ],
         "suplementos": [
           "probioticos",
           "vitamina_d3",
           "probioticos",
-          "bromelina"
+          "bromelina",
+          "s_boulardii"
         ],
         "homeopatia": [
           "carbo_veg",
           "lycopodium",
           "china_officinalis",
           "aconitum_napellus",
-          "pulsatilla"
+          "pulsatilla",
+          "merc_sol",
+          "graphites"
         ],
         "aceites": [
           "menta_aceite",
-          "hinojo_aceite"
+          "hinojo_aceite",
+          "canela_aceite",
+          "copaiba"
         ],
         "cuandoPreferir": "Intolerancia primaria leve, profilaxis (viajes), complemento a dieta, intolerancia secundaria (transitoria tras gastroenteritis), intolerancia al suplemento de lactasa."
       },
@@ -14509,7 +15178,9 @@
           "oregano",
           "berberina",
           "tomillo",
-          "melisa"
+          "melisa",
+          "ajenjo",
+          "graviola"
         ],
         "suplementos": [
           "probioticos",
@@ -14520,20 +15191,25 @@
           "vitamina_d3",
           "omega_3",
           "colina",
-          "nac"
+          "nac",
+          "s_boulardii",
+          "l_rhamnosus_gg"
         ],
         "homeopatia": [
           "carbo_veg",
           "lycopodium",
           "podophyllum",
           "china_officinalis",
-          "sulphur"
+          "sulphur",
+          "merc_sol",
+          "psorinum"
         ],
         "aceites": [
           "menta_aceite",
           "oregano",
           "tomillo",
-          "hinojo_aceite"
+          "hinojo_aceite",
+          "laurel_aceite"
         ],
         "cuandoPreferir": "Disbiosis leve, profilaxis post-antibiótico, complemento a rifaximina, SIBO recurrente, intolerancia a antibióticos, mantenimiento. La dieta es clave."
       },
@@ -14654,7 +15330,9 @@
           "diente_de_leon",
           "bardana",
           "menta",
-          "romero"
+          "romero",
+          "jengibre",
+          "chanca_piedra"
         ],
         "suplementos": [
           "nac",
@@ -14663,18 +15341,23 @@
           "omega_3",
           "vitamina_c",
           "lecitina",
-          "glutation"
+          "glutation",
+          "sulforafano",
+          "same"
         ],
         "homeopatia": [
           "chelidonium",
           "lycopodium",
           "colocynthis",
           "cardo_mariano",
-          "berberina"
+          "berberina",
+          "colchicum",
+          "ipecacuanha"
         ],
         "aceites": [
           "romero_aceite",
-          "menta_aceite"
+          "menta_aceite",
+          "jengibre_aceite"
         ],
         "cuandoPreferir": "Profilaxis de cálculos, postcolecistectomía, cólico leve, complemento a ácido ursodesoxicólico, intolerancia a cirugía (no candidatos), mantenimiento, hígado graso asociado."
       },
@@ -14806,26 +15489,33 @@
           "ginseng",
           "romero",
           "eleuterococo",
-          "rodiola"
+          "rodiola",
+          "ashwagandha",
+          "schisandra"
         ],
         "suplementos": [
           "vitamina_b12",
           "folato",
           "hierro",
           "magnesio_glicinato",
-          "vitamina_c"
+          "vitamina_c",
+          "l_citrulina"
         ],
         "homeopatia": [
           "gelsemium",
           "carbo_veg",
           "aconitum_napellus",
           "veratrum_album",
-          "glonoinum"
+          "glonoinum",
+          "tabacum",
+          "cocculus"
         ],
         "aceites": [
           "romero_aceite",
           "menta_aceite",
-          "lavanda_aceite"
+          "lavanda_aceite",
+          "palo_de_rosa",
+          "albahaca_aceite"
         ],
         "cuandoPreferir": "Hipotensión leve idiopática, profilaxis, ancianos, complemento a cambios posturales, embarazo (no fármacos), intolerancia a fludrocortisona. Vigilar causa subyacente."
       },
@@ -14950,7 +15640,9 @@
           "calendula",
           "centella",
           "ginseng",
-          "regaliz"
+          "regaliz",
+          "lavanda",
+          "fumaria"
         ],
         "suplementos": [
           "colageno",
@@ -14964,20 +15656,25 @@
           "astaxantina",
           "vitamina_a",
           "zinc",
-          "silicio"
+          "silicio",
+          "msm"
         ],
         "homeopatia": [
           "sulphur",
           "graphites",
           "lachesis",
           "natrum_muriaticum",
-          "sepia"
+          "sepia",
+          "rhus_toxicodendron",
+          "thuja"
         ],
         "aceites": [
           "rosa",
           "incienso",
           "lavanda_aceite",
-          "geranio"
+          "geranio",
+          "nilo_rosada",
+          "neroli"
         ],
         "cuandoPreferir": "Profilaxis antiedad, mantenimiento, complemento a retinoides, piel sensible, embarazo (no retinoides), manchas. La fotoprotección diaria es el pilar."
       },
@@ -15099,7 +15796,9 @@
           "ajo",
           "canela",
           "te_rojo",
-          "olmo_america"
+          "olmo_america",
+          "astragalus",
+          "jiaogulan"
         ],
         "suplementos": [
           "omega_3",
@@ -15110,15 +15809,21 @@
           "vitamina_c",
           "vitamina_d3",
           "coq10",
-          "nac"
+          "nac",
+          "camu_camu",
+          "chlorella"
         ],
         "homeopatia": [
           "lycopodium",
           "chelidonium",
           "calcaria_carbonica",
-          "thuja"
+          "thuja",
+          "digitalis",
+          "carbo_veg"
         ],
-        "aceites": [],
+        "aceites": [
+          "neroli"
+        ],
         "cuandoPreferir": "TG leves-moderados (150-500), profilaxis, complemento a fibratos, resistencia a insulina, hígado graso asociado. Estilo de vida es el pilar."
       },
       "prevencion": [
@@ -15231,7 +15936,9 @@
           "fenogreco",
           "te_verde",
           "ajo",
-          "olmo_america"
+          "olmo_america",
+          "ginseng",
+          "ginseng_panax_red"
         ],
         "suplementos": [
           "cromo",
@@ -15242,17 +15949,22 @@
           "vitamina_d3",
           "inositol",
           "probioticos",
-          "coq10"
+          "coq10",
+          "benfotiamina",
+          "vanadio"
         ],
         "homeopatia": [
           "lycopodium",
           "phosphorus",
           "calcaria_carbonica",
           "sulphur",
-          "thuja"
+          "thuja",
+          "thyroidinum",
+          "uranium_nitricum"
         ],
         "aceites": [
-          "canela_aceite"
+          "canela_aceite",
+          "geranio"
         ],
         "cuandoPreferir": "Prediabetes, resistencia a la insulina, complemento a metformina, SOP, profilaxis (familiares DM2), pacientes que rechazan fármacos. El estilo de vida es el pilar."
       },
@@ -15379,7 +16091,9 @@
           "kanna",
           "manzanilla",
           "lavanda",
-          "melisa"
+          "melisa",
+          "meliloto",
+          "pycnogenol"
         ],
         "suplementos": [
           "magnesio_glicinato",
@@ -15389,20 +16103,25 @@
           "omega_3",
           "gaba",
           "vitamina_b6",
-          "inositol"
+          "inositol",
+          "tiamina",
+          "l_carnitina"
         ],
         "homeopatia": [
           "aconitum_napellus",
           "gelsemium",
           "ignatia",
           "argentum_nitricum",
-          "lycopodium"
+          "lycopodium",
+          "natrum_muriaticum",
+          "apis_mellifica"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
           "ylang_ylang",
-          "salvia_esclarea"
+          "salvia_esclarea",
+          "palo_de_rosa"
         ],
         "cuandoPreferir": "Crisis leve-moderada, profilaxis, complemento a ISRS, intolerancia a benzodiacepinas, manejo de ansiedad anticipatoria, mantenimiento. TCC es clave."
       },
@@ -15523,7 +16242,9 @@
           "valeriana",
           "pasiflora",
           "manzanilla",
-          "kanna"
+          "kanna",
+          "ginseng",
+          "eleuterococo"
         ],
         "suplementos": [
           "omega_3",
@@ -15533,17 +16254,22 @@
           "nac",
           "inositol",
           "coq10",
-          "l_teanina"
+          "l_teanina",
+          "l_ornitina"
         ],
         "homeopatia": [
           "lachesis",
           "platina",
-          "stramonium"
+          "stramonium",
+          "natrum_muriaticum",
+          "staphysagria"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
-          "vetiver"
+          "vetiver",
+          "palo_de_rosa",
+          "menta_aceite"
         ],
         "cuandoPreferir": "Complemento a litio/antipsicóticos, prevención de recaídas, depresión bipolar (no inducir manía), intolerancia a fármacos, mantenimiento. NUNCA sustituir a tratamiento farmacológico. Los antidepresivos pueden inducir manía."
       },
@@ -15680,7 +16406,8 @@
           "arnica",
           "jengibre",
           "pimienta_cayena",
-          "manzanilla"
+          "manzanilla",
+          "white_peony"
         ],
         "suplementos": [
           "omega_3",
@@ -15690,7 +16417,9 @@
           "msm",
           "vitamina_d3",
           "colageno",
-          "glucosamina"
+          "glucosamina",
+          "pea",
+          "akg"
         ],
         "homeopatia": [
           "cimicifuga",
@@ -15698,14 +16427,18 @@
           "coccus_cacti",
           "rhus_toxicodendron",
           "arnica",
-          "gelsemium"
+          "gelsemium",
+          "hypericum",
+          "china_officinalis"
         ],
         "aceites": [
           "menta",
           "romero_aceite",
           "lavanda_aceite",
           "clavo",
-          "incienso"
+          "incienso",
+          "gaulteria",
+          "galbano"
         ],
         "cuandoPreferir": "Dolor mecánico agudo, crónico inespecífico, complemento a AINEs, profilaxis (postura), intolerancia gástrica, ansiedad asociada, mantenimiento. La fisioterapia y el ejercicio son clave."
       },
@@ -15825,7 +16558,9 @@
           "aloe_vera",
           "olmo_america",
           "manzanilla",
-          "hiperico"
+          "hiperico",
+          "lavanda",
+          "pycnogenol"
         ],
         "suplementos": [
           "riboflavina",
@@ -15834,19 +16569,24 @@
           "vitamina_e",
           "zinc",
           "hierro",
-          "vitamina_c"
+          "vitamina_c",
+          "acido_hialuronico"
         ],
         "homeopatia": [
           "borax",
           "nitricum_acidum",
           "sulphur",
-          "petroleum"
+          "petroleum",
+          "phytolacca",
+          "mezereum"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
           "calendula",
-          "rosa"
+          "rosa",
+          "vetiver",
+          "tea_tree"
         ],
         "cuandoPreferir": "Queilitis simple/actínica, profilaxis (deportistas, frío), intolerancia a corticoides, mantenimiento, deficiencias nutricionales, piel sensible."
       },
@@ -15963,7 +16703,8 @@
           "hiperico",
           "valeriana",
           "kanna",
-          "manzanilla"
+          "manzanilla",
+          "lavanda"
         ],
         "suplementos": [
           "alfa_lipoico",
@@ -15973,19 +16714,25 @@
           "omega_3",
           "magnesio_glicinato",
           "nac",
-          "l_glutamina"
+          "l_glutamina",
+          "pea",
+          "l_fenilalanina"
         ],
         "homeopatia": [
           "spigelia",
           "hypericum",
           "magnesia_phosphorica",
-          "plumbum"
+          "plumbum",
+          "colocynthis",
+          "colchicum"
         ],
         "aceites": [
           "menta",
           "lavanda_aceite",
           "incienso",
-          "clavo"
+          "clavo",
+          "gaulteria",
+          "palo_santo_aceite"
         ],
         "cuandoPreferir": "Complemento a carbamazepina/gabapentina, neuralgia postherpética, neuropatía diabética, profilaxis, intolerancia a fármacos, mantenimiento. La neuralgia del trigémino puede requerir cirugía."
       },
@@ -16112,7 +16859,8 @@
           "jengibre",
           "olmo_america",
           "regaliz",
-          "te_verde"
+          "te_verde",
+          "chuchuhuasi"
         ],
         "suplementos": [
           "omega_3",
@@ -16123,20 +16871,26 @@
           "vitamina_b12",
           "probioticos",
           "folato",
-          "colageno"
+          "colageno",
+          "pea",
+          "l_citrulina"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "causticum",
           "bryonia",
           "apis_mellifica",
-          "ledum_palustre"
+          "ledum_palustre",
+          "ruta_graveolens",
+          "colchicum"
         ],
         "aceites": [
           "romero_aceite",
           "lavanda_aceite",
           "menta",
-          "incienso"
+          "incienso",
+          "gaulteria",
+          "galbano"
         ],
         "cuandoPreferir": "Complemento a DMARDs, profilaxis de brotes, intolerancia a metotrexato, antioxidantes, manejo del dolor, vit D. No sustituir a tratamiento de fondo (metotrexato/biológicos)."
       },
@@ -16270,7 +17024,9 @@
           "olmo_america",
           "malvavisco",
           "regaliz",
-          "hinojo"
+          "hinojo",
+          "meliloto",
+          "bardana"
         ],
         "suplementos": [
           "omega_3",
@@ -16279,19 +17035,24 @@
           "vitamina_d3",
           "probioticos",
           "luteina",
-          "vitamina_c"
+          "vitamina_c",
+          "acido_pantotenico"
         ],
         "homeopatia": [
           "euphrasia",
           "pulsatilla",
           "apis_mellifica",
           "borax",
-          "natrum_muriaticum"
+          "natrum_muriaticum",
+          "china_officinalis",
+          "phytolacca"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
-          "incienso"
+          "incienso",
+          "palo_de_rosa",
+          "clavo"
         ],
         "cuandoPreferir": "Síntomas leves (ojo/boca seca), complemento a lágrimas/pilocarpina, profilaxis, intolerancia a inmunosupresores, embarazo (no inmunosupresores)."
       },
@@ -16428,7 +17189,9 @@
           "ashwagandha",
           "ginseng",
           "centella",
-          "salvia"
+          "salvia",
+          "hiperico",
+          "hericium"
         ],
         "suplementos": [
           "omega_3",
@@ -16441,19 +17204,24 @@
           "alfa_lipoico",
           "curcumina",
           "resveratrol",
-          "luteolina"
+          "luteolina",
+          "huperzina_a",
+          "litio"
         ],
         "homeopatia": [
           "baryta_carbonica",
           "calcaria_carbonica",
           "sulphur",
           "lycopodium",
-          "alumina"
+          "alumina",
+          "natrum_muriaticum",
+          "apis_mellifica"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
-          "romero_aceite"
+          "romero_aceite",
+          "palo_de_rosa"
         ],
         "cuandoPreferir": "Prevención (MIND diet), cognición leve, complemento a colinesterásicos, mantenimiento, intolerancia a antipsicóticos, caregiver burden. La prevención empieza en la mediana edad."
       },
@@ -16597,7 +17365,9 @@
           "te_verde",
           "curcuma",
           "romero",
-          "sauce"
+          "sauce",
+          "feverfew",
+          "reishi"
         ],
         "suplementos": [
           "omega_3",
@@ -16607,19 +17377,24 @@
           "coq10",
           "nac",
           "alfa_lipoico",
-          "vitamina_c"
+          "vitamina_c",
+          "alpha_gpc",
+          "magnesio"
         ],
         "homeopatia": [
           "arnica",
           "ruta_graveolens",
           "gelsemium",
           "conium",
-          "nux_vomica"
+          "nux_vomica",
+          "sticta",
+          "stramonium"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
-          "romero_aceite"
+          "romero_aceite",
+          "neroli"
         ],
         "cuandoPreferir": "Profilaxis primaria/secundaria, complemento a antiagregación, intolerancia a AAS (gastroprotección), mantenimiento, control factores riesgo. NUNCA sustituir a antiagregación/anticoagulación."
       },
@@ -16757,7 +17532,9 @@
           "regaliz",
           "lúpulo",
           "trebol_rojo",
-          "damiana"
+          "damiana",
+          "cnidium",
+          "chuchuhuasi"
         ],
         "suplementos": [
           "omega_7",
@@ -16765,20 +17542,25 @@
           "vitamina_e",
           "vitamina_d3",
           "colageno",
-          "vitex"
+          "vitex",
+          "acido_hialuronico"
         ],
         "homeopatia": [
           "sepia",
           "lycopodium",
           "sulphur",
           "staphysagria",
-          "pulsatilla"
+          "pulsatilla",
+          "petroleum",
+          "phytolacca"
         ],
         "aceites": [
           "geranio",
           "lavanda_aceite",
           "incienso",
-          "clavo"
+          "clavo",
+          "rosa",
+          "tea_tree"
         ],
         "cuandoPreferir": "Sequedad leve-moderada, complemento a estrógenos tópicos, embarazo/lactancia (no estrógenos), mantenimiento, profilaxis, cáncer hormono-dependiente (no estrógenos)."
       },
@@ -16901,7 +17683,9 @@
           "nigella",
           "amla",
           "vitex",
-          "aloe_vera"
+          "aloe_vera",
+          "triphala",
+          "pycnogenol"
         ],
         "suplementos": [
           "vitamina_c",
@@ -16910,19 +17694,24 @@
           "glutation",
           "omega_3",
           "zinc",
-          "niacinamida"
+          "niacinamida",
+          "l_rhamnosus_gg",
+          "litio"
         ],
         "homeopatia": [
           "sepia",
           "sulphur",
           "lycopodium",
           "calcaria_carbonica",
-          "thuja"
+          "thuja",
+          "natrum_muriaticum"
         ],
         "aceites": [
           "lavanda_aceite",
           "manzanilla_romana",
-          "incienso"
+          "incienso",
+          "nilo_rosada",
+          "cedro_atlas"
         ],
         "cuandoPreferir": "Melasma leve-moderado, profilaxis, embarazo (no hidroquinona/tretinoína), mantenimiento, intolerancia a hidroquinona, despigmentación suave, prevención recurrencia."
       },
@@ -17035,7 +17824,9 @@
           "curcuma",
           "regaliz",
           "olmo_america",
-          "pimienta_cayena"
+          "pimienta_cayena",
+          "he_shou_wu",
+          "pensamiento"
         ],
         "suplementos": [
           "omega_3",
@@ -17045,19 +17836,24 @@
           "zinc",
           "glutation",
           "probioticos",
-          "vitamina_b12"
+          "vitamina_b12",
+          "silicio",
+          "colageno_hidrolizado"
         ],
         "homeopatia": [
           "arsenicum_album",
           "graphites",
           "sepia",
           "sulphur",
-          "sulphur"
+          "sulphur",
+          "silicea",
+          "rumex"
         ],
         "aceites": [
           "lavanda_aceite",
           "incienso",
-          "tea_tree"
+          "tea_tree",
+          "nilo_rosada"
         ],
         "cuandoPreferir": "Psoriasis localizada leve-moderada, complemento a tópicos, mantenimiento, embarazo (no sistémicos), intolerancia a corticoides."
       },
@@ -17171,7 +17967,8 @@
           "rodiola",
           "ginseng",
           "ortiga",
-          "selenio"
+          "selenio",
+          "guggulu"
         ],
         "suplementos": [
           "selenio",
@@ -17182,19 +17979,25 @@
           "hierro",
           "tirosina",
           "magnesio_glicinato",
-          "probioticos"
+          "probioticos",
+          "yodo",
+          "zinc_picolinato"
         ],
         "homeopatia": [
           "spongia",
           "calcaria_carbonica",
           "sulphur",
           "spongia",
-          "lycopodium"
+          "lycopodium",
+          "thyroidinum",
+          "calcarea_iodata"
         ],
         "aceites": [
           "lavanda_aceite",
           "romero_aceite",
-          "menta_aceite"
+          "menta_aceite",
+          "palo_de_rosa",
+          "ravintsara"
         ],
         "cuandoPreferir": "Complemento a levotiroxina, fatiga persistente, selenio (anti-TPO), no sustituir a T4. Mejorar síntomas residuales (fatiga, niebla mental). Cuidado con algas (yodo, empeora autoinmune)."
       },
@@ -17314,7 +18117,9 @@
           "regaliz",
           "gordolobo",
           "hisopo",
-          "grindelia"
+          "grindelia",
+          "te_verde",
+          "cordyceps"
         ],
         "suplementos": [
           "vitamina_c",
@@ -17324,19 +18129,24 @@
           "magnesio_glicinato",
           "zinc",
           "coq10",
-          "probioticos"
+          "probioticos",
+          "hierro",
+          "glutation"
         ],
         "homeopatia": [
           "lobelia_inflata",
           "spongia",
           "lobelia_inflata",
-          "calcarea_fluorica"
+          "calcarea_fluorica",
+          "phosphorus",
+          "pulsatilla"
         ],
         "aceites": [
           "eucalipto",
           "ravintsara",
           "tomillo",
-          "pino_silvestre"
+          "pino_silvestre",
+          "cipres"
         ],
         "cuandoPreferir": "EPOC leve, profilaxis exacerbaciones, complemento a broncodilatadores, intolerancia a ICS, mucolítico (NAC), antioxidante, cesación tabáquica (coadyuvante). NUNCA suspender broncodilatador."
       },
@@ -17473,7 +18283,8 @@
           "curcuma",
           "pimienta_cayena",
           "romero",
-          "manzanilla"
+          "manzanilla",
+          "white_peony"
         ],
         "suplementos": [
           "omega_3",
@@ -17484,21 +18295,27 @@
           "vitamina_d3",
           "alfa_lipoico",
           "vitamina_b_complejo",
-          "melatonina"
+          "melatonina",
+          "triptofano",
+          "pea"
         ],
         "homeopatia": [
           "arnica",
           "rhus_toxicodendron",
           "hypericum",
           "magnesia_phosphorica",
-          "causticum"
+          "causticum",
+          "sepia_officinalis_amp",
+          "ruta_graveolens"
         ],
         "aceites": [
           "lavanda_aceite",
           "menta",
           "romero_aceite",
           "clavo",
-          "incienso"
+          "incienso",
+          "palo_de_rosa",
+          "gaulteria"
         ],
         "cuandoPreferir": "Dolor crónico leve-moderado, complemento a analgésicos, neuropático (ALA), inflamatorio (curcumina/boswellia), intolerancia a AINEs, reducción de opioides, TCC coadyuvante."
       },
@@ -17631,7 +18448,8 @@
           "romero",
           "sauce",
           "pimienta_cayena",
-          "hiperico"
+          "hiperico",
+          "curcuma"
         ],
         "suplementos": [
           "omega_3",
@@ -17641,21 +18459,27 @@
           "msm",
           "vitamina_d3",
           "colageno",
-          "glucosamina"
+          "glucosamina",
+          "pea",
+          "magnesio"
         ],
         "homeopatia": [
           "rhus_toxicodendron",
           "ruta_graveolens",
           "sanguinaria",
           "ferrum_phosphoricum",
-          "arnica"
+          "arnica",
+          "bryonia",
+          "colchicum"
         ],
         "aceites": [
           "menta",
           "romero_aceite",
           "lavanda_aceite",
           "clavo",
-          "incienso"
+          "incienso",
+          "gaulteria",
+          "galbano"
         ],
         "cuandoPreferir": "Complemento a fisioterapia, manejo del dolor, intolerancia a AINEs (gastrolesivo), fase congelación/descongelación, diabetes (cuidado con corticoides), profilaxis."
       },
@@ -17780,7 +18604,9 @@
           "cimicifuga",
           "manzanilla",
           "alchemilla",
-          "milenrama"
+          "milenrama",
+          "viburnum_opulus",
+          "white_peony"
         ],
         "suplementos": [
           "magnesio_glicinato",
@@ -17790,21 +18616,26 @@
           "hierro",
           "folato",
           "vitamina_e",
-          "vitamina_d3"
+          "vitamina_d3",
+          "l_citrulina",
+          "inositol"
         ],
         "homeopatia": [
           "pulsatilla",
           "colocynthis",
           "sepia",
           "magnesia_phosphorica",
-          "belladonna"
+          "belladonna",
+          "sepia_officinalis_amp",
+          "platina"
         ],
         "aceites": [
           "salvia_esclarea",
           "clavo",
           "geranio",
           "lavanda_aceite",
-          "manzanilla_romana"
+          "manzanilla_romana",
+          "rosa"
         ],
         "cuandoPreferir": "Dismenorrea primaria leve-moderada, profilaxis, adolescentes (no AOC), complemento a AINEs, menorragia leve, intolerancia a AINEs, mantenimiento,fitoterapia cíclica."
       },
@@ -17924,21 +18755,28 @@
           "lino",
           "manzanilla",
           "melisa",
-          "olmo_america"
+          "olmo_america",
+          "jengibre",
+          "menta"
         ],
         "suplementos": [
           "probioticos",
           "inulina",
-          "l_glutamina"
+          "l_glutamina",
+          "s_boulardii",
+          "l_rhamnosus_gg"
         ],
         "homeopatia": [
           "nux_vomica",
           "colocynthis",
-          "bryonia"
+          "bryonia",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "manzanilla_romana",
-          "mejorana"
+          "mejorana",
+          "menta_aceite"
         ],
         "cuandoPreferir": "Diverticulosis asintomática (fibra preventiva) y recuperación tras diverticulitis leve (probióticos, mucílagos)."
       },
@@ -18039,23 +18877,30 @@
           "curcuma",
           "olmo_america",
           "malvavisco",
-          "manzanilla"
+          "manzanilla",
+          "menta",
+          "jengibre"
         ],
         "suplementos": [
           "probioticos",
           "omega_3",
           "vitamina_d3",
           "hierro",
-          "zinc"
+          "zinc",
+          "s_boulardii",
+          "l_rhamnosus_gg"
         ],
         "homeopatia": [
           "mercurius",
           "nux_vomica",
-          "phosphorus"
+          "phosphorus",
+          "colchicum",
+          "merc_sol"
         ],
         "aceites": [
           "manzanilla_romana",
-          "lavanda_aceite"
+          "lavanda_aceite",
+          "clavo"
         ],
         "cuandoPreferir": "Coadyuvante en remisión: curcumina (mantenimiento), Boswellia (antiinflamatorio), probióticos. Nunca sustituir 5-ASA/biológicos."
       },
@@ -18161,16 +19006,21 @@
         "fitoterapia": [
           "euphrasia_fito",
           "manzanilla",
-          "hamamelis"
+          "hamamelis",
+          "azafran",
+          "goji"
         ],
         "suplementos": [
           "omega_3",
           "omega_7",
-          "vitamina_a"
+          "vitamina_a",
+          "luteina",
+          "zeaxantina"
         ],
         "homeopatia": [
           "euphrasia",
-          "hepar_sulphuris"
+          "hepar_sulphuris",
+          "allium_cepa"
         ],
         "aceites": [
           "manzanilla_romana",
@@ -18265,15 +19115,21 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "euphrasia_fito",
-          "manzanilla"
+          "manzanilla",
+          "azafran",
+          "bilberry"
         ],
         "suplementos": [
-          "omega_3"
+          "omega_3",
+          "benfotiamina",
+          "citicolina"
         ],
         "homeopatia": [
           "staphysagria",
           "pulsatilla",
-          "hepar_sulphuris"
+          "hepar_sulphuris",
+          "allium_cepa",
+          "euphrasia"
         ],
         "aceites": [
           "manzanilla_romana",
@@ -18366,18 +19222,24 @@
           "ginkgo",
           "bilberry",
           "arandano_rojo",
-          "te_verde"
+          "te_verde",
+          "antocianinas_arandano",
+          "azafran"
         ],
         "suplementos": [
           "luteina",
           "zeaxantina",
           "astaxantina",
           "omega_3",
-          "vitamina_d3"
+          "vitamina_d3",
+          "vitamina_a",
+          "condroitina"
         ],
         "homeopatia": [
           "ruta_graveolens",
-          "conium"
+          "conium",
+          "allium_cepa",
+          "euphrasia"
         ],
         "aceites": [],
         "cuandoPreferir": "Prevención y estadios leves-moderados (AREDS2 natural). Nunca sustituir anti-VEGF en húmeda."
@@ -18480,22 +19342,29 @@
           "ajo",
           "pimienta_cayena",
           "espino_blanco",
-          "jengibre"
+          "jengibre",
+          "meliloto",
+          "pycnogenol"
         ],
         "suplementos": [
           "omega_3",
           "magnesio_glicinato",
           "l_arginina",
-          "vitamina_e"
+          "vitamina_e",
+          "vitamina_d3"
         ],
         "homeopatia": [
           "agaricus_muscarius",
           "carbo_veg",
-          "carbo_veg"
+          "carbo_veg",
+          "aconitum_napellus",
+          "bellis_perennis"
         ],
         "aceites": [
           "romero_aceite",
-          "pimienta_negra_aceite"
+          "pimienta_negra_aceite",
+          "cipres",
+          "neroli"
         ],
         "cuandoPreferir": "Primario leve: mejorar circulación con Ginkgo, ajo, cayena, omega-3. Secundario: solo coadyuvante."
       },
@@ -18588,7 +19457,8 @@
           "ginkgo",
           "centella",
           "hiperico",
-          "canela"
+          "canela",
+          "lavanda"
         ],
         "suplementos": [
           "alfa_lipoico",
@@ -18596,16 +19466,22 @@
           "vitamina_b6",
           "folato",
           "l_carnitina",
-          "omega_3"
+          "omega_3",
+          "pea",
+          "benfotiamina"
         ],
         "homeopatia": [
           "hypericum",
           "agaricus_muscarius",
-          "rhus_toxicodendron"
+          "rhus_toxicodendron",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "lavanda_aceite",
-          "menta_aceite"
+          "menta_aceite",
+          "gaulteria",
+          "palo_santo_aceite"
         ],
         "cuandoPreferir": "Coadyuvante: ALA (evidencia A en dolor neuropático diabético), B12 (especialmente con metformina), Ginkgo."
       },
@@ -18711,21 +19587,28 @@
           "pasiflora",
           "melisa",
           "manzanilla",
-          "kava"
+          "kava",
+          "white_peony"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "l_teanina",
-          "l_triptofano"
+          "l_triptofano",
+          "pea",
+          "l_fenilalanina"
         ],
         "homeopatia": [
           "ignatia",
           "nux_vomica",
-          "coccus_cacti"
+          "coccus_cacti",
+          "colchicum",
+          "ruta_graveolens"
         ],
         "aceites": [
           "lavanda_aceite",
-          "manzanilla_romana"
+          "manzanilla_romana",
+          "gaulteria",
+          "palo_santo_aceite"
         ],
         "cuandoPreferir": "Bruxismo por estrés: sedantes naturales (valeriana, magnesio) + férula. Ansiolíticos naturales antes de benzodiacepinas."
       },
@@ -18820,21 +19703,28 @@
           "viburnum_opulus",
           "semilla_calabaza",
           "ortiga",
-          "saw_palmetto"
+          "saw_palmetto",
+          "arandano_rojo",
+          "pygeum"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "vitamina_d3",
-          "beta_glucanos"
+          "beta_glucanos",
+          "d_manosa"
         ],
         "homeopatia": [
           "causticum",
           "sepia",
-          "staphysagria"
+          "staphysagria",
+          "causticum_amp",
+          "lycopodium"
         ],
         "aceites": [
           "salvia_esclarea",
-          "cipres"
+          "cipres",
+          "enebro",
+          "perejil_aceite"
         ],
         "cuandoPreferir": "Leve-moderado o como coadyuvante: semilla de calabaza (evidencia B), magnesio. Evitar fitoterapia con actividad antimuscarínica fuerte sin control."
       },
@@ -18945,23 +19835,30 @@
           "semilla_calabaza",
           "ortiga",
           "uncaria",
-          "quercetina"
+          "quercetina",
+          "viburnum_opulus",
+          "white_peony"
         ],
         "suplementos": [
           "zinc",
           "beta_glucanos",
           "omega_3",
           "vitamina_d3",
-          "curcumina"
+          "curcumina",
+          "inositol"
         ],
         "homeopatia": [
           "staphysagria",
           "conium",
-          "thuja"
+          "thuja",
+          "lycopodium",
+          "pulsatilla"
         ],
         "aceites": [
           "romero_aceite",
-          "palo_santo_aceite"
+          "palo_santo_aceite",
+          "salvia_esclarea",
+          "enebro"
         ],
         "cuandoPreferir": "Coadyuvante: quercetina (antiinflamatorio, evidencia C), Saw palmetto, zinc. Fisioterapia suelo pélvico esencial."
       },
@@ -19058,23 +19955,30 @@
       },
       "tratamientoNatural": {
         "fitoterapia": [
-          "regaliz_dgl",
+          "regaliz",
           "manzanilla",
           "melisa",
-          "aloe_vera"
+          "aloe_vera",
+          "jengibre",
+          "menta"
         ],
         "suplementos": [
           "zinc",
-          "l_glutamina"
+          "l_glutamina",
+          "probioticos"
         ],
         "homeopatia": [
           "carbo_veg",
           "nux_vomica",
-          "phosphorus"
+          "phosphorus",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "manzanilla_romana",
-          "lavanda"
+          "lavanda",
+          "menta_aceite",
+          "jengibre_aceite"
         ],
         "cuandoPreferir": "Coadyuvante, prevención recidiva, intolerancia IBP"
       },
@@ -19133,20 +20037,27 @@
           "curcuma",
           "boswelia",
           "aloe_vera",
-          "olmo_america"
+          "olmo_america",
+          "menta",
+          "jengibre"
         ],
         "suplementos": [
           "probioticos",
           "omega_3",
           "vitamina_d3_k2",
-          "hierro_bisglicinato"
+          "hierro_bisglicinato",
+          "s_boulardii",
+          "l_rhamnosus_gg"
         ],
         "homeopatia": [
           "merc_sol",
-          "sulphur"
+          "sulphur",
+          "colchicum",
+          "mercurius"
         ],
         "aceites": [
-          "manzanilla_romana"
+          "manzanilla_romana",
+          "clavo"
         ],
         "cuandoPreferir": "Coadyuvante en remisión, prevención de brotes"
       },
@@ -19204,20 +20115,27 @@
         "fitoterapia": [
           "curcuma",
           "boswelia",
-          "uncaria_tomentosa_ext"
+          "uncaria_tomentosa_ext",
+          "harpagofito",
+          "chuchuhuasi"
         ],
         "suplementos": [
           "omega3_phospholipid",
           "vitamina_d3_k2",
-          "colageno_tipo2"
+          "colageno_tipo2",
+          "pea"
         ],
         "homeopatia": [
-          "rhus_tox",
-          "psorinum"
+          "rhus_toxicodendron",
+          "psorinum",
+          "bryonia",
+          "ruta_graveolens"
         ],
         "aceites": [
           "incienso",
-          "romero_verbenona_aceite"
+          "romero_verbenona_aceite",
+          "gaulteria",
+          "helichrysum"
         ],
         "cuandoPreferir": "Coadyuvante, síntomas leves, intolerancia AINEs"
       },
@@ -19273,23 +20191,30 @@
         "fitoterapia": [
           "grindelia",
           "regaliz",
-          "pino_maritimo_aceite"
+          "pino_maritimo_aceite",
+          "nigella",
+          "boswelia"
         ],
         "suplementos": [
           "vitamina_c",
           "omega_3",
           "magnesio_glicinato",
-          "probioticos"
+          "probioticos",
+          "nac"
         ],
         "homeopatia": [
           "tuberculinum",
           "natrum_sulphuricum",
-          "arsenicum_album"
+          "arsenicum_album",
+          "lobelia_inflata",
+          "kali_carbonicum"
         ],
         "aceites": [
           "eucalipto",
           "ravintsara",
-          "pino_silvestre"
+          "pino_silvestre",
+          "inmale",
+          "tomillo_quimiotipo"
         ],
         "cuandoPreferir": "Coadyuvante, prevención, asma leve"
       },
@@ -19336,17 +20261,26 @@
         "fitoterapia": [
           "te_verde",
           "curcuma",
-          "granada",
-          "reishi"
+          "pomegranate",
+          "reishi",
+          "ginseng",
+          "eleuterococo"
         ],
         "suplementos": [
           "vitamina_d3_k2",
           "omega_3",
           "selenio",
-          "resveratrol"
+          "resveratrol",
+          "vitamina_c",
+          "zinc"
         ],
-        "homeopatia": [],
-        "aceites": [],
+        "homeopatia": [
+          "calcaria_carbonica",
+          "ferrum_phosphoricum"
+        ],
+        "aceites": [
+          "tea_tree"
+        ],
         "cuandoPreferir": "Prevención, coadyuvante post-tratamiento"
       },
       "prevencion": [
@@ -19405,19 +20339,27 @@
           "gymnema",
           "berberina",
           "nopal",
-          "fenogreco"
+          "fenogreco",
+          "astragalus",
+          "pata_de_vaca"
         ],
         "suplementos": [
           "cromo",
           "magnesio_glicinato",
           "alfa_lipoico",
-          "vitamina_d3_k2"
+          "vitamina_d3_k2",
+          "hierro",
+          "vitamina_k1"
         ],
         "homeopatia": [
           "syzygium",
-          "uranium_nitricum"
+          "uranium_nitricum",
+          "calcaria_carbonica",
+          "phosphorus"
         ],
-        "aceites": [],
+        "aceites": [
+          "neroli"
+        ],
         "cuandoPreferir": "Prediabetes, coadyuvante, intolerancia metformina"
       },
       "prevencion": [
@@ -19475,24 +20417,31 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "hiperico",
-          "cayena",
-          "ginkgo"
+          "pimienta_cayena",
+          "ginkgo",
+          "hericium"
         ],
         "suplementos": [
           "alfa_lipoico",
           "metilcobalamina",
           "benfotiamina",
-          "acetil_l_carnitina"
+          "l_carnitina",
+          "pea",
+          "l_fenilalanina"
         ],
         "homeopatia": [
           "hypericum",
           "magnesia_phosphorica",
-          "phosphorus"
+          "phosphorus",
+          "colchicum",
+          "chamomilla"
         ],
         "aceites": [
           "lavanda",
           "menta",
-          "romero_verbenona_aceite"
+          "romero_verbenona_aceite",
+          "gaulteria",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Dolor leve-moderado, coadyuvante, intolerancia gabapentinoides"
       },
@@ -19541,17 +20490,26 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "trebol_rojo",
-          "indole",
-          "granada"
+          "indole_3_carbinol",
+          "pomegranate",
+          "pycnogenol",
+          "damiana"
         ],
         "suplementos": [
           "dim",
           "i3c",
           "omega_3",
-          "vitamina_d3_k2"
+          "vitamina_d3_k2",
+          "vitamina_d3"
         ],
-        "homeopatia": [],
-        "aceites": [],
+        "homeopatia": [
+          "apis_mellifica",
+          "phytolacca"
+        ],
+        "aceites": [
+          "palo_de_rosa",
+          "clavo"
+        ],
         "cuandoPreferir": "Prevención, intolerancia tamoxifeno, síndrome post-tratamiento"
       },
       "prevencion": [
@@ -19604,20 +20562,28 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "trebol_rojo",
-          "dong_quai"
+          "dong_quai",
+          "curcuma"
         ],
         "suplementos": [
           "calcio_microcristalino",
           "vitamina_d3_k2",
           "magnesio_glicinato",
           "silicio_ortosilicico",
-          "boro"
+          "boro",
+          "pea",
+          "bromelina"
         ],
         "homeopatia": [
           "calcarea_phosphorica",
-          "symphytum"
+          "symphytum",
+          "hypericum",
+          "colchicum"
         ],
-        "aceites": [],
+        "aceites": [
+          "gaulteria",
+          "helichrysum"
+        ],
         "cuandoPreferir": "Osteopenia, prevención, intolerancia bisfosfonatos"
       },
       "prevencion": [
@@ -19675,21 +20641,29 @@
         "fitoterapia": [
           "ajo",
           "danshen",
-          "espinos_blanco",
-          "granada"
+          "espino_blanco",
+          "pomegranate",
+          "pimienta_cayena",
+          "evodia"
         ],
         "suplementos": [
           "omega3_phospholipid",
           "coq10",
           "magnesio_glicinato",
           "vitamina_d3_k2",
-          "resveratrol"
+          "resveratrol",
+          "vitamina_d3"
         ],
         "homeopatia": [
-          "crataegus",
-          "digitalis"
+          "crataegus_homeo",
+          "digitalis",
+          "spigelia",
+          "spongia"
         ],
-        "aceites": [],
+        "aceites": [
+          "neroli",
+          "ylang_ylang"
+        ],
         "cuandoPreferir": "Coadyuvante, prevención secundaria, intolerancia estatinas"
       },
       "prevencion": [
@@ -19748,24 +20722,31 @@
           "hiperico",
           "saffron_crocin",
           "rodiola",
-          "ashwagandha"
+          "ashwagandha",
+          "valeriana"
         ],
         "suplementos": [
           "metilfolato",
           "metilcobalamina",
           "omega3_phospholipid",
           "l_triptofano",
-          "vitamina_d3_k2"
+          "vitamina_d3_k2",
+          "5_htp",
+          "triptofano"
         ],
         "homeopatia": [
-          "aurum",
+          "aurum_metallicum",
           "natrum_muriaticum",
-          "ignatia"
+          "ignatia",
+          "zincum_metallicum",
+          "kali_phosphoricum"
         ],
         "aceites": [
           "lavanda",
           "bergamota",
-          "incienso"
+          "incienso",
+          "palo_de_rosa",
+          "azahar_aceite"
         ],
         "cuandoPreferir": "Coadyuvante, déficit nutricional, intolerancia ISRS"
       },
@@ -19824,20 +20805,28 @@
       },
       "tratamientoNatural": {
         "fitoterapia": [
-          "Orthosiphon",
+          "orthosiphon",
           "uva_ursi",
-          "abedul"
+          "abedul",
+          "ortiga",
+          "dong_quai"
         ],
         "suplementos": [
           "hierro_bisglicinato",
           "metilcobalamina",
-          "calcio_microcristalino"
+          "calcio_microcristalino",
+          "hierro",
+          "vitamina_b12"
         ],
         "homeopatia": [
           "solidago",
-          "berberis"
+          "berberis_homeo",
+          "phosphorus",
+          "carbo_veg"
         ],
-        "aceites": [],
+        "aceites": [
+          "neroli"
+        ],
         "cuandoPreferir": "Coadyuvante sintomático, evitar nefrotóxicos"
       },
       "prevencion": [
@@ -19896,20 +20885,28 @@
           "cardo_mariano",
           "picrorhiza_kurroa",
           "schisandra",
-          "reishi"
+          "reishi",
+          "picrorhiza",
+          "bardana"
         ],
         "suplementos": [
           "hierro_bisglicinato",
           "zinc_picolinato",
           "vitamina_d3_k2",
-          "bcaa"
+          "bcaa",
+          "sulforafano",
+          "fosfatidilcolina"
         ],
         "homeopatia": [
           "chelidonium",
           "lycopodium",
-          "phosphorus"
+          "phosphorus",
+          "podophyllum",
+          "natrum_sulphuricum"
         ],
-        "aceites": [],
+        "aceites": [
+          "menta_aceite"
+        ],
         "cuandoPreferir": "Coadyuvante, NAFLD初期, post-tratamiento etiológico"
       },
       "prevencion": [
@@ -19964,23 +20961,30 @@
         "fitoterapia": [
           "feverfew",
           "petasites",
-          "magnolia_aceite"
+          "magnolia_aceite",
+          "kudzu",
+          "vinca"
         ],
         "suplementos": [
           "magnesio_treonato",
           "riboflavina",
           "coq10",
-          "alfa_lipoico"
+          "alfa_lipoico",
+          "magnesio"
         ],
         "homeopatia": [
           "iris_versicolor",
           "sanguinaria",
-          "spigelia"
+          "spigelia",
+          "belladonna",
+          "gelsemium"
         ],
         "aceites": [
           "lavanda",
           "menta",
-          "valeriana_jatamansi_aceite"
+          "valeriana_jatamansi_aceite",
+          "menta_aceite",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Prevención, intolerancia topiramato, coadyuvante"
       },
@@ -20040,24 +21044,31 @@
           "hiperico",
           "ashwagandha",
           "rodiola",
-          "cayena"
+          "pimienta_cayena",
+          "white_peony"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "magnesio_treonato",
           "vitamina_d3_k2",
           "coq10",
-          "d_ribose"
+          "d_ribose",
+          "pea",
+          "5_htp"
         ],
         "homeopatia": [
-          "rhus_tox",
+          "rhus_toxicodendron",
           "causticum",
-          "phytolacca"
+          "phytolacca",
+          "ruta_graveolens",
+          "colchicum"
         ],
         "aceites": [
           "lavanda",
           "romero_verbenona_aceite",
-          "incienso"
+          "incienso",
+          "gaulteria",
+          "lavanda_aceite"
         ],
         "cuandoPreferir": "Dolor leve-moderado, fatiga, coadyuvante"
       },
@@ -20114,17 +21125,26 @@
         "fitoterapia": [
           "te_verde",
           "te_rojo",
-          "guarana"
+          "guarana",
+          "cordyceps",
+          "maral_root"
         ],
         "suplementos": [
           "creatina",
           "bcaa",
-          "leucina",
+          "leucina_pura",
           "vitamina_d3_k2",
-          "omega_3"
+          "omega_3",
+          "beta_alanina",
+          "d_ribose"
         ],
-        "homeopatia": [],
-        "aceites": [],
+        "homeopatia": [
+          "calcaria_carbonica",
+          "thyroidinum"
+        ],
+        "aceites": [
+          "menta_aceite"
+        ],
         "cuandoPreferir": "Coadyuvante, resistencia a GLP-1, preferencia natural"
       },
       "prevencion": [
@@ -20176,26 +21196,33 @@
       },
       "tratamientoNatural": {
         "fitoterapia": [
-          "rhodiola",
+          "rodiola",
           "ashwagandha",
           "ginseng_panax_red",
-          "ganoderma_lucidum"
+          "ganoderma_lucidum",
+          "pycnogenol",
+          "muira_puama"
         ],
         "suplementos": [
           "coq10",
           "nmn_nicotinamide",
           "d_ribose",
           "magnesio_glicinato",
-          "vitamina_d3_k2"
+          "vitamina_d3_k2",
+          "l_ornitina",
+          "hierro"
         ],
         "homeopatia": [
           "picricum_acidum",
           "gelsemium",
-          "kali_phosphoricum"
+          "kali_phosphoricum",
+          "thyroidinum",
+          "natrum_muriaticum"
         ],
         "aceites": [
           "lavanda",
-          "romero_verbenona_aceite"
+          "romero_verbenona_aceite",
+          "palo_de_rosa"
         ],
         "cuandoPreferir": "Coadyuvante, soporte mitocondrial, intolerancia modafinilo"
       },
@@ -20250,24 +21277,31 @@
         "fitoterapia": [
           "te_verde",
           "propoleo",
-          "granada"
+          "pomegranate",
+          "aloe_vera",
+          "pau_d_arco"
         ],
         "suplementos": [
           "vitamina_c",
           "zinc_picolinato",
           "omega_3",
           "vitamina_d3_k2",
-          "probioticos"
+          "probioticos",
+          "zinc"
         ],
         "homeopatia": [
           "mercurius",
           "hepar_sulphuris",
-          "silicea"
+          "silicea",
+          "thuja",
+          "nitricum_acidum"
         ],
         "aceites": [
           "manuka_leptospermum_aceite",
           "tea_tree",
-          "clavo"
+          "clavo",
+          "incienso",
+          "palmarosa"
         ],
         "cuandoPreferir": "Prevención, coadyuvante, halitosis"
       },
@@ -20325,24 +21359,31 @@
           "manzanilla",
           "centella_asiatica_ext",
           "aloe_vera",
-          "regaliz"
+          "regaliz",
+          "grindelia",
+          "pensamiento"
         ],
         "suplementos": [
           "omega3_phospholipid",
           "probioticos",
           "vitamina_d3_k2",
-          "zinc_picolinato"
+          "zinc_picolinato",
+          "acido_undecilenico",
+          "vitamina_c"
         ],
         "homeopatia": [
           "sulphur",
           "graphites",
-          "psorinum"
+          "psorinum",
+          "rumex",
+          "mezereum"
         ],
         "aceites": [
           "lavanda",
           "manzanilla_romana",
           "sea_buckthorn",
-          "incienso"
+          "incienso",
+          "tea_tree"
         ],
         "cuandoPreferir": "Leve-moderada, coadyuvante, mantenimiento"
       },
@@ -20399,20 +21440,28 @@
         "fitoterapia": [
           "prunella_vulgaris",
           "guggulu",
-          "ashwagandha"
+          "ashwagandha",
+          "maca",
+          "ginseng"
         ],
         "suplementos": [
           "selenio",
           "zinc_picolinato",
           "yoduro_potasio_lugol",
-          "vitamina_d3_k2"
+          "vitamina_d3_k2",
+          "shilajit",
+          "hierro"
         ],
         "homeopatia": [
           "thyroidinum",
           "calcarea_iodata",
-          "spongia"
+          "spongia",
+          "calcaria_carbonica",
+          "lachesis"
         ],
-        "aceites": [],
+        "aceites": [
+          "geranio"
+        ],
         "cuandoPreferir": "Coadyuvante, subclínico, soporte inmunológico"
       },
       "prevencion": [
