@@ -9520,6 +9520,328 @@
         "Levodopa (competencia de absorción)",
         "Corticosteroides (aumentan catabolismo)"
       ]
+    },
+    {
+      "id": "betacaroteno",
+      "nombre": "Betacaroteno",
+      "nombresAlternativos": [
+        "β-Caroteno",
+        "Provitamina A",
+        "Beta-carotene"
+      ],
+      "nombreCientifico": "β,β-Caroteno",
+      "familia": "Carotenoides",
+      "categoria": "vitamina",
+      "sistemas": [
+        "ocular",
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "vision",
+        "piel",
+        "inmunidad",
+        "fotosensibilidad"
+      ],
+      "descripcion": "Carotenoide precursor de vitamina A. Antioxidante liposoluble. No tóxico (el cuerpo convierte solo lo necesario).",
+      "mecanismoAccion": "Cleavado por β-caroteno oxigenasa (BCO1) en intestino para formar retinol. Antioxidante que secuestra oxígeno singulete y peroxilos.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "6-15mg/día (10000-25000 IU)",
+      "dosisMaxima": "25mg/día (no fumadores)",
+      "formaQuimica": [
+        "Betacaroteno natural (Dunaliella)",
+        "Betacaroteno sintético (todo-trans)",
+        "Mixto carotenoides"
+      ],
+      "biodisponibilidad": "Variable (5-60%), depende de grasa dietaria y genética BCO1",
+      "momentoToma": [
+        "Con comida (liposoluble)"
+      ],
+      "tomarCon": [
+        "Vitamina E (sinergia antioxidante)",
+        "Grasas"
+      ],
+      "evitarCon": [
+        "Alcohol (reduce conversión)"
+      ],
+      "advertencias": [
+        "FUMADORES: dosis altas (>20mg) aumentan riesgo de cáncer de pulmón (estudio ATBC y CARET)",
+        "Embarazo: seguro a dosis dietéticas, evitar dosis altas",
+        "Puede causar carotenemia (piel amarillenta, inofensiva)",
+        "Seguro: el cuerpo regula la conversión a vitamina A"
+      ],
+      "tags": [
+        "antioxidante",
+        "carotenoide",
+        "provitamina_a",
+        "vision"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "Orlistat (reduce absorción)",
+        "Colestiramina (reduce absorción)",
+        "Estatinas (puede reducir niveles de carotenoides)",
+        "Fumadores con dosis altas: aumentar riesgo de cáncer de pulmón",
+        "Sin interacciones medicamentosas significativas a dosis dietéticas"
+      ]
+    },
+    {
+      "id": "vitamina_b2",
+      "nombre": "Vitamina B2 (Riboflavina)",
+      "nombresAlternativos": [
+        "Riboflavina",
+        "Riboflavin",
+        "Lactoflavina",
+        "Vitamina G"
+      ],
+      "nombreCientifico": "7,8-Dimetil-10-ribitil-isoaloxazina",
+      "familia": "Vitaminas del complejo B",
+      "categoria": "vitamina",
+      "sistemas": [
+        "nervioso",
+        "ocular",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "energía",
+        "migrana",
+        "ojos",
+        "piel",
+        "boca"
+      ],
+      "descripcion": "Precursor de coenzimas FMN y FAD. Esencial para metabolismo energético y protección antioxidante.",
+      "mecanismoAccion": "Convertida a FMN y FAD (flavoproteínas). Cofactor en cadena respiratoria, β-oxidación, y glutatión reductasa. Protege contra estrés oxidativo.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "1.1-1.3mg/día (RDA)",
+      "dosisMaxima": "Sin UL establecido. Dosis profilácticas: 400mg para migraña",
+      "formaQuimica": [
+        "Riboflavina",
+        "Riboflavina-5'-fosfato (FMN)"
+      ],
+      "biodisponibilidad": "Alta (60-95%)",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Otras vitaminas B (sinergia complejo B)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Coloración amarilla inocua de orina",
+        "Sensible a luz (almacenar en oscuro)",
+        "Dosis altas (400mg) usadas en profilaxis de migraña",
+        "Seguro, sin toxicidad conocida"
+      ],
+      "tags": [
+        "energia",
+        "migrana",
+        "fmn",
+        "fad",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "Antidepresivos tricíclicos (reducen absorción de B2)",
+        "Fenotiazinas (reducen absorción)",
+        "Doxorrubicina (B2 puede potenciar cardiotoxicidad)",
+        "Metotrexato (puede deplecionar B2)",
+        "Anticonceptivos orales (pueden reducir niveles)",
+        "Alcohol (reduce absorción)",
+        "Sin interacciones significativas a dosis fisiológicas"
+      ]
+    },
+    {
+      "id": "acido_folico",
+      "nombre": "Ácido Fólico (Vitamina B9)",
+      "nombresAlternativos": [
+        "Folato",
+        "Ácido pteroilglutámico",
+        "Folate",
+        "Vitamina B9",
+        "Metilfolato"
+      ],
+      "nombreCientifico": "Ácido pteroilglutámico",
+      "familia": "Vitaminas del complejo B",
+      "categoria": "vitamina",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "embarazo",
+        "homocisteina",
+        "anemia",
+        "cardiovascular",
+        "neural"
+      ],
+      "descripcion": "Vitamina B esencial para síntesis de ADN, metilación y prevención de defectos del tubo neural. Forma sintética: ácido fólico. Forma activa: 5-MTHF.",
+      "mecanismoAccion": "Donador de grupos metilo vía 5-MTHF en ciclo de metilación. Necesario para conversión de homocisteína a metionina. Síntesis de purinas y pirimidinas.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "400mcg/día (RDA). Embarazo: 600mcg. Prevención DTN: 400-800mcg",
+      "dosisMaxima": "1000mcg/día (UL) - forma sintética",
+      "formaQuimica": [
+        "Ácido fólico",
+        "L-Metilfolato (5-MTHF)",
+        "Folínico calcio (5-CHO-THF)"
+      ],
+      "biodisponibilidad": "Ácido fólico: alta (85%) vs folato natural (50%). 5-MTHF: mejor en MTHFR mutación",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "B12 (sinergia metilación)",
+        "B6 (ciclo metionina)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Dosis >1000mcg de ácido fólico puede ENMASCARAR deficiencia de B12 (daño neurológico)",
+        "MUTACIÓN MTHFR: usar L-Metilfolato (5-MTHF) en lugar de ácido fólico",
+        "Embarazo: 400-800mcg previene defectos del tubo neural",
+        "Algunos cánceres: dosis altas pueden acelerar crecimiento tumoral preexistente"
+      ],
+      "tags": [
+        "embarazo",
+        "homocisteina",
+        "metilacion",
+        "dtm",
+        "anemia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "Metotrexato (antagoniza - folato antagoniza efecto del MTX)",
+        "Fenitoína (reduce niveles plasmáticos del antiepiléptico)",
+        "Sulfasalazina (reduce absorción)",
+        "Metformina (reduce absorción)",
+        "Trimetoprim (antagoniza)",
+        "Puede enmascarar deficiencia de B12 (dosis >1000mcg)",
+        "Fluorouracilo (sinergia con folínico en quimioterapia)"
+      ]
+    },
+    {
+      "id": "paba",
+      "nombre": "PABA (Ácido Para-Aminobenzoico)",
+      "nombresAlternativos": [
+        "PABA",
+        "Ácido para-aminobenzoico",
+        "Para-aminobenzoic acid",
+        "Vitamina Bx"
+      ],
+      "nombreCientifico": "4-Aminobenzoato",
+      "familia": "Compuesto aromático",
+      "categoria": "vitamina",
+      "sistemas": [
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "piel",
+        "filtro_solar",
+        "cicatrización",
+        "canas"
+      ],
+      "descripcion": "Componente del ácido fólico. Usado tópicamente como filtro solar y en dermatología.",
+      "mecanismoAccion": "Componente estructural del ácido fólico (bacterias lo sintetizan, humanos no). Filtro UV-B (280-320nm). Posible estimulación de colágeno y melanina.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "No establecida (no es esencial en humanos)",
+      "dosisMaxima": "Sin UL, pero evitar >100mg oral",
+      "formaQuimica": [
+        "PABA (polvo)",
+        "PABA potásico"
+      ],
+      "biodisponibilidad": "Buena absorción oral y tópica",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [],
+      "evitarCon": [
+        "Sulfonamidas (antagoniza)"
+      ],
+      "advertencias": [
+        "Uso oral poco frecuente (no esencial)",
+        "Reacciones alérgicas tópicas (fotosensibilización)",
+        "Puede interferir con sulfonamidas",
+        "Teñir ropa (filtro solar PABA)"
+      ],
+      "tags": [
+        "piel",
+        "filtro_solar",
+        "paba"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "Sulfonamidas (PABA antagoniza efecto antibacteriano)",
+        "Puede interferir con análisis de laboratorio (falsos positivos)"
+      ]
+    },
+    {
+      "id": "nadh",
+      "nombre": "NADH (Nicotinamida Adenina Dinucleótido)",
+      "nombresAlternativos": [
+        "NADH",
+        "NAD+",
+        "Coenzima 1",
+        "Enada",
+        "Dihidronicotinamida adenina dinucleótido"
+      ],
+      "nombreCientifico": "Nicotinamida adenina dinucleótido (forma reducida)",
+      "familia": "Coenzimas",
+      "categoria": "vitamina",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "energía",
+        "fatiga",
+        "cognitivo",
+        "Parkinson"
+      ],
+      "descripcion": "Forma reducida de NAD+. Coenzima esencial para producción de ATP en cadena respiratoria mitocondrial.",
+      "mecanismoAccion": "Transportador de electrones en cadena respiratoria (complejo I). Cofactor de >400 enzimas dehidrogenasas. Sustrato de sirtuinas (longevidad) y PARP (reparación ADN).",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "5-10mg/día",
+      "dosisMaxima": "20mg/día",
+      "formaQuimica": [
+        "NADH estabilizado (Enada)",
+        "Sublingual"
+      ],
+      "biodisponibilidad": "Baja oral, mejor sublingual",
+      "momentoToma": [
+        "Mañana con estómago vacío"
+      ],
+      "tomarCon": [
+        "CoQ10 (sinergia energética)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Evidencia limitada en humanos",
+        "Puede causar insomnio si se toma tarde",
+        "Embarazo/lactancia: evitar (datos limitados)",
+        "Costoso y baja estabilidad"
+      ],
+      "tags": [
+        "energia",
+        "mitocondrial",
+        "nad",
+        "atp",
+        "parkinson"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "Levodopa (NADH puede potenciar efecto antiparkinsoniano)",
+        "Sin interacciones medicamentosas significativas documentadas"
+      ]
     }
   ]
 }

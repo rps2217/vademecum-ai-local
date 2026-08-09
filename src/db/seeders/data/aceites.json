@@ -4904,6 +4904,169 @@
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
       ]
+    },
+    {
+      "id": "clavo_aceite",
+      "nombre": "Aceite Esencial de Clavo",
+      "nombresAlternativos": [
+        "Clove oil",
+        "Eugenia caryophyllata EO",
+        "Syzygium aromaticum EO"
+      ],
+      "nombreCientifico": "Syzygium aromaticum (Eugenia caryophyllata)",
+      "familia": "Myrtaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "dolor_dental",
+        "antiseptico",
+        "digestión",
+        "antifungico",
+        "parasitos"
+      ],
+      "descripcion": "Aceite rico en eugenol (70-90%). Antiséptico, analgésico dental y antimicrobiano potente.",
+      "mecanismoAccion": "Eugenol: anestésico local (bloqueo canales Na+), antiséptico, antiinflamatorio (inhibe COX-2). Antifúngico y antiparasitario.",
+      "nivelEvidencia": "B",
+      "dilucionRecomendada": "0.5-1% facial, 1-2% corporal. Analgesia dental: 1 gota en algodón",
+      "metodosUso": [
+        "tópico diluido",
+        "enjuague bucal diluido",
+        "difusión"
+      ],
+      "advertencias": [
+        "IRRITANTE CUTÁNEO: diluir siempre",
+        "Embarazo: evitar (efecto uterotónico del eugenol)",
+        "No usar en menores de 2 años",
+        "No ingerir sin supervisión profesional",
+        "Precaución en asmáticos",
+        "Eugenol afecta coagulación"
+      ],
+      "tags": [
+        "dental",
+        "eugenol",
+        "antiseptico",
+        "antifungico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (eugenol tiene efecto antiagregante)",
+        "Anestésicos locales (sinergia)",
+        "No usar interno sin supervisión profesional"
+      ]
+    },
+    {
+      "id": "nuez_moscada_aceite",
+      "nombre": "Aceite Esencial de Nuez Moscada",
+      "nombresAlternativos": [
+        "Nutmeg oil",
+        "Myristica fragrans EO"
+      ],
+      "nombreCientifico": "Myristica fragrans",
+      "familia": "Myristicaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "digestión",
+        "relajación",
+        "dolor",
+        "circulación"
+      ],
+      "descripcion": "Aceite con miristicina y sabineno. Relajante y digestivo. Psicoactivo a dosis altas.",
+      "mecanismoAccion": "Miristicina: posible inhibición MAO-A (efecto antidepresivo). Sabineno: antiinflamatorio. Estructura similar a mescalina (alucinógeno a dosis tóxicos).",
+      "nivelEvidencia": "C",
+      "dilucionRecomendada": "0.5-1% máxima",
+      "metodosUso": [
+        "difusión",
+        "tópico muy diluido"
+      ],
+      "advertencias": [
+        "TOXICIDAD: dosis internas >5ml causan alucinaciones, náuseas, convulsiones",
+        "No usar en embarazo y lactancia",
+        "No usar en niños",
+        "No ingerir",
+        "Uso restringido: máximo 1-2 gotas en difusión"
+      ],
+      "tags": [
+        "miristicina",
+        "digestivo",
+        "relajante",
+        "psicoactivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "IMAO (miristicina inhibe MAO - riesgo crisis hipertensiva)",
+        "Anticoagulantes (puede afectar coagulación)",
+        "Sedantes (efecto aditivo)",
+        "Alcohol (potencia toxicidad)",
+        "No ingerir (toxicidad hepática y neurológica)"
+      ]
+    },
+    {
+      "id": "ilang_ilang",
+      "nombre": "Aceite Esencial de Ylang Ylang",
+      "nombresAlternativos": [
+        "Ylang Ylang",
+        "Cananga odorata EO",
+        "Ilang-ilang"
+      ],
+      "nombreCientifico": "Cananga odorata",
+      "familia": "Annonaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "relajación",
+        "perfume",
+        "hipertensión",
+        "piel",
+        "libido"
+      ],
+      "descripcion": "Aceite floral dulce. Relajante, afrodisíaco y equilibrante. Usado en perfumería.",
+      "mecanismoAccion": "Linalool y germacreno D: efecto sedante y ansiolítico. Baja presión arterial. Regula sebo cutáneo.",
+      "nivelEvidencia": "C",
+      "dilucionRecomendada": "0.5-1% (aroma intenso)",
+      "metodosUso": [
+        "difusión",
+        "tópico diluido",
+        "perfume"
+      ],
+      "advertencias": [
+        "Aroma muy intenso: usar dosis bajas",
+        "Uso excesivo puede causar cefalea y náuseas",
+        "Posible sensibilización cutánea",
+        "Evitar en hipotensión",
+        "Diluir siempre para uso tópico"
+      ],
+      "tags": [
+        "ylang",
+        "ansiedad",
+        "perfume",
+        "afrodisiaco",
+        "relajante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-01-01"
+      },
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos (puede potenciar efecto hipotensor)",
+        "Sedantes (efecto aditivo)",
+        "No usar interno sin supervisión profesional"
+      ]
     }
   ]
 }
