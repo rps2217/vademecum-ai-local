@@ -192,9 +192,10 @@ export function ConflictList() {
 
       <div className="space-y-2">
         {conflicts.map((conflict) => (
-          <div
+          <button
+            type="button"
             key={conflict.id}
-            className="p-4 border border-border rounded-lg hover:bg-muted transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full text-left p-4 border border-border rounded-lg hover:bg-muted transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             onClick={() => setSelectedConflict(conflict)}
           >
             <div className="flex items-center justify-between">
@@ -206,7 +207,7 @@ export function ConflictList() {
                 {new Date(conflict.detectedAt).toLocaleString()}
               </span>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 

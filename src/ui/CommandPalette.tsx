@@ -49,13 +49,16 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
   const { ready } = useSearchIndex();
   const pathologies = useLiveQuery(() => db.pathologies.toArray(), []);
 
-  useEffect(() => {
+  // Reset query/activeIndex when the palette transitions from closed→open.
+  // "Adjust state during render" pattern (avoids set-state-in-effect).
+  const [prevOpen, setPrevOpen] = useState(open);
+  if (open !== prevOpen) {
+    setPrevOpen(open);
     if (open) {
       setQuery('');
       setActiveIndex(0);
-      setTimeout(() => inputRef.current?.focus(), 0);
     }
-  }, [open]);
+  }
 
   const items = useMemo<PaletteItem[]>(() => {
     const navItems: PaletteItem[] = NAV_ITEMS.map((n) => ({
@@ -104,12 +107,14 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
     return [...navItems, ...ingItems, ...pathItems];
   }, [query, ready, pathologies, navigate, onClose]);
 
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [query]);
+  // Clamp activeIndex when items change (e.g. new search results).
+  const safeActiveIndex = items.length === 0 ? 0 : Math.min(activeIndex, items.length - 1);
+  if (safeActiveIndex !== activeIndex) setActiveIndex(safeActiveIndex);
 
+  // Focus input + keyboard nav only while open.
   useEffect(() => {
     if (!open) return;
+    const t = setTimeout(() => inputRef.current?.focus(), 0);
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') { onClose(); return; }
       if (e.key === 'ArrowDown') {
@@ -120,22 +125,23 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
         setActiveIndex(i => Math.max(i - 1, 0));
       } else if (e.key === 'Enter') {
         e.preventDefault();
-        items[activeIndex]?.action();
+        items[safeActiveIndex]?.action();
       }
     };
     window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [open, items, activeIndex, onClose]);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('keydown', handler);
+    };
+  }, [open, items, safeActiveIndex, onClose]);
 
   // Scroll del item activo a la vista
   useEffect(() => {
-    const el = listRef.current?.querySelector(`[data-idx="${activeIndex}"]`);
+    const el = listRef.current?.querySelector(`[data-idx="${safeActiveIndex}"]`);
     el?.scrollIntoView({ block: 'nearest' });
-  }, [activeIndex]);
+  }, [safeActiveIndex]);
 
-  if (!open) return null;
-
-  // Agrupar items
+  // Agrupar items (before early return so hooks order is stable)
   const groups = useMemo(() => {
     const g: Record<string, PaletteItem[]> = {};
     items.forEach((it, idx) => {
@@ -144,11 +150,18 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
     return g;
   }, [items]);
 
+  if (!open) return null;
+
   let runningIdx = 0;
 
   return (
     <div className="fixed inset-0 z-[1400] flex items-start justify-center p-4 pt-[15vh]">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <button
+        type="button"
+        aria-label="Cerrar"
+        className="absolute inset-0 cursor-default bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
       <div className="relative w-full max-w-xl rounded-xl border border-border bg-card shadow-2xl overflow-hidden animate-scale-in">
         {/* Input */}
         <div className="flex items-center gap-3 border-b border-border px-4 py-3">
@@ -178,7 +191,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
                 {groupItems.map((item) => {
                   const idx = runningIdx++;
                   const Icon = item.icon;
-                  const isActive = idx === activeIndex;
+                  const isActive = idx === safeActiveIndex;
                   return (
                     <button
                       key={item.id}

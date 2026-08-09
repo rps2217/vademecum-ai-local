@@ -38,7 +38,6 @@ export function useIngredients(options: UseIngredientsOptions = {}): UseIngredie
       ingredients: ingredients.slice(0, limit),
       total: ingredients.length,
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, category, system, query, limit]);
 
   return {

@@ -369,7 +369,7 @@ async function loadPatologias(): Promise<string[]> {
     return pathologies.map(p => p.id);
   } catch (err) {
     logger.error('Error loading patologias:', err);
-    throw new Error(`Failed to load patologias: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    throw new Error(`Failed to load patologias: ${err instanceof Error ? err.message : 'Unknown error'}`, { cause: err });
   }
 }
 
@@ -386,7 +386,7 @@ async function loadFitoterapia(): Promise<string[]> {
     return ingredients.map(i => i.id);
   } catch (err) {
     logger.error('Error loading fitoterapia:', err);
-    throw new Error(`Failed to load fitoterapia: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    throw new Error(`Failed to load fitoterapia: ${err instanceof Error ? err.message : 'Unknown error'}`, { cause: err });
   }
 }
 
@@ -403,7 +403,7 @@ async function loadHomeopatia(): Promise<string[]> {
     return ingredients.map(i => i.id);
   } catch (err) {
     logger.error('Error loading homeopatia:', err);
-    throw new Error(`Failed to load homeopatia: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    throw new Error(`Failed to load homeopatia: ${err instanceof Error ? err.message : 'Unknown error'}`, { cause: err });
   }
 }
 
@@ -420,7 +420,7 @@ async function loadAceites(): Promise<string[]> {
     return ingredients.map(i => i.id);
   } catch (err) {
     logger.error('Error loading aceites:', err);
-    throw new Error(`Failed to load aceites: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    throw new Error(`Failed to load aceites: ${err instanceof Error ? err.message : 'Unknown error'}`, { cause: err });
   }
 }
 
@@ -437,7 +437,7 @@ async function loadVitaminas(): Promise<string[]> {
     return ingredients.map(i => i.id);
   } catch (err) {
     logger.error('Error loading vitaminas:', err);
-    throw new Error(`Failed to load vitaminas: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    throw new Error(`Failed to load vitaminas: ${err instanceof Error ? err.message : 'Unknown error'}`, { cause: err });
   }
 }
 
@@ -454,7 +454,7 @@ async function loadSinergias(): Promise<string[]> {
     return synergies.map(s => s.id);
   } catch (err) {
     logger.error('Error loading sinergias:', err);
-    throw new Error(`Failed to load sinergias: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    throw new Error(`Failed to load sinergias: ${err instanceof Error ? err.message : 'Unknown error'}`, { cause: err });
   }
 }
 

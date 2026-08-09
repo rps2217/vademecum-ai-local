@@ -61,12 +61,15 @@ export function SearchPage() {
   const [category, setCategory] = useState('');
   const [indication, setIndication] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
   const [selectedPathology, setSelectedPathology] = useState<DbPathology | null>(null);
   const [showAllChips, setShowAllChips] = useState(false);
   const [ingredientsExpanded, setIngredientsExpanded] = useState(true);
   const [visibleCount, setVisibleCount] = useState(RESULTS_PAGE_SIZE);
+
+  // True while the debounced query lags behind the current query.
+  const isSearching = query !== debouncedQuery;
 
   // Patologías: cargar una sola vez (live query, pero ligero — ~146 registros)
   const allPathologies = useLiveQuery(() => db.pathologies.toArray(), []);
@@ -91,7 +94,6 @@ export function SearchPage() {
   // Búsqueda con debounce corto (el índice hace que sea casi instantánea)
   useEffect(() => {
     if (!ready) return;
-    setIsSearching(true);
     const t = setTimeout(() => {
       try {
         const searchResults = ingredientSearchService.searchSync({
@@ -100,11 +102,10 @@ export function SearchPage() {
           indication: indication || undefined,
         });
         setResults(searchResults);
+        setDebouncedQuery(query);
         setVisibleCount(RESULTS_PAGE_SIZE);
       } catch (error) {
         logger.error('Search error:', error);
-      } finally {
-        setIsSearching(false);
       }
     }, 150);
     return () => clearTimeout(t);

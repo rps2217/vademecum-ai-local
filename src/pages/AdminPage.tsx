@@ -78,6 +78,7 @@ export function AdminPage() {
       URL.revokeObjectURL(url);
       toast.success('Datos exportados');
     } catch (error) {
+      logger.error('Export failed:', error);
       toast.error('Error al exportar');
     }
   };
@@ -103,6 +104,7 @@ export function AdminPage() {
         
         toast.success('Datos importados');
       } catch (error) {
+        logger.error('Import failed:', error);
         toast.error('Error al importar archivo');
       }
     };
@@ -116,6 +118,7 @@ export function AdminPage() {
       setShowEditor(false);
       setEditingIngredient(undefined);
     } catch (error) {
+      logger.error('Save ingredient failed:', error);
       toast.error('Error al guardar ingrediente');
     }
   };
@@ -132,6 +135,7 @@ export function AdminPage() {
       await deleteIngredient(ingredient.id);
       toast.success(`Ingrediente "${ingredient.nombre}" eliminado`);
     } catch (error) {
+      logger.error('Delete ingredient failed:', error);
       toast.error('Error al eliminar ingrediente');
     }
   };

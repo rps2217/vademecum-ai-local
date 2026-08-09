@@ -46,9 +46,9 @@ export function useSync(): UseSyncResult {
     // Suscribirse a cambios del SyncService
     const unsubscribe = syncService.subscribe((newStatus) => {
       setStatus(newStatus);
-      // Detectar inicio de sync
-      if (newStatus.isSyncing && !syncStartedAt) {
-        setSyncStartedAt(Date.now());
+      // Detectar inicio de sync (functional update avoids stale closure / dep)
+      if (newStatus.isSyncing) {
+        setSyncStartedAt(prev => prev ?? Date.now());
       }
     });
     

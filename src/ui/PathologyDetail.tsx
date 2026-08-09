@@ -91,10 +91,15 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
   const currentTabIds = pathology.tratamientoNatural[activeTab] || [];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in p-4">
+      <button
+        type="button"
+        aria-label="Cerrar"
+        className="absolute inset-0 cursor-default"
+        onClick={onClose}
+      />
       <div
-        className="bg-card w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
-        onClick={e => e.stopPropagation()}
+        className="relative bg-card w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
       >
         {/* Header */}
         <div className="sticky top-0 bg-card border-b px-6 py-4 flex items-start justify-between gap-4 z-10">

@@ -2,7 +2,7 @@
  * OnboardingPage - Configuración inicial
  */
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useE2EE } from '@/app/E2EEAuthProvider';
 import { Button } from '@/ui/Button';
@@ -22,6 +22,7 @@ export function OnboardingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Calculate password strength
   const passwordStrength = useMemo(() => {
@@ -46,6 +47,11 @@ export function OnboardingPage() {
       navigate('/login', { replace: true });
     }
   }, [isLoading, hasAccount, navigate]);
+
+  // Clear copy timer on unmount
+  useEffect(() => () => {
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+  }, []);
 
   // Show loading while checking auth state
   if (isLoading) {
@@ -85,7 +91,8 @@ export function OnboardingPage() {
   const handleCopy = () => {
     navigator.clipboard.writeText(recoveryPhrase);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = setTimeout(() => setCopied(false), 2000);
   };
 
   const handleComplete = () => {

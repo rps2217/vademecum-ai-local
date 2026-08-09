@@ -35,12 +35,18 @@ export function SearchInput({
   const [isFocused, setIsFocused] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const blurTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (autoFocus && inputRef.current) {
       inputRef.current.focus();
     }
   }, [autoFocus]);
+
+  // Clear pending blur timer on unmount
+  useEffect(() => () => {
+    if (blurTimerRef.current) clearTimeout(blurTimerRef.current);
+  }, []);
 
   const handleSelect = useCallback((suggestion: string) => {
     onChange(suggestion);
@@ -104,7 +110,10 @@ export function SearchInput({
           value={value}
           onChange={e => onChange(e.target.value)}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+          onBlur={() => {
+            if (blurTimerRef.current) clearTimeout(blurTimerRef.current);
+            blurTimerRef.current = setTimeout(() => setIsFocused(false), 200);
+          }}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className={cn(
