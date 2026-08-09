@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-09",
-    "total": 165,
+    "total": 168,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -8866,6 +8866,176 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EFSA health claims + IOM Dietary Reference Intakes"
+      }
+    },
+    {
+      "id": "d_ribose",
+      "nombre": "D-Ribosa",
+      "nombresAlternativos": [
+        "Ribosa",
+        "D-Ribose",
+        "Pentosa"
+      ],
+      "nombreCientifico": "D-Ribosa",
+      "familia": "No aplica",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "cardiovascular",
+        "musculoesqueletico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "fibromialgia",
+        "energía",
+        "cardiovascular",
+        "rendimiento",
+        "mitocondrias"
+      ],
+      "descripcion": "Pentosa precursora de ATP. Mejora regeneracion energetica mitocondrial en fibromialgia y fatiga cronica.",
+      "mecanismoAccion": "Acelera resintesis de ATP via via de las pentosas fosfato; mejora funcion mitocondrial.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "5-15g/dia",
+      "dosisMaxima": "30g/dia",
+      "formaQuimica": [
+        "D-Ribosa pura"
+      ],
+      "biodisponibilidad": "Buena absorcion",
+      "momentoToma": [
+        "Con comidas",
+        "Antes/después ejercicio"
+      ],
+      "tomarCon": [
+        "CoQ10",
+        "L-Carnitina"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Posible hipoglucemia (monitorizar)",
+        "Dosis altas: molestias GI"
+      ],
+      "tags": [
+        "energía",
+        "ATP",
+        "fibromialgia",
+        "mitocondrial"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Clinical trials (fibromialgia/CFS) + NIH"
+      }
+    },
+    {
+      "id": "indole_3_carbinol",
+      "nombre": "Indol-3-Carbinol (I3C)",
+      "nombresAlternativos": [
+        "I3C",
+        "Indole-3-carbinol",
+        "DIM precursor",
+        "3,3'-Diindolilmetano"
+      ],
+      "nombreCientifico": "Indol-3-carbinol",
+      "familia": "No aplica",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "endocrino",
+        "inmune",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "prevencion_oncologica",
+        "estrógenos",
+        "mama",
+        "papiloma",
+        "hepático",
+        "detox"
+      ],
+      "descripcion": "Compuesto de cruciferas (brocoli) que modula metabolismo de estrogenos hacia metabolitos protectores (2-OH).",
+      "mecanismoAccion": "Induce CYP1A1/1A2 favoreciendo 2-hidroxilacion de estrogenos (protectores) sobre 16-alfa (proliferativos).",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "200-400mg/dia (I3C) o 100-200mg (DIM)",
+      "dosisMaxima": "800mg/dia",
+      "formaQuimica": [
+        "I3C",
+        "DIM (diindolilmetano, metabolito activo)"
+      ],
+      "biodisponibilidad": "Moderada; DIM mejor",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Sulforafano (sinergia cruciferas)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "No usar en embarazo/lactancia sin supervisar",
+        "Teoricamente interfere con anticonceptivos hormonales"
+      ],
+      "tags": [
+        "estrogénico",
+        "oncología",
+        "detox",
+        "crucíferas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Clinical trials (CIN, HPV) + NIH OAM"
+      }
+    },
+    {
+      "id": "leucina_pura",
+      "nombre": "L-Leucina (BCAA puro)",
+      "nombresAlternativos": [
+        "Leucina",
+        "L-Leucine",
+        "BCAA leucina",
+        "HMB precursor"
+      ],
+      "nombreCientifico": "L-Leucina",
+      "familia": "No aplica",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "musculoesqueletico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "muscular",
+        "sarcopenia",
+        "rendimiento",
+        "glucosa",
+        "recuperación"
+      ],
+      "descripcion": "Aminoacido ramificado esencial y gatillo de la sintesis proteica muscular via mTOR.",
+      "mecanismoAccion": "Activa mTORC1 estimulando sintesis proteica; regula glucemia.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "2-5g/dia",
+      "dosisMaxima": "10g/dia",
+      "formaQuimica": [
+        "L-Leucina libre",
+        "HMB (metabolito)"
+      ],
+      "biodisponibilidad": "Buena absorcion",
+      "momentoToma": [
+        "Antes/después ejercicio",
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Isoleucina, Valina (ratio 2:1:1)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Maple syrup urine disease (contraindicado)",
+        "Dosis altas: posible amonio"
+      ],
+      "tags": [
+        "mTOR",
+        "muscular",
+        "anabólico",
+        "sarcopenia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Clinical trials (sarcopenia) + IOM DRI"
       }
     }
   ]

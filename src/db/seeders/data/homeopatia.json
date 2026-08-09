@@ -4,7 +4,7 @@
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.8.0",
     "ultimaActualizacion": "2026-08-09",
-    "total": 107,
+    "total": 117,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -6894,6 +6894,447 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "aurum_metallicum",
+      "nombre": "Aurum Metallicum",
+      "nombresAlternativos": [
+        "Oro metálico",
+        "Gold",
+        "Aurum met"
+      ],
+      "nombreCientifico": "Aurum metallicum",
+      "familia": "Metal noble",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "depresión",
+        "suicidio",
+        "cardiovascular",
+        "articular",
+        "oído"
+      ],
+      "descripcion": "Remedio homeopatico de oro para depresion profunda con ideacion suicida y dolor oseo nocturno.",
+      "mecanismoAccion": "En homeopatia, modula humor y sistema osteoarticular; accion sobre corazony hueso.",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "30CH",
+        "200CH"
+      ],
+      "dosis": "3-5 glóbulos 3 veces al dia",
+      "advertencias": [
+        "No usar en ideacion suicida aguda sin atencion medica",
+        "Solo bajo prescription homeopatica"
+      ],
+      "tags": [
+        "depresión",
+        "cardiovascular",
+        "óseo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
+      }
+    },
+    {
+      "id": "thyroidinum",
+      "nombre": "Thyroidinum",
+      "nombresAlternativos": [
+        "Tiroides (nosodo)",
+        "Thyroidinum",
+        "Extracto tiroideo homeopático"
+      ],
+      "nombreCientifico": "Thyroidinum",
+      "familia": "Nosodo organoterapico",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "endocrino",
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "tiroides",
+        "obesidad",
+        "fatiga",
+        "depresión",
+        "glucosa"
+      ],
+      "descripcion": "Nosodo tiroideo para desequilibrios tiroideos en homeopatia.",
+      "mecanismoAccion": "Organoterapico que modula el eje tiroideo segun principios homeopaticos.",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "30CH",
+        "200CH"
+      ],
+      "dosis": "3-5 glóbulos 2 veces al dia",
+      "advertencias": [
+        "No sustituye tratamiento tiroideo farmacologico",
+        "Supervision medica en trastornos autoinmunes"
+      ],
+      "tags": [
+        "tiroides",
+        "endocrino",
+        "metabolico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
+      }
+    },
+    {
+      "id": "psorinum",
+      "nombre": "Psorinum",
+      "nombresAlternativos": [
+        "Nosodo de Psora",
+        "Psorinum",
+        "Nosodo psorico"
+      ],
+      "nombreCientifico": "Psorinum",
+      "familia": "Nosodo homeopatico",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "inmune",
+        "dermatologico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "piel",
+        "eccema",
+        "inmunidad",
+        "fatiga",
+        "asma"
+      ],
+      "descripcion": "Nosodo psorico de Hahnemann para diatesis cronica con debilidad y problemas de piel.",
+      "mecanismoAccion": "Nosodo que segun homeopatia modula la diatesis psorica cronica.",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "30CH",
+        "200CH",
+        "1M"
+      ],
+      "dosis": "3-5 glóbulos 1 vez por semana (nosodo)",
+      "advertencias": [
+        "Solo bajo prescription homeopatica",
+        "Embarazo: consultar"
+      ],
+      "tags": [
+        "nosodo",
+        "piel",
+        "inmunidad",
+        "crónico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Hahnemann Chronic Diseases + Boericke"
+      }
+    },
+    {
+      "id": "picricum_acidum",
+      "nombre": "Picricum Acidum",
+      "nombresAlternativos": [
+        "Ácido pícrico",
+        "Picric acid",
+        "Picricum ac"
+      ],
+      "nombreCientifico": "Acido picrico",
+      "familia": "Acido organico",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "cognitivo",
+        "agotamiento",
+        "mialgia",
+        "cabello"
+      ],
+      "descripcion": "Remedio homeopatico para agotamiento mental y fisico profundo con debilidad muscular.",
+      "mecanismoAccion": "En homeopatia, actua sobre la debilidad por agotamiento del SNC y muscular.",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "30CH",
+        "200CH"
+      ],
+      "dosis": "3-5 glóbulos 3 veces al dia",
+      "advertencias": [
+        "No usar en forma material (toxico); solo potencias homeopaticas"
+      ],
+      "tags": [
+        "fatiga",
+        "agotamiento",
+        "cognitivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
+      }
+    },
+    {
+      "id": "syzygium",
+      "nombre": "Syzygium Jambolanum",
+      "nombresAlternativos": [
+        "Syzygium cumini",
+        "Jambolán",
+        "Jambo",
+        "Eugenia jambolana"
+      ],
+      "nombreCientifico": "Syzygium cumini",
+      "familia": "Myrtaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "metabolico",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "diabetes",
+        "sed",
+        "orina"
+      ],
+      "descripcion": "Remedio homeopatico de la semilla de jambolan para diabetes con sed y poliuria.",
+      "mecanismoAccion": "En homeopatia, modula la glucemia y sintomas diabeticos.",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "MT",
+        "30CH"
+      ],
+      "dosis": "3-5 glóbulos 3 veces al dia",
+      "advertencias": [
+        "No sustituye insulina o antidiabeticos",
+        "Monitorizar glucemia"
+      ],
+      "tags": [
+        "diabetes",
+        "glucosa",
+        "metabolico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
+      }
+    },
+    {
+      "id": "uranium_nitricum",
+      "nombre": "Uranium Nitricum",
+      "nombresAlternativos": [
+        "Nitrato de uranio",
+        "Uranium nitricum",
+        "Uranium nit"
+      ],
+      "nombreCientifico": "Uranium nitricum",
+      "familia": "Metal pesado",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "metabolico",
+        "urinario"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "diabetes",
+        "orina",
+        "fatiga"
+      ],
+      "descripcion": "Remedio homeopatico para diabetes con debilidad y sintomas urinarios.",
+      "mecanismoAccion": "En homeopatia, actua sobre la diatesis diabetica con afectacion renal.",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "30CH",
+        "200CH"
+      ],
+      "dosis": "3-5 glóbulos 2 veces al dia",
+      "advertencias": [
+        "No usar en forma material (toxico)",
+        "No sustituye tratamiento diabetico"
+      ],
+      "tags": [
+        "diabetes",
+        "glucosa",
+        "urinario"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
+      }
+    },
+    {
+      "id": "calcarea_iodata",
+      "nombre": "Calcarea Iodata",
+      "nombresAlternativos": [
+        "Yoduro de calcio",
+        "Calcarea iod",
+        "Calcium iodide"
+      ],
+      "nombreCientifico": "Calcarea iodata",
+      "familia": "Sal mineral",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "endocrino",
+        "inmune",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "tiroides",
+        "amigdalitis",
+        "adenopatias",
+        "inmunidad"
+      ],
+      "descripcion": "Remedio homeopatico para hipertrofia glandular (tiroides, amigdalas, adenoides).",
+      "mecanismoAccion": "En homeopatia, combina accion de Calcarea e Iodo sobre glandulas.",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "30CH",
+        "200CH"
+      ],
+      "dosis": "3-5 glóbulos 2 veces al dia",
+      "advertencias": [
+        "Evitar en hipertiroidismo no controlado"
+      ],
+      "tags": [
+        "tiroides",
+        "glandular",
+        "amígdalas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
+      }
+    },
+    {
+      "id": "crataegus_homeo",
+      "nombre": "Crataegus (Homeopático)",
+      "nombresAlternativos": [
+        "Espino blanco homeopático",
+        "Crataegus oxyacantha",
+        "Crataegus MT"
+      ],
+      "nombreCientifico": "Crataegus oxyacantha",
+      "familia": "Rosaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "insomnio",
+        "ansiedad",
+        "taquicardia"
+      ],
+      "descripcion": "Tintura madre homeopatica de espino blanco para apoyo cardiaco y ansiedad cardiaca.",
+      "mecanismoAccion": "Flavonoides y proantocianidinas del espino blanco con accion cardiaca y sedante leve.",
+      "nivelEvidencia": "C",
+      "potencia": [
+        "MT",
+        "30CH"
+      ],
+      "dosis": "3-5 glóbulos o 10-20 gotas MT 2-3 veces al dia",
+      "advertencias": [
+        "Potencia accion de digitalicos y antihipertensivos"
+      ],
+      "tags": [
+        "cardiovascular",
+        "cardiaco",
+        "ansiedad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + ESCOP"
+      }
+    },
+    {
+      "id": "berberis_homeo",
+      "nombre": "Berberis (Homeopático)",
+      "nombresAlternativos": [
+        "Berberberis vulgaris homeopático",
+        "Berberis vulg",
+        "Agracejo"
+      ],
+      "nombreCientifico": "Berberis vulgaris",
+      "familia": "Berberidaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "urinario",
+        "hepatico",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "urinario",
+        "cálculos",
+        "hepático",
+        "articular",
+        "litiasis"
+      ],
+      "descripcion": "Tintura madre homeopatica de agracejo para litiasis renal y dolor lumbar irradiado.",
+      "mecanismoAccion": "Berberina con accion sobre vias urinarias, biliares y dolor lumbar.",
+      "nivelEvidencia": "C",
+      "potencia": [
+        "MT",
+        "30CH"
+      ],
+      "dosis": "3-5 glóbulos o 10-20 gotas MT 2-3 veces al dia",
+      "advertencias": [
+        "Embarazo: evitar (berberina)"
+      ],
+      "tags": [
+        "litiasis",
+        "urinario",
+        "renal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
+      }
+    },
+    {
+      "id": "merc_sol",
+      "nombre": "Mercurius Solubilis",
+      "nombresAlternativos": [
+        "Mercurio soluble (Hahnemann)",
+        "Merc sol",
+        "Quicksilver"
+      ],
+      "nombreCientifico": "Mercurius solubilis Hahnemanni",
+      "familia": "Metal pesado",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "inmune",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "garganta",
+        "amigdalitis",
+        "gases",
+        "diarrea",
+        "inmunidad",
+        "encías"
+      ],
+      "descripcion": "Policresto homeopatico para afecciones de mucosas con exudado y sudoracion ofensiva.",
+      "mecanismoAccion": "En homeopatia, modula inflamacion de mucosas (garganta, boca, intestino).",
+      "nivelEvidencia": "D",
+      "potencia": [
+        "30CH",
+        "200CH"
+      ],
+      "dosis": "3-5 glóbulos 3 veces al dia",
+      "advertencias": [
+        "No usar en forma material (toxico); solo potencias homeopaticas"
+      ],
+      "tags": [
+        "garganta",
+        "mucosas",
+        "amígdalas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-09",
+        "fuente": "Boericke Materia Medica + Clarke"
       }
     }
   ]
