@@ -236,7 +236,9 @@ cuando los datos JSON cambiaron y re-siembra la KB sin borrar datos del
 usuario. Mecanismo:
 
 1. `computeKbVersion()` calcula un hash de versión desde los conteos de
-   los JSON (`v{fito}-{homeo}-{aceites}-{vitaminas}-{sinergias}-{patologias}`)
+   los JSON (`v{fito}-{homeo}-{aceites}-{vitaminas}-{sinergias}-{patologias}-{patConCtx}`).
+   El último componente (`patConCtx`) cuenta las patologías con `epidemiologia`
+   para forzar re-seed al añadir contexto clínico sin cambiar el número total.
 2. `isKnowledgeBaseSeeded()` compara la versión almacenada en `syncMeta`
    (key `kb_seed_version`) con la versión actual. Si no coinciden,
    devuelve false → `DbProvider` llama a `seedKnowledgeBase()`
