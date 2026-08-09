@@ -232,7 +232,7 @@ export function SearchPage() {
                         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                         isActive
                           ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                          : 'bg-transparent text-foreground border-border hover:bg-muted hover:border-primary/40'
+                          : 'bg-card text-foreground border-border hover:bg-muted hover:border-primary/40'
                       )}
                       aria-pressed={isActive}
                     >
@@ -247,7 +247,7 @@ export function SearchPage() {
                 {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
                   <button
                     onClick={() => { setShowAllChips(true); setChipSearch(''); }}
-                    className="inline-flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium border border-dashed border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium border border-dashed border-border-hover text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {`+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
                     <ChevronDown className="w-4 h-4" />
@@ -296,7 +296,7 @@ export function SearchPage() {
                             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                             isActive
                               ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                              : 'bg-transparent text-foreground border-border hover:bg-muted hover:border-primary/40'
+                              : 'bg-card text-foreground border-border hover:bg-muted hover:border-primary/40'
                           )}
                           aria-pressed={isActive}
                         >

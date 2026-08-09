@@ -40,11 +40,11 @@
   
   /* Cards & Surfaces */
   --card: #fdfbf5;
-  --card-foreground: #171717;
+  --card-foreground: #1a1714;
   --card-hover: #f7f4ec;
   
   --popover: #fdfbf5;
-  --popover-foreground: #171717;
+  --popover-foreground: #1a1714;
   
   /* Borders */
   --border: #e0d8c5;
@@ -52,17 +52,17 @@
   --border-focus: #10b981;
   
   /* Inputs */
-  --input: var(--color-gray-200);
-  --input-placeholder: var(--color-gray-400);
+  --input: #e0d8c5;
+  --input-placeholder: #9a9080;
   --input-focus: var(--color-primary-500);
   
   /* Rings (focus outline) */
   --ring: var(--color-primary-500);
-  --ring-offset: var(--color-white);
+  --ring-offset: #fdfbf5;
   
   /* Muted */
-  --muted: var(--color-gray-100);
-  --muted-foreground: var(--color-gray-500);
+  --muted: #efeadd;
+  --muted-foreground: #6b6358;
   
   /* Destructive / Error */
   --destructive: var(--color-error-500);
@@ -86,38 +86,38 @@
   
   /* Sidebar */
   --sidebar-background: #f2eee2;
-  --sidebar-foreground: var(--color-gray-700);
+  --sidebar-foreground: #4a4238;
   --sidebar-primary: var(--color-primary-600);
   --sidebar-primary-foreground: var(--color-white);
-  --sidebar-accent: var(--color-gray-100);
-  --sidebar-accent-foreground: var(--color-gray-900);
-  --sidebar-border: var(--color-gray-200);
+  --sidebar-accent: #efeadd;
+  --sidebar-accent-foreground: #1a1714;
+  --sidebar-border: #e0d8c5;
   --sidebar-ring: var(--color-primary-500);
   
   /* Header */
   --header-background: #f2eee2;
-  --header-foreground: var(--color-gray-900);
-  --header-border: var(--color-gray-200);
+  --header-foreground: #1a1714;
+  --header-border: #e0d8c5;
   
   /* Overlay */
   --overlay: rgb(0 0 0 / 0.5);
   
   /* Code */
-  --code-background: var(--color-gray-100);
-  --code-foreground: var(--color-gray-800);
+  --code-background: #efeadd;
+  --code-foreground: #3a342c;
   
   /* Skeleton / Loading */
-  --skeleton: var(--color-gray-200);
-  --skeleton-highlight: var(--color-gray-100);
+  --skeleton: #e0d8c5;
+  --skeleton-highlight: #efeadd;
   
   /* SVG Icons */
-  --icon-foreground: var(--color-gray-500);
-  --icon-hover: var(--color-gray-700);
+  --icon-foreground: #6b6358;
+  --icon-hover: #1a1714;
   
   /* Scrollbar */
-  --scrollbar-track: var(--color-gray-100);
-  --scrollbar-thumb: var(--color-gray-300);
-  --scrollbar-thumb-hover: var(--color-gray-400);
+  --scrollbar-track: #efeadd;
+  --scrollbar-thumb: #c9bea3;
+  --scrollbar-thumb-hover: #b0a384;
   
   /* Shadows for light theme */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

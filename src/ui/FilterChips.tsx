@@ -47,7 +47,7 @@ export function FilterChips({
                 'border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 isActive
                   ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                  : 'bg-transparent text-muted-foreground border-border hover:bg-muted hover:text-foreground'
+                  : 'bg-card text-muted-foreground border-border hover:bg-muted hover:text-foreground'
               )}
               aria-pressed={isActive}
             >
