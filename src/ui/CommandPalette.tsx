@@ -11,6 +11,7 @@ import { ingredientSearchService, useSearchIndex } from '@/core/search';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
 import { normalize, humanize } from '@/lib/text';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
 import {
   Search, Home, Database, Link2, BarChart3, Shield, Settings,
   CornerDownLeft, Stethoscope,
@@ -45,9 +46,12 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { ready } = useSearchIndex();
   const pathologies = useLiveQuery(() => db.pathologies.toArray(), []);
+
+  useFocusTrap(panelRef, open);
 
   // Reset query/activeIndex when the palette transitions from closed→open.
   // "Adjust state during render" pattern (avoids set-state-in-effect).
@@ -162,7 +166,14 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
         className="absolute inset-0 cursor-default bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-xl rounded-xl border border-border bg-card shadow-2xl overflow-hidden animate-scale-in">
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Búsqueda rápida"
+        className="relative w-full max-w-xl rounded-xl border border-border bg-card shadow-2xl overflow-hidden animate-scale-in"
+      >
         {/* Input */}
         <div className="flex items-center gap-3 border-b border-border px-4 py-3">
           <Search className="w-5 h-5 text-muted-foreground shrink-0" aria-hidden="true" />

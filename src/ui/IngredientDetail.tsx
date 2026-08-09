@@ -13,7 +13,7 @@
  * Memoizado para evitar re-renders innecesarios.
  */
 
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useRef, useEffect } from 'react';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { HighlightText } from '@/ui/HighlightText';
@@ -25,6 +25,7 @@ import type { DbIngredient, IngredientSafety, SafetyStatus } from '@/db/schema';
 import { humanize } from '@/lib/text';
 import { buildHighlightTerms } from '@/lib/highlightTerms';
 import { cn } from '@/lib/utils';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
 
 interface IngredientDetailProps {
   ingredient: DbIngredient;
@@ -61,6 +62,16 @@ function SafetyRow({ label, status }: { label: string; status: SafetyStatus | un
 }
 
 const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activeIndication }: IngredientDetailProps) => {
+  const panelRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(panelRef, true);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
   const evidenceConfig = useMemo(
     () => EVIDENCE_CONFIG[ingredient.evidencia] || EVIDENCE_CONFIG.D,
     [ingredient.evidencia]
@@ -80,13 +91,16 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activ
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
-        onKeyDown={(e) => e.key === 'Escape' && onClose()}
-        tabIndex={0}
-        role="button"
-        aria-label="Cerrar ficha"
+        aria-hidden="true"
       />
-
-      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card shadow-2xl animate-scale-in">
+      <div
+        ref={panelRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Ficha de ${ingredient.nombre}`}
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl border border-border bg-card shadow-2xl animate-scale-in"
+      >
         {/* Encabezado pegajoso */}
         <div className="sticky top-0 z-10 bg-card border-b border-border px-6 py-4 flex items-start justify-between gap-4">
           <div className="min-w-0">

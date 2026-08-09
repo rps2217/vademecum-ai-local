@@ -47,9 +47,23 @@ export function SyncStatusBar({ className }: SyncStatusBarProps) {
 
   if (!isConfigured) {
     return (
-      <div className={cn('flex items-center gap-2 text-amber-600', className)}>
-        <CloudOff className="w-4 h-4" aria-hidden="true" />
-        <span className="text-sm">Sync no configurado</span>
+      <div className={cn('flex items-center gap-2', className)}>
+        {/* El estado de red es relevante incluso sin sync configurado:
+            el farmacéutico necesita saber si está offline (PWA). */}
+        <Badge variant={isOnline ? 'success' : 'danger'}>
+          {isOnline ? (
+            <>
+              <Cloud className="w-3 h-3 mr-1" aria-hidden="true" />
+              Online
+            </>
+          ) : (
+            <>
+              <CloudOff className="w-3 h-3 mr-1" aria-hidden="true" />
+              Offline
+            </>
+          )}
+        </Badge>
+        <span className="text-sm text-muted-foreground">Sync local</span>
       </div>
     );
   }

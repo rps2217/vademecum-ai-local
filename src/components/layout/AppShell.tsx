@@ -99,17 +99,41 @@ export function AppShell() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
 
-  // Atajo ⌘K / Ctrl+K para abrir command palette
+  // Atajos de teclado globales para uso en mostrador de farmacia
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
+      // ⌘K / Ctrl+K — abrir command palette
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         setPaletteOpen(o => !o);
+        return;
+      }
+
+      // Ignorar atajos cuando se está escribiendo en un input/textarea/select
+      // o cuando hay un modal abierto (contentEditable enriquecido)
+      const target = e.target as HTMLElement;
+      const isTyping = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT' || target.isContentEditable;
+
+      // Escape — cerrar command palette si está abierto
+      if (e.key === 'Escape' && paletteOpen) {
+        setPaletteOpen(false);
+        return;
+      }
+
+      if (isTyping || e.metaKey || e.ctrlKey || e.altKey) return;
+
+      // "/" — enfocar el input de búsqueda
+      if (e.key === '/') {
+        e.preventDefault();
+        const searchInput = document.querySelector<HTMLInputElement>('input[type="search"]');
+        searchInput?.focus();
+        searchInput?.select();
+        return;
       }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, []);
+  }, [paletteOpen]);
 
   const searchPlaceholder = useMemo(() => {
     const path = location.pathname;
@@ -261,7 +285,8 @@ export function AppShell() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={searchPlaceholder}
                 aria-label={searchPlaceholder}
-                className="h-10 w-full rounded-lg border border-border bg-muted pl-10 pr-14 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
+                title="Presiona / para enfocar rápidamente"
+                className="h-10 w-full rounded-lg border border-border bg-muted pl-10 pr-20 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
               />
               <button
                 type="button"

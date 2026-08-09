@@ -5,7 +5,7 @@
  * alertas de seguridad. Información clínica detallada bajo demanda.
  */
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db/schema';
 import type { DbPathology, DbIngredient } from '@/db/schema';
@@ -15,6 +15,7 @@ import {
   Shield, Stethoscope, BookOpen, Lightbulb, ChevronRight,
   Users, AlertOctagon, ChevronDown,
 } from 'lucide-react';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
 
 interface PathologyDetailProps {
   pathology: DbPathology;
@@ -56,6 +57,16 @@ const NATURAL_TABS: { key: NaturalCat; label: string; icon: typeof Leaf }[] = [
 
 export function PathologyDetail({ pathology, onClose, onIngredientClick }: PathologyDetailProps) {
   const [activeTab, setActiveTab] = useState<NaturalCat>('fitoterapia');
+  const panelRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(panelRef, true);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
 
   // Cargar todos los ingredientes referenciados en tratamientoNatural
   const allReferencedIds = useMemo(() => {
@@ -99,6 +110,11 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
         onClick={onClose}
       />
       <div
+        ref={panelRef}
+        tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Ficha de ${pathology.nombre}`}
         className="relative bg-card w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
       >
         {/* Header */}
