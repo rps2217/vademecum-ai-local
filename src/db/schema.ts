@@ -135,6 +135,20 @@ export interface DbProtocol {
   tombstone: 0 | 1;
 }
 
+/** Escala clínica validada (IPSS, PHQ-9, GAD-7, etc.) */
+export interface EscalaClinica {
+  nombre: string;                      // "IPSS (International Prostate Symptom Score)"
+  uso: string;                          // qué mide y para qué sirve
+  rango?: string;                       // "0-35 (leve 0-7, moderado 8-19, severo 20-35)"
+  interpretacion?: string;              // puntos de corte y significado
+}
+
+/** Consideraciones en poblaciones especiales */
+export interface PoblacionEspecial {
+  poblacion: string;                    // "Embarazo", "Lactancia", "Pediatría", "Anciano", "Insuficiencia renal", "Insuficiencia hepática"
+  consideraciones: string;              // precauciones, ajustes, contraindicaciones
+}
+
 /** Patología / condición clínica */
 export interface DbPathology {
   id: string;                          // coincide con tag de indicaciones (ej: "ansiedad")
@@ -157,6 +171,16 @@ export interface DbPathology {
   };
   prevencion: string[];                // hábitos, dieta
   cuandoConsultar: string;             // red flags
+  // Contexto clínico extendido
+  epidemiologia?: string;              // prevalencia, incidencia, demografía
+  factoresRiesgo?: string[];           // factores de riesgo modificables y no
+  diagnostico?: string;                // criterios diagnósticos y pruebas
+  criteriosDiagnostico?: string[];     // criterios clínicos/analíticos
+  escalasClinicas?: EscalaClinica[];   // escalas validadas (IPSS, PHQ-9, etc.)
+  diagnosticoDiferencial?: string[];   // diagnósticos diferenciales
+  pronostico?: string;                 // evolución y pronóstico
+  poblacionesEspeciales?: PoblacionEspecial[]; // embarazo, pediatría, anciano, renal, hepático
+  alertasFarmaceuticas?: string[];     // interacciones farmacológicas clave
   evidencia: EvidenceLevel;
   fuentes: string[];
   // Metadatos de sync

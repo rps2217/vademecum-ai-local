@@ -14,6 +14,7 @@ import { Card } from '@/ui/Card';
 import {
   X, AlertTriangle, Pill, Leaf, FlaskConical, Home, Droplet,
   Shield, Activity, Stethoscope, BookOpen, Lightbulb, ChevronRight,
+  Microscope, TrendingUp, Users, AlertOctagon, ClipboardList, Gauge,
 } from 'lucide-react';
 
 interface PathologyDetailProps {
@@ -131,6 +132,34 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
             <p className="text-sm text-foreground leading-relaxed">{pathology.definicion}</p>
           </section>
 
+          {/* Epidemiología */}
+          {pathology.epidemiologia && (
+            <section className="p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
+              <div className="flex items-start gap-2">
+                <TrendingUp className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-1">Epidemiología</h3>
+                  <p className="text-sm text-foreground leading-relaxed">{pathology.epidemiologia}</p>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Factores de riesgo */}
+          {pathology.factoresRiesgo && pathology.factoresRiesgo.length > 0 && (
+            <section>
+              <div className="flex items-center gap-2 mb-2">
+                <AlertOctagon className="w-4 h-4 text-orange-500" />
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Factores de riesgo</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {pathology.factoresRiesgo.map((fr, i) => (
+                  <Badge key={i} variant="secondary" className="text-xs bg-orange-50 dark:bg-orange-950/30">{fr}</Badge>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Causas y Síntomas */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <section>
@@ -162,6 +191,62 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
               </ul>
             </section>
           </div>
+
+          {/* Diagnóstico */}
+          {pathology.diagnostico && (
+            <section>
+              <div className="flex items-center gap-2 mb-2">
+                <Microscope className="w-4 h-4 text-purple-500" />
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Diagnóstico</h3>
+              </div>
+              <p className="text-sm text-foreground leading-relaxed">{pathology.diagnostico}</p>
+              {pathology.criteriosDiagnostico && pathology.criteriosDiagnostico.length > 0 && (
+                <ul className="mt-2 space-y-1">
+                  {pathology.criteriosDiagnostico.map((crit, i) => (
+                    <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                      <span className="text-purple-500 mt-0.5">•</span>
+                      {crit}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          )}
+
+          {/* Escalas clínicas */}
+          {pathology.escalasClinicas && pathology.escalasClinicas.length > 0 && (
+            <section>
+              <div className="flex items-center gap-2 mb-2">
+                <Gauge className="w-4 h-4 text-teal-500" />
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Escalas clínicas</h3>
+              </div>
+              <div className="space-y-2">
+                {pathology.escalasClinicas.map((esc, i) => (
+                  <div key={i} className="p-3 rounded-lg bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900">
+                    <p className="text-sm font-medium">{esc.nombre}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{esc.uso}</p>
+                    {esc.rango && <p className="text-xs text-muted-foreground mt-0.5"><span className="font-medium">Rango:</span> {esc.rango}</p>}
+                    {esc.interpretacion && <p className="text-xs text-muted-foreground mt-0.5"><span className="font-medium">Interpretación:</span> {esc.interpretacion}</p>}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Diagnóstico diferencial */}
+          {pathology.diagnosticoDiferencial && pathology.diagnosticoDiferencial.length > 0 && (
+            <section>
+              <div className="flex items-center gap-2 mb-2">
+                <ClipboardList className="w-4 h-4 text-rose-500" />
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Diagnóstico diferencial</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {pathology.diagnosticoDiferencial.map((dd, i) => (
+                  <Badge key={i} variant="secondary" className="text-xs bg-rose-50 dark:bg-rose-950/30">{dd}</Badge>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Tratamiento Alopático */}
           <Card className="p-4 border-red-200 dark:border-red-900">
@@ -293,6 +378,57 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
                 ))}
               </div>
             </section>
+          )}
+
+          {/* Pronóstico */}
+          {pathology.pronostico && (
+            <section>
+              <div className="flex items-center gap-2 mb-2">
+                <Activity className="w-4 h-4 text-green-500" />
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Pronóstico</h3>
+              </div>
+              <p className="text-sm text-foreground leading-relaxed">{pathology.pronostico}</p>
+            </section>
+          )}
+
+          {/* Poblaciones especiales */}
+          {pathology.poblacionesEspeciales && pathology.poblacionesEspeciales.length > 0 && (
+            <section>
+              <div className="flex items-center gap-2 mb-2">
+                <Users className="w-4 h-4 text-indigo-500" />
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Poblaciones especiales</h3>
+              </div>
+              <div className="space-y-2">
+                {pathology.poblacionesEspeciales.map((pob, i) => (
+                  <div key={i} className="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900">
+                    <p className="text-sm font-medium">{pob.poblacion}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{pob.consideraciones}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Alertas farmacéuticas */}
+          {pathology.alertasFarmaceuticas && pathology.alertasFarmaceuticas.length > 0 && (
+            <div className="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
+              <div className="flex items-start gap-2">
+                <AlertOctagon className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-semibold text-sm text-amber-900 dark:text-amber-200 mb-1">
+                    Alertas farmacéuticas
+                  </p>
+                  <ul className="space-y-1">
+                    {pathology.alertasFarmaceuticas.map((alerta, i) => (
+                      <li key={i} className="text-sm text-foreground flex items-start gap-2">
+                        <span className="text-amber-500 mt-0.5">•</span>
+                        {alerta}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           )}
 
           {/* Cuándo consultar - Red Flags */}

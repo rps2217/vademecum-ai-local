@@ -41,13 +41,18 @@ async function computeKbVersion(): Promise<string> {
     import('./data/sinergias.json'),
     import('./data/patologias.json'),
   ]);
+  const patCount = patologias.default?.patologias?.length ?? 0;
+  // Incluye patologías con contexto clínico para forzar re-seed al añadir campos clínicos
+  const patWithCtx =
+    patologias.default?.patologias?.filter((p) => p?.epidemiologia).length ?? 0;
   const counts = [
     fito.default?.ingredientes?.length ?? 0,
     homeo.default?.ingredientes?.length ?? 0,
     aceites.default?.ingredientes?.length ?? 0,
     vitaminas.default?.ingredientes?.length ?? 0,
     sinergias.default?.sinergias?.length ?? 0,
-    patologias.default?.patologias?.length ?? 0,
+    patCount,
+    patWithCtx,
   ];
   return `v${counts.join('-')}`;
 }
@@ -113,6 +118,16 @@ interface JsonPathology {
   };
   prevencion: string[];
   cuandoConsultar: string;
+  // Contexto clínico extendido (opcionales)
+  epidemiologia?: string;
+  factoresRiesgo?: string[];
+  diagnostico?: string;
+  criteriosDiagnostico?: string[];
+  escalasClinicas?: Array<{ nombre: string; uso: string; rango?: string; interpretacion?: string }>;
+  diagnosticoDiferencial?: string[];
+  pronostico?: string;
+  poblacionesEspeciales?: Array<{ poblacion: string; consideraciones: string }>;
+  alertasFarmaceuticas?: string[];
   evidencia?: string;
   fuentes?: string[];
 }
@@ -256,6 +271,16 @@ function transformPathology(json: JsonPathology): DbPathology {
     },
     prevencion: json.prevencion || [],
     cuandoConsultar: json.cuandoConsultar || '',
+    // Contexto clínico extendido
+    epidemiologia: json.epidemiologia,
+    factoresRiesgo: json.factoresRiesgo,
+    diagnostico: json.diagnostico,
+    criteriosDiagnostico: json.criteriosDiagnostico,
+    escalasClinicas: json.escalasClinicas,
+    diagnosticoDiferencial: json.diagnosticoDiferencial,
+    pronostico: json.pronostico,
+    poblacionesEspeciales: json.poblacionesEspeciales,
+    alertasFarmaceuticas: json.alertasFarmaceuticas,
     evidencia: mapEvidenceLevel(json.evidencia),
     fuentes: json.fuentes || [],
     lamport: 0,
@@ -273,7 +298,7 @@ async function loadPatologias(): Promise<string[]> {
       logger.error('Patologias: datos inválidos o estructura incorrecta');
       return [];
     }
-    const pathologies = data.default.patologias.map(transformPathology);
+    const pathologies = (data.default.patologias as JsonPathology[]).map(transformPathology);
     await db.pathologies.bulkPut(pathologies);
     logger.log(`Patologias: ${pathologies.length} patologias cargadas`);
     return pathologies.map(p => p.id);

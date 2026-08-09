@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "1.9.0",
+    "version": "2.0.0",
     "ultimaActualizacion": "2026-08-08",
     "total": 116,
     "descripcion": "Base de datos de patologías con contexto clínico (definición, causas, síntomas, tratamiento alopático y natural)",
@@ -4751,6 +4751,52 @@
         "AAD Guidelines Seborrheic Dermatitis",
         "PubMed (Tea tree Malassezia)",
         "EMA HMPC Salvia"
+      ],
+      "epidemiologia": "Afecta al 3-5% de la población adulta; pico de incidencia en adultos jóvenes (20-40 años) y mayores de 50. Más frecuente en varones. En lactantes (costra láctea) es casi universal en los 3 primeros meses.",
+      "factoresRiesgo": [
+        "Malassezia spp. sobrecrecimiento",
+        "Piel y cabello grasos (seborrea)",
+        "Inmunosupresión (VIH, trasplante)",
+        "Estrés y fatiga",
+        "Parkinson y trastornos neurológicos",
+        "Condiciones frías/secas",
+        "Uso de alcohol"
+      ],
+      "diagnostico": "Clínico: placas eritemato-descamativas amarillentas en cuero cabelludo, cara (surcos nasogenianos, cejas), tórax y zona flexora. No requiere biopsia salvo duda diagnóstica.",
+      "criteriosDiagnostico": [
+        "Localización típica (cuero cabelludo, seborreica facial)",
+        "Escamas amarillentas grasas sobre base eritematosa",
+        "Prurito leve-moderado",
+        "Curso crónico con exacerbaciones",
+        "Exclusión de psoriasis y dermatitis atópica"
+      ],
+      "diagnosticoDiferencial": [
+        "Psoriasis (escamas plateadas, más extensas)",
+        "Dermatitis atópica (prurito intenso, flexuras)",
+        "Dermatitis de contacto",
+        "Tinea capitis",
+        "Rosácea",
+        "Lupus cutáneo"
+      ],
+      "pronostico": "Crónico-recurrente con exacerbaciones por estrés, frío o fatiga. No cura definitivamente pero controlable con tratamiento tópico. En VIH puede ser muy extenso y refractario.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Lactantes",
+          "consideraciones": "Costra láctea: usar aceite mineral y champú suave; evitar corticoides salvo indicación médica. Resuelve espontáneamente hacia los 6-12 meses."
+        },
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Puede empeorar; preferir ketoconazol tópico (categoría C, evaluar beneficio/riesgo) o zinc piritionato. Evitar corticoides potentes."
+        },
+        {
+          "poblacion": "Inmunosuprimidos (VIH)",
+          "consideraciones": "Formas extensas y refractarias; valorar tratamiento sistémico y estudio de base inmunológica."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antifúngicos tópicos (ketoconazol) pueden irritar; corticoides tópicos no usar más de 2 semanas en cara (atrofia cutánea)",
+        "Evitar alcohol con corticoides orales",
+        "Retinoides tópicos: fotosensibilidad (usar FPS)"
       ]
     },
     {
@@ -4835,6 +4881,61 @@
         "European Guidelines Onychomycosis",
         "PubMed (Tea tree onychomycosis)",
         "FDA (undecylenic acid OTC)"
+      ],
+      "epidemiologia": "Prevalencia global 5-10% de la población; sube al 20-50% en >60 años. Dermatofitos (Trichophyton rubrum) causan el 90% de los casos en uñas de los pies.",
+      "factoresRiesgo": [
+        "Edad avanzada",
+        "Hiperhidrosis/pies húmedos",
+        "Calzado oclusivo",
+        "Trauma ungueal repetido",
+        "Diabetes y circulatorios",
+        "Inmunosupresión",
+        "Uso de piscinas/comunitarios",
+        "Onicopatía previa"
+      ],
+      "diagnostico": "Clínico + confirmación micológica: cultivo y/o examen directo (KOH) y/o PCR. Cultivo identifica el hongo y guía tratamiento. La confirmación es esencial antes de tratamiento oral prolongado.",
+      "criteriosDiagnostico": [
+        "Onicólisis (despegamiento distal)",
+        "Engrosamiento y decoloración (amarillo-marrón)",
+        "Subunquia hiperqueratósica",
+        "Confirmación: cultivo/examen directo positivo",
+        "Índice clínico-micológico >0"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "SCORI (Scoring Clinical Onychomycosis)",
+          "uso": "Cuantificar severidad y monitorizar respuesta al tratamiento",
+          "rango": "0-25",
+          "interpretacion": "Leve 0-5, moderado 6-15, severo >15"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Psoriasis ungueal (pozos, onicólisis sin hongo)",
+        "Liquen plano",
+        "Trauma mecánico",
+        "Dischromias (tinta, melanoma acral)",
+        "Distrofia ungueal circulatoria"
+      ],
+      "pronostico": "Curación en 60-80% con tratamiento sistémico; recurrencias en 10-50% a 5 años. Requiere 3-6 meses (uñas pies) o 6-12 (manos). En diabéticos puede complicar pie diabético.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Diabéticos",
+          "consideraciones": "Riesgo de pie diabético; priorizar tratamiento y vigilancia. Evitar terbinafina si hepatopatía; itraconazol interacciona con hipoglucemiantes."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Función hepática/renal reducida: ajustar dosis. Circulación distal deficiente prolonga curación."
+        },
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Postergar tratamiento sistémico al posparto; tópicos (amorolfina, ciclopirox) de baja absorción son preferibles."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Terbinafina: hepatotoxicidad (controlar transaminasas); reduce clarificación de CYP2D6",
+        "Itraconazol: inhibidor CYP3A4 potente (interacción con estatinas, benzodiacepinas, antiarrítmicos)",
+        "Evitar alcohol durante tratamiento oral (hepatotoxicidad)",
+        "Monitorizar función hepática antes y durante tratamiento oral"
       ]
     },
     {
@@ -4918,6 +5019,53 @@
         "British Association of Dermatologists Warts Guidelines",
         "PubMed (Zinc warts)",
         "PubMed (Garlic warts)"
+      ],
+      "epidemiologia": "Prevalencia global 7-12% en población general; hasta 20-30% en escolares. VPH tipos 1, 2, 4, 27 (manos/pies); 6, 11 (genitales). En inmunosuprimidos hasta 50-65%.",
+      "factoresRiesgo": [
+        "Contacto piel-piel o fómites",
+        "Piscinas/gimnasios (verrugas plantares)",
+        "Microtrauma cutáneo",
+        "Inmunosupresión",
+        "Niños y adolescentes",
+        "Hyperhidrosis",
+        "Morderse las uñas"
+      ],
+      "diagnostico": "Clínico: pápulas hiperqueratósicas con punctate thrombosed capilaries (puntos negros). Signo de Auspitz al raspar. Dermatoscopia confirma. Biopsia si atípicas o resistentes.",
+      "criteriosDiagnostico": [
+        "Lesión hiperqueratósica bien delimitada",
+        "Puntos negros (capilares trombosados) al raspar",
+        "Dermatoscopia: papilas y mosaico",
+        "Dolor a la presión lateral (plantares)",
+        "Ausencia de signos de malignidad"
+      ],
+      "diagnosticoDiferencial": [
+        "Callo (sin capilares)",
+        "Heloma",
+        "Melanoma acral (regla ABCDE)",
+        "Carcinoma epidermoide",
+        "Molluscum contagiosum",
+        "Fibroma"
+      ],
+      "pronostico": "Regresión espontánea en 30-50% en 2 años (inmunidad celular). Recurrencias frecuentes (30%) tras cualquier tratamiento. En inmunosuprimidos son persistentes y múltiples.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Pediatría",
+          "consideraciones": "Alta tasa de resolución espontánea; preferir observación o tratamientos poco dolorosos (cantaridina, queratolíticos). Evitar crioterapia agresiva en niños pequeños."
+        },
+        {
+          "poblacion": "Inmunosuprimidos",
+          "consideraciones": "Verrugas múltiples, persistentes y refractarias; valorar estudio inmunológico. Riesgo aumentado de transformación (VPH alto riesgo en genitales)."
+        },
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Pueden crecer por inmunosupresión fisiológica. NO usar podofilino/podofilotoxina (teratogénico). Crioterapia y ácido salicílico tópico baja absorción son seguros."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Podofilotoxina: contraindicada en embarazo (teratogénica)",
+        "Ácido salicílico tópico: no en mucosas ni genitales; cuidado en circulatorios",
+        "Imiquimod: irritación local, no en mucosas",
+        "Retinoides orales: teratogénicos (contracepción obligatoria)"
       ]
     },
     {
@@ -5005,6 +5153,48 @@
         "European Guidelines Tinea Pedis",
         "PubMed (Tea tree T. rubrum)",
         "FDA (undecylenic acid)"
+      ],
+      "epidemiologia": "Infección fúngica más común; afecta al 15-25% de la población adulta. Predominio masculino. Pico en jóvenes-adultos. Recurrencias en 70% sin medidas profilácticas.",
+      "factoresRiesgo": [
+        "Pies húmedos/oclusos (calzado cerrado)",
+        "Hiperhidrosis",
+        "Piscinas y vestuarios",
+        "Trauma interdigital",
+        "Diabetes y circulatorios",
+        "Inmunosupresión",
+        "Historia familiar de dermatofitosis"
+      ],
+      "diagnostico": "Clínico: descamación, fisuras, eritema interdigital (sobre todo 4º espacio), prurito. Examen directo (KOH) y cultivo confirmatorios. Cultivo si fracaso terapéutico o sospecha de resistencia.",
+      "criteriosDiagnostico": [
+        "Localización interdigital (4º espacio más frecuente)",
+        "Eritema y descamación con borde activo",
+        "Prurito o escozor",
+        "Examen micológico positivo (KOH/cultivo)",
+        "Posible onicomicosis asociada"
+      ],
+      "diagnosticoDiferencial": [
+        "Eccema dishidrótico (vesículas)",
+        "Dermatitis de contacto (calzado)",
+        "Eritrasma (Corynebacterium)",
+        "Psoriasis palmoplantar",
+        "Intertrigo bacteriano"
+      ],
+      "pronostico": "Buen pronóstico con tratamiento tópico 4 semanas + medidas profilácticas. Recurrencias frecuentes (re- exposición + piel susceptible). Complicación: celulitis en diabéticos/inmunosuprimidos.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Diabéticos",
+          "consideraciones": "Riesgo de celulitis y pie diabético; tratamiento temprano agresivo; revisar fisuras. Vigilar onicomicosis asociada."
+        },
+        {
+          "poblacion": "Inmunosuprimidos",
+          "consideraciones": "Formas extensas y refractarias; valorar tratamiento oral (terbinafina/itraconazol) y medidas ambientales."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antifúngicos tópicos: aplicación 1-2 semanas tras resolución clínica para evitar recurrencia",
+        "Terbinafina oral: hepatotoxicidad; control transaminasas",
+        "Itraconazol: interacciones CYP3A4 numerosas (estatinas, etc.)",
+        "Evitar corticoides tópicos (empeoran infección)"
       ]
     },
     {
@@ -5093,6 +5283,51 @@
         "CDC Shingles Guidelines",
         "NINDS PHN",
         "EMA HMPC Melissae folium"
+      ],
+      "epidemiologia": "Incidencia anual 3-5/1000; 30% de personas lo padecen en su vida. Pico en >50 años (10/1000) e inmunosuprimidos. Neuralgia postherpética en 10-20% (>70 años: 30%).",
+      "factoresRiesgo": [
+        "Edad >50 años",
+        "Inmunosupresión (VIH, cáncer, trasplante, biológicos)",
+        "Estrés intenso",
+        "Cáncer y quimioterapia",
+        "Varicela en infancia (reactivación)",
+        "Mujeres > hombres (ligero)"
+      ],
+      "diagnostico": "Clínico: dolor neurálgico unilateral dermatómico seguido en 1-5 días de vesículas agrupadas sobre base eritematosa. Tzanck o PCR si atípico. Máscara, implantes y casos diseminados requieren estudio.",
+      "criteriosDiagnostico": [
+        "Dolor/neuropático unilateral en un dermatoma",
+        "Vesículas agrupadas sobre base eritematosa",
+        "Distribución dermatómica (no cruza línea media)",
+        "PCR positive (casos atípicos)",
+        "Inicio tras prodromo (dolor, fiebre)"
+      ],
+      "diagnosticoDiferencial": [
+        "Herpes simple (no dermatómico, recurrente)",
+        "Erisipela/celulitis",
+        "Dermatitis herpetiforme",
+        "Quemadura química",
+        "Dolor musculoesquelético (antes del rash)"
+      ],
+      "pronostico": "Curación en 2-4 semanas. Complicaciones: neuralgia postherpética (10-20%), sobreinfección bacteriana, afectación ocular (zoster oftálmico: 10-20% riesgo ceguera), Ramsay-Hunt, diseminación en inmunosuprimidos. Vacuna reduce incidencia y NPH.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Riesgo fetal bajo (a diferencia de varicela primaria). Aciclovir/valaciclovir considerados seguros; valorar riesgo/beneficio. No es indicación de cesárea."
+        },
+        {
+          "poblacion": "Inmunosuprimidos",
+          "consideraciones": "Riesgo de diseminación visceral (neumonitis, encefalitis, hepatitis); tratamiento IV (aciclovir) y estudio de base. Evitar corticoides."
+        },
+        {
+          "poblacion": "Zoster oftálmico",
+          "consideraciones": "Urgencia oftalmológica: riesgo de queratitis, uveítis y glaucoma. Aciclovir oral/IV + valoración oftalmológica urgente."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antivirales (aciclovir/valaciclovir): iniciar <72h del rash para máxima eficacia; ajustar dosis en insuficiencia renal",
+        "Nefrotoxicidad con aminoglucósidos, ciclosporina",
+        "Corticoides sistémicos: solo en neuralgia severa o Ramsay-Hunt, con cobertura antiviral",
+        "Analgésicos neuropáticos (gabapentina, pregabalina): somnolencia, ajustar en ancianos y renal"
       ]
     },
     {
@@ -5182,6 +5417,58 @@
         "Global ROSacea Consensus (ROSCO)",
         "PubMed (Omega-3, Azelaic rosacea)",
         "EMA HMPC"
+      ],
+      "epidemiologia": "Prevalencia 5-10% en adultos de piel clara (fototipos I-II); pico 30-50 años; predominio femenino salvo rinofigma (varones). Frecuentemente no diagnosticada.",
+      "factoresRiesgo": [
+        "Fototipo celta/nórdico (piel clara, ojos claros)",
+        "Historia familiar de rosácea",
+        "Menopausia (sofocos)",
+        "Helicobacter pylori (debate)",
+        "Ácaros Demodex (sobrecrecimiento)",
+        "Microbioma cutáneo alterado"
+      ],
+      "diagnostico": "Clínico: eritema facial transitorio → persistente, telangiectasias, pápulas/pústulas (sin comedones). Subtipos: eritematotelangiectásica, papulopustular, fimatosa, ocular. Criterios NRS/Galderma.",
+      "criteriosDiagnostico": [
+        "Eritema centrofacial persistente (mejillas, nariz, mentón, frente)",
+        "Síntomas vasomotores (sofocos)",
+        "Telangiectasias",
+        "Pápulas/pústulas (sin comedones)",
+        "Agravamiento por disparadores (calor, alcohol, picantes)",
+        "Posible afectación ocular (blefaritis, ojo seco)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "ROSACO / IGA (Investigator Global Assessment)",
+          "uso": "Graduar severidad de rosácea papulopustular en ensayos",
+          "rango": "0-4",
+          "interpretacion": "0 ausente, 1 leve, 2 moderado, 3 severo, 4 muy severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Acné vulgar (comedones, edad)",
+        "Dermatitis seborreica (escamas grasas)",
+        "Lupus eritematoso (otros signos, ANA)",
+        "Dermatitis perioral",
+        "Dermatofitosis facial",
+        "Carcinoides (flushing persistente)"
+      ],
+      "pronostico": "Crónico con exacerbaciones y remisiones. No cura; tratamiento controla síntomas. Sin tratamiento, evoluciona a telangiectasias persistentes y, en varones, a rinofigma. Complicación: queratitis rosácea (ceguera si no tratada).",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Puede mejorar o empeorar. Evitar tetraciclinas y retinoides (teratogénicos). Metronidazol tópico considerado seguro; ácido azelaico categoría B."
+        },
+        {
+          "poblacion": "Ocular",
+          "consideraciones": "Blefaritis y queratitis: higiene palpebral, lágrimas artificiales, ciclosporina tópica. Valoración oftalmológica ante síntomas oculares."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Tetraciclinas (doxiciclina): fotosensibilidad; no en embarazo/niños <8 años; evitar con retinoides (HIP)",
+        "Metronidazol tópico: irritación; evitar alcohol (efecto antabús con vía oral)",
+        "Ácido azelaico: irritación inicial",
+        "Brimonidina tópica: puede haber efecto rebote del eritema",
+        "Evitar corticoides tópicos (rosácea esteroidea)"
       ]
     },
     {
@@ -5265,6 +5552,58 @@
         "EAACI/GA2LEN Urticaria Guidelines",
         "PubMed (Quercetin, Perilla)",
         "EMA HMPC Petasites"
+      ],
+      "epidemiologia": "Hasta 20% de la población la sufre alguna vez; urticaria crónica 0.5-1%. Pico en adultos 20-40 años; predominio femenino (2:1) en crónica. Angioedema asociado en 40-50%.",
+      "factoresRiesgo": [
+        "Atopia (asma, rinitis)",
+        "Infecciones (viral, H. pylori, parasitarias)",
+        "Fármacos (AINES, penicilinas)",
+        "Estres físico (frío, calor, presión, agua, ejercicio)",
+        "Alimentos (aditivos, pseudoalérgenos)",
+        "Trastornos tiroideos autoinmunes",
+        "Mujeres (crónica)"
+      ],
+      "diagnostico": "Clínico: habones pruriginosos (edema dermis superficial) migratorios (<24h cada lesión). Urticaria aguda <6 semanas, crónica >6 sem. Investigar desencadenante en aguda; autoinmunidad/tiroideas en crónica. Prick, IgE específica, pruebas físicas según sospecha.",
+      "criteriosDiagnostico": [
+        "Habones pruriginosos migratorios",
+        "Cada lesión dura <24h",
+        "Duración: aguda <6 sem, crónica >6 sem",
+        "Posible angioedema (edema subcutáneo, >24-72h)",
+        "Respuesta a antihistamínicos",
+        "Exclusión de urticaria vasculítica (lesiones >24h, dolor, deja pigmentación)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "UAS7 (Urticaria Activity Score 7 días)",
+          "uso": "Cuantificar actividad de urticaria crónica en 7 días",
+          "rango": "0-42",
+          "interpretacion": "0 ausente, 1-13 leve, 14-27 moderada, 28-42 severa"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Urticaria vasculítica (dolor, >24h, pigmentación)",
+        "Eritema multiforme",
+        "Anafilaxia (sistémica)",
+        "Dermatitis herpetiforme",
+        "Angioedema hereditario (sin habones, bradicinina)"
+      ],
+      "pronostico": "Aguda: resolución en días-semanas (identificar causa). Crónica espontánea: 30-50% remite en 1 año, 20% persiste >5 años. Calidad de vida muy afectada. Omalizumab en refractarias.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Urticaria de la gestación (PUPPP) diferenciar. Antihistamínicos: loratadina/cetirizina seguros (categoría B). Evitar antiguos (hidroxicina primer trimestre)."
+        },
+        {
+          "poblacion": "Pediatría",
+          "consideraciones": "Frecuentemente viral en aguda. Investigar parásitos si persistente. Dosis pediátricas de antihistamínicos."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antihistamínicos no sedantes (2ª gen): primera línea; sedantes (1ª gen) como add-on nocturno",
+        "AINES (aspirina, ibuprofeno): pueden agravar urticaria crónica hasta 30%",
+        "Omalizumab: anti-IgE en crónica refractaria; precaución anafilaxia",
+        "Corticoides orales: solo brotes severos cortos (efectos adversos)",
+        "Inhibidores ECA: causa de angioedema (bradicinina)"
       ]
     },
     {
@@ -5356,6 +5695,51 @@
         "AAD Dry Skin Guidelines",
         "PubMed (Omega-3 skin barrier)",
         "EMA HMPC Calendula"
+      ],
+      "epidemiologia": "Muy común; casi universal en >65 años (75% de ancianos). Pico estacional invernal. En atópicos y eczemas es criterio diagnóstico. Mayor en fototipos secos y climas fríos.",
+      "factoresRiesgo": [
+        "Edad avanzada (menor sebo)",
+        "Clima frío-seco y calefacción",
+        "Bañarse en exceso con agua caliente/jabones agresivos",
+        "Atopia y eczema",
+        "Hipotiroidismo",
+        "Diabetes",
+        "Malnutrición y deshidratación",
+        "Fármacos (retinoides, estatinas, diuréticos)"
+      ],
+      "diagnostico": "Clínico: piel áspera, descamativa, fisuras, prurito (invernal, senil, asteatótica). Costras serohemáticas si rascado. Piel 'de caimán' o 'craquelée'.",
+      "criteriosDiagnostico": [
+        "Piel seca, áspera, descamativa",
+        "Fisuras ( especialmente piernas y manos)",
+        "Prurito sin rash primario",
+        "Agravamiento invernal",
+        "Mejoría con emolientes",
+        "Excluir eccema e ictericia (prurito)"
+      ],
+      "diagnosticoDiferencial": [
+        "Eccema asteatótico (placas fisuradas)",
+        "Ictiosis (genética, persistente)",
+        "Dermatitis atópica",
+        "Prurito senil",
+        "Tiña incógnito",
+        "Xerosis farmacológica"
+      ],
+      "pronostico": "Excelente con emolientes y medidas profilácticas. Recidiva en invierno o si se abandona rutina. Complicación: eccema asteatótico, sobreinfección por rascado.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Piel senil con menos sebo y agua; priorizar emolientes ricos (cera, urea 5-10%), baños cortos tibios y jabones syndet. Vigilar prurito y lesiones por rascado."
+        },
+        {
+          "poblacion": "Atópicos",
+          "consideraciones": "Xerosis es sello; emolientes diarios previenen brotes. Cera de abeja/parafina mejor toleradas."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Urea >10% puede irritar piel atópica y fisuras",
+        "Ácido salicílico: no en grandes superficies (absorción sistémica)",
+        "Retinoides tópicos: resequedad acentuada",
+        "Locires alcohólicas: empeoran (evitar)"
       ]
     },
     {
@@ -5446,6 +5830,49 @@
         "European Society of Contact Dermatitis",
         "PubMed (Calendula, Omega-3 dermatitis)",
         "EMA HMPC Calendulae flos"
+      ],
+      "epidemiologia": "Dermatitis irritativa (80%): hasta 15% de trabajadores expuestos (peluquería, sanidad, construcción). Alérgica (20%): prevalencia lifetime 15-20%; níquel más común en mujeres.",
+      "factoresRiesgo": [
+        "Exposición ocupacional (limpieza, peluquería, sanidad, mecánica)",
+        "Atopia (barrera alterada)",
+        "Materiales (níquel, cromo, cobalto, caucho, fragancias, conservantes)",
+        "Jabones/detergentes en exceso",
+        "Maceración/oclusión",
+        "Fototoxicidad (fotocontacto)"
+      ],
+      "diagnostico": "Clínico + pruebas epicutaneas (alérgica): parches (TRUE test o serie estándar) leídos a 48-72h y 96h. Historia detallada (hobbies, ocupación, cosméticos, fotoexposición). Irritativa: patrón de exposición, no inmunológico.",
+      "criteriosDiagnostico": [
+        "Dermatitis eczematosa en zona de contacto",
+        "Límites definidos (irritativa) o extendida (alérgica)",
+        "Prurito y escozor",
+        "PATCH test positivo (alérgica)",
+        "Mejoría al eliminar el agente",
+        "Relación temporal con exposición"
+      ],
+      "diagnosticoDiferencial": [
+        "Eccema atópico",
+        "Dermatitis seborreica",
+        "Tinea corporis",
+        "Psoriasis",
+        "Dermatitis numular",
+        "Sarna (si interdigital y familiar)"
+      ],
+      "pronostico": "Excelente al retirar el agente. En crónica puede persistir liquefacción (eccema crónico). Recurrencia si reexposición. Impacto ocupacional:可达 25% cambio de puesto en profesiones manuales.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ocupacional",
+          "consideraciones": "Notificable; valorar protección (guantes, cremas barrera), sustitución de agentes. Posible incapacidad laboral."
+        },
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Corticoide tópico de baja-mediana potencia seguros. Evitar inmunomoduladores tópicos (tacrolimus/pimecrolimus) por datos limitados."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Corticoide tópico: según potencia y zona; no >2 sem en cara/pliegues",
+        "Neomicina/bacitracina: causa frecuente de sensibilización",
+        "Fragancias/parabenos: sensibilizantes comunes en cosméticos",
+        "Fotoparche: si sospecha fotoalergia"
       ]
     },
     {
@@ -5537,6 +5964,52 @@
         "PubMed (B12 aphthae)",
         "European Guidelines Oral Ulcers",
         "EMA HMPC Salviae"
+      ],
+      "epidemiologia": "Prevalencia lifetime 20-25% de la población; inicio en adolescencia/joven adulto. Ulceración recurrente (estomatitis aftosa recurrente) en 5-10%. Frecuente en mujeres y no fumadores.",
+      "factoresRiesgo": [
+        "Historia familiar (40%)",
+        "Trauma mucoso (cepillado, ortodoncia)",
+        "Estrés y sueño",
+        "Deficiencias (hierro, B12, folato, zinc)",
+        "Menstruación (cíclicas)",
+        "Alimentos (chocolate, café, frutos secos, tomate)",
+        "Enfermedades sistémicas (Behçet, Crohn, celiaquía, HIV)"
+      ],
+      "diagnostico": "Clínico: úlceras redondas/ovaladas, fondo blanco-amarillento, halo eritematoso, dolorosas. Subtipos: menor (<1cm, 1-5), mayor (>1cm, cicatriz), herpetiforme (múltiples pequeñas). Excluir sistémica si recurrente o atípica.",
+      "criteriosDiagnostico": [
+        "Úlceras orales redondas dolorosas",
+        "Fondo blanco-amarillento y halo eritematoso",
+        "Recurrencia (≥3 episodios/año)",
+        "Duración 7-14 días (menores)",
+        "Ausencia de sistémica",
+        "Excluir herpes intraoral (rarro en inmunocompetente)"
+      ],
+      "diagnosticoDiferencial": [
+        "Herpes simple intraoral (vesículas en racimo)",
+        "Estomatitis herpética primaria",
+        "Behçet (úlceras + genitales + ocular)",
+        "Crohn oral",
+        "Liquen plano oral",
+        "Cáncer oral (úlcera >2 semanas, no cura)",
+        "Eritema multiforme"
+      ],
+      "pronostico": "Menores curan en 7-14 días sin cicatriz; mayores (10-15%): 2-6 semanas, con cicatriz. Recurrencias variables (cada meses-años). Síndrome Behçet y úlceras mayores: peor calidad de vida.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Inmunosuprimidos",
+          "consideraciones": "Considerar infecciones oportunistas (CMV, VHS, candidiasis); biopsia si atípicas o no curan en 2-3 semanas."
+        },
+        {
+          "poblacion": "Niños",
+          "consideraciones": "Estomatitis herpética primaria diferenciar (vesículas, fiebre, gingivitis). Aftas mayores raras en infancia."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Corticoides tópicos (triancinolona): no tragar; aplicación local",
+        "Lidocaína viscosa: riesgo aspiración en niños/ancianos si faríngea",
+        "Nistatina: solo si candidiasis asociada",
+        "Evitar enjuagues con alcohol (irritan)",
+        "Sulfasalazina/colchicina en formas mayores (interacciones)"
       ]
     },
     {
@@ -5624,6 +6097,51 @@
       "fuentes": [
         "PubMed (Angular cheilitis)",
         "EMA HMPC Propolis"
+      ],
+      "epidemiologia": "Afecta a 0.7-3.8% de la población; más en ancianos (>5%) y portadores de prótesis (11-80% con mal ajuste). Predominio femenino en algunas series.",
+      "factoresRiesgo": [
+        "Prótesis mal ajustada (mordida caída)",
+        "Xerosis y maceración comisural",
+        "Deficiencias (hierro, B12, folato, riboflavina)",
+        "Diabetes",
+        "Inmunosupresión (VIH)",
+        "Edentulismo",
+        "Beso húmedo/labio leporino",
+        "Tratamiento con isotretinoína"
+      ],
+      "diagnostico": "Clínico: fisuras eritematosas dolorosas en comisuras bilaterales. Cultivo (Candida en 60-80%, Staphylococcus aureus en 20-30% de casos con Staph coagulasa positivo). Investigar causas sistémicas si recidivante.",
+      "criteriosDiagnostico": [
+        "Fisuras bilaterales en comisuras labiales",
+        "Eritema, descamación y dolor",
+        "Posible sobreinfección por Candida o Staph",
+        "Recidiva sin tratar factor predisponente",
+        "Mejoría con antifúngico/antibiótico tópico"
+      ],
+      "diagnosticoDiferencial": [
+        "Queilitis actínica",
+        "Queilitis exfoliativa",
+        "Liquen plano",
+        "Cándidiasis labial",
+        "Impétigo",
+        "Síndrome de Plummer-Vinson (hierro)"
+      ],
+      "pronostico": "Resolución en 1-2 semanas con tratamiento tópico + corregir factor (prótesis, déficit). Recurrencia frecuente si persiste causa (prótesis mal ajustada, xerostomía, déficit).",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos con prótesis",
+          "consideraciones": "Reajuste protésico imprescindible; higiene de la prótesis (inmersión nocturna, limpieza). Xerostomía: sustitutos salivales."
+        },
+        {
+          "poblacion": "VIH",
+          "consideraciones": "Frecuente y recurrente; valorar estudio inmunológico y antirretroviral."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antifúngicos tópicos (miconazol, clotrimazol): aplicación bid, 2-3 sem",
+        "Miconazol oral: interacción con anticoagulantes (warfarina)",
+        "Fusidato sódico tópico: si Staph",
+        "Corticoides tópicos: solo si eccema asociado, breve",
+        "Corregir hierro/B12 si déficit"
       ]
     },
     {
@@ -5716,6 +6234,50 @@
         "International Society of Breath Odor Research",
         "PubMed (Probiotics halitosis)",
         "EMA HMPC Salviae folium"
+      ],
+      "epidemiologia": "Prevalencia global 20-50% en algún momento; crónica en 10-15%. Origen oral en 80-90%, faríngeo 3-5%, sistémico 5-10%. Multifactorial.",
+      "factoresRiesgo": [
+        "Higiene oral deficiente",
+        "Lengua saburral (bacterias anaerobias)",
+        "Periodontitis y gingivitis",
+        "Xerostomía (fármacos, Sjögren)",
+        "Dieta (ajo, cebolla, especias)",
+        "Tabaco y alcohol",
+        "Amígdalas con caseum (tonsilolitos)",
+        "Reflujo faringolaríngeo",
+        "Dieta hipocalórica (cetosis)"
+      ],
+      "diagnostico": "Clínico + organoléptico (juez) y halitometry (sulfuros volátiles). Inspección oral, periodontal y amigdalar. Sospechar sistémico (diabetes cetósica, hepático, renal) si oral normal.",
+      "criteriosDiagnostico": [
+        "Mal aliento perceptible por paciente/observador",
+        "Sulfuros volátiles >100 ppb (halitómetro)",
+        "Origen oral (lengua, periodonto, prótesis)",
+        "Exclusión de causa sistémica (glucosa, renal, hepático)",
+        "Mejoría con higiene y raspado lingual"
+      ],
+      "diagnosticoDiferencial": [
+        "Pseudo-halitosis (percepción sin halitómetro)",
+        "Causa sistémica: diabetes cetósica, uremia, hepático (fetor hepaticus)",
+        "Reflujo gastroesofágico",
+        "Sinusitis crónica",
+        "Tumores orales/faríngeos"
+      ],
+      "pronostico": "Excelente al identificar y tratar causa oral. Recurrencia si higiene deficiente. Pseudo-halitosis: abordaje psicológico. Casos sistémicos requieren tratar enfermedad de base.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Xerostomía por polifarmacia y prótesis; priorizar higiene y sustitutos salivales."
+        },
+        {
+          "poblacion": "Pediátrico",
+          "consideraciones": "Cuerpos extraños nasales (fetor unilateral) y tonsilolitos frecuentes. Valorar sinusitis."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antisépticos orales (clorhexidina): >2 semanas tinción dental y disgeusia",
+        "Xilitol: reduce Streptococcus mutans",
+        "Evitar alcohol en colutorios (xerostomía)",
+        "Sustitutos salivales en polifarmacia con xerostomía"
       ]
     },
     {
@@ -5806,6 +6368,59 @@
         "American Academy Otolaryngology Hoarseness Guidelines",
         "PubMed (Honey, Pelargonium)",
         "EMA HMPC Plantaginis"
+      ],
+      "epidemiologia": "Prevalencia lifetime 30%; crónica 7% en adultos, 6% en niños. Más en profesiones de uso vocal (profesores 50%, cantantes, teleoperadores). Pico 40-60 años; predominio femenino.",
+      "factoresRiesgo": [
+        "Abuso vocal (gritar, cantar)",
+        "Reflujo laríngeo (LPR)",
+        "Tabaco y alcohol",
+        "Infecciones respiratorias altas",
+        "Ambientes secos/polvo",
+        "Profesiones de voz",
+        "Estrés y tensión muscular",
+        "Fármacos (IECA, antihistamínicos, corticoides inhalados mal técnica)"
+      ],
+      "diagnostico": "Anamnesis (duración, factor desencadenante) + laringoscopia indirecta o directa (fibrolaringoscopia). Estroboscopia si nódulos/pólipos. Laringo-TRL si sospecha de malignidad. Duración >3 semanas obliga a valoración ORL.",
+      "criteriosDiagnostico": [
+        "Cambios en calidad vocal >2 semanas",
+        "Laringoscopia: causa orgánica (nódulos, pólipos, edema Reinke) o funcional",
+        "Diferenciar aguda (<3 sem: infección/trauma) y crónica (>3 sem)",
+        "Evaluación perceptual (GRBAS)",
+        "Exclusión de malignidad (especialmente fumador >40 años)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "VHI-10 (Voice Handicap Index-10)",
+          "uso": "Impacto de la disfonía en la calidad de vida",
+          "rango": "0-40",
+          "interpretacion": "0-10 mínimo, 11-20 leve, 21-30 moderado, 31-40 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Laringitis aguda (viral)",
+        "Nódulos/pólipos vocales",
+        "Edema de Reinke (tabaquismo femenino)",
+        "Papilomatosis laríngea (VPH 6/11)",
+        "Cáncer laríngeo",
+        "Parálisis cordal (recurrente)",
+        "Disfonía funcional/espasmódica"
+      ],
+      "pronostico": "Funcional y nódulos: excelente con logopedia. Pólipos: microcirugía. Reflujo: control con IBP y medidas. Cáncer: pronóstico según estadio. Recurrencia si no corrige abuso vocal.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Profesores/cantantes",
+          "consideraciones": "Higiene vocal imprescindible (hidratación, calentamiento, descanso). Valorar logopedia preventiva."
+        },
+        {
+          "poblacion": "Niños",
+          "consideraciones": "Nódulos vocales por gritos son primera causa; logopedia y conducta. Papilomatosis laríngea recurrente: valorar endoscopia."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Corticoides inhalados: enjuagar boca tras uso (previene disfonía por miopatía cordal)",
+        "IECA: tos y disfonía por angioedema",
+        "Antihistamínicos/anticolinérgicos: xerostomía y sequedad mucosa",
+        "Reflujo: IBP (interacciones, hipomagnesemia, B12)"
       ]
     },
     {
@@ -5898,6 +6513,70 @@
         "AASM Sleep Apnea Guidelines",
         "STOP-BANG Questionnaire",
         "PubMed (Magnesium sleep)"
+      ],
+      "epidemiologia": "Ronquido: 40% hombres, 20% mujeres. Apnea obstructiva del sueño (AOS): 13-26% hombres, 6-19% mujeres (50% sin diagnosticar). Pico 40-70 años. Obesidad principal factor.",
+      "factoresRiesgo": [
+        "Obesidad (cuello >43 cm hombres, >40 mujeres)",
+        "Edad 40-70",
+        "Varón (2x)",
+        "Menopausia",
+        "Retrognatia y paladar blando largo",
+        "Tabaco y alcohol",
+        "Historia familiar",
+        "Tabaquismo",
+        "Nariz obstruida (rinitis, desviación)"
+      ],
+      "diagnostico": "Síntomas (ronquido, pausas, somnolencia) + polisomnografía (gold standard) o poligrafía respiratoria (domiciliaria). IAH ≥5 (leve), ≥15 (moderada), ≥30 (severa). Cuestionarios (STOP-Bang, Epworth).",
+      "criteriosDiagnostico": [
+        "Ronquido fuerte",
+        "Pausas respiratorias presenciadas",
+        "Somnolencia diurna (Epworth >10)",
+        "IAH ≥5/hora en polisomnografía",
+        "Descartar ronquido simple (sin apneas)",
+        "Medición: oximetría nocturna si cribado"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Epworth Sleepiness Scale",
+          "uso": "Somnolencia diurna",
+          "rango": "0-24",
+          "interpretacion": "0-9 normal, 10-12 leve, 13-15 moderada, 16-24 severa"
+        },
+        {
+          "nombre": "STOP-Bang",
+          "uso": "Crivado AOS",
+          "rango": "0-8",
+          "interpretacion": "0-2 bajo, 3-4 intermedio, ≥5 alto riesgo AOS severa"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Ronquado simple (sin apneas)",
+        "Apnea central (Cheyne-Stokes en IC)",
+        "Hipopoventilación nocturna (obesidad, neuromuscular)",
+        "Insomnio",
+        "Síndrome de piernas inquietas",
+        "Narcolepsia",
+        "Trastornos ritmo circadiano"
+      ],
+      "pronostico": "Sin tratar: riesgo cardiovascular (HTA 50%, ictus 2-3x, arritmias), accidentes (3-7x trafico), diabetes. CPAP mejora supervivencia y síntomas (80% adherencia). Pérdida peso puede curar. Cirugía selectiva.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "AOS aumenta (peso, edema); riesgo HTA y diabetes gestacional. CPAP si severa."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Mayor prevalencia; CPAP igualmente eficaz; cuidar adherencia y comorbilidad."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "CPAP: primera línea; adherencia clave (>4h/noche)",
+        "Ortesis dental avanzada mandíbula: leve-moderada",
+        "No sedantes ni opioides (empeoran AOS y depresión respiratoria)",
+        "Evitar alcohol y miorelajantes nocturnos",
+        "Pérdida peso y ejercicio esenciales",
+        "Cirugía (UPPP, maxilomandibular): selectiva",
+        "Estimulación nervio hipogloso: refractario"
       ]
     },
     {
@@ -5985,6 +6664,65 @@
         "IRLSSG Diagnostic Criteria",
         "Mayo Clinic RLS Guidelines",
         "PubMed (Iron, Magnesium RLS)"
+      ],
+      "epidemiologia": "Prevalencia 5-10% adultos (SPI clínico); 2-3% severo. 2x mujeres. Inicio 20-40 años; familiar en 50%. 80% con plms (movimientos periódicos sueño). Empeora con edad.",
+      "factoresRiesgo": [
+        "Mujer (2x)",
+        "Edad avanzada",
+        "Historia familiar (50%)",
+        "Déficit hierro (ferritina <75 ng/mL)",
+        "Embarazo (3er trimestre)",
+        "Insuficiencia renal",
+        "Diabetes y neuropatía",
+        "Fármacos (antidepresores ISRS, antipsicóticos, antieméticos)",
+        "Privación de sueño",
+        "Cafeína"
+      ],
+      "diagnostico": "Criterios IRLSSG: urgencia de mover las piernas, empeora reposo/noche, mejora movimiento, no explicable por otra causa. Ferritina (síndrome). Polisomnografía si duda o PLMS severo. Excluir neuropatía.",
+      "criteriosDiagnostico": [
+        "Urgencia mover piernas por sensación desagradable",
+        "Inicia o empeora en reposo",
+        "Alivia con movimiento",
+        "Predomina noche/tarde",
+        "Sin otra causa",
+        "Ferritina <75 ng/mL (riesgo)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "IRLSSG (International Restless Legs Syndrome Study Group)",
+          "uso": "Severidad SPI",
+          "rango": "0-40",
+          "interpretacion": "0 sin, 1-10 leve, 11-20 moderado, 21-30 severo, 31-40 muy severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Calambres nocturnos (dolor agudo, no urgencia mover)",
+        "Neuropatía periférica",
+        "Akatisia (fármacos)",
+        "Anxiety",
+        "PLMS (asociado, no lo mismo)",
+        "Vascular periférico (claudicación)",
+        "Aracnoiditis"
+      ],
+      "pronostico": "Crónico-progresivo. Hierro: si déficit, suplementación mejora. Gabapentinoides: primera línea. Agonistas dopaminérgicos: eficaces pero augmentation (50% a 5 años). Sin tratar, insomnio y calidad de vida.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Común 3er trimestre; resolver posparto. Hierro y ácido fólico si déficit. Evitar dopaminérgicos."
+        },
+        {
+          "poblacion": "Insuficiencia renal",
+          "consideraciones": "50-90% en diálisis; ajustar dosis. Trasplante mejora. Hierro IV."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Hierro oral/IV: si ferritina <75 ng/mL (primera medida)",
+        "Gabapentina/pregabalina: primera línea hoy; sedación, ajustar renal",
+        "Pramipexol/ropinirol: eficaces; riesgo augmentation y impulse control",
+        "Opioides: solo refractarios graves",
+        "Benzodiacepinas: mejoran sueño pero no SPI; riesgo dependencia",
+        "Evitar ISRS y antipsicóticos (worsen)",
+        "Limitar cafeína"
       ]
     },
     {
@@ -6072,6 +6810,58 @@
         "PubMed (Magnesium leg cramps)",
         "FDA Quinina warning",
         "Mayo Clinic Muscle Cramps"
+      ],
+      "epidemiologia": "50% adultos >50; 1-3 episodios/mes, 5% diarios. Pico nocturno (pantorrilla, pie). 40% con dolor residual. Frecuente en embarazo (30-50%) y diálisis (50-75%).",
+      "factoresRiesgo": [
+        "Edad >50",
+        "Embarazo (3er trimestre)",
+        "Ejercicio intenso",
+        "Deshidratación y electrolitos (Mg, K, Na)",
+        "Diálisis y uremia",
+        "Cirrosis y alcohol",
+        "Fármacos (diuréticos, estatinas, agonistas dopaminérgicos)",
+        "Insuficiencia venosa",
+        "Pie plano",
+        "Neuropatía periférica"
+      ],
+      "diagnostico": "Clínico: contracción muscular dolorosa involuntaria, nocturna, pantorrilla, segundos-minutos, sin causa aparente. Excluir miopatía, neuropatía, vascular, metabólica. Laboratorio (electrolitos, TSH, función renal, CPK) si frecuente o atípico.",
+      "criteriosDiagnostico": [
+        "Dolor muscular intenso, involuntario, nocturno",
+        "Localización: pantorrilla, pie, muslo",
+        "Duración segundos-minutos",
+        "Autolimitado, con dorsiflexión alivia",
+        "Sin causa orgánica (excluida)",
+        "Recurrencia variable"
+      ],
+      "diagnosticoDiferencial": [
+        "Síndrome de piernas inquietas (urgencia, no dolor)",
+        "Neuropatía periférica",
+        "Claudicación vascular",
+        "Trombosis venosa profunda",
+        "Miopatía (CPK elevada)",
+        "Rabdomiólisis",
+        "Tetania (hipocalcemia)",
+        "Fasciculaciones (ALS, benignas)"
+      ],
+      "pronostico": "Benigno; autolimitado. Recurrencias frecuentes. Estiramientos profilácticos eficaces. Magnesio: eficacia modesta. Sin tratamiento curativo. Embarazo: resoluación posparto.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Común 3er trimestre; magnesio y calcio si déficit. Resuelve posparto."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Frecuente; revisar diuréticos y electrolitos. Estiramientos antes de dormir."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Magnesio (bisglicinato): evidencia modesta; seguro; diarrea en altas",
+        "Estiramientos profilácticos: primera línea (3x/día)",
+        "Quinina: retirada (toxicidad, arritmias)",
+        "Vitamina B complejo: datos limitados",
+        "Revisar diuréticos (hipopotasemia)",
+        "Estatinas: pueden causar calambres; vigilar CPK",
+        "Bloqueantes cálcicos: pueden causar (edema)"
       ]
     },
     {
@@ -6156,6 +6946,51 @@
         "AAO Conjunctivitis Preferred Practice Pattern",
         "PubMed (Green tea, Euphrasia)",
         "EMA HMPC Euphrasiae herba"
+      ],
+      "epidemiologia": "1-3% urgencias médicas; alérgica 40-50% (rinoconjuntivitis), viral 30-50% (adenovirus), bacteriana 5-10%. Pico en primavera (alérgica) e invierno (viral). Muy contagiosa la viral.",
+      "factoresRiesgo": [
+        "Contacto con persona infectada (viral/bacteriana)",
+        "Alergias (polen, ácaros)",
+        "Uso de lentes de contacto",
+        "Trauma ocular/cirugía",
+        "Piscinas (cloro, contaminación)",
+        "Inmunosupresión",
+        "Condiciones hacinadas (escuelas, guarderías)"
+      ],
+      "diagnostico": "Clínico: inyección conjuntival, secreción, prurito (alérgica), adenopatía preauricular (viral). Cultivo si sospecha bacteriana severa o refractaria. Tinción fluoresceína para queratitis. Diferenciar por características.",
+      "criteriosDiagnostico": [
+        "Hiperemia conjuntival",
+        "Secreción: acuosa (viral/alérgica), mucoide (bacteriana leve), purulenta (bacteriana severa)",
+        "Prurito intenso (alérgica)",
+        "Adenopatía preauricular (viral)",
+        "Bilateral o unilateral",
+        "Excluir queratitis, uveítis, glaucoma agudo"
+      ],
+      "diagnosticoDiferencial": [
+        "Queratitis (dolor, fluoresceína+)",
+        "Uveítis anterior (dolor, fotofobia, pupila pequeña)",
+        "Glaucoma agudo de ángulo cerrado (dolor intenso, visión borrosa, pupila fija midriática)",
+        "Epiescleritis/escleritis",
+        "Cuerpo extraño",
+        "Dacriocistitis"
+      ],
+      "pronostico": "Viral: autolimitada 1-3 sem; contagiosa 2 sem. Bacteriana: mejora 5-7 días con/sin antibiótico. Alérgica: crónica-recurrente. Complicación rara: queratitis (adenovirus, herpes), cicatrización. Higiene clave.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Lentes de contacto",
+          "consideraciones": "Suspender hasta resolución; riesgo de queratitis (Pseudomonas). Cambio a gafas. Desinfección."
+        },
+        {
+          "poblacion": "Neonatos",
+          "consideraciones": "Conjuntivitis neonatal: descartar gonococo (profilaxis) y clamidia (madre). Cultivo y tinción Gram urgentes."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antibióticos tópicos: solo si bacteriana; no en viral (empeora)",
+        "Corticoides tópicos: SOLO bajo oftalmólogo; riesgo de herpes (queratitis dendrítica) y glaucoma",
+        "Antihistamínicos tópicos: alérgica; vasoconstrictores no >7 días (reborde)",
+        "Colirios con aminoglucósidos: reacciones tóxicas",
+        "Lentes de contacto: no con colirios no preservados"
       ]
     },
     {
@@ -6246,6 +7081,52 @@
         "AAP Otitis Media Guidelines",
         "PubMed (Garlic, Propolis otitis)",
         "EMA HMPC"
+      ],
+      "epidemiologia": "Otitis media aguda (OMA): 60-80% de niños <3 años tienen ≥1 episodio. Pico 6-18 meses. Adultos: menos frecuente. Otitis externa: 10% lifetime; pico estival (nadadores).",
+      "factoresRiesgo": [
+        "Guardería (exposición)",
+        "Lactancia materna corta (protectora)",
+        "Exposición al humo",
+        "Infecciones respiratorias altas",
+        "Anatomía tubárica (niños)",
+        "Inmunosupresión",
+        "Limpieza agresiva del conducto (otitis externa)",
+        "Natación (otitis externa)"
+      ],
+      "diagnostico": "Otoscopia: OMA: tímpano abombado, eritematoso, pérdida reflejo, dolor; otalgia súbita + fiebre. Otitis externa: conducto eritematoso, edematoso, dolor a tragus; cultivo si refractaria. Neumatisación hipoacusia conductiva.",
+      "criteriosDiagnostico": [
+        "OMA: otalgia + otorrea + síntomas sistémicos (fiebre)",
+        "Otoscopia: tímpano eritematoso/abombado/bulbo",
+        "Hipocaustia conductiva",
+        "Otitis externa: otalgia, prurito, otorrea, conducto edematoso",
+        "Excluir mastoiditis (dolor retroauricular, protracción)"
+      ],
+      "diagnosticoDiferencial": [
+        "Otitis media con derrame (no aguda, sin dolor)",
+        "Mastoiditis (complicación)",
+        "Otitis externa maligna (inmunosuprimidos/diabéticos)",
+        "Cuerpo extraño",
+        "Trauma timpánico",
+        "Barotrauma",
+        "Artritis temporomandibular (dolor referido)"
+      ],
+      "pronostico": "OMA: 80% mejora en 48-72h con/sin antibiótico; 10% recurrencias. Otitis externa: mejora 7-10 días con tópicos. Complicaciones: mastoiditis, laberintitis, parálisis facial. Crónica: colesteatoma.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Niños pequeños",
+          "consideraciones": "Cribado y tratamiento según edad/severidad ( vigilancia expectante si >2 años leve). Tubos de ventilación si recurrencias (≥3/6 meses)."
+        },
+        {
+          "poblacion": "Diabéticos/Inmunosuprimidos",
+          "consideraciones": "Otitis externa maligna (Pseudomonas): urgencia; tratamiento IV y valoración. Riesgo osteomielitis."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antibióticos tópicos (otitis externa): con corticoide; si tímpano perforado evitar aminoglucósidos (ototóxicos)",
+        "Amoxicilina (OMA): primera línea; amoxicilina-clavulánico si falta respuesta 48-72h",
+        "AINES/paracetamol: dolor y fiebre",
+        "Antihistamínicos: sin evidencia en OMA",
+        "Evitar bastoncillos (otitis externa)"
       ]
     },
     {
@@ -6336,6 +7217,60 @@
         "IDSA Pharyngitis Guidelines",
         "Cochrane (Pelargonium, Echinacea)",
         "EMA HMPC Pelargonii radix"
+      ],
+      "epidemiologia": "1ª causa de consulta infecciosa ambulatoria. Viral 50-80%, bacteriana (Estreptococo β-hemolítico grupo A) 15-30% niños, 5-10% adultos. Pico 5-15 años, invierno. Complicaciones reumáticas y abscesos.",
+      "factoresRiesgo": [
+        "Edad 5-15 años",
+        "Contacto estrecho (escuela, hogar)",
+        "Inmunosupresión",
+        "Estación invernal",
+        "Hacinamiento",
+        "Amigdalectomía previa (no protectora total)",
+        "Tabaquismo pasivo"
+      ],
+      "diagnostico": "Criterios Centor/McIsaac: fiebre, exudado amigdalar, adenopatías cervicales anteriores, ausencia tos. Test rápido de antígeno (estreptococo) y/o cultivo. Escala guía decisión antibiótica.",
+      "criteriosDiagnostico": [
+        "Centor/McIsaac: fiebre, exudado, adenopatías, no tos (1 punto cada uno; +1 edad 3-14)",
+        "Test rápido estreptococo A positivo",
+        "Cultivo faríngeo (patrón oro)",
+        "Viral: tos, rinorrea, disfonía, conjuntivitis",
+        "Excluir mononucleosis (atípica linfocitosis)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Centor/McIsaac",
+          "uso": "Probabilidad de faringitis estreptocócica",
+          "rango": "0-5",
+          "interpretacion": "0-1 no test/antibiótico, 2 test rápido, 3-5 empírico"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Faringitis viral (adenovirus, rinovirus, VEB)",
+        "Mononucleosis infecciosa",
+        "Herpangina (Coxsackie)",
+        "Candidiasis oral",
+        "Absceso periamigdalino",
+        "Epiglotitis",
+        "Gonorrea/difteria (raras)"
+      ],
+      "pronostico": "Viral: 5-7 días autolimitada. Bacteriana: mejora 24-48h antibiótico; previene fiebre reumática y glomerulonefritis. Complicaciones: absceso periamigdalino, otitis media, sinusitis, fiebre reumática (raras en países desarrollados).",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Niños",
+          "consideraciones": "Priorizar test rápido antes de antibiótico. Amigdalectomía si ≥7 episodios/año (Paradise)."
+        },
+        {
+          "poblacion": "Adolescentes",
+          "consideraciones": "Mononucleosis: evitar amoxicilina (rash), evitar deport contacto 4 sem (ruptura bazo)."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Penicilina/amoxicilina: primera línea; 10 días (prevención fiebre reumática)",
+        "Amoxicilina + mononucleosis: rash (evitar)",
+        "Macrólidos: si alergia; resistencia creciente",
+        "Corticoides orales: útil en dolor severo (corto curso)",
+        "AINES: dolor y fiebre",
+        "No antibiótico si viral"
       ]
     },
     {
@@ -6433,6 +7368,71 @@
         "NICE Feverish Illness in Children",
         "AAP Fever Guidelines",
         "EMA HMPC Sambuci flos"
+      ],
+      "epidemiologia": "1ª causa de consulta pediátrica (30%); 4-5% adultos urgencias. Pico invernal (infecciones). 10% niños 3-36 meses sin foco. Definida: T ≥38°C (axilar) o ≥38.3°C (rectal).",
+      "factoresRiesgo": [
+        "Edad <3 años (sin foco)",
+        "Inmunosupresión (quimio, biológicos, VIH)",
+        "Neoplasia",
+        "Portador de dispositivo (catéter, prótesis)",
+        "Viaje reciente (tropical)",
+        "Post-cirugía",
+        "Asplenia (riesgo sepsis encapsulados)",
+        "Embarazo (infección grave atípica)"
+      ],
+      "diagnostico": "Historia (inicio, patrón, síntomas asociados, viajes, contacto) + exploración completa (foco: ORL, pulmón, orina, piel, SNC) + pruebas según edad/foco: hemograma, PCR, PCT, uroanálisis, cultivos, Rx tórax, LP si sospecha SNC.",
+      "criteriosDiagnostico": [
+        "T ≥38°C axilar o ≥38.3°C rectal",
+        "Patrón: continua, intermitente, remitente",
+        "Identificar foco (respiratorio, urinario, piel, SNC)",
+        "Sin foco en niño <3m: estudio de riesgo (Laboratorio) ",
+        "Con foco: según síndrome",
+        "Sepsis: qSOFA ≥2 (urgencia)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "qSOFA (quick Sequential Organ Failure Assessment)",
+          "uso": "Riesgo sepsis fuera UCI",
+          "rango": "0-3",
+          "interpretacion": "≥2 alto riesgo (FR ≥22, TAS ≤100, alteración conciencia)"
+        },
+        {
+          "nombre": "Yale Observation Scale",
+          "uso": "Niños 3-36m sin foco",
+          "rango": "0-16",
+          "interpretacion": "≥6 alto riesgo de infección grave"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Infección viral (80% niños)",
+        "Infección bacteriana focal",
+        "Sepsis/bacteriemia",
+        "Enfermedad tropical (malaria, dengue)",
+        "Enfermedad reumática (LES, artritis)",
+        "Neoplasia (leucemia, linfoma)",
+        "Fiebre farmacológica",
+        "Síndrome de hipertermia maligna",
+        "Golpe de calor"
+      ],
+      "pronostico": "Viral: autolimitado 3-5 días. Bacteriana: depende de foco y tratamiento. Sepsis: mortalidad 10-30%. Niño <3m sin foco: riesgo bacteriemia 5-10%. Neonato <28d: ingreso y estudio completo.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Neonatos (<28 días)",
+          "consideraciones": "Ingreso, hemocultivo, urocultivo, LCR; antibiótico IV empírico. Riesgo sepsis grave."
+        },
+        {
+          "poblacion": "Inmunosuprimidos/neutropénicos",
+          "consideraciones": "Fiebre = urgencia; hemocultivo y antibiótico empírico amplio en <1h. Neutropenia febril."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Paracetamol: primera línea; hepatotoxicidad si sobredosis o alcohol",
+        "Ibuprofeno: alternativa; riesgo GI/renal",
+        "No aspirina en <16 años (síndrome Reye)",
+        "No corticoides para tratar fiebre (excepto causa específica)",
+        "Antibiótico empírico solo si sospecha bacteriana o sepsis",
+        "Vigilar interacciones: paracetamol con warfarina",
+        "No alternar paracetamol-ibuprofeno salvo necesario"
       ]
     },
     {
@@ -6528,6 +7528,57 @@
         "PubMed (Hangover interventions)",
         "PubMed (B-vitamins, NAC alcohol)",
         "EMA HMPC Silybi mariani"
+      ],
+      "epidemiologia": "Universal tras consumo excesivo; 75% bebedores sociales la experimentan. Coste laboral y académico. No considerada patología pero sí problema salud pública. Sin tratamiento específico aprobado.",
+      "factoresRiesgo": [
+        "Consumo >4-5 bebidas estándar",
+        "Bebidas con congéneres (whisky, coñac, tequila vs vodka, gin)",
+        "Beber rápido/ con estómago vacío",
+        "Falta de sueño",
+        "Deshidratación",
+        "Menor peso y edad",
+        "Mujeres (menor ADH gástrica)",
+        "Polimorfismo ALDH2 (asiáticos: rubor)"
+      ],
+      "diagnostico": "Clínico: 8-16h tras cesación del consumo. Cefalea, nauseas, fatiga, sed, temblor, sudoración, ansiedad, dificultad concentración. Diferenciar de intoxicación activa (alcoholemia) y abstinencia (delirium tremens).",
+      "criteriosDiagnostico": [
+        "Síntomas 8-16h tras consumo alcohol",
+        "Cefalea, nauseas, fatiga, sed, dificultad concentración",
+        "Sin intoxicación activa (alcoholemia baja)",
+        "Resolución espontánea <24h",
+        "Excluir intoxicación metanol/etilenglicol (rara)",
+        "Diferenciar de abstinencia leve"
+      ],
+      "diagnosticoDiferencial": [
+        "Intoxicación etílica aguda",
+        "Abstinencia alcohólica (delirio tremens)",
+        "Intoxicación por otras sustancias",
+        "Migraña",
+        "Infección viral",
+        "Deshidratación por otras causas",
+        "Cetoacidosis diabética",
+        "Intoxicación metanol (rara pero grave)"
+      ],
+      "pronostico": "Autolimitado <24h. Sin tratamiento específico curativo. Hidratación, descanso y AINEs (paracetamol con cuidado por hepatotoxicidad si consumo elevado) sintomáticos. Impacto laboral y cognitivo transitorio.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Jóvenes",
+          "consideraciones": "Riesgos: consumo excesivo, accidentes, relaciones sexuales de riesgo. Educación y reducción de daños."
+        },
+        {
+          "poblacion": "Hepatópatas",
+          "consideraciones": "Agravamiento; evitar paracetamol y AINEs. Considerar dependencia y abstinencia."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Paracetamol: hepatotóxico con alcohol; máximo 2g si consumo elevado",
+        "AINES: riesgo GI y renal con alcohol; corto",
+        "No betabloqueantes (enmascara abstinencia)",
+        "Hidratación: agua y electrolitos (caldo, bebidas isotónicas)",
+        "Antiácidos: síntomas GI",
+        "Vitaminas B: eficacia limitada",
+        "Cafeína: alivio cefalea pero empeora deshidratación",
+        "No 'pajuno' (más alcohol): refuerza dependencia"
       ]
     },
     {
@@ -6621,6 +7672,61 @@
         "USPHS Smoking Cessation Guidelines",
         "PubMed (NAC, Avena sativa cessation)",
         "Cochrane (Varenicline)"
+      ],
+      "epidemiologia": "1.300 millones fumadores (OMS); 22.3% adultos. 8 millones muertes/año (incluido pasivo). 1ª causa de muerte evitable. España: 22% adultos; reducción con ley antitabaco. Inicio medio: 13-15 años.",
+      "factoresRiesgo": [
+        "Inicio precoz (adolescencia)",
+        "Familia fumadora",
+        "Bajo nivel socioeconómico",
+        "Trastornos psiquiátricos (esquizofrenia 80%, TDAH, bipolar)",
+        "Consumo de alcohol/otras sustancias",
+        "Estrés y entorno social",
+        "Marketing y accesibilidad",
+        "Genético (receptores nicotínicos)"
+      ],
+      "diagnostico": "Historia: consumo diario, número de cigarrillos, años, intentos previos. Test de Fagerström (dependencia). CO exhalado (monoxímetro). Valorar comorbilidades (EPOC, ECV, cáncer).",
+      "criteriosDiagnostico": [
+        "Consumo diario de tabaco",
+        "Dependencia (Fagerström ≥4)",
+        "Síntomas de abstinencia al cesar",
+        "CO exhalado >6 ppm (fumador)",
+        "Valorar comorbilidades (EPOC, ECV)",
+        "Deseo de cesar (o no)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Fagerström Test",
+          "uso": "Grado de dependencia nicotínica",
+          "rango": "0-10",
+          "interpretacion": "0-3 baja, 4-6 moderada, 7-10 alta"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Consumo sin dependencia",
+        "Uso de otros productos (vapeo, IQOS, parches)",
+        "Dependencia de cannabis",
+        "Trastornos ansiosos/depresivos comorbidos",
+        "EPOC y otras enfermedades relacionadas"
+      ],
+      "pronostico": "Cesar reduce riesgo: 1 año ECV -50%, 5 años cáncer -50%, 10 años mortalidad similar a no fumador. Recaídas frecuentes (70% en 1 año); combinación TCC + farmacología duplica éxito. Daños vapeo a largo plazo desconocidos.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Riesgo aborto, prematuridad, bajo peso, SIDS. Cesar prioritario. Seguras: TSN; bupropion/vareniclina valorar riesgo/beneficio."
+        },
+        {
+          "poblacion": "Psiquiátricos",
+          "consideraciones": "Mayor prevalencia y dependencia; vareniclina puede worsen psiquiatría (vigilar). Bupropion útil en depresivos."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "TSN (parches, chicles): dosis según consumo; no combinar con tabaco",
+        "Bupropion: inhibe recaptación DA/NE; riesgo convulsiones (no en epilepsia, TCA)",
+        "Vareniclina: agonista parcial α4β2; nauseas, sueños vividos; vigilancia psiquiátrica (FDA)",
+        "Nortriptilina: segunda línea; anticolinérgico",
+        "Citicoline: datos emergentes",
+        "Interacciones: TSN puede worsen úlcera, bupropion con IMAO",
+        "Cesar: revisar dosis de teofilina, clozapina, insulina (sin humo cambia metabolismo)"
       ]
     },
     {
@@ -6720,6 +7826,59 @@
         "WHO Obesity Guidelines",
         "AHA/ACC Obesity Guidelines",
         "PubMed (Berberine, Cinnamon)"
+      ],
+      "epidemiologia": "Global: 13% adultos obesos (OMS 2022), 43% sobrepeso; triplicado desde 1975. España: 21% obesidad, 40% sobrepeso. Pediátrica: 6% obesidad. 2ª causa de muerte evitable tras tabaco.",
+      "factoresRiesgo": [
+        "Genética (70% heredabilidad)",
+        "Dieta ultra procesada y alta densidad",
+        "Sedentarismo",
+        "Sueño insuficiente",
+        "Estrés y cortisol",
+        "Fármacos (antipsicóticos, corticoides, insulina, AET)",
+        "Hipotiroidismo, SOP, Cushing",
+        "Microbioma alterado",
+        "Entorno obesogénico (publicidad, accesibilidad)"
+      ],
+      "diagnostico": "IMC ≥30 kg/m² (obesidad); ≥25-29.9 sobrepeso. Circunferencia abdominal (H ≥94 riesgo, ≥102 muy alto; M ≥80 riesgo, ≥88 muy alto). Composición corporal (impedanciometría, DEXA). Estudios: glucosa, perfil lipídico, TSH, hígado, ECG.",
+      "criteriosDiagnostico": [
+        "IMC ≥30 kg/m²",
+        "Circunferencia abdominal elevada",
+        "Comorbilidades: HTA, DM2, dislipemia, apnea, artrosis",
+        "Evaluación de estilo de vida y psicosocial",
+        "Exclusión de causas secundarias (TSH, cortisol)",
+        "Grado: I (30-34.9), II (35-39.9), III (≥40 mórbida)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": " Edmonton Obesity Staging System (EOSS)",
+          "uso": "Estratificar riesgo por comorbilidades, no solo IMC",
+          "rango": "0-4",
+          "interpretacion": "0 sin riesgo, 1 leve, 2 moderado, 3 severo, 4 invalidez/riesgo vital"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Sobrepeso (IMC 25-29.9)",
+        "Edema (peso por líquidos)",
+        "Masa muscular (culturistas)",
+        "Obesidad secundaria (hipotiroidismo, Cushing, hipotalámica)"
+      ],
+      "pronostico": "Pérdida 5-10% reduce comorbilidades significativamente. Recuperación en 80% a 5 años sin intervención intensiva. Cirugía bariátrica: pérdida 25-30%, reduce mortalidad 30-50% (DM2, ECV). Impacto psicosocial.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Pediátrica",
+          "consideraciones": "Cribado IMC desde 2 años; abordaje familiar. Preferir estilo de vida, no fármacos salvo ≥12 años (orlistat, GLP-1 RA)."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Obesidad sarcopénica: priorizar masa muscular y funcional, no solo peso. Pérdida involuntaria: evaluar causa."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Orlistat: esteatorrea, deficiencia vitaminas liposolubles (suplementar)",
+        "GLP-1 RA (semaglutida, liraglutida): nauseas, pancreatitis (vigilar), suspende 2 meses antes gestación",
+        "Fentermina/topiramato: teratogénico, no en hipertensión no controlada",
+        "Bupropion/naltrexona: riesgo psiquiátrico e HTA",
+        "Metformina: útil si insulinorresistencia, deficiencia B12"
       ]
     },
     {
@@ -6814,6 +7973,66 @@
         "ESVS Varicose Veins Guidelines",
         "EMA HMPC Aesculus hippocastanum",
         "PubMed (Pycnogenol, Diosmin CVI)"
+      ],
+      "epidemiologia": "Prevalencia 25-40% adultos (varices); insuficiencia venosa crónica (IVC) 5-8%; úlcera venosa 1-2%. Más en mujeres (2-3x), edad >50. 70% mujeres >60 tienen teleangiectasias/varices.",
+      "factoresRiesgo": [
+        "Edad",
+        "Mujer (hormonal, embarazos)",
+        "Historia familiar (90% si ambos padres)",
+        "Embarazo (útero comprime iliaca)",
+        "Obesidad",
+        "Sedentarismo/bipedestación prolongada",
+        "Trauma o trombosis venosa previa",
+        "Altura (>180 cm)"
+      ],
+      "diagnostico": "Clínico (CEAP) + Eco-Doppler venoso: reflujo safeno, perforantes. Clasificación clínica: C0-C6 (C4 cambios cutáneos, C5 úlcera curada, C6 úlcera activa). Manometría venosa si complejo.",
+      "criteriosDiagnostico": [
+        "Síntomas: pesadez, dolor, edema, prurito",
+        "Signos: varices, hiperpigmentación, eccema, lipodermatoesclerosis, úlcera",
+        "Eco-Doppler: reflujo venoso (>0.5s)",
+        "Clasificación CEAP",
+        "Exclusión de enfermedad arterial (índice tobillo-brazo)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "CEAP (Clinical-Etiology-Anatomy-Pathophysiology)",
+          "uso": "Clasificar insuficiencia venosa",
+          "rango": "C0-C6",
+          "interpretacion": "C0 asintomático, C1 telangiectasias, C2 varices, C3 edema, C4 cambios cutáneos, C5 úlcera curada, C6 úlcera activa"
+        },
+        {
+          "nombre": "VCSS (Venous Clinical Severity Score)",
+          "uso": "Severidad y seguimiento",
+          "rango": "0-30",
+          "interpretacion": "0-3 leve, 4-8 moderado, 9-15 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Enfermedad arterial periférica",
+        "Insuficiencia cardiaca",
+        "Linfedema",
+        "Trombosis venosa profunda",
+        "Dermatitis de estasis",
+        "Úlcera arterial/neuropática (diabético)"
+      ],
+      "pronostico": "Crónico-progresivo. Medias de compresión y cirugía reducen síntomas y úlceras. Úlcera venosa: recurrencia 30-70% sin compresión. Calidad de vida afectada. Complicación: celulitis, TVP.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Aumenta en 2º-3º trimestre; compresión y elevación. Posparto suele mejorar. Suspender flebotónicos sin datos."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Comorbilidad arterial (ITB antes de compresión); fragilidad para poner medias. Úlceras crónicas."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Flebotónicos (diosmina, ruscus): eficacia modesta; bien tolerados; diosmina efectos GI",
+        "Anticoagulación si TVP asociada",
+        "Compresión: contraindicada si ITB <0.5 (arterial severa)",
+        "Corticoides tópicos en eccema de estasis (breve)",
+        "Antibióticos solo si sobreinfección",
+        "Pentoxifilina: modesta eficacia en úlcera"
       ]
     },
     {
@@ -6904,6 +8123,58 @@
         "European Society Cardiology Heart Failure",
         "EMA HMPC Orthosiphon",
         "PubMed (Dandelion diuretic)"
+      ],
+      "epidemiologia": "Síntoma muy común; causa principal: insuficiencia venosa, cardiaca, renal, hepática. 80% mujeres tienen edema leve cíclico. Ancianos: 30% polifarmacia. Bilateral y unilateral diferencian.",
+      "factoresRiesgo": [
+        "Insuficiencia cardiaca (derecha)",
+        "Insuficiencia venosa",
+        "Insuficiencia renal (nefrótico, crónica)",
+        "Cirrosis e hipertensión portal",
+        "Hipotiroidismo",
+        "Fármacos (CCB, AINEs, corticoides, estrógenos)",
+        "Embarazo",
+        "Sedentarismo/bipedestación",
+        "Linfedema (post-cirugía, primario)"
+      ],
+      "diagnostico": "Distribución (bilateral/unilateral, dependiente vs generalizado) + fóvea + características. Laboratorio: función renal, hepática, TSH, albúmina, NT-proBNP si cardiaco. ECG, eco. Doppler venoso si unilateral.",
+      "criteriosDiagnostico": [
+        "Edema con fóvea (presión digital)",
+        "Bilateral dependiente (sistémico) o unilateral (local)",
+        "Identificar causa: cardiaca, renal, hepática, venosa, fármaco",
+        "Albúmina baja (nefrótico, cirrosis)",
+        "NT-proBNP alto (cardiaco)",
+        "Doppler si unilateral (descartar TVP)"
+      ],
+      "diagnosticoDiferencial": [
+        "Edema venoso",
+        "Edema cardiaco (derecha)",
+        "Edema renal (nefrótico, AGN)",
+        "Edema hepático (cirrosis)",
+        "Linfedema (primario, post-mastectomía)",
+        "Edema farmacológico (CCB, AINEs)",
+        "Celulitis",
+        "TVP",
+        "Mixedema (hipotiroidismo)"
+      ],
+      "pronostico": "Variable según causa. Cardíaco: pronóstico según FEVI. Renal/nefrótico: depende de proteinuria y función. Venoso: crónico, mejora con compresión. CCB: cambia fármaco. Sin tratar, progresión y complicaciones (úlcera, infección).",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Fisiológico en 3er trimestre; vigilar HTA y preeclampsia (edema manos/cara, proteinuria). Edema unilateral o repentino: descartar TVP."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Polifarmacia; revisar CCB y AINEs. Compresión谨慎 si arterial. Riesgo caídas y úlceras."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Diuréticos: según causa (furosemida cardiaco, tiazidas HTA, espironolactona ascitis/IC)",
+        "Vigilar potasio (furosemida ↓, espironolactona ↑)",
+        "CCB (amlodipino): edema dosis-dependiente; cambiar clase",
+        "AINEs: retención sodio y empeora IC/renal",
+        "Corticoides: retención líquidos",
+        "Flebotónicos: eficacia modesta en venoso",
+        "Compresión: contraindicada si arterial severa (ITB <0.5)"
       ]
     },
     {
@@ -6993,6 +8264,61 @@
         "EAU BPH Guidelines",
         "EMA HMPC Serenoae repentis",
         "PubMed (Saw Palmetto, Pygeum BPH)"
+      ],
+      "epidemiologia": "Prevalencia 50% hombres >50, 80% >80. Histórica增长 con edad. 50% sintomáticos. Causa más común de sintomatología del tracto urinario inferior (STUI) en varones.",
+      "factoresRiesgo": [
+        "Edad (>40)",
+        "Historia familiar",
+        "Síndrome metabólico y obesidad",
+        "Diabetes",
+        "Sedentarismo",
+        "Dieta rica en grasas y baja en vegetales",
+        "Tabaquismo (debate)",
+        "Etnia (afroamericana más síntomas)"
+      ],
+      "diagnostico": "Síntomas (IPSS) + tacto rectal + flujometría + PSA + ecografía (volumen prostático, residuo post-miccional). PSA no diagnóstica de HBP (descarta cáncer). Urodinamia si complejo.",
+      "criteriosDiagnostico": [
+        "STUI: síntomas obstructivos (chorro débil, goteo, vaciado incompleto) e irritativos (frecuencia, urgencia, nocturia)",
+        "Tacto rectal: próstata aumentada de tamaño, blanda, simétrica",
+        "Flujometría: Qmax <15 mL/s",
+        "Residuo post-miccional >50 mL",
+        "PSA normal o elevado (descartar cáncer)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "IPSS (International Prostate Symptom Score)",
+          "uso": "Severidad de STUI",
+          "rango": "0-35",
+          "interpretacion": "0-7 leve, 8-19 moderado, 20-35 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Cáncer de próstata (nódulo duro, PSA elevado)",
+        "Prostatitis",
+        "Estenosis uretral",
+        "Cálculos vesicales",
+        "Vejiga neurogénica",
+        "Disfunción detrusor",
+        "ITU"
+      ],
+      "pronostico": "Crónico-progresivo. 30% requerirán tratamiento (α-bloqueantes ± 5α-reductasa). Complicaciones: retención aguda (5%/año), ITU recurrente, litiasis, insuficiencia renal. Cirugía (RTU) en refractarios. Respuesta buena a fármacos.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Priorizar función renal y comorbilidad. α-bloqueantes uroselectivos (tamsulosina) mejor tolerados. Retención aguda: sondaje urgente."
+        },
+        {
+          "poblacion": "Hipotensos",
+          "consideraciones": "Tamsulosina/silodosina uroselectivos; alfuzosina menos efecto. Cuidado con diuréticos y antihipertensivos."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "α-bloqueantes: hipotensión ortostática (especialmente no uroselectivos)",
+        "5α-reductasa (finasterida): reduce PSA a la mitad (ajustar interpretación); disfunción sexual",
+        "Anticolinérgicos (vejiga hiperactiva): cuidado en glaucoma y deterioro cognitivo",
+        "Diuréticos: pueden worsen nocturia",
+        "Cirugía: eyaculación retrógrada frecuente",
+        "No suspender α-bloqueantes antes cirugía de catarata (IFIS)"
       ]
     },
     {
@@ -7078,6 +8404,62 @@
         "NICE Urinary Incontinence Guidelines",
         "PubMed (Pelvic floor training)",
         "EAU Incontinence Guidelines"
+      ],
+      "epidemiologia": "Prevalencia 25-45% mujeres (30-50% >60), 5-15% varones. Subdiagnosticada (50% no consulta). Impacto calidad de vida y coste social. Mayor con edad y multiparidad.",
+      "factoresRiesgo": [
+        "Mujer (multiparidad, menopausia)",
+        "Edad avanzada",
+        "Obesidad",
+        "Tos crónica y EPOC",
+        "Diabetes y neuropatía",
+        "Demencia y deterioro movilidad",
+        "Post-cirugía (prostatectomía, histerectomía)",
+        "Fármacos (diuréticos, α-bloqueantes, sedantes)",
+        "ITI recurrentes"
+      ],
+      "diagnostico": "Clínica (tipo: esfuerzo, urgencia, mixta, rebosamiento) + exploración (tacto, test tos, residuo) + diario miccional 3 días. Urodinamia si complejo o pre-cirugía. Descartar ITU.",
+      "criteriosDiagnostico": [
+        "Historia: tipo de pérdida (esfuerzo, urgencia, mixta)",
+        "Frecuencia/episodios (diario miccional)",
+        "Test de tos positivo (esfuerzo)",
+        "Residuo post-miccional (<150 normal)",
+        "Excluir ITU (tirilla)",
+        "Impacto en calidad de vida (ICIQ)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "ICIQ-SF (International Consultation on Incontinence Questionnaire-Short Form)",
+          "uso": "Severidad e impacto de IU",
+          "rango": "0-21",
+          "interpretacion": "0 sin, 1-7 leve, 8-14 moderado, 15-21 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Incontinencia de esfuerzo",
+        "Vejiga hiperactiva (urgencia)",
+        "Incontinencia mixta",
+        "Incontinencia por rebosamiento (obstrucción/neurogénica)",
+        "Fístula vesicovaginal (continua)",
+        "Enuresis (nocturna, niños)"
+      ],
+      "pronostico": "Mejora con tratamiento (fisioterapia pélvica, fármacos, cirugía). Esfuerzo: 70-80% mejora con rehabilitación; sling eficaz. Vejiga hiperactiva: 60-70% control. Crónica en ancianos; impacta institucionalización.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Polifarmacia (revisar diuréticos, sedantes); movilidad y accesibilidad al baño. Comorbilidad cognitiva. Anticolinérgicos riesgo deterioro cognitivo (preferir mirabegron)."
+        },
+        {
+          "poblacion": "Mujeres postmenopáusicas",
+          "consideraciones": "Estrogeno local (crema) si atrofia; revisar sling si cirugía previa. Comorbilidad pélvica (prolapse)."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Anticolinérgicos (oxibutinina, tolterodina): sequedad, estreñimiento, deterioro cognitivo (evitar en ancianos/demencia)",
+        "Mirabegron (β3): HTA, taquicardia; preferido en ancianos",
+        "Duloxetina: incontinencia esfuerzo; cuidar HTA y hepático",
+        "Estrogenos tópicos: atrofia vaginal",
+        "Diuréticos: ajustar horario (no nocturno)",
+        "α-bloqueantes en varones: pueden worsen (rebosamiento vs mejora)"
       ]
     },
     {
@@ -7161,6 +8543,66 @@
         "ICI (International Continence Society)",
         "EAU Nocturia Guidelines",
         "PubMed (Nocturia)"
+      ],
+      "epidemiologia": "Afecta 50-70% adultos >70; 1-2 levantamientos nocturnos. Más en varones (HBP) y mujeres (vejiga hiperactiva). Impacto sueño y caídas. Criterio: ≥1 micción nocturna que despierta.",
+      "factoresRiesgo": [
+        "Edad avanzada",
+        "HBP (varones)",
+        "Vejiga hiperactiva",
+        "Insuficiencia cardiaca",
+        "Diabetes (poliuria)",
+        "Apnea del sueño (ANP)",
+        "Diuréticos tardíos",
+        "Cafeína/alcohol nocturno",
+        "Insomnio",
+        "Polifarmacia"
+      ],
+      "diagnostico": "Diario miccional 3 días (volumen, frecuencia) + ICIQ-N. Diferenciar: nocturia global (poliuria 24h), nocturna (volumen nocturno >33% total), baja capacidad vesical nocturna. PSA, glucosa, NT-proBNP si sospecha cardiaca.",
+      "criteriosDiagnostico": [
+        "Despertar ≥1 vez para orinar",
+        "Diario miccional: volumen y frecuencia nocturna",
+        "Nocturia global: poliuria 24h >40 mL/kg",
+        "Nocturia nocturna: >33% producción orina nocturna",
+        "Baja capacidad vesical nocturna",
+        "Identificar causa (HBP, cardiaca, diabetes, apnea)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "ICIQ-N (Nocturia Quality of Life)",
+          "uso": "Impacto nocturia en calidad de vida",
+          "rango": "0-100",
+          "interpretacion": "Mayor score = mejor calidad de vida"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "HBP",
+        "Vejiga hiperactiva",
+        "Insuficiencia cardiaca",
+        "Diabetes mellitus/diabetes insipida",
+        "Apnea del sueño",
+        "Poliuria farmacológica (diuréticos)",
+        "Insomnio primario",
+        "Polidipsia psiquiátrica"
+      ],
+      "pronostico": "Mejora al tratar causa. HBP: α-bloqueantes + 5ARI. Vejiga hiperactiva: anticolinérgicos o β3. IC: diurético ajustado. Apnea: CPAP reduce nocturia 40-50%. Sin tratar, impacto sueño, caídas, calidad de vida.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Riesgo caídas nocturnas (iluminación, barreras); ajustar diuréticos a primera tarde. Polifarmacia."
+        },
+        {
+          "poblacion": "IC",
+          "consideraciones": "Diurético ajustado (no nocturno); movilización de líquidos durante el día."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Desmopresina (oral/nasal): útil en nocturia nocturna; riesgo hiponatremia (controlar sodio)",
+        "Diuréticos: administrar ≥6h antes de acostarse",
+        "α-bloqueantes uroselectivos: preferibles en mayor riesgo hipotensión",
+        "Anticolinérgicos: cuidado en ancianos (cognitivo) y glaucoma",
+        "Mirabegron: alternativa β3; HTA",
+        "Limitar líquidos y cafeína/alcohol nocturno",
+        "CPAP en apnea: reduce nocturia"
       ]
     },
     {
@@ -7255,6 +8697,62 @@
         "ACSM Sprains/Strains",
         "PubMed (Arnica, Bromelain)",
         "EMA HMPC Harpagophyti radix"
+      ],
+      "epidemiologia": "Esguince de tobillo: 1ª causa de consulta traumatológica ambulatoria; 2/1000/año. 85% inversión. Tendinitis: supraespinoso, Aquiles, patelar comunes. Deportistas y trabajadores manuales.",
+      "factoresRiesgo": [
+        "Deporte (salto, cambio dirección)",
+        "Calzado inadecuado",
+        "Superficie irregular",
+        "Sedentarismo (debut)",
+        "Sobrepeso",
+        "Fallos de calentamiento",
+        "Sobrecarga repetitiva (tendinitis)",
+        "Edad (tendinosis)",
+        "Fármacos (fluoroquinolonas, corticoides - tendinopatía)"
+      ],
+      "diagnostico": "Mecanismo + exploración (tobillo: regla Ottawa para Rx; tendón: dolor palpación, arco doloroso, Thompson para Aquiles). ECO si duda tendinosa o crónico. RM si sospecha rotura completa o pre-cirugía.",
+      "criteriosDiagnostico": [
+        "Trauma o sobrecarga",
+        "Dolor localizado, tumefacción, impotencia funcional",
+        "Regla Ottawa positiva (Rx)",
+        "ECO/RM: esguince grado I-II, tendinopatía, rotura parcial/total",
+        "Diferenciar esguince (ligamento) de tendinitis (tendón)",
+        "Función preservada (I-II) o inestabilidad (III)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Regla de Ottawa (tobillo)",
+          "uso": "Indicación de Rx tras esguince",
+          "rango": "0-5",
+          "interpretacion": "0-1 sin Rx; ≥1 Rx (dolor maléolo, incapacidad carga)"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Fractura (maléolo, escafoides, 5º metatarsiano)",
+        "Rotura tendón (Aquiles completo: Thompson)",
+        "Luxación",
+        "Síndrome compartimental",
+        "Trombosis venosa (dolor pantorrilla)",
+        "Osteomielitis si herada"
+      ],
+      "pronostico": "Esguince I: 1-2 sem; II: 3-6 sem; III: 6-12 sem. Recurrencia 40% sin rehabilitación. Tendinitis: 4-12 sem; crónica si tendinosis. Rehabilitación (propiocepción, eccéntrico) reduce recurrencia 50%.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Deportistas",
+          "consideraciones": "Retorno progresivo; rehabilitación funcional y propioceptiva. Profilaxis (braga, tape) en inestables crónicos."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Descartar fractura (osteoporosis); recuperar movilidad para prevenir caídas. Fluoroquinolonas evitar."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINES tópicos preferibles a orales (menor GI)",
+        "AINES orales: corto (7-10 días); riesgo GI, renal, cardiovascular",
+        "Corticoides tópicos: eficacia limitada; no infiltración en tendón Aquiles (rotura)",
+        "Fluoroquinolonas: black box FDA por tendinopatía/rotura; evitar si posible",
+        "Opioides: solo dolor severo corto",
+        "Hielo y elevación初期 PRICE"
       ]
     },
     {
@@ -7346,6 +8844,55 @@
         "ACPF Plantar Fasciitis Guidelines",
         "PubMed (ESWT, Stretching)",
         "EMA HMPC Harpagophyti radix"
+      ],
+      "epidemiologia": "Afecta al 10% lifetime; 1 millón consultas/año en EE.UU. Pico 40-60 años. Causa más común de dolor talón. Asociado a obesidad, pie plano/cavo, deportistas.",
+      "factoresRiesgo": [
+        "Edad 40-60",
+        "Obesidad (IMC >30)",
+        "Pie plano/cavo",
+        "Sedentarismo o aumento brusco actividad",
+        "Calzado inadecuado (plano, sin soporte)",
+        "Bipedestación prolongada",
+        "Acortamiento tendón Aquiles",
+        "Diabéticos",
+        "Ocupación (profesores, sanitarios)"
+      ],
+      "diagnostico": "Clínico: dolor matinal en tuberosidad medial calcáneo que mejora al andar, recidiva tras reposo. Palpación dolorosa. Rx (espolón calcáneo 50% asintomáticos). ECO/RM si >3 meses o duda (engrosamiento >4mm, edema).",
+      "criteriosDiagnostico": [
+        "Dolor talón medial al levantarse",
+        "Mejora con actividad inicial, recidiva tras reposo",
+        "Palpación dolorosa tuberosidad calcánea medial",
+        "Ausencia de trauma",
+        "Excluir fractura de estrés (RM)",
+        "Sin neuropatía (Baxter)"
+      ],
+      "diagnosticoDiferencial": [
+        "Fractura de estrés calcáneo",
+        "Síndrome túnel tarso (neuropatía Baxter)",
+        "Espondiloartritis (enthesitis, bilateral)",
+        "Ruptura fascia",
+        "Bursitis retrocalcánea",
+        "Tendinopatía Aquiles",
+        "Tumor óseo (raro)"
+      ],
+      "pronostico": "90% mejora en 6-18 meses con tratamiento conservador (estiramientos, plantilla, AINEs). 10% requiere infiltración u ondas de choque. Cirugía (<5%) si refractario >6-12 meses. Recurrencias frecuentes.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Deportistas",
+          "consideraciones": "Ajustar carga y calzado; estiramientos de cadena posterior. Plantillas personalizadas si biomecánica alterada."
+        },
+        {
+          "poblacion": "Obesos",
+          "consideraciones": "Pérdida peso reduce recurrencias; plantilla y calzado amortiguado. Cuidado con fractura estrés en diabéticos."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINES tópicos/orales: corto; eficacia modesta",
+        "Corticoide infiltración: alivio 1-3 meses; riesgo rotura fascia y atrofia grasa (no >3/año)",
+        "Ondas de choque: evidencia B; alternativa a cirugía",
+        "Toxina botulínica: off-label; eficacia emergente",
+        "Evitar inyección en tendón Aquiles",
+        "Plantillas y estiramientos primera línea"
       ]
     },
     {
@@ -7435,6 +8982,61 @@
         "AAN Carpal Tunnel Guidelines",
         "PubMed (B6 CTS)",
         "PubMed (ALA neuropathy)"
+      ],
+      "epidemiologia": "Prevalencia 4-5%; incidencia 1-5/1000/año. 2-3x más en mujeres; pico 40-60. 50% bilateral. Ocupaciones manuales (teclado, ensamblaje) y embarazo.",
+      "factoresRiesgo": [
+        "Mujer (3x)",
+        "Edad 40-60",
+        "Ocupación manual (repetitivo, vibración)",
+        "Embarazo (3er trimestre)",
+        "Diabetes y tiroides",
+        "Artritis reumatoide",
+        "Obesidad",
+        "Acromegalia, amiloidosis",
+        "Trauma muñeca"
+      ],
+      "diagnostico": "Síntomas (parestesias medianas nocturnas, falta fuerza) + signos (Tinel, Phalen, Durkan) + neuroconducción (velocidad sensitiva motora). ECO para medir nervio. RM si sospecha masa.",
+      "criteriosDiagnostico": [
+        "Parestesias en territorio mediano (1º-3º dedo)",
+        "Síntomas nocturnos que mejoran al agitar la mano",
+        "Signos Tinel/Phalen positivos",
+        "Neuroconducción: enlentecimiento穿过 túnel",
+        "Debilidad tenar (abductor pollicis brevis) en avanzados",
+        "Exclusión de cervicalgia radicular"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Boston Carpal Tunnel Questionnaire (BCTQ)",
+          "uso": "Severidad de síntomas y funcional",
+          "rango": "1-5",
+          "interpretacion": "1 sin, 5 severo; puntuación promedio"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Cervicalgia radicular C6-C7",
+        "Pronador teres síndrome",
+        "Neuropatía periférica (diabética)",
+        "Tendinitis muñeca",
+        "Artritis radiocarpiana",
+        "Síndrome de De Quervain"
+      ],
+      "pronostico": "Leve: mejora con férula nocturna (80%). Moderado-severo: infiltración (60% mejora) o cirugía (90% éxito). Crónico: atrofia tenar y déficit permanente. Embarazo: resolución posparto en 50-85%.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Común 3er trimestre; férula nocturna primera línea. Infiltración con corticoides si severo (segura). Resolución posparto."
+        },
+        {
+          "poblacion": "Diabéticos",
+          "consideraciones": "Bilateral y más severo; neuropatía comórbida. Cirugía menos efectiva. Vigilar tras procedimiento."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINES: eficacia limitada; corto",
+        "Corticoide infiltración: efectiva; no más de 3/año (riesgo tendón)",
+        "Férula nocturna: primera línea, prolonga 3-6 meses",
+        "Neuropatía por B6 (exceso): vigilar suplementación",
+        "Diabéticos: ajustar tras cirugía (hiperglucemia por estrés)"
       ]
     },
     {
@@ -7524,6 +9126,57 @@
       "fuentes": [
         "PubMed (Eccentric exercise, ESWT epicondylitis)",
         "EMA HMPC Harpagophyti radix"
+      ],
+      "epidemiologia": "1-3% adultos; pico 40-60 años. Codo de tenista (epicondilitis lateral) 10x más común que medial. Ocupaciones manuales (carpinteros, fontaneros, deportistas raqueta).",
+      "factoresRiesgo": [
+        "Edad 40-60",
+        "Actividad repetitiva (golpe, agarre)",
+        "Deporte raqueta y lanzamiento",
+        "Ocupación manual",
+        "Mala técnica y equipo",
+        "Sobrecarga extensora (lateral) o flexora (medial)",
+        "Tabaco (cicatrización)",
+        "Obesidad",
+        "Rotura cuff asociada"
+      ],
+      "diagnostico": "Clínico: dolor epicondilo lateral (extensores) o medial (flexores), exacerbado por contracción resistida (Thomsen lateral, Golf medial). Palpación. ECO si duda, crónico o pre-infiltración. RM si sospecha rotura.",
+      "criteriosDiagnostico": [
+        "Dolor epicondilo lateral o medial",
+        "Exacerbación con contracción resistida (extensor/flexor)",
+        "Palpación dolorosa",
+        "Trauma o sobrecarga repetitiva",
+        "Ausencia de inestabilidad o nervio (cubital)",
+        "ECO: tendinopatía si crónico"
+      ],
+      "diagnosticoDiferencial": [
+        "Síndrome túnel cubital (medial)",
+        "Inestabilidad ligamento colateral medial",
+        "Artritis radiocapitular",
+        "Fractura o osteocondritis disecante",
+        "Bursitis olecraniana",
+        "Neuropatía radial (posterior interóseo)",
+        "Epicondilitis medial (codo de golfista)"
+      ],
+      "pronostico": "90% mejora con tratamiento conservador (reposo relativo, AINEs, férula, fisioterapia) en 6-12 meses. Recurrencia frecuente si no corrige causa. 10% refractario: infiltración, PRP, ondas de choque, cirugía (<5%).",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Deportistas",
+          "consideraciones": "Técnica y equipo correctos; fisioterapia (ejercicios eccéntricos). Retorno progresivo."
+        },
+        {
+          "poblacion": "Laboral",
+          "consideraciones": "Ergonomía, pausas y rotación de tareas; impacto absentismo."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINES tópicos: primera línea; orales corto",
+        "Corticoide infiltración: si refractario; no >3/año (rotura tendón)",
+        "No infiltración en tendón (rotura)",
+        "Ondas de choque: alternativa",
+        "PRP (plasma rico en plaquetas): datos emergentes",
+        "Fluoroquinolonas: tendinopatía (evitar)",
+        "Férula contraepicondilita: útil en fase aguda",
+        "Ejercicios eccéntricos: clave rehabilitación"
       ]
     },
     {
@@ -7609,6 +9262,56 @@
         "AAP Diaper Dermatitis",
         "PubMed (Calendula, Zinc diaper)",
         "EMA HMPC Calendula"
+      ],
+      "epidemiologia": "Afecta 25-50% lactantes; pico 9-12 meses. Hasta 2 años. Más con diarrea y uso de antibióticos. Cándida sobreinfección frecuente (>72h).",
+      "factoresRiesgo": [
+        "Lactantes (4-15 meses)",
+        "Poca frecuencia de cambio",
+        "Diarrea y heces líquidas",
+        "Antibióticos orales",
+        "Dentición (pH heces)",
+        "Alimentación complementaria",
+        "Piel sensible",
+        "Uso de pañal oclusivo",
+        "Historia de dermatitis atópica"
+      ],
+      "diagnostico": "Clínico: eritema, maceración, vesículas en zona del pañal (nalgas, genitales, pliegues). Cándida: rojo brillante, lesiones satélite, pliegues. Bacteriana (Staph): impétiginización. Rara: psoriasis del pañal, zinc.",
+      "criteriosDiagnostico": [
+        "Eritema en zona del pañal",
+        "Maceración y descamación",
+        "Lesiones satélite si Candida",
+        "Distribución convexa (contacto) o pliegues (intertrigo)",
+        "Mejoría con cambio frecuente y barreras",
+        "Excluir Candida, Staph, psoriasis, zinc"
+      ],
+      "diagnosticoDiferencial": [
+        "Intertrigo candidiásico (satélite)",
+        "Impétigo (Staph, mielites)",
+        "Psoriasis del pañal",
+        "Acrodermatitis enteropática (zinc)",
+        "Seborreica del lactante",
+        "Dermatitis atópica (raras en pañal)",
+        "Abuso (raras)"
+      ],
+      "pronostico": "Resolución 3-4 días con cambios frecuentes y crema barrera. Candida: antifúngico tópico 7-10 días. Sin medidas profilácticas, recurrencia. Complicación: sobreinfección bacteriana, erosión.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Lactantes con diarrea",
+          "consideraciones": "Cambios muy frecuentes; barrera rica (óxido de zinc 40%). Probióticos si antibióticos."
+        },
+        {
+          "poblacion": "Institucionalizados (ancianos)",
+          "consideraciones": "Similar abordaje: cambio frecuente, barrera, antifúngico si Candida. Cuidado de piel frágil."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Óxido de zinc, vaselina, dexpanthenol: cremas barrera (primera línea)",
+        "Antifúngicos tópicos (clotrimazol, miconazol): si Candida",
+        "Corticoides tópicos: solo si eccema severo, breve (atrofia)",
+        "No talco (riesgo inhalación)",
+        "Antibióticos tópicos: si Staph (mupiroicina)",
+        "Evitar pañales oclusivos 24h (aire libre ratos)",
+        "Probióticos si antibioterapia"
       ]
     },
     {
@@ -7694,6 +9397,51 @@
         "AAP Head Lice Guidelines",
         "PubMed (Tea tree, Dimethicone lice)",
         "CDC Pediculosis"
+      ],
+      "epidemiologia": "6-12 millones infestaciones/año en niños EE.UU. (OMS). Pico 3-11 años, más niñas. Cierre escolar pandemia redujo. Transmisión cabeza-cabeza principalmente.",
+      "factoresRiesgo": [
+        "Edad 3-11 años",
+        "Contacto cabeza-cabeza",
+        "Compartir peines/gorros",
+        "Niñas (pelo largo)",
+        "Hacinamiento escolar/familiar",
+        "No asociado a higiene",
+        "Resistencia a piretroides (creciente)"
+      ],
+      "diagnostico": "Clínico: prurito cervical/retroauricular, liendres (huevos) a <6mm del cuero cabelludo (viables) y live lice. Lupa o lendrera. Diferenciar liendre viable (marrón, pegada) de caspa (se desprende).",
+      "criteriosDiagnostico": [
+        "Prurito de cuero cabelludo",
+        "Liendres viables a <6mm de la base del cabello",
+        "Piojos vivos (diagnóstico definitivo)",
+        "Distribución retroauricular y occipital",
+        "Posible adenopatía cervical",
+        "Excluir dermatitis seborreica y caspa"
+      ],
+      "diagnosticoDiferencial": [
+        "Caspa (se desprende fácil)",
+        "Dermatitis seborreica",
+        "Tinea capitis",
+        "Pseudoliendres (residuos producto,艺术构思)",
+        "Psoriasis capilar"
+      ],
+      "pronostico": "Curable con pediculicida + retirada manual de liendres. Recurrencia por reinfestación o resistencia. Tratar solo si piojos vivos o liendres viables. No absentismo escolar con tratamiento.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Menores 2 años",
+          "consideraciones": "No pediculicidas químicos; retirada manual y peine fino. Permetrina 1% solo si >2 meses."
+        },
+        {
+          "poblacion": "Embarazo/lactancia",
+          "consideraciones": "Permetrina 1% tópico considerada segura. Evitar lindano (neurotóxico, retirado en UE)."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Permetrina 1%: primera línea; resistencia creciente",
+        "Dimeticona/siliconas: acción física, sin resistencia; segura",
+        "Lindano: retirado (neurotoxicidad)",
+        "Malatión: inflamable, olor; ya no disponible en muchos países",
+        "Ivermectina oral: solo refractarios; no en <15 kg ni embarazo",
+        "Repetir tratamiento a 7-10 días (ciclo vital)"
       ]
     },
     {
@@ -7783,6 +9531,55 @@
         "NICE Colic Guidelines",
         "Cochrane (Probiotics infant colic)",
         "PubMed (L. reuteri colic)"
+      ],
+      "epidemiologia": "Afecta 5-20% de lactantes; sin distinción sexo. Inicio 2-4 sem, pico 6-8, resuelve 3-4 meses. A menudo causa frustración parental y visitas urgentes.",
+      "factoresRiesgo": [
+        "Inmadurez digestiva",
+        "Sobrealimentación o aerofagia",
+        "Sensibilidad a proteínas (vaca, soja)",
+        "Microbioma inmaduro",
+        "Tabaquismo materno",
+        "Estrés parental",
+        "Disfunción relacción madre-bebé (debate)",
+        "Historia familiar atópica"
+      ],
+      "diagnostico": "Criterios Wessel (regla de 3): llanto ≥3h/día, ≥3 días/semana, ≥3 sem, en lactante <3 meses sano y bien alimentado. Excluir causas orgánicas (reflujo, alergia, invaginación, hernia) ante atípicas.",
+      "criteriosDiagnostico": [
+        "Llanto inconsolable en lactante sano",
+        "Regla de 3: ≥3h/día, ≥3d/sem, ≥3 sem",
+        "Inicio 2-4 sem; resuelve 3-4 meses",
+        "Posturas de dolor (encogimiento piernas)",
+        "Exclusión de causa orgánica",
+        "Crecimiento y exploración normales"
+      ],
+      "diagnosticoDiferencial": [
+        "Reflujo gastroesofágico",
+        "Alergia a proteína leche vaca (no IgE)",
+        "Intolerancia lactosa",
+        "Invaginación intestinal (sangre, vómito bilioso)",
+        "Hernia inguinal incarcerada",
+        "Otitis media",
+        "Infección urinaria",
+        "Fractura (abuso)"
+      ],
+      "pronostico": "Benigno y autolimitado; resuelve 3-4 meses (95%). Sin secuelas. Impacto: estrés parental, depresión postparto, riesgo shaken baby. Soporte y educación claves.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Familia",
+          "consideraciones": "Soporte emocional, pausas y red de apoyo. Vigilar depresión postparto. Educación sobre normalidad y manejo."
+        },
+        {
+          "poblacion": "Lactantes alimentados con fórmula",
+          "consideraciones": "Probar hidrolizada extensiva si sospecha alergia. Probiótico L. reuteri DSM 17938: evidencia modesta."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Probiótico L. reuteri: evidencia modesta; seguro",
+        "Simeticona: eficacia limitada, segura",
+        "No se recomiendan antiespasmódicos (retirados por efectos adversos)",
+        "Cambios de fórmula: solo si sospecha alergia",
+        "No opioides ni sedantes (peligrosos)",
+        "Materna: revisar dieta (cafeína, lácteos si alergia)"
       ]
     },
     {
@@ -7875,6 +9672,53 @@
         "CDC Parasites Guidelines",
         "PubMed (Pumpkin seeds, Garlic helminths)",
         "WHO Deworming"
+      ],
+      "epidemiologia": "Oxiuros: 20-30% niños en edad escolar. Giardia: frecuente en guarderías y viajes. Áscaris y áncylostoma: más en zonas tropicales. 1.500 millones afectados mundialmente.",
+      "factoresRiesgo": [
+        "Edad escolar (oxiuros)",
+        "Guardería",
+        "Viajes a zonas endémicas",
+        "Agua/contaminada",
+        "Saneamiento deficiente",
+        "Inmunosupresión",
+        "Contacto con animales (raras)",
+        "Higiene de manos deficiente"
+      ],
+      "diagnostico": "Clínica + análisis parasicológico en heces (3 muestras días alternos). Test Graham (celofán) para oxiuros. Serología (Echinococcus, Strongyloides) si systemic. Hemograma (eosinofilia en helmintos).",
+      "criteriosDiagnostico": [
+        "Síntomas: prurito anal (oxiuros), diarrea (Giardia), dolor abdominal",
+        "Test Graham positivo (oxiuros)",
+        "Parasitológico en heces positivo",
+        "Eosinofilia (helmintos tisulares)",
+        "Serología en formas sistémicas",
+        "Exclusión de otras causas de diarrea/prurito"
+      ],
+      "diagnosticoDiferencial": [
+        "Diarrera infecciosa viral/bacteriana",
+        "Síndrome intestino irritable",
+        "Enfermedad celiaca",
+        "SIBO",
+        "Malabsorción",
+        "Dermatitis anal (no parasitaria)"
+      ],
+      "pronostico": "Bueno con tratamiento específico. Reinfección frecuente en oxiuros (repetir tratamiento familiar). Giardia puede cronificarse con malabsorción. Complicación rara: invaginación (Áscaris), obstrucción, colangitis.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Mebendazol/albendazol: evitar 1er trimestre (teratogénicos en animales); valorar beneficio/riesgo. Piperazina segura para oxiuros."
+        },
+        {
+          "poblacion": "Niños pequeños",
+          "consideraciones": "Tratamiento a toda la familia en oxiuros; repetir a 2 sem. Higiene de manos y uñas cortas."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Mebendazol/albendazol: primera línea; evitar embarazo 1T",
+        "Albendazol: hepatotoxicidad; ajustar función hepática",
+        "Ivermectina: Strongyloides; ajustar en hepática",
+        "Metronidazol: Giardia; efecto antabús con alcohol; evitar 1T embarazo",
+        "Nitazoxanida: alternativa Giardia; bien tolerada",
+        "Paromomicina: embarazo segura (no absorbida)"
       ]
     },
     {
@@ -7954,6 +9798,52 @@
         "NIH Lactose Intolerance",
         "PubMed (Probiotics lactose)",
         "NICE Food Allergy Guidelines"
+      ],
+      "epidemiologia": "Prevalencia global 68% (adultos); variable según etnia: 5-15% norte Europa, 60-80% latinos/asiáticos, 80-90% africanos. Desarrollo gradual tras destete. Congénita rara.",
+      "factoresRiesgo": [
+        "Genético (lactasa no persistencia)",
+        "Etnia (asiático, africano, latino)",
+        "Edad (cae tras destete)",
+        "Enfermedad intestinal (Crohn, celiaquía no tratada)",
+        "Infección gastroenteritis (secundaria transitoria)",
+        "Quimioterapia/radiación intestinal",
+        "Prematuridad (inmadurez enzima)"
+      ],
+      "diagnostico": "Test de aliento de hidrógeno (oro) tras 50g lactosa; pH fecal ácido en lactantes. Test genético (C/T-13910) para no persistencia. Eliminación-res reintroducción. Biopsia intestinal (rarísima, evalúa enzima).",
+      "criteriosDiagnostico": [
+        "Síntomas tras lácteos: distensión, diarrea, gases",
+        "Test aliento H2 positivo (aumento >20 ppm)",
+        "Mejoría con dieta sin lactosa",
+        "Genético CT/TT (no persistencia primaria)",
+        "Exclusión de alergia a proteína leche (IgE)",
+        "Posible secundaria tras gastroenteritis"
+      ],
+      "diagnosticoDiferencial": [
+        "Alergia a proteína leche vaca (IgE)",
+        "Síndrome intestino irritable",
+        "SIBO",
+        "Enfermedad celiaca",
+        "Intolerancia sacarosa (rara)",
+        "Galactosemia (lactante, grave)"
+      ],
+      "pronostico": "No cura (primaria genética) pero controlable con dieta o enzima. Secundaria: reversible al tratar causa. Sin impacto nutricional si dieta correcta (calcio/vit D). Calidad de vida mejora con manejo.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Niños",
+          "consideraciones": "Primera causa intolerancia secundaria tras gastroenteritis viral; resuelve en 4-6 sem. Mantener lactosa si tolera."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Mayor prevalencia; asegurar aporte calcio y vitamina D para osteoporosis. Suplemento enzimático en lácteos."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Lactasa enzimática (producos comerciales): antes de lácteos; dosis ajustada",
+        "Producos sin lactosa: alternativa segura",
+        "Calcio y vitamina D suplementar si dieta restrictiva",
+        "Antibióticos: pueden worsen (disbiosis)",
+        "Probióticos: evidencia emergente (mejora digestión)",
+        "Evitar AINES si síntomas (irritante GI)"
       ]
     },
     {
@@ -8053,6 +9943,54 @@
         "Rome IV IBS Guidelines",
         "PubMed (Rifaximin SIBO)",
         "Cochrane (Probiotics antibiotic)"
+      ],
+      "epidemiologia": "Concepto emergente; casi universal tras antibióticos (70-80% alteración transitoria). Asociado a SIBO (4-6% población, más en síndromes intestinales), intestino irritable, obesidad y atopia.",
+      "factoresRiesgo": [
+        "Antibióticos (principal)",
+        "Dieta ultra procesada y baja en fibra",
+        "Estrés crónico",
+        "Infecciones gastrointestinales",
+        "Exceso de alcohol",
+        "Fármacos (IBP crónico, AINEs, antipsicóticos)",
+        "Parto cesárea y no lactancia (en niños)",
+        "Edad avanzada"
+      ],
+      "diagnostico": "Clínico (síntomas digestivos, fatiga, distensión) + test aliento H2/CH4 (SIBO) + análisis microbioma (emergente, no rutina). Excluir sobrecrecimiento, celiaquía, IBD. Cultivo aspirado yeyunal (patrón oro, invasivo).",
+      "criteriosDiagnostico": [
+        "Síntomas: distensión, gases, irregularidad intestinal, fatiga",
+        "Test aliento H2/CH4 positivo (>20 ppm H2 o >10 ppm CH4)",
+        "Historia de antibióticos o factores",
+        "Exclusión de IBD, celiaquía, sobrecrecimiento",
+        "Respuesta a probióticos/dieta",
+        "Microbioma (investigación, no rutina)"
+      ],
+      "diagnosticoDiferencial": [
+        "SII",
+        "Enfermedad celiaca",
+        "Enfermedad inflamatoria intestinal",
+        "Intolerancia alimentaria",
+        "Pancreatitis crónica (insuficiencia exocrina)",
+        "Sobrecarga bacterial (SIBO)",
+        "Giardiasis"
+      ],
+      "pronostico": "Transitoria post-antibiótico (resolución 4-8 sem sin tratamiento). SIBO: 40-50% recurrencia tras tratamiento. Cambio de estilo de vida (dieta, fibra, probióticos) mejora síntomas en 60-70%.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Post-antibiótico",
+          "consideraciones": "Resolución espontánea en semanas; probióticos pueden acelerar. Dieta rica en fibra prebiótica."
+        },
+        {
+          "poblacion": "SII",
+          "consideraciones": "SIBO comórbido en 30-80%; tratamiento antibiótico no absorbible (rifaximina) + dieta baja FODMAP."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Probióticos: eficacia variable; cepa específica (Lactobacillus, Bifidobacterium); seguro",
+        "Rifaximina: SIBO; no absorbida, bien tolerada; recurrencia frecuente",
+        "Antibióticos: ajustar indicación (disbiosis)",
+        "IBP crónico: aumenta riesgo SIBO (revisar indicación)",
+        "Metformina: puede causar disbiosis leve (mejora con tiempo)",
+        "Dieta FODMAP: corta fase restrictiva (4-6 sem) y reintroducción"
       ]
     },
     {
@@ -8146,6 +10084,64 @@
         "EAU Gallstone Guidelines",
         "PubMed (Lecithin, Ursodiol)",
         "EMA HMPC Cynarae folium"
+      ],
+      "epidemiologia": "Colecistitis aguda: 100/100000/año; 90% cálculos. Más mujeres (2-3x), edad 40-60 ('mujer, gorda, fértil, 40'). 10% acalculosa (críticos). 20% requiere colecistectomía urgente.",
+      "factoresRiesgo": [
+        "Mujer (2-3x)",
+        "Edad 40-60",
+        "Obesidad y pérdida rápida peso",
+        "Dieta alta grasa/baja fibra",
+        "Embarazos múltiples",
+        "Fármacos (anticonceptivos, fibratos)",
+        "Diabetes",
+        "Cirugía/trauma mayor (acalculosa)",
+        "Sepsis/críticos"
+      ],
+      "diagnostico": "Murphy positivo + fiebre + leucocitosis + ecografía (cálculos, pared >4mm, Murphy eco+) + colelitiasis. Colangitis: Charcot (fiebre, dolor, ictericia) y Reynolds (shock, confusión). CPRE si colédoco.",
+      "criteriosDiagnostico": [
+        "Murphy positivo",
+        "Fiebre y leucocitosis",
+        "Ecografía: cálculos, pared vesicular >4mm, Murphy eco+",
+        "Dolor cuadrante superior derecho ≥6h",
+        "Colecistitis aguda calculosa (90%) o acalculosa (10%)",
+        "Colangitis si colédoco (Charcot/Reynolds)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Tokyo Guidelines (TG18)",
+          "uso": "Severidad colecistitis/colangitis aguda",
+          "rango": "Leve/moderada/severa",
+          "interpretacion": "Guía manejo (médico/urgente/cirugía)"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Colecistitis crónica",
+        "Cólico biliar",
+        "Colangitis aguda",
+        "Pancreatitis biliar",
+        "Úlcera péptica perforada",
+        "Hepatitis aguda",
+        "Neumonía derecha",
+        "Infarto inferior (dolor atípico)"
+      ],
+      "pronostico": "Colecistitis aguda: 90% mejora con antibiótico + colecistectomía laparoscópica precoz (<72h). Mortalidad 1-4% (mayor ancianos/diabéticos). Colangitis: mortalidad 10-30% sin drenaje. Recurrencia cólicos si no cirugía.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Diabéticos",
+          "consideraciones": "Mayor severidad y riesgo perforación; síntomas atenuados. Empejorar y colecistectomía precoz."
+        },
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "2º-3º trimestre; cirugía laparoscópica segura en cualquier trimestre si complicación. Cólico: manejo conservador si posible."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Antibióticos: gramnegativos y anaerobios (piperacilina-tazobactam, cefalosporinas 3ª)",
+        "AINES: cólico biliar (diclofenaco IM reduce progresión a colecistitis)",
+        "Opioides: preferibles espasmolíticos (meperidina)",
+        "Colecistectomía: preferible <72h",
+        "No suspender anticoagulantes sin puente si cirugía urgente",
+        "UDCA: lito disolución solo cálculos pequeños no complicados"
       ]
     },
     {
@@ -8239,6 +10235,55 @@
         "European Society Cardiology Syncope Guidelines",
         "FDA (Midodrine, Fludrocortisone)",
         "PubMed (Glycyrrhiza hypotension)"
+      ],
+      "epidemiologia": "Prevalencia 5-30% >65 años; 50% institucionalizados. Hasta 30% diabéticos. Pico edad; más en polifarmacia. Causa 10% de caídas en ancianos y síncope.",
+      "factoresRiesgo": [
+        "Edad avanzada",
+        "Polifarmacia (diuréticos, α-bloqueantes, antidepresivos, vasodilatadores)",
+        "Diabetes (autonómica)",
+        "Parkinson y atrofias multisistémicas",
+        "Deshidratación",
+        "Encamamiento prolongado",
+        "Insuficiencia suprarrenal",
+        "Anemia",
+        "Sangrado/hipovolemia"
+      ],
+      "diagnostico": "Medición BP en supino ≥3 min y bipedestación 1 y 3 min: descenso ≥20/10 mmHg. Test de mesa basculante si neurocardiogénica. Excluir hipovolemia, fármacos, autonómica. ECG, hemograma, glucosa, electrolitos.",
+      "criteriosDiagnostico": [
+        "Descenso PAS ≥20 mmHg o PAD ≥10 mmHg al levantarse",
+        "Síntomas: mareo, sincope, caída, visión borrosa",
+        "Medición tras 3 min bipedestación",
+        "Exclusión de hipovolemia/sangrado",
+        "Polifarmacia revisada",
+        "Test mesa basculante si neurocardiogénica"
+      ],
+      "diagnosticoDiferencial": [
+        "Síncope vasovagal",
+        "Síncope cardiaco (arritmia, estenosis aórtica)",
+        "Hipovolemia (sangrado, deshidratación)",
+        "Hipoglucemia",
+        "Accidente isquémico transitorio",
+        "Síncope situacional (micción, tos)",
+        "Drop attacks"
+      ],
+      "pronostico": "Variable según causa. Ancianos: mayor riesgo caídas, fracturas, institucionalización. Diabética autonómica: progresiva, mortalidad incrementada. Reversible si fármaco o hipovolemia. Tratamiento mejora síntomas en 60-80%.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Revisar polifarmacia y deprescribing. Medidas no farmacológicas (hidratación, medias, levantarse lentamente). Asegurar calcio/vit D para osteoporosis."
+        },
+        {
+          "poblacion": "Diabéticos",
+          "consideraciones": "Neuropatía autonómica; HTA supina con hipotensión ortostática (difícil manejo). Ajustar antihipertensivos."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Revisar y suspender fármacos hipotensores (diuréticos, α-bloqueantes, vasodilatadores)",
+        "Midodrina: α-agonista; hipertensión supina (no tomar acostado)",
+        "Fludrocortisona: retención sodio; edema, IC, hipopotasemia",
+        "Droxidopa: noradrenalina prodrug; útil en autonómica",
+        "Evitar dosis nocturna de antihipertensivos",
+        "Cafeína: modesta eficacia matinal"
       ]
     },
     {
@@ -8342,6 +10387,61 @@
         "AAD Aging Skin Guidelines",
         "PubMed (Collagen, Astaxanthin skin)",
         "FDA (Tretinoin)"
+      ],
+      "epidemiologia": "Universal. 80% envejecimiento cutáneo es fotoenvejecimiento (UV). Visibles >30 años en fototipos I-II. Impacto estético y funcional (fragilidad, tumores).",
+      "factoresRiesgo": [
+        "Fotoexposición crónica (UV)",
+        "Fototipo claro (I-II)",
+        "Tabaco (matrix metaloproteinasas)",
+        "Contaminación ambiental (ozono, PM)",
+        "Dieta pobre (antioxidantes)",
+        "Estres oxidativo",
+        "Genética (telómeros)",
+        "Hormonal (menopausia)"
+      ],
+      "diagnostico": "Clínico: arrugas finas y profundas, elastosis solar (piel de naranja), hiperpigmentación (lentigos), teleangiectasias, queratosis actínica (premaligne). Dermatoscopia y biopsia si lesiones sospechosas.",
+      "criteriosDiagnostico": [
+        "Arrugas y pérdida elasticidad",
+        "Elastosis solar (exposición UV)",
+        "Lentigos solares y teleangiectasias",
+        "Queratosis actínicas (premaligne)",
+        "Piel fina y frágil",
+        "Diferenciar intrínseco (cronológico) de extrínseco (foto)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Glogau Scale",
+          "uso": "Clasificar fotoenvejecimiento",
+          "rango": "I-IV",
+          "interpretacion": "I sin arrugas (20s-30s), II arrugas movimiento (30s-40s), III arrugas reposo (50s), IV severo (60s-70s)"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Queratosis actínica (premaligne, escamosa)",
+        "Cáncer no melanoma (BCC/SCC)",
+        "Melanoma",
+        "Lentigo maligno",
+        "Porfiria cutánea tarda",
+        "Enfermedades del colágeno"
+      ],
+      "pronostico": "Progresivo. Protector solar reduce 24% fotoenvejecimiento. Retinoides tópicos revierten parcialmente. Queratosis actínica: 0.1-10% progresión a carcinoma. Crioterapia o campo de terapia (5-FU, imiquimod).",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Inmunosuprimidos (trasplante)",
+          "consideraciones": "Riesgo 100x cáncer cutáneo; revisión dermatológica每6m, FPS 50+, campo terapia."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Piel frágil (laceraciones, hematomas), lento cicatrización. Queratosis actínicas múltiples."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Retinoides tópicos (tretinoína): irritación, fotosensibilidad (FPS); no embarazo",
+        "Ácido azelaico y alfa-hidroxiácidos: irritación inicial",
+        "Vitamina C tópica: antioxidante; estable solo formulaciones pH bajo",
+        "Hidroquinona: hiperpigmentación; ocrónosis (uso prolongado)",
+        "Evitar combinación de múltiples irritantes",
+        "Protección solar imprescindible"
       ]
     },
     {
@@ -8427,6 +10527,49 @@
         "AACE Dyslipidemia Guidelines",
         "PubMed (Omega-3 TG, Berberine)",
         "EMA HMPC"
+      ],
+      "epidemiologia": "Prevalencia 20-30% adultos (TG ≥150); 25% >200 mg/dL; <2% >500 (riesgo pancreatitis). En diabetes/obesidad 35%. Subdiagnosticada como factor residual.",
+      "factoresRiesgo": [
+        "Dieta rica en azúcares simples y alcohol",
+        "Sedentarismo y obesidad visceral",
+        "Diabetes mal controlada",
+        "Hipotiroidismo",
+        "Insuficiencia renal",
+        "Fármacos (glucocorticoides, betabloqueantes, diuréticos, estrógenos, antipsicóticos atípicos)",
+        "Genético (familiar combinada, hiperquilomicronemia)"
+      ],
+      "diagnostico": "Perfil lipídico en ayunas 12h: TG ≥150 mg/dL alto, ≥200 muy alto, ≥500 severo (riesgo pancreatitis). Excluir causas secundarias. Si >1000: quiloemicronemia, riesgo pancreatitis aguda.",
+      "criteriosDiagnostico": [
+        "TG en ayunas ≥150 mg/dL",
+        "Diferenciar severidad: 150-199 ligero, 200-499 moderado, ≥500 severo, ≥1000 muy severo",
+        "Exclusión de causa secundaria (alcohol, glucosa, TSH)",
+        "Estilo de vida y revisión farmacológica",
+        "Familiar si TG muy alto en jóvenes"
+      ],
+      "diagnosticoDiferencial": [
+        "Hipercolesterolemia aislada",
+        "Dislipemia mixta",
+        "Hiperquilomicronemia familiar",
+        "Hiperlipidemia familiar combinada",
+        "Disbetalipoproteinemia"
+      ],
+      "pronostico": "TG moderado-alto: riesgo cardiovascular residual (especialmente con LDL bajo). TG ≥500: pancreatitis aguda. Tratamiento (estilo de vida + omega-3, fibratos, statinas) reduce eventos.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Diabéticos",
+          "consideraciones": "Común por insulinorresistencia; priorizar control glucémico y peso. Fibratos si TG >500."
+        },
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "TG sube 2-3x; si >1000 riesgo pancreatitis. Omega-3 seguros; evitar fibratos y estatinas."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Fibratos (fenofibrato): miopatía (especialmente con estatinas); monitorizar CP",
+        "Estatinas: reducen TG moderado; atorvastatina/rosuvastatina preferidas",
+        "Omega-3 (4g/día): reduce TG 20-50%; puede aumentar LDL",
+        "Ácido nicotínico: eficaz pero abandonado por efectos adversos (glucosa, úrico)",
+        "Evitar alcohol (mayor causa reversible)"
       ]
     },
     {
@@ -8519,6 +10662,59 @@
         "ADA Diabetes Prevention Program (DPP)",
         "PubMed (Berberine, Cinnamon prediabetes)",
         "AACE Prediabetes Guidelines"
+      ],
+      "epidemiologia": "Afecta a 7.5-15% de adultos; 50% de adultos >65. Hasta 70% de prediabetes progresa a DM2 en 10 años. Subdiagnosticada (solo 1 de cada 3 consciente). Creciente por obesidad.",
+      "factoresRiesgo": [
+        "Obesidad (IMC >25, >23 asiático)",
+        "Circunferencia abdominal (H >94, M >80 cm)",
+        "Edad >45",
+        "Familiares primer grado con DM2",
+        "Sedentarismo",
+        "Gestacional previa o macrosomía",
+        "Hipertensión, dislipemia, ECV",
+        "SOP",
+        "Origen asiático/afroamericano/latino/nativo"
+      ],
+      "diagnostico": "Glucosa basal 100-125 mg/dL (IFG) o SOG 75g 140-199 mg/dL (IGT) o HbA1c 5.7-6.4%. Confirmar con segunda prueba. Cribado cada 3 años si normal, anual si prediabetes.",
+      "criteriosDiagnostico": [
+        "Glucosa basal 100-125 mg/dL (IFG)",
+        "SOG 75g 2h: 140-199 mg/dL (IGT)",
+        "HbA1c 5.7-6.4% (39-47 mmol/mol)",
+        "Confirmación con segunda prueba",
+        "Categoría de riesgo (FINDRISC)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "FINDRISC (Finnish Diabetes Risk Score)",
+          "uso": "Riesgo de desarrollar DM2 en 10 años",
+          "rango": "0-26",
+          "interpretacion": "<7 bajo, 7-11 ligero, 12-14 moderado, 15-20 alto, >20 muy alto"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "DM2 (HbA1c ≥6.5% o glucosa ≥126)",
+        "Diabetes tipo 1 (autoinmune, anticuerpos, cetosis)",
+        "Diabetes secundaria (pancreática, esteroide)",
+        "Diabetes gestacional",
+        "Hiperglucemia por estrés"
+      ],
+      "pronostico": "Programa de cambio de estilo de vida (DPP): reduce progresión a DM2 58% en 3 años (71% en >60). Metformina reduce 31%. Reversible con pérdida peso. Sin intervención, 5-10% anual progresa.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Gestacional previa",
+          "consideraciones": "Riesgo 50% de DM2 a 10 años; cribado anual y cambio estilo de vida antes de siguiente gestación."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Metas menos estrictas (comorbilidad, hipoglucemias); priorizar calidad de vida. Cribado cada 2 años."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Metformina: primera línea si HbA1c alto o no respuesta a estilo de vida; ajustar en renal (eTFG <30 contraindicada)",
+        "Metformina: deficiencia B12 (controlar)",
+        "GLP-1 RA/SGLT2i: en obesos o cardiovasculares",
+        "Estatinas: indicadas si ECV o riesgo alto",
+        "Vigilar hipoglucemia con sulfonilureas (no preferidas)"
       ]
     },
     {
@@ -8616,6 +10812,61 @@
         "NICE Panic Disorder Guidelines",
         "PubMed (Magnesium, Inositol panic)",
         "APA Anxiety Guidelines"
+      ],
+      "epidemiologia": "Prevalencia lifetime 4-5% (DSM-5); 2x más en mujeres. Inicio 15-35 años. 50% tienen depresión mayor comórbida. Alta utilización de urgencias (cardiológicas).",
+      "factoresRiesgo": [
+        "Historia familiar (genético)",
+        "Estresores vitales (pérdidas, conflictos)",
+        "Sensibilidad a la ansiedad (interpretación catastrófica sensaciones)",
+        "Hiperreactividad noradrenérgica",
+        "Consumo de estimulantes o cannabis",
+        "Trauma/abuso en infancia",
+        "Bisexual/homosexual (minoría estrés)"
+      ],
+      "diagnostico": "DSM-5: ataques recurrentes e inesperados + preocupación persistente por otro durante 1 mes. Excluir causas médicas (hipertiroidismo, feocromocitoma, hipoglucemia, arritmias, asma, EPOC) con ECG, TSH, glucosa.",
+      "criteriosDiagnostico": [
+        "Ataques de pánico recurrentes e inesperados",
+        "Preocupación por otro ataque o sus consecuencias durante ≥1 mes",
+        "Síntomas: palpitaciones, disnea, mareo, opresión torácica, desrealización, miedo a morir/volverse loco",
+        "Cambio de comportamiento (evitación)",
+        "Exclusión de causa orgánica (ECG, TSH, glucosa)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "PDSS (Panic Disorder Severity Scale)",
+          "uso": "Severidad del trastorno de pánico",
+          "rango": "0-28",
+          "interpretacion": "0-5 remisión, 6-10 leve, 11-15 moderado, 16-20 severo, >20 muy severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Arritmia cardiaca (ECG, Holter)",
+        "Hipertiroidismo",
+        "Feocromocitoma (catecolaminas orina)",
+        "Hipoglucemia (diabéticos)",
+        "Asma/EPOC (disnea)",
+        "Embolia pulmonar",
+        "Abuso de sustancias (cafeína, cannabis, cocaína)",
+        "Crisis parciales complejas"
+      ],
+      "pronostico": "Crónico-intermitente; 30% remisión con tratamiento, 20% sintomático moderado, 10-20% deterioro funcional. TCC + ISRS reduce recurrencias 70-80%. Comorbilidad depresiva y agorafobia empeoran pronóstico.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Preferir TCC; ISRS (sertralina) si moderado-severo. Evitar benzodiacepinas (síndrome abstinencia neonatal). Hipotiroidismo gestacional descartar."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Descartar causas orgánicas (cardiológicas, metabólicas). Benzodiacepinas: riesgo caídas y deterioro cognitivo."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "ISRS (sertralina, paroxetina): primera línea; 4-6 sem para efecto; no suspender bruscamente",
+        "Benzodiacepinas (alprazolam, clonazepam): solo corto plazo; dependencia y tolerancia",
+        "Evitar betabloqueantes como monoterapia (solo síntomas físicos)",
+        "Triptófanos/5-HTP: interacción con ISRS (síndrome serotoninérgico)",
+        "Hierba de San Juan: interacción con ISRS",
+        "No cafeína/estimulantes"
       ]
     },
     {
@@ -8702,6 +10953,69 @@
         "CANMAT Bipolar Guidelines",
         "PubMed (Omega-3, NAC bipolar)",
         "NICE Bipolar Guidelines"
+      ],
+      "epidemiologia": "Prevalencia lifetime 1-2% global (tipo I) y 2-4% incluyendo tipo II y no especificado. Inicio 15-25 años. Igual en ambos sexos pero mujeres más episodios depresivos y ciclado rápido. Alto riesgo suicida (15%).",
+      "factoresRiesgo": [
+        "Genético (80% heredabilidad, familiar 1er grado 5-10x)",
+        "Estresores vitales (pérdidas, conflictos)",
+        "Consumo de sustancias (cannabis, alcohol, cocaína)",
+        "Trastornos sueño y ritmo circadiano",
+        "Trauma/abuso infancia",
+        "Cambio estacional",
+        "Postparto (psicosis puerperal)",
+        "Fármacos (antidepresores sin estabilizador, corticoides, estimulantes)"
+      ],
+      "diagnostico": "DSM-5: al menos 1 episodio maníaco (tipo I) o hipomaníaco + depresivo (tipo II). Excluir sustancias y médicas. Historia longitudinal clave. Escalas (YMRS, MADRS). Estudios: TSH, glucosa, tóxicos, neuroimagen si debut atípico.",
+      "criteriosDiagnostico": [
+        "Episodio maníaco (≥7 días o hospitalización): euforia/irritabilidad, grandiosidad, ↓sueño, verborrea, fuga ideas, ↑actividad, riesgo",
+        "Hipomaníaco (≥4 días, sin deterioro/hospitalización)",
+        "Episodio depresivo mayor",
+        "No explicable por sustancias o médica",
+        "Tipo I (manía), Tipo II (hipomanía + depresión)",
+        "Ciclotimia (≥2 años síntomas leves)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "YMRS (Young Mania Rating Scale)",
+          "uso": "Severidad manía",
+          "rango": "0-60",
+          "interpretacion": "<12 remisión, 12-19 leve, 20-25 moderado, 26-37 severo, >37 muy severo"
+        },
+        {
+          "nombre": "MADRS (Montgomery-Åsberg Depression Rating Scale)",
+          "uso": "Severidad depresión",
+          "rango": "0-60",
+          "interpretacion": "0-6 normal, 7-19 leve, 20-34 moderado, ≥35 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Trastorno esquizoafectivo",
+        "Esquizofrenia (fase aguda)",
+        "Trastorno límite de personalidad",
+        "Depresión mayor unipolar",
+        "Trastorno por estrés agudo",
+        "Manía secundaria (tiroideo, fármacos, SNC)",
+        "Trastorno por uso de sustancias (cocaína, anfetaminas)"
+      ],
+      "pronostico": "Crónico-recurrente; 90% recurrencia tras primer episodio. 60% recuperación funcional con tratamiento adherente. Comorbilidad: ansiedad, sustancias, cardio-metabólico. Mortalidad: suicidio 15%, ECV prematura. Litio reduce suicidio 50-80%.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Riesgo recaída posparto (50-70%). Litio seguro con monitorización (categoria D, valorar riesgo/beneficio). Ácido valproico y carbamazepina: teratogénicos (evitar). Antipsicóticos atípicos: datos limitados."
+        },
+        {
+          "poblacion": "Jóvenes debut",
+          "consideraciones": "Diagnóstico diferencial con TDAH y trastorno límite. Vigilar surgir de manía con antidepresores. Familia y escuela implicadas."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Litio: estrecho margen (0.6-1.2 mEq/L); hipotiroidismo, polidipsia/poliuria, nefrotoxicidad, temblor. Controlar levels, TSH, renal, calcio",
+        "Ácido valproico: hepatotoxicidad, teratogénico, trombocitopenia; no en embarazo",
+        "Carbamazepina: inducir CYP (interacciones numerosas), hiponatremia, Stevens-Johnson (HLA-B*1502)",
+        "Antipsicóticos atípicos: síndrome metabólico, prolactina, sedación",
+        "Lamotrigina: rash (titular lento, Stevens-Johnson)",
+        "Evitar antidepresores sin estabilizador (switch maníaco)",
+        "No suspender bruscamente (recaída)"
       ]
     },
     {
@@ -8801,6 +11115,54 @@
         "NICE Low Back/Neck Pain Guidelines",
         "EMA HMPC Harpagophyti radix",
         "PubMed (Curcumin, Boswellia)"
+      ],
+      "epidemiologia": "Prevalencia lifetime 67% cervical, 80% lumbar; punto 12-33% cervical. Causa más común de años vividos con discapacidad (GBD). Pico 35-55 años; recurrencias en 60-80%.",
+      "factoresRiesgo": [
+        "Postura prolongada (ordenador, móvil)",
+        "Sedentarismo",
+        "Trabajo manual y vibraciones",
+        "Estrés psicosocial",
+        "Depresión y catastrofización",
+        "Obesidad",
+        "Trastornos sueño",
+        "Trauma (latigazo)",
+        "Edad (degeneración)"
+      ],
+      "diagnostico": "Clínico + exploración neurológica (fuerza, reflejos, Lhermitte, Spurling). Imágenes solo si red flags (trauma, fiebre, pérdida peso, déficit neurológico, cáncer, >50 años, inmunosupresión, osteoporosis) o persistencia >6 sem.",
+      "criteriosDiagnostico": [
+        "Dolor cervical mecánico (no radicular)",
+        "Sin red flags (febrcula, peso, déficit)",
+        "Movilidad limitada y contractura muscular",
+        "Mejoría con AINEs y ejercicio",
+        "Radicular: dolor irradiado a brazo (Spurling, déficit dermatomal)",
+        "Imagen si red flags o persistencia"
+      ],
+      "diagnosticoDiferencial": [
+        "Radialgia cervical (hernia discal)",
+        "Espondilosis cervical",
+        "Latigazo cervical",
+        "Mialgia tensional",
+        "Cervicalgia referida (hombro, ATM)",
+        "Meningitis (rigidez, fiebre)",
+        "Arteria disecante (dolor + síntomas neurológicos)"
+      ],
+      "pronostico": "Agudo: 60-80% mejora en 6 sem. Crónico: recurrencias y discapacidad. Factor psicosocial impacta más que orgánico. Pronóstico favorable con ejercicio y manejo activo; peor con RM anormal sin indicación.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Espondilosis y estenosis más frecuentes; mielopatía cervical (signos piramidales, Lhermitte) requiere valoración urgente. Osteoporosis: cuidado con manipulación."
+        },
+        {
+          "poblacion": "Laboral",
+          "consideraciones": "Ergonomía y pausas activas; programas de prevención. Impacto laboral y absentismo."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINES: riesgo GI, renal y cardiovascular (no >7-14 días sin supervisión)",
+        "Opioides: solo agudo severo; dependencia y depresión respiratoria",
+        "Miorrelajantes (ciclobenzaprina): somnolencia, anticolinérgico; no en ancianos",
+        "Corticoides orales: eficacia limitada en no radicular",
+        "Duloxetina: útil en crónico; cuidar HTA e interacciones"
       ]
     },
     {
@@ -8894,6 +11256,53 @@
         "AAD Cheilitis Guidelines",
         "PubMed (Calendula, Honey wounds)",
         "EMA HMPC Calendulae flos"
+      ],
+      "epidemiologia": "Frecuente en fototipos claros y exposición crónica (marineros, agricultores). Precanceroso: 6-10% progresión a carcinoma epidermoide. Más en varones >50.",
+      "factoresRiesgo": [
+        "Fototipo claro (I-II)",
+        "Exposición UV crónica",
+        "Tabaco y alcohol",
+        "Edad >50",
+        "Varón",
+        "Inmunosupresión (trasplante)",
+        "Liquen plano crónico",
+        "Deficiencia inmunológica"
+      ],
+      "diagnostico": "Clínico: labio inferior eritematoso, descamativo, atrófico, con lesiones blanco-grisáceas y fisuras. Biopsia si eritroleukoplasia, induración o ulceración (descartar carcinoma).",
+      "criteriosDiagnostico": [
+        "Labio inferior: eritema, descamación, atrofia",
+        "Leucoplasia o eritroplasia",
+        "Fisuras crónicas",
+        "Exposición UV importante",
+        "Biopsia si atipia (descartar carcinoma)",
+        "6-10% progresión a carcinoma epidermoide"
+      ],
+      "diagnosticoDiferencial": [
+        "Carcinoma epidermoide labial (induración, ulceración)",
+        "Queilitis angular",
+        "Queilitis exfoliativa",
+        "Liquen plano oral",
+        "Herpes labial crónico",
+        "Cándidiasis labial"
+      ],
+      "pronostico": "Lesiones premalignas: 6-10% progresión a carcinoma epidermoide. Protector solar y abandono del tabaco reducen riesgo. Crioterapia, 5-FU, imiquimod y cirugía si displasia. Vigilancia cada 6-12 meses.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Trasplantes/inmunosuprimidos",
+          "consideraciones": "Riesgo aumentado de carcinoma; vigilancia estrecha. Protector solar estricto y campo terapia."
+        },
+        {
+          "poblacion": "Fumadores crónicos",
+          "consideraciones": "Sinergia con UV; priorizar cesación. Biopsia ante cualquier cambio sospechoso."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "5-Fluorouracilo tópico: eficaz; irritación intensa (informar al paciente)",
+        "Imiquimod: eficaz; reacciones inflamatorias",
+        "Fotoprotección FPS 50+ labial obligatoria",
+        "Retinoides tópicos: datos limitados; no embarazo",
+        "Crioterapia: primera línea en lesiones discretas",
+        "Vermilectomía si displasia severa o recurrencia"
       ]
     },
     {
@@ -8984,6 +11393,62 @@
         "AAN Trigeminal Neuralgia Guidelines",
         "PubMed (ALA, Capsaicin neuropathy)",
         "Neuropathic Pain Guidelines"
+      ],
+      "epidemiologia": "Incidencia 4-13/100000/año. Pico >50 años (90% >40). Frecuente en esclerosis múltiple (1-2%). Más rama maxilar y mandibular. Impacto calidad de vida severo (suicida).",
+      "factoresRiesgo": [
+        "Edad >50",
+        "Esclerosis múltiple (jóvenes, bilateral)",
+        "Compresión vascular (asas arteriales)",
+        "Trauma o cirugía facial",
+        "Tumor posterior fosa (raro)",
+        "Herpes zoster (postherpética)",
+        "Aneurisma o malformación arteriovenosa"
+      ],
+      "diagnostico": "Criterios ICHD-3: dolor paroxístico, eléctrico, unilateral, en territorio V2-V3, segundos-minutos, desencadenado por estímulos inocuos (lavarse, hablar, masticar). RM descarta compresión/tumor/EM.",
+      "criteriosDiagnostico": [
+        "Dolor unilateral, paroxístico, eléctrico",
+        "Territorio trigémino (V2-V3 más común)",
+        "Duración segundos a 2 min",
+        "Desencadenantes inocuos (lavado, cepillado)",
+        "Sin déficit neurológico (clasica) o con (sintomatica)",
+        "RM: compresión vascular o lesión"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "VAS/Escala de dolor",
+          "uso": "Intensidad de dolor",
+          "rango": "0-10",
+          "interpretacion": "0 sin, 10 máximo imaginable (TGN usualmente 7-10)"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Dolor dental (tratamiento dental innecesario)",
+        "Sinusitis",
+        "Cefalea en racimos",
+        "Migraña",
+        "Dolor atípico facial (somatico)",
+        "Neuralgia postherpética",
+        "Tumor o EM (RM)"
+      ],
+      "pronostico": "Crónico-intermitente; remisiones y recurrencias. 70% respuesta a carbamazepina. Cirugía (descompresión microvascular, gamma knife, rizotomía) si refractario. Recurrencia postratamiento 30-50%. Calidad de vida muy afectada.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Jóvenes (<40)",
+          "consideraciones": "Sospechar esclerosis múltiple; RM y LCR. Bilateral sugiere EM."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Más prevalente; ajustar dosis (hepatorrenal). Cirugía con riesgo según comorbilidad."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Carbamazepina: primera línea; hiponatremia, hepatotoxicidad, interacciones (CYP3A4)",
+        "Oxcarbamazepina: menor interacciones; hiponatremia",
+        "Gabapentina/pregabalina: segunda línea; sedación, ajustar renal",
+        "Baclofeno: alternativa; sedación, retirar gradual",
+        "Antidepresivos tricíclicos: útil en neuropático",
+        "Opioides: eficacia limitada; evitar",
+        "Fármacos: no suspender bruscamente"
       ]
     },
     {
@@ -9081,6 +11546,68 @@
         "ACR Rheumatoid Arthritis Guidelines",
         "PubMed (Omega-3, Curcumin RA)",
         "EMA HMPC Harpagophyti radix"
+      ],
+      "epidemiologia": "Prevalencia 0.5-1% global; 2-3x más en mujeres. Inicio 30-50 años. 1ª causa de invalidez laboral en <65. Comorbilidad cardiovascular elevada (1.5x).",
+      "factoresRiesgo": [
+        "Mujer (2-3x)",
+        "Edad 40-60",
+        "Genético (HLA-DRB1, PTPN22)",
+        "Tabaquismo (principal ambiental)",
+        "Obesidad",
+        "Infecciones (Epstein-Barr, gingivitis Porphyromonas gingivalis)",
+        "Nulliparidad",
+        "Amamantamiento (protector)"
+      ],
+      "diagnostico": "Criterios ACR/EULAR 2010: artritis sinovial + factor reumatoide/anti-CCP + PCR/ESR + duración >6 sem. Radiografía (erosiones) y ecografía/RM (sinovitis) en precoz. Hemograma, bioquímica, FR, anti-CCP, PCR.",
+      "criteriosDiagnostico": [
+        "Artritis ≥1 con sinovitis no explicable por otra enfermedad",
+        "Duración >6 semanas",
+        "Factor reumatoide y/o anti-CCP positivos",
+        "PCR/ESR elevados",
+        "Afectación simétrica de pequeñas articulaciones (MCP, MTP, muñecas)",
+        "Rigidez matutina >1h"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "DAS28 (Disease Activity Score 28 joints)",
+          "uso": "Actividad de la enfermedad",
+          "rango": "0-9.4",
+          "interpretacion": "<2.6 remisión, 2.6-3.2 baja, 3.3-5.1 moderada, >5.1 alta"
+        },
+        {
+          "nombre": "HAQ (Health Assessment Questionnaire)",
+          "uso": "Discapacidad funcional",
+          "rango": "0-3",
+          "interpretacion": "0 sin, 3 incapacidad total"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Artritis psoriásica",
+        "Lupus eritematoso sistémico",
+        "Espondiloartritis",
+        "Osteoartritis (no inflamatoria, asimétrica)",
+        "Artritis reactiva",
+        "Artritis infecciosa (aguda)",
+        "Polimialgia reumática (>50 años)"
+      ],
+      "pronostico": "Con tratamiento precoz (fármacos biológicos y DMARDs), 40-50% remisión. Sin tratar, deformidad y discapacidad en 10-20 años. Mortalidad incrementada 1.5x (cardiovascular, infecciones, linfoma). Ventana de oportunidad: primeros 3 meses.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Mejoría en 75% durante gestación; recaída posparto. Sulfasalazina y hidroxicloroquina seguras. Suspender MTX, leflunomida, biológicos."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Inicio más agudo, comorbilidades; valorar polifarmacia. Corticoides bajo umbral (osteoporosis, diabetes)."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Metotrexato (primera línea): suplementar ácido fólico; hepatotoxicidad, mielosupresión, neumonitis",
+        "Biológicos (anti-TNF): riesgo tuberculosis (PPD/IGRA previo), infecciones, descompensación IC",
+        "Corticoides: puente; mínima dosis efectiva (osteoporosis, diabetes, ECV)",
+        "AINES: riesgo GI/renal/cardiovascular",
+        "Leflunomida: teratogénica (washout colesteramina), hepatotoxicidad",
+        "Vacunación (neumococo, gripe, COVID, VHB) antes de biológicos"
       ]
     },
     {
@@ -9174,6 +11701,68 @@
         "ACR Sjögren Guidelines",
         "PubMed (Omega-7 Sjogren)",
         "TFOS DEWS II"
+      ],
+      "epidemiologia": "Prevalencia 0.5-1% global; 2ª enfermedad autoinmune más frecuente. 90% mujeres; pico 40-60. Primario o secundario (AR, LES). Hasta 5% linfoma B (mucosa-associated).",
+      "factoresRiesgo": [
+        "Mujer (9:1)",
+        "Edad 40-60",
+        "Genético (HLA-DR3)",
+        "Otras autoinmunes (tiroides, AR, LES)",
+        "Infección viral (VHC, EBV, CMV)",
+        "Menopausia",
+        "Fármacos (anticolinérgicos, antidepresivos, antihistamínicos) - xerosis secundaria"
+      ],
+      "diagnostico": "Criterios ACR/EULAR 2016: ojos secos (Schirmer ≤5mm/5min), boca seca (biopsia glándula salivar menor: focos ≥1), anti-Ro/SSA positivos. Puntuación ponderada ≥4. Excluir causas secundarias (fármacos, radiación, hepatitis C).",
+      "criteriosDiagnostico": [
+        "Boca seca subjetiva + objetiva",
+        "Ojos secos subjetivos + Schirmer positivo",
+        "Anti-Ro/SSA o anti-La/SSB positivos",
+        "Biopsia glándula salivar menor: sialadenitis focal ≥1 foco/4mm²",
+        "Score ≥4 (ACR/EULAR 2016)",
+        "Exclusión de xerostomía farmacológica"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "ESSDAI (EULAR Sjögren's Syndrome Disease Activity Index)",
+          "uso": "Actividad sistémica",
+          "rango": "0-123",
+          "interpretacion": "0 inactiva, 1-4 baja, 5-12 moderada, ≥13 alta"
+        },
+        {
+          "nombre": "ESSPRI (EULAR Sjögren's Syndrome Patient Reported Index)",
+          "uso": "Síntomas patient",
+          "rango": "0-10",
+          "interpretacion": "0-4 leve, 5-7 moderado, ≥8 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Xerostomía farmacológica (>500 fármacos)",
+        "Sarcoidosis",
+        "Amiloidosis",
+        "Graft versus host",
+        "Infección VHC, VIH",
+        "Síndrome de IgG4",
+        "Radiación cabeza-cuello"
+      ],
+      "pronostico": "Crónico; sin cura. Buen pronóstico global (mortalidad similar a población en primario). Complicaciones: linfoma B MALT (5-10%, vigilancia), afectación pulmonar, renal, neuropatía, vasculitis. Calidad de vida muy afectada (sequedad, fatiga).",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Anti-Ro/La: riesgo bloqueo cardiaco congénito (2%) y lupus neonatal. Control fetal ecográfico 16-26 sem."
+        },
+        {
+          "poblacion": "Linfoma",
+          "consideraciones": "Vigilar: parotidomegalia persistente, reumatorio, crioglobulinemia, hipocomplementemia. PET/biopsia si sospecha."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Pilocarpina (5mg qid): colinérgico; sudoración, GI; no en glaucoma, asma",
+        "Cevimelina: alternativa; similar perfil",
+        "Sustitutos salivales y lágrimas: alivio sintomático",
+        "Hidroxicloroquina: modesta eficacia; control oftalmológico",
+        "Corticoides/inmunosupresores: solo sistémico severo",
+        "Evitar anticolinérgicos y antihistamínicos (empeoran xerosis)",
+        "Evitar AINES si renal"
       ]
     },
     {
@@ -9274,6 +11863,75 @@
         "NIA Alzheimer Diagnostic Guidelines",
         "Finger Study (FINGER)",
         "PubMed (Ginkgo, Omega-3, MIND diet)"
+      ],
+      "epidemiologia": "55 millones mundial (OMS); 60-70% de demencias. Prevalencia 5% >65, 30% >85. Proyección 139M en 2050. Mujeres más afectadas (longevidad). 1ª causa de discapacidad en mayores.",
+      "factoresRiesgo": [
+        "Edad (principal)",
+        "Genético (APOE ε4, APP, PSEN1/2 autosómico)",
+        "Cardiovascular (HTA, diabetes, dislipemia, obesidad midlife)",
+        "Sedentarismo",
+        "Bajo nivel educativo",
+        "Aislamiento social y depresión",
+        "TCE con pérdida conocimiento",
+        "Pérdida auditiva (Lancet 2020)",
+        "Tabaco y alcohol excesivo"
+      ],
+      "diagnostico": "Clínico (criterios NIA-AA): declive cognitivo progresivo + RM (atrofia hipocampo) + LCR (Aβ↓, tau↑) o PET amiloide. Descartar causas reversibles (TSH, B12, folato, sífilis, depresión, metabólicas).",
+      "criteriosDiagnostico": [
+        "Declive cognitivo progresivo (memoria + otra función)",
+        "Impacto en AVD",
+        "Exclusión de otras causas (depresión, metabólica, vascular)",
+        "RM: atrofia hipocampal/medial temporal",
+        "Biomarcadores (LCR/PET) si duda",
+        "Inicio insidioso y progresión"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "MMSE (Mini-Mental State Examination)",
+          "uso": "Crivado cognitivo",
+          "rango": "0-30",
+          "interpretacion": "24-30 normal, 18-23 leve, 10-17 moderado, <10 severo"
+        },
+        {
+          "nombre": "MoCA (Montreal Cognitive Assessment)",
+          "uso": "Crivado más sensible que MMSE",
+          "rango": "0-30",
+          "interpretacion": "≥26 normal; <25 sugiere deterioro"
+        },
+        {
+          "nombre": "GDS (Global Deterioration Scale)",
+          "uso": "Estadificar demencia",
+          "rango": "1-7",
+          "interpretacion": "1-3 predemencia, 4 leve, 5 moderado, 6-7 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Demencia vascular (escalar, fluctuante)",
+        "Demencia frontotemporal (conducta, lenguaje)",
+        "Demencia con cuerpos de Lewy (fluctuación, alucinaciones, rigidez)",
+        "Depresión (seudodemencia)",
+        "Hipotiroidismo, déficit B12",
+        "Tumores, hematoma subdural crónico",
+        "Encefalopatía de Wernicke"
+      ],
+      "pronostico": "Progresivo e irreversible. Supervivencia media 8-10 años tras diagnóstico (3-20). Declive funcional y pérdida autonomía. Mortalidad por infecciones (neumonía) y caídas. Intervenciones no farmacológicas y control comorbilidades mejoran calidad.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Cuidadores",
+          "consideraciones": "Sobrecarga elevada; valorar respiro, apoyo psicológico y grupos. Depresión del cuidador impacta en paciente."
+        },
+        {
+          "poblacion": "Predemencia (DCL)",
+          "consideraciones": "Deterioro cognitivo leve: 10-15%/año progresan a demencia. Intervención multifactorial (cardiovascular, ejercicio, cognitiva)."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Donepezilo/rivastigmina/galantamina: colinérgicos; bradicardia, síncope, GI",
+        "Memantina: NMDA; vértigo, confusión",
+        "Antipsicóticos atípicos: aumentan mortalidad en demencia (FDA black box)",
+        "Benzodiacepinas: empeoran cognición y caídas (evitar)",
+        "Anticolinérgicos: empeoran cognición (revisar polifarmacia)",
+        "Controlar HTA y glucosa (prevención/descenso)"
       ]
     },
     {
@@ -9373,6 +12031,68 @@
         "AHA/ASA Stroke Prevention Guidelines",
         "PubMed (Omega-3, Magnesium stroke)",
         "ESVS Carotid Guidelines"
+      ],
+      "epidemiologia": "2ª causa de muerte mundial (OMS); 12.2 millones nuevos/año. Prevalencia lifetime 25% a partir de 25 años. 87% isquémico, 13% hemorrágico. 1 de cada 4 tendrá un ictus recurrente. 80% prevenible.",
+      "factoresRiesgo": [
+        "Hipertensión (principal)",
+        "Fibrilación auricular (5x)",
+        "Diabetes",
+        "Dislipemia (LDL)",
+        "Tabaco (2x)",
+        "Obesidad y sedentarismo",
+        "Apnea del sueño",
+        "Dieta pobre (DASH bajo)",
+        "Alcohol excesivo",
+        "Edad >55, varón, antecedentes familiares",
+        "EPOD/vasculopatía periférica"
+      ],
+      "diagnostico": "Clínica aguda (FAST: Face, Arm, Speech, Time) + neuroimagen urgente: TAC sin contraste (descarta hemorragia); RM difusión si isquémico y ventana terapéutica. Doppler carotídeo, ECG/Holter, bioquímica (glucosa, lípidos, coagulación).",
+      "criteriosDiagnostico": [
+        "Déficit neurológico focal súbito",
+        "TAC sin contraste: descarta hemorragia (isquémico)",
+        "RM difusión: confirsa isquemia precoz",
+        "Etiología (TOAST): aterotrombótico, cardioembólico, lacunar, otro, indeterminado",
+        "Ventana terapéutica <4.5h (alteplasa IV)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "NIHSS (National Institutes of Health Stroke Scale)",
+          "uso": "Severidad del ictus agudo",
+          "rango": "0-42",
+          "interpretacion": "0 sin déficit, 1-4 leve, 5-15 moderado, 16-20 moderado-severo, 21-42 severo"
+        },
+        {
+          "nombre": "ABCD2",
+          "uso": "Riesgo de ictus tras AIT",
+          "rango": "0-7",
+          "interpretacion": "0-3 bajo, 4-5 moderado, 6-7 alto riesgo (≤2 días)"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Hemorragia subaracnoidea (cefalea trueno)",
+        "Crisis epiléptica (postictal)",
+        "Hipoglucemia",
+        "Migraina con aura",
+        "Tumor (instalación subaguda)",
+        "Sepsis/delirium"
+      ],
+      "pronostico": "Mortalidad ictus agudo 15-20% (isquémico), 30-50% (hemorrágico). 50% secuelas a 6 meses. Recurrencia 10-15% en 1 año sin tratamiento. Prevención secundaria (antiagregación, estatinas, control factores) reduce recurrencia 80%.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "FA",
+          "consideraciones": "Anticoagulación (DOAC preferidos); CHA2DS2-VASc guía indicación. Triple terapia con antiagregante solo en coronariado agudo."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Mayor riesgo y comorbilidad; ajustar dosis de alteplasa (>80 con precaución). DOACs ajustar a función renal."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Alteplasa: contraindicaciones (hemorragia, cirugía reciente, HTA no controlada >185/110)",
+        "Antiagregación: aspirina o clopidogrel; doble terapia corta tras AIT menor riesgo",
+        "DOACs: ajustar a renal (CrCl); antidotos disponibles (idarucizumab, andexanet)",
+        "Estatinas altas dosis (atorvastatina 80): prevención secundaria; vigilar muscular y hepático",
+        "No suspender bruscamente antiagregación/anticoagulación"
       ]
     },
     {
@@ -9468,6 +12188,57 @@
         "NAMS Menopause Guidelines",
         "PubMed (Omega-7 vaginal)",
         "EMA HMPC Vitex"
+      ],
+      "epidemiologia": "Hasta 10-20% mujeres lifetime; 12% postmenopáusicas. Subdiagnosticada (50% no consulta). Más en postmenopausia, postparto y enfermedades pélvicas. Impacto relaciones y calidad de vida.",
+      "factoresRiesgo": [
+        "Menopausia (atrofia vaginal)",
+        "Postparto (lactancia, episiotomía)",
+        "Endometriosis y adenomiosis",
+        "Vaginitis (cándida, bacteriana, atrófica)",
+        "Vulvodinia",
+        "Trauma/abuso sexual",
+        "Ansiedad y depresión",
+        "Fármacos (ISRS, anticonceptivos, antihistamínicos)",
+        "Anomalías anatómicas (raras)"
+      ],
+      "diagnostico": "Anamnesis (localización: entrada/profunda; tipo: ardor/penetración) + exploración (vulva, especuloscopia, tacto) + cultivos y pH vaginal. Eco pélvico si dolor profundo. Valorar endometriosis, vulvodinia, atrofia.",
+      "criteriosDiagnostico": [
+        "Dolor genital durante relación",
+        "Diferenciar superficial (entrada) de profundo",
+        "Identificar causa: atrófica, infecciosa, endometriosis, vulvodinia, psicosomática",
+        "Exploración y cultivos",
+        "Exclusión de causa orgánica antes de psicosomática",
+        "Impacto en calidad de vida y relaciones"
+      ],
+      "diagnosticoDiferencial": [
+        "Vaginitis infecciosa (cándida, tricomonas, BV)",
+        "Vaginitis atrófica",
+        "Endometriosis",
+        "Vulvodinia (vestibulodinia)",
+        "Prolapso o quistes",
+        "Anomalías anatómicas",
+        "Vaginismo",
+        "Dolor pélvico crónico"
+      ],
+      "pronostico": "Variable según causa. Atrófica: excelente con estrogeno local. Infecciosa: curable. Vulvodinia: difícil, multidisciplinario. Psicosomática: TCT. Sin tratar empeora relaciones y autoestima.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Postmenopausia",
+          "consideraciones": "Causa más común atrofia. Estrogeno local (crema, ovulo, anillo) muy eficaz. Lubricantes y humectantes. Valorar terapia hormonal si síntomas generales."
+        },
+        {
+          "poblacion": "Postparto",
+          "consideraciones": "Lactancia (estrogeno bajo): lubricantes; suele mejorar al cesar lactancia. Evaluación de episiotomía/trauma."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Estrogenos tópicos: primera línea en atrofia; seguros (sistémico mínimo)",
+        "Lubricantes (agua/silicona): elegir sin glicerina si irritación",
+        "Antifúngicos: si candidiasis",
+        "Anestésicos tópicos (lidocaína): vulvodinia; usar corto",
+        "ISRS: pueden worsen (disfunción sexual)",
+        "Anticonceptivos: pueden reducir libido y lubricación",
+        "Flibanserina/bremelanotida: deseo hipoactivo (no para dispareunia)"
       ]
     },
     {
@@ -9561,6 +12332,54 @@
         "AAD Melasma Guidelines",
         "PubMed (Tranexamic, Glutathione melasma)",
         "EMA HMPC Glycyrrhiza"
+      ],
+      "epidemiologia": "Prevalencia 1-5% general; 15-50% embarazadas, 40-50% mujeres latinas/asiáticas. 90% mujeres; fototipos III-V. Crónico-recurrente. Impacto psicosocial.",
+      "factoresRiesgo": [
+        "Mujer",
+        "Fototipo III-V",
+        "Embarazo y anticonceptivos",
+        "Fotoexposición UV y luz visible",
+        "Historia familiar (50%)",
+        "Terapias hormonales",
+        "Cosméticos fotosensibilizantes",
+        "Tiroides autoinmune"
+      ],
+      "diagnostico": "Clínico: máculas hiperpigmentadas simétricas en frente, mejillas, labio superior. Wood diferenciar epidérmico (acentuado) de dérmico (no). Dermatoscopia. Excluir enfermedad de Addison.",
+      "criteriosDiagnostico": [
+        "Hiperpigmentación simétrica facial",
+        "Localización: frente, malar, mandibular, labio superior",
+        "Agravamiento por sol/embarazo/hormonas",
+        "Wood: epidérmico (contraste ++) o mixto",
+        "Exclusión de Addison y otras hiperpigmentaciones",
+        "Historia hormonal"
+      ],
+      "diagnosticoDiferencial": [
+        "Hiperpigmentación postinflamatoria",
+        "Lentigos solares",
+        "Ocrónosis (hidroquinona prolongada)",
+        "Enfermedad de Addison (generalizada, mucosas)",
+        "Cloasma medicamentoso (fenotiazinas, minociclina)",
+        "Fraktes pigmentarias"
+      ],
+      "pronostico": "Crónico-recurrente. Epidérmico responde mejor; dérmico refractario. Recidiva con sol/hormonas. Embarazo: mejora posparto (50-70%) pero suele persistir. Protector solar mineral reduce recurrencias.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Cloasma gravídico; protección solar estricta. Evitar despigmentantes (hidroquinona): posponer al posparto. Azelaico y vit C seguros."
+        },
+        {
+          "poblacion": "Fototipos oscuros",
+          "consideraciones": "Mayor riesgo; luz visible agrava (FPS mineral con hierro). Desp pigmentantes con riesgo de ocrónosis."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Hidroquinona 2-4%: primera línea; no >3 meses (ocrónosis, exógena)",
+        "Tretinoína: combinación (triple Kligman); no embarazo",
+        "Ácido azelaico 15-20%: seguro en embarazo",
+        "Vitamina C y niacinamida: alternativas seguras",
+        "Corticoides tópicos: solo breves en combinación (no solos)",
+        "Protector solar mineral (óxido hierro) bloquea luz visible",
+        "Evitar hormonales (anticonceptivos) si posible"
       ]
     },
     {
@@ -9648,6 +12467,55 @@
         "EuroGuiDerm Psoriasis Guidelines",
         "PubMed (Indigo naturalis, Omega-3 psoriasis)",
         "EMA HMPC"
+      ],
+      "epidemiologia": "10-50% de pacientes con psoriasis; 80-90% a lo largo de la vida. Psoriasis ungueal aislada en 5-10%. Asociada a artritis psoriásica (80% con uñas). Impacto funcional y estético.",
+      "factoresRiesgo": [
+        "Psoriasis cutánea",
+        "Artritis psoriásica",
+        "Historia familiar",
+        "Trauma ungueal (Koebner)",
+        "Estres",
+        "Infección (estreptococo)",
+        "Fármacos (β-bloqueantes, litio, antimaláricos, AINEs)",
+        "Frío/sequedad"
+      ],
+      "diagnostico": "Clínico: pozos (pitting), onicólisis, decoloración (mancha de aceite), hiperqueratosis subungueal, paroniquia. Dermatoscopia. Biopsia (rarra) si duda con onicomicosis. Cultivo micológico descarta hongo.",
+      "criteriosDiagnostico": [
+        "Pitting (pozos en table)",
+        "Onicólisis (despegamiento distal)",
+        "Mancha de aceite ( amarillo-marrón)",
+        "Hiperqueratosis subungueal",
+        "Paroniquia",
+        "Psoriasis cutánea o familiar",
+        "Cultivo micológico negativo (descarta hongo)"
+      ],
+      "diagnosticoDiferencial": [
+        "Onicomicosis (cultivo positivo)",
+        "Liquen plano",
+        "Eccema",
+        "Alopecia areata (pitting fino)",
+        "Trauma mecánico",
+        "Dischromia farmacológica",
+        "Amiloidosis"
+      ],
+      "pronostico": "Crónico-recurrente. Responde peor que psoriasis cutánea. Impacto funcional (50% dificultad tareas finas). Relación con artritis psoriásica (marcador). Tratamientos sistémicos si severa.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Artritis psoriásica",
+          "consideraciones": "Uñas implicadas en 80%; marcaron riesgo de AxPsA. Tratamiento sistémico (biológicos) si artritis activa."
+        },
+        {
+          "poblacion": "Ocupaciones manuales",
+          "consideraciones": "Trauma empeora (Koebner); protección de manos. Onicólisis aumenta riesgo sobreinfección."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Corticoides tópicos bajo oclusión: breve; atrofia",
+        "Análogos vit D (calcipotriol): combinación con corticoide; hipercalemia rara",
+        "Tazaroteno: retinoide tópico; irritación; no embarazo",
+        "Inyección intralesional (triamcinolona): dolor; 4-6 sem",
+        "Metotrexato/ciclosporina/biológicos si severa",
+        "Evitar trauma manicura agresiva"
       ]
     },
     {
@@ -9736,6 +12604,54 @@
         "ATA Hypothyroidism Guidelines",
         "PubMed (Selenium Hashimoto)",
         "EMA HMPC Laminaria"
+      ],
+      "epidemiologia": "Tiroiditis autoinmune más común; prevalencia 5-15% mujeres, 1-5% varones. Pico 30-50 años. Causa más frecuente de hipotiroidismo en zonas yodadas. Familiar agregación.",
+      "factoresRiesgo": [
+        "Mujer (5-10x)",
+        "Edad 30-50",
+        "Genético (HLA-DR3/5, CTLA-4)",
+        "Historia familiar autoinmune",
+        "Exceso o déficit de yodo",
+        "Radiación cervical",
+        "Infección viral",
+        "Embarazo (postparto)",
+        "Otras autoinmunes (DM1, celiaquía, Addison)"
+      ],
+      "diagnostico": "TSH elevada + T4 libre normal (subclínico) o baja (clínico) + anti-TPO positivos (90%). ECO: tiroides heterogénea, hipoecogénica. Autoanticuerpos: anti-TPO, anti-tiroglobulina.",
+      "criteriosDiagnostico": [
+        "TSH elevada (>4 mUI/L)",
+        "T4 libre normal (subclínico) o baja (clínico)",
+        "Anti-TPO positivo (90%)",
+        "ECO: tiroides hipoecogénica heterogénea",
+        "Bocio o atrofia",
+        "Exclusión de otras causas (yodo, fármacos, postparto)"
+      ],
+      "diagnosticoDiferencial": [
+        "Hipotiroidismo central (TSH baja/normal)",
+        "Hipotiroidismo por yodo/fármacos (amiodarona, litio)",
+        "Tiroiditis subaguda de Quervain (dolor, VSG)",
+        "Tiroiditis silente (transitoria)",
+        "Bocio nodular",
+        "Cáncer tiroideo"
+      ],
+      "pronostico": "Crónico y progresivo; 5% anual de subclínico a clínico. Tratamiento sustitutivo con levotiroxina normalize TSH; buena calidad de vida. En embarazo: riesgo aborto, prematuridad, neurodesarrollo fetal.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Embarazo",
+          "consideraciones": "Aumenta需求 levotiroxina 30-50%; TSH <2.5 primer trimestre, <3 segundo-tercero. Anti-TPO+: riesgo prematurez y pérdida. Control cada 4-6 sem."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Inicio insidioso; levotiroxina起始 25-50μg y ajustar lentamente (riesgo cardiaco). Subclínico: valorar síntomas y riesgo cardiaco."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Levotiroxina: administrar en ayunas 30-60 min antes; no con calcio, hierro, café (absorción)",
+        "Amiodarona: antagonista (hipo/hiper)",
+        "Litio: inhibe liberación hormonal",
+        "Estatinas: potencian efecto (riesgo muscular)",
+        "Anticonceptivos orales: aumentan需求",
+        " glucocorticoides: pueden reducir需求 en inicio"
       ]
     },
     {
@@ -9830,6 +12746,72 @@
         "GOLD COPD Guidelines",
         "PubMed (NAC COPD exacerbations)",
         "EMA HMPC Hederae helicis"
+      ],
+      "epidemiologia": "Prevalencia global 11-13% en >40 años; 3ª causa de mortalidad mundial (OMS). Subdiagnosticada (solo 50% conscientes). Fumadores 80-90% de casos. Coste sanitario elevado.",
+      "factoresRiesgo": [
+        "Tabaquismo (80-90%)",
+        "Exposición ocupacional (polvos, humos, cadmio, carbón)",
+        "Contaminación ambiental (PM2.5, biomasa)",
+        "Déficit de alfa-1 antitripsina (genético, 1-2%)",
+        "Asma/infecciones respiratorias recurrentes en infancia",
+        "Bajo peso al nacer",
+        "Socioeconómico bajo"
+      ],
+      "diagnostico": "Clínica + espirometría con broncodilatador: FEV1/FVC <0.70 (post-broncodilatador) confirma obstrucción crónica. Gravedad por FEV1 (%). DLCO si sospecha enfisema. TAC tórax si sospecha enfisema/alfa-1. Gasometría si SpO2 <92%.",
+      "criteriosDiagnostico": [
+        "Disnea progresiva (mMRC)",
+        "Tos crónica",
+        "Expectoración crónica",
+        "Historia de exposición (tabaco, ocupacional)",
+        "Espirometría post-BD: FEV1/FVC <0.70",
+        "Exclusión de asma (variabilidad, eosinofilia)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "mMRC (modified Medical Research Council)",
+          "uso": "Disnea funcional",
+          "rango": "0-4",
+          "interpretacion": "0 sin disnea, 4 disnea para vestirse/asearse"
+        },
+        {
+          "nombre": "CAT (COPD Assessment Test)",
+          "uso": "Impacto sintomático",
+          "rango": "0-40",
+          "interpretacion": "0-10 bajo, 11-20 medio, 21-30 alto, 31-40 muy alto impacto"
+        },
+        {
+          "nombre": "BODE (Body mass, Obstruction, Dyspnea, Exercise)",
+          "uso": "Predictor de mortalidad",
+          "rango": "0-10",
+          "interpretacion": "Puntos >7: supervivencia media <3 años"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Asma (reversible, eosinófila)",
+        "Bronquiectasias",
+        "Insuficiencia cardiaca",
+        "Fibrosis pulmonar",
+        "Tuberculosis",
+        "Anemia/disnea por causa cardiaca"
+      ],
+      "pronostico": "Enfermedad progresiva; supervivencia mediana 8-10 años tras diagnóstico. Exacerbaciones aceleran declive FEV1. Comorbilidades (cardiovascular, osteoporosis, sarcopenia) impactan mortalidad. Oxigenoterapia prolonga vida en insuficiencia respiratoria.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Comorbilidades múltiples; ajustar polifarmacia. Vacunación antigripal, antineumocócica y COVID. Valorar fragilidad y rehabilitación respiratoria."
+        },
+        {
+          "poblacion": "Alfa-1 antitripsina",
+          "consideraciones": "Forma genética; afectos jóvenes no fumadores. Terapia sustitutiva específica; cribado familiar."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Beta-2 agonistas: taquicardia, hipopotasemia; cuidado cardiovasculares",
+        "Corticoides inhalados: riesgo neumonía (especialmente con tiotropio)",
+        "Teofilina: estrecho margen terapéutico; interacciones (macrólidos, fluoroquinolonas)",
+        "Mucolíticos (NAC): eficacia modesta",
+        "Opioides: cuidado en insuficiencia respiratoria",
+        "Betabloqueantes cardioselectivos seguros (no no selectivos)"
       ]
     },
     {
@@ -9927,6 +12909,70 @@
         "IASP Chronic Pain Guidelines",
         "CDC Opioid Guidelines",
         "PubMed (Curcumin, ALA chronic pain)"
+      ],
+      "epidemiologia": "Prevalencia 2-8% global; 80-90% mujeres. Inicio 30-55 años. Hasta 20% de consultas de reumatología. Asociada a fatiga crónica, síndrome de intestino irritable y migraña.",
+      "factoresRiesgo": [
+        "Mujer (3-4x)",
+        "Edad 30-55",
+        "Genético (familiar 8x)",
+        "Trauma físico/emocional",
+        "Infección viral (Ebstein-Barr, Q)",
+        "Trastornos del sueño",
+        "Sensibilización central",
+        "Ansiedad y depresión",
+        "Sedentarismo"
+      ],
+      "diagnostico": "Criterios ACR 2010/2016: dolor crónico generalizado (WPI) + severidad síntomas (SSS); descartar otras causas. No mandatory tender points; laboratory minimal to exclude mimics. Hemograma, TSH, PCR (normal), Vit D.",
+      "criteriosDiagnostico": [
+        "Dolor generalizado (WPI ≥7 con SSS ≥5 o WPI 3-6 con SSS ≥9)",
+        "Síntomas ≥3 meses",
+        "Sin explicación alternativa",
+        "Síntomas: fatiga, sueño no reparador, cognitivos",
+        "PCR y ESR normales (excluye inflamación)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "WPI (Widespread Pain Index)",
+          "uso": "Número de áreas dolorosas",
+          "rango": "0-19",
+          "interpretacion": "Parte de criterios ACR 2016"
+        },
+        {
+          "nombre": "FIQ-R (Fibromyalgia Impact Questionnaire-Revised)",
+          "uso": "Impacto funcional",
+          "rango": "0-100",
+          "interpretacion": "0-30 leve, 31-59 moderado, 60-100 severo"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Hipotiroidismo",
+        "Polimialgia reumática (>50 años, PCR elevada)",
+        "Artritis reumatoide",
+        "Lupus",
+        "Síndrome de fatiga crónica",
+        "Miopatías",
+        "Depresión somatizada",
+        "Déficit vitamina D/B12"
+      ],
+      "pronostico": "Crónico, fluctuante; no mortal. 25% mejora con tratamiento integrador; 50% funcional con síntomas; 25% incapacitado. Ejercicio aeróbico y TCC más efectivos que fármacos. Calidad de vida muy afectada.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Mujeres jóvenes",
+          "consideraciones": "Deterioro laboral y familiar; abordaje psicosocial. Comorbilidad ansiedad/depresión frecuente."
+        },
+        {
+          "poblacion": "Ancianos",
+          "consideraciones": "Diferenciar de polimialgia reumática (PCR, edad, respuesta corticoides); comorbilidades."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "Duloxetina/milnacipran: ISRN; cuidar HTA e interacciones",
+        "Pregabalina/gabapentina: somnolencia, mareo, ajustar renal",
+        "Amitriptilina: primera línea barata; efectos anticolinérgicos en ancianos",
+        "Ciclobenzaprina: empeora calidad sueño REM",
+        "Opioides: NO recomendados; riesgo dependencia",
+        "Corticoides: no indicados (sin inflamación)",
+        "Evitar polifarmacia y combinar sedantes"
       ]
     },
     {
@@ -10018,6 +13064,63 @@
         "AES Shoulder Frozen Guidelines",
         "PubMed (Physiotherapy frozen shoulder)",
         "EMA HMPC Harpagophyti radix"
+      ],
+      "epidemiologia": "Prevalencia 2-5%; pico 40-60 años; más en mujeres y diabéticos (hasta 20%). 20-30% bilateral. Fases: congelación (dolor), congelada (rigidez), descongelación (recuperación).",
+      "factoresRiesgo": [
+        "Diabetes (2-4x)",
+        "Edad 40-60",
+        "Mujer",
+        "Trauma/cirugía hombro",
+        "Inmovilización prolongada",
+        "Hipotiroidismo",
+        "Enfermedad cardiovascular",
+        "Parkinson",
+        "Dupuytren asociado"
+      ],
+      "diagnostico": "Clínico: dolor + rigidez activa y pasiva, especialmente rotación externa. Pérdida de movilidad pasiva (diferencial con tendinitis). Rx normal (descarta artrosis); RM si sospecha rotura cuff.",
+      "criteriosDiagnostico": [
+        "Dolor insidioso hombro",
+        "Rigidez activa y pasiva",
+        "Pérdida rotación externa ≥50% (signo clave)",
+        "Duración >1 mes",
+        "Rx sin artrosis/calcificaciones",
+        "Diabéticos: más severo y prolongado"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Constant-Murley Score",
+          "uso": "Función y dolor de hombro",
+          "rango": "0-100",
+          "interpretacion": "<55 deficiente, 55-69 moderado, 70-89 bueno, 90-100 excelente"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Tendinitis manguito rotador",
+        "Artrosis glenohumeral",
+        "Capsulitis adhesiva (es lo mismo)",
+        "Bursitis subacromial",
+        "Cervicalgia referida",
+        "Fractura",
+        "Neuropatía axilar"
+      ],
+      "pronostico": "Autolimitado pero prolongado (1-3 años). 3 fases: dolor (3-9m), rigidez (4-12m), recuperación (6-24m). 40% secuelas moderadas movilidad. Diabéticos: más refractarios. Fisioterapia agresiva e infiltración aceleran.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Diabéticos",
+          "consideraciones": "Más prevalente y refractario; múltiple y bilateral. Control glucémico. Manipulación bajo anestesia si refractario."
+        },
+        {
+          "poblacion": "Post-cirugía/trauma",
+          "consideraciones": "Prevención con movilización precoz. Diferenciar de artrifibrosis post-cirugía cuff."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINES: eficacia limitada en fase dolorosa",
+        "Corticoide intraarticular: útil en fase dolor; alivio 6-8 sem",
+        "Hidrodilatación: eficaz en rigidez",
+        "Manipulación bajo anestesia: si refractario; riesgo fractura",
+        "Opioides: evitar (crónico, no maligno)",
+        "Diabéticos: ajustar glucosa (corticoides hiperglucemia)"
       ]
     },
     {
@@ -10111,6 +13214,65 @@
         "ACOG Dysmenorrhea Guidelines",
         "NICE Heavy Menstrual Bleeding",
         "PubMed (Magnesium, Omega-3 dysmenorrhea)"
+      ],
+      "epidemiologia": "50-90% adolescentes; 15% severa con absentismo escolar. Primaria (90%): sin patología. Secundaria: endometriosis, malformaciones. Inicio 6-12 meses tras menarquia.",
+      "factoresRiesgo": [
+        "Edad <20",
+        "Menarquia precoz",
+        "Sangrado abundante",
+        "Tabaquismo",
+        "Historia familiar",
+        "Sobrepeso o bajo peso",
+        "Ansiedad y estrés",
+        "Nulliparidad",
+        "Actividad física extrema"
+      ],
+      "diagnostico": "Anamnesis (edad menarquia, características dolor, ciclos) + exploración (externa, vaginal si activa sexualmente) + eco pélvico (descarta malformación, endometriosis). Primaria: dolor cólico suprapúbico antes/durante menstruación, sin patología.",
+      "criteriosDiagnostico": [
+        "Dolor cólico suprapúbico antes/durante menstruación",
+        "Inicio 6-12 meses post-menarquia (primaria)",
+        "Irradiación a espalda y muslos",
+        "Síntomas asociados: nauseas, diarrea, cefalea, fatiga",
+        "Sin patología pélvica (eco normal)",
+        "Secundaria: patología (endometriosis, malformación)"
+      ],
+      "escalasClinicas": [
+        {
+          "nombre": "Escala de Andersch y Milsom",
+          "uso": "Severidad de dismenorrea",
+          "rango": "0-3",
+          "interpretacion": "0 sin dolor, 1 leve (sin limitación), 2 moderada (actividad reducida), 3 severa (incapacidad)"
+        }
+      ],
+      "diagnosticoDiferencial": [
+        "Dismenorrea primaria (sin patología)",
+        "Endometriosis (adolescente: 50% refractaria)",
+        "Malformaciones müllerianas",
+        "MIH (DIU, dispositivo)",
+        "Enfermedad inflamatoria pélvica",
+        "Quiste ovárico/torsión",
+        "Embarazo ectópico",
+        "Síndrome del intestino irritable"
+      ],
+      "pronostico": "Primaria: mejora con AINEs y anticonceptivos; desaparece tras embarazo en algunas. Secundaria: depende de causa. Endometriosis juvenil: diagnóstico retrasado 6-8 años; progresiva. Sin tratar, impacto escolar y psicosocial.",
+      "poblacionesEspeciales": [
+        {
+          "poblacion": "Adolescentes sexualmente activas",
+          "consideraciones": "Anticonceptivos hormonales (DIU, píldora): primera línea si no respuesta a AINEs. Protección doble."
+        },
+        {
+          "poblacion": "Endometriosis juvenil",
+          "consideraciones": "Sospechar si refractaria a AINEs/ACO. Eco pélvica y RM. Tratamiento hormonal prolongado; laparoscopia selectiva."
+        }
+      ],
+      "alertasFarmaceuticas": [
+        "AINEs (ibuprofeno, naproxeno): primera línea; iniciar antes del inicio del dolor",
+        "Paracetamol: efficacy modesta; alternativa si AINEs contraindicados",
+        "Anticonceptivos hormonales: segunda línea; reducen volumen y dolor",
+        "Escarina: reduce flujo, eficacia modesta",
+        "DIU con levonorgestrel: útil en endometriosis",
+        "Opioides: evitar (crónico)",
+        "Ácido tranexámico: si sangrado abundante"
       ]
     }
   ]
