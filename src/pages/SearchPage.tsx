@@ -65,6 +65,7 @@ export function SearchPage() {
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
   const [selectedPathology, setSelectedPathology] = useState<DbPathology | null>(null);
   const [showAllChips, setShowAllChips] = useState(false);
+  const [chipSearch, setChipSearch] = useState('');
   const [ingredientsExpanded, setIngredientsExpanded] = useState(true);
   const [visibleCount, setVisibleCount] = useState(RESULTS_PAGE_SIZE);
 
@@ -186,13 +187,19 @@ export function SearchPage() {
 
   const visibleChips = showAllChips ? indicationChips : indicationChips.slice(0, CHIPS_COLLAPSED_COUNT);
 
+  const filteredChips = useMemo(() => {
+    if (!chipSearch.trim()) return indicationChips;
+    const q = normalize(chipSearch);
+    return indicationChips.filter(c => normalize(c.value).includes(q));
+  }, [indicationChips, chipSearch]);
+
   return (
     <div className="space-y-4 max-w-6xl mx-auto">
       {/* Perfil del cliente (filtro de seguridad para asesoría) */}
       <ClientProfileSelector />
 
-      {/* ===== Barra de filtros compacta (Eje B) ===== */}
-      <div className="space-y-2.5">
+      {/* ===== Barra de filtros compacta (Eje B) — sticky bajo el header ===== */}
+      <div className="sticky top-16 z-20 -mx-4 lg:-mx-8 px-4 lg:px-8 py-3 bg-background/95 backdrop-blur border-b border-border space-y-2.5">
         {/* Patología/Indicación — colapsable, top 6 con iconos */}
         {indicationChips.length > 0 && (
           <div className="relative">
@@ -209,41 +216,105 @@ export function SearchPage() {
               <BookOpen className="w-3.5 h-3.5" />
               Patología / Indicación
             </p>
-            <div className="flex flex-wrap gap-2">
-              {visibleChips.map((chip) => {
-                const isActive = indication === chip.value;
-                const Icon = indicationIcon(chip.value);
-                return (
+
+            {/* Chips colapsados (top 6) — siempre visibles */}
+            {!showAllChips && (
+              <div className="flex flex-wrap gap-2">
+                {visibleChips.map((chip) => {
+                  const isActive = indication === chip.value;
+                  const Icon = indicationIcon(chip.value);
+                  return (
+                    <button
+                      key={chip.value}
+                      onClick={() => { setIndication(isActive ? '' : chip.value); }}
+                      className={cn(
+                        'inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all border',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                        isActive
+                          ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                          : 'bg-transparent text-foreground border-border hover:bg-muted hover:border-primary/40'
+                      )}
+                      aria-pressed={isActive}
+                    >
+                      <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      {humanize(chip.value)}
+                      <span className={cn('text-xs tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                        {chip.count}
+                      </span>
+                    </button>
+                  );
+                })}
+                {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
                   <button
-                    key={chip.value}
-                    onClick={() => { setIndication(isActive ? '' : chip.value); setShowAllChips(false); }}
-                    className={cn(
-                      'inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all border',
-                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                      isActive
-                        ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                        : 'bg-transparent text-foreground border-border hover:bg-muted hover:border-primary/40'
-                    )}
-                    aria-pressed={isActive}
+                    onClick={() => { setShowAllChips(true); setChipSearch(''); }}
+                    className="inline-flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium border border-dashed border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
-                    {humanize(chip.value)}
-                    <span className={cn('text-xs tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
-                      {chip.count}
-                    </span>
+                    {`+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
+                    <ChevronDown className="w-4 h-4" />
                   </button>
-                );
-              })}
-              {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
-                <button
-                  onClick={() => setShowAllChips(!showAllChips)}
-                  className="inline-flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium border border-dashed border-border text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  {showAllChips ? 'Ver menos' : `+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
-                  <ChevronDown className={cn('w-4 h-4 transition-transform', showAllChips && 'rotate-180')} />
-                </button>
-              )}
-            </div>
+                )}
+              </div>
+            )}
+
+            {/* Panel expandido: scrollable con búsqueda interna */}
+            {showAllChips && (
+              <div className="rounded-xl border border-border bg-card p-3 shadow-sm">
+                <div className="flex items-center gap-2 mb-2.5">
+                  <div className="relative flex-1">
+                    <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                    <input
+                      type="text"
+                      value={chipSearch}
+                      onChange={(e) => setChipSearch(e.target.value)}
+                      placeholder="Filtrar indicaciones..."
+                      autoFocus
+                      className="h-8 w-full rounded-lg border border-border bg-background pl-8 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+                      aria-label="Filtrar indicaciones"
+                    />
+                  </div>
+                  <button
+                    onClick={() => { setShowAllChips(false); setChipSearch(''); }}
+                    className="inline-flex items-center gap-1 px-2.5 h-8 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <X className="w-4 h-4" />
+                    Cerrar
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
+                  {filteredChips.length === 0 ? (
+                    <p className="text-sm text-muted-foreground py-2">Sin coincidencias para "{chipSearch}"</p>
+                  ) : (
+                    filteredChips.map((chip) => {
+                      const isActive = indication === chip.value;
+                      const Icon = indicationIcon(chip.value);
+                      return (
+                        <button
+                          key={chip.value}
+                          onClick={() => { setIndication(isActive ? '' : chip.value); setShowAllChips(false); setChipSearch(''); }}
+                          className={cn(
+                            'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all border',
+                            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                            isActive
+                              ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                              : 'bg-transparent text-foreground border-border hover:bg-muted hover:border-primary/40'
+                          )}
+                          aria-pressed={isActive}
+                        >
+                          <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                          {humanize(chip.value)}
+                          <span className={cn('text-xs tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                            {chip.count}
+                          </span>
+                        </button>
+                      );
+                    })
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  {filteredChips.length} de {indicationChips.length} indicaciones
+                </p>
+              </div>
+            )}
           </div>
         )}
 

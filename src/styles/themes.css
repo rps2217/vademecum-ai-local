@@ -14,14 +14,14 @@
 :root,
 .light {
   /* Backgrounds */
-  --background: #fafafa;
-  --background-secondary: #ffffff;
-  --background-tertiary: #f5f5f5;
+  --background: #f7f4ec;
+  --background-secondary: #fdfbf5;
+  --background-tertiary: #efeadd;
   
   /* Foreground (text) */
-  --foreground: #171717;
-  --foreground-muted: #737373;
-  --foreground-subtle: #a3a3a3;
+  --foreground: #1a1714;
+  --foreground-muted: #6b6358;
+  --foreground-subtle: #9a9080;
   
   /* Primary - Emerald 500 */
   --primary: #10b981;
@@ -39,16 +39,16 @@
   --accent-hover: #e9d5ff;
   
   /* Cards & Surfaces */
-  --card: #ffffff;
+  --card: #fdfbf5;
   --card-foreground: #171717;
-  --card-hover: #fafafa;
+  --card-hover: #f7f4ec;
   
-  --popover: #ffffff;
+  --popover: #fdfbf5;
   --popover-foreground: #171717;
   
   /* Borders */
-  --border: #e5e5e5;
-  --border-hover: #d4d4d4;
+  --border: #e0d8c5;
+  --border-hover: #c9bea3;
   --border-focus: #10b981;
   
   /* Inputs */
@@ -85,7 +85,7 @@
   --info-bg: var(--color-info-50);
   
   /* Sidebar */
-  --sidebar-background: var(--color-white);
+  --sidebar-background: #f2eee2;
   --sidebar-foreground: var(--color-gray-700);
   --sidebar-primary: var(--color-primary-600);
   --sidebar-primary-foreground: var(--color-white);
@@ -95,7 +95,7 @@
   --sidebar-ring: var(--color-primary-500);
   
   /* Header */
-  --header-background: var(--color-white);
+  --header-background: #f2eee2;
   --header-foreground: var(--color-gray-900);
   --header-border: var(--color-gray-200);
   
