@@ -41,7 +41,6 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Inicio', icon: Search, href: '/' },
-  { id: 'search', label: 'Buscar', icon: Search, href: '/search' },
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
   { id: 'synergies', label: 'Sinergias', icon: Link2, href: '/synergies' },
   { id: 'analysis', label: 'Análisis', icon: BarChart3, href: '/analysis' },
@@ -137,11 +136,12 @@ export function AppShell() {
   const closeSidebar = () => setSidebarOpen(false);
 
   // Páginas que filtran en sitio al escribir (no navegan)
-  const SEARCH_PAGES = ['/search', '/synergies', '/knowledge', '/admin', '/analysis'];
+  const isSearchPage = (path: string) =>
+    path === '/' || ['/synergies', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (query.trim() && !SEARCH_PAGES.some((p) => location.pathname.startsWith(p))) {
-      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    if (query.trim() && !isSearchPage(location.pathname)) {
+      navigate(`/?q=${encodeURIComponent(query.trim())}`);
     }
   };
 

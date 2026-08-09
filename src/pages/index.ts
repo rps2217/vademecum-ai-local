@@ -4,7 +4,6 @@
 
 export { LoginPage } from './LoginPage';
 export { OnboardingPage } from './OnboardingPage';
-export { HomePage } from './HomePage';
 export { SearchPage } from './SearchPage';
 export { KnowledgePage } from './KnowledgePage';
 export { SynergiesPage } from './SynergiesPage';

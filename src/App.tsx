@@ -13,7 +13,6 @@ import { useDb } from '@/app/DbProvider';
 // Pages
 import { LoginPage } from '@/pages/LoginPage';
 import { OnboardingPage } from '@/pages/OnboardingPage';
-import { HomePage } from '@/pages/HomePage';
 import { SearchPage } from '@/pages/SearchPage';
 import { KnowledgePage } from '@/pages/KnowledgePage';
 import { SynergiesPage } from '@/pages/SynergiesPage';
@@ -61,8 +60,8 @@ function AppRoutes() {
       
       {/* Protected routes */}
       <Route path="/" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
-        <Route index element={<HomePage />} />
-        <Route path="search" element={<SearchPage />} />
+        <Route index element={<SearchPage />} />
+        <Route path="search" element={<Navigate to="/" replace />} />
         <Route path="knowledge" element={<KnowledgePage />} />
         <Route path="synergies" element={<SynergiesPage />} />
         <Route path="analysis" element={<AnalysisPage />} />
