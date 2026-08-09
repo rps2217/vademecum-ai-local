@@ -14,7 +14,7 @@ import { Card } from '@/ui/Card';
 import {
   X, AlertTriangle, Pill, Leaf, FlaskConical, Home, Droplet,
   Shield, Activity, Stethoscope, BookOpen, Lightbulb, ChevronRight,
-  Microscope, TrendingUp, Users, AlertOctagon, ClipboardList, Gauge,
+  Microscope, Users, AlertOctagon, ClipboardList, ChevronDown,
 } from 'lucide-react';
 
 interface PathologyDetailProps {
@@ -132,19 +132,6 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
             <p className="text-sm text-foreground leading-relaxed">{pathology.definicion}</p>
           </section>
 
-          {/* Epidemiología */}
-          {pathology.epidemiologia && (
-            <section className="p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900">
-              <div className="flex items-start gap-2">
-                <TrendingUp className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground mb-1">Epidemiología</h3>
-                  <p className="text-sm text-foreground leading-relaxed">{pathology.epidemiologia}</p>
-                </div>
-              </div>
-            </section>
-          )}
-
           {/* Factores de riesgo */}
           {pathology.factoresRiesgo && pathology.factoresRiesgo.length > 0 && (
             <section>
@@ -192,60 +179,46 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
             </section>
           </div>
 
-          {/* Diagnóstico */}
+          {/* Diagnóstico — contraído por defecto (info clínica detallada, no esencial para orientación rápida) */}
           {pathology.diagnostico && (
-            <section>
-              <div className="flex items-center gap-2 mb-2">
+            <details className="group rounded-lg border border-purple-200 dark:border-purple-900 bg-purple-50/40 dark:bg-purple-950/20">
+              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
                 <Microscope className="w-4 h-4 text-purple-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Diagnóstico</h3>
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Diagnóstico</h3>
+                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="px-3 pb-3 pt-1 space-y-2">
+                <p className="text-sm text-foreground leading-relaxed">{pathology.diagnostico}</p>
+                {pathology.criteriosDiagnostico && pathology.criteriosDiagnostico.length > 0 && (
+                  <ul className="space-y-1">
+                    {pathology.criteriosDiagnostico.map((crit, i) => (
+                      <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                        <span className="text-purple-500 mt-0.5">•</span>
+                        {crit}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-              <p className="text-sm text-foreground leading-relaxed">{pathology.diagnostico}</p>
-              {pathology.criteriosDiagnostico && pathology.criteriosDiagnostico.length > 0 && (
-                <ul className="mt-2 space-y-1">
-                  {pathology.criteriosDiagnostico.map((crit, i) => (
-                    <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <span className="text-purple-500 mt-0.5">•</span>
-                      {crit}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </section>
+            </details>
           )}
 
-          {/* Escalas clínicas */}
-          {pathology.escalasClinicas && pathology.escalasClinicas.length > 0 && (
-            <section>
-              <div className="flex items-center gap-2 mb-2">
-                <Gauge className="w-4 h-4 text-teal-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Escalas clínicas</h3>
-              </div>
-              <div className="space-y-2">
-                {pathology.escalasClinicas.map((esc, i) => (
-                  <div key={i} className="p-3 rounded-lg bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900">
-                    <p className="text-sm font-medium">{esc.nombre}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{esc.uso}</p>
-                    {esc.rango && <p className="text-xs text-muted-foreground mt-0.5"><span className="font-medium">Rango:</span> {esc.rango}</p>}
-                    {esc.interpretacion && <p className="text-xs text-muted-foreground mt-0.5"><span className="font-medium">Interpretación:</span> {esc.interpretacion}</p>}
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Diagnóstico diferencial */}
+          {/* Diagnóstico diferencial — contraído por defecto */}
           {pathology.diagnosticoDiferencial && pathology.diagnosticoDiferencial.length > 0 && (
-            <section>
-              <div className="flex items-center gap-2 mb-2">
+            <details className="group rounded-lg border border-rose-200 dark:border-rose-900 bg-rose-50/40 dark:bg-rose-950/20">
+              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
                 <ClipboardList className="w-4 h-4 text-rose-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Diagnóstico diferencial</h3>
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Diagnóstico diferencial</h3>
+                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="px-3 pb-3 pt-1">
+                <div className="flex flex-wrap gap-2">
+                  {pathology.diagnosticoDiferencial.map((dd, i) => (
+                    <Badge key={i} variant="secondary" className="text-xs bg-rose-50 dark:bg-rose-950/30">{dd}</Badge>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {pathology.diagnosticoDiferencial.map((dd, i) => (
-                  <Badge key={i} variant="secondary" className="text-xs bg-rose-50 dark:bg-rose-950/30">{dd}</Badge>
-                ))}
-              </div>
-            </section>
+            </details>
           )}
 
           {/* Tratamiento Alopático */}
