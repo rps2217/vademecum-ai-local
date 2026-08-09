@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
-    "version": "1.8.0",
+    "version": "1.9.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 147,
+    "total": 157,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -7731,6 +7731,549 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "FDA OTC demulcente + Commission E (Ulmus rubra)"
+      }
+    },
+    {
+      "id": "pimpinela",
+      "nombre": "Pimpinela (Hierba de las Llagas)",
+      "nombresAlternativos": [
+        "Potentilla anserina",
+        "Silverweed",
+        "Pimpinella anserina",
+        "Pimpinela mayor"
+      ],
+      "nombreCientifico": "Potentilla anserina L.",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "diarrea",
+        "gastritis",
+        "hemorroides",
+        "heridas",
+        "cicatrizacion"
+      ],
+      "descripcion": "Planta rastrera rica en taninos astringentes. Usada tradicionalmente por sus propiedades hemostáticas y cicatrizantes. Monografiada por Commission E.",
+      "mecanismoAccion": "Los taninos (agrimoniina) ejercen acción astringente precipitando proteínas superficiales, formando capa protectora sobre mucosas y piel. Efecto hemostático y antiinflamatorio local.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aerea",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Extracto"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Evitar en estreñimiento crónico (astringente)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Puede reducir absorcion de medicamentos (taninos) - espaciar 2h"
+      ],
+      "tags": [
+        "taninos",
+        "astringente",
+        "hemostatico",
+        "cicatrizante",
+        "Commission E"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "German Commission E (Potentillae anserinae herba)"
+      }
+    },
+    {
+      "id": "pulmonaria",
+      "nombre": "Pulmonaria",
+      "nombresAlternativos": [
+        "Pulmonaria officinalis",
+        "Lungwort",
+        "Hierba de los pulmones",
+        "Pulmonária"
+      ],
+      "nombreCientifico": "Pulmonaria officinalis L.",
+      "familia": "Boraginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "tos",
+        "bronquitis",
+        "asma",
+        "garganta"
+      ],
+      "descripcion": "Planta cuyo nombre deriva de la doctrina de las signaturas (hojas manchadas = pulmón). Rica en mucílagos y taninos. Usada tradicionalmente como béquico y expectorante.",
+      "mecanismoAccion": "Los mucílagos ejercen efecto demulcente sobre la mucosa respiratoria (alivia irritación). Los taninos aportan acción astringente. Efecto béquico (antitusivo) y expectorante leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aerea",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Jarabe"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "1-2 semanas",
+      "advertencias": [
+        "Contiene alcaloides pirrolizidínicos en trazas (uso limitado <2 semanas)",
+        "No usar en embarazo/lactancia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hepatotoxicos (sinergia teórica por PAs)"
+      ],
+      "tags": [
+        "mucilago",
+        "bequico",
+        "expectorante",
+        "respiratorio",
+        "tradicional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "ESCOP Monographs +传统 uso respitatorio"
+      }
+    },
+    {
+      "id": "pensamiento",
+      "nombre": "Pensamiento Silvestre",
+      "nombresAlternativos": [
+        "Viola tricolor",
+        "Wild pansy",
+        "Heartsease",
+        "Tricolor"
+      ],
+      "nombreCientifico": "Viola tricolor L.",
+      "familia": "Violaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "dermatologico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "eccema",
+        "acne",
+        "psoriasis",
+        "dermatitis",
+        "tos"
+      ],
+      "descripcion": "Planta europea usada tradicionalmente para afecciones cutáneas (eczema, dermatitis atópica, acné) y como expectorante. Monografiada por EMA HMPC y Commission E.",
+      "mecanismoAccion": "Flavonoides (violanina, rutina), saponinas y mucílagos. Acción antiinflamatoria, depurativa y emoliente cutánea. Efecto sudorífico y expectorante leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aerea florida",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Extracto seco",
+        "Crema"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar en embarazo (efecto emenagogo descrito)",
+        "Posibles reacciones alérgicas cutáneas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa"
+      ],
+      "tags": [
+        "EMA HMPC",
+        "flavonoides",
+        "depurativo",
+        "dermatologico",
+        "antialergico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC Violae tricoloris herba + Commission E"
+      }
+    },
+    {
+      "id": "ajenjo",
+      "nombre": "Ajenjo (Absintio)",
+      "nombresAlternativos": [
+        "Artemisia absinthium",
+        "Wormwood",
+        "Absinthe",
+        "Asensio"
+      ],
+      "nombreCientifico": "Artemisia absinthium L.",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "anorexia",
+        "parasitos_intestinales",
+        "gases"
+      ],
+      "descripcion": "Planta amarga tradicional usada como tónico digestivo y vermífugo. Monografiada por EMA HMPC y Commission E para dispepsia y falta de apetito.",
+      "mecanismoAccion": "Aceite esencial (tuyonas, absintina) estimula secreción gástrica y biliar (efecto amargo). Acción vermífuga (ascaridol). Efecto colagogo y carminativo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "sumidades floridas",
+      "formasPresentacion": [
+        "Tintura",
+        "Extracto",
+        "Infusion (baja dosis)"
+      ],
+      "tiempoEfecto": "15-30 minutos",
+      "duracionTratamiento": "maximo 2 semanas",
+      "advertencias": [
+        "EMBARGO: tuyonas neurotóxicas en dosis altas - uso limitado",
+        "No usar en embarazo/lactancia",
+        "No usar en epilepsia",
+        "Máximo 2g/día, <2 semanas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Anticonvulsivantes"
+      ],
+      "tags": [
+        "EMA HMPC",
+        "amargo",
+        "vermifugo",
+        "colagogo",
+        "tuyonas",
+        "Commission E"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC Absinthii herba + Commission E"
+      }
+    },
+    {
+      "id": "guarana",
+      "nombre": "Guaraná",
+      "nombresAlternativos": [
+        "Paullinia cupana",
+        "Guarana",
+        "Guaranazeiro",
+        "Semilla de guaraná"
+      ],
+      "nombreCientifico": "Paullinia cupana Kunth",
+      "familia": "Sapindaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "astenia",
+        "rendimiento",
+        "obesidad",
+        "TDAH"
+      ],
+      "descripcion": "Semilla amazónica con alto contenido en cafeína (3.6-5.8%), teofilina y teobromina. Usada tradicionalmente por pueblos indígenas como estimulante. EFSA aprobó claim de alerta mental.",
+      "mecanismoAccion": "Cafeína antagoniza receptores de adenosina (A1, A2A), aumentando liberación de dopamina y noradrenalina. Estimula SNC, aumenta vigilancia y metabolismo basal (termogénesis).",
+      "nivelEvidencia": "B",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Extracto seco",
+        "Capsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "30-60 minutos",
+      "duracionTratamiento": "segun necesidad",
+      "advertencias": [
+        "Insomnio si se toma tarde",
+        "Taquicardia, hipertensión en dosis altas",
+        "Dependencia/tolerancia a cafeína",
+        "No combinar con otros estimulantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Teofilina",
+        "Anticoagulantes (warfarina)",
+        "ISRS",
+        "Anticonceptivos orales (reduce eliminación cafeína)"
+      ],
+      "tags": [
+        "cafeína",
+        "estimulante",
+        "EFSA",
+        "termogenico",
+        "alerta"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EFSA Scientific Opinion on caffeine (2015) + Brazilian Pharmacopeia"
+      }
+    },
+    {
+      "id": "te_rojo",
+      "nombre": "Té Rojo (Pu-erh)",
+      "nombresAlternativos": [
+        "Camellia sinensis (fermentado)",
+        "Pu-erh",
+        "Té Pu'er",
+        "Dark tea"
+      ],
+      "nombreCientifico": "Camellia sinensis (L.) Kuntze (post-fermentado)",
+      "familia": "Theaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "digestivo",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "colesterol_alto",
+        "obesidad",
+        "glucosa_alta",
+        "dispepsia"
+      ],
+      "descripcion": "Té verde sometido a fermentación microbiana (hongos Aspergillus/Penicillium). Rico en polifenoles oxidados (teaflavinas, tearubiginas) y microbios benéficos. EFSA evaluó claims sobre colesterol.",
+      "mecanismoAccion": "Las thearubiginas y teaflavinas inhiben la absorción intestinal de colesterol (unión a ácidos biliares) y la HMG-CoA reductasa. Efecto probiótico por fermentación microbiana.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja fermentada",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Contiene cafeína (insomnio)",
+        "Posible hepatotoxicidad con extractos concentrados (raros)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Hierbas con cafeína"
+      ],
+      "tags": [
+        "teaflavinas",
+        "hipocolesterolemiante",
+        "probiotico",
+        "fermentado",
+        "metabolico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EFSA Panel on Dietetic Products + PubMed (Pu-erh lipids)"
+      }
+    },
+    {
+      "id": "rooibos",
+      "nombre": "Rooibos (Té Rojo Africano)",
+      "nombresAlternativos": [
+        "Aspalathus linearis",
+        "Red bush tea",
+        "Té rojo sudafricano",
+        "Rooibush"
+      ],
+      "nombreCientifico": "Aspalathus linearis (Burm.f.) R.Dahlgren",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "dermatologico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "alergias",
+        "eccema",
+        "insomnio",
+        "colicos",
+        "antioxidante"
+      ],
+      "descripcion": "Arbusto sudafricano libre de cafeína. Rico en polifenoles únicos (aspalatina, nothofagina). EMA HMPC monografiada. Sin estimulantes, apto para niños y embarazo.",
+      "mecanismoAccion": "La aspalatina (dihidrochalcona) es antioxidante potente y modula la inflamación (inhibición de COX-2). Efecto antialérgico (inhibición de histamina). Sin cafeína: sedante leve.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusion",
+        "Extracto"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "segun necesidad",
+      "advertencias": [
+        "Generalmente seguro",
+        "Posible efecto estrogénico leve (debate)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna significativa"
+      ],
+      "tags": [
+        "EMA HMPC",
+        "aspalatina",
+        "antioxidante",
+        "sin-cafeina",
+        "antialergico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EMA HMPC Aspalathi linearis herba + PubMed"
+      }
+    },
+    {
+      "id": "epimedium",
+      "nombre": "Epimedium (Horny Goat Weed)",
+      "nombresAlternativos": [
+        "Epimedium brevicornu",
+        "Horny goat weed",
+        "Yin yang huo",
+        "Barrenwort"
+      ],
+      "nombreCientifico": "Epimedium brevicornu Maxim.",
+      "familia": "Berberidaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "musculoesqueletico",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "disfuncion_erectil",
+        "libido_bajo",
+        "osteoporosis",
+        "menopausia",
+        "fatiga"
+      ],
+      "descripcion": "Planta de la MTC usada como afrodisíaco y para óseo. El flavonoide icariina es el principio activo más estudiado. Meta-análisis respaldan uso en osteoporosis postmenopáusica.",
+      "mecanismoAccion": "La icariina inhibe la PDE5 (similar a sildenafilo, menos potente) aumentando GMPc y vasodilatación. Efecto fitoestrogénico (osteogenico, reduce resorción ósea). Aumenta NO.",
+      "nivelEvidencia": "B",
+      "parteUsada": "parte aerea",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-6 meses",
+      "advertencias": [
+        "Posibles efectos estrogénicos",
+        "Evitar en cáncer hormono-dependiente",
+        "Taquicardia en dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "IECA",
+        "Terapia hormonal",
+        "PDE5 inhibidores"
+      ],
+      "tags": [
+        "icariina",
+        "PDE5",
+        "afrodisiaco",
+        "osteogenico",
+        "MTc",
+        "fitoestrogeno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed meta-analysis (Epimedium osteoporosis, Frontiers Pharmacol 2022)"
+      }
+    },
+    {
+      "id": "tongkat_ali",
+      "nombre": "Tongkat Ali",
+      "nombresAlternativos": [
+        "Eurycoma longifolia",
+        "Longjack",
+        "Pasak bumi",
+        "Cay ba binh"
+      ],
+      "nombreCientifico": "Eurycoma longifolia Jack",
+      "familia": "Simaroubaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "reproductivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "libido_bajo",
+        "disfuncion_erectil",
+        "fatiga",
+        "hipogonadismo",
+        "sarcopenia"
+      ],
+      "descripcion": "Raíz del sudeste asiático usada tradicionalmente como tónico masculino. Meta-análisis (2022) confirma aumento de testosterona total en hombres con hipogonadismo tardío.",
+      "mecanismoAccion": "Las quasinoides (eurycomanona) liberan testosterona unida a SHBG (aumenta testosterona libre) y reducen cortisol. Efecto adaptógeno sobre eje HHA.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Insomnio, irritabilidad en dosis altas",
+        "Evitar en cáncer prostático",
+        "No usar en menores de 18"
+      ],
+      "interaccionesMedicamentosas": [
+        "Terapia hormonal",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "quasinoides",
+        "testosterona",
+        "libido",
+        "adaptogeno",
+        "meta-analysis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed PMC9415500 (Systematic review testosterone 2022)"
+      }
+    },
+    {
+      "id": "cnidium",
+      "nombre": "Cnidium",
+      "nombresAlternativos": [
+        "Cnidium monnieri",
+        "She chuang zi",
+        "Snow parsley",
+        "Fruto de cnidium"
+      ],
+      "nombreCientifico": "Cnidium monnieri (L.) Cusson",
+      "familia": "Apiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "dermatologico",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "eczema",
+        "psoriasis",
+        "candidiasis_vaginal",
+        "libido_bajo"
+      ],
+      "descripcion": "Planta de la MTC cuyo fruto se usa para afecciones cutáneas (eczema, micosis) y como afrodisíaco. Rico en cumarinas (osthol, imperatorina).",
+      "mecanismoAccion": "El osthol (cumarina) tiene actividad antifúngica, antialérgica y vasodilatadora periférica. Efecto fitoestrogénico leve. Antiinflamatorio cutáneo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Extracto",
+        "Capsulas",
+        "Crema topica"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Fotosensibilidad (cumarinas)",
+        "Evitar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (cumarinas)",
+        "Fototoxicos"
+      ],
+      "tags": [
+        "osthol",
+        "cumarinas",
+        "antifungico",
+        "MTc",
+        "afrodisiaco"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "Chinese Pharmacopoeia + PubMed (Cnidium monnieri)"
       }
     }
   ]

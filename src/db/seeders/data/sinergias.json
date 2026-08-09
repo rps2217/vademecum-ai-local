@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
-    "version": "1.8.0",
+    "version": "1.9.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 630,
+    "total": 645,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -15764,6 +15764,447 @@
       "sistemas": [
         "musculoesqueletico",
         "inmune"
+      ]
+    },
+    {
+      "id": "syn_guarana_ginseng",
+      "ingredienteA": "guarana",
+      "ingredienteB": "ginseng",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación de estimulantes naturales: la cafeína del guaraná (antagonista adenosina) y los ginsenósidos del ginseng (eje HPA) prolongan la alerta sin el pico y caída del café solo.",
+      "beneficios": [
+        "Aumenta energía y vigilancia",
+        "Mejora rendimiento cognitivo",
+        "Reduce fatiga física y mental",
+        "Efecto más sostenido que cafeína sola"
+      ],
+      "precauciones": [
+        "Insomnio si se toma tarde",
+        "Taquicardia/hipertensión en dosis altas",
+        "No combinar con otros estimulantes",
+        "Tolerancia a cafeína"
+      ],
+      "dosis": {
+        "ingredienteA": "200-400mg extracto",
+        "ingredienteB": "200-400mg extracto estandarizado"
+      },
+      "tags": [
+        "estimulante",
+        "energía",
+        "rendimiento",
+        "adaptógeno"
+      ]
+    },
+    {
+      "id": "syn_epimedium_tongkat",
+      "ingredienteA": "epimedium",
+      "ingredienteB": "tongkat_ali",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia masculina: la icariina del epimedium inhibe PDE5 (vasodilatación) y los quasinoides del tongkat ali liberan testosterona de SHBG. Doble vía para función sexual y libido.",
+      "beneficios": [
+        "Mejora disfunción eréctil",
+        "Aumenta libido",
+        "Eleva testosterona libre",
+        "Efecto sobre deseo y rendimiento"
+      ],
+      "precauciones": [
+        "Evitar en cáncer hormono-dependiente",
+        "Insomnio/irritabilidad",
+        "No combinar con PDE5 inhibidores",
+        "Controlar PSA"
+      ],
+      "dosis": {
+        "ingredienteA": "300-500mg (icariina 20%)",
+        "ingredienteB": "200-400mg (Eurycoma extracto)"
+      },
+      "tags": [
+        "afrodisíaco",
+        "testosterona",
+        "PDE5",
+        "libido",
+        "masculino"
+      ]
+    },
+    {
+      "id": "syn_rooibos_teverde",
+      "ingredienteA": "rooibos",
+      "ingredienteB": "te_verde",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación antioxidante sin exceso de cafeína: la aspalatina única del rooibos (dihidrochalcona) y los catequinas del té verde (EGCG) actúan por vías complementarias contra radicales libres.",
+      "beneficios": [
+        "Potente antioxidante",
+        "Antialérgico",
+        "Cardioprotector",
+        "Bajo en cafeína (rooibos diluye)"
+      ],
+      "precauciones": [
+        "Cafeína del té verde (insomnio)",
+        "Posible efecto estrogénico del rooibos (debate)"
+      ],
+      "dosis": {
+        "ingredienteA": "2-3 tazas/día",
+        "ingredienteB": "1-2 tazas/día (o 300mg EGCG)"
+      },
+      "tags": [
+        "antioxidante",
+        "antialérgico",
+        "sin-cafeína",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "syn_undecilenico_teatree",
+      "ingredienteA": "acido_undecilenico",
+      "ingredienteB": "tea_tree",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Doble antifúngico tópico: el ácido undecilénico (inhibe ergosterol) y el terpinen-4-ol del tea tree (altera membrana fúngica) actúan por mecanismos diferentes contra dermatofitos y Candida.",
+      "beneficios": [
+        "Antifúngico potente tópico",
+        "Onicomicosis y pie de atleta",
+        "Sin resistencia cruzada",
+        "Penetra queratina"
+      ],
+      "precauciones": [
+        "Irritación local (diluir tea tree)",
+        "No mucosas",
+        "Tiempo prolongado en uñas (6-12 meses)"
+      ],
+      "dosis": {
+        "ingredienteA": "Pincel uñas 2x/día",
+        "ingredienteB": "10% en aceite carrier"
+      },
+      "tags": [
+        "antifúngico",
+        "tópico",
+        "onicomicosis",
+        "dermatofitos"
+      ]
+    },
+    {
+      "id": "syn_alpha_gpc_omega3",
+      "ingredienteA": "alpha_gpc",
+      "ingredienteB": "omega_3",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Neuroprotección dual: el alpha-GPC aumenta acetilcolina (neurotransmisor cognitivo) y el DHA del omega-3 es componente estructural de membranas neuronales. Sinergia cognitiva y neuroprotectora.",
+      "beneficios": [
+        "Mejora memoria y cognición",
+        "Neuroprotector",
+        "Apoyo en declive cognitivo",
+        "Estructura neuronal (DHA) + función (ACh)"
+      ],
+      "precauciones": [
+        "Cefalea, insomnio (colinérgico)",
+        "Embarazo: datos limitados",
+        "Puede empeorar epilepsia"
+      ],
+      "dosis": {
+        "ingredienteA": "300-600mg",
+        "ingredienteB": "1000-2000mg EPA/DHA"
+      },
+      "tags": [
+        "cognitivo",
+        "acetilcolina",
+        "DHA",
+        "neuroprotector",
+        "memoria"
+      ]
+    },
+    {
+      "id": "syn_potasio_magnesio",
+      "ingredienteA": "citrato_potasio",
+      "ingredienteB": "magnesio_glicinato",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Electrolitos complementarios: el citrato de potasio alcaliniza orina (litiasis) y el magnesio relaja músculo liso urinario y reduce oxalato cálcico. Doble profilaxis de cálculos y calambres.",
+      "beneficios": [
+        "Profilaxis litiasis renal",
+        "Reduce calambres musculares",
+        "Alcaliniza orina",
+        "Magnesio reduce cristalización oxalato"
+      ],
+      "precauciones": [
+        "Hiperpotasemia (insuficiencia renal)",
+        "No con IECA/ahorradores K",
+        "Magnesio: diarrea en dosis altas"
+      ],
+      "dosis": {
+        "ingredienteA": "10-20mEq/día",
+        "ingredienteB": "200-400mg elemental"
+      },
+      "tags": [
+        "electrolito",
+        "litiasis",
+        "calambres",
+        "urinario"
+      ]
+    },
+    {
+      "id": "syn_fenilalanina_tirosina",
+      "ingredienteA": "l_fenilalanina",
+      "ingredienteB": "tirosina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Vía de catecolaminas: la L-fenilalanina es precursora de tirosina, que a su vez produce L-DOPA → dopamina → noradrenalina. Suministro escalonado para síntesis de neurotransmisores.",
+      "beneficios": [
+        "Aumenta dopamina/noradrenalina",
+        "Mejora estado de ánimo",
+        "Apoyo en fatiga mental",
+        "DLPA: efecto analgésico (encefalinas)"
+      ],
+      "precauciones": [
+        "Contraindicada en PKU",
+        "Hipertensión no controlada",
+        "No con IMAO",
+        "Embarazo: supervisión"
+      ],
+      "dosis": {
+        "ingredienteA": "500-1000mg DLPA",
+        "ingredienteB": "500-1000mg"
+      },
+      "tags": [
+        "catecolaminas",
+        "dopamina",
+        "precursor",
+        "ánimo"
+      ]
+    },
+    {
+      "id": "syn_tongkat_ashwagandha",
+      "ingredienteA": "tongkat_ali",
+      "ingredienteB": "ashwagandha",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Adaptógeno masculino: el tongkat ali aumenta testosterona libre y el ashwagandha reduce cortisol (antagonista de testosterona). Doble vía: subir T, bajar cortisol.",
+      "beneficios": [
+        "Aumenta testosterona libre",
+        "Reduce cortisol/estrés",
+        "Mejora libido y energía",
+        "Adaptógeno para estrés crónico"
+      ],
+      "precauciones": [
+        "Evitar cáncer prostático",
+        "Insomnio",
+        "Embarazo/lactancia",
+        "Tiroideo (ashwagandha)"
+      ],
+      "dosis": {
+        "ingredienteA": "200-400mg",
+        "ingredienteB": "300-600mg (5% withanólidos)"
+      },
+      "tags": [
+        "testosterona",
+        "cortisol",
+        "adaptógeno",
+        "masculino",
+        "estrés"
+      ]
+    },
+    {
+      "id": "syn_pensamiento_pensamiento_rooibos",
+      "ingredienteA": "pensamiento",
+      "ingredienteB": "rooibos",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Antialérgico cutáneo: los flavonoides del pensamiento (Viola tricolor) y la aspalatina del rooibos modulan la inflamación alérgica (histamina, COX-2) por vías complementarias, sin cafeína.",
+      "beneficios": [
+        "Eccema y dermatitis atópica",
+        "Antialérgico",
+        "Antioxidante cutáneo",
+        "Apto para niños (sin cafeína)"
+      ],
+      "precauciones": [
+        "Embarazo: el pensamiento tiene efecto emenagogo",
+        "Reacciones alérgicas raras"
+      ],
+      "dosis": {
+        "ingredienteA": "1.5-3g infusión o tintura",
+        "ingredienteB": "2-3 tazas/día"
+      },
+      "tags": [
+        "antialérgico",
+        "dermatológico",
+        "eccema",
+        "sin-cafeína"
+      ]
+    },
+    {
+      "id": "syn_ajenjo_pimpinela",
+      "ingredienteA": "ajenjo",
+      "ingredienteB": "pimpinela",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Digestivo-antiparasitario: el ajenjo (absintina, vermífugo) y la pimpinela (taninos astringentes) combinan efecto amargo-carminativo y antidiarreico en parasitosis y dispepsia.",
+      "beneficios": [
+        "Vermífugo (oxiuros)",
+        "Dispepsia y anorexia",
+        "Antidiarreico (taninos)",
+        "Estimula secreción gástrica"
+      ],
+      "precauciones": [
+        "Ajenjo: tuyonas neurotóxicas (<2 sem, <2g/día)",
+        "No en embarazo/epilepsia",
+        "Pimpinela: estreñimiento (astringente)"
+      ],
+      "dosis": {
+        "ingredienteA": "1-2g tintura (corto)",
+        "ingredienteB": "1-2g infusión"
+      },
+      "tags": [
+        "vermífugo",
+        "digestivo",
+        "antidiarreico",
+        "amargo"
+      ]
+    },
+    {
+      "id": "syn_pulmonaria_hiedra",
+      "ingredienteA": "pulmonaria",
+      "ingredienteB": "hiedra",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia respiratoria: los mucílagos de la pulmonaria (demulcente, béquico) y las saponinas de la hiedra (expectorante, broncodilatador) combinan efecto calmante y de clearing mucoso.",
+      "beneficios": [
+        "Tos seca e irritativa",
+        "Bronquitis",
+        "Expectoración",
+        "Calma mucosa respiratoria"
+      ],
+      "precauciones": [
+        "Pulmonaria: alcaloides pirrolizidínicos (<2 sem)",
+        "No embarazo/lactancia",
+        "Hiedra: posible reacción alérgica"
+      ],
+      "dosis": {
+        "ingredienteA": "1-2g infusión",
+        "ingredienteB": "extracto estandarizado según prospecto"
+      },
+      "tags": [
+        "respiratorio",
+        "béquico",
+        "expectorante",
+        "tos"
+      ]
+    },
+    {
+      "id": "syn_te_rojo_garcinia",
+      "ingredienteA": "te_rojo",
+      "ingredienteB": "canela",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Metabólico: las thearubiginas del té rojo (reducen colesterol) y el ácido hidroxicítrico de la garcinia (inhibe ATP-citrato liasa, reduce lipogénesis) actúan sobre metabolismo lipídico.",
+      "beneficios": [
+        "Apoyo en pérdida de peso",
+        "Reduce colesterol",
+        "Inhibe lipogénesis",
+        "Termogénesis leve"
+      ],
+      "precauciones": [
+        "Cafeína del té rojo",
+        "Garcinia: hepatotoxicidad rara",
+        "No combinar con estatina sin control"
+      ],
+      "dosis": {
+        "ingredienteA": "2-3 tazas/día",
+        "ingredienteB": "500mg 3x/día (HCA)"
+      },
+      "tags": [
+        "metabólico",
+        "lipogénesis",
+        "colesterol",
+        "peso"
+      ]
+    },
+    {
+      "id": "syn_cnidium_teatree",
+      "ingredienteA": "cnidium",
+      "ingredienteB": "tea_tree",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Antifúngico-antialérgico cutáneo: el osthol del cnidium (antifúngico, antialérgico) y el terpinen-4-ol del tea tree (antifúngico) combinan acción contra dermatofitos y eczema.",
+      "beneficios": [
+        "Eccema y micosis cutánea",
+        "Antifúngico dual",
+        "Antialérgico (osthol)",
+        "Candidiasis cutánea"
+      ],
+      "precauciones": [
+        "Fotosensibilidad (cumarinas)",
+        "Irritación (diluir tea tree)",
+        "No mucosas"
+      ],
+      "dosis": {
+        "ingredienteA": "extracto tópico",
+        "ingredienteB": "10% en carrier"
+      },
+      "tags": [
+        "antifúngico",
+        "antialérgico",
+        "dermatológico",
+        "osthol"
+      ]
+    },
+    {
+      "id": "syn_pycnogenol_diosmina",
+      "ingredienteA": "pycnogenol",
+      "ingredienteB": "diosmina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Flebotónico dual: el pycnogenol (OPC, refuerza colágeno capilar, antioxidante) y la diosmina (aumenta tono venoso, reduce permeabilidad) actúan sobre la pared venosa por vías complementarias.",
+      "beneficios": [
+        "Insuficiencia venosa crónica",
+        "Hemorroides",
+        "Varices y pesadez",
+        "Reduce edema venoso"
+      ],
+      "precauciones": [
+        "Diosmina: trastornos GI",
+        "Pycnogenol: posible efecto anticoagulante",
+        "Embarazo: consultar"
+      ],
+      "dosis": {
+        "ingredienteA": "100-150mg",
+        "ingredienteB": "500-1000mg (MPFF)"
+      },
+      "tags": [
+        "flebotónico",
+        "venoso",
+        "varices",
+        "hemorroides"
+      ]
+    },
+    {
+      "id": "syn_cayena_cúrcuma_boswellia",
+      "ingredienteA": "pimienta_cayena",
+      "ingredienteB": "curcumina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Antiinflamatorio triple natural: la capsaicina de la cayena (depleción sustancia P, analgésico tópico), la curcumina (inhibe NF-κB, COX-2) y potencialmente boswellia (inhibe 5-LOX) cubren múltiples vías inflamatorias.",
+      "beneficios": [
+        "Dolor articular y muscular",
+        "Antiinflamatorio potente",
+        "Artritis y tendinitis",
+        "Neuropático (capsaicina)"
+      ],
+      "precauciones": [
+        "Capsaicina: irritación local (lavarse manos)",
+        "Curcumina: baja biodisponibilidad (con piperina)",
+        "GI en dosis altas"
+      ],
+      "dosis": {
+        "ingredienteA": "0.025-0.1% crema tópica o 30-120mg oral",
+        "ingredienteB": "500-1000mg (con piperina)"
+      },
+      "tags": [
+        "antiinflamatorio",
+        "analgésico",
+        "articular",
+        "capsaicina",
+        "curcumina"
       ]
     }
   ]

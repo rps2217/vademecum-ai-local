@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
-    "version": "1.8.0",
+    "version": "1.9.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 134,
+    "total": 138,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -7254,6 +7254,223 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed + Nutritional Science"
+      }
+    },
+    {
+      "id": "citrato_potasio",
+      "nombre": "Citrato de Potasio",
+      "nombresAlternativos": [
+        "Potassium citrate",
+        "Tripotasio citrato",
+        "K-citrate"
+      ],
+      "nombreCientifico": "Potassium citrate (C6H5K3O7)",
+      "familia": "Mineral/ Sal",
+      "categoria": "mineral",
+      "sistemas": [
+        "urinario",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "litiasis_renal",
+        "gota",
+        "hipocalemia",
+        "alcalinizacion_urinaria"
+      ],
+      "descripcion": "Sal de potasio que alcaliniza la orina. Indicado en profilaxis de litiasis úrica y cálcica. Aprobado por FDA para hipocitraturia.",
+      "mecanismoAccion": "Metabolizado a bicarbonato, alcaliniza orina (pH >6.5) disolviendo cálculos úricos y previniendo precipitación de oxalato cálcico. Reposición de potasio.",
+      "nivelEvidencia": "A",
+      "parteUsada": "sintetico",
+      "formasPresentacion": [
+        "Tabletas",
+        "Polvo",
+        "Cristales efervescentes"
+      ],
+      "tiempoEfecto": "1-2 horas",
+      "duracionTratamiento": "6-12 meses (profilaxis)",
+      "advertencias": [
+        "Hiperpotasemia (vigilar en insuficiencia renal)",
+        "Úlcera péptica (irritación)",
+        "No combinar con IECA/diuréticos ahorradores de K sin control"
+      ],
+      "interaccionesMedicamentosas": [
+        "IECA",
+        "Espironolactona",
+        "Diuréticos ahorradores de K",
+        "Antiinflamatorios (riesgo úlcera)"
+      ],
+      "tags": [
+        "alcalinizante",
+        "urinario",
+        "litiasis",
+        "potasio",
+        "FDA"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "EAU Urolithiasis Guidelines + FDA (potassium citrate)"
+      }
+    },
+    {
+      "id": "l_fenilalanina",
+      "nombre": "L-Fenilalanina",
+      "nombresAlternativos": [
+        "L-Phenylalanine",
+        "Phe",
+        "Aminoácido aromático",
+        "DLPA (forma racémica)"
+      ],
+      "nombreCientifico": "L-Phenylalanine (C9H11NO2)",
+      "familia": "Aminoácido",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "depresion",
+        "dolor",
+        "vitiligo",
+        "libido_bajo"
+      ],
+      "descripcion": "Aminoácido esencial precursor de tirosina, L-DOPA, dopamina, noradrenalina y adrenalina. DLPA (forma racémica) contiene también D-fenilalanina (inhibe encefalinasas).",
+      "mecanismoAccion": "Precursor de catecolaminas (dopamina, noradrenalina). La D-fenilalanina inhibe carboxipeptidasas que degradan encefalinas/endorfinas (efecto analgésico).",
+      "nivelEvidencia": "C",
+      "parteUsada": "sintetico",
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Contraindicada en PKU (fenilcetonuria)",
+        "Evitar en hipertensión no controlada",
+        "Embarazo: solo bajo supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "IMAO",
+        "Levodopa",
+        "Antidepresivos"
+      ],
+      "tags": [
+        "catecolaminas",
+        "dopamina",
+        "precursor",
+        "DLPA",
+        "analgesico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Phenylalanine depression/pain)"
+      }
+    },
+    {
+      "id": "acido_undecilenico",
+      "nombre": "Ácido Undecilénico",
+      "nombresAlternativos": [
+        "Undecylenic acid",
+        "Ácido undecanoico",
+        "Undecilenato"
+      ],
+      "nombreCientifico": "Undec-10-enoic acid (C11H20O2)",
+      "familia": "Ácido graso",
+      "categoria": "mineral",
+      "sistemas": [
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "onicomicosis",
+        "pie_atleta",
+        "candidiasis_vaginal",
+        "dermatitis_seborreica"
+      ],
+      "descripcion": "Ácido graso de cadena media (C11) derivado del aceite de ricino. Aprobado por FDA como antifúngico tópico OTC. Eficaz contra dermatofitos y Candida.",
+      "mecanismoAccion": "Inhibe la enzima citocromo P450 del hongo (síntesis de ergosterol de membrana) y altera la permeabilidad de la membrana celular fúngica. pH ácido desfavorable para dermatofitos.",
+      "nivelEvidencia": "B",
+      "parteUsada": "semisintetico (aceite ricino)",
+      "formasPresentacion": [
+        "Pincel uñas",
+        "Crema",
+        "Polvo",
+        "Spray"
+      ],
+      "tiempoEfecto": "4-12 meses (uñas)",
+      "duracionTratamiento": "hasta crecer uña sana",
+      "advertencias": [
+        "Irritación local leve",
+        "No usar en mucosas",
+        "Pacientes con cirugía uña previa"
+      ],
+      "interaccionesMedicamentosas": [
+        "Otros antifungicos tópicos"
+      ],
+      "tags": [
+        "antifungico",
+        "topico",
+        "FDA OTC",
+        "onicomicosis",
+        "dermatofitos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "FDA OTC Antifungal Drug Products + PubMed"
+      }
+    },
+    {
+      "id": "alpha_gpc",
+      "nombre": "Alpha-GPC (L-Alpha glicerilfosforilcolina)",
+      "nombresAlternativos": [
+        "Alpha-GPC",
+        "Choline alfoscerate",
+        "Glicerofosfocolina",
+        "GPC"
+      ],
+      "nombreCientifico": "L-Alpha glycerylphosphorylcholine",
+      "familia": "Colina",
+      "categoria": "vitamina",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "declive_cognitivo",
+        "alzheimer",
+        "ictus_recuperacion",
+        "rendimiento",
+        "sarcopenia"
+      ],
+      "descripcion": "Forma de colina con alta biodisponibilidad que cruza la barrera hematoencefálica. Aprobado como medicamento en Europa para demencia. Precursor de acetilcolina y fosfolípido membranal.",
+      "mecanismoAccion": "Aumenta acetilcolina cerebral (neurotransmisor cognitivo) y fosfatidilcolina membranal. Efecto colinérgico (cognición) y aumento de GH/force (rendimiento).",
+      "nivelEvidencia": "B",
+      "parteUsada": "sintetico/semisintetico",
+      "formasPresentacion": [
+        "Capsulas",
+        "Liquid"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Posibles cefalea, náuseas, insomnio",
+        "Embarazo/lactancia: datos limitados",
+        "Puede empeorar epilepsia (colinérgico)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticolinérgicos (antagonismo)",
+        "IECA (dosis altas)",
+        "Anticolinesterásicos (sinergia)"
+      ],
+      "tags": [
+        "acetilcolina",
+        "cognitivo",
+        "colina",
+        "neuroprotector",
+        "rendimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-08",
+        "fuente": "PubMed (Alpha-GPC dementia) + EMA medicamento"
       }
     }
   ]

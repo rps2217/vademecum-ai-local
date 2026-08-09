@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "version": "1.8.0",
+    "version": "1.9.0",
     "ultimaActualizacion": "2026-08-08",
-    "total": 56,
+    "total": 116,
     "descripcion": "Base de datos de patologías con contexto clínico (definición, causas, síntomas, tratamiento alopático y natural)",
     "fuentes": [
       "OMS",
@@ -3902,7 +3902,7 @@
       ]
     },
     {
-      "id": "disfuncion_ erectil",
+      "id": "disfuncion_erectil",
       "nombre": "Disfunción Eréctil",
       "definicion": "Incapacidad persistente para lograr o mantener una erección suficiente para el coito. Afecta al 40% de hombres >40 años (grados variables). Marcador cardiovascular.",
       "causas": [
@@ -4665,6 +4665,5452 @@
         "ACOG Nausea/Vomiting of Pregnancy",
         "EMA HMPC Zingiberis rhizoma",
         "PubMed (Ginger nausea)"
+      ]
+    },
+    {
+      "id": "dermatitis_seborreica",
+      "nombre": "Dermatitis Seborreica y Caspa",
+      "definicion": "Dermatitis crónica de zonas seborreicas (cuero cabelludo, cara, surcos nasogenianos, cejas). Afecta al 3-5% de adultos; caspa (forma leve) al 50%.",
+      "causas": [
+        "Proliferación de Malassezia spp.",
+        "Exceso de sebo",
+        "Estrés",
+        "Factores hormonales",
+        "Sistema inmune",
+        "Clima frío/seco",
+        "Parkinson, VIH (asociada)"
+      ],
+      "sintomas": [
+        "Descamación amarillenta",
+        "Prurito leve",
+        "Placas eritematosas",
+        "Cuero cabelludo (caspa)",
+        "Surcos nasogenianos",
+        "Cejas",
+        "Párpados",
+        "Tórax"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Ketoconazol champú 2%",
+          "Piritionato de zinc champú",
+          "Sulfuro de selenio",
+          "Ciclopirox olamina",
+          "Corticoide tópico (rostro)"
+        ],
+        "mecanismo": "Antifúngicos reducen Malassezia. Queratolíticos eliminan descamación. Corticoides antiinflamatorios.",
+        "efectosSecundarios": [
+          "Sequedad/cambios color cabello (selenio)",
+          "Irritación",
+          "Atrofia (corticos)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "romero",
+          "salvia",
+          "tea_tree",
+          "aloe_vera",
+          "ortiga"
+        ],
+        "suplementos": [
+          "zinc",
+          "vitamina_b6",
+          "biotina",
+          "omega_3",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "sulphur",
+          "graphites",
+          "sulphur",
+          "carbo_veg",
+          "thuja"
+        ],
+        "aceites": [
+          "tea_tree",
+          "lavanda_aceite",
+          "romero_aceite"
+        ],
+        "cuandoPreferir": "Caspa leve, mantenimiento, cara (evitar corticoides crónicos), profilaxis, intolerancia a antifúngicos químicos."
+      },
+      "prevencion": [
+        "Champú frecuente",
+        "Evitar agua muy caliente",
+        "Reducir estrés",
+        "Dieta baja en azúcar (Malassezia)",
+        "Zinc/B6",
+        "Control dermatitis"
+      ],
+      "cuandoConsultar": "Dermatitis extensa, signos de sobreinfección, afectación periocular, no respuesta a champús, inmunodepresión, recurrencias frecuentes.",
+      "evidencia": "A",
+      "fuentes": [
+        "AAD Guidelines Seborrheic Dermatitis",
+        "PubMed (Tea tree Malassezia)",
+        "EMA HMPC Salvia"
+      ]
+    },
+    {
+      "id": "onicomicosis",
+      "nombre": "Onicomicosis (Hongos de las Uñas)",
+      "definicion": "Infección fúngica de las uñas (dermatofitos 80%, Trichophyton rubrum). Prevalencia 10-30% en adultos; 50% en >70. Afecta calidad de vida.",
+      "causas": [
+        "Dermatofitos (T. rubrum, T. mentagrophytes)",
+        "Candida (uñas manos)",
+        "Hongos no dermatofitos",
+        "Trauma ungueal",
+        "Humedad/profusión pies",
+        "Inmunosupresión",
+        "Pie de atleta previo"
+      ],
+      "sintomas": [
+        "Uña engrosada",
+        "Decoloración (amarillo/blanco)",
+        "Friabilidad",
+        "Onicólisis (separación lecho)",
+        "Distrofia ungueal",
+        "Dolor al presionar"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Terbinafina tópica (esmalte amorolfina, tavaborol)",
+          "Ciclopirox esmalte",
+          "Terbinafina oral (6-12 sem uñas pies)",
+          "Itraconazol oral (pulsos)",
+          "Avulsión química (urea 40%)"
+        ],
+        "mecanismo": "Antifúngicos inhiben ergosterol. Orales para casos moderados-graves. Esmaltes para leves.",
+        "efectosSecundarios": [
+          "Tópicos: irritación local",
+          "Terbinafina oral: hepatotoxicidad, taste loss",
+          "Itraconazol: cardiaco (QT), hepatico"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "tea_tree",
+          "ajo",
+          "olmo_america",
+          "oregano",
+          "lavanda"
+        ],
+        "suplementos": [
+          "acido_undecilenico",
+          "biotina",
+          "zinc",
+          "selenio",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "silicea",
+          "graphites",
+          "thuja",
+          "nitricum_acidum"
+        ],
+        "aceites": [
+          "tea_tree",
+          "oregano",
+          "lavanda_aceite"
+        ],
+        "cuandoPreferir": "Onicomicosis leve (<50% uña), profilaxis, prevención recurrencia, intolerancia a antifúngicos orales (hepatotoxicidad), embarazo (no orales)."
+      },
+      "prevencion": [
+        "Secar bien pies tras ducha",
+        "Calcetines transpirables (algodón)",
+        "Calzado ventilado",
+        "No caminar descalzo en público (piscinas)",
+        "Tratar pie de atleta a tiempo",
+        "Cortar uñas rectas",
+        "Desinfectar calzado"
+      ],
+      "cuandoConsultar": "Distrofia severa, >50% uña, múltiples uñas, dolor, afectación de matriz, immunosupresión, diabetes (pie diabético), no respuesta a tópicos en 6 meses.",
+      "evidencia": "B",
+      "fuentes": [
+        "European Guidelines Onychomycosis",
+        "PubMed (Tea tree onychomycosis)",
+        "FDA (undecylenic acid OTC)"
+      ]
+    },
+    {
+      "id": "verrugas",
+      "nombre": "Verrugas Cutáneas",
+      "definicion": "Lesiones cutáneas benignas por VPH (papilomavirus humano, tipos 1, 2, 4, 27). Prevalencia 7-12% escolares. Suelen regresar espontáneamente en 2 años.",
+      "causas": [
+        "VPH tipos 1, 2, 4, 27",
+        "Contacto directo",
+        "Microtrauma cutáneo",
+        "Sudoración",
+        "Inmunosupresión",
+        "Piscinas/gimnasios"
+      ],
+      "sintomas": [
+        "Pápulas queratósicas",
+        "Puntos oscuros (capilares trombosados)",
+        "Superficie rugosa",
+        "Dolor al presionar (plantares)",
+        "Múltiples (mosaico)"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Ácido salicílico tópico (12-40%)",
+          "Crioterapia (nitrógeno líquido)",
+          "Cantharidina",
+          "Imiquimod (genitales)",
+          "Curetaje/Láser",
+          "Bleomicina intralesional"
+        ],
+        "mecanismo": "Queratolíticos eliminan tejido infectado. Crioterapia destruye VPH por frío. Imiquimod estimula inmunidad local (TLR7).",
+        "efectosSecundarios": [
+          "Dolor, ampollas (crioterapia)",
+          "Irritación local (salicílico)",
+          "Cicatriz (raro)",
+          "Pigmentación"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "tea_tree",
+          "ajo",
+          "chelidonium",
+          "sauco",
+          "propoleo",
+          "propoleo"
+        ],
+        "suplementos": [
+          "zinc",
+          "vitamina_c",
+          "vitamina_a",
+          "reishi",
+          "selenio"
+        ],
+        "homeopatia": [
+          "thuja",
+          "nitricum_acidum",
+          "causticum"
+        ],
+        "aceites": [
+          "tea_tree",
+          "oregano"
+        ],
+        "cuandoPreferir": "Verrugas comunes leves, niños (evitar crioterapia agresiva), múltiples, profilaxis, intolerancia a queratolíticos."
+      },
+      "prevencion": [
+        "Evitar tocar verrugas (autoinoculación)",
+        "No compartir toallas",
+        "Calzado en piscinas/gimnasios",
+        "Secar bien piel",
+        "No arrancar",
+        "Tratar a tiempo"
+      ],
+      "cuandoConsultar": "Verrugas genitales (tipos oncogénicos), faciales, dolorosas, sangrantes, múltiples/resistentes, inmunosupresión, sospecha de lesión maligna, niño con verrugas extensas.",
+      "evidencia": "B",
+      "fuentes": [
+        "British Association of Dermatologists Warts Guidelines",
+        "PubMed (Zinc warts)",
+        "PubMed (Garlic warts)"
+      ]
+    },
+    {
+      "id": "pie_atleta",
+      "nombre": "Pie de Atleta (Tiña Pedis)",
+      "definicion": "Infección fúngica de los pies por dermatofitos (Trichophyton rubrum). Más común en adultos jóvenes; prevalencia 15-25%. Condiciones húmedas y oclusivas.",
+      "causas": [
+        "Trichophyton rubrum",
+        "Trichophyton mentagrophytes",
+        "Epidermophyton floccosum",
+        "Piscinas/vestuarios",
+        "Calzado oclusivo",
+        "Sudoración",
+        "Sistema inmune"
+      ],
+      "sintomas": [
+        "Prurito intenso",
+        "Descamación entre dedos",
+        "Maceración (interdigital)",
+        "Eritema",
+        "Vesículas",
+        "Fisuras",
+        "Mal olor",
+        "Extensión a planta"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Terbinafina tópica 1% (1-2 sem)",
+          "Clotrimazol tópico 1% (4 sem)",
+          "Miconazol",
+          "Econazol",
+          "Ciclopirox",
+          "Terbinafina oral (extensa/resistente)"
+        ],
+        "mecanismo": "Antifúngicos inhiben ergosterol de membrana. Terbinafina (esqualeno epoxidasa) fungicida. Orales si extensa, moccasin type o inmunosupresión.",
+        "efectosSecundarios": [
+          "Tópicos: irritación local",
+          "Terbinafina oral: hepatotoxicidad"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "tea_tree",
+          "ajo",
+          "oregano",
+          "lavanda",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "acido_undecilenico",
+          "zinc",
+          "probioticos",
+          "omega_3"
+        ],
+        "homeopatia": [
+          "silicea",
+          "graphites",
+          "thuja",
+          "thuja",
+          "sepia"
+        ],
+        "aceites": [
+          "tea_tree",
+          "oregano",
+          "lavanda_aceite",
+          "palmarosa"
+        ],
+        "cuandoPreferir": "Tiña pedis interdigital leve-moderada, profilaxis (deportistas), intolerancia a antifúngicos químicos, prevención recurrencia. La higiene es clave."
+      },
+      "prevencion": [
+        "Secar bien entre dedos",
+        "Calcetines de algodón (cambio diario)",
+        "Calzado transpirable",
+        "Chanclas en piscinas/duchas públicas",
+        "Polvos antifúngicos",
+        "Desinfectar calzado",
+        "Tratar onicomicosis (reservorio)"
+      ],
+      "cuandoConsultar": "Extensión a uñas (onicomicosis), celulitis secundaria, no respuesta a tópicos en 4 semanas, inmunosupresión, diabetes (pie de riesgo), recurrencias frecuentes, tipo moccasin extensa.",
+      "evidencia": "A",
+      "fuentes": [
+        "European Guidelines Tinea Pedis",
+        "PubMed (Tea tree T. rubrum)",
+        "FDA (undecylenic acid)"
+      ]
+    },
+    {
+      "id": "herpes_zoster",
+      "nombre": "Herpes Zóster (Culebrilla)",
+      "definicion": "Reactivación del virus varicela-zóster (VVZ) latente en ganglios dorsales. 30% de adultos lo padecen; 50% en >85. Neuralgia postherpética en 10-20%.",
+      "causas": [
+        "Reactivación VVZ por disminución de inmunidad celular",
+        "Edad >50",
+        "Inmunosupresión",
+        "Estrés",
+        "Fármacos inmunosupresores",
+        "Cáncer",
+        "VIH"
+      ],
+      "sintomas": [
+        "Dolor neurítico prodrómico",
+        "Vesículas en dermatoma unilateral",
+        "Dolor ardiente/lancinante",
+        "Fiebre",
+        "Malestar",
+        "Sensibilidad cutánea",
+        "Costras",
+        "Neuralgia postherpética"
+      ],
+      "sistemas": [
+        "nervioso",
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Aciclovir/valaciclovir/famciclovir oral (mejor <72h)",
+          "Analgesia (paracetamol, AINEs, opioideos)",
+          "Gabapentina/pregabalina (NPH)",
+          "Amitriptilina (NPH)",
+          "Vacuna recombinante (Shingrix) profilaxis"
+        ],
+        "mecanismo": "Antivíricos inhiben ADN polimerasa del VVZ. Analgésicos según intensidad. Vacuna Shingrix >90% eficacia en >50.",
+        "efectosSecundarios": [
+          "Aciclovir: renal (hidratar)",
+          "Gabapentina: somnolencia",
+          "Shingrix: reacciones locales, mialgia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "melisa",
+          "propoleo",
+          "regaliz",
+          "equinacea",
+          "ajo",
+          "propoleo"
+        ],
+        "suplementos": [
+          "l_lisina",
+          "vitamina_c",
+          "zinc",
+          "vitamina_d3",
+          "lactoferrina",
+          "reishi"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "mezereum",
+          "arsenicum_album",
+          "hypericum"
+        ],
+        "aceites": [
+          "tea_tree",
+          "melisa",
+          "ravintsara"
+        ],
+        "cuandoPreferir": "Complemento a antivirales (no sustituir), neuralgia postherpética, profilaxis recurrencia, intolerancia a antivirales, mantenimiento inmunidad."
+      },
+      "prevencion": [
+        "Vacuna Shingrix >50 años",
+        "Control de estrés",
+        "Inmunidad (sueño, nutrición)",
+        "Tratamiento precoz <72h",
+        "Evitar contacto con lesiones (contagia a seronegativos)"
+      ],
+      "cuandoConsultar": "Afectación oftálmica (H. oftálmico - URGNCIA por riesgo córnea), otica (Ramsay Hunt), diseminada, inmunodeprimido, >50 años (NPH), dolor intenso, afectación >1 dermatoma, embarazo.",
+      "evidencia": "A",
+      "fuentes": [
+        "CDC Shingles Guidelines",
+        "NINDS PHN",
+        "EMA HMPC Melissae folium"
+      ]
+    },
+    {
+      "id": "rosacea",
+      "nombre": "Rosácea",
+      "definicion": "Enfermedad inflamatoria facial crónica. 4 subtipos (eritematotelangiectásico, papulopustular, fimatosa, ocular). Prevalencia 5-10% adultos, predominio celta.",
+      "causas": [
+        "Vascular (vasodilatación)",
+        "Demodex folliculorum",
+        "Inflamación neurogénica",
+        "Genética (celta)",
+        "Disbiosis intestinal (SIBO)",
+        "Triggers: sol, alcohol, picantes, calor, estrés"
+      ],
+      "sintomas": [
+        "Eritema facial central",
+        "Telangiectasias",
+        "Pápulas/pústulas (no comedones)",
+        "Sensación de calor",
+        "Ojos secos (ocular)",
+        "Rinofima (fimatosa)",
+        "Sensibilidad cutánea"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Metronidazol tópico",
+          "Azelaico tópico",
+          "Ivermectina tópica (Demodex)",
+          "Doxiciclina (dosis baja)",
+          "Brimonidina tópica (eritema)",
+          "Láser vascular",
+          "Isotretinoína (fimatosa)"
+        ],
+        "mecanismo": "Antiinflamatorios/antimicrobianos tópicos. Ivermectina anti-Demodex. Brimonidina vasoconstrictora. Láser cierra vasos.",
+        "efectosSecundarios": [
+          "Irritación local",
+          "Fotosensibilidad (azelaico)",
+          "Brimonidina: rebote"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "regaliz",
+          "manzanilla",
+          "aloe_vera",
+          "te_verde",
+          "lavanda",
+          "calendula"
+        ],
+        "suplementos": [
+          "omega_3",
+          "zinc",
+          "niacinamida",
+          "probioticos",
+          "vitamina_c"
+        ],
+        "homeopatia": [
+          "carbo_veg",
+          "sulphur",
+          "pulsatilla",
+          "calcaria_carbonica",
+          "ledum_palustre"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "incienso"
+        ],
+        "cuandoPreferir": "Rosácea leve-moderada, mantenimiento, intolerancia a metronidazol, profilaxis estacional, eritema (Brimonidina rebote)."
+      },
+      "prevencion": [
+        "Identificar y evitar triggers (sol, alcohol, picante, calor)",
+        "Protector solar SPF50",
+        "Cosmética hipoalergénica",
+        "Dieta antiinflamatoria",
+        "Probióticos (SIBO)",
+        "Tratar Demodex",
+        "Gestión del estrés"
+      ],
+      "cuandoConsultar": "Afectación ocular (rosácea ocular), rinofima, no respuesta, impacto psicológico, empeoramiento, sospecha de lupus (differential).",
+      "evidencia": "A",
+      "fuentes": [
+        "Global ROSacea Consensus (ROSCO)",
+        "PubMed (Omega-3, Azelaic rosacea)",
+        "EMA HMPC"
+      ]
+    },
+    {
+      "id": "urticaria",
+      "nombre": "Urticaria",
+      "definicion": "Erupción cutánea de ronchas pruriginosas por liberación de histamina. Aguda (<6 sem) o crónica (>6 sem). 20% adultos la padecen en algún momento.",
+      "causas": [
+        "Alérgenos (medicamentos, alimentos, picaduras)",
+        "Infecciones",
+        "Físicos (frío, calor, presión, sol)",
+        "Autoinmune (anti-FcεRI)",
+        "Vasculitis",
+        "Idiopática (50% crónica)"
+      ],
+      "sintomas": [
+        "Ronchas (habones) eritematosas",
+        "Prurito intenso",
+        "Angioedema (50%)",
+        "Lesiones migratorias (<24h)",
+        "Sin huella tras resolución"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Anti-H1 de 2ª gen (cetirizina, loratadina, bilastina)",
+          "Anti-H1 + Anti-H2 (ranitidina)",
+          "Omalizumab (cónica espontánea)",
+          "Corticoides cortos (aguda grave)",
+          "Adrenalina (anafilaxia)"
+        ],
+        "mecanismo": "Anti-H1 bloquean receptores histamina. Omalizumab anti-IgE. Corticoides en crisis. Adrenalina en anafilaxia.",
+        "efectosSecundarios": [
+          "Anti-H1: somnolencia (1ª gen), sequedad",
+          "Omalizumab: reacciones locales",
+          "Corticoides: efectos crónicos"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ortiga",
+          "regaliz",
+          "petasites",
+          "quercetina",
+          "sauco"
+        ],
+        "suplementos": [
+          "quercetina",
+          "vitamina_c",
+          "omega_3",
+          "vitamina_d3",
+          "probioticos",
+          "bromelina"
+        ],
+        "homeopatia": [
+          "apis_mellifica",
+          "ortiga",
+          "rhus_toxicodendron",
+          "pulsatilla",
+          "sulphur"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana"
+        ],
+        "cuandoPreferir": "Urticaria leve, profilaxis, complemento a anti-H1, pacientes que rechazan antihistamínicos, urticaria física crónica."
+      },
+      "prevencion": [
+        "Identificar y evitar triggers",
+        "Diario de síntomas/alimentos",
+        "Dieta baja en histamina",
+        "Gestión del estrés",
+        "Probióticos",
+        "Evitar AINEs si sensibles"
+      ],
+      "cuandoConsultar": "Angioedema (labios, lengua, garganta), dificultad respiratoria, anafilaxia (URGNCIA - adrenalina), urticaria crónica >6 sem, vasculítica (lesiones >24h, purpúricas), asociada a fármaco nuevo.",
+      "evidencia": "A",
+      "fuentes": [
+        "EAACI/GA2LEN Urticaria Guidelines",
+        "PubMed (Quercetin, Perilla)",
+        "EMA HMPC Petasites"
+      ]
+    },
+    {
+      "id": "xerosis",
+      "nombre": "Xerosis (Piel Seca)",
+      "definicion": "Piel seca por déficit de hidratación y lípidos del manto cutáneo. Prevalencia alta en >60 años (75%) y en invierno (eczema asteatótico).",
+      "causas": [
+        "Envejecimiento (reduce sebo/humedad)",
+        "Clima frío/seco",
+        "Calefacción/aire acondicionado",
+        "Duchas muy calientes/prolongadas",
+        "Jabones agresivos",
+        "Fármacos (retinoides, diuréticos)",
+        "Atopia",
+        "Hipotiroidismo"
+      ],
+      "sintomas": [
+        "Piel áspera y descamativa",
+        "Prurito",
+        "Fisuras",
+        "Eczema asteatótico (red)",
+        "Sensibilidad",
+        "Aspecto ceniciento",
+        "Predilección: piernas, brazos, manos"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Emolientes (cera, vaselina)",
+          "Urea 10-20%",
+          "Lactato amonio 12%",
+          "Ceramidas",
+          "Aceites (almendra, jojoba)",
+          "Corticoide tópico (si prurito/eczema)"
+        ],
+        "mecanismo": "Emolientes sellan humedad. Queratolíticos (urea) reducen descamación. Ceramidas reparan barrera. Corticoides si inflamación.",
+        "efectosSecundarios": [
+          "Urea: ardor en piel fisurada",
+          "Cortico: atrofia si prolongado"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "aloe_vera",
+          "calendula",
+          "manzanilla",
+          "olmo_america",
+          "malvavisco",
+          "olivo"
+        ],
+        "suplementos": [
+          "omega_3",
+          "omega_7",
+          "vitamina_e",
+          "vitamina_a",
+          "omega_3",
+          "colageno",
+          "biotina"
+        ],
+        "homeopatia": [
+          "sulphur",
+          "graphites",
+          "petroleum",
+          "arsenicum_album",
+          "calcaria_carbonica"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "rosa",
+          "geranio"
+        ],
+        "cuandoPreferir": "Xerosis leve-moderada, piel sensible, atópica, prevención (invierno), mantenimiento, embarazo (no corticoides crónicos)."
+      },
+      "prevencion": [
+        "Duchas cortas, agua tibia",
+        "Jabones sin sulfatos/sindeticos",
+        "Aplicar emoliente en piel húmeda postducha",
+        "Humidificador en invierno",
+        "Hidratación oral",
+        "Evitar lana irritante",
+        "Ropa de algodón"
+      ],
+      "cuandoConsultar": "Eczema asteatótico intenso, fisuras infectadas, prurito que altera sueño, no respuesta a emolientes, signos de infección, eritrodermia, descamación generalizada.",
+      "evidencia": "B",
+      "fuentes": [
+        "AAD Dry Skin Guidelines",
+        "PubMed (Omega-3 skin barrier)",
+        "EMA HMPC Calendula"
+      ]
+    },
+    {
+      "id": "dermatitis_contacto",
+      "nombre": "Dermatitis de Contacto",
+      "definicion": "Dermatitis eczematosa por contacto con irritantes (DCIrritativa) o alérgenos (DCAlérgica, IV tipo). Prevalencia laboral alta; 20% en manos en oficios húmedos.",
+      "causas": [
+        "Irritantes (detergentes, agua, jabones, ácidos)",
+        "Alérgenos (níquel, cromo, cobalto, gomas, fragancias, conservadores)",
+        "Profesiones húmedas (sanitario, peluquería)",
+        "Atopia previa",
+        "Piel dañada"
+      ],
+      "sintomas": [
+        "Eritema",
+        "Vesículas",
+        "Descamación",
+        "Fisuras",
+        "Prurito",
+        "Ardor",
+        "Localización en zona contacto (manos, cara)",
+        "Cronicidad: liquenificación"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Evitar el agente (clave)",
+          "Corticoide tópico (hidrocortisona, mometasona)",
+          "Emolientes barrera",
+          "Inhibidores calcineurina (tacrolimus, pimecrolimus)",
+          "Fototerapia (crónica)",
+          "Corticoides orales (agudo grave)"
+        ],
+        "mecanismo": "Evitación es el pilar. Corticoides antiinflamatorios. Inhibidores calcineurina (no atrofiantes).",
+        "efectosSecundarios": [
+          "Cortico tópico: atrofia, telangiectasias",
+          "Tacrolimus: ardor inicial",
+          "Cortico oral: efectos sistémicos"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "calendula",
+          "manzanilla",
+          "aloe_vera",
+          "hiperico",
+          "pensamiento",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "omega_3",
+          "omega_7",
+          "vitamina_c",
+          "zinc",
+          "probioticos",
+          "niacinamida",
+          "quercetina"
+        ],
+        "homeopatia": [
+          "sulphur",
+          "graphites",
+          "rhus_toxicodendron",
+          "petroleum",
+          "apis_mellifica"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "incienso"
+        ],
+        "cuandoPreferir": "Dermatitis contacto leve, manos, mantenimiento tras corticoide, piel sensible, profilaxis profesional, embarazo (no corticoides fuertes)."
+      },
+      "prevencion": [
+        "Identificar y evitar el agente (prick test/patch test)",
+        "Guantes protectores (vinilo/nitrilo)",
+        "Emolientes barrera antes del trabajo",
+        "Sustituir productos irritantes",
+        "Higiene de manos adecuada",
+        "Ropa de algodón",
+        "Educación laboral"
+      ],
+      "cuandoConsultar": "Vesículas extensas, sobreinfección (impétigo), no respuesta, prurito intenso, impacto laboral, dermatitis generalizada, sospecha de alérgeno desconocido (patch test).",
+      "evidencia": "A",
+      "fuentes": [
+        "European Society of Contact Dermatitis",
+        "PubMed (Calendula, Omega-3 dermatitis)",
+        "EMA HMPC Calendulae flos"
+      ]
+    },
+    {
+      "id": "afas_bucal",
+      "nombre": "Aftas Bucal (Úlceras Orales)",
+      "definicion": "Úlceras orales recurrentes (estomatitis aftosa recurrente). 20-60% de adultos; inicio habitual en infancia/adolescencia. Clasificación: menor (80%), mayor, herpetiforme.",
+      "causas": [
+        "Idiopática (inmunitaria)",
+        "Genética (HLA)",
+        "Estrés",
+        "Trauma (mordedura, prótesis)",
+        "Déficit (B12, folato, Fe, Zn)",
+        "Celiaquía",
+        "Enfermedad Behçet",
+        "SLS en dentífricos",
+        "Menstruación"
+      ],
+      "sintomas": [
+        "Úlceras dolorosas (1-10mm)",
+        "Fondo blanco-amarillento",
+        "Halo eritematoso",
+        "Localización: mucosa móvil (no encía)",
+        "Dolor al comer",
+        "Recurrencias (cada 1-6 meses)",
+        "Cura en 7-14 días"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Anestésicos tópicos (lidocaína viscosa)",
+          "Corticoide tópico (triamcinolona)",
+          "Hialuronato tópico",
+          "Colutorio anestésico",
+          "Sucralfato",
+          "Hexetidina colutorio"
+        ],
+        "mecanismo": "Anestésicos alivian dolor. Corticoides reducen inflamación. Hialuronato forma barrera. Antisépticos previenen sobreinfección.",
+        "efectosSecundarios": [
+          "Cortico tópico: candidiasis si prolongado",
+          "Hexetidina: disgeusia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "salvia",
+          "mirra",
+          "propoleo",
+          "regaliz",
+          "manzanilla",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "vitamina_b12",
+          "folato",
+          "hierro",
+          "zinc",
+          "l_lisina",
+          "probioticos",
+          "folato"
+        ],
+        "homeopatia": [
+          "borax",
+          "mercurius",
+          "nitricum_acidum",
+          "hydrastis",
+          "kali_muriaticum"
+        ],
+        "aceites": [
+          "tea_tree",
+          "mirra",
+          "clavo"
+        ],
+        "cuandoPreferir": "Aftas menores recurrentes, profilaxis, intolerancia a corticoides tópicos, niños, complemento a investigación de causa (descartar celiaquía/B12)."
+      },
+      "prevencion": [
+        "Dentífrico sin lauril sulfato sódico (SLS)",
+        "Dieta rica en B12/Fe/folato",
+        "Evitar trauma (cepillado suave)",
+        "Gestión del estrés",
+        "Probióticos",
+        "Descartar celiaquía/Behçet"
+      ],
+      "cuandoConsultar": "Aftas >1cm (mayores), >2 semanas de duración, múltiples/numerosas, fiebre, dificultad para comer, recurrencias muy frecuentes, en encía (sospechar otro), no curación, asociadas a síntomas sistémicos (Behçet, IBD).",
+      "evidencia": "B",
+      "fuentes": [
+        "PubMed (B12 aphthae)",
+        "European Guidelines Oral Ulcers",
+        "EMA HMPC Salviae"
+      ]
+    },
+    {
+      "id": "queilitis_angular",
+      "nombre": "Queilitis Angular (Boqueras)",
+      "definicion": "Inflamación crónica de las comisuras labiales. Bilateral. Afecta a dentistas, ancianos, pacientes con prótesis. Etiología multifactorial.",
+      "causas": [
+        "Candida albicans (50%)",
+        "Estafilococo aureus",
+        "Bajo aporte vertical (sobremordida, prótesis mal ajustada)",
+        "Déficit (B2, B6, Fe)",
+        "Anemia",
+        "Diabetes",
+        "Xerosis",
+        "Babeo",
+        "VIH"
+      ],
+      "sintomas": [
+        "Eritema comisural bilateral",
+        "Fisuras dolorosas",
+        "Descamación",
+        "Sangrado",
+        "Dolor al abrir boca",
+        "Costras",
+        "Recurrencias"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Miconazol tópico (antifúngico)",
+          "Fusidico ácido tópico (estafilococo)",
+          "Corticoide-antifúngico combinado",
+          "Tratamiento de causa (prótesis, B2)",
+          "Hidratación"
+        ],
+        "mecanismo": "Antifúngico si Candida. Antibiótico si estafilococo. Combinado si mixto. Corrección de causa (prótesis, déficit).",
+        "efectosSecundarios": [
+          "Irritación local",
+          "Cortico: atrofia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "propoleo",
+          "manzanilla",
+          "calendula",
+          "regaliz",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "riboflavina",
+          "vitamina_b6",
+          "hierro",
+          "zinc",
+          "probioticos",
+          "vitamina_b12"
+        ],
+        "homeopatia": [
+          "borax",
+          "nitricum_acidum",
+          "graphites",
+          "sulphur"
+        ],
+        "aceites": [
+          "tea_tree",
+          "lavanda_aceite",
+          "mirra"
+        ],
+        "cuandoPreferir": "Boqueras leves, profilaxis, mantenimiento, intolerancia a miconazol, deficiencias nutricionales, prótesis (complemento a ajuste)."
+      },
+      "prevencion": [
+        "Aporte vertical adecuado (prótesis bien ajustada)",
+        "Higiene oral y prótesis",
+        "Dieta rica en B2/B6/Fe",
+        "Control de diabetes",
+        "Hidratación labial",
+        "Probióticos",
+        "Evitar babeo"
+      ],
+      "cuandoConsultar": "No respuesta en 2-3 semanas, recurrencias, anemia/diabetes no controlada, prótesis mal ajustada, sospecha de inmunodeficiencia, extensión cutánea.",
+      "evidencia": "B",
+      "fuentes": [
+        "PubMed (Angular cheilitis)",
+        "EMA HMPC Propolis"
+      ]
+    },
+    {
+      "id": "halitosis",
+      "nombre": "Halitosis (Mal Aliento)",
+      "definicion": "Mal aliento persistente. 90% de origen oral (higiene, periodontal, lengua), 10% sistémico. Prevalencia 30% mundial. Impacto social y psicológico.",
+      "causas": [
+        "Higiene oral deficiente",
+        "Lengua saburral (bacterias)",
+        "Enfermedad periodontal",
+        "Caries",
+        "Xerostomía",
+        "Amígdalas (caseum)",
+        "Reflujo (ERGE)",
+        "Dieta (ajo, cebolla)",
+        "Tabaco",
+        "Diabetes (cetosis)",
+        "Hígado/riñón"
+      ],
+      "sintomas": [
+        "Mal olor al exhalar",
+        "Sabor desagradable",
+        "Lengua blanca/amarilla (saburral)",
+        "Autoconsciencia social",
+        "Boca seca",
+        "Saburra lingual"
+      ],
+      "sistemas": [
+        "digestivo",
+        "respiratorio"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Higiene oral mejorada (hilo, cepillado)",
+          "Raspado lingual",
+          "Colutorios (clorhexidina, CPC, zinc)",
+          "Tratamiento periodontal",
+          "Estimulantes salivales",
+          "Tratamiento de causa (ERGE, xerostomía)"
+        ],
+        "mecanismo": "Reducir bacterias productoras de compuestos volátiles sulfurados (CVS). Clorhexidina y CPC antisépticos. Zinc neutraliza CVS.",
+        "efectosSecundarios": [
+          "Clorhexidina: tinción, disgeusia",
+          "Alcohol colutorios: xerostomía"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "salvia",
+          "menta",
+          "clavo",
+          "eucalipto",
+          "tomillo",
+          "hinojo"
+        ],
+        "suplementos": [
+          "probioticos",
+          "zinc",
+          "vitamina_c",
+          "bromelina"
+        ],
+        "homeopatia": [
+          "carbo_veg",
+          "sulphur",
+          "pulsatilla",
+          "nux_vomica",
+          "mercurius"
+        ],
+        "aceites": [
+          "menta_aceite",
+          "eucalipto",
+          "clavo",
+          "perejil_aceite"
+        ],
+        "cuandoPreferir": "Halitosis oral leve, profilaxis, mantenimiento, complemento a higiene, xerostomía, después de comidas (chicles de menta)."
+      },
+      "prevencion": [
+        "Cepillado 2x/día + hilo",
+        "Rascador lingual diario",
+        "Limpieza profesional cada 6-12 meses",
+        "Hidratación",
+        "Dieta (evitar ajo/cebolla si problema)",
+        "No fumar",
+        "Chicle sin azúcar (estimula saliva)",
+        "Probióticos orales"
+      ],
+      "cuandoConsultar": "No responde a higiene, halitosis sistémica (diabetes, hepática, renal), sangrado gingival, periodontitis, xerostomía severa, regurgitación/ERGE, masa amigdalares.",
+      "evidencia": "B",
+      "fuentes": [
+        "International Society of Breath Odor Research",
+        "PubMed (Probiotics halitosis)",
+        "EMA HMPC Salviae folium"
+      ]
+    },
+    {
+      "id": "disfonia",
+      "nombre": "Disfonía y Ronquera",
+      "definicion": "Alteración de la voz (ronquera). Aguda (<3 sem, habitualmente vírica) o crónica (>3 sem, investigar). Afecta a profesiones de voz (profesores, cantantes).",
+      "causas": [
+        "Laringitis aguda vírica",
+        "Abuso vocal",
+        "Reflujo laringofaríngeo (RFL)",
+        "Tabaco/alcohol",
+        "Nódulos/pólipo vocal",
+        "Disfunción tiroidea",
+        "Alergia",
+        "Fármacos (corticos inhalados)",
+        "Cáncer laríngeo"
+      ],
+      "sintomas": [
+        "Voz ronca",
+        "Pérdida de tono",
+        "Afonía",
+        "Tos seca",
+        "Sensación de globo",
+        "Picor/garganta",
+        "Fatiga vocal",
+        "Claqueo"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Reposo vocal (no cuchichear)",
+          "Hidratación",
+          "Inhibidores bomba protones (RFL)",
+          "Corticoide oral/inhalado (agudo inflamatorio)",
+          "Logopedia (nódulos)",
+          "Cirugía (pólipo)"
+        ],
+        "mecanismo": "Reposo e hidratación reducen inflamación. IBP si reflujo laringofaríngeo. Logopedia reeduca voz. Cirugía si lesión orgánica.",
+        "efectosSecundarios": [
+          "Cortico oral: efectos sistémicos",
+          "Cortico inhalado: candidiasis"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "olmo_america",
+          "malvavisco",
+          "llanten",
+          "regaliz",
+          "tomillo",
+          "aloe_vera"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "zinc",
+          "probioticos",
+          "jengibre"
+        ],
+        "homeopatia": [
+          "spongia",
+          "drosera",
+          "rumex",
+          "phosphorus",
+          "causticum"
+        ],
+        "aceites": [
+          "incienso",
+          "mirra",
+          "salvia_esclarea"
+        ],
+        "cuandoPreferir": "Laringitis aguda, mantenimiento, RFL (complemento a IBP), profilaxis profesional vocal, aftersurgery, intolerancia a corticoides."
+      },
+      "prevencion": [
+        "Higiene vocal (calentamiento, hidratación)",
+        "No forzar voz",
+        "Evitar carraspeo",
+        "Hidratación abundante",
+        "Evitar tabaco/alcohol",
+        "Tratar RFL",
+        "Postura adecuada",
+        "Logopedia si uso profesional"
+      ],
+      "cuandoConsultar": "Disfonía >3 semanas, fumador >40 años (descartar cáncer), hemoptisis, disfagia, masa cervical, dolor, disnea estridor, recurrencias, voz profesional (logopedia).",
+      "evidencia": "B",
+      "fuentes": [
+        "American Academy Otolaryngology Hoarseness Guidelines",
+        "PubMed (Honey, Pelargonium)",
+        "EMA HMPC Plantaginis"
+      ]
+    },
+    {
+      "id": "ronquido_apnea",
+      "nombre": "Ronquido y Apnea Obstructiva del Sueño",
+      "definicion": "Ronquido: ruido respiratorio nocturno (40% adultos). Apnea obstructiva del sueño (AOS): pausas respiratorias. AOS 5-15% adultos; 80% no diagnosticada.",
+      "causas": [
+        "Obesidad (principal)",
+        "Obstrucción nasal (septo, pólipos, rinitis)",
+        "Amígdalas/úvula grandes",
+        "Retrognatia",
+        "Tabaco/alcohol",
+        "Menopausia",
+        "Hipotiroidismo",
+        "Genética"
+      ],
+      "sintomas": [
+        "Ronquido alto",
+        "Pausas respiratorias observadas",
+        "Microdespertares",
+        "Somnolencia diurna",
+        "Cefalea matutina",
+        "Insomnio",
+        "Fatiga",
+        "Irritabilidad",
+        "Disfunción eréctil",
+        "HTA"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "cardiovascular",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "CPAP (AOS moderada-grave)",
+          "Pierda de peso",
+          "Aparato intraoral (avance mandibular)",
+          "Cirugía (UPPP, implantes)",
+          "Posición lateral",
+          "Tratar obstrucción nasal"
+        ],
+        "mecanismo": "CPAP mantiene vía aérea abierta por presión. Avance mandibular avanza lengua. Cirugía reduce tejido. Posición lateral evita caída lengua.",
+        "efectosSecundarios": [
+          "CPAP: irritación nasal, sequedad",
+          "Aparato: dolor TMJ",
+          "Cirugía: dolor, voz"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "olivo",
+          "ortiga",
+          "regaliz",
+          "lavanda"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "vitamina_d3",
+          "omega_3",
+          "melatonina",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "spongia",
+          "drosera",
+          "glonoinum",
+          "nux_vomica"
+        ],
+        "aceites": [
+          "eucalipto",
+          "ravintsara",
+          "menta_aceite",
+          "incienso"
+        ],
+        "cuandoPreferir": "Ronquido simple (no AOS), AOS leve, complemento a CPAP, intolerancia a CPAP (mantenimiento), profilaxis, posicional. NO sustituir CPAP en AOS moderada-grave."
+      },
+      "prevencion": [
+        "Pérdida de peso (5-10%)",
+        "Dormir en posición lateral",
+        "Evitar alcohol antes de dormir",
+        "Dejar de fumar",
+        "Tratar obstrucción nasal",
+        "Ejercicio regular",
+        "Higiene del sueño"
+      ],
+      "cuandoConsultar": "Somnolencia diurna grave (accidentes), pausas observadas >10 seg, HTA resistente, arritmias, cardiopatía, ICP.98 30, pH <7.30, desaturación <90%, AOS moderada-grave (polisomnografía).",
+      "evidencia": "A",
+      "fuentes": [
+        "AASM Sleep Apnea Guidelines",
+        "STOP-BANG Questionnaire",
+        "PubMed (Magnesium sleep)"
+      ]
+    },
+    {
+      "id": "piernas_inquietas",
+      "nombre": "Síndrome de Piernas Inquietas (SPI)",
+      "definicion": "Trastorno neurológico: urgencia de mover piernas, peor por la noche, alivia con movimiento. 5-10% adultos, predominio femenino. Familiar en 50%.",
+      "causas": [
+        "Déficit de hierro (ferritina <75)",
+        "Genética (MEIS1, BTBD9)",
+        "Disfunción dopaminérgica",
+        "Embarazo (3er trim)",
+        "Insuficiencia renal",
+        "Hipotiroidismo",
+        "Fármacos (antidepresivos, antieméticos)",
+        "Déficit B9/B12"
+      ],
+      "sintomas": [
+        "Necesidad urgente de mover piernas",
+        "Sensaciones desagradables (hormigueo, picor)",
+        "Peor por la noche/reposo",
+        "Alivio con movimiento",
+        "Insomnio",
+        "Trastorno conductual del sueño"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Hierro IV/Oral (si ferritina <75)",
+          "Agonistas dopamina (pramipexol, ropinirol, rotigotina)",
+          "Gabapentin/Pregabalina",
+          "Opiáceos (refractario)",
+          "Evitar antieméticos dopaminérgicos"
+        ],
+        "mecanismo": "Hierro (cofactor tirosina hidroxilasa). Agonistas dopamina (D2/D3). Gabapentin modula neuropéptidos. Opiáceos en refractario.",
+        "efectosSecundarios": [
+          "Hierro oral: GI",
+          "Agonistas dopamina: augmentation (empeora), impulse control",
+          "Opiáceos: dependencia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "valeriana",
+          "pasiflora",
+          "rodiola",
+          "ashwagandha"
+        ],
+        "suplementos": [
+          "hierro",
+          "magnesio_glicinato",
+          "vitamina_b12",
+          "folato",
+          "vitamina_d3",
+          "tirosina",
+          "omega_3",
+          "ginkgo"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "zincum_metallicum",
+          "vitex",
+          "causticum"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "romero_aceite",
+          "mejorana"
+        ],
+        "cuandoPreferir": "SPI leve, déficit de hierro/magnesio, embarazo (no agonistas dopamina), profilaxis, complemento a agonistas, augmentation (reducir dosis)."
+      },
+      "prevencion": [
+        "Corrección ferritina >75",
+        "Higiene del sueño",
+        "Evitar alcohol/cafeína por la noche",
+        "Ejercicio (no intenso nocturno)",
+        "Gestión del estrés",
+        "B12/B9 en vegetarianos",
+        "Control renal/tiroides"
+      ],
+      "cuandoConsultar": "Insomnio severo, augmentation (empeoramiento con agonistas), ferritina <50, síntomas diurnos, embarazo refractario, no respuesta a tratamiento, impacto laboral/social.",
+      "evidencia": "A",
+      "fuentes": [
+        "IRLSSG Diagnostic Criteria",
+        "Mayo Clinic RLS Guidelines",
+        "PubMed (Iron, Magnesium RLS)"
+      ]
+    },
+    {
+      "id": "calambres_nocturnos",
+      "nombre": "Calambres Musculares Nocturnos",
+      "definicion": "Contracciones musculares dolorosas involuntarias (piernas, generalmente gemelo). 60% adultos >50 años. Duran segundos-minutos.",
+      "causas": [
+        "Idiopático (mayoría)",
+        "Deshidratación",
+        "Déficit de magnesio/potasio/calcio",
+        "Sobreesfuerzo",
+        "Embarazo",
+        "Fármacos (diuréticos, estatinas)",
+        "Circulatorio (IVC)",
+        "Neuropatía periférica",
+        "Hipotiroidismo"
+      ],
+      "sintomas": [
+        "Dolor súbito intenso en gemelo/pie",
+        "Contracción visible",
+        "Palpación del músculo endurecido",
+        "Despierta del sueño",
+        "Residual dolor leve",
+        "Recurrencia nocturna"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Estiramientos del gemelo",
+          "Magnesio oral (si déficit)",
+          "Quinina (no recomendada por FDA)",
+          "Compresas calientes",
+          "Hidratación",
+          "Tratamiento causa (diuréticos, IVC)"
+        ],
+        "mecanismo": "Estiramientos relajan músculo. Magnesio regula contracción. Quinina (no FDA por toxicidad). Hidratación y electrolitos.",
+        "efectosSecundarios": [
+          "Quinina: arritmia, trombocitopenia (no recomendada)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "pasiflora",
+          "valeriana",
+          "romero"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "citrato_potasio",
+          "vitamina_d3",
+          "vitamina_e",
+          "vitamina_b_complejo",
+          "zinc",
+          "omega_3"
+        ],
+        "homeopatia": [
+          "magnesia_phosphorica",
+          "nux_vomica",
+          "sulphur",
+          "vitex"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "romero_aceite",
+          "mejorana",
+          "menta_aceite"
+        ],
+        "cuandoPreferir": "Calambres idiopáticos, profilaxis nocturna, embarazo (Magnesio), intolerancia a quinina (retirada), pacientes con diuréticos, ancianos."
+      },
+      "prevencion": [
+        "Estiramientos antes de dormir",
+        "Hidratación adecuada",
+        "Dieta rica en magnesio/potasio (plátano, verduras)",
+        "Evitar sobreesfuerzo",
+        "Calzado adecuado",
+        "Higiene postural al dormir",
+        "Calor local antes de dormir"
+      ],
+      "cuandoConsultar": "Calambres muy frecuentes/severos, debilidad asociada, atrofia, neuropatía (diabetes, alcoholismo), no respuesta a magnesio, sospecha de fármaco (estatinas), calambre unilateral persistente (DVT).",
+      "evidencia": "B",
+      "fuentes": [
+        "PubMed (Magnesium leg cramps)",
+        "FDA Quinina warning",
+        "Mayo Clinic Muscle Cramps"
+      ]
+    },
+    {
+      "id": "conjuntivitis",
+      "nombre": "Conjuntivitis",
+      "definicion": "Inflamación de la conjuntiva: vírica (80%, adenovirus), bacteriana, alérgica o irritativa. 6 millones casos/año en EE.UU. Muy contagiosa (vírica/bacteriana).",
+      "causas": [
+        "Adenovirus (vírica, 80%)",
+        "Staphylococcus, Streptococcus, H. influenzae (bacteriana)",
+        "Alérgenos (alérgica)",
+        "Irritantes (cloro, humo)",
+        "Trauma",
+        "Lentes de contacto"
+      ],
+      "sintomas": [
+        "Ojo rojo",
+        "Lagrimeo",
+        "Picor/ardor",
+        "Secreción (purulenta en bacteriana)",
+        "Sensación de arena",
+        "Fotofobia",
+        "Edema palpebral",
+        "Adenopatía (vírica)"
+      ],
+      "sistemas": [
+        "ocular",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Lubricantes oculares (vírica/alérgica)",
+          "Antibióticos tópicos (bacteriana)",
+          "Antihistamínicos/mastocilulares (alérgica)",
+          "Corticoide tópico (vírica grave - por oftalmólogo)",
+          "Compresas frías"
+        ],
+        "mecanismo": "Antibióticos bacterianos (moxifloxacino, azitromicina). Antihistamínicos H1 y estabilizadores mastocito (olopatadina). Corticoides en queratitis grave.",
+        "efectosSecundarios": [
+          "Corticoide: glaucoma, catarata, herpes (no usar si sospecha)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "euphrasia",
+          "manzanilla",
+          "llanten",
+          "hamamelis",
+          "calendula",
+          "te_verde"
+        ],
+        "suplementos": [
+          "vitamina_a",
+          "vitamina_c",
+          "omega_3",
+          "zinc",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "euphrasia",
+          "allium_cepa",
+          "apis_mellifica",
+          "pulsatilla",
+          "argentum_nitricum"
+        ],
+        "aceites": [
+          "manzanilla_romana",
+          "lavanda_aceite"
+        ],
+        "cuandoPreferir": "Conjuntivitis vírica leve (complemento a lubricantes), alérgica (complemento), profilaxis, irritativa. NUNCA usar corticoides sin descartar herpes."
+      },
+      "prevencion": [
+        "Higiene de manos (no tocar ojos)",
+        "No compartir toallas",
+        "Cambiar lentes de contacto",
+        "Protección solar",
+        "Evitar alérgenos",
+        "Higiene cosmética ocular"
+      ],
+      "cuandoConsultar": "Dolor ocular (no solo picor), visión borrosa persistente, fotofobia intensa, secreción copiosa, no mejora en 5-7 días, inmunosupresión, lentes de contacto (queratitis), sospecha de herpes (URGNCIA), contacto con detergente/químico.",
+      "evidencia": "B",
+      "fuentes": [
+        "AAO Conjunctivitis Preferred Practice Pattern",
+        "PubMed (Green tea, Euphrasia)",
+        "EMA HMPC Euphrasiae herba"
+      ]
+    },
+    {
+      "id": "otitis",
+      "nombre": "Otitis Externa y Media",
+      "definicion": "Otitis externa: infección del conducto auditivo (natación). Otitis media: infección del oído medio (niños, invierno). OMA: 80% niños antes de 3 años.",
+      "causas": [
+        "Pseudomonas, Staphylococcus (externa)",
+        "Aspergillus (fúngica externa)",
+        "Streptococcus pneumoniae, H. influenzae (media)",
+        "Obstrucción tubárica (media)",
+        "Agua retenida (externa)",
+        "Alergia/ronca",
+        "Humedad"
+      ],
+      "sintomas": [
+        "Dolor de oído (otalgia)",
+        "Secreción (otorrea)",
+        "Picor (externa)",
+        "Hipoacusia",
+        "Tinnitus",
+        "Sensación de taponamiento",
+        "Fiebre (media)",
+        "Adenopatía"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Gotas óticas (corticoide + antibiótico: ciprofloxacino, neomicina)",
+          "Antifúngico ótico (clotrimazol)",
+          "Antibiótico oral (media: amoxicilina)",
+          "Analgesia (paracetamol, AINEs)",
+          "Taponamiento si otorrea"
+        ],
+        "mecanismo": "Gotas óticas locales antibiótico/antiinflamatorio. Amoxicilina para otitis media. Analgesia. Antifúngico si fúngica.",
+        "efectosSecundarios": [
+          "Ototoxicidad (aminoglucósidos si TM perforada)",
+          "Cortico: sobreinfección fúngica",
+          "Resistencia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ajo",
+          "equinacea",
+          "propoleo",
+          "eucalipto",
+          "llanten",
+          "gordolobo",
+          "tea_tree"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "zinc",
+          "vitamina_d3",
+          "probioticos",
+          "omega_3"
+        ],
+        "homeopatia": [
+          "pulsatilla",
+          "chamomilla",
+          "belladonna",
+          "aconitum_napellus",
+          "ferrum_phosphoricum"
+        ],
+        "aceites": [
+          "tea_tree",
+          "lavanda_aceite",
+          "romero_aceite",
+          "ajo_aceite"
+        ],
+        "cuandoPreferir": "Otitis externa leve, profilaxis (nadadores), complemento a antibiótico, prevención recurrencia (niños), adultos con otitis externa. NO en otitis media con perforación."
+      },
+      "prevencion": [
+        "Secar oídos tras ducha/natación",
+        "Tapones para nadar",
+        "No usar bastoncillos (empujan cerumen)",
+        "Tratar rinitis/alergia",
+        "Vacunación neumococo/gripe (niños)",
+        "Probióticos"
+      ],
+      "cuandoConsultar": "Dolor intenso no cede, fiebre alta, otorrea purulenta, hipoacusia, vértigo, parálisis facial, signos meníngeos, mastoiditis (dolor retroauricular), niños <2 años, inmunodepresión.",
+      "evidencia": "A",
+      "fuentes": [
+        "AAP Otitis Media Guidelines",
+        "PubMed (Garlic, Propolis otitis)",
+        "EMA HMPC"
+      ]
+    },
+    {
+      "id": "faringitis",
+      "nombre": "Faringoamigdalitis",
+      "definicion": "Inflamación de faringe/amígdalas. Viral (80%) o bacteriana (Streptococcus pyogenes, 20%). Diferenciar para antibioticoterapia. Frecuente en invierno y niños.",
+      "causas": [
+        "Virus (rhinovirus, adenovirus, EBV, coxsackie)",
+        "Streptococcus pyogenes (bacteriana)",
+        "Streptococcus grupos C/G",
+        "Candida (inmunodeprimido)",
+        "Reflujo",
+        "Tabaco"
+      ],
+      "sintomas": [
+        "Dolor garganta",
+        "Disfagia",
+        "Fiebre",
+        "Amígdalas eritematosas/exudado",
+        "Adenopatías cervicales",
+        "Cefalea",
+        "Malestar",
+        "Sin tos ni rinorrea (bacteriana)"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Test rápido estreptococo + cultivo (centro McIsaac)",
+          "Amoxicilina/penicilina V (bacteriana, 10 días)",
+          "Paracetamol/AINEs",
+          "Corticoide oral (amigdalitis grave)",
+          "Amigdalectomía (recurrente: 7+/año)"
+        ],
+        "mecanismo": "Antibiótico si Streptococcus (previene fiebre reumática y absceso periamigdalino). Analgesia. Corticoides en casos graves. Cirugía si recurrente.",
+        "efectosSecundarios": [
+          "Amoxicilina: rash (mononucleosis = contraindicada)",
+          "Penicilina: alergia",
+          "Cortico: efectos sistémicos"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "pelargonium",
+          "salvia",
+          "propoleo",
+          "equinacea",
+          "jengibre",
+          "tomillo",
+          "llanten"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "zinc",
+          "vitamina_d3",
+          "probioticos",
+          "bromelina"
+        ],
+        "homeopatia": [
+          "belladonna",
+          "mercurius",
+          "hepar_sulphuris",
+          "phytolacca",
+          "apis_mellifica"
+        ],
+        "aceites": [
+          "tea_tree",
+          "ravintsara",
+          "eucalipto"
+        ],
+        "cuandoPreferir": "Faringitis viral (80%), profilaxis, complemento a antibiótico en bacteriana, recurrente (mantenimiento), voz profesional. No retrasar antibiótico si Streptococcus confirmado."
+      },
+      "prevencion": [
+        "Higiene de manos",
+        "Evitar contacto con enfermos",
+        "No fumar",
+        "Hidratación",
+        "Probióticos (inmunidad)",
+        "Vacuna neumococo/gripe",
+        "Gargarismos",
+        "Humidificar ambiente"
+      ],
+      "cuandoConsultar": "Dificultad respiratoria, babeo (absceso periamigdalino), trismus, fiebre >39, exudado + adenopatías (centro McIsaac 4-5), no mejora 5-7 días, recurrente (5+/año), inmunodepresión.",
+      "evidencia": "A",
+      "fuentes": [
+        "IDSA Pharyngitis Guidelines",
+        "Cochrane (Pelargonium, Echinacea)",
+        "EMA HMPC Pelargonii radix"
+      ]
+    },
+    {
+      "id": "fiebre",
+      "nombre": "Fiebre (Manejo)",
+      "definicion": "Elevación de temperatura corporal >38°C. Respuesta fisiológica del sistema inmune a infección. Síntoma, no enfermedad. Diferenciar febrícula (<38) y fiebre alta (>39).",
+      "causas": [
+        "Infecciones (víricas, bacterianas, fúngicas, parasitarias)",
+        "Inflamación",
+        "Vacunas",
+        "Fármacos (reacción)",
+        "Enfermedades autoinmunes",
+        "Tumores",
+        "Golpe de calor",
+        "Trombosis",
+        "Endocrino (tiroides)"
+      ],
+      "sintomas": [
+        "Temperatura >38°C",
+        "Escalofríos",
+        "Sudoración",
+        "Malestar",
+        "Cefalea",
+        "Mialgias",
+        "Taquicardia",
+        "Anorexia",
+        "Sofocos",
+        "Confusión (ancianos)"
+      ],
+      "sistemas": [
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Paracetamol (1g adultos, 10-15 mg/kg niños)",
+          "Ibuprofeno",
+          "Hidratación",
+          "Métodos físicos (paños tibios)",
+          "Tratamiento de causa",
+          "No aspirina en niños (Reye)"
+        ],
+        "mecanismo": "Antipiréticos inhiben COX en hipotálamo (PGE2). Hidratación. Físicos: paños tibios. Tratamiento de causa subyacente.",
+        "efectosSecundarios": [
+          "Paracetamol: hepatotoxicidad",
+          "Ibuprofeno: GI, renal",
+          "Aspirina: Reye en <16 años"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "sauco",
+          "tilo",
+          "sauce",
+          "jengibre",
+          "milenrama",
+          "borraja",
+          "romero",
+          "sauco"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "zinc",
+          "vitamina_d3",
+          "probioticos",
+          "ajo",
+          "equinacea"
+        ],
+        "homeopatia": [
+          "aconitum_napellus",
+          "belladonna",
+          "ferrum_phosphoricum",
+          "gelsemium",
+          "eupatorium"
+        ],
+        "aceites": [
+          "eucalipto",
+          "menta_aceite",
+          "ravintsara",
+          "lavanda_aceite"
+        ],
+        "cuandoPreferir": "Febrícula o fiebre <38.5, pacientes que rechazan antipiréticos, complemento a antipiréticos, profilaxis (inmunidad). La fiebre en sí es defensa; tratar el malestar, no la cifra."
+      },
+      "prevencion": [
+        "Higiene de manos",
+        "Vacunación",
+        "Dieta inmunitaria (vit C, zinc)",
+        "Probióticos",
+        "Sueño adecuado",
+        "Evitar contacto con enfermos",
+        "Hidratación"
+      ],
+      "cuandoConsultar": "Fiebre >40°C, >3 días sin causa clara, lactante <3 meses (URGNCIA), rigidez nucal (meningitis), dificultad respiratoria, exantema, vómitos persistentes, confusión, convulsión, orina oscura, signos de sepsis.",
+      "evidencia": "A",
+      "fuentes": [
+        "NICE Feverish Illness in Children",
+        "AAP Fever Guidelines",
+        "EMA HMPC Sambuci flos"
+      ]
+    },
+    {
+      "id": "resaca",
+      "nombre": "Resaca (Hangover)",
+      "definicion": "Síntomas posteriores al consumo de alcohol (ethanol y sus metabolitos: acetaldehído). 75% de bebedores. No es intoxicación; aparece cuando alcohol cae.",
+      "causas": [
+        "Alcohol (etanol)",
+        "Acetaldehído (tóxico)",
+        "Deshidratación",
+        "Hipoglucemia",
+        "Inflamación (citocinas)",
+        "Trastorno del sueño",
+        "Gastritis alcohólica",
+        "Congéneres (licores oscuros)"
+      ],
+      "sintomas": [
+        "Cefalea",
+        "Náuseas",
+        "Fatiga",
+        "Sed",
+        "Sensibilidad a la luz/sonido",
+        "Dificultad de concentración",
+        "Mareo",
+        "Mialgias",
+        "Ansiedad",
+        "Temblor"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso",
+        "hepatico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Hidratación (agua, electrolitos)",
+          "AINEs (ibuprofeno)",
+          "Antiácidos",
+          "Antieméticos (odansetrón si vómitos)",
+          "Reposo",
+          "Alimentación leve (fructosa)"
+        ],
+        "mecanismo": "Hidratación y electrolitos. AINEs alivian cefalea y mialgia. Antiácidos para gastritis. NO paracetamol (hepatotoxicidad con alcohol).",
+        "efectosSecundarios": [
+          "AINEs: gastrolesividad (ya gastritis)",
+          "Paracetamol: hepatotoxicidad (no combinar con alcohol)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "kudzu",
+          "cardo_mariano",
+          "jengibre",
+          "manzanilla",
+          "regaliz",
+          "alcachofa",
+          "kudzu"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "vitamina_b_complejo",
+          "nac",
+          "glutation",
+          "citrato_potasio",
+          "magnesio_glicinato",
+          "l_cisteina"
+        ],
+        "homeopatia": [
+          "nux_vomica",
+          "lobelia_inflata",
+          "lycopodium",
+          "arsenicum_album"
+        ],
+        "aceites": [
+          "menta_aceite",
+          "lavanda_aceite",
+          "jengibre_aceite"
+        ],
+        "cuandoPreferir": "Resaca leve-moderada, profilaxis (antes/durante), intolerancia a AINEs (gastrolesivo), protectores hepáticos, rehidratación con electrolitos."
+      },
+      "prevencion": [
+        "Beber con moderación",
+        "Alternar agua y alcohol",
+        "Comer antes de beber",
+        "Evitar licores oscuros (congéneres)",
+        "Vitamina B/C antes",
+        "Sueño adecuado",
+        "No mezclar bebidas"
+      ],
+      "cuandoConsultar": "Vómitos persistentes, confusión, convulsiones, hipotermia, respiración lenta (intoxicación etílica), palidez/hipotensión, dolor torácico, anuria, ictericia (hepático).",
+      "evidencia": "C",
+      "fuentes": [
+        "PubMed (Hangover interventions)",
+        "PubMed (B-vitamins, NAC alcohol)",
+        "EMA HMPC Silybi mariani"
+      ]
+    },
+    {
+      "id": "tabaquismo",
+      "nombre": "Tabaquismo (Cesación Tabáquica)",
+      "definicion": "Dependencia a la nicotina. 20% adultos fuman. 1ª causa evitable de mortalidad. Cesación reduce riesgo CV, cáncer, EPOC.",
+      "causas": [
+        "Adicción a nicotina (receptores α4β2 ACh)",
+        "Factor social",
+        "Estrés",
+        "Genética",
+        "Inicio en adolescencia",
+        "Hábito",
+        "Comorbilidad psiquiátrica"
+      ],
+      "sintomas": [
+        "Síndrome de abstinencia: ansiedad",
+        "Irritabilidad",
+        "Ansia de nicotina (craving)",
+        "Cefalea",
+        "Insomnio",
+        "Aumento de apetito/peso",
+        "Dificultad de concentración",
+        "Tristeza"
+      ],
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Terapia sustitutiva nicotina (chicles, parches)",
+          "Vareniclina (agonista parcial α4β2)",
+          "Bupropión",
+          "Consejo médico",
+          "Línea de cesación",
+          "Grupos de apoyo"
+        ],
+        "mecanismo": "TSN aporta nicotina sin combustibles. Vareniclina agonista parcial (reduce craving y recompensa). Bupropión inhibe recaptación DA/NE.",
+        "efectosSecundarios": [
+          "TSN: irritación boca, insomnio",
+          "Vareniclina: náuseas, sueños vívidos, cambios de humor",
+          "Bupropión: insomnio, ansiedad"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "kudzu",
+          "lobelia_inflata",
+          "pasiflora",
+          "valeriana",
+          "centella",
+          "regaliz"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "vitamina_e",
+          "nac",
+          "alfa_lipoico",
+          "tirosina",
+          "5_htp",
+          "omega_3",
+          "vitamina_b_complejo"
+        ],
+        "homeopatia": [
+          "sepia",
+          "tabacum",
+          "lobelia_inflata",
+          "nux_vomica",
+          "staphysagria"
+        ],
+        "aceites": [
+          "pimienta_negra_aceite",
+          "menta_aceite",
+          "ravintsara"
+        ],
+        "cuandoPreferir": "Complemento a TSN/vareniclina, manejo del craving, ansiedad asociada, profilaxis recaída, pacientes que rechazan fármacos, detox (NAC, antioxidantes)."
+      },
+      "prevencion": [
+        "No empezar (adolescentes)",
+        "Ambientes sin humo",
+        "Apoyo social",
+        "Actividad física (reduce craving)",
+        "Chicles sin azúcar",
+        "Apps de cesación",
+        "Consejo médico"
+      ],
+      "cuandoConsultar": "Intentos múltiples fallidos, depresión asociada, EPOC, cardiopatía, embarazo (fumadora), adolescentes, consumo elevado, comorbilidad psiquiátrica.",
+      "evidencia": "A",
+      "fuentes": [
+        "USPHS Smoking Cessation Guidelines",
+        "PubMed (NAC, Avena sativa cessation)",
+        "Cochrane (Varenicline)"
+      ]
+    },
+    {
+      "id": "obesidad",
+      "nombre": "Sobrepeso y Obesidad (Manejo)",
+      "definicion": "Acumulación excesiva de grasa (IMC >25 sobrepeso, >30 obesidad). 39% adultos mundo con sobrepeso, 13% obesidad. 2ª causa evitable de muerte.",
+      "causas": [
+        "Desequilibrio calórico (exceso ingesta/defecto gasto)",
+        "Sedentarismo",
+        "Genética (FTO, MC4R)",
+        "Dieta ultraprocessada",
+        "Estrés (cortisol)",
+        "Sueño insuficiente",
+        "Disbiosis",
+        "Fármacos (corticoides, antipsicóticos)",
+        "Hipotiroidismo",
+        "PCOS"
+      ],
+      "sintomas": [
+        "IMC >25/30",
+        "Adiposidad abdominal (RC >80m/94h)",
+        "Disnea de esfuerzo",
+        "Fatiga",
+        "Sudoración",
+        "Dolor articular",
+        "Reflujo",
+        "Síndrome metabólico asociado"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular",
+        "endocrino"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Dieta hipocalórica",
+          "Ejercicio",
+          "Orlistat (inhibidor lipasa)",
+          "Liraglutida/semaglutida (GLP-1)",
+          "Tirzepatida (GLP-1/GIP)",
+          "Bariatría (manga, bypass)"
+        ],
+        "mecanismo": "Dieta + ejercicio primarios. Orlistat reduce absorción grasa. GLP-1 reduce apetito y glucosa. Bariátrica restrictiva/mixta.",
+        "efectosSecundarios": [
+          "Orlistat: esteatorrea, deficiencia vitaminas liposolubles",
+          "GLP-1: náuseas, pancreatitis (raro)",
+          "Bariátrica: deficiencias, dumping"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "te_verde",
+          "guarana",
+          "te_rojo",
+          "canela",
+          "fenogreco",
+          "gymnema",
+          "kudzu"
+        ],
+        "suplementos": [
+          "omega_3",
+          "cromo",
+          "magnesio_glicinato",
+          "vitamina_d3",
+          "probioticos",
+          "inositol",
+          "berberina",
+          "l_carnitina",
+          "alfa_lipoico"
+        ],
+        "homeopatia": [
+          "calcaria_carbonica",
+          "graphites",
+          "lycopodium",
+          "nux_vomica",
+          "natrum_muriaticum"
+        ],
+        "aceites": [
+          "menta_aceite",
+          "enebro"
+        ],
+        "cuandoPreferir": "Sobrepeso/obesidad leve, complemento a dieta/ejercicio, resistencia a la insulina, intolerancia a GLP-1, mantenimiento post-bariátrica. La dieta y el ejercicio son el pilar; los suplementos son coadyuvantes."
+      },
+      "prevencion": [
+        "Dieta mediterránea",
+        "Ejercicio 150 min/semana + resistencia",
+        "Sueño 7-9h",
+        "Gestión del estrés",
+        "Comidas conscientes",
+        "Reducir ultraprocessados/azúcar",
+        "Peso regular",
+        "Probióticos"
+      ],
+      "cuandoConsultar": "IMC >35 con comorbilidades (candidato a bariátrica), no respuesta a 6 meses, síndrome metabólico, diabetes/HTA no controladas, trastorno alimentario, obesidad infantil, embarazo, trastorno tiroideo.",
+      "evidencia": "A",
+      "fuentes": [
+        "WHO Obesity Guidelines",
+        "AHA/ACC Obesity Guidelines",
+        "PubMed (Berberine, Cinnamon)"
+      ]
+    },
+    {
+      "id": "insuficiencia_venosa",
+      "nombre": "Insuficiencia Venosa Crónica y Varices",
+      "definicion": "Disfunción del retorno venoso (válvulas incompetentes, hipertensión venosa). Prevalencia 25-50% mujeres, 15% hombres. Varices: 30% adultos.",
+      "causas": [
+        "Insuficiencia valvular venosa",
+        "Genética (familia)",
+        "Embarazo",
+        "Sedentarismo/bipedestación prolongada",
+        "Obesidad",
+        "Edad",
+        "TVP previa",
+        "Hormonas (estrógenos)"
+      ],
+      "sintomas": [
+        "Piernas pesadas",
+        "Edema vespertino",
+        "Dolor/pesadez",
+        "Calambres nocturnos",
+        "Picos de golondrina",
+        "Varices",
+        "Eczema venoso",
+        "Úlcera venosa (CEAP C6)"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Medias de compresión (15-30 mmHg)",
+          "Flebotónicos (diosmina, dobesilato calcio, rutosidos)",
+          "Escleroterapia (espuma)",
+          "Ablación endovenosa (láser/radiofrecuencia)",
+          "Flebectomía"
+        ],
+        "mecanismo": "Compresión mejora retorno venoso. Flebotónicos aumentan tono venoso. Escleroterapia oblitera vena. Ablación cierra vena enferma.",
+        "efectosSecundarios": [
+          "Flebotónicos: mareo, GI",
+          "Escleroterapia: pigmentación, TVP raro",
+          "Ablación: hematoma, nervio safeno"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "castano_indias",
+          "rusco",
+          "hamamelis",
+          "ginkgo",
+          "vid_roja",
+          "pycnogenol",
+          "centella",
+          "milenrama"
+        ],
+        "suplementos": [
+          "diosmina",
+          "omega_3",
+          "vitamina_c",
+          "colageno",
+          "nac",
+          "vitamina_e"
+        ],
+        "homeopatia": [
+          "castano_indias",
+          "hamamelis",
+          "pulsatilla",
+          "lycopodium",
+          "viburnum_opulus",
+          "fluorica_acidica"
+        ],
+        "aceites": [
+          "cipres",
+          "lavanda_aceite",
+          "romero_aceite",
+          "helichrysum"
+        ],
+        "cuandoPreferir": "IVC CEAP C0-C3, profilaxis, embarazo (compresión + fito), postescleroterapia/ablación, mantenimiento, intolerancia a medias."
+      },
+      "prevencion": [
+        "Ejercicio (andar, natación)",
+        "Elevar piernas al descanso",
+        "Compresión (15-20 mmHg)",
+        "Evitar bipedestación/sedestación prolongada",
+        "Control de peso",
+        "No ropa ajustada",
+        "Dieta rica en fibra (evitar estreñimiento)"
+      ],
+      "cuandoConsultar": "Eczema venoso, úlcera venosa, dolor intenso, cambio coloración (ocrecosis/lipodermatoesclerosis), sangrado de variz, TVP (dolor unilateral súbito - URGNCIA), embarazo con IVC severa, no respuesta a medias.",
+      "evidencia": "A",
+      "fuentes": [
+        "ESVS Varicose Veins Guidelines",
+        "EMA HMPC Aesculus hippocastanum",
+        "PubMed (Pycnogenol, Diosmin CVI)"
+      ]
+    },
+    {
+      "id": "edema",
+      "nombre": "Edema y Retención de Líquidos",
+      "definicion": "Acumulación de líquido en espacios intersticiales. Localizado (venoso, linfático) o generalizado (cardíaco, renal, hepático, idiopático). 50% mujeres experimenta retención cíclica.",
+      "causas": [
+        "Insuficiencia venosa",
+        "Insuficiencia cardíaca",
+        "Renal (síndrome nefrótico)",
+        "Hepática (cirrosis)",
+        "Linfedema",
+        "Premenstrual",
+        "Embarazo",
+        "Fármacos (calcioantagonistas, AINEs, corticoides)",
+        "Hipotiroidismo"
+      ],
+      "sintomas": [
+        "Hinchazón (tobillos, piernas)",
+        "Fóvea al presión",
+        "Peso variable",
+        "Piernas pesadas",
+        "Anillos ajustados",
+        "Cara hinchada matutina",
+        "Distensión abdominal"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "urinario",
+        "hepatico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Tratamiento de causa (clave)",
+          "Diuréticos (furosemida, tiazidas)",
+          "Medias de compresión",
+          "Restricción salina",
+          "Espironolactona (ascitis, insuficiencia cardíaca)"
+        ],
+        "mecanismo": "Tratamiento de causa subyacente. Diuréticos aumentan excreción renal Na+/H2O. Compresión. Restricción de sal.",
+        "efectosSecundarios": [
+          "Diuréticos: hipopotasemia, deshidratación, ototoxicidad (furosemida)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "orthosiphon",
+          "diente_de_leon",
+          "cola_caballo",
+          "sauco",
+          "grosellero_negro",
+          "enebro",
+          "hamamelis"
+        ],
+        "suplementos": [
+          "citrato_potasio",
+          "magnesio_glicinato",
+          "vitamina_b6",
+          "omega_3",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "apis_mellifica",
+          "natrum_muriaticum",
+          "pulsatilla",
+          "lycopodium",
+          "arsenicum_album"
+        ],
+        "aceites": [
+          "cipres",
+          "enebro",
+          "romero_aceite"
+        ],
+        "cuandoPreferir": "Edema leve idiopático, premenstrual, complemento a diuréticos (vigilar potasio), profilaxis venosa. NUNCA sustituir a tratamiento de causa cardíaca/renal/hepática."
+      },
+      "prevencion": [
+        "Reducir sal (<5g/día)",
+        "Hidratación (paradójico)",
+        "Ejercicio",
+        "Elevar piernas",
+        "Dieta rica en potasio (plátano, verduras)",
+        "Compresión",
+        "Evitar sedentarismo prolongado"
+      ],
+      "cuandoConsultar": "Edema unilateral súbito (TVP - URGNCIA), disnea asociada (cardíaco), oliguria/anuria (renal), ascitis, ictericia (hepático), edema periorbitario matutino (renal), edema pulmonar (URGNCIA).",
+      "evidencia": "B",
+      "fuentes": [
+        "European Society Cardiology Heart Failure",
+        "EMA HMPC Orthosiphon",
+        "PubMed (Dandelion diuretic)"
+      ]
+    },
+    {
+      "id": "hbp",
+      "nombre": "Hiperplasia Benigna de Próstata (HBP)",
+      "definicion": "Crecimiento benigno de la próstata (transición). 50% hombres >50, 90% >80. Síntomas del tracto urinario inferior (STUI).",
+      "causas": [
+        "Envejecimiento (DHT)",
+        "Diidrotestosterona (5-α-reductasa)",
+        "Estrógenos relativos",
+        "Genética",
+        "Obesidad",
+        "Sedentarismo",
+        "Metabólico"
+      ],
+      "sintomas": [
+        "Nicturia",
+        "Polaquiuria",
+        "Chorro débil",
+        "Goteo postmiccional",
+        "Tenesmo vesical",
+        "Urgencia",
+        "Sensación de vaciado incompleto",
+        "Retención aguda (complicación)"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Alfa-bloqueantes (tamsulosina, silodosina)",
+          "Inhibidores 5-α-reductasa (finasterida, dutasterida)",
+          "Combinación (HTA/agudo)",
+          "Tadalafil 5mg (síntomas + DE)",
+          "Cirugía (RTU, láser)"
+        ],
+        "mecanismo": "α-bloqueantes relajan cuello/próstata (rápido). 5-α-reductasa reduce volumen (6 meses). Tadalafil PDE5. Cirugía si refractario/retención.",
+        "efectosSecundarios": [
+          "α-bloqueantes: hipotensión ortostática, eyaculación retrógrada",
+          "Finasterida: DE, ginecomastia",
+          "Cirugía: eyaculación retrógrada"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "saw_palmetto",
+          "ortiga",
+          "pygeum",
+          "semilla_calabaza",
+          "ortiga"
+        ],
+        "suplementos": [
+          "zinc",
+          "selenio",
+          "omega_3",
+          "vitamina_d3",
+          "cromo"
+        ],
+        "homeopatia": [
+          "saw_palmetto",
+          "conium",
+          "lycopodium",
+          "pulsatilla",
+          "thuja",
+          "sarsaparilla"
+        ],
+        "aceites": [
+          "saw_palmetto",
+          "romero_aceite"
+        ],
+        "cuandoPreferir": "HBP leve-moderada (IPSS <20), profilaxis, complemento a finasterida, pacientes que rechazan fármacos, PSA normal + STUI. NO sustituir si PSA alto o retención."
+      },
+      "prevencion": [
+        "Dieta rica en licopeno (tomate cocido)",
+        "Zinc",
+        "Saw palmetto",
+        "Ejercicio",
+        "Control metabólico",
+        "Reducir alcohol/cafeína",
+        "No fumar",
+        "PSA anual >50 (>45 si familiar)"
+      ],
+      "cuandoConsultar": "PSA >4 o sospecha cáncer, retención urinaria aguda (URGNCIA - sondaje), hematuria, ITU recurrente, insuficiencia renal (obstructiva), litiasis, IPSS >20, no respuesta a 6 meses, DRE sospechosa.",
+      "evidencia": "A",
+      "fuentes": [
+        "EAU BPH Guidelines",
+        "EMA HMPC Serenoae repentis",
+        "PubMed (Saw Palmetto, Pygeum BPH)"
+      ]
+    },
+    {
+      "id": "incontinencia_urinaria",
+      "nombre": "Incontinencia Urinaria",
+      "definicion": "Pérdida involuntaria de orina. 30-40% mujeres >50; 15% hombres. Tipos: esfuerzo, urgencia (VUI), mixta, overflow. Impacto calidad de vida.",
+      "causas": [
+        "Esfuerzo: debilidad suelo pélvico (parto, edad)",
+        "Urgencia: vejiga hiperactiva (vejiga, neurológico)",
+        "Mixta",
+        "Overflow: obstrucción (HBP, estreñimiento)",
+        "Fármacos (diuréticos, α-bloqueantes)",
+        "ITI",
+        "Movilidad/cognitivo"
+      ],
+      "sintomas": [
+        "Pérdida al toser/estornudar (esfuerzo)",
+        "Ganas súbitas (urgencia)",
+        "Polaquiuria",
+        "Nicturia",
+        "Goteo",
+        "Impacto social/psicológico"
+      ],
+      "sistemas": [
+        "urinario",
+        "reproductivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Ejercicios suelo pélvico (Kegel)",
+          "Entrenamiento vesical",
+          "Antimuscarínicos (oxibutinina, solifenacina)",
+          "Mirabegron (β3)",
+          "Duloxetina (esfuerzo)",
+          "Cirugía (cabestrillo, Burch)",
+          "Toxina botulínica"
+        ],
+        "mecanismo": "Kegel fortalece suelo pélvico. Antimuscarínicos relajan detrusor. Mirabegron relaja vejiga. Cabestrillo sostiene uretra.",
+        "efectosSecundarios": [
+          "Antimuscarínicos: sequedad, estreñimiento, confusión (ancianos)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "viburnum_opulus",
+          "lúpulo",
+          "vitex",
+          "calendula",
+          "rosa"
+        ],
+        "suplementos": [
+          "vitamina_d3",
+          "magnesio_glicinato",
+          "colageno",
+          "zinc",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "sepia",
+          "pulsatilla",
+          "causticum",
+          "sarsaparilla",
+          "ferrum_phosphoricum"
+        ],
+        "aceites": [
+          "salvia_esclarea",
+          "cipres"
+        ],
+        "cuandoPreferir": "IU esfuerzo leve, complemento a Kegel, profilaxis postparto, mantenimiento, intolerancia a antimuscarínicos (ancianos), embarazo (no fármacos)."
+      },
+      "prevencion": [
+        "Ejercicios Kegel (embarazo, postparto)",
+        "Control de peso",
+        "No fumar (tos crónica)",
+        "Tratar estreñimiento",
+        "Reducción cafeína/alcohol",
+        "Biofeedback",
+        "Control metabólico"
+      ],
+      "cuandoConsultar": "IU de inicio súbito, hematuria, ITI recurrente, retención, dolor, prolapse genital, no respuesta a Kegel/fármacos, impacto social severo, sospecha neurológica, hombre (sospechar HBP/Próstata).",
+      "evidencia": "A",
+      "fuentes": [
+        "NICE Urinary Incontinence Guidelines",
+        "PubMed (Pelvic floor training)",
+        "EAU Incontinence Guidelines"
+      ]
+    },
+    {
+      "id": "nicturia",
+      "nombre": "Nicturia",
+      "definicion": "Necesidad de orinar ≥1-2 veces por noche, interrumpiendo el sueño. 50% >60 años. Impacta calidad de vida y riesgo de caídas.",
+      "causas": [
+        "Edad (ritmo ADH)",
+        "HBP",
+        "Insuficiencia cardíaca",
+        "Diabetes mellitus/diabetes insípida",
+        "Apnea del sueño",
+        "Edema (moviliza de noche)",
+        "Diuréticos tardíos",
+        "Exceso líquidos nocturnos",
+        "Cafeína/alcohol"
+      ],
+      "sintomas": [
+        "Levantarse a orinar 1-6 veces/noche",
+        "Sueño fragmentado",
+        "Somnolencia diurna",
+        "Fatiga",
+        "Riesgo de caídas (ancianos)"
+      ],
+      "sistemas": [
+        "urinario",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Restricción líquidos vespertinos",
+          "Diuréticos matutinos (no tardíos)",
+          "Desmopresina (si polaquiuria nocturna)",
+          "Tratamiento de causa (HBP, ICC, DM)",
+          "Antimuscarínicos (VUI nocturna)"
+        ],
+        "mecanismo": "Restricción líquidos. Diuréticos matutinos. Desmopresina (ADH) reduce diuresis nocturna. Tratamiento causa subyacente.",
+        "efectosSecundarios": [
+          "Desmopresina: hiponatremia (ancianas riesgo)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "saw_palmetto",
+          "pygeum",
+          "viburnum_opulus",
+          "lúpulo",
+          "ortiga",
+          "sauco"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "melatonina",
+          "vitamina_d3",
+          "zinc"
+        ],
+        "homeopatia": [
+          "lycopodium",
+          "sepia",
+          "sarsaparilla",
+          "pulsatilla",
+          "aconitum_napellus"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "salvia_esclarea"
+        ],
+        "cuandoPreferir": "Nicturia leve, complemento a tratamiento de causa (HBP, ICC), profilaxis, ancianos (cuidado con desmopresina), embarazo. Identificar y tratar la causa."
+      },
+      "prevencion": [
+        "Restringir líquidos 3h antes de dormir",
+        "Diuréticos por la mañana",
+        "Cafeína/alcohol antes de noche",
+        "Siesta con piernas elevadas (mobiliza edema diurno)",
+        "Dormir con cabecera elevada",
+        "Ejercicio de día"
+      ],
+      "cuandoConsultar": "Inicio súbito, hematuria, polidipsia/poliuria marcada (diabetes), disnea (cardíaco), edema, nicturia que no responde, retención, anciano con caídas.",
+      "evidencia": "B",
+      "fuentes": [
+        "ICI (International Continence Society)",
+        "EAU Nocturia Guidelines",
+        "PubMed (Nocturia)"
+      ]
+    },
+    {
+      "id": "esguince_tendinitis",
+      "nombre": "Esguince y Tendinitis",
+      "definicion": "Esguince: distensión/rotura ligamentaria (tobillo 85%). Tendinitis: inflamación tendinosa (manguito, Aquiles). Lesiones musculoesqueléticas muy comunes (deportistas, trabajos).",
+      "causas": [
+        "Trauma (giro, caída)",
+        "Sobrecarga repetitiva",
+        "Falta calentamiento",
+        "Calzado inadecuado",
+        "Descondicionamiento",
+        "Sobreuso (deportista)",
+        "Edad (degeneración tendón)"
+      ],
+      "sintomas": [
+        "Dolor localizado",
+        "Tumefacción",
+        "Hematoma",
+        "Impotencia funcional",
+        "Crepitación (tendón)",
+        "Calor local",
+        "Limitación movilidad"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "RICE (Reposo, Hielo, Compresión, Elevación)",
+          "AINEs tópicos/orales",
+          "Fisioterapia",
+          "Inmovilización (férula/yeso)",
+          "Corticoide infiltración (no Aquiles)",
+          "Cirugía (rotura)"
+        ],
+        "mecanismo": "RICE reduce inflamación inicial. AINEs antiinflamatorios. Fisioterapia rehabilitación. Infiltración en tendinopatía crónica. Cirugía en rotura.",
+        "efectosSecundarios": [
+          "AINEs: gastrolesividad, renal",
+          "Corticoide: rotura tendón, atrofia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "arnica",
+          "hiperico",
+          "harpagofito",
+          "romero",
+          "sauce",
+          "calendula"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boswelia",
+          "msm",
+          "glucosamina",
+          "vitamina_c",
+          "zinc",
+          "bromelina"
+        ],
+        "homeopatia": [
+          "arnica",
+          "ruta_graveolens",
+          "rhus_toxicodendron",
+          "symphytum",
+          "bellis_perennis",
+          "hypericum"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "romero_aceite",
+          "menta",
+          "clavo",
+          "gaulteria"
+        ],
+        "cuandoPreferir": "Esguince grado I-II, tendinitis aguda, complemento a RICE/fisioterapia, pacientes con intolerancia a AINEs (gastrolesivo), mantenimiento, deportistas."
+      },
+      "prevencion": [
+        "Calentamiento previo",
+        "Estiramientos",
+        "Calzado adecuado",
+        "Fortalecimiento muscular",
+        "Técnica correcta",
+        "Descanso (sobreuso)",
+        "Faja tobillo (previo esguince)",
+        "Ejercicio propioceptivo"
+      ],
+      "cuandoConsultar": "Imposibilidad de carga/uso, deformidad, crujido al trauma, sospecha de fractura (radiografía), rotura completa, inestabilidad, no mejora en 1-2 semanas, hematoma extenso, entumecimiento/parestesias.",
+      "evidencia": "A",
+      "fuentes": [
+        "ACSM Sprains/Strains",
+        "PubMed (Arnica, Bromelain)",
+        "EMA HMPC Harpagophyti radix"
+      ]
+    },
+    {
+      "id": "fascitis_plantar",
+      "nombre": "Fascitis Plantar",
+      "definicion": "Inflamación/degeneración de la fascia plantar (inserción calcánea). 10% adultos; 80% del dolor de talón. Sedentarios, deportistas, obesos.",
+      "causas": [
+        "Sobrecarga (deportistas, obesidad)",
+        "Pie plano/cavo",
+        "Acortamiento Aquiles",
+        "Calzado inadecuado",
+        "Sedentarismo",
+        "Estar mucho de pie",
+        "Edad (>40)"
+      ],
+      "sintomas": [
+        "Dolor talón al primer paso matutino",
+        "Mejora con actividad",
+        "Reaparece tras reposo",
+        "Dolor a palpación inserción",
+        "Marcha antiálgica",
+        "Tensión Aquiles"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Estiramientos fascia/Aquiles",
+          "AINEs (4-6 sem)",
+          "Plantillas ortopédicas",
+          "Fisioterapia (ondas de choque)",
+          "Corticoide infiltración",
+          "PRP",
+          "Cirugía (recalcitrante)"
+        ],
+        "mecanismo": "Estiramientos alargan fascia. AINEs antiinflamatorios. Plantillas descargan. Ondas de choque estimulan cicatrización. Corticoide si no responde.",
+        "efectosSecundarios": [
+          "Cortico infiltración: rotura fascia, atrofia grasa talón"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "arnica",
+          "harpagofito",
+          "romero",
+          "sauce",
+          "hiperico"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boswelia",
+          "msm",
+          "colageno",
+          "vitamina_c",
+          "glucosamina",
+          "vitamina_d3"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "ruta_graveolens",
+          "symphytum",
+          "ledum_palustre",
+          "arnica"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "romero_aceite",
+          "menta",
+          "clavo",
+          "gaulteria"
+        ],
+        "cuandoPreferir": "Fascitis leve-moderada, complemento a estiramientos, profilaxis (deportistas), mantenimiento, intolerancia a AINEs, evita corticoide (riesgo rotura)."
+      },
+      "prevencion": [
+        "Estiramientos fascia/Aquiles diarios",
+        "Calzado con soporte arco",
+        "Plantillas",
+        "Control de peso",
+        "Calentamiento (deportistas)",
+        "No andar descalzo",
+        "Rodillo planta del pie",
+        "Cambio calzado regular"
+      ],
+      "cuandoConsultar": "Dolor >6 meses (recalcitrante), rotura, sospecha fractura estrés, atrofia grasa talón, neuropatía, no respuesta a estiramientos/AINEs, impacto funcional severo, tumefacción.",
+      "evidencia": "A",
+      "fuentes": [
+        "ACPF Plantar Fasciitis Guidelines",
+        "PubMed (ESWT, Stretching)",
+        "EMA HMPC Harpagophyti radix"
+      ]
+    },
+    {
+      "id": "tunel_carpiano",
+      "nombre": "Síndrome del Túnel Carpiano",
+      "definicion": "Compresión del nervio mediano en la muñeca (ligamento transverso). 5% adultos; predominio femenino (3:1). Trabajos manuales, diabetes, embarazo.",
+      "causas": [
+        "Idiopático (mayoría)",
+        "Trabajos repetitivos (teclado, ensamblaje)",
+        "Diabetes",
+        "Embarazo",
+        "Hipotiroidismo",
+        "Artritis reumatoide",
+        "Acromegalia",
+        "Trauma muñeca",
+        "Edema túnel"
+      ],
+      "sintomas": [
+        "Parestesias en mediano (pulgar, índice, medio)",
+        "Dolor nocturno",
+        "Hormigueo",
+        "Débito motor (tenar)",
+        "Caída objetos",
+        "Tinel +",
+        "Phalen +"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Férula nocturna muñeca",
+          "Corticoide infiltración (3 inyecciones)",
+          "AINEs",
+          "Fisioterapia",
+          "Cirugía (liberación - si atrofia o refractaria)"
+        ],
+        "mecanismo": "Férula neutraliza muñeca (reduce presión). Corticoide reduce inflamación túnel. Cirugía secciona ligamento transverso.",
+        "efectosSecundarios": [
+          "Cortico infiltración: lesión nervio (raro)",
+          "Cirugía: dolor pilar, infección"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "hiperico",
+          "harpagofito",
+          "pimienta_cayena"
+        ],
+        "suplementos": [
+          "vitamina_b6",
+          "vitamina_b12",
+          "alfa_lipoico",
+          "omega_3",
+          "magnesio_glicinato",
+          "curcumina",
+          "boswelia"
+        ],
+        "homeopatia": [
+          "hypericum",
+          "rhus_toxicodendron",
+          "causticum",
+          "ruta_graveolens",
+          "phosphorus"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "menta",
+          "romero_aceite",
+          "incienso"
+        ],
+        "cuandoPreferir": "STC leve-moderado, complemento a férula, profilaxis (embarazo, trabajos), intolerancia a corticoides, prevención post-cirugía, neuropatía asociada."
+      },
+      "prevencion": [
+        "Ergonomía (teclado, muñeca neutra)",
+        "Pausas (trabajos repetitivos)",
+        "Estiramientos",
+        "Pérdida de peso",
+        "Control diabetes/tiroides",
+        "Ejercicios muñeca",
+        "Férula profiláctica"
+      ],
+      "cuandoConsultar": "Déficit motor (atrofia tenar), síntomas persistentes >6 meses con tratamiento, dolor severo, EMG con denervación axonal, bilateral y síntomas sistémicos (descartar polineuropatía), embarazo refractario.",
+      "evidencia": "A",
+      "fuentes": [
+        "AAN Carpal Tunnel Guidelines",
+        "PubMed (B6 CTS)",
+        "PubMed (ALA neuropathy)"
+      ]
+    },
+    {
+      "id": "epicondilitis",
+      "nombre": "Epicondilitis (Codo de Tenista/Golfista)",
+      "definicion": "Tendinopatía de los músculos epicondíleos (lateral: extensores, medial: flexores). Epicondilitis lateral (codo tenista) más común. Sobrecarga repetitiva.",
+      "causas": [
+        "Sobrecarga repetitiva (extensores para lateral, flexores para medial)",
+        "Trabajos manuales",
+        "Deporte (tenis, golf, pintura)",
+        "Edad 30-50",
+        "Técnica inadecuada",
+        "Trauma"
+      ],
+      "sintomas": [
+        "Dolor epicóndilo (lateral o medial)",
+        "Dolor con puño/dorsoflexión muñeca",
+        "Débilidad agarre",
+        "Localizado",
+        "SIN pérdida movilidad",
+        "Crónico (>3 meses)"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Reposo relativo",
+          "Fisioterapia (eccéntricos, EPI)",
+          "AINEs tópicos/orales",
+          "Férula epicondílea",
+          "Corticoide infiltración (3 max)",
+          "PRP",
+          "Ondas de choque",
+          "Cirugía (recalcitrante)"
+        ],
+        "mecanismo": "Reposo + fisioterapia (ejercicios eccéntricos). AINEs antiinflamatorios. Corticoide si agudo. PRP y ondas en crónico. Cirugía si refractario.",
+        "efectosSecundarios": [
+          "Cortico infiltración: hipopigmentación, rotura tendón",
+          "AINEs: GI"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "arnica",
+          "harpagofito",
+          "romero",
+          "sauce",
+          "pimienta_cayena"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boswelia",
+          "msm",
+          "colageno",
+          "vitamina_c",
+          "glucosamina"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "ruta_graveolens",
+          "symphytum",
+          "arnica",
+          "sanguinaria"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "romero_aceite",
+          "menta",
+          "clavo",
+          "gaulteria"
+        ],
+        "cuandoPreferir": "Epicondilitis aguda/crónica leve-moderada, complemento a fisioterapia, profilaxis (deportistas), intolerancia a AINEs, evita corticoides (rotura tendón)."
+      },
+      "prevencion": [
+        "Técnica correcta (deporte/trabajo)",
+        "Pausas y estiramientos",
+        "Fortalecimiento progresivo",
+        "Calentamiento",
+        "Material adecuado (raqueta)",
+        "Férula profiláctica",
+        "Fortalecimiento extensores"
+      ],
+      "cuandoConsultar": "Dolor severo, no respuesta a 3-6 meses, sospecha rotura, déficit funcional, bilateral, pérdida fuerza, parestesias (descartar túnel radial), recidiva tras infiltración.",
+      "evidencia": "B",
+      "fuentes": [
+        "PubMed (Eccentric exercise, ESWT epicondylitis)",
+        "EMA HMPC Harpagophyti radix"
+      ]
+    },
+    {
+      "id": "dermatitis_pañal",
+      "nombre": "Dermatitis del Pañal",
+      "definicion": "Dermatitis irritativa en zona cubierta por pañal. 25% lactantes en algún momento. Combinación de humedad, fricción, heces/orina y sobrecrecimiento de Candida.",
+      "causas": [
+        "Humedad prolongada",
+        "Fricción del pañal",
+        "Irritación por amoníaco (orina+heces)",
+        "Sobrecrecimiento Candida",
+        "Diarréa",
+        "Dentición (heces ácidas)",
+        "Antibióticos",
+        "Alergia",
+        "Cambio infrecuente"
+      ],
+      "sintomas": [
+        "Eritema en zona pañal",
+        "Placas confluentes",
+        "Fisuras",
+        "Pápulas satélites (Candida)",
+        "Llanto al cambio",
+        "Distribución convexa (no pliegues)"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Cambios frecuentes",
+          "Pasta barrera (óxido de zinc, vaselina)",
+          "Antifúngico tópico (miconazol, clotrimazol) si Candida",
+          "Corticoide tópico leve (corto) si intenso",
+          "Antibiótico tópico si bacteriana"
+        ],
+        "mecanismo": "Pasta barrera (zinc) aísla piel. Antifúngico si candidiasis. Corticoide si inflamación intensa. Cambios frecuentes clave.",
+        "efectosSecundarios": [
+          "Cortico: atrofia (no crónico)",
+          "Antifúngico: irritación local"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "calendula",
+          "manzanilla",
+          "aloe_vera",
+          "hiperico",
+          "olmo_america",
+          "hamamelis"
+        ],
+        "suplementos": [
+          "probioticos",
+          "omega_3",
+          "vitamina_d3",
+          "zinc"
+        ],
+        "homeopatia": [
+          "borax",
+          "sulphur",
+          "graphites",
+          "petroleum"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "calendula"
+        ],
+        "cuandoPreferir": "Dermatitis pañal leve-moderada, profilaxis, intolerancia a cremas convencionales, complemento a cambios frecuentes, sobreinfección fúngica leve."
+      },
+      "prevencion": [
+        "Cambios frecuentes (cada 2-3h)",
+        "Limpieza con agua (no toallitas con alcohol)",
+        "Secar bien",
+        "Pasta barrera preventiva (zinc)",
+        "Aire libre (sin pañal)",
+        "Probióticos (si antibióticos)",
+        "Lactancia materna"
+      ],
+      "cuandoConsultar": "No mejora en 3-5 días, extensa, pústulas, fiebre, candidiasis severa, lactante <1 mes, empeoramiento, sospecha de abuso o enfermedad (acrocordón, eccema seborreico, psoriasis).",
+      "evidencia": "B",
+      "fuentes": [
+        "AAP Diaper Dermatitis",
+        "PubMed (Calendula, Zinc diaper)",
+        "EMA HMPC Calendula"
+      ]
+    },
+    {
+      "id": "pediculosis",
+      "nombre": "Pediculosis (Piojos)",
+      "definicion": "Infestación por Pediculus humanus capitis (piojo cabeza). 6-12 millones casos/año en niños escolares. Muy contagiosa (directa, fómites). No implica mala higiene.",
+      "causas": [
+        "Pediculus humanus capitis",
+        "Contacto cabeza-cabeza",
+        "Compartir peines, gorras, toallas",
+        "Niños 3-11 años",
+        "Colegios",
+        "Hembras (más frecuentes)"
+      ],
+      "sintomas": [
+        "Prurito cuero cabelludo",
+        "Pediculos (insectos 2-3mm)",
+        "Lientes (huevos) en cuero cabelludo",
+        "Excoriaciones",
+        "Adenopatías cervicales",
+        "Impétigo secundario"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Permetrina 1% (OTC)",
+          "Piperonil butóxido + piretrinas",
+          "Dimeticona (silicona, no tóxico)",
+          "Malatión 0.5% (prescripción)",
+          "Ivermectina oral (resistente)",
+          "Peine fino (lendrera)"
+        ],
+        "mecanismo": "Permetrina neurotóxico para piojo. Dimeticona asfixia físicamente (no resistencia). Malatión. Ivermectina. Lendrera mecánica.",
+        "efectosSecundarios": [
+          "Permetrina: irritación local, resistencia",
+          "Malatión: inflamable, tóxico"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "tea_tree",
+          "eucalipto",
+          "lavanda",
+          "romero",
+          "ajo",
+          "tomillo"
+        ],
+        "suplementos": [
+          "probioticos",
+          "vitamina_c",
+          "zinc"
+        ],
+        "homeopatia": [
+          "staphysagria",
+          "staphysagria",
+          "sulphur",
+          "sulphur"
+        ],
+        "aceites": [
+          "tea_tree",
+          "lavanda_aceite",
+          "eucalipto",
+          "romero_aceite",
+          "clavo"
+        ],
+        "cuandoPreferir": "Profilaxis, complemento a lendrera, intolerancia a químicos, brote escolar, primera elección en algunos padres, repetición tratamiento (resistencia)."
+      },
+      "prevencion": [
+        "Revisión periódica (brotes escolares)",
+        "Lendrera mecánica",
+        "No compartir peines/gorras",
+        "Lavar ropa de cama 60°C",
+        "Tratar a contactos",
+        "Informar al colegio",
+        "Peinado melena larga"
+      ],
+      "cuandoConsultar": "No respuesta a tratamiento, impétigo secundario, adenitis, resistencia múltiple, recurrencia, niño pequeño, sospecha de abuso (raro), dermatitis severa del cuero cabelludo.",
+      "evidencia": "B",
+      "fuentes": [
+        "AAP Head Lice Guidelines",
+        "PubMed (Tea tree, Dimethicone lice)",
+        "CDC Pediculosis"
+      ]
+    },
+    {
+      "id": "colico_lactante",
+      "nombre": "Cólico del Lactante",
+      "definicion": "Llanto inconsolable en lactante <3 meses, >3h/día, >3días/semana, sin causa orgánica. 20% lactantes. Resuelve espontáneamente en 3-4 meses.",
+      "causas": [
+        "Idiopático (inmadurez digestiva)",
+        "Disbiosis intestinal",
+        "Inmadurez SNC",
+        "Alergia proteína vacuna (APLV)",
+        "Sobrealimentación",
+        "Exceso aire",
+        "Técnica lactancia",
+        "Tabaco",
+        "Estrés familiar"
+      ],
+      "sintomas": [
+        "Llanto intenso (>3h)",
+        "Puños cerrados",
+        "Piernas flexionadas al abdomen",
+        "Distensión abdominal",
+        "Gas",
+        "Mejor aliviado con consuelo",
+        "Suele ser vespertino",
+        "Sin fiebre"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Consuelo y calma (clave)",
+          "Porteo ergonómico",
+          "Técnica lactancia",
+          "Simeticona (gases)",
+          "Dieta madre (APLV: retirar lácteos) si lactancia",
+          "Fórmula hipolergénica (APLV) si artificiál",
+          "Probióticos"
+        ],
+        "mecanismo": "Consuelo y técnica reducen llanto. Simeticona rompe burbujas. Dieta madre/probióticos modulan microbioma.",
+        "efectosSecundarios": [
+          "Ninguno significativo"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "manzanilla",
+          "hinojo",
+          "melisa",
+          "llanten"
+        ],
+        "suplementos": [
+          "probioticos",
+          "l_reuteri",
+          "vitamina_d3",
+          "omega_3"
+        ],
+        "homeopatia": [
+          "chamomilla",
+          "colocynthis",
+          "dioscorea",
+          "magnesia_phosphorica",
+          "belladonna"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "albahaca_aceite"
+        ],
+        "cuandoPreferir": "Cólico leve-moderado, profilaxis, complemento a consuelo, intolerancia a simeticona, lactancia (dieta madre + fitoterapia suave). Evitar aceites esenciales en lactantes (tóxicos)."
+      },
+      "prevencion": [
+        "Porteo ergonómico",
+        "Técnica lactancia (eructos)",
+        "Dieta madre (lactancia): evitar lácteos si APLV",
+        "Probióticos (L. reuteri)",
+        "Piel-piel",
+        "Sonido blanco",
+        "Masaje abdominal",
+        "Ciclo sueños-vigilia"
+      ],
+      "cuandoConsultar": "Fiebre, vómitos biliosos, pérdida peso, sangre heces, llanto distinto, letargia, fontanela abombada, palidez, distensión severa (descartar invaginación - URGNCIA), no mejora a 4 meses.",
+      "evidencia": "B",
+      "fuentes": [
+        "NICE Colic Guidelines",
+        "Cochrane (Probiotics infant colic)",
+        "PubMed (L. reuteri colic)"
+      ]
+    },
+    {
+      "id": "parasitos_intestinales",
+      "nombre": "Parásitos Intestinales (Lombrices)",
+      "definicion": "Infestación por helmintos (oxiuros, ascáridos) o protozoos (Giardia). Frecuente en niños. Oxiuros: 20-30% escolares. Giardia: causa diarrea persistente.",
+      "causas": [
+        "Enterobius vermicularis (oxiuros - niños)",
+        "Ascaris lumbricoides",
+        "Giardia lamblia (protozoo)",
+        "Higiene deficiente",
+        "Contaminación fecal",
+        "Aguas contaminadas",
+        "Mascotas",
+        "Guarderías",
+        "Geofagia"
+      ],
+      "sintomas": [
+        "Prurito anal (oxiuros, nocturno)",
+        "Dolor abdominal",
+        "Diarrea (Giardia)",
+        "Distensión",
+        "Náuseas",
+        "Pérdida peso",
+        "Irritabilidad",
+        "Insomnio (oxiuros)"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Mebendazol/pirantel (oxiuros)",
+          "Albendazol (ascáridos, anquilostoma)",
+          "Metronidazol/tinidazol (Giardia)",
+          "Nitazoxanida (Giardia)",
+          "Higiene estricta",
+          "Tratar contactos"
+        ],
+        "mecanismo": "Antihelmínticos inhiben microtúbulos (mebendazol) o bloqueo neuromuscular (pirantel). Metronidazol contra Giardia. Higiene + tratar a toda la familia.",
+        "efectosSecundarios": [
+          "Mebendazol: GI, hepatotoxicidad (raros)",
+          "Metronidazol: náuseas, alcohol"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ajenjo",
+          "ajo",
+          "semilla_calabaza",
+          "nigella",
+          "ajenjo",
+          "ruta_graveolens"
+        ],
+        "suplementos": [
+          "probioticos",
+          "zinc",
+          "vitamina_a",
+          "vitamina_c",
+          "folato"
+        ],
+        "homeopatia": [
+          "cina",
+          "spigelia",
+          "thuja",
+          "cina",
+          "calcaria_carbonica"
+        ],
+        "aceites": [
+          "ajedrea",
+          "tomillo",
+          "oregano"
+        ],
+        "cuandoPreferir": "Profilaxis, complemento a antihelmíntico, prevención reinfestación, intolerancia a mebendazol, oxiuros leves (higiene + fitoterapia). No sustituir en infestación grave o Giardia."
+      },
+      "prevencion": [
+        "Higiene de manos (tras WC, antes comer)",
+        "Lavar ropa de cama (60°C)",
+        "Cortar uñas cortas",
+        "Lavar frutas/verduras",
+        "Agua potable",
+        "Tratar mascotas",
+        "Calzado",
+        "No geofagia"
+      ],
+      "cuandoConsultar": "Diarrea persistente >1 semana, pérdida peso, anemia, fiebre, dolor abdominal intenso, vómitos, heces con sangre/moco, deshidratación, inmunosupresión, embarazo, no respuesta a antihelmíntico.",
+      "evidencia": "B",
+      "fuentes": [
+        "CDC Parasites Guidelines",
+        "PubMed (Pumpkin seeds, Garlic helminths)",
+        "WHO Deworming"
+      ]
+    },
+    {
+      "id": "intolerancia_lactosa",
+      "nombre": "Intolerancia a la Lactosa",
+      "definicion": "Déficit de lactasa (en adultos, hipolactasia primaria 70% mundo). Síntomas tras lácteos. Primaria: prevalencia 65% adultos mundo; secundaria (celiaquía, gastroenteritis) reversible.",
+      "causas": [
+        "Hipolactasia primaria (genética, LCT)",
+        "Déficit secundario (celiaquía, gastroenteritis, Crohn)",
+        "Déficit congénito (raro)",
+        "Edad (declina tras destete)",
+        "Etnia (asiáticos, africanos, latinos: 80%)"
+      ],
+      "sintomas": [
+        "Distensión abdominal",
+        "Gases",
+        "Dolor abdominal",
+        "Diarrea explosiva",
+        "Borborigmos",
+        "Náuseas",
+        "Tras ingesta lácteos (30 min-2h)"
+      ],
+      "sistemas": [
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Dieta baja en lactosa",
+          "Lactasa oral (suplemento)",
+          "Lácteos sin lactosa",
+          "Calcio/vitamina D (reposición)",
+          "Test de aliento de hidrógeno (diagnóstico)"
+        ],
+        "mecanismo": "Reducción de lactosa en dieta. Lactasa exógena hidroliza lactosa. Lácteos tratados. Calcio/vit D por reducción lácteos.",
+        "efectosSecundarios": [
+          "Ninguno significativo"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "manzanilla",
+          "hinojo",
+          "melisa",
+          "llanten"
+        ],
+        "suplementos": [
+          "probioticos",
+          "vitamina_d3",
+          "probioticos",
+          "bromelina"
+        ],
+        "homeopatia": [
+          "carbo_veg",
+          "lycopodium",
+          "china_officinalis",
+          "aconitum_napellus",
+          "pulsatilla"
+        ],
+        "aceites": [
+          "menta_aceite",
+          "hinojo_aceite"
+        ],
+        "cuandoPreferir": "Intolerancia primaria leve, profilaxis (viajes), complemento a dieta, intolerancia secundaria (transitoria tras gastroenteritis), intolerancia al suplemento de lactasa."
+      },
+      "prevencion": [
+        "Lácteos sin lactosa",
+        "Yogur/kefir (mejor tolerados)",
+        "Quesos curados (menos lactosa)",
+        "Probióticos (modulan microbioma)",
+        "Lactasa con lácteos",
+        "Calcio/verduras",
+        "Leer etiquetas"
+      ],
+      "cuandoConsultar": "Síntomas sin lácteos (descartar SII), pérdida peso, anemia, esteatorrea (descartar celiaquía/EII), deshidratación, síntomas tras pequeño lácteo (sospecha alergia a proteína vacuna), niños con fallo de medro.",
+      "evidencia": "A",
+      "fuentes": [
+        "NIH Lactose Intolerance",
+        "PubMed (Probiotics lactose)",
+        "NICE Food Allergy Guidelines"
+      ]
+    },
+    {
+      "id": "disbiosis",
+      "nombre": "Disbiosis Intestinal y SIBO",
+      "definicion": "Alteración del microbioma intestinal (perdida diversidad, sobrecrecimiento). SIBO: sobrecrecimiento bacteriano en intestino delgado. Común en SII, uso de antibióticos, vida occidental.",
+      "causas": [
+        "Antibióticos (principal)",
+        "Dieta occidental (ultraprocessada, baja fibra)",
+        "Estrés crónico",
+        "IBS/SII",
+        "Proton-pump inhibitors",
+        "Cirugía intestinal",
+        "Hipoclorhidria",
+        "Sedentarismo",
+        "Edad",
+        "Infecciones"
+      ],
+      "sintomas": [
+        "Distensión (postprandial)",
+        "Gases",
+        "Dolor abdominal",
+        "Diarrea/estreñimiento alternante",
+        "Malabsorción",
+        "Fatiga",
+        "Niebla mental",
+        "Intolerancias alimentarias",
+        "Eccema",
+        "Inmunidad baja"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Rifaximina (SIBO, 14d)",
+          "Dieta baja FODMAP (IBS-SIBO)",
+          "Procinéticos (prucaloprida)",
+          "Probióticos",
+          "Tratar causa (PPIs, antibióticos)",
+          "Dieta prebiótica"
+        ],
+        "mecanismo": "Rifaximina (no absorbible) reduce sobrecrecimiento. Dieta baja FODMAP reduce sustrato fermentable. Procinéticos mejoran vaciado. Probióticos restauran microbioma.",
+        "efectosSecundarios": [
+          "Rifaximina: náuseas",
+          "Baja FODMAP: déficit nutricional si prolongada"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ajo",
+          "oregano",
+          "berberina",
+          "tomillo",
+          "melisa"
+        ],
+        "suplementos": [
+          "probioticos",
+          "inulina",
+          "inulina",
+          "l_glutamina",
+          "zinc",
+          "vitamina_d3",
+          "omega_3",
+          "colina",
+          "nac"
+        ],
+        "homeopatia": [
+          "carbo_veg",
+          "lycopodium",
+          "podophyllum",
+          "china_officinalis",
+          "sulphur"
+        ],
+        "aceites": [
+          "menta_aceite",
+          "oregano",
+          "tomillo",
+          "hinojo_aceite"
+        ],
+        "cuandoPreferir": "Disbiosis leve, profilaxis post-antibiótico, complemento a rifaximina, SIBO recurrente, intolerancia a antibióticos, mantenimiento. La dieta es clave."
+      },
+      "prevencion": [
+        "Dieta rica en fibra (prebiótica)",
+        "Probióticos tras antibióticos",
+        "Reducir ultraprocessados/azúcar",
+        "Limitar PPIs",
+        "Gestión del estrés",
+        "Ejercicio",
+        "Diversidad alimentaria",
+        "Fermentados (kefir, chucrut)"
+      ],
+      "cuandoConsultar": "Pérdida peso, anemia, esteatorrea, síntomas persistentes, síndrome de malabsorción, intolerancias múltiples, recurrencia SIBO, síntomas sistémicos, inmunosupresión, sospecha celiaquía/EII.",
+      "evidencia": "A",
+      "fuentes": [
+        "Rome IV IBS Guidelines",
+        "PubMed (Rifaximin SIBO)",
+        "Cochrane (Probiotics antibiotic)"
+      ]
+    },
+    {
+      "id": "colecistitis",
+      "nombre": "Cálculos Biliares y Colecistitis",
+      "definicion": "Cálculos en vesícula (colelitiasis): 10-15% adultos. Colecistitis: inflamación aguda de vesícula (90% por cálculo en cístico). Mujeres 2:1.",
+      "causas": [
+        "Colesterol supersaturado bilis",
+        "Estasis biliar",
+        "Obesidad",
+        "Rápida pérdida peso",
+        "Embarazo",
+        "Estrógenos",
+        "Edad (>40)",
+        "Fibra baja",
+        "Genética (Pima, nativo-americanos)"
+      ],
+      "sintomas": [
+        "Asintomáticos (80%)",
+        "Cólico biliar (dolor hipocondrio derecho, postgrasa)",
+        "Náuseas/vómitos",
+        "Irradiación a escápula",
+        "Cólico persistente >6h = colecistitis",
+        "Fiebre",
+        "Murphy +",
+        "Ictericia (coledocolitiasis)"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Colecistectomía laparoscópica (sintomáticos)",
+          "AINEs (cólico)",
+          "Antibióticos (colecistitis)",
+          "ESCP (coledocolitiasis)",
+          "Ácido ursodesoxicólico (cálculos pequeños)"
+        ],
+        "mecanismo": "Colecistectomía curativa. AINEs alivian cólico. Antibióticos en colecistitis. ES retira cálculos coledoco. Ácido ursodiol disuelve cálculos colesterol.",
+        "efectosSecundarios": [
+          "Cirugía: lesión vía biliar, diarrhea post-colecistectomía",
+          "Ursodiol: lento, recurrencia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "cardo_mariano",
+          "alcachofa",
+          "boldo",
+          "diente_de_leon",
+          "bardana",
+          "menta",
+          "romero"
+        ],
+        "suplementos": [
+          "nac",
+          "alfa_lipoico",
+          "fosfatidilcolina",
+          "omega_3",
+          "vitamina_c",
+          "lecitina",
+          "glutation"
+        ],
+        "homeopatia": [
+          "chelidonium",
+          "lycopodium",
+          "colocynthis",
+          "cardo_mariano",
+          "berberina"
+        ],
+        "aceites": [
+          "romero_aceite",
+          "menta_aceite"
+        ],
+        "cuandoPreferir": "Profilaxis de cálculos, postcolecistectomía, cólico leve, complemento a ácido ursodesoxicólico, intolerancia a cirugía (no candidatos), mantenimiento, hígado graso asociado."
+      },
+      "prevencion": [
+        "Dieta rica en fibra",
+        "Grasas saludables (omega-3, olive)",
+        "Comidas fraccionadas (no ayuno prolongado)",
+        "Pérdida peso gradual (no rápida)",
+        "Café (protector)",
+        "Vitamina C",
+        "Control glucosa",
+        "Ejercicio"
+      ],
+      "cuandoConsultar": "Dolor intenso >6h + fiebre (colecistitis aguda - hospital), ictericia (coledocolitiasis), pancreatitis (dolor epigástrico intenso), colangitis (fiebre, ictericia, dolor - URGNCIA), vómitos persistentes, peritonitis, embarazo.",
+      "evidencia": "A",
+      "fuentes": [
+        "EAU Gallstone Guidelines",
+        "PubMed (Lecithin, Ursodiol)",
+        "EMA HMPC Cynarae folium"
+      ]
+    },
+    {
+      "id": "hipotension_ortostatica",
+      "nombre": "Hipotensión Ortostática",
+      "definicion": "Caída de PAS >20 mmHg o PAD >10 al ponerse de pie. 20% >65 años. Causa síncopes y caídas. Frecuente en hipotensión neurogénica y fármacos.",
+      "causas": [
+        "Hipovolemia (deshidratación, hemorragia)",
+        "Fármacos (antihipertensivos, diuréticos, antidepresivos, α-bloqueantes)",
+        "Hipotensión neurogénica (diabetes, Parkinson)",
+        "Ancianos",
+        "Embarazo",
+        "Sedentarismo",
+        "B12/Fe",
+        "Addison",
+        "Prolongada bipedestación"
+      ],
+      "sintomas": [
+        "Mareo al levantarse",
+        "Visión borrosa",
+        "Sincope",
+        "Fatiga",
+        "Debilidad",
+        "Náuseas",
+        "Caídas",
+        "Confusión",
+        "Cefalea"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Levantarse despacio",
+          "Hidratación (2L/día)",
+          "Aumento sal",
+          "Medias compresión",
+          "Fludrocortisona (neurogénica)",
+          "Midodrina (α1)",
+          "Reducir fármacos hipotensores"
+        ],
+        "mecanismo": "Cambios posturales + hidratación/sal aumentan volemia. Medias mejoran retorno. Fludrocortisona retiene sodio. Midodrina vasoconstricción.",
+        "efectosSecundarios": [
+          "Fludrocortisona: edema, hipopotasemia",
+          "Midodrina: retención urinaria (HBP)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "regaliz",
+          "ginseng",
+          "romero",
+          "eleuterococo",
+          "rodiola"
+        ],
+        "suplementos": [
+          "vitamina_b12",
+          "folato",
+          "hierro",
+          "magnesio_glicinato",
+          "vitamina_c"
+        ],
+        "homeopatia": [
+          "gelsemium",
+          "carbo_veg",
+          "aconitum_napellus",
+          "veratrum_album",
+          "glonoinum"
+        ],
+        "aceites": [
+          "romero_aceite",
+          "menta_aceite",
+          "lavanda_aceite"
+        ],
+        "cuandoPreferir": "Hipotensión leve idiopática, profilaxis, ancianos, complemento a cambios posturales, embarazo (no fármacos), intolerancia a fludrocortisona. Vigilar causa subyacente."
+      },
+      "prevencion": [
+        "Levantarse despacio (por etapas)",
+        "Hidratación abundante",
+        "Aumento sal (si indicado)",
+        "Medias compresión",
+        "Comidas pequeñas frecuentes",
+        "Ejercicio (mejora retorno)",
+        "Evitar calor prolongado",
+        "Revisar fármacos"
+      ],
+      "cuandoConsultar": "Sincope recurrente, traumatismo por caída, hipotensión severa, asociado a fármacos nuevos, dolor torácico, palpitaciones, disnea, sospecha neurogénica (diabetes, Parkinson), embarazo.",
+      "evidencia": "B",
+      "fuentes": [
+        "European Society Cardiology Syncope Guidelines",
+        "FDA (Midodrine, Fludrocortisone)",
+        "PubMed (Glycyrrhiza hypotension)"
+      ]
+    },
+    {
+      "id": "envejecimiento_cutaneo",
+      "nombre": "Envejecimiento Cutáneo (Antiedad)",
+      "definicion": "Envejecimiento de la piel: intrínseco (cronológico) y extrínseco (fotoenvejecimiento por UV). 80% envejecimiento facial es por sol. Prevención es clave.",
+      "causas": [
+        "Cronológico (radicales libres, glicación)",
+        "Fotoenvejecimiento (UV, 80%)",
+        "Tabaco",
+        "Polución",
+        "Estrés oxidativo",
+        "Disminución colágeno/elastina",
+        "Estrógenos (menopausia)",
+        "Genética",
+        "Dieta"
+      ],
+      "sintomas": [
+        "Arrugas finas",
+        "Profundas",
+        "Flacidez",
+        "Pérdida elasticidad",
+        "Manchas (lentigos)",
+        "Telangiectasias",
+        "Xerosis",
+        "Poro dilatado",
+        "Cuello: anillos de Venus"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Fotoprotección SPF50 (diaria)",
+          "Retinoides tópicos (tretinoína, retinol)",
+          "Vitamina C tópica",
+          "Ácido hialurónico",
+          "Alfa-hidroxiácidos (glicólico)",
+          "Toxina botulínica",
+          "Láser/rádiófrecuencia"
+        ],
+        "mecanismo": "FPS previene daño UV. Retinoides estimulan colágeno y renovación. Vit C antioxidante y colágeno. AHA exfolia. Toxina relaja arrugas dinámicas.",
+        "efectosSecundarios": [
+          "Retinoides: irritación, fotosensibilidad",
+          "AHA: irritación",
+          "Toxina: ptosis (raro)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "aloe_vera",
+          "te_verde",
+          "rosa",
+          "calendula",
+          "centella",
+          "ginseng",
+          "regaliz"
+        ],
+        "suplementos": [
+          "colageno",
+          "acido_hialuronico",
+          "vitamina_c",
+          "vitamina_e",
+          "omega_3",
+          "omega_7",
+          "coq10",
+          "resveratrol",
+          "astaxantina",
+          "vitamina_a",
+          "zinc",
+          "silicio"
+        ],
+        "homeopatia": [
+          "sulphur",
+          "graphites",
+          "lachesis",
+          "natrum_muriaticum",
+          "sepia"
+        ],
+        "aceites": [
+          "rosa",
+          "incienso",
+          "lavanda_aceite",
+          "geranio"
+        ],
+        "cuandoPreferir": "Profilaxis antiedad, mantenimiento, complemento a retinoides, piel sensible, embarazo (no retinoides), manchas. La fotoprotección diaria es el pilar."
+      },
+      "prevencion": [
+        "FPS50 diario (invierno también)",
+        "Evitar exposición solar 12-16h",
+        "No fumar",
+        "Dieta antioxidante (mediterránea)",
+        "Hidratación oral",
+        "Sueño 7-9h",
+        "Retinoides desde 30",
+        "Gestión del estrés"
+      ],
+      "cuandoConsultar": "Mancha que cambia (asimetría, borde, color, diámetro >6mm, evolución - ABCDE melanoma), lesión sangrante, prurito, queratosis actínica (premaligno), cambios rápidos, antecedente melanoma.",
+      "evidencia": "A",
+      "fuentes": [
+        "AAD Aging Skin Guidelines",
+        "PubMed (Collagen, Astaxanthin skin)",
+        "FDA (Tretinoin)"
+      ]
+    },
+    {
+      "id": "hipertrigliceridemia",
+      "nombre": "Hipertrigliceridemia",
+      "definicion": "Triglicéridos elevados (>150 mg/dL; >500 muy alto, pancreatitis). Común en síndrome metabólico, diabetes, alcohol. 25% adultos TG >200.",
+      "causas": [
+        "Dieta alta en azúcar/carbohidratos refinados",
+        "Alcohol",
+        "Sedentarismo",
+        "Obesidad",
+        "Diabetes no controlada",
+        "Hipotiroidismo",
+        "Fármacos (corticoides, beta-bloq, estrógenos)",
+        "Genética (familiar combinada)"
+      ],
+      "sintomas": [
+        "Asintomática",
+        "Xantomas eruptivos (>1000)",
+        "Hepatomegalia (hígado graso)",
+        "Pancreatitis (TG >1000)",
+        "Asociada a síndrome metabólico"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Cambios estilo de vida (primero)",
+          "Estatinas (riesgo CV)",
+          "Fibratos (fenofibrato, gemfibrozilo)",
+          "Omega-3 etílico (Vascepa, Lovaza)",
+          "Ácido nicotínico (no recomendado)"
+        ],
+        "mecanismo": "Estatinas (LDL/riesgo). Fibratos activan PPARα (reducen TG, suben HDL). Omega-3 etílicos reducen síntesis hepática TG.",
+        "efectosSecundarios": [
+          "Fibratos: miopatía (con estatinas), GI",
+          "Omega-3: aumento LDL"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "te_verde",
+          "ajo",
+          "canela",
+          "te_rojo",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "omega_3",
+          "niacinamida",
+          "cromo",
+          "berberina",
+          "alfa_lipoico",
+          "vitamina_c",
+          "vitamina_d3",
+          "coq10",
+          "nac"
+        ],
+        "homeopatia": [
+          "lycopodium",
+          "chelidonium",
+          "calcaria_carbonica",
+          "thuja"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "TG leves-moderados (150-500), profilaxis, complemento a fibratos, resistencia a insulina, hígado graso asociado. Estilo de vida es el pilar."
+      },
+      "prevencion": [
+        "Dieta baja en azúcar/fructosa",
+        "Reducir alcohol",
+        "Omega-3 EPA/DHA",
+        "Ejercicio aeróbico",
+        "Peso saludable",
+        "Control glucosa",
+        "Evitar grasas saturadas/trans",
+        "Fibra"
+      ],
+      "cuandoConsultar": "TG >500 (pancreatitis), TG >1000 (riesgo agudo), pancreatitis, xantomas, hepatomegalia, no respuesta a 3-6 meses, asociado a diabetes no controlada, embarazo (TG elevado).",
+      "evidencia": "A",
+      "fuentes": [
+        "AACE Dyslipidemia Guidelines",
+        "PubMed (Omega-3 TG, Berberine)",
+        "EMA HMPC"
+      ]
+    },
+    {
+      "id": "prediabetes",
+      "nombre": "Prediabetes y Resistencia a la Insulina",
+      "definicion": "Glucosa 100-125 mg/dL ayunas o HbA1c 5.7-6.4%. 1 de 3 adultos. 70% progresa a diabetes tipo 2. Reversible con cambios de estilo de vida.",
+      "causas": [
+        "Resistencia a insulina (obesidad visceral)",
+        "Sedentarismo",
+        "Dieta ultraprocessada",
+        "Genética (familiar DM2)",
+        "Síndrome metabólico",
+        "Edad (>45)",
+        "Gestacional previa",
+        "SOP",
+        "Fármacos (corticoides, antipsicóticos)"
+      ],
+      "sintomas": [
+        "Asintomática (clave)",
+        "Hambre (polifagia)",
+        "Fatiga",
+        "Visión borrosa",
+        "Acanthosis nigricans",
+        "Síndrome metabólico",
+        "Sed/poliuria si glucosa alta"
+      ],
+      "sistemas": [
+        "metabolico",
+        "endocrino"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Cambios estilo de vida (primero y clave)",
+          "Metformina (DPP, alto riesgo)",
+          "Pérdida peso 5-7%",
+          "Ejercicio 150 min/semana",
+          "Control glucosa/HbA1c anual",
+          "GLP-1 (en obesidad)"
+        ],
+        "mecanismo": "Cambios estilo de vida previenen progreso 58%. Metformina reduce gluconeogénesis hepática y sensibiliza (DPP).",
+        "efectosSecundarios": [
+          "Metformina: GI, déficit B12"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "canela",
+          "gymnema",
+          "fenogreco",
+          "te_verde",
+          "ajo",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "cromo",
+          "magnesio_glicinato",
+          "berberina",
+          "alfa_lipoico",
+          "omega_3",
+          "vitamina_d3",
+          "inositol",
+          "probioticos",
+          "coq10"
+        ],
+        "homeopatia": [
+          "lycopodium",
+          "phosphorus",
+          "calcaria_carbonica",
+          "sulphur",
+          "thuja"
+        ],
+        "aceites": [
+          "canela_aceite"
+        ],
+        "cuandoPreferir": "Prediabetes, resistencia a la insulina, complemento a metformina, SOP, profilaxis (familiares DM2), pacientes que rechazan fármacos. El estilo de vida es el pilar."
+      },
+      "prevencion": [
+        "Dieta mediterránea/bajo índice glucémico",
+        "Ejercicio 150 min/semana + resistencia",
+        "Pérdida peso 5-7%",
+        "Sueño 7-9h",
+        "Reducir ultraprocessados/azúcar",
+        "Probióticos",
+        "Control anual",
+        "Estrés"
+      ],
+      "cuandoConsultar": "HbA1c >6.4% (diabetes), glucosa >200 con síntomas, embarazo (gestacional), no respuesta a 6 meses, síndrome metabólico, factores de riesgo CV, niños con obesidad.",
+      "evidencia": "A",
+      "fuentes": [
+        "ADA Diabetes Prevention Program (DPP)",
+        "PubMed (Berberine, Cinnamon prediabetes)",
+        "AACE Prediabetes Guidelines"
+      ]
+    },
+    {
+      "id": "crisis_panico",
+      "nombre": "Crisis de Pánico y Trastorno de Pánico",
+      "definicion": "Crisis de angustia aguda con síntomas físicos (palpitaciones, disnea) que alcanzan máximo en 10 min. Trastorno de pánico: recurrencias + preocupación por nueva crisis. 5% adultos.",
+      "causas": [
+        "Genética",
+        "Trastorno de ansiedad",
+        "Hiperventilación",
+        "Trauma",
+        "Estrés",
+        "Sensibilidad CO2 (sufocación)",
+        "Fármacos (cafeína, estimulantes)",
+        "Hipertiroidismo",
+        "Hipoglucemia"
+      ],
+      "sintomas": [
+        "Palpitaciones/taquicardia",
+        "Disnea/sensación asfixia",
+        "Opresión torácica",
+        "Mareo",
+        "Temblores",
+        "Sudoración",
+        "Hormigueo",
+        "Desrealización/despersonalización",
+        "Miedo a morir/volver loco"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "ISRS (sertralina, escitalopram, paroxetina)",
+          "Benzodiacepinas (alprazolam) - corto plazo",
+          "TCC (terapia cognitivo-conductual)",
+          "Técnicas respiración",
+          "Evitar cafeína/alcohol"
+        ],
+        "mecanismo": "ISRS modulan serotonina (previenen crisis). Benzodiacepinas alivian agudo (no crónico). TCC reestructura pensamientos catastróficos. Respiración controla hiperventilación.",
+        "efectosSecundarios": [
+          "ISRS: náuseas, sexual",
+          "Benzodiacepinas: dependencia, tolerancia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "valeriana",
+          "pasiflora",
+          "ashwagandha",
+          "kanna",
+          "manzanilla",
+          "lavanda",
+          "melisa"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "l_teanina",
+          "5_htp",
+          "l_triptofano",
+          "omega_3",
+          "gaba",
+          "vitamina_b6",
+          "inositol"
+        ],
+        "homeopatia": [
+          "aconitum_napellus",
+          "gelsemium",
+          "ignatia",
+          "argentum_nitricum",
+          "lycopodium"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "incienso",
+          "ylang_ylang",
+          "salvia_esclarea"
+        ],
+        "cuandoPreferir": "Crisis leve-moderada, profilaxis, complemento a ISRS, intolerancia a benzodiacepinas, manejo de ansiedad anticipatoria, mantenimiento. TCC es clave."
+      },
+      "prevencion": [
+        "Técnicas de respiración",
+        "Mindfulness",
+        "TCC",
+        "Reducir cafeína/alcohol",
+        "Ejercicio regular",
+        "Gestión del estrés",
+        "Sueño adecuado",
+        "Magnesio/Omega-3"
+      ],
+      "cuandoConsultar": "Crisis frecuentes (trastorno de pánico), agorafobia, ideación suicida, primera crisis (descartar cardiopatía/hipertiroidismo), dolor torácico (descartar IAM), depresión asociada, no respuesta a ISRS.",
+      "evidencia": "A",
+      "fuentes": [
+        "NICE Panic Disorder Guidelines",
+        "PubMed (Magnesium, Inositol panic)",
+        "APA Anxiety Guidelines"
+      ]
+    },
+    {
+      "id": "bipolar",
+      "nombre": "Trastorno Bipolar",
+      "definicion": "Trastorno del ánimo con episodios maníacos/hipomaníacos y depresivos. Tipo I (manía), tipo II (hipomanía + depresión). 1-2% adultos. Heredabilidad 80%.",
+      "causas": [
+        "Genética (80% heredabilidad)",
+        "Desequilibrio neurotransmisores",
+        "Trastorno del ritmo circadiano",
+        "Estrés biográfico",
+        "Trauma",
+        "Fármacos (antidepresivos, corticoides, estimulantes)",
+        "Privación sueño",
+        "Drogas"
+      ],
+      "sintomas": [
+        "Manía: euforia/irritabilidad, energía, verborrea, fuga ideas, menos sueño, gasto, hipersexualidad",
+        "Depresión: tristeza, anhedonia, fatiga, culpa, suicidio",
+        "Mixto"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Litio (I y profilaxis)",
+          "Antipsicóticos atípicos (quetiapina, olanzapina, aripiprazol)",
+          "Estabilizadores (valproato, lamotrigina)",
+          "TCC/psicoeducación",
+          "Hospitalización si manía grave/suicidio"
+        ],
+        "mecanismo": "Litio modula segundos mensajeros, neuroprotector. Antipsicóticos bloquean D2/5-HT2. Anticonvulsivantes estabilizan membrana. Psicoeducación previene recaídas.",
+        "efectosSecundarios": [
+          "Litio: renal, tiroides, temblor, toxicidad",
+          "Atípicos: peso, metabolico",
+          "Valproato: hepatico, teratogénico"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ashwagandha",
+          "rodiola",
+          "valeriana",
+          "pasiflora",
+          "manzanilla",
+          "kanna"
+        ],
+        "suplementos": [
+          "omega_3",
+          "magnesio_glicinato",
+          "vitamina_b_complejo",
+          "vitamina_d3",
+          "nac",
+          "inositol",
+          "coq10",
+          "l_teanina"
+        ],
+        "homeopatia": [
+          "lachesis",
+          "platina",
+          "stramonium"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "incienso",
+          "vetiver"
+        ],
+        "cuandoPreferir": "Complemento a litio/antipsicóticos, prevención de recaídas, depresión bipolar (no inducir manía), intolerancia a fármacos, mantenimiento. NUNCA sustituir a tratamiento farmacológico. Los antidepresivos pueden inducir manía."
+      },
+      "prevencion": [
+        "Adherencia a fármacos (clave)",
+        "Ritmo sueño estable (clave)",
+        "Diario del ánimo",
+        "Psicoeducación",
+        "Evitar alcohol/drogas",
+        "Gestión del estrés",
+        "Omega-3",
+        "Red de apoyo"
+      ],
+      "cuandoConsultar": "Manía grave (gasto, sexual, psicosis), ideación suicida (alto riesgo), depresión profunda, no adherencia, efectos adversos a litio (sed, temblor, confusión - toxicidad URGNCIA), embarazo (teratógenos), comorbilidad.",
+      "evidencia": "A",
+      "fuentes": [
+        "CANMAT Bipolar Guidelines",
+        "PubMed (Omega-3, NAC bipolar)",
+        "NICE Bipolar Guidelines"
+      ]
+    },
+    {
+      "id": "dolor_espalda_cervical",
+      "nombre": "Dolor de Espalda y Cervical",
+      "definicion": "Dolor en región cervical o dorsal (cervicalgia, dorsalgia). 80% adultos en algún momento. Sedentarios, postura, estrés, trabajos pantalla. Principal causa de baja laboral.",
+      "causas": [
+        "Tensión muscular (estrés, postura)",
+        "Sobrecarga (pantalla, móvil)",
+        "Hernia discal cervical",
+        "Artrosis facetaria",
+        "Sedentarismo",
+        "Trauma (latigazo)",
+        "Ansiedad",
+        "Osteoporosis",
+        "Trabajos manuales"
+      ],
+      "sintomas": [
+        "Dolor cervical/dorsal",
+        "Rigidez",
+        "Cefalea tensional asociada",
+        "Dolor irradiado a hombro/brazo (radiculopatía)",
+        "Parestesias",
+        "Sensibilidad muscular",
+        "Limitación movilidad"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "AINEs (ibuprofeno, naproxeno)",
+          "Miorrelajantes (tetrazepam, ciclobenzaprina)",
+          "Fisioterapia",
+          "Paracetamol",
+          "Infiltraciones facetarias",
+          "Férula cervical (agudo)"
+        ],
+        "mecanismo": "AINEs antiinflamatorios. Miorrelajantes reducen espasmo. Fisioterapia (ejercicios, tracción, TENS). Infiltración facetaria con cortico.",
+        "efectosSecundarios": [
+          "AINEs: gastrolesividad",
+          "Miorrelajantes: sedación",
+          "Férula: atrofia si crónico"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "harpagofito",
+          "sauce",
+          "romero",
+          "arnica",
+          "jengibre",
+          "pimienta_cayena",
+          "manzanilla"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boswelia",
+          "magnesio_glicinato",
+          "msm",
+          "vitamina_d3",
+          "colageno",
+          "glucosamina"
+        ],
+        "homeopatia": [
+          "cimicifuga",
+          "ruta_graveolens",
+          "coccus_cacti",
+          "rhus_toxicodendron",
+          "arnica",
+          "gelsemium"
+        ],
+        "aceites": [
+          "menta",
+          "romero_aceite",
+          "lavanda_aceite",
+          "clavo",
+          "incienso"
+        ],
+        "cuandoPreferir": "Dolor mecánico agudo, crónico inespecífico, complemento a AINEs, profilaxis (postura), intolerancia gástrica, ansiedad asociada, mantenimiento. La fisioterapia y el ejercicio son clave."
+      },
+      "prevencion": [
+        "Ergonomía (pantalla a altura ojos)",
+        "Pausas (movilidad cada 30 min)",
+        "Ejercicio (core, natación)",
+        "Estiramientos",
+        "Postura al dormir (almohada adecuada)",
+        "Gestión del estrés",
+        "Peso saludable",
+        "No sedentarismo"
+      ],
+      "cuandoConsultar": "Déficit neurológico (fuerza, sensibilidad), dolor irradiado a brazo, parestesias, traumatismo, fiebre, pérdida peso, historia oncológica, no mejora en 6 sem, bilateral, rigidez matutina prolongada, dolor nocturno (bandera roja).",
+      "evidencia": "A",
+      "fuentes": [
+        "NICE Low Back/Neck Pain Guidelines",
+        "EMA HMPC Harpagophyti radix",
+        "PubMed (Curcumin, Boswellia)"
+      ]
+    },
+    {
+      "id": "queilitis_solar",
+      "nombre": "Queilitis y Protección Labial",
+      "definicion": "Inflamación/sequedad de los labios (queilitis). Múltiples causas: solar, actínica, angular, exfoliativa, infecciosa. 80% solar (fotoexposición).",
+      "causas": [
+        "Solar (actínica, crónica)",
+        "Frío/viento",
+        "Deshidratación",
+        "Lamerse los labios (empeora)",
+        "Respiración bucal",
+        "Alergia (bálsamos, fragancias)",
+        "Deficiencia (B2)",
+        "Candida",
+        "Tabaco",
+        "Fármacos (retinoides, isotretinoína)"
+      ],
+      "sintomas": [
+        "Sequedad",
+        "Descamación",
+        "Fisuras",
+        "Dolor",
+        "Ardor",
+        "Eritema",
+        "Edema",
+        "Costras",
+        "Pigmentación (actínica)"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Fotoprotección SPF30+ labial",
+          "Bálsamos hidratantes (cera, vaselina, manteca)",
+          "Corticoide tópico leve (corto)",
+          "Antifúngico si Candida",
+          "Inhibidor calcineurina (crónica)",
+          "Evitar lambetones"
+        ],
+        "mecanismo": "FPS previene daño UV. Emolientes sellan humedad. Corticoides antiinflamatorios. Antifúngico si candidiasis.",
+        "efectosSecundarios": [
+          "Cortico tópico: atrofia si crónico"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "calendula",
+          "aloe_vera",
+          "olmo_america",
+          "manzanilla",
+          "hiperico"
+        ],
+        "suplementos": [
+          "riboflavina",
+          "vitamina_b6",
+          "omega_3",
+          "vitamina_e",
+          "zinc",
+          "hierro",
+          "vitamina_c"
+        ],
+        "homeopatia": [
+          "borax",
+          "nitricum_acidum",
+          "sulphur",
+          "petroleum"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "calendula",
+          "rosa"
+        ],
+        "cuandoPreferir": "Queilitis simple/actínica, profilaxis (deportistas, frío), intolerancia a corticoides, mantenimiento, deficiencias nutricionales, piel sensible."
+      },
+      "prevencion": [
+        "FPS labial diario",
+        "Hidratación oral",
+        "Bálsamo (cera, manteca, NO petrolato solo)",
+        "No lamerse labios",
+        "Evitar viento/frío (bufanda)",
+        "Respiración nasal",
+        "Dieta B2/B6",
+        "No fumar"
+      ],
+      "cuandoConsultar": "Queilitis actínica crónica (premaligno - leucoplasia), no cura en 2-3 sem, fisuras profundas, sangrado, úlceras, sospecha de carcinoma labial (fumador), cambios pigmentarios, asociado a fármaco.",
+      "evidencia": "B",
+      "fuentes": [
+        "AAD Cheilitis Guidelines",
+        "PubMed (Calendula, Honey wounds)",
+        "EMA HMPC Calendulae flos"
+      ]
+    },
+    {
+      "id": "neuralgia_trigemino",
+      "nombre": "Neuralgia del Trigémino y Dolor Neuropático",
+      "definicion": "Dolor facial intenso unilateral (V par). Crisis cortas (segundos), desencadenadas por estímulos. Dolor neuropático en general: por lesión del sistema somatosensorial. 0.1-0.3% adultos.",
+      "causas": [
+        "Compresión vascular del V par (mayoría)",
+        "Esclerosis múltiple",
+        "Tumor",
+        "Trauma (dental, cirugía)",
+        "Herpes zóster (NPH)",
+        "Diabetes (neuropatía)",
+        "Idiopático",
+        "Post-quimio"
+      ],
+      "sintomas": [
+        "Dolor lancinante/electrizante",
+        "Unilateral",
+        "Cortas (seg-min)",
+        "Crisis recurrentes",
+        "Disparadores: tocar, frío, hablar, comer",
+        "Puntos gatillo",
+        "Sin déficit sensitivo (inicial)"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Carbamazepina (1ª elección)",
+          "Gabapentina/Pregabalina",
+          "Oxicarbamazepina",
+          "Baclofeno",
+          "Antidepresivos tricíclicos (amitriptilina)",
+          "Duloxetina (neuropatía)",
+          "Cirugía (descompresión MVD, termocoagulación)"
+        ],
+        "mecanismo": "Carbamazepina bloquea canales Na+. Gabapentin modula α2δ calcio. Amitriptilina inhibe recaptación monoaminas. Cirugía en refractario.",
+        "efectosSecundarios": [
+          "Carbamazepina: somnolencia, hepatico, hiponatremia",
+          "Amitriptilina: sequedad, sedación"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "pimienta_cayena",
+          "hiperico",
+          "valeriana",
+          "kanna",
+          "manzanilla"
+        ],
+        "suplementos": [
+          "alfa_lipoico",
+          "vitamina_b12",
+          "l_lisina",
+          "vitamina_d3",
+          "omega_3",
+          "magnesio_glicinato",
+          "nac",
+          "l_glutamina"
+        ],
+        "homeopatia": [
+          "spigelia",
+          "hypericum",
+          "magnesia_phosphorica",
+          "plumbum"
+        ],
+        "aceites": [
+          "menta",
+          "lavanda_aceite",
+          "incienso",
+          "clavo"
+        ],
+        "cuandoPreferir": "Complemento a carbamazepina/gabapentina, neuralgia postherpética, neuropatía diabética, profilaxis, intolerancia a fármacos, mantenimiento. La neuralgia del trigémino puede requerir cirugía."
+      },
+      "prevencion": [
+        "Control de factores de riesgo (diabetes, HTA)",
+        "Gestión del estrés",
+        "Tratamiento precoz del herpes zóster",
+        "Vacunación contra zóster",
+        "Evitar disparadores (frío, viento)",
+        "Buen control glucémico"
+      ],
+      "cuandoConsultar": "Dolor facial intenso (trigémino), dolor >3 meses, déficit neurológico, dolor bilateral, crisis prolongadas, no respuesta a carbamazepina, sospecha de esclerosis múltiple/tumor (RM), dolor nocturno (atípico).",
+      "evidencia": "A",
+      "fuentes": [
+        "AAN Trigeminal Neuralgia Guidelines",
+        "PubMed (ALA, Capsaicin neuropathy)",
+        "Neuropathic Pain Guidelines"
+      ]
+    },
+    {
+      "id": "artritis_reumatoide",
+      "nombre": "Artritis Reumatoide",
+      "definicion": "Enfermedad autoinmune sistémica: sinovitis erosiva, simétrica (MCP, MTF, muñecas). 0.5-1% adultos, predominio femenino (3:1). Principal causa de discapacidad articular.",
+      "causas": [
+        "Autoinmune (citrulinación, ACPA, FR)",
+        "Genética (HLA-DR4, PTPN22)",
+        "Tabaco (principal ambiental)",
+        "Infecciones",
+        "Disbiosis",
+        "Estrógenos (protector)",
+        "Obesidad"
+      ],
+      "sintomas": [
+        "Poliartritis simétrica (MCP, MTF, muñecas)",
+        "Rigidez matutina >1h",
+        "Dolor, tumefacción",
+        "Fatiga",
+        "Nódulos reumatoides",
+        "Deformidades (cuello de cisne, boutonniere)",
+        "Sistémico"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Metotrexato (1ª elección)",
+          "Leflunomida",
+          "Corticoides (puente)",
+          "Anti-TNF (adalimumab, etanercept)",
+          "Anti-IL-6 (tocilizumab)",
+          "JAK inhibidores (tofacitinib)",
+          "Fisioterapia"
+        ],
+        "mecanismo": "Metotrexato (DMARD) inhibe dihidrofolato reductasa. Biológicos dianas específicas (TNF, IL-6). Corticoides puentes. Fisioterapia previene rigidez.",
+        "efectosSecundarios": [
+          "Metotrexato: hepatico, supresión medular, folato",
+          "Biologicos: infecciones, TB",
+          "Cortico: osteoporosis"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "harpagofito",
+          "boswelia",
+          "curcuma",
+          "jengibre",
+          "olmo_america",
+          "regaliz",
+          "te_verde"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boswelia",
+          "vitamina_d3",
+          "selenio",
+          "vitamina_b12",
+          "probioticos",
+          "folato",
+          "colageno"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "causticum",
+          "bryonia",
+          "apis_mellifica",
+          "ledum_palustre"
+        ],
+        "aceites": [
+          "romero_aceite",
+          "lavanda_aceite",
+          "menta",
+          "incienso"
+        ],
+        "cuandoPreferir": "Complemento a DMARDs, profilaxis de brotes, intolerancia a metotrexato, antioxidantes, manejo del dolor, vit D. No sustituir a tratamiento de fondo (metotrexato/biológicos)."
+      },
+      "prevencion": [
+        "No fumar (clave)",
+        "Dieta mediterránea (omega-3)",
+        "Vitamina D",
+        "Control de peso",
+        "Ejercicio adaptado",
+        "Probióticos",
+        "Gestión del estrés",
+        "Diagnóstico precoz"
+      ],
+      "cuandoConsultar": "Poliartritis simétrica (sospechar AR), rigidez matutina >1h, factor reumatoide/ACPA +, erosiones, nódulos, manifestaciones extraarticulares (pulmón, ojo, vasculitis), no respuesta a DMARD, embarazo.",
+      "evidencia": "A",
+      "fuentes": [
+        "ACR Rheumatoid Arthritis Guidelines",
+        "PubMed (Omega-3, Curcumin RA)",
+        "EMA HMPC Harpagophyti radix"
+      ]
+    },
+    {
+      "id": "sindrome_sjogren",
+      "nombre": "Síndrome de Sjögren",
+      "definicion": "Enfermedad autoinmune: infiltración linfocítica de glándulas exocrinas (ojo, boca). 0.5-1% adultos; 90% mujeres. Causa xerostomía y ojo seco crónicos.",
+      "causas": [
+        "Autoinmune (anti-Ro/SSA, anti-La/SSB)",
+        "Genética (HLA-DR3)",
+        "Viral (EBV, HCV sospechado)",
+        "Hormonal (estrógenos)",
+        "Infiltración linfocítica B"
+      ],
+      "sintomas": [
+        "Boca seca (xerostomía)",
+        "Ojo seco (queratoconjuntivitis)",
+        "Fatiga",
+        "Artralgias",
+        "Parotidomegalia",
+        "Piel seca",
+        "Disgeusia",
+        "Caries",
+        "Disfagia",
+        "Linfoma (10% riesgo)"
+      ],
+      "sistemas": [
+        "inmune",
+        "digestivo",
+        "ocular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Lágrimas artificiales (sin conservador)",
+          "Saliva artificial, estimulantes (pilocarpina)",
+          "Hidroxicloroquina (sistémico)",
+          "Inmunosupresores (graves)",
+          "Corticoides (brote)"
+        ],
+        "mecanismo": "Sustitución lagrimal/salival. Pilocarpina estimula saliva. Hidroxicloroquina modula inmunidad. Inmunosupresores en sistémico.",
+        "efectosSecundarios": [
+          "Pilocarpina: sudoración, GI",
+          "Hidroxicloroquina: retinopatía"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "euphrasia",
+          "manzanilla",
+          "llanten",
+          "olmo_america",
+          "malvavisco",
+          "regaliz",
+          "hinojo"
+        ],
+        "suplementos": [
+          "omega_3",
+          "omega_7",
+          "vitamina_a",
+          "vitamina_d3",
+          "probioticos",
+          "luteina",
+          "vitamina_c"
+        ],
+        "homeopatia": [
+          "euphrasia",
+          "pulsatilla",
+          "apis_mellifica",
+          "borax",
+          "natrum_muriaticum"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "incienso"
+        ],
+        "cuandoPreferir": "Síntomas leves (ojo/boca seca), complemento a lágrimas/pilocarpina, profilaxis, intolerancia a inmunosupresores, embarazo (no inmunosupresores)."
+      },
+      "prevencion": [
+        "Hidratación",
+        "Higiene oral (caries frecuente)",
+        "Pausas en pantallas",
+        "Humidificar ambiente",
+        "Evitar antihistamínicos/descongestivos si posible",
+        "Probióticos",
+        "Vitamina A",
+        "Control odontológico"
+      ],
+      "cuandoConsultar": "Úlcera corneal, parotidomegalia persistente (linfoma), afectación sistémica (pulmón, riñón), no respuesta a lágrimas, vasculitis, fatiga severa, disfagia, neumonitis, embarazo.",
+      "evidencia": "B",
+      "fuentes": [
+        "ACR Sjögren Guidelines",
+        "PubMed (Omega-7 Sjogren)",
+        "TFOS DEWS II"
+      ]
+    },
+    {
+      "id": "alzheimer",
+      "nombre": "Enfermedad de Alzheimer (Prevención y Apoyo)",
+      "definicion": "Demencia neurodegenerativa (placas β-amiloide, ovillos tau). 60-80% demencias. 50M personas mundo; 10M/año nuevas. Comienza 20-30 años antes de síntomas.",
+      "causas": [
+        "Acumulación β-amiloide (Aβ42)",
+        "Ovillos tau hiperfosforilado",
+        "Genética (ApoE4, APP, PSEN1/2)",
+        "Edad (>65)",
+        "Cardiovascular (HTA, diabetes, colesterol)",
+        "Inflamación crónica",
+        "Sueño (clearance Aβ)",
+        "Trauma craneal",
+        "Sedentarismo",
+        "Aislamiento social"
+      ],
+      "sintomas": [
+        "Pérdida memoria reciente",
+        "Dificultad lenguaje",
+        "Desorientación",
+        "Apraxia (gestos)",
+        "Problemas visoespaciales",
+        "Cambios conducta",
+        "Apatía",
+        "Depresión",
+        "Fase avanzada: dependencia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Donepezilo, rivastigmina, galantamina (colinesterásicos)",
+          "Memantina (NMDA)",
+          "Antipsicóticos (síntomas, riesgo)",
+          "Lecanemab/aducanumab (anti-amiloide, nuevo)",
+          "Estimulación cognitiva"
+        ],
+        "mecanismo": "Colinesterásicos aumentan acetilcolina. Memantina protege glutamato. Anti-amiloide reduce placas (enlentece). Estimulación cognitiva.",
+        "efectosSecundarios": [
+          "Colinesterásicos: bradicardia, GI",
+          "Memantina: mareo",
+          "Antipsicóticos: mortalidad (ancianos)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ginkgo",
+          "bacopa",
+          "rodiola",
+          "ashwagandha",
+          "ginseng",
+          "centella",
+          "salvia"
+        ],
+        "suplementos": [
+          "omega_3",
+          "vitamina_d3",
+          "vitamina_b12",
+          "folato",
+          "coq10",
+          "fosfatidilserina",
+          "alpha_gpc",
+          "alfa_lipoico",
+          "curcumina",
+          "resveratrol",
+          "luteolina"
+        ],
+        "homeopatia": [
+          "baryta_carbonica",
+          "calcaria_carbonica",
+          "sulphur",
+          "lycopodium",
+          "alumina"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "incienso",
+          "romero_aceite"
+        ],
+        "cuandoPreferir": "Prevención (MIND diet), cognición leve, complemento a colinesterásicos, mantenimiento, intolerancia a antipsicóticos, caregiver burden. La prevención empieza en la mediana edad."
+      },
+      "prevencion": [
+        "Dieta MIND (mediterránea + DASH)",
+        "Ejercicio aeróbico (alza BDNF)",
+        "Actividad cognitiva (aprender, social)",
+        "Control CV (HTA, glucosa, lípidos)",
+        "Sueño 7-8h (clearance Aβ)",
+        "Vit D, B12, omega-3",
+        "Red social",
+        "No fumar"
+      ],
+      "cuandoConsultar": "Pérdida de memoria funcional, desorientación, cambios conducta, depresión, problemas financieros, conducción, trastorno conducta nocturna, caídas, desnutrición, cuidador desbordado.",
+      "evidencia": "A",
+      "fuentes": [
+        "NIA Alzheimer Diagnostic Guidelines",
+        "Finger Study (FINGER)",
+        "PubMed (Ginkgo, Omega-3, MIND diet)"
+      ]
+    },
+    {
+      "id": "ictus_prevencion",
+      "nombre": "Prevención del Ictus (ACV)",
+      "definicion": "Ictus: pérdida rápida de función cerebral por isquemia (85%) o hemorragia (15%). 2ª causa de muerte mundial. 25% recurrencia en 5 años. Prevención es clave.",
+      "causas": [
+        "Isquémico: aterosclerosis carotídea, cardioembólico (FA), lacunar (HTA)",
+        "Hemorrágico: HTA, aneurisma, AVM, anticoagulantes",
+        "FA (5x riesgo)",
+        "HTA (principal)",
+        "Diabetes",
+        "Tabaco",
+        "Dislipidemia",
+        "Obesidad",
+        "Sedentarismo",
+        "Apnea del sueño"
+      ],
+      "sintomas": [
+        "Asimetría facial",
+        "Débito brazo",
+        "Trastorno lenguaje (FAST)",
+        "Débito visual",
+        "Cefalea súbita",
+        "Vértigo",
+        "Ataxia",
+        "Coma (grave)"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Antiagregación (AAS 100mg, clopidogrel)",
+          "Anticoagulación (FA: DOAC, warfarina)",
+          "Estatinas (atorvastatina 80)",
+          "Control HTA (<130/80)",
+          "Endarterectomía carotídea (>70%)",
+          "Trombólisis/trombectomía (agudo)"
+        ],
+        "mecanismo": "Antiagregación previene trombosis. Anticoagulación si FA. Estatinas estabilizan placa. Endarterectomía elimina estenosis. Trombólisis disuelve coágulo agudo.",
+        "efectosSecundarios": [
+          "Antiagregación: sangrado",
+          "Anticoagulación: sangrado",
+          "Estatinas: miopatía"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ginkgo",
+          "ajo",
+          "te_verde",
+          "curcuma",
+          "romero",
+          "sauce"
+        ],
+        "suplementos": [
+          "omega_3",
+          "vitamina_d3",
+          "magnesio_glicinato",
+          "vitamina_b_complejo",
+          "coq10",
+          "nac",
+          "alfa_lipoico",
+          "vitamina_c"
+        ],
+        "homeopatia": [
+          "arnica",
+          "ruta_graveolens",
+          "gelsemium",
+          "conium",
+          "nux_vomica"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "incienso",
+          "romero_aceite"
+        ],
+        "cuandoPreferir": "Profilaxis primaria/secundaria, complemento a antiagregación, intolerancia a AAS (gastroprotección), mantenimiento, control factores riesgo. NUNCA sustituir a antiagregación/anticoagulación."
+      },
+      "prevencion": [
+        "Control HTA (<130/80)",
+        "Antiagregación si alto riesgo",
+        "Anticoagulación si FA",
+        "Estatinas (LDL <70)",
+        "Dieta mediterránea",
+        "Ejercicio 150 min/sem",
+        "No fumar",
+        "Peso",
+        "Control glucosa",
+        "AAS 100 si alto riesgo"
+      ],
+      "cuandoConsultar": "Síntomas súbitos (FAST - URGNCIA: asimetría facial, brazo débil, lenguaje), cefalea súbita intensa, déficit neurológico, FA no anticoagulada, HTA no controlada, síntomas TIA (recuperación <24h, alto riesgo), sospecha hemorragia.",
+      "evidencia": "A",
+      "fuentes": [
+        "AHA/ASA Stroke Prevention Guidelines",
+        "PubMed (Omega-3, Magnesium stroke)",
+        "ESVS Carotid Guidelines"
+      ]
+    },
+    {
+      "id": "dispareunia",
+      "nombre": "Sequedad Vaginal y Dispareunia",
+      "definicion": "Sequedad vaginal (atrofia vulvovaginal) y dolor con coito (dispareunia). Frecuente en menopausia (50%), lactancia y tras algunos tratamientos oncológicos.",
+      "causas": [
+        "Déficit estrogénico (menopausia)",
+        "Lactancia (prolactina)",
+        "Anticonceptivos orales",
+        "Cáncer (quimio, antiestrógenos)",
+        "Síndrome de Sjögren",
+        "Atrófica (edad)",
+        "Estrés",
+        "Fármacos (antihistamínicos, antidepresivos)",
+        "Falta de excitación"
+      ],
+      "sintomas": [
+        "Sequedad vaginal",
+        "Dispareunia (dolor coito)",
+        "Picor",
+        "Ardor",
+        "Irritación",
+        "Sangrado leve postcoito",
+        "Infecciones recurrentes",
+        "Disminución libido"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Lubricantes (agua/silicona)",
+          "Hidratantes vaginales",
+          "Estrogénicos tópicos (estradiol, estriol)",
+          "DHEA vaginal (prasterona)",
+          "Ospemifeno (oral)",
+          "Estrogénicos sistémicos (si menopausia)"
+        ],
+        "mecanismo": "Lubricantes/hidratantes sustituyen. Estrógenos tópicos restauran mucosa. DHEA vaginal. Ospemifeno (SERM vaginal).",
+        "efectosSecundarios": [
+          "Estrogénicos tópicos: mínimos",
+          "Sistémicos: trombosis, mama (debate)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "vitex",
+          "dong_quai",
+          "cimicifuga",
+          "regaliz",
+          "lúpulo",
+          "trebol_rojo",
+          "damiana"
+        ],
+        "suplementos": [
+          "omega_7",
+          "omega_3",
+          "vitamina_e",
+          "vitamina_d3",
+          "colageno",
+          "vitex"
+        ],
+        "homeopatia": [
+          "sepia",
+          "lycopodium",
+          "sulphur",
+          "staphysagria",
+          "pulsatilla"
+        ],
+        "aceites": [
+          "geranio",
+          "lavanda_aceite",
+          "incienso",
+          "clavo"
+        ],
+        "cuandoPreferir": "Sequedad leve-moderada, complemento a estrógenos tópicos, embarazo/lactancia (no estrógenos), mantenimiento, profilaxis, cáncer hormono-dependiente (no estrógenos)."
+      },
+      "prevencion": [
+        "Hidratación oral",
+        "Omega-7",
+        "Lubricantes en coito",
+        "Actividad sexual regular (mantiene trofismo)",
+        "Higiene suave (no jabones agresivos)",
+        "Control estrés",
+        "Vit E",
+        "Dieta fitoestrógenos"
+      ],
+      "cuandoConsultar": "Sangrado postcoito persistente (descartar cáncer), dolor intenso (vulvodinia), secreción anormal, masa, no respuesta a lubricantes/estrógenos, vulvodinia, atrofia severa, historia oncológica.",
+      "evidencia": "B",
+      "fuentes": [
+        "NAMS Menopause Guidelines",
+        "PubMed (Omega-7 vaginal)",
+        "EMA HMPC Vitex"
+      ]
+    },
+    {
+      "id": "melasma",
+      "nombre": "Melasma e Hiperpigmentación",
+      "definicion": "Hiperpigmentación facial adquirida (mejillas, frente, labio superior). 90% mujeres; 50-70% embarazadas y anticonceptivos. Crónica, recurrente, impacta estética.",
+      "causas": [
+        "Sol (UV)",
+        "Hormonal (embarazo, AOC, TRH)",
+        "Genética",
+        "Fototipo III-IV",
+        "Tiroides",
+        "Cosméticos fotosensibilizantes",
+        "Fármacos (fenotiazinas, AINEs)"
+      ],
+      "sintomas": [
+        "Manchas marrones simétricas",
+        "Mejillas, frente, labio superior, mentón",
+        "Centrofacial, malar, mandibular",
+        "Bordes irregulares",
+        "Empeora en verano",
+        "Cronicidad"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "endocrino"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "FPS50 estricto diario",
+          "Hidroquinona 2-4% (bleach)",
+          "Tretinoína + corticoide + hidroquinona (triple combinación)",
+          "Ácido azelaico",
+          "Ácido kójico",
+          "Ácido tranexámico",
+          "Láser, peeling"
+        ],
+        "mecanismo": "FPS previene. Hidroquinona inhibe tirosinasa. Triple combinación sinérgica. Azelaico y kójico despigmentantes. Láser/peeling exfolian.",
+        "efectosSecundarios": [
+          "Hidroquinona: ocronosis, irritación",
+          "Tretinoína: fotosensibilidad",
+          "Láser: hiper/hipopigmentación"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "regaliz",
+          "alcachofa",
+          "manzanilla",
+          "nigella",
+          "amla",
+          "vitex",
+          "aloe_vera"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "vitamina_e",
+          "colina",
+          "glutation",
+          "omega_3",
+          "zinc",
+          "niacinamida"
+        ],
+        "homeopatia": [
+          "sepia",
+          "sulphur",
+          "lycopodium",
+          "calcaria_carbonica",
+          "thuja"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "manzanilla_romana",
+          "incienso"
+        ],
+        "cuandoPreferir": "Melasma leve-moderado, profilaxis, embarazo (no hidroquinona/tretinoína), mantenimiento, intolerancia a hidroquinona, despigmentación suave, prevención recurrencia."
+      },
+      "prevencion": [
+        "FPS50 diario estricto (invierno también)",
+        "Evitar sol 11-16h",
+        "Protección física (sombrero, gafas)",
+        "Evitar AOC si empeora",
+        "Dieta antioxidante",
+        "Vit C/E",
+        "Cosmética no fotosensibilizante",
+        "Controles tiroides"
+      ],
+      "cuandoConsultar": "Mancha que cambia (ABCDE melanoma), asimétrica, oscurece rápido, sangra, prurito, no responde a 3-6 meses, extensa, impacta psicológico, embarazo (no hidroquinona).",
+      "evidencia": "B",
+      "fuentes": [
+        "AAD Melasma Guidelines",
+        "PubMed (Tranexamic, Glutathione melasma)",
+        "EMA HMPC Glycyrrhiza"
+      ]
+    },
+    {
+      "id": "psoriasis_ungueal",
+      "nombre": "Psoriasis Ungueal y de Cuero Cabelludo",
+      "definicion": "Afectación de uñas (50% psoriasis) y cuero cabelludo (80%). Variante localizada de psoriasis. Impacta calidad de vida. Difícil tratamiento tópico por localización.",
+      "causas": [
+        "Autoinmune (Th17, IL-23)",
+        "Genética (PSORS1)",
+        "Estrés",
+        "Trauma (Koebner uñas)",
+        "Infección",
+        "Fármacos",
+        "Alcohol/tabaco",
+        "Obesidad"
+      ],
+      "sintomas": [
+        "Uñas: picos, decoloración, onicólisis, hiperqueratosis subungueal, manchas aceitosas",
+        "Cuero cabelludo: placas eritematodescamativas, prurito, caída cabello",
+        "Cronicidad"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Tópicos: corticoides, vit D (calcipotriol), tazaroteno",
+          "Inyección intralesional (matriz uña)",
+          "Fototerapia",
+          "Sistémicos si extenso (metotrexato, biológicos)",
+          "Antifúngico si confusión con onicomicosis"
+        ],
+        "mecanismo": "Tópicos antiinflamatorios. Inyección en matriz. Fototerapia. Sistémicos en extenso. Antifúngico si hongo coexiste.",
+        "efectosSecundarios": [
+          "Cortico tópico: atrofia cuero cabelludo",
+          "Metotrexato: hepatico"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "aloe_vera",
+          "curcuma",
+          "regaliz",
+          "olmo_america",
+          "pimienta_cayena"
+        ],
+        "suplementos": [
+          "omega_3",
+          "vitamina_d3",
+          "curcumina",
+          "selenio",
+          "zinc",
+          "glutation",
+          "probioticos",
+          "vitamina_b12"
+        ],
+        "homeopatia": [
+          "arsenicum_album",
+          "graphites",
+          "sepia",
+          "sulphur",
+          "sulphur"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "incienso",
+          "tea_tree"
+        ],
+        "cuandoPreferir": "Psoriasis localizada leve-moderada, complemento a tópicos, mantenimiento, embarazo (no sistémicos), intolerancia a corticoides."
+      },
+      "prevencion": [
+        "Dieta antiinflamatoria (omega-3)",
+        "Evitar tabaco/alcohol",
+        "Gestión del estrés",
+        "Hidratación cutánea",
+        "Vit D",
+        "Probióticos",
+        "No manipular uñas",
+        "Sol moderado (monitorizado)"
+      ],
+      "cuandoConsultar": "Psoriasis extensa, artritis psoriásica asociada, eritrodermia, no respuesta a tópicos, impacto funcional uña, psoriasis severa cuero cabelludo (alopecia),sospecha infección fúngica asociada.",
+      "evidencia": "A",
+      "fuentes": [
+        "EuroGuiDerm Psoriasis Guidelines",
+        "PubMed (Indigo naturalis, Omega-3 psoriasis)",
+        "EMA HMPC"
+      ]
+    },
+    {
+      "id": "tiroiditis_hashimoto",
+      "nombre": "Tiroiditis de Hashimoto y Autoinmune",
+      "definicion": "Hipotiroidismo autoinmune (anti-TPO, anti-Tg). Causa más frecuente de hipotiroidismo en zonas yodadas. 5-10% mujeres, 1% hombres. Familiar.",
+      "causas": [
+        "Autoinmune (anti-TPO, anti-Tg)",
+        "Genética (HLA-DR5)",
+        "Infección viral (Yersinia sospechada)",
+        "Exceso de yodo",
+        "Estrógenos (mujeres)",
+        "Radiación",
+        "Síndrome de Turner",
+        "Selenio bajo"
+      ],
+      "sintomas": [
+        "Hipotiroidismo: fatiga, frío, aumento peso, piel seca, caída cabello, bradicardia, estreñimiento, depresión",
+        "Bocio (inicial)",
+        "Anti-TPO elevado",
+        "TSH elevada, T4 libre baja"
+      ],
+      "sistemas": [
+        "endocrino",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Levotiroxina (T4) de por vida",
+          "Dosis según peso/TSH",
+          "Ajuste por embarazo/edad",
+          "Controles TSH cada 6-12 meses",
+          "Selenio (200 µg, debate)"
+        ],
+        "mecanismo": "Levotiroxina reemplaza T4 deficitaria. Ajuste según TSH (0.4-4.0). Controles periódicos.",
+        "efectosSecundarios": [
+          "Exceso: hipertiroidismo (taquicardia, osteoporosis)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ashwagandha",
+          "rodiola",
+          "ginseng",
+          "ortiga",
+          "selenio"
+        ],
+        "suplementos": [
+          "selenio",
+          "zinc",
+          "vitamina_d3",
+          "omega_3",
+          "vitamina_b12",
+          "hierro",
+          "tirosina",
+          "magnesio_glicinato",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "spongia",
+          "calcaria_carbonica",
+          "sulphur",
+          "spongia",
+          "lycopodium"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "romero_aceite",
+          "menta_aceite"
+        ],
+        "cuandoPreferir": "Complemento a levotiroxina, fatiga persistente, selenio (anti-TPO), no sustituir a T4. Mejorar síntomas residuales (fatiga, niebla mental). Cuidado con algas (yodo, empeora autoinmune)."
+      },
+      "prevencion": [
+        "Yodo adecuado (no exceso)",
+        "Selenio (200 µg, reduce anti-TPO)",
+        "Vit D, B12",
+        "Gluten-free si sensibilidad (debate)",
+        "Gestión del estrés",
+        "Probióticos (autoinmune)",
+        "Evitar exceso yodo (algas)",
+        "Control en embarazo"
+      ],
+      "cuandoConsultar": "TSH >10, síntomas de hipotiroidismo, embarazo (subir T4), bocio grande/nódulos, TSH no controlada, fatiga severa, depresión, cardiopatía, sospecha de otra autoinmune.",
+      "evidencia": "A",
+      "fuentes": [
+        "ATA Hypothyroidism Guidelines",
+        "PubMed (Selenium Hashimoto)",
+        "EMA HMPC Laminaria"
+      ]
+    },
+    {
+      "id": "epoc",
+      "nombre": "EPOC (Enfermedad Pulmonar Obstructiva Crónica)",
+      "definicion": "Obstrucción crónica al flujo aéreo (no reversible). 80% por tabaco. 3ª causa de muerte mundial. 12% adultos >40. Subdiagnosticada.",
+      "causas": [
+        "Tabaco (80%, clave)",
+        "Humo de leña/biomasa",
+        "Contaminación ambiental",
+        "Genética (déficit α1-antitripsina)",
+        "Asma crónica",
+        "Infecciones recurrentes",
+        "Edad"
+      ],
+      "sintomas": [
+        "Disnea progresiva",
+        "Tos crónica",
+        "Expectoración",
+        "Sibilancias",
+        "Fatiga",
+        "Exacerbaciones (infecciones)",
+        "Pérdida peso (grave)",
+        "Cianosis"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Cesación tabáquica (clave)",
+          "Broncodilatadores (LABA, LAMA)",
+          "Corticoide inhalado (ICS)",
+          "Triple terapia (LABA+LAMA+ICS)",
+          "Oxígeno (si insuficiencia respiratoria)",
+          "Rehabilitación respiratoria",
+          "Vacunación"
+        ],
+        "mecanismo": "Broncodilatadores relajan músculo liso. ICS reduce inflamación. Oxígeno en hipoxemia. Rehabilitación. Cesación es clave.",
+        "efectosSecundarios": [
+          "Broncodilatadores: temblor, taquicardia",
+          "ICS: candidiasis, osteoporosis"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "hiedra",
+          "tomillo",
+          "regaliz",
+          "gordolobo",
+          "hisopo",
+          "grindelia"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "vitamina_d3",
+          "omega_3",
+          "nac",
+          "magnesio_glicinato",
+          "zinc",
+          "coq10",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "lobelia_inflata",
+          "spongia",
+          "lobelia_inflata",
+          "calcarea_fluorica"
+        ],
+        "aceites": [
+          "eucalipto",
+          "ravintsara",
+          "tomillo",
+          "pino_silvestre"
+        ],
+        "cuandoPreferir": "EPOC leve, profilaxis exacerbaciones, complemento a broncodilatadores, intolerancia a ICS, mucolítico (NAC), antioxidante, cesación tabáquica (coadyuvante). NUNCA suspender broncodilatador."
+      },
+      "prevencion": [
+        "NO FUMAR (clave)",
+        "Evitar humos/biomasa",
+        "Vacunación (gripe, neumococo, COVID)",
+        "Ejercicio (rehabilitación)",
+        "Dieta antioxidante",
+        "Vit D, NAC",
+        "Probióticos",
+        "Control ambiental"
+      ],
+      "cuandoConsultar": "Disnea progresiva, exacerbaciones, cianosis, edemas (cor pulmonale), hipoxemia, pérdida peso, hemoptisis, esputo purulento, frecuencia respiratoria >25, confusión (hipercapnia), sospecha neumonía.",
+      "evidencia": "A",
+      "fuentes": [
+        "GOLD COPD Guidelines",
+        "PubMed (NAC COPD exacerbations)",
+        "EMA HMPC Hederae helicis"
+      ]
+    },
+    {
+      "id": "fibromialgia_amp",
+      "nombre": "Dolor Crónico No Maligno",
+      "definicion": "Dolor persistente >3 meses, no oncológico. 20% adultos. Frecuente en artrosis, fibromialgia, neuropatía, lumbalgia crónica. Impacto funcional y emocional.",
+      "causas": [
+        "Músculo-esquelético (artrosis, lumbalgia)",
+        "Neuropático (diabetes, neuralgia)",
+        "Nociceptivo crónico (inflamatorio)",
+        "Sensibilización central (fibromialgia)",
+        "Psicosomático",
+        "Post-quirúrgico",
+        "Síndromes dolorosos complejos"
+      ],
+      "sintomas": [
+        "Dolor >3 meses",
+        "Afecta sueño, actividad, ánimo",
+        "Fatiga",
+        "Ansiedad/depresión asociada",
+        "Discapacidad",
+        "Dependencia analgésicos"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Paracetamol",
+          "AINEs (corto)",
+          "Opioides débiles (tramadol, corto)",
+          "Gabapentinoides (neuropático)",
+          "Antidepresivos (duloxetina, amitriptilina)",
+          "TCC dolor",
+          "Fisioterapia"
+        ],
+        "mecanismo": "Analgésicos escalonados (OMS). Antidepresivos modulan serotonina/noradrenalina (dolor). Gabapentinoides en neuropático. TCC manejo del dolor crónico.",
+        "efectosSecundarios": [
+          "AINEs: gastrolesividad, renal",
+          "Opioides: dependencia, estreñimiento",
+          "Antidepresivos: efectos anticolinérgicos"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "harpagofito",
+          "sauce",
+          "curcuma",
+          "pimienta_cayena",
+          "romero",
+          "manzanilla"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boswelia",
+          "msm",
+          "magnesio_glicinato",
+          "vitamina_d3",
+          "alfa_lipoico",
+          "vitamina_b_complejo",
+          "melatonina"
+        ],
+        "homeopatia": [
+          "arnica",
+          "rhus_toxicodendron",
+          "hypericum",
+          "magnesia_phosphorica",
+          "causticum"
+        ],
+        "aceites": [
+          "lavanda_aceite",
+          "menta",
+          "romero_aceite",
+          "clavo",
+          "incienso"
+        ],
+        "cuandoPreferir": "Dolor crónico leve-moderado, complemento a analgésicos, neuropático (ALA), inflamatorio (curcumina/boswellia), intolerancia a AINEs, reducción de opioides, TCC coadyuvante."
+      },
+      "prevencion": [
+        "Ejercicio regular (no excesivo)",
+        "Gestión del estrés",
+        "TCC dolor",
+        "Sueño adecuado",
+        "Dieta antiinflamatoria",
+        "Actividad (no reposo crónico)",
+        "Red de apoyo",
+        "Peso saludable",
+        "Mindfulness"
+      ],
+      "cuandoConsultar": "Dolor que empeora, no responde a escalonado, déficit neurológico, pérdida peso, fiebre, dolor nocturno, impacto funcional severo, dependencia a opioides, ideación depresiva, dolor oncológico (escala OMS).",
+      "evidencia": "A",
+      "fuentes": [
+        "IASP Chronic Pain Guidelines",
+        "CDC Opioid Guidelines",
+        "PubMed (Curcumin, ALA chronic pain)"
+      ]
+    },
+    {
+      "id": "hombro_congelado",
+      "nombre": "Hombro Congelado (Capsulitis Adhesiva)",
+      "definicion": "Inflamación y fibrosis de la cápsula glenohumeral → rigidez progresiva. 2-5% adultos; 20% diabéticos. Predominio femenino 40-60 años. Fases: congelación, congelado, descongelación (2-3 años).",
+      "causas": [
+        "Idiopático (mayoría)",
+        "Diabetes (alto riesgo)",
+        "Trauma/cirugía hombro",
+        "Inmovilización prolongada",
+        "Síndrome coronario",
+        "Hipotiroidismo",
+        "Apoplejía (hemipléjico)"
+      ],
+      "sintomas": [
+        "Dolor sordo hombro",
+        "Rigidez progresiva",
+        "Pérdida movilidad activa/pasiva (rotación externa)",
+        "Noche empeora",
+        "Impotencia funcional",
+        "Tres fases"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Fisioterapia agresiva (clave)",
+          "AINEs (fase dolor)",
+          "Corticoide intraarticular",
+          "Hidrodistensión capsular",
+          "Movilización bajo anestesia",
+          "Capsulotomía quirúrgica (refractaria)"
+        ],
+        "mecanismo": "Fisioterapia recupera movilidad. AINEs en fase dolor. Corticoide intraarticular reduce inflamación. Hidrodistensión rompe adherencias. Cirugía refractaria.",
+        "efectosSecundarios": [
+          "Cortico intraarticular: rotura manguito",
+          "Movilización: fractura (raro)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "arnica",
+          "harpagofito",
+          "romero",
+          "sauce",
+          "pimienta_cayena",
+          "hiperico"
+        ],
+        "suplementos": [
+          "omega_3",
+          "curcumina",
+          "boswelia",
+          "magnesio_glicinato",
+          "msm",
+          "vitamina_d3",
+          "colageno",
+          "glucosamina"
+        ],
+        "homeopatia": [
+          "rhus_toxicodendron",
+          "ruta_graveolens",
+          "sanguinaria",
+          "ferrum_phosphoricum",
+          "arnica"
+        ],
+        "aceites": [
+          "menta",
+          "romero_aceite",
+          "lavanda_aceite",
+          "clavo",
+          "incienso"
+        ],
+        "cuandoPreferir": "Complemento a fisioterapia, manejo del dolor, intolerancia a AINEs (gastrolesivo), fase congelación/descongelación, diabetes (cuidado con corticoides), profilaxis."
+      },
+      "prevencion": [
+        "Movilización precoz tras trauma/cirugía",
+        "Fisioterapia",
+        "Control diabetes (factor riesgo)",
+        "Ejercicio hombro regular",
+        "Estiramientos",
+        "No inmovilización prolongada",
+        "Postura"
+      ],
+      "cuandoConsultar": "Rigidez severa, no mejora en 6 meses, sospecha rotura manguito, trauma, dolor intenso refractario, déficit neurológico, bilateral (sistémico), recidiva, diabético con hombro congelado (refractario).",
+      "evidencia": "B",
+      "fuentes": [
+        "AES Shoulder Frozen Guidelines",
+        "PubMed (Physiotherapy frozen shoulder)",
+        "EMA HMPC Harpagophyti radix"
+      ]
+    },
+    {
+      "id": "dismenorrea_juvenil",
+      "nombre": "Dismenorrea Juvenil y Menstruación Abundante",
+      "definicion": "Dolor menstrual intenso (primaria, sin causa orgánica) o abundante (menorragia). 50-90% adolescentes con dismenorrea primaria. Impacto escolar y social.",
+      "causas": [
+        "Primaria: prostaglandinas (PGF2α)",
+        "Secundaria: endometriosis, mioma, adenomiosis, DIU",
+        "Estrés",
+        "Sedentarismo",
+        "Cafeína",
+        "Tabaco",
+        "Desequilibrio hormonal",
+        "Menorragia: mioma, adenomiosis, trastornos coagulación (vWF)"
+      ],
+      "sintomas": [
+        "Dolor pélvico cólico pre/menstrual",
+        "Irradiación a espalda/muslos",
+        "Náuseas/vómitos",
+        "Diarrea",
+        "Cefalea",
+        "Fatiga",
+        "Sangrado abundante (>80mL/ciclo), >7 días"
+      ],
+      "sistemas": [
+        "reproductivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "AINEs (ibuprofeno, naproxeno, 1-3 días)",
+          "Anticonceptivos orales (cíclicos/continuos)",
+          "Ácido tranexámico (menorragia)",
+          "DIU de levonorgestrel (menorragia, adenomiosis)",
+          "Hierro (anemia)"
+        ],
+        "mecanismo": "AINEs inhiben prostaglandinas. AOC suprimen ovulación y reducen sangrado. Ácido tranexámico estabiliza coágulo. DIU-LNG reduce endometrio.",
+        "efectosSecundarios": [
+          "AINEs: gastrolesividad",
+          "AOC: trombosis (raro en jóvenes)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "vitex",
+          "dong_quai",
+          "cimicifuga",
+          "manzanilla",
+          "alchemilla",
+          "milenrama"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "omega_3",
+          "vitamina_b6",
+          "zinc",
+          "hierro",
+          "folato",
+          "vitamina_e",
+          "vitamina_d3"
+        ],
+        "homeopatia": [
+          "pulsatilla",
+          "colocynthis",
+          "sepia",
+          "magnesia_phosphorica",
+          "belladonna"
+        ],
+        "aceites": [
+          "salvia_esclarea",
+          "clavo",
+          "geranio",
+          "lavanda_aceite",
+          "manzanilla_romana"
+        ],
+        "cuandoPreferir": "Dismenorrea primaria leve-moderada, profilaxis, adolescentes (no AOC), complemento a AINEs, menorragia leve, intolerancia a AINEs, mantenimiento,fitoterapia cíclica."
+      },
+      "prevencion": [
+        "Ejercicio regular",
+        "Dieta omega-3",
+        "Magnesio premenstrual",
+        "Reducir cafeína/sal/azúcar",
+        "AOC si recurrente",
+        "Gestión del estrés",
+        "Compresas calientes",
+        "Diario menstrual"
+      ],
+      "cuandoConsultar": "Dismenorrea secundaria (inicio >25, sin previo), dolor fuera de menstruación, sangrado entre ciclos, postcoito, abundante con coágulos, anemia, no responde a AINEs/AOC, sospecha endometriosis/mioma, adolescente con dolor severo.",
+      "evidencia": "A",
+      "fuentes": [
+        "ACOG Dysmenorrhea Guidelines",
+        "NICE Heavy Menstrual Bleeding",
+        "PubMed (Magnesium, Omega-3 dysmenorrhea)"
       ]
     }
   ]
