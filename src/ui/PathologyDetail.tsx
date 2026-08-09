@@ -353,25 +353,29 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
             </section>
           )}
 
-          {/* Pronóstico */}
+          {/* Pronóstico — contraído por defecto */}
           {pathology.pronostico && (
-            <section>
-              <div className="flex items-center gap-2 mb-2">
+            <details className="group rounded-lg border border-green-200 dark:border-green-900 bg-green-50/40 dark:bg-green-950/20">
+              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
                 <Activity className="w-4 h-4 text-green-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Pronóstico</h3>
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Pronóstico</h3>
+                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="px-3 pb-3 pt-1">
+                <p className="text-sm text-foreground leading-relaxed">{pathology.pronostico}</p>
               </div>
-              <p className="text-sm text-foreground leading-relaxed">{pathology.pronostico}</p>
-            </section>
+            </details>
           )}
 
-          {/* Poblaciones especiales */}
+          {/* Poblaciones especiales — contraído por defecto */}
           {pathology.poblacionesEspeciales && pathology.poblacionesEspeciales.length > 0 && (
-            <section>
-              <div className="flex items-center gap-2 mb-2">
+            <details className="group rounded-lg border border-indigo-200 dark:border-indigo-900 bg-indigo-50/40 dark:bg-indigo-950/20">
+              <summary className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
                 <Users className="w-4 h-4 text-indigo-500" />
-                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Poblaciones especiales</h3>
-              </div>
-              <div className="space-y-2">
+                <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground flex-1">Poblaciones especiales</h3>
+                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="px-3 pb-3 pt-1 space-y-2">
                 {pathology.poblacionesEspeciales.map((pob, i) => (
                   <div key={i} className="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900">
                     <p className="text-sm font-medium">{pob.poblacion}</p>
@@ -379,7 +383,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
                   </div>
                 ))}
               </div>
-            </section>
+            </details>
           )}
 
           {/* Alertas farmacéuticas */}
