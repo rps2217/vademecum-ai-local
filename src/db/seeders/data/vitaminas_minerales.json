@@ -7629,6 +7629,1289 @@
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Garcinia mangostana xanthones)"
       }
+    },
+    {
+      "id": "vitamina_b5_pantotenato",
+      "nombre": "Pantotenato Calcico",
+      "nombresAlternativos": [
+        "Calcium pantothenate",
+        "B5 calcium",
+        "Pantethine"
+      ],
+      "nombreCientifico": "Calcio D-pantotenato",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "dermatologico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "energia",
+        "cabello",
+        "piel",
+        "colesterol"
+      ],
+      "descripcion": "Forma estandarizada de B5 precursora de CoA, esencial para energía y síntesis de colesterol.",
+      "mecanismoAccion": "Precursor de Coenzima A, cofactor en ciclo de Krebs, beta-oxidación y síntesis de esteroides.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "5-10mg/dia (RDA); 300-900mg pantetina para colesterol",
+      "dosisMaxima": "1200mg/dia",
+      "formaQuimica": [
+        "Calcio D-pantotenato",
+        "Pantetina"
+      ],
+      "biodisponibilidad": "Buena absorcion",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Complejo B"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Dosis altas pueden causar diarrea"
+      ],
+      "tags": [
+        "energia",
+        "colesterol",
+        "cabello"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Nutrition Reviews 2011"
+      }
+    },
+    {
+      "id": "metilfolato",
+      "nombre": "L-Metilfolato (5-MTHF)",
+      "nombresAlternativos": [
+        "5-MTHF",
+        "Levomefolate",
+        "Active folate",
+        "Metilfolato"
+      ],
+      "nombreCientifico": "L-5-metiltetrahidrofolato",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "depresion",
+        "anemia",
+        "homocisteina",
+        "cognitivo"
+      ],
+      "descripcion": "Forma activa del folato que evita el bloqueo MTHFR (presente en 30-50% de población).",
+      "mecanismoAccion": "Cofactor metil-donor en síntesis de serotonina, dopamina y noradrenalina. Potencia efecto de ISRS.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "400-800mcg/dia",
+      "dosisMaxima": "5000mcg/dia",
+      "formaQuimica": [
+        "L-5-MTHF calcio",
+        "Levomefolato glucosaminato"
+      ],
+      "biodisponibilidad": "Excelente (no requiere MTHFR)",
+      "momentoToma": [
+        "Con desayuno"
+      ],
+      "tomarCon": [
+        "B12 (sinergia metilacion)"
+      ],
+      "evitarCon": [
+        "Antiepilepticos (puede reducir efecto)"
+      ],
+      "advertencias": [
+        "Puede enmascarar deficiencia B12"
+      ],
+      "tags": [
+        "metilacion",
+        "antidepresivo",
+        "homocisteina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Mol Psychiatry 2011"
+      }
+    },
+    {
+      "id": "metilcobalamina",
+      "nombre": "Metilcobalamina (B12 activa)",
+      "nombresAlternativos": [
+        "Methyl B12",
+        "MeB12",
+        "Active B12"
+      ],
+      "nombreCientifico": "Metilcobalamina",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "anemia",
+        "neuropatia",
+        "cognitivo",
+        "fatiga"
+      ],
+      "descripcion": "Forma activa de B12 que no requiere conversión, ideal en déficit o polimorfismos.",
+      "mecanismoAccion": "Cofactor en metionina sintasa (metilación). Mielinización nerviosa. Síntesis succinil-CoA.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "2.4mcg/dia (RDA); 1000-5000mcg en deficit",
+      "dosisMaxima": "Sin techo toxicologico",
+      "formaQuimica": [
+        "Metilcobalamina",
+        "Adenosilcobalamina"
+      ],
+      "biodisponibilidad": "Sublingual mejora absorcion",
+      "momentoToma": [
+        "Mañana"
+      ],
+      "tomarCon": [
+        "Folato (sinergia metilacion)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Raro: acné en dosis altas"
+      ],
+      "tags": [
+        "metilacion",
+        "neuropatia",
+        "anemia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Cochrane Database 2018"
+      }
+    },
+    {
+      "id": "pipquinafosfolipidos",
+      "nombre": "Fosfatidilcolina (Lecitina PC)",
+      "nombresAlternativos": [
+        "Phosphatidylcholine",
+        "PC",
+        "Lecithin PC"
+      ],
+      "nombreCientifico": "Fosfatidilcolina",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "hepatico",
+        "cognitivo",
+        "colageno"
+      ],
+      "descripcion": "Fosfolípido principal de membranas celulares y precursor de colina y acetilcolina.",
+      "mecanismoAccion": "Componente estructural de membranas. Precursor de acetilcolina. Soporte VLDL hepático.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "1.2-3g/dia",
+      "dosisMaxima": "10g/dia",
+      "formaQuimica": [
+        "Fosfatidilcolina 35%",
+        "PC purificada 90%"
+      ],
+      "biodisponibilidad": "Alta",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Omega 3"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Posible odor GI"
+      ],
+      "tags": [
+        "membrana",
+        "hepatico",
+        "cognitivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Nutrients 2018"
+      }
+    },
+    {
+      "id": "pqq_pyrroloquinoline",
+      "nombre": "PQQ (Pirroloquinolina quinona)",
+      "nombresAlternativos": [
+        "Pyrroloquinoline quinone",
+        "Methoxatin",
+        "PQQ"
+      ],
+      "nombreCientifico": "Pirroloquinolina quinona",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "cognitivo",
+        "mitocondrias",
+        "energia"
+      ],
+      "descripcion": "Compuesto quinónico que estimula biogénesis mitocondrial (vía PGC-1α).",
+      "mecanismoAccion": "Activa PGC-1α y CREB. Estimula NRF2. Antioxidante redox-ciclo.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "10-20mg/dia",
+      "dosisMaxima": "60mg/dia",
+      "formaQuimica": [
+        "PQQ sal disodica"
+      ],
+      "biodisponibilidad": "Moderada",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "CoQ10"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Dosis altas: insomnio"
+      ],
+      "tags": [
+        "mitocondrias",
+        "cognitivo",
+        "energia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Adv Nutr 2022"
+      }
+    },
+    {
+      "id": "polen_abeja_ext",
+      "nombre": "Polen de Abeja (Estándar)",
+      "nombresAlternativos": [
+        "Bee pollen",
+        "Pollen extract",
+        "Pan de abejas"
+      ],
+      "nombreCientifico": "Mixto (polen entomofilo)",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "energia",
+        "inmunidad",
+        "fatiga"
+      ],
+      "descripcion": "Polen estandarizado con perfil aminoacídico, vitaminas y flavonoides.",
+      "mecanismoAccion": "Nutrientes coadyuvantes energéticos. Antioxidante flavonoide.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "5-15g/dia",
+      "dosisMaxima": "30g/dia",
+      "formaQuimica": [
+        "Gránulos",
+        "Extracto"
+      ],
+      "biodisponibilidad": "Buena",
+      "momentoToma": [
+        "Mañana"
+      ],
+      "tomarCon": [],
+      "evitarCon": [
+        "Anticoagulantes (precaucion)"
+      ],
+      "advertencias": [
+        "Riesgo de alergia en atópicos",
+        "No en embarazo sin supervisión"
+      ],
+      "tags": [
+        "energia",
+        "inmune",
+        "nutricional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Evid Based Complement Alternat Med 2021"
+      }
+    },
+    {
+      "id": "lactoferrina_bovina",
+      "nombre": "Lactoferrina Bovina",
+      "nombresAlternativos": [
+        "Bovine lactoferrin",
+        "bLF",
+        "Apolactoferrin"
+      ],
+      "nombreCientifico": "Lactoferrina",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "acne",
+        "infecciones",
+        "hierro"
+      ],
+      "descripcion": "Glicoproteina con acción antimicrobiana quelante de hierro y moduladora inmune.",
+      "mecanismoAccion": "Secuestra hierro de patógenos. Modula citocinas. Mejora absorción de hierro.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "100-200mg/dia",
+      "dosisMaxima": "500mg/dia",
+      "formaQuimica": [
+        "Apolactoferrina",
+        "Holo-lactoferrina"
+      ],
+      "biodisponibilidad": "Buena",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Hierro (sinergia absorcion)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Posible estreñimiento"
+      ],
+      "tags": [
+        "inmune",
+        "antimicrobiano",
+        "hierro"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Front Immunol 2020"
+      }
+    },
+    {
+      "id": "colageno_tipo2",
+      "nombre": "Colágeno Tipo II (UC-II)",
+      "nombresAlternativos": [
+        "Type II collagen",
+        "UC-II",
+        "Undenatured collagen II"
+      ],
+      "nombreCientifico": "Colágeno tipo II no desnaturalizado",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "articular",
+        "artritis",
+        "artrosis"
+      ],
+      "descripcion": "Colágeno tipo II no desnaturalizado (UC-II) con tolerancia oral en artritis.",
+      "mecanismoAccion": "Induce tolerancia oral via Peyer patches. Reduce respuesta inmune al colágeno II articular.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "40mg/dia UC-II (no desnaturalizado)",
+      "dosisMaxima": "40mg/dia UC-II",
+      "formaQuimica": [
+        "UC-II no desnaturalizado",
+        "Hidrolizado tipo II"
+      ],
+      "biodisponibilidad": "Baja absorcion (mecanismo oral tolerization)",
+      "momentoToma": [
+        "Noche (antes dormir)"
+      ],
+      "tomarCon": [],
+      "evitarCon": [],
+      "advertencias": [
+        "Alérgicos a pollo: precaución"
+      ],
+      "tags": [
+        "articular",
+        "tolerancia oral",
+        "artritis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Nutr J 2013"
+      }
+    },
+    {
+      "id": "nmn_nicotinamide",
+      "nombre": "NMN (Nicotinamida Mononucleótido)",
+      "nombresAlternativos": [
+        "NMN",
+        "Beta-NMN",
+        "Nicotinamide mononucleotide"
+      ],
+      "nombreCientifico": "β-Nicotinamida mononucleótido",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "envejecimiento",
+        "energia",
+        "cognitivo"
+      ],
+      "descripcion": "Precursor directo de NAD+ que restaura niveles de NAD en modelos de envejecimiento.",
+      "mecanismoAccion": "Convertido a NAD+ vía NMNAT. Activa sirtuinas (SIRT1, SIRT3). Mejora función mitocondrial.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "250-500mg/dia",
+      "dosisMaxima": "1000mg/dia",
+      "formaQuimica": [
+        "β-NMN estable"
+      ],
+      "biodisponibilidad": "Buena (transportador Slc12a8)",
+      "momentoToma": [
+        "Mañana"
+      ],
+      "tomarCon": [
+        "Resveratrol (sinergia SIRT1)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Datos clínicos humanos limitados"
+      ],
+      "tags": [
+        "nad",
+        "envejecimiento",
+        "mitocondrias"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Cell Metab 2019"
+      }
+    },
+    {
+      "id": "astaxantina_haematococcus",
+      "nombre": "Astaxantina (Haematococcus)",
+      "nombresAlternativos": [
+        "Natural astaxanthin",
+        "Haematococcus pluvialis astaxanthin",
+        "AstaREAL"
+      ],
+      "nombreCientifico": "Astaxantina (3S,3'S)",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "ocular",
+        "dermatologico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "ojo_seco",
+        "piel",
+        "cardiovascular",
+        "rendimiento"
+      ],
+      "descripcion": "Xantofila de microalga con potencia antioxidante 6000x vitamina E.",
+      "mecanismoAccion": "Atraviesa barrera hemato-retiniana y hemato-encefálica. Antioxidante membrana única.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "4-12mg/dia",
+      "dosisMaxima": "40mg/dia",
+      "formaQuimica": [
+        "Astaxantina natural 3S,3'S",
+        "Sintetica (3R,3'R) menos activa"
+      ],
+      "biodisponibilidad": "Mejor con grasa",
+      "momentoToma": [
+        "Con comida grasa"
+      ],
+      "tomarCon": [
+        "Omega 3"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Tinte naranja leve en piel a dosis altas"
+      ],
+      "tags": [
+        "antioxidante",
+        "ocular",
+        "rendimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Mar Drugs 2014"
+      }
+    },
+    {
+      "id": "lut_max",
+      "nombre": "Luteína + Zeaxantina (Lutemax)",
+      "nombresAlternativos": [
+        "Lutemax 2020",
+        "Lutein zeaxanthin complex",
+        "Macular pigments"
+      ],
+      "nombreCientifico": "Luteína + Zeaxantina + Meso-zeaxantina",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "ocular"
+      ],
+      "indicaciones": [
+        "ojo_seco",
+        "dmae",
+        "ocular",
+        "cognitivo"
+      ],
+      "descripcion": "Complejo xantofílico estandarizado para densidad de pigmento macular.",
+      "mecanismoAccion": "Filtran luz azul. Antioxidante retiniano. Mejoran contraste y agudeza visual.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "10-20mg luteína + 2-4mg zeaxantina",
+      "dosisMaxima": "40mg/dia",
+      "formaQuimica": [
+        "Lutemax 2020 (5:1)"
+      ],
+      "biodisponibilidad": "Mejor con grasa",
+      "momentoToma": [
+        "Con comida grasa"
+      ],
+      "tomarCon": [
+        "Omega 3",
+        "Astaxantina"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Perfíl muy seguro"
+      ],
+      "tags": [
+        "ocular",
+        "macula",
+        "dmae"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "AREDS2 Study 2013"
+      }
+    },
+    {
+      "id": "magnesio_treonato",
+      "nombre": "Magnesio L-Treonato",
+      "nombresAlternativos": [
+        "Magnesium L-threonate",
+        "Magtein",
+        "MgT"
+      ],
+      "nombreCientifico": "L-Treonato de magnesio",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "cognitivo",
+        "ansiedad",
+        "insomnio",
+        "memoria"
+      ],
+      "descripcion": "Única forma de magnesio que atraviesa barrera hemato-encefálica eficientemente.",
+      "mecanismoAccion": "Aumenta Mg cerebral. Mejora densidad sináptica via BDNF. Modula NMDA.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "144mg Mg elemental (1.5-2g sal)",
+      "dosisMaxima": "3g sal/dia",
+      "formaQuimica": [
+        "L-Treonato Mg dihidrato"
+      ],
+      "biodisponibilidad": "Cruza BHE",
+      "momentoToma": [
+        "Noche"
+      ],
+      "tomarCon": [],
+      "evitarCon": [
+        "Antibioticos (separar 2h)"
+      ],
+      "advertencias": [
+        "Somnolencia"
+      ],
+      "tags": [
+        "cognitivo",
+        "memoria",
+        "bhe"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Neuron 2010"
+      }
+    },
+    {
+      "id": "zinc_picolinato",
+      "nombre": "Zinc Picolinato",
+      "nombresAlternativos": [
+        "Zinc picolinate",
+        "Zn picolinate",
+        "Zinc quelado picolinato"
+      ],
+      "nombreCientifico": "Picolinato de zinc",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "inmune",
+        "dermatologico",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "acne",
+        "tiroides",
+        "cabello"
+      ],
+      "descripcion": "Forma quelada de zinc con alta biodisponibilidad superior a óxido de zinc.",
+      "mecanismoAccion": "Cofactor de >300 enzimas. Timulina. Metalotioneinas. 5-alfa-reductasa.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "15-30mg Zn elemental/dia",
+      "dosisMaxima": "40mg/dia cronico",
+      "formaQuimica": [
+        "Picolinato",
+        "Bisglicinato",
+        "Monometionina"
+      ],
+      "biodisponibilidad": "Alta",
+      "momentoToma": [
+        "Con comida (evitar nauseas)"
+      ],
+      "tomarCon": [
+        "Cobre (1:10 ratio)"
+      ],
+      "evitarCon": [
+        "Hierro (separar 2h)",
+        "Antibioticos quinolonas/tetraciclinas"
+      ],
+      "advertencias": [
+        "Dosis >40mg crónico: deficiencia cobre"
+      ],
+      "tags": [
+        "inmune",
+        "acne",
+        "tiroides"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Cochrane Database 2012"
+      }
+    },
+    {
+      "id": "potasio_citrato_bis",
+      "nombre": "Citrato de Potasio (Polvo)",
+      "nombresAlternativos": [
+        "Potassium citrate powder",
+        "Tripotasio citrato"
+      ],
+      "nombreCientifico": "Citrato tripotásico",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "renal",
+        "cardiovascular",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "litiasis_renal",
+        "calambres",
+        "cardiovascular"
+      ],
+      "descripcion": "Forma alcalinizante de potasio que previene litiasis renal de ácido úrico y calcio.",
+      "mecanismoAccion": "Alcaliniza orina. Reduce excreción de calcio. Quelante citrato del calcio urinario.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "10-20mEq/dia (en litiasis)",
+      "dosisMaxima": "60mEq/dia",
+      "formaQuimica": [
+        "Tripotasio citrato"
+      ],
+      "biodisponibilidad": "Buena",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Magnesio (sinergia litiasis)"
+      ],
+      "evitarCon": [
+        "IECAs/ARA-II (hiperpotasemia)",
+        "Ahorradores K"
+      ],
+      "advertencias": [
+        "Riesgo hiperpotasemia en IR",
+        "Ulceras GI por comprimidos"
+      ],
+      "tags": [
+        "litiasis",
+        "alcalinizante",
+        "calambres"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Urol 2016"
+      }
+    },
+    {
+      "id": "hierro_bisglicinato",
+      "nombre": "Hierro Bisglicinato",
+      "nombresAlternativos": [
+        "Iron bisglycinate",
+        "Ferrous bisglycinate",
+        "Iron chelate"
+      ],
+      "nombreCientifico": "Bisglicinato ferroso",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico"
+      ],
+      "indicaciones": [
+        "anemia",
+        "fatiga",
+        "embarazo"
+      ],
+      "descripcion": "Hierro aminoácido quelado con menor GI adverso y mejor tolerancia que sulfato ferroso.",
+      "mecanismoAccion": "Transporte peptídico. No compite con otros minerales. Menor oxidación luminal.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "27-65mg Fe elemental/dia",
+      "dosisMaxima": "100mg/dia",
+      "formaQuimica": [
+        "Bisglicinato ferroso"
+      ],
+      "biodisponibilidad": "Excelente",
+      "momentoToma": [
+        "Ayunas con vitamina C"
+      ],
+      "tomarCon": [
+        "Vitamina C"
+      ],
+      "evitarCon": [
+        "Calcio",
+        "Te/cafe",
+        "Antiácidos",
+        "Levotiroxina"
+      ],
+      "advertencias": [
+        "Sobredosis tóxica en niños"
+      ],
+      "tags": [
+        "anemia",
+        "quelado",
+        "tolerancia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Rev Bras Hematol Hemoter 2017"
+      }
+    },
+    {
+      "id": "yoduro_potasio_lugol",
+      "nombre": "Yoduro de Potasio (Lugol)",
+      "nombresAlternativos": [
+        "Lugol solution",
+        "KI",
+        "Potassium iodide"
+      ],
+      "nombreCientifico": "Yoduro potásico",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "endocrino",
+        "inmune"
+      ],
+      "indicaciones": [
+        "tiroides",
+        "inmunidad"
+      ],
+      "descripcion": "Solución estandarizada de yodo para soporte tiroideo controlado y protección radiológica.",
+      "mecanismoAccion": "Sustrato para síntesis T3/T4. Antioxidante tiroideo. Protector post-radiación.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "150-300mcg/dia (RDA 150mcg)",
+      "dosisMaxima": "1100mcg/dia cronico",
+      "formaQuimica": [
+        "Yoduro potasico",
+        "Solucion Lugol 5%"
+      ],
+      "biodisponibilidad": "Casi completa",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Selenio (sinergia tiroidea)"
+      ],
+      "evitarCon": [
+        "ALT (amiodarona)"
+      ],
+      "advertencias": [
+        "Exceso induce hipotiroidismo/Wolff-Chaikoff"
+      ],
+      "tags": [
+        "tiroides",
+        "yodo",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Thyroid 2017"
+      }
+    },
+    {
+      "id": "silicio_ortosilicico",
+      "nombre": "Silicio Orgánico (Ortosilicato)",
+      "nombresAlternativos": [
+        "Orthosilicic acid",
+        "OSA",
+        "Ch-OSA",
+        "BioSil"
+      ],
+      "nombreCientifico": "Acido ortosilícico estabilizado",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "dermatologico",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "cabello",
+        "piel",
+        "huesos",
+        "colageno"
+      ],
+      "descripcion": "Forma biodisponible de silicio (ch-OSA) para síntesis de colágeno y matriz ósea.",
+      "mecanismoAccion": "Cofactor de prolil-hidroxilasa en síntesis de colágeno. Estructura matriz ósea.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "5-10mg Si elemental/dia",
+      "dosisMaxima": "20mg/dia",
+      "formaQuimica": [
+        "Colágeno-OSA estabilizado"
+      ],
+      "biodisponibilidad": "Alta vs sílice inorgánica",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Calcio",
+        "Vit D"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Perfíl seguro"
+      ],
+      "tags": [
+        "colageno",
+        "cabello",
+        "huesos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Nutr Metab (Lond) 2018"
+      }
+    },
+    {
+      "id": "calcio_microcristalino",
+      "nombre": "Calcio Microcristalino Hidroxiapatita",
+      "nombresAlternativos": [
+        "MCHA",
+        "Microcrystalline hydroxyapatite",
+        "Calcio MCHC"
+      ],
+      "nombreCientifico": "Hidroxiapatita microcristalina",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "huesos",
+        "osteoporosis"
+      ],
+      "descripcion": "Forma de calcio de matriz ósea completa con fosfato y proteínas, superior al carbonato.",
+      "mecanismoAccion": "Aporta calcio, fósforo y matriz proteica ósea. Mejor BMD vs carbonato.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "500-1000mg Ca elemental/dia",
+      "dosisMaxima": "2000mg/dia",
+      "formaQuimica": [
+        "MCHC",
+        "MCHA"
+      ],
+      "biodisponibilidad": "Alta",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Vit D3",
+        "Vit K2",
+        "Magnesio"
+      ],
+      "evitarCon": [
+        "Hierro",
+        "Levotiroxina"
+      ],
+      "advertencias": [
+        "Riesgo cardiovascular si exceso sin K2"
+      ],
+      "tags": [
+        "huesos",
+        "osteoporosis",
+        "matriz"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Calcif Tissue Int 2015"
+      }
+    },
+    {
+      "id": "vanadyl_sulfato",
+      "nombre": "Vanadilo (Sulfato)",
+      "nombresAlternativos": [
+        "Vanadyl sulfate",
+        "Vanadium",
+        "VOSO4"
+      ],
+      "nombreCientifico": "Sulfato de oxovanadio (IV)",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "diabetes"
+      ],
+      "descripcion": "Sal de vanadio con efecto insulinomimético en modelos celulares y humanos.",
+      "mecanismoAccion": "Inhibe tirosina-fosfatasas via ATP. Insulinomimético. Mejora captación glucosa.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "30-100mcg/dia (elemental)",
+      "dosisMaxima": "1.8mg/dia",
+      "formaQuimica": [
+        "Sulfato vanadilo"
+      ],
+      "biodisponibilidad": "Baja",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [],
+      "evitarCon": [
+        "Antidiabeticos"
+      ],
+      "advertencias": [
+        "Toxicidad acumulativa",
+        "No usar crónico >1.8mg/dia"
+      ],
+      "tags": [
+        "glucosa",
+        "insulinomimetico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Mol Cell Biochem 2017"
+      }
+    },
+    {
+      "id": "biotina_crinip",
+      "nombre": "Biotina Alta Dosis",
+      "nombresAlternativos": [
+        "High-dose biotin",
+        "MD1003",
+        "Biotina 100mg",
+        "Qalsody"
+      ],
+      "nombreCientifico": "D-Biotina",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "esclerosis_multiple",
+        "cabello",
+        "piel"
+      ],
+      "descripcion": "Biotina farmacológica (100-300mg) en estudio para esclerosis multiple progressive.",
+      "mecanismoAccion": "Cofactor carboxilasas. En dosis altas: mejora mitocondrias y mielina en modelos.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "2.5-5mg (estetica); 100-300mg (EM, investigacional)",
+      "dosisMaxima": "300mg/dia (investigacional)",
+      "formaQuimica": [
+        "D-Biotina pura"
+      ],
+      "biodisponibilidad": "Excelente",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [],
+      "evitarCon": [],
+      "advertencias": [
+        "Interfiere pruebas T3/T4/troponina",
+        "Avisar al laboratorio"
+      ],
+      "tags": [
+        "cabello",
+        "piel",
+        "em_investigacional"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Mult Scler J 2017"
+      }
+    },
+    {
+      "id": "complejo_b_50",
+      "nombre": "Complejo B-50 (Estándar)",
+      "nombresAlternativos": [
+        "B-Complex 50",
+        "Vitamin B complex 50",
+        "Complejo B equilibrado"
+      ],
+      "nombreCientifico": "Complejo B 50mg/50mcg",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "energia",
+        "estres",
+        "cognitivo"
+      ],
+      "descripcion": "Complejo B equilibrado con dosis moderadas (50mg) de B1, B2, B3, B5, B6 y 50mcg B12 + folato.",
+      "mecanismoAccion": "Coenzimas del metabolismo energético. Cofactores de neurotransmisores.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "1 capsula/dia",
+      "dosisMaxima": "2/dia",
+      "formaQuimica": [
+        "HCl B1",
+        "Riboflavina",
+        "Niacinamida",
+        "Pantotenato",
+        "Piridoxina",
+        "Metilcobalamina",
+        "Metilfolato"
+      ],
+      "biodisponibilidad": "Buena",
+      "momentoToma": [
+        "Mañana con comida"
+      ],
+      "tomarCon": [
+        "Vitamina C"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Orina amarilla (riboflavina) normal"
+      ],
+      "tags": [
+        "energia",
+        "estres",
+        "complejo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Nutrients 2016"
+      }
+    },
+    {
+      "id": "vitamina_d3_k2",
+      "nombre": "Vitamina D3 + K2 (Complejo)",
+      "nombresAlternativos": [
+        "D3 K2 complex",
+        "Vit D3 K2 MK7",
+        "Bone complex"
+      ],
+      "nombreCientifico": "Colecalciferol + Menaquinona-7",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "huesos",
+        "inmunidad",
+        "cardiovascular"
+      ],
+      "descripcion": "Combinación sinérgica D3+K2 (MK-7) para homeostasis calcio: absorción + dirigido a hueso.",
+      "mecanismoAccion": "D3: absorción intestinal calcio. K2 MK-7: activa osteocalcina y MGP (evita calcificación vascular).",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "1000-4000 UI D3 + 45-180mcg K2 MK-7",
+      "dosisMaxima": "10000 UI D3 (monitorizar 25-OH-D)",
+      "formaQuimica": [
+        "Colecalciferol + MK-7 trans"
+      ],
+      "biodisponibilidad": "Buena con grasa",
+      "momentoToma": [
+        "Comida grasa"
+      ],
+      "tomarCon": [
+        "Omega 3",
+        "Magnesio"
+      ],
+      "evitarCon": [
+        "Anticoagulantes cumarínicos (K2)"
+      ],
+      "advertencias": [
+        "K2 contraindicado con warfarina"
+      ],
+      "tags": [
+        "huesos",
+        "inmune",
+        "vascular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Osteoporos Int 2013"
+      }
+    },
+    {
+      "id": "omega3_phospholipid",
+      "nombre": "Omega-3 Fosfolípido (Krill)",
+      "nombresAlternativos": [
+        "Krill oil phospholipid",
+        "PC-bound EPA/DHA",
+        "Superba"
+      ],
+      "nombreCientifico": "EPA/DHA unidos a fosfatidilcolina",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "cognitivo",
+        "colesterol",
+        "articular"
+      ],
+      "descripcion": "EPA/DHA unidos a fosfolípidos (krill) con absorción superior a triglicéridos.",
+      "mecanismoAccion": "EPA/DHA antiinflamatorios via resolvinas. Reduce triglicéridos. Mejora fluidez membrana.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "500-1000mg EPA+DHA/dia",
+      "dosisMaxima": "4000mg/dia",
+      "formaQuimica": [
+        "Fosfolipido (krill)",
+        "Triglicerido (pescado)"
+      ],
+      "biodisponibilidad": "Mayor que triglicéridos",
+      "momentoToma": [
+        "Con comida grasa"
+      ],
+      "tomarCon": [
+        "Vitamina E (antioxidante)"
+      ],
+      "evitarCon": [
+        "Anticoagulantes (precaucion)"
+      ],
+      "advertencias": [
+        "Alergia crustáceos"
+      ],
+      "tags": [
+        "omega3",
+        "fosfolipido",
+        "krill"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Lipids Health Dis 2015"
+      }
+    },
+    {
+      "id": "gaba_pharma",
+      "nombre": "GABA Farmacéutico",
+      "nombresAlternativos": [
+        "GABA pharma",
+        "PharmaGABA",
+        "GABA natural fermentation"
+      ],
+      "nombreCientifico": "Acido γ-aminobutírico",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estres",
+        "insomnio"
+      ],
+      "descripcion": "GABA producido por fermentación natural (Lactobacillus) con evidencia de efecto ansiolítico.",
+      "mecanismoAccion": "Neurotransmisor inhibitorio principal. PharmaGABA cruza BHE modestamente via enterendocrino.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "100-200mg/dia",
+      "dosisMaxima": "500mg/dia",
+      "formaQuimica": [
+        "PharmaGABA (fermentación)"
+      ],
+      "biodisponibilidad": "Baja BHE, efecto vía eje intestino-cerebro",
+      "momentoToma": [
+        "Antes estres/insomnio"
+      ],
+      "tomarCon": [
+        "L-Teanina"
+      ],
+      "evitarCon": [
+        "Benzodiacepinas sin supervisión"
+      ],
+      "advertencias": [
+        "Puede causar flushing"
+      ],
+      "tags": [
+        "ansiolitico",
+        "gaba",
+        "natural"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Biofactors 2018"
+      }
+    },
+    {
+      "id": "magnesio_glicerofosfato",
+      "nombre": "Magnesio Glicerofosfato",
+      "nombresAlternativos": [
+        "Magnesium glycerophosphate",
+        "Mg glyc-phos"
+      ],
+      "nombreCientifico": "Glicerofosfato de magnesio",
+      "familia": "No aplica",
+      "categoria": "vitaminas",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "calambres",
+        "migraña"
+      ],
+      "descripcion": "Forma lipídica de magnesio con alta absorción y tolerancia GI óptima.",
+      "mecanismoAccion": "Cofactor de >300 enzimas (ATP, síntesis proteica, función nerviosa).",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "300-600mg/dia sal (~37-74mg Mg)",
+      "dosisMaxima": "1000mg sal/dia",
+      "formaQuimica": [
+        "Glicerofosfato Mg"
+      ],
+      "biodisponibilidad": "Alta",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "B6"
+      ],
+      "evitarCon": [
+        "Antibioticos (separar 2h)"
+      ],
+      "advertencias": [
+        "Perfíl seguro"
+      ],
+      "tags": [
+        "magnesio",
+        "lipidico",
+        "fatiga"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Nutrients 2021"
+      }
     }
   ]
 }

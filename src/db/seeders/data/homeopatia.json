@@ -6199,6 +6199,702 @@
         "fechaCreacion": "2026-08-08",
         "fuente": "Materia Medica Homeopática (Clarke, Farrington)"
       }
+    },
+    {
+      "id": "causticum_amp",
+      "nombre": "Causticum (Ampliado)",
+      "nombresAlternativos": [
+        "Causticum",
+        "Hahnemann's causticum",
+        "Kali hydricum"
+      ],
+      "nombreCientifico": "Tintura de Causticum (Kali-sulfuricum depurado)",
+      "familia": "Mineral (Hahnemann)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "urinario",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "articular",
+        "incontinencia",
+        "paralisis",
+        "tos"
+      ],
+      "descripcion": "Policresto de Hahnemann para afecciones progresivas, debilidad muscular y vejiga.",
+      "mecanismoAccion": "En homeopatia: tonifica músculo estriado y liso, mejora debilidad progresiva.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Debilidad progresiva muscular",
+        "Incontinencia urinaria con tos",
+        "Dolor que mejora con calor húmedo",
+        "Parálisis residual post-trauma"
+      ],
+      "modalidades": {
+        "empeora": [
+          "aire frío seco",
+          "tiempo seco",
+          "noche"
+        ],
+        "mejora": [
+          "calor húmedo",
+          "lluvia",
+          "calor cama"
+        ]
+      },
+      "afinidad": [
+        "músculos",
+        "vejiga",
+        "laringe",
+        "piel"
+      ],
+      "constelaciones": [
+        "Parálisis progresiva",
+        "Incontinencia"
+      ],
+      "advertencias": [
+        "No usar prolongado sin supervisión"
+      ],
+      "tags": [
+        "policresto",
+        "paralisis",
+        "vejiga"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "lycopodium_clavatum_amp",
+      "nombre": "Lycopodium (Ampliado)",
+      "nombresAlternativos": [
+        "Lycopodium clavatum",
+        "Club moss",
+        "Vegetable sulfur"
+      ],
+      "nombreCientifico": "Lycopodium clavatum (esporas)",
+      "familia": "Lycopodiaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "hepatico",
+        "urinario"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "gases",
+        "hepatico",
+        "litiasis_renal"
+      ],
+      "descripcion": "Policresto digestivo-hepático para hinchazón, gases y disfunción hepática.",
+      "mecanismoAccion": "En homeopatía: modula función hepatobiliar, reduce flatulencia y distensión.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Hinchazón abdominal derecha",
+        "Gases ruidosos que no alivian",
+        "Peor de 16 a 20h",
+        "Deseo de dulces y caliente"
+      ],
+      "modalidades": {
+        "empeora": [
+          "16-20h",
+          "comida copiosa",
+          "frio",
+          "ropa ajustada"
+        ],
+        "mejora": [
+          "comida caliente",
+          "movimiento lento",
+          "descubrirse"
+        ]
+      },
+      "afinidad": [
+        "hígado",
+        "intestino",
+        "derecha",
+        "riñón"
+      ],
+      "constelaciones": [
+        "Dispepsia",
+        "Litiasis renal"
+      ],
+      "advertencias": [
+        "Esporas tóxicas crudas, solo homeopaticas"
+      ],
+      "tags": [
+        "policresto",
+        "digestivo",
+        "hepatico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "carcinosinum",
+      "nombre": "Carcinosinum",
+      "nombresAlternativos": [
+        "Carcinosin",
+        "Cancer nosode"
+      ],
+      "nombreCientifico": "Nosode (preparación homeopática)",
+      "familia": "Nosode",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "inmune"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "ansiedad",
+        "fatiga",
+        "trauma"
+      ],
+      "descripcion": "Nosode para constituciones sensibles, perfeccionistas con historia de trauma o estrés.",
+      "mecanismoAccion": "En homeopatía: modula constitución, útil en secuelas emocionales y trastornos del sueño.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Insomnio por hipersensibilidad",
+        "Historia de abuso o trauma",
+        "Perfeccionismo y exigencia",
+        "Amor a la naturaleza y música"
+      ],
+      "modalidades": {
+        "empeora": [
+          "preocupación",
+          "falta sueño",
+          "represión emocional"
+        ],
+        "mejora": [
+          "descanso",
+          "mar/montaña",
+          "expresión emocional"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso",
+        "sistema inmune"
+      ],
+      "constelaciones": [
+        "Insomnio constitucional",
+        "Burn-out"
+      ],
+      "advertencias": [
+        "Solo bajo profesional homeópata"
+      ],
+      "tags": [
+        "nosode",
+        "constitucional",
+        "trauma"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Synthesis Materia Medica"
+      }
+    },
+    {
+      "id": "medorrhinum_amp",
+      "nombre": "Medorrhinum (Ampliado)",
+      "nombresAlternativos": [
+        "Medorrhinum",
+        "Gonorrhea nosode",
+        "Blenorrhagia nosode"
+      ],
+      "nombreCientifico": "Nosode homeopático",
+      "familia": "Nosode",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "reproductivo",
+        "respiratorio",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "candidiasis",
+        "asma",
+        "ansiedad",
+        "sii"
+      ],
+      "descripcion": "Nosode para terrenos crónicos (sycótico): candidiasis recurrente, asma, eccema.",
+      "mecanismoAccion": "En homeopatía: modula terreno miasmático sycótico, síntomas crónicos alternantes.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        15,
+        30,
+        200
+      ],
+      "sintomasClave": [
+        "Síntomas que alternan (asma-eccema-artritis)",
+        "Mejora de noche y en mar",
+        "Historia de infecciones recurrentes",
+        "Ansiedad nocturna"
+      ],
+      "modalidades": {
+        "empeora": [
+          "humedad",
+          "amanecer",
+          "represión"
+        ],
+        "mejora": [
+          "noche",
+          "mar",
+          "movimiento"
+        ]
+      },
+      "afinidad": [
+        "mucosas",
+        "respiratorio",
+        "reproductivo"
+      ],
+      "constelaciones": [
+        "Asma-eccema",
+        "Candidiasis recurrente"
+      ],
+      "advertencias": [
+        "Solo bajo profesional"
+      ],
+      "tags": [
+        "nosode",
+        "sycotico",
+        "recurrente"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Homeopatica"
+      }
+    },
+    {
+      "id": "staphysagria_amp",
+      "nombre": "Staphysagria (Ampliado)",
+      "nombresAlternativos": [
+        "Staphysagria",
+        "Delphinium staphisagria",
+        "Palma christi"
+      ],
+      "nombreCientifico": "Delphinium staphisagria",
+      "familia": "Ranunculaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "urinario",
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cistitis",
+        "herpes",
+        "heridas",
+        "estres"
+      ],
+      "descripcion": "Remedio para cistitis post-coito, heridas quirúrgicas y emociones reprimidas.",
+      "mecanismoAccion": "En homeopatía: útil en cistitis aguda no infecciosa y cicatrización lenta.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Cistitis tras coito o retención",
+        "Heridas que no cicatrizan",
+        "Ira reprimida",
+        "Dolor en cisura"
+      ],
+      "modalidades": {
+        "empeora": [
+          "ira",
+          "toque",
+          "humedad"
+        ],
+        "mejora": [
+          "desayuno",
+          "calor"
+        ]
+      },
+      "afinidad": [
+        "vejiga",
+        "piel",
+        "encías"
+      ],
+      "constelaciones": [
+        "Cistitis recurrente",
+        "Cicatrizacion"
+      ],
+      "advertencias": [
+        "Solo homeopático, planta tóxica"
+      ],
+      "tags": [
+        "cistitis",
+        "heridas",
+        "ira_reprimida"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "thuja_occidentalis_amp",
+      "nombre": "Thuja (Ampliado)",
+      "nombresAlternativos": [
+        "Thuja occidentalis",
+        "Arbor vitae",
+        "Cedro blanco"
+      ],
+      "nombreCientifico": "Thuja occidentalis",
+      "familia": "Cupressaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "dermatologico",
+        "urinario",
+        "inmune"
+      ],
+      "indicaciones": [
+        "verrugas",
+        "candidiasis",
+        "acne",
+        "litiasis_renal"
+      ],
+      "descripcion": "Policresto para verrugas, secreciones crónicas y terreno sycótico.",
+      "mecanismoAccion": "En homeopatía: modula terreno sycótico, reduce verrugas y secreciones verdes-amarillas.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Verrugas múltiples",
+        "Secreciones verdosas espesas",
+        "Sensación de frágil/débil",
+        "Pensamientos obsesivos"
+      ],
+      "modalidades": {
+        "empeora": [
+          "humedad",
+          "frío",
+          "vacunación"
+        ],
+        "mejora": [
+          "calor",
+          "movimiento"
+        ]
+      },
+      "afinidad": [
+        "piel",
+        "mucosas",
+        "vejiga"
+      ],
+      "constelaciones": [
+        "Verrugas",
+        "Sycosis"
+      ],
+      "advertencias": [
+        "Solo homeopático, planta tóxica"
+      ],
+      "tags": [
+        "verrugas",
+        "sycotico",
+        "policresto"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "nux_vomica_amp",
+      "nombre": "Nux Vomica (Ampliado)",
+      "nombresAlternativos": [
+        "Nux vomica",
+        "Strychnos nux-vomica",
+        "Nuez vómica"
+      ],
+      "nombreCientifico": "Strychnos nux-vomica",
+      "familia": "Loganiaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "digestivo",
+        "nervioso",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "resaca",
+        "estres",
+        "estreñimiento"
+      ],
+      "descripcion": "Policresto para excesos (cafeína, alcohol, comida) y estrés competitivo.",
+      "mecanismoAccion": "En homeopatía: modula hipersensibilidad, irritabilidad y dispepsia por excesos.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Hipersensible a luz/ruido/olor",
+        "Dispepsia tras exceso",
+        "Estreñimiento con tenesmo",
+        "Irritable, exigente"
+      ],
+      "modalidades": {
+        "empeora": [
+          "mañana",
+          "frio",
+          "estimulantes",
+          "ropa ajustada"
+        ],
+        "mejora": [
+          "siesta",
+          "calor",
+          "comida caliente"
+        ]
+      },
+      "afinidad": [
+        "hígado",
+        "intestino",
+        "sistema nervioso"
+      ],
+      "constelaciones": [
+        "Burnout ejecutivo",
+        "Resaca"
+      ],
+      "advertencias": [
+        "Solo homeopático, semilla tóxica (estricnina)"
+      ],
+      "tags": [
+        "policresto",
+        "excesos",
+        "estres"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "sepia_officinalis_amp",
+      "nombre": "Sepia (Ampliado)",
+      "nombresAlternativos": [
+        "Sepia officinalis",
+        "Cuttlefish ink"
+      ],
+      "nombreCientifico": "Sepia officinalis (tinta)",
+      "familia": "Sepiidae (animal)",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "reproductivo",
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "menopausia",
+        "spm_dismenorrea",
+        "dispepsia",
+        "fatiga"
+      ],
+      "descripcion": "Policresto femenino para agotamiento maternal, síntomas pélvicos y trastornos hormonales.",
+      "mecanismoAccion": "En homeopatía: modula tono venoso pélvico y sintomatología hormonal femenina.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Fatiga con deseo de estar sola",
+        "Pesadez pélvica",
+        "Mejora con ejercicio intenso",
+        "Indiferencia a seres queridos"
+      ],
+      "modalidades": {
+        "empeora": [
+          "antes menstruación",
+          "frío",
+          "ayuno"
+        ],
+        "mejora": [
+          "ejercicio",
+          "calor",
+          "comida"
+        ]
+      },
+      "afinidad": [
+        "pélvico",
+        "venoso",
+        "hormonal"
+      ],
+      "constelaciones": [
+        "Menopausia",
+        "SPM severo"
+      ],
+      "advertencias": [
+        "Perfil seguro en dilución homeopática"
+      ],
+      "tags": [
+        "policresto",
+        "femenino",
+        "hormonal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "silicea_amp",
+      "nombre": "Silicea (Ampliado)",
+      "nombresAlternativos": [
+        "Silicea terra",
+        "Silica",
+        "Kieselsäure"
+      ],
+      "nombreCientifico": "Dióxido de silicio (SiO2)",
+      "familia": "Mineral",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "dermatologico",
+        "inmune",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "acne",
+        "fistulas",
+        "cicatrizacion",
+        "candidiasis"
+      ],
+      "descripcion": "Policresto constitucional para debilidad de tejido conectivo, fístulas y supuraciones crónicas.",
+      "mecanismoAccion": "En homeopatía: mejora maduración de supuraciones, fortalece tejido conectivo.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Supuraciones crónicas no resueltas",
+        "Piel fina, cicatrización lenta",
+        "Fístulas",
+        "Aversión al esfuerzo mental"
+      ],
+      "modalidades": {
+        "empeora": [
+          "frío",
+          "descubrirse",
+          "esfuerzo mental"
+        ],
+        "mejora": [
+          "calor",
+          "envolverse"
+        ]
+      },
+      "afinidad": [
+        "tejido conectivo",
+        "piel",
+        "glándulas"
+      ],
+      "constelaciones": [
+        "Fístulas",
+        "Acne quistico"
+      ],
+      "advertencias": [
+        "No usar en supuraciones agudas que requieren drenaje"
+      ],
+      "tags": [
+        "policresto",
+        "supuracion",
+        "tejido_conectivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
+    },
+    {
+      "id": "arnica_montana_amp",
+      "nombre": "Arnica Montana (Ampliado)",
+      "nombresAlternativos": [
+        "Arnica",
+        "Leopard's bane",
+        "Mountain tobacco"
+      ],
+      "nombreCientifico": "Arnica montana",
+      "familia": "Asteraceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "trauma",
+        "dolor_muscular",
+        "cirugia",
+        "hematomas"
+      ],
+      "descripcion": "Remedio traumático por excelencia, reduce hematomas y dolor post-traumático.",
+      "mecanismoAccion": "En homeopatía: modula respuesta inflamatoria post-traumática, reduce equimosis.",
+      "nivelEvidencia": "D",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Todo el cuerpo magullado",
+        "No quiere ser tocado",
+        "Cama se siente muy dura",
+        "Dolor como golpeado"
+      ],
+      "modalidades": {
+        "empeora": [
+          "toque",
+          "movimiento",
+          "humedad"
+        ],
+        "mejora": [
+          "acostado",
+          "cabeza baja"
+        ]
+      },
+      "afinidad": [
+        "músculos",
+        "vasos capilares",
+        "corazón"
+      ],
+      "constelaciones": [
+        "Post-operatorio",
+        "Trauma deportivo"
+      ],
+      "advertencias": [
+        "No sobre heridas abiertas",
+        "Tópico diluido"
+      ],
+      "tags": [
+        "trauma",
+        "hematomas",
+        "postoperatorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Materia Medica Pura"
+      }
     }
   ]
 }

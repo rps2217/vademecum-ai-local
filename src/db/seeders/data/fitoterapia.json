@@ -8703,6 +8703,932 @@
         "fechaCreacion": "2026-08-08",
         "fuente": "Chinese Pharmacopoeia + PubMed (Cuscuta)"
       }
+    },
+    {
+      "id": "pomegranate",
+      "nombre": "Granada",
+      "nombresAlternativos": [
+        "Pomegranate",
+        "Punica granatum",
+        "Romero extracto"
+      ],
+      "nombreCientifico": "Punica granatum",
+      "familia": "Lythraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "prostata",
+        "antioxidante",
+        "glucosa"
+      ],
+      "descripcion": "Fruto rico en polifenoles (elagitaninos, ácido elágico) con potente actividad antioxidante y cardiovasculoprotectora.",
+      "mecanismoAccion": "Los elagitaninos se metabolizan a urolitinas. Inhibe oxidación LDL, reduce inflamación vascular y modula eNOS.",
+      "nivelEvidencia": "B",
+      "parteUsada": "semilla y zumo",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto seco",
+        "Zumo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Puede interaccionar con metabolización CYP3A4"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina",
+        "Estatinas"
+      ],
+      "tags": [
+        "antioxidante",
+        "cardiovascular",
+        "prostata"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Meta-análisis Pharmacol Res 2023"
+      }
+    },
+    {
+      "id": "saffron_crocin",
+      "nombre": "Azafrán (Extracto estandarizado)",
+      "nombresAlternativos": [
+        "Crocus sativus",
+        "Saffron extract",
+        "Crocina"
+      ],
+      "nombreCientifico": "Crocus sativus",
+      "familia": "Iridaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "ocular"
+      ],
+      "indicaciones": [
+        "depresion",
+        "ansiedad",
+        "ojo_seco",
+        "cognitivo"
+      ],
+      "descripcion": "Extracto estandarizado en crocina y safranal con eficacia comparable a ISRS en depresión leve-moderada.",
+      "mecanismoAccion": "Modula serotonina, dopamina y noradrenalina. Efecto antioxidante en retina. Inhibe recaptación de monoaminas.",
+      "nivelEvidencia": "A",
+      "parteUsada": "estigmas",
+      "formasPresentacion": [
+        "Capsulas estandarizadas 15mg"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "6-8 semanas minimo",
+      "advertencias": [
+        "Dosis altas (>5g) toxicas",
+        "No en embarazo a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "ISRS (riesgo sindrome serotoninergico)"
+      ],
+      "tags": [
+        "antidepresivo",
+        "anxiolitico",
+        "ocular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Meta-análisis J Integr Med 2023"
+      }
+    },
+    {
+      "id": "maral_root",
+      "nombre": "Rallar (Rhaponticum)",
+      "nombresAlternativos": [
+        "Rhaponticum carthamoides",
+        "Maral root",
+        "Leuzea"
+      ],
+      "nombreCientifico": "Rhaponticum carthamoides",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "rendimiento",
+        "inmunidad"
+      ],
+      "descripcion": "Adaptógeno ruso con ecdisteroides que mejora síntesis proteica y rendimiento físico sin efectos androgénicos.",
+      "mecanismoAccion": "Las ecdisteronas activan PI3K/Akt en musculo, estimulando síntesis proteica. Adaptógeno HPA.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Extracto estandarizado ecdisterona"
+      ],
+      "tiempoEfecto": "2-3 semanas",
+      "duracionTratamiento": "Ciclos 6-8 semanas",
+      "advertencias": [
+        "Insomnio si se toma tarde"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "adaptogeno",
+        "anabolico",
+        "rendimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2022"
+      }
+    },
+    {
+      "id": "elderberry_ext",
+      "nombre": "Saúco (Extracto estandarizado)",
+      "nombresAlternativos": [
+        "Elderberry extract",
+        "Sambucus nigra",
+        "Baya de sauco"
+      ],
+      "nombreCientifico": "Sambucus nigra",
+      "familia": "Adoxaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "gripe",
+        "inmunidad",
+        "resfriado"
+      ],
+      "descripcion": "Extracto de bayas rico en antocianinas con acción antiviral directa frente a virus influenza.",
+      "mecanismoAccion": "Antocianinas inhiben hemaglutinina y neuraminidasa viral. Reduce duración de gripe 2-3 días.",
+      "nivelEvidencia": "A",
+      "parteUsada": "bayas",
+      "formasPresentacion": [
+        "Jarabe",
+        "Gominolas",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "24-48 horas",
+      "duracionTratamiento": "Al inicio de sintomas, 5-7 dias",
+      "advertencias": [
+        "Bayas crudas causan nausea",
+        "Usar extracto cocido"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "antiviral",
+        "inmune",
+        "gripe"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Meta-análisis Complement Ther Med 2019"
+      }
+    },
+    {
+      "id": "picrorhiza_kurroa",
+      "nombre": "Picrorhiza (Kutki)",
+      "nombresAlternativos": [
+        "Picrorhiza kurroa",
+        "Kutki",
+        "Picrorhiza"
+      ],
+      "nombreCientifico": "Picrorhiza kurroa",
+      "familia": "Plantaginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "hepatico",
+        "inmunidad"
+      ],
+      "descripcion": "Planta ayurvédica hepatoprotectora con iridoides (picrosidos I y II) que protege el parénquima hepático.",
+      "mecanismoAccion": "Picrosidos I/II: antioxidante hepatico, induce enzimas fase II, antiinflamatorio via NF-kB.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "4-6 semanas",
+      "duracionTratamiento": "8-12 semanas",
+      "advertencias": [
+        "Evitar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "hepatoprotector",
+        "ayurveda",
+        "inmune"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Phytomedicine 2021"
+      }
+    },
+    {
+      "id": "tinospora",
+      "nombre": "Tinospora (Guduchi)",
+      "nombresAlternativos": [
+        "Tinospora cordifolia",
+        "Guduchi",
+        "Amrita",
+        "Giloe"
+      ],
+      "nombreCientifico": "Tinospora cordifolia",
+      "familia": "Menispermaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "glucosa",
+        "alergias"
+      ],
+      "descripcion": "Adaptógeno ayurvédico inmunomodulador con evidencia en rinitis alérgica y soporte glucémico.",
+      "mecanismoAccion": "Polisacáridos y alcaloides modulan macrófagos y células NK. Reduce IgE en rinitis alérgica.",
+      "nivelEvidencia": "B",
+      "parteUsada": "tallo",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "8 semanas",
+      "advertencias": [
+        " Puede reducir glucosa, monitorizar en diabéticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hipoglucemiantes"
+      ],
+      "tags": [
+        "inmunomodulador",
+        "ayurveda",
+        "alergia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2022"
+      }
+    },
+    {
+      "id": "centella_asiatica_ext",
+      "nombre": "Centella Asiática (Extracto titulado)",
+      "nombresAlternativos": [
+        "Gotu kola",
+        "Centella titulada",
+        "CICA"
+      ],
+      "nombreCientifico": "Centella asiatica",
+      "familia": "Apiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "dermatologico",
+        "venoso"
+      ],
+      "indicaciones": [
+        "cicatrizacion",
+        "venoso",
+        "piel"
+      ],
+      "descripcion": "Extracto titulado en asiaticósidos y madecasósidos (CICA) con evidencia sólida en cicatrización y insuficiencia venosa.",
+      "mecanismoAccion": "Asiaticósidos estimulan síntesis de colágeno I/III y fibronectina. Mejora microcirculación venosa.",
+      "nivelEvidencia": "A",
+      "parteUsada": "hojas",
+      "formasPresentacion": [
+        "Capsulas tituladas",
+        "Crema topica"
+      ],
+      "tiempoEfecto": "4-6 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Posible dermatitis de contacto topico"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "cicatrizante",
+        "venotonic",
+        "cica"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Skin Pharmacol Physiol 2022"
+      }
+    },
+    {
+      "id": "ivy_leaf_ext",
+      "nombre": "Hiedra (Extracto estandarizado)",
+      "nombresAlternativos": [
+        "Ivy leaf",
+        "Hedera helix",
+        "Hiedra comun ext"
+      ],
+      "nombreCientifico": "Hedera helix",
+      "familia": "Araliaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "tos",
+        "bronquitis",
+        "respiratorio"
+      ],
+      "descripcion": "Extracto de hoja de hiedra con saponinas (alfa-hederina) con acción expectorante y broncoespasmolítica.",
+      "mecanismoAccion": "Alfa-hederina estimula beta-2-receptores pulmonares e indirectamente aumenta secreción surfactante.",
+      "nivelEvidencia": "A",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Jarabe",
+        "Gotas",
+        "Comprimidos"
+      ],
+      "tiempoEfecto": "3-5 dias",
+      "duracionTratamiento": "7-10 dias",
+      "advertencias": [
+        "Nausea si exceso",
+        "No en lactantes sin supervisión"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "expectorante",
+        "broncodilatador",
+        "tos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Meta-análisis Arzneimittelforschung 2011"
+      }
+    },
+    {
+      "id": "pelargonium_ext",
+      "nombre": "Pelargonium (Extracto EPs 7630)",
+      "nombresAlternativos": [
+        "Umckaloabo",
+        "Pelargonium sidoides",
+        "EPs 7630"
+      ],
+      "nombreCientifico": "Pelargonium sidoides",
+      "familia": "Geraniaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "bronquitis",
+        "gripe",
+        "resfriado",
+        "sinusitis"
+      ],
+      "descripcion": "Extracto estandarizado EPs 7630 con acción antibacteriana e inmunomoduladora en bronquitis aguda.",
+      "mecanismoAccion": "Cumaroninas y galotaninos: aumenta fagocitosis, inhibe adherencia bacteriana, modula citocinas.",
+      "nivelEvidencia": "A",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Solucion oral",
+        "Comprimidos"
+      ],
+      "tiempoEfecto": "3-5 dias",
+      "duracionTratamiento": "7 dias",
+      "advertencias": [
+        "Puede afectar coagulación",
+        "Suspender antes cirugía"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antibacteriano",
+        "bronquitis",
+        "inmune"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Cochrane Database 2013"
+      }
+    },
+    {
+      "id": "ginseng_panax_red",
+      "nombre": "Ginseng Rojo Coreano",
+      "nombresAlternativos": [
+        "Panax ginseng",
+        "Ginseng rojo",
+        "Korean Red Ginseng"
+      ],
+      "nombreCientifico": "Panax ginseng",
+      "familia": "Araliaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "metabolico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "rendimiento",
+        "cognitivo",
+        "glucosa",
+        "disfuncion_erectil"
+      ],
+      "descripcion": "Ginseng panax procesado al vapor con alta concentración de ginsenósidos Rg3/Rh2, bioactivos y estables.",
+      "mecanismoAccion": "Ginsenósidos modulan eje HPA, mejoran síntesis ATP mitocondrial, aumentan NO endotelial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz (6 años)",
+      "formasPresentacion": [
+        "Capsulas estandarizadas ginsenósidos"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Ciclos 8-12 semanas con descanso",
+      "advertencias": [
+        "Insomnio si tarde",
+        "Hipertensión a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina",
+        "Antidiabeticos"
+      ],
+      "tags": [
+        "adaptogeno",
+        "energia",
+        "cognitivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Cochrane Database 2017"
+      }
+    },
+    {
+      "id": "polygonum_cuspidatum",
+      "nombre": "Polygonum (Cuspidatum)",
+      "nombresAlternativos": [
+        "Polygonum cuspidatum",
+        "Japanese knotweed",
+        "Hu Zhang"
+      ],
+      "nombreCientifico": "Reynoutria japonica",
+      "familia": "Polygonaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "antioxidante",
+        "cognitivo"
+      ],
+      "descripcion": "Fuente natural de resveratrol trans con acción antioxidante y cardiovascular.",
+      "mecanismoAccion": "Resveratrol trans activa SIRT1 y AMPK, mejora función endotelial, antioxidante mitocondrial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Capsulas estandarizadas resveratrol"
+      ],
+      "tiempoEfecto": "6-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Puede afectar CYP3A4"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antioxidante",
+        "cardiovascular",
+        "sirt1"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Nutrients 2023"
+      }
+    },
+    {
+      "id": "cistanche",
+      "nombre": "Cistanche",
+      "nombresAlternativos": [
+        "Cistanche deserticola",
+        "Rou Cong Rong",
+        "Ginseng del desierto"
+      ],
+      "nombreCientifico": "Cistanche deserticola",
+      "familia": "Orobanchaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "metabolico",
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "fatiga",
+        "cognitivo",
+        "libido_bajo"
+      ],
+      "descripcion": "Hierba tonificante china con feniletanoides (echinacósido) que mejora función cognitiva y vitalidad.",
+      "mecanismoAccion": "Echinacósido y acteósido: neuroprotección via BDNF, antioxidante, mejora función mitocondrial.",
+      "nivelEvidencia": "C",
+      "parteUsada": "tallo carnoso",
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "4-6 semanas",
+      "duracionTratamiento": "8-12 semanas",
+      "advertencias": [
+        "Datos clínicos limitados en occidente"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "tonificante",
+        "cognitivo",
+        "libido"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Front Pharmacol 2021"
+      }
+    },
+    {
+      "id": "morinda_officinalis",
+      "nombre": "Morinda (Ba Ji Tian)",
+      "nombresAlternativos": [
+        "Morinda officinalis",
+        "Ba Ji Tian",
+        "Noni root"
+      ],
+      "nombreCientifico": "Morinda officinalis",
+      "familia": "Rubiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "libido_bajo",
+        "fatiga",
+        "depresion"
+      ],
+      "descripcion": "Raíz tonificante china con acción antidepresiva demostrada en modelos preclínicos.",
+      "mecanismoAccion": "Iridoides modulan neurotransmisores monoamina. Efecto adaptógeno HPA.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Capsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "4-6 semanas",
+      "duracionTratamiento": "8-12 semanas",
+      "advertencias": [
+        "Evidencia clínica limitada en occidente"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "tonificante",
+        "libido",
+        "antidepresivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2020"
+      }
+    },
+    {
+      "id": "evodia",
+      "nombre": "Evodia",
+      "nombresAlternativos": [
+        "Evodia rutaecarpa",
+        "Wu Zhu Yu",
+        "Rutaecarpine source"
+      ],
+      "nombreCientifico": "Tetradium ruticarpum",
+      "familia": "Rutaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "dispepsia",
+        "dolor"
+      ],
+      "descripcion": "Fruto chino con evodiamina y rutaecarpina con acción termogénica y cardioprotectora.",
+      "mecanismoAccion": "Rutaecarpina activa TRPV1 y aumenta NO endotelial. Evodiamina modula motilidad GI.",
+      "nivelEvidencia": "C",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Extracto estandarizado"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Ciclos",
+      "advertencias": [
+        "Posible hepatotoxicidad a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "cardiovascular",
+        "termogenico",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Planta Med 2019"
+      }
+    },
+    {
+      "id": "uncaria_tomentosa_ext",
+      "nombre": "Uña de Gato (Extracto)",
+      "nombresAlternativos": [
+        "Cat's claw extract",
+        "Uncaria tomentosa ext",
+        "Vincaria"
+      ],
+      "nombreCientifico": "Uncaria tomentosa",
+      "familia": "Rubiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "articular",
+        "inmunidad",
+        "inflamacion"
+      ],
+      "descripcion": "Extracto estandarizado en alcaloides oxindólicos con acción antiinflamatoria en artritis.",
+      "mecanismoAccion": "Inhibe TNF-alfa y NF-kB. Modula inmunidad T y B.",
+      "nivelEvidencia": "B",
+      "parteUsada": "corteza",
+      "formasPresentacion": [
+        "Extracto estandarizado POA"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Evitar en trasplantes",
+        "Suspender antes cirugía"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "inmune",
+        "articular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Int J Immunopharmacol 2021"
+      }
+    },
+    {
+      "id": "salvia_miltiorrhiza_bge",
+      "nombre": "Salvia (Danshen)",
+      "nombresAlternativos": [
+        "Danshen",
+        "Salvia miltiorrhiza",
+        "Tan shen"
+      ],
+      "nombreCientifico": "Salvia miltiorrhiza",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "hepatico",
+        "migraña"
+      ],
+      "descripcion": "Raíz de Salvia china con tanshinonas, ampliamente usada en cardiología china para angina.",
+      "mecanismoAccion": "Tanshinona IIA: antioxidante vascular, anti-plaquetario, mejora microcirculación coronaria.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Comprimidos",
+        "Extracto"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Potencia anticoagulantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina",
+        "Aspirina"
+      ],
+      "tags": [
+        "cardiovascular",
+        "anticoagulante",
+        "hepatico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Acta Pharmacol Sin 2019"
+      }
+    },
+    {
+      "id": "prunella_vulgaris",
+      "nombre": "Prunela",
+      "nombresAlternativos": [
+        "Prunella vulgaris",
+        "Xia Ku Cao",
+        "Self-heal"
+      ],
+      "nombreCientifico": "Prunella vulgaris",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "tiroides",
+        "inmunidad"
+      ],
+      "descripcion": "Planta con ácido ursólico y rosmarínico usada en fórmulas chinas para nódulos tiroideos.",
+      "mecanismoAccion": "Acido ursólico: antiinflamatorio, antitiroideo. Rosmarínico: antioxidante.",
+      "nivelEvidencia": "C",
+      "parteUsada": "espiga",
+      "formasPresentacion": [
+        "Extracto",
+        "Polvo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Puede afectar función tiroidea, monitorizar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levotiroxina"
+      ],
+      "tags": [
+        "tiroideo",
+        "inmune",
+        "nodulos"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2020"
+      }
+    },
+    {
+      "id": "scutellaria_baicalensis",
+      "nombre": "Escutelaria Baicalensis",
+      "nombresAlternativos": [
+        "Baikal skullcap",
+        "Huang Qin",
+        "Scutellaria baicalensis"
+      ],
+      "nombreCientifico": "Scutellaria baicalensis",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "hepatico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "hepatico",
+        "inflamacion"
+      ],
+      "descripcion": "Raíz china rica en baicalina y wogonina con acción ansiolítica y neuroprotectora.",
+      "mecanismoAccion": "Baicalina se une a receptor benzodiacepínico sin efecto sedante. Wogonina: GABA-A positivo.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "4-8 semanas",
+      "advertencias": [
+        "Posible interacción CYP"
+      ],
+      "interaccionesMedicamentosas": [
+        "Benzodiacepinas"
+      ],
+      "tags": [
+        "ansiolitico",
+        "neuroprotector",
+        "hepatico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Phytomedicine 2020"
+      }
+    },
+    {
+      "id": "rehmannia",
+      "nombre": "Rehmannia",
+      "nombresAlternativos": [
+        "Rehmannia glutinosa",
+        "Di Huang",
+        "Shu Di Huang"
+      ],
+      "nombreCientifico": "Rehmannia glutinosa",
+      "familia": "Orobanchaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "fatiga",
+        "anemia"
+      ],
+      "descripcion": "Raíz tonificante china con iridoides (catalpol) con acción neuroprotectora y glucémica.",
+      "mecanismoAccion": "Catalpol: antioxidante, neuroprotector vía BDNF, mejora sensibilidad a insulina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz preparada",
+      "formasPresentacion": [
+        "Polvo",
+        "Extracto"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Puede causar distensión abdominal"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos"
+      ],
+      "tags": [
+        "tonificante",
+        "glucosa",
+        "neuroprotector"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2019"
+      }
+    },
+    {
+      "id": "ganoderma_lucidum",
+      "nombre": "Reishi (Ganoderma)",
+      "nombresAlternativos": [
+        "Lingzhi",
+        "Ganoderma lucidum",
+        "Hongo reishi"
+      ],
+      "nombreCientifico": "Ganoderma lucidum",
+      "familia": "Ganodermataceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "fatiga",
+        "hepatico",
+        "ansiedad"
+      ],
+      "descripcion": "Hongo adaptógeno con betaglucanos y triterpenos (ácido ganodérico) inmunomodulador.",
+      "mecanismoAccion": "Betaglucanos activan receptores Dectin-1 y complemento. Triterpenos: hepatoprotectores.",
+      "nivelEvidencia": "B",
+      "parteUsada": "cuerpo fructifero y micelio",
+      "formasPresentacion": [
+        "Extracto dual",
+        "Polvo",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Puede prolongar coagulación"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "adaptogeno",
+        "inmune",
+        "hongo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Adv Pharmacol Sci 2020"
+      }
     }
   ]
 }

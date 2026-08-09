@@ -19022,6 +19022,1414 @@
         "Antibiótico solo si sospecha bacteriana",
         "Vigilar PSA y descartar cáncer si edad"
       ]
+    },
+    {
+      "id": "ulcera_peptica",
+      "nombre": "Úlcera Péptica",
+      "definicion": "Lesión mucosa gástrica o duodenal que penetra muscularis mucosae, con dolor epigástrico característico.",
+      "causas": [
+        "Helicobacter pylori",
+        "AINEs",
+        "Estrés",
+        "Tabaco",
+        "Alcohol"
+      ],
+      "sintomas": [
+        "Dolor epigástrico",
+        "Pirosis",
+        "Náuseas",
+        "Saciedad precoz",
+        "Melena"
+      ],
+      "sistemas": [
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "IBP (omeprazol)",
+          "Triple terapia H. pylori",
+          "Sucralfato"
+        ],
+        "mecanismo": "IBP: inhiben bomba H+/K+. Erradicación H. pylori.",
+        "efectosSecundarios": [
+          "IBP: hipomagnesemia, riesgo osteoporotico",
+          "Diarrea"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "regaliz_dgl",
+          "manzanilla",
+          "melisa",
+          "aloe_vera"
+        ],
+        "suplementos": [
+          "zinc",
+          "l_glutamina"
+        ],
+        "homeopatia": [
+          "carbo_veg",
+          "nux_vomica",
+          "phosphorus"
+        ],
+        "aceites": [
+          "manzanilla_romana",
+          "lavanda"
+        ],
+        "cuandoPreferir": "Coadyuvante, prevención recidiva, intolerancia IBP"
+      },
+      "prevencion": [
+        "Evitar AINEs",
+        "Dieta blanda",
+        "Reducir estrés",
+        "No fumar"
+      ],
+      "alertasFarmaceuticas": [
+        "IBP crónicos: monitorizar Mg y B12",
+        "DGL no usar en hipertensión"
+      ],
+      "cuandoConsultar": [
+        "Hemorragia digestiva (melena, hematemesis)",
+        "Dolor intenso refractario",
+        "Pérdida de peso"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "enfermedad_inflamatoria_intestinal",
+      "nombre": "Enfermedad Inflamatoria Intestinal (EII)",
+      "definicion": "Grupo de enfermedades crónicas (Crohn, colitis ulcerosa) con inflamación intestinal recurrente.",
+      "causas": [
+        "Autoinmune",
+        "Genética",
+        "Microbiota alterada",
+        "Factores ambientales"
+      ],
+      "sintomas": [
+        "Diarrea crónica",
+        "Dolor abdominal",
+        "Sangre en heces",
+        "Pérdida de peso",
+        "Fatiga"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "5-ASA (mesalazina)",
+          "Corticoides",
+          "Anti-TNF (infliximab)"
+        ],
+        "mecanismo": "Antiinflamatorio intestinal, inmunomodulador.",
+        "efectosSecundarios": [
+          "Corticoides: osteoporosis",
+          "Anti-TNF: infecciones"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "curcuma",
+          "boswelia",
+          "aloe_vera",
+          "olmo_america"
+        ],
+        "suplementos": [
+          "probioticos",
+          "omega_3",
+          "vitamina_d3_k2",
+          "hierro_bisglicinato"
+        ],
+        "homeopatia": [
+          "merc_sol",
+          "sulphur"
+        ],
+        "aceites": [
+          "manzanilla_romana"
+        ],
+        "cuandoPreferir": "Coadyuvante en remisión, prevención de brotes"
+      },
+      "prevencion": [
+        "Dieta baja FODMAP en brotes",
+        "Probióticos",
+        "Vitamina D"
+      ],
+      "alertasFarmaceuticas": [
+        "Evitar AINEs",
+        "Corticoides: suplementar Ca+D"
+      ],
+      "cuandoConsultar": [
+        "Sangre abundante",
+        "Fiebre",
+        "Dolor severo",
+        "Obstrucción"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "artritis_psoriasica",
+      "nombre": "Artritis Psoriásica",
+      "definicion": "Artritis inflamatoria asociada a psoriasis, con afectación articular y ungueal.",
+      "causas": [
+        "Autoinmune",
+        "Genética HLA-B27",
+        "Disbiosis"
+      ],
+      "sintomas": [
+        "Dolor articular",
+        "Rigidez matutina",
+        "Dactilitis",
+        "Uñas punteadas",
+        "Psoriasis cutánea"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "dermatologico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "AINEs",
+          "Metotrexato",
+          "Anti-TNF",
+          "JAK inhibidores"
+        ],
+        "mecanismo": "Antiinflamatorio, inmunomodulador.",
+        "efectosSecundarios": [
+          "MTX: hepatotoxicidad",
+          "Anti-TNF: infecciones"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "curcuma",
+          "boswelia",
+          "uncaria_tomentosa_ext"
+        ],
+        "suplementos": [
+          "omega3_phospholipid",
+          "vitamina_d3_k2",
+          "colageno_tipo2"
+        ],
+        "homeopatia": [
+          "rhus_tox",
+          "psorinum"
+        ],
+        "aceites": [
+          "incienso",
+          "romero_verbenona_aceite"
+        ],
+        "cuandoPreferir": "Coadyuvante, síntomas leves, intolerancia AINEs"
+      },
+      "prevencion": [
+        "Peso saludable",
+        "Vitamina D",
+        "Omega-3"
+      ],
+      "alertasFarmaceuticas": [
+        "MTX: suplementar folato",
+        "No AINEs con MTX sin supervisión"
+      ],
+      "cuandoConsultar": [
+        "Deformidad articular",
+        "Uveítis",
+        "Fatiga extrema"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "asma_alergica",
+      "nombre": "Asma Alérgica",
+      "definicion": "Enfermedad inflamatoria crónica de vía aérea con broncoespasmo desencadenado por alérgenos.",
+      "causas": [
+        "Atopia",
+        "Alérgenos (ácaros, polen)",
+        "Infecciones",
+        "Estrés"
+      ],
+      "sintomas": [
+        "Disnea",
+        "Sibilancias",
+        "Tos nocturna",
+        "Opresión torácica"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Corticoides inhalados",
+          "Beta-2 agonistas",
+          "Antileucotrienos"
+        ],
+        "mecanismo": "Antiinflamatorio, broncodilatador.",
+        "efectosSecundarios": [
+          "Candidiasis oral",
+          "Temblores"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "grindelia",
+          "regaliz",
+          "pino_maritimo_aceite"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "omega_3",
+          "magnesio_glicinato",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "tuberculinum",
+          "natrum_sulphuricum",
+          "arsenicum_album"
+        ],
+        "aceites": [
+          "eucalipto",
+          "ravintsara",
+          "pino_silvestre"
+        ],
+        "cuandoPreferir": "Coadyuvante, prevención, asma leve"
+      },
+      "prevencion": [
+        "Evitar alérgenos",
+        "Vitamina D",
+        "Probióticos"
+      ],
+      "alertasFarmaceuticas": [
+        "No suspender corticoides inhalados",
+        "Beta-2: hipopotasemia"
+      ],
+      "cuandoConsultar": [
+        "Crisis asmática",
+        "No responde a salbutamol",
+        "Cianosis"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "cancer_prevencion",
+      "nombre": "Prevención Oncológica",
+      "definicion": "Estrategias nutricionales y suplementarias para reducción de riesgo oncológico.",
+      "causas": [
+        "Dieta pobre",
+        "Sedentarismo",
+        "Tabaco",
+        "Alcohol",
+        "Obesidad"
+      ],
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ],
+      "sintomas": [],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Quimioprevención selectiva (tamoxifeno, aspirina)"
+        ],
+        "mecanismo": "No aplica",
+        "efectosSecundarios": []
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "te_verde",
+          "curcuma",
+          "granada",
+          "reishi"
+        ],
+        "suplementos": [
+          "vitamina_d3_k2",
+          "omega_3",
+          "selenio",
+          "resveratrol"
+        ],
+        "homeopatia": [],
+        "aceites": [],
+        "cuandoPreferir": "Prevención, coadyuvante post-tratamiento"
+      },
+      "prevencion": [
+        "Dieta mediterránea",
+        "Ejercicio",
+        "Vit D",
+        "No fumar"
+      ],
+      "alertasFarmaceuticas": [
+        "Antioxidantes durante quimio: consultar oncólogo"
+      ],
+      "cuandoConsultar": [
+        "Síntomas B",
+        "Masa palpable",
+        "Sangrado anormal"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "diabetes_tipo2",
+      "nombre": "Diabetes Tipo 2",
+      "definicion": "Hiperglucemia crónica por resistencia a insulina y déficit relativo secretor.",
+      "causas": [
+        "Obesidad",
+        "Sedentarismo",
+        "Genética",
+        "Dieta ultraprocesada"
+      ],
+      "sintomas": [
+        "Poliuria",
+        "Polidipsia",
+        "Polifagia",
+        "Fatiga",
+        "Visión borrosa"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Metformina",
+          "SGLT2 (empagliflozina)",
+          "GLP-1 (semaglutida)"
+        ],
+        "mecanismo": "Metformina: reduce gluconeogénesis. SGLT2: glucosuria. GLP-1: incretina.",
+        "efectosSecundarios": [
+          "Metformina: B12, GI",
+          "SGLT2: cetoacidosis",
+          "GLP-1: náusea"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "canela",
+          "gymnema",
+          "berberina",
+          "nopal",
+          "fenogreco"
+        ],
+        "suplementos": [
+          "cromo",
+          "magnesio_glicinato",
+          "alfa_lipoico",
+          "vitamina_d3_k2"
+        ],
+        "homeopatia": [
+          "syzygium",
+          "uranium_nitricum"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Prediabetes, coadyuvante, intolerancia metformina"
+      },
+      "prevencion": [
+        "Dieta baja IG",
+        "Ejercicio",
+        "Peso saludable",
+        "Sueño"
+      ],
+      "alertasFarmaceuticas": [
+        "Metformina: suplementar B12",
+        "SGLT2:hidratación",
+        "Hipoglucemia con sulfonilureas"
+      ],
+      "cuandoConsultar": [
+        "Hiperglucemia >300mg/dl",
+        "Cetoacidosis",
+        "Hipoglucemia severa"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "neuropatia_periferica",
+      "nombre": "Neuropatía Periférica",
+      "definicion": "Lesión de nervios periféricos con dolor, parestesias y pérdida sensitiva, frecuentemente diabética.",
+      "causas": [
+        "Diabetes",
+        "Déficit B12",
+        "Alcohol",
+        "Quimioterapia",
+        "Tóxicos"
+      ],
+      "sintomas": [
+        "Parestesias",
+        "Dolor urente",
+        "Hipoestesia",
+        "Calambres",
+        "Caídas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Gabapentina",
+          "Pregabalina",
+          "Duloxetina"
+        ],
+        "mecanismo": "Modulan canales calcio, neurotransmisores.",
+        "efectosSecundarios": [
+          "Sedación",
+          "Mareo",
+          "Edema"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "hiperico",
+          "cayena",
+          "ginkgo"
+        ],
+        "suplementos": [
+          "alfa_lipoico",
+          "metilcobalamina",
+          "benfotiamina",
+          "acetil_l_carnitina"
+        ],
+        "homeopatia": [
+          "hypericum",
+          "magnesia_phosphorica",
+          "phosphorus"
+        ],
+        "aceites": [
+          "lavanda",
+          "menta",
+          "romero_verbenona_aceite"
+        ],
+        "cuandoPreferir": "Dolor leve-moderado, coadyuvante, intolerancia gabapentinoides"
+      },
+      "prevencion": [
+        "Control glucemia",
+        "B12",
+        "No alcohol"
+      ],
+      "alertasFarmaceuticas": [
+        "Gabapentinoides: riesgo caídas ancianos"
+      ],
+      "cuandoConsultar": [
+        "Úlcera pie diabético",
+        "Dolor severo",
+        "Pérdida motora"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "cancer_mama_prevencion",
+      "nombre": "Prevención Cáncer de Mama",
+      "definicion": "Estrategias para reducir riesgo y recurrencia de cáncer mamario hormono-dependiente.",
+      "causas": [
+        "Estrógenos",
+        "Genética BRCA",
+        "Obesidad",
+        "Alcohol",
+        "Nullíparas"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "inmune"
+      ],
+      "sintomas": [],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Tamoxifeno",
+          "Raloxifeno (quimioprevención)"
+        ],
+        "mecanismo": "SERM: antagoniza estrógeno en mama.",
+        "efectosSecundarios": [
+          "Sofocos",
+          "Tromboembolismo"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "trebol_rojo",
+          "indole",
+          "granada"
+        ],
+        "suplementos": [
+          "dim",
+          "i3c",
+          "omega_3",
+          "vitamina_d3_k2"
+        ],
+        "homeopatia": [],
+        "aceites": [],
+        "cuandoPreferir": "Prevención, intolerancia tamoxifeno, síndrome post-tratamiento"
+      },
+      "prevencion": [
+        "Peso saludable",
+        "Ejercicio",
+        "Alcohol bajo",
+        "Lactancia"
+      ],
+      "alertasFarmaceuticas": [
+        "Isoflavonas: controversial en ER+",
+        "Consultar oncólogo"
+      ],
+      "cuandoConsultar": [
+        "Tumor palpable",
+        "Secreción pezón",
+        "Cambios piel"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "osteopenia",
+      "nombre": "Osteopenia",
+      "definicion": "Reducción de densidad mineral ósea (T-score -1 a -2.5) sin criterios de osteoporosis.",
+      "causas": [
+        "Menopausia",
+        "Sedentarismo",
+        "Déficit Ca/D",
+        "Corticoides",
+        "Tabaco"
+      ],
+      "sintomas": [
+        "Asintomática",
+        "Dolor ocasional",
+        "Fractura ante mínimo trauma"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Ca+D",
+          "Bisfosfonatos en casos seleccionados"
+        ],
+        "mecanismo": "Supresión osteoclastos.",
+        "efectosSecundarios": [
+          "GI",
+          "Osteonecrosis mandíbula (raros)"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "trebol_rojo",
+          "dong_quai"
+        ],
+        "suplementos": [
+          "calcio_microcristalino",
+          "vitamina_d3_k2",
+          "magnesio_glicinato",
+          "silicio_ortosilicico",
+          "boro"
+        ],
+        "homeopatia": [
+          "calcarea_phosphorica",
+          "symphytum"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Osteopenia, prevención, intolerancia bisfosfonatos"
+      },
+      "prevencion": [
+        "Ejercicio con carga",
+        "Ca+D+K2",
+        "No fumar",
+        "Vit D óptima"
+      ],
+      "alertasFarmaceuticas": [
+        "Bisfosfonatos: tomar con agua, 30min upright",
+        "Ca: separar de levotiroxina"
+      ],
+      "cuandoConsultar": [
+        "Fractura",
+        "Dolor óseo",
+        "Caída con trauma"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "cardiopatia_isquemica",
+      "nombre": "Cardiopatía Isquémica",
+      "definicion": "Enfermedad coronaria por aterosclerosis con riesgo de angina e infarto.",
+      "causas": [
+        "Dislipemia",
+        "HTA",
+        "Tabaco",
+        "Diabetes",
+        "Obesidad"
+      ],
+      "sintomas": [
+        "Dolor torácico",
+        "Disnea",
+        "Palpitaciones",
+        "Sudoración",
+        " Irradiación brazo izquierdo"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Estatinas",
+          "Aspirina",
+          "Beta-bloqueantes",
+          "IECA"
+        ],
+        "mecanismo": "Reducen LDL, antiagregación, reducen trabajo cardiaco.",
+        "efectosSecundarios": [
+          "Estatinas: miopatía, diabetes",
+          "Aspirina: sangrado"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "ajo",
+          "danshen",
+          "espinos_blanco",
+          "granada"
+        ],
+        "suplementos": [
+          "omega3_phospholipid",
+          "coq10",
+          "magnesio_glicinato",
+          "vitamina_d3_k2",
+          "resveratrol"
+        ],
+        "homeopatia": [
+          "crataegus",
+          "digitalis"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Coadyuvante, prevención secundaria, intolerancia estatinas"
+      },
+      "prevencion": [
+        "Dieta mediterránea",
+        "Ejercicio",
+        "No fumar",
+        "Peso saludable"
+      ],
+      "alertasFarmaceuticas": [
+        "Estatinas: avisar miopatía",
+        "No suspender aspirina abruptamente",
+        "CoQ10 se reduce con estatinas"
+      ],
+      "cuandoConsultar": [
+        "Dolor torácico intenso",
+        "Disnea de reposo",
+        "Síncope"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "depresion_resistente",
+      "nombre": "Depresión Resistente",
+      "definicion": "Depresión mayor que no responde a ≥2 tratamientos antidepresivos adecuados.",
+      "causas": [
+        "Genética",
+        "Inflamación",
+        "Disbiosis",
+        "Déficit nutricional",
+        "Trauma"
+      ],
+      "sintomas": [
+        "Anhedonia",
+        "Tristeza",
+        "Fatiga",
+        "Insomnio",
+        "Ideación suicida"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "ISRS+atípico",
+          "Ketamina intranasal",
+          "ECT"
+        ],
+        "mecanismo": "Modulación glutamatérica, serotonérgica.",
+        "efectosSecundarios": [
+          "Ketamina: disociación",
+          "ECT: memoria"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "hiperico",
+          "saffron_crocin",
+          "rodiola",
+          "ashwagandha"
+        ],
+        "suplementos": [
+          "metilfolato",
+          "metilcobalamina",
+          "omega3_phospholipid",
+          "l_triptofano",
+          "vitamina_d3_k2"
+        ],
+        "homeopatia": [
+          "aurum",
+          "natrum_muriaticum",
+          "ignatia"
+        ],
+        "aceites": [
+          "lavanda",
+          "bergamota",
+          "incienso"
+        ],
+        "cuandoPreferir": "Coadyuvante, déficit nutricional, intolerancia ISRS"
+      },
+      "prevencion": [
+        "Sueño",
+        "Ejercicio",
+        "Omega-3",
+        "Vit D",
+        "Soporte social"
+      ],
+      "alertasFarmaceuticas": [
+        "Hipérico: muchas interacciones (ISRS, ACO)",
+        "5-HTP: riesgo síndrome serotoninérgico"
+      ],
+      "cuandoConsultar": [
+        "Ideación suicida",
+        "Empeoramiento",
+        "Síntomas psicóticos"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "enfermedad_renal_cronica",
+      "nombre": "Enfermedad Renal Crónica",
+      "definicion": "Reducción persistente de FG (<60 ml/min/1.73m²) o marcadores de daño renal ≥3 meses.",
+      "causas": [
+        "Diabetes",
+        "HTA",
+        "Glomerulonefritis",
+        "AINEs crónicos",
+        "Poliquistosis"
+      ],
+      "sintomas": [
+        "Fatiga",
+        "Edema",
+        "HTA",
+        "Anemia",
+        "Prurito"
+      ],
+      "sistemas": [
+        "renal",
+        "cardiovascular"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "IECA/ARA-II",
+          "SGLT2",
+          "Eritropoyetina",
+          "Quelación fósforo"
+        ],
+        "mecanismo": "Reducción proteinuria, glucosuria, anemia correction.",
+        "efectosSecundarios": [
+          "Hiperpotasemia",
+          "Anemia ferropénica"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "Orthosiphon",
+          "uva_ursi",
+          "abedul"
+        ],
+        "suplementos": [
+          "hierro_bisglicinato",
+          "metilcobalamina",
+          "calcio_microcristalino"
+        ],
+        "homeopatia": [
+          "solidago",
+          "berberis"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Coadyuvante sintomático, evitar nefrotóxicos"
+      },
+      "prevencion": [
+        "Control HTA/glucosa",
+        "Hidratación",
+        "Evitar AINEs"
+      ],
+      "alertasFarmaceuticas": [
+        "No AINEs",
+        "Evitar potasio alto",
+        "Ajustar dosis por FG"
+      ],
+      "cuandoConsultar": [
+        "Edema importante",
+        "Oliguria",
+        "Hiperpotasemia"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "cirrosis_hepatica",
+      "nombre": "Cirrosis Hepática",
+      "definicion": "Fibrosis hepática avanzada con hipertensión portal y disfunción hepatocelular.",
+      "causas": [
+        "Alcohol",
+        "VHB/VHC",
+        "NAFLD",
+        "Autoinmune",
+        "Hemocromatosis"
+      ],
+      "sintomas": [
+        "Asténia",
+        "Ictericia",
+        "Ascitis",
+        "Teleangiectasias",
+        "Encefalopatía"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Tratamiento etiológico",
+          "Diuréticos",
+          "Lactulosa"
+        ],
+        "mecanismo": "Reducción portal, encefalopatía.",
+        "efectosSecundarios": [
+          "Diuréticos: hipoK",
+          "Lactulosa: diarrea"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "cardo_mariano",
+          "picrorhiza_kurroa",
+          "schisandra",
+          "reishi"
+        ],
+        "suplementos": [
+          "hierro_bisglicinato",
+          "zinc_picolinato",
+          "vitamina_d3_k2",
+          "bcaa"
+        ],
+        "homeopatia": [
+          "chelidonium",
+          "lycopodium",
+          "phosphorus"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Coadyuvante, NAFLD初期, post-tratamiento etiológico"
+      },
+      "prevencion": [
+        "No alcohol",
+        "Vacunación VHB",
+        "Peso saludable"
+      ],
+      "alertasFarmaceuticas": [
+        "No paracetamol >2g/día",
+        "Evitar sedantes",
+        "Anticoagulación cuidadosa"
+      ],
+      "cuandoConsultar": [
+        "Hemorragia digestiva",
+        "Ascitis tensa",
+        "Encefalopatía"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "migrana_cronica",
+      "nombre": "Migraña Crónica",
+      "definicion": "Cefalea migrañosa ≥15 días/mes durante >3 meses, con medicación de sobreuso frecuente.",
+      "causas": [
+        "Genética",
+        "Disfunción trigeminovascular",
+        "Sensibilización central",
+        "Cafeína"
+      ],
+      "sintomas": [
+        "Cefalea unilateral pulsátil",
+        "Fotofobia",
+        "Náusea",
+        "Aura",
+        "Alodinia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Topiramato",
+          "Betabloqueantes",
+          "Anti-CGRP (erenumab)"
+        ],
+        "mecanismo": "Modulación canales Na, CGRP antagonismo.",
+        "efectosSecundarios": [
+          "Topiramato: pérdida peso, parestesias"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "feverfew",
+          "petasites",
+          "magnolia_aceite"
+        ],
+        "suplementos": [
+          "magnesio_treonato",
+          "riboflavina",
+          "coq10",
+          "alfa_lipoico"
+        ],
+        "homeopatia": [
+          "iris_versicolor",
+          "sanguinaria",
+          "spigelia"
+        ],
+        "aceites": [
+          "lavanda",
+          "menta",
+          "valeriana_jatamansi_aceite"
+        ],
+        "cuandoPreferir": "Prevención, intolerancia topiramato, coadyuvante"
+      },
+      "prevencion": [
+        "Sueño regular",
+        "Magnesio",
+        "Riboflavina",
+        "Evitar disparadores"
+      ],
+      "alertasFarmaceuticas": [
+        "Triptanes: no en cardiopatía",
+        "Evitar opioides crónicos"
+      ],
+      "cuandoConsultar": [
+        "Cefalea explosiva",
+        "Focalidad neurológica",
+        "Fiebre"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "fibromialgia_dolor",
+      "nombre": "Fibromialgia (Dolor Crónico)",
+      "definicion": "Síndrome de dolor musculoesquelético crónico generalizado con hipersensibilidad central.",
+      "causas": [
+        "Sensibilización central",
+        "Genética",
+        "Trauma",
+        "Disbiosis",
+        "Disfunción mitocondrial"
+      ],
+      "sintomas": [
+        "Dolor generalizado",
+        "Fatiga",
+        "Insomnio",
+        "Niebla mental",
+        "Puntos gatillo"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Duloxetina",
+          "Pregabalina",
+          "Milnacipran"
+        ],
+        "mecanismo": "Modulación noradrenalina/serotonina, canales calcio.",
+        "efectosSecundarios": [
+          "Sedación",
+          "Náusea"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "hiperico",
+          "ashwagandha",
+          "rodiola",
+          "cayena"
+        ],
+        "suplementos": [
+          "magnesio_glicinato",
+          "magnesio_treonato",
+          "vitamina_d3_k2",
+          "coq10",
+          "d_ribose"
+        ],
+        "homeopatia": [
+          "rhus_tox",
+          "causticum",
+          "phytolacca"
+        ],
+        "aceites": [
+          "lavanda",
+          "romero_verbenona_aceite",
+          "incienso"
+        ],
+        "cuandoPreferir": "Dolor leve-moderado, fatiga, coadyuvante"
+      },
+      "prevencion": [
+        "Ejercicio suave",
+        "Sueño",
+        "Mindfulness",
+        "Magnesio"
+      ],
+      "alertasFarmaceuticas": [
+        "Opioides: empeoran fibromialgia",
+        "Evitar sedantes crónicos"
+      ],
+      "cuandoConsultar": [
+        "Empeoramiento",
+        "Depresión severa",
+        "Ideación"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "obesidad_sarcopenica",
+      "nombre": "Obesidad Sarcopénica",
+      "definicion": "Combinación de obesidad y pérdida de masa/fuerza muscular con riesgo metabólico aumentado.",
+      "causas": [
+        "Sedentarismo",
+        "Envejecimiento",
+        "Inflamación",
+        "Resistencia insulina"
+      ],
+      "sintomas": [
+        "Fatiga",
+        "Debilidad",
+        "Sarcopenia",
+        "Adiposidad visceral",
+        "Resistencia"
+      ],
+      "sistemas": [
+        "metabolico",
+        "musculoesqueletico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "GLP-1 (semaglutida)",
+          "Testosterona (en déficit)"
+        ],
+        "mecanismo": "Reducción apetito, anabolismo.",
+        "efectosSecundarios": [
+          "Náusea",
+          "Pérdida músculo con GLP-1"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "te_verde",
+          "te_rojo",
+          "guarana"
+        ],
+        "suplementos": [
+          "creatina",
+          "bcaa",
+          "leucina",
+          "vitamina_d3_k2",
+          "omega_3"
+        ],
+        "homeopatia": [],
+        "aceites": [],
+        "cuandoPreferir": "Coadyuvante, resistencia a GLP-1, preferencia natural"
+      },
+      "prevencion": [
+        "Resistencia regular",
+        "Proteína 1.2g/kg",
+        "Vit D"
+      ],
+      "alertasFarmaceuticas": [
+        "GLP-1: pérdida muscular (proteger con ejercicio)"
+      ],
+      "cuandoConsultar": [
+        "Sarcopenia severa",
+        "Caídas",
+        "Malnutrición"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "sindrome_fatiga_cronica",
+      "nombre": "Síndrome de Fatiga Crónica",
+      "definicion": "Fatiga persistente >6 meses no explicable, con empeoramiento post-esfuerzo y sueño no reparador.",
+      "causas": [
+        "Viral",
+        "Disfunción mitocondrial",
+        "Disautonomía",
+        "Disbiosis",
+        "Trauma"
+      ],
+      "sintomas": [
+        "Fatiga severa",
+        "PEM",
+        "Niebla mental",
+        "Sueño no reparador",
+        "Disautonomía"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "No farmacológico (GET, CBT adaptado)",
+          "Modafinilo (cauteloso)"
+        ],
+        "mecanismo": "No específico.",
+        "efectosSecundarios": [
+          "Modafinilo: insomnio"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "rhodiola",
+          "ashwagandha",
+          "ginseng_panax_red",
+          "ganoderma_lucidum"
+        ],
+        "suplementos": [
+          "coq10",
+          "nmn_nicotinamide",
+          "d_ribose",
+          "magnesio_glicinato",
+          "vitamina_d3_k2"
+        ],
+        "homeopatia": [
+          "picricum_acidum",
+          "gelsemium",
+          "kali_phosphoricum"
+        ],
+        "aceites": [
+          "lavanda",
+          "romero_verbenona_aceite"
+        ],
+        "cuandoPreferir": "Coadyuvante, soporte mitocondrial, intolerancia modafinilo"
+      },
+      "prevencion": [
+        "Pacing",
+        "Sueño",
+        "Ejercicio dosificado"
+      ],
+      "alertasFarmaceuticas": [
+        "Evitar ejercicio intenso (PEM)"
+      ],
+      "cuandoConsultar": [
+        "Ortostatismo severo",
+        "Depresión",
+        "Empeoramiento"
+      ],
+      "evidencia": "C"
+    },
+    {
+      "id": "enfermedad_periodontal",
+      "nombre": "Enfermedad Periodontal",
+      "definicion": "Inflamación crónica de soporte dental (gingivitis/periodontitis) con pérdida ósea.",
+      "causas": [
+        "Biofilm bacteriano",
+        "Tabaco",
+        "Diabetes",
+        "Déficit vit C",
+        "Genética"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "sintomas": [
+        "Sangrado gingival",
+        "Movilidad dental",
+        "Halitosis",
+        "Recesión"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Raspaje y alisado",
+          "Clorhexidina",
+          "Antibiótico selectivo"
+        ],
+        "mecanismo": "Mecánico, antimicrobiano.",
+        "efectosSecundarios": [
+          "Clorhexidina: tinción, disgeusia"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "te_verde",
+          "propoleo",
+          "granada"
+        ],
+        "suplementos": [
+          "vitamina_c",
+          "zinc_picolinato",
+          "omega_3",
+          "vitamina_d3_k2",
+          "probioticos"
+        ],
+        "homeopatia": [
+          "mercurius",
+          "hepar_sulphuris",
+          "silicea"
+        ],
+        "aceites": [
+          "manuka_leptospermum_aceite",
+          "tea_tree",
+          "clavo"
+        ],
+        "cuandoPreferir": "Prevención, coadyuvante, halitosis"
+      },
+      "prevencion": [
+        "Higiene oral",
+        "No fumar",
+        "Vit C",
+        "Control glucemia"
+      ],
+      "alertasFarmaceuticas": [
+        "Clorhexidina: uso max 2 semanas"
+      ],
+      "cuandoConsultar": [
+        "Absceso",
+        "Movilidad severa",
+        "Dolor intenso"
+      ],
+      "evidencia": "B"
+    },
+    {
+      "id": "dermatitis_atopica",
+      "nombre": "Dermatitis Atópica",
+      "definicion": "Enfermedad inflamatoria crónica pruriginosa de piel en pacientes atópicos.",
+      "causas": [
+        "Atopia",
+        "Disfunción barrera (filagrina)",
+        "Disbiosis",
+        "Alérgenos"
+      ],
+      "sintomas": [
+        "Prurito",
+        "Eritema",
+        "Vesículas",
+        "Liquenificación",
+        "Xerosis"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Corticoides tópicos",
+          "Inhibidores calcineurina",
+          "Dupilumab"
+        ],
+        "mecanismo": "Antiinflamatorio, inmunomodulador IL-4/IL-13.",
+        "efectosSecundarios": [
+          "Corticoides: atrofia",
+          "Calcineurina: escozor"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "manzanilla",
+          "centella_asiatica_ext",
+          "aloe_vera",
+          "regaliz"
+        ],
+        "suplementos": [
+          "omega3_phospholipid",
+          "probioticos",
+          "vitamina_d3_k2",
+          "zinc_picolinato"
+        ],
+        "homeopatia": [
+          "sulphur",
+          "graphites",
+          "psorinum"
+        ],
+        "aceites": [
+          "lavanda",
+          "manzanilla_romana",
+          "sea_buckthorn",
+          "incienso"
+        ],
+        "cuandoPreferir": "Leve-moderada, coadyuvante, mantenimiento"
+      },
+      "prevencion": [
+        "Emolientes",
+        "Probióticos perinatales",
+        "Evitar jabones agresivos"
+      ],
+      "alertasFarmaceuticas": [
+        "Corticoides potentes: no cara/cródito crónico"
+      ],
+      "cuandoConsultar": [
+        "Sobreinfección",
+        "Eritrodermia",
+        "Impacto sueño"
+      ],
+      "evidencia": "A"
+    },
+    {
+      "id": "enfermedad_tiroidea_autoinmune",
+      "nombre": "Enfermedad Tiroidea Autoinmune (Hashimoto/Graves)",
+      "definicion": "Tiroiditis autoinmune: Hashimoto (hipotiroidismo) o Graves (hipertiroidismo).",
+      "causas": [
+        "Autoinmune",
+        "Genética",
+        "Disbiosis",
+        "Yodo exceso/déficit",
+        "Selenio"
+      ],
+      "sintomas": [
+        "Fatiga/palpitaciones",
+        "Peso±",
+        "Intolerancia frío/calor",
+        "Bocio",
+        "Piel±"
+      ],
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "tratamientoAlopatico": {
+        "primeraLinea": [
+          "Levotiroxina",
+          "Antitiroideos (metimazol)",
+          "Radioyodo"
+        ],
+        "mecanismo": "Reemplazo, bloqueo síntesis, ablativo.",
+        "efectosSecundarios": [
+          "Hipertiroidismo iatrogénico",
+          "Hepatotoxicidad"
+        ]
+      },
+      "tratamientoNatural": {
+        "fitoterapia": [
+          "prunella_vulgaris",
+          "guggulu",
+          "ashwagandha"
+        ],
+        "suplementos": [
+          "selenio",
+          "zinc_picolinato",
+          "yoduro_potasio_lugol",
+          "vitamina_d3_k2"
+        ],
+        "homeopatia": [
+          "thyroidinum",
+          "calcarea_iodata",
+          "spongia"
+        ],
+        "aceites": [],
+        "cuandoPreferir": "Coadyuvante, subclínico, soporte inmunológico"
+      },
+      "prevencion": [
+        "Selenio",
+        "Vit D",
+        "Dieta antiinflamatoria"
+      ],
+      "alertasFarmaceuticas": [
+        "Levotiroxina: separar Ca/Fe/hierro 4h",
+        "Ashwagandha: puede estimular tiroides"
+      ],
+      "cuandoConsultar": [
+        "Bocio creciente",
+        "Crisis tirotóxica",
+        "Hipotiroidismo severo"
+      ],
+      "evidencia": "B"
     }
   ]
 }

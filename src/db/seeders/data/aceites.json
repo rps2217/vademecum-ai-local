@@ -3536,6 +3536,1083 @@
         "fechaCreacion": "2026-08-08",
         "fuente": "Ethnobotanical studies + PubMed (Bursera graveolens)"
       }
+    },
+    {
+      "id": "magnolia_aceite",
+      "nombre": "Aceite Esencial de Magnolia",
+      "nombresAlternativos": [
+        "Magnolia EO",
+        "Magnolia officinalis oil",
+        "Hou Po EO"
+      ],
+      "nombreCientifico": "Magnolia officinalis",
+      "familia": "Magnoliaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estres",
+        "tos"
+      ],
+      "descripcion": "AE con honokiol y magnolol, compuestos con acción ansiolítica vía GABA-A.",
+      "mecanismoAccion": "Honokiol: modulador alostérico positivo GABA-A. Antioxidante y neuroprotector.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "corteza",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Honokiol / Magnolol",
+      "dilucionRecomendada": "1-2% topico, difusion",
+      "precaucionesTopico": [
+        "Testear en piel sensible"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Bergamota"
+      ],
+      "advertencias": [
+        "No interno sin supervision",
+        "Embarazo: precaución"
+      ],
+      "tags": [
+        "ansiolitico",
+        "honokiol",
+        "calmante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Prog Neuropsychopharmacol Biol Psychiatry 2013"
+      }
+    },
+    {
+      "id": "neroli_bigarade",
+      "nombre": "Aceite Esencial de Neroli (Bigarade)",
+      "nombresAlternativos": [
+        "Neroli bigarade",
+        "Bitter orange blossom",
+        "Azahar premium"
+      ],
+      "nombreCientifico": "Citrus aurantium var. amara",
+      "familia": "Rutaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "piel",
+        "estres"
+      ],
+      "descripcion": "AE de flor de azahar (naranjo amargo) con linalool y acetato de linalilo, ansiolítico clásico.",
+      "mecanismoAccion": "Linalool modula GABA-A y receptores opioides. Reduce cortisol salivar.",
+      "nivelEvidencia": "A",
+      "parteDestilada": "flores",
+      "metodoExtraccion": [
+        "Destilacion vapor (alto costo)"
+      ],
+      "quimiotipo": "Linalool / Acetato Linalilo",
+      "dilucionRecomendada": "1-3% piel, difusion",
+      "precaucionesTopico": [
+        "Baja fotosensibilidad"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico",
+        "perfume"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Bergamota",
+        "Rosa"
+      ],
+      "advertencias": [
+        "Caro, riesgo adulteracion"
+      ],
+      "tags": [
+        "ansiolitico",
+        "azahar",
+        "insomnio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2013"
+      }
+    },
+    {
+      "id": "frankincense_boswellia_serrata",
+      "nombre": "Aceite de Incienso (Boswellia serrata)",
+      "nombresAlternativos": [
+        "Indian frankincense EO",
+        "Boswellia serrata oil",
+        "Sallai guggul EO"
+      ],
+      "nombreCientifico": "Boswellia serrata",
+      "familia": "Burseraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "musculoesqueletico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "articular",
+        "respiratorio",
+        "ansiedad",
+        "inflamacion"
+      ],
+      "descripcion": "AE de resina india con alfa-pineno y incensole, antiinflamatorio y ansiolítico.",
+      "mecanismoAccion": "Acido boswélico (vía resina): inhibe 5-LOX. Incensole: ansiolítico via TRPV3.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "resina (olíbano)",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Alfa-pineno / Incensole",
+      "dilucionRecomendada": "2-5% topico, difusion",
+      "precaucionesTopico": [
+        "Diluir bien"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Mirra",
+        "Roma"
+      ],
+      "advertencias": [
+        "Dermatitis rara"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "respiratorio",
+        "ansiedad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Phytomedicine 2019"
+      }
+    },
+    {
+      "id": "houttuynia_aceite",
+      "nombre": "Aceite Esencial de Houttuynia",
+      "nombresAlternativos": [
+        "Houttuynia cordata EO",
+        "Yu Xing Cao oil",
+        "Fish mint EO"
+      ],
+      "nombreCientifico": "Houttuynia cordata",
+      "familia": "Saururaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "respiratorio",
+        "sinusitis",
+        "inmunidad"
+      ],
+      "descripcion": "AE de planta china con metil-nonal-cetona con acción antiviral y antibacteriana respiratoria.",
+      "mecanismoAccion": "Decanil-acetona y mirsenol: antiviral respiratorio. Inhibe influenza in vitro.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "hoja",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Metil-nonal-cetona",
+      "dilucionRecomendada": "0.5-1% (potente)",
+      "precaucionesTopico": [
+        "Irritante, diluir bien"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion"
+      ],
+      "compatibilidad": [
+        "Eucalipto",
+        "Ravintsara"
+      ],
+      "advertencias": [
+        "Solo difusion/inhalacion",
+        "No topico sin diluir"
+      ],
+      "tags": [
+        "antiviral",
+        "respiratorio",
+        "sinusitis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Molecules 2022"
+      }
+    },
+    {
+      "id": "raiz_angelica_aceite",
+      "nombre": "Aceite Esencial de Angélica",
+      "nombresAlternativos": [
+        "Angelica archangelica EO",
+        "Angelica root oil",
+        "Garden angelica"
+      ],
+      "nombreCientifico": "Angelica archangelica",
+      "familia": "Apiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "ansiedad",
+        "fatiga"
+      ],
+      "descripcion": "AE de raíz con beta-felandreno y cumarinas, tónico digestivo y nervioso.",
+      "mecanismoAccion": "Cumarinas: antiespasmódico digestivo. Beta-felandreno: carminativo.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "raiz",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Beta-felandreno / Alfa-pineno",
+      "dilucionRecomendada": "1-2% piel",
+      "precaucionesTopico": [
+        "Fotosensible: evitar sol 12h"
+      ],
+      "metodosUso": [
+        "topico diluido",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Angélica",
+        "Cítricos"
+      ],
+      "advertencias": [
+        "Fotosensibilidad notable",
+        "Embarazo: evitar"
+      ],
+      "tags": [
+        "digestivo",
+        "tonico",
+        "fotosensible"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2014"
+      }
+    },
+    {
+      "id": "abrojo_aceite",
+      "nombre": "Aceite Esencial de Espino Amarillo (Fruto)",
+      "nombresAlternativos": [
+        "Sea buckthorn fruit EO",
+        "Hippophae rhamnoides fruit oil"
+      ],
+      "nombreCientifico": "Hippophae rhamnoides",
+      "familia": "Elaeagnaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "piel",
+        "cicatrizacion",
+        "inmunidad"
+      ],
+      "descripcion": "Extracto lipídico de fruto de espino amarillo con carotenoides y omega-7.",
+      "mecanismoAccion": "Palmitoleico (omega-7): mucosas. Carotenoides: antioxidante y regenerante.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "fruto (prensado, no destilado)",
+      "metodoExtraccion": [
+        "Prensado en frio CO2"
+      ],
+      "quimiotipo": "Palmitoleico / Carotenoides",
+      "dilucionRecomendada": "5-20% en aceite carrier",
+      "precaucionesTopico": [
+        "Tinte naranja"
+      ],
+      "metodosUso": [
+        "topico",
+        "oral"
+      ],
+      "compatibilidad": [
+        "Rosa mosqueta",
+        "Jojoba"
+      ],
+      "advertencias": [
+        "Mancha ropa (naranja)"
+      ],
+      "tags": [
+        "regenerante",
+        "mucosas",
+        "omega7"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Food Chem Toxicol 2017"
+      }
+    },
+    {
+      "id": "albahaca_sagrada_aceite",
+      "nombre": "Aceite Esencial de Albahaca Santa",
+      "nombresAlternativos": [
+        "Tulsi EO",
+        "Holy basil oil",
+        "Ocimum sanctum oil"
+      ],
+      "nombreCientifico": "Ocimum sanctum",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "estres",
+        "ansiedad",
+        "respiratorio",
+        "acne"
+      ],
+      "descripcion": "AE de Tulsi (albahaca sagrada) con eugenol, adaptógeno y antimicrobiano.",
+      "mecanismoAccion": "Eugenol: antioxidante, modula cortisol. Adaptógeno HPA. Antimicrobiano amplio.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "hojas",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Eugenol",
+      "dilucionRecomendada": "1-2% topico",
+      "precaucionesTopico": [
+        "Irritante, diluir bien"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico diluido"
+      ],
+      "compatibilidad": [
+        "Bergamota",
+        "Rosa"
+      ],
+      "advertencias": [
+        "No en embarazo (eugenol)"
+      ],
+      "tags": [
+        "adaptogeno",
+        "antimicrobiano",
+        "tulsi"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ayurveda Integr Med 2014"
+      }
+    },
+    {
+      "id": "melissa_true_aceite",
+      "nombre": "Aceite Esencial de Melisa Verdadera",
+      "nombresAlternativos": [
+        "True melissa EO",
+        "Melissa officinalis premium",
+        "Melisa pura"
+      ],
+      "nombreCientifico": "Melissa officinalis",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "herpes_labial",
+        "estres"
+      ],
+      "descripcion": "AE puro de melisa (caro, frecuentemente adulterado) con acción antiviral HSV.",
+      "mecanismoAccion": "Citrales (geranial, neral): antiviral HSV-1 in vitro. Ansiolítico via GABA.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "hojas",
+      "metodoExtraccion": [
+        "Destilacion vapor (bajo rendimiento)"
+      ],
+      "quimiotipo": "Geranial / Neral (citral)",
+      "dilucionRecomendada": "1% topico",
+      "precaucionesTopico": [
+        "Irritante, diluir bien"
+      ],
+      "metodosUso": [
+        "topico diluido",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Bergamota"
+      ],
+      "advertencias": [
+        "Caro, adulteracion frecuente"
+      ],
+      "tags": [
+        "antiviral",
+        "herpes",
+        "ansiolitico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Phytomedicine 2004"
+      }
+    },
+    {
+      "id": "pino_maritimo_aceite",
+      "nombre": "Aceite Esencial de Pino Marítimo",
+      "nombresAlternativos": [
+        "Maritime pine EO",
+        "Pinus pinaster oil",
+        "Pycnogenol source"
+      ],
+      "nombreCientifico": "Pinus pinaster",
+      "familia": "Pinaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "respiratorio",
+        "cardiovascular",
+        "insuficiencia_venosa"
+      ],
+      "descripcion": "AE de pino marítimo con alfa-pineno; corteza da Pycnogenol (antioxidante vascular).",
+      "mecanismoAccion": "Alfa-pineno: expectorante. Pycnogenol (corteza): antioxidante vascular, NO.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "agujas",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Alfa-pineno / Beta-pineno",
+      "dilucionRecomendada": "2-5% topico, difusion",
+      "precaucionesTopico": [
+        "Irritante puro"
+      ],
+      "metodosUso": [
+        "difusion",
+        "inhalacion",
+        "topico diluido"
+      ],
+      "compatibilidad": [
+        "Eucalipto",
+        "Ravintsara"
+      ],
+      "advertencias": [
+        "Evitar en asma sensible a pinenos"
+      ],
+      "tags": [
+        "respiratorio",
+        "vascular",
+        "pineno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Arch Dermatol Res 2010"
+      }
+    },
+    {
+      "id": "vetiver_haiti_aceite",
+      "nombre": "Aceite Esencial de Vetiver (Haití)",
+      "nombresAlternativos": [
+        "Vetiver Haiti",
+        "Khus oil",
+        "Vetiveria zizanioides"
+      ],
+      "nombreCientifico": "Chrysopogon zizanioides",
+      "familia": "Poaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "tdah"
+      ],
+      "descripcion": "AE raíz de vetiver con khusimol, grounding y ansiolítico, investigado en TDAH.",
+      "mecanismoAccion": "Khusimol: modula GABA-A. Reduce frecuencia mental hiperactiva.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "raices",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Khusimol",
+      "dilucionRecomendada": "1-3% topico",
+      "precaucionesTopico": [
+        "Baja irritación"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico",
+        "perfume"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Sándalo",
+        "Ylang"
+      ],
+      "advertencias": [
+        "Aroma fuerte"
+      ],
+      "tags": [
+        "grounding",
+        "ansiolitico",
+        "tdah"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Med Food 2016"
+      }
+    },
+    {
+      "id": "valeriana_jatamansi_aceite",
+      "nombre": "Aceite Esencial de Nardo (Jatamansi)",
+      "nombresAlternativos": [
+        "Spikenard EO",
+        "Nardostachys jatamansi",
+        "Jatamansi oil"
+      ],
+      "nombreCientifico": "Nardostachys jatamansi",
+      "familia": "Caprifoliaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "ansiedad",
+        "estres"
+      ],
+      "descripcion": "AE raíz del nardo bíblico con jatamansona, sedante y neuroprotector.",
+      "mecanismoAccion": "Jatamansona: sedante GABA-érgico. Antioxidante. Antidepresivo en modelos.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "raiz",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Jatamansona",
+      "dilucionRecomendada": "1-2% topico",
+      "precaucionesTopico": [
+        "Diluir"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico"
+      ],
+      "compatibilidad": [
+        "Valeriana",
+        "Lavanda"
+      ],
+      "advertencias": [
+        "Embarazo: evitar"
+      ],
+      "tags": [
+        "sedante",
+        "insomnio",
+        "neuroprotector"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Phytomedicine 2013"
+      }
+    },
+    {
+      "id": "tomillo_geraniol_aceite",
+      "nombre": "Aceite de Tomillo Quimiotipo Geraniol",
+      "nombresAlternativos": [
+        "Thyme CT geraniol EO",
+        "Thymus vulgaris CT geraniol"
+      ],
+      "nombreCientifico": "Thymus vulgaris CT geraniol",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "acne",
+        "candidiasis",
+        "infecciones"
+      ],
+      "descripcion": "Quimiotipo geraniol de tomillo, suave y seguro, antimicrobiano y antifúngico.",
+      "mecanismoAccion": "Geraniol: antifúngico (Candida), antibacteriano. Menos irritante que timol.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "sumidad florida",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Geraniol",
+      "dilucionRecomendada": "2-5% topico",
+      "precaucionesTopico": [
+        "Baja irritación vs timol"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Tea Tree"
+      ],
+      "advertencias": [
+        "Perfil seguro"
+      ],
+      "tags": [
+        "antifungico",
+        "antimicrobiano",
+        "geraniol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Lett Appl Microbiol 2019"
+      }
+    },
+    {
+      "id": "ajedrea_montana_aceite",
+      "nombre": "Aceite Esencial de Ajedrea de Montaña",
+      "nombresAlternativos": [
+        "Mountain savory EO",
+        "Satureja montana",
+        "Savory oil"
+      ],
+      "nombreCientifico": "Satureja montana",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "infecciones",
+        "dispepsia"
+      ],
+      "descripcion": "AE potente con carvacrol y timol, antimicrobiano de amplio espectro.",
+      "mecanismoAccion": "Carvacrol: disruptor membrana bacteriana. Potente vs S. aureus y E. coli.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "sumidad florida",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Carvacrol / Timol",
+      "dilucionRecomendada": "1% topico, max 5 dias",
+      "precaucionesTopico": [
+        "Irritante, diluir mucho"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico diluido"
+      ],
+      "compatibilidad": [
+        "Oregano",
+        "Tea Tree"
+      ],
+      "advertencias": [
+        "Hepatotóxico en dosis altas o prolongado",
+        "No en embarazo"
+      ],
+      "tags": [
+        "antimicrobiano",
+        "carvacrol",
+        "potente"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Med Microbiol 2018"
+      }
+    },
+    {
+      "id": "leche_eneldo_aceite",
+      "nombre": "Aceite Esencial de Eneldo",
+      "nombresAlternativos": [
+        "Dill EO",
+        "Anethum graveolens oil",
+        "Eneldo aceite"
+      ],
+      "nombreCientifico": "Anethum graveolens",
+      "familia": "Apiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "colico_lactante",
+        "gases"
+      ],
+      "descripcion": "AE de eneldo con carvona y limoneno, carminativo suave para cólicos.",
+      "mecanismoAccion": "Carvona: relaja músculo liso GI. Limoneno: carminativo.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "semillas",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Carvona / Limoneno",
+      "dilucionRecomendada": "1-2% topico",
+      "precaucionesTopico": [
+        "Diluir"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Hinojo",
+        "Comino"
+      ],
+      "advertencias": [
+        "Embarazo: precaución"
+      ],
+      "tags": [
+        "carminativo",
+        "colico",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2015"
+      }
+    },
+    {
+      "id": "cipres_azul_aceite",
+      "nombre": "Aceite Esencial de Ciprés Azul",
+      "nombresAlternativos": [
+        "Blue cypress EO",
+        "Callitris intratropica",
+        "Ciprés australiano"
+      ],
+      "nombreCientifico": "Callitris intratropica",
+      "familia": "Cupressaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "respiratorio",
+        "piel",
+        "quenes"
+      ],
+      "descripcion": "AE australiano azul (guaiazuleno) con acción antiinflamatoria y antialérgica.",
+      "mecanismoAccion": "Guaiazuleno: antiinflamatorio. Antialérgico. Color azul característico.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "madera",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Guaiazuleno",
+      "dilucionRecomendada": "2-5% topico",
+      "precaucionesTopico": [
+        "Tinte azul"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Manzanilla romana",
+        "Helicriso"
+      ],
+      "advertencias": [
+        "Mancha azul"
+      ],
+      "tags": [
+        "antiinflamatorio",
+        "azul",
+        "antialergico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Essent Oil Res 2018"
+      }
+    },
+    {
+      "id": "romero_verbenona_aceite",
+      "nombre": "Aceite de Romero Quimiotipo Verbenona",
+      "nombresAlternativos": [
+        "Rosemary CT verbenone EO",
+        "Rosmarinus officinalis CT verbenone"
+      ],
+      "nombreCientifico": "Salvia rosmarinus CT verbenona",
+      "familia": "Lamiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "dermatologico",
+        "nervioso",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "cabello",
+        "piel",
+        "cognitivo",
+        "hepatico"
+      ],
+      "descripcion": "Quimiotipo verbenona de romero, suave, ideal para piel y cabello.",
+      "mecanismoAccion": "Verbenona: regenerante epitelial, estimula folículo. Baja neurotoxicidad vs 1,8-cineol.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "sumidad florida",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Verbenona / Alfa-pineno",
+      "dilucionRecomendada": "2-5% topico",
+      "precaucionesTopico": [
+        "Baja irritación"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Lavanda",
+        "Cedro"
+      ],
+      "advertencias": [
+        "Embarazo: evitar dosis altas"
+      ],
+      "tags": [
+        "cabello",
+        "piel",
+        "verbenona"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Skinmed 2015"
+      }
+    },
+    {
+      "id": "citronela_java_aceite",
+      "nombre": "Aceite de Citronela (Java)",
+      "nombresAlternativos": [
+        "Java citronella EO",
+        "Cymbopogon winterianus",
+        "Citronela premium"
+      ],
+      "nombreCientifico": "Cymbopogon winterianus",
+      "familia": "Poaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "repelente",
+        "piernas_inquietas",
+        "acne"
+      ],
+      "descripcion": "AE de citronela Java con citronelal, repelente de insectos y antimicrobiano.",
+      "mecanismoAccion": "Citronelal: repelente olfativo. Antimicrobiano.",
+      "nivelEvidencia": "B",
+      "parteDestilada": "hojas",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Citronelal / Geraniol",
+      "dilucionRecomendada": "5-10% topico (repelente)",
+      "precaucionesTopico": [
+        "Diluir, irritación leve"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion",
+        "velas"
+      ],
+      "compatibilidad": [
+        "Eucalipto limón",
+        "Lavanda"
+      ],
+      "advertencias": [
+        "Reaplicar cada 2h como repelente"
+      ],
+      "tags": [
+        "repelente",
+        "antimicrobiano",
+        "citronelal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "PLoS One 2011"
+      }
+    },
+    {
+      "id": "palo_santo_bursera_aceite",
+      "nombre": "Aceite de Palo Santo (Bursera)",
+      "nombresAlternativos": [
+        "Palo santo EO",
+        "Bursera graveolens oil",
+        "Madero santo"
+      ],
+      "nombreCientifico": "Bursera graveolens",
+      "familia": "Burseraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "nervioso",
+        "inmune"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "inmunidad",
+        "dolor"
+      ],
+      "descripcion": "AE de palo santo con limoneno, grounding y antimicrobiano.",
+      "mecanismoAccion": "Limoneno: ansiolítico via dopamina. Antimicrobiano. Antiinflamatorio.",
+      "nivelEvidencia": "C",
+      "parteDestilada": "madera (caída natural)",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Limoneno",
+      "dilucionRecomendada": "2-5% topico",
+      "precaucionesTopico": [
+        "Diluir"
+      ],
+      "metodosUso": [
+        "difusion",
+        "topico"
+      ],
+      "compatibilidad": [
+        "Sándalo",
+        "Incienso"
+      ],
+      "advertencias": [
+        "Sostenibilidad: usar solo madera caída"
+      ],
+      "tags": [
+        "grounding",
+        "limoneno",
+        "ansiedad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Ethnopharmacol 2017"
+      }
+    },
+    {
+      "id": "eucalipto_citriodora_aceite",
+      "nombre": "Aceite de Eucalipto Citriodora",
+      "nombresAlternativos": [
+        "Lemon eucalyptus EO",
+        "Eucalyptus citriodora",
+        "PMD source"
+      ],
+      "nombreCientifico": "Corymbia citriodora",
+      "familia": "Myrtaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "repelente",
+        "respiratorio",
+        "articular"
+      ],
+      "descripcion": "AE con citronelal, fuente de PMD (repelente CDC-recomendado).",
+      "mecanismoAccion": "PMD (p-mentano-3,8-diol): repelente de mosquitos probado.",
+      "nivelEvidencia": "A",
+      "parteDestilada": "hojas",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Citronelal",
+      "dilucionRecomendada": "30-50% repelente (PMD sintético)",
+      "precaucionesTopico": [
+        "Baja irritación"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Citronela",
+        "Lavanda"
+      ],
+      "advertencias": [
+        "AE puro vs PMD sintetico difieren"
+      ],
+      "tags": [
+        "repelente",
+        "PMD",
+        "respiratorio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "J Am Mosq Control Assoc 2006"
+      }
+    },
+    {
+      "id": "manuka_leptospermum_aceite",
+      "nombre": "Aceite Esencial de Manuka (Leptospermum)",
+      "nombresAlternativos": [
+        "Manuka EO",
+        "Leptospermum scoparium oil",
+        "Tea tree NZ"
+      ],
+      "nombreCientifico": "Leptospermum scoparium",
+      "familia": "Myrtaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "acne",
+        "infecciones",
+        "herpes",
+        "candidiasis"
+      ],
+      "descripcion": "AE neozelandés con beta-triketonas, antimicrobiano superior a tea tree en algunos patógenos.",
+      "mecanismoAccion": "Beta-triketonas (leptospermona): potente vs S. aureus resistente (MRSA).",
+      "nivelEvidencia": "B",
+      "parteDestilada": "hojas",
+      "metodoExtraccion": [
+        "Destilacion vapor"
+      ],
+      "quimiotipo": "Beta-triketonas",
+      "dilucionRecomendada": "2-5% topico",
+      "precaucionesTopico": [
+        "Baja irritación"
+      ],
+      "metodosUso": [
+        "topico",
+        "difusion"
+      ],
+      "compatibilidad": [
+        "Tea Tree",
+        "Lavanda"
+      ],
+      "advertencias": [
+        "Perfil seguro"
+      ],
+      "tags": [
+        "antimicrobiano",
+        "MRSA",
+        "triketonas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2024-06-01",
+        "fuente": "Int J Antimicrob Agents 2013"
+      }
     }
   ]
 }

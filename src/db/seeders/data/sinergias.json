@@ -16674,6 +16674,1095 @@
       "sistemas": [
         "ocular"
       ]
+    },
+    {
+      "id": "sin_saffron_magnesium_glycinate",
+      "ingredienteA": "saffron_crocin",
+      "ingredienteB": "magnesio_glicinato",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Azafrán estandarizado + magnesio glicinato: potente combinación antidepresiva/ansiolítica.",
+      "beneficios": [
+        "Efecto antidepresivo similar a ISRS con menos efectos",
+        "Magnesio modula eje HPA",
+        "Sin riesgo síndrome serotoninérgico a dosis estándar"
+      ],
+      "precauciones": [
+        "Monitorizar si se añade ISRS",
+        "Somnolencia posible"
+      ],
+      "mecanismo": "Azafrán modula monoaminas + magnesio modula NMDA/HPA.",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_ashwagandha_rhodiola_ginseng",
+      "ingredienteA": "ashwagandha",
+      "ingredienteB": "rodiola",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío adaptógeno clásico (con ginseng) para fatiga crónica y burnout.",
+      "beneficios": [
+        "Resistencia al estrés",
+        "Energía sin sobreestimulación",
+        "Mejora cortisol"
+      ],
+      "precauciones": [
+        "Insomnio si tarde",
+        "Hipotiroidismo: ashwagandha puede estimular tiroides"
+      ],
+      "mecanismo": "Adaptógenos HPA: rodiola (MAO), ashwagandha (cortisol), ginseng (ATP).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_ltheanine_caffeine",
+      "ingredienteA": "l_teanina",
+      "ingredienteB": "te_verde",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "L-teanina + cafeína (te verde): foco alerta calmado, clásico cognitivo.",
+      "beneficios": [
+        "Atención sin ansiedad",
+        "Foco sostenido",
+        "Mejora memoria trabajo"
+      ],
+      "precauciones": [
+        "Insomnio si tarde"
+      ],
+      "mecanismo": "L-teanina (alfa) modula sobreestimulación de cafeína.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_methylfolate_methylb12",
+      "ingredienteA": "metilfolato",
+      "ingredienteB": "metilcobalamina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Pareja metilación esencial: metilfolato + B12 activa en depresión y MTHFR.",
+      "beneficios": [
+        "Mejora síntesis neurotransmisores",
+        "Reduce homocisteína",
+        "Potencia ISRS en MTHFR"
+      ],
+      "precauciones": [
+        "Puede enmascarar déficit subyacente",
+        "B12: acné raro"
+      ],
+      "mecanismo": "Cofactores metil-donor del ciclo metionina-homocisteína.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_magnesium_threonate_gaba_pharma",
+      "ingredienteA": "magnesio_treonato",
+      "ingredienteB": "gaba_pharma",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Magnesio treonato (BHE) + PharmaGABA: combinación ansiolítica sinérgica.",
+      "beneficios": [
+        "Mg cerebral más GABA entérico-cerebral",
+        "Reduce ansiedad",
+        "Mejora sueño"
+      ],
+      "precauciones": [
+        "Somnolencia",
+        "No con benzodiacepinas sin supervisión"
+      ],
+      "mecanismo": "Mg modula NMDA + GABA inhibe. Acción complementaria.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_lavender_magnolia_frankincense",
+      "ingredienteA": "lavanda_aceite",
+      "ingredienteB": "magnolia_aceite",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia aromaterapia ansiedad: lavanda + magnolia + incienso.",
+      "beneficios": [
+        "Ansiolítico potente vía GABA-A",
+        "Reducción cortisol salivar",
+        "Mejora sueño"
+      ],
+      "precauciones": [
+        "No interno",
+        "Diluir bien"
+      ],
+      "mecanismo": "Linalool + honokiol + incensole: modulación GABA-A multi-sitio.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_berberine_cinnamon_chromium",
+      "ingredienteA": "berberina",
+      "ingredienteB": "canela",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío glucémico: berberina + canela + cromo en prediabetes/T2DM.",
+      "beneficios": [
+        "Reduce HbA1c ~0.5-1%",
+        "Mejora sensibilidad insulina",
+        "Sin hipoglucemia"
+      ],
+      "precauciones": [
+        "Monitorizar si con metformina",
+        "Berberina: CYP3A4"
+      ],
+      "mecanismo": "Berberina (AMPK) + canela (IR) + cromo (GTF). Vías complementarias.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_alphalipoic_benfotiamine_methylb12",
+      "ingredienteA": "alfa_lipoico",
+      "ingredienteB": "benfotiamina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío neuropatía diabética: ácido alfa lipoico + benfotiamina + B12 activa.",
+      "beneficios": [
+        "Reduce dolor neuropático",
+        "Mejora conducción nerviosa",
+        "Antioxidante mitocondrial"
+      ],
+      "precauciones": [
+        "Tiroides: alfa lipoico puede reducir T4"
+      ],
+      "mecanismo": "ALA (antioxidante/PAR) + benfotiamina (vía pentosa) + B12 (mielina).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_omega3_phospholipid_coq10_astaxanthin",
+      "ingredienteA": "omega3_phospholipid",
+      "ingredienteB": "coq10",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío cardiometabólico: omega-3 fosfolípido + CoQ10 + astaxantina.",
+      "beneficios": [
+        "Reduce triglicéridos",
+        "Mejora función endotelial",
+        "CoQ10 protege con estatinas"
+      ],
+      "precauciones": [
+        "Anticoagulantes: precaución omega-3"
+      ],
+      "mecanismo": "EPA/DHA antiinflamatorio + CoQ10 mitocondrial + astaxantina antioxidante.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_garlic_danshen_hawthorn",
+      "ingredienteA": "ajo",
+      "ingredienteB": "espino_blanco",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío cardiovascular: ajo + danshen + espino blanco para HTA/angina.",
+      "beneficios": [
+        "Reduce PA modestamente",
+        "Mejora microcirculación coronaria",
+        "Cardiotónico"
+      ],
+      "precauciones": [
+        "Potencia anticoagulantes",
+        "Cirugía: suspender"
+      ],
+      "mecanismo": "Ajo (NO/aliína) + danshen (microcirculación) + espino (inotropo+).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_d3_k2_magnesium",
+      "ingredienteA": "vitamina_d3_k2",
+      "ingredienteB": "magnesio_glicinato",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío óseo/cardiometabólico: D3+K2 + magnesio (cofactor activación D).",
+      "beneficios": [
+        "Optimiza D3 activa",
+        "Mejora densidad ósea",
+        "K2 protege vascular"
+      ],
+      "precauciones": [
+        "K2 contraindicado con warfarina"
+      ],
+      "mecanismo": "D3 absorbe Ca + K2 dirige a hueso + Mg cofactor 25-OH-D→1,25-OH-D.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_curcumin_boswellia_ginger",
+      "ingredienteA": "curcumina",
+      "ingredienteB": "boswelia",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío antiinflamatorio ayurvédico: curcumina + boswelia + jengibre.",
+      "beneficios": [
+        "Sinergia COX/LOX",
+        "Reduce dolor articular",
+        "Menor GI que AINEs"
+      ],
+      "precauciones": [
+        "Curcumina: anticoagulante",
+        "GI si dosis altas"
+      ],
+      "mecanismo": "Curcumina (COX-2/NF-kB) + boswelia (5-LOX) + jengibre (leucotrienos).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_ucii_hyaluronic_collagen",
+      "ingredienteA": "colageno_tipo2",
+      "ingredienteB": "acido_hialuronico",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío articular regenerativo: UC-II + ácido hialurónico + colágeno hidrolizado.",
+      "beneficios": [
+        "Tolerancia oral + matriz cartílago",
+        "Reduce dolor artrosis",
+        "Mejora movilidad"
+      ],
+      "precauciones": [
+        "Alergia pollo: UC-II"
+      ],
+      "mecanismo": "UC-II (tolerancia oral) + HA (lubricación) + colágeno (matriz).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_ivy_thyme_primroot_pelargonium",
+      "ingredienteA": "hiedra",
+      "ingredienteB": "tomillo",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío respiratorio: hiedra + tomillo + pelargonium para bronquitis/tos.",
+      "beneficios": [
+        "Expectorante + broncodilatador + antiviral",
+        "Reduce tos 2-3 días",
+        "Seguro pediátrico"
+      ],
+      "precauciones": [
+        "Tomillo: no en embarazo a dosis altas"
+      ],
+      "mecanismo": "Hiedra (beta-2) + tomillo (mucolítico) + pelargonium (antiviral/inmune).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_elderberry_zinc_vitc_d3k2",
+      "ingredienteA": "vitamina_c",
+      "ingredienteB": "zinc_picolinato",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Cuarteto inmunológico: vit C + zinc + saúco + D3/K2.",
+      "beneficios": [
+        "Reduce duración resfriado 1-2 días",
+        "Antiviral directo (saúco)",
+        "Inmunomodulador"
+      ],
+      "precauciones": [
+        "Zinc: no crónico >40mg sin cobre"
+      ],
+      "mecanismo": "Vit C (antioxidante/linfocitos) + zinc (timulina) + saúco (antiviral) + D3 (inmune).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_milkthistle_picrorhiza_schisandra_nac",
+      "ingredienteA": "cardo_mariano",
+      "ingredienteB": "schisandra",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío hepatoprotector: cardo mariano + picrorhiza + schisandra (+ NAC).",
+      "beneficios": [
+        "Protección hepatocelular",
+        "Mejora transaminasas",
+        "Antioxidante fase II"
+      ],
+      "precauciones": [
+        "No en cirrosis avanzada sin supervisión"
+      ],
+      "mecanismo": "Silimarina + picrosidos + lignanos + NAC (glutatión). Multi-vía.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_centella_hydroxytyrosol_seabuckthorn_astaxanthin",
+      "ingredienteA": "centella_asiatica_ext",
+      "ingredienteB": "hidroxitirosol",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío regeneración cutánea: centella + hidroxitirosol + espino amarillo + astaxantina.",
+      "beneficios": [
+        "Estimula colágeno",
+        "Antioxidante potente",
+        "Mejora mucosas y piel"
+      ],
+      "precauciones": [
+        "Tinte naranja (espino)"
+      ],
+      "mecanismo": "Asiaticósidos + hidroxitirosol + omega-7 + astaxantina (antioxidante membrana).",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_lglutamine_slipperyelm_aloe_probiotics",
+      "ingredienteA": "l_glutamina",
+      "ingredienteB": "olmo_america",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío mucosa intestinal: L-glutamina + olmo americano + aloe + probióticos.",
+      "beneficios": [
+        "Repara permeabilidad intestinal",
+        "Demulcente mucosas",
+        "Restaura microbiota"
+      ],
+      "precauciones": [
+        "Glutamina: precaución en hepatopatía severa"
+      ],
+      "mecanismo": "Glutamina (enterocitos) + mucílagos + aloe + probióticos.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_melatonin_magnesium_glycinate_ltheanine_5htp",
+      "ingredienteA": "melatonina",
+      "ingredienteB": "magnesio_glicinato",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Cuarteto sueño: melatonina + magnesio + L-teanina + 5-HTP.",
+      "beneficios": [
+        "Reduce latencia sueño",
+        "Mejora arquitectura sueño",
+        "Sin resaca"
+      ],
+      "precauciones": [
+        "5-HTP: no con ISRS",
+        "Melatonina: comenzar 0.3-1mg"
+      ],
+      "mecanismo": "Melatonina (fase) + Mg (NMDA) + teanina (alfa) + 5-HTP (serotonina).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_magnesium_riboflavin_coq10_feverfew_petasites",
+      "ingredienteA": "magnesio_glicinato",
+      "ingredienteB": "riboflavina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío migraña preventivo: magnesio + riboflavina + CoQ10 (+ feverfew/petasites).",
+      "beneficios": [
+        "Reduce frecuencia migraña >50%",
+        "Tolerancia excelente",
+        "Sin efectos cognitivos"
+      ],
+      "precauciones": [
+        "Riboflavina: orina amarilla (normal)"
+      ],
+      "mecanismo": "Mg (vasomotor) + B2 (mitocondria) + CoQ10 (ATP) + feverfew/petasites (vasoactivo).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_diosmin_horsechestnut_centella_ruscus",
+      "ingredienteA": "diosmina",
+      "ingredienteB": "castano_indias",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Cuarteto venotónico: diosmina + castaño de indias + centella + rusco.",
+      "beneficios": [
+        "Reduce insuficiencia venosa",
+        "Alivio pesadez",
+        "Mejora microcirculación"
+      ],
+      "precauciones": [
+        "Anticoagulantes: precaución"
+      ],
+      "mecanismo": "Diosmina (capilar) + aescina (edema) + asiaticósidos (linfático) + rusco (venotónico).",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_bacopa_ginkgo_huperzine_lionmane_phosphatidylserine",
+      "ingredienteA": "bacopa",
+      "ingredienteB": "ginkgo",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Quinteto cognitivo: bacopa + ginkgo + huperzina + hericium + fosfatidilserina.",
+      "beneficios": [
+        "Mejora memoria",
+        "Neuroprotección",
+        "Fluidez membrana neuronal"
+      ],
+      "precauciones": [
+        "Ginkgo: anticoagulante",
+        "Huperzina: no con donepezilo sin supervisión"
+      ],
+      "mecanismo": "Bacopa (BDNF) + ginkgo (microcirculación) + huperzina (AChE) + hericium (NGF) + PS (membrana).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_lionsmane_phosphatidylserine_citicoline",
+      "ingredienteA": "hericium",
+      "ingredienteB": "fosfatidilserina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío neuroregeneración: hericium + fosfatidilserina + citicolina.",
+      "beneficios": [
+        "Estimula NGF",
+        "Membrana neuronal",
+        "Colina para neurotransmisión"
+      ],
+      "precauciones": [
+        "Datos clínicos limitados en demencia avanzada"
+      ],
+      "mecanismo": "Hericium (NGF) + PS (membrana) + citicolina (CDP-colina).",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_maca_dongquai_vitex_blackcohoosh_omegapl",
+      "ingredienteA": "maca",
+      "ingredienteB": "vitex",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Quinteto femenino: maca + dong quai + vitex + cimicífuga + omega-3 fosfolípido.",
+      "beneficios": [
+        "Sofocos menopausia",
+        "Equilibrio hormonal",
+        "PMS"
+      ],
+      "precauciones": [
+        "Cimicífuga: evitar en hormono-dependientes sin supervisión"
+      ],
+      "mecanismo": "Adaptógeno (maca) + fitoestrógenos + dopaminérgico (vitex) + omega-3.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_sawpalmetto_pygeum_stingingnettle_pumpkinseed_beta_sitosterol",
+      "ingredienteA": "saw_palmetto",
+      "ingredienteB": "pygeum",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Quinteto próstata: saw palmetto + pygeum + ortiga + calabaza + beta-sitosterol.",
+      "beneficios": [
+        "Reduce síntomas HBP",
+        "Mejora flujo urinario",
+        "Sin efectos sexuales"
+      ],
+      "precauciones": [
+        "No sustituye control de PSA"
+      ],
+      "mecanismo": "5-alfa-reductasa + antiinflamatorio + lignanos + fitosteroles.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_dmannose_cranberry_uvaursi_probiotics_lactoferrin",
+      "ingredienteA": "d_manosa",
+      "ingredienteB": "arandano_rojo",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Quinteto ITU: D-manosa + arándano rojo + uva ursi + probióticos + lactoferrina.",
+      "beneficios": [
+        "Prevención ITU recurrente",
+        "Antiadhesión uropatógenos",
+        "Sin antibiótico"
+      ],
+      "precauciones": [
+        "Uva ursi: no >5 días seguidos",
+        "Embarazo: consultar"
+      ],
+      "mecanismo": "D-manosa (adhesión E. coli) + arándano (P-fimbrias) + uva ursi (arbutina) + probióticos.",
+      "categorias": [
+        "vitaminas",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_magnesium_citrate_potassium_lemon",
+      "ingredienteA": "magnesio_glicinato",
+      "ingredienteB": "citrato_potasio",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío litiasis renal: magnesio + citrato potásico + vit B6.",
+      "beneficios": [
+        "Inhibe cristalización oxalato cálcico",
+        "Alcaliniza orina",
+        "Reduce recurrencia"
+      ],
+      "precauciones": [
+        "IECA/ARA-II: hiperpotasemia",
+        "IRC: precaución"
+      ],
+      "mecanismo": "Mg quelata oxalato + citrato quelata Ca + B6 reduce oxalato endógeno.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "renal"
+      ]
+    },
+    {
+      "id": "sin_resveratrol_nmn_coq10_ergothioneine_glutathione",
+      "ingredienteA": "resveratrol",
+      "ingredienteB": "nmn_nicotinamide",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Quinteto longevidad: resveratrol + NMN + CoQ10 + ergotioneína + glutatión.",
+      "beneficios": [
+        "Activa SIRT1 (resveratrol) + NAD+ (NMN)",
+        "Mitocondrial (CoQ10)",
+        "Antioxidante (ERGO/GSH)"
+      ],
+      "precauciones": [
+        "Datos clínicos humanos limitados"
+      ],
+      "mecanismo": "SIRT1/AMPK + NAD+ + cadena respiratoria + ROS scavengers.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_ergothioneine_glutathione_nac",
+      "ingredienteA": "ergotioneina",
+      "ingredienteB": "glutation",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío antioxidante intracelular: ergotioneína + glutatión + NAC.",
+      "beneficios": [
+        "Antioxidante selectivo OCTN1",
+        "Precursor GSH",
+        "Citoprotección"
+      ],
+      "precauciones": [
+        "NAC: olor, GI"
+      ],
+      "mecanismo": "ERGO (transportador dedicado) + GSH + NAC (precursor).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_creatine_bcaa_betaine_citrulline",
+      "ingredienteA": "creatina",
+      "ingredienteB": "bcaa",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Cuarteto deportivo: creatina + BCAA + betaína + citrulina.",
+      "beneficios": [
+        "Fuerza (creatina)",
+        "Síntesis proteica (BCAA)",
+        "Vasodilatación (citrulina)"
+      ],
+      "precauciones": [
+        "Creatina: hidratación",
+        "BCAA: nada en fenilcetonuria"
+      ],
+      "mecanismo": "Creatina (ATP) + BCAA (mTOR) + betaína (metilación) + citrulina (NO).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_trametes_reishi_ahcc_curcumin_omegapl",
+      "ingredienteA": "trametes",
+      "ingredienteB": "reishi",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Trío inmunomodulador oncológico coadyuvante: trametes + reishi + omega-3 fosfolípido.",
+      "beneficios": [
+        "Modula NK",
+        "Reduce inflamación",
+        "Soporte durante quimio (consultar onco)"
+      ],
+      "precauciones": [
+        "SIEMPRE con oncólogo",
+        "Inmunosupresores:谨慎"
+      ],
+      "mecanismo": "Betaglucanos (NK) + triterpenos + omega-3 antiinflamatorio.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_ae_lavender_bergamot_ylang_ylang_frankincense_sleep",
+      "ingredienteA": "lavanda_aceite",
+      "ingredienteB": "bergamota",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Blend sueño: lavanda + bergamota + ylang ylang + incienso.",
+      "beneficios": [
+        "Reduce ansiedad",
+        "Mejora sueño",
+        "Sinergia olfativa agradable"
+      ],
+      "precauciones": [
+        "Bergamota: fotosensibilidad"
+      ],
+      "mecanismo": "Linalool + limoneno + linalool + incensole. GABA multi-sitio.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_ae_teatree_manuka_rosemary_verbenone_acne",
+      "ingredienteA": "tea_tree",
+      "ingredienteB": "manuka_leptospermum_aceite",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Blend acné antimicrobiano: tea tree + manuka + romero verbenona.",
+      "beneficios": [
+        "Antimicrobiano amplio (incl. MRSA)",
+        "Regenerante epitelial",
+        "Menor irritación"
+      ],
+      "precauciones": [
+        "Diluir 2-5%"
+      ],
+      "mecanismo": "Terpinen-4-ol + beta-triketonas + verbenona. Multi-vía antimicrobiana.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_ae_eucalyptus_ravintsara_pine_thyme_ct_respiratory",
+      "ingredienteA": "eucalipto",
+      "ingredienteB": "ravintsara",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Blend respiratorio: eucalipto + ravintsara + pino + tomillo.",
+      "beneficios": [
+        "Expectorante",
+        "Antiviral respiratorio",
+        "Broncodilatador"
+      ],
+      "precauciones": [
+        "Tomillo: no en embarazo a dosis altas"
+      ],
+      "mecanismo": "1,8-cineol + 1,8-cineol + pineno + timol.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_quercetin_bromelain_vitc_allergy",
+      "ingredienteA": "quercetina",
+      "ingredienteB": "bromelina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío alergia: quercetina + bromelina + vitamina C.",
+      "beneficios": [
+        "Estabiliza mastocitos",
+        "Reduce inflamación",
+        "Absorción mejorada por bromelina"
+      ],
+      "precauciones": [
+        "Bromelina: anticoagulante"
+      ],
+      "mecanismo": "Quercetina (mastocito) + bromelina (inflamación) + vit C (antioxidante).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_zinc_copper_seletic_selenium_thyroid",
+      "ingredienteA": "zinc_picolinato",
+      "ingredienteB": "selenio",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío tiroideo: zinc + selenio + yodo (con cobre balance).",
+      "beneficios": [
+        "Conversión T4→T3",
+        "Antioxidante tiroideo",
+        "Soporte Hashimoto"
+      ],
+      "precauciones": [
+        "Zinc crónico: añadir cobre 1:10",
+        "Yodo: no exceder"
+      ],
+      "mecanismo": "Zn (deiodinasa) + Se (GPx tiroidea) + yodo (sustrato).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_lutein_zeaxanthin_omega3_astaxanthin_eyes",
+      "ingredienteA": "lut_max",
+      "ingredienteB": "omega3_phospholipid",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío ocular: luteína+zeaxantina + omega-3 + astaxantina.",
+      "beneficios": [
+        "Pigmento macular",
+        "Mejora ojo seco",
+        "Protección retina"
+      ],
+      "precauciones": [
+        "Ninguna relevante"
+      ],
+      "mecanismo": "Xantofilas + EPA/DHA + astaxantina cruzan BHR.",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "ocular"
+      ]
+    },
+    {
+      "id": "sin_iron_vitc_lactoferrin_b12_anemia",
+      "ingredienteA": "hierro_bisglicinato",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Cuarteto anemia: hierro bisglicinato + vit C + lactoferrina + B12 (si necesario).",
+      "beneficios": [
+        "Mejor absorción",
+        "Menor GI",
+        "Lactoferrina mejora metabolismo Fe"
+      ],
+      "precauciones": [
+        "Separar de Ca, levotiroxina, antiácidos"
+      ],
+      "mecanismo": "Vit C reduce Fe3+→Fe2+ + lactoferrina transporte + B12 (megaloblástica).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_ashwagandha_shatavari_cistanche_adaptogens",
+      "ingredienteA": "ashwagandha",
+      "ingredienteB": "cistanche",
+      "tipo": "sinergico",
+      "nivelEvidencia": "C",
+      "descripcion": "Trío adaptógeno tónico: ashwagandha + shatavari + cistanche.",
+      "beneficios": [
+        "Vitalidad",
+        "Equilibrio hormonal",
+        "Función cognitiva"
+      ],
+      "precauciones": [
+        "Ashwagandha: tiroides",
+        "Cistanche: datos limitados occidente"
+      ],
+      "mecanismo": "Adaptógenos HPA + tonificantes chinos (BDNF, eje hormonal).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_ginger_curcumin_bromelain_pain",
+      "ingredienteA": "jengibre",
+      "ingredienteB": "curcumina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío dolor natural: jengibre + curcumina + bromelina.",
+      "beneficios": [
+        "Antiinflamatorio multi-vía",
+        "Mejora absorción curcumina",
+        "Reduce dolor articular/muscular"
+      ],
+      "precauciones": [
+        "Anticoagulantes",
+        "GI si dosis altas"
+      ],
+      "mecanismo": "Gingerol + curcumina + bromelina. COX/LOX/proteasa.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_inositol_folate_chromium_selenium_pcos",
+      "ingredienteA": "inositol",
+      "ingredienteB": "metilfolato",
+      "tipo": "sinergico",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío SOP: inositol + folato + cromo (+ selenio).",
+      "beneficios": [
+        "Mejora resistencia insulina SOP",
+        "Regulariza ciclo",
+        "Mejora ovulación"
+      ],
+      "precauciones": [
+        "Monitorizar si con metformina"
+      ],
+      "mecanismo": "Mio-inositol (señal insulina) + folato (metilación) + cromo (GTF).",
+      "categorias": [
+        "vitaminas",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_reishi_cordyceps_lionsmane_organic",
+      "ingredienteA": "ganoderma_lucidum",
+      "ingredienteB": "cordyceps",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío hongo adaptógeno: reishi + cordyceps + hericium.",
+      "beneficios": [
+        "Inmunomodulación",
+        "Energía/ATP",
+        "Cognitivo/NGF"
+      ],
+      "precauciones": [
+        "Inmunosupresores:谨慎"
+      ],
+      "mecanismo": "Betaglucanos + cordycepina + hericenonas/erinacinas.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_saffron_ltheanine_ltryptophan_mood",
+      "ingredienteA": "saffron_crocin",
+      "ingredienteB": "l_teanina",
+      "tipo": "sinergico",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío ánimo: azafrán + L-teanina + L-triptófano.",
+      "beneficios": [
+        "Antidepresivo/ansiolítico",
+        "Mejora sueño",
+        "Sin síndrome serotoninérgico a dosis std"
+      ],
+      "precauciones": [
+        "5-HTP/triptófano: no con ISRS"
+      ],
+      "mecanismo": "Azafrán (monoaminas) + teanina (GABA/alfa) + triptófano (serotonina).",
+      "categorias": [
+        "fitoterapia",
+        "vitaminas"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_arnica_hypericum_rhus_tox_causticum_trauma",
+      "ingredienteA": "arnica",
+      "ingredienteB": "hiperico",
+      "tipo": "complementario",
+      "nivelEvidencia": "D",
+      "descripcion": "Poliremedio homeopático para trauma neural: árnica + hipérico + rhus tox + causticum.",
+      "beneficios": [
+        "Trauma tejidos + nervios",
+        "Dolor crónico articular",
+        "Recuperación post-cirugía"
+      ],
+      "precauciones": [
+        "Solo homeopático, no sustituye cirugía"
+      ],
+      "mecanismo": "Combinación clásica homeopática para trauma neuronal y muscular.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
     }
   ]
 }
