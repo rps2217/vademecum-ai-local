@@ -3,8 +3,8 @@
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-09",
-    "total": 1013,
+    "ultimaActualizacion": "2026-08-10",
+    "total": 1053,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -24646,6 +24646,982 @@
       "sistemas": [
         "metabolico",
         "endocrino"
+      ]
+    },
+    {
+      "id": "sin_clavo_aceite_clavo",
+      "ingredienteA": "clavo_aceite",
+      "ingredienteB": "clavo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "El aceite esencial y la planta comparten eugenol, potenciando su acción analgésica dental y antiséptica.",
+      "beneficios": [
+        "Acción analgésica dental reforzada",
+        "Mayor espectro antiséptico y antifúngico"
+      ],
+      "precauciones": [
+        "Irritación de mucosa en dosis altas",
+        "No ingerir aceite esencial puro"
+      ],
+      "mecanismo": "El eugenol actúa como anestésico local (bloqueo canales Na+) en ambos formatos; el aceite aporta mayor concentración volátil.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ]
+    },
+    {
+      "id": "sin_clavo_aceite_oregano",
+      "ingredienteA": "clavo_aceite",
+      "ingredienteB": "oregano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación de aceites/extractos con fuerte acción antimicrobiana de amplio espectro.",
+      "beneficios": [
+        "Antifúngico potente (especialmente Candida)",
+        "Antibacteriano de amplio espectro"
+      ],
+      "precauciones": [
+        "Irritación gástrica posible",
+        "No usar prolongadamente (microbiota)"
+      ],
+      "mecanismo": "El eugenol (clavo) y carvacrol/timol (orégano) actúan sinérgicamente sobre membranas microbianas.",
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ]
+    },
+    {
+      "id": "sin_nuez_moscada_aceite_valeriana",
+      "ingredienteA": "nuez_moscada_aceite",
+      "ingredienteB": "valeriana",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación aromaterapéutica y sedante para inducir el sueño y la relajación.",
+      "beneficios": [
+        "Reducción de latencia del sueño",
+        "Relajación nerviosa por aromaterapia"
+      ],
+      "precauciones": [
+        "No ingerir el aceite esencial puro (miristicina)",
+        "Somnolencia matutina posible"
+      ],
+      "mecanismo": "La miristicina del aceite y los valepotriatos de valeriana modulan la neurotransmisión GABAérgica.",
+      "sistemas": [
+        "nervioso"
+      ],
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_ilang_ilang_lavanda",
+      "ingredienteA": "ilang_ilang",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia aromaterapéutica clásica para relajación, ansiedad y bienestar cardiovascular.",
+      "beneficios": [
+        "Reducción de ansiedad y estrés",
+        "Mejora de calidad de sueño",
+        "Efecto suave hipotensor"
+      ],
+      "precauciones": [
+        "Posible cefalea si se inhala en exceso",
+        "Irritación cutánea si no se diluye"
+      ],
+      "mecanismo": "El linalool (lavanda) y el geraniol/bencil benzoato (ylang ylang) modulan la neurotransmisión GABAérgica.",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular"
+      ],
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ]
+    },
+    {
+      "id": "sin_ilang_ilang_bergamota",
+      "ingredienteA": "ilang_ilang",
+      "ingredienteB": "bergamota",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Mezcla aromática con efecto ansiolítico y regulador del humor.",
+      "beneficios": [
+        "Relajación, equilibrio emocional, perfume natural"
+      ],
+      "precauciones": [
+        "Fotosensibilidad por la bergamota si se aplica tópicamente"
+      ],
+      "mecanismo": "Combinación de terpenos aromáticos con acción moduladora del SNC.",
+      "sistemas": [
+        "nervioso"
+      ],
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ]
+    },
+    {
+      "id": "sin_betacaroteno_luteina",
+      "ingredienteA": "betacaroteno",
+      "ingredienteB": "luteina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Carotenoides sinérgicos para salud ocular y protección de la mácula.",
+      "beneficios": [
+        "Protección macular (filtra luz azul)",
+        "Sinergia antioxidante retiniana",
+        "Soporte de pigmentación macular"
+      ],
+      "precauciones": [
+        "Dosis muy altas de betacaroteno pueden teñir piel"
+      ],
+      "mecanismo": "Ambos se acumulan en la mácula; luteína filtra luz azul y betacaroteno neutraliza ROS.",
+      "sistemas": [
+        "ocular",
+        "inmune"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_betacaroteno_vitamina_e",
+      "ingredienteA": "betacaroteno",
+      "ingredienteB": "vitamina_e",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Antioxidantes liposolubles que se regeneran mutuamente en la cadena antioxidante.",
+      "beneficios": [
+        "Protección lipídica de membranas",
+        "Sinergia antioxidante completa"
+      ],
+      "precauciones": [
+        "Dosis altas de vitamina E pueden aumentar riesgo hemorrágico"
+      ],
+      "mecanismo": "La vitamina E regenera carotenoides oxidados; ambos protegen membranas lipídicas.",
+      "sistemas": [
+        "ocular",
+        "dermatologico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_vitamina_b2_coq10",
+      "ingredienteA": "vitamina_b2",
+      "ingredienteB": "coq10",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Cofactores de la cadena de transporte de electrones mitocondrial.",
+      "beneficios": [
+        "Optimización energética mitocondrial",
+        "Reducción de migraña por défcit energético",
+        "Sinergia antioxidante"
+      ],
+      "precauciones": [
+        "Sin riesgos relevantes a dosis fisiológicas"
+      ],
+      "mecanismo": "La riboflavina (FAD) es cofactor de complejos mitocondriales donde opera el CoQ10.",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_vitamina_b2_niacina",
+      "ingredienteA": "vitamina_b2",
+      "ingredienteB": "niacina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Vitaminas B sinérgicas para energía, mucosas y profilaxis de migraña.",
+      "beneficios": [
+        "Soporte del metabolismo energético",
+        "Salud de mucosas y piel"
+      ],
+      "precauciones": [
+        "La niacina puede causar rubor (flushing)"
+      ],
+      "mecanismo": "Riboflavina (FAD/FMN) y niacina (NAD/NADP) son coenzimas centrales del metabolismo oxidativo.",
+      "sistemas": [
+        "nervioso",
+        "dermatologico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_acido_folico_b12",
+      "ingredienteA": "acido_folico",
+      "ingredienteB": "vitamina_b12",
+      "tipo": "cofactor",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia clásica para metilación, prevención de anemia megaloblástica y del defecto del tubo neural.",
+      "beneficios": [
+        "Reducción de homocisteína",
+        "Prevención de anemia megaloblástica",
+        "Soporte del desarrollo fetal (tubo neural)",
+        "Salud neurológica"
+      ],
+      "precauciones": [
+        "El ácido fólico puede enmascarar déficit de B12 (revisar antes)",
+        "Dosis altas de folato pueden enmascarar anemia perniciosa"
+      ],
+      "mecanismo": "El folato (como 5-MTHF) y la B12 (cobalamina) cooperan en el ciclo de metilación (metionina sintasa).",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_acido_folico_b6",
+      "ingredienteA": "acido_folico",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío hipohomocisteinémico (con B12) para salud cardiovascular y neurológica.",
+      "beneficios": [
+        "Reducción de homocisteína",
+        "Soporte neurológico y cardiovascular"
+      ],
+      "precauciones": [
+        "Dosis muy altas de B6 (>200mg) pueden causar neuropatía"
+      ],
+      "mecanismo": "B6 (PLP) es cofactor de la cistationina β-sintasa en la transsulfuración; folato y B12 en la remetilación.",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_paba_acido_folico",
+      "ingredienteA": "paba",
+      "ingredienteB": "acido_folico",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Relación bioquímica histórica: PABA es componente estructural del folato.",
+      "beneficios": [
+        "Soporte del metabolismo del folato",
+        "Salud de piel y mucosas"
+      ],
+      "precauciones": [
+        "Dosis altas de PABA pueden interferir con sulfamidas"
+      ],
+      "mecanismo": "El PABA es precursor del anillo pteridina del ácido fólico en la biosíntesis bacteriana/fúngica.",
+      "sistemas": [
+        "dermatologico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_paba_pantotenato",
+      "ingredienteA": "paba",
+      "ingredienteB": "acido_pantotenico",
+      "tipo": "complemento",
+      "nivelEvidencia": "C",
+      "descripcion": "Vitaminas del complejo B históricamente asociadas al 'factor anticanicie' y la salud capilar.",
+      "beneficios": [
+        "Soporte de piel y cabello",
+        "Cofactor de CoA (energía)"
+      ],
+      "precauciones": [
+        "Evidencia limitada para el uso anticanicie"
+      ],
+      "mecanismo": "El ácido pantoténico es precursor de CoA; PABA se asociaba al folato y a la pigmentación capilar.",
+      "sistemas": [
+        "dermatologico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_nadh_coq10",
+      "ingredienteA": "nadh",
+      "ingredienteB": "coq10",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo mitocondrial para producción de energía (ATP) y soporte en fatiga crónica.",
+      "beneficios": [
+        "Mayor producción de ATP",
+        "Soporte en fatiga crónica y declive cognitivo",
+        "Antioxidante mitocondrial"
+      ],
+      "precauciones": [
+        "Posible insomnio si se toma tarde"
+      ],
+      "mecanismo": "NADH dona electrones al Complejo I y CoQ10 los transporta a Complejo III en la cadena respiratoria.",
+      "sistemas": [
+        "nervioso",
+        "metabolico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_nadh_nmn",
+      "ingredienteA": "nadh",
+      "ingredienteB": "nmn",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Estrategia anti-edging para elevar NAD+ celular y soporte mitocondrial.",
+      "beneficios": [
+        "Elevación de NAD+ celular",
+        "Soporte de sirtuinas y energía"
+      ],
+      "precauciones": [
+        "Evidencia clínica limitada en humanos"
+      ],
+      "mecanismo": "NMN aumenta NAD+ (vía NR) y NADH es la forma reducida; equilibrio redox celular.",
+      "sistemas": [
+        "metabolico",
+        "nervioso"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_fucus_yodo",
+      "ingredienteA": "fucus",
+      "ingredienteB": "yoduro_potasio_lugol",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Fuentes de yodo para soporte tiroideo, combinando yodo orgánico (alga) e inorgánico.",
+      "beneficios": [
+        "Aporte combinado de yodo",
+        "Soporte de T3/T4 en hipotiroidismo leve"
+      ],
+      "precauciones": [
+        "Riesgo de exceso de yodo (controlar función tiroidea)",
+        "Contraindicado en hipertiroidismo"
+      ],
+      "mecanismo": "Ambos aportan yodo precursor de las hormonas tiroideas T3 y T4.",
+      "sistemas": [
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_fucus_selenio",
+      "ingredienteA": "fucus",
+      "ingredienteB": "selenio",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "El selenio es cofactor de la deiodinasa que convierte T4 en T3 activa.",
+      "beneficios": [
+        "Optimización de la conversión T4→T3",
+        "Soporte antioxidante tiroideo (GPx)"
+      ],
+      "precauciones": [
+        "Dosis altas de selenio son tóxicas (>400mcg)"
+      ],
+      "mecanismo": "La glutatión peroxidasa (dependiente de selenio) protege el tiroides y las deiodinasas convierten T4→T3.",
+      "sistemas": [
+        "endocrino",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "mineral"
+      ]
+    },
+    {
+      "id": "sin_phyllanthus_cardo_mariano",
+      "ingredienteA": "phyllanthus_niruri",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo hepatoprotector de origen vegetal con mecanismos complementarios.",
+      "beneficios": [
+        "Hepatoprotección reforzada",
+        "Soporte en hepatitis y esteatosis",
+        "Acción antiviral (HBV) + antioxidante hepática"
+      ],
+      "precauciones": [
+        "Posible interacción con antivirales de hepatitis"
+      ],
+      "mecanismo": "La silimarina (cardo mariano) estabiliza membranas hepatocelulares; phyllanthus inhibe HBsAg.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_phyllanthus_boldo",
+      "ingredienteA": "phyllanthus_niruri",
+      "ingredienteB": "boldo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Plantas hepatobiliares con acción colagoga y anti-litiasica complementaria.",
+      "beneficios": [
+        "Mejora del flujo biliar",
+        "Profilaxis de litiasis biliar y renal"
+      ],
+      "precauciones": [
+        "Evitar en obstrucción biliar"
+      ],
+      "mecanismo": "Boldo (colagogo) y phyllanthus (anti-litiasico) actúan sobre la dinámica biliar y renal.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_grama_uva_ursi",
+      "ingredienteA": "grama",
+      "ingredienteB": "uva_ursi",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación diurética y antiséptica urinaria clásica para cistitis.",
+      "beneficios": [
+        "Acción diurética y antimicrobiana urinaria",
+        "Lavado del tracto urinario",
+        "Cobertura de cistitis recurrente"
+      ],
+      "precauciones": [
+        "Acidificar orina para optimizar arbutina (uva ursi)"
+      ],
+      "mecanismo": "La grama aporta diuresis osmótica y la uva ursi (arbutina→hidroquinona) acción antiséptica urinaria.",
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_grama_vara_de_oro",
+      "ingredienteA": "grama",
+      "ingredienteB": "vara_de_oro",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo diurético antiinflamatorio para profilaxis de litiasis y tracto urinario.",
+      "beneficios": [
+        "Diuresis efectiva sin pérdida excesiva de electrolitos",
+        "Antiinflamatorio de mucosa urinaria",
+        "Profilaxis de cálculos renales"
+      ],
+      "precauciones": [
+        "Evitar en insuficiencia renal o cardíaca con edema"
+      ],
+      "mecanismo": "Fructanos (grama) y saponinas/flavonoides (vara de oro) potencian la diuresis y la antiinflamación.",
+      "sistemas": [
+        "urinario"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_vara_de_oro_arandano_rojo",
+      "ingredienteA": "vara_de_oro",
+      "ingredienteB": "arandano_rojo",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia para salud urinaria: antiséptico + antiadherencia bacteriana.",
+      "beneficios": [
+        "Profilaxis de cistitis recurrente",
+        "Reduce adherencia de E. coli al urotelio"
+      ],
+      "precauciones": [
+        "El arándano puede interactuar con warfarina"
+      ],
+      "mecanismo": "Las proantocianidinas del arándano inhiben la adhesión de fimbrias de E. coli; la vara de oro aporta diuresis y antiinflamación.",
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_damiana_maca",
+      "ingredienteA": "damiana_hoja",
+      "ingredienteB": "maca",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo adaptógeno-afrodisíaco para libido y energía sexual.",
+      "beneficios": [
+        "Aumento de libido en hombres y mujeres",
+        "Soporte de energía y humor",
+        "Mejora del rendimiento sexual"
+      ],
+      "precauciones": [
+        "Evidencia limitada, no sustituye tratamiento médico"
+      ],
+      "mecanismo": "La maca modula el eje HPA y la damiana añade efecto nervino y estimulante suave.",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_damiana_ginseng_panax",
+      "ingredienteA": "damiana_hoja",
+      "ingredienteB": "ginseng_panax_red",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación tónico-adaptógena para vitalidad, libido y energía con ginseng rojo coreano.",
+      "beneficios": [
+        "Energía y resistencia física",
+        "Soporte de libido",
+        "Adaptógeno"
+      ],
+      "precauciones": [
+        "Evitar en hipertensión no controlada"
+      ],
+      "mecanismo": "Los ginsenósidos del ginseng rojo (Rg1) actúan sobre el eje HPA; damiana añade efecto nervino-afrodisíaco.",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_maqui_bilberry",
+      "ingredienteA": "maqui",
+      "ingredienteB": "bilberry",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia de antocianinas para salud ocular y microcirculación retiniana.",
+      "beneficios": [
+        "Protección macular y retiniana",
+        "Mejora de la adaptación visual nocturna",
+        "Potente antioxidante ocular"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "Las delfinidinas (maqui) y cianidinas (arándano) se acumulan en retina y potencian la regeneración de rodopsina.",
+      "sistemas": [
+        "ocular",
+        "cardiovascular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_maqui_astaxantina",
+      "ingredienteA": "maqui",
+      "ingredienteB": "astaxantina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación de antioxidantes lipofílicos y hidrofílicos para protección ocular y antiinflamatoria.",
+      "beneficios": [
+        "Protección ocular sinérgica",
+        "Reducción de fatiga visual",
+        "Acción antiinflamatoria sistémica"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "La astaxantina atraviesa barrera hemato-retiniana; las antocianinas del maqui mejoran microcirculación.",
+      "sistemas": [
+        "ocular",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_maqui_vitamina_c",
+      "ingredienteA": "maqui",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Antioxidantes hidrosolubles sinérgicos para inmunidad y colágeno.",
+      "beneficios": [
+        "Sinergia antioxidante",
+        "Soporte de colágeno e inmunidad"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "La vitamina C regenera antocianinas oxidadas y es cofactor de la prolyl-4-hidroxilasa del colágeno.",
+      "sistemas": [
+        "inmune",
+        "dermatologico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_nag_condroitina",
+      "ingredienteA": "n_acetilglucosamina",
+      "ingredienteB": "condroitina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Precursor + glicosaminoglicano para regeneración de cartílago articular.",
+      "beneficios": [
+        "Soporte de cartílago articular",
+        "Reducción de dolor en artrosis",
+        "Mejora de movilidad articular"
+      ],
+      "precauciones": [
+        "Derivados de marisco - alergias posibles"
+      ],
+      "mecanismo": "NAG es precursor de ácido hialurónico; la condroitina es un GAG estructural del cartílago.",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ]
+    },
+    {
+      "id": "sin_nag_glucosamina",
+      "ingredienteA": "n_acetilglucosamina",
+      "ingredienteB": "glucosamina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Aminoazúcares emparentados para soporte articular y de mucosa intestinal.",
+      "beneficios": [
+        "Soporte articular",
+        "Integridad de mucosa intestinal"
+      ],
+      "precauciones": [
+        "Precaución en diabetes (afecta glucosilación)"
+      ],
+      "mecanismo": "Ambos son precursores de glicosaminoglicanos; NAG tiene mejor acción sobre mucosa intestinal.",
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo"
+      ],
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ]
+    },
+    {
+      "id": "sin_nag_acido_hialuronico",
+      "ingredienteA": "n_acetilglucosamina",
+      "ingredienteB": "acido_hialuronico",
+      "tipo": "cofactor",
+      "nivelEvidencia": "C",
+      "descripcion": "NAG es precursor directo del ácido hialurónico en piel y articulaciones.",
+      "beneficios": [
+        "Hidratación de piel",
+        "Lubricación articular",
+        "Cicatrización"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "El ácido hialurónico se sintetiza a partir de NAG y ácido glucurónico; el NAG oral aporta precursor.",
+      "sistemas": [
+        "dermatologico",
+        "musculoesqueletico"
+      ],
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ]
+    },
+    {
+      "id": "sin_policosanol_levadura_arroz",
+      "ingredienteA": "policosanol",
+      "ingredienteB": "curcumina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación hipolipemiante con acción antioxidante endotelial.",
+      "beneficios": [
+        "Reducción de LDL",
+        "Protección endotelial"
+      ],
+      "precauciones": [
+        "Riesgo de exceso hipolipemiante con estatinas"
+      ],
+      "mecanismo": "El policosanol inhibe HMG-CoA reductasa y la curcumina reduce la oxidación de LDL.",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_policosanol_omega_3",
+      "ingredienteA": "policosanol",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Estrategia cardiovascular completa: LDL (policosanol) + triglicéridos (omega-3).",
+      "beneficios": [
+        "Mejora del perfil lipídico completo",
+        "Protección cardiovascular"
+      ],
+      "precauciones": [
+        "Efecto antiagregante aditivo"
+      ],
+      "mecanismo": "El policosanol reduce LDL y el omega-3 reduce triglicéridos; ambos mejoran la función endotelial.",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_vinpocetina_ginkgo",
+      "ingredienteA": "vinpocetina",
+      "ingredienteB": "ginkgo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo nootrópico-microcirculatorio para cognición y memoria.",
+      "beneficios": [
+        "Mejora de la microcirculación cerebral",
+        "Soporte de memoria y concentración",
+        "Protección neurodegenerativa"
+      ],
+      "precauciones": [
+        "Riesgo de sangrado si se combina con anticoagulantes"
+      ],
+      "mecanismo": "La vinpocetina (PDE1) y el ginkgo (PAF-antagonista + microcirculación) actúan sinérgicamente en el flujo sanguíneo cerebral.",
+      "sistemas": [
+        "nervioso",
+        "ocular"
+      ],
+      "categorias": [
+        "vitamina",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_vinpocetina_l_teanina",
+      "ingredienteA": "vinpocetina",
+      "ingredienteB": "l_teanina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación de microcirculación cerebral + ansiolítico suave para foco cognitivo.",
+      "beneficios": [
+        "Atención y enfoque mental",
+        "Reducción de ansiedad sin sedación"
+      ],
+      "precauciones": [
+        "Posible cefalea leve"
+      ],
+      "mecanismo": "La L-teanina modula ondas alfa y GABA; la vinpocetina mejora el flujo y la neurotransmisión colinérgica.",
+      "sistemas": [
+        "nervioso"
+      ],
+      "categorias": [
+        "vitamina",
+        "aminoacido"
+      ]
+    },
+    {
+      "id": "sin_coleus_forskohlii_green_tea",
+      "ingredienteA": "coleus_forskohlii",
+      "ingredienteB": "te_verde",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Combinación termogénica: forskolina (cAMP) + EGCG (inhibición COMT).",
+      "beneficios": [
+        "Aumento de lipólisis y termogénesis",
+        "Soporte de composición corporal",
+        "Energía metabólica"
+      ],
+      "precauciones": [
+        "La cafeína del té verde puede causar taquicardia"
+      ],
+      "mecanismo": "La forskolina eleva cAMP (lipólisis) y el EGCG inhibe COMT, prolongando la señal noradrenérgica.",
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_coleus_forskohlii_maqui",
+      "ingredienteA": "coleus_forskohlii",
+      "ingredienteB": "maqui",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para presión intraocular: forskolina + antioxidantes retinianos.",
+      "beneficios": [
+        "Reducción de presión intraocular (glaucoma)",
+        "Protección del nervio óptico"
+      ],
+      "precauciones": [
+        "No sustituye tratamiento oftalmológico"
+      ],
+      "mecanismo": "La forskolina reduce la producción de humor acuoso (cAMP); las antocianinas del maqui protegen retina.",
+      "sistemas": [
+        "ocular",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_fucus_ashwagandha",
+      "ingredienteA": "fucus",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte endocrino combinado: tiroides (fucus) + adaptógeno suprarrenal (ashwagandha).",
+      "beneficios": [
+        "Soporte del eje tiroides-suprarrenal",
+        "Energía y manejo del estrés"
+      ],
+      "precauciones": [
+        "Controlar función tiroidea"
+      ],
+      "mecanismo": "El fucus aporta yodo tiroideo y la ashwagandha modula cortisol y TSH.",
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_vara_de_oro_d_manosa",
+      "ingredienteA": "vara_de_oro",
+      "ingredienteB": "d_manosa",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia para cistitis recurrente: antiadherencia (D-manosa) + diurético (vara de oro).",
+      "beneficios": [
+        "Profilaxis de cistitis recurrente",
+        "Reducción de adherencia de E. coli",
+        "Lavado del tracto urinario"
+      ],
+      "precauciones": [
+        "Generalmente segura"
+      ],
+      "mecanismo": "La D-manosa bloquea fimbrias de E. coli; la vara de oro promueve diuresis y antiinflamación.",
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_maqui_luteina_zeaxantina",
+      "ingredienteA": "maqui",
+      "ingredienteB": "zeaxantina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío macular: antocianinas + luteína + zeaxantina para protección ocular completa.",
+      "beneficios": [
+        "Densificación macular",
+        "Filtro de luz azul",
+        "Reducción de degeneración macular"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "Luteína y zeaxantina se acumulan en la mácula; las antocianinas del maqui mejoran microcirculación retiniana.",
+      "sistemas": [
+        "ocular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_nuez_moscada_aceite_melisa",
+      "ingredienteA": "nuez_moscada_aceite",
+      "ingredienteB": "melisa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia aromaterapéutica y nervina para digestión y relajación nerviosa.",
+      "beneficios": [
+        "Relajación digestiva y nerviosa",
+        "Aromaterapia calmante",
+        "Reducción de dispepsia nerviosa"
+      ],
+      "precauciones": [
+        "No ingerir el aceite esencial puro (miristicina)",
+        "Posible somnolencia"
+      ],
+      "mecanismo": "La miristicina (nuez moscada) y los terpenos de melisa modulan GABA y la motilidad digestiva.",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "categorias": [
+        "aceite_esencial",
+        "fitoterapia"
       ]
     }
   ]

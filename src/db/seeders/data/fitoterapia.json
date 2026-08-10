@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-09",
-    "total": 194,
+    "ultimaActualizacion": "2026-08-10",
+    "total": 200,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -10170,6 +10170,331 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA + Cochrane review (venous insufficiency)"
+      }
+    },
+    {
+      "id": "fucus",
+      "nombre": "Fucus",
+      "nombresAlternativos": [
+        "Fucus vesiculosus",
+        "Kelp",
+        "Alga marrón",
+        "Wrack"
+      ],
+      "nombreCientifico": "Fucus vesiculosus",
+      "familia": "Fucaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "tiroides",
+        "metabolismo",
+        "peso",
+        "energía"
+      ],
+      "descripcion": "Alga marina rica en yodo orgánico que estimula la función tiroidea y el metabolismo basal.",
+      "mecanismoAccion": "El yodo orgánico es precursor de T3/T4. Los polifenoles de algas marrones (fucoxantina) activan la termogénesis vía UCP1 en tejido adiposo.",
+      "nivelEvidencia": "C",
+      "parteUsada": "tallo",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto seco",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "3-6 meses con controles",
+      "advertencias": [
+        "Contraindicado en hipertiroidismo",
+        "No usar con medicación tiroidea sin control médico",
+        "Riesgo de sobredosis de yodo",
+        "Evitar en embarazo y lactancia sin supervisión"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levotiroxina (interfiere con absorción, separar 4h)",
+        "Lugol/yodo (riesgo de exceso)",
+        "Antitiroideos (metimazol, propiltiouracilo) — efecto opuesto"
+      ],
+      "tags": [
+        "tiroides",
+        "yodo",
+        "metabolismo",
+        "alga"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph + WHO Monographs + European Pharmacopoeia"
+      }
+    },
+    {
+      "id": "phyllanthus_niruri",
+      "nombre": "Phyllanthus niruri",
+      "nombresAlternativos": [
+        "Chanca piedra",
+        "Chanca-piedra",
+        "Phyllanthus amarus",
+        "Gale of the wind",
+        "Rompepiedras"
+      ],
+      "nombreCientifico": "Phyllanthus niruri",
+      "familia": "Phyllanthaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "urinario",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "cálculos",
+        "hepático",
+        "renal",
+        "antiviral"
+      ],
+      "descripcion": "Planta hepatoprotectora y anti-litiasica usada en Asia y América para cálculos renales y biliares.",
+      "mecanismoAccion": "Los lignanos (filantina, hipofilantina) inhiben la HBsAg del virus de hepatitis B. Modula la cristalización del oxalato cálcico reduciendo litiasis renal.",
+      "nivelEvidencia": "B",
+      "parteUsada": "planta entera",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Infusión",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "No usar en embarazo",
+        "Monitorizar si se usa con medicación antiviral para hepatitis",
+        "Posible efecto hipoglucemiante leve"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antivirales para hepatitis B (interferón, tenofovir) — posible sinergia, monitorizar",
+        "Antidiabéticos (riesgo de hipoglucemia aditiva)",
+        "Diuréticos (efecto aditivo)"
+      ],
+      "tags": [
+        "hepático",
+        "renal",
+        "litiasis",
+        "antiviral"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "WHO Monographs + Clinical trials (PubMed meta-análisis)"
+      }
+    },
+    {
+      "id": "grama",
+      "nombre": "Grama",
+      "nombresAlternativos": [
+        "Agropyron repens",
+        "Elymus repens",
+        "Capim-da-água",
+        "Grama oficinal",
+        "Rizoma de grama"
+      ],
+      "nombreCientifico": "Elymus repens",
+      "familia": "Poaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "urinario",
+        "diurético",
+        "cálculos",
+        "hepático"
+      ],
+      "descripcion": "Rizoma diurético y depurativo tradicional para afecciones urinarias y renales.",
+      "mecanismoAccion": "Los fructanos (inulina) y triticina ejercen efecto diurético osmótico. El aceite esencial y los mucílagos suavizan el tracto urinario.",
+      "nivelEvidencia": "C",
+      "parteUsada": "rizoma",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas",
+        "Extracto líquido"
+      ],
+      "tiempoEfecto": "24-48 horas",
+      "duracionTratamiento": "2-3 semanas",
+      "advertencias": [
+        "Contraindicado en edemas por insuficiencia cardíaca o renal",
+        "Asegurar ingesta hídrica adecuada",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos (efecto aditivo, riesgo de deshidratación)",
+        "Litio (los diuréticos reducen excreción, riesgo toxicidad)"
+      ],
+      "tags": [
+        "diurético",
+        "urinario",
+        "renal",
+        "depurativo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph + German Commission E"
+      }
+    },
+    {
+      "id": "vara_de_oro",
+      "nombre": "Vara de Oro",
+      "nombresAlternativos": [
+        "Solidago virgaurea",
+        "Vara de oro europea",
+        "Goldenrod",
+        "Vara de oroval"
+      ],
+      "nombreCientifico": "Solidago virgaurea",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ],
+      "indicaciones": [
+        "urinario",
+        "diurético",
+        "inflamación",
+        "cálculos"
+      ],
+      "descripcion": "Planta antiinflamatoria y diurética de vías urinarias, útil en cistitis y profilaxis de litiasis.",
+      "mecanismoAccion": "Las saponinas triterpénicas, flavonoides y taninos ejercen efecto diurético y astringente. Acción espasmolítica y antiinflamatoria sobre la mucosa urinaria.",
+      "nivelEvidencia": "B",
+      "parteUsada": "summitad florida",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "2-4 días",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Contraindicado en insuficiencia renal o cardíaca con edema",
+        "Alergias a Asteraceae posibles",
+        "No usar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos (efecto aditivo)",
+        "Litio (riesgo de toxicidad por reducción de excreción)"
+      ],
+      "tags": [
+        "urinario",
+        "diurético",
+        "antiinflamatorio",
+        "cistitis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph + ESCOP Monographs"
+      }
+    },
+    {
+      "id": "damiana_hoja",
+      "nombre": "Damiana",
+      "nombresAlternativos": [
+        "Turnera diffusa",
+        "Turnera aphrodisiaca",
+        "Hierba del venado",
+        "Damiana leaf"
+      ],
+      "nombreCientifico": "Turnera diffusa",
+      "familia": "Passifloraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "libido",
+        "afrodisíaco",
+        "ansiedad",
+        "energía"
+      ],
+      "descripcion": "Arbusto tradicional mexicano usado como afrodisíaco y tónico nervioso.",
+      "mecanismoAccion": "Contiene alcaloides, aceites esenciales y flavonoides con efecto leve estimulante y ansiolítico. Posible modulación dopaminérgica y colinérgica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hojas",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Tintura",
+        "Infusión"
+      ],
+      "tiempoEfecto": "1-2 horas",
+      "duracionTratamiento": "4-8 semanas",
+      "advertencias": [
+        "Evitar en embarazo (efecto abortivo potencial)",
+        "Contiene compuestos con acción estimulante",
+        "Uso histórico con evidencia limitada"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hipoglucemiantes (efecto hipoglucemiante leve)",
+        "Estimulantes del SNC (efecto aditivo)"
+      ],
+      "tags": [
+        "libido",
+        "afrodisíaco",
+        "tónico",
+        "ansiolítico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "WHO Monographs + Clinical trials (PubMed)"
+      }
+    },
+    {
+      "id": "maqui",
+      "nombre": "Maqui",
+      "nombresAlternativos": [
+        "Aristotelia chilensis",
+        "Maqui berry",
+        "Claon",
+        "Quelen",
+        "Aristotelia maqui"
+      ],
+      "nombreCientifico": "Aristotelia chilensis",
+      "familia": "Elaeocarpaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "inmune",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "visión",
+        "inmunidad",
+        "colesterol"
+      ],
+      "descripcion": "Baya patagónica con uno de los mayores contenidos de antocianinas del mundo, potente antioxidante.",
+      "mecanismoAccion": "Las delfinidinas (antocianinas) neutralizan ROS y modulan NF-κB. Mejoran la microcirculación retiniana y la función endotelial vía NOS.",
+      "nivelEvidencia": "B",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto seco",
+        "Polvo liofilizado"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Generalmente seguro",
+        "Efecto antioxidante puede potenciar anticoagulantes en dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina — precaución por efecto antiagregante)",
+        "Antihipertensivos (efecto vasodilatador leve aditivo)"
+      ],
+      "tags": [
+        "antocianinas",
+        "antioxidante",
+        "ocular",
+        "baya"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + Chilean Pharmacopoeia"
       }
     }
   ]
