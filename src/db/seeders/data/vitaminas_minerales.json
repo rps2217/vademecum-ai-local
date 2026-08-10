@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-09",
-    "total": 168,
+    "ultimaActualizacion": "2026-08-10",
+    "total": 177,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -9842,6 +9842,234 @@
         "Levodopa (NADH puede potenciar efecto antiparkinsoniano)",
         "Sin interacciones medicamentosas significativas documentadas"
       ]
+    },
+    {
+      "id": "n_acetilglucosamina",
+      "nombre": "N-Acetilglucosamina",
+      "nombresAlternativos": [
+        "NAG",
+        "N-Acetyl-D-glucosamine",
+        "GlcNAc"
+      ],
+      "nombreCientifico": "2-(Acetilamino)-2-desoxi-D-glucopiranosa",
+      "familia": "Aminoazúcares",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "articular",
+        "intestinal",
+        "piel",
+        "inflamación"
+      ],
+      "descripcion": "Aminoazúcar precursor de glicosaminoglicanos para cartílago y mucosa intestinal.",
+      "mecanismoAccion": "Precursor de ácido hialurónico y glicosaminoglicanos. Modula la glucosilación de proteínas y la inflamación vía O-GlcNAcylation. Mejora la integridad de la barrera intestinal.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "500-1500mg/día",
+      "dosisMaxima": "3000mg/día",
+      "formaQuimica": [
+        "N-Acetilglucosamina",
+        "Sulfato de glucosamina (relacionado)"
+      ],
+      "biodisponibilidad": "Moderada (20-30%)",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Condroitina",
+        "Ácido hialurónico"
+      ],
+      "evitarCon": [
+        "Diuréticos (pueden reducir absorción)"
+      ],
+      "advertencias": [
+        "Generalmente seguro",
+        "Precaución en diabetes (puede afectar glucosilación)",
+        "Derivado de marisco — alergias posibles"
+      ],
+      "tags": [
+        "articular",
+        "cartílago",
+        "intestinal",
+        "mucosa"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + GAIT trial"
+      }
+    },
+    {
+      "id": "policosanol",
+      "nombre": "Policosanol",
+      "nombresAlternativos": [
+        "Alcohol de caña de azúcar",
+        "Octacosanol",
+        "Cuban policosanol",
+        "Sugar cane wax alcohols"
+      ],
+      "nombreCientifico": "Mezcla de alcoholes alifáticos de cadena larga (C24-C34)",
+      "familia": "Alcoholes alifáticos",
+      "categoria": "vitamina",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "colesterol",
+        "cardiovascular",
+        "glucosa"
+      ],
+      "descripcion": "Mezcla de alcoholes alifáticos de la caña de azúcar con efecto hipolipemiante.",
+      "mecanismoAccion": "Inhibe la HMG-CoA reductasa (vía regulación de AMPK). Reduce la oxidación de LDL y mejora la función endotelial.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "5-20mg/día",
+      "dosisMaxima": "20mg/día",
+      "formaQuimica": [
+        "Octacosanol (60%)",
+        "Triacontanol",
+        "Hexacosanol"
+      ],
+      "biodisponibilidad": "Moderada",
+      "momentoToma": [
+        "Con la cena (noche)"
+      ],
+      "tomarCon": [
+        "Aspirina (efecto antiagregante aditivo)"
+      ],
+      "evitarCon": [
+        "Anticoagulantes sin control"
+      ],
+      "advertencias": [
+        "Generalmente bien tolerado",
+        "Precaución si se combina con estatinas (riesgo de exceso hipolipemiante)",
+        "Efecto antiagregante plaquetario"
+      ],
+      "tags": [
+        "colesterol",
+        "cardiovascular",
+        "LDL",
+        "HMG-CoA"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + Cuban Pharmacopoeia"
+      }
+    },
+    {
+      "id": "vinpocetina",
+      "nombre": "Vinpocetina",
+      "nombresAlternativos": [
+        "Etiléster de apovincamina",
+        "Cavinton",
+        "Vinpocetine"
+      ],
+      "nombreCientifico": "(3α,16α)-Ebilgarato de 14-etil-14-hidroxiabioxan-12-enoico",
+      "familia": "Alcaloides de Vinca",
+      "categoria": "vitamina",
+      "sistemas": [
+        "nervioso",
+        "ocular"
+      ],
+      "indicaciones": [
+        "cognitivo",
+        "visión",
+        "circulación",
+        "memoria"
+      ],
+      "descripcion": "Alcaloide semisintético de Vinca minor que mejora la microcirculación cerebral y la cognición.",
+      "mecanismoAccion": "Inhibe la fosfodiesterasa-1 (PDE1), elevando cGMP y cAMP cerebrales. Mejora el flujo sanguíneo cerebral sin afectar la presión sistémica. Modula la conductancia de Na+.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "5-10mg/día",
+      "dosisMaxima": "30mg/día",
+      "formaQuimica": [
+        "Vinpocetina",
+        "Vinpocetina micronizada"
+      ],
+      "biodisponibilidad": "Baja (5-7%)",
+      "momentoToma": [
+        "Con comida (mejora absorción)"
+      ],
+      "tomarCon": [
+        "Ginkgo biloba (sinergia microcirculatoria)"
+      ],
+      "evitarCon": [
+        "Anticoagulantes sin control"
+      ],
+      "advertencias": [
+        "Evitar en embarazo",
+        "Precaución con anticoagulantes (efecto antiagregante)",
+        "No usar si se consume en exceso cafeína (estimulación aditiva)",
+        "Posible supresión de la inmunidad con dosis altas"
+      ],
+      "tags": [
+        "cognitivo",
+        "microcirculación",
+        "memoria",
+        "PDE1"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + European Medicines Agency"
+      }
+    },
+    {
+      "id": "coleus_forskohlii",
+      "nombre": "Coleus forskohlii",
+      "nombresAlternativos": [
+        "Plectranthus barbatus",
+        "Forskolina",
+        "Coleo",
+        "Indian coleus"
+      ],
+      "nombreCientifico": "Coleus forskohlii",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "cardiovascular",
+        "ocular"
+      ],
+      "indicaciones": [
+        "peso",
+        "glucosa",
+        "presión arterial",
+        "glaucoma"
+      ],
+      "descripcion": "Planta india cuya raíz contiene forskolina, activador directo de la adenilato ciclasa.",
+      "mecanismoAccion": "La forskolina activa directamente la adenilato ciclasa, aumentando el cAMP intracelular. Estimula la lipólisis, la secreción de insulina y reduce la presión intraocular.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto estandarizado (10% forskolina)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "8-12 semanas",
+      "advertencias": [
+        "Puede bajar la presión arterial",
+        "Evitar en embarazo (efecto sobre cAMP uterino)",
+        "Precaución con medicación para glaucoma",
+        "Suspender antes de cirugía"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos (efecto aditivo hipotensor)",
+        "Anticoagulantes y antiagregantes (riesgo de sangrado)",
+        "Medicamentos para glaucoma (efecto aditivo hipotensor ocular)",
+        "Insulina y antidiabéticos (riesgo de hipoglucemia)"
+      ],
+      "tags": [
+        "forskolina",
+        "cAMP",
+        "peso",
+        "glaucoma"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + Ayurvedic Pharmacopoeia"
+      }
     }
   ]
 }
