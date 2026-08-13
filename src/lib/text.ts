@@ -471,6 +471,51 @@ const QUERY_SYNONYMS: Record<string, string[]> = {
   vitaminas: ['vitamina', 'suplemento'],
   suplemento: ['suplemento', 'vitamina', 'nutricional'],
   antioxidantes: ['antioxidante', 'antienvejecimiento'],
+  // Nuevos ingredientes Ronda 17 — enlazan consultas coloquiales con la KB
+  // Ocular
+  arandano: ['mirtilo', 'ocular', 'visión nocturna', 'antocianósidos'],
+  arandanos: ['mirtilo', 'ocular', 'visión nocturna'],
+  mirtilo: ['mirtilo', 'ocular', 'visión nocturna'],
+  bilberry: ['mirtilo', 'ocular', 'visión nocturna'],
+  aronia: ['aronia', 'antioxidante', 'ocular', 'antocianinas'],
+  chokeberry: ['aronia', 'antioxidante'],
+  // Urinario
+  olmaria: ['olmaria', 'urinario', 'antiinflamatorio'],
+  reina_prados: ['olmaria', 'ulmaria', 'urinario'],
+  ulmaria: ['olmaria', 'urinario'],
+  // Reproductivo / hormonal
+  verbeno: ['verbeno', 'nervioso', 'emenagogo'],
+  verbena: ['verbeno', 'nervioso', 'emenagogo'],
+  kudzu: ['pueraria', 'menopausia', 'isoflavonas'],
+  pueraria: ['pueraria', 'menopausia', 'isoflavonas'],
+  // Hepático
+  desmodium: ['desmodium', 'hepático', 'hepatoprotector'],
+  desmodio: ['desmodium', 'hepático'],
+  achicoria: ['achicoria', 'hepático', 'prebiótico', 'inulina'],
+  chicoria: ['achicoria', 'hepático'],
+  esquizandra: ['esquizandra', 'hepático', 'adaptógeno'],
+  schisandra: ['esquizandra', 'hepático', 'adaptógeno'],
+  wu_wei_zi: ['esquizandra', 'hepático'],
+  // Endocrino
+  estevia: ['estevia', 'glucosa', 'endocrino'],
+  stevia: ['estevia', 'glucosa', 'endocrino'],
+  hierba_dulce: ['estevia', 'glucosa'],
+  naranjo: ['naranjo amargo', 'nervioso', 'digestivo'],
+  neroli: ['naranjo amargo', 'nervioso', 'sedante'],
+  azahar: ['naranjo amargo', 'nervioso', 'sedante'],
+  // Cardio / venotónico
+  vid: ['sarmiento', 'venotónico', 'OPC'],
+  sarmiento: ['sarmiento', 'venotónico', 'OPC'],
+  hoja_vid: ['sarmiento', 'venotónico'],
+  opc: ['sarmiento', 'venotónico', 'antioxidante'],
+  // Probióticos / prebióticos
+  lgg: ['lactobacillus rhamnosus', 'probiótico', 'intestinal'],
+  probiotico: ['probiótico', 'intestinal', 'inmunidad'],
+  probioticos: ['probiótico', 'intestinal', 'inmunidad'],
+  flora: ['probiótico', 'intestinal', 'microbiota'],
+  prebiotico: ['prebiótico', 'inulina', 'fibra'],
+  prebioticos: ['prebiótico', 'inulina', 'fibra'],
+  arabinogalactano: ['arabinogalactano', 'prebiótico', 'inmunidad'],
 };
 
 /**

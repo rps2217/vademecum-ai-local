@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 191,
+    "total": 195,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -10812,6 +10812,202 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Calcif. Tissue Int. + Menopause"
+      }
+    },
+    {
+      "id": "lactobacillus_rhamnosus",
+      "nombre": "Lactobacillus rhamnosus GG",
+      "nombresAlternativos": [
+        "L. rhamnosus GG",
+        "LGG",
+        "Lactobacillus rhamnosus"
+      ],
+      "nombreCientifico": "Lactobacillus rhamnosus GG",
+      "familia": "Lactobacillaceae",
+      "categoria": "probiotico",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "inmunidad",
+        "diarrea",
+        "antibioticos",
+        "alergias"
+      ],
+      "descripcion": "Cepa probiotica con evidencia solida para gastroenteritis, diarrea asociada a antibioticos y modulacion inmune.",
+      "mecanismoAccion": "Adherencia a mucosa intestinal, competencia con patogenos, modulacion de Treg e IL-10, mejora barrera epitelial.",
+      "nivelEvidencia": "A",
+      "parteUsada": "cepa liofilizada",
+      "formasPresentacion": [
+        "Capsulas liofilizadas",
+        "Sobres",
+        "Liquido refrigerado"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "dosisDiaria": "10-20 mil millones UFC",
+      "advertencias": [
+        "Separar 2 h de antibioticos",
+        "Caucion en inmunodeprimidos graves"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibioticos (separar toma)"
+      ],
+      "tags": [
+        "lgg",
+        "cepa",
+        "inmunidad",
+        "diarrea"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EFSA scientific opinion on L. rhamnosus GG; Clinical trials PubMed meta-analisis sobre diarrea infecciosa"
+      }
+    },
+    {
+      "id": "lactobacillus_acidophilus",
+      "nombre": "Lactobacillus acidophilus",
+      "nombresAlternativos": [
+        "L. acidophilus",
+        "LA-5",
+        "Lactobacillus acidophilus"
+      ],
+      "nombreCientifico": "Lactobacillus acidophilus",
+      "familia": "Lactobacillaceae",
+      "categoria": "probiotico",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "inmunidad",
+        "dispepsia",
+        "lactosa"
+      ],
+      "descripcion": "Cepa probiotica que mejora la digestion de lactosa y el equilibrio de la microbiota intestinal.",
+      "mecanismoAccion": "Produce lactasa que mejora la digestion de lactosa; compite con patogenos y produce bacteriocinas.",
+      "nivelEvidencia": "A",
+      "parteUsada": "cepa liofilizada",
+      "formasPresentacion": [
+        "Capsulas",
+        "Sobres",
+        "Liquido"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-2 meses",
+      "dosisDiaria": "5-10 mil millones UFC",
+      "advertencias": [
+        "Separar 2 h de antibioticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibioticos (separar toma)"
+      ],
+      "tags": [
+        "cepa",
+        "lactosa",
+        "inmunidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EFSA scientific opinion; Clinical trials PubMed sobre intolerancia a lactosa y microbiota"
+      }
+    },
+    {
+      "id": "bifidobacterium_longum",
+      "nombre": "Bifidobacterium longum",
+      "nombresAlternativos": [
+        "B. longum",
+        "BB536",
+        "Bifidobacterium longum"
+      ],
+      "nombreCientifico": "Bifidobacterium longum",
+      "familia": "Bifidobacteriaceae",
+      "categoria": "probiotico",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "inmunidad",
+        "alergias",
+        "estres"
+      ],
+      "descripcion": "Cepa probiotica con efecto regulador del eje intestino-cerebro y modulacion de la respuesta alergica.",
+      "mecanismoAccion": "Mejora la barrera intestinal, reduce endotoxemia, modula el eje HHA y la respuesta Th2/Th1 en alergias.",
+      "nivelEvidencia": "A",
+      "parteUsada": "cepa liofilizada",
+      "formasPresentacion": [
+        "Capsulas",
+        "Sobres"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "dosisDiaria": "5-20 mil millones UFC",
+      "advertencias": [
+        "Separar 2 h de antibioticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antibioticos (separar toma)"
+      ],
+      "tags": [
+        "cepa",
+        "eje_intestino_cerebro",
+        "alergias"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EFSA scientific opinion; Clinical trials PubMed sobre B. longum BB536 y rinitis alergica"
+      }
+    },
+    {
+      "id": "arabinogalactano",
+      "nombre": "Arabinogalactano",
+      "nombresAlternativos": [
+        "Arabinogalactan",
+        "AG",
+        "Fibra Larix",
+        "Larch arabinogalactan"
+      ],
+      "nombreCientifico": "Arabinogalactano (polisacarido Larix occidentalis)",
+      "familia": "Polisacarido vegetal",
+      "categoria": "probiotico",
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "intestinal",
+        "respiratorio"
+      ],
+      "descripcion": "Prebiotico fermentable que estimula bifidobacterias y la inmunidad de mucosas (NK e IgA).",
+      "mecanismoAccion": "Fermentado por microbiota en SCFA (butirato), estimula actividad de celulas NK y produccion de IgA secretora.",
+      "nivelEvidencia": "B",
+      "parteUsada": "extracto de madera Larix",
+      "formasPresentacion": [
+        "Polvo",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "dosisDiaria": "1.5-3 g",
+      "advertencias": [
+        "Puede causar gases iniciales (fibra fermentable)"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "prebiotico",
+        "fibra",
+        "nk",
+        "inmunidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EFSA scientific opinion on arabinogalactan; Clinical trials PubMed sobre Larix AG e inmunidad"
       }
     }
   ]

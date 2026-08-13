@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 217,
+    "total": 228,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -11399,6 +11399,589 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "WHO/UNICEF yodo + J. Thyroid Res."
+      }
+    },
+    {
+      "id": "mirtilo",
+      "nombre": "Mirtilo",
+      "nombresAlternativos": [
+        "Vaccinium myrtillus",
+        "Arandano negro",
+        "Bilberry",
+        "Arandano"
+      ],
+      "nombreCientifico": "Vaccinium myrtillus",
+      "familia": "Ericaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "ocular",
+        "antioxidante",
+        "visual",
+        "cardiovascular",
+        "circulacion"
+      ],
+      "descripcion": "Arandano negro rico en antocianosidos que mejora la microcirculacion retiniana y la vision nocturna.",
+      "mecanismoAccion": "Los antocianosidos regeneran la rodopsina, mejoran el flujo sanguineo capilar y neutralizan radicales libres en retina.",
+      "nivelEvidencia": "B",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas",
+        "Infusion"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "dosisDiaria": "160-320 mg extracto (25% antocianosidos)",
+      "advertencias": [
+        "Puede interferir con anticoagulantes a dosis altas",
+        "Coloracion azulada de orina (inofensiva)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes cumarinicos"
+      ],
+      "tags": [
+        "antocianosidos",
+        "vision",
+        "microcirculacion",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph EMA/HMPC/502622/2017; ESCOP Monographs on Vaccinium myrtillus"
+      }
+    },
+    {
+      "id": "aronia",
+      "nombre": "Aronia",
+      "nombresAlternativos": [
+        "Aronia melanocarpa",
+        "Chokeberry",
+        "Aronia negra"
+      ],
+      "nombreCientifico": "Aronia melanocarpa",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "metabolico",
+        "dermatologico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "ocular",
+        "cardiovascular",
+        "colesterol",
+        "presion",
+        "glucosa"
+      ],
+      "descripcion": "Fruto con una de las mayores concentraciones de antocianinas y polifenoles del reino vegetal.",
+      "mecanismoAccion": "Las antocianinas y proantocianidinas neutralizan ROS, modulan NF-kB y mejoran la funcion endotelial y la sensibilidad a insulina.",
+      "nivelEvidencia": "B",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Zumo concentrado",
+        "Extracto seco",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "6-8 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "dosisDiaria": "100-300 mg extracto o 50-100 ml zumo",
+      "advertencias": [
+        "Sin toxicidad conocida a dosis terapeuticas"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "antocianinas",
+        "antioxidante",
+        "antiedematoso",
+        "capilar"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials PubMed meta-analisis sobre Aronia melanocarpa (antioxidante, lipidos, presion)"
+      }
+    },
+    {
+      "id": "olmaria",
+      "nombre": "Olmaria",
+      "nombresAlternativos": [
+        "Filipendula ulmaria",
+        "Reina de los prados",
+        "Meadowsweet",
+        "Ulmaria"
+      ],
+      "nombreCientifico": "Filipendula ulmaria",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "musculoesqueletico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dolor",
+        "articular",
+        "inflamacion",
+        "urinario",
+        "digestivo",
+        "acidez"
+      ],
+      "descripcion": "Planta rica en salicilatos con accion antiinflamatoria, analgesica y diuretica suave.",
+      "mecanismoAccion": "Los salicilatos inhiben COX-2; los flavonoides y taninos aportan accion astringente y diuretica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "sumidad florida",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Contiene salicilatos: evitar en alergia a AINEs/aspirina",
+        "No en embarazo ni lactancia",
+        "Evitar en ulceras activas"
+      ],
+      "interaccionesMedicamentosas": [
+        "AAS y AINEs (sinergia anticoagulante)",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "salicilatos",
+        "antiinflamatorio",
+        "diuretico",
+        "analgesico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph EMA/HMPC/49832/2016; ESCOP Monographs on Filipendulae ulmariae herba"
+      }
+    },
+    {
+      "id": "verbeno",
+      "nombre": "Verbeno",
+      "nombresAlternativos": [
+        "Verbena officinalis",
+        "Hierba de Santa Ana",
+        "Vervain",
+        "Verbena"
+      ],
+      "nombreCientifico": "Verbena officinalis",
+      "familia": "Verbenaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "reproductivo",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "estres",
+        "menstrual",
+        "digestivo",
+        "lactancia"
+      ],
+      "descripcion": "Tonico nervioso y emenagogo tradicional con efecto calmante y regulador del ciclo menstrual.",
+      "mecanismoAccion": "Iridoides (verbenalina) y flavonoides ejercen efecto sedante suave y modulador de la contractilidad uterina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aerea",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar en embarazo (efecto emenagogo)",
+        "Puede potenciar sedantes"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes y ansioliticos"
+      ],
+      "tags": [
+        "emenagogo",
+        "nervino",
+        "galactogogo",
+        "sedante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC traditional use EMA/HMPC/597696/2015; British Herbal Pharmacopoeia"
+      }
+    },
+    {
+      "id": "pueraria",
+      "nombre": "Pueraria",
+      "nombresAlternativos": [
+        "Pueraria lobata",
+        "Kudzu",
+        "Gegen"
+      ],
+      "nombreCientifico": "Pueraria lobata",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "endocrino",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "menopausia",
+        "cardiovascular",
+        "glucosa",
+        "alcohol"
+      ],
+      "descripcion": "Raiz rica en isoflavonas (puerarin, daidzeina) con accion fitoestrogenica y cardiovascular.",
+      "mecanismoAccion": "Las isoflavonas actuan como agonistas parciales de receptores ER-beta modulando fogajes; el puerarina mejora el flujo coronario y la sensibilidad a insulina.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Evitar en canceres hormonodependientes sin supervision",
+        "Interfiere con anticoagulantes a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Tamoxifeno",
+        "Anticoagulantes",
+        "Metformina (sinergia glucosa)"
+      ],
+      "tags": [
+        "isoflavonas",
+        "fitoestrogeno",
+        "menopausia",
+        "kudzu"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "TCM Pharmacopoeia (Gegen); Clinical trials PubMed sobre isoflavonas y menopausia"
+      }
+    },
+    {
+      "id": "desmodium",
+      "nombre": "Desmodium",
+      "nombresAlternativos": [
+        "Desmodium adscendens",
+        "Desmodio"
+      ],
+      "nombreCientifico": "Desmodium adscendens",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico"
+      ],
+      "indicaciones": [
+        "hepatico",
+        "antioxidante",
+        "alergias"
+      ],
+      "descripcion": "Planta africana hepatoprotectora usada en hepatotoxicidad y alergias.",
+      "mecanismoAccion": "Los alcaloides y saponinas estabilizan la membrana del hepatocito y modulan la liberacion de histamina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "parte aerea",
+      "formasPresentacion": [
+        "Infusion",
+        "Tintura",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evidencia principalmente clinica observacional"
+      ],
+      "interaccionesMedicamentosas": [
+        "Farmacos hepatotoxicos (protector)"
+      ],
+      "tags": [
+        "hepatoprotector",
+        "antialergico",
+        "desmodio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials PubMed/PMC sobre Desmodium adscendens hepatoproteccion (estudios africanos)"
+      }
+    },
+    {
+      "id": "achicoria",
+      "nombre": "Achicoria",
+      "nombresAlternativos": [
+        "Cichorium intybus",
+        "Chicory",
+        "Radicheta"
+      ],
+      "nombreCientifico": "Cichorium intybus",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "digestivo",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "hepatico",
+        "digestivo",
+        "glucosa",
+        "intestinal",
+        "antioxidante"
+      ],
+      "descripcion": "Raiz rica en inulina (prebiotico) con accion colagoga, hepatoprotectora y reguladora de glucosa.",
+      "mecanismoAccion": "La inulina alimenta la microbiota y mejora la respuesta insulinica; los sesquiterpenos lactones estimulan la secrecion biliar y la motilidad.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Raiz tostada (sucedaneo de cafe)",
+        "Extracto",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Puede causar gases iniciales por la inulina",
+        "Evitar en obstruccion biliar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos (sinergia hipoglucemiante)"
+      ],
+      "tags": [
+        "inulina",
+        "prebiotico",
+        "colagogo",
+        "hepatico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC traditional use Cichorii radix; EFSA scientific opinion on inulin-type fructans"
+      }
+    },
+    {
+      "id": "esquizandra",
+      "nombre": "Esquizandra",
+      "nombresAlternativos": [
+        "Schisandra chinensis",
+        "Schisandra",
+        "Wu wei zi",
+        "Bayas de cinco sabores"
+      ],
+      "nombreCientifico": "Schisandra chinensis",
+      "familia": "Schisandraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "inmune"
+      ],
+      "indicaciones": [
+        "hepatico",
+        "antioxidante",
+        "estres",
+        "fatiga",
+        "cognitivo",
+        "inmunidad"
+      ],
+      "descripcion": "Adaptogeno chino hepatoprotector que mejora la resistencia al estres y la funcion cognitiva.",
+      "mecanismoAccion": "Las lignanas (schizandrina) inducen enzimas de fase II hepatica, modulan cortisol y mejoran la neurotransmision colinergica.",
+      "nivelEvidencia": "B",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Extracto",
+        "Capsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Puede potenciar anticoagulantes",
+        "Insomnio a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Inhibidores enzimaticos hepaticos (CYP)"
+      ],
+      "tags": [
+        "adaptogeno",
+        "hepatoprotector",
+        "lignanos",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Chinese Pharmacopoeia (Wu wei zi); Clinical trials PubMed sobre Schisandra y funcion hepatica"
+      }
+    },
+    {
+      "id": "estevia",
+      "nombre": "Estevia",
+      "nombresAlternativos": [
+        "Stevia rebaudiana",
+        "Stevia",
+        "Caa-jhe",
+        "Hierba dulce"
+      ],
+      "nombreCientifico": "Stevia rebaudiana",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "metabolico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "presion",
+        "antioxidante"
+      ],
+      "descripcion": "Planta edulcorante con efecto hipoglucemiante e hipotensor suave.",
+      "mecanismoAccion": "Los esteviosidos mejoran la sensibilidad a insulina y modulan la reabsorcion tubular de sodio, reduciendo glucemia y presion arterial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Hoja seca",
+        "Extracto (esteviosidos)",
+        "Polvo"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "mantenimiento",
+      "dosisDiaria": "Hasta 4 mg/kg esteviosidos (ADI JECFA)",
+      "advertencias": [
+        "Puede causar hipotension en pacientes hipotensos",
+        "Monitorizar glucemia si se combina con antidiabeticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabeticos",
+        "Antihipertensivos"
+      ],
+      "tags": [
+        "edulcorante",
+        "glucosa",
+        "hipotensor",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "JECFA ADI steviol glycosides; EFSA scientific opinion on steviol glycosides; Clinical trials PubMed"
+      }
+    },
+    {
+      "id": "naranjo_amargo",
+      "nombre": "Naranjo Amargo",
+      "nombresAlternativos": [
+        "Citrus aurantium",
+        "Naranja agria",
+        "Bitter orange",
+        "Cascara amarga"
+      ],
+      "nombreCientifico": "Citrus aurantium",
+      "familia": "Rutaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "digestivo",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "insomnio",
+        "digestivo",
+        "dispepsia",
+        "perdida_peso"
+      ],
+      "descripcion": "Flor y corteza con accion sedante, digestiva y estimulante del metabolismo.",
+      "mecanismoAccion": "El aceite esencial de flor (neroli) modula GABA; la sinefrina de corteza estimula receptores beta3-adrenergicos.",
+      "nivelEvidencia": "C",
+      "parteUsada": "flor, corteza",
+      "formasPresentacion": [
+        "Infusion (flor)",
+        "Extracto (corteza)",
+        "Aceite esencial"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-2 meses",
+      "advertencias": [
+        "La sinefrina de la corteza puede elevar frecuencia cardiaca y TA; evitar en hipertension y cardiopatias",
+        "No combinar con IMAO",
+        "Caucion con cafe"
+      ],
+      "interaccionesMedicamentosas": [
+        "IMAO",
+        "Antihipertensivos",
+        "Estimulantes (cafeina)"
+      ],
+      "tags": [
+        "neroli",
+        "sinefrina",
+        "sedante",
+        "digestivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph EMA/HMPC/738254/2016 (Citrus aurantium flos); EMA HMPC on Cortex"
+      }
+    },
+    {
+      "id": "sarmiento",
+      "nombre": "Sarmiento",
+      "nombresAlternativos": [
+        "Vitis vinifera",
+        "Vid",
+        "Hoja de vid",
+        "Grapevine",
+        "OPC"
+      ],
+      "nombreCientifico": "Vitis vinifera",
+      "familia": "Vitaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "ocular",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "circulacion",
+        "ocular",
+        "antioxidante",
+        "piel"
+      ],
+      "descripcion": "Hojas y semillas ricas en OPC (proantocianidinas) que mejoran la insuficiencia venosa y la microcirculacion.",
+      "mecanismoAccion": "Los OPC y resveratrol estabilizan el colageno capilar, inhiben la elastasa y mejoran el flujo venoso y linfatico.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja, semilla",
+      "formasPresentacion": [
+        "Extracto estandarizado (OPC)",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "4-6 semanas",
+      "duracionTratamiento": "3 meses",
+      "advertencias": [
+        "Puede potenciar anticoagulantes a dosis altas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "opc",
+        "venotono",
+        "antioxidante",
+        "capilar",
+        "resveratrol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph EMA/HMPC/18425/2015 (Vitis vinifera folium); ESCOP Monographs"
       }
     }
   ]

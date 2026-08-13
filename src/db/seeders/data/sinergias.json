@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 1113,
+    "total": 1154,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -27053,6 +27053,993 @@
       ],
       "sistemas": [
         "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_mirtilo_luteina",
+      "ingredienteA": "mirtilo",
+      "ingredienteB": "luteina",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinacion clasica para salud ocular: antocianosidos + xantofilas maculares.",
+      "beneficios": [
+        "Mejora vision nocturna y agudeza visual",
+        "Protege macula del dano oxidativo",
+        "Sinergia microcirculacion + pigmento macular"
+      ],
+      "precauciones": [
+        "Separar de anticoagulantes"
+      ],
+      "mecanismo": "Mirtilo mejora flujo capilar retiniano; luteina/zeaxantina filtran luz azul y protegen la macula.",
+      "sistemas": [
+        "ocular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_mirtilo_zeaxantina",
+      "ingredienteA": "mirtilo",
+      "ingredienteB": "zeaxantina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo antioxidante ocular: antocianosidos + zeaxantina macular.",
+      "beneficios": [
+        "Refuerzo antioxidante retiniano",
+        "Mejora de la adaptacion a la oscuridad"
+      ],
+      "precauciones": [
+        "Coloracion inofensiva de orina"
+      ],
+      "mecanismo": "Cobertura antioxidante complementaria en fotorreceptores.",
+      "sistemas": [
+        "ocular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_aronia_astaxantina",
+      "ingredienteA": "aronia",
+      "ingredienteB": "astaxantina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo antioxidante liposoluble + hidrosoluble para retina y endotelio.",
+      "beneficios": [
+        "Maxima cobertura antioxidante (hidro+lipo)",
+        "Proteccion capilar y ocular"
+      ],
+      "precauciones": [
+        "Sin contraindicaciones relevantes"
+      ],
+      "mecanismo": "Aronia (antocianinas hidrosolubles) + astaxantina (carotenoide liposoluble) cubren compartimentos acuoso y lipidico.",
+      "sistemas": [
+        "ocular",
+        "cardiovascular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_mirtilo_sarmiento",
+      "ingredienteA": "mirtilo",
+      "ingredienteB": "sarmiento",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Sinergia venotonica y microcirculatoria para retina y piernas.",
+      "beneficios": [
+        "Mejora microcirculacion retiniana y venosa",
+        "Reduce pesadez y edema"
+      ],
+      "precauciones": [
+        "Vigilar anticoagulantes"
+      ],
+      "mecanismo": "Antocianosidos + OPC estabilizan el colageno capilar y mejoran el tono venoso.",
+      "sistemas": [
+        "ocular",
+        "cardiovascular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_aronia_mirtilo",
+      "ingredienteA": "aronia",
+      "ingredienteB": "mirtilo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo de antocianinas para vision y endotelio.",
+      "beneficios": [
+        "Doble fuente de antocianinas",
+        "Proteccion vascular y ocular reforzada"
+      ],
+      "precauciones": [
+        "Orina azulada inofensiva"
+      ],
+      "mecanismo": "Sinergia antioxidante por antocianinas de distintos perfiles (cianidina + delfinidina).",
+      "sistemas": [
+        "ocular",
+        "cardiovascular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_olmaria_solidago",
+      "ingredienteA": "olmaria",
+      "ingredienteB": "solidago",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Duo diuretico y antiinflamatorio para vias urinarias y dolor articular.",
+      "beneficios": [
+        "Diuresis suave sin irritar mucosa",
+        "Accion antiinflamatoria complementaria"
+      ],
+      "precauciones": [
+        "Evitar en alergia a salicilatos",
+        "Vigilar potasio en uso prolongado"
+      ],
+      "mecanismo": "Olmaria aporta salicilatos antiinflamatorios; solidago flavonoides diureticos.",
+      "sistemas": [
+        "urinario",
+        "musculoesqueletico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_olmaria_uva_ursi",
+      "ingredienteA": "olmaria",
+      "ingredienteB": "uva_ursi",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Cistitis: antiinflamatorio (salicilatos) + antiseptico (arbutina).",
+      "beneficios": [
+        "Cobertura antiinflamatoria y antimicrobiana urinaria"
+      ],
+      "precauciones": [
+        "Acidificar orina para activar arbutina",
+        "Uso <2 semanas por uva_ursi"
+      ],
+      "mecanismo": "Salicilatos reducen dolor; arbutina libera hidroquinona antiseptica en orina acida.",
+      "sistemas": [
+        "urinario"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_olmaria_sauce",
+      "ingredienteA": "olmaria",
+      "ingredienteB": "sauce",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Doble fuente natural de salicilatos para dolor articular.",
+      "beneficios": [
+        "Accion analgesica natural reforzada"
+      ],
+      "precauciones": [
+        "Evitar en alergia a AINEs/aspirina",
+        "No en embarazo"
+      ],
+      "mecanismo": "Ambas aportan salicilatos que inhiben COX-2.",
+      "sistemas": [
+        "musculoesqueletico",
+        "urinario"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_verbeno_vitex",
+      "ingredienteA": "verbeno",
+      "ingredienteB": "vitex",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Regulacion del ciclo menstrual: tonico nervioso + modulador de prolactina.",
+      "beneficios": [
+        "Equilibra humor y ciclo menstrual",
+        "Reduce SPM y tension mamaria"
+      ],
+      "precauciones": [
+        "Evitar en embarazo",
+        "Vigilar con hormonoterapia"
+      ],
+      "mecanismo": "Verbeno modula SNC; vitex reduce prolactina y normaliza fase lutea.",
+      "sistemas": [
+        "reproductivo",
+        "nervioso",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_verbeno_damiana",
+      "ingredienteA": "verbeno",
+      "ingredienteB": "damiana",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Tonico nervioso y afrodisiaco suave para libido y estres.",
+      "beneficios": [
+        "Mejora libido reducida por estres",
+        "Efecto calmante y tonico"
+      ],
+      "precauciones": [
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "Verbeno sedante + damiana tonico reproductivo.",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_pueraria_vitex",
+      "ingredienteA": "pueraria",
+      "ingredienteB": "vitex",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo fitoestrogenico + dopaminergico para menopausia y SPM.",
+      "beneficios": [
+        "Reduce fogajes y sofocos",
+        "Regula ciclo y tension mamaria"
+      ],
+      "precauciones": [
+        "Evitar en canceres hormonodependientes sin supervision"
+      ],
+      "mecanismo": "Isoflavonas de pueraria + modulacion de prolactina por vitex.",
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_pueraria_dong_quai",
+      "ingredienteA": "pueraria",
+      "ingredienteB": "dong_quai",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Duo TCM para menopausia: fitoestrogenos + tonico sanguineo femenino.",
+      "beneficios": [
+        "Alivio de sofocos y sequedad",
+        "Mejora irrigacion pelvica"
+      ],
+      "precauciones": [
+        "Evitar en embarazo y sangrados abundantes",
+        "Vigilar anticoagulantes"
+      ],
+      "mecanismo": "Pueraria aporta isoflavonas; dong quai mejora el flujo sanguineo pelvico.",
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_pueraria_salvia",
+      "ingredienteA": "pueraria",
+      "ingredienteB": "salvia",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Fitoestrogenos + antihidrante para fogajes menopausicos.",
+      "beneficios": [
+        "Reduce sofocos y sudores nocturnos"
+      ],
+      "precauciones": [
+        "Evitar en canceres hormonodependientes"
+      ],
+      "mecanismo": "Isoflavonas modulan ER-beta; salvia reduce sudoracion por accion anticolinergica.",
+      "sistemas": [
+        "endocrino",
+        "reproductivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_desmodium_cardo_mariano",
+      "ingredienteA": "desmodium",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo hepatoprotector: regeneracion (silimarina) + membrana (desmodium).",
+      "beneficios": [
+        "Proteccion y regeneracion hepatica reforzada",
+        "Util en hepatotoxicidad"
+      ],
+      "precauciones": [
+        "No sustituir tratamiento hepatico medico"
+      ],
+      "mecanismo": "Silimarina induce regeneracion; desmodium estabiliza membrana del hepatocito.",
+      "sistemas": [
+        "hepatico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_desmodium_achicoria",
+      "ingredienteA": "desmodium",
+      "ingredienteB": "achicoria",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Hepatoproteccion + colagogo: tonico hepatico completo.",
+      "beneficios": [
+        "Mejora funcion hepatica y drenaje biliar",
+        "Aporta fibra prebiotica"
+      ],
+      "precauciones": [
+        "Evitar en obstruccion biliar"
+      ],
+      "mecanismo": "Desmodium hepatoprotector + inulina/colagogos de achicoria.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_achicoria_cardo_mariano",
+      "ingredienteA": "achicoria",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Drenaje biliar + regeneracion hepatica con base prebiotica.",
+      "beneficios": [
+        "Funcion hepatica y digestiva mejorada",
+        "Microbiota beneficiada por inulina"
+      ],
+      "precauciones": [
+        "Gases iniciales por inulina"
+      ],
+      "mecanismo": "Achicoria estimula bilis + inulina prebiotica; cardo mariano regenera hepatocitos.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_esquizandra_cardo_mariano",
+      "ingredienteA": "esquizandra",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Adaptogeno hepatoprotector + regenerador hepatico clasico.",
+      "beneficios": [
+        "Proteccion hepatica y resistencia al estres",
+        "Antioxidante dual"
+      ],
+      "precauciones": [
+        "Vigilar anticoagulantes por esquizandra"
+      ],
+      "mecanismo": "Lignanos inducen fase II + silimarina regeneracion.",
+      "sistemas": [
+        "hepatico",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_esquizandra_ashwagandha",
+      "ingredienteA": "esquizandra",
+      "ingredienteB": "ashwagandha",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo adaptogeno: hepatoproteccion + modulacion del cortisol.",
+      "beneficios": [
+        "Resistencia al estres y fatiga",
+        "Soporte hepatico en estres cronico"
+      ],
+      "precauciones": [
+        "Insomnio a dosis altas",
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "Esquizandra hepatico + ashwagandha modulacion HHA.",
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_desmodium_boldo",
+      "ingredienteA": "desmodium",
+      "ingredienteB": "boldo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Hepatoproteccion + colagogo: tonico hepatico y biliar.",
+      "beneficios": [
+        "Mejora digestion de grasas",
+        "Protege y drena el higado"
+      ],
+      "precauciones": [
+        "Evitar en obstruccion biliar",
+        "No en embarazo por boldo"
+      ],
+      "mecanismo": "Desmodium hepatoprotector + boldina colagoga.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_estevia_canela",
+      "ingredienteA": "estevia",
+      "ingredienteB": "canela",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo hipoglucemiante natural para soporte de diabetes.",
+      "beneficios": [
+        "Mejora sensibilidad a insulina",
+        "Sustituto del azucar + regulador glucemico"
+      ],
+      "precauciones": [
+        "Monitorizar glucemia con antidiabeticos"
+      ],
+      "mecanismo": "Esteviosidos mejoran sensibilidad + proantocianidinas de canela mimetizan insulina.",
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_estevia_fucus",
+      "ingredienteA": "estevia",
+      "ingredienteB": "fucus",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Soporte metabolico y tiroideo para control de peso y glucosa.",
+      "beneficios": [
+        "Edulcorante 0 kcal + estimulo tiroideo",
+        "Util en hipotiroidismo con sobrepeso"
+      ],
+      "precauciones": [
+        "Evitar en hipertiroidismo",
+        "Vigilar medicacion tiroidea"
+      ],
+      "mecanismo": "Estevia reduce glucemia + yodo de fucus estimula T3/T4.",
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_naranjo_amargo_verbeno",
+      "ingredienteA": "naranjo_amargo",
+      "ingredienteB": "verbeno",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Tonico nervioso-digestivo para ansiedad con componente digestivo.",
+      "beneficios": [
+        "Calma sin sedar excesivamente",
+        "Mejora digestion nerviosa"
+      ],
+      "precauciones": [
+        "Evitar corteza en hipertension (sinefrina)"
+      ],
+      "mecanismo": "Neroli modula GABA + verbeno tonico nervioso.",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_naranjo_amargo_melisa",
+      "ingredienteA": "naranjo_amargo",
+      "ingredienteB": "melisa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sedante floral + digestivo para insomnio de origen digestivo.",
+      "beneficios": [
+        "Induce sueno y calma digestiva"
+      ],
+      "precauciones": [
+        "Evitar corteza en hipertension"
+      ],
+      "mecanismo": "Neroli (flor) sedante + melisa carminativa.",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_sarmiento_mirtilo",
+      "ingredienteA": "sarmiento",
+      "ingredienteB": "mirtilo",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Venotonico + microcirculatorio para insuficiencia venosa y retina.",
+      "beneficios": [
+        "Reduce pesadez de piernas",
+        "Mejora vision y microcirculacion"
+      ],
+      "precauciones": [
+        "Vigilar anticoagulantes"
+      ],
+      "mecanismo": "OPC + antocianosidos estabilizan capilares.",
+      "sistemas": [
+        "cardiovascular",
+        "ocular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_sarmiento_vid_roja",
+      "ingredienteA": "sarmiento",
+      "ingredienteB": "vid_roja",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo de vid para insuficiencia venosa cronica.",
+      "beneficios": [
+        "Maximo efecto venotonico y capilar"
+      ],
+      "precauciones": [
+        "Vigilar anticoagulantes"
+      ],
+      "mecanismo": "OPC de semilla + antocianos de hoja.",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_lactobacillus_rhamnosus_bifidobacterium_longum",
+      "ingredienteA": "lactobacillus_rhamnosus",
+      "ingredienteB": "bifidobacterium_longum",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Duo probiotico de cadena alta y baja para cobertura intestinal completa.",
+      "beneficios": [
+        "Cobertura intestino delgado + colon",
+        "Modulacion inmune y eje intestino-cerebro"
+      ],
+      "precauciones": [
+        "Separar 2 h de antibioticos"
+      ],
+      "mecanismo": "Lactobacillus coloniza intestino delgado; Bifidobacterium el colon; sinergia de barrera y SCFA.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_lactobacillus_rhamnosus_lactobacillus_acidophilus",
+      "ingredienteA": "lactobacillus_rhamnosus",
+      "ingredienteB": "lactobacillus_acidophilus",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Duo de lactobacilos para diarrea y digestion de lactosa.",
+      "beneficios": [
+        "Reduce diarrea por antibioticos",
+        "Mejora tolerancia a lactosa"
+      ],
+      "precauciones": [
+        "Separar 2 h de antibioticos"
+      ],
+      "mecanismo": "Cepas complementarias que producen lactasa y bacteriocinas.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_lactobacillus_acidophilus_bifidobacterium_longum",
+      "ingredienteA": "lactobacillus_acidophilus",
+      "ingredienteB": "bifidobacterium_longum",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Cobertura intestinal completa para disbiosis y alergias.",
+      "beneficios": [
+        "Equilibrio microbiota delgado + colon",
+        "Modula respuesta alergica"
+      ],
+      "precauciones": [
+        "Separar 2 h de antibioticos"
+      ],
+      "mecanismo": "Colonizacion escalonada y modulacion Th1/Th2.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_arabinogalactano_lactobacillus_rhamnosus",
+      "ingredienteA": "arabinogalactano",
+      "ingredienteB": "lactobacillus_rhamnosus",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Prebiotico + probiotico (simbiotico) para flora intestinal e inmunidad.",
+      "beneficios": [
+        "Mejora adherencia y supervivencia del probiotico",
+        "Estimula NK e IgA"
+      ],
+      "precauciones": [
+        "Gases iniciales por la fibra"
+      ],
+      "mecanismo": "El arabinogalactano es sustrato fermentable que alimenta al lactobacilo y bifidobacterias.",
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_arabinogalactano_bifidobacterium_longum",
+      "ingredienteA": "arabinogalactano",
+      "ingredienteB": "bifidobacterium_longum",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Simbiotico que favorece bifidobacterias colonicas.",
+      "beneficios": [
+        "Aumenta butirato colonico",
+        "Mejora eje intestino-cerebro"
+      ],
+      "precauciones": [
+        "Gases iniciales"
+      ],
+      "mecanismo": "El arabinogalactano es fermentado selectivamente por bifidobacterias.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_arabinogalactano_vitamina_c",
+      "ingredienteA": "arabinogalactano",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte inmunologico de mucosas con fibra + antioxidante.",
+      "beneficios": [
+        "Refuerzo de NK e IgA",
+        "Reduce duracion de infecciones respiratorias"
+      ],
+      "precauciones": [
+        "Gases iniciales por la fibra"
+      ],
+      "mecanismo": "AG estimula NK; vitamina C soporta funcion inmune y colageno mucoso.",
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ],
+      "categorias": [
+        "probiotico",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_esquizandra_rodiola",
+      "ingredienteA": "esquizandra",
+      "ingredienteB": "rodiola",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo adaptogeno hepatico + energetico para fatiga cronica.",
+      "beneficios": [
+        "Resistencia al estres fisico y mental",
+        "Soporte hepatico en sobrecarga"
+      ],
+      "precauciones": [
+        "Insomnio a dosis altas",
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "Esquizandra hepatoprotectora + rodiola modula dopamina/serotonina.",
+      "sistemas": [
+        "hepatico",
+        "nervioso",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_desmodium_curcuma",
+      "ingredienteA": "desmodium",
+      "ingredienteB": "curcuma",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Hepatoproteccion + antiinflamatorio hepatico.",
+      "beneficios": [
+        "Reduce inflamacion hepatica",
+        "Antioxidante sinergico"
+      ],
+      "precauciones": [
+        "Curcuminoides pueden interferir con anticoagulantes"
+      ],
+      "mecanismo": "Desmodium membrana hepatocito + curcumina inhibe NF-kB hepatico.",
+      "sistemas": [
+        "hepatico",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_achicoria_inulina",
+      "ingredienteA": "achicoria",
+      "ingredienteB": "inulina",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "Doble fuente de inulina prebiotica.",
+      "beneficios": [
+        "Maximo aporte de fibra fermentable",
+        "Mejora microbiota y transito"
+      ],
+      "precauciones": [
+        "Gases iniciales"
+      ],
+      "mecanismo": "Ambas aportan inulina que fermenta a butirato.",
+      "sistemas": [
+        "digestivo",
+        "metabolico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_verbeno_pasiflora",
+      "ingredienteA": "verbeno",
+      "ingredienteB": "pasiflora",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sedante suave para ansiedad leve y tension premenstrual.",
+      "beneficios": [
+        "Calma sin sedacion excesiva",
+        "Util en SPM"
+      ],
+      "precauciones": [
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "Tonico nervioso + ansiolitico GABAergico.",
+      "sistemas": [
+        "nervioso",
+        "reproductivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_estevia_cromo",
+      "ingredienteA": "estevia",
+      "ingredienteB": "cromo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Edulcorante + cofactor insulinico para control glucemico.",
+      "beneficios": [
+        "Reduce apetito por dulce",
+        "Mejora sensibilidad a insulina"
+      ],
+      "precauciones": [
+        "Vigilar glucemia con antidiabeticos"
+      ],
+      "mecanismo": "Esteviosidos + cromo potencian senalizacion insulinica.",
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "mineral"
+      ]
+    },
+    {
+      "id": "sin_pueraria_maca",
+      "ingredienteA": "pueraria",
+      "ingredienteB": "maca",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Fitoestrogenos + adaptogeno andino para menopausia y libido.",
+      "beneficios": [
+        "Alivio de sofocos + libido",
+        "Energia y bienestar"
+      ],
+      "precauciones": [
+        "Evitar en canceres hormonodependientes"
+      ],
+      "mecanismo": "Isoflavonas + macamidas regulan eje hormonal.",
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_mirtilo_omega_3",
+      "ingredienteA": "mirtilo",
+      "ingredienteB": "omega_3",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Soporte ocular completo: antocianosidos + DHA/EPA retiniano.",
+      "beneficios": [
+        "Proteccion retiniana estructural y funcional"
+      ],
+      "precauciones": [
+        "Vigilar anticoagulantes"
+      ],
+      "mecanismo": "El DHA del omega-3 es estructural en retina; antocianosidos protegen vascular.",
+      "sistemas": [
+        "ocular",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_aronia_vitamina_c",
+      "ingredienteA": "aronia",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Antioxidante hidrosoluble dual para inmunidad y endotelio.",
+      "beneficios": [
+        "Refuerzo antioxidante e inmunologico",
+        "Sinergia reciclaje vitamina C"
+      ],
+      "precauciones": [
+        "Ninguna relevante"
+      ],
+      "mecanismo": "Antocianinas + vitamina C se reciclan mutuamente como antioxidantes.",
+      "sistemas": [
+        "inmune",
+        "cardiovascular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_esquizandra_ginseng",
+      "ingredienteA": "esquizandra",
+      "ingredienteB": "ginseng",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Duo adaptogeno clasico TCM para vitalidad y concentracion.",
+      "beneficios": [
+        "Mejora energia y rendimiento cognitivo",
+        "Soporte hepatico e inmune"
+      ],
+      "precauciones": [
+        "Insomnio e irritabilidad a dosis altas",
+        "Evitar en hipertension no controlada"
+      ],
+      "mecanismo": "Esquizandra + ginseng modulan ATP y neurotransmision.",
+      "sistemas": [
+        "nervioso",
+        "hepatico",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_lactobacillus_rhamnosus_zinc",
+      "ingredienteA": "lactobacillus_rhamnosus",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Probiotico + zinc para barrera intestinal e inmunidad.",
+      "beneficios": [
+        "Reduce diarrea y mejora inmunidad de mucosa"
+      ],
+      "precauciones": [
+        "Separar 2 h de antibioticos"
+      ],
+      "mecanismo": "Probiotico restaura flora + zinc estabiliza tight junctions.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "probiotico",
+        "mineral"
       ]
     }
   ]
