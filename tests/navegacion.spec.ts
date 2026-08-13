@@ -7,8 +7,12 @@ import { test, expect } from '@playwright/test';
 // Helper para autenticarse rápidamente
 async function authenticate(page: any) {
   await page.goto('/');
+
+  // Si BYPASS_AUTH está activo, no hay pantalla de login — continuar directamente
   const passwordInput = page.locator('input[type="password"]');
-  await passwordInput.waitFor({ state: 'visible', timeout: 10000 });
+  const isVisible = await passwordInput.first().isVisible().catch(() => false);
+  if (!isVisible) return;
+
   await passwordInput.first().fill('test123');
   const inputs = page.locator('input[type="password"]');
   if (await inputs.count() >= 2) {

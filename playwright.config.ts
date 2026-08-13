@@ -2,6 +2,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  // Solo ejecutar archivos .spec.ts (E2E), no los .test.ts (unitarios de vitest)
+  // que dependen de import.meta.env y fallan fuera del entorno de Vite.
+  testMatch: '**/*.spec.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,

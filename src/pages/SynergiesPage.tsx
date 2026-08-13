@@ -136,27 +136,27 @@ export function SynergiesPage() {
           <button
             onClick={() => setViewMode('graph')}
             className={cn(
-              'flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors',
+              'flex items-center gap-2 px-3.5 py-2 rounded-md text-[15px] transition-colors',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-background',
               viewMode === 'graph'
                 ? 'bg-background shadow-sm font-medium'
                 : 'text-muted-foreground hover:text-foreground'
             )}
           >
-            <GitBranch className="w-4 h-4" aria-hidden="true" />
+            <GitBranch className="w-5 h-5" aria-hidden="true" />
             <span className="hidden sm:inline">Grafo</span>
           </button>
           <button
             onClick={() => setViewMode('grid')}
             className={cn(
-              'flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors',
+              'flex items-center gap-2 px-3.5 py-2 rounded-md text-[15px] transition-colors',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:bg-background',
               viewMode === 'grid'
                 ? 'bg-background shadow-sm font-medium'
                 : 'text-muted-foreground hover:text-foreground'
             )}
           >
-            <LayoutGrid className="w-4 h-4" aria-hidden="true" />
+            <LayoutGrid className="w-5 h-5" aria-hidden="true" />
             <span className="hidden sm:inline">Grid</span>
           </button>
         </div>
@@ -295,7 +295,7 @@ export function SynergiesPage() {
         </>
       ) : (
         /* Grid View */
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
           {filteredSynergies.map((synergy) => {
             const typeConfig = getTypeConfig(synergy.tipo);
             const levelConfig = getLevelConfig(synergy.nivel);

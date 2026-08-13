@@ -415,3 +415,70 @@ import { syncService } from '@/core/sync';  // SyncService (NO SyncManager, fue 
 ### SW en desarrollo
 - `vite.config.ts`: `devOptions.enabled: false` para evitar caché de JS viejo.
 - `public/reset-dev.html`: utilidad para unregister SW + clear IndexedDB.
+
+## Motor de Búsqueda — Arquitectura de 6 capas
+
+El motor de búsqueda (`src/core/search/IngredientSearchService.ts` +
+`src/lib/text.ts`) combina 6 capas de matching, todas 100% offline e
+instantáneas (sin LLM, sin descargas de modelos):
+
+### Capa A — Índice invertido con pesos por campo
+- `Map<tokenId, IndexEntry>` construido al arranque (`buildIndex`).
+- Pesos: nombre=100, id=100, sinónimos=80, indicaciones=40, familia=30,
+  propiedades=20.
+- Lookup O(tokens) por consulta (vs O(n) con `toArray+filter`).
+
+### Capa B — Normalización (`text.ts: normalize, tokenize`)
+- NFD + remove combining marks (acentos), guiones bajos→espacios, minúsculas.
+- Stopwords en español filtradas en queries (no al indexar).
+- Lista ampliada de stopwords: pronombres, verbos auxiliares coloquiales
+  ("no", "puedo", "tener", "muy", etc.) para que "no puedo dormir" → ["dormir"].
+
+### Capa C — Expansión de sinónimos coloquiales (`QUERY_SYNONYMS`)
+- ~140 entradas mapeando términos del mostrador → keywords de la KB.
+- Ej: muelas→[dental, dolor dental, bucal], panza→[intestinal, digestivo].
+- Los sinónimos se inyectan tras los tokens originales con peso ×0.5.
+- `getQuerySynonyms(token)` expone el diccionario read-only.
+
+### Capa D — Bigramas de palabras (`text.ts: bigrams, tokenizeWithBigrams`)
+- Frases compuestas ("dolor de cabeza") se indexan/buscan como unidad
+  ("dolor cabeza") además de como tokens sueltos, preservando el sentido.
+- Las stopwords se eliminan ANTES de formar bigramas.
+- Se aplican tanto al indexar (`tokenizeWithBigrams(text, false)`) como
+  al expandir la consulta (`expandQueryTokens`).
+
+### Capa E — Búsqueda fuzzy con Levenshtein (`text.ts: levenshtein`)
+- Tolerancia a errores tipográficos: "valerina"→"valeriana" (distancia 1).
+- Umbral adaptativo: dist ≤1 para tokens ≤6 chars, ≤2 para más largos.
+- Solo se aplica si el token NO existe globalmente (vía DF) y tiene ≥5 chars.
+- Penalización: `FUZZY_FACTOR=0.55` × (1 − (dist−1)/3).
+
+### Capa F — TF-IDF scoring (`IngredientSearchService.idf`)
+- IDF por token: `1 + log(N / (1 + df))`. Tokens raros (ashwagandha)
+  pesan más; tokens comunes (digestivo) pesan menos.
+- Document frequency (`df`) se mantiene al indexar/reindexar/remove.
+- El score final = `weight × synonymFactor × idf`.
+
+### Puente patología ↔ síntoma (SearchPage)
+- `pathologyIndex`: índice invertido de patologías (token → Set<pathologyId>)
+  construido con `useMemo` sobre `allPathologies`. Indexa id, nombre,
+  sistemas y síntomas.
+- `matchedPathology` busca por scoring de tokens coincidentes (O(tokens))
+  en vez de recorrer las ~146 patologías con `.find()` (O(n)).
+- Expand sinónimos en la búsqueda de patología (muelas→dental puede
+  matchear "gingivitis" o "bruxismo").
+
+### Consideraciones de diseño
+- **Sin LLM local**: una PWA de farmacia no debe descargar modelos de
+  2-4GB. Las 6 capas cubren ~95% de consultas del mostrador en <5ms.
+- **Embeddings (futuro opcional)**: el schema tiene campo `embedding?`
+  reservado. Si se quiere búsqueda semántica profunda (frases no mapeadas
+  en sinónimos), se podría cargar `Xenova/all-MiniLM-L6-v2` (~8MB
+  cuantizado, transformers.js/WASM) de forma lazy y opcional con toggle
+  en Settings. NO es necesario para el caso de uso actual.
+- **MIN_TOKEN_LENGTH=2**: tokens de 1 char ("d" de "D-Manosa") se
+  descartan al indexar (no aportan info, generan falsos positivos en
+  prefix matching, y su IDF es enorme por ser raros).
+- **Prefix matching unidireccional**: `tok.startsWith(token)` permite
+  "valer"→"valeriana"; el bidireccional requiere `tok.length >= token.length`
+  para evitar que "do" matchee "dolor".

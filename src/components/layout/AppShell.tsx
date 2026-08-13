@@ -53,7 +53,7 @@ function NavContent({ collapsed, onNavigate }: { collapsed: boolean; onNavigate:
                 onClick={onNavigate}
                 title={collapsed ? item.label : undefined}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
+                  'flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[15px] transition-colors',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                   isActive
                     ? 'bg-primary text-primary-foreground font-medium shadow-sm'
@@ -61,7 +61,7 @@ function NavContent({ collapsed, onNavigate }: { collapsed: boolean; onNavigate:
                   collapsed && 'justify-center px-2'
                 )}
               >
-                <Icon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                <Icon className="h-[22px] w-[22px] flex-shrink-0" aria-hidden="true" />
                 {!collapsed && (
                   <>
                     <span className="flex-1 truncate">{item.label}</span>
@@ -204,9 +204,9 @@ export function AppShell() {
               <Link
                 to="/settings"
                 onClick={closeSidebar}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[15px] text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <Settings className="h-5 w-5" aria-hidden="true" />
+                <Settings className="h-[22px] w-[22px]" aria-hidden="true" />
                 <span>Configuración</span>
               </Link>
               <div className="mt-2 flex items-center gap-1 rounded-lg bg-sidebar-accent p-1">
@@ -219,7 +219,7 @@ export function AppShell() {
                     key={value}
                     onClick={() => setTheme(value)}
                     className={cn(
-                      'flex flex-1 items-center justify-center rounded-md py-1.5 transition-colors',
+                      'flex flex-1 items-center justify-center rounded-md py-2 transition-colors',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                       theme === value ? 'bg-card text-foreground shadow-sm' : 'text-sidebar-foreground hover:text-foreground'
                     )}
@@ -227,7 +227,7 @@ export function AppShell() {
                     aria-pressed={theme === value}
                     title={label}
                   >
-                    <Icon className="h-4 w-4" aria-hidden="true" />
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </button>
                 ))}
               </div>
@@ -277,8 +277,8 @@ export function AppShell() {
 
           {/* Search bar */}
           <form onSubmit={handleSearchSubmit} className="flex flex-1 justify-start" role="search">
-            <div className="relative w-full max-w-xl">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+            <div className="relative w-full max-w-3xl">
+              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
               <input
                 type="search"
                 value={query}
@@ -286,16 +286,16 @@ export function AppShell() {
                 placeholder={searchPlaceholder}
                 aria-label={searchPlaceholder}
                 title="Presiona / para enfocar rápidamente"
-                className="h-10 w-full rounded-lg border border-border bg-muted pl-10 pr-20 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
+                className="h-11 w-full rounded-lg border border-border bg-muted pl-11 pr-20 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
               />
               <button
                 type="button"
                 onClick={() => setPaletteOpen(true)}
-                className="pointer-events-auto absolute right-2 top-1/2 -translate-y-1/2 flex h-6 items-center gap-0.5 rounded border border-border bg-card px-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-primary/50"
+                className="pointer-events-auto absolute right-2.5 top-1/2 -translate-y-1/2 flex h-7 items-center gap-0.5 rounded border border-border bg-card px-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-primary/50"
                 aria-label="Abrir búsqueda rápida (⌘K)"
                 title="Búsqueda rápida ⌘K"
               >
-                <Command className="h-3 w-3" aria-hidden="true" />
+                <Command className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>K</span>
               </button>
             </div>
@@ -306,9 +306,9 @@ export function AppShell() {
             <SyncStatusBar className="hidden md:flex" />
             <button
               onClick={() => navigate('/admin')}
-              className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 text-[15px] font-medium text-primary-foreground shadow-sm transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
-              <Plus className="h-4 w-4" aria-hidden="true" />
+              <Plus className="h-5 w-5" aria-hidden="true" />
               <span className="hidden sm:inline">Nuevo</span>
             </button>
           </div>

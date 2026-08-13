@@ -34,46 +34,46 @@ export function IngredientResultCard({ result, verdict, onClick }: Props) {
   return (
     <button
       className={cn(
-        'text-left p-4 rounded-xl bg-card border-2 border-border hover:border-primary hover:shadow-lg transition-all',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group min-h-[110px]',
+        'text-left p-5 rounded-xl bg-card border-2 border-border hover:border-primary hover:shadow-lg transition-all',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group min-h-[140px]',
         safetyStyle
       )}
       onClick={() => onClick(result.ingredient)}
     >
-      <div className="flex items-start justify-between gap-2 mb-2">
-        <div className="flex items-center gap-2 min-w-0">
-          <div className={cn('p-1.5 rounded-lg shrink-0', catConfig.color)}>
-            <CatIcon className="w-4 h-4" aria-hidden="true" />
+      <div className="flex items-start justify-between gap-2 mb-2.5">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className={cn('p-2 rounded-lg shrink-0', catConfig.color)}>
+            <CatIcon className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h4 className="font-heading font-semibold text-base truncate group-hover:text-primary transition-colors leading-tight">
+          <h4 className="font-heading font-semibold text-lg truncate group-hover:text-primary transition-colors leading-tight">
             {result.ingredient.nombre}
           </h4>
         </div>
         <span
-          className={cn('flex items-center justify-center w-7 h-7 rounded-lg text-sm font-bold shrink-0', evConfig.color)}
+          className={cn('flex items-center justify-center w-9 h-9 rounded-lg text-base font-bold shrink-0', evConfig.color)}
           title={evConfig.title}
         >
           {evConfig.label}
         </span>
       </div>
       {topIndication && (
-        <p className="text-sm text-muted-foreground truncate mb-2">
+        <p className="text-[15px] text-muted-foreground truncate mb-2.5">
           {humanize(topIndication)}
         </p>
       )}
       <div className="flex items-center justify-between gap-2">
-        <span className="text-xs text-muted-foreground/80 capitalize">
+        <span className="text-sm text-muted-foreground/80 capitalize">
           {result.ingredient.categoria.replace('_', ' ')}
         </span>
         <div className="flex items-center gap-2">
           {safetyBadge && (
-            <span className={cn('px-2 py-0.5 rounded-full text-xs font-semibold', safetyBadge.className)}>
+            <span className={cn('px-2.5 py-1 rounded-full text-sm font-semibold', safetyBadge.className)}>
               {safetyBadge.label}
             </span>
           )}
           {result.score > 50 && (
-            <span className="flex items-center gap-0.5 text-xs text-muted-foreground/70">
-              <Star className="w-3 h-3 fill-current" aria-hidden="true" />
+            <span className="flex items-center gap-0.5 text-sm text-muted-foreground/70">
+              <Star className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
               {result.score}
             </span>
           )}
