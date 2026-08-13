@@ -5,7 +5,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', 'coverage', '.vite', 'scripts', 'docs/historical', 'tests'] },
+  { ignores: ['dist', 'dev-dist', 'node_modules', 'coverage', '.vite', 'scripts', 'docs/historical', 'tests'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
