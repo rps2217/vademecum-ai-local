@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "2.1.0",
-    "ultimaActualizacion": "2026-08-09",
+    "ultimaActualizacion": "2026-08-10",
     "total": 146,
     "descripcion": "Base de datos de patologías con contexto clínico (definición, causas, síntomas, tratamiento alopático y natural)",
     "fuentes": [
@@ -6055,7 +6055,8 @@
         "Halitosis",
         "Retracción gingival",
         "Movilidad dental (periodontitis)",
-        "Bolsas periodontales"
+        "Bolsas periodontales",
+        "Dolor de muelas"
       ],
       "sistemas": [
         "digestivo",
@@ -6081,7 +6082,9 @@
           "propoleo",
           "tomillo",
           "romero",
-          "curcuma"
+          "curcuma",
+          "clavo",
+          "clavo_aceite"
         ],
         "suplementos": [
           "vitamina_c",
@@ -19563,7 +19566,8 @@
         "Cefalea matutina",
         "Desgaste dental",
         "Sensibilidad dental",
-        "Ruido ATM"
+        "Ruido ATM",
+        "Dolor de muelas"
       ],
       "sistemas": [
         "nervioso",
@@ -21260,7 +21264,8 @@
         "Sangrado gingival",
         "Movilidad dental",
         "Halitosis",
-        "Recesión"
+        "Recesión",
+        "Dolor de muelas"
       ],
       "tratamientoAlopatico": {
         "primeraLinea": [
@@ -21279,7 +21284,8 @@
           "propoleo",
           "pomegranate",
           "aloe_vera",
-          "pau_d_arco"
+          "pau_d_arco",
+          "clavo"
         ],
         "suplementos": [
           "vitamina_c",

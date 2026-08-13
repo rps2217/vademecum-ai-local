@@ -3,7 +3,7 @@
     "nombre": "Base de Datos de Aceites Esenciales",
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
     "version": "1.3.0",
-    "ultimaActualizacion": "2026-08-09",
+    "ultimaActualizacion": "2026-08-10",
     "total": 82,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
@@ -25,11 +25,11 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "insomnio",
-        "estrés",
-        "quemaduras",
         "cicatrización",
-        "dolor"
+        "dolor",
+        "estrés",
+        "insomnio",
+        "quemaduras"
       ],
       "descripcion": "El aceite esencial mas versatile y seguro. Propiedades calmantes, antisepticas y analgesicas.",
       "mecanismoAccion": "Los compuestos (linalool, linalyl acetate) modulan receptores GABA. Analgesico local por via topica.",
@@ -93,12 +93,12 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "inmunidad",
         "acné",
-        "cicatrización",
-        "infecciones fungicas",
         "caspa",
-        "cortes"
+        "cicatrización",
+        "cortes",
+        "infecciones fungicas",
+        "inmunidad"
       ],
       "descripcion": "Potente antiseptico natural de amplio espectro. Eficaz contra bacterias, hongos y virus.",
       "mecanismoAccion": "Actividad antimicrobiana de amplio espectro. Estimula sistema inmune local.",
@@ -157,11 +157,11 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "gripe",
-        "tos",
-        "infecciones virales",
         "fatiga",
-        "inmunidad"
+        "gripe",
+        "infecciones virales",
+        "inmunidad",
+        "tos"
       ],
       "descripcion": "Rey de los aceites antivirales. Excelente para prevencion y tratamiento de resfriados y gripe.",
       "mecanismoAccion": "Potente antiviral e immunomodulador. Expectorante y anticatarral.",
@@ -220,12 +220,12 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "respiratorio",
-        "tos",
+        "articular",
         "bronquitis",
-        "sinusitis",
         "muscular",
-        "articular"
+        "respiratorio",
+        "sinusitis",
+        "tos"
       ],
       "descripcion": "Descongestionante respiratorio potent. Expectorante y analgesico muscular.",
       "mecanismoAccion": "1,8-Cineole (eucaliptol) como expectorante. Antiinflamatorio local.",
@@ -288,11 +288,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "náuseas",
-        "migraña",
         "dispepsia",
-        "muscular",
         "fatiga",
+        "migraña",
+        "muscular",
+        "náuseas",
         "sinusitis"
       ],
       "descripcion": "Aceite esencial revitalizante. Excelente para nauseas, dolor de cabeza y agotamiento mental.",
@@ -356,11 +356,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "cognitivo",
-        "muscular",
         "articular",
         "cabello",
-        "fatiga"
+        "cognitivo",
+        "fatiga",
+        "muscular"
       ],
       "descripcion": "Stimulante intelectual y analgesico muscular. Clasico para mejorar memoria y concentracion.",
       "mecanismoAccion": "Neuroestimulante por inhibicion de acetilcolinesterasa. Analgesico e antiinflamatorio local.",
@@ -425,12 +425,12 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "meditacion",
         "ansiedad",
-        "inmunidad",
         "articular",
         "cicatrización",
-        "inflamación"
+        "inflamación",
+        "inmunidad",
+        "meditacion"
       ],
       "descripcion": "Aceite sagrado con profundas propriedades antiinflamatorias e immunomoduladoras.",
       "mecanismoAccion": "Los acidos boswellicos inhiben 5-lipoxigenasa. Potente antiinflamatorio.",
@@ -488,10 +488,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "náuseas",
-        "muscular",
         "articular",
-        "dispepsia"
+        "dispepsia",
+        "muscular",
+        "náuseas"
       ],
       "descripcion": "Calentador y analgesico. Excelente para nauseas, digestion y dolores articulares.",
       "mecanismoAccion": "Calentador local. Antiemetico. Antiinflamatorio por via topica.",
@@ -552,10 +552,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "infecciones severas",
-        "tos",
         "infecciones fungicas",
-        "inmunidad"
+        "infecciones severas",
+        "inmunidad",
+        "tos"
       ],
       "descripcion": "Potente antiseptico de amplio espectro. Uso restricto por su alta concentracion.",
       "mecanismoAccion": "Carvacrol y timol como potentes antimicrobianos.",
@@ -615,10 +615,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "menopausia",
-        "espasmos",
         "ansiedad",
+        "espasmos",
         "estrés",
+        "menopausia",
         "menstrual"
       ],
       "descripcion": "Regulador hormonal femenino y anxiolitico suave. Aceite de eleccion para mujer.",
@@ -678,11 +678,11 @@
         "digestivo"
       ],
       "indicaciones": [
-        "inmunidad",
-        "glucosa",
+        "antioxidante",
         "dispepsia",
+        "glucosa",
         "inflamación",
-        "antioxidante"
+        "inmunidad"
       ],
       "descripcion": "Potente antiseptico y reguldor metabolico. Alta concentracion - usar con precaution.",
       "mecanismoAccion": "Cinnamaldehyde tiene atividade antimicrobiana y antidiabetica.",
@@ -746,12 +746,12 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "cicatrices",
         "arrugas",
-        "quemaduras",
+        "cicatrices",
+        "estrias",
         "manchas",
         "piel",
-        "estrias"
+        "quemaduras"
       ],
       "descripcion": "Aceite vegetal regenerador celular. Rico en acidos grasos esenciales y retinol natural.",
       "mecanismoAccion": "Alto contenido en acido linoleico y transretinoico natural. Regenera celulas de piel.",
@@ -808,10 +808,10 @@
       ],
       "indicaciones": [
         "acné",
-        "piel",
         "cicatrices",
+        "estrés",
         "infecciones fungicas",
-        "estrés"
+        "piel"
       ],
       "descripcion": "Aceite hidratante y antiseptico con aroma a rosa. Excelente para piel y calma la mente.",
       "mecanismoAccion": "Geraniol tiene propiedades antisepticas y hidratantes. Equilibra produccion de sebo.",
@@ -872,11 +872,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "cicatrices",
-        "trauma",
-        "muscular",
         "articular",
-        "hepático"
+        "cicatrices",
+        "hepático",
+        "muscular",
+        "trauma"
       ],
       "descripcion": "Aceite raro y precioso con puissants efectos regeneradores y analgesicos.",
       "mecanismoAccion": "Neryl acetate modula inflamacion. Regenerador hepatocelular potente.",
@@ -934,11 +934,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "celulitis",
-        "cabello",
-        "respiratorio",
         "ansiedad",
-        "estrés"
+        "cabello",
+        "celulitis",
+        "estrés",
+        "respiratorio"
       ],
       "descripcion": "Aceite lenitivo con aroma amaderado. Excelente para cuidado capilar y lymphatico.",
       "mecanismoAccion": "Alpha-himachalene tiene propiedades antiinflamatorias y lipoliticas.",
@@ -999,11 +999,11 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "insomnio",
-        "estrategia",
         "arrugas",
-        "rosacea",
-        "cicatrices"
+        "cicatrices",
+        "estrategia",
+        "insomnio",
+        "rosacea"
       ],
       "descripcion": "Aceite floral exquisito con propiedades ansioliticas y regeneradoras de piel.",
       "mecanismoAccion": "Linalool y linalyl acetate modulan GABA. Regenera celulas de piel.",
@@ -1066,9 +1066,9 @@
       "indicaciones": [
         "ansiedad",
         "depresión",
-        "piel",
+        "fatiga",
         "inmunidad",
-        "fatiga"
+        "piel"
       ],
       "descripcion": "Aceite suave y floral con efeitos energetizantes y regeneradores.",
       "mecanismoAccion": "Linalool modula sistema nervioso. Antiseptico natural.",
@@ -1126,11 +1126,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "tos",
         "bronquitis",
-        "muscular",
         "cicatrización",
-        "inmunidad"
+        "inmunidad",
+        "muscular",
+        "tos"
       ],
       "descripcion": "Aceite resinoso con propiedades expectorantes y analgesicas.",
       "mecanismoAccion": "Limonene y elemol tienen propriedades antisepticas y analgesicas.",
@@ -1188,10 +1188,10 @@
       ],
       "indicaciones": [
         "acné",
-        "eccema",
         "cicatrización",
-        "infecciones fungicas",
+        "eccema",
         "herpes",
+        "infecciones fungicas",
         "inmunidad"
       ],
       "descripcion": "Aceite neozelandes con propiedades antisepticas superiores al tea tree.",
@@ -1252,9 +1252,9 @@
       "indicaciones": [
         "articular",
         "cicatrización",
-        "ulceras",
         "gastritis",
-        "inmunidad"
+        "inmunidad",
+        "ulceras"
       ],
       "descripcion": "Balsamo con potentes propriedades antiinflamatorias y cicatrizantes.",
       "mecanismoAccion": "Beta-cariofileno activa receptores CB2, reduciendo inflamacion. Antimicrobiano.",
@@ -1311,10 +1311,10 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "respiratorio",
+        "bronquitis",
         "catarro",
-        "sinusitis",
-        "bronquitis"
+        "respiratorio",
+        "sinusitis"
       ],
       "descripcion": "Aceite esencial con accion expectorante y antiseptica respiratoria por via inhalatoria. Tradicionalmente usado para aliviar la congestion de vas respiratorias.",
       "mecanismoAccion": "El alfa-pineno y el delta-3-careno actuan como expectorantes y mucoliticos por estimulacion del epitelio respiratorio al inhalar; accion antisptica sobre vias areas.",
@@ -1378,9 +1378,9 @@
         "inmune"
       ],
       "indicaciones": [
-        "respiratorio",
         "antisptico",
-        "catarro"
+        "catarro",
+        "respiratorio"
       ],
       "descripcion": "Aceite esencial potente de quimiotipo timol, con fuerte accion antisptica y antimicrobiana. Usar con precaucion por su potencia e irritacion.",
       "mecanismoAccion": "El timol y carvacrol ejercen accion antimicrobiana de amplio espectro y estimulan la inmunidad local; el timol es uno de los antispticos naturales mas potentes.",
@@ -1444,9 +1444,9 @@
       ],
       "indicaciones": [
         "ansiedad",
+        "dispepsia",
         "estrés",
-        "tranquilidad",
-        "dispepsia"
+        "tranquilidad"
       ],
       "descripcion": "Aceite esencial suave y seguro, con aroma tonificante y ligeramente calmante. Apropiado para ninos y aromaterapia difundida. Reconocido GRAS.",
       "mecanismoAccion": "El d-limoneno (mayoritario) modula el estado de animo por via olfatoria y ejerce efecto carminativo; perfil de seguridad alto.",
@@ -1511,8 +1511,8 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "estrés",
-        "estado de animo bajo"
+        "estado de animo bajo",
+        "estrés"
       ],
       "descripcion": "Aceite esencial citrico muy valorado en aromaterapia por su efecto regulador del estado de animo. Requiere precaucion por fotosensibilidad (bergapteno).",
       "mecanismoAccion": "El limoneno y el acetato de linalilo modulan el eje estres-animimo por via olfatoria; el bergapteno (furanocumarina) es el responsable de la fotosensibilidad.",
@@ -1640,8 +1640,8 @@
         "ansiedad",
         "estrés",
         "hipertensión",
-        "libido",
-        "insomnio"
+        "insomnio",
+        "libido"
       ],
       "descripcion": "Aceite floral sedante con action ansiolítica y reguladora de la tensión. Aroma intenso usado en aromaterapia para equilibrar el sistema nervioso.",
       "mecanismoAccion": "Los monoterpenos (linalool, geraniol, beta-cariofileno) modulan GABA y reducen cortisol al inhalar; efecto vasodilatador leve.",
@@ -1691,11 +1691,11 @@
         "endocrino"
       ],
       "indicaciones": [
+        "antifúngico",
+        "estrés",
         "hormonal",
         "piel",
-        "estrés",
-        "tos",
-        "antifúngico"
+        "tos"
       ],
       "descripcion": "Aceite equilibrante con acción astringente y antifúngica. Usado en dermatología natural y para síntomas asociados al ciclo hormonal.",
       "mecanismoAccion": "El citronelol y geraniol tienen acción antimicrobiana y astringente; modula el estrés oxidativo cutáneo y se usa en repulsión de insectos.",
@@ -1745,11 +1745,11 @@
         "digestivo"
       ],
       "indicaciones": [
-        "muscular",
         "antifúngico",
         "dispepsia",
-        "tos",
-        "estrés"
+        "estrés",
+        "muscular",
+        "tos"
       ],
       "descripcion": "Aceite rico en citral con potente acción antimicrobiana, antifúngica y relajante muscular. Fresco y tonificante en aromaterapia.",
       "mecanismoAccion": "El citral (geranial+neral) tiene actividad antimicrobiana y antifúngica; el mirceno aporta relajación muscular; modula la inflamación.",
@@ -1799,10 +1799,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "dispepsia",
-        "muscular",
         "articular",
         "cardiovascular",
+        "dispepsia",
+        "muscular",
         "náuseas"
       ],
       "descripcion": "Aceite cálido con piperina que estimula la digestión y alivia el dolor muscular. Potenciador de absorción de otros principios activos.",
@@ -1907,10 +1907,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "meditación",
         "ansiedad",
-        "insomnio",
         "bucal",
+        "insomnio",
+        "meditación",
         "piel"
       ],
       "descripcion": "Madera aromática con aroma profundo usada en meditación. Sedante del SNC y antimicrobiano en salud bucal.",
@@ -1960,10 +1960,10 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "venoso",
-        "tos",
+        "celulitis",
         "hemorroides",
-        "celulitis"
+        "tos",
+        "venoso"
       ],
       "descripcion": "Aceite vasoconstrictor y tónico venoso por excelencia. Mejora el tono venoso y alivia la tos seca.",
       "mecanismoAccion": "Los taninos y proantocianidinas mejoran el tono venoso y la microcirculación; acción antitusiva leve por los pinenos.",
@@ -2013,11 +2013,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
+        "dispepsia",
+        "espasmos",
         "insomnio",
         "muscular",
-        "tensión",
-        "dispepsia",
-        "espasmos"
+        "tensión"
       ],
       "descripcion": "Hierba calmante con aceite sedante y antiespasmódico. Relaja músculos y calma el sistema nervioso.",
       "mecanismoAccion": "El terpinen-4-ol y cis-sabineno hidrato modulan GABA (sedante) y relajan el músculo liso digestivo; cariofileno reduce la inflamación.",
@@ -2068,10 +2068,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "dolor dental",
-        "bucal",
-        "antimicrobiano",
         "antifúngico",
+        "antimicrobiano",
+        "bucal",
+        "dolor dental",
         "respiratorio"
       ],
       "descripcion": "Aceite muy rico en eugenol (70-90%), potente antimicrobiano y analgésico dental. El remedio natural clásico para el dolor de muelas.",
@@ -2124,11 +2124,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "retención",
-        "muscular",
+        "celulitis",
         "dispepsia",
-        "urinario",
-        "celulitis"
+        "muscular",
+        "retención",
+        "urinario"
       ],
       "descripcion": "Aceite de bayas con acción diurética y depurativa. Tónico renal y circulatorio en aromaterapia y uso tópico.",
       "mecanismoAccion": "Los terpinen-4-ol y pinenos aumentan la diuresis (filtración glomerular); acción rubefaciente y antiinflamatoria tópica.",
@@ -2180,11 +2180,11 @@
         "digestivo"
       ],
       "indicaciones": [
-        "insomnio",
         "ansiedad",
-        "piel",
         "eccema",
-        "gases"
+        "gases",
+        "insomnio",
+        "piel"
       ],
       "descripcion": "Aceite suave y sedante, uno de los más seguros para niños y piel sensible. Relajante del SNC y antiespasmódico digestivo.",
       "mecanismoAccion": "Los ésteres (isobutil angelato) modulan GABA (sedante) y relajan el músculo liso digestivo; antiinflamatorio cutáneo (alfa-bisabolol, chamazuleno).",
@@ -2237,8 +2237,8 @@
         "ansiedad",
         "estrés",
         "insomnio",
-        "tdah (coadyuvante)",
-        "piel"
+        "piel",
+        "tdah (coadyuvante)"
       ],
       "descripcion": "Aceite de raíz profundo y anclado ('aceite de la tranquilidad'). Sedante del SNC, útil en ansiedad y sueño.",
       "mecanismoAccion": "El khusimol y otros sesquiterpenos modulan GABA y reducen la actividad del SNC; acción antioxidante y regeneradora cutánea.",
@@ -2289,11 +2289,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "fatiga",
-        "estrés",
         "dispepsia",
-        "muscular",
-        "menstrual"
+        "estrés",
+        "fatiga",
+        "menstrual",
+        "muscular"
       ],
       "descripcion": "Aceite tónico cerebral y digestivo. Mejora la claridad mental y la digestión, con acción antiespasmódica.",
       "mecanismoAccion": "El linalool y eugenol modulan GABA y la inflamación; el estragol (metilchavicol) estimula la digestión; tónico del SNC.",
@@ -2345,11 +2345,11 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "sinusitis",
+        "antifúngico",
         "bronquitis",
         "cicatrización",
-        "antifúngico",
-        "respiratorio"
+        "respiratorio",
+        "sinusitis"
       ],
       "descripcion": "Aceite mucolítico y antimicrobiano, cercano al ravintsara pero con más acción mucolítica por el 1,8-cineol.",
       "mecanismoAccion": "El 1,8-cineol (eucaliptol) fluidifica secreciones y es antiinflamatorio respiratorio; viridiflorol y α-pineno aportan acción antimicrobiana.",
@@ -2401,10 +2401,10 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "estrés",
-        "piel",
         "cicatrización",
-        "eccema"
+        "eccema",
+        "estrés",
+        "piel"
       ],
       "descripcion": "Aceite profundo y anclado de aroma terroso. Estabiliza el ánimo y regenera la piel.",
       "mecanismoAccion": "El patchoulol y α-bulneseno modulan GABA (sedante) y la inflamación; estimula la regeneración cutánea y el equilibrio sebáceo.",
@@ -2509,11 +2509,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "respiratorio",
-        "tos",
+        "aromaterapia",
         "estrés",
         "muscular",
-        "aromaterapia"
+        "respiratorio",
+        "tos"
       ],
       "descripcion": "Aceite balsámico de las coníferas del norte, rico en bornil acetato. Balsámico respiratorio y relajante.",
       "mecanismoAccion": "El bornil acetato y los pinenos son balsámicos y antisépticos respiratorios; relajante del SNC por inhalación.",
@@ -2563,11 +2563,11 @@
         "nervioso"
       ],
       "indicaciones": [
+        "ansiedad",
+        "antimicrobiano",
         "dispepsia",
         "gases",
-        "ansiedad",
-        "muscular",
-        "antimicrobiano"
+        "muscular"
       ],
       "descripcion": "Aceite de semilla con linalool, carminativo y calmante. Relaja la digestión y el sistema nervioso.",
       "mecanismoAccion": "El linalool es calmante (GABA) y antiespasmódico digestivo; el acetato de geranilo es antiinflamatorio.",
@@ -2619,9 +2619,9 @@
       "indicaciones": [
         "estrés",
         "insomnio",
-        "respiratorio",
         "muscular",
-        "piel"
+        "piel",
+        "respiratorio"
       ],
       "descripcion": "Híbrido de lavanda y espliego, más rico en alcanfor. Más energético y balsámico que la lavanda fina.",
       "mecanismoAccion": "El linalool modula GABA (calma); el alcanfor es balsámico y analgésico tópico; acción antimicrobiana.",
@@ -2671,10 +2671,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "dolor muscular",
         "dolor articular",
-        "inflamación",
-        "esguinces"
+        "dolor muscular",
+        "esguinces",
+        "inflamación"
       ],
       "descripcion": "Aceite con 98% de metil salicilato (AINE natural). Analgésico tópico potente para músculos y articulaciones.",
       "mecanismoAccion": "El metil salicilato inhibe la COX y reduce la prostaglandina inflamatoria; acción analgésica tópica similar a la aspirina.",
@@ -2728,10 +2728,10 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "piel",
         "ansiedad",
         "hormonal",
-        "libido"
+        "libido",
+        "piel"
       ],
       "descripcion": "Uno de los aceites más preciados. Tónico para piel madura, calmante y afrodisíaco.",
       "mecanismoAccion": "El citronelol y geraniol son antioxidantes y antiinflamatorios; acción calmante (GABA) y tónica cutánea.",
@@ -2783,9 +2783,9 @@
       ],
       "indicaciones": [
         "cicatrización",
+        "espasmos",
         "hematomas",
-        "piel",
-        "espasmos"
+        "piel"
       ],
       "descripcion": "Aceite premium regenerador cutáneo. Antiinflamatorio y cicatrizante potente. Reduce hematomas.",
       "mecanismoAccion": "Las italidiones y acetato de nerilo son antiinflamatorios y regeneradores; reduce los hematomas y la inflamación.",
@@ -2833,10 +2833,10 @@
       ],
       "indicaciones": [
         "bronquitis",
-        "tos",
-        "gripe",
+        "cicatrización",
         "digestión",
-        "cicatrización"
+        "gripe",
+        "tos"
       ],
       "descripcion": "Antiviral y expectorante respiratorio. Traditionally usado para afecciones bronquiales.",
       "mecanismoAccion": "La pinocanfona (cetona) tiene efecto mucolítico y antiviral. Los flavonoides estimulan inmunidad.",
@@ -2897,11 +2897,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "cardiovascular",
-        "inmunidad",
         "antibiótico",
+        "cardiovascular",
         "colesterol",
-        "hipertensión"
+        "hipertensión",
+        "inmunidad"
       ],
       "descripcion": "Potente antimicrobiano y cardioprotector. Alicina y sulfóxidos.",
       "mecanismoAccion": "Los compuestos sulfurados (dialil sulfuros) inhiben HMG-CoA reductasa → reduce colesterol. Vasodilatador por óxido nítrico. Antimicrobiano amplio espectro.",
@@ -2963,10 +2963,10 @@
         "inmune"
       ],
       "indicaciones": [
+        "antibiótico",
         "digestión",
         "gases",
         "hongos",
-        "antibiótico",
         "parásitos"
       ],
       "descripcion": "Antimicrobiano potente (carvacrol). Digestiva y antiparasitaria.",
@@ -3030,12 +3030,12 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "tos",
-        "garganta",
-        "piel",
+        "ansiedad",
         "cicatrización",
+        "garganta",
         "grietas",
-        "ansiedad"
+        "piel",
+        "tos"
       ],
       "descripcion": "Bálsamo cicatrizante y antitusivo. Suaviza piel agrietada y mucosas.",
       "mecanismoAccion": "El ácido benzoico y coniferina tienen efecto antiséptico y cicatrizante. Los esteres balsámicos suavizan.",
@@ -3097,9 +3097,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "insomnio",
         "ansiedad",
         "estrés",
+        "insomnio",
         "nerviosismo"
       ],
       "descripcion": "Sedante y ansiolítico por aromaterapia. El aceite destilado de raíz.",
@@ -3164,8 +3164,8 @@
       "indicaciones": [
         "digestión",
         "diuresis",
-        "menstrual",
-        "hígado"
+        "hígado",
+        "menstrual"
       ],
       "descripcion": "Diurético y digestivo. La miristicina estimula secreciones.",
       "mecanismoAccion": "La miristicina y apiol estimulan peristaltismo y secreción biliar. Diurético por irritación renal suave.",
@@ -3228,10 +3228,10 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "insomnio",
-        "estrés",
+        "choque",
         "depresión",
-        "choque"
+        "estrés",
+        "insomnio"
       ],
       "descripcion": "Calmante floral suave. Relaja sin sedar. Ideal para ansiedad y insomnio.",
       "mecanismoAccion": "El linalool y acetato de linalilo modulan GABA-A. La presencia de flavonoides en extractos reduces ansiedad. Reduce cortisol.",
@@ -3296,11 +3296,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "tos",
         "bronquitis",
         "dolor",
+        "muscular",
         "reuma",
-        "muscular"
+        "tos"
       ],
       "descripcion": "Bálsamo antiespasmódico y antiinflamatorio. Traditionally para tos y dolor muscular.",
       "mecanismoAccion": "Los sesquiterpenos (β-bisaboleno) tienen efecto antiinflamatorio. La oleorresina es expectorante.",
@@ -3364,10 +3364,10 @@
         "digestivo"
       ],
       "indicaciones": [
+        "dolor muscular",
         "gripe",
-        "respiratorio",
         "inmunidad",
-        "dolor_muscular"
+        "respiratorio"
       ],
       "descripcion": "Aceite esencial con fuerte acción antiséptica respiratoria, mucolítica y antialérgica. Usado en difusión para congestión y en fricción muscular.",
       "mecanismoAccion": "1,8-cineol (eucaliptol) mucolítico y broncodilatador. Pineno expectorante. Antiséptico respiratorio por fenoles (metileugenol trazas). Tónico digestivo.",
@@ -3418,10 +3418,10 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "acne",
         "ansiedad",
         "estrés",
-        "inmunidad",
-        "acne"
+        "inmunidad"
       ],
       "descripcion": "Aceite esencial cítrico reconfortante y antiséptico. Mejora estado anímico, limpia el ambiente y es astringente cutáneo. Antioxidante (d-limoneno).",
       "mecanismoAccion": "D-limoneno (mayoritario) con efecto ansiolítico leve y antioxidante. Antiséptico atmosférico. Astringente cutáneo. Estimula digestión (aroma).",
@@ -3521,10 +3521,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "estrés",
-        "obesidad",
+        "acne",
         "celulitis",
-        "acne"
+        "estrés",
+        "obesidad"
       ],
       "descripcion": "Aceite esencial cítrico reconfortante, drenante linfático y astringente. Mejora estado anímico, se usa en celulitis y acné tópico.",
       "mecanismoAccion": "Limoneno con efecto ansiolítico leve y antioxidante. Estimula drenaje linfático (masaje). Astringente y antiséptico cutáneo.",
@@ -3572,10 +3572,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "respiratorio",
-        "tos",
         "acne",
-        "eccema"
+        "eccema",
+        "respiratorio",
+        "tos"
       ],
       "descripcion": "Aceite esencial suave mucolítico y antiséptico, especialmente indicado en respiratorio pediátrico por su tolerancia. Antiacneico tópico.",
       "mecanismoAccion": "1,8-cineol mucolítico y broncodilatador. Mirtol antiséptico respiratorio. Astringente cutáneo (taninos). Antiinflamatorio.",
@@ -3623,10 +3623,10 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "acne",
         "ansiedad",
-        "insomnio",
         "estrés",
-        "acne"
+        "insomnio"
       ],
       "descripcion": "Aceite esencial destilado de las hojas del naranjo amargo. Ansiolítico y sedante suave, antiseborreico y antiacneico. Alternativa económica al neroli.",
       "mecanismoAccion": "Acetato de linalilo y linalool con efecto sedante y ansiolítico (modulación GABAérgica). Antiséptico y regenerante cutáneo.",
@@ -3674,9 +3674,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "estrés",
         "ansiedad",
-        "dolor_muscular",
+        "dolor muscular",
+        "estrés",
         "inmunidad"
       ],
       "descripcion": "Aceite esencial aromático de madera sagrada sudamericana. Sedante, meditativo, antiinflamatorio y antimicrobiano. Usado en aromaterapia espiritual.",
@@ -3786,9 +3786,9 @@
       ],
       "indicaciones": [
         "ansiedad",
+        "estres",
         "insomnio",
-        "piel",
-        "estres"
+        "piel"
       ],
       "descripcion": "AE de flor de azahar (naranjo amargo) con linalool y acetato de linalilo, ansiolítico clásico.",
       "mecanismoAccion": "Linalool modula GABA-A y receptores opioides. Reduce cortisol salivar.",
@@ -3848,10 +3848,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "articular",
-        "respiratorio",
         "ansiedad",
-        "inflamacion"
+        "articular",
+        "inflamacion",
+        "respiratorio"
       ],
       "descripcion": "AE de resina india con alfa-pineno y incensole, antiinflamatorio y ansiolítico.",
       "mecanismoAccion": "Acido boswélico (vía resina): inhibe 5-LOX. Incensole: ansiolítico via TRPV3.",
@@ -3910,9 +3910,9 @@
         "inmune"
       ],
       "indicaciones": [
+        "inmunidad",
         "respiratorio",
-        "sinusitis",
-        "inmunidad"
+        "sinusitis"
       ],
       "descripcion": "AE de planta china con metil-nonal-cetona con acción antiviral y antibacteriana respiratoria.",
       "mecanismoAccion": "Decanil-acetona y mirsenol: antiviral respiratorio. Inhibe influenza in vitro.",
@@ -3970,8 +3970,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "dispepsia",
         "ansiedad",
+        "dispepsia",
         "fatiga"
       ],
       "descripcion": "AE de raíz con beta-felandreno y cumarinas, tónico digestivo y nervioso.",
@@ -4029,9 +4029,9 @@
         "inmune"
       ],
       "indicaciones": [
-        "piel",
         "cicatrizacion",
-        "inmunidad"
+        "inmunidad",
+        "piel"
       ],
       "descripcion": "Extracto lipídico de fruto de espino amarillo con carotenoides y omega-7.",
       "mecanismoAccion": "Palmitoleico (omega-7): mucosas. Carotenoides: antioxidante y regenerante.",
@@ -4089,10 +4089,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "estres",
+        "acne",
         "ansiedad",
-        "respiratorio",
-        "acne"
+        "estres",
+        "respiratorio"
       ],
       "descripcion": "AE de Tulsi (albahaca sagrada) con eugenol, adaptógeno y antimicrobiano.",
       "mecanismoAccion": "Eugenol: antioxidante, modula cortisol. Adaptógeno HPA. Antimicrobiano amplio.",
@@ -4150,9 +4150,9 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "insomnio",
-        "herpes_labial",
-        "estres"
+        "estres",
+        "herpes labial",
+        "insomnio"
       ],
       "descripcion": "AE puro de melisa (caro, frecuentemente adulterado) con acción antiviral HSV.",
       "mecanismoAccion": "Citrales (geranial, neral): antiviral HSV-1 in vitro. Ansiolítico via GABA.",
@@ -4209,9 +4209,9 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "respiratorio",
         "cardiovascular",
-        "insuficiencia_venosa"
+        "insuficiencia venosa",
+        "respiratorio"
       ],
       "descripcion": "AE de pino marítimo con alfa-pineno; corteza da Pycnogenol (antioxidante vascular).",
       "mecanismoAccion": "Alfa-pineno: expectorante. Pycnogenol (corteza): antioxidante vascular, NO.",
@@ -4328,9 +4328,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "insomnio",
         "ansiedad",
-        "estres"
+        "estres",
+        "insomnio"
       ],
       "descripcion": "AE raíz del nardo bíblico con jatamansona, sedante y neuroprotector.",
       "mecanismoAccion": "Jatamansona: sedante GABA-érgico. Antioxidante. Antidepresivo en modelos.",
@@ -4386,10 +4386,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "inmunidad",
         "acne",
         "candidiasis",
-        "infecciones"
+        "infecciones",
+        "inmunidad"
       ],
       "descripcion": "Quimiotipo geraniol de tomillo, suave y seguro, antimicrobiano y antifúngico.",
       "mecanismoAccion": "Geraniol: antifúngico (Candida), antibacteriano. Menos irritante que timol.",
@@ -4446,9 +4446,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "inmunidad",
+        "dispepsia",
         "infecciones",
-        "dispepsia"
+        "inmunidad"
       ],
       "descripcion": "AE potente con carvacrol y timol, antimicrobiano de amplio espectro.",
       "mecanismoAccion": "Carvacrol: disruptor membrana bacteriana. Potente vs S. aureus y E. coli.",
@@ -4506,8 +4506,8 @@
         "nervioso"
       ],
       "indicaciones": [
+        "cólico del lactante",
         "dispepsia",
-        "colico_lactante",
         "gases"
       ],
       "descripcion": "AE de eneldo con carvona y limoneno, carminativo suave para cólicos.",
@@ -4565,9 +4565,9 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "respiratorio",
         "piel",
-        "quenes"
+        "quenes",
+        "respiratorio"
       ],
       "descripcion": "AE australiano azul (guaiazuleno) con acción antiinflamatoria y antialérgica.",
       "mecanismoAccion": "Guaiazuleno: antiinflamatorio. Antialérgico. Color azul característico.",
@@ -4625,9 +4625,9 @@
       ],
       "indicaciones": [
         "cabello",
-        "piel",
         "cognitivo",
-        "hepatico"
+        "hepatico",
+        "piel"
       ],
       "descripcion": "Quimiotipo verbenona de romero, suave, ideal para piel y cabello.",
       "mecanismoAccion": "Verbenona: regenerante epitelial, estimula folículo. Baja neurotoxicidad vs 1,8-cineol.",
@@ -4683,9 +4683,9 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "repelente",
-        "piernas_inquietas",
-        "acne"
+        "acne",
+        "piernas inquietas",
+        "repelente"
       ],
       "descripcion": "AE de citronela Java con citronelal, repelente de insectos y antimicrobiano.",
       "mecanismoAccion": "Citronelal: repelente olfativo. Antimicrobiano.",
@@ -4744,8 +4744,8 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "inmunidad",
-        "dolor"
+        "dolor",
+        "inmunidad"
       ],
       "descripcion": "AE de palo santo con limoneno, grounding y antimicrobiano.",
       "mecanismoAccion": "Limoneno: ansiolítico via dopamina. Antimicrobiano. Antiinflamatorio.",
@@ -4802,9 +4802,9 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "articular",
         "repelente",
-        "respiratorio",
-        "articular"
+        "respiratorio"
       ],
       "descripcion": "AE con citronelal, fuente de PMD (repelente CDC-recomendado).",
       "mecanismoAccion": "PMD (p-mentano-3,8-diol): repelente de mosquitos probado.",
@@ -4862,9 +4862,9 @@
       ],
       "indicaciones": [
         "acne",
-        "infecciones",
+        "candidiasis",
         "herpes",
-        "candidiasis"
+        "infecciones"
       ],
       "descripcion": "AE neozelandés con beta-triketonas, antimicrobiano superior a tea tree en algunos patógenos.",
       "mecanismoAccion": "Beta-triketonas (leptospermona): potente vs S. aureus resistente (MRSA).",
@@ -4922,10 +4922,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "dolor_dental",
+        "antifungico",
         "antiseptico",
         "digestión",
-        "antifungico",
+        "dolor dental",
         "parasitos"
       ],
       "descripcion": "Aceite rico en eugenol (70-90%). Antiséptico, analgésico dental y antimicrobiano potente.",
@@ -4975,10 +4975,10 @@
         "digestivo"
       ],
       "indicaciones": [
+        "circulación",
         "digestión",
-        "relajación",
         "dolor",
-        "circulación"
+        "relajación"
       ],
       "descripcion": "Aceite con miristicina y sabineno. Relajante y digestivo. Psicoactivo a dosis altas.",
       "mecanismoAccion": "Miristicina: posible inhibición MAO-A (efecto antidepresivo). Sabineno: antiinflamatorio. Estructura similar a mescalina (alucinógeno a dosis tóxicos).",
@@ -5030,11 +5030,11 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "relajación",
-        "perfume",
         "hipertensión",
+        "libido",
+        "perfume",
         "piel",
-        "libido"
+        "relajación"
       ],
       "descripcion": "Aceite floral dulce. Relajante, afrodisíaco y equilibrante. Usado en perfumería.",
       "mecanismoAccion": "Linalool y germacreno D: efecto sedante y ansiolítico. Baja presión arterial. Regula sebo cutáneo.",
