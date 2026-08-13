@@ -19,7 +19,7 @@ import { ConditionCard } from '@/ui/ConditionCard';
 import { IngredientResultCard } from '@/ui/IngredientResultCard';
 import {
   Search, BookOpen, X, ChevronDown, ChevronRight,
-  Loader2, Pill, Clock,
+  Loader2, Pill, Clock, Star, Heart,
 } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
@@ -29,7 +29,7 @@ import { useSearch } from '@/contexts/SearchContext';
 import { useConsultationHistory } from '@/hooks/useConsultationHistory';
 import type { DbIngredient, DbPathology, IngredientCategory } from '@/db/schema';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db';
+import { db, generateId } from '@/db';
 import { logger } from '@/lib/logger';
 import { cn } from '@/lib/utils';
 import { humanize, normalize, tokenize, getQuerySynonyms } from '@/lib/text';
@@ -71,6 +71,28 @@ export function SearchPage() {
 
   // True while the debounced query lags behind the current query.
   const isSearching = query !== debouncedQuery;
+
+  // Favoritos: ingredientes marcados por el farmacéutico
+  const favorites = useLiveQuery(() => db.favorites.orderBy('createdAt').reverse().toArray(), []);
+  const favoriteIngredients = useLiveQuery(
+    () => favorites && favorites.length > 0
+      ? db.ingredients.bulkGet(favorites.map((f) => f.ingredientId)) as Promise<(DbIngredient | undefined)[]>
+      : Promise.resolve([]),
+    [favorites],
+  );
+
+  const toggleFavorite = useCallback(async (ingredientId: string) => {
+    const existing = await db.favorites.where('ingredientId').equals(ingredientId).first();
+    if (existing) {
+      await db.favorites.delete(existing.id);
+    } else {
+      await db.favorites.add({ id: generateId(), ingredientId, createdAt: Date.now() });
+    }
+  }, []);
+
+  const isFavorite = useCallback((ingredientId: string) => {
+    return favorites?.some((f) => f.ingredientId === ingredientId) ?? false;
+  }, [favorites]);
 
   // Patologías: cargar una sola vez (live query, pero ligero — ~146 registros)
   const allPathologies = useLiveQuery(() => db.pathologies.toArray(), []);
@@ -475,6 +497,8 @@ export function SearchPage() {
                     result={result}
                     verdict={evaluateSafety(result.ingredient)}
                     onClick={setSelectedIngredient}
+                    isFavorite={isFavorite(result.ingredient.id)}
+                    onToggleFavorite={toggleFavorite}
                   />
                 ))}
               </div>
@@ -556,6 +580,31 @@ export function SearchPage() {
                 className="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {entry.query}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Favoritos del farmacéutico */}
+      {isIdle && favoriteIngredients && favoriteIngredients.length > 0 && (
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center gap-2 mb-2">
+            <Star className="w-3.5 h-3.5 text-amber-500" aria-hidden="true" />
+            <span className="text-xs text-muted-foreground uppercase tracking-wide">Favoritos</span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+            {favoriteIngredients.filter((x): x is DbIngredient => x !== undefined).map((ing) => (
+              <button
+                key={ing.id}
+                onClick={() => setSelectedIngredient(ing)}
+                className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:bg-muted hover:border-primary/40 transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <Heart className="w-4 h-4 text-amber-500 shrink-0 fill-amber-500" aria-hidden="true" />
+                <div className="min-w-0">
+                  <p className="text-sm font-medium truncate">{ing.nombre}</p>
+                  <p className="text-xs text-muted-foreground truncate">{ing.categoria}</p>
+                </div>
               </button>
             ))}
           </div>

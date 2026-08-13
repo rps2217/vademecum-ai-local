@@ -21,9 +21,11 @@ interface Props {
   result: SearchResult;
   verdict: SafetyVerdict | null;
   onClick: (ingredient: SearchResult['ingredient']) => void;
+  isFavorite?: boolean;
+  onToggleFavorite?: (ingredientId: string) => void;
 }
 
-export function IngredientResultCard({ result, verdict, onClick }: Props) {
+export function IngredientResultCard({ result, verdict, onClick, isFavorite, onToggleFavorite }: Props) {
   const catConfig = getCategoryConfig(result.ingredient.categoria);
   const evConfig = getEvidenceConfig(result.ingredient.evidencia);
   const CatIcon = catConfig.icon;
@@ -32,15 +34,33 @@ export function IngredientResultCard({ result, verdict, onClick }: Props) {
   const topIndication = result.ingredient.indicaciones?.[0];
 
   return (
-    <button
+    <div
       className={cn(
         'text-left p-5 rounded-xl bg-card border-2 border-border hover:border-primary hover:shadow-lg transition-all',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group min-h-[140px]',
+        'group min-h-[140px] relative',
         safetyStyle
       )}
-      onClick={() => onClick(result.ingredient)}
     >
-      <div className="flex items-start justify-between gap-2 mb-2.5">
+      <button
+        className="absolute inset-0 w-full h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        onClick={() => onClick(result.ingredient)}
+        aria-label={`Ver detalle de ${result.ingredient.nombre}`}
+      />
+      {onToggleFavorite && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onToggleFavorite(result.ingredient.id); }}
+          className={cn(
+            'absolute top-2 right-2 z-10 p-1.5 rounded-lg transition-colors',
+            isFavorite
+              ? 'text-amber-500 hover:bg-amber-50'
+              : 'text-muted-foreground/40 hover:text-amber-500 hover:bg-muted',
+          )}
+          aria-label={isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+        >
+          <Star className={cn('w-5 h-5', isFavorite && 'fill-current')} aria-hidden="true" />
+        </button>
+      )}
+      <div className="flex items-start justify-between gap-2 mb-2.5 pr-8">
         <div className="flex items-center gap-2.5 min-w-0">
           <div className={cn('p-2 rounded-lg shrink-0', catConfig.color)}>
             <CatIcon className="w-5 h-5" aria-hidden="true" />
@@ -79,6 +99,6 @@ export function IngredientResultCard({ result, verdict, onClick }: Props) {
           )}
         </div>
       </div>
-    </button>
+    </div>
   );
 }
