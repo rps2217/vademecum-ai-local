@@ -392,6 +392,85 @@ const QUERY_SYNONYMS: Record<string, string[]> = {
   alergias: ['alergia', 'antihistamínico'],
   antienvejecimiento: ['antioxidante', 'longevidad'],
   longevidad: ['longevidad', 'antioxidante', 'anti-envejecimiento'],
+  // Nuevos términos coloquiales (Ronda 16) — enlazan con nuevos ingredientes
+  // y formas comunes de consulta en el mostrador
+  macular: ['degeneración macular', 'ocular', 'AREDS2'],
+  macula: ['degeneración macular', 'ocular', 'AREDS2'],
+  dmae: ['degeneración macular', 'ocular', 'AREDS2'],
+  degeneracion_macular: ['degeneración macular', 'ocular', 'AREDS2'],
+  vista_cansada: ['ocular', 'ojo seco', 'fatiga visual'],
+  fatiga_visual: ['ocular', 'ojo seco', 'fatiga visual'],
+  luz_azul: ['ocular', 'degeneración macular', 'pantallas'],
+  pantallas: ['ocular', 'fatiga visual', 'luz azul'],
+  // Urinario
+  infeccion_orina: ['infección urinaria', 'cistitis', 'urinario'],
+  ardor_orina: ['cistitis', 'infección urinaria', 'urinario'],
+  ganas_orinar: ['cistitis', 'infección urinaria', 'vejiga'],
+  litiasis_renal: ['litiasis renal', 'cálculos', 'urinario'],
+  calculos_renales: ['litiasis renal', 'cálculos', 'urinario'],
+  piedra_rinon: ['litiasis renal', 'cálculos', 'urinario'],
+  prostatitis: ['prostatitis', 'próstata', 'urinario'],
+  // Hepático / digestivo avanzado
+  nash: ['hígado graso', 'hepático', 'NAFLD'],
+  transaminasas: ['hepático', 'hígado graso', 'transaminasas'],
+  // Endocrino
+  hipotiroidismo: ['hipotiroidismo', 'tiroideo', 'endocrino'],
+  hipotiroides: ['hipotiroidismo', 'tiroideo', 'endocrino'],
+  hashimoto: ['Hashimoto', 'hipotiroidismo', 'tiroideo'],
+  bocio: ['bocio', 'tiroideo', 'yodo'],
+  hipertiroidismo: ['hipertiroidismo', 'tiroideo', 'endocrino'],
+  menopausia_sofocos: ['menopausia', 'sofocos', 'hormonal'],
+  sofocos_menopausia: ['sofocos', 'menopausia', 'hormonal'],
+  // Reproductivo masculino
+  fertilidad_masculina: ['fertilidad', 'reproductivo', 'espermatozoide'],
+  motilidad_espermatica: ['fertilidad', 'reproductivo', 'espermatozoide'],
+  esperma: ['fertilidad', 'reproductivo', 'espermatozoide'],
+  disfuncion_sexual: ['libido', 'sexual', 'disfunción eréctil'],
+  potencia: ['libido', 'disfunción eréctil', 'sexual'],
+  // Metabólico avanzado
+  glucosa_alta: ['glucosa', 'diabetes', 'glucosa alta'],
+  insulina_resistencia: ['insulina', 'glucosa', 'metabólico'],
+  resistencia_insulina: ['insulina', 'glucosa', 'metabólico'],
+  metabolic: ['metabólico', 'endocrino'],
+  // Musculoesquelético avanzado
+  osteoporosis: ['osteoporosis', 'óseo', 'hueso'],
+  osteopenia: ['osteopenia', 'óseo', 'osteoporosis'],
+  densidad_osea: ['óseo', 'osteoporosis', 'hueso'],
+  huesos_debiles: ['óseo', 'osteoporosis', 'hueso'],
+  // Inmune / otoño-invierno
+  inmunidad_invierno: ['inmunidad', 'inmune', 'inmunidad baja'],
+  prevencion_resfriado: ['inmunidad', 'resfriado', 'inmune'],
+  // Cardio avanzado
+  hipotension: ['hipotensión', 'cardiovascular', 'presión'],
+  presion_baja: ['hipotensión', 'cardiovascular', 'presión'],
+  // Sueño / nervios avanzado
+  ansiedad_social: ['ansiedad', 'nervioso', 'ansiolítico'],
+  ataque_panico: ['ansiedad', 'pánico', 'nervioso'],
+  panico: ['ansiedad', 'pánico', 'nervioso'],
+  foco: ['cognitivo', 'concentración', 'nootrópico'],
+  atencion: ['cognitivo', 'concentración', 'nootrópico'],
+  rendimiento_mental: ['cognitivo', 'nootrópico', 'memoria'],
+  // Piel / estético
+  arrugas: ['piel', 'antienvejecimiento', 'colágeno'],
+  colageno: ['colágeno', 'piel', 'articular'],
+  elastina: ['piel', 'elastina', 'antienvejecimiento'],
+  caida_cabello: ['alopecia', 'cabello', 'dermatológico'],
+  alopecia: ['alopecia', 'cabello', 'dermatológico'],
+  uñas: ['dermatológico', 'uñas', 'colágeno'],
+  // Energía / fatiga
+  fatiga: ['fatiga', 'energía', 'adaptógeno'],
+  cansancio: ['fatiga', 'energía', 'adaptógeno'],
+  energia: ['energía', 'fatiga', 'adaptógeno'],
+  agotamiento: ['fatiga', 'energía', 'adaptógeno', 'estrés'],
+  // Digestivo avanzado
+  hinchazon_abdominal: ['gases', 'hinchazón', 'digestivo'],
+  estomago_inflamado: ['gástrico', 'inflamación', 'digestivo'],
+  flora_intestinal: ['probiótico', 'intestinal', 'microbiota'],
+  microbiota: ['probiótico', 'intestinal', 'flora intestinal'],
+  // Vitaminas / comunes
+  vitaminas: ['vitamina', 'suplemento'],
+  suplemento: ['suplemento', 'vitamina', 'nutricional'],
+  antioxidantes: ['antioxidante', 'antienvejecimiento'],
 };
 
 /**

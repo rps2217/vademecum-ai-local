@@ -279,7 +279,7 @@ export function SearchPage() {
   }, [indicationChips, chipSearch]);
 
   return (
-    <div className="space-y-4 max-w-[90rem] mx-auto">
+    <div className="space-y-5 max-w-[110rem] mx-auto">
       {/* Perfil del cliente (filtro de seguridad para asesoría) */}
       <ClientProfileSelector />
 
@@ -313,7 +313,7 @@ export function SearchPage() {
                       key={chip.value}
                       onClick={() => { setIndication(isActive ? '' : chip.value); }}
                       className={cn(
-                        'inline-flex items-center gap-2 px-3.5 py-2.5 rounded-full text-[15px] font-medium transition-all border',
+                        'inline-flex items-center gap-2 px-4 py-3 rounded-full text-[15px] font-medium transition-all border',
                         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                         isActive
                           ? 'bg-primary text-primary-foreground border-primary shadow-sm'
@@ -332,7 +332,7 @@ export function SearchPage() {
                 {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
                   <button
                     onClick={() => { setShowAllChips(true); setChipSearch(''); }}
-                    className="inline-flex items-center gap-1 px-3.5 py-2.5 rounded-full text-[15px] font-medium border border-dashed border-border-hover text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-1 px-4 py-3 rounded-full text-[15px] font-medium border border-dashed border-border-hover text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {`+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
                     <ChevronDown className="w-4 h-4" />
@@ -416,14 +416,14 @@ export function SearchPage() {
                   key={cat.value}
                   onClick={() => setCategory(cat.value)}
                   className={cn(
-                    'inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-colors',
+                    'inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[15px] font-medium transition-colors',
                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                     isActive
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
                   )}
                 >
-                  {cat.value && <Icon className="w-4 h-4" aria-hidden="true" />}
+                  {cat.value && <Icon className="w-[18px] h-[18px]" aria-hidden="true" />}
                   {cat.label}
                 </button>
               );
@@ -588,22 +588,23 @@ export function SearchPage() {
 
       {/* Favoritos del farmacéutico */}
       {isIdle && favoriteIngredients && favoriteIngredients.length > 0 && (
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-2 mb-2">
-            <Star className="w-3.5 h-3.5 text-amber-500" aria-hidden="true" />
-            <span className="text-xs text-muted-foreground uppercase tracking-wide">Favoritos</span>
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center gap-2 mb-3">
+            <Star className="w-5 h-5 text-amber-500 fill-amber-500" aria-hidden="true" />
+            <h3 className="text-base font-semibold text-foreground">Favoritos</h3>
+            <span className="text-sm text-muted-foreground">— acceso rápido</span>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {favoriteIngredients.filter((x): x is DbIngredient => x !== undefined).map((ing) => (
               <button
                 key={ing.id}
                 onClick={() => setSelectedIngredient(ing)}
-                className="flex items-center gap-2 p-3 rounded-lg border border-border bg-card hover:bg-muted hover:border-primary/40 transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex items-center gap-3 p-4 rounded-xl border-2 border-border bg-card hover:bg-muted hover:border-primary/40 transition-all text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[64px]"
               >
-                <Heart className="w-4 h-4 text-amber-500 shrink-0 fill-amber-500" aria-hidden="true" />
+                <Heart className="w-5 h-5 text-amber-500 shrink-0 fill-amber-500" aria-hidden="true" />
                 <div className="min-w-0">
-                  <p className="text-sm font-medium truncate">{ing.nombre}</p>
-                  <p className="text-xs text-muted-foreground truncate">{ing.categoria}</p>
+                  <p className="text-[15px] font-medium truncate">{ing.nombre}</p>
+                  <p className="text-xs text-muted-foreground truncate capitalize">{ing.categoria.replace('_', ' ')}</p>
                 </div>
               </button>
             ))}

@@ -43,7 +43,7 @@ function NavContent({ collapsed, onNavigate }: { collapsed: boolean; onNavigate:
   const location = useLocation();
   return (
     <nav className="flex-1 overflow-y-auto px-3 py-4">
-      <ul className="flex flex-col gap-1">
+      <ul className="flex flex-col gap-1.5">
         {NAV_ITEMS.map((item) => {
           const isActive = location.pathname === item.href;
           const Icon = item.icon;
@@ -54,21 +54,22 @@ function NavContent({ collapsed, onNavigate }: { collapsed: boolean; onNavigate:
                 onClick={onNavigate}
                 title={collapsed ? item.label : undefined}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[15px] transition-colors',
+                  'flex items-center gap-3 rounded-xl px-4 py-3 text-[16px] font-medium transition-all',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  'min-h-[48px]',
                   isActive
-                    ? 'bg-primary text-primary-foreground font-medium shadow-sm'
+                    ? 'bg-primary text-primary-foreground shadow-md'
                     : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
                   collapsed && 'justify-center px-2'
                 )}
               >
-                <Icon className="h-[22px] w-[22px] flex-shrink-0" aria-hidden="true" />
+                <Icon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                 {!collapsed && (
                   <>
                     <span className="flex-1 truncate">{item.label}</span>
                     {item.badge && (
                       <span className={cn(
-                        'rounded px-1.5 py-0.5 text-xs font-medium',
+                        'rounded-md px-2 py-1 text-xs font-semibold',
                         isActive ? 'bg-background text-foreground' : 'bg-accent text-accent-foreground'
                       )}>
                         {item.badge}
@@ -178,20 +179,20 @@ export function AppShell() {
       {/* Sidebar */}
       <aside className={cn(
         'fixed left-0 top-0 z-50 flex h-screen flex-col border-r border-sidebar bg-sidebar transition-all duration-300',
-        sidebarCollapsed ? 'w-16' : 'w-64',
+        sidebarCollapsed ? 'w-20' : 'w-72',
         sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       )}>
         {/* Logo */}
         <div className={cn(
-          'flex h-16 flex-shrink-0 items-center border-b border-sidebar px-4',
+          'flex h-[4.5rem] flex-shrink-0 items-center border-b border-sidebar px-4',
           sidebarCollapsed ? 'justify-center' : 'justify-between'
         )}>
-          <Link to="/" className="flex items-center gap-2" onClick={closeSidebar}>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <Sparkles className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
+          <Link to="/" className="flex items-center gap-2.5" onClick={closeSidebar}>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-sm">
+              <Sparkles className="h-6 w-6 text-primary-foreground" aria-hidden="true" />
             </div>
             {!sidebarCollapsed && (
-              <span className="text-lg font-semibold text-foreground">Vademecum</span>
+              <span className="text-xl font-semibold text-foreground">Vademecum</span>
             )}
           </Link>
         </div>
@@ -205,12 +206,12 @@ export function AppShell() {
               <Link
                 to="/settings"
                 onClick={closeSidebar}
-                className="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[15px] text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex items-center gap-3 rounded-xl px-4 py-3 text-[16px] font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[44px]"
               >
-                <Settings className="h-[22px] w-[22px]" aria-hidden="true" />
+                <Settings className="h-5 w-5" aria-hidden="true" />
                 <span>Configuración</span>
               </Link>
-              <div className="mt-2 flex items-center gap-1 rounded-lg bg-sidebar-accent p-1">
+              <div className="mt-2 flex items-center gap-1 rounded-xl bg-sidebar-accent p-1">
                 {([
                   { value: 'light', icon: Sun, label: 'Tema claro' },
                   { value: 'auto', icon: Monitor, label: 'Tema automático' },
@@ -220,7 +221,7 @@ export function AppShell() {
                     key={value}
                     onClick={() => setTheme(value)}
                     className={cn(
-                      'flex flex-1 items-center justify-center rounded-md py-2 transition-colors',
+                      'flex flex-1 items-center justify-center rounded-lg py-2.5 transition-colors',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                       theme === value ? 'bg-card text-foreground shadow-sm' : 'text-sidebar-foreground hover:text-foreground'
                     )}
@@ -238,14 +239,14 @@ export function AppShell() {
               <Link
                 to="/settings"
                 onClick={closeSidebar}
-                className="rounded-lg p-2 text-sidebar-foreground transition-colors hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-sidebar-foreground transition-colors hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label="Configuración"
               >
                 <Settings className="h-5 w-5" aria-hidden="true" />
               </Link>
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="rounded-lg p-2 text-sidebar-foreground transition-colors hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-sidebar-foreground transition-colors hover:bg-sidebar-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
               >
                 {theme === 'dark' ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
@@ -265,12 +266,12 @@ export function AppShell() {
       </aside>
 
       {/* Main content */}
-      <div className={cn('flex min-h-screen flex-col transition-all duration-300', sidebarCollapsed ? 'lg:pl-16' : 'lg:pl-64')}>
+      <div className={cn('flex min-h-screen flex-col transition-all duration-300', sidebarCollapsed ? 'lg:pl-20' : 'lg:pl-72')}>
         {/* Header */}
-        <header className="sticky top-0 z-30 flex h-16 flex-shrink-0 items-center gap-3 border-b border-header bg-header/95 backdrop-blur px-4 lg:px-6">
+        <header className="sticky top-0 z-30 flex h-[4.5rem] flex-shrink-0 items-center gap-3 border-b border-header bg-header/95 backdrop-blur px-4 lg:px-8">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="rounded-lg p-2 text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
             aria-label="Abrir menú"
           >
             <Menu className="h-5 w-5" aria-hidden="true" />
@@ -279,7 +280,7 @@ export function AppShell() {
           {/* Search bar */}
           <form onSubmit={handleSearchSubmit} className="flex flex-1 justify-start" role="search">
             <div className="relative w-full max-w-3xl">
-              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+              <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
               <input
                 type="search"
                 value={query}
@@ -287,12 +288,12 @@ export function AppShell() {
                 placeholder={searchPlaceholder}
                 aria-label={searchPlaceholder}
                 title="Presiona / para enfocar rápidamente"
-                className="h-11 w-full rounded-lg border border-border bg-muted pl-11 pr-20 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
+                className="h-12 w-full rounded-xl border border-border bg-muted pl-12 pr-24 text-[16px] text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
               />
               <button
                 type="button"
                 onClick={() => setPaletteOpen(true)}
-                className="pointer-events-auto absolute right-2.5 top-1/2 -translate-y-1/2 flex h-7 items-center gap-0.5 rounded border border-border bg-card px-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-primary/50"
+                className="pointer-events-auto absolute right-3 top-1/2 -translate-y-1/2 flex h-8 items-center gap-1 rounded-md border border-border bg-card px-2 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-primary/50"
                 aria-label="Abrir búsqueda rápida (⌘K)"
                 title="Búsqueda rápida ⌘K"
               >
@@ -307,7 +308,7 @@ export function AppShell() {
             <SyncStatusBar className="hidden md:flex" />
             <button
               onClick={() => navigate('/admin')}
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 text-[15px] font-medium text-primary-foreground shadow-sm transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="inline-flex h-12 items-center gap-2 rounded-xl bg-primary px-5 text-[16px] font-medium text-primary-foreground shadow-sm transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Plus className="h-5 w-5" aria-hidden="true" />
               <span className="hidden sm:inline">Nuevo</span>
@@ -319,7 +320,7 @@ export function AppShell() {
           <SyncStatusBar />
         </div>
 
-        <main className="flex-1 p-4 lg:p-8">
+        <main className="flex-1 p-4 sm:p-6 lg:p-10">
           <Outlet />
         </main>
       </div>
