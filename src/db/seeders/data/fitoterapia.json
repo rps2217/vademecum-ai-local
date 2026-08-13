@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 208,
+    "total": 217,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -10930,6 +10930,475 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + German Commission E"
+      }
+    },
+    {
+      "id": "ginkgo_biloba_ocular",
+      "nombre": "Ginkgo Biloba Extracto (Ocular)",
+      "nombresAlternativos": [
+        "Ginkgo flavonoides",
+        "EGB 761 oftalmico"
+      ],
+      "nombreCientifico": "Ginkgo biloba",
+      "familia": "Ginkgoaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "ocular",
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "ocular",
+        "glaucoma",
+        "circulacion",
+        "cognitivo"
+      ],
+      "descripcion": "Extracto estandarizado de Ginkgo con flavonoides y terpenlactonas; mejora flujo sanguineo retiniano y optico.",
+      "mecanismoAccion": "Aumenta flujo sanguineo ocular, actividad antioxidante y neuroproteccion del nervio optico; inhibe PAF (factor activador plaquetario).",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja (extracto EGB 761, 24% flavonas, 6% terpenos)",
+      "formasPresentacion": [
+        "Capsulas (extracto estandarizado)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Riesgo de sangrado con anticoagulantes",
+        "Suspender antes de cirugia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina",
+        "AAS",
+        "Anticoagulantes",
+        "ISRS"
+      ],
+      "tags": [
+        "ginkgo",
+        "glaucoma",
+        "flujo ocular",
+        "neuroproteccion",
+        "EGB 761"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Cochrane Database + Phytother. Res."
+      }
+    },
+    {
+      "id": "goldenrod",
+      "nombre": "Solidago (Vara de Oro)",
+      "nombresAlternativos": [
+        "Solidago canadensis",
+        "Goldenrod",
+        "Vara de oro europea"
+      ],
+      "nombreCientifico": "Solidago virgaurea",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario"
+      ],
+      "indicaciones": [
+        "infeccion urinaria",
+        "calculos renales",
+        "inflamacion urinaria",
+        "diuretico"
+      ],
+      "descripcion": "Planta diuretica y antiinflamatoria de vias urinarias; usada en cistitis y prevencion de litiasis.",
+      "mecanismoAccion": "Diuretico osmotico, antiseptico urinario (saponinas triterpenicas), antiinflamatorio via inhibicion COX-2; estimula eliminacion de bacterias.",
+      "nivelEvidencia": "C",
+      "parteUsada": "sumidad aerea",
+      "formasPresentacion": [
+        "Tintura",
+        "Capsulas",
+        "Infusion"
+      ],
+      "tiempoEfecto": "24-48 horas (diuretico)",
+      "duracionTratamiento": "1-3 semanas",
+      "advertencias": [
+        "Contraindicado en edema por insuficiencia cardiaca/renal",
+        "Evitar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos (efecto aditivo)",
+        "Litio"
+      ],
+      "tags": [
+        "diuretico",
+        "cistitis",
+        "litiasis",
+        "antiseptico urinario"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph + ESCOP"
+      }
+    },
+    {
+      "id": "diente_leon_raiz",
+      "nombre": "Diente de Leon (Raiz)",
+      "nombresAlternativos": [
+        "Dandelion root",
+        "Taraxacum",
+        "Amargon raiz",
+        "Radicchina"
+      ],
+      "nombreCientifico": "Taraxacum officinale",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "urinario",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "detox",
+        "digestion",
+        "diuretico",
+        "estrenimiento",
+        "higado graso"
+      ],
+      "descripcion": "Raiz amarga con inulina y taraxacina; colagogo, hepatoprotector y diuretico potasico.",
+      "mecanismoAccion": "Estimula produccion de bilis (colagogo/coleretico), diuretico potasico sin deplecion, prebiotico por inulina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Decoccion",
+        "Capsulas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "2-4 semanas",
+      "advertencias": [
+        "Contraindicado en obstruccion biliar",
+        "Calculos biliares sintomaticos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diureticos",
+        "Antiarrítmicos (potasio)"
+      ],
+      "tags": [
+        "hepatoprotector",
+        "diuretico",
+        "coleretico",
+        "prebiotico",
+        "amargo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "ESCOP monograph + Phytother. Res."
+      }
+    },
+    {
+      "id": "maca_negra",
+      "nombre": "Maca Negra",
+      "nombresAlternativos": [
+        "Black Maca",
+        "Lepidium meyenii negra",
+        "Maca andina negra"
+      ],
+      "nombreCientifico": "Lepidium meyenii",
+      "familia": "Brassicaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "libido",
+        "fertilidad",
+        "energia",
+        "hormonal"
+      ],
+      "descripcion": "Variedad negra de Maca andina; mejora fertilidad masculina, libido y energia sin efectos hormonales directos.",
+      "mecanismoAccion": "Adaptogeno: modula eje HHA, mejora calidad espermatica (motilidad y volumen), sin alterar testosterona directamente.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz (gelatinizada)",
+      "formasPresentacion": [
+        "Polvo gelatinizado",
+        "Capsulas (extracto)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "8-12 semanas",
+      "advertencias": [
+        "Insuficiente evidencia en embarazo/lactancia"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "adaptogeno",
+        "fertilidad masculina",
+        "libido",
+        "energia",
+        "andina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Andrologia + Evid Based Complement Alternat Med"
+      }
+    },
+    {
+      "id": "picrorrhiza",
+      "nombre": "Picrorhiza",
+      "nombresAlternativos": [
+        "Picrorhiza kurroa",
+        "Kutki",
+        "Picrorhiza raiz"
+      ],
+      "nombreCientifico": "Picrorhiza kurroa",
+      "familia": "Plantaginaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "higado graso",
+        "detox",
+        "hepatitis",
+        "antioxidante",
+        "inmunidad"
+      ],
+      "descripcion": "Raiz ayurvedica con iridoides (picrosidos I/II); hepatoprotector e inmunomodulador potente.",
+      "mecanismoAccion": "Estimula regeneracion hepatica, antioxidante, antiinflamatorio (via NF-kB), inmunomodulador; protege contra hepatotoxinas.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Capsulas (extracto estandarizado)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "8-12 semanas",
+      "advertencias": [
+        "Evitar en embarazo",
+        "Puede reducir absorcion de hierro"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hierro",
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "hepatoprotector",
+        "iridoide",
+        "kutki",
+        "inmunomodulador",
+        "NAFLD"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Phytother. Res. + J. Clin. Gastroenterol."
+      }
+    },
+    {
+      "id": "regaliz_dgl",
+      "nombre": "Regaliz DGL (Deglicirrizado)",
+      "nombresAlternativos": [
+        "DGL",
+        "Deglycyrrhizinated Licorice",
+        "Glycyrrhiza glabra DGL"
+      ],
+      "nombreCientifico": "Glycyrrhiza glabra (sin glicirricina)",
+      "familia": "Fabaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "hepatico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "ulceras",
+        "gastritis",
+        "reflujo",
+        "esofago de Barrett",
+        "tos"
+      ],
+      "descripcion": "Extracto de regaliz sin glicirricina (DGL) para evitar hipertension; protector de mucosa gastrica y esofagica.",
+      "mecanismoAccion": "Flavonoides (licoflavidina) estimulan mucina y prostaglandinas protectoras gastricas; antiespasmodico; antiinflamatorio topico.",
+      "nivelEvidencia": "B",
+      "parteUsada": "raiz (deglicirrizada)",
+      "formasPresentacion": [
+        "Tabletas masticables",
+        "Polvo DGL"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "4-8 semanas",
+      "advertencias": [
+        "DGL generalmente sin efectos de regaliz normal",
+        "Alergia rara"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antihipertensivos (DGL tiene minimo efecto)"
+      ],
+      "tags": [
+        "DGL",
+        "gastritis",
+        "reflujo",
+        "mucosa",
+        "protector gastrico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Gut + BMJ Evidence-Based Med"
+      }
+    },
+    {
+      "id": "guggul",
+      "nombre": "Guggul",
+      "nombresAlternativos": [
+        "Guggulipid",
+        "Commiphora mukul",
+        "Guggulu",
+        "Goma guggul"
+      ],
+      "nombreCientifico": "Commiphora wightii",
+      "familia": "Burseraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "colesterol",
+        "hipotiroidismo",
+        "obesidad",
+        "articular"
+      ],
+      "descripcion": "Resina ayurvedica con guggulsteronas; hipolipemiante y estimulante tiroideo suave.",
+      "mecanismoAccion": "Guggulsteronas estimulan tiroides (T3/T4), reducen colesterol via FXR y aumento de receptores hepaticos LDL; antiinflamatorio.",
+      "nivelEvidencia": "B",
+      "parteUsada": "resina (goma oleosa)",
+      "formasPresentacion": [
+        "Capsulas (extracto estandarizado guggulsteronas)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "12 semanas",
+      "advertencias": [
+        "Puede causar dispepsia",
+        "Evitar en hipertiroidismo",
+        "Interaccion con hormonas tiroideas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levotiroxina",
+        "Estatinas",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "guggulsteronas",
+        "hipolipemiante",
+        "tiroides",
+        "ayurveda",
+        "colesterol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "J. Assoc. Physicians India + Cardiovasc. Drugs Rev."
+      }
+    },
+    {
+      "id": "gymnema_sylvestre",
+      "nombre": "Gymnema Sylvestre",
+      "nombresAlternativos": [
+        "Gurmar",
+        "Destructor de azucar",
+        "Gymnema",
+        "Asclepiadaceae"
+      ],
+      "nombreCientifico": "Gymnema sylvestre",
+      "familia": "Apocynaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "diabetes",
+        "glucosa",
+        "ansiedad por dulces",
+        "obesidad"
+      ],
+      "descripcion": "Planta gurmar (destructor de azucar); reduce deseo por dulces y ayuda a controlar glucemia.",
+      "mecanismoAccion": "Acido gymnemico bloquea receptores de dulzor en lengua; aumenta regeneracion de celulas beta-pancreaticas; mejora sensibilidad a insulina.",
+      "nivelEvidencia": "B",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Capsulas (extracto 25% gymnemico)",
+        "Tintura",
+        "Polvo"
+      ],
+      "tiempoEfecto": "Inmediato (dulzor), 4-12 semanas (glucosa)",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Riesgo de hipoglucemia con insulina/sulfonilureas",
+        "Evitar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Insulina",
+        "Metformina",
+        "Sulfonilureas"
+      ],
+      "tags": [
+        "gurmar",
+        "glucosa",
+        "diabetes",
+        "antidiabetico",
+        "suprime dulzor"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "J. Ethnopharmacol. + Diabetes Care"
+      }
+    },
+    {
+      "id": "kelp_yodo",
+      "nombre": "Kelp (Yodo)",
+      "nombresAlternativos": [
+        "Fucus vesiculosus",
+        "Alga parda",
+        "Yodo marino",
+        "Kombu"
+      ],
+      "nombreCientifico": "Fucus vesiculosus",
+      "familia": "Fucaceae (algas pardas)",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "hipotiroidismo",
+        "bocio",
+        "metabolismo",
+        "obesidad"
+      ],
+      "descripcion": "Alga parda rica en yodo organico; soporte nutricional de tiroides en deficiencia de yodo.",
+      "mecanismoAccion": "Yodo organanico es precursor de T3/T4; fucoidanos con actividad antioxidante y metabolica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "talo (alga entera)",
+      "formasPresentacion": [
+        "Capsulas (polvo)",
+        "Tabletas estandarizadas en yodo"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "3-6 meses",
+      "advertencias": [
+        "Peligro en hipertiroidismo/Graves",
+        "Sobredosis de yodo desencadena tiroiditis",
+        "Evitar en embarazo sin supervision"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levotiroxina",
+        "Antitiroideos (metimazol/PTU)",
+        "Litio"
+      ],
+      "tags": [
+        "yodo",
+        "tiroides",
+        "alga",
+        "bocio",
+        "metabolismo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "WHO/UNICEF yodo + J. Thyroid Res."
       }
     }
   ]

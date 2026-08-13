@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 183,
+    "total": 191,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -10411,6 +10411,407 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + EFSA"
+      }
+    },
+    {
+      "id": "criptoxantina",
+      "nombre": "Criptoxantina",
+      "nombresAlternativos": [
+        "Beta-criptoxantina",
+        "Cryptoxanthin"
+      ],
+      "nombreCientifico": "Beta-cryptoxanthin",
+      "familia": "Carotenoide (xantofila)",
+      "categoria": "vitamina",
+      "sistemas": [
+        "ocular",
+        "inmune"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "ocular",
+        "inmunidad",
+        "articular"
+      ],
+      "descripcion": "Carotenoide provitaminico A con actividad antioxidante y antiinflamatoria; precursor de vitamina A retinol.",
+      "mecanismoAccion": "Se convierte en retinol (vitamina A) y modula vias antiinflamatorias via NF-kB; protege epitelio pigmentario retiniano.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Sintesis/extracto natural (Citrus reticulata, papaya)",
+      "formasPresentacion": [
+        "Capsulas (extracto natural)"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Dosis altas pueden causar carotenodermia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Orlistat (reduce absorcion)",
+        "Colestiramina"
+      ],
+      "tags": [
+        "carotenoide",
+        "retinol",
+        "antioxidante",
+        "retina",
+        "pro-vitamina A"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "NIH ODS Fact Sheet + J. Nutr. reviews"
+      }
+    },
+    {
+      "id": "meso_zeaxantina",
+      "nombre": "Meso-zeaxantina",
+      "nombresAlternativos": [
+        "Meso-zeaxanthin",
+        "MZ",
+        "3R,3S-zeaxantina"
+      ],
+      "nombreCientifico": "3R,3S-zeaxanthin",
+      "familia": "Xantofila (carotenoide)",
+      "categoria": "vitamina",
+      "sistemas": [
+        "ocular"
+      ],
+      "indicaciones": [
+        "ocular",
+        "antioxidante",
+        "degeneracion macular"
+      ],
+      "descripcion": "Isomero de zeaxantina central en la macula; potente filtro de luz azul y antioxidante retiniano.",
+      "mecanismoAccion": "Se acumula en la macula central (donde es mas abundante que zeaxantina y luteina); filtra luz azul y neutraliza especies reactivas de oxigeno.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Sintesis (a partir de luteina)",
+      "formasPresentacion": [
+        "Capsulas (formula AREDS2 con luteina+zeaxantina+meso-zeaxantina)"
+      ],
+      "tiempoEfecto": "8-12 semanas",
+      "duracionTratamiento": "Continuo",
+      "advertencias": [
+        "Sin efectos adversos conocidos a dosis usuales"
+      ],
+      "interaccionesMedicamentosas": [],
+      "tags": [
+        "xantofila",
+        "macula",
+        "luz azul",
+        "AREDS2",
+        "antioxidante retiniano"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "AREDS2 trial (NEJM 2014) + CREST trial"
+      }
+    },
+    {
+      "id": "quercetina_urinario",
+      "nombre": "Quercetina (Extracto)",
+      "nombresAlternativos": [
+        "Quercetin",
+        "Soforetina",
+        "3,3',4',5,7-pentahidroxiflavona"
+      ],
+      "nombreCientifico": "Quercetin (flavonoide)",
+      "familia": "Flavonoide (flavonol)",
+      "categoria": "vitamina",
+      "sistemas": [
+        "urinario",
+        "inmune",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "inflamacion urinaria",
+        "prostatitis",
+        "antioxidante",
+        "alergia",
+        "inmunidad"
+      ],
+      "descripcion": "Flavonoide con accion antiinflamatoria, antihistaminica y antioxidante; util en cistitis intersticial y prostatitis.",
+      "mecanismoAccion": "Inhibe enzimas pro-inflamatorias (COX-2, LOX, iNOS), estabiliza mastocitos (antihistaminico), antioxidante potente.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Extracto natural (cascara de cebolla, manzana)",
+      "formasPresentacion": [
+        "Capsulas (300-1000mg)"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "4-12 semanas",
+      "advertencias": [
+        "Puede reducir absorcion de antibioticos fluoroquinolonas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Fluoroquinolonas",
+        "Ciclosporina",
+        "Estrogenos"
+      ],
+      "tags": [
+        "flavonoide",
+        "antiinflamatorio",
+        "antihistaminico",
+        "cistitis intersticial",
+        "prostatitis"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "J. Urol. + Cochrane reviews"
+      }
+    },
+    {
+      "id": "coq10_fertilidad",
+      "nombre": "Coenzima Q10 (Fertilidad)",
+      "nombresAlternativos": [
+        "Ubiquinona",
+        "CoQ10",
+        "Q10",
+        "Ubidecarenona"
+      ],
+      "nombreCientifico": "Coenzima Q10",
+      "familia": "Quinona (ubiquinona)",
+      "categoria": "vitamina",
+      "sistemas": [
+        "reproductivo",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "fertilidad",
+        "energia",
+        "antioxidante",
+        "cardioproteccion",
+        "mitocondrias"
+      ],
+      "descripcion": "Antioxidante mitocondrial clave; mejora calidad ovocitaria y motilidad espermatica; protector cardiovascular.",
+      "mecanismoAccion": "Cofactor de la cadena de transporte de electrones (ATP), antioxidante liposoluble en membranas, recicla vitamina E.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Sintesis/fermentacion",
+      "formasPresentacion": [
+        "Capsulas blandas (ubiquinona/ubiquinol)"
+      ],
+      "tiempoEfecto": "4-12 semanas",
+      "duracionTratamiento": "3-6 meses (fertilidad)",
+      "advertencias": [
+        "Reduce efecto de warfarina",
+        "Suspender 2 dias antes de cirugia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina",
+        "Estatinas (pueden reducir niveles)"
+      ],
+      "tags": [
+        "antioxidante",
+        "mitocondrias",
+        "ATP",
+        "fertilidad",
+        "cardio"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Cochrane reviews + Fertil Steril meta-analisis"
+      }
+    },
+    {
+      "id": "n_acetilcisteina_hepatico",
+      "nombre": "N-Acetilcisteina (NAC)",
+      "nombresAlternativos": [
+        "NAC",
+        "N-Acetylcysteine",
+        "Acetilcisteina"
+      ],
+      "nombreCientifico": "N-Acetilcisteina",
+      "familia": "Aminoacido (derivado de cisteina)",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "hepatico",
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "higado graso",
+        "detox",
+        "antioxidante",
+        "mucolitico",
+        "inmunidad"
+      ],
+      "descripcion": "Precursor de glutation; hepatoprotector (antidoto paracetamol), mucolitico y antioxidante sistemico.",
+      "mecanismoAccion": "Donador de cisteina recarga glutation (GSH); rompe enlaces disulfuro en moco; antioxidante directo.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Sintesis",
+      "formasPresentacion": [
+        "Capsulas (600mg)",
+        "Polvo",
+        "Solucion oral/efervescente"
+      ],
+      "tiempoEfecto": "1-3 horas (agudo), 4-8 semanas (cronico)",
+      "duracionTratamiento": "4-12 semanas (hepatico)",
+      "advertencias": [
+        "Nauseas comunes",
+        "Olor a azufre",
+        "Posible reaccion anafilactoide IV"
+      ],
+      "interaccionesMedicamentosas": [
+        "Nitroglicerina (hipotension)",
+        "Carbon activado (reduce absorcion)"
+      ],
+      "tags": [
+        "glutation",
+        "antioxidante",
+        "hepatoprotector",
+        "mucolitico",
+        "NAC"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Cochrane reviews + Hepatology"
+      }
+    },
+    {
+      "id": "selenio_tiroideo",
+      "nombre": "Selenio (Metionina, Tiroideo)",
+      "nombresAlternativos": [
+        "Selenio L-metionina",
+        "Selenium",
+        "Se"
+      ],
+      "nombreCientifico": "Selenio (L-selenometionina)",
+      "familia": "Oligoelemento",
+      "categoria": "mineral",
+      "sistemas": [
+        "endocrino",
+        "inmune"
+      ],
+      "indicaciones": [
+        "hipotiroidismo",
+        "Hashimoto",
+        "antioxidante",
+        "inmunidad"
+      ],
+      "descripcion": "Cofactor de desyodinasas (T4->T3) y glutation peroxidasa; esencial en tiroiditis autoinmune.",
+      "mecanismoAccion": "Cofactor de desyodinasas tipo 1/2/3, esencial para conversion T4->T3; antioxidante via glutation peroxidasa y tioredoxina reductasa.",
+      "nivelEvidencia": "A",
+      "parteUsada": "Sintesis/levadura enriquecida",
+      "formasPresentacion": [
+        "Capsulas (L-selenometionina 55-200mcg)"
+      ],
+      "tiempoEfecto": "8-12 semanas",
+      "duracionTratamiento": "6-12 meses (Hashimoto)",
+      "advertencias": [
+        "Toxicidad >400mcg/dia (selenosis)",
+        "Alopecia, unas fragiles"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (alto riesgo)"
+      ],
+      "tags": [
+        "selenio",
+        "tiroides",
+        "Hashimoto",
+        "antioxidante",
+        "desyodinasa"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Thyroid (ATA) + Cochrane Hashimoto"
+      }
+    },
+    {
+      "id": "vitamina_k2_mk7",
+      "nombre": "Vitamina K2 (MK-7)",
+      "nombresAlternativos": [
+        "Menaquinona-7",
+        "MK-7",
+        "K2"
+      ],
+      "nombreCientifico": "Menaquinona-7 (MK-7)",
+      "familia": "Vitamina liposoluble (naftoquinona)",
+      "categoria": "vitamina",
+      "sistemas": [
+        "cardiovascular",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "osteoporosis",
+        "calcificacion vascular",
+        "coagulacion",
+        "cardioproteccion"
+      ],
+      "descripcion": "Menaquinona de cadena larga (MK-7) con vida media larga; activa osteocalcina y matriz-Gla, dirige calcio a hueso y fuera de arterias.",
+      "mecanismoAccion": "Cofactor de gamma-carboxilacion: activa osteocalcina (hueso) y MGP (inhibe calcificacion vascular); sinergia con vitamina D3.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Fermentacion (Bacillus subtilis natto)",
+      "formasPresentacion": [
+        "Capsulas blandas (MK-7 45-180mcg)"
+      ],
+      "tiempoEfecto": "8-12 semanas",
+      "duracionTratamiento": "Continuo (cronico)",
+      "advertencias": [
+        "Interfiere con anticoagulantes cumarinicos (warfarina)",
+        "Suspender antes de cirugia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Warfarina",
+        "Acenocumarol"
+      ],
+      "tags": [
+        "MK-7",
+        "menaquinona",
+        "hueso",
+        "calcificacion vascular",
+        "K2"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Osteoporosis Int. + Thromb. Res."
+      }
+    },
+    {
+      "id": "ipriflavona",
+      "nombre": "Ipriflavona",
+      "nombresAlternativos": [
+        "Ipriflavone",
+        "Ostivone",
+        "IP",
+        "7-isopropoxi-isoflavona"
+      ],
+      "nombreCientifico": "7-isopropoxi-isoflavona",
+      "familia": "Isoflavona sintetica",
+      "categoria": "vitamina",
+      "sistemas": [
+        "musculoesqueletico",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "osteoporosis",
+        "menopausia",
+        "hueso"
+      ],
+      "descripcion": "Isoflavona sintetica que inhibe resorcion osea y mimetiza estrogeno sin efecto proliferativo uterino.",
+      "mecanismoAccion": "Inhibe osteoclastogenesis (efecto anti-resortivo), estimula osteoblastos; debil fitoestrogeno sin proliferacion endometrial.",
+      "nivelEvidencia": "B",
+      "parteUsada": "Sintesis",
+      "formasPresentacion": [
+        "Capsulas (200mg x3/dia)"
+      ],
+      "tiempoEfecto": "6-12 meses",
+      "duracionTratamiento": "1-2 años",
+      "advertencias": [
+        "Reduce recuento linfocitario con uso >6 meses (raro)",
+        "Evitar en inmunodeprimidos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Teofilina (reduce clearance)",
+        "Warfarina",
+        "Levodopa"
+      ],
+      "tags": [
+        "isoflavona",
+        "osteoporosis",
+        "menopausia",
+        "anti-resortivo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Calcif. Tissue Int. + Menopause"
       }
     }
   ]
