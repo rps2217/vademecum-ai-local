@@ -277,9 +277,9 @@ existentes reciben los nuevos datos sin borrar IndexedDB.
 - El campo `metadata.total` y `metadata.ultimaActualizacion` deben
   actualizarse tras cada expansión
 
-### KB Expansion History (Rondas 1-15)
+### KB Expansion History (Rondas 1-16)
 
-La KB se expandió en 15 rondas incrementales (ver `git log --oneline`):
+La KB se expandió en 16 rondas incrementales (ver `git log --oneline`):
 
 | Ronda | Commit | Ingredientes | Sinergias | Cambios clave |
 |-------|--------|--------------|-----------|---------------|
@@ -292,10 +292,11 @@ La KB se expandió en 15 rondas incrementales (ver `git log --oneline`):
 | 13 | 3920f00 | 290→314 | 338→414 | +24 ingredientes, +76 sinergias, normalizar indicaciones (861 correcciones) |
 | 14 | 754dee8 | 537→536 | 707→824 | +117 sinergias netas (eliminar 78 huérfanos), normalizar 146 cats/sys, dedup preexistentes |
 | 15 | 34a2807 | 536→545 | 824→867 | +9 ingredientes (sistemas poco cubiertos), +43 sinergias grado-1 |
+| 16 | — | 593→610 | 1090→1113 | +17 ingredientes (ocular/urinario/reproductivo/hepático/endocrino), +23 sinergias, +70 sinónimos búsqueda |
 
-**Estado final:** 545 ingredientes (191 fito, 107 homeo, 82 aceites, 165
-vitaminas/compuestos), 867 sinergias, 0 huérfanos, grado medio 3.18.
-KB version: `v191-107-82-165-867-146-126`.
+**Estado final:** 610 ingredientes (217 fito, 117 homeo, 85 aceites, 191
+vitaminas/compuestos), 1113 sinergias, 0 huérfanos.
+KB version: `v217-117-85-191-1113-146-126-n5`.
 
 > **Nota rondas 14-15:** La ronda 14 detectó que el estado real de la KB
 > (537 ingredientes, 707 sinergias) difería del documentado en AGENTS.md
