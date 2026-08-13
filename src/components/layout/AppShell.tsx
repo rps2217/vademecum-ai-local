@@ -19,7 +19,7 @@ import { CommandPalette } from '@/ui/CommandPalette';
 import {
   Search, Plus, Settings, Database, Link2, Sparkles, BarChart3,
   Shield, Menu, X, ChevronLeft, ChevronRight, Sun, Moon, Monitor,
-  Command,
+  Command, ClipboardList,
 } from 'lucide-react';
 
 interface NavItem {
@@ -35,6 +35,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
   { id: 'synergies', label: 'Sinergias', icon: Link2, href: '/synergies' },
   { id: 'analysis', label: 'Análisis', icon: BarChart3, href: '/analysis' },
+  { id: 'protocols', label: 'Protocolos', icon: ClipboardList, href: '/protocols' },
   { id: 'admin', label: 'Admin', icon: Shield, href: '/admin', badge: 'KB' },
 ];
 

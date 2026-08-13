@@ -19,6 +19,7 @@ import { SynergiesPage } from '@/pages/SynergiesPage';
 import { AnalysisPage } from '@/pages/AnalysisPage';
 import { AdminPage } from '@/pages/AdminPage';
 import { SettingsPage } from '@/pages/SettingsPage';
+import { ProtocolsPage } from '@/pages/ProtocolsPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useE2EE();
@@ -62,6 +63,7 @@ function AppRoutes() {
         <Route path="knowledge" element={<KnowledgePage />} />
         <Route path="synergies" element={<SynergiesPage />} />
         <Route path="analysis" element={<AnalysisPage />} />
+        <Route path="protocols" element={<ProtocolsPage />} />
         <Route path="admin" element={<AdminPage />} />
         <Route path="settings" element={<SettingsPage />} />
       </Route>

@@ -10,3 +10,4 @@ export { SynergiesPage } from './SynergiesPage';
 export { AnalysisPage } from './AnalysisPage';
 export { AdminPage } from './AdminPage';
 export { SettingsPage } from './SettingsPage';
+export { ProtocolsPage } from './ProtocolsPage';
