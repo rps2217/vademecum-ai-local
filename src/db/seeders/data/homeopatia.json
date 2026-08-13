@@ -3,7 +3,7 @@
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.8.0",
-    "ultimaActualizacion": "2026-08-09",
+    "ultimaActualizacion": "2026-08-10",
     "total": 117,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
@@ -24,10 +24,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "trauma",
-        "golpes",
         "fatiga",
-        "post-operatorio"
+        "golpes",
+        "post-operatorio",
+        "trauma"
       ],
       "descripcion": "Remedio para traumatismos, golpes y fatiga muscular. El remedy mas conocido de la homeopatia.",
       "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria post-traumatica. Reduce hematomas y aliviana dolor.",
@@ -102,12 +102,12 @@
         "nervioso"
       ],
       "indicaciones": [
-        "resaca",
         "dispepsia",
         "estreñimiento",
         "estrés",
         "insomnio",
-        "náuseas"
+        "náuseas",
+        "resaca"
       ],
       "descripcion": "Remedio para transtornos digestivos por excessos y para perfiles competitivos y ambiciosos.",
       "mecanismoAccion": "Regula el eje intestino-cerebro. Normaliza el transito intestinal y reduce nauseas.",
@@ -184,11 +184,11 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "gripe",
-        "otitis",
         "amigdalitis",
+        "gripe",
+        "insolacion",
         "migraña",
-        "insolacion"
+        "otitis"
       ],
       "descripcion": "Remedio para processos agudos con inicio brusco, calor, enrojecimiento y dolor pulsatil.",
       "mecanismoAccion": "Modula el sistema nervioso autonomo. Regula fiebre e inflamacion aguda.",
@@ -268,8 +268,8 @@
       "indicaciones": [
         "dolor dental",
         "gases",
-        "irritabilidad",
         "insomnio",
+        "irritabilidad",
         "otitis"
       ],
       "descripcion": "Remedio para ninos irritables e intranquilos con dolor insoportable.",
@@ -343,12 +343,12 @@
         "nervioso"
       ],
       "indicaciones": [
-        "duelo",
         "ansiedad",
         "depresión",
+        "duelo",
+        "globulo histerico",
         "histeria",
-        "insomnio",
-        "globulo histerico"
+        "insomnio"
       ],
       "descripcion": "Remedio para emociones reprimidas, especialmente duelo y perdidas. Perfiles contradictorios.",
       "mecanismoAccion": "Modula la respuesta emocional. Regula el tono emocional en transtornos reactivos.",
@@ -425,8 +425,8 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "gripe",
         "ansiedad",
+        "gripe",
         "migraña",
         "paralisis"
       ],
@@ -505,9 +505,9 @@
         "urinario"
       ],
       "indicaciones": [
-        "gases",
-        "cálculos",
         "ansiedad",
+        "cálculos",
+        "gases",
         "menopausia"
       ],
       "descripcion": "Remedio para transtornos digestivos con flatulencia y perfiles con baja autoestima.",
@@ -586,10 +586,10 @@
       ],
       "indicaciones": [
         "infecciones orl",
-        "menstrual",
         "menopausia",
-        "varicela",
-        "otitis"
+        "menstrual",
+        "otitis",
+        "varicela"
       ],
       "descripcion": "Remedio para personas dulces, emocionalmente dependientes y de temperamento pacífico.",
       "mecanismoAccion": "Modula mucosas y regulacion hormonal feminina.",
@@ -667,11 +667,11 @@
       ],
       "indicaciones": [
         "articular",
-        "lumbago",
-        "esguinces",
         "cicatrización",
+        "eccema",
+        "esguinces",
         "gripe",
-        "eccema"
+        "lumbago"
       ],
       "descripcion": "Remedio para rigidez y dolor que mejora con movimiento lento y calor local.",
       "mecanismoAccion": "Modula respuesta inflamatoria de articulaciones y piel.",
@@ -749,10 +749,10 @@
         "nervioso"
       ],
       "indicaciones": [
+        "constipacion",
+        "depresión",
         "menopausia",
         "menstrual",
-        "depresión",
-        "constipacion",
         "tos"
       ],
       "descripcion": "Remedio para mujeres agotadas con transtornos hormonales y sensacion de hundimiento pelvico.",
@@ -831,12 +831,12 @@
         "nervioso"
       ],
       "indicaciones": [
-        "eccema",
-        "piel",
         "acné",
-        "picores",
+        "constipacion",
+        "eccema",
         "hepático",
-        "constipacion"
+        "picores",
+        "piel"
       ],
       "descripcion": "Remedio fundamental para transtornos cronicos con manifestacion cutanea y constitucional sucia.",
       "mecanismoAccion": "Modula respuesta inflamatoria cronica. Actua sobre organos de eliminacion (piel, intestino).",
@@ -918,8 +918,8 @@
       "indicaciones": [
         "amigdalitis",
         "bucal",
-        "gingivitis",
         "diarrea",
+        "gingivitis",
         "gripe"
       ],
       "descripcion": "Remedio para infecciones con tendencia supurativa y manifestacion en mucosas y glandulas.",
@@ -995,10 +995,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "gases",
-        "tos",
         "asfixia",
-        "colapso"
+        "colapso",
+        "gases",
+        "tos"
       ],
       "descripcion": "Remedio para transtornos digestivos con flatulencia extrema y perfiles friolentos y agotados.",
       "mecanismoAccion": "Actua sobre mucosa digestiva y circulacion. Antagonista de Mercurius.",
@@ -1076,11 +1076,11 @@
         "digestivo"
       ],
       "indicaciones": [
-        "eccema",
         "cicatrización",
         "constipacion",
-        "obesidad",
-        "menstrual"
+        "eccema",
+        "menstrual",
+        "obesidad"
       ],
       "descripcion": "Remedio para transtornos cronicos de piel con secretion espesa y perfiles obesos y friolentos.",
       "mecanismoAccion": "Modula metabolismo y respuesta cutanea cronica.",
@@ -1157,10 +1157,10 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "obesidad",
-        "fatiga",
         "articular",
+        "fatiga",
         "inmunidad",
+        "obesidad",
         "tos"
       ],
       "descripcion": "Remedio constitucional para personas lentas, friolentas y propensas a ganhar peso facilmente.",
@@ -1236,11 +1236,11 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "coagulación",
-        "tos",
-        "faringitis",
         "ansiedad",
-        "fatiga"
+        "coagulación",
+        "faringitis",
+        "fatiga",
+        "tos"
       ],
       "descripcion": "Remedio para personas sensibles, kreativas y ansiosas que tienden a sangrar facilmente.",
       "mecanismoAccion": "Afecta coagulacion, mucosa respiratoria y sistema nervioso.",
@@ -1316,12 +1316,12 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "depresión",
-        "migraña",
+        "afrontamiento de perdidas",
         "constipacion",
+        "depresión",
         "herpes",
-        "tristeza",
-        "afrontamiento de perdidas"
+        "migraña",
+        "tristeza"
       ],
       "descripcion": "Remedio para personas reservadas que ocultan emociones, especial para duelos no resueltos.",
       "mecanismoAccion": "Afecta metabolism de agua y electrolitos. Regulator emocional.",
@@ -1397,11 +1397,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "intoxicacion alimentaria",
         "ansiedad",
-        "insomnio",
         "asma",
-        "eccema"
+        "eccema",
+        "insomnio",
+        "intoxicacion alimentaria"
       ],
       "descripcion": "Remedio clave para estados agudos con agotamiento intenso y ansiedad por la salud.",
       "mecanismoAccion": "Afecta mucosa gastrointestinal y respiratoria. Modula ansiedad.",
@@ -1476,10 +1476,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "verrugas",
-        "tos",
         "cistitis",
-        "gripe"
+        "gripe",
+        "tos",
+        "verrugas"
       ],
       "descripcion": "Remedio para transtornos después de vaccionaciones, fungales y verrugas.",
       "mecanismoAccion": "Modula respuesta immune aberrante. Antifungico e immunomodulador.",
@@ -1553,10 +1553,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "sinusitis",
+        "articular",
         "migraña",
-        "ulceras gastricas",
-        "articular"
+        "sinusitis",
+        "ulceras gastricas"
       ],
       "descripcion": "Remedio para condições con secretion viscosa amarilla y dolores localizados.",
       "mecanismoAccion": "Afecta mucosas con secreciones densas. Analgésico localized.",
@@ -1630,11 +1630,11 @@
         "digestivo"
       ],
       "indicaciones": [
+        "articular",
         "dolor",
         "empeora con el movimiento",
-        "articular",
-        "tos",
-        "pleuritis"
+        "pleuritis",
+        "tos"
       ],
       "descripcion": "Remedio de dolores punzantes (en puntada) que empeoran con el movimiento y mejoran con el reposo y la presion. Indicado en procesos inflamatorios con sequedad de mucosas.",
       "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria de dolores punzantes que empeoran con el minimo movimiento. El paciente tiende a la immovilidad y al aislamiento.",
@@ -1716,9 +1716,9 @@
       ],
       "indicaciones": [
         "articular",
+        "dolor",
         "esguinces",
-        "fatiga",
-        "dolor"
+        "fatiga"
       ],
       "descripcion": "Remedio de afinidad por tendones, ligamentos y periostio. Indicado en lesiones por sobrecarga, tendinitis y dolores en inserciones tendinosas.",
       "mecanismoAccion": "En homeopatia: modula la reparacion de tejidos conectivos densos (tendones, ligamentos, cartilago) tras sobrecarga o traumatismo.",
@@ -1797,11 +1797,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "tos",
+        "afecciones de inicio brusco",
         "edema inflamatorio",
-        "urticaria",
         "faringitis",
-        "afecciones de inicio brusco"
+        "tos",
+        "urticaria"
       ],
       "descripcion": "Remedio del edema rosado, inflamacion de inicio brusco y dolor punzante ardiente. El cuadro reproduce los efectos de la picadura de abeja.",
       "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria aguda con edema, rubor y dolor punzante ardiente; afinidad por piel, mucosas y serosas.",
@@ -1885,11 +1885,11 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "paralisis progresiva",
         "afectacion de cuerdas vocales",
+        "paralisis progresiva",
         "quemaduras antiguas mal curadas",
-        "urinario",
-        "tos"
+        "tos",
+        "urinario"
       ],
       "descripcion": "Remedio de debilidad progresiva y tendencia paralitica, con afinidad por la voz, la vejiga y las quemaduras cronicas. El paciente es muy sensible a la injusticia.",
       "mecanismoAccion": "En homeopatia: modula la degeneracion progresiva y la paralisis de origen neurogeno, asi como la reparacion de tejidos dañados por quemaduras antiguas.",
@@ -1970,11 +1970,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "tos",
+        "articular",
         "cicatrización",
-        "trauma",
         "esguinces",
-        "articular"
+        "tos",
+        "trauma"
       ],
       "descripcion": "Remedio de heridas punzantes, picaduras y hematomas en frio. Afinidad por tejidos lesionados que no se calientan y mejoran con frio.",
       "mecanismoAccion": "En homeopatia: modula la respuesta inflamatoria de heridas punzantes y hematomas; la zona afectada esta fria al tacto pero mejora con aplicaciones frias.",
@@ -2056,11 +2056,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "gripe",
-        "estados de panico y miedo",
         "afecciones tras frio seco",
-        "neuralgia",
-        "crup tras medianoche"
+        "crup tras medianoche",
+        "estados de panico y miedo",
+        "gripe",
+        "neuralgia"
       ],
       "descripcion": "Remedio de inicio brusco y violento, tipicamente tras exposicion a viento frio seco o un susto. El rasgo mental dominante es el miedo intenso y la agonia, sobre todo miedo a morir.",
       "mecanismoAccion": "En homeopatia: modula la fase congestiva inicial de procesos inflamatorios agudos de aparicion violenta y el componente de ansiedad-extrema asociado.",
@@ -2226,9 +2226,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "lesiones de nervios y dedos",
-        "dolor",
         "aplastamiento de dedos",
+        "dolor",
+        "lesiones de nervios y dedos",
         "trauma"
       ],
       "descripcion": "Remedio de afinidad por el sistema nervioso, especialmente tras lesiones de zonas ricas en terminaciones nerviosas (dedos, cola de caballo, columna). Indicado en dolor neurogeno tras traumatismos.",
@@ -2396,10 +2396,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
+        "ciatica izquierda",
         "dolor",
         "gases",
-        "neuralgia",
-        "ciatica izquierda"
+        "neuralgia"
       ],
       "descripcion": "Remedio del dolor espastico violento que obliga a doblarse en dos, aliviado por la presion fuerte y el calor. Indicado en colicos, neuralgias y ciatica izquierdas.",
       "mecanismoAccion": "En homeopatia: modula el dolor espastico y neurogeno que mejora con presion fuerte y calor, con lateralidad izquierda marcada.",
@@ -2482,8 +2482,8 @@
         "digestivo"
       ],
       "indicaciones": [
-        "náuseas",
-        "fatiga"
+        "fatiga",
+        "náuseas"
       ],
       "descripcion": "Remedio del mareo, las nauseas por movimiento y el agotamiento por falta de sueno. Indicado en cinetosis, vertigo con nauseas y fatiga por trasnocho.",
       "mecanismoAccion": "En homeopatia: modula la cinetosis, el vertigo con nauseas y la fatiga por privacion de sueno, con afinidad por el sistema nervioso central.",
@@ -2651,9 +2651,9 @@
       ],
       "indicaciones": [
         "cicatrización",
+        "cistitis",
         "irritabilidad suprimida",
-        "trastornos tras emociones suprimidas",
-        "cistitis"
+        "trastornos tras emociones suprimidas"
       ],
       "descripcion": "Remedio de heridas de bordes limpios (quirurgicas) y de trastornos tras emociones suprimidas (ira contenida, indignacion). Indicado en la cistitis post-coito de las recien casadas y la irritabilidad de emociones reprimidas.",
       "mecanismoAccion": "En homeopatia: modula la cicatrizacion de heridas de borde limpio y la sintomatologia neurovegetativa tras emociones suprimidas.",
@@ -2737,8 +2737,8 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "huesos",
         "gripe",
+        "huesos",
         "tos"
       ],
       "descripcion": "Remedio de la fiebre con dolor oseo profundo (como si los huesos se rompieran), tipico de la gripe. El dolor oseo que mejora con el sudor y la conversacion es caracteristico.",
@@ -2823,9 +2823,9 @@
       ],
       "indicaciones": [
         "debilidad tras perdida de liquidos",
-        "sensibilidad aumentada",
         "gases",
-        "periodicidad de los sintomas"
+        "periodicidad de los sintomas",
+        "sensibilidad aumentada"
       ],
       "descripcion": "Remedio de la debilidad y el agotamiento tras perdidas de liquidos orgánicos (sangre, diarrea, lactancia, sudor). Hipersensibilidad sensorial y distension abdominal por gases son caracteristicas.",
       "mecanismoAccion": "En homeopatia: modula la debilidad por perdida de liquidos orgánicos y la hipersensibilidad, con accion sobre el tracto digestivo y la periodizacion de los sintomas.",
@@ -2908,8 +2908,8 @@
       ],
       "indicaciones": [
         "neuralgia",
-        "palpitaciones",
-        "ocular"
+        "ocular",
+        "palpitaciones"
       ],
       "descripcion": "Remedio de neuralgias violentas, especialmente del trigemino izquierdo y del ojo. Tipico el dolor que aumenta y disminuye gradualmente (como reloj de arena) y mejora con el calor y la presion.",
       "mecanismoAccion": "En homeopatia: modula las neuralgias violentas con lateralidad izquierda y el dolor que sigue un patron de intensidad creciente-decreciente; tambien palpitaciones ansiosas.",
@@ -2994,10 +2994,10 @@
         "digestivo"
       ],
       "indicaciones": [
+        "menopausia",
         "migraña",
         "neuralgia",
-        "tos",
-        "menopausia"
+        "tos"
       ],
       "descripcion": "Remedio de la migraña derecha que comienza en la nuca y se asienta sobre el ojo derecho, con nausea y vomito, que mejora con el sueno y el vomito. Asociado a sofocos y a la menopausia.",
       "mecanismoAccion": "En homeopatia: modula la migraña derecha con patron occipital-supraorbitario y los sofocos menopausicos; accion sobre mucosa respiratoria con tos seca.",
@@ -3082,9 +3082,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "ocular",
         "diarrea",
-        "herpes"
+        "herpes",
+        "ocular"
       ],
       "descripcion": "Remedio de la migraña precedida de alteracion visual, con nausea y vomito ardiente acido, tipica tras agotamiento mental. Tambien indicado en gastroenteritis con diarrea ardiente y herpes zoster derecho.",
       "mecanismoAccion": "En homeopatia: modula la migraña con aura visual y el cuadro gastrico ardiente (vomito acido, diarrea ardiente), con accion sobre pancreas y vias biliares.",
@@ -3164,10 +3164,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "hepático",
         "dispepsia",
-        "neuralgia",
-        "escapulalgia derecha"
+        "escapulalgia derecha",
+        "hepático",
+        "neuralgia"
       ],
       "descripcion": "Remedio de afinidad hepato-biliar con lateralidad derecha: dolor que irradia desde el higado derecho hacia la escapula derecha. Indicado en dispepsia hepatica y neuralgias derechas.",
       "mecanismoAccion": "En homeopatia: modula la disfuncion hepato-biliar con dolor que irradia a la escapula derecha y la dispepsia con plenitud en hipocondrio derecho.",
@@ -3339,10 +3339,10 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "terreno tuberculinico",
-        "respiratorio",
         "agitacion y necesidad de cambio",
-        "retraso de crecimiento (tradicional)"
+        "respiratorio",
+        "retraso de crecimiento (tradicional)",
+        "terreno tuberculinico"
       ],
       "descripcion": "Nosodo homeopatico asociado al terreno tuberculinico: personas con tendencia a afecciones respiratorias recurrentes, agitacion constante y necesidad de viajar y cambiar. Se usa como remedio constitucional y de terreno, nunca como sustituto del tratamiento antituberculoso.",
       "mecanismoAccion": "En homeopatia: modula el terreno tuberculinico (tendencia a cuadros respiratorios y debilidad con agitacion) en pacientes con historia personal o familiar de tuberculosis.",
@@ -3425,10 +3425,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "terreno sycotico",
-        "sintomas cambiantes",
+        "afecciones cronicas con fallo de remedios seleccionados",
         "articular",
-        "afecciones cronicas con fallo de remedios seleccionados"
+        "sintomas cambiantes",
+        "terreno sycotico"
       ],
       "descripcion": "Nosodo homeopatico asociado al terreno sycotico: cuadros cronicos con sintomas cambiantes que no responden a remedios bien seleccionados, tendencia a reumatismo y afecciones respiratorias. Se usa como remedio de terreno.",
       "mecanismoAccion": "En homeopatia: modula el terreno sycotico (sintomas cambiantes, reumatismo cronico, secreciones) cuando los remedios bien seleccionados no mejoran el cuadro.",
@@ -3514,10 +3514,10 @@
         "digestivo"
       ],
       "indicaciones": [
+        "dolor",
         "gases",
-        "neuralgia",
         "muscular",
-        "dolor"
+        "neuralgia"
       ],
       "descripcion": "Remedio de los dolores espasmódicos, calambres y neuralgias que mejoran con el calor y la presion fuerte, y empeoran con el frio. El dolor tipo relampago a lo largo de los nervios es caracteristico. Remedio de Schuessler (tissue salt).",
       "mecanismoAccion": "En homeopatia: modula la contractilidad muscular espasmódica y el dolor neurogeno que mejora con calor y presion; se considera el anti-espasmódico por excelencia de la materia medica.",
@@ -3603,8 +3603,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "estreñimiento",
         "confusion mental",
+        "estreñimiento",
         "mucosas",
         "sintomas que empeoran con el exceso de patatas"
       ],
@@ -3776,9 +3776,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "intolerancia a la constricción",
         "menopausia",
-        "taquicardia",
-        "intolerancia a la constricción"
+        "taquicardia"
       ],
       "descripcion": "Policresto homeopático de uso frecuente en menopausia con sofocos intensos, piel seca y sintomatología circulatoria. Sensación de constricción y empeoramiento al despertar.",
       "mecanismoAccion": "Nosología homeopática (patogenesia). No posee mecanismo bioquímico convencional; actúa según el principio de similitud y susceptibilidad individual.",
@@ -3828,8 +3828,8 @@
       "indicaciones": [
         "menopausia",
         "migraña",
-        "taquicardia",
-        "respiratorio"
+        "respiratorio",
+        "taquicardia"
       ],
       "descripcion": "Remedio homeopático de acción vascular marcada. Cefalea pulsátil con oleadas de calor y empeoramiento por el sol y el calor.",
       "mecanismoAccion": "Nosología homeopática. Sin mecanismo bioquímico en dilución CH; patogenesia vascular en bajas atenuaciones.",
@@ -3875,9 +3875,9 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "temblor nervioso",
         "espasmos",
-        "insomnio"
+        "insomnio",
+        "temblor nervioso"
       ],
       "descripcion": "Remedio homeopático para ansiedad y nerviosismo en personas mayores, con espasmos y dificultad para conciliar el sueño por agitación.",
       "mecanismoAccion": "Nosología homeopática. Sin mecanismo bioquímico en dilución CH; basado en patogenesia.",
@@ -3924,9 +3924,9 @@
         "urinario"
       ],
       "indicaciones": [
-        "tos",
         "catarro matutino",
-        "espasmos"
+        "espasmos",
+        "tos"
       ],
       "descripcion": "Remedio homeopático para tos espasmódica y cosquilleo en laringe, con empeoramiento por el calor de la cama y mejoría por el frío.",
       "mecanismoAccion": "Nosología homeopática. Sin mecanismo bioquímico en dilución CH; basado en patogenesia respiratoria.",
@@ -4025,12 +4025,12 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "supuraciones crónicas",
-        "fístulas",
-        "cuerpos extraños",
+        "abscesos",
         "acné",
         "cabello",
-        "abscesos"
+        "cuerpos extraños",
+        "fístulas",
+        "supuraciones crónicas"
       ],
       "descripcion": "Policresto mineral y sal de Schüssler nº 12. Remedio de la supuración y de la expulsión de cuerpos extraños. Debilidad de tejido conectivo.",
       "mecanismoAccion": "Nosología homeopática. En bioquímica tisular, el silicio participa en la síntesis de colágeno; en repertorio, actúa sobre la maduración de supuraciones y el tejido conectivo.",
@@ -4079,10 +4079,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "huesos",
-        "odontalgia del desarrollo",
         "anemia",
-        "fatiga"
+        "fatiga",
+        "huesos",
+        "odontalgia del desarrollo"
       ],
       "descripcion": "Sal de Schüssler nº 2. Remedio del crecimiento y de la recuperación ósea. Útil en niños en crecimiento y convalecientes.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, regula la nutrición ósea y la hematopoyesis; indicada en fases de crecimiento y reparación.",
@@ -4130,10 +4130,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "venoso",
+        "durezas glandulares",
         "hemorroides",
         "tos",
-        "durezas glandulares"
+        "venoso"
       ],
       "descripcion": "Sal de Schüssler nº 1. Remedio de la elasticidad tisular: indicada en tejidos endurecidos (varices, hemorroides, exostosis) o con laxitud.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, restaura el equilibrio entre dureza y elasticidad del tejido conectivo.",
@@ -4181,9 +4181,9 @@
         "metabolico"
       ],
       "indicaciones": [
-        "inflamación",
-        "gripe",
         "anemia",
+        "gripe",
+        "inflamación",
         "respiratorio"
       ],
       "descripcion": "Sal de Schüssler nº 3. Remedio del primer estadio de la inflamación (fase de congestión) y fiebre incipiente.",
@@ -4232,10 +4232,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "catarro con secreción blanca",
-        "otitis serosa",
         "adenopatías",
-        "inflamación"
+        "catarro con secreción blanca",
+        "inflamación",
+        "otitis serosa"
       ],
       "descripcion": "Sal de Schüssler nº 4. Remedio de las secreciones blancas y de la segunda fase de la inflamación (fase de exudación).",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa en la fase exudativa de la inflamación y la secreción mucosa blanca.",
@@ -4283,10 +4283,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "secreciones amarillas",
         "catarro en fase de resolución",
+        "inflamación",
         "piel",
-        "inflamación"
+        "secreciones amarillas"
       ],
       "descripcion": "Sal de Schüssler nº 6. Remedio de la tercera fase de la inflamación (fase de resolución) y de las secreciones amarillas.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa en la fase de resolución de la inflamación y la epitelización.",
@@ -4334,8 +4334,8 @@
         "metabolico"
       ],
       "indicaciones": [
-        "reflujo",
         "dispepsia",
+        "reflujo",
         "síntomas de acidificación"
       ],
       "descripcion": "Sal de Schüssler nº 9. Remedio del exceso de acidez: pirosis, reflujo y digestión con acidez.",
@@ -4387,8 +4387,8 @@
       "indicaciones": [
         "asma",
         "hepático",
-        "náuseas",
-        "migraña"
+        "migraña",
+        "náuseas"
       ],
       "descripcion": "Sal de Schüssler nº 10. Remedio del asma empeorada con la humedad y de los trastornos hepatobiliares.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la función hepatobiliar y el asma con modalidad de humedad.",
@@ -4437,9 +4437,9 @@
       ],
       "indicaciones": [
         "ansiedad",
+        "deseo de dulces",
         "fobia a exámenes",
-        "trastornos por hiperactividad",
-        "deseo de dulces"
+        "trastornos por hiperactividad"
       ],
       "descripcion": "Policresto de la ansiedad anticipatoria y la diarrea nerviosa. Síntomas de urgencia e impulsividad.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la ansiedad anticipatoria y la sintomatología digestiva asociada.",
@@ -4485,9 +4485,9 @@
         "inmune"
       ],
       "indicaciones": [
-        "nervioso",
         "fatiga",
-        "insomnio"
+        "insomnio",
+        "nervioso"
       ],
       "descripcion": "Remedio del agotamiento cerebral con hiperactividad mental: piernas inquietas e insomnio por sobreexcitación.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la fatiga del SNC y la hiperactividad motora nocturna.",
@@ -4535,10 +4535,10 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "estreñimiento",
         "peso",
-        "sinusitis",
         "respiratorio",
-        "estreñimiento"
+        "sinusitis"
       ],
       "descripcion": "Remedio de las mucosidades espesas y amarillentas, especialmente de vías respiratorias altas y digestivo (acción sobre mucosas).",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre mucosas con secreción espesa amarilla; la berberina (patogenesia) tiene acción antimicrobiana documentada.",
@@ -4587,11 +4587,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "fisuras",
         "bucal",
-        "verrugas",
+        "fisuras",
         "hemorroides",
-        "sensibilidad punzante"
+        "sensibilidad punzante",
+        "verrugas"
       ],
       "descripcion": "Remedio de las fisuras dolorosas y las ulceraciones con punzadas punzantes (como astillas). Acción sobre piel y mucosas.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre ulceraciones, fisuras y verrugas con dolor punzante.",
@@ -4637,8 +4637,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "fatiga",
         "estrés",
+        "fatiga",
         "insomnio"
       ],
       "descripcion": "Sal de Schüssler nº 5. Remedio del agotamiento cerebral y nervioso: fatiga mental, estrés e insomnio por sobreexcitación.",
@@ -4688,10 +4688,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "supuraciones",
         "abscesos",
         "acné",
-        "fase de resolución con pus amarillo"
+        "fase de resolución con pus amarillo",
+        "supuraciones"
       ],
       "descripcion": "Sal de Schüssler nº 12. Remedio de las supuraciones en fase de resolución (pus amarillento).",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre supuraciones que tardan en cerrar y el acné supurativo.",
@@ -4740,11 +4740,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "asma",
         "articular",
+        "asma",
         "insomnio",
-        "tos",
-        "sensibilidad"
+        "sensibilidad",
+        "tos"
       ],
       "descripcion": "Policresto mineral con modalidad de empeoramiento de 2-4 AM. Remedio de asma y dolor de espalda.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el asma (2-4 AM), el dolor lumbar y la tos seca.",
@@ -4791,10 +4791,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "sensibilidad al clima",
-        "migraña",
         "debilidad por calor",
-        "dispepsia"
+        "dispepsia",
+        "migraña",
+        "sensibilidad al clima"
       ],
       "descripcion": "Remedio para la sensibilidad al clima y la debilidad por calor. Migraña y problemas digestivos.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la sensibilidad al clima y la intolerancia al calor.",
@@ -4841,9 +4841,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "dolor",
         "eccema",
-        "náuseas",
-        "dolor"
+        "náuseas"
       ],
       "descripcion": "Remedio de la piel agrietada en invierno y el mareo por viaje. Piel seca y fisurada.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la piel seca y fisurada, especialmente en invierno.",
@@ -4890,9 +4890,9 @@
         "cardiovascular"
       ],
       "indicaciones": [
+        "hipotensión",
         "náuseas",
-        "palidez",
-        "hipotensión"
+        "palidez"
       ],
       "descripcion": "Remedio del mareo por viaje con náuseas intensas, palidez y sudoración fría.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el mareo y las náuseas intensas con palidez.",
@@ -4987,10 +4987,10 @@
         "ocular"
       ],
       "indicaciones": [
-        "rinitis alérgica",
+        "alergias",
         "coryza",
         "lagrimeo",
-        "alergias"
+        "rinitis alérgica"
       ],
       "descripcion": "Remedio de la coryza (secreción nasal acuosa ardiente) y lagrimeo suave. Clásico para alergias primaverales.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la mucosa nasal (secreción acuosa ardiente) y el lagrimeo suave.",
@@ -5038,9 +5038,9 @@
       ],
       "indicaciones": [
         "conjuntivitis",
-        "lagrimeo ardiente",
+        "coryza suave",
         "fatiga visual",
-        "coryza suave"
+        "lagrimeo ardiente"
       ],
       "descripcion": "Remedio de los ojos: lagrimeo ardiente y secreción nasal suave (opuesto a Allium cepa).",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la conjuntiva (lagrimeo ardiente) y la mucosa nasal suave.",
@@ -5090,11 +5090,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "faringitis",
         "abscesos",
-        "tos",
+        "faringitis",
         "hipersensibilidad",
-        "supuraciones"
+        "supuraciones",
+        "tos"
       ],
       "descripcion": "Remedio de la hipersensibilidad (frío, ruido, dolor) y las supuraciones (pus sensible). Tos con frío.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la hipersensibilidad al frío y las supuraciones dolorosas.",
@@ -5142,10 +5142,10 @@
         "endocrino"
       ],
       "indicaciones": [
+        "asma cardíaca",
         "bocio",
-        "tos seca",
         "palpitaciones",
-        "asma cardíaca"
+        "tos seca"
       ],
       "descripcion": "Remedio de la tos seca 'sierra' y el bocio. Contiene yodo natural. Palpitaciones con respiración corta.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la tiroides (bocio), la tos seca y las palpitaciones.",
@@ -5193,10 +5193,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "amigdalitis",
         "adenopatías",
-        "mastitis",
-        "dolor de garganta irradiado"
+        "amigdalitis",
+        "dolor de garganta irradiado",
+        "mastitis"
       ],
       "descripcion": "Remedio de la garganta oscura-vinosa y las adenopatías. Mastitis con dolor irradiado a todo el cuerpo.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la amígdala oscura-vinosa y las adenopatías.",
@@ -5245,9 +5245,9 @@
         "hepatico"
       ],
       "indicaciones": [
+        "alternancia diarrea/estreñimiento",
         "diarrea",
         "función hepática",
-        "alternancia diarrea/estreñimiento",
         "prolapso rectal"
       ],
       "descripcion": "Remedio de la diarrea acuosa profusa e involuntaria y la función hepatobiliar.",
@@ -5298,8 +5298,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "gota",
         "dolor articular",
+        "gota",
         "náuseas",
         "olor a cocina"
       ],
@@ -5351,10 +5351,10 @@
         "endocrino"
       ],
       "indicaciones": [
-        "vértigo",
-        "temblor",
         "adenopatías",
-        "tumores mamarios (tradicional)"
+        "temblor",
+        "tumores mamarios (tradicional)",
+        "vértigo"
       ],
       "descripcion": "Remedio del vértigo al mover la cabeza y los temblores. Indicado en adenopatías y tumores mamarios (tradicional).",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el vértigo posicional, el temblor y los ganglios.",
@@ -5404,9 +5404,9 @@
       ],
       "indicaciones": [
         "amigdalitis crónica",
-        "retraso infantil",
         "demencia",
-        "hipertrofia prostática"
+        "hipertrofia prostática",
+        "retraso infantil"
       ],
       "descripcion": "Remedio de los extremos de la vida: niños con retraso y ancianos con demencia. Adenopatías y amígdalas.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el retraso en el desarrollo y la demencia senil.",
@@ -5454,10 +5454,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "parásitos infantiles",
         "irritabilidad",
-        "rechinar de dientes",
-        "prurito anal"
+        "parásitos infantiles",
+        "prurito anal",
+        "rechinar de dientes"
       ],
       "descripcion": "Remedio de los trastornos por parásitos en niños: irritabilidad, rechinar de dientes, prurito anal.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre los trastornos del niño irritable con prurito anal.",
@@ -5505,10 +5505,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "coryza",
-        "tos seca",
         "cefalea sinusal",
-        "irritación nasal"
+        "coryza",
+        "irritación nasal",
+        "tos seca"
       ],
       "descripcion": "Remedio de la coryza seca (irritación nasal) y la cefalea sinusal. Tos seca, hueca, nocturna.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre la secreción nasal seca y la cefalea sinusal.",
@@ -5556,9 +5556,9 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "tos seca",
-        "tos por aire frío",
         "prurito",
+        "tos por aire frío",
+        "tos seca",
         "urticaria"
       ],
       "descripcion": "Remedio de la tos seca desencadenada por inspirar aire frío. Prurito al desvestirse.",
@@ -5607,8 +5607,8 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "cálculos",
         "cistitis",
+        "cálculos",
         "orina al final",
         "piel",
         "psoriasis"
@@ -5660,11 +5660,11 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "diarrea",
-        "cólera",
         "colapso",
-        "vómitos",
-        "sudor frío"
+        "cólera",
+        "diarrea",
+        "sudor frío",
+        "vómitos"
       ],
       "descripcion": "Remedio del colapso con diarrea acuosa, vómitos y sudor frío. Sed de agua fría. Crisis cólera.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el colapso con sudor frío y la diarrea profusa.",
@@ -5712,11 +5712,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "terrores nocturnos",
-        "delirio",
         "ansiedad",
         "convulsiones",
-        "miedo a la oscuridad"
+        "delirio",
+        "miedo a la oscuridad",
+        "terrores nocturnos"
       ],
       "descripcion": "Remedio de los terrores nocturnos y el delirio con miedo a la oscuridad y la soledad.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre los terrores nocturnos y el delirio violento.",
@@ -5765,10 +5765,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "neuralgia",
         "dolor óseo",
         "eccema",
         "herpes",
+        "neuralgia",
         "prurito"
       ],
       "descripcion": "Remedio de las neuralgias (dolor óseo) y el eccema con costras y prurito intenso.",
@@ -5818,10 +5818,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "palpitaciones",
         "bradicicardia",
         "corazón",
-        "hígado congestivo"
+        "hígado congestivo",
+        "palpitaciones"
       ],
       "descripcion": "Remedio del corazón con pulso lento e irregular. Palpitaciones al moverse. Hígado congestivo.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el pulso lento e irregular y la insuficiencia cardíaca.",
@@ -5873,8 +5873,8 @@
       "indicaciones": [
         "asma",
         "disnea",
-        "tabaquismo",
-        "náuseas"
+        "náuseas",
+        "tabaquismo"
       ],
       "descripcion": "Remedio del asma con disnea y opresión. Antídoto del tabaco. Náuseas profundas.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el asma con opresión y la disnea.",
@@ -5924,11 +5924,11 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "fistulas",
-        "varices",
-        "deformación ósea",
         "cicatrices hundidas",
-        "uñas"
+        "deformación ósea",
+        "fistulas",
+        "uñas",
+        "varices"
       ],
       "descripcion": "Remedio de las fistulas y las deformaciones óseas. Cicatrices hundidas. Destructivo.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre las fistulas, las varices y las deformaciones óseas.",
@@ -5976,11 +5976,11 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "menstrual",
-        "óvarios",
-        "orgullo",
         "ansiedad",
-        "histeria"
+        "histeria",
+        "menstrual",
+        "orgullo",
+        "óvarios"
       ],
       "descripcion": "Remedio de la mujer con dolor menstrual y ovarios. Sensación de superioridad/desprecio.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el dolor menstrual y los ovarios.",
@@ -6028,11 +6028,11 @@
         "digestivo"
       ],
       "indicaciones": [
+        "cómolico",
         "estreñimiento",
-        "neuropatía",
         "muñeca caída",
         "neuritis",
-        "cómolico"
+        "neuropatía"
       ],
       "descripcion": "Remedio del estreñimiento con heces en bolas y la neuropatía (muñeca caída). Cólico abdominal.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre el estreñimiento y la neuritis periférica.",
@@ -6080,10 +6080,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "rinitis alérgica",
-        "estornudos en salva",
         "coryza",
-        "picor de garganta"
+        "estornudos en salva",
+        "picor de garganta",
+        "rinitis alérgica"
       ],
       "descripcion": "Remedio de los estornudos en salva y el picor de garganta. Rinitis alérgica espasmódica.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre los estornudos en salva y el picor faríngeo.",
@@ -6133,11 +6133,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "tos",
         "asma",
+        "hemorragia",
         "náuseas",
-        "vómitos",
-        "hemorragia"
+        "tos",
+        "vómitos"
       ],
       "descripcion": "Remedio de las náuseas persistentes con tos y asma. Tos con sibilancias y expectoración difícil.",
       "mecanismoAccion": "Nosología homeopática. En repertorio, actúa sobre las náuseas persistentes y la tos con sibilancias.",
@@ -6184,9 +6184,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "insomnio",
+        "dolor",
         "estrenimiento",
-        "dolor"
+        "insomnio"
       ],
       "descripcion": "Remedio homeopático para insomnio con somnolencia profunda, estreñimiento atónico y dolor con insensibilidad. No confundir con opio farmacológico.",
       "mecanismoAccion": "En dilución homeopática, patrón de letargo, estupor y motilidad intestinal reducida. Indicado cuando hay 'apatía al dolor'. Sin acción farmacológica opioidergica en dilución.",
@@ -6235,9 +6235,9 @@
       ],
       "indicaciones": [
         "ansiedad",
+        "dolor neuropático",
         "insomnio",
-        "temblor_nervioso",
-        "dolor_neuropatico"
+        "temblor nervioso"
       ],
       "descripcion": "Remedio homeopático para trastornos neurológicos con temblores, tics, espasmos y hipersensibilidad. Útil en ansiedad con somatización motora.",
       "mecanismoAccion": "En dilución homeopática, patrón de temblor, mioclonías, picor errático y ansiedad con hipersensibilidad. Sin acción muscarínica farmacológica en dilución.",
@@ -6285,9 +6285,9 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "dermatitis",
         "diarrea",
-        "eccema",
-        "dermatitis"
+        "eccema"
       ],
       "descripcion": "Remedio homeopático para diarrea acuosa explosiva y dermatitis vesiculosa con picor intenso. Cuadros cutáneos con vesículas.",
       "mecanismoAccion": "En dilución homeopática, patrón de diarrea acuosa, ardor perianal y erupciones vesiculosas con prurito. Sin acción purgante farmacológica en dilución.",
@@ -6337,8 +6337,8 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "insomnio",
         "dispepsia",
+        "insomnio",
         "migraña"
       ],
       "descripcion": "Remedio homeopático para ansiedad con hiperreactividad nerviosa, insomnio infantil y dispepsia ácida. Frecuentemente indicado en mujeres y niños nerviosos.",
@@ -6387,8 +6387,8 @@
         "inmune"
       ],
       "indicaciones": [
-        "hemorragia",
         "eccema",
+        "hemorragia",
         "sepsis"
       ],
       "descripcion": "Remedio homeopático para trastornos hemorrágicos, púrpura y sepsis con tendencia hemorrágica. También en afecciones cutáneas con descamación.",
@@ -6516,7 +6516,7 @@
         "dispepsia",
         "gases",
         "hepatico",
-        "litiasis_renal"
+        "litiasis renal"
       ],
       "descripcion": "Policresto digestivo-hepático para hinchazón, gases y disfunción hepática.",
       "mecanismoAccion": "En homeopatía: modula función hepatobiliar, reduce flatulencia y distensión.",
@@ -6588,9 +6588,9 @@
         "inmune"
       ],
       "indicaciones": [
-        "insomnio",
         "ansiedad",
         "fatiga",
+        "insomnio",
         "trauma"
       ],
       "descripcion": "Nosode para constituciones sensibles, perfeccionistas con historia de trauma o estrés.",
@@ -6662,9 +6662,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "candidiasis",
-        "asma",
         "ansiedad",
+        "asma",
+        "candidiasis",
         "sii"
       ],
       "descripcion": "Nosode para terrenos crónicos (sycótico): candidiasis recurrente, asma, eccema.",
@@ -6738,9 +6738,9 @@
       ],
       "indicaciones": [
         "cistitis",
-        "herpes",
+        "estres",
         "heridas",
-        "estres"
+        "herpes"
       ],
       "descripcion": "Remedio para cistitis post-coito, heridas quirúrgicas y emociones reprimidas.",
       "mecanismoAccion": "En homeopatía: útil en cistitis aguda no infecciosa y cicatrización lenta.",
@@ -6811,10 +6811,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "verrugas",
-        "candidiasis",
         "acne",
-        "litiasis_renal"
+        "candidiasis",
+        "litiasis renal",
+        "verrugas"
       ],
       "descripcion": "Policresto para verrugas, secreciones crónicas y terreno sycótico.",
       "mecanismoAccion": "En homeopatía: modula terreno sycótico, reduce verrugas y secreciones verdes-amarillas.",
@@ -6886,9 +6886,9 @@
       ],
       "indicaciones": [
         "dispepsia",
-        "resaca",
         "estres",
-        "estreñimiento"
+        "estreñimiento",
+        "resaca"
       ],
       "descripcion": "Policresto para excesos (cafeína, alcohol, comida) y estrés competitivo.",
       "mecanismoAccion": "En homeopatía: modula hipersensibilidad, irritabilidad y dispepsia por excesos.",
@@ -6960,10 +6960,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "menopausia",
-        "spm_dismenorrea",
+        "dismenorrea",
         "dispepsia",
-        "fatiga"
+        "fatiga",
+        "menopausia"
       ],
       "descripcion": "Policresto femenino para agotamiento maternal, síntomas pélvicos y trastornos hormonales.",
       "mecanismoAccion": "En homeopatía: modula tono venoso pélvico y sintomatología hormonal femenina.",
@@ -7036,9 +7036,9 @@
       ],
       "indicaciones": [
         "acne",
-        "fistulas",
+        "candidiasis",
         "cicatrizacion",
-        "candidiasis"
+        "fistulas"
       ],
       "descripcion": "Policresto constitucional para debilidad de tejido conectivo, fístulas y supuraciones crónicas.",
       "mecanismoAccion": "En homeopatía: mejora maduración de supuraciones, fortalece tejido conectivo.",
@@ -7108,10 +7108,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "trauma",
-        "dolor_muscular",
         "cirugia",
-        "hematomas"
+        "dolor muscular",
+        "hematomas",
+        "trauma"
       ],
       "descripcion": "Remedio traumático por excelencia, reduce hematomas y dolor post-traumático.",
       "mecanismoAccion": "En homeopatía: modula respuesta inflamatoria post-traumática, reduce equimosis.",
@@ -7183,11 +7183,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "depresión",
-        "suicidio",
-        "cardiovascular",
         "articular",
-        "oído"
+        "cardiovascular",
+        "depresión",
+        "oído",
+        "suicidio"
       ],
       "descripcion": "Remedio homeopatico de oro para depresion profunda con ideacion suicida y dolor oseo nocturno.",
       "mecanismoAccion": "En homeopatia, modula humor y sistema osteoarticular; accion sobre corazony hueso.",
@@ -7233,11 +7233,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "tiroides",
-        "obesidad",
-        "fatiga",
         "depresión",
-        "glucosa"
+        "fatiga",
+        "glucosa",
+        "obesidad",
+        "tiroides"
       ],
       "descripcion": "Nosodo tiroideo para desequilibrios tiroideos en homeopatia.",
       "mecanismoAccion": "Organoterapico que modula el eje tiroideo segun principios homeopaticos.",
@@ -7283,11 +7283,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "piel",
+        "asma",
         "eccema",
-        "inmunidad",
         "fatiga",
-        "asma"
+        "inmunidad",
+        "piel"
       ],
       "descripcion": "Nosodo psorico de Hahnemann para diatesis cronica con debilidad y problemas de piel.",
       "mecanismoAccion": "Nosodo que segun homeopatia modula la diatesis psorica cronica.",
@@ -7334,11 +7334,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "fatiga",
-        "cognitivo",
         "agotamiento",
-        "mialgia",
-        "cabello"
+        "cabello",
+        "cognitivo",
+        "fatiga",
+        "mialgia"
       ],
       "descripcion": "Remedio homeopatico para agotamiento mental y fisico profundo con debilidad muscular.",
       "mecanismoAccion": "En homeopatia, actua sobre la debilidad por agotamiento del SNC y muscular.",
@@ -7383,10 +7383,10 @@
         "endocrino"
       ],
       "indicaciones": [
-        "glucosa",
         "diabetes",
-        "sed",
-        "orina"
+        "glucosa",
+        "orina",
+        "sed"
       ],
       "descripcion": "Remedio homeopatico de la semilla de jambolan para diabetes con sed y poliuria.",
       "mecanismoAccion": "En homeopatia, modula la glucemia y sintomas diabeticos.",
@@ -7431,10 +7431,10 @@
         "urinario"
       ],
       "indicaciones": [
-        "glucosa",
         "diabetes",
-        "orina",
-        "fatiga"
+        "fatiga",
+        "glucosa",
+        "orina"
       ],
       "descripcion": "Remedio homeopatico para diabetes con debilidad y sintomas urinarios.",
       "mecanismoAccion": "En homeopatia, actua sobre la diatesis diabetica con afectacion renal.",
@@ -7480,10 +7480,10 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "tiroides",
-        "amigdalitis",
         "adenopatias",
-        "inmunidad"
+        "amigdalitis",
+        "inmunidad",
+        "tiroides"
       ],
       "descripcion": "Remedio homeopatico para hipertrofia glandular (tiroides, amigdalas, adenoides).",
       "mecanismoAccion": "En homeopatia, combina accion de Calcarea e Iodo sobre glandulas.",
@@ -7527,9 +7527,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "ansiedad",
         "cardiovascular",
         "insomnio",
-        "ansiedad",
         "taquicardia"
       ],
       "descripcion": "Tintura madre homeopatica de espino blanco para apoyo cardiaco y ansiedad cardiaca.",
@@ -7575,11 +7575,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "urinario",
+        "articular",
         "cálculos",
         "hepático",
-        "articular",
-        "litiasis"
+        "litiasis",
+        "urinario"
       ],
       "descripcion": "Tintura madre homeopatica de agracejo para litiasis renal y dolor lumbar irradiado.",
       "mecanismoAccion": "Berberina con accion sobre vias urinarias, biliares y dolor lumbar.",
@@ -7624,12 +7624,12 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "garganta",
         "amigdalitis",
-        "gases",
         "diarrea",
-        "inmunidad",
-        "encías"
+        "encías",
+        "garganta",
+        "gases",
+        "inmunidad"
       ],
       "descripcion": "Policresto homeopatico para afecciones de mucosas con exudado y sudoracion ofensiva.",
       "mecanismoAccion": "En homeopatia, modula inflamacion de mucosas (garganta, boca, intestino).",

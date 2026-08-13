@@ -25,11 +25,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "inmunidad",
+        "absorcion hierro",
         "antioxidante",
-        "colageno",
         "cansancio",
-        "absorcion hierro"
+        "colageno",
+        "inmunidad"
       ],
       "descripcion": "Vitamina hidrosoluble esencial. Antioxidante potente y cofactor en sintesis de colageno.",
       "mecanismoAccion": "Antioxidante hidrosoluble. Cofactor de enzimas de sintesis de colageno. Mejora absorcion de hierro no-hem.",
@@ -90,11 +90,11 @@
         "cardiovascular"
       ],
       "indicaciones": [
+        "depresión",
+        "glucosa",
         "huesos",
         "inmunidad",
-        "muscular",
-        "depresión",
-        "glucosa"
+        "muscular"
       ],
       "descripcion": "Vitamina liposoluble esencial para metabolismo del calcio y salud osea.",
       "mecanismoAccion": "Hormona esteroidea. Regula absorcion intestinal de calcio y fosforo. Modula sistema inmune.",
@@ -155,10 +155,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
+        "cardiovascular",
         "espasmos",
         "estrés",
         "insomnio",
-        "cardiovascular",
         "migraña"
       ],
       "descripcion": "Mineral esencial cofactor en +300 reacciones enzimaticas. Relajante muscular y nervioso.",
@@ -225,11 +225,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "inmunidad",
-        "cicatrización",
-        "prostata",
         "acné",
-        "cabello"
+        "cabello",
+        "cicatrización",
+        "inmunidad",
+        "prostata"
       ],
       "descripcion": "Mineral esencial para sistema inmune, cicatrizacion y funcion prostatica.",
       "mecanismoAccion": "Cofactor de +300 enzimas. Metalotioneina para antioxidantes. Cofactor en sintesis de testosterona.",
@@ -294,9 +294,9 @@
       ],
       "indicaciones": [
         "anemia",
-        "fatiga",
         "cognitivo",
-        "deficiencia"
+        "deficiencia",
+        "fatiga"
       ],
       "descripcion": "Mineral esencial para transporte de oxigeno en sangre.",
       "mecanismoAccion": "Componente de hemoglobina y mioglobina. Cofactor de enzimas del ciclo de Krebs.",
@@ -368,11 +368,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "trigliceridos",
-        "inflamación",
-        "cerebro",
         "articular",
-        "ojos"
+        "cerebro",
+        "inflamación",
+        "ojos",
+        "trigliceridos"
       ],
       "descripcion": "Acidos grasos esenciales para cerebro, corazon y articulaciones.",
       "mecanismoAccion": "EPA/DHA son precursores de resolvinas antiinflamatorias. Estructura de membranas celulares neurales.",
@@ -436,9 +436,9 @@
       ],
       "indicaciones": [
         "anemia",
+        "cognitivo",
         "energía",
         "nervios",
-        "cognitivo",
         "veganos"
       ],
       "descripcion": "Vitamina hidrosoluble esencial para sistema nervioso y formacion de sanguine.",
@@ -504,11 +504,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "nervios",
         "energía",
-        "metabolico",
+        "hormonas",
         "insomnio",
-        "hormonas"
+        "metabolico",
+        "nervios"
       ],
       "descripcion": "Vitamina hidrosoluble esencial para funcion neurologica y metabolismo de aminoacidos.",
       "mecanismoAccion": "Cofactor de >100 enzimas. Sintesis de neurotransmisores (serotonina, dopamina, GABA). Metabolismo de aminoacidos.",
@@ -570,11 +570,11 @@
         "metabolico"
       ],
       "indicaciones": [
+        "cansancio",
         "energía",
         "estrés",
-        "nervios",
         "metabolico",
-        "cansancio"
+        "nervios"
       ],
       "descripcion": "Grupo de 8 vitaminas hidrosolubles esenciales para metabolismo energetico.",
       "mecanismoAccion": "Cofactores en metabolismo energetico (ciclo de Krebs). Sintesis de neurotransmisores. Funcion adrenal.",
@@ -634,10 +634,10 @@
         "metabolico"
       ],
       "indicaciones": [
+        "antioxidante",
         "cardiovascular",
         "energía",
         "estatinas",
-        "antioxidante",
         "migraña"
       ],
       "descripcion": "Antioxidante mitocondrial esencial para produccion de energia celular.",
@@ -696,10 +696,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "intestinal",
-        "inmunidad",
+        "antibioticos",
         "dispepsia",
-        "antibioticos"
+        "inmunidad",
+        "intestinal"
       ],
       "descripcion": "Bacterias beneficiosas que colonizan el intestino y modulan la salud.",
       "mecanismoAccion": "Colonizacion del intestino. Modulacion de sistema inmune. Produccion de acidos grasos de cadena corta.",
@@ -760,11 +760,11 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "inflamación",
-        "articular",
         "antioxidante",
+        "articular",
         "cerebro",
-        "hepático"
+        "hepático",
+        "inflamación"
       ],
       "descripcion": "Principio activo de la curcuma con potentes effete antiinflamatorios.",
       "mecanismoAccion": "Inhibe NF-kB y COX-2. Activa Nrf2 (antioxidante). Biodisponibilidad baja sin mejoras.",
@@ -824,9 +824,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "antioxidante",
         "insomnio",
-        "jet lag",
-        "antioxidante"
+        "jet lag"
       ],
       "descripcion": "Hormona que regula el ritmo circadiano y facilita el sueno.",
       "mecanismoAccion": "Activacion de receptores MT1/MT2 en nucleo supraquiasmico. Antioxidante mitocondrial.",
@@ -889,10 +889,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "salud osea",
         "calcificacion arterial",
         "coagulación",
-        "huesos"
+        "huesos",
+        "salud osea"
       ],
       "descripcion": "Vitamina esencial para dirigir el calcio hacia huesos y away de arterias.",
       "mecanismoAccion": "Activa osteocalcina y proteina Gla de matriz (MGP). Direct calcium to bone.",
@@ -952,10 +952,10 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "insomnio",
-        "muscular",
         "estreñimiento",
-        "hipertensión"
+        "hipertensión",
+        "insomnio",
+        "muscular"
       ],
       "descripcion": "Forma altamente biodisponible de magnesio con alta absorcion y minima afectacion gastrica.",
       "mecanismoAccion": "Glicina cruza barrera hematoencefalica. Activa receptores GABA. Relaja musculos.",
@@ -1017,11 +1017,11 @@
         "endocrino"
       ],
       "indicaciones": [
-        "salud osea",
         "articular",
-        "tos",
+        "cognitivo",
         "hormonal",
-        "cognitivo"
+        "salud osea",
+        "tos"
       ],
       "descripcion": "Mineral traza esencial para metabolismo oseo y hormonal.",
       "mecanismoAccion": "Modula metabolismo de estrogenos y testosterona. Influye en vitamina D activa.",
@@ -1078,10 +1078,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "tiroides",
         "bocio",
         "fibromas",
-        "quistes ovaricos"
+        "quistes ovaricos",
+        "tiroides"
       ],
       "descripcion": "Mineral esencial para produccion de hormonas tiroideas y funcion metabolica.",
       "mecanismoAccion": "Precursor de T3 y T4. Yodo molecular tiene propriedades antisepticas.",
@@ -1141,9 +1141,9 @@
         "endocrino"
       ],
       "indicaciones": [
+        "colesterol",
         "glucosa",
-        "obesidad",
-        "colesterol"
+        "obesidad"
       ],
       "descripcion": "Mineral traza que mejora sensibilidad a insulina y metabolismo de glucosa.",
       "mecanismoAccion": "Componente del factor de tolerancia a glucosa (GTF). Activa insulina.",
@@ -1203,9 +1203,9 @@
         "endocrino"
       ],
       "indicaciones": [
+        "colesterol",
         "glucosa",
-        "rendimiento",
-        "colesterol"
+        "rendimiento"
       ],
       "descripcion": "Mineral traza que imita accion de insulina y puede mejorar control glucemico.",
       "mecanismoAccion": "Inhibe fosfatasas de tirosina. Mejora captacion celular de glucosa.",
@@ -1263,10 +1263,10 @@
         "endocrino"
       ],
       "indicaciones": [
-        "estabilidad emocional",
+        "agresividad",
         "ansiedad",
         "depresión",
-        "agresividad"
+        "estabilidad emocional"
       ],
       "descripcion": "Mineral esencial para modulacion neurotransmisores y estabilidad emocional.",
       "mecanismoAccion": "Modula receptores de glutamato y neurotransmisores. Estabiliza membranas neuronales.",
@@ -1331,9 +1331,9 @@
         "metabolico"
       ],
       "indicaciones": [
-        "dopamina",
-        "cálculos",
         "cognitivo",
+        "cálculos",
+        "dopamina",
         "estrés",
         "tiroides"
       ],
@@ -1397,10 +1397,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "rendimiento",
-        "muscular",
         "cerebro",
-        "energía"
+        "energía",
+        "muscular",
+        "rendimiento"
       ],
       "descripcion": "Compuesto que mejora el rendimiento fisico y cognitivo aumentando ATP.",
       "mecanismoAccion": "Aumenta reservas de fosfocreatina, mejorando regeneracion rapida de ATP.",
@@ -1525,9 +1525,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "cognicion",
         "cognitivo",
         "cortisol",
-        "cognicion",
         "estrés"
       ],
       "descripcion": "Fosfolipido esencial para funcion neuronal y regulacion del cortisol.",
@@ -1588,11 +1588,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "tiroides",
-        "inmunidad",
         "antioxidante",
         "cancer",
-        "femenino"
+        "femenino",
+        "inmunidad",
+        "tiroides"
       ],
       "descripcion": "Mineral traza esencial para funcion tiroidea y sistema antioxidante.",
       "mecanismoAccion": "Componente de selenoproteinas (glutathione peroxidase). Metabolismo thyroid.",
@@ -1653,11 +1653,11 @@
         "nervioso"
       ],
       "indicaciones": [
+        "antioxidante",
         "colageno",
-        "hierro",
-        "inmunidad",
         "energía",
-        "antioxidante"
+        "hierro",
+        "inmunidad"
       ],
       "descripcion": "Mineral traza esencial para formacion de colageno y absorcion de hierro.",
       "mecanismoAccion": "Cofactor de enzimas (citocromo c oxidasa, superoxido dismutasa).",
@@ -1719,9 +1719,9 @@
         "metabolico"
       ],
       "indicaciones": [
-        "huesos",
-        "glucosa",
         "antioxidante",
+        "glucosa",
+        "huesos",
         "metabolico"
       ],
       "descripcion": "Mineral traza esencial para metabolismo y enzimas antioxidantes.",
@@ -1784,10 +1784,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
+        "antioxidante",
         "ojo seco",
         "piel",
         "rendimiento",
-        "antioxidante",
         "sol"
       ],
       "descripcion": "Carotenoide rojo con puissants efeitos antioxidantes y antiinflamatorios.",
@@ -1844,9 +1844,9 @@
         "ocular"
       ],
       "indicaciones": [
-        "ocular",
+        "antioxidante",
         "filtro azul",
-        "antioxidante"
+        "ocular"
       ],
       "descripcion": "Xantofila que forma el pigmento macular y protege de luz azul.",
       "mecanismoAccion": "Acumula en retina, filtra luz azul. Antioxidante especifica para ojo.",
@@ -1902,8 +1902,8 @@
         "metabolico"
       ],
       "indicaciones": [
-        "cardiovascular",
         "antioxidante",
+        "cardiovascular",
         "inflamación"
       ],
       "descripcion": "Polifenol del vino rojo con efeitos cardioprotectores y anti-aging.",
@@ -1964,10 +1964,10 @@
       ],
       "indicaciones": [
         "alergias",
-        "inmunidad",
         "antioxidante",
+        "antiviral",
         "inflamación",
-        "antiviral"
+        "inmunidad"
       ],
       "descripcion": "Flavonoide con poderosos efeitos antiinflamatorios y antihistaminicos.",
       "mecanismoAccion": "Estabiliza celulas mast and inhibits histamina release.",
@@ -2029,10 +2029,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "tos",
-        "embarazo",
         "anemia",
-        "homocisteina"
+        "embarazo",
+        "homocisteina",
+        "tos"
       ],
       "descripcion": "Vitamina hidrosoluble B esencial para la sintesis de ADN, la division celular y la metilacion. Crucial preconcepcional y en el embarazo para prevenir defectos del tubo neural.",
       "mecanismoAccion": "Cofactor en la transferencia de grupos metilo (ciclo de la metionina) y en la sintesis de timidilato y purinas; reduce la homocisteina plasmatica.",
@@ -2097,9 +2097,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "pelagra",
+        "colesterol",
         "energía",
-        "colesterol"
+        "pelagra"
       ],
       "descripcion": "Vitamina hidrosoluble B precursor del NAD/NADP, esencial para el metabolismo energetico. La forma farmacologica (acido nicotinico) se usa para modificar lipidos, pero a dosis muy superiores a la RDA.",
       "mecanismoAccion": "Precursor de las coenzimas NAD y NADP, implicadas en cientos de reacciones redox; el acido nicotinico a dosis farmacologicas reduce LDL-C y trigliceridos y eleva HDL-C.",
@@ -2160,9 +2160,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "hepático",
         "cognitivo",
         "embarazo",
+        "hepático",
         "metilacion"
       ],
       "descripcion": "Nutriente esencial precursor de la acetilcolina (neurotransmisor), fosfolipidos de membrana y betaína (donante de metilo). El deficit provoca dano hepatico.",
@@ -2223,8 +2223,8 @@
       ],
       "indicaciones": [
         "cabello",
-        "energía",
-        "deficit (nutricion parenteral, anticonvulsivantes)"
+        "deficit (nutricion parenteral, anticonvulsivantes)",
+        "energía"
       ],
       "descripcion": "Coenzima hidrosoluble B para carboxilasas implicadas en el metabolismo de glúcidos, aminoacidos y grasas. El deficit es raro pero afecta piel, pelo y sistema nervioso.",
       "mecanismoAccion": "Cofactor de carboxilasas (piruvato, acetil-CoA, propionil-CoA, beta-metilcrotonil-CoA) en gluconeogenesis, sintesis de acidos grasos y catabolismo de aminoacidos.",
@@ -2280,8 +2280,8 @@
       ],
       "indicaciones": [
         "energía",
-        "sintesis de coa",
-        "piel"
+        "piel",
+        "sintesis de coa"
       ],
       "descripcion": "Vitamina hidrosoluble B esencial para la sintesis de la coenzima A (CoA), central en el metabolismo energetico y la sintesis de acidos grasos, colesterol y esteroides.",
       "mecanismoAccion": "Componente de la coenzima A y del transportador de acilos (ACP), implicado en el ciclo de Krebs, beta-oxidacion, sintesis de acidos grasos y esteroides, y acetilacion.",
@@ -2337,8 +2337,8 @@
       ],
       "indicaciones": [
         "colesterol",
-        "proteccion membranas",
-        "deficit (malabsorcion)"
+        "deficit (malabsorcion)",
+        "proteccion membranas"
       ],
       "descripcion": "Vitamina liposoluble antioxidante: protege las membranas celulares y las lipoproteinas de la peroxidacion lipidica. Solo el alfa-tocoferol satisface el requerimiento humano.",
       "mecanismoAccion": "Antioxidante liposoluble que secuestra radicales peroxilo en membranas y lipoproteinas, rompiendo la cadena de peroxidacion lipidica; protege LDL y membranas celulares.",
@@ -2403,10 +2403,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "metabolico",
-        "funcion nerviosa",
+        "alcoholismo",
         "deficit (beriberi, wernicke)",
-        "alcoholismo"
+        "funcion nerviosa",
+        "metabolico"
       ],
       "descripcion": "Primera vitamina B descubierta. Cofactor del metabolismo energetico de glúcidos; su deficit causa beriberi y encefalopatia de Wernicke, frecuente en alcoholismo.",
       "mecanismoAccion": "Precursor del pirofosfato de tiamina (TPP), cofactor de la piruvato deshidrogenasa, alfa-cetoglutarato deshidrogenasa y transcetolasa, claves en el ciclo de Krebs y la via de las pentosas.",
@@ -2522,11 +2522,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "migraña",
-        "energía",
         "deficiencia b2",
-        "ocular",
-        "mucosas"
+        "energía",
+        "migraña",
+        "mucosas",
+        "ocular"
       ],
       "descripcion": "Cofactor de FAD y FMN en la cadena de transporte de electrones. Dosis altas (400mg) reducen frecuencia de migraña en profilaxis.",
       "mecanismoAccion": "Precursor de FAD/FMN, cofactor de enzimas mitocondriales; mejora la disfunción mitocondrial implicada en la migraña. Reduce homocisteína con MTHFR.",
@@ -2577,11 +2577,11 @@
         "hepatico"
       ],
       "indicaciones": [
-        "mucolítico",
+        "antioxidante",
         "hepático",
         "inmunidad",
-        "respiratorio",
-        "antioxidante"
+        "mucolítico",
+        "respiratorio"
       ],
       "descripcion": "Precursor del glutatión, el principal antioxidante intracelular. Antídoto de la intoxicación por paracetamol y mucolítico de elección.",
       "mecanismoAccion": "Donante de grupos sulfhidrilo (-SH) que rompe los puentes disulfuro del moco y repone los niveles de glutatión, principal defensa antioxidante hepática.",
@@ -2635,11 +2635,11 @@
         "nervioso"
       ],
       "indicaciones": [
+        "cardiovascular",
+        "cognitivo",
         "deficiencia de carnitina",
         "energía",
-        "cardiovascular",
-        "neuropatía",
-        "cognitivo"
+        "neuropatía"
       ],
       "descripcion": "Transporta ácidos grasos de cadena larga a la mitocondria para β-oxidación. La forma acetilada (ALCAR) cruza la barrera hematoencefálica.",
       "mecanismoAccion": "Transporta acil-CoA de cadena larga al interior mitocondrial vía sistema de la carnitina, permitiendo la β-oxidación y producción de ATP.",
@@ -2691,9 +2691,9 @@
       ],
       "indicaciones": [
         "cardiovascular",
-        "osmorregulación celular",
+        "ejercicio",
         "ocular",
-        "ejercicio"
+        "osmorregulación celular"
       ],
       "descripcion": "Aminoácido sulfonado abundante en tejido excitables (corazón, retina, músculo). Estabiliza membranas y regula calcio intracelular.",
       "mecanismoAccion": "Osmolito y modulador de canales iónicos (Ca2+, Cl-); antioxidante; conjugación de ácidos biliares; neuroprotección vía glicina/GABA.",
@@ -2740,9 +2740,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "insomnio",
-        "depresión",
         "ansiedad",
+        "depresión",
+        "insomnio",
         "spm"
       ],
       "descripcion": "Aminoácido esencial precursor de la serotonina (vía 5-HTP) y la melatonina. Mejora calidad del sueño y humor con baja tasa de efectos adversos.",
@@ -2843,11 +2843,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "depresión",
-        "insomnio",
         "ansiedad",
         "apetito",
-        "fibromialgia (coadyuvante)"
+        "depresión",
+        "fibromialgia (coadyuvante)",
+        "insomnio"
       ],
       "descripcion": "Derivado de la semilla de Griffonia simplicifolia, precursor directo de la serotonina (un paso más cerca que el triptófano). Cruza la barrera hematoencefálica.",
       "mecanismoAccion": "Descarboxilación directa a serotonina (salta la hidroxilación del triptófano, paso limitante), aumentando los niveles de serotonina cerebral.",
@@ -2899,9 +2899,9 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "alergias",
         "articular",
-        "cabello",
-        "alergias"
+        "cabello"
       ],
       "descripcion": "Compuesto organosulfurado con azufre biodisponible para colágeno y queratina. Evidencia para dolor articular en artrosis.",
       "mecanismoAccion": "Fuente de azufre para síntesis de colágeno, glucosamina y queratina; modula citocinas inflamatorias (IL-1, TNF-α) y estrés oxidativo articular.",
@@ -2950,9 +2950,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
+        "inmunidad",
         "intestinal",
-        "rendimiento",
-        "inmunidad"
+        "rendimiento"
       ],
       "descripcion": "Aminoácido más abundante del cuerpo, combustible principal de enterocitos y células inmunes. Condicionalmente esencial en estrés catabólico.",
       "mecanismoAccion": "Sustrato energético de enterocitos y linfocitos; precursor del glutatión intestinal; sustrato para nucleótidos y glucosa renal.",
@@ -3002,10 +3002,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "inmunidad",
+        "cicatrización",
         "colesterol",
-        "respiratorio",
-        "cicatrización"
+        "inmunidad",
+        "respiratorio"
       ],
       "descripcion": "Polisacáridos de levadura, avena y hongos con acción inmunomoduladora (receptores dectina-1) y reductora de colesterol (viscosidad intestinal).",
       "mecanismoAccion": "Los β-glucanos de levadura activan los receptores dectina-1/CR3 de macrófagos y células NK; los de avena aumentan la viscosidad intestinal reduciendo el colesterol LDL.",
@@ -3056,11 +3056,11 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "sop",
         "ansiedad",
-        "glucosa",
         "femenino",
-        "metabolico"
+        "glucosa",
+        "metabolico",
+        "sop"
       ],
       "descripcion": "Poliol implicado en la transducción de señales de insulina y segundos mensajeros. Eficacia clínica en SOP y resistencia a insulina.",
       "mecanismoAccion": "Componente de fosfatidilinositoles; mediador de la señalización de insulina (IP3) y serotonina; mejora la sensibilidad a insulina en SOP.",
@@ -3114,8 +3114,8 @@
         "antioxidante",
         "hepático",
         "inmunidad",
-        "salud pulmonar",
-        "piel"
+        "piel",
+        "salud pulmonar"
       ],
       "descripcion": "El principal antioxidante intracelular. La forma liposomal mejora la biodisponibilidad oral (el GSH ordinario se degrada en intestino).",
       "mecanismoAccion": "Cofactor de glutatión peroxidasas (neutraliza peróxidos), conjugación hepática (fase II, glucuronidación), reciclaje de vitaminas C y E, mantenimiento del pool redox celular.",
@@ -3165,10 +3165,10 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "glucosa",
         "colesterol",
-        "sop",
-        "intestinal"
+        "glucosa",
+        "intestinal",
+        "sop"
       ],
       "descripcion": "Alcaloide de Berberis con evidencia clínica comparable a metformina en control glucémico. Activa AMPK y modula microbiota.",
       "mecanismoAccion": "Activa AMPK (sensor energético celular), inhibe la gluconeogénesis hepática, aumenta la expresión del receptor de insulina; modula microbiota (reduce SIBO).",
@@ -3317,8 +3317,8 @@
       ],
       "indicaciones": [
         "articular",
-        "piel",
         "cabello",
+        "piel",
         "rendimiento"
       ],
       "descripcion": "Péptidos bioactivos de colágeno hidrolizado. Evidencia clínica para elasticidad cutánea y molestias articulares.",
@@ -3371,9 +3371,9 @@
       ],
       "indicaciones": [
         "articular",
-        "sequedad",
+        "cicatrización",
         "piel",
-        "cicatrización"
+        "sequedad"
       ],
       "descripcion": "Glicosaminoglicano estructural de cartílago, piel y humor acuoso. Formas oral, tópica e intraarticular con evidencia en artrosis y piel.",
       "mecanismoAccion": "Retiene agua (hasta 1000x su peso), aporta viscoelasticidad al líquido sinovial y al tejido cutáneo; estimula la síntesis de colágeno y reduce la inflamación sinovial.",
@@ -3425,10 +3425,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "depresión",
-        "hepático",
         "articular",
-        "fibromialgia (coadyuvante)"
+        "depresión",
+        "fibromialgia (coadyuvante)",
+        "hepático"
       ],
       "descripcion": "Donante de grupos metilo universal. Evidencia clínica en depresión (comparable a ISRS) y artrosis. También hepatoprotector (coleresis).",
       "mecanismoAccion": "Donante de grupos metilo para síntesis de neurotransmisores (serotonina, dopamina), fosfolípidos y ADN; precursor de la vía de transulfuración (cisteína→glutatión).",
@@ -3480,10 +3480,10 @@
       ],
       "indicaciones": [
         "cardiovascular",
-        "rendimiento",
-        "libido",
+        "fatiga",
         "hipertensión",
-        "fatiga"
+        "libido",
+        "rendimiento"
       ],
       "descripcion": "Precursor renal de la arginina (más eficaz que arginina oral) para la síntesis de óxido nítrico (NO). Mejora el flujo sanguíneo y el rendimiento.",
       "mecanismoAccion": "Convertida en riñón a L-arginina, sustrato de la óxido nítrico sintasa endotelial (eNOS), aumentando NO, vasodilatación y flujo sanguíneo; el malato mejora el ciclo de la urea y reduce la fatiga.",
@@ -3534,11 +3534,11 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "insomnio",
         "ansiedad",
-        "rendimiento",
+        "insomnio",
         "piel",
-        "reflujo"
+        "reflujo",
+        "rendimiento"
       ],
       "descripcion": "Aminoácido inhibidor del SNC (receptor de glicina) y cofactor de glutatión. Mejora calidad del sueño y sensación subjetiva al despertar.",
       "mecanismoAccion": "Neurotransmisor inhibidor (receptor de glicina), coagonista del receptor NMDA; precursor del colágeno (~33% de los aminoácidos) y del glutatión; baja temperatura corporal nocturna.",
@@ -3589,9 +3589,9 @@
       ],
       "indicaciones": [
         "biogénesis mitocondrial",
-        "energía",
+        "cardiovascular",
         "cognitivo",
-        "cardiovascular"
+        "energía"
       ],
       "descripcion": "Cofactor redox que induce la biogénesis mitocondrial (vía PGC-1α) y protege contra el estrés oxidativo mitocondrial.",
       "mecanismoAccion": "Cofactor redox que activa PGC-1α y CREB (biogénesis mitocondrial), induce NRF2 (antioxidante) y protege las mitocondrias del daño oxidativo.",
@@ -3640,10 +3640,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "hepático",
         "antioxidante",
-        "intestinal",
-        "autismo (coadyuvante investigacional)"
+        "autismo (coadyuvante investigacional)",
+        "hepático",
+        "intestinal"
       ],
       "descripcion": "Isotiocianato de brocoles y germinados. Potente inductor de la vía Nrf2 (enzimas de fase II: glutatión-S-transferasa, NQO1).",
       "mecanismoAccion": "Libera sulforafano a partir de la glucorafanina (mirosinasa); el sulforafano inactiva Keap1, liberando Nrf2 que induce las enzimas de fase II (GST, NQO1, HO-1).",
@@ -3693,10 +3693,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "piel",
         "acné",
         "cognitivo",
-        "energía"
+        "energía",
+        "piel"
       ],
       "descripcion": "Forma amida de la vitamina B3, sin rubor. Precursor del NAD+, y tópica con evidencia clínica para prevención de cáncer cutáneo no melanoma y fotoenvejecimiento.",
       "mecanismoAccion": "Precursor del NAD+/NADP+ (transporte de electrones); tópica reduce la pérdida transepidérmica de agua, mejora la barrera cutánea y reduce la inmunosupresión UV.",
@@ -3748,11 +3748,11 @@
         "digestivo"
       ],
       "indicaciones": [
+        "dispepsia",
+        "dlm coadyuvante",
         "inflamación",
         "sinusitis",
-        "dispepsia",
-        "trauma",
-        "dlm coadyuvante"
+        "trauma"
       ],
       "descripcion": "Mezcla de enzimas proteolíticas del tallo de la piña. Evidencia para edema post-quirúrgico, sinusitis y como digestivo (proteolítico).",
       "mecanismoAccion": "Hidroliza proteínas (incluidas cininas y fibrina) reduciendo el edema; modula citocinas inflamatorias; debrida tejido necrótico y mucosidades.",
@@ -3801,9 +3801,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "insomnio",
         "ansiedad",
-        "cognitivo"
+        "cognitivo",
+        "insomnio"
       ],
       "descripcion": "Flavonoide de manzanilla, perejil y apio. Modula receptores GABA-A y induce relajación sin sedación marcada.",
       "mecanismoAccion": "Modulador positivo del receptor GABA-A (sitio benzodiacepínico sin la dependencia), reduce la actividad del SNC; antioxidante y antiinflamatoria (Nrf2).",
@@ -3851,9 +3851,9 @@
       ],
       "indicaciones": [
         "herpes",
-        "rendimiento",
         "huesos",
-        "piel"
+        "piel",
+        "rendimiento"
       ],
       "descripcion": "Aminoácido esencial que antagoniza la arginina, reduciendo la replicación del virus del herpes simple. Evidencia clínica en profilaxis de herpes labial recurrente.",
       "mecanismoAccion": "La lisina antagoniza la arginina (requerida por el HSV para replicarse), reduciendo la replicación viral; mejora la absorción intestinal de calcio y la síntesis de colágeno.",
@@ -3904,9 +3904,9 @@
         "digestivo"
       ],
       "indicaciones": [
+        "acné",
         "inmunidad",
         "intestinal",
-        "acné",
         "metabolico"
       ],
       "descripcion": "Glicoproteína de la leche con acción antimicrobiana e inmunomoduladora. Mejora la respuesta inmune y el transporte de hierro.",
@@ -3955,8 +3955,8 @@
         "metabolico"
       ],
       "indicaciones": [
-        "rendimiento",
         "catabolismo",
+        "rendimiento",
         "sarcopenia"
       ],
       "descripcion": "Aminoácidos esenciales ramificados metabolizados en el músculo. La leucina activa mTOR, estimulando la síntesis proteica muscular.",
@@ -4005,10 +4005,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "inflamación",
-        "cognitivo",
         "alergias",
-        "autismo (coadyuvante investigacional)"
+        "autismo (coadyuvante investigacional)",
+        "cognitivo",
+        "inflamación"
       ],
       "descripcion": "Flavonoide de apio, perejil y romero. Potente antiinflamatorio que inhibe mastocitos y modula la neuroinflamación.",
       "mecanismoAccion": "Inhibe la degranulación de mastocitos, modula NF-κB y la neuroinflamación (microglía), reduce citoquinas Th2; antioxidante.",
@@ -4056,10 +4056,10 @@
         "nervioso"
       ],
       "indicaciones": [
+        "antioxidante",
         "cardiovascular",
         "cognitivo",
         "colesterol",
-        "antioxidante",
         "glucosa"
       ],
       "descripcion": "Análogo dimetilado del resveratrol con mejor biodisponibilidad oral. Activa sirtuinas (SIRT1) y mejora el perfil lipídico.",
@@ -4158,8 +4158,8 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "hiperhomocisteinemia",
         "hepático",
+        "hiperhomocisteinemia",
         "metabolico"
       ],
       "descripcion": "Donante de grupos metilo que reduce la homocisteína vía betaina-homocisteína-metiltransferasa (BHMT). Eficacia en hiperhomocisteinemia.",
@@ -4208,10 +4208,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "hepático",
-        "metabolico",
         "cabello",
-        "detox"
+        "detox",
+        "hepático",
+        "metabolico"
       ],
       "descripcion": "Aminoácido azufrado esencial, precursor del SAMe y la cisteína (vía transulfuración). Importante para la metilación y el hígado.",
       "mecanismoAccion": "Precursor del SAMe (donante universal de metilo) y de la cisteína/glutatión (vía transulfuración); dona azufre para queratina.",
@@ -4259,10 +4259,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "intestinal",
+        "cognitivo",
         "inmunidad",
-        "síntesis de colágeno",
-        "cognitivo"
+        "intestinal",
+        "síntesis de colágeno"
       ],
       "descripcion": "Aminoácido esencial abundante en mucinas intestinales y glucoproteínas. Soporte de la barrera intestinal y la inmunidad.",
       "mecanismoAccion": "Componente principal de las mucinas intestinales (barrera mucosa); precursor de glicina (vía treonina-aldolasa); síntesis de colágeno.",
@@ -4362,9 +4362,9 @@
       ],
       "indicaciones": [
         "ansiedad",
-        "insomnio",
+        "antioxidante",
         "estrés",
-        "antioxidante"
+        "insomnio"
       ],
       "descripcion": "Lignano de la corteza de Magnolia con acción moduladora del receptor GABA-A (sin dependencia). Anxiolítico natural.",
       "mecanismoAccion": "Modulador positivo del receptor GABA-A (sitio distinto a benzodiacepinas), induce relajación sin sedación marcada ni dependencia; antioxidante (Nrf2).",
@@ -4510,8 +4510,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "energía",
         "cognitivo",
+        "energía",
         "peso"
       ],
       "descripcion": "Ácidos grasos de cadena media (C8/C10) que se absorben rápido y se convierten en cetonas, combustible cerebral alternativo a la glucosa.",
@@ -4563,9 +4563,9 @@
         "inmune"
       ],
       "indicaciones": [
+        "articular",
         "cardiovascular",
         "cognitivo",
-        "articular",
         "colesterol",
         "pms"
       ],
@@ -4616,9 +4616,9 @@
       ],
       "indicaciones": [
         "cardiovascular",
-        "libido",
         "cicatrización",
         "hipertensión",
+        "libido",
         "rendimiento"
       ],
       "descripcion": "Precursor directo del óxido nítrico (NO). Aunque la citrulina es más eficaz oral, la arginina sigue siendo útil en cicatrización y función endotelial.",
@@ -4671,8 +4671,8 @@
       ],
       "indicaciones": [
         "detox",
-        "metabolico",
         "hepático",
+        "metabolico",
         "tos"
       ],
       "descripcion": "Oligoelemento cofactor de la sulfito oxidasa (detox de sulfitos), xantina oxidasa y aldehído oxidasa.",
@@ -4722,10 +4722,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "hepático",
         "cognitivo",
-        "membrana celular",
-        "colesterol"
+        "colesterol",
+        "hepático",
+        "membrana celular"
       ],
       "descripcion": "Fosfolípido estructural de membranas y componente de la bile. Mejora la función hepática y la estructura celular.",
       "mecanismoAccion": "Componente estructural de las membranas celulares; precursor de colina (acetilcolina); lipotrópico (previene esteatosis hepática).",
@@ -4776,8 +4776,8 @@
       ],
       "indicaciones": [
         "coagulación",
-        "huesos",
-        "equilibrio k1/k2"
+        "equilibrio k1/k2",
+        "huesos"
       ],
       "descripcion": "Forma vegetal de la vitamina K, predominante en la dieta. Esencial para la coagulación y el metabolismo óseo.",
       "mecanismoAccion": "Cofactor de la γ-glutamil carboxilasa (activación de factores de coagulación II, VII, IX, X y proteínas C/S); carboxila la osteocalcina.",
@@ -4828,11 +4828,11 @@
         "reproductivo"
       ],
       "indicaciones": [
-        "spm",
-        "menopausia",
+        "articular",
         "eccema",
         "mastalgia cíclica",
-        "articular"
+        "menopausia",
+        "spm"
       ],
       "descripcion": "Aceite rico en ácido gamma-linolénico (GLA), precursor de prostaglandinas antiinflamatorias (PGE1).",
       "mecanismoAccion": "El GLA se convierte en PGE1 (prostaglandina antiinflamatoria); modula la respuesta hormonal e inflamatoria.",
@@ -4882,10 +4882,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "piel",
-        "sequedad",
         "glucosa",
-        "inflamación"
+        "inflamación",
+        "piel",
+        "sequedad"
       ],
       "descripcion": "Ácido graso monoinsaturado presente en el espino amarillo y anchoa. Regenera piel y mucosas, modula la insulina.",
       "mecanismoAccion": "El ácido palmitoleico (POA) regenera la barrera cutánea y mucosa; modula la señalización de insulina; reduce la inflamación (GPR120).",
@@ -4932,9 +4932,9 @@
         "inmune"
       ],
       "indicaciones": [
+        "cardiovascular",
         "detox",
-        "oncológico",
-        "cardiovascular"
+        "oncológico"
       ],
       "descripcion": "Pectina de bajo peso molecular que se absorbe y bloquea la galectina-3 (implicada en fibrosis y metástasis). Quelante de metales pesados.",
       "mecanismoAccion": "Bloquea la galectina-3 (proteína pro-fibrosis y pro-metástasis); quelación de metales pesados (Pb, As, Cd); reduce la agregación celular.",
@@ -5035,8 +5035,8 @@
         "ocular"
       ],
       "indicaciones": [
-        "neuropatía",
         "glucosa",
+        "neuropatía",
         "retinopatía diabética (coadyuvante)"
       ],
       "descripcion": "Forma liposoluble de vitamina B1 con mejor absorción. Usada en neuropatía diabética.",
@@ -5083,10 +5083,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "energía",
         "antioxidante",
-        "metabolismo",
-        "envejecimiento"
+        "energía",
+        "envejecimiento",
+        "metabolismo"
       ],
       "descripcion": "Precursor directo del NAD+ esencial para la energía celular y la función de sirtuinas. Investigación en longevidad.",
       "mecanismoAccion": "El NMN se convierte en NAD+; aumenta la actividad de SIRT1/SIRT3 (longevidad) y mejora la función mitocondrial.",
@@ -5136,8 +5136,8 @@
       ],
       "indicaciones": [
         "antioxidante",
-        "neuroprotección",
-        "antioxidante mitocondrial"
+        "antioxidante mitocondrial",
+        "neuroprotección"
       ],
       "descripcion": "Antioxidante liposoluble acumulado en tejidos bajo estrés oxidativo (transportador OCTN1). Longevidad.",
       "mecanismoAccion": "Antioxidante liposoluble que acumula en mitocondrias; transportador OCTN1 la concentra en tejidos estresados.",
@@ -5184,8 +5184,8 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "autofagia",
         "antioxidante",
+        "autofagia",
         "envejecimiento",
         "neuroprotección"
       ],
@@ -5238,8 +5238,8 @@
       "indicaciones": [
         "antioxidante",
         "colesterol",
-        "salud cardiovascular",
-        "piel"
+        "piel",
+        "salud cardiovascular"
       ],
       "descripcion": "Polifenol del aceite de oliva virgen extra con claim de salud EFSA para protección del LDL.",
       "mecanismoAccion": "El hidroxitirosol protege el LDL de la oxidación; reduce la inflamación vascular; antioxidante potente.",
@@ -5287,9 +5287,9 @@
       ],
       "indicaciones": [
         "metabolismo estrogénico",
-        "SPM",
+        "próstata",
         "sop",
-        "próstata"
+        "SPM"
       ],
       "descripcion": "Metabolito del indol-3-carbinol (brócoli) que favorece el metabolismo estrogénico hacia 2-OH (protectores).",
       "mecanismoAccion": "Induce las enzimas de fase I (CYP1A1) que canalizan los estrógenos hacia 2-OH (protectores) en lugar de 16α-OH.",
@@ -5338,10 +5338,10 @@
         "metabolico"
       ],
       "indicaciones": [
+        "antiglicación",
         "antioxidante",
         "neuroprotección",
-        "rendimiento",
-        "antiglicación"
+        "rendimiento"
       ],
       "descripcion": "Dipéptido (β-alanina + histidina) presente en músculo y cerebro. Antioxidante, anti-glicación y buffer muscular.",
       "mecanismoAccion": "Tampona el ácido láctico muscular; secuestra ROS y aldehídos reactivos; reduce la glicación de proteínas.",
@@ -5386,8 +5386,8 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "rendimiento",
         "fatiga muscular",
+        "rendimiento",
         "resistencia"
       ],
       "descripcion": "Aminoácido precursor de la carnosina muscular. Aumenta el buffer del ácido láctico. Eficacia deportiva (Cochrane).",
@@ -5438,8 +5438,8 @@
       ],
       "indicaciones": [
         "cognitivo",
-        "memoria",
         "glaucoma (coadyuvante)",
+        "memoria",
         "neuroprotección"
       ],
       "descripcion": "Precursor de la fosfatidilcolina y acetilcolina. Mejora la función cognitiva y la neuroprotección.",
@@ -5486,9 +5486,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "Alzheimer (coadyuvante investigacional)",
         "cognitivo",
-        "memoria",
-        "Alzheimer (coadyuvante investigacional)"
+        "memoria"
       ],
       "descripcion": "Inhibidor natural de la acetilcolinesterasa. Mejora la memoria. Investigación en Alzheimer.",
       "mecanismoAccion": "Inhibe la acetilcolinesterasa (selectiva y reversible); aumenta la acetilcolina cerebral.",
@@ -5538,10 +5538,10 @@
         "endocrino"
       ],
       "indicaciones": [
+        "coadyuvante oncológico",
         "detox",
-        "metabolismo estrogénico",
         "hepático",
-        "coadyuvante oncológico"
+        "metabolismo estrogénico"
       ],
       "descripcion": "Inhibe la β-glucuronidasa bacteriana, favoreciendo la eliminación de tóxicos y estrógenos conjugados.",
       "mecanismoAccion": "Inhibe la β-glucuronidasa intestinal (evita la desconjugación de estrógenos y tóxicos); favorece la eliminación (fase II).",
@@ -5589,11 +5589,11 @@
         "inmune"
       ],
       "indicaciones": [
-        "dolor",
-        "neuropatía",
-        "inflamación",
         "ciática",
-        "dolor crónico"
+        "dolor",
+        "dolor crónico",
+        "inflamación",
+        "neuropatía"
       ],
       "descripcion": "Lipido endógeno con acción analgésica y antiinflamatoria. Modula el sistema endocannabinoide y los mastocitos.",
       "mecanismoAccion": "Modula el sistema endocannabinoide (PPAR-α), estabiliza los mastocitos y reduce la neuroinflamación.",
@@ -5642,8 +5642,8 @@
       ],
       "indicaciones": [
         "autofagia",
-        "mitocondrial",
         "longevidad",
+        "mitocondrial",
         "muscular"
       ],
       "descripcion": "Metabolito bacteriano de los elagitáninos (granada) que induce la mitofagia (limpieza mitocondrial).",
@@ -5692,9 +5692,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "antioxidante",
         "energía",
         "longevidad",
-        "antioxidante",
         "metabolismo"
       ],
       "descripcion": "Precursor de NAD+ con mejor absorción que la niacinamida. Aumenta el NAD+ celular de forma segura.",
@@ -5744,9 +5744,9 @@
       ],
       "indicaciones": [
         "metabolismo estrogénico",
-        "SPM",
+        "próstata",
         "SOP",
-        "próstata"
+        "SPM"
       ],
       "descripcion": "Compuesto de las crucíferas que se convierte en DIM en el estómago. Favorece el metabolismo estrogénico.",
       "mecanismoAccion": "Se convierte en DIM en el estómago; induce las enzimas CYP1A1 que canalizan los estrógenos hacia 2-OH.",
@@ -5795,10 +5795,10 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
+        "detox amoníaco",
         "longevidad",
-        "síntesis de colágeno",
         "metabolismo",
-        "detox amoníaco"
+        "síntesis de colágeno"
       ],
       "descripcion": "Intermediario del ciclo de Krebs con investigación en longevidad. Reduce la inflamación y el amoníaco.",
       "mecanismoAccion": "Intermediario del ciclo de Krebs (ATP); donante de carbono para el colágeno; reduce el amoníaco; inhibe el inflamasoma.",
@@ -5845,11 +5845,11 @@
         "inmune"
       ],
       "indicaciones": [
+        "candidiasis (coadyuvante)",
         "diarrea",
         "diarrea del viajero",
         "diarrea por antibióticos",
-        "intestinal",
-        "candidiasis (coadyuvante)"
+        "intestinal"
       ],
       "descripcion": "Levadura probiótica no patógena que sobrevive a los antibióticos. Prevención y tratamiento de diarreas.",
       "mecanismoAccion": "Protege la mucosa intestinal, inactiva las toxinas bacterianas (receptor), modula la microbiota y la inmunidad.",
@@ -5897,10 +5897,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "diarrea",
-        "diarrea por antibióticos",
-        "diarrea del viajero",
         "alergias",
+        "diarrea",
+        "diarrea del viajero",
+        "diarrea por antibióticos",
         "eccema"
       ],
       "descripcion": "Cepa probiótica más estudiada del mundo. Prevención y tratamiento de diarreas y eccema infantil.",
@@ -5951,11 +5951,11 @@
         "endocrino"
       ],
       "indicaciones": [
-        "intestinal",
-        "vaginal",
-        "diarrea",
         "colesterol",
-        "inmunidad"
+        "diarrea",
+        "inmunidad",
+        "intestinal",
+        "vaginal"
       ],
       "descripcion": "Cepa probiótica clásica para digestión, salud vaginal y metabolismo del colesterol.",
       "mecanismoAccion": "Produce lactasa (digestión de lactosa), bacteriocinas (antimicrobiano), y reduce el colesterol (BSH).",
@@ -6004,10 +6004,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "intestinal",
-        "SII",
+        "ansiedad",
         "inflamación",
-        "ansiedad"
+        "intestinal",
+        "SII"
       ],
       "descripcion": "Cepa versátil con evidencia en SII y eje intestino-cerebro. Mejora la barrera intestinal.",
       "mecanismoAccion": "Mejora la barrera intestinal (tight junctions), reduce la inflamación, modula el eje intestino-cerebro.",
@@ -6053,10 +6053,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "inmunidad",
-        "intestinal",
         "gripe",
-        "infecciones respiratorias"
+        "infecciones respiratorias",
+        "inmunidad",
+        "intestinal"
       ],
       "descripcion": "Cepa inmunomoduladora con evidencia en reducción de infecciones respiratorias.",
       "mecanismoAccion": "Estimula las células NK y la producción de IgA; reduce la duración de infecciones respiratorias.",
@@ -6105,9 +6105,9 @@
       ],
       "indicaciones": [
         "cólico infantil",
+        "higiene bucal",
         "intestinal",
-        "vaginal",
-        "higiene bucal"
+        "vaginal"
       ],
       "descripcion": "Cepa que produce reuterina (antimicrobiano). Eficaz en cólico infantil y salud vaginal/bucal.",
       "mecanismoAccion": "Produce reuterina (antimicrobiano de amplio espectro); coloniza mucosa vaginal y oral; reduce el cólico.",
@@ -6156,11 +6156,11 @@
         "nervioso"
       ],
       "indicaciones": [
-        "intestinal",
-        "SII",
         "ansiedad",
         "estrés",
-        "inmunidad"
+        "inmunidad",
+        "intestinal",
+        "SII"
       ],
       "descripcion": "Bifidobacteria predominante en adultos. Evidencia en SII y eje intestino-cerebro (estrés).",
       "mecanismoAccion": "Mejora la barrera intestinal, reduce la inflamación sistémica, modula el eje HHA (estrés/ansiedad).",
@@ -6206,10 +6206,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "intestinal",
         "alergias",
         "eccema",
-        "inmunidad infantil"
+        "inmunidad infantil",
+        "intestinal"
       ],
       "descripcion": "Bifidobacteria predominante en lactantes. Eficaz en alergias y eccema pediátrico.",
       "mecanismoAccion": "Modula la respuesta Th1/Th2 (alergias), mejora la barrera intestinal, produce ácidos grasos de cadena corta.",
@@ -6255,10 +6255,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "intestinal",
-        "inmunidad",
+        "barrera intestinal",
         "infecciones",
-        "barrera intestinal"
+        "inmunidad",
+        "intestinal"
       ],
       "descripcion": "Bifidobacteria clave para la barrera intestinal y la inmunidad de mucosa.",
       "mecanismoAccion": "Fortalece las tight junctions (barrera), estimula IgA, produce butirato (energía colonocito).",
@@ -6305,10 +6305,10 @@
       ],
       "indicaciones": [
         "ansiedad",
+        "calcio",
         "estrés",
-        "sueño",
         "osteoporosis",
-        "calcio"
+        "sueño"
       ],
       "descripcion": "Cepa psicrobiótica con evidencia en ansiedad, sueño y absorción de calcio.",
       "mecanismoAccion": "Modula el eje HHA (reduce cortisol), produce péptidos bioactivos (GABA), mejora la absorción de calcio.",
@@ -6352,10 +6352,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "intolerancia a la lactosa",
         "diarrea",
+        "digestivo",
         "intestinal",
-        "digestivo"
+        "intolerancia a la lactosa"
       ],
       "descripcion": "Cepa del yogur que produce lactasa. Mejora la digestión de la lactosa.",
       "mecanismoAccion": "Produce lactasa (β-galactosidasa) que hidroliza la lactosa en el intestino; reduce los síntomas de intolerancia.",
@@ -6404,10 +6404,10 @@
       ],
       "indicaciones": [
         "cabello",
-        "uñas",
-        "piel",
         "colágeno",
-        "huesos"
+        "huesos",
+        "piel",
+        "uñas"
       ],
       "descripcion": "Mineral traza esencial para la síntesis de colágeno y la salud de piel, uñas y huesos.",
       "mecanismoAccion": "Cofactor de la prolil hidroxilasa (colágeno); estimula la síntesis de colágeno tipo I y elastina.",
@@ -6457,10 +6457,10 @@
       ],
       "indicaciones": [
         "detox amoníaco",
-        "hepático",
         "fatiga",
-        "sueño",
-        "rendimiento"
+        "hepático",
+        "rendimiento",
+        "sueño"
       ],
       "descripcion": "Aminoácido del ciclo de la urea que detoxifica el amoníaco. Mejora el sueño y la fatiga hepática.",
       "mecanismoAccion": "Cofactor del ciclo de la urea (detox amoníaco); reduce la fatiga hepática; mejora la calidad del sueño.",
@@ -6508,10 +6508,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "energía",
-        "rendimiento",
         "concentración",
-        "fatiga"
+        "energía",
+        "fatiga",
+        "rendimiento"
       ],
       "descripcion": "Análogo de la cafeína con menor tolerancia y sin taquicardia. Energía sostenida.",
       "mecanismoAccion": "Bloquea los receptores de adenosina (como la cafeína) pero con menor afinidad; no produce tolerancia rápida.",
@@ -6559,11 +6559,11 @@
         "inmune"
       ],
       "indicaciones": [
+        "calcio",
+        "inmunidad",
         "intestinal",
         "microbiota",
-        "tránsito",
-        "inmunidad",
-        "calcio"
+        "tránsito"
       ],
       "descripcion": "Fibra prebiótica que alimenta a las bifidobacterias. Mejora la microbiota y la absorción de calcio.",
       "mecanismoAccion": "Fibra fermentable que alimenta a las bifidobacterias; produce butirato (energía colonocito); mejora la absorción de calcio.",
@@ -6612,11 +6612,11 @@
       ],
       "indicaciones": [
         "articulaciones",
-        "piel",
         "cabello",
-        "uñas",
+        "cicatrización",
         "huesos",
-        "cicatrización"
+        "piel",
+        "uñas"
       ],
       "descripcion": "Péptidos bioactivos de colágeno. Mejora elasticidad de piel y salud articular.",
       "mecanismoAccion": "Los péptidos (Pro-Hyp, Hyp-Gly) estimulan fibroblastos → sintesis de colágeno y ácido hialurónico. Mejora matriz cartilaginosa.",
@@ -6676,11 +6676,11 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "inmunidad",
         "antioxidante",
         "fatiga",
-        "resfriado",
-        "piel"
+        "inmunidad",
+        "piel",
+        "resfriado"
       ],
       "descripcion": "Fruta con la mayor concentración natural de Vitamina C (hasta 1700mg/100g, 30x más que naranja).",
       "mecanismoAccion": "Vitamina C natural con cofactores (bioflavonoides, antocianinas) → mejor biodisponibilidad que ácido ascórbico sintético. Estimula leucocitos y síntesis de colágeno.",
@@ -6742,11 +6742,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "inmunidad",
         "antioxidante",
-        "humor",
         "glucosa",
-        "hígado"
+        "humor",
+        "hígado",
+        "inmunidad"
       ],
       "descripcion": "Fruta amazónica con altísima concentración de Vitamina C (2000-3000mg/100g) y antocianinas.",
       "mecanismoAccion": "Vitamina C + elagitaninos + antocianinas. Efecto antioxidante sinérgico. Mejora marcadores inflamatorios y oxidativos.",
@@ -6804,11 +6804,11 @@
         "hepatico"
       ],
       "indicaciones": [
-        "fatiga",
-        "colesterol",
-        "inmunidad",
-        "detox",
         "anemia",
+        "colesterol",
+        "detox",
+        "fatiga",
+        "inmunidad",
         "saciedad"
       ],
       "descripcion": "Microalga con 60-70% proteína completa. Rica en ficocianina, hierro y B12 análogos.",
@@ -6872,12 +6872,12 @@
         "metabolico"
       ],
       "indicaciones": [
-        "detox",
         "colesterol",
-        "inmunidad",
-        "metales pesados",
+        "detox",
+        "glucosa",
         "hígado",
-        "glucosa"
+        "inmunidad",
+        "metales pesados"
       ],
       "descripcion": "Alga verde unicelular con clorofila y factor de crecimiento. Quelante de metales pesados.",
       "mecanismoAccion": "La pared celular (espina) quel metales pesados. El CGF (Chlorella Growth Factor) estimula regeneración celular. Reduce colesterol por fibra y clorofila.",
@@ -6937,12 +6937,12 @@
         "nervioso"
       ],
       "indicaciones": [
-        "fatiga",
-        "inmunidad",
-        "longevidad",
-        "humor",
         "colesterol",
-        "fertilidad"
+        "fatiga",
+        "fertilidad",
+        "humor",
+        "inmunidad",
+        "longevidad"
       ],
       "descripcion": "Alimento de la abeja reina. Rica en proteína realactina, vitaminas B y 10-HDA.",
       "mecanismoAccion": "La proteína realactina estimula sistema inmune. El 10-HDA tiene actividad antibiótica y estimula diferenciación neural. Modula hormonalmente.",
@@ -7004,12 +7004,12 @@
         "metabolico"
       ],
       "indicaciones": [
+        "alergias",
+        "deportivo",
         "fatiga",
         "inmunidad",
-        "alergias",
-        "saciedad",
         "nutrición",
-        "deportivo"
+        "saciedad"
       ],
       "descripcion": "Superfood con todos los aminoácidos esenciales, vitaminas y minerales. Inmunomodulador.",
       "mecanismoAccion": "Rico en proteínas (25%), lecitina, vitaminas B, rutina. Reduce histamina por exposición gradual (inmunoterapia oral natural).",
@@ -7071,12 +7071,12 @@
         "respiratorio"
       ],
       "indicaciones": [
-        "garganta",
-        "inmunidad",
-        "heridas",
         "antibiótico",
+        "boca",
+        "garganta",
         "gripe",
-        "boca"
+        "heridas",
+        "inmunidad"
       ],
       "descripcion": "Resina con +300 compuestos activos. Antibacteriano, antiviral y cicatrizante natural.",
       "mecanismoAccion": "La pinocembrina y galangina (flavonoides) inhiben bacterias y virus. El ácido cafeico estimula inmunidad. Acelera epitelización.",
@@ -7141,12 +7141,12 @@
         "endocrino"
       ],
       "indicaciones": [
-        "fatiga",
-        "testosterona",
         "cognitivo",
-        "longevidad",
         "energía",
-        "hígado"
+        "fatiga",
+        "hígado",
+        "longevidad",
+        "testosterona"
       ],
       "descripcion": "Resina mineral del Himalaya. Rica en ácido fúlvico (>60%), DCP y minerales.",
       "mecanismoAccion": "El ácido fúlvico mejora transporte de nutrientes a células y mitocondrias. El dibenzo-α-pirona (DCP) estimula ATP y función mitocondrial.",
@@ -7210,12 +7210,11 @@
         "digestivo"
       ],
       "indicaciones": [
+        "colesterol",
         "hígado",
-        "colesterol",
+        "hígado graso",
         "memoria",
-        "colesterol",
-        "vesícula",
-        "hígado graso"
+        "vesícula"
       ],
       "descripcion": "Fosfolípido esencial para membranas celulares y transporte de colesterol. Colina precursor de acetilcolina.",
       "mecanismoAccion": "La fosfatidilcolina repara membranas hepatocelulares. Estimula exportación de triglicéridos hepáticos (VLDL). La colina → acetilcolina (neurotransmisor memoria).",
@@ -7273,10 +7272,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "insomnio",
-        "depresión",
         "ansiedad",
+        "depresión",
         "humor",
+        "insomnio",
         "sueño"
       ],
       "descripcion": "Aminoácido esencial precursor de serotonina y melatonina. Mejora sueño y humor.",
@@ -7341,9 +7340,9 @@
         "inmune"
       ],
       "indicaciones": [
+        "candidiasis vaginal",
         "cistitis",
-        "infeccion_urinaria",
-        "candidiasis_vaginal"
+        "infección urinaria"
       ],
       "descripcion": "Azúcar simple (monosacárido) que se excreta rapidamente por vía renal. Meta-análisis Cochrane y ensayos clínicos (Kranjčec 2014) respaldan su uso en prevención de ITU recurrente.",
       "mecanismoAccion": "Satura la adhesina FimH de las fimbrias tipo 1 de E. coli uropatógena, impidiendo la adherencia al urotelio. La bacteria es eliminada por micción.",
@@ -7393,10 +7392,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "cicatrizacion",
         "artrosis",
-        "piel",
-        "osteoporosis"
+        "cicatrizacion",
+        "osteoporosis",
+        "piel"
       ],
       "descripcion": "Aminoácido que constituye aproximadamente el 25% de las cadenas de colágeno. La hidroxiprolina es única del colágeno y marcador de su síntesis.",
       "mecanismoAccion": "Componente estructural esencial del colágeno (junto con glicina y hidroxiprolina). Estabiliza la triple hélice del colágeno mediante hidroxilación dependiente de vitamina C.",
@@ -7442,10 +7441,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "litiasis_renal",
+        "alcalinización urinaria",
         "gota",
         "hipocalemia",
-        "alcalinizacion_urinaria"
+        "litiasis renal"
       ],
       "descripcion": "Sal de potasio que alcaliniza la orina. Indicado en profilaxis de litiasis úrica y cálcica. Aprobado por FDA para hipocitraturia.",
       "mecanismoAccion": "Metabolizado a bicarbonato, alcaliniza orina (pH >6.5) disolviendo cálculos úricos y previniendo precipitación de oxalato cálcico. Reposición de potasio.",
@@ -7500,8 +7499,8 @@
       "indicaciones": [
         "depresion",
         "dolor",
-        "vitiligo",
-        "libido_bajo"
+        "libido bajo",
+        "vitiligo"
       ],
       "descripcion": "Aminoácido esencial precursor de tirosina, L-DOPA, dopamina, noradrenalina y adrenalina. DLPA (forma racémica) contiene también D-fenilalanina (inhibe encefalinasas).",
       "mecanismoAccion": "Precursor de catecolaminas (dopamina, noradrenalina). La D-fenilalanina inhibe carboxipeptidasas que degradan encefalinas/endorfinas (efecto analgésico).",
@@ -7550,10 +7549,10 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "candidiasis vaginal",
+        "dermatitis seborreica",
         "onicomicosis",
-        "pie_atleta",
-        "candidiasis_vaginal",
-        "dermatitis_seborreica"
+        "pie de atleta"
       ],
       "descripcion": "Ácido graso de cadena media (C11) derivado del aceite de ricino. Aprobado por FDA como antifúngico tópico OTC. Eficaz contra dermatofitos y Candida.",
       "mecanismoAccion": "Inhibe la enzima citocromo P450 del hongo (síntesis de ergosterol de membrana) y altera la permeabilidad de la membrana celular fúngica. pH ácido desfavorable para dermatofitos.",
@@ -7604,9 +7603,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "declive_cognitivo",
         "alzheimer",
-        "ictus_recuperacion",
+        "declive cognitivo",
+        "recuperación ictus",
         "rendimiento",
         "sarcopenia"
       ],
@@ -7659,10 +7658,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "intestinal",
-        "SII",
         "dispepsia",
-        "inmunidad"
+        "inmunidad",
+        "intestinal",
+        "SII"
       ],
       "descripcion": "Probiótico esporulado resistente a calor y antibióticos, con alta supervivencia gástrica. Eficaz en SII, disbiosis por antibióticos e inmunidad.",
       "mecanismoAccion": "Espora sobrevive pH gástrico y germina en intestino produciendo ácido láctico. Modula microbiota, reduce gases SII y refuerza barrera inmune (IgA).",
@@ -7711,9 +7710,9 @@
         "inmune"
       ],
       "indicaciones": [
-        "obesidad",
         "glucosa",
         "inmunidad",
+        "obesidad",
         "vaginosis"
       ],
       "descripcion": "Probiótico con acción sobre adiposidad y glucemia. Reduce grasa visceral y mejora perfil metabólico. También urogenital en candidiasis/recurrente.",
@@ -7763,10 +7762,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "inmunidad",
-        "antioxidante",
         "acne",
-        "inflamacion"
+        "antioxidante",
+        "inflamacion",
+        "inmunidad"
       ],
       "descripcion": "Fruto tropical rico en xantonas (α-mangostina) con potente actividad antioxidante, antiinflamatoria y antimicrobiana. Usado en acné, inflamación e inmunidad.",
       "mecanismoAccion": "Xantonas (α-mangostina) inhiben COX-2, NF-κB y son antioxidantes potentes. Antimicrobiano (P. acnes). Hepatoprotectora.",
@@ -7816,10 +7815,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "energia",
         "cabello",
-        "piel",
-        "colesterol"
+        "colesterol",
+        "energia",
+        "piel"
       ],
       "descripcion": "Forma estandarizada de B5 precursora de CoA, esencial para energía y síntesis de colesterol.",
       "mecanismoAccion": "Precursor de Coenzima A, cofactor en ciclo de Krebs, beta-oxidación y síntesis de esteroides.",
@@ -7872,10 +7871,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "depresion",
         "anemia",
-        "homocisteina",
-        "cognitivo"
+        "cognitivo",
+        "depresion",
+        "homocisteina"
       ],
       "descripcion": "Forma activa del folato que evita el bloqueo MTHFR (presente en 30-50% de población).",
       "mecanismoAccion": "Cofactor metil-donor en síntesis de serotonina, dopamina y noradrenalina. Potencia efecto de ISRS.",
@@ -7933,9 +7932,9 @@
       ],
       "indicaciones": [
         "anemia",
-        "neuropatia",
         "cognitivo",
-        "fatiga"
+        "fatiga",
+        "neuropatia"
       ],
       "descripcion": "Forma activa de B12 que no requiere conversión, ideal en déficit o polimorfismos.",
       "mecanismoAccion": "Cofactor en metionina sintasa (metilación). Mielinización nerviosa. Síntesis succinil-CoA.",
@@ -7990,9 +7989,9 @@
         "digestivo"
       ],
       "indicaciones": [
-        "hepatico",
         "cognitivo",
-        "colageno"
+        "colageno",
+        "hepatico"
       ],
       "descripcion": "Fosfolípido principal de membranas celulares y precursor de colina y acetilcolina.",
       "mecanismoAccion": "Componente estructural de membranas. Precursor de acetilcolina. Soporte VLDL hepático.",
@@ -8045,8 +8044,8 @@
       ],
       "indicaciones": [
         "cognitivo",
-        "mitocondrias",
-        "energia"
+        "energia",
+        "mitocondrias"
       ],
       "descripcion": "Compuesto quinónico que estimula biogénesis mitocondrial (vía PGC-1α).",
       "mecanismoAccion": "Activa PGC-1α y CREB. Estimula NRF2. Antioxidante redox-ciclo.",
@@ -8098,8 +8097,8 @@
       ],
       "indicaciones": [
         "energia",
-        "inmunidad",
-        "fatiga"
+        "fatiga",
+        "inmunidad"
       ],
       "descripcion": "Polen estandarizado con perfil aminoacídico, vitaminas y flavonoides.",
       "mecanismoAccion": "Nutrientes coadyuvantes energéticos. Antioxidante flavonoide.",
@@ -8153,10 +8152,10 @@
         "digestivo"
       ],
       "indicaciones": [
-        "inmunidad",
         "acne",
+        "hierro",
         "infecciones",
-        "hierro"
+        "inmunidad"
       ],
       "descripcion": "Glicoproteina con acción antimicrobiana quelante de hierro y moduladora inmune.",
       "mecanismoAccion": "Secuestra hierro de patógenos. Modula citocinas. Mejora absorción de hierro.",
@@ -8259,9 +8258,9 @@
         "nervioso"
       ],
       "indicaciones": [
-        "envejecimiento",
+        "cognitivo",
         "energia",
-        "cognitivo"
+        "envejecimiento"
       ],
       "descripcion": "Precursor directo de NAD+ que restaura niveles de NAD en modelos de envejecimiento.",
       "mecanismoAccion": "Convertido a NAD+ vía NMNAT. Activa sirtuinas (SIRT1, SIRT3). Mejora función mitocondrial.",
@@ -8313,9 +8312,9 @@
         "cardiovascular"
       ],
       "indicaciones": [
-        "ojo_seco",
-        "piel",
         "cardiovascular",
+        "ojo seco",
+        "piel",
         "rendimiento"
       ],
       "descripcion": "Xantofila de microalga con potencia antioxidante 6000x vitamina E.",
@@ -8367,10 +8366,10 @@
         "ocular"
       ],
       "indicaciones": [
-        "ojo_seco",
+        "cognitivo",
         "dmae",
         "ocular",
-        "cognitivo"
+        "ojo seco"
       ],
       "descripcion": "Complejo xantofílico estandarizado para densidad de pigmento macular.",
       "mecanismoAccion": "Filtran luz azul. Antioxidante retiniano. Mejoran contraste y agudeza visual.",
@@ -8421,8 +8420,8 @@
         "nervioso"
       ],
       "indicaciones": [
-        "cognitivo",
         "ansiedad",
+        "cognitivo",
         "insomnio",
         "memoria"
       ],
@@ -8479,10 +8478,10 @@
         "endocrino"
       ],
       "indicaciones": [
-        "inmunidad",
         "acne",
-        "tiroides",
-        "cabello"
+        "cabello",
+        "inmunidad",
+        "tiroides"
       ],
       "descripcion": "Forma quelada de zinc con alta biodisponibilidad superior a óxido de zinc.",
       "mecanismoAccion": "Cofactor de >300 enzimas. Timulina. Metalotioneinas. 5-alfa-reductasa.",
@@ -8542,9 +8541,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "litiasis_renal",
         "calambres",
-        "cardiovascular"
+        "cardiovascular",
+        "litiasis renal"
       ],
       "descripcion": "Forma alcalinizante de potasio que previene litiasis renal de ácido úrico y calcio.",
       "mecanismoAccion": "Alcaliniza orina. Reduce excreción de calcio. Quelante citrato del calcio urinario.",
@@ -8604,8 +8603,8 @@
       ],
       "indicaciones": [
         "anemia",
-        "fatiga",
-        "embarazo"
+        "embarazo",
+        "fatiga"
       ],
       "descripcion": "Hierro aminoácido quelado con menor GI adverso y mejor tolerancia que sulfato ferroso.",
       "mecanismoAccion": "Transporte peptídico. No compite con otros minerales. Menor oxidación luminal.",
@@ -8665,8 +8664,8 @@
         "inmune"
       ],
       "indicaciones": [
-        "tiroides",
-        "inmunidad"
+        "inmunidad",
+        "tiroides"
       ],
       "descripcion": "Solución estandarizada de yodo para soporte tiroideo controlado y protección radiológica.",
       "mecanismoAccion": "Sustrato para síntesis T3/T4. Antioxidante tiroideo. Protector post-radiación.",
@@ -8726,9 +8725,9 @@
       ],
       "indicaciones": [
         "cabello",
-        "piel",
+        "colageno",
         "huesos",
-        "colageno"
+        "piel"
       ],
       "descripcion": "Forma biodisponible de silicio (ch-OSA) para síntesis de colágeno y matriz ósea.",
       "mecanismoAccion": "Cofactor de prolil-hidroxilasa en síntesis de colágeno. Estructura matriz ósea.",
@@ -8839,8 +8838,8 @@
         "metabolico"
       ],
       "indicaciones": [
-        "glucosa",
-        "diabetes"
+        "diabetes",
+        "glucosa"
       ],
       "descripcion": "Sal de vanadio con efecto insulinomimético en modelos celulares y humanos.",
       "mecanismoAccion": "Inhibe tirosina-fosfatasas via ATP. Insulinomimético. Mejora captación glucosa.",
@@ -8893,8 +8892,8 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "esclerosis_multiple",
         "cabello",
+        "esclerosis múltiple",
         "piel"
       ],
       "descripcion": "Biotina farmacológica (100-300mg) en estudio para esclerosis multiple progressive.",
@@ -8946,9 +8945,9 @@
         "nervioso"
       ],
       "indicaciones": [
+        "cognitivo",
         "energia",
-        "estres",
-        "cognitivo"
+        "estres"
       ],
       "descripcion": "Complejo B equilibrado con dosis moderadas (50mg) de B1, B2, B3, B5, B6 y 50mcg B12 + folato.",
       "mecanismoAccion": "Coenzimas del metabolismo energético. Cofactores de neurotransmisores.",
@@ -9009,9 +9008,9 @@
         "cardiovascular"
       ],
       "indicaciones": [
+        "cardiovascular",
         "huesos",
-        "inmunidad",
-        "cardiovascular"
+        "inmunidad"
       ],
       "descripcion": "Combinación sinérgica D3+K2 (MK-7) para homeostasis calcio: absorción + dirigido a hueso.",
       "mecanismoAccion": "D3: absorción intestinal calcio. K2 MK-7: activa osteocalcina y MGP (evita calcificación vascular).",
@@ -9069,10 +9068,10 @@
         "metabolico"
       ],
       "indicaciones": [
+        "articular",
         "cardiovascular",
         "cognitivo",
-        "colesterol",
-        "articular"
+        "colesterol"
       ],
       "descripcion": "EPA/DHA unidos a fosfolípidos (krill) con absorción superior a triglicéridos.",
       "mecanismoAccion": "EPA/DHA antiinflamatorios via resolvinas. Reduce triglicéridos. Mejora fluidez membrana.",
@@ -9182,8 +9181,8 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "fatiga",
         "calambres",
+        "fatiga",
         "migraña"
       ],
       "descripcion": "Forma lipídica de magnesio con alta absorción y tolerancia GI óptima.",
@@ -9240,9 +9239,9 @@
         "inmune"
       ],
       "indicaciones": [
-        "higado_graso",
         "antioxidante",
-        "inmunidad_baja",
+        "hígado graso",
+        "inmunidad baja",
         "tos"
       ],
       "descripcion": "Aminoácido sulfurado precursor del glutatión (GSH). Forma el tripéptido glutatión junto con ácido glutámico y glicina, principal antioxidante endógeno.",
@@ -9292,11 +9291,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "hepático",
-        "hígado_graso",
         "cognitivo",
-        "memoria",
-        "colina"
+        "colina",
+        "hepático",
+        "hígado graso",
+        "memoria"
       ],
       "descripcion": "Nutriente esencial lipotropico y precursor de acetilcolina. Esencial para higado graso.",
       "mecanismoAccion": "Lipotropico (previene acumulacion grasa hepatica); precursor de fosfatidilcolina y acetilcolina.",
@@ -9354,12 +9353,12 @@
         "metabolico"
       ],
       "indicaciones": [
+        "cardiovascular",
+        "energía",
         "fatiga",
         "fibromialgia",
-        "energía",
-        "cardiovascular",
-        "rendimiento",
-        "mitocondrias"
+        "mitocondrias",
+        "rendimiento"
       ],
       "descripcion": "Pentosa precursora de ATP. Mejora regeneracion energetica mitocondrial en fibromialgia y fatiga cronica.",
       "mecanismoAccion": "Acelera resintesis de ATP via via de las pentosas fosfato; mejora funcion mitocondrial.",
@@ -9416,12 +9415,12 @@
         "hepatico"
       ],
       "indicaciones": [
-        "prevencion_oncologica",
+        "detox",
         "estrógenos",
+        "hepático",
         "mama",
         "papiloma",
-        "hepático",
-        "detox"
+        "prevención oncológica"
       ],
       "descripcion": "Compuesto de cruciferas (brocoli) que modula metabolismo de estrogenos hacia metabolitos protectores (2-OH).",
       "mecanismoAccion": "Induce CYP1A1/1A2 favoreciendo 2-hidroxilacion de estrogenos (protectores) sobre 16-alfa (proliferativos).",
@@ -9477,11 +9476,11 @@
         "metabolico"
       ],
       "indicaciones": [
-        "muscular",
-        "sarcopenia",
-        "rendimiento",
         "glucosa",
-        "recuperación"
+        "muscular",
+        "recuperación",
+        "rendimiento",
+        "sarcopenia"
       ],
       "descripcion": "Aminoacido ramificado esencial y gatillo de la sintesis proteica muscular via mTOR.",
       "mecanismoAccion": "Activa mTORC1 estimulando sintesis proteica; regula glucemia.",
@@ -9539,10 +9538,10 @@
       ],
       "indicaciones": [
         "antioxidante",
-        "vision",
-        "piel",
+        "fotosensibilidad",
         "inmunidad",
-        "fotosensibilidad"
+        "piel",
+        "vision"
       ],
       "descripcion": "Carotenoide precursor de vitamina A. Antioxidante liposoluble. No tóxico (el cuerpo convierte solo lo necesario).",
       "mecanismoAccion": "Cleavado por β-caroteno oxigenasa (BCO1) en intestino para formar retinol. Antioxidante que secuestra oxígeno singulete y peroxilos.",
@@ -9606,11 +9605,11 @@
         "dermatologico"
       ],
       "indicaciones": [
+        "boca",
         "energía",
         "migrana",
         "ojos",
-        "piel",
-        "boca"
+        "piel"
       ],
       "descripcion": "Precursor de coenzimas FMN y FAD. Esencial para metabolismo energético y protección antioxidante.",
       "mecanismoAccion": "Convertida a FMN y FAD (flavoproteínas). Cofactor en cadena respiratoria, β-oxidación, y glutatión reductasa. Protege contra estrés oxidativo.",
@@ -9674,10 +9673,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "embarazo",
-        "homocisteina",
         "anemia",
         "cardiovascular",
+        "embarazo",
+        "homocisteina",
         "neural"
       ],
       "descripcion": "Vitamina B esencial para síntesis de ADN, metilación y prevención de defectos del tubo neural. Forma sintética: ácido fólico. Forma activa: 5-MTHF.",
@@ -9741,10 +9740,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "piel",
-        "filtro_solar",
+        "canas",
         "cicatrización",
-        "canas"
+        "filtro solar",
+        "piel"
       ],
       "descripcion": "Componente del ácido fólico. Usado tópicamente como filtro solar y en dermatología.",
       "mecanismoAccion": "Componente estructural del ácido fólico (bacterias lo sintetizan, humanos no). Filtro UV-B (280-320nm). Posible estimulación de colágeno y melanina.",
@@ -9800,9 +9799,9 @@
         "metabolico"
       ],
       "indicaciones": [
+        "cognitivo",
         "energía",
         "fatiga",
-        "cognitivo",
         "Parkinson"
       ],
       "descripcion": "Forma reducida de NAD+. Coenzima esencial para producción de ATP en cadena respiratoria mitocondrial.",
@@ -9861,9 +9860,9 @@
       ],
       "indicaciones": [
         "articular",
+        "inflamación",
         "intestinal",
-        "piel",
-        "inflamación"
+        "piel"
       ],
       "descripcion": "Aminoazúcar precursor de glicosaminoglicanos para cartílago y mucosa intestinal.",
       "mecanismoAccion": "Precursor de ácido hialurónico y glicosaminoglicanos. Modula la glucosilación de proteínas y la inflamación vía O-GlcNAcylation. Mejora la integridad de la barrera intestinal.",
@@ -9918,8 +9917,8 @@
         "metabolico"
       ],
       "indicaciones": [
-        "colesterol",
         "cardiovascular",
+        "colesterol",
         "glucosa"
       ],
       "descripcion": "Mezcla de alcoholes alifáticos de la caña de azúcar con efecto hipolipemiante.",
@@ -9974,10 +9973,10 @@
         "ocular"
       ],
       "indicaciones": [
-        "cognitivo",
-        "visión",
         "circulación",
-        "memoria"
+        "cognitivo",
+        "memoria",
+        "visión"
       ],
       "descripcion": "Alcaloide semisintético de Vinca minor que mejora la microcirculación cerebral y la cognición.",
       "mecanismoAccion": "Inhibe la fosfodiesterasa-1 (PDE1), elevando cGMP y cAMP cerebrales. Mejora el flujo sanguíneo cerebral sin afectar la presión sistémica. Modula la conductancia de Na+.",
@@ -10033,10 +10032,10 @@
         "ocular"
       ],
       "indicaciones": [
-        "peso",
+        "glaucoma",
         "glucosa",
-        "presión arterial",
-        "glaucoma"
+        "peso",
+        "presión arterial"
       ],
       "descripcion": "Planta india cuya raíz contiene forskolina, activador directo de la adenilato ciclasa.",
       "mecanismoAccion": "La forskolina activa directamente la adenilato ciclasa, aumentando el cAMP intracelular. Estimula la lipólisis, la secreción de insulina y reduce la presión intraocular.",
@@ -10088,10 +10087,10 @@
         "dermatologico"
       ],
       "indicaciones": [
-        "hepático",
         "antioxidante",
-        "piel",
-        "colesterol"
+        "colesterol",
+        "hepático",
+        "piel"
       ],
       "descripcion": "Forma biodisponible de silimarina (cardo mariano) complejada con fosfatidilcolina, con absorción 10x superior al extracto seco.",
       "mecanismoAccion": "Los flavonolignanos (silibina, silicristina, silidianina) estabilizan la membrana hepatocelular, inhiben la peroxidación lipídica y estimulan la ARN polimerasa I (regeneración hepática). Complejada con fosfatidilcolina para mejorar absorción.",
@@ -10145,9 +10144,9 @@
         "urinario"
       ],
       "indicaciones": [
-        "prostata",
-        "colesterol",
         "cardiovascular",
+        "colesterol",
+        "prostata",
         "urinario"
       ],
       "descripcion": "Fitosterol principal de la dieta que bloquea la absorción de colesterol y mejora la sintomatología prostática benigna.",
@@ -10201,10 +10200,10 @@
         "nervioso"
       ],
       "indicaciones": [
-        "visión",
         "antioxidante",
         "cardiovascular",
-        "cognitivo"
+        "cognitivo",
+        "visión"
       ],
       "descripcion": "Carotenoide del azafrán con potente acción antioxidante y de mejora de la microcirculación retiniana y cardiovascular.",
       "mecanismoAccion": "La crocetina inhibe la peroxidación lipídica y mejora la oxigenación tisular vía aumento del transporte de oxígeno. Protege las células retinianas (RPE) y neuronales del estrés oxidativo.",
@@ -10255,9 +10254,9 @@
         "musculoesqueletico"
       ],
       "indicaciones": [
-        "osteoporosis",
+        "articular",
         "hueso",
-        "articular"
+        "osteoporosis"
       ],
       "descripcion": "Mineral traza estructuralmente similar al calcio que se incorpora al hueso y mejora densidad ósea.",
       "mecanismoAccion": "El estroncio se incorpora a la matriz ósea (similar al calcio) y tiene efecto dual: estimula formación osteoblástica (activador Wnt) y reduce la resorción osteoclástica.",
@@ -10317,10 +10316,10 @@
         "metabolico"
       ],
       "indicaciones": [
-        "inmunidad",
-        "fatiga",
         "antioxidante",
-        "energía"
+        "energía",
+        "fatiga",
+        "inmunidad"
       ],
       "descripcion": "Compuesto organogermanio (Ge-132) con efecto inmunomodulador, antioxidante y adaptógeno suave.",
       "mecanismoAccion": "El Ge-132 induce interferón gamma y activa NK/células T, modulando la inmunidad celular. Acción antioxidante por captura de ROS y mejora de la oxigenación tisular.",
@@ -10373,10 +10372,10 @@
         "inmune"
       ],
       "indicaciones": [
-        "intestinal",
-        "inmunidad",
         "alergia",
-        "dispepsia"
+        "dispepsia",
+        "inmunidad",
+        "intestinal"
       ],
       "descripcion": "Cepa probiótica pionera del lactante con potente efecto antiinflamatorio intestinal y modulador de la alergia.",
       "mecanismoAccion": "Produce acetato y lactato que acidifican el colon y refuerzan la barrera epitelial. Modula Treg y reduce IL-6/IL-8. Degradación de oligosacáridos de leche humana (HMO).",

@@ -15,7 +15,7 @@
 
 import { db } from '@/db';
 import type { DbIngredient, IngredientCategory, BodySystem } from '@/db/schema';
-import { normalize, tokenize, canonicalIndication } from '@/lib/text';
+import { normalize, tokenize, canonicalIndication, expandQueryTokens } from '@/lib/text';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 export interface SearchFilters {
@@ -57,8 +57,9 @@ export class IngredientSearchService {
 
   private indexIngredient(ing: DbIngredient): void {
     const tokens = new Map<string, number>();
+    // Al indexar NO filtramos stopwords (los nombres propios pueden contenerlas)
     const addTokens = (text: string, weight: number) => {
-      for (const tok of tokenize(text)) {
+      for (const tok of tokenize(text, false)) {
         tokens.set(tok, Math.max(tokens.get(tok) ?? 0, weight));
       }
     };
@@ -187,9 +188,16 @@ export class IngredientSearchService {
     const queryTokens = tokenize(query);
     if (queryTokens.length === 0) return [];
 
+    // Expansión de consulta: inyectar sinónimos (muelas→dental, etc.)
+    // Los sinónimos van tras los tokens originales y se penalizan (×0.5).
+    const expandedTokens = expandQueryTokens(queryTokens);
+    const synonymTokens = new Set(expandedTokens.slice(queryTokens.length));
+
     const scoreMap = new Map<string, { score: number; bestType: 'exact' | 'fuzzy' | 'synonym' }>();
 
-    for (const token of queryTokens) {
+    for (const token of expandedTokens) {
+      const isSynonym = synonymTokens.has(token);
+      const synonymFactor = isSynonym ? 0.5 : 1;
       for (const [id, entry] of this.index) {
         if (candidateIds && !candidateIds.has(id)) continue;
         let weight = entry.tokens.get(token) ?? 0;
@@ -207,7 +215,9 @@ export class IngredientSearchService {
         }
 
         if (matched) {
+          weight *= synonymFactor;
           const type: 'exact' | 'fuzzy' | 'synonym' =
+            isSynonym ? 'synonym' :
             weight >= 100 ? 'exact' : weight >= 80 ? 'synonym' : 'fuzzy';
           const prev = scoreMap.get(id);
           if (prev) {
