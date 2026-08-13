@@ -277,9 +277,9 @@ existentes reciben los nuevos datos sin borrar IndexedDB.
 - El campo `metadata.total` y `metadata.ultimaActualizacion` deben
   actualizarse tras cada expansión
 
-### KB Expansion History (Rondas 1-16)
+### KB Expansion History (Rondas 1-17)
 
-La KB se expandió en 16 rondas incrementales (ver `git log --oneline`):
+La KB se expandió en 17 rondas incrementales (ver `git log --oneline`):
 
 | Ronda | Commit | Ingredientes | Sinergias | Cambios clave |
 |-------|--------|--------------|-----------|---------------|
@@ -293,10 +293,11 @@ La KB se expandió en 16 rondas incrementales (ver `git log --oneline`):
 | 14 | 754dee8 | 537→536 | 707→824 | +117 sinergias netas (eliminar 78 huérfanos), normalizar 146 cats/sys, dedup preexistentes |
 | 15 | 34a2807 | 536→545 | 824→867 | +9 ingredientes (sistemas poco cubiertos), +43 sinergias grado-1 |
 | 16 | — | 593→610 | 1090→1113 | +17 ingredientes (ocular/urinario/reproductivo/hepático/endocrino), +23 sinergias, +70 sinónimos búsqueda |
+| 17 | ec8aa14 | 610→625 | 1113→1154 | +15 ingredientes (mirtilo, aronia, olmaria, verbeno, pueraria, desmodium, achicoria, esquizandra, estevia, naranjo_amargo, sarmiento, 4 probióticos/prebióticos), +41 sinergias, +35 sinónimos búsqueda |
 
-**Estado final:** 610 ingredientes (217 fito, 117 homeo, 85 aceites, 191
-vitaminas/compuestos), 1113 sinergias, 0 huérfanos.
-KB version: `v217-117-85-191-1113-146-126-n5`.
+**Estado final:** 625 ingredientes (228 fito, 117 homeo, 85 aceites, 195
+vitaminas/compuestos), 1154 sinergias, 0 huérfanos, grado medio 3.7.
+KB version: `v228-117-85-195-1154-146-126`.
 
 > **Nota rondas 14-15:** La ronda 14 detectó que el estado real de la KB
 > (537 ingredientes, 707 sinergias) difería del documentado en AGENTS.md
@@ -306,6 +307,13 @@ KB version: `v217-117-85-191-1113-146-126-n5`.
 > shilajit, l_cisteina, sin_berberina_cromo, 3 refs inválidas a diosmina).
 > La ronda 15 añadió ingredientes para sistemas poco cubiertos
 > (ocular, urinario, reproductivo, hepático, endocrino).
+
+> **Nota ronda 17:** Amplió sistemas poco representados (ocular 28→31,
+> urinario 40→41, reproductivo 42→44, hepático 50→53, endocrino 57→59)
+> y añadió 4 probióticos/prebióticos (L. rhamnosus GG, L. acidophilus,
+> B. longum, arabinogalactano). Sinónimos coloquiales en `QUERY_SYNONYMS`
+> (arandano→mirtilo, kudzu→pueraria, azahar/neroli→naranjo_amargo,
+> vid/OPC→sarmiento, flora→probiótico, schisandra→esquizandra, etc.).
 
 ### Otros completados
 - [x] Routing con react-router-dom v7 (con ProtectedRoute/AuthRoute — auth actualmente en BYPASS)
