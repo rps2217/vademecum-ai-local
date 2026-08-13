@@ -44,6 +44,9 @@ export type {
   SnapshotType,
   IngredientSafety,
   ProtocolIngredient,
+  DbErrorLog,
+  DbFavorite,
+  DbPathology,
 } from './schema';
 
 // Seeders - funciones básicas para populate inicial

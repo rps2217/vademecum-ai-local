@@ -257,6 +257,23 @@ export interface ProtocolIngredient {
 // DEFINICIÓN DE LA BASE DE DATOS
 // ============================================
 
+/** Entrada de log de errores técnicos (no contiene PII). */
+export interface DbErrorLog {
+  id: string;
+  timestamp: number;
+  level: 'error' | 'warn';
+  message: string;
+  stack?: string;
+  context?: string;
+}
+
+/** Ingrediente marcado como favorito por el farmacéutico. */
+export interface DbFavorite {
+  id: string;
+  ingredientId: string;
+  createdAt: number;
+}
+
 export class VademecumDB extends Dexie {
   products!: EntityTable<DbProduct, 'sku'>;
   ingredients!: EntityTable<DbIngredient, 'id'>;
@@ -267,6 +284,8 @@ export class VademecumDB extends Dexie {
   conflicts!: EntityTable<DbConflict, 'id'>;
   snapshots!: EntityTable<DbSnapshot, 'id'>;
   syncMeta!: EntityTable<DbSyncMeta, 'key'>;
+  errorLog!: EntityTable<DbErrorLog, 'id'>;
+  favorites!: EntityTable<DbFavorite, 'id'>;
 
   constructor() {
     super('VademecumDB');
@@ -297,6 +316,21 @@ export class VademecumDB extends Dexie {
       conflicts: 'id, table, recordId, detectedAt, resolution',
       snapshots: 'id, type, timestamp',
       syncMeta: 'key, updatedAt',
+    });
+
+    // v3: añade tablas errorLog (diagnóstico técnico) y favorites (mostrador)
+    this.version(3).stores({
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
+      protocols: 'id, updatedAt, tombstone',
+      pathologies: 'id, nombre, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table, idempotencyKey',
+      conflicts: 'id, table, recordId, detectedAt, resolution',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+      errorLog: 'id, timestamp, level',
+      favorites: 'id, ingredientId, createdAt',
     });
   }
 }

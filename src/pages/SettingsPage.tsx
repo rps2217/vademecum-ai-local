@@ -7,7 +7,7 @@ import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { Badge } from '@/ui/Badge';
 import { useTheme } from '@/app/ThemeProvider';
-import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2, XCircle, AlertTriangle, Loader2 } from 'lucide-react';
+import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2, XCircle, AlertTriangle, Loader2, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useSync } from '@/hooks/useSync';
 import { isSupabaseConfigured, testConnection } from '@/lib/supabase';
@@ -133,6 +133,30 @@ export function SettingsPage() {
                   </div>
                   <Button variant="outline">Importar</Button>
                 </div>
+
+                {/* Logs técnicos para soporte */}
+                <div className="flex items-center justify-between p-4 border rounded-lg">
+                  <div>
+                    <p className="font-medium">Exportar logs técnicos</p>
+                    <p className="text-sm text-muted-foreground">Descarga el registro de errores para soporte</p>
+                  </div>
+                  <Button variant="outline" onClick={async () => {
+                    const { exportErrorLogs } = await import('@/lib/errorLog');
+                    const logs = await exportErrorLogs();
+                    const blob = new Blob([logs || 'Sin errores registrados.'], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `vademecum-logs-${new Date().toISOString().slice(0,10)}.txt`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    toast.success('Logs exportados');
+                  }}>
+                    <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+                    Descargar logs
+                  </Button>
+                </div>
+
                 <div className="flex items-center justify-between p-4 border border-destructive rounded-lg">
                   <div>
                     <p className="font-medium text-destructive">Borrar todo</p>
