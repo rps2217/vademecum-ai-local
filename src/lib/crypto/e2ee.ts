@@ -21,12 +21,26 @@ import { generateMnemonic } from 'bip39';
 
 const KEY_STORAGE_KEY = 'vademecum.keypair';
 const RECOVERY_STORAGE_KEY = 'vademecum.recovery';
+const SESSION_FLAG_KEY = 'vademecum.session';
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutos
 
 let _sessionExpiry: number | null = null;
 
-function getStorage(): Storage {
-  // Usar sessionStorage para reducir riesgo XSS
+/**
+ * Almacenamiento persistente para el keypair CIFRADO.
+ * Los datos están cifrados con PBKDF2 (600k iteraciones) + AES-GCM,
+ * por lo que es seguro guardarlos en localStorage. La clave de cifrado
+ * se deriva de la contraseña del usuario y nunca se persiste.
+ */
+function getPersistentStorage(): Storage {
+  return localStorage;
+}
+
+/**
+ * Almacenamiento de sesión (se limpia al cerrar el navegador).
+ * Solo guarda un flag que indica que la sesión está activa.
+ */
+function getSessionStorage(): Storage {
   return sessionStorage;
 }
 
@@ -37,6 +51,7 @@ function isSessionValid(): boolean {
 
 function refreshSession(): void {
   _sessionExpiry = Date.now() + SESSION_TIMEOUT_MS;
+  getSessionStorage().setItem(SESSION_FLAG_KEY, String(_sessionExpiry));
 }
 
 export interface StoredKeyPair {
@@ -122,7 +137,7 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
     salt: encodeBase64(salt),
   };
   
-  getStorage().setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
+  getPersistentStorage().setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
   refreshSession();
 
   // Generar frase de recuperación BIP-39
@@ -139,7 +154,7 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
     salt: encodeBase64(salt),
   };
   
-  getStorage().setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
+  getPersistentStorage().setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
 
   return { publicKey: stored.publicKey, recoveryPhrase };
 }
@@ -148,11 +163,9 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
  * Desbloquear par de claves con password
  */
 export async function unlockKeyPair(password: string): Promise<Uint8Array | null> {
-  if (!isSessionValid()) return null;
-  
-  const raw = getStorage().getItem(KEY_STORAGE_KEY);
+  const raw = getPersistentStorage().getItem(KEY_STORAGE_KEY);
   if (!raw) return null;
-  
+
   try {
     const stored: StoredKeyPair = JSON.parse(raw);
     const aesKey = await deriveKey(password, decodeBase64(stored.salt));
@@ -161,7 +174,7 @@ export async function unlockKeyPair(password: string): Promise<Uint8Array | null
       decodeBase64(stored.nonce),
       aesKey
     );
-    
+
     if (decrypted) {
       refreshSession();
       return decrypted;
@@ -183,7 +196,7 @@ export async function getStoredSecretKey(password: string): Promise<Uint8Array |
  * Desbloquear con frase de recuperación
  */
 export async function unlockWithRecovery(phrase: string): Promise<Uint8Array | null> {
-  const raw = getStorage().getItem(RECOVERY_STORAGE_KEY);
+  const raw = getPersistentStorage().getItem(RECOVERY_STORAGE_KEY);
   if (!raw) return null;
   
   try {
@@ -211,7 +224,7 @@ export async function unlockWithRecovery(phrase: string): Promise<Uint8Array | n
 export function getPublicKey(): string | null {
   if (!isSessionValid()) return null;
   
-  const raw = getStorage().getItem(KEY_STORAGE_KEY);
+  const raw = getPersistentStorage().getItem(KEY_STORAGE_KEY);
   if (!raw) return null;
   
   try {
@@ -227,15 +240,16 @@ export function getPublicKey(): string | null {
  * NO verifica la sesión, solo si hay datos guardados
  */
 export function hasKeyPair(): boolean {
-  return getStorage().getItem(KEY_STORAGE_KEY) !== null;
+  return getPersistentStorage().getItem(KEY_STORAGE_KEY) !== null;
 }
 
 /**
  * Eliminar par de claves y expirar sesión
  */
 export function deleteKeyPair(): void {
-  getStorage().removeItem(KEY_STORAGE_KEY);
-  getStorage().removeItem(RECOVERY_STORAGE_KEY);
+  getPersistentStorage().removeItem(KEY_STORAGE_KEY);
+  getPersistentStorage().removeItem(RECOVERY_STORAGE_KEY);
+  getSessionStorage().removeItem(SESSION_FLAG_KEY);
   _sessionExpiry = null;
 }
 
