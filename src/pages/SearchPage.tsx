@@ -32,7 +32,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
 import { logger } from '@/lib/logger';
 import { cn } from '@/lib/utils';
-import { humanize, normalize } from '@/lib/text';
+import { humanize, normalize, tokenize, getQuerySynonyms } from '@/lib/text';
 import {
   CATEGORIES,
   getCategoryConfig,
@@ -82,6 +82,28 @@ export function SearchPage() {
     return m;
   }, [allPathologies]);
 
+  // Índice invertido de patologías: token → Set<patologyId>.
+  // Permite matching O(tokens) en vez de recorrer las ~146 patologías con
+  // .find() en cada keystroke. Indexa id, nombre, sistemas y síntomas.
+  const pathologyIndex = useMemo(() => {
+    const idx = new Map<string, Set<string>>();
+    if (!allPathologies) return idx;
+    const add = (id: string, text: string) => {
+      for (const tok of tokenize(text)) {
+        let set = idx.get(tok);
+        if (!set) { set = new Set(); idx.set(tok, set); }
+        set.add(id);
+      }
+    };
+    for (const p of allPathologies) {
+      add(p.id, p.id);
+      add(p.id, p.nombre);
+      for (const s of p.sistemas ?? []) add(p.id, s);
+      for (const s of p.sintomas ?? []) add(p.id, s);
+    }
+    return idx;
+  }, [allPathologies]);
+
   // Chips de indicación dinámicos desde el índice (sin toArray extra)
   const indicationChips = useMemo(() => {
     if (!ready) return [];
@@ -122,30 +144,71 @@ export function SearchPage() {
   }, [query, results.length, addEntry]);
 
   const matchedPathology = useMemo(() => {
-    if (!allPathologies) return null;
+    if (!allPathologies || allPathologies.length === 0) return null;
+    // Match directo por chip de indicación o id exacto
     if (indication && pathologyByIndication.has(indication)) {
       return pathologyByIndication.get(indication)!;
     }
-    if (query.length >= 2) {
-      const q = query.toLowerCase().trim();
-      const exact = allPathologies.find(p => p.id === q);
-      if (exact) return exact;
-      const nq = normalize(q);
-      const nameMatch = allPathologies.find(p => {
+    if (query.length < 2) return null;
+
+    const qTokens = tokenize(query);
+    if (qTokens.length === 0) return null;
+
+    // Match exacto de id primero (ej. "ansiedad" → id "ansiedad")
+    const nq = normalize(query);
+    const exact = allPathologies.find(p => p.id === nq);
+    if (exact) return exact;
+
+    // Búsqueda por índice invertido: contar tokens coincidentes por patología.
+    // La patología con más tokens del query coincidentes gana.
+    // (El índice se construye una sola vez con useMemo → O(tokens) por query.)
+    const scores = new Map<string, number>();
+    for (const tok of qTokens) {
+      const ids = pathologyIndex.get(tok);
+      if (ids) {
+        for (const id of ids) {
+          scores.set(id, (scores.get(id) ?? 0) + 1);
+        }
+      }
+      // Sinónimos: muelas→dental podría matchear una patología
+      const syns = getQuerySynonyms(tok);
+      if (syns) {
+        for (const s of syns) {
+          for (const st of tokenize(s)) {
+            const ids2 = pathologyIndex.get(st);
+            if (ids2) {
+              for (const id of ids2) {
+                // Los sinónimos pesan menos (×0.5)
+                scores.set(id, (scores.get(id) ?? 0) + 0.5);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (scores.size === 0) return null;
+    // Tomar la patología con mayor score; en empate, preferir match de nombre
+    let bestId: string | null = null;
+    let bestScore = 0;
+    for (const [id, score] of scores) {
+      if (score > bestScore) {
+        bestScore = score;
+        bestId = id;
+      }
+    }
+    // Umbral: al menos 1 token del query debe coincidir (o 0.5 por sinónimo)
+    if (bestId && bestScore >= 0.5) {
+      const p = pathologyByIndication.get(bestId);
+      // Reforzar: si el nombre de la patología contiene el query, es match fuerte
+      if (p) {
         const np = normalize(p.nombre);
-        return np === nq || np.includes(nq) || nq.includes(np);
-      });
-      if (nameMatch) return nameMatch;
-      const symptomMatch = allPathologies.find(p =>
-        p.sintomas.some(s => {
-          const ns = normalize(s);
-          return ns === nq || ns.includes(nq);
-        })
-      );
-      if (symptomMatch) return symptomMatch;
+        if (np === nq || np.includes(nq) || nq.includes(np)) return p;
+        return p;
+      }
     }
     return null;
-  }, [allPathologies, pathologyByIndication, indication, query]);
+  }, [allPathologies, pathologyByIndication, pathologyIndex, indication, query]);
 
   const sortedResults = useMemo(() => {
     const normQuery = query ? normalize(query) : '';

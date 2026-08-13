@@ -12,6 +12,10 @@ import {
   canonicalIndication,
   normalizeIndications,
   expandQueryTokens,
+  levenshtein,
+  bigrams,
+  tokenizeWithBigrams,
+  getQuerySynonyms,
 } from '@/lib/text';
 
 describe('normalize', () => {
@@ -109,8 +113,6 @@ describe('expandQueryTokens', () => {
   });
 
   it('no duplica sinónimos ya presentes', () => {
-    // 'dolor' está en los tokens originales; los sinónimos de 'muelas'
-    // incluyen 'dolor dental' (distinto) pero no deberían duplicar 'dolor'
     const result = expandQueryTokens(['dolor', 'muelas']);
     const counts = result.reduce<Record<string, number>>((acc, t) => {
       acc[t] = (acc[t] ?? 0) + 1;
@@ -131,5 +133,95 @@ describe('expandQueryTokens', () => {
     // Debe incluir sinónimos de muelas
     expect(result.some((t) => t === 'dental')).toBe(true);
     expect(result.some((t) => t === 'bucal')).toBe(true);
+  });
+
+  it('incluye bigramas de frases compuestas', () => {
+    // "dolor de muelas" tokenizado = ['dolor','muelas']; el bigrama "dolor muelas"
+    // debe aparecer en la expansión para matching de frase compuesta
+    const result = expandQueryTokens(['dolor', 'muelas']);
+    expect(result).toContain('dolor muelas');
+  });
+
+  it('los bigramas van antes que los sinónimos', () => {
+    const result = expandQueryTokens(['dolor', 'cabeza']);
+    const bgIdx = result.indexOf('dolor cabeza');
+    const synIdx = result.indexOf('cefalea'); // sinónimo de cabeza
+    expect(bgIdx).toBeGreaterThan(-1);
+    expect(bgIdx).toBeLessThan(synIdx);
+  });
+});
+
+describe('levenshtein', () => {
+  it('devuelve 0 para strings iguales', () => {
+    expect(levenshtein('valeriana', 'valeriana')).toBe(0);
+  });
+
+  it('cuenta una sustitución', () => {
+    expect(levenshtein('valeriana', 'valerina')).toBe(1); // falta una 'a'
+  });
+
+  it('cuenta una inserción', () => {
+    expect(levenshtein('cat', 'cart')).toBe(1);
+  });
+
+  it('cuenta un borrado', () => {
+    expect(levenshtein('cart', 'cat')).toBe(1);
+  });
+
+  it('maneja strings vacíos', () => {
+    expect(levenshtein('', 'abc')).toBe(3);
+    expect(levenshtein('abc', '')).toBe(3);
+    expect(levenshtein('', '')).toBe(0);
+  });
+
+  it('cuenta múltiples ediciones', () => {
+    expect(levenshtein('kitten', 'sitting')).toBe(3);
+  });
+});
+
+describe('bigrams', () => {
+  it('genera pares de palabras adyacentes', () => {
+    expect(bigrams(['dolor', 'cabeza', 'intenso'])).toEqual([
+      'dolor cabeza', 'cabeza intenso',
+    ]);
+  });
+
+  it('filtra stopwords antes de formar bigramas', () => {
+    // "dolor de cabeza" tokenizado con stopwords = ['dolor','cabeza']
+    // Los stopwords se eliminan para que el bigrama sea "dolor cabeza"
+    expect(bigrams(['dolor', 'de', 'cabeza'])).toEqual(['dolor cabeza']);
+  });
+
+  it('devuelve vacío para 0 o 1 token', () => {
+    expect(bigrams([])).toEqual([]);
+    expect(bigrams(['solo'])).toEqual([]);
+  });
+});
+
+describe('tokenizeWithBigrams', () => {
+  it('devuelve tokens + bigramas', () => {
+    const result = tokenizeWithBigrams('dolor de cabeza', true);
+    expect(result).toContain('dolor');
+    expect(result).toContain('cabeza');
+    expect(result).toContain('dolor cabeza');
+  });
+
+  it('al indexar (isQuery=false) conserva stopwords en tokens', () => {
+    const result = tokenizeWithBigrams('hígado graso', false);
+    expect(result).toContain('higado');
+    expect(result).toContain('graso');
+    expect(result).toContain('higado graso');
+  });
+});
+
+describe('getQuerySynonyms', () => {
+  it('devuelve sinónimos para términos conocidos', () => {
+    expect(getQuerySynonyms('muelas')).toEqual(['dental', 'dolor dental', 'bucal']);
+    expect(getQuerySynonyms('panza')).toBeTruthy();
+  });
+
+  it('devuelve null para términos sin sinónimos', () => {
+    expect(getQuerySynonyms('omega')).toBeNull();
+    expect(getQuerySynonyms('xyz123')).toBeNull();
   });
 });
