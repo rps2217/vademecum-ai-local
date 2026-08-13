@@ -70,6 +70,12 @@ export interface RecoveryData {
 /**
  * Derivar clave AES-256 desde password usando PBKDF2
  * Usa Web Crypto API para máxima seguridad
+ *
+ * Usa deriveBits (no deriveKey) porque TweetNaCl necesita los bytes crudos
+ * de la clave. deriveKey con extractable:false hace imposible exportarla
+ * luego (InvalidAccessError), y deriveKey con extractable:true expone la
+ * clave a JS. deriveBits deriva los bytes directamente sin crear un
+ * CryptoKey intermedio, evitando ambos problemas.
  */
 export async function deriveKey(password: string, salt: Uint8Array): Promise<Uint8Array> {
   const enc = new TextEncoder();
@@ -78,20 +84,16 @@ export async function deriveKey(password: string, salt: Uint8Array): Promise<Uin
     enc.encode(password),
     'PBKDF2',
     false,
-    ['deriveKey']
+    ['deriveBits']
   );
-  
-  const key = await crypto.subtle.deriveKey(
+
+  const bits = await crypto.subtle.deriveBits(
     { name: 'PBKDF2', salt, iterations: 600_000, hash: 'SHA-256' },
     keyMaterial,
-    { name: 'AES-GCM', length: 256 },
-    false, // No extractable para máxima seguridad
-    ['encrypt', 'decrypt']
+    256
   );
-  
-  // Exportar para uso con TweetNaCl (limitación actual)
-  // En el futuro, migrar a CryptoKey no exportable para todo
-  return new Uint8Array(await crypto.subtle.exportKey('raw', key));
+
+  return new Uint8Array(bits);
 }
 
 /**

@@ -59,6 +59,13 @@ export class SyncService {
   private lastError: string | null = null;
   private syncTimer: ReturnType<typeof setInterval> | null = null;
   private listeners: Set<(status: SyncStatus) => void> = new Set();
+  // Fail-fast: si las tablas remotas no existen, desactivar sync para esta
+  // sesión y no volver a intentarlo (evita spam de errores de red cada 30s).
+  private syncDisabled = false;
+  // Contador de fallos de red consecutivos. Si supera el umbral, desactiva
+  // sync (probablemente las tablas no existen o el endpoint es inválido).
+  private consecutiveNetworkFailures = 0;
+  private static readonly MAX_NETWORK_FAILURES = 3;
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -95,7 +102,7 @@ export class SyncService {
   private startAutoSync() {
     if (this.syncTimer) return;
     this.syncTimer = setInterval(() => {
-      if (this.isOnline && isSupabaseConfigured() && !this.syncInProgress) {
+      if (this.isOnline && isSupabaseConfigured() && !this.syncInProgress && !this.syncDisabled) {
         this.performFullSync().catch(logger.error);
       }
     }, this.config.syncInterval);
@@ -111,7 +118,7 @@ export class SyncService {
   private handleOnline() {
     this.isOnline = true;
     this.notifyListeners();
-    if (this.config.enabled && this.config.autoSync) {
+    if (this.config.enabled && this.config.autoSync && !this.syncDisabled) {
       this.performFullSync().catch(logger.error);
     }
   }
@@ -177,6 +184,9 @@ export class SyncService {
   }
 
   private async performFullSync(): Promise<SyncResult> {
+    if (this.syncDisabled) {
+      return { success: false, uploaded: 0, downloaded: 0, conflicts: 0, error: 'Sync desactivado (tablas remotas inexistentes)' };
+    }
     if (this.syncInProgress) {
       return { success: false, uploaded: 0, downloaded: 0, conflicts: 0, error: 'Sync en progreso' };
     }
@@ -190,14 +200,36 @@ export class SyncService {
       const downloadResult = await this.downloadRemoteChanges();
       downloaded = downloadResult.count;
       await db.syncMeta.put({ key: 'lastSyncAt', value: now(), updatedAt: now() });
+      this.consecutiveNetworkFailures = 0;
       return { success: true, uploaded, downloaded, conflicts };
     } catch (error) {
       this.lastError = error instanceof Error ? error.message : 'Sync failed';
+      // Detectar errores de red (fetch falla antes de llegar a PostgREST).
+      // Tras varios fallos consecutivos, desactivar sync para evitar spam.
+      if (this.isNetworkError(error)) {
+        this.consecutiveNetworkFailures++;
+        if (this.consecutiveNetworkFailures >= SyncService.MAX_NETWORK_FAILURES) {
+          this.disableSync(`Sync desactivado tras ${this.consecutiveNetworkFailures} fallos de red consecutivos. Verifica la configuración de Supabase y que las tablas existan.`);
+        }
+      }
       return { success: false, uploaded, downloaded, conflicts, error: this.lastError };
     } finally {
       this.syncInProgress = false;
       this.notifyListeners();
     }
+  }
+
+  /**
+   * Detecta si un error es de red (fetch rechazado antes de llegar al servidor).
+   * El cliente Supabase envuelve los TypeError: Failed to fetch.
+   */
+  private isNetworkError(error: unknown): boolean {
+    if (!error) return false;
+    const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
+    return msg.includes('failed to fetch') ||
+      msg.includes('networkerror') ||
+      msg.includes('network request failed') ||
+      msg.includes('load failed');
   }
 
   /**
@@ -361,11 +393,13 @@ export class SyncService {
     const lastSync = lastSyncMeta?.value as number | undefined;
     const lastSyncDate = lastSync ? new Date(lastSync).toISOString() : '1970-01-01T00:00:00Z';
     let downloaded = 0;
-    
+
     // Download ingredients
     const { data: ingredients, error: ingError } = await supabase.from('ingredients').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
     if (ingError) {
-      if (ingError.code === 'PGRST204' || ingError.message?.includes('column')) {
+      if (this.isMissingTableError(ingError)) {
+        this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
+      } else if (ingError.code === 'PGRST204' || ingError.message?.includes('column')) {
         logger.warn('[SyncService] Schema mismatch: "ingredients" table columns not found. Sync is experimental.');
       } else {
         logger.error('Error downloading ingredients:', ingError);
@@ -376,11 +410,16 @@ export class SyncService {
         if (!conflict) downloaded++;
       }
     }
-    
+
+    // Skip synergies if sync already disabled by ingredients check
+    if (this.syncDisabled) return { count: downloaded };
+
     // Download synergies
     const { data: synergies, error: synError } = await supabase.from('synergies').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
     if (synError) {
-      if (synError.code === 'PGRST204' || synError.message?.includes('column')) {
+      if (this.isMissingTableError(synError)) {
+        this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
+      } else if (synError.code === 'PGRST204' || synError.message?.includes('column')) {
         logger.warn('[SyncService] Schema mismatch: "synergies" table columns not found. Sync is experimental.');
       } else {
         logger.error('Error downloading synergies:', synError);
@@ -392,6 +431,36 @@ export class SyncService {
       }
     }
     return { count: downloaded };
+  }
+
+  /**
+   * Detecta si un error de Supabase indica que la tabla no existe.
+   * PostgREST usa PGRST205 (schemaCacheMiss) cuando la tabla no está en el
+   * schema cache. También cubrimos mensajes de error comunes.
+   */
+  private isMissingTableError(error: { code?: string; message?: string }): boolean {
+    if (!error) return false;
+    const code = error.code?.toUpperCase();
+    const msg = (error.message || '').toLowerCase();
+    return code === 'PGRST205' ||
+      code === '42P01' ||
+      msg.includes('could not find the table') ||
+      msg.includes('relation') && msg.includes('does not exist') ||
+      msg.includes('schema cache miss');
+  }
+
+  /**
+   * Desactiva el sync para esta sesión y detiene el auto-sync timer.
+   * Se invoca cuando las tablas remotas no existen o son inaccesibles,
+   * para evitar un spam de errores de red cada 30 segundos.
+   */
+  private disableSync(reason: string): void {
+    if (this.syncDisabled) return;
+    this.syncDisabled = true;
+    this.config.enabled = false;
+    this.stopAutoSync();
+    logger.warn(`[SyncService] ${reason}`);
+    this.notifyListeners();
   }
 
   private async mergeRemoteIngredient(remote: Record<string, unknown>): Promise<boolean> {
