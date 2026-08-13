@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 1053,
+    "total": 1090,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -25621,6 +25621,913 @@
       ],
       "categorias": [
         "aceite_esencial",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_guduchi_cardo_mariano",
+      "ingredienteA": "guduchi",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo hepatoprotector ayurvédico-europeo con mecanismos complementarios.",
+      "beneficios": [
+        "Hepatoprotección reforzada",
+        "Soporte en hepatitis y esteatosis",
+        "Acción antioxidante sinérgica"
+      ],
+      "precauciones": [
+        "Precaución con antidiabéticos por guduchi"
+      ],
+      "mecanismo": "Guduchi (polisacáridos inmunomoduladores) y silimarina (estabilización de membrana hepatocelular) actúan en vías complementarias.",
+      "sistemas": [
+        "hepatico",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_guduchi_ashwagandha",
+      "ingredienteA": "guduchi",
+      "ingredienteB": "ashwagandha",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación adaptógena ayurvédica (Rasayana) para estrés, inmunidad y glucosa.",
+      "beneficios": [
+        "Adaptógeno integral",
+        "Soporte de glucosa e inmunidad"
+      ],
+      "precauciones": [
+        "Precaución con antidiabéticos"
+      ],
+      "mecanismo": "Ambas modulan el eje HPA y la glucemia vía AMPK; guduchi añade inmunomodulación.",
+      "sistemas": [
+        "endocrino",
+        "inmune",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_artemisia_capilaris_boldo",
+      "ingredienteA": "artemisia_capilaris",
+      "ingredienteB": "boldo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Plantas hepatobiliares (TCM + europea) con acción colagoga sinérgica.",
+      "beneficios": [
+        "Mejora del flujo biliar",
+        "Hepatoprotección",
+        "Digestión"
+      ],
+      "precauciones": [
+        "Evitar en obstrucción biliar",
+        "Precaución con anticoagulantes"
+      ],
+      "mecanismo": "Artemisia (cumarinas coleréticas) y boldo (alcaloides colagogos) actúan sobre la dinámica biliar.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_artemisia_capilaris_phyllanthus",
+      "ingredienteA": "artemisia_capilaris",
+      "ingredienteB": "phyllanthus_niruri",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia hepatobiliar y anti-litiasica (Asia + Sudamérica).",
+      "beneficios": [
+        "Profilaxis de litiasis biliar",
+        "Hepatoprotección"
+      ],
+      "precauciones": [
+        "Evitar en obstrucción biliar"
+      ],
+      "mecanismo": "Artemisia (colerético) y phyllanthus (anti-litiasico) actúan sobre la formación de cálculos.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_rubus_idaeus_vitex",
+      "ingredienteA": "rubus_idaeus",
+      "ingredienteB": "vitex",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación ginecológica clásica para ciclo menstrual y menopausia.",
+      "beneficios": [
+        "Regulación del ciclo menstrual",
+        "Soporte en síndrome premenstrual y menopausia",
+        "Equilibrio hormonal"
+      ],
+      "precauciones": [
+        "No usar en embarazo (1er-2do trimestre)"
+      ],
+      "mecanismo": "Rubus (tono uterino) y vitex (modulación dopaminérgica de prolactina) actúan en vías complementarias.",
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_rubus_idaeus_dong_quai",
+      "ingredienteA": "rubus_idaeus",
+      "ingredienteB": "dong_quai",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Plantas emenagogas (europea + TCM) para regulación menstrual.",
+      "beneficios": [
+        "Regulación menstrual",
+        "Soporte de fertilidad femenina"
+      ],
+      "precauciones": [
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "Rubus (fragarina uterotónica) y dong quai (fitoestrógenos) actúan sobre el ciclo.",
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_polygala_bacopa",
+      "ingredienteA": "polygala",
+      "ingredienteB": "bacopa",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo nootrópico (TCM + ayurvédico) para memoria y cognición.",
+      "beneficios": [
+        "Mejora de memoria y aprendizaje",
+        "Neuroplasticidad (BDNF)",
+        "Claridad mental"
+      ],
+      "precauciones": [
+        "Irritación gástrica posible"
+      ],
+      "mecanismo": "Polygala (saponinas que modulan BDNF y acetilcolina) y bacopa (bacosidas) actúan sobre la sinapsis colinérgica.",
+      "sistemas": [
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_polygala_ginkgo",
+      "ingredienteA": "polygala",
+      "ingredienteB": "ginkgo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Nootrópico + microcirculación cerebral para cognición.",
+      "beneficios": [
+        "Memoria y concentración",
+        "Microcirculación cerebral"
+      ],
+      "precauciones": [
+        "Precaución con anticoagulantes"
+      ],
+      "mecanismo": "Polygala (acetilcolina) y ginkgo (flujo sanguíneo) actúan en vías complementarias.",
+      "sistemas": [
+        "nervioso",
+        "ocular"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_lycopus_melisa",
+      "ingredienteA": "lycopus",
+      "ingredienteB": "melisa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación antitaquicardia y sedante cardíaca (Lamiaceae).",
+      "beneficios": [
+        "Reducción de taquicardia y palpitaciones",
+        "Ansiedad cardiovascular",
+        "Hipertiroidismo leve"
+      ],
+      "precauciones": [
+        "Contraindicado en hipotiroidismo"
+      ],
+      "mecanismo": "Lycopus (inhibición de T4→T3) y melisa (GABA, leve sedante) actúan sinérgicamente.",
+      "sistemas": [
+        "endocrino",
+        "cardiovascular",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_lycopus_espino_blanco",
+      "ingredienteA": "lycopus",
+      "ingredienteB": "espino_blanco",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación cardiotónica y antitaquicárdica para corazón nervioso.",
+      "beneficios": [
+        "Reducción de palpitaciones",
+        "Tono cardíaco regulado"
+      ],
+      "precauciones": [
+        "Contraindicado en hipotiroidismo",
+        "Precaución con betabloqueantes"
+      ],
+      "mecanismo": "Lycopus (efecto antitiroideo leve) y espino blanco (cronotropo negativo, flavonoides) actúan sinérgicamente.",
+      "sistemas": [
+        "cardiovascular",
+        "endocrino"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_hydrangea_grama",
+      "ingredienteA": "hydrangea",
+      "ingredienteB": "grama",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo diurético y litolítico para cálculos renales.",
+      "beneficios": [
+        "Profilaxis y expulsión de cálculos",
+        "Diuresis efectiva"
+      ],
+      "precauciones": [
+        "Asegurar hidratación"
+      ],
+      "mecanismo": "Hydrangea (inhibición de cristalización) y grama (diurético osmótico) facilitan la expulsión de litiasis.",
+      "sistemas": [
+        "urinario"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_hydrangea_uva_ursi",
+      "ingredienteA": "hydrangea",
+      "ingredienteB": "uva_ursi",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Litolítico + antiséptico urinario para cálculos y cistitis.",
+      "beneficios": [
+        "Cálculos renales",
+        "Cistitis",
+        "Próstata"
+      ],
+      "precauciones": [
+        "Acidificar orina para optimizar arbutina"
+      ],
+      "mecanismo": "Hydrangea (litolítico) y uva ursi (arbutina antiséptica) actúan en el tracto urinario.",
+      "sistemas": [
+        "urinario",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_hydrangea_pygeum",
+      "ingredienteA": "hydrangea",
+      "ingredienteB": "pygeum",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia para próstata y tracto urinario masculino.",
+      "beneficios": [
+        "HPB",
+        "Flujo urinario",
+        "Antiinflamatorio prostático"
+      ],
+      "precauciones": [
+        "No sustituye control médico de HPB"
+      ],
+      "mecanismo": "Hydrangea (antiinflamatorio urinario) y pygeum (fitosteroles prostáticos) actúan en vías complementarias.",
+      "sistemas": [
+        "urinario",
+        "reproductivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_notoginseng_salvia_miltiorrhiza",
+      "ingredienteA": "notoginseng",
+      "ingredienteB": "salvia_miltiorrhiza_bge",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Pareja cardiovascular clásica de la MTC (Salvia + San Qi) para microcirculación.",
+      "beneficios": [
+        "Mejora de la microcirculación",
+        "Protección endotelial",
+        "Salud cardiovascular"
+      ],
+      "precauciones": [
+        "Suspender antes de cirugía",
+        "Precaución con anticoagulantes"
+      ],
+      "mecanismo": "Notoginseng (notoginsenósidos) y salvia (tanshinonas) actúan sinérgicamente en el endotelio y la microcirculación.",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_notoginseng_ginkgo",
+      "ingredienteA": "notoginseng",
+      "ingredienteB": "ginkgo",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia cardiovascular y microcirculatoria (TCM + europea).",
+      "beneficios": [
+        "Microcirculación",
+        "Circulación cerebral"
+      ],
+      "precauciones": [
+        "Riesgo de sangrado con anticoagulantes"
+      ],
+      "mecanismo": "Notoginseng (regulación de coagulación) y ginkgo (PAF-antagonismo) actúan en vías complementarias.",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_avena_sativa_valeriana",
+      "ingredienteA": "avena_sativa",
+      "ingredienteB": "valeriana",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Tónico nervioso + sedante para fatiga nerviosa e insomnio.",
+      "beneficios": [
+        "Fatiga nerviosa",
+        "Insomnio",
+        "Ansiedad"
+      ],
+      "precauciones": [
+        "Somnolencia posible"
+      ],
+      "mecanismo": "Avena (tónico nervioso) y valeriana (GABA-A sedante) actúan en fases complementarias.",
+      "sistemas": [
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_avena_sativa_damiana_hoja",
+      "ingredienteA": "avena_sativa",
+      "ingredienteB": "damiana_hoja",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Tónico nervioso + afrodisíaco para libido y vitalidad sexual.",
+      "beneficios": [
+        "Libido",
+        "Vitalidad",
+        "Fatiga nerviosa"
+      ],
+      "precauciones": [
+        "Evidencia tradicional"
+      ],
+      "mecanismo": "Avena (tónico nervioso) y damiana (estimulante sexual suave) actúan sobre la vitalidad y el deseo.",
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_silimarina_fosfatidilcolina",
+      "ingredienteA": "silimarina",
+      "ingredienteB": "fosfatidilcolina",
+      "tipo": "cofactor",
+      "nivelEvidencia": "B",
+      "descripcion": "La fosfatidilcolina es el vehiculo del fitosoma de silimarina, mejorando absorción 10x.",
+      "beneficios": [
+        "Biodisponibilidad hepática óptima",
+        "Hepatoprotección"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "La fosfatidilcolina forma complejo con silibina (fitosoma), atravesando membranas celulares.",
+      "sistemas": [
+        "hepatico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_silimarina_cúrcuma",
+      "ingredienteA": "silimarina",
+      "ingredienteB": "curcumina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo hepatoprotector y antiinflamatorio (flavonolignano + curcuminoide).",
+      "beneficios": [
+        "Hepatoprotección reforzada",
+        "Acción antiinflamatoria",
+        "Antioxidante sinérgico"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "Silimarina (estabilización de membrana) y curcumina (NF-κB) actúan en vías complementarias.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_beta_sitosterol_saw_palmetto",
+      "ingredienteA": "beta_sitosterol",
+      "ingredienteB": "saw_palmetto",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia para hiperplasia prostática benigna (HPB) por fitosteroles.",
+      "beneficios": [
+        "Reducción de síntomas de HPB",
+        "Mejora del flujo urinario",
+        "Acción antiandrogénica leve (5-alfa-reductasa)"
+      ],
+      "precauciones": [
+        "No sustituye control médico de próstata"
+      ],
+      "mecanismo": "Beta-sitosterol (directo) y saw palmetto (lipido-esterólico) inhiben 5-alfa-reductasa y prostaglandinas.",
+      "sistemas": [
+        "reproductivo",
+        "urinario"
+      ],
+      "categorias": [
+        "vitamina",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_beta_sitosterol_policosanol",
+      "ingredienteA": "beta_sitosterol",
+      "ingredienteB": "policosanol",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo hipolipemiante natural: bloquea absorción + inhibe síntesis de colesterol.",
+      "beneficios": [
+        "Reducción de LDL",
+        "Mejora perfil lipídico"
+      ],
+      "precauciones": [
+        "Compensar vitaminas liposolubles"
+      ],
+      "mecanismo": "Beta-sitosterol (bloquea absorción) y policosanol (inhibe HMG-CoA) actúan en vías complementarias.",
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_crocetina_luteina",
+      "ingredienteA": "crocetina",
+      "ingredienteB": "luteina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo carotenoide para protección ocular (azafrán + mácula).",
+      "beneficios": [
+        "Protección macular reforzada",
+        "Microcirculación retiniana",
+        "Antioxidante ocular sinérgico"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "Crocetina (microcirculación y RPE) y luteína (filtro de luz azul) actúan en vías complementarias.",
+      "sistemas": [
+        "ocular"
+      ],
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_crocetina_maqui",
+      "ingredienteA": "crocetina",
+      "ingredienteB": "maqui",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Carotenoide + antocianinas para protección ocular completa.",
+      "beneficios": [
+        "Protección retiniana",
+        "Microcirculación",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Generalmente seguro"
+      ],
+      "mecanismo": "Crocetina (oxigenación tisular) y antocianinas del maqui (microcirculación) actúan en la retina.",
+      "sistemas": [
+        "ocular",
+        "cardiovascular"
+      ],
+      "categorias": [
+        "vitamina",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_estroncio_vitamina_d3_k2",
+      "ingredienteA": "estroncio",
+      "ingredienteB": "vitamina_d3_k2",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Trío óseo: estroncio (matriz) + D3 (absorción) + K2 (mineralización).",
+      "beneficios": [
+        "Aumento de densidad ósea",
+        "Mejora de la mineralización",
+        "Osteoporosis"
+      ],
+      "precauciones": [
+        "Separar de calcio 2h"
+      ],
+      "mecanismo": "Estroncio (matriz ósea), D3 (absorción de calcio) y K2 (activación de osteocalcina) actúan en vías complementarias.",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "categorias": [
+        "mineral",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_estroncio_magnesio",
+      "ingredienteA": "estroncio",
+      "ingredienteB": "magnesio",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Minerales óseos sinérgicos para densidad y estructura ósea.",
+      "beneficios": [
+        "Soporte óseo",
+        "Estructura mineral"
+      ],
+      "precauciones": [
+        "Separar de calcio y antiácidos"
+      ],
+      "mecanismo": "Estroncio (matriz) y magnesio (cofactor de ATPasas óseas, mineralización) actúan en el hueso.",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "categorias": [
+        "mineral",
+        "mineral"
+      ]
+    },
+    {
+      "id": "sin_germanio_vitamina_c",
+      "ingredienteA": "germanio",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Inmunomodulador + antioxidante hidrosoluble para inmunidad.",
+      "beneficios": [
+        "Inmunidad celular",
+        "Antioxidante sinérgico"
+      ],
+      "precauciones": [
+        "Solo usar Ge-132 (orgánico)"
+      ],
+      "mecanismo": "Germanio (interferón gamma, NK) y vitamina C (antioxidante) actúan en la respuesta inmune.",
+      "sistemas": [
+        "inmune"
+      ],
+      "categorias": [
+        "mineral",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_germanio_reishi",
+      "ingredienteA": "germanio",
+      "ingredienteB": "reishi",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación inmunomoduladora (orgánico + hongo).",
+      "beneficios": [
+        "Inmunidad adaptativa",
+        "Energía"
+      ],
+      "precauciones": [
+        "Precaución en autoinmune"
+      ],
+      "mecanismo": "Germanio (interferón) y reishi (triterpenos, β-glucanos) actúan en la inmunidad celular.",
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ],
+      "categorias": [
+        "mineral",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_b_infantis_inulina",
+      "ingredienteA": "b_infantis",
+      "ingredienteB": "inulina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Simbiótico: probiótico + prebiótico (GOS/FOS) para flora intestinal.",
+      "beneficios": [
+        "Colonización óptima del colon",
+        "Producción de SCFA (butirato)",
+        "Inmunidad intestinal"
+      ],
+      "precauciones": [
+        "Gas inicial transitorio"
+      ],
+      "mecanismo": "B. infantis fermenta inulina produciendo butirato que alimenta colonocitos y refuerza barrera intestinal.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_b_infantis_l_rhamnosus_gg",
+      "ingredienteA": "b_infantis",
+      "ingredienteB": "l_rhamnosus_gg",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo probiótico multicepa para flora intestinal e inmunidad.",
+      "beneficios": [
+        "Diversidad microbiana intestinal",
+        "Prevención de diarrea por antibióticos",
+        "Modulación de alergias"
+      ],
+      "precauciones": [
+        "Conservación refrigerada"
+      ],
+      "mecanismo": "Bifidobacterium (colon) y Lactobacillus (íleon) actúan en nichos complementarios del tracto intestinal.",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ]
+    },
+    {
+      "id": "sin_lycopus_bugleweed_lemon_balm",
+      "ingredienteA": "lycopus",
+      "ingredienteB": "melisa",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Doble referencia a sinergia Lamiaceae antitiroides + nervina (re-aplica concepto herb-pair).",
+      "beneficios": [
+        "Taquicardia",
+        "Ansiedad",
+        "Hipertiroidismo leve"
+      ],
+      "precauciones": [
+        "Contraindicado en hipotiroidismo"
+      ],
+      "mecanismo": "Concepto herb-pair (binomio herbal) de Lamiaceae con acción antitiroidea + nervina.",
+      "sistemas": [
+        "endocrino",
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_artemisia_capilaris_silimarina",
+      "ingredienteA": "artemisia_capilaris",
+      "ingredienteB": "silimarina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo hepatoprotector TCM + europeo (Yin Chen + cardo mariano fitosoma).",
+      "beneficios": [
+        "Hepatoprotección reforzada",
+        "Mejora del flujo biliar",
+        "Regeneración hepática"
+      ],
+      "precauciones": [
+        "Precaución con anticoagulantes"
+      ],
+      "mecanismo": "Artemisia (cumarinas coleréticas) y silimarina fitosoma (regeneración hepatocelular) actúan en vías complementarias.",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_polygala_melatonina",
+      "ingredienteA": "polygala",
+      "ingredienteB": "melatonina",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Nootrópico + cronobiótico para memoria y sueño reparador.",
+      "beneficios": [
+        "Memoria y consolidación onírica",
+        "Sueño reparador"
+      ],
+      "precauciones": [
+        "Somnolencia"
+      ],
+      "mecanismo": "Polygala (BDNF, acetilcolina) y melatonina (antioxidante nocturno) actúan en la consolidación de memoria durante el sueño.",
+      "sistemas": [
+        "nervioso"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ]
+    },
+    {
+      "id": "sin_hydrangea_vara_de_oro",
+      "ingredienteA": "hydrangea",
+      "ingredienteB": "vara_de_oro",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Dúo urinario (litolítico + antiinflamatorio) para cálculos y cistitis.",
+      "beneficios": [
+        "Cálculos renales",
+        "Cistitis",
+        "Próstata"
+      ],
+      "precauciones": [
+        "Asegurar hidratación"
+      ],
+      "mecanismo": "Hydrangea (inhibición de cristalización) y vara de oro (diurético antiinflamatorio) actúan en el tracto urinario.",
+      "sistemas": [
+        "urinario"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_guduchi_picrorhiza",
+      "ingredienteA": "guduchi",
+      "ingredienteB": "picrorhiza",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Pareja hepatoprotectora ayurvédica (Guduchi + Katuki) para regeneración hepática.",
+      "beneficios": [
+        "Hepatoprotección reforzada",
+        "Regeneración hepática",
+        "Colestasis"
+      ],
+      "precauciones": [
+        "Evitar en embarazo"
+      ],
+      "mecanismo": "Guduchi (polisacáridos, antioxidante) y picrorhiza (picrosidas) actúan en vías hepáticas complementarias.",
+      "sistemas": [
+        "hepatico",
+        "inmune"
+      ],
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_beta_sitosterol_pygeum",
+      "ingredienteA": "beta_sitosterol",
+      "ingredienteB": "pygeum",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Dúo de fitosteroles para hiperplasia prostática benigna.",
+      "beneficios": [
+        "Reducción de HPB",
+        "Mejora del flujo urinario",
+        "Antiinflamatorio prostático"
+      ],
+      "precauciones": [
+        "No sustituye control médico de próstata"
+      ],
+      "mecanismo": "Beta-sitosterol y fitosteroles del pygeum inhiben 5-alfa-reductasa y prostaglandinas.",
+      "sistemas": [
+        "reproductivo",
+        "urinario"
+      ],
+      "categorias": [
+        "vitamina",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_crocetina_azafran",
+      "ingredienteA": "crocetina",
+      "ingredienteB": "azafran",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Carotenoide + extracto completo de azafrán para humor y visión.",
+      "beneficios": [
+        "Visión",
+        "Humor",
+        "Antioxidante"
+      ],
+      "precauciones": [
+        "Generalmente seguro a dosis culinarias"
+      ],
+      "mecanismo": "Crocetina (carotenoide) y azafrán (safranal, crocina) actúan en el estado de ánimo y la retina.",
+      "sistemas": [
+        "ocular",
+        "nervioso"
+      ],
+      "categorias": [
+        "vitamina",
+        "fitoterapia"
+      ]
+    },
+    {
+      "id": "sin_notoginseng_danshen",
+      "ingredienteA": "notoginseng",
+      "ingredienteB": "danshen",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Pareja cardiovascular clásica de la MTC (San Qi + Dan Shen) para microcirculación y cardiopatía.",
+      "beneficios": [
+        "Mejora de la microcirculación coronaria",
+        "Protección del miocardio",
+        "Angina estable"
+      ],
+      "precauciones": [
+        "Suspender antes de cirugía",
+        "Precaución con anticoagulantes"
+      ],
+      "mecanismo": "Notoginseng (notoginsenósidos) y danshen (tanshinonas) actúan sinérgicamente en el endotelio vascular.",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "categorias": [
+        "fitoterapia",
         "fitoterapia"
       ]
     }

@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 200,
+    "total": 208,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -10495,6 +10495,441 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + Chilean Pharmacopoeia"
+      }
+    },
+    {
+      "id": "guduchi",
+      "nombre": "Guduchi",
+      "nombresAlternativos": [
+        "Tinospora cordifolia",
+        "Amrita",
+        "Giloy",
+        "Heart-leaved moonseed",
+        "Tinospora"
+      ],
+      "nombreCientifico": "Tinospora cordifolia",
+      "familia": "Menispermaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "hepatico",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "hepático",
+        "glucosa",
+        "inflamación",
+        "estrés"
+      ],
+      "descripcion": "Liana ayurvédica adaptógena, inmunomoduladora y hepatoprotectora, considerada 'amrita' (néctar de la inmortalidad).",
+      "mecanismoAccion": "Los diterpenoides (tinosporina, columbina) y polisacáridos modulan la inmunidad celular y reducen glucemia vía AMPK. Hepatoprotección por acción antioxidante y regenerativa.",
+      "nivelEvidencia": "B",
+      "parteUsada": "tallo",
+      "formasPresentacion": [
+        "Cápsulas",
+        "Extracto seco",
+        "Decocción"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Puede bajar glucosa (precaución con antidiabéticos)",
+        "Inmunomodulador: precaución en autoimmune",
+        "Evitar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos (riesgo de hipoglucemia aditiva)",
+        "Inmunosupresores (puede antagonizar efecto)"
+      ],
+      "tags": [
+        "adaptógeno",
+        "inmunidad",
+        "hepático",
+        "ayurveda"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Ayurvedic Pharmacopoeia + Clinical trials (PubMed meta-análisis)"
+      }
+    },
+    {
+      "id": "artemisia_capilaris",
+      "nombre": "Artemisia Capilaris",
+      "nombresAlternativos": [
+        "Yin Chen Hao",
+        "Capillary wormwood",
+        "Artemisia capillaris Thunb",
+        "Incienso japonés"
+      ],
+      "nombreCientifico": "Artemisia capillaris",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "hepático",
+        "colesterol",
+        "ictericia",
+        "digestión"
+      ],
+      "descripcion": "Planta de la medicina tradicional china (Yin Chen Hao) clásica para afecciones hepáticas y colestasis.",
+      "mecanismoAccion": "Los cumarinas (escoparona, escopoletina) y flavonoides inducen enzimas de fase II hepáticas y mejoran el flujo biliar. Reduce colesterol vía inhibición de HMG-CoA reductasa.",
+      "nivelEvidencia": "B",
+      "parteUsada": "summitad florida",
+      "formasPresentacion": [
+        "Decocción",
+        "Cápsulas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Alergias a Asteraceae posibles",
+        "Evitar en embarazo",
+        "Precaución con medicación anticoagulante (cumarinas)"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina — las cumarinas pueden potenciar)",
+        "Estatinas (efecto aditivo hipolipemiante)"
+      ],
+      "tags": [
+        "hepático",
+        "TCM",
+        "colerético",
+        "colesterol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "TCM Pharmacopoeia + Clinical trials (PubMed)"
+      }
+    },
+    {
+      "id": "rubus_idaeus",
+      "nombre": "Frambuesa Roja",
+      "nombresAlternativos": [
+        "Red raspberry leaf",
+        "Hoja de frambueso",
+        "Rubus idaeus leaf",
+        "Frambuesa"
+      ],
+      "nombreCientifico": "Rubus idaeus",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "embarazo",
+        "parto",
+        "menopausia",
+        "menstrual"
+      ],
+      "descripcion": "Hoja uterotónica tradicional usada en el tercer trimestre de embarazo para preparar el parto y en desequilibrios menstruales/menopausia.",
+      "mecanismoAccion": "Los taninos y fragarina ejercen tono uterino; los flavonoides y ácidos orgánicos modulan el equilibrio hormonal. Rica en hierro, magnesio y vitaminas del complejo B.",
+      "nivelEvidencia": "C",
+      "parteUsada": "hoja",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Tercer trimestre (8-12 semanas) o cíclico",
+      "advertencias": [
+        "No usar en primer/segundo trimestre de embarazo (riesgo uterotónico)",
+        "Precaución en lactancia",
+        "Efecto astringente por taninos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Hierro y minerales (los taninos reducen absorción, separar 2h)",
+        "Oxitocina (efecto aditivo uterotónico)"
+      ],
+      "tags": [
+        "embarazo",
+        "parto",
+        "emenagogo",
+        "mujer"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph + German Commission E"
+      }
+    },
+    {
+      "id": "polygala",
+      "nombre": "Polygala",
+      "nombresAlternativos": [
+        "Polygala tenuifolia",
+        "Yuan Zhi",
+        "Raíz de polygala",
+        "Chinese senega"
+      ],
+      "nombreCientifico": "Polygala tenuifolia",
+      "familia": "Polygalaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "cognitivo",
+        "memoria",
+        "ansiedad",
+        "tos"
+      ],
+      "descripcion": "Raíz nootrópica de la MTC (Yuan Zhi) usada para memoria, claridad mental y como expectorante.",
+      "mecanismoAccion": "Las saponinas tenuigeninas modulan BDNF y promueven la neuroplasticidad. Aumenta acetilcolina. Acción expectorante por saponinas que estimulan mucosa respiratoria.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Decocción",
+        "Cápsulas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Irritación gástrica por saponinas en dosis altas",
+        "Evitar en úlceras gastroduodenales",
+        "Precaución en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (las saponinas pueden aumentar absorción de fármacos)",
+        "Expectorantes (efecto aditivo)"
+      ],
+      "tags": [
+        "nootrópico",
+        "memoria",
+        "BDNF",
+        "expectorante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "TCM Pharmacopoeia + Clinical trials (PubMed)"
+      }
+    },
+    {
+      "id": "lycopus",
+      "nombre": "Lycopus",
+      "nombresAlternativos": [
+        "Lycopus europaeus",
+        "Bugleweed",
+        "Lycopus virginicus",
+        "Hierba de la mordedura"
+      ],
+      "nombreCientifico": "Lycopus virginicus",
+      "familia": "Lamiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "endocrino",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "tiroides",
+        "hipertiroidismo",
+        "taquicardia",
+        "ansiedad"
+      ],
+      "descripcion": "Planta antitiroidea leve usada en hipertiroidismo leve y taquicardia asociada, con efecto sedante cardíaco.",
+      "mecanismoAccion": "Los ácidos fenólicos (ácido litospérmico) y flavonoides inhiben la conversión de T4 a T3 (deiodinasa) y reducen la sensibilidad del corazón a la tiroxina. Acción leve antiadrenérgica.",
+      "nivelEvidencia": "C",
+      "parteUsada": "summitad florida",
+      "formasPresentacion": [
+        "Tintura",
+        "Cápsulas",
+        "Infusión"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "Bajo control médico",
+      "advertencias": [
+        "Contraindicado en hipotiroidismo",
+        "No usar como sustituto del tratamiento del hipertiroidismo",
+        "Precaución con agrandamiento tiroideo",
+        "Evitar en embarazo y lactancia"
+      ],
+      "interaccionesMedicamentosas": [
+        "Levotiroxina (antagoniza efecto)",
+        "Antitiroideos (metimazol — efecto aditivo, riesgo de hipotiroidismo)",
+        "Digitálicos (efecto aditivo bradicardizante)"
+      ],
+      "tags": [
+        "hipertiroidismo",
+        "antitiroideo",
+        "taquicardia",
+        "tiroides"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph + German Commission E"
+      }
+    },
+    {
+      "id": "hydrangea",
+      "nombre": "Hydrangea",
+      "nombresAlternativos": [
+        "Hydrangea arborescens",
+        "Seven barks",
+        "Hortensia silvestre",
+        "Raíz de hydrangea"
+      ],
+      "nombreCientifico": "Hydrangea arborescens",
+      "familia": "Hydrangeaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "cálculos",
+        "renal",
+        "prostata",
+        "articular"
+      ],
+      "descripcion": "Raíz diurética y litolítica usada para cálculos renales y afecciones prostáticas.",
+      "mecanismoAccion": "Las saponinas, flavonoides y silicato de hydrangea inhiben la cristalización del oxalato cálcico y facilitan la expulsión de cálculos. Acción antiinflamatoria de la mucosa urinaria.",
+      "nivelEvidencia": "C",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Decocción",
+        "Cápsulas",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-2 meses",
+      "advertencias": [
+        "Asegurar ingesta hídrica adecuada",
+        "Evitar en insuficiencia renal avanzada",
+        "Posible hipotensión leve por efecto diurético"
+      ],
+      "interaccionesMedicamentosas": [
+        "Diuréticos (efecto aditivo)",
+        "Litio (riesgo de toxicidad por reducción de excreción)"
+      ],
+      "tags": [
+        "renal",
+        "litiasis",
+        "urinario",
+        "litolítico"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "German Commission E + Clinical trials (PubMed)"
+      }
+    },
+    {
+      "id": "notoginseng",
+      "nombre": "Notoginseng",
+      "nombresAlternativos": [
+        "Panax notoginseng",
+        "San Qi",
+        "Tian Qi",
+        "Pseudoginseng",
+        "Panax pseudoginseng"
+      ],
+      "nombreCientifico": "Panax notoginseng",
+      "familia": "Araliaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "cicatrización",
+        "hemorragia",
+        "dolor"
+      ],
+      "descripcion": "Ginseng chino (San Qi) hemostático y cardiotónico, clásico en MTC para hemorragias, traumatismos y salud cardiovascular.",
+      "mecanismoAccion": "Los notoginsenósidos (R1, Rg1) mejoran la microcirculación, reducen la agregación plaquetaria y protegen el endotelio. Promueve la angiogénesis y cicatrización. Acción hemostática y antitrombótica dual (reguladora).",
+      "nivelEvidencia": "B",
+      "parteUsada": "raíz",
+      "formasPresentacion": [
+        "Polvo",
+        "Cápsulas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Suspender antes de cirugía (efecto sobre coagulación)",
+        "Precaución con anticoagulantes",
+        "Evitar en embarazo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (warfarina — efecto dual, monitorizar)",
+        "Antiagregantes (aspirina — riesgo de sangrado)",
+        "Antihipertensivos (efecto aditivo)"
+      ],
+      "tags": [
+        "cardiovascular",
+        "hemostático",
+        "cicatrización",
+        "TCM"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "TCM Pharmacopoeia + Clinical trials (PubMed meta-análisis)"
+      }
+    },
+    {
+      "id": "avena_sativa",
+      "nombre": "Avena Sativa",
+      "nombresAlternativos": [
+        "Green oat",
+        "Avena verde",
+        "Paja de avena",
+        "Oat straw",
+        "Avena"
+      ],
+      "nombreCientifico": "Avena sativa",
+      "familia": "Poaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "reproductivo",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "ansiedad",
+        "estrés",
+        "libido",
+        "piel",
+        "energía"
+      ],
+      "descripcion": "Paja de avena verde tónica nerviosa y adaptógena suave, usada para ansiedad, fatiga nerviosa y soporte de libido.",
+      "mecanismoAccion": "Las avenantramidas (alcaloides) ejercen acción antioxidante y antiinflamatoria. Rica en silicio, calcio y magnesio. Acción leve sobre GABA y dopamina.",
+      "nivelEvidencia": "C",
+      "parteUsada": "paja verde",
+      "formasPresentacion": [
+        "Infusión",
+        "Cápsulas",
+        "Extracto líquido",
+        "Tintura"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Generalmente seguro",
+        "Contiene gluten (traza) — celiaquía",
+        "Reacción alérgica rara en sensibles a Poaceae"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sedantes (efecto aditivo leve)",
+        "Hipoglucemiantes (efecto leve sobre glucosa)"
+      ],
+      "tags": [
+        "tónico",
+        "nervino",
+        "libido",
+        "adaptógeno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA HMPC monograph + German Commission E"
       }
     }
   ]

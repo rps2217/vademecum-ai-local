@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-10",
-    "total": 177,
+    "total": 183,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -10069,6 +10069,349 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + Ayurvedic Pharmacopoeia"
+      }
+    },
+    {
+      "id": "silimarina",
+      "nombre": "Silimarina Fitosoma",
+      "nombresAlternativos": [
+        "Silimarina fosfatidilcolina",
+        "Silybin-fitosoma",
+        "Silymarin phytosome",
+        "Silimarina-lecitina"
+      ],
+      "nombreCientifico": "Mezcla de flavonolignanos de Silybum marianum (complexado con fosfatidilcolina)",
+      "familia": "Flavonolignanos",
+      "categoria": "vitamina",
+      "sistemas": [
+        "hepatico",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "hepático",
+        "antioxidante",
+        "piel",
+        "colesterol"
+      ],
+      "descripcion": "Forma biodisponible de silimarina (cardo mariano) complejada con fosfatidilcolina, con absorción 10x superior al extracto seco.",
+      "mecanismoAccion": "Los flavonolignanos (silibina, silicristina, silidianina) estabilizan la membrana hepatocelular, inhiben la peroxidación lipídica y estimulan la ARN polimerasa I (regeneración hepática). Complejada con fosfatidilcolina para mejorar absorción.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "150-300mg/día (fitosoma)",
+      "dosisMaxima": "600mg/día",
+      "formaQuimica": [
+        "Silimarina-fosfatidilcolina (fitosoma)",
+        "Silibina-lecitina"
+      ],
+      "biodisponibilidad": "Alta (10x extracto seco convencional)",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Fosfatidilcolina",
+        "Vitamina E"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Generalmente bien tolerada",
+        "Posible efecto leve laxante",
+        "Precaución en alergia a Asteraceae"
+      ],
+      "tags": [
+        "hepático",
+        "fitosoma",
+        "silibina",
+        "antioxidante"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + European Pharmacopoeia"
+      }
+    },
+    {
+      "id": "beta_sitosterol",
+      "nombre": "Beta-Sitosterol",
+      "nombresAlternativos": [
+        "β-Sitosterol",
+        "Sitosterol",
+        "Fitosteroles",
+        "Plant sterols"
+      ],
+      "nombreCientifico": "(3β)-Estigmast-5-en-3-ol",
+      "familia": "Fitosteroles",
+      "categoria": "vitamina",
+      "sistemas": [
+        "reproductivo",
+        "cardiovascular",
+        "urinario"
+      ],
+      "indicaciones": [
+        "prostata",
+        "colesterol",
+        "cardiovascular",
+        "urinario"
+      ],
+      "descripcion": "Fitosterol principal de la dieta que bloquea la absorción de colesterol y mejora la sintomatología prostática benigna.",
+      "mecanismoAccion": "Competitivamente inhibe la absorción intestinal de colesterol (mismos receptadores NPC1L1). En próstata, inhibe la 5-alfa-reductasa y prostaglandinas, reduciendo la HPB.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "800mg-3g/día (colesterol); 60-130mg/día (HPB)",
+      "dosisMaxima": "3g/día (colesterol)",
+      "formaQuimica": [
+        "Beta-sitosterol libre",
+        "Beta-sitosterol estearado"
+      ],
+      "biodisponibilidad": "Baja (<5%) — mejorada con estearina",
+      "momentoToma": [
+        "Con comida (mejora absorción)"
+      ],
+      "tomarCon": [
+        "Comida grasa",
+        "Esteroles esterificados"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Reduce absorción de carotenoides y vitaminas liposolubles (compensar)",
+        "Generalmente bien tolerado"
+      ],
+      "tags": [
+        "prostata",
+        "colesterol",
+        "fitosterol",
+        "HPB"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EFSA health claims + Clinical trials (PubMed meta-análisis)"
+      }
+    },
+    {
+      "id": "crocetina",
+      "nombre": "Crocetina",
+      "nombresAlternativos": [
+        "Crocetina",
+        "Crocetin",
+        "Trans-crocetina",
+        "Carotenoide del azafrán"
+      ],
+      "nombreCientifico": "8,8'-Diapocaroteno-8,8'-dioico",
+      "familia": "Apocarotenoides",
+      "categoria": "vitamina",
+      "sistemas": [
+        "ocular",
+        "cardiovascular",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "visión",
+        "antioxidante",
+        "cardiovascular",
+        "cognitivo"
+      ],
+      "descripcion": "Carotenoide del azafrán con potente acción antioxidante y de mejora de la microcirculación retiniana y cardiovascular.",
+      "mecanismoAccion": "La crocetina inhibe la peroxidación lipídica y mejora la oxigenación tisular vía aumento del transporte de oxígeno. Protege las células retinianas (RPE) y neuronales del estrés oxidativo.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "0.5-2mg/día (extracto estandarizado)",
+      "dosisMaxima": "5mg/día",
+      "formaQuimica": [
+        "Crocetina trans",
+        "Crocetina diéster"
+      ],
+      "biodisponibilidad": "Mejorada con comida grasa",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Luteína",
+        "Astaxantina"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Generalmente segura a dosis dietéticas",
+        "Precaución en dosis altas (efecto antiagregante leve)"
+      ],
+      "tags": [
+        "ocular",
+        "carotenoide",
+        "azafrán",
+        "microcirculación"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + AREDS2-related"
+      }
+    },
+    {
+      "id": "estroncio",
+      "nombre": "Estroncio",
+      "nombresAlternativos": [
+        "Strontium",
+        "Estroncio renal",
+        "Sr",
+        "Strontium ranelate (legacy)"
+      ],
+      "nombreCientifico": "Estroncio (elemento)",
+      "familia": "Mineral traza",
+      "categoria": "mineral",
+      "sistemas": [
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "osteoporosis",
+        "hueso",
+        "articular"
+      ],
+      "descripcion": "Mineral traza estructuralmente similar al calcio que se incorpora al hueso y mejora densidad ósea.",
+      "mecanismoAccion": "El estroncio se incorpora a la matriz ósea (similar al calcio) y tiene efecto dual: estimula formación osteoblástica (activador Wnt) y reduce la resorción osteoclástica.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "227mg/día (ranelato, en países donde está disponible); 2-6mg/día (suplemento elemental)",
+      "dosisMaxima": "3g/día (terapia supervisada)",
+      "formaQuimica": [
+        "Estroncio citrato",
+        "Estroncio ranelato (legacy, restringido)"
+      ],
+      "biodisponibilidad": "Moderada (similar a calcio)",
+      "momentoToma": [
+        "Con el estómago vacío por la noche",
+        "Separado de calcio"
+      ],
+      "tomarCon": [
+        "Vitamina D3",
+        "Vitamina K2"
+      ],
+      "evitarCon": [
+        "Calcio (competencia, separar 2h)",
+        "Hierro",
+        "Antiácidos"
+      ],
+      "advertencias": [
+        "El ranelato de estroncio tiene advertencia cardiovascular (restringido en UE)",
+        "Riesgo de trombosis venosa con ranelato",
+        "Usar citrato como forma más segura",
+        "Suspender antes de cirugía"
+      ],
+      "tags": [
+        "hueso",
+        "osteoporosis",
+        "óseo",
+        "mineral"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "EMA (ranelato) + Clinical trials (PubMed meta-análisis)"
+      }
+    },
+    {
+      "id": "germanio",
+      "nombre": "Germanio",
+      "nombresAlternativos": [
+        "Germanio orgánico",
+        "Ge-132",
+        "Bis-carboxyethyl germanium sesquioxide",
+        "Germanium-132"
+      ],
+      "nombreCientifico": "Bis(2-carboxietil)germanio sesquióxido (Ge-132)",
+      "familia": "Mineral traza",
+      "categoria": "mineral",
+      "sistemas": [
+        "inmune",
+        "endocrino",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "fatiga",
+        "antioxidante",
+        "energía"
+      ],
+      "descripcion": "Compuesto organogermanio (Ge-132) con efecto inmunomodulador, antioxidante y adaptógeno suave.",
+      "mecanismoAccion": "El Ge-132 induce interferón gamma y activa NK/células T, modulando la inmunidad celular. Acción antioxidante por captura de ROS y mejora de la oxigenación tisular.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "50-150mg/día (Ge-132)",
+      "dosisMaxima": "300mg/día",
+      "formaQuimica": [
+        "Ge-132 (sesquióxido orgánico)",
+        "Germanato"
+      ],
+      "biodisponibilidad": "Buena absorción oral",
+      "momentoToma": [
+        "Con comida"
+      ],
+      "tomarCon": [
+        "Vitamina C",
+        "Complejo B"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Solo usar forma orgánica (Ge-132); el germanio inorgánico es tóxico",
+        "Precaución en insuficiencia renal",
+        "Evidencia clínica limitada"
+      ],
+      "tags": [
+        "inmunidad",
+        "interferón",
+        "adaptógeno",
+        "NK"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed) + Japanese Pharmacopoeia"
+      }
+    },
+    {
+      "id": "b_infantis",
+      "nombre": "Bifidobacterium infantis",
+      "nombresAlternativos": [
+        "B. infantis",
+        "Bifidobacterium longum subsp. infantis",
+        "Bifidobacterium infantis",
+        "Lactobacillus paracasei (relacionado)"
+      ],
+      "nombreCientifico": "Bifidobacterium longum subsp. infantis",
+      "familia": "Bifidobacteriaceae",
+      "categoria": "probiotico",
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ],
+      "indicaciones": [
+        "intestinal",
+        "inmunidad",
+        "alergia",
+        "dispepsia"
+      ],
+      "descripcion": "Cepa probiótica pionera del lactante con potente efecto antiinflamatorio intestinal y modulador de la alergia.",
+      "mecanismoAccion": "Produce acetato y lactato que acidifican el colon y refuerzan la barrera epitelial. Modula Treg y reduce IL-6/IL-8. Degradación de oligosacáridos de leche humana (HMO).",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "1-10 mil millones UFC/día",
+      "dosisMaxima": "50 mil millones UFC/día",
+      "formaQuimica": [
+        "Cápsulas liofilizadas",
+        "Sobres",
+        "Gotas"
+      ],
+      "biodisponibilidad": "Sobrevive acidez gástrica (con cubierta entérica)",
+      "momentoToma": [
+        "Con comida o leche"
+      ],
+      "tomarCon": [
+        "Prebióticos (GOS/inulina)"
+      ],
+      "evitarCon": [
+        "Antibióticos (separar 2h)"
+      ],
+      "advertencias": [
+        "Conservación refrigerada (cepas vivas)",
+        "Posible gas inicial transitorio",
+        "Precaución en inmunodeprimidos graves"
+      ],
+      "tags": [
+        "probiótico",
+        "Treg",
+        "alergia",
+        "intestinal"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-10",
+        "fuente": "Clinical trials (PubMed meta-análisis) + EFSA"
       }
     }
   ]
