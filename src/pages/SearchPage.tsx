@@ -505,10 +505,10 @@ export function SearchPage() {
 
               {/* Paginación: ver más */}
               {hasMore && (
-                <div className="flex justify-center pt-2">
+                <div className="flex justify-center pt-4">
                   <button
                     onClick={() => setVisibleCount(visibleCount + RESULTS_PAGE_SIZE)}
-                    className="px-6 py-3 rounded-xl border-2 border-border text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground hover:border-primary/40 transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="px-8 py-4 rounded-xl border-2 border-border text-base font-semibold text-foreground bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[52px] shadow-sm"
                   >
                     Ver más ({sortedResults.length - visibleCount} restantes)
                     <ChevronDown className="w-5 h-5" />
@@ -577,7 +577,7 @@ export function SearchPage() {
               <button
                 key={entry.id}
                 onClick={() => setQuery(entry.query)}
-                className="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="px-4 py-2.5 rounded-full text-sm font-medium bg-muted text-foreground hover:bg-primary/10 hover:text-primary transition-colors border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[40px]"
               >
                 {entry.query}
               </button>

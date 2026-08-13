@@ -161,12 +161,13 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                     key={ing.id}
                     onClick={() => onIngredientClick?.(ing.id)}
                     className={cn(
-                      'w-full flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg transition-colors text-left group',
+                      'w-full flex items-center justify-between gap-2 px-4 py-3.5 rounded-lg transition-colors text-left group',
                       'ring-1 ring-emerald-200/60 dark:ring-white/10',
+                      'min-h-[52px] hover:ring-emerald-400/60',
                       safetyStyle,
                     )}
                   >
-                    <span className="text-[15px] font-medium text-foreground truncate">{ing.nombre}</span>
+                    <span className="text-[16px] font-medium text-foreground truncate">{ing.nombre}</span>
                     <div className="flex items-center gap-2 shrink-0">
                       {safetyBadge && (
                         <span className={cn('px-2.5 py-1 rounded-full text-sm font-semibold', safetyBadge.className)}>
@@ -174,7 +175,7 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                         </span>
                       )}
                       <span className={cn(
-                        'flex items-center justify-center w-7 h-7 rounded-md text-sm font-bold',
+                        'flex items-center justify-center w-8 h-8 rounded-md text-base font-bold',
                         ING_EVIDENCE_COLORS[ing.evidencia] || ING_EVIDENCE_COLORS.C
                       )}>
                         {ing.evidencia}
