@@ -194,26 +194,26 @@ export function SearchPage() {
   }, [indicationChips, chipSearch]);
 
   return (
-    <div className="space-y-4 max-w-6xl mx-auto">
+    <div className="space-y-4 max-w-[90rem] mx-auto">
       {/* Perfil del cliente (filtro de seguridad para asesoría) */}
       <ClientProfileSelector />
 
       {/* ===== Barra de filtros compacta (Eje B) — sticky bajo el header ===== */}
-      <div className="sticky top-16 z-20 -mx-4 lg:-mx-8 px-4 lg:px-8 py-3 bg-background/95 backdrop-blur border-b border-border space-y-2.5">
+      <div className="sticky top-16 z-20 -mx-4 lg:-mx-8 px-4 lg:px-8 py-3 bg-background/95 backdrop-blur border-b border-border space-y-3">
         {/* Patología/Indicación — colapsable, top 6 con iconos */}
         {indicationChips.length > 0 && (
           <div className="relative">
             {activeFiltersCount > 0 && (
               <button
                 onClick={clearAll}
-                className="absolute right-0 top-0 z-10 text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-1 py-0.5"
+                className="absolute right-0 top-0 z-10 text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-1.5 py-1"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
                 Limpiar
               </button>
             )}
-            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5" />
+            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4" />
               Patología / Indicación
             </p>
 
@@ -228,7 +228,7 @@ export function SearchPage() {
                       key={chip.value}
                       onClick={() => { setIndication(isActive ? '' : chip.value); }}
                       className={cn(
-                        'inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all border',
+                        'inline-flex items-center gap-2 px-3.5 py-2.5 rounded-full text-[15px] font-medium transition-all border',
                         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                         isActive
                           ? 'bg-primary text-primary-foreground border-primary shadow-sm'
@@ -236,9 +236,9 @@ export function SearchPage() {
                       )}
                       aria-pressed={isActive}
                     >
-                      <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      <Icon className="w-[18px] h-[18px] shrink-0" aria-hidden="true" />
                       {humanize(chip.value)}
-                      <span className={cn('text-xs tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                      <span className={cn('text-sm tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
                         {chip.count}
                       </span>
                     </button>
@@ -247,7 +247,7 @@ export function SearchPage() {
                 {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
                   <button
                     onClick={() => { setShowAllChips(true); setChipSearch(''); }}
-                    className="inline-flex items-center gap-1 px-3 py-2 rounded-full text-sm font-medium border border-dashed border-border-hover text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-1 px-3.5 py-2.5 rounded-full text-[15px] font-medium border border-dashed border-border-hover text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {`+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
                     <ChevronDown className="w-4 h-4" />
@@ -261,26 +261,26 @@ export function SearchPage() {
               <div className="rounded-xl border border-border bg-card p-3 shadow-sm">
                 <div className="flex items-center gap-2 mb-2.5">
                   <div className="relative flex-1">
-                    <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                    <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
                     <input
                       type="text"
                       value={chipSearch}
                       onChange={(e) => setChipSearch(e.target.value)}
                       placeholder="Filtrar indicaciones..."
                       autoFocus
-                      className="h-8 w-full rounded-lg border border-border bg-background pl-8 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+                      className="h-10 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
                       aria-label="Filtrar indicaciones"
                     />
                   </div>
                   <button
                     onClick={() => { setShowAllChips(false); setChipSearch(''); }}
-                    className="inline-flex items-center gap-1 px-2.5 h-8 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-1 px-3 h-10 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <X className="w-4 h-4" />
                     Cerrar
                   </button>
                 </div>
-                <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto">
+                <div className="flex flex-wrap gap-2 max-h-56 overflow-y-auto">
                   {filteredChips.length === 0 ? (
                     <p className="text-sm text-muted-foreground py-2">Sin coincidencias para "{chipSearch}"</p>
                   ) : (
@@ -292,7 +292,7 @@ export function SearchPage() {
                           key={chip.value}
                           onClick={() => { setIndication(isActive ? '' : chip.value); setShowAllChips(false); setChipSearch(''); }}
                           className={cn(
-                            'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all border',
+                            'inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[15px] font-medium transition-all border',
                             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                             isActive
                               ? 'bg-primary text-primary-foreground border-primary shadow-sm'
@@ -300,9 +300,9 @@ export function SearchPage() {
                           )}
                           aria-pressed={isActive}
                         >
-                          <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                          <Icon className="w-[18px] h-[18px] shrink-0" aria-hidden="true" />
                           {humanize(chip.value)}
-                          <span className={cn('text-xs tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                          <span className={cn('text-sm tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
                             {chip.count}
                           </span>
                         </button>
@@ -321,7 +321,7 @@ export function SearchPage() {
         {/* Categoría — fila única compacta */}
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Categoría</span>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {CATEGORIES.map(cat => {
               const isActive = category === cat.value;
               const cfg = cat.value ? getCategoryConfig(cat.value) : null;
@@ -331,14 +331,14 @@ export function SearchPage() {
                   key={cat.value}
                   onClick={() => setCategory(cat.value)}
                   className={cn(
-                    'inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-sm font-medium transition-colors',
+                    'inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-colors',
                     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                     isActive
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
                   )}
                 >
-                  {cat.value && <Icon className="w-3.5 h-3.5" aria-hidden="true" />}
+                  {cat.value && <Icon className="w-4 h-4" aria-hidden="true" />}
                   {cat.label}
                 </button>
               );
@@ -385,17 +385,17 @@ export function SearchPage() {
 
           {/* Estado de carga */}
           {isSearching && sortedResults.length === 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="p-4 rounded-xl border-2 border-border bg-card animate-pulse min-h-[110px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="p-5 rounded-xl border-2 border-border bg-card animate-pulse min-h-[140px]">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-lg bg-muted" />
-                      <div className="h-4 w-24 rounded bg-muted" />
+                      <div className="w-10 h-10 rounded-lg bg-muted" />
+                      <div className="h-5 w-28 rounded bg-muted" />
                     </div>
-                    <div className="w-7 h-7 rounded-lg bg-muted" />
+                    <div className="w-9 h-9 rounded-lg bg-muted" />
                   </div>
-                  <div className="h-3.5 w-full rounded bg-muted/70 mb-2" />
+                  <div className="h-4 w-full rounded bg-muted/70 mb-2" />
                   <div className="h-3 w-1/3 rounded bg-muted/70" />
                 </div>
               ))}
@@ -405,7 +405,7 @@ export function SearchPage() {
           {/* Grid de ingredientes — Eje A: cards grandes, legibles a distancia */}
           {ingredientsExpanded && sortedResults.length > 0 && !isSearching && (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {visibleResults.map((result) => (
                   <IngredientResultCard
                     key={result.ingredient.id}
@@ -421,10 +421,10 @@ export function SearchPage() {
                 <div className="flex justify-center pt-2">
                   <button
                     onClick={() => setVisibleCount(visibleCount + RESULTS_PAGE_SIZE)}
-                    className="px-5 py-2.5 rounded-xl border-2 border-border text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground hover:border-primary/40 transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="px-6 py-3 rounded-xl border-2 border-border text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground hover:border-primary/40 transition-colors flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Ver más ({sortedResults.length - visibleCount} restantes)
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-5 h-5" />
                   </button>
                 </div>
               )}

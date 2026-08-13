@@ -113,7 +113,7 @@ export function KnowledgePage() {
           <p className="text-muted-foreground">Cargando...</p>
         </div>
       ) : ingredients.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {ingredients.map((ingredient) => {
             const catConfig = getCategoryConfig(ingredient.categoria);
             const CatIcon = catConfig.icon;
@@ -122,19 +122,19 @@ export function KnowledgePage() {
             return (
               <Card
                 key={ingredient.id}
-                className="p-4 hover:border-primary transition-all cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="p-5 hover:border-primary transition-all cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 onClick={() => setSelectedIngredient(ingredient)}
               >
                 {/* Category Icon and Badge */}
                 <div className="flex items-start justify-between mb-3">
-                  <div className={cn('p-2 rounded-lg', catConfig.color)}>
-                    <CatIcon className="w-4 h-4" aria-hidden="true" />
+                  <div className={cn('p-2.5 rounded-lg', catConfig.color)}>
+                    <CatIcon className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <div className="flex flex-col items-end gap-1">
                     <Badge variant="secondary" className="text-xs">
                       {catConfig.label}
                     </Badge>
-                    <span className={`text-xs px-1.5 py-0.5 rounded ${evidenceConfig.color}`}>
+                    <span className={`text-xs px-2 py-1 rounded ${evidenceConfig.color}`}>
                       {evidenceConfig.label}
                     </span>
                   </div>
@@ -145,7 +145,7 @@ export function KnowledgePage() {
 
                 {/* Synonyms */}
                 {ingredient.sinonimos && ingredient.sinonimos.length > 0 && (
-                  <p className="text-xs text-muted-foreground mb-2 line-clamp-1">
+                  <p className="text-sm text-muted-foreground mb-2 line-clamp-1">
                     {ingredient.sinonimos.slice(0, 3).join(', ')}
                   </p>
                 )}
