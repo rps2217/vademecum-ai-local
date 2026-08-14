@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-10",
-    "total": 228,
+    "ultimaActualizacion": "2026-08-14",
+    "total": 235,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -11983,6 +11983,410 @@
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph EMA/HMPC/18425/2015 (Vitis vinifera folium); ESCOP Monographs"
       }
+    },
+    {
+      "id": "acai",
+      "nombre": "Açaí",
+      "nombresAlternativos": [
+        "Acai",
+        "Azaí",
+        "Euterpe oleracea",
+        "Palma açaí"
+      ],
+      "nombreCientifico": "Euterpe oleracea",
+      "familia": "Arecaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "cardiovascular",
+        "dermatologico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "colesterol",
+        "energia",
+        "inmunidad"
+      ],
+      "descripcion": "Bayas tropicales ricas en antocianinas y fitosteroles. Potente antioxidante con perfil lipídico favorable.",
+      "mecanismoAccion": "Alto contenido de antocianinas (polifenoles) que neutralizan radicales libres. Fitosteroles (beta-sitosterol) modulan absorción de colesterol. Ácidos grasos esenciales (omega-9) apoyan función cardiovascular.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "100-500mg extracto al día",
+      "dosisMaxima": "1000mg/día",
+      "formaQuimica": [
+        "Polvo liofilizado",
+        "Extracto estandarizado 4:1"
+      ],
+      "biodisponibilidad": "Moderada (antocianinas tienen baja absorción, efecto compuesto)",
+      "momentoToma": [
+        "Con las comidas (liposoluble)"
+      ],
+      "tomarCon": [
+        "Vitamina C (sinergia antioxidante)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Evitar en embarazo y lactancia por falta de datos de seguridad",
+        "Puede interferir con estudios de resonancia por contenido de hierro"
+      ],
+      "tags": [
+        "antioxidante",
+        "cardiovascular",
+        "energia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": [
+        "Teórica interacción con anticoagulantes por efecto antiagregante de polifenoles",
+        "Puede potenciar efecto de estatinas por modulación de colesterol"
+      ]
+    },
+    {
+      "id": "manzana",
+      "nombre": "Manzana",
+      "nombresAlternativos": [
+        "Apple",
+        "Malus domestica",
+        "Pectina de manzana"
+      ],
+      "nombreCientifico": "Malus domestica",
+      "familia": "Rosaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "digestivo",
+        "cardiovascular",
+        "metabolico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "colesterol",
+        "digestivo",
+        "fibra",
+        "glucosa"
+      ],
+      "descripcion": "Fruta rica en pectina (fibra soluble), quercetina y polifenoles. Mejora tránsito intestinal y perfil lipídico.",
+      "mecanismoAccion": "Pectina (fibra soluble) forma gel en intestino que ralentiza absorción de glucosa y colesterol. Polifenoles (quercetina, catequinas) con efecto antioxidante y modulación de microbiota intestinal (efecto prebiótico).",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "1-2 manzanas al día o 10-15g pectina",
+      "dosisMaxima": "30g pectina/día",
+      "formaQuimica": [
+        "Fruta fresca",
+        "Pectina purificada",
+        "Extracto seco"
+      ],
+      "biodisponibilidad": "Buena (pectina fermentada por microbiota colónica en ácidos grasos de cadena corta)",
+      "momentoToma": [
+        "Con comidas o como snack"
+      ],
+      "tomarCon": [
+        "Probióticos (sinergia prebiótica)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Altas dosis de pectina pueden interferir con absorción de medicamentos (separar 2h)"
+      ],
+      "tags": [
+        "fibra",
+        "digestivo",
+        "colesterol"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": [
+        "Pectina puede reducir absorción de lovastatina y otros fármacos (separar toma)"
+      ]
+    },
+    {
+      "id": "quillay",
+      "nombre": "Quillay",
+      "nombresAlternativos": [
+        "Quillaja",
+        "Soapbark",
+        "Quillaja saponaria",
+        "Corteza de quillay"
+      ],
+      "nombreCientifico": "Quillaja saponaria",
+      "familia": "Quillajaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "tos",
+        "piel",
+        "respiratorio"
+      ],
+      "descripcion": "Árbol endémico de Chile. La corteza es rica en saponinas (QS-21) con potente actividad inmunomoduladora, usada como adyuvante vacunal.",
+      "mecanismoAccion": "Saponinas triterpénicas (QS-21) activan respuesta inmune innata y adaptativa, estimulando presentación antigénica. Expectorante por acción saponínica sobre mucosas respiratorias. Tópico: emulsionante y antiséptico leve.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "250-500mg extracto de corteza al día",
+      "dosisMaxima": "1000mg/día",
+      "formaQuimica": [
+        "Extracto de corteza",
+        "Saponinas purificadas QS-21"
+      ],
+      "biodisponibilidad": "Baja por vía oral (saponinas); mejor absorción tópica",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Vitamina C (sinergia inmune)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Altas dosis de saponinas pueden irritar mucosa gástrica",
+        "No usar en embarazo (efecto abortivo descrito en medicina tradicional)"
+      ],
+      "tags": [
+        "inmune",
+        "respiratorio",
+        "saponinas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": [
+        "Saponinas pueden potenciar absorción de otros fármacos (efecto permeabilizante)"
+      ]
+    },
+    {
+      "id": "calafate",
+      "nombre": "Calafate",
+      "nombresAlternativos": [
+        "Berberis microphylla",
+        "Michay",
+        "Berberis darwinii"
+      ],
+      "nombreCientifico": "Berberis microphylla",
+      "familia": "Berberidaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "dermatologico",
+        "hepatico"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "inmunidad",
+        "piel",
+        "digestivo"
+      ],
+      "descripcion": "Arbusto patagónico cuyas bayas tienen una de las mayores capacidades antioxidantes medidas (ORAC alto), superior al arándano.",
+      "mecanismoAccion": "Alto contenido de antocianinas (delfinidina, malvidina) y vitamina C. Acción antioxidante directa neutralizando radicales libres. Efecto antimicrobiano leve por alcaloides berberínicos en raíz.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "100-300mg extracto de baya al día",
+      "dosisMaxima": "600mg/día",
+      "formaQuimica": [
+        "Polvo de baya liofilizada",
+        "Extracto estandarizado"
+      ],
+      "biodisponibilidad": "Moderada (antocianinas de baja biodisponibilidad pero efecto acumulado)",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Vitamina C (sinergia antioxidante)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Raíz contiene berberina: evitar en embarazo (efecto uterotónico)"
+      ],
+      "tags": [
+        "antioxidante",
+        "inmune"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": [
+        "Teórica interacción con anticoagulantes por efecto antiagregante"
+      ]
+    },
+    {
+      "id": "capuchina",
+      "nombre": "Capuchina",
+      "nombresAlternativos": [
+        "Tropaeolum majus",
+        "Mastuerzo",
+        "Nasturtium"
+      ],
+      "nombreCientifico": "Tropaeolum majus",
+      "familia": "Tropaeolaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "respiratorio",
+        "inmune",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "tos",
+        "antibacteriano",
+        "piel",
+        "respiratorio"
+      ],
+      "descripcion": "Planta ornamental y medicinal sudamericana con actividad antibacteriana (glucosinolatos/bencil isotiocianato) y expectorante.",
+      "mecanismoAccion": "Glucosinolatos liberan bencil isotiocianato con acción antibacteriana (especialmente urogenital y respiratoria). Saponinas con efecto expectorante. Vitamina C y flavonoides aportan acción antioxidante.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "2-4g hoja fresca o 300mg extracto al día",
+      "dosisMaxima": "6g/día",
+      "formaQuimica": [
+        "Hoja fresca",
+        "Extracto seco",
+        "Tintura"
+      ],
+      "biodisponibilidad": "Buena (isotiocianatos bien absorbidos)",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Vitamina C (sinergia antioxidante)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "No usar en embarazo (potencial efecto emenagogo y mutagénico de isotiocianatos)",
+        "Evitar en úlceras gastroduodenales (irritante mucoso)"
+      ],
+      "tags": [
+        "antibacteriano",
+        "respiratorio",
+        "inmune"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": [
+        "Isotiocianatos pueden inducir CYP y afectar metabolismo de fármacos"
+      ]
+    },
+    {
+      "id": "edelweiss",
+      "nombre": "Edelweiss",
+      "nombresAlternativos": [
+        "Leontopodium alpinum",
+        "Flor de nieve",
+        "Edelweiss extract"
+      ],
+      "nombreCientifico": "Leontopodium alpinum",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "dermatologico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "antioxidante",
+        "piel",
+        "radiacion",
+        "inmunidad"
+      ],
+      "descripcion": "Flor alpina con potentes compuestos fotoprotectores (leontopódico ácido) y antioxidantes, usada en dermatología cosmética.",
+      "mecanismoAccion": "Leontopódico ácido y polifenilos (clorogénico, 3,5-dicafeoilquinico) con alta capacidad antioxidante y fotoprotectora UV. Protege colágeno y elastina de degradación por radicales libres y radiación.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "Extracto tópico al 1-3%",
+      "dosisMaxima": "Uso tópico según formulación",
+      "formaQuimica": [
+        "Extracto de flor",
+        "Extracto estandarizado en leontopódico ácido"
+      ],
+      "biodisponibilidad": "Tópica (uso dermatológico principal)",
+      "momentoToma": [
+        "Aplicación tópica"
+      ],
+      "tomarCon": [
+        "Vitamina C tópica (sinergia antioxidante cutánea)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Evitar en alergia a Asteraceae (riesgo de dermatitis de contacto)"
+      ],
+      "tags": [
+        "antioxidante",
+        "piel",
+        "fotoproteccion"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": []
+    },
+    {
+      "id": "cafeina",
+      "nombre": "Cafeína",
+      "nombresAlternativos": [
+        "Cafeína",
+        "Cafeine",
+        "Trimetilxantina",
+        "1,3,7-trimetilxantina",
+        "Guaranina"
+      ],
+      "nombreCientifico": "1,3,7-trimetilxantina",
+      "familia": "Metilxantinas",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "cardiovascular",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "concentracion",
+        "energia",
+        "cognitivo",
+        "rendimiento",
+        "dolor de cabeza"
+      ],
+      "descripcion": "Alcaloide estimulante del SNC. Mejora alerta, concentración y rendimiento físico. Analgésico adyuvante.",
+      "mecanismoAccion": "Antagonista de receptores de adenosina (A1, A2A) → reduce sensación de fatiga y somnolencia. Inhibe fosfodiesterasa → aumenta AMPc. Estimula liberación de catecolaminas. Adyuvante analgésico (potencia efecto de paracetamol/AINEs).",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "50-200mg al día (equivalente a 1-2 cafés)",
+      "dosisMaxima": "400mg/día (sanos); 200mg/día en embarazo",
+      "formaQuimica": [
+        "Cafeína anhidra",
+        "Cafeína citratada",
+        "Extracto de guaraná",
+        "Extracto de café verde"
+      ],
+      "biodisponibilidad": "Excelente (99% absorción oral, pico a 30-60min)",
+      "momentoToma": [
+        "Mañana o pre-ejercicio",
+        "Evitar después de las 16h (insomnio)"
+      ],
+      "tomarCon": [
+        "L-teanina (mitiga nerviosismo, sinergia cognitiva)"
+      ],
+      "evitarCon": [
+        "Hierro (cafeína reduce absorción)",
+        "Calcio (cafeína aumenta excreción urinaria)"
+      ],
+      "advertencias": [
+        "Contraindicado en arritmias graves, hipertensión no controlada, ansiedad severa",
+        "Insomnio si se toma tarde",
+        "Tolerancia y dependencia: retirada causa cefalea",
+        "Embarazo: limitar a 200mg/día",
+        "Lactancia: limitar a 200mg/día (pasa a leche materna)"
+      ],
+      "tags": [
+        "estimulante",
+        "cognitivo",
+        "energia",
+        "rendimiento"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": [
+        "Antagoniza efecto de benzodiacepinas (reduce sedación)",
+        "Potencia efecto de analgésicos (paracetamol, AINEs): se usa en combinaciones",
+        "Teofilina: efecto aditivo (estimulación SNC y cardiaca)",
+        "Ciprofloxacino y fluvoxamina: inhiben metabolismo de cafeína (aumentan niveles)",
+        "Anticonceptivos orales: prolongan semivida de cafeína",
+        "Fumadoras: acortan semivida de cafeína (clearance más rápido)"
+      ]
     }
   ]
 }

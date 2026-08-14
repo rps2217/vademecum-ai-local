@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-10",
-    "total": 195,
+    "ultimaActualizacion": "2026-08-14",
+    "total": 197,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -11009,6 +11009,126 @@
         "fechaCreacion": "2026-08-10",
         "fuente": "EFSA scientific opinion on arabinogalactan; Clinical trials PubMed sobre Larix AG e inmunidad"
       }
+    },
+    {
+      "id": "nanocobre",
+      "nombre": "Nanocobre",
+      "nombresAlternativos": [
+        "Nanopartículas de cobre",
+        "Nano-cobre",
+        "Cobre coloidal",
+        "Nano copper"
+      ],
+      "nombreCientifico": "Cobre (nanopartícula)",
+      "familia": "Minerales traza",
+      "categoria": "mineral",
+      "sistemas": [
+        "inmune",
+        "dermatologico",
+        "metabolico",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "piel",
+        "cicatrizacion",
+        "antioxidante"
+      ],
+      "descripcion": "Cobre en forma coloidal/nanoparticulada con mayor biodisponibilidad teórica. Cofactor de enzimas antioxidantes (SOD) y de síntesis de colágeno.",
+      "mecanismoAccion": "Cofactor de ceruloplasmina, superóxido dismutasa (SOD) citosólica y extracelular, lisil oxidasa (síntesis de colágeno/elastina), tirosinasa (melanina) y citocromo c oxidasa (cadena respiratoria). Forma nanoparticulada persigue mayor absorción y menor dosis.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "0.5-1mg/día (cobre elemental)",
+      "dosisMaxima": "2mg/día",
+      "formaQuimica": [
+        "Nanopartícula coloidal",
+        "Cobre quelado",
+        "Gluconato de cobre"
+      ],
+      "biodisponibilidad": "Variable (forma coloidal con absorción teóricamente mejorada; evidencia clínica limitada)",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Zinc (balance 8-15:1 Zn:Cu)"
+      ],
+      "evitarCon": [
+        "Dosis altas de zinc (antagonismo competitivo)",
+        "Vitamina C altas dosis (reduce absorción)"
+      ],
+      "advertencias": [
+        "Exceso de cobre es tóxico: nausea, vómito, daño hepático",
+        "Enfermedad de Wilson: contraindicado",
+        "Evidencia limitada sobre superioridad de forma nanoparticulada vs quelada"
+      ],
+      "tags": [
+        "mineral",
+        "antioxidante",
+        "inmune",
+        "colageno"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": [
+        "Penicilamina: quelante de cobre (reduce niveles)",
+        "Zinc altas dosis: inducen metalotioneína que secuestra cobre (deficiencia)",
+        "Antiacidos: reducen absorción"
+      ]
+    },
+    {
+      "id": "queratina",
+      "nombre": "Queratina",
+      "nombresAlternativos": [
+        "Keratina",
+        "Queratina hidrolizada",
+        "Hydrolyzed keratin",
+        "Peptidos de queratina"
+      ],
+      "nombreCientifico": "Proteína estructural (alfa/beta-queratina)",
+      "familia": "Proteínas estructurales",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cabello",
+        "uñas",
+        "piel"
+      ],
+      "descripcion": "Proteína fibrosa estructural del cabello, uñas y capa córnea. Suplementación con queratina hidrolizada apoya estructura de piel anexa.",
+      "mecanismoAccion": "Queratina hidrolizada aporta aminoácidos (cisteína rica en azufre, glicina, serina) que son sustrato para síntesis de queratina endógena por queratinocitos. Mejora hidratación y resistencia del tallo capilar y placa ungueal.",
+      "nivelEvidencia": "C",
+      "dosisDiaria": "500mg/día (queratina hidrolizada)",
+      "dosisMaxima": "1000mg/día",
+      "formaQuimica": [
+        "Queratina hidrolizada",
+        "Péptidos de queratina",
+        "Queratina alfa"
+      ],
+      "biodisponibilidad": "Moderada (péptidos hidrolizados mejor absorbidos que proteína intacta)",
+      "momentoToma": [
+        "Con comidas"
+      ],
+      "tomarCon": [
+        "Biotina (sinergia capilar)",
+        "Zinc (sinergia capilar)",
+        "Vitamina C (síntesis de colágeno/queratina)"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Posible alergia en sensibilidad a proteínas del huevo o plumas (origen habitual)",
+        "Evidencia clínica limitada para uso oral vs tópico"
+      ],
+      "tags": [
+        "cabello",
+        "uñas",
+        "proteina",
+        "piel"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-14"
+      },
+      "interaccionesMedicamentosas": []
     }
   ]
 }

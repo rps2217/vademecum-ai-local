@@ -336,9 +336,30 @@ KB version: `v228-117-85-195-1154-146-126`.
 - [x] ~~src/lib/index.ts~~ barrel — ELIMINADO (nadie importaba desde @/lib).
 - [x] ~~deps zod y class-variance-authority~~ — ELIMINADAS (sin uso en el código).
 
-> **Nota sobre Supabase Sync:** El sync con Supabase es experimental. Existen diferencias
-> de schema entre Dexie (local) y PostgreSQL (remoto) que deben resolverse en una versión
-> futura. NO existe SyncManager (fue eliminado); el servicio actual es SyncService.
+> **Nota sobre Supabase Sync:** El sync con Supabase era experimental, pero la conexión
+> está ahora CONFIGURADA y VERIFICADA end-to-end (2026-08-14):
+> - Proyecto: `lcoweosnhdkzogtmsfml` (URL + anon key en `.env.local`, gitignored).
+> - `testConnection()` en `src/lib/supabase.ts` consulta `ingredients` (corregido: antes
+>   apuntaba a la tabla inexistente `extended_ingredients`). Devuelve success desde la UI
+>   (Settings → Sincronización → "Probar conexión" → "Conexión exitosa").
+> - `SyncService.downloadRemoteChanges()` lee `ingredients` y `synergies` con
+>   `eq('tombstone',0).gte('updated_at', lastSync)` y las mergea a Dexie. El mapeo
+>   snake_case↔camelCase es manual en `mergeRemoteIngredient/Synergy` (correcto).
+> - El download merge solo aplica si `remoteLamport > localLamport`. Como la KB seed
+>   (local y remota) tiene `lamport:0`, el primer sync reporta 0 descargas — esto es
+>   CORRECTO (no sobrescribe datos idénticos). Las descargas reales ocurren cuando un
+>   registro remoto cambia su `lamport`/`updated_at`.
+> - RLS permite a la anon key leer las 9 tablas (ingredients, synergies, pathologies,
+>   products, product_ingredients, product_ingredient_analysis, protocols, snapshots,
+>   sync_meta). Escritura requiere service role (no usada por la app, solo por seeders).
+>
+> **Bug conocido (upload path):** `toSupabaseFormat()` en `src/core/sync/transform.ts`
+> hace camelCase→snake_case genérico que NO maneja sufijos de palabra (`ingredienteA`→
+> `ingredientea` en vez de `ingrediente_a`). El upload de sinergias fallaría por ello.
+> El download path NO se ve afectado (mapea campos manualmente). Pendiente de arreglar
+> si se quiere habilitar el upload bidireccional real.
+>
+> NO existe SyncManager (fue eliminado); el servicio actual es SyncService.
 
 ## Filtros Planeados (UI)
 
