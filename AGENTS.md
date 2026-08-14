@@ -353,11 +353,12 @@ KB version: `v228-117-85-195-1154-146-126`.
 >   products, product_ingredients, product_ingredient_analysis, protocols, snapshots,
 >   sync_meta). Escritura requiere service role (no usada por la app, solo por seeders).
 >
-> **Bug conocido (upload path):** `toSupabaseFormat()` en `src/core/sync/transform.ts`
-> hace camelCase→snake_case genérico que NO maneja sufijos de palabra (`ingredienteA`→
-> `ingredientea` en vez de `ingrediente_a`). El upload de sinergias fallaría por ello.
-> El download path NO se ve afectado (mapea campos manualmente). Pendiente de arreglar
-> si se quiere habilitar el upload bidireccional real.
+> **Bug resuelto (upload path):** `toSupabaseFormat()` en `src/core/sync/transform.ts`
+> ahora (a) usa `toSnakeCase()` que maneja sufijos de palabra (`ingredienteA`→
+> `ingrediente_a`) y grupos de mayúsculas consecutivas (`httpURL`→`http_url`), y
+> (b) convierte `updatedAt`/`lastSyncAt` de `number` (epoch ms) a ISO string para
+> las columnas `TIMESTAMPTZ` de Supabase (antes se enviaba un number, lo que
+> rompería el upsert). Tests en `tests/unit/transform.test.ts`.
 >
 > NO existe SyncManager (fue eliminado); el servicio actual es SyncService.
 
