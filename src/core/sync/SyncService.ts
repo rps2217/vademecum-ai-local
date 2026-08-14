@@ -13,7 +13,7 @@ import type {
   SyncTable
 } from '@/db/schema';
 import { generateId, now } from '@/db/schema';
-import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
+import { getSupabase, isSupabaseConfigured, getSupabaseUrl } from '@/lib/supabase';
 import { ConflictResolver, type ConflictInfo } from './ConflictResolver';
 import { ConflictError, SchemaMismatchError, UnauthorizedError } from './errors';
 import { toSupabaseFormat } from './transform';
@@ -74,6 +74,37 @@ export class SyncService {
       if (isSupabaseConfigured()) {
         this.config.enabled = true;
         this.startAutoSync();
+        // Health-check inicial: si el host de Supabase no resuelve o no es
+        // alcanzable (DNS failure, config errónea en prod), desactivar sync
+        // antes de que el timer dispare 3 reintentos que llenarían la consola
+        // de errores "no-response" / "Failed to fetch".
+        this.runStartupHealthCheck();
+      }
+    }
+  }
+
+  /** Probar reachabilidad del host Supabase una vez al arrancar.
+   *  Usa un fetch HEAD al REST root con timeout corto (4s). Si falla a nivel
+   *  de red (DNS/conn), desactiva sync para esta sesión. */
+  private async runStartupHealthCheck(): Promise<void> {
+    const url = getSupabaseUrl();
+    if (!url) return;
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 4000);
+      await fetch(`${url}/rest/v1/`, {
+        method: 'HEAD',
+        signal: controller.signal,
+        // No enviar credentials: solo probamos reachabilidad de red/DNS.
+      }).finally(() => clearTimeout(timeout));
+      // Cualquier respuesta HTTP (incluso 401/404) significa que el host
+      // resuelve y responde → la config es válida, dejar que sync corra.
+    } catch (err) {
+      if (this.isNetworkError(err)) {
+        this.disableSync(
+          `Sync desactivado al arrancar: el host de Supabase (${url}) no es ` +
+          `alcanzable (fallo de red/DNS). Verifica VITE_SUPABASE_URL en el entorno.`
+        );
       }
     }
   }
