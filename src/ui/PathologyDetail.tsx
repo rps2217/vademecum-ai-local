@@ -9,11 +9,12 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db/schema';
 import type { DbPathology, DbIngredient } from '@/db/schema';
+import { useProductsForPathology } from '@/hooks/useProductsForPathology';
 import { Badge } from '@/ui/Badge';
 import {
   X, AlertTriangle, Pill, Leaf, FlaskConical, Home, Droplet,
   Shield, Stethoscope, BookOpen, Lightbulb, ChevronRight,
-  Users, AlertOctagon, ChevronDown,
+  Users, AlertOctagon, ChevronDown, Package,
 } from 'lucide-react';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
 
@@ -21,6 +22,7 @@ interface PathologyDetailProps {
   pathology: DbPathology;
   onClose: () => void;
   onIngredientClick?: (id: string) => void;
+  onProductClick?: (sku: string) => void;
 }
 
 const EVIDENCE_COLORS = {
@@ -55,7 +57,7 @@ const NATURAL_TABS: { key: NaturalCat; label: string; icon: typeof Leaf }[] = [
   { key: 'aceites', label: 'Aceites', icon: Droplet },
 ];
 
-export function PathologyDetail({ pathology, onClose, onIngredientClick }: PathologyDetailProps) {
+export function PathologyDetail({ pathology, onClose, onIngredientClick, onProductClick }: PathologyDetailProps) {
   const [activeTab, setActiveTab] = useState<NaturalCat>('fitoterapia');
   const panelRef = useRef<HTMLDivElement>(null);
   useFocusTrap(panelRef, true);
@@ -96,6 +98,9 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
     }
     return m;
   }, [ingredients]);
+
+  // Fase 2: lookup inverso patología → productos (vía bridge de ingredientes).
+  const pathologyProducts = useProductsForPathology(allReferencedIds);
 
   const evidenceColor = EVIDENCE_COLORS[pathology.evidencia] || EVIDENCE_COLORS.C;
 
@@ -241,6 +246,66 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick }: Patho
               </div>
             )}
           </section>
+
+          {/* Productos comerciales indicados — Fase 2 (lookup transitivo) */}
+          {pathologyProducts && pathologyProducts.length > 0 && (
+            <section className="p-4 rounded-xl bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800/60">
+              <div className="flex items-center gap-2 mb-3">
+                <Package className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+                <h3 className="font-bold text-sm uppercase tracking-wide text-sky-800 dark:text-sky-300">
+                  Productos comerciales indicados
+                </h3>
+                <span className="text-xs text-sky-700 dark:text-sky-400 opacity-70">
+                  {pathologyProducts.length}
+                </span>
+              </div>
+              <div className="space-y-1.5 max-h-72 overflow-y-auto pr-1">
+                {pathologyProducts.slice(0, 12).map((pp) => (
+                  <button
+                    key={pp.product.sku}
+                    onClick={() => onProductClick?.(pp.product.sku)}
+                    className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                        {pp.product.nombreComercial}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        {(pp.product.principiosActivos ?? []).slice(0, 3).join(', ')}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {pp.analysis && (
+                        <span
+                          className={`px-1.5 py-0.5 rounded text-xs font-medium ${
+                            pp.analysis.coberturaKb >= 100
+                              ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
+                              : pp.analysis.coberturaKb >= 50
+                                ? 'bg-amber-500/15 text-amber-700 dark:text-amber-300'
+                                : 'bg-red-500/15 text-red-700 dark:text-red-300'
+                          }`}
+                          title={`${pp.matchedCount} ingrediente(s) de esta patología`}
+                        >
+                          {pp.matchedCount} en KB
+                        </span>
+                      )}
+                      {!pp.analysis && pp.matchedCount > 0 && (
+                        <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-sky-500/15 text-sky-700 dark:text-sky-300">
+                          {pp.matchedCount} en KB
+                        </span>
+                      )}
+                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" />
+                    </div>
+                  </button>
+                ))}
+                {pathologyProducts.length > 12 && (
+                  <p className="text-xs text-muted-foreground text-center pt-1">
+                    +{pathologyProducts.length - 12} productos más
+                  </p>
+                )}
+              </div>
+            </section>
+          )}
 
           {/* Alertas farmacéuticas — visible (safety) */}
           {pathology.alertasFarmaceuticas && pathology.alertasFarmaceuticas.length > 0 && (

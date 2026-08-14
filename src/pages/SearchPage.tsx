@@ -735,6 +735,13 @@ export function SearchPage() {
               setSelectedIngredient(ing);
             }
           }}
+          onProductClick={(sku) => {
+            const p = productSearchService.getProduct(sku);
+            if (p) {
+              setSelectedPathology(null);
+              setSelectedProduct(p);
+            }
+          }}
         />
       )}
       {selectedProduct && (
