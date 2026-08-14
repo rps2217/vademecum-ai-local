@@ -24,6 +24,13 @@ import { getDeviceId } from '@/db/schema';
 const SYNC_META_KEY = 'productReplicatedAt';
 const PAGE_SIZE = 500;
 
+/** Marca en syncMeta para no reintentar la replicación tras fallos de red.
+ *  Un host Supabase inalcanzable (DNS / config errónea) haría que cada arranque
+ *  repitiera 3×N fetches fallidos; este flag corta el ciclo. Se resetea solo si
+ *  la URL cambia (distinto proyecto) o si el usuario fuerza re-sync. */
+const DISABLED_KEY = 'productReplicationDisabled';
+const DISABLED_URL_KEY = 'productReplicationDisabledUrl';
+
 export interface ReplicationResult {
   products: number;
   bridge: number;
@@ -33,12 +40,60 @@ export interface ReplicationResult {
 }
 
 /**
+ * ¿La replicación está desactivada para el proyecto Supabase actual?
+ * Compara la URL guardada con la URL configurada: si cambiaron, se resetea.
+ */
+async function isReplicationDisabled(): Promise<boolean> {
+  const disabled = await db.syncMeta.get(DISABLED_KEY);
+  if (!disabled?.value) return false;
+  const disabledUrl = (await db.syncMeta.get(DISABLED_URL_KEY))?.value as string | undefined;
+  const currentUrl = getSupabaseUrlSafe();
+  // Si cambió la URL (p. ej. corregida en Vercel), rehabilitar automáticamente.
+  if (disabledUrl && currentUrl && disabledUrl !== currentUrl) return false;
+  return true;
+}
+
+async function markReplicationDisabled(): Promise<void> {
+  const url = getSupabaseUrlSafe() ?? 'unknown';
+  await db.syncMeta.bulkPut([
+    { key: DISABLED_KEY, value: true, updatedAt: Date.now() },
+    { key: DISABLED_URL_KEY, value: url, updatedAt: Date.now() },
+  ]);
+  logger.warn(`[ProductReplicator] Replicación desactivada por fallo de red (URL: ${url}). Se reintentará si la URL cambia.`);
+}
+
+async function clearReplicationDisabled(): Promise<void> {
+  await db.syncMeta.delete(DISABLED_KEY);
+  await db.syncMeta.delete(DISABLED_URL_KEY);
+}
+
+function getSupabaseUrlSafe(): string | null {
+  try {
+    return import.meta.env.VITE_SUPABASE_URL || null;
+  } catch {
+    return null;
+  }
+}
+
+/** Detecta errores de red: fetch rechazado antes de llegar al servidor
+ *  (DNS failure, host inalcanzable, CORS de red, etc.). El cliente Supabase
+ *  los envuelve como TypeError: Failed to fetch. */
+function isNetworkError(error: unknown): boolean {
+  if (!error) return false;
+  const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
+  return msg.includes('failed to fetch') ||
+    msg.includes('networkerror') ||
+    msg.includes('network request failed') ||
+    msg.includes('load failed');
+}
+
+/**
  * Replica (o re-replica) los productos y el bridge desde Supabase.
  *
  * Primera llamada: descarga todo. Llamadas posteriores: solo los cambios
  * desde `productReplicatedAt` (updated_at > lastSync). Si no hay Supabase
- * configurado o las tablas no existen, devuelve skipped=true (la app sigue
- * funcionando sin productos; el ProductSearchService indexará lo que haya).
+ * configurado, las tablas no existen, o hay fallos de red consecutivos,
+ * devuelve skipped=true (la app sigue funcionando sin productos).
  */
 export async function replicateProducts(): Promise<ReplicationResult> {
   if (!isSupabaseConfigured()) {
@@ -47,6 +102,11 @@ export async function replicateProducts(): Promise<ReplicationResult> {
   const supabase = getSupabase();
   if (!supabase) {
     return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Cliente Supabase no disponible' };
+  }
+  // Fail-fast: si ya marcamos la replicación como desactivada por fallos de red
+  // para esta URL, no reintentar (evita spam de errores en cada arranque).
+  if (await isReplicationDisabled()) {
+    return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Replicación desactivada por fallos de red previos' };
   }
 
   const lastSyncMeta = await db.syncMeta.get(SYNC_META_KEY);
@@ -87,6 +147,10 @@ export async function replicateProducts(): Promise<ReplicationResult> {
       offset += PAGE_SIZE;
     }
   } catch (err) {
+    if (isNetworkError(err)) {
+      await markReplicationDisabled();
+      return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
+    }
     logger.error('[ProductReplicator] Excepción descargando productos:', err);
   }
 
@@ -117,6 +181,10 @@ export async function replicateProducts(): Promise<ReplicationResult> {
       offset += PAGE_SIZE;
     }
   } catch (err) {
+    if (isNetworkError(err)) {
+      await markReplicationDisabled();
+      return { products: productCount, bridge: 0, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
+    }
     logger.error('[ProductReplicator] Excepción descargando bridge:', err);
   }
 
@@ -147,11 +215,17 @@ export async function replicateProducts(): Promise<ReplicationResult> {
       offset += PAGE_SIZE;
     }
   } catch (err) {
+    if (isNetworkError(err)) {
+      await markReplicationDisabled();
+      return { products: productCount, bridge: bridgeCount, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
+    }
     logger.error('[ProductReplicator] Excepción descargando análisis:', err);
   }
 
   const nowIso = new Date().toISOString();
   await db.syncMeta.put({ key: SYNC_META_KEY, value: nowIso, updatedAt: Date.now() });
+  // Éxito: limpiar flag de desactivado (por si re-sincroniza manualmente tras arreglar la URL).
+  await clearReplicationDisabled();
 
   logger.log(`[ProductReplicator] Replicados ${productCount} productos, ${bridgeCount} bridge, ${analysisCount} análisis.`);
   return { products: productCount, bridge: bridgeCount, analysis: analysisCount, skipped: false };

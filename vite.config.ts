@@ -89,13 +89,18 @@ export default defineConfig(() => {
               }
             },
             {
-              urlPattern: /^https:\/\/.*\.supabase\.co\/.*/i,
+              // NOTA: las queries REST de Supabase (/rest/v1/...) NO se cachean.
+              // Son dinámicas (paginación, filtros updated_at, auth headers) y
+              // cachearlas genera ruido de "no-response" en consola cuando el
+              // host es inalcanzable. Solo cacheamos el endpoint de autenticación
+              // y assets estáticos del storage, no /rest/v1/.
+              urlPattern: /^https:\/\/.*\.supabase\.co\/(?!rest\/v1\/).*/i,
               handler: 'NetworkFirst',
               options: {
-                cacheName: 'supabase-cache',
+                cacheName: 'supabase-assets',
                 networkTimeoutSeconds: 10,
                 expiration: {
-                  maxEntries: 100,
+                  maxEntries: 50,
                   maxAgeSeconds: 60 * 60 * 24
                 }
               }
