@@ -7,6 +7,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { db, initLamportFromDb } from '@/db';
 import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
+import { replicateProducts } from '@/core/sync/ProductReplicator';
 import { logger } from '@/lib/logger';
 
 interface DbContextValue {
@@ -43,6 +44,12 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
         }
         
         setIsReady(true);
+
+        // Replicar el catálogo de productos comerciales desde Supabase en
+        // background (no bloquea el arranque: la KB ya está lista para usar).
+        // Si Supabase no está configurado o las tablas no existen, se omite
+        // silenciosamente y la app funciona solo con ingredientes.
+        void replicateProducts().catch((e) => logger.error('Product replication failed:', e));
       } catch (err) {
         logger.error('Database initialization failed:', err);
         setError(err instanceof Error ? err : new Error('Unknown error'));

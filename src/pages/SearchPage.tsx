@@ -13,13 +13,15 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { ingredientSearchService, useSearchIndex } from '@/core/search';
-import type { SearchResult } from '@/core/search';
+import { ingredientSearchService, useSearchIndex, productSearchService, useProductIndex } from '@/core/search';
+import type { SearchResult, ProductSearchResult } from '@/core/search';
 import { ConditionCard } from '@/ui/ConditionCard';
 import { IngredientResultCard } from '@/ui/IngredientResultCard';
+import { ProductResultCard } from '@/ui/ProductResultCard';
+import { ProductDetail } from '@/ui/ProductDetail';
 import {
   Search, BookOpen, X, ChevronDown, ChevronRight,
-  Loader2, Pill, Clock, Star, Heart,
+  Loader2, Pill, Clock, Star, Heart, Package,
 } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
@@ -27,7 +29,7 @@ import { ClientProfileSelector } from '@/ui/ClientProfileSelector';
 import { useClientProfile } from '@/contexts/ClientProfileContext';
 import { useSearch } from '@/contexts/SearchContext';
 import { useConsultationHistory } from '@/hooks/useConsultationHistory';
-import type { DbIngredient, DbPathology, IngredientCategory } from '@/db/schema';
+import type { DbIngredient, DbPathology, DbProduct, DbProductIngredientAnalysis, IngredientCategory } from '@/db/schema';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, generateId } from '@/db';
 import { logger } from '@/lib/logger';
@@ -47,6 +49,7 @@ export function SearchPage() {
   const navigate = useNavigate();
   const { query, setQuery } = useSearch();
   const { ready } = useSearchIndex();
+  const { ready: productsReady } = useProductIndex();
   const { evaluateSafety } = useClientProfile();
   const { history, addEntry } = useConsultationHistory();
 
@@ -68,6 +71,12 @@ export function SearchPage() {
   const [chipSearch, setChipSearch] = useState('');
   const [ingredientsExpanded, setIngredientsExpanded] = useState(true);
   const [visibleCount, setVisibleCount] = useState(RESULTS_PAGE_SIZE);
+
+  // Productos comerciales (búsqueda unificada)
+  const [productResults, setProductResults] = useState<ProductSearchResult[]>([]);
+  const [productsExpanded, setProductsExpanded] = useState(false);
+  const [visibleProductCount, setVisibleProductCount] = useState(RESULTS_PAGE_SIZE);
+  const [selectedProduct, setSelectedProduct] = useState<DbProduct | null>(null);
 
   // True while the debounced query lags behind the current query.
   const isSearching = query !== debouncedQuery;
@@ -155,6 +164,22 @@ export function SearchPage() {
     }, 150);
     return () => clearTimeout(t);
   }, [query, category, indication, ready]);
+
+  // Búsqueda de productos comerciales (mismo debounce que ingredientes).
+  // Solo busca por texto libre (los productos no tienen categoría/sistema).
+  useEffect(() => {
+    if (!productsReady) return;
+    const t = setTimeout(() => {
+      try {
+        const prodResults = productSearchService.searchSync(query.length >= 2 ? query : undefined);
+        setProductResults(prodResults);
+        setVisibleProductCount(RESULTS_PAGE_SIZE);
+      } catch (error) {
+        logger.error('Product search error:', error);
+      }
+    }, 150);
+    return () => clearTimeout(t);
+  }, [query, productsReady]);
 
   // Registrar consulta en el historial (tras debounce, solo si hay resultados)
   useEffect(() => {
@@ -259,6 +284,32 @@ export function SearchPage() {
 
   const visibleResults = sortedResults.slice(0, visibleCount);
   const hasMore = sortedResults.length > visibleCount;
+
+  // Productos visibles + análisis de cobertura por SKU (para el badge).
+  // Carga el análisis de los productos visibles en una sola consulta al bridge.
+  const visibleProductResults = productResults.slice(0, visibleProductCount);
+  const hasMoreProducts = productResults.length > visibleProductCount;
+  const visibleProductSkus = useMemo(
+    () => visibleProductResults.map((r) => r.product.sku),
+    [visibleProductResults],
+  );
+  const productAnalysisMap = useLiveQuery(async () => {
+    if (visibleProductSkus.length === 0) return new Map<string, DbProductIngredientAnalysis>();
+    const rows = await db.productIngredientAnalysis.bulkGet(visibleProductSkus);
+    const m = new Map<string, DbProductIngredientAnalysis>();
+    for (const row of rows) if (row) m.set(row.productoSku, row);
+    return m;
+  }, [visibleProductSkus.join(',')]);
+
+  // Bridge + análisis del producto seleccionado (para el modal ProductDetail).
+  const selectedProductBridge = useLiveQuery(async () => {
+    if (!selectedProduct) return [];
+    return db.productIngredients.where('productoSku').equals(selectedProduct.sku).toArray();
+  }, [selectedProduct?.sku]);
+  const selectedProductAnalysis = useLiveQuery(async () => {
+    if (!selectedProduct) return undefined;
+    return db.productIngredientAnalysis.get(selectedProduct.sku);
+  }, [selectedProduct?.sku]);
 
   const activeFiltersCount = [category, indication].filter(Boolean).length;
   const isIdle = query.length < 2 && !indication;
@@ -541,6 +592,55 @@ export function SearchPage() {
         </div>
       )}
 
+      {/* ===== CAPA 2b: Productos comerciales (búsqueda unificada) ===== */}
+      {!isIdle && productsReady && productResults.length > 0 && (
+        <div className="space-y-3">
+          <button
+            onClick={() => setProductsExpanded(!productsExpanded)}
+            className="flex items-center justify-between w-full text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg px-1 py-1"
+          >
+            <div className="flex items-center gap-2">
+              <ChevronRight className={cn('w-4 h-4 text-muted-foreground transition-transform', productsExpanded && 'rotate-90')} />
+              <Package className="w-4 h-4 text-sky-500" aria-hidden="true" />
+              <h3 className="text-sm font-semibold text-foreground">
+                Productos comerciales
+              </h3>
+              <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                {productResults.length}
+              </span>
+            </div>
+            <span className="text-xs text-muted-foreground">catálogo de farmacia</span>
+          </button>
+
+          {productsExpanded && (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {visibleProductResults.map((result) => (
+                  <ProductResultCard
+                    key={result.product.sku}
+                    result={result}
+                    analysis={productAnalysisMap?.get(result.product.sku)}
+                    onClick={(sku) => setSelectedProduct(productSearchService.getProduct(sku) ?? null)}
+                  />
+                ))}
+              </div>
+
+              {hasMoreProducts && (
+                <div className="flex justify-center pt-4">
+                  <button
+                    onClick={() => setVisibleProductCount(visibleProductCount + RESULTS_PAGE_SIZE)}
+                    className="px-8 py-4 rounded-xl border-2 border-border text-base font-semibold text-foreground bg-card hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[52px] shadow-sm"
+                  >
+                    Ver más ({productResults.length - visibleProductCount} restantes)
+                    <ChevronDown className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      )}
+
       {/* ===== Estado idle: guía de inicio ===== */}
       {isIdle && (
         <div className="text-center py-10">
@@ -632,6 +732,21 @@ export function SearchPage() {
             const ing = ingredientSearchService.getIngredient(id);
             if (ing) {
               setSelectedPathology(null);
+              setSelectedIngredient(ing);
+            }
+          }}
+        />
+      )}
+      {selectedProduct && (
+        <ProductDetail
+          product={selectedProduct}
+          bridgeRows={selectedProductBridge ?? []}
+          analysis={selectedProductAnalysis}
+          onClose={() => setSelectedProduct(null)}
+          onIngredientClick={(id) => {
+            const ing = ingredientSearchService.getIngredient(id);
+            if (ing) {
+              setSelectedProduct(null);
               setSelectedIngredient(ing);
             }
           }}

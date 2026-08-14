@@ -41,7 +41,7 @@ export type {
 // VERSIÓN DE LA DB
 // ============================================
 
-export const DB_VERSION = 2;
+export const DB_VERSION = 4;
 
 // ============================================
 // INTERFACES DE ENTIDADES
@@ -274,6 +274,35 @@ export interface DbFavorite {
   createdAt: number;
 }
 
+/** Bridge producto ↔ ingrediente de la KB (replica de product_ingredients de
+ *  Supabase). Vincula cada principio activo de un producto con el ingrediente
+ *  de la KB al que corresponde (o NULL si no hay match = gap de cobertura).
+ *  Una fila por (producto, principio activo). */
+export interface DbProductIngredient {
+  /** PK compuesta: productoSku + '|' + principioText. */
+  id: string;
+  productoSku: string;
+  principioText: string;
+  ingredientId: string | null;
+  matchType: string;
+  matchScore: number;
+  matchedVia: string;
+  isMatched: boolean;
+}
+
+/** Resumen agregado de cobertura KB por producto (replica de
+ *  product_ingredient_analysis de Supabase). Alimenta el badge "3/4 en KB". */
+export interface DbProductIngredientAnalysis {
+  productoSku: string;
+  ingredientesIds: string[];
+  ingredientesCount: number;
+  sinMatchCount: number;
+  coberturaKb: number;
+  categoriaPredominante: string | null;
+  analisisExplicacion: string;
+  updatedAt: number;
+}
+
 export class VademecumDB extends Dexie {
   products!: EntityTable<DbProduct, 'sku'>;
   ingredients!: EntityTable<DbIngredient, 'id'>;
@@ -286,6 +315,8 @@ export class VademecumDB extends Dexie {
   syncMeta!: EntityTable<DbSyncMeta, 'key'>;
   errorLog!: EntityTable<DbErrorLog, 'id'>;
   favorites!: EntityTable<DbFavorite, 'id'>;
+  productIngredients!: EntityTable<DbProductIngredient, 'id'>;
+  productIngredientAnalysis!: EntityTable<DbProductIngredientAnalysis, 'productoSku'>;
 
   constructor() {
     super('VademecumDB');
@@ -331,6 +362,29 @@ export class VademecumDB extends Dexie {
       syncMeta: 'key, updatedAt',
       errorLog: 'id, timestamp, level',
       favorites: 'id, ingredientId, createdAt',
+    });
+
+    // v4: añade tablas productIngredients (bridge producto↔ingrediente) y
+    // productIngredientAnalysis (cobertura KB por producto) para la búsqueda
+    // de productos comerciales y el lookup patología→producto transitivo.
+    // NOTA: el PK real del bridge es (productoSku, principioText), pero Dexie
+    // exige un solo keyPath; usamos una clave compuesta serializada como id
+    // (productoSku + '|' + principioText) en el seeder, con productoSku e
+    // ingredientId como índices de consulta.
+    this.version(4).stores({
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
+      protocols: 'id, updatedAt, tombstone',
+      pathologies: 'id, nombre, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table, idempotencyKey',
+      conflicts: 'id, table, recordId, detectedAt, resolution',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+      errorLog: 'id, timestamp, level',
+      favorites: 'id, ingredientId, createdAt',
+      productIngredients: 'id, productoSku, ingredientId',
+      productIngredientAnalysis: 'productoSku',
     });
   }
 }
