@@ -3,8 +3,8 @@
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-10",
-    "total": 1154,
+    "ultimaActualizacion": "2026-08-14",
+    "total": 1171,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -28040,6 +28040,221 @@
       "categorias": [
         "probiotico",
         "mineral"
+      ]
+    },
+    {
+      "id": "sin_cafeina_lteanina",
+      "ingredienteA": "cafeina",
+      "ingredienteB": "l_teanina",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "L-teanina mitiga nerviosismo de la cafeína preservando el estímulo cognitivo. Combinación clásica de nootrópicos.",
+      "mecanismo": "L-teanina aumenta GABA/serotonina y ondas alfa, contrarrestando hiperactivación simpática de cafeína sin reducir alerta.",
+      "beneficios": [
+        "Alerta sin nerviosismo",
+        "Mejora foco sostenido"
+      ]
+    },
+    {
+      "id": "sin_cafeina_acai",
+      "ingredienteA": "cafeina",
+      "ingredienteB": "acai",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Antioxidantes del açaí contrarrestan estrés oxidativo inducido por cafeína.",
+      "mecanismo": "Antocianinas neutralizan ROS generados por estimulación simpática sostenida.",
+      "beneficios": [
+        "Energía con protección antioxidante"
+      ]
+    },
+    {
+      "id": "sin_acai_vitc",
+      "ingredienteA": "acai",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia antioxidante: vitamina C regenera antocianinas oxidadas del açaí.",
+      "mecanismo": "Vitamina C (antioxidante hidrosoluble) regenera polifenoles oxidados, extendiendo capacidad antioxidante total.",
+      "beneficios": [
+        "Mayor capacidad antioxidante",
+        "Sinergia cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_calafate_vitc",
+      "ingredienteA": "calafate",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Vitamina C potencia efecto antioxidante de antocianinas del calafate.",
+      "mecanismo": "Regeneración recíproca entre vitamina C y antocianinas en ciclo antioxidante.",
+      "beneficios": [
+        "Protección antioxidante sinérgica"
+      ]
+    },
+    {
+      "id": "sin_acai_calafate",
+      "ingredienteA": "acai",
+      "ingredienteB": "calafate",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Combinación de bayas ricas en antocianinas con perfiles antioxidantes complementarios.",
+      "mecanismo": "Diversidad de antocianinas (delfinidina + malvidina) amplía espectro antioxidante.",
+      "beneficios": [
+        "Espectro antioxidante ampliado"
+      ]
+    },
+    {
+      "id": "sin_quillay_vitc",
+      "ingredienteA": "quillay",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Quillay (saponinas QS-21) y vitamina C potencian respuesta inmune.",
+      "mecanismo": "Saponinas adyuvantes + vitamina C (inmunomodulador) → respuesta inmune más robusta.",
+      "beneficios": [
+        "Refuerzo inmune"
+      ]
+    },
+    {
+      "id": "sin_quillay_equinacea",
+      "ingredienteA": "quillay",
+      "ingredienteB": "equinacea",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Dos inmunomoduladores vegetales con mecanismos complementarios.",
+      "mecanismo": "Saponinas del quillay (adyuvante) + alquilamidas de equinácea (activador macrofágico).",
+      "beneficios": [
+        "Inmunidad sinérgica"
+      ]
+    },
+    {
+      "id": "sin_capuchina_eucalipto",
+      "ingredienteA": "capuchina",
+      "ingredienteB": "eucalipto",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Capuchina (antibacteriano) + eucalipto (expectorante) cubren vía respiratoria.",
+      "mecanismo": "Isotiocianatos antibacterianos de capuchina + 1,8-cineol expectorante de eucalipto.",
+      "beneficios": [
+        "Acción respiratoria integral"
+      ]
+    },
+    {
+      "id": "sin_capuchina_tomillo",
+      "ingredienteA": "capuchina",
+      "ingredienteB": "tomillo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia antibacteriana respiratoria entre glucosinolatos y timol.",
+      "mecanismo": "Bencil isotiocianato + timol: espectro antimicrobiano ampliado sobre patógenos respiratorios.",
+      "beneficios": [
+        "Antibacteriano respiratorio"
+      ]
+    },
+    {
+      "id": "sin_manzana_probioticos",
+      "ingredienteA": "manzana",
+      "ingredienteB": "probioticos",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Pectina de manzana (prebiótico) alimenta probióticos → sinergia prebiótica.",
+      "mecanismo": "Pectina fermentada por bifidobacterias/lactobacilos produce butirato (SCFA) que refuerza barrera intestinal.",
+      "beneficios": [
+        "Microbiota saludable",
+        "Integridad intestinal"
+      ]
+    },
+    {
+      "id": "sin_manzana_avena",
+      "ingredienteA": "manzana",
+      "ingredienteB": "avena_sativa",
+      "tipo": "complementario",
+      "nivelEvidencia": "B",
+      "descripcion": "Doble fibra soluble (pectina + beta-glucano) para perfil lipídico y glucémico.",
+      "mecanismo": "Dos fibras solubles con mecanismo aditivo de secuestro de colesterol biliar y ralentización glucosa.",
+      "beneficios": [
+        "Colesterol",
+        "Glucosa",
+        "Saciedad"
+      ]
+    },
+    {
+      "id": "sin_nanocobre_zinc",
+      "ingredienteA": "nanocobre",
+      "ingredienteB": "zinc",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Cobre y zinc deben balancearse (antagonismo competitivo): suplementar ambos en proporción 1:10-15.",
+      "mecanismo": "Zinc induce metalotioneína que secuestra cobre; dosis excesiva de zinc causa deficiencia de cobre. Combinación balanceada evita el desequilibrio.",
+      "beneficios": [
+        "Equilibrio mineral traza",
+        "Inmunidad"
+      ]
+    },
+    {
+      "id": "sin_queratina_biotina",
+      "ingredienteA": "queratina",
+      "ingredienteB": "biotina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Aminoácidos de queratina + biotina cofactor = sustrato y catalizador para cabello/uñas.",
+      "mecanismo": "Queratina aporta cisteína (puentes disulfuro) y biotina es cofactor de carboxilasas en metabolismo de aminoácidos de matriz capilar.",
+      "beneficios": [
+        "Cabello",
+        "Uñas"
+      ]
+    },
+    {
+      "id": "sin_queratina_colageno",
+      "ingredienteA": "queratina",
+      "ingredienteB": "colageno_hidrolizado",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Proteínas estructurales para piel anexa: queratina (cabello) + colágeno (piel).",
+      "mecanismo": "Aporte combinado de aminoácidos para estructura de matriz extracelular y anexos cutáneos.",
+      "beneficios": [
+        "Piel",
+        "Cabello",
+        "Uñas"
+      ]
+    },
+    {
+      "id": "sin_nanocobre_vitc",
+      "ingredienteA": "nanocobre",
+      "ingredienteB": "vitamina_c",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Vitamina C reduce absorción de cobre; separar tomas para evitar antagonismo.",
+      "mecanismo": "Vitamina C reduce Cu2+ a Cu+ (menos absorbible en algunas condiciones). Separar 2h.",
+      "beneficios": [
+        "Optimizar absorción de cobre"
+      ]
+    },
+    {
+      "id": "sin_edelweiss_vitc",
+      "ingredienteA": "edelweiss",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "C",
+      "descripcion": "Sinergia antioxidante cutánea: leontopódico ácido + vitamina C fotoprotectora.",
+      "mecanismo": "Polifenoles de edelweiss y vitamina C actúan en ciclo antioxidante protegiendo colágeno de fotoenvejecimiento.",
+      "beneficios": [
+        "Fotoprotección",
+        "Antiedad"
+      ]
+    },
+    {
+      "id": "sin_edelweiss_colageno",
+      "ingredienteA": "edelweiss",
+      "ingredienteB": "colageno_hidrolizado",
+      "tipo": "complementario",
+      "nivelEvidencia": "C",
+      "descripcion": "Edelweiss protege colágeno endógeno; suplementación con colágeno hidrolizado aporta sustrato.",
+      "mecanismo": "Edelweiss inhibe MMP (metaloproteinasas) y colágeno hidrolizado aporta péptidos para neosíntesis.",
+      "beneficios": [
+        "Piel",
+        "Antiedad"
       ]
     }
   ]

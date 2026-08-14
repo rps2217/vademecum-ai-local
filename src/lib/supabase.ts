@@ -118,38 +118,38 @@ export async function testConnection(): Promise<{
   }
 
   try {
-    // Verificar tabla extended_ingredients (la que usa el sync)
+    // Verificar tabla ingredients (la que usa el sync para descargar la KB)
     const { data, error } = await supabase
-      .from('extended_ingredients')
-      .select('ingredient_key')
+      .from('ingredients')
+      .select('id')
       .limit(1);
-    
+
     if (error) {
-      // 406 = tabla existe pero RLS no permite (OK, sync configurado)
-      // 42P01 = tabla no existe
-      if (error.code === '42P01') {
-        return { 
-          success: true, 
-          message: 'Conexion exitosa - tabla extended_ingredients no existe aun' 
+      // 42P01 / PGRST205 = tabla no existe en el schema
+      if (error.code === '42P01' || error.code === 'PGRST205') {
+        return {
+          success: false,
+          error: error.message,
+          message: 'Conexion OK pero la tabla "ingredients" no existe en Supabase'
         };
       }
-      // Otros errores pueden ser por RLS, pero la conexion funciona
-      if (error.code === '406' || error.code === '42501') {
-        return { 
-          success: true, 
-          message: 'Conexion exitosa - RLS configurado' 
+      // 42501 = RLS bloquea la lectura (la conexion funciona, pero no hay permisos)
+      if (error.code === '42501') {
+        return {
+          success: true,
+          message: 'Conexion exitosa - RLS activo (sin permiso de lectura con anon key)'
         };
       }
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: error.message,
         message: 'Error en consulta'
       };
     }
-    
-    return { 
-      success: true, 
-      message: `Conexion exitosa (${Array.isArray(data) ? data.length : 0} registros)` 
+
+    return {
+      success: true,
+      message: `Conexion exitosa (${Array.isArray(data) ? data.length : 0} registros legibles)`
     };
   } catch (err) {
     return { 
