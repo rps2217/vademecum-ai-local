@@ -43,11 +43,12 @@ src/
 │   └── sync/                     # Motor de sincronización
 │       ├── SyncService.ts        # Servicio de sync (singleton)
 │       ├── ConflictResolver.ts   # Resolución de conflictos
+│       ├── ProductReplicator.ts  # Replica productos + bridge desde Supabase
 │       └── index.ts              # @deprecated: sync Supabase es experimental
 │   (NOTA: core/audit y core/auth fueron ELIMINADOS — eran stubs @deprecated
 │    que re-exportaban tipos DbAuditLog/UserRole inexistentes en el schema)
 ├── db/                          # Base de datos Dexie (IndexedDB)
-│   ├── schema.ts                # Schema de la DB (versión 1, NO v2)
+│   ├── schema.ts                # Schema de la DB (versión 4: +bridge productos)
 │   ├── index.ts                 # Exports + seedDatabase/clearDatabase/getSeedStats
 │   └── seeders/                 # Seeders de datos
 │       ├── knowledgeSeeder.ts   # Seeder de KB
@@ -449,9 +450,16 @@ import { syncService } from '@/core/sync';  // SyncService (NO SyncManager, fue 
 
 ## Motor de Búsqueda — Arquitectura de 6 capas
 
-El motor de búsqueda (`src/core/search/IngredientSearchService.ts` +
-`src/lib/text.ts`) combina 6 capas de matching, todas 100% offline e
-instantáneas (sin LLM, sin descargas de modelos):
+El motor de búsqueda (`src/core/search/searchEngine.ts` + `IngredientSearchService.ts`
++ `ProductSearchService.ts` + `src/lib/text.ts`) combina 6 capas de matching,
+todas 100% offline e instantáneas (sin LLM, sin descargas de modelos):
+
+> **searchEngine.ts** es el núcleo compartido genérico (índice invertido + DF +
+> TF-IDF + fuzzy Levenshtein + expansión de sinónimos/bigramas). Tanto
+> `IngredientSearchService` como `ProductSearchService` delegan en él, de modo
+> que "valerina" (typo) encuentra el ingrediente "valeriana" Y el producto
+> "Ungüento Valeriana" con la misma tolerancia. Cada servicio solo define los
+> pesos por campo y facets específicos de su dominio.
 
 ### Capa A — Índice invertido con pesos por campo
 - `Map<tokenId, IndexEntry>` construido al arranque (`buildIndex`).

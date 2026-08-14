@@ -17,3 +17,5 @@ export { Skeleton, CardSkeleton, ListSkeleton } from './Skeleton';
 export { ErrorBoundary } from './ErrorBoundary';
 export { CommandPalette } from './CommandPalette';
 export { ClientProfileSelector } from './ClientProfileSelector';
+export { ProductResultCard } from './ProductResultCard';
+export { ProductDetail } from './ProductDetail';

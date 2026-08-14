@@ -20,3 +20,10 @@ export {
   type ConflictResolution,
   type ConflictResolutionResult 
 } from './ConflictResolver';
+
+export {
+  productReplicator,
+  replicateProducts,
+  isProductCatalogReplicated,
+  type ReplicationResult,
+} from './ProductReplicator';
