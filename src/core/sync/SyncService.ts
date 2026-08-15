@@ -7,9 +7,6 @@ import { db } from '@/db';
 import { logger } from '@/lib/logger';
 import type {
   DbOutboxOp,
-  DbIngredient,
-  DbSynergy,
-  DbPathology,
   SyncOpType,
   SyncTable
 } from '@/db/schema';
@@ -17,7 +14,7 @@ import { generateId, now } from '@/db/schema';
 import { getSupabase, isSupabaseConfigured, getSupabaseUrl, getSupabaseAnonKey } from '@/lib/supabase';
 import { ConflictResolver, type ConflictInfo } from './ConflictResolver';
 import { ConflictError, SchemaMismatchError, UnauthorizedError } from './errors';
-import { toSupabaseFormat } from './transform';
+import { toSupabaseFormat, fromSupabaseIngredient, fromSupabaseSynergy, fromSupabasePathology } from './transform';
 
 export interface SyncConfig {
   enabled: boolean;
@@ -441,8 +438,12 @@ export class SyncService {
     const lastSyncDate = lastSync ? new Date(lastSync).toISOString() : '1970-01-01T00:00:00Z';
     let downloaded = 0;
 
-    // Download ingredients
-    const { data: ingredients, error: ingError } = await supabase.from('ingredients').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
+    // Download ingredients.
+    // No filtramos por tombstone=0 para que los deletes remotos (soft-delete con
+    // tombstone=1) también se descarguen y se propaguen al store local. El merge
+    // aplica el tombstone remoto cuando remoteLamport > localLamport; sin este
+    // cambio, un ingrediente borrado en Supabase seguiría visible localmente.
+    const { data: ingredients, error: ingError } = await supabase.from('ingredients').select('*').gte('updated_at', lastSyncDate);
     if (ingError) {
       if (this.isMissingTableError(ingError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
@@ -463,8 +464,8 @@ export class SyncService {
     // Skip synergies if sync already disabled by ingredients check
     if (this.syncDisabled) return { count: downloaded };
 
-    // Download synergies
-    const { data: synergies, error: synError } = await supabase.from('synergies').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
+    // Download synergies (incluye tombstoned para propagar deletes remotos).
+    const { data: synergies, error: synError } = await supabase.from('synergies').select('*').gte('updated_at', lastSyncDate);
     if (synError) {
       if (this.isMissingTableError(synError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
@@ -485,8 +486,8 @@ export class SyncService {
     // Skip pathologies if sync already disabled by synergies check
     if (this.syncDisabled) return { count: downloaded };
 
-    // Download pathologies
-    const { data: pathologies, error: pathError } = await supabase.from('pathologies').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
+    // Download pathologies (incluye tombstoned para propagar deletes remotos).
+    const { data: pathologies, error: pathError } = await supabase.from('pathologies').select('*').gte('updated_at', lastSyncDate);
     if (pathError) {
       if (this.isMissingTableError(pathError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies/pathologies) no existen en Supabase. Sync desactivado.');
@@ -540,16 +541,17 @@ export class SyncService {
     const local = await db.ingredients.get(remote.id as string);
     const remoteLamport = (remote.lamport as number) || 0;
     const localLamport = local?.lamport || 0;
-    
+    const remoteUpdatedAt = new Date(remote.updated_at as string).getTime();
+
     // Detectar conflicto si ambos tienen cambios recientes
     if (local && this.config.enableConflictDetection) {
       const hasConflict = ConflictResolver.detectConflict(
         localLamport,
         remoteLamport,
         local.updatedAt,
-        new Date(remote.updated_at as string).getTime()
+        Number.isNaN(remoteUpdatedAt) ? 0 : remoteUpdatedAt
       );
-      
+
       if (hasConflict) {
         const conflictInfo: ConflictInfo = {
           table: 'ingredients',
@@ -563,27 +565,10 @@ export class SyncService {
         return true;
       }
     }
-    
+
     if (!local || remoteLamport > localLamport) {
-      const ingredient: DbIngredient = {
-        id: remote.id as string,
-        nombre: remote.nombre as string,
-        sinonimos: (remote.sinonimos as string[]) || [],
-        categoria: remote.categoria as DbIngredient['categoria'],
-        familia: remote.familia as string | undefined,
-        sistemas: (remote.sistemas as DbIngredient['sistemas']) || [],
-        indicaciones: (remote.indicaciones as string[]) || [],
-        evidencia: (remote.evidencia as DbIngredient['evidencia']) || 'C',
-        propiedades: (remote.propiedades as string[]) || [],
-        seguridad: (remote.seguridad as DbIngredient['seguridad']) || {},
-        interacciones: (remote.interacciones as string[]) || [],
-        fuentes: (remote.fuentes as string[]) || [],
-        lamport: remoteLamport,
-        deviceId: remote.device_id as string,
-        updatedAt: new Date(remote.updated_at as string).getTime(),
-        createdAt: new Date(remote.created_at as string).getTime(),
-        tombstone: (remote.tombstone as 0 | 1) || 0,
-      };
+      // Usa el transform centralizado para no perder campos (posologia, embedding).
+      const ingredient = fromSupabaseIngredient(remote);
       await db.ingredients.put(ingredient);
     }
     return false;
@@ -593,16 +578,17 @@ export class SyncService {
     const local = await db.synergies.get(remote.id as string);
     const remoteLamport = (remote.lamport as number) || 0;
     const localLamport = local?.lamport || 0;
-    
+    const remoteUpdatedAt = new Date(remote.updated_at as string).getTime();
+
     // Detectar conflicto si ambos tienen cambios recientes
     if (local && this.config.enableConflictDetection) {
       const hasConflict = ConflictResolver.detectConflict(
         localLamport,
         remoteLamport,
         local.updatedAt,
-        new Date(remote.updated_at as string).getTime()
+        Number.isNaN(remoteUpdatedAt) ? 0 : remoteUpdatedAt
       );
-      
+
       if (hasConflict) {
         const conflictInfo: ConflictInfo = {
           table: 'synergies',
@@ -616,23 +602,9 @@ export class SyncService {
         return true;
       }
     }
-    
+
     if (!local || remoteLamport > localLamport) {
-      const synergy: DbSynergy = {
-        id: remote.id as string,
-        ingredienteA: remote.ingrediente_a as string,
-        ingredienteB: remote.ingrediente_b as string,
-        tipo: remote.tipo as DbSynergy['tipo'],
-        nivel: (remote.nivel as DbSynergy['nivel']) || 'medio',
-        mecanismo: remote.mecanismo as string | undefined,
-        evidencia: (remote.evidencia as DbSynergy['evidencia']) || 'C',
-        descripcion: remote.descripcion as string | undefined,
-        fuentes: (remote.fuentes as string[]) || [],
-        lamport: remoteLamport,
-        deviceId: remote.device_id as string,
-        updatedAt: new Date(remote.updated_at as string).getTime(),
-        tombstone: (remote.tombstone as 0 | 1) || 0,
-      };
+      const synergy = fromSupabaseSynergy(remote);
       await db.synergies.put(synergy);
     }
     return false;
@@ -642,13 +614,14 @@ export class SyncService {
     const local = await db.pathologies.get(remote.id as string);
     const remoteLamport = (remote.lamport as number) || 0;
     const localLamport = local?.lamport || 0;
+    const remoteUpdatedAt = new Date(remote.updated_at as string).getTime();
 
     if (local && this.config.enableConflictDetection) {
       const hasConflict = ConflictResolver.detectConflict(
         localLamport,
         remoteLamport,
         local.updatedAt,
-        new Date(remote.updated_at as string).getTime()
+        Number.isNaN(remoteUpdatedAt) ? 0 : remoteUpdatedAt
       );
 
       if (hasConflict) {
@@ -666,44 +639,7 @@ export class SyncService {
     }
 
     if (!local || remoteLamport > localLamport) {
-      const pathology: DbPathology = {
-        id: remote.id as string,
-        nombre: remote.nombre as string,
-        definicion: remote.definicion as string,
-        causas: (remote.causas as string[]) || [],
-        sintomas: (remote.sintomas as string[]) || [],
-        sistemas: (remote.sistemas as DbPathology['sistemas']) || [],
-        tratamientoAlopatico: (remote.tratamiento_alopatico as DbPathology['tratamientoAlopatico']) || {
-          primeraLinea: [],
-          mecanismo: '',
-          efectosSecundarios: [],
-        },
-        tratamientoNatural: (remote.tratamiento_natural as DbPathology['tratamientoNatural']) || {
-          fitoterapia: [],
-          suplementos: [],
-          homeopatia: [],
-          aceites: [],
-          cuandoPreferir: '',
-        },
-        prevencion: (remote.prevencion as string[]) || [],
-        cuandoConsultar: (remote.cuando_consultar as string) || '',
-        epidemiologia: remote.epidemiologia as string | undefined,
-        factoresRiesgo: (remote.factores_riesgo as string[]) || undefined,
-        diagnostico: remote.diagnostico as string | undefined,
-        criteriosDiagnostico: (remote.criterios_diagnostico as string[]) || undefined,
-        escalasClinicas: (remote.escalas_clinicas as DbPathology['escalasClinicas']) || undefined,
-        diagnosticoDiferencial: (remote.diagnostico_diferencial as string[]) || undefined,
-        pronostico: remote.pronostico as string | undefined,
-        poblacionesEspeciales: (remote.poblaciones_especiales as DbPathology['poblacionesEspeciales']) || undefined,
-        alertasFarmaceuticas: (remote.alertas_farmaceuticas as string[]) || undefined,
-        evidencia: (remote.evidencia as DbPathology['evidencia']) || 'C',
-        fuentes: (remote.fuentes as string[]) || [],
-        lamport: remoteLamport,
-        deviceId: remote.device_id as string,
-        updatedAt: new Date(remote.updated_at as string).getTime(),
-        createdAt: new Date(remote.created_at as string).getTime(),
-        tombstone: (remote.tombstone as 0 | 1) || 0,
-      };
+      const pathology = fromSupabasePathology(remote);
       await db.pathologies.put(pathology);
     }
     return false;
