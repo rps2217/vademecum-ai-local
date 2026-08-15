@@ -87,6 +87,17 @@ function isNetworkError(error: unknown): boolean {
     msg.includes('load failed');
 }
 
+/** Detecta errores de autenticación (401): la anon key no tiene permiso de
+ *  lectura (RLS) o es inválida. PostgREST devuelve code "4251" o un mensaje
+ *  que menciona "api key" / "jwt". */
+function isAuthError(error: unknown): boolean {
+  if (!error) return false;
+  const code = (error as { code?: string }).code;
+  const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
+  return code === '401' || code === '4251' ||
+    msg.includes('api key') || msg.includes('jwt') || msg.includes('unauthorized');
+}
+
 /**
  * Replica (o re-replica) los productos y el bridge desde Supabase.
  *
@@ -138,9 +149,10 @@ export async function replicateProducts(): Promise<ReplicationResult> {
           logger.warn('[ProductReplicator] Tabla "products" no existe en Supabase. Saltando replicación de productos.');
           return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Tabla products no existe' };
         }
-        if (error.code === '401' || (error.message || '').toLowerCase().includes('api key')) {
-          logger.error('[ProductReplicator] Autenticación rechazada (401). Verifica VITE_SUPABASE_ANON_KEY en .env.local.');
-          return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Autenticación rechazada (401) — verifica VITE_SUPABASE_ANON_KEY' };
+        if (isAuthError(error)) {
+          logger.error('[ProductReplicator] Autenticación rechazada (401). Verifica VITE_SUPABASE_ANON_KEY y RLS en .env.local.');
+          await markReplicationDisabled();
+          return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Autenticación rechazada (401) — verifica VITE_SUPABASE_ANON_KEY y RLS' };
         }
         logger.error('[ProductReplicator] Error descargando productos:', error);
         break;
@@ -176,6 +188,11 @@ export async function replicateProducts(): Promise<ReplicationResult> {
           logger.warn('[ProductReplicator] Tabla "product_ingredients" no existe. Bridge omitido.');
           break;
         }
+        if (isAuthError(error)) {
+          logger.error('[ProductReplicator] Bridge: autenticación rechazada (401). Desactivando replicación.');
+          await markReplicationDisabled();
+          break;
+        }
         logger.error('[ProductReplicator] Error descargando bridge:', error);
         break;
       }
@@ -208,6 +225,11 @@ export async function replicateProducts(): Promise<ReplicationResult> {
       if (error) {
         if (isMissingTableError(error)) {
           logger.warn('[ProductReplicator] Tabla "product_ingredient_analysis" no existe. Análisis omitido.');
+          break;
+        }
+        if (isAuthError(error)) {
+          logger.error('[ProductReplicator] Análisis: autenticación rechazada (401). Desactivando replicación.');
+          await markReplicationDisabled();
           break;
         }
         logger.error('[ProductReplicator] Error descargando análisis:', error);

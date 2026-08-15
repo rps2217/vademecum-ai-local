@@ -14,7 +14,7 @@ import type {
   SyncTable
 } from '@/db/schema';
 import { generateId, now } from '@/db/schema';
-import { getSupabase, isSupabaseConfigured, getSupabaseUrl } from '@/lib/supabase';
+import { getSupabase, isSupabaseConfigured, getSupabaseUrl, getSupabaseAnonKey } from '@/lib/supabase';
 import { ConflictResolver, type ConflictInfo } from './ConflictResolver';
 import { ConflictError, SchemaMismatchError, UnauthorizedError } from './errors';
 import { toSupabaseFormat } from './transform';
@@ -85,21 +85,36 @@ export class SyncService {
   }
 
   /** Probar reachabilidad del host Supabase una vez al arrancar.
-   *  Usa un fetch HEAD al REST root con timeout corto (4s). Si falla a nivel
-   *  de red (DNS/conn), desactiva sync para esta sesión. */
+   *  Usa un fetch HEAD a la tabla `products` con timeout corto (4s).
+   *
+   *  Antes se hacía HEAD al root `/rest/v1/` SIN apikey, lo que provocaba
+   *  un 401 ruidoso en la consola de red del navegador en cada arranque
+   *  (PostgREST rechaza el root sin auth). Ahora apuntamos a una tabla real
+   *  con la apikey:
+   *   - 200 → host reachable + apikey válida + RLS ok → sync habilitado.
+   *   - 401/403 → apikey inválida o sin permisos RLS → advertir (no es un
+   *     fallo de red, el host sí responde).
+   *   - 404 → la tabla no existe, pero el host responde → sync puede correr.
+   *   - TypeError/AbortError → fallo de red/DNS → desactivar sync. */
   private async runStartupHealthCheck(): Promise<void> {
     const url = getSupabaseUrl();
     if (!url) return;
+    const key = getSupabaseAnonKey();
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 4000);
-      await fetch(`${url}/rest/v1/`, {
+      const res = await fetch(`${url}/rest/v1/products?select=sku&limit=1`, {
         method: 'HEAD',
+        headers: { apikey: key ?? '' },
         signal: controller.signal,
-        // No enviar credentials: solo probamos reachabilidad de red/DNS.
       }).finally(() => clearTimeout(timeout));
-      // Cualquier respuesta HTTP (incluso 401/404) significa que el host
-      // resuelve y responde → la config es válida, dejar que sync corra.
+      if (res.status === 401 || res.status === 403) {
+        logger.warn(
+          `[Sync] Health check: Supabase respondió ${res.status}. La apikey ` +
+          `anon no tiene permiso de lectura (RLS) o es inválida — verifica ` +
+          `VITE_SUPABASE_ANON_KEY. El host sí responde, sync continúa.`
+        );
+      }
     } catch (err) {
       if (this.isNetworkError(err)) {
         this.disableSync(
