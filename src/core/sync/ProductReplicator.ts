@@ -115,7 +115,7 @@ function isNetworkError(error: unknown): boolean {
  * configurado, las tablas no existen, o hay fallos de red consecutivos,
  * devuelve skipped=true (la app sigue funcionando sin productos).
  */
-export async function replicateProducts(): Promise<ReplicationResult> {
+export async function replicateProducts(force = false): Promise<ReplicationResult> {
   if (!isSupabaseConfigured()) {
     return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Supabase no configurado' };
   }
@@ -125,13 +125,19 @@ export async function replicateProducts(): Promise<ReplicationResult> {
   }
   // Fail-fast: si ya marcamos la replicación como desactivada por fallos de red
   // para esta URL, no reintentar (evita spam de errores en cada arranque).
-  if (await isReplicationDisabled()) {
+  if (!force && await isReplicationDisabled()) {
     return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Replicación desactivada por fallos de red previos' };
   }
 
   const lastSyncMeta = await db.syncMeta.get(SYNC_META_KEY);
   const lastSync = lastSyncMeta?.value as string | undefined;
   const since = lastSync ?? '1970-01-01T00:00:00Z';
+  // Descarga completa cuando: (a) se fuerza (sync manual), o (b) es la primera
+  // vez (since = epoch default). En ambos casos no aplicamos el filtro
+  // updated_at, consistente con el bridge/analysis (que siempre descargan todo).
+  // Esto evita que productos con updated_at = epoch cero (poblados por scraping
+  // sin timestamp real) queden excluidos por el filtro gt estricto.
+  const fullDownload = force || !lastSync;
 
   let productCount = 0;
   let bridgeCount = 0;
@@ -141,12 +147,16 @@ export async function replicateProducts(): Promise<ReplicationResult> {
   try {
     let offset = 0;
     while (true) {
-      const { data, error } = await supabase
+      let query = supabase
         .from('products')
         .select('*')
-        .eq('tombstone', 0)
-        .gt('updated_at', since)
-        .range(offset, offset + PAGE_SIZE - 1);
+        .eq('tombstone', 0);
+      // Solo filtrar por updated_at en replicaciones incrementales reales
+      // (hay un lastSync previo y no es descarga forzada).
+      if (!fullDownload) {
+        query = query.gt('updated_at', since);
+      }
+      const { data, error } = await query.range(offset, offset + PAGE_SIZE - 1);
 
       if (error) {
         // Si la tabla no existe, no es un error fatal: la app funciona sin productos.
@@ -268,7 +278,7 @@ export async function isProductCatalogReplicated(): Promise<boolean> {
  */
 export async function forceReplicateProducts(): Promise<ReplicationResult> {
   await clearReplicationDisabled();
-  return replicateProducts();
+  return replicateProducts(true);
 }
 
 /** Mapea una fila remota (snake_case) de products → DbProduct (camelCase). */
