@@ -24,12 +24,17 @@ import { getDeviceId } from '@/db/schema';
 const SYNC_META_KEY = 'productReplicatedAt';
 const PAGE_SIZE = 500;
 
-/** Marca en syncMeta para no reintentar la replicación tras fallos de red.
- *  Un host Supabase inalcanzable (DNS / config errónea) haría que cada arranque
- *  repitiera 3×N fetches fallidos; este flag corta el ciclo. Se resetea solo si
- *  la URL cambia (distinto proyecto) o si el usuario fuerza re-sync. */
-const DISABLED_KEY = 'productReplicationDisabled';
-const DISABLED_URL_KEY = 'productReplicationDisabledUrl';
+/** Resiliencia ante fallos de red: en vez de desactivar la replicación para
+ *  siempre al primer fallo transitorio (lo que dejaba a los usuarios sin
+ *  productos aunque la red se recuperara), contamos los fallos consecutivos
+ *  por URL. Solo tras MAX_FAILURES arranques fallidos seguidos con la misma
+ *  URL cortamos el ciclo (host probablemente inalcanzable). Cualquier éxito
+ *  reinicia el contador, y `forceReplicateProducts()` (botón "Sincronizar
+ *  ahora") limpia el contador y reintenta siempre. Si la URL cambia (p. ej.
+ *  corregida en Vercel), el contador se reinicia automáticamente. */
+const FAILURES_KEY = 'productReplicationFailures';
+const FAILURES_URL_KEY = 'productReplicationFailuresUrl';
+const MAX_FAILURES = 3;
 
 export interface ReplicationResult {
   products: number;
@@ -39,32 +44,47 @@ export interface ReplicationResult {
   reason?: string;
 }
 
+/** Lee el contador de fallos consecutivos y la URL para la que se contaron. */
+async function getFailureState(): Promise<{ failures: number; url: string | null }> {
+  const f = await db.syncMeta.get(FAILURES_KEY);
+  const u = (await db.syncMeta.get(FAILURES_URL_KEY))?.value as string | undefined;
+  return { failures: (f?.value as number) ?? 0, url: u ?? null };
+}
+
 /**
- * ¿La replicación está desactivada para el proyecto Supabase actual?
- * Compara la URL guardada con la URL configurada: si cambiaron, se resetea.
+ * ¿La replicación está desactivada? Solo tras MAX_FAILURES fallos consecutivos
+ * con la URL actual. Si la URL cambió desde que se contaron los fallos, se
+ * rehabilita (el contador se reinicia en el próximo intento).
  */
 async function isReplicationDisabled(): Promise<boolean> {
-  const disabled = await db.syncMeta.get(DISABLED_KEY);
-  if (!disabled?.value) return false;
-  const disabledUrl = (await db.syncMeta.get(DISABLED_URL_KEY))?.value as string | undefined;
+  const { failures, url } = await getFailureState();
+  if (failures < MAX_FAILURES) return false;
   const currentUrl = getSupabaseUrlSafe();
-  // Si cambió la URL (p. ej. corregida en Vercel), rehabilitar automáticamente.
-  if (disabledUrl && currentUrl && disabledUrl !== currentUrl) return false;
+  // Si cambió la URL (p. ej. corregida en Vercel), rehabilitar.
+  if (url && currentUrl && url !== currentUrl) return false;
   return true;
 }
 
-async function markReplicationDisabled(): Promise<void> {
+/** Incrementa el contador de fallos para la URL actual. */
+async function recordFailure(): Promise<void> {
   const url = getSupabaseUrlSafe() ?? 'unknown';
+  const { failures } = await getFailureState();
+  const next = failures + 1;
   await db.syncMeta.bulkPut([
-    { key: DISABLED_KEY, value: true, updatedAt: Date.now() },
-    { key: DISABLED_URL_KEY, value: url, updatedAt: Date.now() },
+    { key: FAILURES_KEY, value: next, updatedAt: Date.now() },
+    { key: FAILURES_URL_KEY, value: url, updatedAt: Date.now() },
   ]);
-  logger.warn(`[ProductReplicator] Replicación desactivada por fallo de red (URL: ${url}). Se reintentará si la URL cambia.`);
+  if (next >= MAX_FAILURES) {
+    logger.warn(`[ProductReplicator] Replicación desactivada tras ${next} fallos de red consecutivos (URL: ${url}). Se reintentará si la URL cambia o al forzar sync.`);
+  } else {
+    logger.warn(`[ProductReplicator] Fallo de red transitorio (${next}/${MAX_FAILURES}). Se reintentará en el próximo arranque.`);
+  }
 }
 
+/** Éxito: reinicia el contador de fallos (limpia el flag de desactivado). */
 async function clearReplicationDisabled(): Promise<void> {
-  await db.syncMeta.delete(DISABLED_KEY);
-  await db.syncMeta.delete(DISABLED_URL_KEY);
+  await db.syncMeta.delete(FAILURES_KEY);
+  await db.syncMeta.delete(FAILURES_URL_KEY);
 }
 
 function getSupabaseUrlSafe(): string | null {
@@ -148,7 +168,7 @@ export async function replicateProducts(): Promise<ReplicationResult> {
     }
   } catch (err) {
     if (isNetworkError(err)) {
-      await markReplicationDisabled();
+      await recordFailure();
       return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
     }
     logger.error('[ProductReplicator] Excepción descargando productos:', err);
@@ -182,7 +202,7 @@ export async function replicateProducts(): Promise<ReplicationResult> {
     }
   } catch (err) {
     if (isNetworkError(err)) {
-      await markReplicationDisabled();
+      await recordFailure();
       return { products: productCount, bridge: 0, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
     }
     logger.error('[ProductReplicator] Excepción descargando bridge:', err);
@@ -216,7 +236,7 @@ export async function replicateProducts(): Promise<ReplicationResult> {
     }
   } catch (err) {
     if (isNetworkError(err)) {
-      await markReplicationDisabled();
+      await recordFailure();
       return { products: productCount, bridge: bridgeCount, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
     }
     logger.error('[ProductReplicator] Excepción descargando análisis:', err);
@@ -235,6 +255,20 @@ export async function replicateProducts(): Promise<ReplicationResult> {
 export async function isProductCatalogReplicated(): Promise<boolean> {
   const meta = await db.syncMeta.get(SYNC_META_KEY);
   return !!meta?.value;
+}
+
+/**
+ * Fuerza una re-replicación del catálogo de productos: limpia el contador de
+ * fallos (por si quedó desactivado tras un fallo de red previo) y reintenta.
+ * La usa el botón "Sincronizar ahora" para que un sync manual siempre traiga
+ * los productos, incluso si la replicación automática de arranque había
+ * cortocircuitado. La detección de host inalcanzable sigue activa: si el
+ * host sigue caído, este intento falla y cuenta como 1 fallo (no como
+ * desactivado), de modo que el usuario puede reintentar cuando quiera.
+ */
+export async function forceReplicateProducts(): Promise<ReplicationResult> {
+  await clearReplicationDisabled();
+  return replicateProducts();
 }
 
 /** Mapea una fila remota (snake_case) de products → DbProduct (camelCase). */
@@ -307,4 +341,4 @@ function isMissingTableError(error: { code?: string; message?: string }): boolea
     msg.includes('schema cache miss');
 }
 
-export const productReplicator = { replicateProducts, isProductCatalogReplicated };
+export const productReplicator = { replicateProducts, forceReplicateProducts, isProductCatalogReplicated };

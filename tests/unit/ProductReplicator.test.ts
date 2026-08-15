@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 // Mocks: la replicación depende de supabase (cliente + config) y db (syncMeta).
-// Testeamos la lógica de fail-fast sin tocar la red real.
+// Testeamos la lógica de resiliencia (contador de fallos) sin tocar la red real.
 
 const supabaseMock = {
   from: vi.fn(),
@@ -35,7 +35,7 @@ const dbMock = {
 vi.mock('@/db', () => ({ db: dbMock }));
 
 // Importar DESPUÉS de mockear.
-const { replicateProducts } = await import('@/core/sync/ProductReplicator');
+const { replicateProducts, forceReplicateProducts } = await import('@/core/sync/ProductReplicator');
 const { isSupabaseConfigured, getSupabase } = await import('@/lib/supabase');
 
 // Env var para que getSupabaseUrlSafe() devuelva una URL estable.
@@ -55,67 +55,135 @@ function networkError(): TypeError {
   return new TypeError('Failed to fetch');
 }
 
-describe('ProductReplicator — fail-fast por fallo de red', () => {
-  it('marca la replicación como desactivada tras un fallo de red y la recuerda', async () => {
-    // El primer fetch a products lanza TypeError (DNS/host inalcanzable).
+/** Configura supabaseMock para que devuelva data vacía (éxito, 0 registros). */
+function mockEmptySuccess() {
+  supabaseMock.from.mockImplementation(() => ({
+    select: () => ({
+      eq: () => ({ gt: () => ({ range: () => ({ data: [], error: null }) }) }),
+      range: () => ({ data: [], error: null }),
+    }),
+  }));
+}
+
+describe('ProductReplicator — resiliencia con contador de fallos', () => {
+  it('un fallo de red transitorio NO desactiva la replicación (cuenta 1/3)', async () => {
     supabaseMock.from.mockImplementationOnce(() => {
       throw networkError();
     });
 
-    const r1 = await replicateProducts();
-    expect(r1.skipped).toBe(true);
-    expect(r1.reason).toContain('Fallo de red');
+    const r = await replicateProducts();
+    expect(r.skipped).toBe(true);
+    expect(r.reason).toContain('Fallo de red');
 
-    // El flag debe quedar persistido en syncMeta.
-    expect(dbMock.syncMeta.bulkPut).toHaveBeenCalled();
-    expect(metaStore.get('productReplicationDisabled')).toBe(true);
+    // El contador debe marcar 1, no desactivado.
+    expect(metaStore.get('productReplicationFailures')).toBe(1);
+    expect(metaStore.get('productReplicationDisabled')).toBeUndefined();
   });
 
-  it('no reintenta tras marcar desactivado (devuelve skipped sin llamar a Supabase)', async () => {
-    supabaseMock.from.mockImplementationOnce(() => {
-      throw networkError();
-    });
+  it('sigue reintentando tras 1 o 2 fallos (no cortocircuita)', async () => {
+    // Fallo 1.
+    supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
     await replicateProducts();
+    expect(metaStore.get('productReplicationFailures')).toBe(1);
 
-    // Segunda llamada: no debe llegar a supabaseMock.from (cortocircuito).
+    // Fallo 2: debe volver a llamar a Supabase (no está desactivado).
     vi.clearAllMocks();
     (isSupabaseConfigured as ReturnType<typeof vi.fn>).mockReturnValue(true);
     (getSupabase as ReturnType<typeof vi.fn>).mockReturnValue(supabaseMock);
-    supabaseMock.from.mockImplementation(() => {
-      throw new Error('NO DEBERÍA LLAMARSE');
-    });
+    supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+    await replicateProducts();
+    expect(metaStore.get('productReplicationFailures')).toBe(2);
+    expect(supabaseMock.from).toHaveBeenCalled();
+  });
 
-    const r2 = await replicateProducts();
-    expect(r2.skipped).toBe(true);
-    expect(r2.reason).toContain('desactivada');
+  it('desactiva tras 3 fallos consecutivos y entonces no llama a Supabase', async () => {
+    // Llevamos el contador a 2.
+    supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+    await replicateProducts();
+    supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+    await replicateProducts();
+    expect(metaStore.get('productReplicationFailures')).toBe(2);
+
+    // Fallo 3 → alcanza el umbral (MAX_FAILURES = 3) → desactivado.
+    vi.clearAllMocks();
+    (isSupabaseConfigured as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (getSupabase as ReturnType<typeof vi.fn>).mockReturnValue(supabaseMock);
+    supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+    await replicateProducts();
+    expect(metaStore.get('productReplicationFailures')).toBe(3);
+
+    // Ahora la 4ª llamada NO debe llegar a Supabase (cortocircuito).
+    vi.clearAllMocks();
+    (isSupabaseConfigured as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (getSupabase as ReturnType<typeof vi.fn>).mockReturnValue(supabaseMock);
+    supabaseMock.from.mockImplementation(() => { throw new Error('NO DEBERÍA LLAMARSE'); });
+
+    const r4 = await replicateProducts();
+    expect(r4.skipped).toBe(true);
+    expect(r4.reason).toContain('desactivada');
     expect(supabaseMock.from).not.toHaveBeenCalled();
   });
 
-  it('rehabilita automáticamente si la URL de Supabase cambia', async () => {
-    // Primero falla y se desactiva con URL A.
-    import.meta.env.VITE_SUPABASE_URL = 'https://bad-project.supabase.co';
-    supabaseMock.from.mockImplementationOnce(() => {
-      throw networkError();
-    });
-    await replicateProducts();
-    expect(metaStore.get('productReplicationDisabled')).toBe(true);
+  it('forceReplicateProducts limpia el contador y reintenta aunque estuviera desactivado', async () => {
+    // Llevamos a desactivado (3 fallos).
+    for (let i = 0; i < 3; i++) {
+      supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+      await replicateProducts();
+    }
+    expect(metaStore.get('productReplicationFailures')).toBe(3);
 
-    // Ahora la URL cambia (p. ej. corregida en Vercel) → debe reintentar.
-    import.meta.env.VITE_SUPABASE_URL = 'https://good-project.supabase.co';
-    // El siguiente fetch devuelve 0 rows (data vacía) → éxito, sin excepción.
-    supabaseMock.from.mockImplementationOnce(() => ({
-      select: () => ({ eq: () => ({ gt: () => ({ range: () => ({ data: [], error: null }) }) }) }),
-    }));
-    // Bridge y analysis también vacíos.
-    supabaseMock.from.mockImplementation(() => ({
-      select: () => ({ range: () => ({ data: [], error: null }) }),
-    }));
+    // force limpia el contador y reintenta → éxito (data vacía).
+    vi.clearAllMocks();
+    (isSupabaseConfigured as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (getSupabase as ReturnType<typeof vi.fn>).mockReturnValue(supabaseMock);
+    mockEmptySuccess();
 
-    const r2 = await replicateProducts();
-    expect(r2.skipped).toBe(false);
+    const r = await forceReplicateProducts();
+    expect(r.skipped).toBe(false);
     expect(supabaseMock.from).toHaveBeenCalled();
-    // El flag de desactivado se limpia tras el éxito.
-    expect(metaStore.get('productReplicationDisabled')).toBeUndefined();
+    // El contador queda limpio tras el éxito.
+    expect(metaStore.get('productReplicationFailures')).toBeUndefined();
+  });
+
+  it('un éxito reinicia el contador de fallos', async () => {
+    // Dos fallos previos.
+    supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+    await replicateProducts();
+    supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+    await replicateProducts();
+    expect(metaStore.get('productReplicationFailures')).toBe(2);
+
+    // Ahora éxito (data vacía) → el contador se limpia.
+    vi.clearAllMocks();
+    (isSupabaseConfigured as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (getSupabase as ReturnType<typeof vi.fn>).mockReturnValue(supabaseMock);
+    mockEmptySuccess();
+
+    await replicateProducts();
+    expect(metaStore.get('productReplicationFailures')).toBeUndefined();
+  });
+
+  it('rehabilita automáticamente si la URL de Supabase cambia', async () => {
+    // Desactiva con URL A (3 fallos).
+    import.meta.env.VITE_SUPABASE_URL = 'https://bad-project.supabase.co';
+    for (let i = 0; i < 3; i++) {
+      supabaseMock.from.mockImplementationOnce(() => { throw networkError(); });
+      await replicateProducts();
+    }
+    expect(metaStore.get('productReplicationFailures')).toBe(3);
+
+    // La URL cambia (corregida en Vercel) → debe reintentar.
+    import.meta.env.VITE_SUPABASE_URL = 'https://good-project.supabase.co';
+    vi.clearAllMocks();
+    (isSupabaseConfigured as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (getSupabase as ReturnType<typeof vi.fn>).mockReturnValue(supabaseMock);
+    mockEmptySuccess();
+
+    const r = await replicateProducts();
+    expect(r.skipped).toBe(false);
+    expect(supabaseMock.from).toHaveBeenCalled();
+    // El contador se limpia tras el éxito.
+    expect(metaStore.get('productReplicationFailures')).toBeUndefined();
   });
 
   it('devuelve skipped sin tocar la red cuando Supabase no está configurado', async () => {

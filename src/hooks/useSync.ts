@@ -68,7 +68,7 @@ export function useSync(): UseSyncResult {
       state: result.success ? 'idle' : 'error',
       direction: 'bidirectional',
       total: result.uploaded + result.downloaded + result.conflicts,
-      completed: result.uploaded + result.downloaded,
+      completed: result.uploaded + result.downloaded + (result.productsReplicated ?? 0),
       errors: result.error ? [result.error] : [],
       lastSyncAt: newStatus.lastSyncAt,
       pendingOps: newStatus.pendingOps,

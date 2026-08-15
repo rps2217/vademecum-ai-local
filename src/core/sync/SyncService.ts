@@ -17,6 +17,7 @@ import { getSupabase, isSupabaseConfigured, getSupabaseUrl } from '@/lib/supabas
 import { ConflictResolver, type ConflictInfo } from './ConflictResolver';
 import { ConflictError, SchemaMismatchError, UnauthorizedError } from './errors';
 import { toSupabaseFormat } from './transform';
+import { forceReplicateProducts } from './ProductReplicator';
 
 export interface SyncConfig {
   enabled: boolean;
@@ -42,6 +43,8 @@ export interface SyncResult {
   uploaded: number;
   downloaded: number;
   conflicts: number;
+  /** Productos comerciales replicados desde el catálogo (solo en sync manual). */
+  productsReplicated?: number;
   error?: string;
 }
 
@@ -211,7 +214,21 @@ export class SyncService {
     if (!isSupabaseConfigured()) {
       return { success: false, uploaded: 0, downloaded: 0, conflicts: 0, error: 'Supabase no configurado' };
     }
-    return this.performFullSync();
+    const result = await this.performFullSync();
+    // Un sync manual también re-replica el catálogo de productos: limpia el
+    // contador de fallos (por si la replicación de arranque cortocircuitó tras
+    // un fallo de red transitorio) y vuelve a traer los productos. El sync
+    // automático (timer 30s / evento online) NO lo hace — los productos cambian
+    // raramente y la replicación de arranque ya gestiona los incrementales.
+    if (result.success) {
+      try {
+        const pr = await forceReplicateProducts();
+        result.productsReplicated = pr.products;
+      } catch (e) {
+        logger.error('Replicación de productos durante sync manual:', e);
+      }
+    }
+    return result;
   }
 
   private async performFullSync(): Promise<SyncResult> {
