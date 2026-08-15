@@ -22,12 +22,17 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import {
   InvertedIndex, buildTokens, type ScoredDoc,
 } from './searchEngine';
+import { categorizeProduct, type ProductCategory } from '@/core/catalog';
 
 export interface ProductSearchResult {
   product: DbProduct;
   score: number;
   matchType: 'exact' | 'fuzzy' | 'synonym';
+  categoria: ProductCategory;
 }
+
+/** Facets disponibles para filtrado en la búsqueda de productos. */
+export type ProductFacet = 'categoria';
 
 /**
  * ProductSearchService — singleton gemelo de IngredientSearchService.
@@ -36,7 +41,7 @@ export interface ProductSearchResult {
  * para la búsqueda unificada del mostrador (ver SearchPage).
  */
 export class ProductSearchService {
-  private index = new InvertedIndex();
+  private index = new InvertedIndex<ProductFacet>();
   private cache = new Map<string, DbProduct>();
   private built = false;
 
@@ -62,7 +67,12 @@ export class ProductSearchService {
     if (prod.fabricante) merge(buildTokens(prod.fabricante, 30));
     merge(buildTokens(prod.sku, 20));
 
-    this.index.add({ id: prod.sku, tokens, facets: {} });
+    const categoria = categorizeProduct(prod);
+    this.index.add({
+      id: prod.sku,
+      tokens,
+      facets: { categoria: new Set([categoria]) },
+    });
     this.cache.set(prod.sku, prod);
   }
 
@@ -89,21 +99,35 @@ export class ProductSearchService {
     return this.cache.get(sku);
   }
 
-  searchSync(query?: string): ProductSearchResult[] {
+  searchSync(query?: string, facets?: Partial<Record<ProductFacet, string>>): ProductSearchResult[] {
     if (!this.built) return [];
-    if (!query || query.trim().length < 2) return [];
-    const scored: ScoredDoc[] = this.index.rank({ query });
+    if ((!query || query.trim().length < 2) && !facets) return [];
+    const scored: ScoredDoc[] = this.index.rank({ query, facets });
     const results: ProductSearchResult[] = [];
     for (const s of scored) {
       const prod = this.cache.get(s.id);
-      if (prod) results.push({ product: prod, score: s.score, matchType: s.matchType });
+      if (prod) {
+        const entry = this.index.docs.get(s.id);
+        const categoria = entry?.facets.categoria?.values().next().value as ProductCategory ?? 'otros';
+        results.push({ product: prod, score: s.score, matchType: s.matchType, categoria });
+      }
     }
     return results;
   }
 
-  async search(query?: string): Promise<ProductSearchResult[]> {
+  async search(query?: string, facets?: Partial<Record<ProductFacet, string>>): Promise<ProductSearchResult[]> {
     if (!this.built) await this.buildIndex();
-    return this.searchSync(query);
+    return this.searchSync(query, facets);
+  }
+
+  /** Cuenta productos por categoría (para chips dinámicos en el catálogo). */
+  categoriaCounts(): Map<ProductCategory, number> {
+    const counts = new Map<ProductCategory, number>();
+    for (const entry of this.index.docs.values()) {
+      const cat = entry.facets.categoria?.values().next().value as ProductCategory | undefined;
+      if (cat) counts.set(cat, (counts.get(cat) ?? 0) + 1);
+    }
+    return counts;
   }
 }
 

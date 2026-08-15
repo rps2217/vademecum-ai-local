@@ -198,7 +198,7 @@ export type OutboxStatus = typeof OUTBOX_STATUSES[number];
 export const SYNC_OP_TYPES = ['insert', 'update', 'delete'] as const;
 export type SyncOpType = typeof SYNC_OP_TYPES[number];
 
-export const SYNC_TABLES = ['products', 'ingredients', 'synergies', 'protocols', 'settings'] as const;
+export const SYNC_TABLES = ['products', 'ingredients', 'synergies', 'pathologies', 'protocols', 'settings'] as const;
 export type SyncTable = typeof SYNC_TABLES[number];
 
 // ============================================

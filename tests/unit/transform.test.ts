@@ -67,4 +67,84 @@ describe('toSupabaseFormat', () => {
     const result = toSupabaseFormat({ httpURL: 'x' });
     expect(result).toEqual({ http_url: 'x' });
   });
+
+  it('transforma un payload completo de patología correctamente (upload path)', () => {
+    const pathology = {
+      id: 'ansiedad',
+      nombre: 'Ansiedad',
+      definicion: 'Trastorno caracterizado por preocupación excesiva',
+      causas: ['Genética'],
+      sintomas: ['Preocupación'],
+      sistemas: ['nervioso'],
+      tratamientoAlopatico: {
+        primeraLinea: ['ISRS'],
+        mecanismo: 'Serotonina',
+        efectosSecundarios: ['Náuseas'],
+      },
+      tratamientoNatural: {
+        fitoterapia: ['valeriana'],
+        suplementos: ['magnesio'],
+        homeopatia: ['ignatia'],
+        aceites: ['lavanda_aceite'],
+        cuandoPreferir: 'Casos leves',
+      },
+      prevencion: ['Reducir cafeína'],
+      cuandoConsultar: 'Si hay ideas suicidas',
+      epidemiologia: 'Prevalencia 10%',
+      factoresRiesgo: ['Estrés crónico'],
+      diagnostico: 'Criterios DSM-5',
+      criteriosDiagnostico: ['Preocupación 6+ meses'],
+      escalasClinicas: [{ nombre: 'GAD-7', uso: 'Screening ansiedad' }],
+      diagnosticoDiferencial: ['Hipertiroidismo'],
+      pronostico: 'Bueno con tratamiento',
+      poblacionesEspeciales: [{ poblacion: 'Embarazo', consideraciones: 'Evitar hiperico' }],
+      alertasFarmaceuticas: ['ISRS + IMAO = síndrome serotoninérgico'],
+      evidencia: 'A',
+      fuentes: ['DSM-5'],
+      lamport: 3,
+      deviceId: 'dev1',
+      updatedAt: 1695000000000,
+      createdAt: 1694000000000,
+      tombstone: 0,
+    };
+    const result = toSupabaseFormat(pathology);
+    expect(result).toEqual({
+      id: 'ansiedad',
+      nombre: 'Ansiedad',
+      definicion: 'Trastorno caracterizado por preocupación excesiva',
+      causas: ['Genética'],
+      sintomas: ['Preocupación'],
+      sistemas: ['nervioso'],
+      tratamiento_alopatico: {
+        primeraLinea: ['ISRS'],
+        mecanismo: 'Serotonina',
+        efectosSecundarios: ['Náuseas'],
+      },
+      tratamiento_natural: {
+        fitoterapia: ['valeriana'],
+        suplementos: ['magnesio'],
+        homeopatia: ['ignatia'],
+        aceites: ['lavanda_aceite'],
+        cuandoPreferir: 'Casos leves',
+      },
+      prevencion: ['Reducir cafeína'],
+      cuando_consultar: 'Si hay ideas suicidas',
+      epidemiologia: 'Prevalencia 10%',
+      factores_riesgo: ['Estrés crónico'],
+      diagnostico: 'Criterios DSM-5',
+      criterios_diagnostico: ['Preocupación 6+ meses'],
+      escalas_clinicas: [{ nombre: 'GAD-7', uso: 'Screening ansiedad' }],
+      diagnostico_diferencial: ['Hipertiroidismo'],
+      pronostico: 'Bueno con tratamiento',
+      poblaciones_especiales: [{ poblacion: 'Embarazo', consideraciones: 'Evitar hiperico' }],
+      alertas_farmaceuticas: ['ISRS + IMAO = síndrome serotoninérgico'],
+      evidencia: 'A',
+      fuentes: ['DSM-5'],
+      lamport: 3,
+      device_id: 'dev1',
+      updated_at: '2023-09-18T01:20:00.000Z',
+      created_at: '2023-09-06T11:33:20.000Z',
+      tombstone: 0,
+    });
+  });
 });

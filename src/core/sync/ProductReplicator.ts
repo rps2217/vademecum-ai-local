@@ -125,7 +125,11 @@ export async function replicateProducts(): Promise<ReplicationResult> {
         .from('products')
         .select('*')
         .eq('tombstone', 0)
-        .gt('updated_at', since)
+        // gte (no gt): la mayoría de los productos seeded tienen updated_at
+        // = '1970-01-01T00:00:00Z' (epoch). Con .gt() se excluyen porque no
+        // son estrictamente mayores; con .gte() se incluyen. El upsert es
+        // idempotente, así que re-descargar filas sin cambios no daña.
+        .gte('updated_at', since)
         .range(offset, offset + PAGE_SIZE - 1);
 
       if (error) {
@@ -133,6 +137,10 @@ export async function replicateProducts(): Promise<ReplicationResult> {
         if (isMissingTableError(error)) {
           logger.warn('[ProductReplicator] Tabla "products" no existe en Supabase. Saltando replicación de productos.');
           return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Tabla products no existe' };
+        }
+        if (error.code === '401' || (error.message || '').toLowerCase().includes('api key')) {
+          logger.error('[ProductReplicator] Autenticación rechazada (401). Verifica VITE_SUPABASE_ANON_KEY en .env.local.');
+          return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Autenticación rechazada (401) — verifica VITE_SUPABASE_ANON_KEY' };
         }
         logger.error('[ProductReplicator] Error descargando productos:', error);
         break;

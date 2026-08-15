@@ -38,7 +38,10 @@ src/
 │       └── SyncConflictModal.tsx # Modal de resolución de conflictos
 ├── core/
 │   ├── search/                   # Motor de búsqueda
-│   │   ├── IngredientSearchService.ts  # Servicio de búsqueda local
+│   │   ├── searchEngine.ts       # Núcleo compartido (índice invertido + TF-IDF + fuzzy)
+│   │   ├── IngredientSearchService.ts  # Servicio de búsqueda de ingredientes
+│   │   ├── ProductSearchService.ts      # Servicio de búsqueda de productos
+│   │   ├── SynergySearchService.ts      # Servicio de búsqueda de sinergias (fuzzy + facets)
 │   │   └── index.ts
 │   └── sync/                     # Motor de sincronización
 │       ├── SyncService.ts        # Servicio de sync (singleton)
@@ -362,6 +365,52 @@ KB version: `v228-117-85-195-1154-146-126`.
 > rompería el upsert). Tests en `tests/unit/transform.test.ts`.
 >
 > NO existe SyncManager (fue eliminado); el servicio actual es SyncService.
+>
+> **Bug resuelto (product replication download path, 2026-08-15):**
+> `ProductReplicator.replicateProducts()` usaba `.gt('updated_at', since)` para
+> filtrar los productos a descargar. Como los productos seeded tienen
+> `updated_at = '1970-01-01T00:00:00Z'` (epoch) y el `since` por defecto es
+> exactamente esa misma fecha, `.gt()` (estrictamente mayor) excluía TODOS los
+> productos → 0 descargas, catálogo vacío en IndexedDB. Corregido a `.gte()`
+> (mayor o igual). Verificado: con `.gt()` → 0 productos; con `.gte()` → 1297.
+> El upsert es idempotente, así que re-descargar filas sin cambios no daña.
+>
+> **Credenciales Supabase:** La app necesita `VITE_SUPABASE_ANON_KEY` (clave
+> publishable, segura para frontend) en `.env.local`. Si solo se tiene la
+> `sb_secret_...` (service_role), esta bypassa RLS y NO debe ir en el frontend.
+> El `.env.local` está gitignored. SyncService y ProductReplicator ahora
+> detectan el error 401 y desactivan el sync con un mensaje claro en vez de
+> spammear errores de red cada 30s.
+>
+> **SynergySearchService (2026-08-15):** Nuevo servicio gemelo de
+> IngredientSearchService/ProductSearchService que indexa `db.synergies` en el
+> mismo `InvertedIndex` (fuzzy Levenshtein + TF-IDF + facets). Permite buscar
+> sinergias por nombre de ingrediente con tolerancia a typos ("valerina"→
+> "valeriana"), filtrar por tipo (sinergia/complemento/interacción/antagonismo)
+> y por evidencia (A/B/C/D). SynergiesPage reescrito para usarlo con paginación
+> (24 cards por página, antes renderizaba 1171 a la vez).
+>
+> **Sync de patologías (2026-08-15):** `downloadRemoteChanges()` ahora descarga
+> también la tabla `pathologies` de Supabase (146 patologías con contexto clínico
+> extendido). Implementación:
+> - `'pathologies'` añadido a `SYNC_TABLES` en `shared-enums.ts` (habilita
+>   uploads vía outbox pattern).
+> - `mergeRemotePathology()` en `SyncService.ts` mapea las columnas snake_case
+>   de Supabase (`tratamiento_alopatico`, `escalas_clinicas`,
+>   `poblaciones_especiales`, etc.) al schema camelCase `DbPathology`, con
+>   defaults seguros para los campos opcionales de contexto clínico.
+> - Usa el mismo patrón de merge Lamport-based que ingredients/synergies:
+>   descarga solo si `remoteLamport > localLamport` (o si no existe local),
+>   y detecta conflictos vía `ConflictResolver`.
+> - Usa `.gte('updated_at', lastSyncDate)` (no `.gt()`) — mismo fix que
+>   ProductReplicator, evita excluir filas seeded con `updated_at=epoch`.
+> - `toSupabaseFormat()` ahora convierte también `createdAt` a ISO string
+>   (antes solo `updatedAt`/`lastSyncAt`; `created_at` es TIMESTAMPTZ en
+>   Supabase).
+> - Como las patologías seeded (local y remota) tienen `lamport:0`, el primer
+>   sync reporta 0 descargas para IDs ya existentes — esto es CORRECTO (no
+>   sobrescribe datos idénticos). Las descargas reales ocurren cuando un
+>   registro remoto incrementa su `lamport`/`updated_at`.
 
 ## Filtros Planeados (UI)
 
@@ -451,14 +500,14 @@ import { syncService } from '@/core/sync';  // SyncService (NO SyncManager, fue 
 ## Motor de Búsqueda — Arquitectura de 6 capas
 
 El motor de búsqueda (`src/core/search/searchEngine.ts` + `IngredientSearchService.ts`
-+ `ProductSearchService.ts` + `src/lib/text.ts`) combina 6 capas de matching,
++ `ProductSearchService.ts` + `SynergySearchService.ts` + `src/lib/text.ts`) combina 6 capas de matching,
 todas 100% offline e instantáneas (sin LLM, sin descargas de modelos):
 
 > **searchEngine.ts** es el núcleo compartido genérico (índice invertido + DF +
 > TF-IDF + fuzzy Levenshtein + expansión de sinónimos/bigramas). Tanto
-> `IngredientSearchService` como `ProductSearchService` delegan en él, de modo
-> que "valerina" (typo) encuentra el ingrediente "valeriana" Y el producto
-> "Ungüento Valeriana" con la misma tolerancia. Cada servicio solo define los
+> `IngredientSearchService`, `ProductSearchService` como `SynergySearchService` delegan en él, de modo
+> que "valerina" (typo) encuentra el ingrediente "valeriana", el producto
+> "Ungüento Valeriana" Y las sinergias de valeriana con la misma tolerancia. Cada servicio solo define los
 > pesos por campo y facets específicos de su dominio.
 
 ### Capa A — Índice invertido con pesos por campo
