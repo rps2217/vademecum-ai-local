@@ -12,7 +12,7 @@ import { Copy, Check, Shield, Key, Eye, EyeOff } from 'lucide-react';
 
 export function OnboardingPage() {
   const navigate = useNavigate();
-  const { setup, hasAccount, isLoading } = useE2EE();
+  const { setup, confirmSetup, hasAccount, isLoading } = useE2EE();
   const [step, setStep] = useState(1);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -41,12 +41,17 @@ export function OnboardingPage() {
     return { score: 4, label: 'Fuerte', color: 'bg-green-500' };
   }, [password]);
 
-  // Redirect to login if already has account (useEffect to avoid render-time navigation)
+  // Redirect to login if already has account (useEffect to avoid render-time navigation).
+  // Solo redirige en el step 1 (antes de iniciar el setup): durante el setup,
+  // `hasAccount` se vuelve true dentro de `setup()`, pero el usuario aún debe ver
+  // la frase de recuperación (step 3) y pulsar "Completar configuración".
+  // Sin este guard, el efecto disparaba navigate('/login') a mitad del setup y
+  // el step 3 (frase de recuperación) jamás se mostraba.
   useEffect(() => {
-    if (!isLoading && hasAccount) {
+    if (!isLoading && hasAccount && step === 1) {
       navigate('/login', { replace: true });
     }
-  }, [isLoading, hasAccount, navigate]);
+  }, [isLoading, hasAccount, step, navigate]);
 
   // Clear copy timer on unmount
   useEffect(() => () => {
@@ -96,6 +101,10 @@ export function OnboardingPage() {
   };
 
   const handleComplete = () => {
+    // Activa la sesión (isAuthenticated=true) tras mostrar la frase de
+    // recuperación. setup() generó el keypair pero dejó la sesión inactiva
+    // para que el step 3 pudiera mostrarse sin que AuthRoute redirigiera.
+    confirmSetup();
     navigate('/');
   };
 

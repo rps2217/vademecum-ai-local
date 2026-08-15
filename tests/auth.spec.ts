@@ -1,4 +1,10 @@
 import { test, expect } from '@playwright/test';
+import {
+  authenticate,
+  resetAll,
+  resetSession,
+  TEST_PASSWORD,
+} from './helpers/auth';
 
 /**
  * Tests E2E - Autenticación E2EE
@@ -8,36 +14,18 @@ import { test, expect } from '@playwright/test';
  * en sessionStorage (se limpia al cerrar el navegador).
  */
 
-const TEST_PASSWORD = 'Test1234!';
-
-/** Helper: completa el onboarding (primera vez). */
+/** Helper: completa el onboarding (primera vez) y entra a la app. */
 async function completeOnboarding(page: import('@playwright/test').Page) {
+  await resetAll(page);
   await page.goto('/');
-  // Esperar a que aparezca el formulario de onboarding
-  await page.locator('input[type="password"]').first().waitFor({ state: 'visible', timeout: 10000 });
-
-  // Llenar contraseña + confirmación
-  await page.locator('input[type="password"]').nth(0).fill(TEST_PASSWORD);
-  await page.locator('input[type="password"]').nth(1).fill(TEST_PASSWORD);
-  await page.locator('button[type="submit"]').click();
-
-  // Esperar a que aparezca la frase de recuperación (step 3)
-  await page.waitForTimeout(3000);
-
-  // Completar onboarding
-  const completeBtn = page.locator('button', { hasText: /completar/i });
-  await completeBtn.click();
-  await page.waitForTimeout(1000);
+  await authenticate(page);
 }
 
 test.describe('Autenticación', () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.evaluate(() => {
-      localStorage.clear();
-      sessionStorage.clear();
-    });
+    await resetAll(page);
     await page.reload();
   });
 
@@ -63,7 +51,7 @@ test.describe('Autenticación', () => {
     await completeOnboarding(page);
 
     // Limpiar solo la sesión (no el keypair en localStorage)
-    await page.evaluate(() => sessionStorage.clear());
+    await resetSession(page);
     await page.reload();
 
     // Ahora debe mostrar login, no onboarding
@@ -77,7 +65,7 @@ test.describe('Autenticación', () => {
     await completeOnboarding(page);
 
     // Limpiar sesión y recargar para ir al login
-    await page.evaluate(() => sessionStorage.clear());
+    await resetSession(page);
     await page.reload();
 
     // Esperar el login
@@ -96,17 +84,16 @@ test.describe('Autenticación', () => {
     await completeOnboarding(page);
 
     // Limpiar sesión y recargar para ir al login
-    await page.evaluate(() => sessionStorage.clear());
+    await resetSession(page);
     await page.reload();
 
     // Desbloquear con la contraseña correcta
     await page.locator('input[type="password"]').first().waitFor({ state: 'visible', timeout: 10000 });
     await page.locator('input[type="password"]').first().fill(TEST_PASSWORD);
     await page.locator('button[type="submit"]').click();
-    await page.waitForTimeout(2000);
 
     // Debe entrar a la app
     const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
-    await expect(searchInput).toBeVisible({ timeout: 10000 });
+    await expect(searchInput).toBeVisible({ timeout: 15000 });
   });
 });

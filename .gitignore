@@ -14,3 +14,7 @@ scraper/__pycache__/
 scraper/*.jsonl
 scraper/urls_extraidas.txt
 scraper/*_log.txt
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
