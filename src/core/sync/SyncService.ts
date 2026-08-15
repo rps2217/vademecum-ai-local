@@ -9,6 +9,7 @@ import type {
   DbOutboxOp,
   DbIngredient,
   DbSynergy,
+  DbPathology,
   SyncOpType,
   SyncTable
 } from '@/db/schema';
@@ -430,6 +431,8 @@ export class SyncService {
     if (ingError) {
       if (this.isMissingTableError(ingError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
+      } else if (ingError.code === '401' || ingError.message?.toLowerCase().includes('jwt') || ingError.message?.toLowerCase().includes('api key')) {
+        this.disableSync('Autenticación rechazada por Supabase (401). Verifica VITE_SUPABASE_ANON_KEY en .env.local. Sync desactivado.');
       } else if (ingError.code === 'PGRST204' || ingError.message?.includes('column')) {
         logger.warn('[SyncService] Schema mismatch: "ingredients" table columns not found. Sync is experimental.');
       } else {
@@ -450,6 +453,8 @@ export class SyncService {
     if (synError) {
       if (this.isMissingTableError(synError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
+      } else if (synError.code === '401' || synError.message?.toLowerCase().includes('jwt') || synError.message?.toLowerCase().includes('api key')) {
+        this.disableSync('Autenticación rechazada por Supabase (401). Verifica VITE_SUPABASE_ANON_KEY en .env.local. Sync desactivado.');
       } else if (synError.code === 'PGRST204' || synError.message?.includes('column')) {
         logger.warn('[SyncService] Schema mismatch: "synergies" table columns not found. Sync is experimental.');
       } else {
@@ -458,6 +463,28 @@ export class SyncService {
     } else if (synergies) {
       for (const syn of synergies) {
         const conflict = await this.mergeRemoteSynergy(syn);
+        if (!conflict) downloaded++;
+      }
+    }
+
+    // Skip pathologies if sync already disabled by synergies check
+    if (this.syncDisabled) return { count: downloaded };
+
+    // Download pathologies
+    const { data: pathologies, error: pathError } = await supabase.from('pathologies').select('*').eq('tombstone', 0).gte('updated_at', lastSyncDate);
+    if (pathError) {
+      if (this.isMissingTableError(pathError)) {
+        this.disableSync('Las tablas remotas (ingredients/synergies/pathologies) no existen en Supabase. Sync desactivado.');
+      } else if (pathError.code === '401' || pathError.message?.toLowerCase().includes('jwt') || pathError.message?.toLowerCase().includes('api key')) {
+        this.disableSync('Autenticación rechazada por Supabase (401). Verifica VITE_SUPABASE_ANON_KEY en .env.local. Sync desactivado.');
+      } else if (pathError.code === 'PGRST204' || pathError.message?.includes('column')) {
+        logger.warn('[SyncService] Schema mismatch: "pathologies" table columns not found. Sync is experimental.');
+      } else {
+        logger.error('Error downloading pathologies:', pathError);
+      }
+    } else if (pathologies) {
+      for (const path of pathologies) {
+        const conflict = await this.mergeRemotePathology(path);
         if (!conflict) downloaded++;
       }
     }
@@ -592,6 +619,77 @@ export class SyncService {
         tombstone: (remote.tombstone as 0 | 1) || 0,
       };
       await db.synergies.put(synergy);
+    }
+    return false;
+  }
+
+  private async mergeRemotePathology(remote: Record<string, unknown>): Promise<boolean> {
+    const local = await db.pathologies.get(remote.id as string);
+    const remoteLamport = (remote.lamport as number) || 0;
+    const localLamport = local?.lamport || 0;
+
+    if (local && this.config.enableConflictDetection) {
+      const hasConflict = ConflictResolver.detectConflict(
+        localLamport,
+        remoteLamport,
+        local.updatedAt,
+        new Date(remote.updated_at as string).getTime()
+      );
+
+      if (hasConflict) {
+        const conflictInfo: ConflictInfo = {
+          table: 'pathologies',
+          recordId: remote.id as string,
+          localVersion: local as unknown as Record<string, unknown>,
+          remoteVersion: remote,
+          localLamport,
+          remoteLamport,
+        };
+        await ConflictResolver.registerConflict(conflictInfo);
+        return true;
+      }
+    }
+
+    if (!local || remoteLamport > localLamport) {
+      const pathology: DbPathology = {
+        id: remote.id as string,
+        nombre: remote.nombre as string,
+        definicion: remote.definicion as string,
+        causas: (remote.causas as string[]) || [],
+        sintomas: (remote.sintomas as string[]) || [],
+        sistemas: (remote.sistemas as DbPathology['sistemas']) || [],
+        tratamientoAlopatico: (remote.tratamiento_alopatico as DbPathology['tratamientoAlopatico']) || {
+          primeraLinea: [],
+          mecanismo: '',
+          efectosSecundarios: [],
+        },
+        tratamientoNatural: (remote.tratamiento_natural as DbPathology['tratamientoNatural']) || {
+          fitoterapia: [],
+          suplementos: [],
+          homeopatia: [],
+          aceites: [],
+          cuandoPreferir: '',
+        },
+        prevencion: (remote.prevencion as string[]) || [],
+        cuandoConsultar: (remote.cuando_consultar as string) || '',
+        epidemiologia: remote.epidemiologia as string | undefined,
+        factoresRiesgo: (remote.factores_riesgo as string[]) || undefined,
+        diagnostico: remote.diagnostico as string | undefined,
+        criteriosDiagnostico: (remote.criterios_diagnostico as string[]) || undefined,
+        escalasClinicas: (remote.escalas_clinicas as DbPathology['escalasClinicas']) || undefined,
+        diagnosticoDiferencial: (remote.diagnostico_diferencial as string[]) || undefined,
+        pronostico: remote.pronostico as string | undefined,
+        poblacionesEspeciales: (remote.poblaciones_especiales as DbPathology['poblacionesEspeciales']) || undefined,
+        alertasFarmaceuticas: (remote.alertas_farmaceuticas as string[]) || undefined,
+        evidencia: (remote.evidencia as DbPathology['evidencia']) || 'C',
+        fuentes: (remote.fuentes as string[]) || [],
+        lamport: remoteLamport,
+        deviceId: remote.device_id as string,
+        updatedAt: new Date(remote.updated_at as string).getTime(),
+        createdAt: new Date(remote.created_at as string).getTime(),
+        tombstone: (remote.tombstone as 0 | 1) || 0,
+      };
+      await db.pathologies.put(pathology);
     }
     return false;
   }

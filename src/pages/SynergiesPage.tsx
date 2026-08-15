@@ -2,19 +2,21 @@
  * SynergiesPage - Red de sinergias rediseñada
  * 
  * Grid de sinergias con visualizacion de combinaciones y grafo interactivo.
+ * Búsqueda con motor fuzzy + TF-IDF (SynergySearchService) y filtros por
+ * tipo y nivel de evidencia. Paginación para no renderizar 1171 cards a la vez.
  */
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { db } from '@/db';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { useSearch } from '@/contexts/SearchContext';
+import { synergySearchService, useSynergyIndex } from '@/core/search';
 import { SynergyGraph } from '@/components/admin/SynergyGraph';
-import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info, LayoutGrid, GitBranch } from 'lucide-react';
+import { Network, ArrowRight, Link2, Sparkles, AlertTriangle, Info, LayoutGrid, GitBranch, ChevronDown } from 'lucide-react';
 import type { DbSynergy } from '@/db/schema';
-import { logger } from '@/lib/logger';
+import type { SynergyType } from '@/types/shared-enums';
 import { cn } from '@/lib/utils';
 
 const TYPE_CONFIG: Record<string, { label: string; color: string; icon: typeof Link2 }> = {
@@ -46,69 +48,75 @@ const LEVEL_CONFIG: Record<string, { label: string; color: string }> = {
   bajo: { label: 'Evidencia baja', color: 'bg-gray-100 text-gray-800' },
 };
 
+/** Tipos de sinergia disponibles como filtros (orden de relevancia clínica). */
+const TYPE_FILTERS: { value: SynergyType; label: string }[] = [
+  { value: 'sinergia', label: 'Sinergia' },
+  { value: 'complemento', label: 'Complemento' },
+  { value: 'interaccion', label: 'Interacción' },
+  { value: 'antagonismo', label: 'Antagonismo' },
+];
+
+const EVIDENCE_FILTERS: { value: 'A' | 'B' | 'C' | 'D'; label: string }[] = [
+  { value: 'A', label: 'A' },
+  { value: 'B', label: 'B' },
+  { value: 'C', label: 'C' },
+  { value: 'D', label: 'D' },
+];
+
+const PAGE_SIZE = 24;
+
 type ViewMode = 'graph' | 'grid';
 
 export function SynergiesPage() {
   const [searchParams] = useSearchParams();
   const { query } = useSearch();
-  const [synergies, setSynergies] = useState<DbSynergy[]>([]);
-  const [ingredients, setIngredients] = useState<Record<string, string>>({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const { ready } = useSynergyIndex();
   const [selectedSynergy, setSelectedSynergy] = useState<DbSynergy | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [selectedIngredientId, setSelectedIngredientId] = useState<string | null>(
     searchParams.get('ingredient')
   );
+  const [filterTipo, setFilterTipo] = useState<SynergyType | null>(null);
+  const [filterEvidencia, setFilterEvidencia] = useState<'A' | 'B' | 'C' | 'D' | null>(null);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  // Guarda la "firma" de los filtros activos para resetear la paginación
+  // cuando cambian, sin usar useEffect (que dispararía renders en cascada).
+  const filterSignature = `${query ?? ''}|${filterTipo ?? ''}|${filterEvidencia ?? ''}|${selectedIngredientId ?? ''}|${viewMode}`;
+  const [lastFilterSignature, setLastFilterSignature] = useState(filterSignature);
+  if (filterSignature !== lastFilterSignature) {
+    setLastFilterSignature(filterSignature);
+    setVisibleCount(PAGE_SIZE);
+  }
 
-  useEffect(() => {
-    async function loadData() {
-      setIsLoading(true);
-      try {
-        const [synergiesData, ingredientsData] = await Promise.all([
-          db.synergies.toArray(),
-          db.ingredients.toArray(),
-        ]);
-        
-        const ingredientMap: Record<string, string> = {};
-        ingredientsData.forEach(ing => {
-          ingredientMap[ing.id] = ing.nombre;
-        });
-        
-        setIngredients(ingredientMap);
-        setSynergies(synergiesData);
-      } catch (error) {
-        logger.error('Error loading synergies:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadData();
-  }, []);
+  // Mapa de nombres de ingredientes (del servicio de búsqueda).
+  const ingredientNames = useMemo(
+    () => (ready ? synergySearchService.getIngredientNames() : {}),
+    [ready],
+  );
 
-  const filteredSynergies = useMemo(() => {
-    return synergies.filter((s) => {
-      // Filtro por ingrediente seleccionado (desde URL o clic en nodo)
-      if (selectedIngredientId) {
-        const isInvolved =
-          s.ingredienteA === selectedIngredientId ||
-          s.ingredienteB === selectedIngredientId;
-        if (!isInvolved) return false;
-      }
-      // Filtro por texto de búsqueda
-      if (query) {
-        const q = query.toLowerCase();
-        const nameA = ingredients[s.ingredienteA] || s.ingredienteA;
-        const nameB = ingredients[s.ingredienteB] || s.ingredienteB;
-        return (
-          nameA.toLowerCase().includes(q) ||
-          nameB.toLowerCase().includes(q) ||
-          s.tipo.toLowerCase().includes(q) ||
-          (s.mecanismo && s.mecanismo.toLowerCase().includes(q))
-        );
-      }
-      return true;
+  // Conteos de facets para mostrar en los chips de filtro.
+  const tipoCounts = useMemo(
+    () => (ready ? synergySearchService.tipoCounts() : new Map<string, number>()),
+    [ready],
+  );
+
+  const filteredResults = useMemo(() => {
+    if (!ready) return [];
+    return synergySearchService.searchSync({
+      query,
+      tipo: filterTipo ?? undefined,
+      evidencia: filterEvidencia ?? undefined,
+      ingredientId: selectedIngredientId ?? undefined,
     });
-  }, [synergies, query, ingredients, selectedIngredientId]);
+  }, [ready, query, filterTipo, filterEvidencia, selectedIngredientId]);
+
+  const visibleResults = useMemo(
+    () => filteredResults.slice(0, visibleCount),
+    [filteredResults, visibleCount],
+  );
+
+  const hasMore = filteredResults.length > visibleCount;
+  const loadMore = useCallback(() => setVisibleCount((c) => c + PAGE_SIZE), []);
 
   const getTypeConfig = (tipo: string) => {
     return TYPE_CONFIG[tipo] || TYPE_CONFIG.interaccion;
@@ -118,6 +126,11 @@ export function SynergiesPage() {
     return LEVEL_CONFIG[nivel] || LEVEL_CONFIG.bajo;
   };
 
+  const nameFor = useCallback(
+    (id: string) => ingredientNames[id] || id,
+    [ingredientNames],
+  );
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -125,9 +138,9 @@ export function SynergiesPage() {
         <div>
           <h1 className="text-3xl font-bold font-heading">Sinergias</h1>
           <p className="text-muted-foreground mt-1">
-            {isLoading 
-              ? 'Cargando...' 
-              : `${filteredSynergies.length} combinaciones`}
+            {!ready
+              ? 'Cargando...'
+              : `${filteredResults.length} ${filteredResults.length === 1 ? 'combinación' : 'combinaciones'}`}
           </p>
         </div>
 
@@ -162,16 +175,102 @@ export function SynergiesPage() {
         </div>
       </div>
 
+      {/* Filtros por tipo y evidencia */}
+      {ready && (
+        <div className="flex flex-col gap-3">
+          {/* Filtro por tipo */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Tipo</span>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setFilterTipo(null)}
+                className={cn(
+                  'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors border',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  !filterTipo
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'bg-card text-foreground border-border hover:bg-muted'
+                )}
+              >
+                Todos
+              </button>
+              {TYPE_FILTERS.map((tf) => {
+                const isActive = filterTipo === tf.value;
+                const count = tipoCounts.get(tf.value) ?? 0;
+                if (count === 0 && !isActive) return null;
+                const Icon = TYPE_CONFIG[tf.value]?.icon ?? Link2;
+                return (
+                  <button
+                    key={tf.value}
+                    onClick={() => setFilterTipo(isActive ? null : tf.value)}
+                    className={cn(
+                      'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors border',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                      isActive
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'bg-card text-foreground border-border hover:bg-muted hover:border-primary/40'
+                    )}
+                  >
+                    <Icon className="w-3.5 h-3.5" aria-hidden="true" />
+                    {tf.label}
+                    <span className={cn('text-xs tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Filtro por evidencia */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Evidencia</span>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setFilterEvidencia(null)}
+                className={cn(
+                  'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors border',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  !filterEvidencia
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'bg-card text-foreground border-border hover:bg-muted'
+                )}
+              >
+                Todas
+              </button>
+              {EVIDENCE_FILTERS.map((ef) => {
+                const isActive = filterEvidencia === ef.value;
+                return (
+                  <button
+                    key={ef.value}
+                    onClick={() => setFilterEvidencia(isActive ? null : ef.value)}
+                    className={cn(
+                      'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors border',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                      isActive
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'bg-card text-foreground border-border hover:bg-muted hover:border-primary/40'
+                    )}
+                  >
+                    {ef.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Active ingredient filter banner */}
       {selectedIngredientId && (
         <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary/5 border border-primary/20">
           <Link2 className="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
           <span className="text-sm text-muted-foreground">Sinergias de</span>
           <span className="text-sm font-semibold text-foreground">
-            {ingredients[selectedIngredientId] || selectedIngredientId}
+            {nameFor(selectedIngredientId)}
           </span>
           <Badge variant="secondary" className="text-xs">
-            {filteredSynergies.length}
+            {filteredResults.length}
           </Badge>
           <button
             onClick={() => setSelectedIngredientId(null)}
@@ -183,16 +282,16 @@ export function SynergiesPage() {
       )}
 
       {/* Content based on view mode */}
-      {isLoading ? (
+      {!ready ? (
         <div className="text-center py-12">
           <p className="text-muted-foreground">Cargando...</p>
         </div>
-      ) : filteredSynergies.length === 0 ? (
+      ) : filteredResults.length === 0 ? (
         <div className="text-center py-12">
           <Network className="w-12 h-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <p className="text-muted-foreground font-medium">No se encontraron sinergias</p>
           <p className="text-sm text-muted-foreground mt-1">
-            {query ? 'Prueba con otros terminos de busqueda' : 'No hay sinergias cargadas aun'}
+            {query || filterTipo || filterEvidencia ? 'Prueba con otros términos o filtros' : 'No hay sinergias cargadas aún'}
           </p>
         </div>
       ) : viewMode === 'graph' ? (
@@ -200,8 +299,8 @@ export function SynergiesPage() {
           {/* Graph Visualization */}
           <Card className="p-1">
             <SynergyGraph
-              synergies={filteredSynergies}
-              ingredients={ingredients}
+              synergies={visibleResults.map((r) => r.synergy)}
+              ingredients={ingredientNames}
               onNodeClick={(id) => setSelectedIngredientId(id)}
               onEdgeClick={(synergy) => setSelectedSynergy(synergy)}
               className="h-96"
@@ -209,7 +308,7 @@ export function SynergiesPage() {
             {selectedIngredientId && (
               <div className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">
-                  {ingredients[selectedIngredientId] || selectedIngredientId}
+                  {nameFor(selectedIngredientId)}
                 </span>
                 <span className="text-xs">seleccionado</span>
                 <button
@@ -237,9 +336,9 @@ export function SynergiesPage() {
                         </div>
                         <div>
                           <h3 className="font-semibold">
-                            {ingredients[selectedSynergy.ingredienteA] || selectedSynergy.ingredienteA}
+                            {nameFor(selectedSynergy.ingredienteA)}
                             {' → '}
-                            {ingredients[selectedSynergy.ingredienteB] || selectedSynergy.ingredienteB}
+                            {nameFor(selectedSynergy.ingredienteB)}
                           </h3>
                           <div className="flex gap-2 mt-1">
                             <Badge className={cn(typeConfig.color, 'border text-xs')}>
@@ -270,11 +369,11 @@ export function SynergiesPage() {
 
           {/* Quick List below graph */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {filteredSynergies.slice(0, 6).map((synergy) => {
+            {visibleResults.slice(0, 6).map(({ synergy }) => {
               const typeConfig = getTypeConfig(synergy.tipo);
               const TypeIcon = typeConfig.icon;
-              const nameA = ingredients[synergy.ingredienteA] || synergy.ingredienteA;
-              const nameB = ingredients[synergy.ingredienteB] || synergy.ingredienteB;
+              const nameA = nameFor(synergy.ingredienteA);
+              const nameB = nameFor(synergy.ingredienteB);
 
               return (
                 <Card 
@@ -295,63 +394,79 @@ export function SynergiesPage() {
         </>
       ) : (
         /* Grid View */
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-          {filteredSynergies.map((synergy) => {
-            const typeConfig = getTypeConfig(synergy.tipo);
-            const levelConfig = getLevelConfig(synergy.nivel);
-            const TypeIcon = typeConfig.icon;
-            const nameA = ingredients[synergy.ingredienteA] || synergy.ingredienteA;
-            const nameB = ingredients[synergy.ingredienteB] || synergy.ingredienteB;
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            {visibleResults.map(({ synergy }) => {
+              const typeConfig = getTypeConfig(synergy.tipo);
+              const levelConfig = getLevelConfig(synergy.nivel);
+              const TypeIcon = typeConfig.icon;
+              const nameA = nameFor(synergy.ingredienteA);
+              const nameB = nameFor(synergy.ingredienteB);
 
-            return (
-              <Card 
-                key={synergy.id} 
-                className="p-5 hover:border-primary transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              return (
+                <Card 
+                  key={synergy.id} 
+                  className="p-5 hover:border-primary transition-colors cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  {/* Header */}
+                  <div className="flex items-start gap-4">
+                    <div className={cn('p-3 rounded-xl border', typeConfig.color)}>
+                      <TypeIcon className="w-6 h-6" aria-hidden="true" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      {/* Ingredients connection */}
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-semibold">{nameA}</span>
+                        <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
+                        <span className="font-semibold">{nameB}</span>
+                      </div>
+                      
+                      {/* Type and Level badges */}
+                      <div className="flex flex-wrap items-center gap-2 mt-2">
+                        <Badge className={cn(typeConfig.color, 'border text-xs')}>
+                          {typeConfig.label}
+                        </Badge>
+                        <Badge className={cn(levelConfig.color, 'text-xs')}>
+                          {levelConfig.label}
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mechanism */}
+                  {synergy.mecanismo && (
+                    <p className="text-sm text-muted-foreground mt-3 pl-16">
+                      {synergy.mecanismo}
+                    </p>
+                  )}
+
+                  {/* Evidence indicator */}
+                  {synergy.evidencia && (
+                    <div className="flex items-center gap-1 mt-3 pl-16">
+                      <Info className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
+                      <span className="text-xs text-muted-foreground">
+                        Evidencia: {synergy.evidencia}
+                      </span>
+                    </div>
+                  )}
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* Load more */}
+          {hasMore && (
+            <div className="flex justify-center pt-2">
+              <Button
+                variant="outline"
+                onClick={loadMore}
+                className="gap-1"
               >
-                {/* Header */}
-                <div className="flex items-start gap-4">
-                  <div className={cn('p-3 rounded-xl border', typeConfig.color)}>
-                    <TypeIcon className="w-6 h-6" aria-hidden="true" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    {/* Ingredients connection */}
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-semibold">{nameA}</span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" aria-hidden="true" />
-                      <span className="font-semibold">{nameB}</span>
-                    </div>
-                    
-                    {/* Type and Level badges */}
-                    <div className="flex flex-wrap items-center gap-2 mt-2">
-                      <Badge className={cn(typeConfig.color, 'border text-xs')}>
-                        {typeConfig.label}
-                      </Badge>
-                      <Badge className={cn(levelConfig.color, 'text-xs')}>
-                        {levelConfig.label}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Mechanism */}
-                {synergy.mecanismo && (
-                  <p className="text-sm text-muted-foreground mt-3 pl-16">
-                    {synergy.mecanismo}
-                  </p>
-                )}
-
-                {/* Evidence indicator */}
-                {synergy.evidencia && (
-                  <div className="flex items-center gap-1 mt-3 pl-16">
-                    <Info className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
-                    <span className="text-xs text-muted-foreground">
-                      Evidencia: {synergy.evidencia}
-                    </span>
-                  </div>
-                )}
-              </Card>
-            );
-          })}
+                <ChevronDown className="w-4 h-4" aria-hidden="true" />
+                Ver más ({filteredResults.length - visibleCount} restantes)
+              </Button>
+            </div>
+          )}
         </div>
       )}
     </div>

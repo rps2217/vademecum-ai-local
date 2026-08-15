@@ -15,6 +15,7 @@ import { LoginPage } from '@/pages/LoginPage';
 import { OnboardingPage } from '@/pages/OnboardingPage';
 import { SearchPage } from '@/pages/SearchPage';
 import { KnowledgePage } from '@/pages/KnowledgePage';
+import { ProductsPage } from '@/pages/ProductsPage';
 import { SynergiesPage } from '@/pages/SynergiesPage';
 import { AnalysisPage } from '@/pages/AnalysisPage';
 import { AdminPage } from '@/pages/AdminPage';
@@ -61,6 +62,7 @@ function AppRoutes() {
         <Route index element={<SearchPage />} />
         <Route path="search" element={<Navigate to="/" replace />} />
         <Route path="knowledge" element={<KnowledgePage />} />
+        <Route path="products" element={<ProductsPage />} />
         <Route path="synergies" element={<SynergiesPage />} />
         <Route path="analysis" element={<AnalysisPage />} />
         <Route path="protocols" element={<ProtocolsPage />} />

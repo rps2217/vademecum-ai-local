@@ -19,7 +19,7 @@ import { CommandPalette } from '@/ui/CommandPalette';
 import {
   Search, Plus, Settings, Database, Link2, Sparkles, BarChart3,
   Shield, Menu, X, ChevronLeft, ChevronRight, Sun, Moon, Monitor,
-  Command, ClipboardList,
+  Command, ClipboardList, Package,
 } from 'lucide-react';
 
 interface NavItem {
@@ -33,6 +33,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Buscar', icon: Search, href: '/' },
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
+  { id: 'products', label: 'Productos', icon: Package, href: '/products' },
   { id: 'synergies', label: 'Sinergias', icon: Link2, href: '/synergies' },
   { id: 'analysis', label: 'Análisis', icon: BarChart3, href: '/analysis' },
   { id: 'protocols', label: 'Protocolos', icon: ClipboardList, href: '/protocols' },
@@ -140,6 +141,7 @@ export function AppShell() {
   const searchPlaceholder = useMemo(() => {
     const path = location.pathname;
     if (path.startsWith('/synergies')) return 'Buscar sinergias por ingrediente...';
+    if (path.startsWith('/products')) return 'Buscar productos por nombre o principio activo...';
     if (path.startsWith('/knowledge')) return 'Buscar por nombre, sinónimo o indicación...';
     if (path.startsWith('/admin')) return 'Buscar ingredientes...';
     if (path.startsWith('/analysis')) return 'Buscar para análisis...';
@@ -155,7 +157,7 @@ export function AppShell() {
   const closeSidebar = () => setSidebarOpen(false);
 
   const isSearchPage = (path: string) =>
-    path === '/' || ['/synergies', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
+    path === '/' || ['/synergies', '/products', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();

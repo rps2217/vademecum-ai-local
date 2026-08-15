@@ -10,4 +10,12 @@ export {
   productSearchService,
   useProductIndex,
   type ProductSearchResult,
+  type ProductFacet,
 } from './ProductSearchService';
+export {
+  SynergySearchService,
+  synergySearchService,
+  useSynergyIndex,
+  type SynergySearchFilters,
+  type SynergySearchResult,
+} from './SynergySearchService';

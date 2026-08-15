@@ -22,8 +22,9 @@ export function toSupabaseFormat(payload: Record<string, unknown>): Record<strin
   const result: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(payload)) {
     const snakeKey = toSnakeCase(key);
-    // updatedAt es number (epoch ms) en Dexie pero la columna remota es TIMESTAMPTZ
-    if ((key === 'updatedAt' || key === 'lastSyncAt') && typeof value === 'number') {
+    // updatedAt, createdAt y lastSyncAt son number (epoch ms) en Dexie pero las
+    // columnas remotas son TIMESTAMPTZ.
+    if ((key === 'updatedAt' || key === 'createdAt' || key === 'lastSyncAt') && typeof value === 'number') {
       result[snakeKey] = new Date(value).toISOString();
     } else {
       result[snakeKey] = value;
