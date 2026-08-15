@@ -32,6 +32,7 @@ interface E2EEContextValue {
   isLoading: boolean;
   hasAccount: boolean;
   setup: (password: string) => Promise<{ recoveryPhrase: string }>;
+  confirmSetup: () => void;
   unlock: (password: string) => Promise<boolean>;
   recover: (phrase: string, newPassword: string) => Promise<{ recoveryPhrase: string } | false>;
   lock: () => void;
@@ -98,16 +99,34 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
   }, [isAuthenticated, isSessionValid]);
 
   const setup = async (password: string) => {
+    // Genera el keypair y lo guarda cifrado, pero NO activa la sesión todavía:
+    // el usuario debe ver la frase de recuperación (step 3 del onboarding) y
+    // pulsar "Completar configuración" antes de quedar autenticado. Si
+    // activáramos la sesión aquí, AuthRoute redirigiría a "/" y el step 3
+    // (frase de recuperación) jamás se mostraría.
     const result = await generateAndStoreKeyPair(password);
-    startSession();
-    setIsAuthenticated(true);
     setHasAccount(true);
     return { recoveryPhrase: result.recoveryPhrase };
   };
 
+  /**
+   * Activa la sesión tras completar el onboarding. El keypair ya fue generado
+   * por `setup()`; aquí solo marcamos la sesión como activa para que AuthRoute
+   * permita el acceso a las rutas protegidas.
+   */
+  const confirmSetup = () => {
+    startSession();
+    setIsAuthenticated(true);
+  };
+
   const unlock = async (password: string) => {
     try {
-      await unlockKeyPair(password);
+      const secretKey = await unlockKeyPair(password);
+      if (!secretKey) {
+        // Contraseña incorrecta: la clave simétrica no descifró el secretKey.
+        // Antes este caso se ignoraba y se activaba la sesión igual (bug).
+        return false;
+      }
       startSession();
       setIsAuthenticated(true);
       return true;
@@ -169,7 +188,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <E2EEContext.Provider value={{ isAuthenticated, isLoading, hasAccount, setup, unlock, recover, lock }}>
+    <E2EEContext.Provider value={{ isAuthenticated, isLoading, hasAccount, setup, confirmSetup, unlock, recover, lock }}>
       {children}
     </E2EEContext.Provider>
   );
