@@ -320,6 +320,10 @@ KB version: `v228-117-85-195-1154-146-126`.
 - [x] Routing con react-router-dom v7 (con ProtectedRoute/AuthRoute — auth actualmente en BYPASS)
 - [x] Toasts con sonner (ToastProvider)
 - [x] Resolución de conflictos de sync (ConflictResolver)
+- [x] Conexión Supabase verificada end-to-end (PRs #35-#39): testConnection,
+      download de ingredients/synergies, upload path (toSupabaseFormat),
+      resiliencia fail-fast (ProductReplicator), búsqueda unificada productos+KB,
+      env vars Vercel corregidas, verificado en producción.
 
 ### ⚠ Bypass temporal
 - App.tsx tiene const BYPASS_AUTH = true; que desactiva la autenticación E2EE
@@ -329,6 +333,14 @@ KB version: `v228-117-85-195-1154-146-126`.
 - [ ] Sync con Supabase (schema mismatch — ver nota abajo). src/core/sync/index.ts
       está marcado @deprecated y recomienda "verificar uso real".
 - [ ] Tests de integración completos (solo src/__tests__/db.test.ts + E2E Playwright).
+- [ ] **Bug onboarding E2EE**: `generateAndStoreKeyPair()` en
+      `src/lib/crypto/e2ee.ts` guarda el keypair en localStorage (paso 1 OK) pero
+      luego falla en `generateMnemonic(128)` (bip39) o en el segundo `deriveKey`
+      para la recovery phrase. El `catch` en `OnboardingPage.tsx:83` es genérico
+      ("Error al generar las claves") y no loguea el error real. Síntoma: tras
+      crear contraseña, redirige a /login (porque el keypair SÍ se guardó) y el
+      desbloqueo funciona. **No bloquea la app ni Supabase**, pero la frase de
+      recuperación no se genera. Pendiente: loguear el error real y fix bip39.
 - [x] ~~src/core/audit/~~ y ~~src/core/auth/~~ — ELIMINADOS (stubs que re-exportaban
       tipos DbAuditLog/UserRole inexistentes; cero importadores).
 - [x] ~~src/data/sync/~~ — ELIMINADO (@deprecated, cero importadores).
@@ -362,6 +374,42 @@ KB version: `v228-117-85-195-1154-146-126`.
 > rompería el upsert). Tests en `tests/unit/transform.test.ts`.
 >
 > NO existe SyncManager (fue eliminado); el servicio actual es SyncService.
+
+> **Resiliencia ante host inalcanzable (PR #38, commit a3326fa):** `ProductReplicator`
+> (`src/core/sync/ProductReplicator.ts`) ahora implementa fail-fast: si un fetch
+> falla por error de red, desactiva la replicación y guarda en `syncMeta` la URL
+> que falló. No reintenta en cada arranque (evita spam de consola). Se reactiva
+> automáticamente solo si la URL cambia. `SyncService.ts` coordina este estado.
+> Tests: `tests/unit/ProductReplicator.test.ts` (4 tests del comportamiento fail-fast).
+>
+> **Búsqueda unificada de productos comerciales (PR #37, commit 7f8ed09):** El motor
+> de búsqueda se amplió para cubrir productos comerciales además de ingredientes de la KB.
+> El bridge `product_ingredients` (9.483 filas en Supabase) vincula SKUs de productos
+> → `ingredient_id` de la KB (`is_matched` distingue matches curados vs heurísticos).
+> Buscar por nombre de producto o por SKU resuelve al ingrediente(s) de la KB y muestra
+> los ingredientes relacionados. Ej: SKU `2030750012198` → `arnica`.
+
+> **Causa raíz de los errores de consola (resuelta):** En producción (Vercel),
+> `VITE_SUPABASE_URL` apuntaba a un proyecto inexistente (`pspxqzwxulgmzarlqwtt`,
+> no resuelve por DNS). Cada arranque lanzaba fetches fallidos y el Service Worker
+> (Workbox NetworkFirst) los envolvía como `no-response`, inundando la consola.
+> Solución en 3 frentes: (1) fail-fast de ProductReplicator, (2) el `vite.config.ts`
+> quitó la regla de runtimeCaching de Workbox para `supabase.co` (las queries REST
+> ya no pasan por el SW), (3) se corrigieron las env vars de Vercel con la URL
+> correcta (`lcoweosnhdkzogtmsfml`) + key publishable (`sb_publishable_`, formato
+> nuevo que reemplaza al legacy `anon`).
+
+> **Verificación en producción (2026-08-14):** Deploy `66ad0f0` en
+> `vademecum-ai-local.vercel.app` con env vars correctas. Confirmado: bundle JS
+> contiene la URL correcta y 0 ocurrencias de la URL mala; el SW compilado no
+> referencia `supabase.co`; la app muestra "Online — Sincronizado — Hace un momento";
+> búsqueda por nombre ("arnica") y por SKU funcionan; detalle de ingrediente completo.
+> Supabase: 1.297 productos, 9.483 bridge rows, 1.296 análisis, 634 ingredientes,
+> 1.171 sinergias (todos leíbles por la anon/publishable key vía RLS).
+
+> **Formato de key de Supabase:** Supabase renombró la `anon key` a
+> `publishable key` con prefijo `sb_publishable_`. La app la usa igual (es la
+> misma clave JWT, solo cambió el prefijo). Documentado en `.env.example` (PR #39).
 
 ## Filtros Planeados (UI)
 
