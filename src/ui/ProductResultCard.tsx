@@ -9,14 +9,14 @@
 
 import { Package, CheckCircle2, AlertCircle } from 'lucide-react';
 import type { ProductSearchResult } from '@/core/search';
-import type { DbProductIngredientAnalysis } from '@/db/schema';
+import type { DbProduct, DbProductIngredientAnalysis } from '@/db/schema';
 import { cn } from '@/lib/utils';
 import { humanize } from '@/lib/text';
 
 interface Props {
   result: ProductSearchResult;
   analysis?: DbProductIngredientAnalysis;
-  onClick: (sku: string) => void;
+  onClick: (product: DbProduct) => void;
 }
 
 export function ProductResultCard({ result, analysis, onClick }: Props) {
@@ -34,7 +34,7 @@ export function ProductResultCard({ result, analysis, onClick }: Props) {
     >
       <button
         className="absolute inset-0 w-full h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        onClick={() => onClick(product.sku)}
+        onClick={() => onClick(product)}
         aria-label={`Ver detalle de ${product.nombreComercial}`}
       />
       <div className="flex items-start gap-2.5 mb-2.5">

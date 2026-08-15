@@ -187,7 +187,7 @@ export function ProductsPage() {
                 key={result.product.sku}
                 result={result}
                 analysis={analysisMap?.get(result.product.sku)}
-                onClick={(sku) => setSelectedProduct(productSearchService.getProduct(sku) ?? null)}
+                onClick={() => setSelectedProduct(result.product)}
               />
             ))}
           </div>
