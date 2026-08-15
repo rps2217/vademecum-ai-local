@@ -12,7 +12,7 @@ import { Copy, Check, Shield, Key, Eye, EyeOff } from 'lucide-react';
 
 export function OnboardingPage() {
   const navigate = useNavigate();
-  const { setup, hasAccount, isLoading } = useE2EE();
+  const { setup, completeSetup, hasAccount, isLoading } = useE2EE();
   const [step, setStep] = useState(1);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -96,6 +96,8 @@ export function OnboardingPage() {
   };
 
   const handleComplete = () => {
+    // Autenticar ahora que el usuario vio/copió la frase de recuperación.
+    completeSetup();
     navigate('/');
   };
 

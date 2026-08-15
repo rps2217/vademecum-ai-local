@@ -17,7 +17,8 @@
 
 import nacl from 'tweetnacl';
 import { encodeBase64, decodeBase64 } from 'tweetnacl-util';
-import { generateMnemonic } from 'bip39';
+import { generateMnemonic } from '@scure/bip39';
+import { wordlist as englishWordlist } from '@scure/bip39/wordlists/english.js';
 
 const KEY_STORAGE_KEY = 'vademecum.keypair';
 const RECOVERY_STORAGE_KEY = 'vademecum.recovery';
@@ -142,8 +143,8 @@ export async function generateAndStoreKeyPair(password: string): Promise<{
   getPersistentStorage().setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
   refreshSession();
 
-  // Generar frase de recuperación BIP-39
-  const recoveryPhrase = generateMnemonic(128);
+  // Generar frase de recuperación BIP-39 (browser-native, sin Buffer de Node)
+  const recoveryPhrase = generateMnemonic(englishWordlist, 128);
 
   // Guardar cifrado con recovery phrase
   const recoveryKey = await deriveKey(recoveryPhrase, salt);

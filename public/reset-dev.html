@@ -19,6 +19,9 @@
       indexedDB.deleteDatabase('VademecumDB');
       log('VademecumDB borrada (fallback)');
     }
+    localStorage.clear();
+    sessionStorage.clear();
+    log('localStorage/sessionStorage borrados');
     if ('caches' in window) {
       const keys = await caches.keys();
       for (const k of keys) { await caches.delete(k); log('Cache borrado: ' + k); }

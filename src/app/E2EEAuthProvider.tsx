@@ -20,7 +20,8 @@ import {
   type StoredKeyPair,
   type RecoveryData,
 } from '@/lib/crypto';
-import { generateMnemonic } from 'bip39';
+import { generateMnemonic } from '@scure/bip39';
+import { wordlist as englishWordlist } from '@scure/bip39/wordlists/english.js';
 import { logger } from '@/lib/logger';
 
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
@@ -32,6 +33,7 @@ interface E2EEContextValue {
   isLoading: boolean;
   hasAccount: boolean;
   setup: (password: string) => Promise<{ recoveryPhrase: string }>;
+  completeSetup: () => void;
   unlock: (password: string) => Promise<boolean>;
   recover: (phrase: string, newPassword: string) => Promise<{ recoveryPhrase: string } | false>;
   lock: () => void;
@@ -98,16 +100,24 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
   }, [isAuthenticated, isSessionValid]);
 
   const setup = async (password: string) => {
+    // Genera el keypair y la frase de recuperación SIN autenticar todavía.
+    // La autenticación se completa en completeSetup() tras confirmar que el
+    // usuario vio/copió la frase de recuperación (paso 3 del onboarding).
+    // Esto evita que AuthRoute redirija a "/" antes de mostrar la frase.
     const result = await generateAndStoreKeyPair(password);
+    return { recoveryPhrase: result.recoveryPhrase };
+  };
+
+  const completeSetup = () => {
     startSession();
     setIsAuthenticated(true);
     setHasAccount(true);
-    return { recoveryPhrase: result.recoveryPhrase };
   };
 
   const unlock = async (password: string) => {
     try {
-      await unlockKeyPair(password);
+      const secretKey = await unlockKeyPair(password);
+      if (!secretKey) return false;
       startSession();
       setIsAuthenticated(true);
       return true;
@@ -138,8 +148,8 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
       };
       sessionStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
       
-      // 4. Generar NUEVA recovery phrase
-      const newRecoveryPhrase = generateMnemonic(128);
+      // 4. Generar NUEVA recovery phrase (browser-native, sin Buffer de Node)
+      const newRecoveryPhrase = generateMnemonic(englishWordlist, 128);
       
       // 5. Guardar recovery data en sessionStorage
       const recoveryKey = await deriveKey(newRecoveryPhrase, salt);
@@ -169,7 +179,7 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <E2EEContext.Provider value={{ isAuthenticated, isLoading, hasAccount, setup, unlock, recover, lock }}>
+    <E2EEContext.Provider value={{ isAuthenticated, isLoading, hasAccount, setup, completeSetup, unlock, recover, lock }}>
       {children}
     </E2EEContext.Provider>
   );

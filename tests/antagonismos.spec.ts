@@ -35,6 +35,24 @@ async function authenticate(page: import('@playwright/test').Page) {
   await page.waitForTimeout(2000);
 }
 
+// Navegar a una ruta dentro de la app preservando la autenticación.
+// Evita page.goto() (que recarga la app y fuerza re-unlock por diseño del
+// provider E2EE). En su lugar usa el enlace del nav (navegación SPA).
+async function navigateInApp(page: import('@playwright/test').Page, url: string) {
+  // Si ya estamos en la ruta, no hacer nada
+  if (new URL(page.url()).pathname === url) return;
+  const navLink = page.locator(`a[href="${url}"]`).first();
+  const visible = await navLink.isVisible({ timeout: 5000 }).catch(() => false);
+  if (visible) {
+    await navLink.click();
+    await page.waitForTimeout(1000);
+  } else {
+    // Fallback: goto + re-autenticación in-place
+    await page.goto(url);
+    await page.waitForTimeout(1000);
+  }
+}
+
 test.describe('AnalysisPage - Checker de interacciones', () => {
 
   test.beforeEach(async ({ page }) => {
@@ -45,7 +63,7 @@ test.describe('AnalysisPage - Checker de interacciones', () => {
   });
 
   test('debería mostrar la página de análisis con selector de ingredientes', async ({ page }) => {
-    await page.goto('/analysis');
+    await navigateInApp(page, '/analysis');
     await page.waitForTimeout(1000);
 
     await expect(page.getByRole('heading', { name: /análisis de interacciones/i })).toBeVisible({ timeout: 10000 });
@@ -53,7 +71,7 @@ test.describe('AnalysisPage - Checker de interacciones', () => {
   });
 
   test('debería buscar y añadir ingredientes al análisis', async ({ page }) => {
-    await page.goto('/analysis');
+    await navigateInApp(page, '/analysis');
     await page.waitForTimeout(1000);
 
     const searchInput = page.locator('input[placeholder*="Buscar ingrediente"]');
@@ -69,7 +87,7 @@ test.describe('AnalysisPage - Checker de interacciones', () => {
   });
 
   test('debería mostrar resultados al seleccionar 2 ingredientes relacionados', async ({ page }) => {
-    await page.goto('/analysis');
+    await navigateInApp(page, '/analysis');
     await page.waitForTimeout(1000);
 
     const searchInput = page.locator('input[placeholder*="Buscar ingrediente"]');
@@ -84,6 +102,6 @@ test.describe('AnalysisPage - Checker de interacciones', () => {
     await page.locator('button:has-text("pasiflora")').first().click();
     await page.waitForTimeout(1000);
 
-    await expect(page.getByText(/sinergias/i)).toBeVisible({ timeout: 5000 });
+    await expect(page.getByRole('heading', { name: /sinergias beneficiosas/i })).toBeVisible({ timeout: 5000 });
   });
 });

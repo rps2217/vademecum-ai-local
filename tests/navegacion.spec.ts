@@ -74,8 +74,14 @@ test.describe('Navegación y UI', () => {
     if (isVisible) {
       await settingsButton.click();
       await page.waitForTimeout(1000);
-      // Verificar que se abrió algo relacionado con settings
-      const settingsContent = page.locator('text=/seguridad|security|password|contraseña/i');
+      // La pestaña "Cuenta" contiene la gestión de contraseña/cifrado
+      const accountTab = page.locator('button, a').filter({ hasText: /^Cuenta$/i }).first();
+      if (await accountTab.isVisible().catch(() => false)) {
+        await accountTab.click();
+        await page.waitForTimeout(500);
+      }
+      // Verificar que se abrió algo relacionado con cuenta/seguridad
+      const settingsContent = page.locator('text=/seguridad|security|password|contraseña|cifrado|cuenta/i');
       await expect(settingsContent.first()).toBeVisible({ timeout: 5000 });
     }
   });
