@@ -6,7 +6,7 @@
  * elegir qué versión mantener o fusionar.
  */
 
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { ConflictResolver } from '@/core/sync';
 import type { DbConflict } from '@/db/schema';
@@ -23,6 +23,9 @@ interface SyncConflictModalProps {
 export function SyncConflictModal({ conflict, onResolved, onClose }: SyncConflictModalProps) {
   const [isResolving, setIsResolving] = useState(false);
   const [resolution, setResolution] = useState<'local' | 'remote' | 'merged'>('local');
+  const radioLocal = useId();
+  const radioRemote = useId();
+  const radioMerged = useId();
   const [error, setError] = useState<string | null>(null);
 
   const handleResolve = async () => {
@@ -96,46 +99,40 @@ export function SyncConflictModal({ conflict, onResolved, onClose }: SyncConflic
           <div className="space-y-2">
             <h4 className="font-medium">Elegir resolución:</h4>
             <div className="space-y-2">
-              <label className="flex items-center gap-2 p-3 border border-border rounded-lg cursor-pointer hover:bg-muted focus-within:ring-2 focus-within:ring-ring">
+              <label htmlFor={radioLocal} className="flex items-center gap-2 p-3 border border-border rounded-lg cursor-pointer hover:bg-muted focus-within:ring-2 focus-within:ring-ring">
                 <input
+                  id={radioLocal}
                   type="radio"
                   name="resolution"
                   value="local"
                   checked={resolution === 'local'}
                   onChange={(e) => setResolution(e.target.value as 'local')}
                 />
-                <div>
-                  <div className="font-medium">Mantener versión local</div>
-                  <div className="text-sm text-muted-foreground">Descartar cambios remotos</div>
-                </div>
+                <span className="font-medium">Mantener versión local <span className="block text-sm font-normal text-muted-foreground">Descartar cambios remotos</span></span>
               </label>
 
-              <label className="flex items-center gap-2 p-3 border border-border rounded-lg cursor-pointer hover:bg-muted focus-within:ring-2 focus-within:ring-ring">
+              <label htmlFor={radioRemote} className="flex items-center gap-2 p-3 border border-border rounded-lg cursor-pointer hover:bg-muted focus-within:ring-2 focus-within:ring-ring">
                 <input
+                  id={radioRemote}
                   type="radio"
                   name="resolution"
                   value="remote"
                   checked={resolution === 'remote'}
                   onChange={(e) => setResolution(e.target.value as 'remote')}
                 />
-                <div>
-                  <div className="font-medium">Mantener versión remota</div>
-                  <div className="text-sm text-muted-foreground">Sobrescribir con datos de la nube</div>
-                </div>
+                <span className="font-medium">Mantener versión remota <span className="block text-sm font-normal text-muted-foreground">Sobrescribir con datos de la nube</span></span>
               </label>
 
-              <label className="flex items-center gap-2 p-3 border border-border rounded-lg cursor-pointer hover:bg-muted focus-within:ring-2 focus-within:ring-ring">
+              <label htmlFor={radioMerged} className="flex items-center gap-2 p-3 border border-border rounded-lg cursor-pointer hover:bg-muted focus-within:ring-2 focus-within:ring-ring">
                 <input
+                  id={radioMerged}
                   type="radio"
                   name="resolution"
                   value="merged"
                   checked={resolution === 'merged'}
                   onChange={(e) => setResolution(e.target.value as 'merged')}
                 />
-                <div>
-                  <div className="font-medium">Fusionar cambios</div>
-                  <div className="text-sm text-muted-foreground">Combinar ambas versiones (experimental)</div>
-                </div>
+                <span className="font-medium">Fusionar cambios <span className="block text-sm font-normal text-muted-foreground">Combinar ambas versiones (experimental)</span></span>
               </label>
             </div>
           </div>

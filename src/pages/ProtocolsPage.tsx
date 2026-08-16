@@ -6,7 +6,7 @@
  * del día, duración y advertencias.
  */
 
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, generateId, now, getDeviceId, nextLamport } from '@/db';
 import type { DbProtocol, ProtocolIngredient, DbIngredient } from '@/db/schema';
@@ -176,6 +176,7 @@ function ProtocolEditor({ protocol, onClose }: {
   const [notas, setNotas] = useState(protocol?.notas ?? '');
   const [searchQuery, setSearchQuery] = useState('');
   const [newWarning, setNewWarning] = useState('');
+  const ids = { nombre: useId(), duracion: useId(), objetivo: useId(), ingredientes: useId(), advertencias: useId(), notas: useId() };
 
   const searchResults = useLiveQuery<DbIngredient[]>(
     () => {
@@ -269,8 +270,9 @@ function ProtocolEditor({ protocol, onClose }: {
         {/* Nombre y objetivo */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="text-sm font-medium mb-1 block">Nombre</label>
+            <label htmlFor={ids.nombre} className="text-sm font-medium mb-1 block">Nombre</label>
             <input
+              id={ids.nombre}
               type="text"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
@@ -279,8 +281,9 @@ function ProtocolEditor({ protocol, onClose }: {
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 block">Duración (días)</label>
+            <label htmlFor={ids.duracion} className="text-sm font-medium mb-1 block">Duración (días)</label>
             <input
+              id={ids.duracion}
               type="number"
               value={duracionDias}
               onChange={(e) => setDuracionDias(Number(e.target.value))}
@@ -292,8 +295,9 @@ function ProtocolEditor({ protocol, onClose }: {
         </div>
 
         <div>
-          <label className="text-sm font-medium mb-1 block">Objetivo</label>
+          <label htmlFor={ids.objetivo} className="text-sm font-medium mb-1 block">Objetivo</label>
           <input
+            id={ids.objetivo}
             type="text"
             value={objetivo}
             onChange={(e) => setObjetivo(e.target.value)}
@@ -304,7 +308,7 @@ function ProtocolEditor({ protocol, onClose }: {
 
         {/* Ingredientes */}
         <div>
-          <label className="text-sm font-medium mb-1 block">Ingredientes</label>
+          <span id={ids.ingredientes} className="text-sm font-medium mb-1 block">Ingredientes</span>
           <div className="space-y-2">
             {ingredientes.map((ing, i) => {
               const name = ingredientNames?.find((n) => n?.id === ing.id)?.nombre ?? ing.id;
@@ -351,6 +355,7 @@ function ProtocolEditor({ protocol, onClose }: {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Buscar ingrediente..."
+              aria-label="Buscar ingrediente"
               className="w-full pl-10 pr-4 py-2 rounded-lg border border-border bg-background text-sm focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
             />
             {searchResults && searchResults.length > 0 && (
@@ -372,8 +377,8 @@ function ProtocolEditor({ protocol, onClose }: {
 
         {/* Advertencias */}
         <div>
-          <label className="text-sm font-medium mb-1 block">Advertencias</label>
-          <div className="space-y-1.5">
+          <span id={ids.advertencias} className="text-sm font-medium mb-1 block">Advertencias</span>
+          <div className="space-y-1.5" role="group" aria-labelledby={ids.advertencias}>
             {advertencias.map((w, i) => (
               <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-amber-50 dark:bg-amber-950/20">
                 <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0" aria-hidden="true" />
@@ -395,6 +400,7 @@ function ProtocolEditor({ protocol, onClose }: {
               onChange={(e) => setNewWarning(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddWarning())}
               placeholder="Añadir advertencia..."
+              aria-label="Añadir advertencia"
               className="flex-1 px-3 py-1.5 rounded-lg border border-border bg-background text-sm focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
             />
             <Button variant="outline" size="sm" onClick={handleAddWarning}>
@@ -405,8 +411,9 @@ function ProtocolEditor({ protocol, onClose }: {
 
         {/* Notas */}
         <div>
-          <label className="text-sm font-medium mb-1 block">Notas</label>
+          <label htmlFor={ids.notas} className="text-sm font-medium mb-1 block">Notas</label>
           <textarea
+            id={ids.notas}
             value={notas}
             onChange={(e) => setNotas(e.target.value)}
             placeholder="Notas adicionales..."

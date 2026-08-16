@@ -121,7 +121,7 @@ describe('IngredientEditor', () => {
       <IngredientEditor onSave={onSave} onCancel={() => {}} />,
     );
     fireEvent.change(getByPlaceholderText('Ej: Valeriana'), { target: { value: 'Romero' } });
-    fireEvent.change(getByLabelText('Propiedades'), {
+    fireEvent.change(getByLabelText(/Propiedades/), {
       target: { value: 'Antioxidante\nCirculación\n\nMemoria' },
     });
     fireEvent.click(getByRole('button', { name: /Crear Ingrediente/i }));
@@ -161,9 +161,9 @@ describe('IngredientEditor', () => {
       <IngredientEditor onSave={onSave} onCancel={() => {}} />,
     );
     fireEvent.change(getByPlaceholderText('Ej: Valeriana'), { target: { value: 'Milho' } });
-    fireEvent.change(getByLabelText('Seguridad en embarazo'), { target: { value: 'contraindicado' } });
-    fireEvent.change(getByLabelText('Seguridad en lactancia'), { target: { value: 'apto' } });
-    fireEvent.change(getByLabelText('Seguridad en pediatría'), { target: { value: 'evitar' } });
+    fireEvent.change(getByLabelText('Embarazo'), { target: { value: 'contraindicado' } });
+    fireEvent.change(getByLabelText('Lactancia'), { target: { value: 'apto' } });
+    fireEvent.change(getByLabelText('Pediatría'), { target: { value: 'evitar' } });
     fireEvent.click(getByRole('button', { name: /Crear Ingrediente/i }));
     const saved = onSave.mock.calls[0][0] as DbIngredient;
     expect(saved.seguridad).toEqual({ embarazo: 'contraindicado', lactancia: 'apto', pediatria: 'evitar' });
@@ -193,9 +193,9 @@ describe('IngredientEditor', () => {
     const { getByLabelText } = render(
       <IngredientEditor ingredient={ing} onSave={() => {}} onCancel={() => {}} />,
     );
-    expect((getByLabelText('Seguridad en embarazo') as HTMLSelectElement).value).toBe('evitar');
-    expect((getByLabelText('Seguridad en lactancia') as HTMLSelectElement).value).toBe('contraindicado');
-    expect((getByLabelText('Seguridad en pediatría') as HTMLSelectElement).value).toBe('apto');
+    expect((getByLabelText('Embarazo') as HTMLSelectElement).value).toBe('evitar');
+    expect((getByLabelText('Lactancia') as HTMLSelectElement).value).toBe('contraindicado');
+    expect((getByLabelText('Pediatría') as HTMLSelectElement).value).toBe('apto');
   });
 
   it('precarga los sinónimos e indicaciones como string separado por comas', () => {

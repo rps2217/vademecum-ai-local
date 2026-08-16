@@ -17,10 +17,9 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       'react-hooks/exhaustive-deps': 'warn',
-      'jsx-a11y/alt-text': 'error',
-      'jsx-a11y/anchor-has-content': 'error',
-      'jsx-a11y/click-events-have-key-events': 'error',
-      'jsx-a11y/no-noninteractive-element-interactions': 'error',
+      ...jsxA11y.configs.recommended.rules,
+      // autoFocus es intencional en login/search/onboarding para UX del mostrador
+      'jsx-a11y/no-autofocus': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
