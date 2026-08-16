@@ -6,7 +6,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { db, initLamportFromDb } from '@/db';
-import { seedKnowledgeBase, isKnowledgeBaseSeeded } from '@/db/seeders';
+import { seedKnowledgeBase, isKnowledgeBaseSeeded, seedProtocols, isProtocolSeedUpToDate } from '@/db/seeders';
 import { replicateProducts } from '@/core/sync/ProductReplicator';
 import { logger } from '@/lib/logger';
 
@@ -42,7 +42,14 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
           const synergies = await db.synergies.count();
           setStats({ ingredients, synergies });
         }
-        
+
+        // Sembrar protocolos predefinidos (requiere que la KB de ingredientes
+        // ya esté cargada para validar referencias)
+        const protocolsUpToDate = await isProtocolSeedUpToDate();
+        if (!protocolsUpToDate) {
+          await seedProtocols();
+        }
+
         setIsReady(true);
 
         // Replicar el catálogo de productos comerciales desde Supabase en

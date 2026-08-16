@@ -11,3 +11,10 @@ export {
   inferSafety,
   buildPosologia,
 } from './knowledgeSeeder';
+
+export {
+  seedProtocols,
+  isProtocolSeedUpToDate,
+  validateProtocolReferences,
+  getStoredProtocolVersion,
+} from './protocolSeeder';
