@@ -4,3 +4,5 @@ export {
   PRODUCT_CATEGORY_LABELS,
   type ProductCategory,
 } from './productCategorizer';
+
+export { normalizeProductName } from './normalizeProductName';
