@@ -30,8 +30,9 @@ export function Modal({ open, onClose, title, description, children, size = 'md'
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50 animate-fade-in z-50" />
         <Dialog.Content className={cn(
-          'fixed z-50 w-full rounded-xl bg-card p-6 shadow-xl',
-          'animate-scale-in max-h-[90vh] overflow-y-auto focus:outline-none',
+          'fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+          'w-[calc(100%-2rem)] rounded-xl bg-card p-6 shadow-xl',
+          'animate-scale-in-centered max-h-[90vh] overflow-y-auto focus:outline-none',
           sizes[size]
         )}>
           <Dialog.Title className="sr-only">{title}</Dialog.Title>
@@ -87,8 +88,9 @@ export function AlertDialog({
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50 animate-fade-in z-50" />
         <Dialog.Content className={cn(
-          'fixed z-50 w-full max-w-sm rounded-xl bg-card p-6 shadow-xl',
-          'animate-scale-in max-h-[90vh] overflow-y-auto focus:outline-none'
+          'fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+          'w-[calc(100%-2rem)] max-w-sm rounded-xl bg-card p-6 shadow-xl',
+          'animate-scale-in-centered max-h-[90vh] overflow-y-auto focus:outline-none'
         )}>
           <Dialog.Title className="text-lg font-semibold mb-2">{title}</Dialog.Title>
           {description && <p className="text-sm text-muted-foreground mb-4">{description}</p>}
