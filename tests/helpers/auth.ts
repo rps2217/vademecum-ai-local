@@ -37,8 +37,6 @@ export async function resetAll(page: Page): Promise<void> {
  * Al terminar, la app está desbloqueada y el input de búsqueda es visible.
  */
 export async function authenticate(page: Page): Promise<void> {
-  await page.goto('/');
-
   // ¿Ya estamos dentro de la app? (sesión activa)
   const searchInput = page
     .getByPlaceholder(/buscar/i)
@@ -48,6 +46,17 @@ export async function authenticate(page: Page): Promise<void> {
     .isVisible({ timeout: 2000 })
     .catch(() => false);
   if (alreadyIn) return;
+
+  // ¿Ya estamos en login/onboarding (tras un reload)? Evitar un goto('/')
+  // redundante que interrumpa la carga del provider E2EE.
+  const hasPassword = await page
+    .locator('input[type="password"]')
+    .first()
+    .isVisible({ timeout: 3000 })
+    .catch(() => false);
+  if (!hasPassword) {
+    await page.goto('/');
+  }
 
   await unlockInPlace(page);
 
@@ -91,29 +100,36 @@ export async function ensureAuthenticated(page: Page): Promise<void> {
  * ProtectedRoute/AuthRoute redirige a la ruta destino.
  */
 async function unlockInPlace(page: Page): Promise<void> {
+  // Esperar a que el input de password sea visible (ambos flujos lo tienen).
+  // El provider E2EE puede tardar en verificar el estado de auth al boot
+  // (isLoading=true → LoginPage/OnboardingPage retornan null). 15s es seguro.
   const passwordInput = page.locator('input[type="password"]');
   await passwordInput.first().waitFor({ state: 'visible', timeout: 15000 });
 
-  const unlockBtn = page.locator('button[type="submit"]', {
-    hasText: /desbloquear/i,
-  });
-  const isLogin = await unlockBtn
-    .isVisible({ timeout: 2000 })
-    .catch(() => false);
+  // Distinguir login vs onboarding por texto distintivo de la página (no por
+  // el botón, que puede estar disabled/animando). El subheading del LoginPage
+  // es estable y no cambia con isLoading del provider.
+  const loginHint = page.getByText(/ingresa tu contraseña para continuar/i);
+  const isLogin = await loginHint.isVisible({ timeout: 5000 }).catch(() => false);
 
   if (isLogin) {
-    await passwordInput.first().fill(TEST_PASSWORD, { timeout: 15000 });
+    // Login: 1 input + botón "Desbloquear".
+    await passwordInput.first().fill(TEST_PASSWORD);
+    const unlockBtn = page.getByRole('button', { name: /desbloquear/i });
+    // Esperar a que el botón sea visible y estable antes de hacer click.
+    // El botón puede estar brevemente disabled si el provider re-verifica auth.
+    await unlockBtn.waitFor({ state: 'visible', timeout: 10000 });
     await unlockBtn.click({ timeout: 15000 });
   } else {
-    // Onboarding: contraseña + confirmación.
+    // Onboarding: 2 inputs (contraseña + confirmación).
     await passwordInput.nth(0).fill(TEST_PASSWORD, { timeout: 15000 });
     await passwordInput.nth(1).fill(TEST_PASSWORD, { timeout: 15000 });
-    await page.locator('button[type="submit"]').click({ timeout: 15000 });
+    await page.getByRole('button', { name: /configurar|crear|continuar/i }).click({ timeout: 15000 });
 
     // La generación del keypair (PBKDF2 600k) puede tardar varios segundos
     // en runners de CI lentos. Esperar a que aparezca el botón "Completar
-    // configuración" con un timeout generoso, en vez de un sleep fijo.
-    const completeBtn = page.locator('button', { hasText: /completar/i });
+    // configuración" con un timeout generoso.
+    const completeBtn = page.getByRole('button', { name: /completar/i });
     await completeBtn.waitFor({ state: 'visible', timeout: 30000 });
     await completeBtn.click();
   }
