@@ -1,30 +1,27 @@
 /**
- * LoginPage - Página de inicio de sesión
+ * LoginPage - Página de inicio de sesión (PIN de 4 dígitos)
  */
 
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useE2EE } from '@/app/E2EEAuthProvider';
+import { useAppAuth } from '@/app/AppAuthProvider';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { Lock, Eye, EyeOff } from 'lucide-react';
+import { Lock } from 'lucide-react';
 
 export function LoginPage() {
-  const { unlock, hasAccount, isLoading } = useE2EE();
+  const { unlock, hasAccount, isLoading } = useAppAuth();
   const navigate = useNavigate();
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [isUnlocking, setIsUnlocking] = useState(false);
 
-  // Redirect to onboarding if no account exists (useEffect to avoid render-time navigation)
   useEffect(() => {
     if (!isLoading && !hasAccount) {
       navigate('/onboarding', { replace: true });
     }
   }, [isLoading, hasAccount, navigate]);
 
-  // Show loading while checking auth state
   if (isLoading) {
     return null;
   }
@@ -35,9 +32,10 @@ export function LoginPage() {
     setIsUnlocking(true);
 
     try {
-      const success = await unlock(password);
+      const success = await unlock(pin);
       if (!success) {
-        setError('Contraseña incorrecta');
+        setError('PIN incorrecto');
+        setPin('');
       }
     } catch {
       setError('Error al desbloquear');
@@ -54,38 +52,30 @@ export function LoginPage() {
             <Lock className="w-8 h-8 text-primary" aria-hidden="true" />
           </div>
           <h1 className="text-2xl font-bold">Vademecum AI</h1>
-          <p className="text-muted-foreground mt-2">Ingresa tu contraseña para continuar</p>
+          <p className="text-muted-foreground mt-2">Ingresa tu PIN para continuar</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            label="Contraseña"
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Contraseña"
-            autoComplete="current-password"
+            label="PIN"
+            type="password"
+            inputMode="numeric"
+            placeholder="PIN de 4 dígitos"
+            autoComplete="off"
             autoFocus
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            maxLength={4}
+            value={pin}
+            onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
             error={error}
-            rightIcon={
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
-                aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
-              >
-                {showPassword ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
-              </button>
-            }
           />
 
-          <Button type="submit" className="w-full" isLoading={isUnlocking}>
+          <Button type="submit" className="w-full" isLoading={isUnlocking} disabled={pin.length < 4}>
             Desbloquear
           </Button>
         </form>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
-          ¿Olvidaste tu contraseña?{' '}
+          ¿Olvidaste tu PIN?{' '}
           <Link to="/onboarding" className="text-primary hover:underline">
             Restablecer
           </Link>

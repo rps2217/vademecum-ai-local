@@ -13,6 +13,7 @@ import { useSync } from '@/hooks/useSync';
 import { isSupabaseConfigured, testConnection } from '@/lib/supabase';
 import { forceReplicateProducts } from '@/core/sync';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
+import { useAppAuth } from '@/app/AppAuthProvider';
 import { Input } from '@/ui/Input';
 import { toast } from 'sonner';
 
@@ -173,14 +174,7 @@ export function SettingsPage() {
 
           {activeTab === 'account' && (
             <div className="space-y-6">
-              <Card className="p-6">
-                <h2 className="font-semibold mb-4">Cuenta</h2>
-                <p className="text-muted-foreground mb-4">
-                  Gestiona tu clave de cifrado y recuperación.
-                </p>
-                <Button variant="outline">Cambiar contraseña</Button>
-              </Card>
-
+              <AppPinSection />
               <AdminPinSection />
             </div>
           )}
@@ -360,6 +354,66 @@ function SyncTab() {
         </Card>
       )}
     </div>
+  );
+}
+
+
+function AppPinSection() {
+  const { changePin, resetAccount } = useAppAuth();
+  const [mode, setMode] = useState<'idle' | 'change'>('idle');
+  const [oldPin, setOldPin] = useState('');
+  const [newPin1, setNewPin1] = useState('');
+  const [newPin2, setNewPin2] = useState('');
+  const [busy, setBusy] = useState(false);
+
+  const handleChange = async () => {
+    if (newPin1.length < 4) { toast.error('El PIN nuevo debe tener 4 dígitos'); return; }
+    if (newPin1 !== newPin2) { toast.error('Los PINs no coinciden'); return; }
+    setBusy(true);
+    try {
+      const ok = await changePin(oldPin, newPin1);
+      if (ok) { toast.success('PIN actualizado'); setMode('idle'); setOldPin(''); setNewPin1(''); setNewPin2(''); }
+      else { toast.error('PIN actual incorrecto'); }
+    } catch {
+      toast.error('Error al cambiar el PIN');
+    } finally { setBusy(false); }
+  };
+
+  const handleReset = () => {
+    resetAccount();
+    toast.success('Cuenta eliminada. La app pedirá crear un PIN nuevo.');
+    setMode('idle'); setOldPin(''); setNewPin1(''); setNewPin2('');
+  };
+
+  return (
+    <Card className="p-6">
+      <div className="flex items-center gap-2 mb-2">
+        <Key className="w-5 h-5 text-primary" aria-hidden="true" />
+        <h2 className="font-semibold">PIN de acceso</h2>
+      </div>
+      <p className="text-sm text-muted-foreground mb-4">
+        PIN de 4 dígitos para entrar a la aplicación.
+      </p>
+
+      {mode === 'idle' && (
+        <div className="flex gap-3 flex-wrap">
+          <Button variant="outline" onClick={() => setMode('change')}>Cambiar PIN</Button>
+          <Button variant="outline" onClick={handleReset}>Eliminar cuenta</Button>
+        </div>
+      )}
+
+      {mode === 'change' && (
+        <div className="space-y-3 max-w-xs">
+          <Input type="password" inputMode="numeric" placeholder="PIN actual" maxLength={4} value={oldPin} onChange={(e) => setOldPin(e.target.value.replace(/\D/g, ''))} aria-label="PIN actual" />
+          <Input type="password" inputMode="numeric" placeholder="Nuevo PIN (4 dígitos)" maxLength={4} value={newPin1} onChange={(e) => setNewPin1(e.target.value.replace(/\D/g, ''))} aria-label="Nuevo PIN" />
+          <Input type="password" inputMode="numeric" placeholder="Repetir nuevo PIN" maxLength={4} value={newPin2} onChange={(e) => setNewPin2(e.target.value.replace(/\D/g, ''))} aria-label="Repetir nuevo PIN" />
+          <div className="flex gap-3">
+            <Button onClick={handleChange} disabled={busy}>Actualizar</Button>
+            <Button variant="outline" onClick={() => { setMode('idle'); setOldPin(''); setNewPin1(''); setNewPin2(''); }}>Cancelar</Button>
+          </div>
+        </div>
+      )}
+    </Card>
   );
 }
 
