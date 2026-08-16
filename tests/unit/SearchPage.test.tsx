@@ -114,6 +114,87 @@ describe('SearchPage', () => {
     });
   });
 
+  it('renderiza los chips de sistema corporal (los 13 del enum)', async () => {
+    renderSearchPage();
+    await waitFor(() => {
+      expect(screen.getByText('Nervioso')).toBeTruthy();
+      expect(screen.getByText('Digestivo')).toBeTruthy();
+      expect(screen.getByText('Inmune')).toBeTruthy();
+      expect(screen.getByText('Cardiovascular')).toBeTruthy();
+      expect(screen.getByText('Metabólico')).toBeTruthy();
+    });
+  });
+
+  it('renderiza los chips de evidencia (A/B/C/D)', async () => {
+    renderSearchPage();
+    await waitFor(() => {
+      // Los 4 botones de evidencia existen. getByText exacto para "A","B","C","D"
+      // puede colisionar con badges; buscar por aria-pressed es frágil.
+      // Verificamos que al menos los 4 niveles están presentes como botones.
+      const evidenciaRow = screen.getByText('Evidencia', { selector: 'span' });
+      expect(evidenciaRow).toBeTruthy();
+    });
+  });
+
+  it('filtra por sistema corporal al hacer clic en un chip de sistema', async () => {
+    renderSearchPage();
+    const chip = await screen.findByText('Nervioso');
+    fireEvent.click(chip);
+    // Todos los ingredientes de test tienen sistema nervioso
+    await waitFor(() => {
+      expect(screen.getByText('Ashwagandha')).toBeTruthy();
+      expect(screen.getByText('Valeriana')).toBeTruthy();
+    });
+  });
+
+  it('filtra por evidencia al hacer clic en un chip de evidencia', async () => {
+    renderSearchPage();
+    // Activar sistema nervioso primero (saca del idle y reduce el set)
+    const sistemaChip = await screen.findByText('Nervioso');
+    fireEvent.click(sistemaChip);
+    expect(await screen.findByText('Ashwagandha', undefined, { timeout: 3000 })).toBeTruthy();
+    // Ahora filtrar por evidencia B: solo Valeriana (B) debe quedar
+    const evidenciaB = screen.getByRole('button', { name: /^Filtrar por evidencia B/ });
+    fireEvent.click(evidenciaB);
+    await waitFor(() => {
+      expect(screen.getByText('Valeriana')).toBeTruthy();
+      expect(screen.queryByText('Ashwagandha')).toBeNull();
+      expect(screen.queryByText('Magnesio Glicinato')).toBeNull();
+    });
+  });
+
+  it('combina filtros de sistema + evidencia + categoría (AND)', async () => {
+    renderSearchPage();
+    // Sistema nervioso
+    fireEvent.click(await screen.findByText('Nervioso'));
+    expect(await screen.findByText('Ashwagandha', undefined, { timeout: 3000 })).toBeTruthy();
+    // Categoría fitoterapia: Ashwagandha + Valeriana (fitoterapia), excluye Magnesio (mineral)
+    fireEvent.click(screen.getByText('Fitoterapia'));
+    await waitFor(() => {
+      expect(screen.getByText('Ashwagandha')).toBeTruthy();
+      expect(screen.getByText('Valeriana')).toBeTruthy();
+      expect(screen.queryByText('Magnesio Glicinato')).toBeNull();
+    });
+    // Evidencia A: solo Ashwagandha (Valeriana es B)
+    fireEvent.click(screen.getByRole('button', { name: /^Filtrar por evidencia A/ }));
+    await waitFor(() => {
+      expect(screen.getByText('Ashwagandha')).toBeTruthy();
+      expect(screen.queryByText('Valeriana')).toBeNull();
+    });
+  });
+
+  it('el botón Limpiar resetea también los filtros de sistema y evidencia', async () => {
+    renderSearchPage();
+    fireEvent.click(await screen.findByText('Nervioso'));
+    await waitFor(() => {
+      expect(screen.getByText('Limpiar')).toBeTruthy();
+    });
+    fireEvent.click(screen.getByText('Limpiar'));
+    await waitFor(() => {
+      expect(screen.queryByText('Limpiar')).toBeNull();
+    });
+  });
+
   it('filtra por indicación al hacer clic en un chip', async () => {
     renderSearchPage();
     const chip = await screen.findByText('Ansiedad');

@@ -30,6 +30,7 @@ import { useClientProfile } from '@/contexts/ClientProfileContext';
 import { useSearch } from '@/contexts/SearchContext';
 import { useConsultationHistory } from '@/hooks/useConsultationHistory';
 import type { DbIngredient, DbPathology, DbProduct, DbProductIngredientAnalysis, IngredientCategory } from '@/db/schema';
+import type { BodySystem } from '@/types/shared-enums';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, generateId } from '@/db';
 import { logger } from '@/lib/logger';
@@ -38,10 +39,14 @@ import { humanize, normalize, tokenize, getQuerySynonyms } from '@/lib/text';
 import {
   CATEGORIES,
   getCategoryConfig,
+  getEvidenceConfig,
   EVIDENCE_RANK,
+  EVIDENCE_LEVELS,
+  BODY_SYSTEM_CHIPS,
   RESULTS_PAGE_SIZE,
   CHIPS_COLLAPSED_COUNT,
   indicationIcon,
+  type EvidenceLevel,
 } from '@/ui/searchConfig';
 
 export function SearchPage() {
@@ -63,6 +68,8 @@ export function SearchPage() {
 
   const [category, setCategory] = useState('');
   const [indication, setIndication] = useState('');
+  const [system, setSystem] = useState<BodySystem | ''>('');
+  const [evidence, setEvidence] = useState<EvidenceLevel | ''>('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
@@ -153,6 +160,8 @@ export function SearchPage() {
         const searchResults = ingredientSearchService.searchSync({
           query: query.length >= 2 ? query : undefined,
           category: (category || undefined) as IngredientCategory | undefined,
+          system: (system || undefined) as BodySystem | undefined,
+          evidenceLevel: (evidence || undefined) as 'A' | 'B' | 'C' | 'D' | undefined,
           indication: indication || undefined,
         });
         setResults(searchResults);
@@ -163,7 +172,7 @@ export function SearchPage() {
       }
     }, 150);
     return () => clearTimeout(t);
-  }, [query, category, indication, ready]);
+  }, [query, category, indication, system, evidence, ready]);
 
   // Búsqueda de productos comerciales (mismo debounce que ingredientes).
   // Solo busca por texto libre (los productos no tienen categoría/sistema).
@@ -311,13 +320,15 @@ export function SearchPage() {
     return db.productIngredientAnalysis.get(selectedProduct.sku);
   }, [selectedProduct?.sku]);
 
-  const activeFiltersCount = [category, indication].filter(Boolean).length;
-  const isIdle = query.length < 2 && !indication;
+  const activeFiltersCount = [category, indication, system, evidence].filter(Boolean).length;
+  const isIdle = query.length < 2 && !indication && !system && !evidence;
   const showCondition = matchedPathology && (query.length >= 2 || indication);
 
   const clearAll = useCallback(() => {
     setCategory('');
     setIndication('');
+    setSystem('');
+    setEvidence('');
     setQuery('');
   }, [setQuery]);
 
@@ -481,6 +492,63 @@ export function SearchPage() {
             })}
           </div>
         </div>
+
+        {/* Sistema corporal — fila única compacta */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Sistema</span>
+          <div className="flex flex-wrap gap-2">
+            {BODY_SYSTEM_CHIPS.map(sys => {
+              const isActive = system === sys.value;
+              const Icon = sys.icon;
+              return (
+                <button
+                  key={sys.value}
+                  onClick={() => setSystem(isActive ? '' : sys.value)}
+                  className={cn(
+                    'inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[15px] font-medium transition-colors',
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                    isActive
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                  )}
+                  aria-pressed={isActive}
+                >
+                  <Icon className="w-[18px] h-[18px]" aria-hidden="true" />
+                  {sys.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Evidencia — fila única compacta */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Evidencia</span>
+          <div className="flex flex-wrap gap-2">
+            {EVIDENCE_LEVELS.map(lvl => {
+              const isActive = evidence === lvl;
+              const cfg = getEvidenceConfig(lvl);
+              return (
+                <button
+                  key={lvl}
+                  onClick={() => setEvidence(isActive ? '' : lvl)}
+                  aria-pressed={isActive}
+                  aria-label={`Filtrar por evidencia ${cfg.label}: ${cfg.title}`}
+                  title={cfg.title}
+                  className={cn(
+                    'inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[15px] font-medium transition-colors',
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                    isActive
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
+                  )}
+                >
+                  {lvl}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* ===== CAPA 1: Ficha de condición (dominante) ===== */}
@@ -570,7 +638,7 @@ export function SearchPage() {
           )}
 
           {/* Sin resultados */}
-          {sortedResults.length === 0 && !isSearching && !showCondition && (query.length >= 2 || indication) && (
+          {sortedResults.length === 0 && !isSearching && !showCondition && (query.length >= 2 || indication || system || evidence) && (
             <div className="text-center py-12">
               <Search className="w-12 h-12 mx-auto text-muted-foreground mb-4 opacity-40" aria-hidden="true" />
               <p className="text-muted-foreground font-medium">
