@@ -64,6 +64,10 @@ export class SyncService {
   // sync (probablemente las tablas no existen o el endpoint es inválido).
   private consecutiveNetworkFailures = 0;
   private static readonly MAX_NETWORK_FAILURES = 3;
+  /** Ops synced se purgan tras 1 hora (ya aplicadas remotamente). */
+  private static readonly STALE_SYNCED_MS = 60 * 60 * 1000;
+  /** Ops failed se purgan tras 24 horas (evitan crecimiento indefinido del outbox). */
+  private static readonly STALE_FAILED_MS = 24 * 60 * 60 * 1000;
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -241,6 +245,8 @@ export class SyncService {
       const uploadResult = await this.uploadPendingOps();
       uploaded = uploadResult.count;
       conflicts += uploadResult.conflicts;
+      // Purgar ops synced/failed antiguos para que el outbox no crezca indefinidamente.
+      await this.cleanupStaleOutboxOps();
       const downloadResult = await this.downloadRemoteChanges();
       downloaded = downloadResult.count;
       await db.syncMeta.put({ key: 'lastSyncAt', value: now(), updatedAt: now() });
@@ -326,9 +332,11 @@ export class SyncService {
           await db.outbox.put(op);
         } else if (error instanceof UnauthorizedError) {
           logger.warn('[SyncService] Unauthorized - token may need refresh');
-          op.status = 'pending'; // Reset para reintentar después de refresh
           op.retries++;
           op.lastError = 'Unauthorized';
+          // Tras agotar retries, marcar como failed (evita loop infinito de
+          // ops 401 re-encoladas indefinidamente).
+          op.status = op.retries >= this.config.maxRetries ? 'failed' : 'pending';
           await db.outbox.put(op);
           // Intentar refresh de token
           this.handleUnauthorized();
@@ -345,6 +353,41 @@ export class SyncService {
       }
     }
     return { count: uploaded, conflicts };
+  }
+
+  /**
+   * Purga ops del outbox que ya no son útiles:
+   * - `synced`: exitosos, se borran tras STALE_SYNCED_MS (1h).
+   * - `failed`: agotaron retries, se borran tras STALE_FAILED_MS (24h).
+   * Los ops `conflict` y `pending` se conservan (requieren acción o retry).
+   * Esto evita que la tabla outbox crezca indefinidamente con histórico de
+   * operaciones ya completadas o descartadas.
+   */
+  private async cleanupStaleOutboxOps(): Promise<number> {
+    const cutoffSynced = now() - SyncService.STALE_SYNCED_MS;
+    const cutoffFailed = now() - SyncService.STALE_FAILED_MS;
+    const staleIds: string[] = [];
+
+    // Purga basada en la actividad más reciente (lastAttemptAt ?? createdAt).
+    // Un op con createdAt viejo pero lastAttemptAt fresco (retry exitoso)
+    // no se purga.
+    const syncedOps = await db.outbox
+      .where('status').equals('synced')
+      .and(op => (op.lastAttemptAt ?? op.createdAt) < cutoffSynced)
+      .primaryKeys();
+    staleIds.push(...syncedOps);
+
+    const failedOps = await db.outbox
+      .where('status').equals('failed')
+      .and(op => (op.lastAttemptAt ?? op.createdAt) < cutoffFailed)
+      .primaryKeys();
+    staleIds.push(...failedOps);
+
+    if (staleIds.length > 0) {
+      await db.outbox.bulkDelete(staleIds);
+      logger.debug(`[SyncService] Purgadas ${staleIds.length} ops stale del outbox`);
+    }
+    return staleIds.length;
   }
 
   /**
