@@ -3,29 +3,24 @@
  *
  * Maneja el keypair y la recuperación.
  * Sesiones expiran después de 30 minutos de inactividad.
- * 
- * SEGURIDAD: Usa sessionStorage en lugar de localStorage para reducir
- * el riesgo de XSS. Las claves se limpian al cerrar el navegador.
+ *
+ * SEGURIDAD: El keypair cifrado se guarda en localStorage (persistente entre
+ * sesiones, seguro porque está cifrado con PBKDF2 600k). El flag de sesión
+ * vive en memoria; cada recarga requiere re-unlock ("always require unlock
+ * at boot"). Toda la lógica de storage está centralizada en e2ee.ts.
  */
 
 import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
-import { 
-  generateAndStoreKeyPair, 
-  unlockKeyPair, 
+import {
+  generateAndStoreKeyPair,
+  storeKeyPair,
+  unlockKeyPair,
   unlockWithRecovery,
   hasKeyPair,
-  nacl,
-  deriveKey,
-  encodeBase64,
-  type StoredKeyPair,
-  type RecoveryData,
 } from '@/lib/crypto';
-import { generateMnemonic } from 'bip39';
 import { logger } from '@/lib/logger';
 
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
-const KEY_STORAGE_KEY = 'vademecum_keypair';
-const RECOVERY_STORAGE_KEY = 'vademecum_recovery';
 
 interface E2EEContextValue {
   isAuthenticated: boolean;
@@ -137,45 +132,21 @@ export function E2EEAuthProvider({ children }: { children: React.ReactNode }) {
 
   const recover = async (phrase: string, newPassword: string): Promise<{ recoveryPhrase: string } | false> => {
     try {
-      // 1. Desbloquear keypair con recovery phrase
+      // 1. Desbloquear keypair con recovery phrase (lee de localStorage)
       const secretKey = await unlockWithRecovery(phrase);
       if (!secretKey) throw new Error('Frase de recuperación inválida');
-      
-      // 2. Re-cifrar con nueva contraseña
-      const salt = nacl.randomBytes(16);
-      const aesKey = await deriveKey(newPassword, salt);
-      const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
-      const encrypted = nacl.secretbox(secretKey, nonce, aesKey);
-      
-      // 3. Guardar nuevo keypair en sessionStorage
-      const publicKey = nacl.box.keyPair.fromSecretKey(secretKey).publicKey;
-      const stored: StoredKeyPair = {
-        publicKey: encodeBase64(publicKey),
-        secretKey: encodeBase64(encrypted),
-        nonce: encodeBase64(nonce),
-        salt: encodeBase64(salt),
-      };
-      sessionStorage.setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
-      
-      // 4. Generar NUEVA recovery phrase
-      const newRecoveryPhrase = generateMnemonic(128);
-      
-      // 5. Guardar recovery data en sessionStorage
-      const recoveryKey = await deriveKey(newRecoveryPhrase, salt);
-      const recoveryNonce = nacl.randomBytes(nacl.secretbox.nonceLength);
-      const recoveryEncrypted = nacl.secretbox(secretKey, recoveryNonce, recoveryKey);
-      
-      const recoveryData: RecoveryData = {
-        encrypted: encodeBase64(recoveryEncrypted),
-        nonce: encodeBase64(recoveryNonce),
-        salt: encodeBase64(salt),
-      };
-      sessionStorage.setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
-      
+
+      // 2. Re-cifrar el secretKey con la nueva contraseña y guardar en localStorage.
+      //    storeKeyPair también genera una nueva recovery phrase y la guarda.
+      //    Toda la lógica de storage vive en e2ee.ts (un solo lugar, un solo
+      //    conjunto de keys), evitando la inconsistencia anterior donde recover
+      //    escribía en sessionStorage con keys distintas a las de e2ee.ts.
+      const newRecoveryPhrase = await storeKeyPair(secretKey, newPassword);
+
       startSession();
       setIsAuthenticated(true);
       setHasAccount(true);
-      return { recoveryPhrase: newRecoveryPhrase }; // Devolver nueva phrase
+      return { recoveryPhrase: newRecoveryPhrase };
     } catch (err) {
       logger.error('Recovery failed:', err);
       return false;
