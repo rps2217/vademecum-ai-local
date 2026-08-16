@@ -13,8 +13,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { ingredientSearchService, useSearchIndex, productSearchService, useProductIndex } from '@/core/search';
-import type { SearchResult, ProductSearchResult } from '@/core/search';
+import { ingredientSearchService, useSearchIndex, useProductIndex } from '@/core/search';
 import { ConditionCard } from '@/ui/ConditionCard';
 import { IngredientResultCard } from '@/ui/IngredientResultCard';
 import { ProductResultCard } from '@/ui/ProductResultCard';
@@ -29,13 +28,12 @@ import { ClientProfileSelector } from '@/ui/ClientProfileSelector';
 import { useClientProfile } from '@/contexts/ClientProfileContext';
 import { useSearch } from '@/contexts/SearchContext';
 import { useConsultationHistory } from '@/hooks/useConsultationHistory';
-import type { DbIngredient, DbPathology, DbProduct, DbProductIngredientAnalysis, IngredientCategory } from '@/db/schema';
+import type { DbIngredient, DbPathology, DbProduct, DbProductIngredientAnalysis } from '@/db/schema';
 import type { BodySystem } from '@/types/shared-enums';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, generateId } from '@/db';
-import { logger } from '@/lib/logger';
 import { cn } from '@/lib/utils';
-import { humanize, normalize, tokenize, getQuerySynonyms } from '@/lib/text';
+import { humanize, normalize } from '@/lib/text';
 import {
   CATEGORIES,
   getCategoryConfig,
@@ -43,11 +41,12 @@ import {
   EVIDENCE_RANK,
   EVIDENCE_LEVELS,
   BODY_SYSTEM_CHIPS,
-  RESULTS_PAGE_SIZE,
   CHIPS_COLLAPSED_COUNT,
   indicationIcon,
   type EvidenceLevel,
 } from '@/ui/searchConfig';
+import { usePathologyMatch } from '@/hooks/usePathologyMatch';
+import { useSearchResults } from '@/hooks/useSearchResults';
 
 export function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -70,21 +69,21 @@ export function SearchPage() {
   const [indication, setIndication] = useState('');
   const [system, setSystem] = useState<BodySystem | ''>('');
   const [evidence, setEvidence] = useState<EvidenceLevel | ''>('');
-  const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
   const [selectedPathology, setSelectedPathology] = useState<DbPathology | null>(null);
   const [showAllChips, setShowAllChips] = useState(false);
   const [chipSearch, setChipSearch] = useState('');
   const [ingredientsExpanded, setIngredientsExpanded] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(RESULTS_PAGE_SIZE);
 
   // Productos comerciales (búsqueda unificada)
   const [productsExpanded, setProductsExpanded] = useState(false);
-  const [visibleProductCount, setVisibleProductCount] = useState(RESULTS_PAGE_SIZE);
   const [selectedProduct, setSelectedProduct] = useState<DbProduct | null>(null);
 
-  // True while the debounced query lags behind the current query.
-  const isSearching = query !== debouncedQuery;
+  // Búsqueda unificada: debounce + ingredientes + productos + paginación
+  const {
+    results, productResults, isSearching,
+    visibleCount, visibleProductCount, loadMore, loadMoreProducts,
+  } = useSearchResults(query, { category, indication, system, evidence });
 
   // Favoritos: ingredientes marcados por el farmacéutico
   const favorites = useLiveQuery(() => db.favorites.orderBy('createdAt').reverse().toArray(), []);
@@ -108,37 +107,8 @@ export function SearchPage() {
     return favorites?.some((f) => f.ingredientId === ingredientId) ?? false;
   }, [favorites]);
 
-  // Patologías: cargar una sola vez (live query, pero ligero — ~146 registros)
-  const allPathologies = useLiveQuery(() => db.pathologies.toArray(), []);
-  const pathologyByIndication = useMemo(() => {
-    const m = new Map<string, DbPathology>();
-    if (allPathologies) {
-      for (const p of allPathologies) m.set(p.id, p);
-    }
-    return m;
-  }, [allPathologies]);
-
-  // Índice invertido de patologías: token → Set<patologyId>.
-  // Permite matching O(tokens) en vez de recorrer las ~146 patologías con
-  // .find() en cada keystroke. Indexa id, nombre, sistemas y síntomas.
-  const pathologyIndex = useMemo(() => {
-    const idx = new Map<string, Set<string>>();
-    if (!allPathologies) return idx;
-    const add = (id: string, text: string) => {
-      for (const tok of tokenize(text)) {
-        let set = idx.get(tok);
-        if (!set) { set = new Set(); idx.set(tok, set); }
-        set.add(id);
-      }
-    };
-    for (const p of allPathologies) {
-      add(p.id, p.id);
-      add(p.id, p.nombre);
-      for (const s of p.sistemas ?? []) add(p.id, s);
-      for (const s of p.sintomas ?? []) add(p.id, s);
-    }
-    return idx;
-  }, [allPathologies]);
+  // Patologías: índice invertido + matching por query (extraído a hook)
+  const { matchedPathology, allPathologies } = usePathologyMatch(query, indication);
 
   // Chips de indicación dinámicos desde el índice (sin toArray extra)
   const indicationChips = useMemo(() => {
@@ -150,55 +120,6 @@ export function SearchPage() {
       .map(([value, count]) => ({ value, count }));
   }, [ready]);
 
-  // Debounce único de la consulta de texto → debouncedQuery.
-  // Ambas búsquedas (ingredientes y productos) consumen este valor,
-  // evitando dos temporizadores paralelos por cada keystroke.
-  useEffect(() => {
-    const t = setTimeout(() => setDebouncedQuery(query), 150);
-    return () => clearTimeout(t);
-  }, [query]);
-
-  // Búsqueda de ingredientes: derivación pura de debouncedQuery + filtros.
-  // useMemo evita el patrón setState-in-effect (react-hooks/set-state-in-effect).
-  const results = useMemo<SearchResult[]>(() => {
-    if (!ready) return [];
-    try {
-      return ingredientSearchService.searchSync({
-        query: debouncedQuery.length >= 2 ? debouncedQuery : undefined,
-        category: (category || undefined) as IngredientCategory | undefined,
-        system: (system || undefined) as BodySystem | undefined,
-        evidenceLevel: (evidence || undefined) as 'A' | 'B' | 'C' | 'D' | undefined,
-        indication: indication || undefined,
-      });
-    } catch (error) {
-      logger.error('Search error:', error);
-      return [];
-    }
-  }, [debouncedQuery, category, indication, system, evidence, ready]);
-
-  // Búsqueda de productos comerciales: mismo debouncedQuery.
-  const productResults = useMemo<ProductSearchResult[]>(() => {
-    if (!productsReady) return [];
-    try {
-      return productSearchService.searchSync(debouncedQuery.length >= 2 ? debouncedQuery : undefined);
-    } catch (error) {
-      logger.error('Product search error:', error);
-      return [];
-    }
-  }, [debouncedQuery, productsReady]);
-
-  // Reset de paginación al cambiar la búsqueda o los filtros.
-  // Patrón "adjust state during render" recomendado por React para resetear
-  // state cuando un valor derivado cambia — sin useEffect, sin cascada.
-  // https://react.dev/reference/react/useState#storing-information-from-previous-renders
-  const searchKey = `${debouncedQuery}|${category}|${indication}|${system}|${evidence}`;
-  const [prevSearchKey, setPrevSearchKey] = useState(searchKey);
-  if (searchKey !== prevSearchKey) {
-    setPrevSearchKey(searchKey);
-    setVisibleCount(RESULTS_PAGE_SIZE);
-    setVisibleProductCount(RESULTS_PAGE_SIZE);
-  }
-
   // Registrar consulta en el historial (tras debounce, solo si hay resultados)
   useEffect(() => {
     if (query.trim().length < 3) return;
@@ -207,73 +128,6 @@ export function SearchPage() {
     }, 1200);
     return () => clearTimeout(t);
   }, [query, results.length, addEntry]);
-
-  const matchedPathology = useMemo(() => {
-    if (!allPathologies || allPathologies.length === 0) return null;
-    // Match directo por chip de indicación o id exacto
-    if (indication && pathologyByIndication.has(indication)) {
-      return pathologyByIndication.get(indication)!;
-    }
-    if (query.length < 2) return null;
-
-    const qTokens = tokenize(query);
-    if (qTokens.length === 0) return null;
-
-    // Match exacto de id primero (ej. "ansiedad" → id "ansiedad")
-    const nq = normalize(query);
-    const exact = allPathologies.find(p => p.id === nq);
-    if (exact) return exact;
-
-    // Búsqueda por índice invertido: contar tokens coincidentes por patología.
-    // La patología con más tokens del query coincidentes gana.
-    // (El índice se construye una sola vez con useMemo → O(tokens) por query.)
-    const scores = new Map<string, number>();
-    for (const tok of qTokens) {
-      const ids = pathologyIndex.get(tok);
-      if (ids) {
-        for (const id of ids) {
-          scores.set(id, (scores.get(id) ?? 0) + 1);
-        }
-      }
-      // Sinónimos: muelas→dental podría matchear una patología
-      const syns = getQuerySynonyms(tok);
-      if (syns) {
-        for (const s of syns) {
-          for (const st of tokenize(s)) {
-            const ids2 = pathologyIndex.get(st);
-            if (ids2) {
-              for (const id of ids2) {
-                // Los sinónimos pesan menos (×0.5)
-                scores.set(id, (scores.get(id) ?? 0) + 0.5);
-              }
-            }
-          }
-        }
-      }
-    }
-
-    if (scores.size === 0) return null;
-    // Tomar la patología con mayor score; en empate, preferir match de nombre
-    let bestId: string | null = null;
-    let bestScore = 0;
-    for (const [id, score] of scores) {
-      if (score > bestScore) {
-        bestScore = score;
-        bestId = id;
-      }
-    }
-    // Umbral: al menos 1 token del query debe coincidir (o 0.5 por sinónimo)
-    if (bestId && bestScore >= 0.5) {
-      const p = pathologyByIndication.get(bestId);
-      // Reforzar: si el nombre de la patología contiene el query, es match fuerte
-      if (p) {
-        const np = normalize(p.nombre);
-        if (np === nq || np.includes(nq) || nq.includes(np)) return p;
-        return p;
-      }
-    }
-    return null;
-  }, [allPathologies, pathologyByIndication, pathologyIndex, indication, query]);
 
   const sortedResults = useMemo(() => {
     const normQuery = query ? normalize(query) : '';
@@ -635,7 +489,7 @@ export function SearchPage() {
               {hasMore && (
                 <div className="flex justify-center pt-4">
                   <button
-                    onClick={() => setVisibleCount(visibleCount + RESULTS_PAGE_SIZE)}
+                    onClick={loadMore}
                     className="px-8 py-4 rounded-xl border-2 border-border text-base font-semibold text-foreground bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[52px] shadow-sm"
                   >
                     Ver más ({sortedResults.length - visibleCount} restantes)
@@ -705,7 +559,7 @@ export function SearchPage() {
               {hasMoreProducts && (
                 <div className="flex justify-center pt-4">
                   <button
-                    onClick={() => setVisibleProductCount(visibleProductCount + RESULTS_PAGE_SIZE)}
+                    onClick={loadMoreProducts}
                     className="px-8 py-4 rounded-xl border-2 border-border text-base font-semibold text-foreground bg-card hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[52px] shadow-sm"
                   >
                     Ver más ({productResults.length - visibleProductCount} restantes)
