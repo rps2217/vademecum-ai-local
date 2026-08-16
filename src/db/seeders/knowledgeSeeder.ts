@@ -195,6 +195,12 @@ function mapSynergyType(tipo: string): SynergyType {
 
 function mapSynergyLevel(nivel?: string): SynergyLevel {
   if (!nivel) return 'medio';
+  const upper = nivel.toUpperCase();
+  // Las sinergias guardan su evidencia en nivelEvidencia ('A'..'D').
+  // Mapeamos evidencia alta → sinergia más sólida (alto), baja → bajo.
+  if (upper === 'A') return 'alto';
+  if (upper === 'B') return 'medio';
+  if (upper === 'C' || upper === 'D') return 'bajo';
   const lower = nivel.toLowerCase();
   if (lower.includes('alto') || lower.includes('critico')) return 'alto';
   if (lower.includes('bajo')) return 'bajo';
