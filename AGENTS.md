@@ -387,6 +387,24 @@ KB version: `v227-117-83-192-1157-146-126-n5`.
 > `nmn_nicotinamide→nmn`, `lactobacillus_acidophilus→l_acidophilus`,
 > `bifidobacterium_longum→b_longum`.
 
+> **Nota ronda 19 (corrección de matches Supabase):** El algoritmo de matching
+> original que generó `product_ingredients` en Supabase era extremadamente
+> agresivo: de 6841 matches, 4853 (71%) eran falsos positivos. Excipientes
+> ("Agua"→grama, "Glicerina"→l_glicina), tags genéricos ("Suplemento
+> alimenticio"→gaba, "Tratamiento homeopático"→ambra_grisea) y químicos
+> cosméticos ("P-Phenylenediamine"→vitamina_b6) estaban matcheados a
+> ingredientes aleatorios de la KB. Script `scripts/correct-product-matches.cjs`
+> aplicó 1374 correcciones en 3 fases:
+> - **Fase 1**: Re-referenció 38 filas a los IDs canónicos consolidados.
+> - **Fase 2**: Desmatcheó 1116 excipientes/tags/químicos (is_matched=false).
+> - **Fase 3**: Corrigió 220 matches a ingredientes correctos vía mapa manual
+>   de sinónimos químicos (ej: "Vitamina D"→vitamina_d3, "Ácido fólico"
+>   →acido_folico, "Cianocobalamina"→vitamina_b12).
+> Script de auditoría: `scripts/audit-product-ingredient-matches.cjs`.
+> Estado post-corrección: matches correctos 1891→2041, falsos positivos
+> 4853→3626 (los restantes son mayormente matches correctos con nombres
+> químicos/botánicos que el algoritmo de auditoría no reconoce).
+
 > **Nota rondas 14-15:** La ronda 14 detectó que el estado real de la KB
 > (537 ingredientes, 707 sinergias) difería del documentado en AGENTS.md
 > (314/414) debido a expansiones previas no reflejadas. La ronda 14

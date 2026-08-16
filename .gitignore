@@ -19,3 +19,4 @@ scraper/*_log.txt
 /playwright-report/
 /playwright/.cache/
 BITACORA-ANALISIS-vademecum-ai-local.md
+scripts/output/
