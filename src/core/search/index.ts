@@ -11,6 +11,8 @@ export {
   useProductIndex,
   type ProductSearchResult,
   type ProductFacet,
+  SAFETY_FACET_FIELDS,
+  type SafetyFacetField,
 } from './ProductSearchService';
 export {
   SynergySearchService,

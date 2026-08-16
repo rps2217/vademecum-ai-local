@@ -23,6 +23,7 @@ import {
   InvertedIndex, buildTokens, type ScoredDoc,
 } from './searchEngine';
 import { categorizeProduct, type ProductCategory } from '@/core/catalog';
+import type { SafetyStatus } from '@/types/shared-enums';
 
 export interface ProductSearchResult {
   product: DbProduct;
@@ -31,8 +32,14 @@ export interface ProductSearchResult {
   categoria: ProductCategory;
 }
 
+/** Campos de seguridad indexables como facets (filtra por población especial). */
+export const SAFETY_FACET_FIELDS = [
+  'embarazo', 'lactancia', 'pediatria', 'hipertension', 'diabetes', 'celiacos',
+] as const;
+export type SafetyFacetField = (typeof SAFETY_FACET_FIELDS)[number];
+
 /** Facets disponibles para filtrado en la búsqueda de productos. */
-export type ProductFacet = 'categoria';
+export type ProductFacet = 'categoria' | SafetyFacetField;
 
 /**
  * ProductSearchService — singleton gemelo de IngredientSearchService.
@@ -68,10 +75,18 @@ export class ProductSearchService {
     merge(buildTokens(prod.sku, 20));
 
     const categoria = categorizeProduct(prod);
+    const facets: Partial<Record<ProductFacet, Set<string>>> = {
+      categoria: new Set([categoria]),
+    };
+    // Indexar los 6 campos de seguridad como facets (filtra por población especial)
+    for (const field of SAFETY_FACET_FIELDS) {
+      const status = prod[field] as SafetyStatus;
+      if (status) facets[field] = new Set([status]);
+    }
     this.index.add({
       id: prod.sku,
       tokens,
-      facets: { categoria: new Set([categoria]) },
+      facets,
     });
     this.cache.set(prod.sku, prod);
   }
@@ -126,6 +141,16 @@ export class ProductSearchService {
     for (const entry of this.index.docs.values()) {
       const cat = entry.facets.categoria?.values().next().value as ProductCategory | undefined;
       if (cat) counts.set(cat, (counts.get(cat) ?? 0) + 1);
+    }
+    return counts;
+  }
+
+  /** Cuenta productos por valor de seguridad para un campo dado (para chips). */
+  safetyCounts(field: SafetyFacetField): Map<SafetyStatus, number> {
+    const counts = new Map<SafetyStatus, number>();
+    for (const entry of this.index.docs.values()) {
+      const status = entry.facets[field]?.values().next().value as SafetyStatus | undefined;
+      if (status) counts.set(status, (counts.get(status) ?? 0) + 1);
     }
     return counts;
   }
