@@ -14,6 +14,7 @@ import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { Badge } from '@/ui/Badge';
 import { Modal } from '@/ui/Modal';
+import { Skeleton } from '@/ui/Skeleton';
 import {
   Plus, Trash2, AlertTriangle, FileText, Search, X,
   Pill, CalendarDays, Pencil,
@@ -63,7 +64,17 @@ export function ProtocolsPage() {
         </Button>
       </div>
 
-      {protocols && protocols.length === 0 && (
+      {protocols === undefined ? (
+        <div className="grid gap-3 md:grid-cols-2">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="p-4 space-y-3 border rounded-lg">
+              <Skeleton className="h-6 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+              <Skeleton className="h-20 w-full rounded-lg" />
+            </div>
+          ))}
+        </div>
+      ) : protocols.length === 0 ? (
         <Card className="p-8 text-center">
           <FileText className="w-10 h-10 text-muted-foreground mx-auto mb-3" aria-hidden="true" />
           <h3 className="font-medium mb-1">Sin protocolos</h3>
@@ -75,18 +86,18 @@ export function ProtocolsPage() {
             Crear protocolo
           </Button>
         </Card>
+      ) : (
+        <div className="grid gap-3 md:grid-cols-2">
+          {protocols.map((p) => (
+            <ProtocolCard
+              key={p.id}
+              protocol={p}
+              onEdit={() => handleEdit(p)}
+              onDelete={() => handleDelete(p)}
+            />
+          ))}
+        </div>
       )}
-
-      <div className="grid gap-3 md:grid-cols-2">
-        {protocols?.map((p) => (
-          <ProtocolCard
-            key={p.id}
-            protocol={p}
-            onEdit={() => handleEdit(p)}
-            onDelete={() => handleDelete(p)}
-          />
-        ))}
-      </div>
 
       {showEditor && (
         <ProtocolEditor
