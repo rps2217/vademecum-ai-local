@@ -120,7 +120,7 @@ function ProtocolCard({ protocol, onEdit, onDelete }: {
           </button>
           <button
             onClick={onDelete}
-            className="p-1.5 rounded-lg hover:bg-red-50 text-red-600"
+            className="p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400"
             aria-label="Eliminar protocolo"
           >
             <Trash2 className="w-4 h-4" aria-hidden="true" />
@@ -322,7 +322,7 @@ function ProtocolEditor({ protocol, onClose }: {
                   </select>
                   <button
                     onClick={() => handleRemoveIngredient(i)}
-                    className="p-1 rounded hover:bg-red-50 text-red-600"
+                    className="p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400"
                     aria-label="Quitar ingrediente"
                   >
                     <X className="w-3.5 h-3.5" aria-hidden="true" />
@@ -369,7 +369,7 @@ function ProtocolEditor({ protocol, onClose }: {
                 <span className="text-sm flex-1">{w}</span>
                 <button
                   onClick={() => handleRemoveWarning(i)}
-                  className="p-0.5 rounded hover:bg-amber-100"
+                  className="p-0.5 rounded hover:bg-amber-100 dark:hover:bg-amber-900/20"
                   aria-label="Quitar advertencia"
                 >
                   <X className="w-3.5 h-3.5" aria-hidden="true" />

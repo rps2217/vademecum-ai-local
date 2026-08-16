@@ -10,6 +10,7 @@ import { useMemo } from 'react';
 import type { DbPathology, DbIngredient } from '@/db/schema';
 import { ingredientSearchService } from '@/core/search';
 import { useClientProfile, safetyVerdictBadge, safetyVerdictStyle, CLIENT_PROFILES } from '@/contexts/ClientProfileContext';
+import { getEvidenceConfig, EVIDENCE_RANK } from '@/ui/searchConfig';
 import { Stethoscope, Leaf, AlertTriangle, ChevronRight, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -18,22 +19,6 @@ interface ConditionCardProps {
   onIngredientClick?: (id: string) => void;
   onExpand?: (pathology: DbPathology) => void;
 }
-
-const EVIDENCE_COLORS = {
-  A: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30',
-  B: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30',
-  C: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/30',
-  D: 'bg-gray-500/15 text-gray-600 dark:text-gray-300 ring-1 ring-gray-500/30',
-} as const;
-
-const ING_EVIDENCE_COLORS = {
-  A: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/20',
-  B: 'bg-sky-500/10 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/20',
-  C: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20',
-  D: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20',
-} as const;
-
-const EVIDENCE_RANK = { A: 0, B: 1, C: 2, D: 3 } as const;
 
 const SYSTEM_LABELS: Record<string, string> = {
   nervioso: 'Nervioso',
@@ -81,7 +66,7 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
   // Primera alerta farmacéutica (la más relevante)
   const topAlert = pathology.alertasFarmaceuticas?.[0];
 
-  const evidenceColor = EVIDENCE_COLORS[pathology.evidencia] || EVIDENCE_COLORS.C;
+  const evidenceColor = getEvidenceConfig(pathology.evidencia).color;
 
   return (
     <div className="rounded-xl border border-primary/20 bg-card shadow-sm overflow-hidden">
@@ -176,7 +161,7 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                       )}
                       <span className={cn(
                         'flex items-center justify-center w-8 h-8 rounded-md text-base font-bold',
-                        ING_EVIDENCE_COLORS[ing.evidencia] || ING_EVIDENCE_COLORS.C
+                        getEvidenceConfig(ing.evidencia).color
                       )}>
                         {ing.evidencia}
                       </span>
