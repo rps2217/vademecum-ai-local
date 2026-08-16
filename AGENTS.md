@@ -113,6 +113,15 @@ src/
 └── vite-env.d.ts
 ```
 
+### Archivos fuera de `src/` relevantes
+
+- `public/theme-init.js` — Script anti-flash de tema (externalizado en PR #51
+  para permitir CSP estricta sin `'unsafe-inline'`). Se carga en `<head>` antes
+  del primer paint.
+- `eslint.config.js` — ESLint v9 flat config. Define globals de navegador
+  (`window`, `document`, `localStorage`, `matchMedia`) para `public/**/*.js`.
+- `index.html` — CSP estricta + referencia a `theme-init.js`.
+
 ## Tecnologías Principales
 
 - **React 19** + TypeScript
@@ -124,10 +133,12 @@ src/
 - **react-router-dom v7** para routing (BrowserRouter + Routes)
 - **sonner** para toasts/notificaciones
 - **lucide-react** para iconos
-- **zod** para validación
 - **@radix-ui/react-dialog** como base del Modal
-- **class-variance-authority** + **clsx** + **tailwind-merge** para variantes UI
+- **clsx** + **tailwind-merge** para variantes UI
 - **vitest** (unit) + **Playwright** (E2E) para tests
+
+> **NOTA:** `zod` y `class-variance-authority` fueron ELIMINADAS del proyecto
+> (sin uso en el código). El AGENTS.md antiguo las listaba incorrectamente.
 
 > **NOTA:** `SynergyGraph.tsx` usa **SVG nativo**, NO `@xyflow/react`
 > (esa dependencia NO está en `package.json`; el AGENTS.md antiguo era incorrecto).
@@ -164,10 +175,24 @@ Sesiones:
 
 ### CSP (Content Security Policy)
 
-La aplicación tiene una CSP básica configurada en `index.html`:
+La aplicación tiene una CSP **estricta** configurada en `index.html`:
 ```html
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; ..." />
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'self';
+           script-src 'self';
+           style-src 'self' 'unsafe-inline';
+           img-src 'self' data: blob:;
+           font-src 'self' data:;
+           connect-src 'self' https://*.supabase.co;
+           object-src 'none'; base-uri 'self';" />
 ```
+
+> **PR #51:** `script-src` es ahora `'self'` (sin `'unsafe-inline'`).
+> El script anti-flash de tema (que prevenía FOUC) se movió de inline a
+> `public/theme-init.js` (archivo externo, cargado en `<head>` antes del
+> primer paint). `style-src` mantiene `'unsafe-inline'` porque Tailwind v4
+> y los temas inyectan estilos en runtime. ESLint v9 (flat config) define
+> globals de navegador para `public/**/*.js` en `eslint.config.js`.
 
 ## Comandos Importantes
 
@@ -246,7 +271,7 @@ export interface DbSynergy {
 - [x] PWA con Service Worker (vite-plugin-pwa)
 - [x] Base de datos Dexie (IndexedDB) con schema **versión 2** (tabla `pathologies`)
 - [x] E2EE con TweetNaCl (keypair cifrado en localStorage vía e2ee.ts; flag de sesión en sessionStorage) — e2ee.ts, E2EEAuthProvider.tsx
-- [x] CSP (Content Security Policy)
+- [x] CSP (Content Security Policy) **estricta** — `script-src 'self'` sin `'unsafe-inline'` (PR #51). Script anti-flash externalizado a `public/theme-init.js`.
 - [x] Dashboard admin (AdminPage) con IngredientEditor
 - [x] Visualización de sinergias con **SVG nativo** (SynergyGraph.tsx)
 - [x] Búsqueda local con IngredientSearchService
@@ -262,6 +287,18 @@ export interface DbSynergy {
   - 1044 campos clínicos totales, escalas validadas (GAD-7, PHQ-9, MIDAS, PASI,
     DEXA/FRAX, FIB-4, SCORAD/EASI, WOMAC, Oswestry, y más)
   - Fuentes: DSM-5, ICD-11, NICE, ADA, GINA/GOLD, ESC/ESH, ACR, EAU, Cochrane, EMA
+- [x] **Sync fail-fast en uploads 401** (PR #48) — tras `MAX_UPLOAD_401_FAILURES=3`
+  consecutivos, `SyncService` desactiva el sync (la anon key solo permite lectura
+  por RLS; la escritura requiere service role). Evita reintentos infinitos cada 30s.
+- [x] **Purga de ops stale del outbox** (PR #52) — `cleanupStaleOutboxOps()` purga
+  ops `synced` tras 1h y `failed` tras 24h, basado en `lastAttemptAt ?? createdAt`.
+  Preserva `pending` y `conflict`. Se llama al final de `performFullSync`.
+- [x] **Tope por-op en UnauthorizedError** (PR #52) — tras `maxRetries`, marca la
+  op como `failed` en vez de re-encolarla para siempre (complementa el fail-fast
+  global de PR #48).
+- [x] **Tests unitarios del módulo E2EE** (PR #49) — `tests/unit/crypto.test.ts`
+  cubre `deriveKey`, `secretbox` encrypt/decrypt, `generateAndStoreKeyPair`,
+  `unlockKeyPair`, frase de recuperación.
 
 ### Re-siembra Automática de KB
 
@@ -363,8 +400,14 @@ KB version: `v228-117-85-195-1154-146-126`.
 ### ⚠ Pendiente / Experimental / Deprecated
 - [ ] Sync con Supabase (schema mismatch — ver nota abajo). src/core/sync/index.ts
       está marcado @deprecated y recomienda "verificar uso real".
-- [ ] Tests de integración completos (solo src/__tests__/db.test.ts + E2E Playwright
-      + tests unitarios en tests/unit/).
+      > **Estado actual (post-PRs #48 + #52):** El download funciona (ingredients,
+      > synergies, pathologies, products). El upload tiene fail-fast: tras 3 fallos
+      > 401 consecutivos (RLS bloquea escritura con anon key), el sync se desactiva.
+      > El outbox se purga automáticamente (synced>1h, failed>24h). El upload real
+      > requiere service role (no usada por la app).
+- [ ] Tests de integración completos — la suite unitaria ahora cubre 283 tests
+      (26 archivos en `tests/unit/` + `src/__tests__/`), pero faltan tests de
+      integración end-to-end del flujo de sync real con Supabase.
 - [ ] **Inconsistencia de storage en E2EE**: `e2ee.ts` usa localStorage
       (`vademecum.keypair`), pero `E2EEAuthProvider.recover` usa sessionStorage
       (`vademecum_keypair`). Tras un recovery, `unlockKeyPair` (que lee
@@ -610,3 +653,21 @@ todas 100% offline e instantáneas (sin LLM, sin descargas de modelos):
 - **Prefix matching unidireccional**: `tok.startsWith(token)` permite
   "valer"→"valeriana"; el bidireccional requiere `tok.length >= token.length`
   para evitar que "do" matchee "dolor".
+
+## Historial de PRs Recientes (2026-08-16)
+
+Los siguientes PRs se mergearon en `main` (squash-merge) en una sesión de
+mantenimiento estructurado. Todos con CI 100% verde (7/7 checks cada uno).
+
+| PR | Título | Tipo | Cambios clave |
+|----|--------|------|---------------|
+| #45 | `fix(ui): abrir ProductDetail con el producto del resultado, no del cache` | fix | Modal `ProductDetail` usa el `DbProduct` del scope en vez de re-buscar en cache (fallaba intermitentemente durante rebuilds del índice) |
+| #47 | `fix(kb): integridad referencial y limpieza de datos de la KB` | fix | Valida referencias de sinergias, limpia datos inconsistentes, tests de integridad |
+| #48 | `fix(sync): fail-fast en uploads 401 para evitar reintentos infinitos` | fix | `MAX_UPLOAD_401_FAILURES=3`; tras 3 fallos 401 consecutivos, desactiva sync (RLS bloquea escritura con anon key) |
+| #49 | `test(crypto): tests unitarios del módulo E2EE` | test | `tests/unit/crypto.test.ts` — deriveKey, secretbox, keypair, recovery |
+| #50 | `docs(agents): sincronizar AGENTS.md con el código real` | docs | Corrige BYPASS_AUTH (eliminado), KeyManager.ts (no existe), storage de claves, documenta bug de inconsistencia en recovery |
+| #51 | `fix(security): CSP sin 'unsafe-inline' en script-src` | fix | Inline script anti-flash → `public/theme-init.js`; CSP endurecida; ESLint globals para `public/**/*.js` |
+| #52 | `fix(sync): purgar ops stale del outbox + respetar maxRetries en 401` | fix | `cleanupStaleOutboxOps()` (synced>1h, failed>24h); UnauthorizedError respeta maxRetries por-op; 7 tests nuevos |
+
+**Estado de `main` post-merge:** commit `3a7ef05`. Suite de tests: 283 tests
+(26 archivos), 2 skipped. tsc clean, build OK, E2E OK.
