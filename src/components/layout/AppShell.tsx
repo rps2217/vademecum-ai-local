@@ -8,11 +8,12 @@
  *   ver resultados, no chrome de navegación).
  */
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, Suspense } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useTheme } from '@/app/ThemeProvider';
 import { useSearch } from '@/contexts/SearchContext';
+import { PageLoader } from '@/ui/PageLoader';
 import { useSearchIndex } from '@/core/search';
 import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
 import { CommandPalette } from '@/ui/CommandPalette';
@@ -323,7 +324,9 @@ export function AppShell() {
         </div>
 
         <main className="flex-1 p-4 sm:p-6 lg:p-10">
-          <Outlet />
+          <Suspense fallback={<PageLoader />}>
+            <Outlet />
+          </Suspense>
         </main>
       </div>
 
