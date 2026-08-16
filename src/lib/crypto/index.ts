@@ -7,6 +7,7 @@
 export {
   deriveKey,
   generateAndStoreKeyPair,
+  storeKeyPair,
   unlockKeyPair,
   unlockWithRecovery,
   getPublicKey,

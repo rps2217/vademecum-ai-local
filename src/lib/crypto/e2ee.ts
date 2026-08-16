@@ -120,45 +120,61 @@ export async function deriveCryptoKey(password: string, salt: Uint8Array): Promi
 }
 
 /**
- * Generar par de claves y guardarlo cifrado en sessionStorage
+ * Guardar un secretKey existente cifrado con un password (y generar recovery).
+ *
+ * Usado por:
+ * - `generateAndStoreKeyPair` (nueva cuenta): genera un keypair nuevo y lo guarda.
+ * - `E2EEAuthProvider.recover` (recuperación de contraseña): re-cifra el secretKey
+ *   existente con la nueva contraseña.
+ *
+ * Centraliza TODA la lógica de storage en un solo lugar (localStorage con las
+ * keys `vademecum.keypair` y `vademecum.recovery`), evitando la inconsistencia
+ * anterior donde `recover` escribía en `sessionStorage` con keys distintas.
+ */
+export async function storeKeyPair(secretKey: Uint8Array, password: string): Promise<string> {
+  const salt = nacl.randomBytes(16);
+  const aesKey = await deriveKey(password, salt);
+  const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+  const encrypted = nacl.secretbox(secretKey, nonce, aesKey);
+
+  const publicKey = nacl.box.keyPair.fromSecretKey(secretKey).publicKey;
+  const stored: StoredKeyPair = {
+    publicKey: encodeBase64(publicKey),
+    secretKey: encodeBase64(encrypted),
+    nonce: encodeBase64(nonce),
+    salt: encodeBase64(salt),
+  };
+
+  getPersistentStorage().setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
+
+  // Generar frase de recuperación BIP-39 y guardar el secretKey cifrado con ella
+  const recoveryPhrase = generateMnemonic(128);
+  const recoveryKey = await deriveKey(recoveryPhrase, salt);
+  const recoveryNonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+  const recoveryEncrypted = nacl.secretbox(secretKey, recoveryNonce, recoveryKey);
+
+  const recoveryData: RecoveryData = {
+    encrypted: encodeBase64(recoveryEncrypted),
+    nonce: encodeBase64(recoveryNonce),
+    salt: encodeBase64(salt),
+  };
+
+  getPersistentStorage().setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
+
+  refreshSession();
+  return recoveryPhrase;
+}
+
+/**
+ * Generar par de claves y guardarlo cifrado en localStorage
  */
 export async function generateAndStoreKeyPair(password: string): Promise<{
   publicKey: string;
   recoveryPhrase: string;
 }> {
   const kp = nacl.box.keyPair();
-  const salt = nacl.randomBytes(16);
-  const aesKey = await deriveKey(password, salt);
-  const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
-  const encrypted = nacl.secretbox(kp.secretKey, nonce, aesKey);
-  
-  const stored: StoredKeyPair = {
-    publicKey: encodeBase64(kp.publicKey),
-    secretKey: encodeBase64(encrypted),
-    nonce: encodeBase64(nonce),
-    salt: encodeBase64(salt),
-  };
-  
-  getPersistentStorage().setItem(KEY_STORAGE_KEY, JSON.stringify(stored));
-  refreshSession();
-
-  // Generar frase de recuperación BIP-39
-  const recoveryPhrase = generateMnemonic(128);
-
-  // Guardar cifrado con recovery phrase
-  const recoveryKey = await deriveKey(recoveryPhrase, salt);
-  const recoveryNonce = nacl.randomBytes(nacl.secretbox.nonceLength);
-  const recoveryEncrypted = nacl.secretbox(kp.secretKey, recoveryNonce, recoveryKey);
-  
-  const recoveryData: RecoveryData = {
-    encrypted: encodeBase64(recoveryEncrypted),
-    nonce: encodeBase64(recoveryNonce),
-    salt: encodeBase64(salt),
-  };
-  
-  getPersistentStorage().setItem(RECOVERY_STORAGE_KEY, JSON.stringify(recoveryData));
-
-  return { publicKey: stored.publicKey, recoveryPhrase };
+  const recoveryPhrase = await storeKeyPair(kp.secretKey, password);
+  return { publicKey: encodeBase64(kp.publicKey), recoveryPhrase };
 }
 
 /**

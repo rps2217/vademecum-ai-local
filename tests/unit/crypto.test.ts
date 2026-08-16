@@ -17,6 +17,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {
   deriveKey,
   generateAndStoreKeyPair,
+  storeKeyPair,
   unlockKeyPair,
   unlockWithRecovery,
   getPublicKey,
@@ -222,6 +223,89 @@ describe('crypto — recovery con frase BIP-39', () => {
     const secret = await unlockWithRecovery('any phrase');
     expect(secret).toBeNull();
   }, 15000);
+});
+
+describe('crypto — storeKeyPair (re-cifrado con nueva contraseña)', () => {
+  // Regresión del bug de inconsistencia de storage: antes, recover() en
+  // E2EEAuthProvider guardaba el keypair re-cifrado en sessionStorage con
+  // keys distintas ('vademecum_keypair' vs 'vademecum.keypair'), de modo que
+  // unlockKeyPair (que lee localStorage) no lo encontraba tras un recovery.
+  // storeKeyPair centraliza la lógica en localStorage con las keys correctas.
+
+  it('re-cifra un secretKey existente con nueva contraseña y se persiste en localStorage', async () => {
+    const { recoveryPhrase } = await generateAndStoreKeyPair(PASSWORD);
+    const originalSecret = await unlockWithRecovery(recoveryPhrase);
+    expect(originalSecret).not.toBeNull();
+
+    const NEW_PASSWORD = 'new-password-5678';
+    const newRecoveryPhrase = await storeKeyPair(originalSecret!, NEW_PASSWORD);
+
+    // El keypair está en localStorage (no sessionStorage), con la key correcta
+    expect(localStorage.getItem('vademecum.keypair')).not.toBeNull();
+    expect(sessionStorage.getItem('vademecum.keypair')).toBeNull();
+    expect(localStorage.getItem('vademecum.recovery')).not.toBeNull();
+    expect(sessionStorage.getItem('vademecum_recovery')).toBeNull();
+
+    // La nueva recovery phrase es distinta de la original
+    expect(newRecoveryPhrase).not.toBe(recoveryPhrase);
+    expect(newRecoveryPhrase.split(' ').length).toBeGreaterThanOrEqual(12);
+  }, 30000);
+
+  it('tras storeKeyPair, unlockKeyPair con la NUEVA contraseña devuelve el mismo secretKey', async () => {
+    // Este es el test clave del bug: antes, tras recover(), unlockKeyPair
+    // no encontraba el keypair (estaba en sessionStorage, no localStorage).
+    const { recoveryPhrase } = await generateAndStoreKeyPair(PASSWORD);
+    const originalSecret = await unlockWithRecovery(recoveryPhrase);
+
+    const NEW_PASSWORD = 'brand-new-pass-9999';
+    await storeKeyPair(originalSecret!, NEW_PASSWORD);
+
+    // unlockKeyPair lee localStorage('vademecum.keypair') — debe encontrarlo
+    const recoveredSecret = await unlockKeyPair(NEW_PASSWORD);
+    expect(recoveredSecret).not.toBeNull();
+    expect(recoveredSecret).toEqual(originalSecret);
+  }, 30000);
+
+  it('tras storeKeyPair, la contraseña VIEJA ya no funciona', async () => {
+    const { recoveryPhrase } = await generateAndStoreKeyPair(PASSWORD);
+    const originalSecret = await unlockWithRecovery(recoveryPhrase);
+
+    const NEW_PASSWORD = 'another-new-password';
+    await storeKeyPair(originalSecret!, NEW_PASSWORD);
+
+    // La contraseña vieja no debe descifrar el nuevo keypair
+    const result = await unlockKeyPair(PASSWORD);
+    expect(result).toBeNull();
+  }, 30000);
+
+  it('tras storeKeyPair, la nueva recovery phrase funciona y devuelve el mismo secretKey', async () => {
+    const { recoveryPhrase: oldPhrase } = await generateAndStoreKeyPair(PASSWORD);
+    const originalSecret = await unlockWithRecovery(oldPhrase);
+
+    const NEW_PASSWORD = 'pass-for-new-recovery';
+    const newRecoveryPhrase = await storeKeyPair(originalSecret!, NEW_PASSWORD);
+
+    // La nueva recovery phrase debe desbloquear el mismo secretKey
+    const secretFromNewRecovery = await unlockWithRecovery(newRecoveryPhrase);
+    expect(secretFromNewRecovery).not.toBeNull();
+    expect(secretFromNewRecovery).toEqual(originalSecret);
+
+    // La recovery phrase vieja ya no funciona (se sobrescribió)
+    const secretFromOldRecovery = await unlockWithRecovery(oldPhrase);
+    expect(secretFromOldRecovery).toBeNull();
+  }, 30000);
+
+  it('storeKeyPair preserva la misma publicKey del secretKey original', async () => {
+    const { recoveryPhrase, publicKey } = await generateAndStoreKeyPair(PASSWORD);
+    const originalSecret = await unlockWithRecovery(recoveryPhrase);
+
+    const NEW_PASSWORD = 'preserve-pubkey-test';
+    await storeKeyPair(originalSecret!, NEW_PASSWORD);
+
+    // La publicKey derivada del secretKey debe coincidir con la original
+    const derivedPubKey = nacl.box.keyPair.fromSecretKey(originalSecret!).publicKey;
+    expect(encodeBase64(derivedPubKey)).toBe(publicKey);
+  }, 30000);
 });
 
 describe('crypto — utilidades base64', () => {

@@ -148,20 +148,26 @@ src/
 
 ### E2EE (End-to-End Encryption)
 
-**Doble implementación (inconsistencia conocida):** Hay dos módulos que manejan
-el keypair, con claves y storage DIFERENTES — ver "Tareas pendientes" más abajo.
+**Implementación unificada:** Toda la lógica de cifrado y storage del keypair
+vive en `src/lib/crypto/e2ee.ts`. El `E2EEAuthProvider` es un orchestrador
+delgado que delega al módulo crypto.
 
-- **`src/lib/crypto/e2ee.ts`** (módulo crypto): `generateAndStoreKeyPair`,
-  `unlockKeyPair`, `hasKeyPair`, `deleteKeyPair` usan **localStorage** con
-  `KEY_STORAGE_KEY='vademecum.keypair'` (punto). El keypair CIFRADO (PBKDF2
-  600k + AES-GCM/secretbox) se persiste en localStorage; la clave de cifrado
-  se deriva del password y nunca se persiste. `sessionStorage` solo guarda un
-  flag de sesión (`vademecum.session`). Las claves NO se guardan en claro.
-- **`src/app/E2EEAuthProvider.tsx`** (provider de la app): `setup`/`unlock`
-  delegan a e2ee.ts (localStorage), pero `recover` re-cifra y guarda en
-  **sessionStorage** con `KEY_STORAGE_KEY='vademecum_keypair'` (guion bajo).
-  Esto es un **bug de inconsistencia**: tras un recovery, `unlockKeyPair`
-  (que lee localStorage) no encontraría el keypair nuevo. Ver tarea pendiente.
+- **`src/lib/crypto/e2ee.ts`** (módulo crypto): todas las funciones de storage
+  (`generateAndStoreKeyPair`, `storeKeyPair`, `unlockKeyPair`, `hasKeyPair`,
+  `deleteKeyPair`) usan **localStorage** con `KEY_STORAGE_KEY='vademecum.keypair'`
+  (punto). El keypair CIFRADO (PBKDF2 600k + AES-GCM/secretbox) se persiste en
+  localStorage; la clave de cifrado se deriva del password y nunca se persiste.
+  `sessionStorage` solo guarda un flag de sesión (`vademecum.session`).
+  Las claves NO se guardan en claro.
+- **`storeKeyPair(secretKey, password)`** (nueva en PR #53): re-cifra un
+  secretKey existente con una nueva contraseña y lo guarda en localStorage
+  (con la key correcta). Usada por `generateAndStoreKeyPair` (nueva cuenta)
+  y `E2EEAuthProvider.recover` (recuperación de contraseña). Centraliza la
+  lógica de storage en un solo lugar.
+- **`src/app/E2EEAuthProvider.tsx`** (provider de la app): `setup`/`unlock`/
+  `recover` delegan a e2ee.ts. `recover` usa `storeKeyPair` para re-cifrar con
+  la nueva contraseña (antes re-implementaba el storage en sessionStorage con
+  keys distintas → bug de inconsistencia, corregido en PR #53).
 
 Sesiones:
 - El flag de sesión y el timer (`_sessionExpiry` en e2ee.ts,
@@ -405,14 +411,16 @@ KB version: `v228-117-85-195-1154-146-126`.
       > 401 consecutivos (RLS bloquea escritura con anon key), el sync se desactiva.
       > El outbox se purga automáticamente (synced>1h, failed>24h). El upload real
       > requiere service role (no usada por la app).
-- [ ] Tests de integración completos — la suite unitaria ahora cubre 283 tests
+- [ ] Tests de integración completos — la suite unitaria ahora cubre 288 tests
       (26 archivos en `tests/unit/` + `src/__tests__/`), pero faltan tests de
       integración end-to-end del flujo de sync real con Supabase.
-- [ ] **Inconsistencia de storage en E2EE**: `e2ee.ts` usa localStorage
-      (`vademecum.keypair`), pero `E2EEAuthProvider.recover` usa sessionStorage
-      (`vademecum_keypair`). Tras un recovery, `unlockKeyPair` (que lee
-      localStorage) no encuentra el keypair nuevo. Unificar a un solo storage
-      + key. (Hallazgo de la auditoría de AGENTS.md, 2026-08-16.)
+- [x] ~~**Inconsistencia de storage en E2EE**~~ — RESUELTO (PR #53).
+      `e2ee.ts` usaba localStorage (`vademecum.keypair`), pero
+      `E2EEAuthProvider.recover` escribía en sessionStorage (`vademecum_keypair`).
+      Tras un recovery, `unlockKeyPair` (que lee localStorage) no encontraba el
+      keypair. Corregido: `recover` ahora delega a `storeKeyPair()` (nueva en
+      e2ee.ts), que centraliza toda la lógica de storage en localStorage con
+      las keys correctas. 5 tests de regresión en `crypto.test.ts`.
 - [x] ~~src/core/audit/~~ y ~~src/core/auth/~~ — ELIMINADOS (stubs que re-exportaban
       tipos DbAuditLog/UserRole inexistentes; cero importadores).
 - [x] ~~src/data/sync/~~ — ELIMINADO (@deprecated, cero importadores).
