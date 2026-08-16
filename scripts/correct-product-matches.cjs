@@ -23,6 +23,14 @@
  *   cianocobalamina → vitamina_b12, etc.) y corrección de matches obvios
  *   (Vitamina D → vitamina_d3, no d_glucarato).
  *
+ * FASE 4 — Resolver homeopáticos con dilución (D3, C6, C30, T.M.):
+ *   Detecta principios con sufijo de dilución homeopática, extrae el nombre
+ *   base ("Passiflora D3" → "Passiflora") y lo busca en la KB. Corrige
+ *   falsos positivos como "Passiflora D3" → vitamina_d3 (debería ser
+ *   pasiflora). La resolución es dinámica: no requiere entradas manuales
+ *   en el diccionario, por lo que se adapta automáticamente cuando la KB
+ *   agrega nuevos ingredientes homeopáticos.
+ *
  * Uso:
  *   SUPABASE_URL=https://tu-proyecto.supabase.co \
  *   SUPABASE_SERVICE_ROLE_KEY=sb_secret_... \
@@ -35,6 +43,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { resolveHomeopathic, hasHomeopathicSuffix } = require('./homeopathic-utils.cjs');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
@@ -104,6 +113,24 @@ function isBlacklisted(text) {
 
 
 const SINONIMOS_QUIMICOS = CATEGORIZATION.sinonimos_quimicos.mapping;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Cargar KB local (para resolución homeopática dinámica)
+// ═══════════════════════════════════════════════════════════════════════════
+function loadKbIngredients() {
+  const kbDir = path.join(__dirname, '..', 'src', 'db', 'seeders', 'data');
+  const files = ['fitoterapia.json', 'homeopatia.json', 'aceites.json', 'vitaminas_minerales.json'];
+  const map = new Map();
+  for (const file of files) {
+    const data = JSON.parse(fs.readFileSync(path.join(kbDir, file), 'utf-8'));
+    for (const ing of data.ingredientes) {
+      map.set(ing.id, { id: ing.id, nombre: ing.nombre, sinonimos: ing.sinonimos || [], nombresAlternativos: ing.nombresAlternativos || [], categoria: ing.categoria || '' });
+    }
+  }
+  return map;
+}
+
+const KB_INGREDIENTS = loadKbIngredients();
 
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -193,6 +220,7 @@ async function main() {
     fase2_desmatheados: 0,
     fase3_corregidos: 0,
     fase3_ya_correctos: 0,
+    fase4_corregidos: 0,
     sin_cambio: 0,
   };
 
@@ -200,6 +228,7 @@ async function main() {
   const updatesRebase = []; // fase 1
   const updatesBlacklist = []; // fase 2
   const updatesSynonym = []; // fase 3
+  const updatesHomeo = []; // fase 4
 
   for (const row of rows) {
     const principio = row.principio_text;
@@ -231,7 +260,19 @@ async function main() {
         }
         continue;
       }
-      // Si ya está matcheado al ID correcto, no hacer nada
+    }
+
+    // FASE 4: Resolver homeopáticos con dilución (D3, C6, C30, T.M.)
+    // Extrae el nombre base y busca el ingrediente homeopático en la KB.
+    // Corrige falsos positivos como "Passiflora D3" → vitamina_d3.
+    if (hasHomeopathicSuffix(principio)) {
+      const homeo = resolveHomeopathic(principio, KB_INGREDIENTS);
+      if (homeo && homeo.ingredientId !== currentId) {
+        if (!ONLY_PHASE || ONLY_PHASE === 4) {
+          updatesHomeo.push({ row, newId: homeo.ingredientId, score: homeo.score, type: 'homeopathic' });
+        }
+        continue;
+      }
     }
 
     stats.sin_cambio++;
@@ -312,6 +353,31 @@ async function main() {
     console.log(`  ✅ ${applied} matches corregidos`);
   }
 
+  // --- Aplicar FASE 4 ---
+  if (updatesHomeo.length > 0 && (!ONLY_PHASE || ONLY_PHASE === 4)) {
+    console.log(`\nFASE 4: Resolver ${updatesHomeo.length} homeopáticos con dilución`);
+    let applied = 0;
+    for (const u of updatesHomeo) {
+      if (DRY_RUN) {
+        if (applied < 20) console.log(`  [DRY] ${u.row.producto_sku} | "${u.row.principio_text}" | ${u.row.ingredient_id || 'NULL'} → ${u.newId}`);
+        applied++;
+        continue;
+      }
+      try {
+        await supabaseUpdate('product_ingredients', {
+          producto_sku: u.row.producto_sku,
+          principio_text: u.row.principio_text,
+          matched_via: u.row.matched_via,
+        }, { ingredient_id: u.newId, match_type: 'synonym', match_score: u.score, is_matched: true });
+        applied++;
+      } catch (err) {
+        if (applied < 5) console.error(`  ❌ ${u.row.producto_sku}: ${err.message}`);
+      }
+    }
+    stats.fase4_corregidos = applied;
+    console.log(`  ✅ ${applied} homeopáticos corregidos`);
+  }
+
   // --- Resumen ---
   console.log('\n' + '═'.repeat(60));
   console.log('  RESUMEN');
@@ -319,6 +385,7 @@ async function main() {
   console.log(`  FASE 1 — IDs consolidados re-referenciados: ${stats.fase1_rebasados}`);
   console.log(`  FASE 2 — Excipientes/tags desmatheados:     ${stats.fase2_desmatheados}`);
   console.log(`  FASE 3 — Matches corregidos (sinónimos):   ${stats.fase3_corregidos}`);
+  console.log(`  FASE 4 — Homeopáticos con dilución:        ${stats.fase4_corregidos}`);
   console.log(`  Sin cambio necesario:                       ${stats.sin_cambio}`);
   console.log('═'.repeat(60));
 }
