@@ -4,7 +4,7 @@
  * Formulario para crear/editar ingredientes.
  */
 
-import { useState, useCallback, memo } from 'react';
+import { useState, useCallback, memo, useId } from 'react';
 import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
@@ -78,6 +78,20 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const ids = {
+    nombre: useId(),
+    sinonimos: useId(),
+    categoria: useId(),
+    familia: useId(),
+    evidencia: useId(),
+    indicaciones: useId(),
+    propiedades: useId(),
+    interacciones: useId(),
+    segEmbarazo: useId(),
+    segLactancia: useId(),
+    segPediatria: useId(),
+  };
 
   const handleChange = useCallback((field: string, value: string | string[]) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -163,8 +177,9 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Nombre */}
           <div>
-            <label className="block text-sm font-medium mb-1">Nombre *</label>
+            <label htmlFor={ids.nombre} className="block text-sm font-medium mb-1">Nombre *</label>
             <Input
+              id={ids.nombre}
               value={form.nombre}
               onChange={(e) => handleChange('nombre', e.target.value)}
               placeholder="Ej: Valeriana"
@@ -174,11 +189,12 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
 
           {/* Sinónimos */}
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label htmlFor={ids.sinonimos} className="block text-sm font-medium mb-1">
               Sinónimos
               <span className="text-muted-foreground text-xs ml-1">(separados por coma)</span>
             </label>
             <Input
+              id={ids.sinonimos}
               value={form.sinonimos}
               onChange={(e) => handleChange('sinonimos', e.target.value)}
               placeholder="Ej: Valeriana officinalis, Hierba de los gatos"
@@ -188,11 +204,11 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
           {/* Categoría y Familia */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Categoría</label>
+              <label htmlFor={ids.categoria} className="block text-sm font-medium mb-1">Categoría</label>
               <select
+                id={ids.categoria}
                 value={form.categoria}
                 onChange={(e) => handleChange('categoria', e.target.value as IngredientCategory)}
-                aria-label="Categoría"
                 className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 {CATEGORIES.map((cat) => (
@@ -203,8 +219,9 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Familia</label>
+              <label htmlFor={ids.familia} className="block text-sm font-medium mb-1">Familia</label>
               <Input
+                id={ids.familia}
                 value={form.familia}
                 onChange={(e) => handleChange('familia', e.target.value)}
                 placeholder="Ej: Valerianaceae"
@@ -214,8 +231,8 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
 
           {/* Sistemas Corporales */}
           <div>
-            <label className="block text-sm font-medium mb-2">Sistemas Corporales</label>
-            <div className="flex flex-wrap gap-2">
+            <span id={ids.categoria + '-systems'} className="block text-sm font-medium mb-2">Sistemas Corporales</span>
+            <div className="flex flex-wrap gap-2" role="group" aria-labelledby={ids.categoria + '-systems'}>
               {BODY_SYSTEMS.map((sys) => (
                 <button
                   key={sys.value}
@@ -238,11 +255,11 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
 
           {/* Evidencia */}
           <div>
-            <label className="block text-sm font-medium mb-1">Nivel de Evidencia</label>
+            <label htmlFor={ids.evidencia} className="block text-sm font-medium mb-1">Nivel de Evidencia</label>
             <select
+              id={ids.evidencia}
               value={form.evidencia}
               onChange={(e) => handleChange('evidencia', e.target.value as EvidenceLevel)}
-              aria-label="Nivel de evidencia"
               className="w-full h-10 px-3 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
             >
               {EVIDENCE_LEVELS.map((level) => (
@@ -255,11 +272,12 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
 
           {/* Indicaciones */}
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label htmlFor={ids.indicaciones} className="block text-sm font-medium mb-1">
               Indicaciones
               <span className="text-muted-foreground text-xs ml-1">(separadas por coma)</span>
             </label>
             <Input
+              id={ids.indicaciones}
               value={form.indicaciones}
               onChange={(e) => handleChange('indicaciones', e.target.value)}
               placeholder="Ej: Insomnio, Ansiedad, Estrés"
@@ -268,27 +286,28 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
 
           {/* Propiedades */}
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label htmlFor={ids.propiedades} className="block text-sm font-medium mb-1">
               Propiedades
               <span className="text-muted-foreground text-xs ml-1">(una por línea)</span>
             </label>
             <textarea
+              id={ids.propiedades}
               value={form.propiedades}
               onChange={(e) => handleChange('propiedades', e.target.value)}
               placeholder="Ej: Sedante natural&#10;Relajante muscular"
               rows={3}
-              aria-label="Propiedades"
               className="w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
             />
           </div>
 
           {/* Interacciones */}
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label htmlFor={ids.interacciones} className="block text-sm font-medium mb-1">
               Interacciones Medicamentosas
               <span className="text-muted-foreground text-xs ml-1">(separadas por coma)</span>
             </label>
             <Input
+              id={ids.interacciones}
               value={form.interacciones}
               onChange={(e) => handleChange('interacciones', e.target.value)}
               placeholder="Ej: Warfarina, Benzodiacepinas"
@@ -297,14 +316,14 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
 
           {/* Seguridad */}
           <div>
-            <label className="block text-sm font-medium mb-2">Seguridad</label>
-            <div className="grid grid-cols-3 gap-3">
+            <span id={ids.segEmbarazo + '-group'} className="block text-sm font-medium mb-2">Seguridad</span>
+            <div className="grid grid-cols-3 gap-3" role="group" aria-labelledby={ids.segEmbarazo + '-group'}>
               <div>
-                <label className="block text-xs text-muted-foreground mb-1">Embarazo</label>
+                <label htmlFor={ids.segEmbarazo} className="block text-xs text-muted-foreground mb-1">Embarazo</label>
                 <select
+                  id={ids.segEmbarazo}
                   value={form.seguridadEmbarazo}
                   onChange={(e) => handleChange('seguridadEmbarazo', e.target.value)}
-                  aria-label="Seguridad en embarazo"
                   className="w-full h-9 px-2 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="">No especificado</option>
@@ -314,11 +333,11 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
                 </select>
               </div>
               <div>
-                <label className="block text-xs text-muted-foreground mb-1">Lactancia</label>
+                <label htmlFor={ids.segLactancia} className="block text-xs text-muted-foreground mb-1">Lactancia</label>
                 <select
+                  id={ids.segLactancia}
                   value={form.seguridadLactancia}
                   onChange={(e) => handleChange('seguridadLactancia', e.target.value)}
-                  aria-label="Seguridad en lactancia"
                   className="w-full h-9 px-2 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="">No especificado</option>
@@ -328,11 +347,11 @@ const IngredientEditorComponent = ({ ingredient, onSave, onCancel }: IngredientE
                 </select>
               </div>
               <div>
-                <label className="block text-xs text-muted-foreground mb-1">Pediatría</label>
+                <label htmlFor={ids.segPediatria} className="block text-xs text-muted-foreground mb-1">Pediatría</label>
                 <select
+                  id={ids.segPediatria}
                   value={form.seguridadPediatria}
                   onChange={(e) => handleChange('seguridadPediatria', e.target.value)}
-                  aria-label="Seguridad en pediatría"
                   className="w-full h-9 px-2 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="">No especificado</option>
