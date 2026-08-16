@@ -3,8 +3,8 @@
     "nombre": "Red de Sinergias",
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-14",
-    "total": 1171,
+    "ultimaActualizacion": "2026-08-16",
+    "total": 1167,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -18238,27 +18238,6 @@
       ]
     },
     {
-      "id": "sin_zarzaparrilla_smilax",
-      "ingredienteA": "zarzaparrilla",
-      "ingredienteB": "zarzaparrilla",
-      "tipo": "sinergia",
-      "nivelEvidencia": "C",
-      "descripcion": "Zarzaparrilla y smilax (misma planta) para depuracion y reumatismo.",
-      "beneficios": [
-        "Depurativo tradicional",
-        "Diuresis y sudorificacion"
-      ],
-      "precauciones": [],
-      "mecanismo": "Saponinas esteroidales con accion depurativa y diuretica.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "digestivo"
-      ]
-    },
-    {
       "id": "sin_escaramujo_vitamina_c",
       "ingredienteA": "escaramujo",
       "ingredienteB": "vitamina_c",
@@ -18817,31 +18796,6 @@
       ],
       "sistemas": [
         "hepatico"
-      ]
-    },
-    {
-      "id": "sin_graviola_graviola",
-      "ingredienteA": "graviola",
-      "ingredienteB": "graviola",
-      "tipo": "sinergia",
-      "nivelEvidencia": "C",
-      "descripcion": "Graviola (anonácea) y acetogeninas para inmunidad.",
-      "beneficios": [
-        "Inmunomodulador",
-        "Antioxidante"
-      ],
-      "precauciones": [
-        "Uso moderado: posible neurotoxicidad de acetogeninas"
-      ],
-      "mecanismo": "Acetogeninas + antioxidantes modulan inmunidad.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "digestivo",
-        "inmune",
-        "nervioso"
       ]
     },
     {
@@ -26335,31 +26289,6 @@
       ]
     },
     {
-      "id": "sin_lycopus_bugleweed_lemon_balm",
-      "ingredienteA": "lycopus",
-      "ingredienteB": "melisa",
-      "tipo": "complementario",
-      "nivelEvidencia": "C",
-      "descripcion": "Doble referencia a sinergia Lamiaceae antitiroides + nervina (re-aplica concepto herb-pair).",
-      "beneficios": [
-        "Taquicardia",
-        "Ansiedad",
-        "Hipertiroidismo leve"
-      ],
-      "precauciones": [
-        "Contraindicado en hipotiroidismo"
-      ],
-      "mecanismo": "Concepto herb-pair (binomio herbal) de Lamiaceae con acción antitiroidea + nervina.",
-      "sistemas": [
-        "endocrino",
-        "nervioso"
-      ],
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ]
-    },
-    {
       "id": "sin_artemisia_capilaris_silimarina",
       "ingredienteA": "artemisia_capilaris",
       "ingredienteB": "silimarina",
@@ -27604,30 +27533,6 @@
       "sistemas": [
         "nervioso",
         "digestivo"
-      ],
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ]
-    },
-    {
-      "id": "sin_sarmiento_mirtilo",
-      "ingredienteA": "sarmiento",
-      "ingredienteB": "mirtilo",
-      "tipo": "complementario",
-      "nivelEvidencia": "B",
-      "descripcion": "Venotonico + microcirculatorio para insuficiencia venosa y retina.",
-      "beneficios": [
-        "Reduce pesadez de piernas",
-        "Mejora vision y microcirculacion"
-      ],
-      "precauciones": [
-        "Vigilar anticoagulantes"
-      ],
-      "mecanismo": "OPC + antocianosidos estabilizan capilares.",
-      "sistemas": [
-        "cardiovascular",
-        "ocular"
       ],
       "categorias": [
         "fitoterapia",
