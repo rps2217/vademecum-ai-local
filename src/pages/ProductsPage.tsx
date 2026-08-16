@@ -22,13 +22,15 @@ import { ProductResultCard } from '@/ui/ProductResultCard';
 import { ProductDetail } from '@/ui/ProductDetail';
 import { useSearch } from '@/contexts/SearchContext';
 import { productSearchService, useProductIndex } from '@/core/search';
-import type { ProductSearchResult, ProductFacet } from '@/core/search';
+import type { ProductSearchResult, ProductFacet, SafetyFacetField } from '@/core/search';
+import { SAFETY_FACET_FIELDS } from '@/core/search';
 import { PRODUCT_CATEGORIES, PRODUCT_CATEGORY_LABELS, type ProductCategory } from '@/core/catalog';
 import { ingredientSearchService } from '@/core/search';
 import { db } from '@/db';
 import type { DbProduct, DbProductIngredientAnalysis } from '@/db/schema';
+import type { SafetyStatus } from '@/types/shared-enums';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { Filter, ChevronDown, X, PackageSearch, Loader2 } from 'lucide-react';
+import { Filter, ChevronDown, X, PackageSearch, Loader2, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const PAGE_SIZE = 24;
@@ -42,12 +44,43 @@ const CATEGORY_STYLES: Record<ProductCategory, string> = {
   otros: 'bg-slate-500/10 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-800',
 };
 
+/** Etiquetas legibles para cada campo de seguridad. */
+const SAFETY_FIELD_LABELS: Record<string, string> = {
+  embarazo: 'Embarazo',
+  lactancia: 'Lactancia',
+  pediatria: 'Pediatría',
+  hipertension: 'Hipertensión',
+  diabetes: 'Diabetes',
+  celiacos: 'Celíacos',
+};
+
+/** Etiquetas y estilos para cada valor de SafetyStatus en los chips. */
+const SAFETY_STATUS_STYLES: Record<string, { label: string; className: string }> = {
+  apto: {
+    label: 'Apto',
+    className: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800',
+  },
+  evitar: {
+    label: 'Evitar',
+    className: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-800',
+  },
+  contraindicado: {
+    label: 'Contraindicado',
+    className: 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-300 dark:border-red-800',
+  },
+  desconocido: {
+    label: 'Sin datos',
+    className: 'bg-slate-500/10 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-800',
+  },
+};
+
 export function ProductsPage() {
   const navigate = useNavigate();
   const { query, setQuery } = useSearch();
   const { ready } = useProductIndex();
 
   const [category, setCategory] = useState<ProductCategory | ''>('');
+  const [safetyFilters, setSafetyFilters] = useState<Partial<Record<SafetyFacetField, SafetyStatus>>>({});
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [selectedProduct, setSelectedProduct] = useState<DbProduct | null>(null);
 
@@ -57,14 +90,18 @@ export function ProductsPage() {
     if (!ready) return [];
     const facets: Partial<Record<ProductFacet, string>> = {};
     if (category) facets.categoria = category;
-    return productSearchService.searchSync(hasQuery ? query : undefined, facets);
-  }, [query, category, ready, hasQuery]);
+    for (const [field, status] of Object.entries(safetyFilters)) {
+      if (status) facets[field as SafetyFacetField] = status;
+    }
+    const hasFacets = Object.keys(facets).length > 0;
+    return productSearchService.searchSync(hasQuery ? query : undefined, hasFacets ? facets : undefined);
+  }, [query, category, safetyFilters, ready, hasQuery]);
 
   const visibleResults = results.slice(0, visibleCount);
   const hasMore = results.length > visibleCount;
 
   // Reset de paginación cuando cambian los filtros/búsqueda.
-  const filterKey = `${query}|${category}`;
+  const filterKey = `${query}|${category}|${JSON.stringify(safetyFilters)}`;
   const [lastFilterKey, setLastFilterKey] = useState(filterKey);
   if (filterKey !== lastFilterKey) {
     setLastFilterKey(filterKey);
@@ -90,11 +127,30 @@ export function ProductsPage() {
   }, [selectedProduct?.sku]);
 
   const categoryCounts = useMemo(() => ready ? productSearchService.categoriaCounts() : new Map<ProductCategory, number>(), [ready]);
+  const safetyCountsMap = useMemo(() => {
+    if (!ready) return new Map<SafetyFacetField, Map<SafetyStatus, number>>();
+    const m = new Map<SafetyFacetField, Map<SafetyStatus, number>>();
+    for (const field of SAFETY_FACET_FIELDS) {
+      m.set(field, productSearchService.safetyCounts(field));
+    }
+    return m;
+  }, [ready]);
 
-  const activeFiltersCount = [category].filter(Boolean).length;
+  const toggleSafety = (field: SafetyFacetField, status: SafetyStatus) => {
+    setSafetyFilters((prev) => {
+      const next = { ...prev };
+      if (next[field] === status) delete next[field];
+      else next[field] = status;
+      return next;
+    });
+  };
+
+  const activeSafetyCount = Object.keys(safetyFilters).length;
+  const activeFiltersCount = [category].filter(Boolean).length + activeSafetyCount;
 
   const clearAll = () => {
     setCategory('');
+    setSafetyFilters({});
     setQuery('');
   };
 
@@ -158,9 +214,53 @@ export function ProductsPage() {
         </div>
       </div>
 
+      {/* Filtros por seguridad (población especial) */}
+      <div className="space-y-3">
+        <p className="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+          <ShieldCheck className="w-4 h-4" />
+          Seguridad
+        </p>
+        <div className="flex flex-col gap-2">
+          {SAFETY_FACET_FIELDS.map((field) => {
+            const counts = safetyCountsMap.get(field) ?? new Map<SafetyStatus, number>();
+            const statuses = (['apto', 'evitar', 'contraindicado'] as SafetyStatus[])
+              .filter((s) => (counts.get(s) ?? 0) > 0);
+            if (statuses.length === 0) return null;
+            return (
+              <div key={field} className="flex flex-wrap items-center gap-2">
+                <span className="text-sm text-muted-foreground w-24 shrink-0">
+                  {SAFETY_FIELD_LABELS[field]}:
+                </span>
+                {statuses.map((status) => {
+                  const count = counts.get(status) ?? 0;
+                  const isActive = safetyFilters[field] === status;
+                  const style = SAFETY_STATUS_STYLES[status];
+                  return (
+                    <button
+                      key={status}
+                      onClick={() => toggleSafety(field, status)}
+                      className={cn(
+                        'px-3 py-1.5 rounded-full text-xs font-medium border transition-colors min-h-[32px]',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                        isActive
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : style.className,
+                      )}
+                    >
+                      {style.label}
+                      <span className="ml-1.5 opacity-70">{count}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Acciones de filtro */}
       {activeFiltersCount > 0 && (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <Button variant="ghost" size="sm" onClick={clearAll}>
             <X className="w-4 h-4 mr-1" />
             Limpiar filtros
@@ -169,6 +269,13 @@ export function ProductsPage() {
             <Badge variant="secondary">
               {PRODUCT_CATEGORY_LABELS[category]}
             </Badge>
+          )}
+          {Object.entries(safetyFilters).map(([field, status]) =>
+            status ? (
+              <Badge key={field} variant="secondary">
+                {SAFETY_FIELD_LABELS[field]}: {SAFETY_STATUS_STYLES[status].label}
+              </Badge>
+            ) : null,
           )}
         </div>
       )}
@@ -209,11 +316,11 @@ export function ProductsPage() {
             <PackageSearch className="w-7 h-7 text-muted-foreground" />
           </div>
           <p className="text-base font-medium text-foreground">
-            {hasQuery || category
+            {hasQuery || category || activeSafetyCount > 0
               ? 'No se encontraron productos con esos criterios'
               : 'Escribe para buscar productos'}
           </p>
-          {(hasQuery || category) && (
+          {(hasQuery || category || activeSafetyCount > 0) && (
             <Button variant="ghost" className="mt-3" onClick={clearAll}>
               Limpiar filtros
             </Button>

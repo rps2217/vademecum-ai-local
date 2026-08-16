@@ -35,8 +35,8 @@ describe('ProductSearchService', () => {
     await db.products.clear();
     await db.products.bulkPut([
       makeProduct({ sku: 'arnica-1', nombreComercial: 'Ungüento Arnica Pote 35 Gr', principiosActivos: ['Arnica'], fabricante: 'Knop' }),
-      makeProduct({ sku: 'magnesio-1', nombreComercial: 'Magnesio Quelado 400mg', principiosActivos: ['Magnesio', 'Vitamina B6'], fabricante: 'Pharma' }),
-      makeProduct({ sku: 'valeriana-1', nombreComercial: 'Valeriana Extracto', principiosActivos: ['Valeriana'], indicaciones: ['Insomnio'] }),
+      makeProduct({ sku: 'magnesio-1', nombreComercial: 'Magnesio Quelado 400mg', principiosActivos: ['Magnesio', 'Vitamina B6'], fabricante: 'Pharma', embarazo: 'apto', lactancia: 'apto' }),
+      makeProduct({ sku: 'valeriana-1', nombreComercial: 'Valeriana Extracto', principiosActivos: ['Valeriana'], indicaciones: ['Insomnio'], embarazo: 'contraindicado', diabetes: 'evitar' }),
       makeProduct({ sku: 'deleted-1', nombreComercial: 'Producto Borrado', tombstone: 1 }),
     ]);
     await productSearchService.buildIndex();
@@ -100,5 +100,62 @@ describe('ProductSearchService', () => {
     for (let i = 1; i < r.length; i++) {
       expect(r[i - 1].score).toBeGreaterThanOrEqual(r[i].score);
     }
+  });
+
+  // ─── Safety facet tests ──────────────────────────────────────────
+
+  it('safetyCounts cuenta productos por valor de seguridad', () => {
+    const embarazoCounts = productSearchService.safetyCounts('embarazo');
+    // arnica-1=evitar (default), magnesio-1=apto, valeriana-1=contraindicado
+    expect(embarazoCounts.get('evitar')).toBe(1);
+    expect(embarazoCounts.get('apto')).toBe(1);
+    expect(embarazoCounts.get('contraindicado')).toBe(1);
+  });
+
+  it('filtra por safety facet sin query (lista completa filtrada)', () => {
+    const r = productSearchService.searchSync(undefined, { embarazo: 'apto' });
+    expect(r.length).toBe(1);
+    expect(r[0].product.sku).toBe('magnesio-1');
+  });
+
+  it('filtra por safety facet "evitar" sin query', () => {
+    const r = productSearchService.searchSync(undefined, { embarazo: 'evitar' });
+    expect(r.length).toBe(1);
+    expect(r[0].product.sku).toBe('arnica-1');
+  });
+
+  it('filtra por safety facet "contraindicado"', () => {
+    const r = productSearchService.searchSync(undefined, { embarazo: 'contraindicado' });
+    expect(r.length).toBe(1);
+    expect(r[0].product.sku).toBe('valeriana-1');
+  });
+
+  it('combina safety facet con query de texto', () => {
+    // Buscar "extracto" filtrando solo aptos en embarazo → valeriana es contraindicado, no aparece
+    const r = productSearchService.searchSync('extracto', { embarazo: 'apto' });
+    expect(r.length).toBe(0);
+    // Sin filtro de safety, "extracto" encuentra valeriana
+    const r2 = productSearchService.searchSync('extracto');
+    expect(r2.some((x) => x.product.sku === 'valeriana-1')).toBe(true);
+  });
+
+  it('combina múltiples safety facets con AND', () => {
+    // apto en embarazo AND apto en lactancia → solo magnesio-1
+    const r = productSearchService.searchSync(undefined, { embarazo: 'apto', lactancia: 'apto' });
+    expect(r.length).toBe(1);
+    expect(r[0].product.sku).toBe('magnesio-1');
+  });
+
+  it('combina safety facet con categoría', () => {
+    // Categoría + safety: arnica-1 es fitoterapia + evitar en embarazo
+    const r = productSearchService.searchSync(undefined, { categoria: 'fitoterapia', embarazo: 'evitar' });
+    expect(r.length).toBe(1);
+    expect(r[0].product.sku).toBe('arnica-1');
+  });
+
+  it('filtra por diabetes: valeriana-1 es evitar', () => {
+    const r = productSearchService.searchSync(undefined, { diabetes: 'evitar' });
+    expect(r.length).toBe(1);
+    expect(r[0].product.sku).toBe('valeriana-1');
   });
 });
