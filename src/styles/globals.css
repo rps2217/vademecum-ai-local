@@ -33,9 +33,11 @@
   /* Colors - Secondary (Blue) */
   --color-secondary-50: #eff6ff;
   --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
   --color-secondary-500: #3b82f6;
   --color-secondary-600: #2563eb;
   --color-secondary-700: #1d4ed8;
+  --color-secondary-900: #1e3a8a;
   
   /* Colors - Accent (Violet according to design) */
   --color-accent-50: #f5f3ff;
@@ -48,6 +50,7 @@
   --color-accent-700: #6d28d9;
   --color-accent-800: #5b21b6;
   --color-accent-900: #4c1d95;
+  --color-accent-950: #2e1065;
   
   /* Colors - Neutrals */
   --color-gray-50: #f9fafb;
@@ -72,6 +75,7 @@
   --color-warning-500: #f59e0b;
   --color-warning-950: #451a03;
   --color-error-50: #fef2f2;
+  --color-error-400: #f87171;
   --color-error-500: #ef4444;
   --color-error-600: #dc2626;
   --color-error-950: #450a0a;
@@ -277,6 +281,14 @@
  * ============================================ */
 
 @layer utilities {
+  /* Button press feedback */
+  .btn-press {
+    transition: transform 0.1s ease-out;
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
   /* Background colors */
   .bg-background { background-color: var(--background); }
   .bg-background-secondary { background-color: var(--background-secondary); }
