@@ -364,9 +364,28 @@ La KB se expandió en 17 rondas incrementales (ver `git log --oneline`):
 | 16 | — | 593→610 | 1090→1113 | +17 ingredientes (ocular/urinario/reproductivo/hepático/endocrino), +23 sinergias, +70 sinónimos búsqueda |
 | 17 | ec8aa14 | 610→625 | 1113→1154 | +15 ingredientes (mirtilo, aronia, olmaria, verbeno, pueraria, desmodium, achicoria, esquizandra, estevia, naranjo_amargo, sarmiento, 4 probióticos/prebióticos), +41 sinergias, +35 sinónimos búsqueda |
 
-**Estado final:** 625 ingredientes (228 fito, 117 homeo, 85 aceites, 195
-vitaminas/compuestos), 1154 sinergias, 0 huérfanos, grado medio 3.7.
-KB version: `v228-117-85-195-1154-146-126`.
+**Estado final:** 619 ingredientes (227 fito, 117 homeo, 83 aceites, 192
+vitaminas/compuestos), 1157 sinergias, 0 huérfanos.
+KB version: `v227-117-83-192-1157-146-126-n5`.
+
+> **Nota ronda 18 (consolidación de duplicados):** Detectó 15 pares de
+> ingredientes duplicados en la KB (mismo ingrediente con IDs diferentes,
+> ej: `cola_caballo` vs `cola_de_caballo`, `diente_leon` vs `diente_de_leon`).
+> Esto causaba matches inconsistentes en `product_ingredients` de Supabase:
+> un producto con "Cola de Caballo" podía matchear a cualquiera de los dos
+> IDs según el algoritmo, apareciendo como ingredientes diferentes en la UI.
+> La consolidación mergeeó los datos (unión de sistemas, indicaciones,
+> sinónimos), re-referenció 39 sinergias al ID canónico, y eliminó 10
+> sinergias duplicadas/auto-referenciadas. El ID eliminado se conservó como
+> sinónimo del canónico para mantener la búsqueda. Script:
+> `scripts/consolidate-duplicates.py`. Pares consolidados:
+> `diente_de_leon→diente_leon`, `olivo_hoja→olivo`,
+> `cola_de_caballo→cola_caballo`, `vara_de_oro→solidago`,
+> `marrubium→marrubio`, `picrorhiza→picrorrhiza`, `guggul→guggulu`,
+> `damiana_hoja→damiana`, `ylang_ylang→ilang_ilang`, `clavo_aceite→clavo`,
+> `l_triptofano→triptofano`, `pqq_pyrroloquinoline→pqq`,
+> `nmn_nicotinamide→nmn`, `lactobacillus_acidophilus→l_acidophilus`,
+> `bifidobacterium_longum→b_longum`.
 
 > **Nota rondas 14-15:** La ronda 14 detectó que el estado real de la KB
 > (537 ingredientes, 707 sinergias) difería del documentado en AGENTS.md
