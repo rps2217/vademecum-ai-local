@@ -11,6 +11,7 @@ import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2
 import { cn } from '@/lib/utils';
 import { useSync } from '@/hooks/useSync';
 import { isSupabaseConfigured, testConnection } from '@/lib/supabase';
+import { forceReplicateProducts } from '@/core/sync';
 import { toast } from 'sonner';
 
 type Tab = 'appearance' | 'sync' | 'ai' | 'data' | 'account';
@@ -197,9 +198,15 @@ function SyncTab() {
     const loadingToast = toast.loading('Sincronizando...');
     try {
       const result = await sync();
+      // También re-replicar productos comerciales (ignora el contador de fallos
+      // para que el botón "Sincronizar ahora" siempre reintente).
+      const replResult = await forceReplicateProducts();
       toast.dismiss(loadingToast);
+      const replMsg = replResult.skipped
+        ? ''
+        : ` + ${replResult.products} productos`;
       if (result.state === 'idle' && result.errors.length === 0) {
-        toast.success(`Sincronizado: ${result.completed} registros`);
+        toast.success(`Sincronizado: ${result.completed} registros${replMsg}`);
       } else {
         toast.error(result.errors[0] || 'Error en sincronización');
       }

@@ -24,6 +24,7 @@ export {
 export {
   productReplicator,
   replicateProducts,
+  forceReplicateProducts,
   isProductCatalogReplicated,
   type ReplicationResult,
 } from './ProductReplicator';
