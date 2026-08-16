@@ -64,6 +64,11 @@ export class SyncService {
   // sync (probablemente las tablas no existen o el endpoint es inválido).
   private consecutiveNetworkFailures = 0;
   private static readonly MAX_NETWORK_FAILURES = 3;
+  // Fail-fast para uploads 401: la anon key solo permite lectura (RLS);
+  // los upserts fallan con 401 y, sin tope, se reintentan cada 30s para
+  // siempre. Tras MAX_UPLOAD_401_FAILURES consecutivos, desactivar el sync.
+  private consecutiveUpload401s = 0;
+  private static readonly MAX_UPLOAD_401_FAILURES = 3;
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -307,6 +312,10 @@ export class SyncService {
         op.status = 'synced';
         await db.outbox.put(op);
         uploaded++;
+        // Un upload exitoso indica que las credenciales vuelven a tener
+        // permiso de escritura (ej. se rotó a service role). Resetear el
+        // contador de fallos 401 para reactivar el fail-fast limpio.
+        this.consecutiveUpload401s = 0;
       } catch (error) {
         if (error instanceof ConflictError) {
           conflicts++;
@@ -325,13 +334,29 @@ export class SyncService {
           op.lastError = error.message;
           await db.outbox.put(op);
         } else if (error instanceof UnauthorizedError) {
-          logger.warn('[SyncService] Unauthorized - token may need refresh');
-          op.status = 'pending'; // Reset para reintentar después de refresh
-          op.retries++;
-          op.lastError = 'Unauthorized';
-          await db.outbox.put(op);
-          // Intentar refresh de token
-          this.handleUnauthorized();
+          this.consecutiveUpload401s++;
+          if (this.consecutiveUpload401s >= SyncService.MAX_UPLOAD_401_FAILURES) {
+            // La anon key solo permite lectura (RLS); la escritura requiere
+            // service role. Desactivar el sync para evitar reintentos infinitos.
+            op.status = 'failed';
+            op.lastError = 'Unauthorized (RLS bloquea escritura con anon key)';
+            await db.outbox.put(op);
+            this.disableSync(
+              `Sync desactivado tras ${this.consecutiveUpload401s} fallos de ` +
+              `autenticación (401) en uploads. La anon key solo permite lectura ` +
+              `(RLS); la escritura a Supabase requiere service role.`
+            );
+          } else {
+            logger.warn(
+              `[SyncService] Unauthorized en upload (${this.consecutiveUpload401s}/` +
+              `${SyncService.MAX_UPLOAD_401_FAILURES}). Reintentando tras refresh.`
+            );
+            op.status = 'pending';
+            op.retries++;
+            op.lastError = 'Unauthorized';
+            await db.outbox.put(op);
+            this.handleUnauthorized();
+          }
         } else {
           op.status = op.retries >= this.config.maxRetries - 1 ? 'failed' : 'pending';
           op.retries++;
