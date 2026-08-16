@@ -9,9 +9,11 @@
 import {
   Leaf, FlaskConical, Pill, Brain, HeartPulse, Wind, Moon, Zap, Utensils,
   Shield, Sparkles, Bone, Eye, Droplet, Activity, Flame, ShieldCheck, Baby,
+  Dna,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { normalize } from '@/lib/text';
+import { BODY_SYSTEMS, type BodySystem } from '@/types/shared-enums';
 
 export const CATEGORIES: { value: string; label: string }[] = [
   { value: '', label: 'Todas' },
@@ -69,8 +71,31 @@ export function getEvidenceConfig(ev: string): EvidenceConfig {
 
 export const EVIDENCE_RANK: Record<string, number> = { A: 0, B: 1, C: 2, D: 3 };
 
+export const EVIDENCE_LEVELS = ['A', 'B', 'C', 'D'] as const;
+export type EvidenceLevel = typeof EVIDENCE_LEVELS[number];
+
 export const RESULTS_PAGE_SIZE = 12;
 export const CHIPS_COLLAPSED_COUNT = 6;
+
+/** Configuración visual de los sistemas corporales (orden = BODY_SYSTEMS). */
+export const BODY_SYSTEM_CONFIG: Record<BodySystem, { label: string; icon: LucideIcon }> = {
+  nervioso: { label: 'Nervioso', icon: Brain },
+  digestivo: { label: 'Digestivo', icon: Utensils },
+  inmune: { label: 'Inmune', icon: Shield },
+  cardiovascular: { label: 'Cardiovascular', icon: HeartPulse },
+  respiratorio: { label: 'Respiratorio', icon: Wind },
+  musculoesqueletico: { label: 'Musculoesquelético', icon: Bone },
+  endocrino: { label: 'Endocrino', icon: Dna },
+  dermatologico: { label: 'Dermatológico', icon: ShieldCheck },
+  urinario: { label: 'Urinario', icon: Droplet },
+  reproductivo: { label: 'Reproductivo', icon: Baby },
+  ocular: { label: 'Ocular', icon: Eye },
+  hepatico: { label: 'Hepático', icon: Droplet },
+  metabolico: { label: 'Metabólico', icon: Activity },
+};
+
+export const BODY_SYSTEM_CHIPS: { value: BodySystem; label: string; icon: LucideIcon }[] =
+  BODY_SYSTEMS.map(s => ({ value: s, label: BODY_SYSTEM_CONFIG[s].label, icon: BODY_SYSTEM_CONFIG[s].icon }));
 
 const INDICATION_ICONS: Record<string, LucideIcon> = {
   ansiedad: Brain,

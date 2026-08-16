@@ -283,7 +283,7 @@ export interface DbSynergy {
 - [x] Búsqueda local con IngredientSearchService
 - [x] Re-siembra automática de KB al detectar cambios de versión
 - [x] Sistema de design UI propio en src/ui/ (Button, Input, Card, Modal, Badge, etc.)
-- [x] Filtros combinables por chips (sistema corporal, evidencia, patología/indicación) — commit 23c5f70
+- [x] Filtros combinables por chips (sistema corporal, evidencia, patología/indicación, categoría) — 23c5f70 + PR #46 (sistema + evidencia UI)
 - [x] Base de datos de patologías (25 patologías con contexto clínico) — commit 77220e0
 - [x] Modal PathologyDetail con tratamiento alopático vs natural + red flags
 - [x] Contexto clínico extendido en 100% de patologías (116/116) — commits 8563969 + f2de1a0
@@ -503,26 +503,36 @@ KB version: `v228-117-85-195-1154-146-126`.
 >   sobrescribe datos idénticos). Las descargas reales ocurren cuando un
 >   registro remoto incrementa su `lamport`/`updated_at`.
 
-## Filtros Planeados (UI)
+## Filtros de Búsqueda (UI)
 
-Los datos para estos filtros YA ESTÁN LISTOS. Falta implementar la UI
-(chips/etiquetas en SearchPage y KnowledgePage).
+Los filtros de SearchPage están **completos** y son combinables (AND):
+patología/indicación, categoría, **sistema corporal** y **evidencia**.
+La configuración visual (iconos + labels) vive en `src/ui/searchConfig.ts`
+(`CATEGORIES`, `BODY_SYSTEM_CHIPS`, `EVIDENCE_LEVELS`).
 
 ### Filtro por Sistema Corporal
 - Campo: `sistemas` (array)
 - Valores: 13 sistemas del enum `BODY_SYSTEMS` (normalizados ronda 12)
 - Datos listos: 0 sistemas inválidos
+- UI: chips con icono en SearchPage (commit f9b07a9, PR #46)
 
-### Filtro por Patología
+### Filtro por Patología / Indicación
 - Campo: `indicaciones` (array)
 - Valores: etiquetas estandarizadas (normalizadas ronda 13)
 - Top: ansiedad(48), inmunidad(45), estrés(41), dispepsia(40), tos(40),
   insomnio(37), articular(35), antioxidante(31), piel(29), cognitivo(27)
 - Datos listos: 275 etiquetas estandarizadas
 
+### Filtro por Evidencia
+- Campo: `evidencia` (`'A' | 'B' | 'C' | 'D'`)
+- UI: chips A/B/C/D en SearchPage (commit f9b07a9, PR #46)
+
 ### Combinación
-Ambos filtros deben poder combinarse (ej: sistema=respiratorio +
-patología=tos). Ver `docs/KB_DATA_METHODOLOGY.md` § 14 para detalles.
+Todos los filtros se combinan con AND (ej: sistema=respiratorio +
+patología=tos + evidencia=A). El facet filtering vive en
+`IngredientSearchService.runSearch` (`SearchFilters.system` /
+`.evidenceLevel` / `.category` / `.indication`). Ver
+`docs/KB_DATA_METHODOLOGY.md` § 14 para detalles.
 
 ## Patrones de Código
 
