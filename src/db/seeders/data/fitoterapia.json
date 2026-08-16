@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-14",
-    "total": 235,
+    "total": 227,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -2014,56 +2014,6 @@
       }
     },
     {
-      "id": "diente_de_leon",
-      "nombre": "Diente de Leon",
-      "nombresAlternativos": [
-        "Taraxacum officinale",
-        "Dandelion",
-        "Raiz de diente de leon",
-        "Taraxaci radix"
-      ],
-      "nombreCientifico": "Taraxacum officinale",
-      "familia": "Asteraceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "digestivo"
-      ],
-      "indicaciones": [
-        "apetito",
-        "dispepsia",
-        "retencion de liquidos leve"
-      ],
-      "descripcion": "Raiz tradicionalmente usada para estimular el apetito, aliviar molestias digestivas leves (plenitud, flatulencia) y favorecer la eliminacion de liquidos.",
-      "mecanismoAccion": "Las lactonas sesquiterpenicas amargas estimulan la secrecion biliar (coleretico/colagogo) y la diuresis.",
-      "nivelEvidencia": "C",
-      "parteUsada": "raiz",
-      "formasPresentacion": [
-        "Raiz seca",
-        "Extracto liquido",
-        "Tintura",
-        "Capsulas"
-      ],
-      "tiempoEfecto": "dias",
-      "duracionTratamiento": "uso prolongado",
-      "advertencias": [
-        "No recomendado en obstruccion de las vias biliares, colangitis, litiasis biliar o hepatopatias",
-        "Contraindicado en alergia a Asteraceae"
-      ],
-      "interaccionesMedicamentosas": [
-        "Diureticos (potencia efecto)"
-      ],
-      "tags": [
-        "digestivo",
-        "diuretico",
-        "coleretico",
-        "hepatico"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-08",
-        "fuente": "EMA HMPC monograph EMA/HMPC/475726/2020; ESCOP Monographs"
-      }
-    },
-    {
       "id": "boldo",
       "nombre": "Boldo",
       "nombresAlternativos": [
@@ -2720,12 +2670,18 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "cardiovascular",
-        "digestivo"
+        "digestivo",
+        "metabolico",
+        "inmune"
       ],
       "indicaciones": [
         "diurético",
         "hipertensión",
-        "retencion de liquidos leve"
+        "retencion de liquidos leve",
+        "antioxidante",
+        "colesterol",
+        "glucosa",
+        "inmunidad"
       ],
       "descripcion": "Hoja usada tradicionalmente para promover la eliminacion de agua por los riñones en casos leves de retencion de liquidos, tras descartar afecciones graves por un medico. Algunos estudios sugieren efecto hipotensor moderado.",
       "mecanismoAccion": "La oleuropeina y derivados ejercen accion diuretica suave y vasodilatadora (posible bloqueo de canales de calcio), con efecto hipotensor modesto y antioxidante.",
@@ -2757,7 +2713,13 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Olea europaea L., folium (2017)"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "olivo_hoja"
+      ]
     },
     {
       "id": "grosellero_negro",
@@ -2980,7 +2942,7 @@
       }
     },
     {
-      "id": "lúpulo",
+      "id": "lupulo",
       "nombre": "Lupulo",
       "nombresAlternativos": [
         "Humulus lupulus",
@@ -3031,7 +2993,10 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Species sedativae EMA/HMPC/438183/2017 (incluye Humulus lupulus flos); ESCOP Monographs"
-      }
+      },
+      "sinonimos": [
+        "lúpulo"
+      ]
     },
     {
       "id": "zarzaparrilla",
@@ -3320,12 +3285,18 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "digestivo",
-        "musculoesqueletico"
+        "musculoesqueletico",
+        "urinario",
+        "dermatologico"
       ],
       "indicaciones": [
         "cabello",
         "diurético",
-        "urinario"
+        "urinario",
+        "cicatrización",
+        "edema",
+        "huesos",
+        "litiasis"
       ],
       "descripcion": "Partes aereas usadas tradicionalmente para favorecer la eliminacion renal de agua en molestias urinarias leves, tras descartar afecciones graves por un medico. Rica en silicio, tradicionalmente usada para el fortalecimiento ungueal.",
       "mecanismoAccion": "Los flavonoides y sales de potasio ejercen accion diuretica suave; el alto contenido de silicio organico se asocia tradicionalmente a la consolidacion del tejido conjuntivo y ungueal.",
@@ -3358,7 +3329,13 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Equisetum arvense herba; ESCOP Monographs"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "cola_de_caballo"
+      ]
     },
     {
       "id": "romero",
@@ -4486,12 +4463,14 @@
       "familia": "Asteraceae",
       "categoria": "fitoterapia",
       "sistemas": [
-        "urinario"
+        "urinario",
+        "inmune"
       ],
       "indicaciones": [
         "cálculos",
         "diurético",
-        "urinario"
+        "urinario",
+        "inflamación"
       ],
       "descripcion": "Planta diurética y antiinflamatoria de vías urinarias con monografía EMA HMPC por uso tradicional para aumentar el volumen de orina.",
       "mecanismoAccion": "Los flavonoides (rutina) y saponinas aumentan la diuresis y la irrigación del tracto urinario; los taninos aportan acción astringente y antiinflamatoria.",
@@ -4522,7 +4501,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional diurético)"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "vara_de_oro"
+      ]
     },
     {
       "id": "agrimonia",
@@ -4576,59 +4561,6 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional)"
-      }
-    },
-    {
-      "id": "marrubium",
-      "nombre": "Marrubio",
-      "nombresAlternativos": [
-        "White horehound",
-        "Marrubium vulgare",
-        "Hierba del sapo",
-        "Marrubio común",
-        "Toronjil cuyano"
-      ],
-      "nombreCientifico": "Marrubium vulgare",
-      "familia": "Lamiaceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "respiratorio",
-        "digestivo"
-      ],
-      "indicaciones": [
-        "apetito",
-        "bronquitis",
-        "dispepsia",
-        "tos"
-      ],
-      "descripcion": "Planta expectorante y amarga con monografía EMA HMPC por uso tradicional para tos productiva y bronquitis leve.",
-      "mecanismoAccion": "Las saponinas y el marrubiína fluidifican las secreciones y estimulan el reflejo tusígeno; los amargos estimulan las secreciones digestivas y biliares.",
-      "nivelEvidencia": "C",
-      "parteUsada": "parte aérea",
-      "formasPresentacion": [
-        "Infusión",
-        "Tintura",
-        "Caramelos/jarabe"
-      ],
-      "tiempoEfecto": "1-3 días",
-      "duracionTratamiento": "5-7 días",
-      "advertencias": [
-        "Evitar en embarazo",
-        "Precaución en gastritis (amargos)"
-      ],
-      "interaccionesMedicamentosas": [
-        "Antiarrítmicos (teorético efecto sobre calcio)"
-      ],
-      "tags": [
-        "expectorante",
-        "tos",
-        "bronquitis",
-        "amargo",
-        "EMA HMPC"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01",
-        "fuente": "EMA HMPC monograph (uso tradicional tos)"
       }
     },
     {
@@ -5153,58 +5085,6 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use + antimicrobial studies"
-      }
-    },
-    {
-      "id": "picrorhiza",
-      "nombre": "Picrorhiza",
-      "nombresAlternativos": [
-        "Picrorhiza kurroa",
-        "Kutki",
-        "Picrorhiza",
-        "Indian gentian",
-        "Katuki"
-      ],
-      "nombreCientifico": "Picrorhiza kurroa",
-      "familia": "Plantaginaceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "hepatico",
-        "digestivo"
-      ],
-      "indicaciones": [
-        "astenia",
-        "colesterol",
-        "dispepsia",
-        "hepático"
-      ],
-      "descripcion": "Raíz amarga ayurvédica con iridoides (picrosido I/II) hepatoprotectores. Protege el hígado y mejora la función digestiva.",
-      "mecanismoAccion": "Los picrosidos I y II son antioxidantes hepáticos, inducen enzimas de fase II y protegen el hepatocito; los amargos estimulan la secreción biliar.",
-      "nivelEvidencia": "C",
-      "parteUsada": "raíz",
-      "formasPresentacion": [
-        "Cápsulas (extracto)",
-        "Tintura"
-      ],
-      "tiempoEfecto": "2-4 semanas",
-      "duracionTratamiento": "1-3 meses",
-      "advertencias": [
-        "Evitar en embarazo",
-        "Precaución en cálculos biliares"
-      ],
-      "interaccionesMedicamentosas": [
-        "Hepatotóxicos"
-      ],
-      "tags": [
-        "hepático",
-        "hepatoprotector",
-        "amargo",
-        "picrosidos",
-        "digestivo"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01",
-        "fuente": "Ayurvedic pharmacopoeia + hepatoprotection studies"
       }
     },
     {
@@ -5767,13 +5647,17 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "metabolico",
-        "endocrino"
+        "endocrino",
+        "cardiovascular"
       ],
       "indicaciones": [
         "acné",
         "colesterol",
         "peso",
-        "tiroides"
+        "tiroides",
+        "hipotiroidismo",
+        "obesidad",
+        "articular"
       ],
       "descripcion": "Resina ayurvédica con guggulsteronas que reducen el colesterol y modulan el tiroides. Usada en hiperlipidemia.",
       "mecanismoAccion": "Las guggulsteronas activan el receptor TLR4 (lipidos), modulan la conversión de T4→T3 (tiroides) y reducen la síntesis de colesterol hepático.",
@@ -5804,7 +5688,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (lípidos)"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "guggul"
+      ]
     },
     {
       "id": "arjuna",
@@ -6942,7 +6832,10 @@
         "digestión",
         "diuresis",
         "hígado",
-        "retención"
+        "retención",
+        "apetito",
+        "dispepsia",
+        "retencion de liquidos leve"
       ],
       "descripcion": "Diurético y hepatoprotector. Estimula producción de bilis y función hepática.",
       "mecanismoAccion": "Los sesquiterpenos amargos (taraxasterol) estimulan secreción biliar. Inulina (prebiótico). Alto contenido de potasio compensa pérdida diurética.",
@@ -6973,7 +6866,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "diente_de_leon"
+      ]
     },
     {
       "id": "borraja",
@@ -7367,7 +7266,10 @@
         "ansiedad",
         "depresion",
         "disfunción eréctil",
-        "libido bajo"
+        "libido bajo",
+        "afrodisíaco",
+        "energía",
+        "libido"
       ],
       "descripcion": "Arbusto aromático de Centroamérica usado tradicionalmente como afrodisíaco y tónico nervioso. Incluido en la Farmacopea Brasileña.",
       "mecanismoAccion": "Contiene damianina, flavonoides (acacetina, apigenina), arbutina y β-sitosterol. Efecto tónico-nervioso y ligera acción relajante del SNC. Posible modulation de la circulación pélvica.",
@@ -7397,7 +7299,13 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Commission E monographs + Brazilian Pharmacopeia"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "damiana_hoja"
+      ]
     },
     {
       "id": "muira_puama",
@@ -9656,60 +9564,6 @@
       }
     },
     {
-      "id": "cola_de_caballo",
-      "nombre": "Cola de Caballo",
-      "nombresAlternativos": [
-        "Equisetum arvense",
-        "Horsetail",
-        "Cauda equina"
-      ],
-      "nombreCientifico": "Equisetum arvense",
-      "familia": "Equisetaceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "urinario",
-        "musculoesqueletico",
-        "dermatologico"
-      ],
-      "indicaciones": [
-        "cabello",
-        "cicatrización",
-        "edema",
-        "huesos",
-        "litiasis",
-        "urinario"
-      ],
-      "descripcion": "Planta rica en silicio organico y flavonoides. Diuretico y remineralizante.",
-      "mecanismoAccion": "Silicio organico y equisetonina con accion diuretica y remineralizante osea.",
-      "nivelEvidencia": "C",
-      "parteUsada": "parte aerea esteril",
-      "formasPresentacion": [
-        "Infusion",
-        "Capsulas",
-        "Extracto"
-      ],
-      "tiempoEfecto": "1-2 semanas",
-      "duracionTratamiento": "3-6 semanas",
-      "advertencias": [
-        "Evitar en insuficiencia renal y cardiaca",
-        "Contiene trazas de nicotina",
-        "No prolongar sin supervisar potasio"
-      ],
-      "interaccionesMedicamentosas": [
-        "Diureticos",
-        "Litio"
-      ],
-      "tags": [
-        "diurético",
-        "silicio",
-        "remineralizante"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-09",
-        "fuente": "EMA HMPC monograph + ESCOP"
-      }
-    },
-    {
       "id": "bupleurum",
       "nombre": "Bupleurum",
       "nombresAlternativos": [
@@ -9832,7 +9686,9 @@
         "colesterol",
         "digestión",
         "glucosa",
-        "tos"
+        "tos",
+        "bronquitis",
+        "dispepsia"
       ],
       "descripcion": "Planta amara con accion expectorante, digestiva y moderada accion hipoglucemiante.",
       "mecanismoAccion": "Marrubina coleretica y expectorante; diterpenos con actividad hipoglucemiante.",
@@ -9861,7 +9717,13 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA HMPC + German Commission E"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "marrubium"
+      ]
     },
     {
       "id": "hierba_luisa",
@@ -9910,59 +9772,6 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA HMPC monograph"
-      }
-    },
-    {
-      "id": "olivo_hoja",
-      "nombre": "Hoja de Olivo",
-      "nombresAlternativos": [
-        "Olea europaea leaf",
-        "Olive leaf",
-        "Oleuropeína"
-      ],
-      "nombreCientifico": "Olea europaea",
-      "familia": "Oleaceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "cardiovascular",
-        "metabolico",
-        "inmune"
-      ],
-      "indicaciones": [
-        "antioxidante",
-        "colesterol",
-        "glucosa",
-        "hipertensión",
-        "inmunidad"
-      ],
-      "descripcion": "Hoja rica en oleuropeina con accion antihipertensiva, hipoglucemiante y antimicrobiana.",
-      "mecanismoAccion": "Oleuropeina y hidroxitirosol inhiben ECA, mejoran sensibilidad insulinica y son antioxidantes.",
-      "nivelEvidencia": "B",
-      "parteUsada": "hoja",
-      "formasPresentacion": [
-        "Extracto estandarizado",
-        "Capsulas",
-        "Tintura"
-      ],
-      "tiempoEfecto": "2-4 semanas",
-      "duracionTratamiento": "2-3 meses",
-      "advertencias": [
-        "Puede bajar la presion arterial",
-        "Monitorizar glucemia en medicacion"
-      ],
-      "interaccionesMedicamentosas": [
-        "Antihipertensivos",
-        "Hipoglucemiantes",
-        "Insulina"
-      ],
-      "tags": [
-        "antihipertensivo",
-        "antioxidante",
-        "metabólico"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-09",
-        "fuente": "EMA HMPC + clinical trials (PubMed meta-analysis)"
       }
     },
     {
@@ -10335,112 +10144,6 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + German Commission E"
-      }
-    },
-    {
-      "id": "vara_de_oro",
-      "nombre": "Vara de Oro",
-      "nombresAlternativos": [
-        "Solidago virgaurea",
-        "Vara de oro europea",
-        "Goldenrod",
-        "Vara de oroval"
-      ],
-      "nombreCientifico": "Solidago virgaurea",
-      "familia": "Asteraceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "urinario",
-        "inmune"
-      ],
-      "indicaciones": [
-        "cálculos",
-        "diurético",
-        "inflamación",
-        "urinario"
-      ],
-      "descripcion": "Planta antiinflamatoria y diurética de vías urinarias, útil en cistitis y profilaxis de litiasis.",
-      "mecanismoAccion": "Las saponinas triterpénicas, flavonoides y taninos ejercen efecto diurético y astringente. Acción espasmolítica y antiinflamatoria sobre la mucosa urinaria.",
-      "nivelEvidencia": "B",
-      "parteUsada": "summitad florida",
-      "formasPresentacion": [
-        "Infusión",
-        "Cápsulas",
-        "Extracto seco"
-      ],
-      "tiempoEfecto": "2-4 días",
-      "duracionTratamiento": "2-4 semanas",
-      "advertencias": [
-        "Contraindicado en insuficiencia renal o cardíaca con edema",
-        "Alergias a Asteraceae posibles",
-        "No usar en embarazo"
-      ],
-      "interaccionesMedicamentosas": [
-        "Diuréticos (efecto aditivo)",
-        "Litio (riesgo de toxicidad por reducción de excreción)"
-      ],
-      "tags": [
-        "urinario",
-        "diurético",
-        "antiinflamatorio",
-        "cistitis"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-10",
-        "fuente": "EMA HMPC monograph + ESCOP Monographs"
-      }
-    },
-    {
-      "id": "damiana_hoja",
-      "nombre": "Damiana",
-      "nombresAlternativos": [
-        "Turnera diffusa",
-        "Turnera aphrodisiaca",
-        "Hierba del venado",
-        "Damiana leaf"
-      ],
-      "nombreCientifico": "Turnera diffusa",
-      "familia": "Passifloraceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "reproductivo",
-        "nervioso"
-      ],
-      "indicaciones": [
-        "afrodisíaco",
-        "ansiedad",
-        "energía",
-        "libido"
-      ],
-      "descripcion": "Arbusto tradicional mexicano usado como afrodisíaco y tónico nervioso.",
-      "mecanismoAccion": "Contiene alcaloides, aceites esenciales y flavonoides con efecto leve estimulante y ansiolítico. Posible modulación dopaminérgica y colinérgica.",
-      "nivelEvidencia": "C",
-      "parteUsada": "hojas",
-      "formasPresentacion": [
-        "Cápsulas",
-        "Tintura",
-        "Infusión"
-      ],
-      "tiempoEfecto": "1-2 horas",
-      "duracionTratamiento": "4-8 semanas",
-      "advertencias": [
-        "Evitar en embarazo (efecto abortivo potencial)",
-        "Contiene compuestos con acción estimulante",
-        "Uso histórico con evidencia limitada"
-      ],
-      "interaccionesMedicamentosas": [
-        "Hipoglucemiantes (efecto hipoglucemiante leve)",
-        "Estimulantes del SNC (efecto aditivo)"
-      ],
-      "tags": [
-        "libido",
-        "afrodisíaco",
-        "tónico",
-        "ansiolítico"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-10",
-        "fuente": "WHO Monographs + Clinical trials (PubMed)"
       }
     },
     {
@@ -11149,14 +10852,19 @@
       "categoria": "fitoterapia",
       "sistemas": [
         "hepatico",
-        "inmune"
+        "inmune",
+        "digestivo"
       ],
       "indicaciones": [
         "higado graso",
         "detox",
         "hepatitis",
         "antioxidante",
-        "inmunidad"
+        "inmunidad",
+        "astenia",
+        "colesterol",
+        "dispepsia",
+        "hepático"
       ],
       "descripcion": "Raiz ayurvedica con iridoides (picrosidos I/II); hepatoprotector e inmunomodulador potente.",
       "mecanismoAccion": "Estimula regeneracion hepatica, antioxidante, antiinflamatorio (via NF-kB), inmunomodulador; protege contra hepatotoxinas.",
@@ -11185,7 +10893,13 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Phytother. Res. + J. Clin. Gastroenterol."
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "picrorhiza"
+      ]
     },
     {
       "id": "regaliz_dgl",
@@ -11237,60 +10951,6 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Gut + BMJ Evidence-Based Med"
-      }
-    },
-    {
-      "id": "guggul",
-      "nombre": "Guggul",
-      "nombresAlternativos": [
-        "Guggulipid",
-        "Commiphora mukul",
-        "Guggulu",
-        "Goma guggul"
-      ],
-      "nombreCientifico": "Commiphora wightii",
-      "familia": "Burseraceae",
-      "categoria": "fitoterapia",
-      "sistemas": [
-        "endocrino",
-        "cardiovascular",
-        "metabolico"
-      ],
-      "indicaciones": [
-        "colesterol",
-        "hipotiroidismo",
-        "obesidad",
-        "articular"
-      ],
-      "descripcion": "Resina ayurvedica con guggulsteronas; hipolipemiante y estimulante tiroideo suave.",
-      "mecanismoAccion": "Guggulsteronas estimulan tiroides (T3/T4), reducen colesterol via FXR y aumento de receptores hepaticos LDL; antiinflamatorio.",
-      "nivelEvidencia": "B",
-      "parteUsada": "resina (goma oleosa)",
-      "formasPresentacion": [
-        "Capsulas (extracto estandarizado guggulsteronas)"
-      ],
-      "tiempoEfecto": "4-8 semanas",
-      "duracionTratamiento": "12 semanas",
-      "advertencias": [
-        "Puede causar dispepsia",
-        "Evitar en hipertiroidismo",
-        "Interaccion con hormonas tiroideas"
-      ],
-      "interaccionesMedicamentosas": [
-        "Levotiroxina",
-        "Estatinas",
-        "Anticoagulantes"
-      ],
-      "tags": [
-        "guggulsteronas",
-        "hipolipemiante",
-        "tiroides",
-        "ayurveda",
-        "colesterol"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-10",
-        "fuente": "J. Assoc. Physicians India + Cardiovasc. Drugs Rev."
       }
     },
     {

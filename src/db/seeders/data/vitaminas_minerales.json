@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-14",
-    "total": 197,
+    "total": 192,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -2725,59 +2725,6 @@
       }
     },
     {
-      "id": "l_triptofano",
-      "nombre": "L-Triptófano",
-      "nombresAlternativos": [
-        "Triptófano",
-        "L-Tryptophan",
-        "Trp",
-        "Aminoácido esencial"
-      ],
-      "nombreCientifico": "L-Triptófano",
-      "familia": "Aminoácidos esenciales",
-      "categoria": "aminoacido",
-      "sistemas": [
-        "nervioso"
-      ],
-      "indicaciones": [
-        "ansiedad",
-        "depresión",
-        "insomnio",
-        "spm"
-      ],
-      "descripcion": "Aminoácido esencial precursor de la serotonina (vía 5-HTP) y la melatonina. Mejora calidad del sueño y humor con baja tasa de efectos adversos.",
-      "mecanismoAccion": "Precursor de la serotonina (hidroxilación a 5-HTP, descarboxilación a serotonina) y posteriormente melatonina en la glándula pineal.",
-      "nivelEvidencia": "B",
-      "parteUsada": "Suplemento",
-      "formasPresentacion": [
-        "Cápsulas",
-        "Polvo"
-      ],
-      "tiempoEfecto": "30-60 minutos (sueño)",
-      "duracionTratamiento": "Continuo o cíclico",
-      "advertencias": [
-        "No combinar con antidepresivos ISRS/IMAO (síndrome serotoninérgico)",
-        "Tomar alejado de proteína"
-      ],
-      "interaccionesMedicamentosas": [
-        "ISRS",
-        "IMAO",
-        "Tramadol",
-        "Litio"
-      ],
-      "tags": [
-        "serotonina",
-        "sueño",
-        "humor",
-        "melatonina",
-        "precursor"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01",
-        "fuente": "Clinical trials + biochemical references"
-      }
-    },
-    {
       "id": "l_teanina",
       "nombre": "L-Teanina",
       "nombresAlternativos": [
@@ -3591,7 +3538,9 @@
         "biogénesis mitocondrial",
         "cardiovascular",
         "cognitivo",
-        "energía"
+        "energía",
+        "energia",
+        "mitocondrias"
       ],
       "descripcion": "Cofactor redox que induce la biogénesis mitocondrial (vía PGC-1α) y protege contra el estrés oxidativo mitocondrial.",
       "mecanismoAccion": "Cofactor redox que activa PGC-1α y CREB (biogénesis mitocondrial), induce NRF2 (antioxidante) y protege las mitocondrias del daño oxidativo.",
@@ -3619,7 +3568,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + initial clinical trials"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "pqq_pyrroloquinoline"
+      ]
     },
     {
       "id": "sulforafano",
@@ -5086,7 +5041,9 @@
         "antioxidante",
         "energía",
         "envejecimiento",
-        "metabolismo"
+        "metabolismo",
+        "cognitivo",
+        "energia"
       ],
       "descripcion": "Precursor directo del NAD+ esencial para la energía celular y la función de sirtuinas. Investigación en longevidad.",
       "mecanismoAccion": "El NMN se convierte en NAD+; aumenta la actividad de SIRT1/SIRT3 (longevidad) y mejora la función mitocondrial.",
@@ -5115,7 +5072,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + initial clinical trials"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "nmn_nicotinamide"
+      ]
     },
     {
       "id": "ergotioneina",
@@ -5955,7 +5918,9 @@
         "diarrea",
         "inmunidad",
         "intestinal",
-        "vaginal"
+        "vaginal",
+        "dispepsia",
+        "lactosa"
       ],
       "descripcion": "Cepa probiótica clásica para digestión, salud vaginal y metabolismo del colesterol.",
       "mecanismoAccion": "Produce lactasa (digestión de lactosa), bacteriocinas (antimicrobiano), y reduce el colesterol (BSH).",
@@ -5984,7 +5949,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (digestivo/vaginal/colesterol)"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "lactobacillus_acidophilus"
+      ]
     },
     {
       "id": "l_plantarum",
@@ -6160,7 +6131,9 @@
         "estrés",
         "inmunidad",
         "intestinal",
-        "SII"
+        "SII",
+        "alergias",
+        "estres"
       ],
       "descripcion": "Bifidobacteria predominante en adultos. Evidencia en SII y eje intestino-cerebro (estrés).",
       "mecanismoAccion": "Mejora la barrera intestinal, reduce la inflamación sistémica, modula el eje HHA (estrés/ansiedad).",
@@ -6187,7 +6160,13 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (SII/eje HHA)"
-      }
+      },
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "bifidobacterium_longum"
+      ]
     },
     {
       "id": "b_breve",
@@ -7276,7 +7255,8 @@
         "depresión",
         "humor",
         "insomnio",
-        "sueño"
+        "sueño",
+        "spm"
       ],
       "descripcion": "Aminoácido esencial precursor de serotonina y melatonina. Mejora sueño y humor.",
       "mecanismoAccion": "Triptófano → 5-HTP → serotonina → melatonina. Cruzar BHE mediante transporte de aminoácidos neutros. Requiere B6, hierro y BH4 como cofactores.",
@@ -7322,6 +7302,12 @@
         "Tramadol (síndrome serotoninérgico)",
         "Litio (síndrome serotoninérgico)",
         "Dextrometorfano"
+      ],
+      "propiedades": [],
+      "interacciones": [],
+      "fuentes": [],
+      "sinonimos": [
+        "l_triptofano"
       ]
     },
     {
@@ -8028,59 +8014,6 @@
       ]
     },
     {
-      "id": "pqq_pyrroloquinoline",
-      "nombre": "PQQ (Pirroloquinolina quinona)",
-      "nombresAlternativos": [
-        "Pyrroloquinoline quinone",
-        "Methoxatin",
-        "PQQ"
-      ],
-      "nombreCientifico": "Pirroloquinolina quinona",
-      "familia": "No aplica",
-      "categoria": "vitamina",
-      "sistemas": [
-        "metabolico",
-        "nervioso"
-      ],
-      "indicaciones": [
-        "cognitivo",
-        "energia",
-        "mitocondrias"
-      ],
-      "descripcion": "Compuesto quinónico que estimula biogénesis mitocondrial (vía PGC-1α).",
-      "mecanismoAccion": "Activa PGC-1α y CREB. Estimula NRF2. Antioxidante redox-ciclo.",
-      "nivelEvidencia": "C",
-      "dosisDiaria": "10-20mg/dia",
-      "dosisMaxima": "60mg/dia",
-      "formaQuimica": [
-        "PQQ sal disodica"
-      ],
-      "biodisponibilidad": "Moderada",
-      "momentoToma": [
-        "Con comida"
-      ],
-      "tomarCon": [
-        "CoQ10"
-      ],
-      "evitarCon": [],
-      "advertencias": [
-        "Dosis altas: insomnio"
-      ],
-      "tags": [
-        "mitocondrias",
-        "cognitivo",
-        "energia"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-06-01",
-        "fuente": "Adv Nutr 2022"
-      },
-      "interaccionesMedicamentosas": [
-        "Sin interacciones medicamentosas significativas documentadas",
-        "Anticoagulantes (precaución teórica)"
-      ]
-    },
-    {
       "id": "polen_abeja_ext",
       "nombre": "Polen de Abeja (Estándar)",
       "nombresAlternativos": [
@@ -8240,59 +8173,6 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas",
         "Inmunosupresores (efecto inmunomodulador teórico)"
-      ]
-    },
-    {
-      "id": "nmn_nicotinamide",
-      "nombre": "NMN (Nicotinamida Mononucleótido)",
-      "nombresAlternativos": [
-        "NMN",
-        "Beta-NMN",
-        "Nicotinamide mononucleotide"
-      ],
-      "nombreCientifico": "β-Nicotinamida mononucleótido",
-      "familia": "No aplica",
-      "categoria": "vitamina",
-      "sistemas": [
-        "metabolico",
-        "nervioso"
-      ],
-      "indicaciones": [
-        "cognitivo",
-        "energia",
-        "envejecimiento"
-      ],
-      "descripcion": "Precursor directo de NAD+ que restaura niveles de NAD en modelos de envejecimiento.",
-      "mecanismoAccion": "Convertido a NAD+ vía NMNAT. Activa sirtuinas (SIRT1, SIRT3). Mejora función mitocondrial.",
-      "nivelEvidencia": "C",
-      "dosisDiaria": "250-500mg/dia",
-      "dosisMaxima": "1000mg/dia",
-      "formaQuimica": [
-        "β-NMN estable"
-      ],
-      "biodisponibilidad": "Buena (transportador Slc12a8)",
-      "momentoToma": [
-        "Mañana"
-      ],
-      "tomarCon": [
-        "Resveratrol (sinergia SIRT1)"
-      ],
-      "evitarCon": [],
-      "advertencias": [
-        "Datos clínicos humanos limitados"
-      ],
-      "tags": [
-        "nad",
-        "envejecimiento",
-        "mitocondrias"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-06-01",
-        "fuente": "Cell Metab 2019"
-      },
-      "interaccionesMedicamentosas": [
-        "Sin interacciones medicamentosas significativas a dosis fisiológicas",
-        "Dosis altas pueden afectar función hepática"
       ]
     },
     {
@@ -10864,103 +10744,6 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EFSA scientific opinion on L. rhamnosus GG; Clinical trials PubMed meta-analisis sobre diarrea infecciosa"
-      }
-    },
-    {
-      "id": "lactobacillus_acidophilus",
-      "nombre": "Lactobacillus acidophilus",
-      "nombresAlternativos": [
-        "L. acidophilus",
-        "LA-5",
-        "Lactobacillus acidophilus"
-      ],
-      "nombreCientifico": "Lactobacillus acidophilus",
-      "familia": "Lactobacillaceae",
-      "categoria": "probiotico",
-      "sistemas": [
-        "digestivo",
-        "inmune"
-      ],
-      "indicaciones": [
-        "intestinal",
-        "inmunidad",
-        "dispepsia",
-        "lactosa"
-      ],
-      "descripcion": "Cepa probiotica que mejora la digestion de lactosa y el equilibrio de la microbiota intestinal.",
-      "mecanismoAccion": "Produce lactasa que mejora la digestion de lactosa; compite con patogenos y produce bacteriocinas.",
-      "nivelEvidencia": "A",
-      "parteUsada": "cepa liofilizada",
-      "formasPresentacion": [
-        "Capsulas",
-        "Sobres",
-        "Liquido"
-      ],
-      "tiempoEfecto": "1-2 semanas",
-      "duracionTratamiento": "1-2 meses",
-      "dosisDiaria": "5-10 mil millones UFC",
-      "advertencias": [
-        "Separar 2 h de antibioticos"
-      ],
-      "interaccionesMedicamentosas": [
-        "Antibioticos (separar toma)"
-      ],
-      "tags": [
-        "cepa",
-        "lactosa",
-        "inmunidad"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-10",
-        "fuente": "EFSA scientific opinion; Clinical trials PubMed sobre intolerancia a lactosa y microbiota"
-      }
-    },
-    {
-      "id": "bifidobacterium_longum",
-      "nombre": "Bifidobacterium longum",
-      "nombresAlternativos": [
-        "B. longum",
-        "BB536",
-        "Bifidobacterium longum"
-      ],
-      "nombreCientifico": "Bifidobacterium longum",
-      "familia": "Bifidobacteriaceae",
-      "categoria": "probiotico",
-      "sistemas": [
-        "digestivo",
-        "inmune"
-      ],
-      "indicaciones": [
-        "intestinal",
-        "inmunidad",
-        "alergias",
-        "estres"
-      ],
-      "descripcion": "Cepa probiotica con efecto regulador del eje intestino-cerebro y modulacion de la respuesta alergica.",
-      "mecanismoAccion": "Mejora la barrera intestinal, reduce endotoxemia, modula el eje HHA y la respuesta Th2/Th1 en alergias.",
-      "nivelEvidencia": "A",
-      "parteUsada": "cepa liofilizada",
-      "formasPresentacion": [
-        "Capsulas",
-        "Sobres"
-      ],
-      "tiempoEfecto": "2-4 semanas",
-      "duracionTratamiento": "2-3 meses",
-      "dosisDiaria": "5-20 mil millones UFC",
-      "advertencias": [
-        "Separar 2 h de antibioticos"
-      ],
-      "interaccionesMedicamentosas": [
-        "Antibioticos (separar toma)"
-      ],
-      "tags": [
-        "cepa",
-        "eje_intestino_cerebro",
-        "alergias"
-      ],
-      "metadata": {
-        "fechaCreacion": "2026-08-10",
-        "fuente": "EFSA scientific opinion; Clinical trials PubMed sobre B. longum BB536 y rinitis alergica"
       }
     },
     {

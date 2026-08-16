@@ -4,7 +4,7 @@
     "descripcion": "Relaciones sinérgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-16",
-    "total": 1167,
+    "total": 1157,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
   },
   "sinergias": [
@@ -777,7 +777,7 @@
     },
     {
       "id": "sin_diente_leon_boldo",
-      "ingredienteA": "diente_de_leon",
+      "ingredienteA": "diente_leon",
       "ingredienteB": "boldo",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
@@ -1061,7 +1061,7 @@
     {
       "id": "sin_alcachofa_diente_leon",
       "ingredienteA": "alcachofa",
-      "ingredienteB": "diente_de_leon",
+      "ingredienteB": "diente_leon",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
       "descripcion": "Combinacion hepato-digestiva: la alcachofa (cinarina) y el diente de leon (lactonas amargas) estimulan la secrecion biliar y alivian la dispepsia con plenitud.",
@@ -1243,7 +1243,7 @@
     },
     {
       "id": "sin_lupulo_valeriana",
-      "ingredienteA": "lúpulo",
+      "ingredienteA": "lupulo",
       "ingredienteB": "valeriana",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
@@ -1270,7 +1270,7 @@
     },
     {
       "id": "sin_lupulo_melisa",
-      "ingredienteA": "lúpulo",
+      "ingredienteA": "lupulo",
       "ingredienteB": "melisa",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
@@ -1453,7 +1453,7 @@
     {
       "id": "sin_tilo_lupulo",
       "ingredienteA": "tilo",
-      "ingredienteB": "lúpulo",
+      "ingredienteB": "lupulo",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
       "descripcion": "Combinacion sedativa tradicional para el sueno y la ansiedad leve: el tilo aporta sedacion suave y el lupulo potencia el efecto GABAergico.",
@@ -2174,7 +2174,7 @@
     },
     {
       "id": "sin_triptofano_vitb6",
-      "ingredienteA": "l_triptofano",
+      "ingredienteA": "triptofano",
       "ingredienteB": "vitamina_b6",
       "tipo": "cofactor",
       "nivelEvidencia": "B",
@@ -2198,7 +2198,7 @@
     },
     {
       "id": "sin_triptofano_melatonina",
-      "ingredienteA": "l_triptofano",
+      "ingredienteA": "triptofano",
       "ingredienteB": "melatonina",
       "tipo": "complementario",
       "nivelEvidencia": "B",
@@ -2582,7 +2582,7 @@
     {
       "id": "sin_milenrama_diente_leon",
       "ingredienteA": "milenrama",
-      "ingredienteB": "diente_de_leon",
+      "ingredienteB": "diente_leon",
       "tipo": "complementario",
       "nivelEvidencia": "C",
       "descripcion": "Combinación digestiva y hepática: la milenrama antiespasmódica y el diente de león colerético-colagogo.",
@@ -2660,7 +2660,7 @@
     },
     {
       "id": "sin_ylang_ylang_lavanda",
-      "ingredienteA": "ylang_ylang",
+      "ingredienteA": "ilang_ilang",
       "ingredienteB": "lavanda_aceite",
       "tipo": "potenciador",
       "nivelEvidencia": "C",
@@ -3484,7 +3484,7 @@
     },
     {
       "id": "sin_marrubio_drosera",
-      "ingredienteA": "marrubium",
+      "ingredienteA": "marrubio",
       "ingredienteB": "drosera",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -6537,7 +6537,7 @@
     },
     {
       "id": "sin_picrorhiza_cardo_mariano",
-      "ingredienteA": "picrorhiza",
+      "ingredienteA": "picrorrhiza",
       "ingredienteB": "cardo_mariano",
       "tipo": "potenciador",
       "nivelEvidencia": "C",
@@ -7960,7 +7960,7 @@
     {
       "id": "sin_bardana_diente_de_leon_depuracion",
       "ingredienteA": "bardana",
-      "ingredienteB": "diente_de_leon",
+      "ingredienteB": "diente_leon",
       "tipo": "complementario",
       "nivelEvidencia": "C",
       "descripcion": "Dúo depurativo: la bardana y el diente de león para la piel y la función hepatobiliar.",
@@ -8975,7 +8975,7 @@
     },
     {
       "id": "sin_marrubio_hiedra_tos",
-      "ingredienteA": "marrubium",
+      "ingredienteA": "marrubio",
       "ingredienteB": "hiedra",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -9096,7 +9096,7 @@
     },
     {
       "id": "sin_diente_de_leon_cardo_mariano",
-      "ingredienteA": "diente_de_leon",
+      "ingredienteA": "diente_leon",
       "ingredienteB": "cardo_mariano",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -9120,7 +9120,7 @@
     },
     {
       "id": "sin_picrorhiza_boswellia",
-      "ingredienteA": "picrorhiza",
+      "ingredienteA": "picrorrhiza",
       "ingredienteB": "curcuma",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -12189,7 +12189,7 @@
     },
     {
       "id": "sin_ylang_ylang_bergamota_hipertension",
-      "ingredienteA": "ylang_ylang",
+      "ingredienteA": "ilang_ilang",
       "ingredienteB": "bergamota",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -14096,32 +14096,6 @@
       ],
       "sistemas": [
         "respiratorio"
-      ]
-    },
-    {
-      "id": "sin_diente_leon_alcachofa",
-      "ingredienteA": "diente_leon",
-      "ingredienteB": "alcachofa",
-      "tipo": "sinergia",
-      "nivelEvidencia": "C",
-      "descripcion": "Hepatoprotección y detox. Estimulación biliar sinérgica.",
-      "beneficios": [
-        "Mejor función hepática",
-        "Reduce colesterol",
-        "Detox",
-        "Digestión"
-      ],
-      "precauciones": [
-        "Obstrucción biliar: evitar"
-      ],
-      "mecanismo": "Diente de león (taraxasterol colagogo) + alcachofa (cinarina hepatoprotectora).",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "hepatico",
-        "digestivo"
       ]
     },
     {
@@ -16043,31 +16017,6 @@
       ]
     },
     {
-      "id": "sin_resveratrol_nmn_coq10_ergothioneine_glutathione",
-      "ingredienteA": "resveratrol",
-      "ingredienteB": "nmn_nicotinamide",
-      "tipo": "sinergia",
-      "nivelEvidencia": "C",
-      "descripcion": "Quinteto longevidad: resveratrol + NMN + CoQ10 + ergotioneína + glutatión.",
-      "beneficios": [
-        "Activa SIRT1 (resveratrol) + NAD+ (NMN)",
-        "Mitocondrial (CoQ10)",
-        "Antioxidante (ERGO/GSH)"
-      ],
-      "precauciones": [
-        "Datos clínicos humanos limitados"
-      ],
-      "mecanismo": "SIRT1/AMPK + NAD+ + cadena respiratoria + ROS scavengers.",
-      "categorias": [
-        "vitaminas",
-        "vitaminas"
-      ],
-      "sistemas": [
-        "metabolico",
-        "nervioso"
-      ]
-    },
-    {
       "id": "sin_trametes_reishi_ahcc_curcumin_omegapl",
       "ingredienteA": "trametes",
       "ingredienteB": "reishi",
@@ -17905,28 +17854,6 @@
       ]
     },
     {
-      "id": "sin_pqq_pyrroloquinoline_coenzima_q10",
-      "ingredienteA": "pqq_pyrroloquinoline",
-      "ingredienteB": "coq10",
-      "tipo": "potenciador",
-      "nivelEvidencia": "C",
-      "descripcion": "PQQ y CoQ10 para mitocondrias y cognitivo.",
-      "beneficios": [
-        "Biogenesis mitocondrial",
-        "Energia cerebral"
-      ],
-      "precauciones": [],
-      "mecanismo": "PQQ induce biogenesis mitocondrial; CoQ10 mejora cadena respiratoria.",
-      "categorias": [
-        "vitamina",
-        "vitamina"
-      ],
-      "sistemas": [
-        "metabolico",
-        "nervioso"
-      ]
-    },
-    {
       "id": "sin_polen_abeja_ext_propoleo",
       "ingredienteA": "polen_abeja_ext",
       "ingredienteB": "propoleo",
@@ -18520,27 +18447,6 @@
       ]
     },
     {
-      "id": "sin_diente_leon_cardo_mariano",
-      "ingredienteA": "diente_leon",
-      "ingredienteB": "cardo_mariano",
-      "tipo": "complementario",
-      "nivelEvidencia": "B",
-      "descripcion": "Diente de leon y cardo mariano para higado.",
-      "beneficios": [
-        "Hepatoprotector dual",
-        "Coleretico + hepatoprotector"
-      ],
-      "precauciones": [],
-      "mecanismo": "Taraxasterol coleretico; silimarina hepatoprotectora.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "hepatico"
-      ]
-    },
-    {
       "id": "sin_fresno_ortiga",
       "ingredienteA": "fresno",
       "ingredienteB": "ortiga",
@@ -19041,7 +18947,7 @@
     },
     {
       "id": "sin_cola_de_caballo_ortiga",
-      "ingredienteA": "cola_de_caballo",
+      "ingredienteA": "cola_caballo",
       "ingredienteB": "ortiga",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -19065,7 +18971,7 @@
     },
     {
       "id": "sin_cola_de_caballo_bambu",
-      "ingredienteA": "cola_de_caballo",
+      "ingredienteA": "cola_caballo",
       "ingredienteB": "silicio_ortosilicico",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
@@ -19218,32 +19124,8 @@
       ]
     },
     {
-      "id": "sin_olivo_hoja_ajo",
-      "ingredienteA": "olivo_hoja",
-      "ingredienteB": "ajo",
-      "tipo": "complementario",
-      "nivelEvidencia": "B",
-      "descripcion": "Hoja de olivo y ajo para hipertensión y cardiovascular.",
-      "beneficios": [
-        "Reduce presión arterial",
-        "Cardiovascular y colesterol"
-      ],
-      "precauciones": [
-        "Monitorizar presión arterial en medicación"
-      ],
-      "mecanismo": "Oleuropeína + alicina mejoran endotelio y presión arterial.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "cardiovascular",
-        "inmune"
-      ]
-    },
-    {
       "id": "sin_olivo_hoja_canela",
-      "ingredienteA": "olivo_hoja",
+      "ingredienteA": "olivo",
       "ingredienteB": "canela",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -19443,7 +19325,7 @@
     {
       "id": "sin_enebro_cola_de_caballo",
       "ingredienteA": "enebro",
-      "ingredienteB": "cola_de_caballo",
+      "ingredienteB": "cola_caballo",
       "tipo": "complementario",
       "nivelEvidencia": "C",
       "descripcion": "Enebro y cola de caballo para diuresis y edema.",
@@ -19872,7 +19754,7 @@
     {
       "id": "sin_evodia_olivo_hoja",
       "ingredienteA": "evodia",
-      "ingredienteB": "olivo_hoja",
+      "ingredienteB": "olivo",
       "tipo": "complementario",
       "nivelEvidencia": "C",
       "descripcion": "Evodia y hoja de olivo para cardiovascular.",
@@ -23154,7 +23036,7 @@
     },
     {
       "id": "syn_kb16_pqq_pyrroloquinoline_rodiola",
-      "ingredienteA": "pqq_pyrroloquinoline",
+      "ingredienteA": "pqq",
       "ingredienteB": "rodiola",
       "tipo": "cofactor",
       "nivelEvidencia": "C",
@@ -23246,7 +23128,7 @@
     },
     {
       "id": "syn_kb16_nmn_nicotinamide_rodiola",
-      "ingredienteA": "nmn_nicotinamide",
+      "ingredienteA": "nmn",
       "ingredienteB": "rodiola",
       "tipo": "cofactor",
       "nivelEvidencia": "C",
@@ -23783,7 +23665,7 @@
     {
       "id": "syn_kb17_estigma_maiz_cola_caballo",
       "ingredienteA": "estigma_maiz",
-      "ingredienteB": "cola_de_caballo",
+      "ingredienteB": "cola_caballo",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
       "descripcion": "Combinacion diuretica sinergica para edema y retencion de liquidos.",
@@ -24603,33 +24485,8 @@
       ]
     },
     {
-      "id": "sin_clavo_aceite_clavo",
-      "ingredienteA": "clavo_aceite",
-      "ingredienteB": "clavo",
-      "tipo": "complementario",
-      "nivelEvidencia": "C",
-      "descripcion": "El aceite esencial y la planta comparten eugenol, potenciando su acción analgésica dental y antiséptica.",
-      "beneficios": [
-        "Acción analgésica dental reforzada",
-        "Mayor espectro antiséptico y antifúngico"
-      ],
-      "precauciones": [
-        "Irritación de mucosa en dosis altas",
-        "No ingerir aceite esencial puro"
-      ],
-      "mecanismo": "El eugenol actúa como anestésico local (bloqueo canales Na+) en ambos formatos; el aceite aporta mayor concentración volátil.",
-      "sistemas": [
-        "digestivo",
-        "inmune"
-      ],
-      "categorias": [
-        "aceite_esencial",
-        "aceite_esencial"
-      ]
-    },
-    {
       "id": "sin_clavo_aceite_oregano",
-      "ingredienteA": "clavo_aceite",
+      "ingredienteA": "clavo",
       "ingredienteB": "oregano",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
@@ -24674,54 +24531,6 @@
       "categorias": [
         "aceite_esencial",
         "fitoterapia"
-      ]
-    },
-    {
-      "id": "sin_ilang_ilang_lavanda",
-      "ingredienteA": "ilang_ilang",
-      "ingredienteB": "lavanda_aceite",
-      "tipo": "complementario",
-      "nivelEvidencia": "C",
-      "descripcion": "Sinergia aromaterapéutica clásica para relajación, ansiedad y bienestar cardiovascular.",
-      "beneficios": [
-        "Reducción de ansiedad y estrés",
-        "Mejora de calidad de sueño",
-        "Efecto suave hipotensor"
-      ],
-      "precauciones": [
-        "Posible cefalea si se inhala en exceso",
-        "Irritación cutánea si no se diluye"
-      ],
-      "mecanismo": "El linalool (lavanda) y el geraniol/bencil benzoato (ylang ylang) modulan la neurotransmisión GABAérgica.",
-      "sistemas": [
-        "nervioso",
-        "cardiovascular"
-      ],
-      "categorias": [
-        "aceite_esencial",
-        "aceite_esencial"
-      ]
-    },
-    {
-      "id": "sin_ilang_ilang_bergamota",
-      "ingredienteA": "ilang_ilang",
-      "ingredienteB": "bergamota",
-      "tipo": "complemento",
-      "nivelEvidencia": "C",
-      "descripcion": "Mezcla aromática con efecto ansiolítico y regulador del humor.",
-      "beneficios": [
-        "Relajación, equilibrio emocional, perfume natural"
-      ],
-      "precauciones": [
-        "Fotosensibilidad por la bergamota si se aplica tópicamente"
-      ],
-      "mecanismo": "Combinación de terpenos aromáticos con acción moduladora del SNC.",
-      "sistemas": [
-        "nervioso"
-      ],
-      "categorias": [
-        "aceite_esencial",
-        "aceite_esencial"
       ]
     },
     {
@@ -25093,7 +24902,7 @@
     {
       "id": "sin_grama_vara_de_oro",
       "ingredienteA": "grama",
-      "ingredienteB": "vara_de_oro",
+      "ingredienteB": "solidago",
       "tipo": "sinergia",
       "nivelEvidencia": "B",
       "descripcion": "Dúo diurético antiinflamatorio para profilaxis de litiasis y tracto urinario.",
@@ -25115,32 +24924,8 @@
       ]
     },
     {
-      "id": "sin_vara_de_oro_arandano_rojo",
-      "ingredienteA": "vara_de_oro",
-      "ingredienteB": "arandano_rojo",
-      "tipo": "complementario",
-      "nivelEvidencia": "A",
-      "descripcion": "Sinergia para salud urinaria: antiséptico + antiadherencia bacteriana.",
-      "beneficios": [
-        "Profilaxis de cistitis recurrente",
-        "Reduce adherencia de E. coli al urotelio"
-      ],
-      "precauciones": [
-        "El arándano puede interactuar con warfarina"
-      ],
-      "mecanismo": "Las proantocianidinas del arándano inhiben la adhesión de fimbrias de E. coli; la vara de oro aporta diuresis y antiinflamación.",
-      "sistemas": [
-        "urinario",
-        "inmune"
-      ],
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ]
-    },
-    {
       "id": "sin_damiana_maca",
-      "ingredienteA": "damiana_hoja",
+      "ingredienteA": "damiana",
       "ingredienteB": "maca",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
@@ -25165,7 +24950,7 @@
     },
     {
       "id": "sin_damiana_ginseng_panax",
-      "ingredienteA": "damiana_hoja",
+      "ingredienteA": "damiana",
       "ingredienteB": "ginseng_panax_red",
       "tipo": "complementario",
       "nivelEvidencia": "C",
@@ -25505,7 +25290,7 @@
     },
     {
       "id": "sin_vara_de_oro_d_manosa",
-      "ingredienteA": "vara_de_oro",
+      "ingredienteA": "solidago",
       "ingredienteB": "d_manosa",
       "tipo": "complementario",
       "nivelEvidencia": "B",
@@ -25976,7 +25761,7 @@
     {
       "id": "sin_avena_sativa_damiana_hoja",
       "ingredienteA": "avena_sativa",
-      "ingredienteB": "damiana_hoja",
+      "ingredienteB": "damiana",
       "tipo": "complementario",
       "nivelEvidencia": "C",
       "descripcion": "Tónico nervioso + afrodisíaco para libido y vitalidad sexual.",
@@ -26339,7 +26124,7 @@
     {
       "id": "sin_hydrangea_vara_de_oro",
       "ingredienteA": "hydrangea",
-      "ingredienteB": "vara_de_oro",
+      "ingredienteB": "solidago",
       "tipo": "sinergia",
       "nivelEvidencia": "C",
       "descripcion": "Dúo urinario (litolítico + antiinflamatorio) para cálculos y cistitis.",
@@ -26363,7 +26148,7 @@
     {
       "id": "sin_guduchi_picrorhiza",
       "ingredienteA": "guduchi",
-      "ingredienteB": "picrorhiza",
+      "ingredienteB": "picrorrhiza",
       "tipo": "sinergia",
       "nivelEvidencia": "B",
       "descripcion": "Pareja hepatoprotectora ayurvédica (Guduchi + Katuki) para regeneración hepática.",
@@ -26735,29 +26520,6 @@
       ]
     },
     {
-      "id": "sin_picrorrhiza_cardo_mariano",
-      "ingredienteA": "picrorrhiza",
-      "ingredienteB": "cardo_mariano",
-      "tipo": "sinergia",
-      "nivelEvidencia": "B",
-      "descripcion": "Doble hepatoprotector: regenerante (picrorrhiza) + silimarina antioxidante (cardo mariano).",
-      "beneficios": [
-        "Proteccion hepatocelular sinergica",
-        "Util en NAFLD, hepatitis cronica"
-      ],
-      "precauciones": [
-        "Picrorrhiza reduce absorcion de hierro"
-      ],
-      "mecanismo": "Silimarina estabiliza membrana hepatocitaria; picrosidos de picrorrhiza estimulan regeneracion y son inmunomoduladores.",
-      "categorias": [
-        "fitoterapia",
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "hepatico"
-      ]
-    },
-    {
       "id": "sin_nac_hepatico_picrorrhiza",
       "ingredienteA": "n_acetilcisteina_hepatico",
       "ingredienteB": "picrorrhiza",
@@ -26850,7 +26612,7 @@
     },
     {
       "id": "sin_guggul_gymnema",
-      "ingredienteA": "guggul",
+      "ingredienteA": "guggulu",
       "ingredienteB": "gymnema_sylvestre",
       "tipo": "sinergia",
       "nivelEvidencia": "B",
@@ -27564,7 +27326,7 @@
     {
       "id": "sin_lactobacillus_rhamnosus_bifidobacterium_longum",
       "ingredienteA": "lactobacillus_rhamnosus",
-      "ingredienteB": "bifidobacterium_longum",
+      "ingredienteB": "b_longum",
       "tipo": "sinergia",
       "nivelEvidencia": "A",
       "descripcion": "Duo probiotico de cadena alta y baja para cobertura intestinal completa.",
@@ -27588,7 +27350,7 @@
     {
       "id": "sin_lactobacillus_rhamnosus_lactobacillus_acidophilus",
       "ingredienteA": "lactobacillus_rhamnosus",
-      "ingredienteB": "lactobacillus_acidophilus",
+      "ingredienteB": "l_acidophilus",
       "tipo": "sinergia",
       "nivelEvidencia": "A",
       "descripcion": "Duo de lactobacilos para diarrea y digestion de lactosa.",
@@ -27611,8 +27373,8 @@
     },
     {
       "id": "sin_lactobacillus_acidophilus_bifidobacterium_longum",
-      "ingredienteA": "lactobacillus_acidophilus",
-      "ingredienteB": "bifidobacterium_longum",
+      "ingredienteA": "l_acidophilus",
+      "ingredienteB": "b_longum",
       "tipo": "sinergia",
       "nivelEvidencia": "A",
       "descripcion": "Cobertura intestinal completa para disbiosis y alergias.",
@@ -27660,7 +27422,7 @@
     {
       "id": "sin_arabinogalactano_bifidobacterium_longum",
       "ingredienteA": "arabinogalactano",
-      "ingredienteB": "bifidobacterium_longum",
+      "ingredienteB": "b_longum",
       "tipo": "cofactor",
       "nivelEvidencia": "B",
       "descripcion": "Simbiotico que favorece bifidobacterias colonicas.",
