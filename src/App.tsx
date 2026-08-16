@@ -8,6 +8,7 @@ import { AppShell } from '@/components/layout/AppShell';
 import { PageLoader } from '@/ui/PageLoader';
 import { RouteError } from '@/ui/RouteError';
 import { ErrorBoundary } from '@/ui/ErrorBoundary';
+import { AdminGate } from '@/ui/AdminGate';
 import { useE2EE } from '@/app/E2EEAuthProvider';
 import { useDb } from '@/app/DbProvider';
 
@@ -70,7 +71,7 @@ function AppRoutes() {
         <Route path="synergies" element={<SynergiesPage />} />
         <Route path="analysis" element={<AnalysisPage />} />
         <Route path="protocols" element={<ProtocolsPage />} />
-        <Route path="admin" element={<AdminPage />} />
+        <Route path="admin" element={<AdminGate><AdminPage /></AdminGate>} />
         <Route path="settings" element={<SettingsPage />} />
       </Route>
       

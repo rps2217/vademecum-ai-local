@@ -19,3 +19,4 @@ export { CommandPalette } from './CommandPalette';
 export { ClientProfileSelector } from './ClientProfileSelector';
 export { ProductResultCard } from './ProductResultCard';
 export { ProductDetail } from './ProductDetail';
+export { AdminGate } from './AdminGate';
