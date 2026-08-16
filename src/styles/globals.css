@@ -270,8 +270,24 @@
   }
 }
 
+/* Scale animation for centered modals (translate + scale to avoid transform conflict) */
+@keyframes scale-in-centered {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .animate-scale-in {
   animation: scale-in 0.2s ease-out;
+}
+
+.animate-scale-in-centered {
+  animation: scale-in-centered 0.2s ease-out;
 }
 
 /* ============================================
