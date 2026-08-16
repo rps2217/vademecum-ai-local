@@ -34,5 +34,17 @@ export default tseslint.config(
         ecmaFeatures: { jsx: true }
       }
     }
+  },
+  {
+    // Scripts de navegador en public/ (cargados antes del bundle, sin TS)
+    files: ['public/**/*.js'],
+    languageOptions: {
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        localStorage: 'readonly',
+        matchMedia: 'readonly'
+      }
+    }
   }
 );

@@ -7,7 +7,7 @@
     var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     var theme = stored || (prefersDark ? 'dark' : 'light');
     document.documentElement.classList.toggle('dark', theme === 'dark');
-  } catch (e) {
+  } catch {
     // localStorage puede estar bloqueado (modo privado); fallback a light.
   }
 })();
