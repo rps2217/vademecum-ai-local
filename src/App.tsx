@@ -9,7 +9,7 @@ import { PageLoader } from '@/ui/PageLoader';
 import { RouteError } from '@/ui/RouteError';
 import { ErrorBoundary } from '@/ui/ErrorBoundary';
 import { AdminGate } from '@/ui/AdminGate';
-import { useE2EE } from '@/app/E2EEAuthProvider';
+import { useAppAuth } from '@/app/AppAuthProvider';
 import { useDb } from '@/app/DbProvider';
 
 // SearchPage es la página principal (index) → carga estática para evitar
@@ -28,7 +28,7 @@ const SettingsPage = lazy(() => import('@/pages/SettingsPage').then((m) => ({ de
 const ProtocolsPage = lazy(() => import('@/pages/ProtocolsPage').then((m) => ({ default: m.ProtocolsPage })));
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useE2EE();
+  const { isAuthenticated, isLoading } = useAppAuth();
 
   if (isLoading) {
     return <PageLoader />;
@@ -42,7 +42,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 function AuthRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useE2EE();
+  const { isAuthenticated, isLoading } = useAppAuth();
 
   if (isLoading) {
     return <PageLoader />;

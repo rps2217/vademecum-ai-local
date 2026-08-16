@@ -4,7 +4,7 @@
 
 import { ThemeProvider } from './ThemeProvider';
 import { DbProvider } from './DbProvider';
-import { E2EEAuthProvider } from './E2EEAuthProvider';
+import { AppAuthProvider } from './AppAuthProvider';
 import { ToastProvider } from './ToastProvider';
 import { SearchProvider } from '@/contexts/SearchContext';
 import { ClientProfileProvider } from '@/contexts/ClientProfileContext';
@@ -16,9 +16,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <SearchProvider>
           <ClientProfileProvider>
             <DbProvider>
-              <E2EEAuthProvider>
+              <AppAuthProvider>
                 {children}
-              </E2EEAuthProvider>
+              </AppAuthProvider>
             </DbProvider>
           </ClientProfileProvider>
         </SearchProvider>
