@@ -3,16 +3,16 @@
 ![Version](https://img.shields.io/badge/version-2.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![PWA](https://img.shields.io/badge/PWA-ready-60c044)
-![Build](https://img.shields.io/badge/build-925KB-60c044)
+![Build](https://img.shields.io/badge/build-3.1MB-60c044)
 
 **Vademecum AI** es una aplicación web progresiva (PWA) para consultoras de farmacia que proporciona:
 - Búsqueda inteligente de ingredientes con filtros avanzados
-- 217+ ingredientes con información detallada
+- 625+ ingredientes con información detallada
 - Detección de sinergias y antagonismos
 - Seguridad integrada (embarazo, lactancia, pediatría)
 - Cifrado E2EE opcional para datos sensibles
 - Offline-first con Service Worker (funciona sin conexión)
-- Sincronización opcional con Supabase (experimental)
+- Sincronización opcional con Supabase (experimental, solo lectura en la práctica — ver `supabase/README.md`)
 
 ---
 
@@ -81,10 +81,10 @@ src/
 
 | Tecnologia | Proposito |
 |------------|-----------|
-| React 18 | UI framework |
+| React 19 | UI framework |
 | TypeScript 5 | Tipado estatico |
 | Tailwind CSS 4 | Estilos |
-| React Router DOM 6 | Enrutamiento |
+| React Router DOM 7 | Enrutamiento |
 | Dexie | Base de datos IndexedDB |
 | vite-plugin-pwa | PWA + Service Worker |
 | tweetnacl | Cifrado E2EE |

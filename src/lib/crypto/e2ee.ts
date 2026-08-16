@@ -1,18 +1,22 @@
 /**
  * End-to-End Encryption Utilities
- * 
+ *
  * Cifrado E2E para backups usando tweetnacl + BIP39 + Web Crypto API.
- * 
+ *
  * SEGURIDAD:
- * - Usa sessionStorage para reducir riesgo XSS (claves se limpian al cerrar navegador)
+ * - El keypair cifrado se persiste en localStorage (sobrevive a recargas);
+ *   sessionStorage solo guarda un flag de sesión activa (se limpia al cerrar
+ *   el navegador) para reducir la ventana de exposición a XSS.
  * - Deriva claves usando PBKDF2 con 600k iteraciones
  * - Timeout de sesión configurable (30 min por defecto)
  * - Usa CryptoKey no exportable cuando es posible
- * 
+ *
  * LIMITACIONES:
- * - Las claves deben almacenarse cifradas en sessionStorage para persistencia de sesión
- * - Para protección XSS completa, se requiere Web Crypto API con CryptoKey en memoria
- *   (actualmente no implementado por limitaciones de persistencia entre page refresh)
+ * - Cada recarga de página requiere re-unlock (by design: el flag de sesión
+ *   en sessionStorage no contiene la clave descifrada).
+ * - Para protección XSS completa, se requiere Web Crypto API con CryptoKey
+ *   en memoria (actualmente no implementado por limitaciones de persistencia
+ *   entre page refresh)
  */
 
 import nacl from 'tweetnacl';
