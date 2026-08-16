@@ -102,13 +102,13 @@ async function unlockInPlace(page: Page): Promise<void> {
     .catch(() => false);
 
   if (isLogin) {
-    await passwordInput.first().fill(TEST_PASSWORD);
-    await unlockBtn.click();
+    await passwordInput.first().fill(TEST_PASSWORD, { timeout: 15000 });
+    await unlockBtn.click({ timeout: 15000 });
   } else {
     // Onboarding: contraseña + confirmación.
-    await passwordInput.nth(0).fill(TEST_PASSWORD);
-    await passwordInput.nth(1).fill(TEST_PASSWORD);
-    await page.locator('button[type="submit"]').click();
+    await passwordInput.nth(0).fill(TEST_PASSWORD, { timeout: 15000 });
+    await passwordInput.nth(1).fill(TEST_PASSWORD, { timeout: 15000 });
+    await page.locator('button[type="submit"]').click({ timeout: 15000 });
 
     // La generación del keypair (PBKDF2 600k) puede tardar varios segundos
     // en runners de CI lentos. Esperar a que aparezca el botón "Completar
