@@ -8,7 +8,7 @@
 import { useMemo, useState, useRef, useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db/schema';
-import type { DbPathology, DbIngredient } from '@/db/schema';
+import type { DbPathology, DbIngredient, DbProduct } from '@/db/schema';
 import { useProductsForPathology } from '@/hooks/useProductsForPathology';
 import { Badge } from '@/ui/Badge';
 import {
@@ -22,7 +22,7 @@ interface PathologyDetailProps {
   pathology: DbPathology;
   onClose: () => void;
   onIngredientClick?: (id: string) => void;
-  onProductClick?: (sku: string) => void;
+  onProductClick?: (product: DbProduct) => void;
 }
 
 const EVIDENCE_COLORS = {
@@ -263,7 +263,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                 {pathologyProducts.slice(0, 12).map((pp) => (
                   <button
                     key={pp.product.sku}
-                    onClick={() => onProductClick?.(pp.product.sku)}
+                    onClick={() => onProductClick?.(pp.product)}
                     className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <div className="flex-1 min-w-0">

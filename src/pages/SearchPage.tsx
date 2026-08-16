@@ -620,7 +620,7 @@ export function SearchPage() {
                     key={result.product.sku}
                     result={result}
                     analysis={productAnalysisMap?.get(result.product.sku)}
-                    onClick={(sku) => setSelectedProduct(productSearchService.getProduct(sku) ?? null)}
+                    onClick={() => setSelectedProduct(result.product)}
                   />
                 ))}
               </div>
@@ -735,12 +735,9 @@ export function SearchPage() {
               setSelectedIngredient(ing);
             }
           }}
-          onProductClick={(sku) => {
-            const p = productSearchService.getProduct(sku);
-            if (p) {
-              setSelectedPathology(null);
-              setSelectedProduct(p);
-            }
+          onProductClick={(product) => {
+            setSelectedPathology(null);
+            setSelectedProduct(product);
           }}
         />
       )}
