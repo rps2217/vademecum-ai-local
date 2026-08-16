@@ -52,7 +52,7 @@ export function IngredientResultCard({ result, verdict, onClick, isFavorite, onT
           className={cn(
             'absolute top-2 right-2 z-10 p-1.5 rounded-lg transition-colors',
             isFavorite
-              ? 'text-amber-500 hover:bg-amber-50'
+              ? 'text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20'
               : 'text-muted-foreground/40 hover:text-amber-500 hover:bg-muted',
           )}
           aria-label={isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}

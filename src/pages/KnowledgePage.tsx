@@ -16,6 +16,7 @@ import { useIngredients } from '@/hooks/useIngredients';
 import { Database, Filter, Plus, BookOpen, Leaf, FlaskConical } from 'lucide-react';
 import type { DbIngredient, IngredientCategory } from '@/db/schema';
 import { cn } from '@/lib/utils';
+import { getEvidenceConfig } from '@/ui/searchConfig';
 
 const CATEGORIES = [
   { value: '', label: 'Todas las categorias' },
@@ -34,13 +35,6 @@ const CATEGORY_CONFIG: Record<string, { label: string; icon: typeof Leaf; color:
   vitamina: { label: 'Vitamina', icon: BookOpen, color: 'bg-violet-500/10 text-violet-600' },
   mineral: { label: 'Mineral', icon: BookOpen, color: 'bg-slate-500/10 text-slate-600' },
   probiotico: { label: 'Probiotico', icon: Leaf, color: 'bg-pink-500/10 text-pink-600' },
-};
-
-const EVIDENCE_CONFIG: Record<string, { label: string; color: string }> = {
-  A: { label: 'Ev. Alta', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
-  B: { label: 'Ev. Media', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' },
-  C: { label: 'Ev. Baja', color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' },
-  D: { label: 'Ev. Muy baja', color: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200' },
 };
 
 export function KnowledgePage() {
@@ -117,7 +111,7 @@ export function KnowledgePage() {
           {ingredients.map((ingredient) => {
             const catConfig = getCategoryConfig(ingredient.categoria);
             const CatIcon = catConfig.icon;
-            const evidenceConfig = EVIDENCE_CONFIG[ingredient.evidencia] || EVIDENCE_CONFIG.C;
+            const evidenceConfig = getEvidenceConfig(ingredient.evidencia);
             
             return (
               <Card

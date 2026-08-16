@@ -26,6 +26,7 @@ import { humanize } from '@/lib/text';
 import { buildHighlightTerms } from '@/lib/highlightTerms';
 import { cn } from '@/lib/utils';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
+import { getEvidenceConfig } from '@/ui/searchConfig';
 
 interface IngredientDetailProps {
   ingredient: DbIngredient;
@@ -34,13 +35,6 @@ interface IngredientDetailProps {
   /** Indicación o query activa al abrir la ficha — resalta términos relacionados. */
   activeIndication?: string;
 }
-
-const EVIDENCE_CONFIG: Record<string, { label: string; color: string; title: string }> = {
-  A: { label: 'Evidencia A', color: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30', title: 'Alta: meta-análisis / ECA' },
-  B: { label: 'Evidencia B', color: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30', title: 'Media: estudios controlados' },
-  C: { label: 'Evidencia C', color: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/30', title: 'Baja: observacional / tradicional' },
-  D: { label: 'Evidencia D', color: 'bg-gray-500/15 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20', title: 'Muy baja: uso tradicional' },
-};
 
 const SAFETY_CONFIG: Record<SafetyStatus, { icon: typeof CheckCircle2; color: string; label: string }> = {
   apto: { icon: CheckCircle2, color: 'text-emerald-600 dark:text-emerald-400', label: 'Apto' },
@@ -73,7 +67,7 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activ
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
   const evidenceConfig = useMemo(
-    () => EVIDENCE_CONFIG[ingredient.evidencia] || EVIDENCE_CONFIG.D,
+    () => getEvidenceConfig(ingredient.evidencia),
     [ingredient.evidencia]
   );
   const sinonimosDisplay = useMemo(

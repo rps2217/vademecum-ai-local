@@ -17,6 +17,7 @@ import {
   Users, AlertOctagon, ChevronDown, Package,
 } from 'lucide-react';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
+import { getEvidenceConfig } from '@/ui/searchConfig';
 
 interface PathologyDetailProps {
   pathology: DbPathology;
@@ -24,13 +25,6 @@ interface PathologyDetailProps {
   onIngredientClick?: (id: string) => void;
   onProductClick?: (product: DbProduct) => void;
 }
-
-const EVIDENCE_COLORS = {
-  A: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30',
-  B: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30',
-  C: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/30',
-  D: 'bg-gray-500/15 text-gray-600 dark:text-gray-300 ring-1 ring-gray-500/30',
-} as const;
 
 const SYSTEM_LABELS: Record<string, string> = {
   nervioso: 'Sistema nervioso',
@@ -102,7 +96,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
   // Fase 2: lookup inverso patología → productos (vía bridge de ingredientes).
   const pathologyProducts = useProductsForPathology(allReferencedIds);
 
-  const evidenceColor = EVIDENCE_COLORS[pathology.evidencia] || EVIDENCE_COLORS.C;
+  const evidenceColor = getEvidenceConfig(pathology.evidencia).color;
 
   const currentTabIds = pathology.tratamientoNatural[activeTab] || [];
 
@@ -219,7 +213,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                       </div>
                       {ing && (
                         <div className="flex items-center gap-1 shrink-0">
-                          <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${EVIDENCE_COLORS[ing.evidencia] || EVIDENCE_COLORS.C}`}>
+                          <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${getEvidenceConfig(ing.evidencia).color}`}>
                             {ing.evidencia}
                           </span>
                           <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />

@@ -59,7 +59,7 @@ export interface EvidenceConfig {
 export const EVIDENCE_CONFIG: Record<string, EvidenceConfig> = {
   A: { label: 'A', color: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30 font-semibold', title: 'Evidencia alta: meta-análisis / ensayos clínicos' },
   B: { label: 'B', color: 'bg-sky-500/15 text-sky-700 dark:text-sky-300 ring-1 ring-sky-500/30 font-semibold', title: 'Evidencia media: estudios controlados' },
-  C: { label: 'C', color: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20', title: 'Evidencia baja: estudios observacionales' },
+  C: { label: 'C', color: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/30 font-semibold', title: 'Evidencia baja: estudios observacionales' },
   D: { label: 'D', color: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 ring-1 ring-gray-500/20', title: 'Evidencia muy baja: uso tradicional' },
 };
 
