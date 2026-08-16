@@ -51,7 +51,19 @@ async function supabaseSelect(table, columns, offset, pageSize) {
   return res.json();
 }
 
-// --- Cargar KB local -------------------------------------------------------
+// --- Cargar KB local + diccionario de categorización ----------------------
+
+function loadCategorization() {
+  const catPath = path.join(__dirname, '..', 'src', 'data', 'principio-categorization.json');
+  const cat = JSON.parse(fs.readFileSync(catPath, 'utf-8'));
+  const blacklist = new Set([
+    ...cat.excipientes.items,
+    ...cat.tags.items,
+    ...cat.cosmetico_quimico.items,
+  ]);
+  return { blacklist, sinonimos: cat.sinonimos_quimicos.mapping };
+}
+
 function loadKbIngredients() {
   const kbDir = path.join(__dirname, '..', 'src', 'db', 'seeders', 'data');
   const files = ['fitoterapia.json', 'homeopatia.json', 'aceites.json', 'vitaminas_minerales.json'];
@@ -129,11 +141,44 @@ function findBestMatch(principioText, kb) {
   return null;
 }
 
+// --- Helpers de categorización (desde principio-categorization.json) -------
+
+function normalizeForMatch(text) {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[_-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function isBlacklisted(text, blacklist) {
+  const t = text.toLowerCase().trim();
+  if (blacklist.has(t)) return true;
+  const normalized = normalizeForMatch(text);
+  for (const item of blacklist) {
+    if (normalizeForMatch(item) === normalized) return true;
+  }
+  return false;
+}
+
+function findSynonymMatch(text, sinonimos) {
+  const norm = normalizeForMatch(text);
+  for (const [key, id] of Object.entries(sinonimos)) {
+    if (normalizeForMatch(key) === norm) return id;
+  }
+  return null;
+}
+
 // --- Auditoría principal ---------------------------------------------------
 async function main() {
   console.log('📥 Cargando KB local...');
   const kb = loadKbIngredients();
-  console.log(`   ${kb.size} ingredientes en la KB\n`);
+  console.log(`   ${kb.size} ingredientes en la KB`);
+  const { blacklist, sinonimos } = loadCategorization();
+  console.log(`   ${blacklist.size} excipientes/tags/químicos en blacklist`);
+  console.log(`   ${Object.keys(sinonimos).length} sinónimos químicos mapeados\n`);
 
   console.log('📥 Descargando product_ingredients desde Supabase...');
   let allRows = [];
@@ -154,12 +199,69 @@ async function main() {
   const principioCache = new Map();
   const issues = [];
   const fixes = [];
-  const stats = { total: allRows.length, matched: 0, unmatched: 0, correctos: 0, falsosPositivos: 0, gapsCubribles: 0, gapsReales: 0, matchesMejorables: 0 };
+  const stats = { total: allRows.length, matched: 0, unmatched: 0, correctos: 0, falsosPositivos: 0, gapsCubribles: 0, gapsReales: 0, matchesMejorables: 0, excipienteTag: 0, sinonimoResuelto: 0 };
 
   for (const row of allRows) {
     if (row.is_matched && row.ingredient_id) stats.matched++;
     else stats.unmatched++;
 
+    // 1) ¿Es excipiente/tag/químico cosmético? → no debe matchear
+    if (isBlacklisted(row.principio_text, blacklist)) {
+      stats.excipienteTag++;
+      if (row.is_matched && row.ingredient_id) {
+        stats.falsosPositivos++;
+        issues.push({
+          tipo: 'falso_positivo',
+          categoria: 'excipiente_tag',
+          productoSku: row.producto_sku,
+          principioText: row.principio_text,
+          ingredientIdActual: row.ingredient_id,
+          ingredientIdSugerido: null,
+          nombreSugerido: null,
+          scoreActual: row.match_score || 0, scoreSugerido: 0,
+          explicacion: `"${row.principio_text}" es excipiente/tag/químico cosmético (en blacklist) pero está matcheado a "${kb.get(row.ingredient_id)?.nombre || row.ingredient_id}". Debería ser is_matched=false.`,
+        });
+        if (FIX) {
+          fixes.push({ producto_sku: row.producto_sku, principio_text: row.principio_text, matched_via: row.matched_via, ingredient_id_old: row.ingredient_id, ingredient_id_new: null, match_type_new: 'none', match_score_new: 0, is_matched_new: false });
+        }
+      } else {
+        stats.correctos++;
+      }
+      continue;
+    }
+
+    // 2) ¿Tiene sinónimo químico mapeado? → usar ese ID directo
+    const synId = findSynonymMatch(row.principio_text, sinonimos);
+    if (synId) {
+      const synIng = kb.get(synId);
+      stats.sinonimoResuelto++;
+      if (row.is_matched && row.ingredient_id === synId) {
+        stats.correctos++;
+      } else if (row.is_matched && row.ingredient_id !== synId) {
+        stats.falsosPositivos++;
+        issues.push({
+          tipo: 'falso_positivo',
+          categoria: 'sinonimo_mal_matcheado',
+          productoSku: row.producto_sku,
+          principioText: row.principio_text,
+          ingredientIdActual: row.ingredient_id,
+          ingredientIdSugerido: synId,
+          nombreSugerido: synIng?.nombre || synId,
+          scoreActual: row.match_score || 0, scoreSugerido: 100,
+          explicacion: `"${row.principio_text}" es sinónimo químico de "${synIng?.nombre || synId}" (${synId}) pero está matcheado a "${kb.get(row.ingredient_id)?.nombre || row.ingredient_id}".`,
+        });
+        if (FIX) {
+          fixes.push({ producto_sku: row.producto_sku, principio_text: row.principio_text, matched_via: row.matched_via, ingredient_id_old: row.ingredient_id, ingredient_id_new: synId, match_type_new: 'synonym', match_score_new: 100, is_matched_new: true });
+        }
+      } else {
+        stats.gapsCubribles++;
+        issues.push({ tipo: 'gap_cubrible', categoria: 'sinonimo_no_matcheado', productoSku: row.producto_sku, principioText: row.principio_text, ingredientIdActual: null, ingredientIdSugerido: synId, nombreSugerido: synIng?.nombre || synId, scoreActual: 0, scoreSugerido: 100, explicacion: `"${row.principio_text}" sin match, pero es sinónimo de "${synIng?.nombre || synId}" (${synId})` });
+        if (FIX) { fixes.push({ producto_sku: row.producto_sku, principio_text: row.principio_text, matched_via: row.matched_via, ingredient_id_old: null, ingredient_id_new: synId, match_type_new: 'synonym', match_score_new: 100, is_matched_new: true }); }
+      }
+      continue;
+    }
+
+    // 3) Búsqueda normal por similitud de texto
     if (!principioCache.has(row.principio_text)) {
       principioCache.set(row.principio_text, findBestMatch(row.principio_text, kb));
     }
@@ -168,7 +270,7 @@ async function main() {
     const ingActual = row.ingredient_id ? kb.get(row.ingredient_id) : null;
 
     if (VERBOSE) {
-      console.log(`  [${row.producto_sku}] "${row.principio_text}" → actual: ${row.ingredient_id || 'NULL'} (${scoreActual}) | sugerido: ${sugerido?.ingredientId || 'NULL'} (${sugerido?.score || 0})`);
+      console.log(`  [${row.producto_sku}] "${row.principio_text}" -> actual: ${row.ingredient_id || 'NULL'} (${scoreActual}) | sugerido: ${sugerido?.ingredientId || 'NULL'} (${sugerido?.score || 0})`);
     }
 
     if (row.is_matched && row.ingredient_id && ingActual) {
@@ -178,6 +280,7 @@ async function main() {
         stats.falsosPositivos++;
         issues.push({
           tipo: 'falso_positivo',
+          categoria: 'similitud_baja',
           productoSku: row.producto_sku,
           principioText: row.principio_text,
           ingredientIdActual: row.ingredient_id,
@@ -185,15 +288,15 @@ async function main() {
           nombreSugerido: sugerido?.nombre || null,
           scoreActual, scoreSugerido: sugerido?.score || 0,
           explicacion: sugerido
-            ? `"${row.principio_text}" → "${ingActual.nombre}" (${row.ingredient_id}) score ${scoreRecomputed}, pero mejor match: "${sugerido.nombre}" (${sugerido.ingredientId}) score ${sugerido.score}`
-            : `"${row.principio_text}" → "${ingActual.nombre}" (${row.ingredient_id}) score ${scoreRecomputed}, sin mejor match en KB`,
+            ? `"${row.principio_text}" -> "${ingActual.nombre}" (${row.ingredient_id}) score ${scoreRecomputed}, pero mejor match: "${sugerido.nombre}" (${sugerido.ingredientId}) score ${sugerido.score}`
+            : `"${row.principio_text}" -> "${ingActual.nombre}" (${row.ingredient_id}) score ${scoreRecomputed}, sin mejor match en KB`,
         });
         if (FIX && sugerido) {
           fixes.push({ producto_sku: row.producto_sku, principio_text: row.principio_text, matched_via: row.matched_via, ingredient_id_old: row.ingredient_id, ingredient_id_new: sugerido.ingredientId, match_type_new: sugerido.score >= 95 ? 'exact' : sugerido.score >= 80 ? 'synonym' : 'fuzzy', match_score_new: sugerido.score, is_matched_new: true });
         }
       } else if (sugerido && sugerido.ingredientId !== row.ingredient_id && sugerido.score > scoreRecomputed + 10) {
         stats.matchesMejorables++;
-        issues.push({ tipo: 'match_mejorable', productoSku: row.producto_sku, principioText: row.principio_text, ingredientIdActual: row.ingredient_id, ingredientIdSugerido: sugerido.ingredientId, nombreSugerido: sugerido.nombre, scoreActual, scoreSugerido: sugerido.score, explicacion: `"${row.principio_text}" → "${ingActual.nombre}" (score ${scoreRecomputed}), pero "${sugerido.nombre}" tiene score mayor (${sugerido.score})` });
+        issues.push({ tipo: 'match_mejorable', productoSku: row.producto_sku, principioText: row.principio_text, ingredientIdActual: row.ingredient_id, ingredientIdSugerido: sugerido.ingredientId, nombreSugerido: sugerido.nombre, scoreActual, scoreSugerido: sugerido.score, explicacion: `"${row.principio_text}" -> "${ingActual.nombre}" (score ${scoreRecomputed}), pero "${sugerido.nombre}" tiene score mayor (${sugerido.score})` });
         if (FIX) { fixes.push({ producto_sku: row.producto_sku, principio_text: row.principio_text, matched_via: row.matched_via, ingredient_id_old: row.ingredient_id, ingredient_id_new: sugerido.ingredientId, match_type_new: sugerido.score >= 95 ? 'exact' : sugerido.score >= 80 ? 'synonym' : 'fuzzy', match_score_new: sugerido.score, is_matched_new: true }); }
       } else {
         stats.correctos++;
@@ -225,6 +328,9 @@ async function main() {
   console.log(`  ⚠  Gaps cubribles:         ${stats.gapsCubribles} (existen en KB pero no matcheados)`);
   console.log(`  🔍 Gaps reales:            ${stats.gapsReales} (no están en KB)`);
   console.log(`  🔄 Matches mejorables:     ${stats.matchesMejorables}`);
+  console.log('─'.repeat(70));
+  console.log(`  📋 Excipientes/tags (blacklist): ${stats.excipienteTag} (${stats.excipienteTag - (stats.falsosPositivos - (issues.filter(i => i.categoria === 'sinonimo_mal_matcheado').length))} correctamente no-matcheados)`);
+  console.log(`  🧪 Sinónimos químicos resueltos: ${stats.sinonimoResuelto}`);
   console.log('═'.repeat(70));
 
   function printGroup(tipo, label, maxItems) {
