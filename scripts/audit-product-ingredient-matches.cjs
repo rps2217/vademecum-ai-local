@@ -19,6 +19,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { resolveHomeopathic, hasHomeopathicSuffix } = require('./homeopathic-utils.cjs');
 
 // --- Configuración desde entorno ------------------------------------------
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -262,6 +263,55 @@ async function main() {
     }
 
     // 3) Búsqueda normal por similitud de texto
+    // 3a) ¿Es homeopático con dilución? (D3, C6, C30, T.M.) → extraer nombre base
+    let homeoMatch = null;
+    if (hasHomeopathicSuffix(row.principio_text)) {
+      homeoMatch = resolveHomeopathic(row.principio_text, kb);
+    }
+
+    if (homeoMatch) {
+      stats.sinonimoResuelto++;
+      if (row.is_matched && row.ingredient_id === homeoMatch.ingredientId) {
+        stats.correctos++;
+      } else if (row.is_matched && row.ingredient_id !== homeoMatch.ingredientId) {
+        stats.falsosPositivos++;
+        issues.push({
+          tipo: 'falso_positivo',
+          categoria: 'homeopatico_mal_matcheado',
+          productoSku: row.producto_sku,
+          principioText: row.principio_text,
+          ingredientIdActual: row.ingredient_id,
+          ingredientIdSugerido: homeoMatch.ingredientId,
+          nombreSugerido: homeoMatch.nombre,
+          scoreActual: row.match_score || 0,
+          scoreSugerido: homeoMatch.score,
+          explicacion: `"${row.principio_text}" es homeopático (base: "${homeoMatch.base}") → "${homeoMatch.nombre}" (${homeoMatch.ingredientId}) pero está matcheado a "${kb.get(row.ingredient_id)?.nombre || row.ingredient_id}".`,
+        });
+        if (FIX) {
+          fixes.push({ producto_sku: row.producto_sku, principio_text: row.principio_text, matched_via: row.matched_via, ingredient_id_old: row.ingredient_id, ingredient_id_new: homeoMatch.ingredientId, match_type_new: 'synonym', match_score_new: homeoMatch.score, is_matched_new: true });
+        }
+      } else {
+        stats.gapsCubribles++;
+        issues.push({
+          tipo: 'gap_cubrible',
+          categoria: 'homeopatico_no_matcheado',
+          productoSku: row.producto_sku,
+          principioText: row.principio_text,
+          ingredientIdActual: null,
+          ingredientIdSugerido: homeoMatch.ingredientId,
+          nombreSugerido: homeoMatch.nombre,
+          scoreActual: 0,
+          scoreSugerido: homeoMatch.score,
+          explicacion: `"${row.principio_text}" sin match, pero es homeopático (base: "${homeoMatch.base}") → "${homeoMatch.nombre}" (${homeoMatch.ingredientId})`,
+        });
+        if (FIX) {
+          fixes.push({ producto_sku: row.producto_sku, principio_text: row.principio_text, matched_via: row.matched_via, ingredient_id_old: null, ingredient_id_new: homeoMatch.ingredientId, match_type_new: 'synonym', match_score_new: homeoMatch.score, is_matched_new: true });
+        }
+      }
+      continue;
+    }
+
+    // 3b) Búsqueda normal por similitud de texto
     if (!principioCache.has(row.principio_text)) {
       principioCache.set(row.principio_text, findBestMatch(row.principio_text, kb));
     }
