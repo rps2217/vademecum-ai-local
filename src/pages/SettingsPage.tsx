@@ -7,11 +7,13 @@ import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { Badge } from '@/ui/Badge';
 import { useTheme } from '@/app/ThemeProvider';
-import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2, XCircle, AlertTriangle, Loader2, Download } from 'lucide-react';
+import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2, XCircle, AlertTriangle, Loader2, Download, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useSync } from '@/hooks/useSync';
 import { isSupabaseConfigured, testConnection } from '@/lib/supabase';
 import { forceReplicateProducts } from '@/core/sync';
+import { useAdminAuth } from '@/hooks/useAdminAuth';
+import { Input } from '@/ui/Input';
 import { toast } from 'sonner';
 
 type Tab = 'appearance' | 'sync' | 'ai' | 'data' | 'account';
@@ -170,13 +172,17 @@ export function SettingsPage() {
           )}
 
           {activeTab === 'account' && (
-            <Card className="p-6">
-              <h2 className="font-semibold mb-4">Cuenta</h2>
-              <p className="text-muted-foreground mb-4">
-                Gestiona tu clave de cifrado y recuperación.
-              </p>
-              <Button variant="outline">Cambiar contraseña</Button>
-            </Card>
+            <div className="space-y-6">
+              <Card className="p-6">
+                <h2 className="font-semibold mb-4">Cuenta</h2>
+                <p className="text-muted-foreground mb-4">
+                  Gestiona tu clave de cifrado y recuperación.
+                </p>
+                <Button variant="outline">Cambiar contraseña</Button>
+              </Card>
+
+              <AdminPinSection />
+            </div>
           )}
         </div>
       </div>
@@ -354,5 +360,99 @@ function SyncTab() {
         </Card>
       )}
     </div>
+  );
+}
+
+function AdminPinSection() {
+  const { hasAdminPin, setAdminPin, changeAdminPin, clearAdminPin } = useAdminAuth();
+  const [mode, setMode] = useState<'idle' | 'set' | 'change'>('idle');
+  const [pin1, setPin1] = useState('');
+  const [pin2, setPin2] = useState('');
+  const [oldPin, setOldPin] = useState('');
+  const [busy, setBusy] = useState(false);
+
+  const handleSet = async () => {
+    if (pin1.length < 4) { toast.error('El PIN debe tener al menos 4 dígitos'); return; }
+    if (pin1 !== pin2) { toast.error('Los PINs no coinciden'); return; }
+    setBusy(true);
+    try {
+      await setAdminPin(pin1);
+      toast.success('PIN de admin configurado');
+      setMode('idle'); setPin1(''); setPin2('');
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : 'Error');
+    } finally { setBusy(false); }
+  };
+
+  const handleChange = async () => {
+    if (pin1.length < 4) { toast.error('El PIN nuevo debe tener al menos 4 dígitos'); return; }
+    if (pin1 !== pin2) { toast.error('Los PINs no coinciden'); return; }
+    setBusy(true);
+    try {
+      const ok = await changeAdminPin(oldPin, pin1);
+      if (ok) { toast.success('PIN de admin actualizado'); setMode('idle'); setPin1(''); setPin2(''); setOldPin(''); }
+      else { toast.error('PIN actual incorrecto'); }
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : 'Error');
+    } finally { setBusy(false); }
+  };
+
+  const handleClear = () => {
+    clearAdminPin();
+    toast.success('PIN de admin eliminado');
+    setMode('idle');
+  };
+
+  return (
+    <Card className="p-6">
+      <div className="flex items-center gap-2 mb-2">
+        <Shield className="w-5 h-5 text-primary" aria-hidden="true" />
+        <h2 className="font-semibold">Acceso de administrador</h2>
+      </div>
+      <p className="text-sm text-muted-foreground mb-4">
+        Protege la edición de la base de conocimiento con un PIN adicional.
+        {!hasAdminPin && ' Actualmente /admin es accesible sin PIN.'}
+        {hasAdminPin && ' El PIN se exige cada vez que se entra a /admin.'}
+      </p>
+
+      {mode === 'idle' && (
+        <div className="flex gap-3 flex-wrap">
+          {!hasAdminPin && (
+            <Button variant="outline" onClick={() => setMode('set')}>
+              Configurar PIN
+            </Button>
+          )}
+          {hasAdminPin && (
+            <>
+              <Button variant="outline" onClick={() => setMode('change')}>Cambiar PIN</Button>
+              <Button variant="outline" onClick={handleClear}>Eliminar PIN</Button>
+            </>
+          )}
+        </div>
+      )}
+
+      {mode === 'set' && (
+        <div className="space-y-3 max-w-xs">
+          <Input type="password" inputMode="numeric" placeholder="Nuevo PIN (mín. 4)" value={pin1} onChange={(e) => setPin1(e.target.value)} aria-label="Nuevo PIN" />
+          <Input type="password" inputMode="numeric" placeholder="Repetir PIN" value={pin2} onChange={(e) => setPin2(e.target.value)} aria-label="Repetir PIN" />
+          <div className="flex gap-3">
+            <Button onClick={handleSet} disabled={busy}>Guardar</Button>
+            <Button variant="outline" onClick={() => { setMode('idle'); setPin1(''); setPin2(''); }}>Cancelar</Button>
+          </div>
+        </div>
+      )}
+
+      {mode === 'change' && (
+        <div className="space-y-3 max-w-xs">
+          <Input type="password" inputMode="numeric" placeholder="PIN actual" value={oldPin} onChange={(e) => setOldPin(e.target.value)} aria-label="PIN actual" />
+          <Input type="password" inputMode="numeric" placeholder="Nuevo PIN" value={pin1} onChange={(e) => setPin1(e.target.value)} aria-label="Nuevo PIN" />
+          <Input type="password" inputMode="numeric" placeholder="Repetir nuevo PIN" value={pin2} onChange={(e) => setPin2(e.target.value)} aria-label="Repetir nuevo PIN" />
+          <div className="flex gap-3">
+            <Button onClick={handleChange} disabled={busy}>Actualizar</Button>
+            <Button variant="outline" onClick={() => { setMode('idle'); setPin1(''); setPin2(''); setOldPin(''); }}>Cancelar</Button>
+          </div>
+        </div>
+      )}
+    </Card>
   );
 }
