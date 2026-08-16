@@ -142,24 +142,25 @@ export function OnboardingPage() {
                 </p>
               </div>
 
-              <div className="relative">
-                <Input
-                  type={showPassword ? 'text' : 'password'}
-                  label="Contraseña"
-                  placeholder="Mínimo 8 caracteres"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-9 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
-                  aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
-                >
-                  {showPassword ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
-                </button>
-              </div>
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                label="Contraseña"
+                placeholder="Mínimo 8 caracteres"
+                autoComplete="new-password"
+                autoFocus
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                rightIcon={
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
+                    aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
+                  </button>
+                }
+              />
 
               {/* Password strength indicator */}
               {password && (
@@ -180,25 +181,25 @@ export function OnboardingPage() {
                 </div>
               )}
 
-              <div className="relative">
-                <Input
-                  type={showConfirm ? 'text' : 'password'}
-                  label="Confirmar contraseña"
-                  placeholder="Repite la contraseña"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  error={error}
-                  className="pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-3 top-9 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
-                  aria-label={showConfirm ? 'Ocultar contraseña' : 'Mostrar contraseña'}
-                >
-                  {showConfirm ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
-                </button>
-              </div>
+              <Input
+                type={showConfirm ? 'text' : 'password'}
+                label="Confirmar contraseña"
+                placeholder="Repite la contraseña"
+                autoComplete="new-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                error={error}
+                rightIcon={
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirm(!showConfirm)}
+                    className="text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded active:bg-accent"
+                    aria-label={showConfirm ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                  >
+                    {showConfirm ? <EyeOff className="w-4 h-4" aria-hidden="true" /> : <Eye className="w-4 h-4" aria-hidden="true" />}
+                  </button>
+                }
+              />
 
               <Button type="submit" className="w-full" isLoading={isSubmitting}>
                 Continuar
