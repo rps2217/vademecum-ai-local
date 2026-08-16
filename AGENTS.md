@@ -64,16 +64,19 @@ src/
 │           └── sinergias.json
 ├── lib/
 │   ├── crypto/                  # Criptografía E2E
-│   │   ├── e2ee.ts              # Funciones de cifrado (TweetNaCl)
-│   │   ├── KeyManager.ts        # Gestión de claves (PBKDF2)
+│   │   ├── e2ee.ts              # Funciones de cifrado (TweetNaCl + PBKDF2)
 │   │   └── index.ts             # Barrel de crypto
+│   │   (NOTA: KeyManager.ts ELIMINADO — su lógica (deriveKey, generateAndStoreKeyPair,
+│   │    unlockKeyPair, unlockWithRecovery, hasKeyPair, deleteKeyPair) se consolidó
+│   │    en e2ee.ts. FieldEncryption.ts ELIMINADO — API de cifrado por campo sin
+│   │    consumidores. checkConnectivity() ELIMINADA — nunca llamada.)
 │   ├── supabase.ts              # Cliente Supabase
 │   ├── logger.ts                # Logger centralizado
 │   └── utils.ts                 # cn() y utilidades
 │   (NOTA: lib/index.ts barrel ELIMINADO — nadie importaba desde @/lib,
 │    todos usan @/lib/logger, @/lib/utils, @/lib/supabase, @/lib/crypto directo.
 │    FieldEncryption.ts ELIMINADO — API de cifrado por campo sin consumidores.
-│    checkConnectivity() ELIMINADA de KeyManager — nunca llamada.)
+│    KeyManager.ts ELIMINADO — consolidado en e2ee.ts. checkConnectivity() ELIMINADA.)
 ├── pages/                       # Páginas de la app
 │   ├── HomePage.tsx
 │   ├── SearchPage.tsx
@@ -134,10 +137,30 @@ src/
 
 ### E2EE (End-to-End Encryption)
 
-Las claves de cifrado se almacenan en **sessionStorage** (no localStorage) para reducir el riesgo de XSS:
-- Las claves se limpian automáticamente al cerrar el navegador
-- Sesiones expiran después de 30 minutos de inactividad
-- Las claves están cifradas con PBKDF2 (600k iteraciones)
+**Doble implementación (inconsistencia conocida):** Hay dos módulos que manejan
+el keypair, con claves y storage DIFERENTES — ver "Tareas pendientes" más abajo.
+
+- **`src/lib/crypto/e2ee.ts`** (módulo crypto): `generateAndStoreKeyPair`,
+  `unlockKeyPair`, `hasKeyPair`, `deleteKeyPair` usan **localStorage** con
+  `KEY_STORAGE_KEY='vademecum.keypair'` (punto). El keypair CIFRADO (PBKDF2
+  600k + AES-GCM/secretbox) se persiste en localStorage; la clave de cifrado
+  se deriva del password y nunca se persiste. `sessionStorage` solo guarda un
+  flag de sesión (`vademecum.session`). Las claves NO se guardan en claro.
+- **`src/app/E2EEAuthProvider.tsx`** (provider de la app): `setup`/`unlock`
+  delegan a e2ee.ts (localStorage), pero `recover` re-cifra y guarda en
+  **sessionStorage** con `KEY_STORAGE_KEY='vademecum_keypair'` (guion bajo).
+  Esto es un **bug de inconsistencia**: tras un recovery, `unlockKeyPair`
+  (que lee localStorage) no encontraría el keypair nuevo. Ver tarea pendiente.
+
+Sesiones:
+- El flag de sesión y el timer (`_sessionExpiry` en e2ee.ts,
+  `sessionExpiryRef` en E2EEAuthProvider) viven en memoria + sessionStorage.
+- Sesiones expiran después de 30 minutos de inactividad.
+- **Cada recarga de página requiere re-unlock** ("always require unlock at boot"):
+  el `E2EEAuthProvider` no reactiva la sesión en mount, solo marca
+  `isAuthenticated=false` y muestra el login. Navegar dentro de la SPA
+  (sin recarga) mantiene la sesión.
+- Las claves se cifran con PBKDF2 (600k iteraciones, SHA-256).
 
 ### CSP (Content Security Policy)
 
@@ -222,7 +245,7 @@ export interface DbSynergy {
 ### ✅ Completado
 - [x] PWA con Service Worker (vite-plugin-pwa)
 - [x] Base de datos Dexie (IndexedDB) con schema **versión 2** (tabla `pathologies`)
-- [x] E2EE con TweetNaCl (claves en sessionStorage) — e2ee.ts, KeyManager.ts, FieldEncryption.ts
+- [x] E2EE con TweetNaCl (keypair cifrado en localStorage vía e2ee.ts; flag de sesión en sessionStorage) — e2ee.ts, E2EEAuthProvider.tsx
 - [x] CSP (Content Security Policy)
 - [x] Dashboard admin (AdminPage) con IngredientEditor
 - [x] Visualización de sinergias con **SVG nativo** (SynergyGraph.tsx)
@@ -320,25 +343,42 @@ KB version: `v228-117-85-195-1154-146-126`.
 > vid/OPC→sarmiento, flora→probiótico, schisandra→esquizandra, etc.).
 
 ### Otros completados
-- [x] Routing con react-router-dom v7 (con ProtectedRoute/AuthRoute — auth actualmente en BYPASS)
+- [x] Routing con react-router-dom v7 (con ProtectedRoute/AuthRoute — auth ACTIVO)
 - [x] Toasts con sonner (ToastProvider)
 - [x] Resolución de conflictos de sync (ConflictResolver)
 
-### ⚠ Bypass temporal
-- App.tsx tiene const BYPASS_AUTH = true; que desactiva la autenticación E2EE
-  para poder ver la app. Re-habilitar quitando el flag cuando corresponda.
+### ✅ Auth E2EE — estado actual
 
-### Pendiente / Experimental / Deprecated
+- `BYPASS_AUTH` fue **ELIMINADO** de App.tsx (ya no existe el flag).
+- La autenticación E2EE está **completamente activa**:
+  - `ProtectedRoute` exige `isAuthenticated=true` (del `E2EEAuthProvider`).
+  - `AuthRoute` redirige a `/` si ya estás autenticado (login/onboarding).
+  - **Cada recarga de página requiere re-unlock** ("always require unlock at
+    boot" en `E2EEAuthProvider.tsx:59`). El provider NO reactiva la sesión
+    en mount; marca `isAuthenticated=false` y muestra LoginPage.
+  - Navegar dentro de la SPA (links, no recarga) mantiene la sesión.
+  - Sesión expira a 30 min de inactividad (`SESSION_TIMEOUT_MS`).
+- Password de prueba: `test1234`.
+
+### ⚠ Pendiente / Experimental / Deprecated
 - [ ] Sync con Supabase (schema mismatch — ver nota abajo). src/core/sync/index.ts
       está marcado @deprecated y recomienda "verificar uso real".
-- [ ] Tests de integración completos (solo src/__tests__/db.test.ts + E2E Playwright).
+- [ ] Tests de integración completos (solo src/__tests__/db.test.ts + E2E Playwright
+      + tests unitarios en tests/unit/).
+- [ ] **Inconsistencia de storage en E2EE**: `e2ee.ts` usa localStorage
+      (`vademecum.keypair`), pero `E2EEAuthProvider.recover` usa sessionStorage
+      (`vademecum_keypair`). Tras un recovery, `unlockKeyPair` (que lee
+      localStorage) no encuentra el keypair nuevo. Unificar a un solo storage
+      + key. (Hallazgo de la auditoría de AGENTS.md, 2026-08-16.)
 - [x] ~~src/core/audit/~~ y ~~src/core/auth/~~ — ELIMINADOS (stubs que re-exportaban
       tipos DbAuditLog/UserRole inexistentes; cero importadores).
 - [x] ~~src/data/sync/~~ — ELIMINADO (@deprecated, cero importadores).
 - [x] ~~src/lib/crypto/FieldEncryption.ts~~ — ELIMINADO (API de cifrado por campo, 315 líneas, cero consumidores).
-- [x] ~~checkConnectivity()~~ en KeyManager.ts — ELIMINADA (nunca llamada).
+- [x] ~~src/lib/crypto/KeyManager.ts~~ — ELIMINADO (consolidado en e2ee.ts).
+- [x] ~~checkConnectivity()~~ — ELIMINADA (nunca llamada).
 - [x] ~~src/lib/index.ts~~ barrel — ELIMINADO (nadie importaba desde @/lib).
 - [x] ~~deps zod y class-variance-authority~~ — ELIMINADAS (sin uso en el código).
+- [x] ~~BYPASS_AUTH~~ en App.tsx — ELIMINADO (auth E2EE completamente activo).
 
 > **Nota sobre Supabase Sync:** El sync con Supabase era experimental, pero la conexión
 > está ahora CONFIGURADA y VERIFICADA end-to-end (2026-08-14):
