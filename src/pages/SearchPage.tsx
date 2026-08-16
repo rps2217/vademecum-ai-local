@@ -70,7 +70,6 @@ export function SearchPage() {
   const [indication, setIndication] = useState('');
   const [system, setSystem] = useState<BodySystem | ''>('');
   const [evidence, setEvidence] = useState<EvidenceLevel | ''>('');
-  const [results, setResults] = useState<SearchResult[]>([]);
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
   const [selectedPathology, setSelectedPathology] = useState<DbPathology | null>(null);
@@ -80,7 +79,6 @@ export function SearchPage() {
   const [visibleCount, setVisibleCount] = useState(RESULTS_PAGE_SIZE);
 
   // Productos comerciales (búsqueda unificada)
-  const [productResults, setProductResults] = useState<ProductSearchResult[]>([]);
   const [productsExpanded, setProductsExpanded] = useState(false);
   const [visibleProductCount, setVisibleProductCount] = useState(RESULTS_PAGE_SIZE);
   const [selectedProduct, setSelectedProduct] = useState<DbProduct | null>(null);
@@ -160,38 +158,46 @@ export function SearchPage() {
     return () => clearTimeout(t);
   }, [query]);
 
-  // Búsqueda de ingredientes: reacciona a debouncedQuery + filtros.
-  // Los filtros (categoría, sistema, evidencia, indicación) aplican
-  // instantáneamente — solo el texto libre se debouncea arriba.
-  useEffect(() => {
-    if (!ready) return;
+  // Búsqueda de ingredientes: derivación pura de debouncedQuery + filtros.
+  // useMemo evita el patrón setState-in-effect (react-hooks/set-state-in-effect).
+  const results = useMemo<SearchResult[]>(() => {
+    if (!ready) return [];
     try {
-      const searchResults = ingredientSearchService.searchSync({
+      return ingredientSearchService.searchSync({
         query: debouncedQuery.length >= 2 ? debouncedQuery : undefined,
         category: (category || undefined) as IngredientCategory | undefined,
         system: (system || undefined) as BodySystem | undefined,
         evidenceLevel: (evidence || undefined) as 'A' | 'B' | 'C' | 'D' | undefined,
         indication: indication || undefined,
       });
-      setResults(searchResults);
-      setVisibleCount(RESULTS_PAGE_SIZE);
     } catch (error) {
       logger.error('Search error:', error);
+      return [];
     }
   }, [debouncedQuery, category, indication, system, evidence, ready]);
 
-  // Búsqueda de productos comerciales (mismo debouncedQuery).
-  // Solo busca por texto libre (los productos no tienen categoría/sistema).
-  useEffect(() => {
-    if (!productsReady) return;
+  // Búsqueda de productos comerciales: mismo debouncedQuery.
+  const productResults = useMemo<ProductSearchResult[]>(() => {
+    if (!productsReady) return [];
     try {
-      const prodResults = productSearchService.searchSync(debouncedQuery.length >= 2 ? debouncedQuery : undefined);
-      setProductResults(prodResults);
-      setVisibleProductCount(RESULTS_PAGE_SIZE);
+      return productSearchService.searchSync(debouncedQuery.length >= 2 ? debouncedQuery : undefined);
     } catch (error) {
       logger.error('Product search error:', error);
+      return [];
     }
   }, [debouncedQuery, productsReady]);
+
+  // Reset de paginación al cambiar la búsqueda o los filtros.
+  // Patrón "adjust state during render" recomendado por React para resetear
+  // state cuando un valor derivado cambia — sin useEffect, sin cascada.
+  // https://react.dev/reference/react/useState#storing-information-from-previous-renders
+  const searchKey = `${debouncedQuery}|${category}|${indication}|${system}|${evidence}`;
+  const [prevSearchKey, setPrevSearchKey] = useState(searchKey);
+  if (searchKey !== prevSearchKey) {
+    setPrevSearchKey(searchKey);
+    setVisibleCount(RESULTS_PAGE_SIZE);
+    setVisibleProductCount(RESULTS_PAGE_SIZE);
+  }
 
   // Registrar consulta en el historial (tras debounce, solo si hay resultados)
   useEffect(() => {
