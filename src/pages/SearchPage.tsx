@@ -152,43 +152,46 @@ export function SearchPage() {
       .map(([value, count]) => ({ value, count }));
   }, [ready]);
 
-  // Búsqueda con debounce corto (el índice hace que sea casi instantánea)
+  // Debounce único de la consulta de texto → debouncedQuery.
+  // Ambas búsquedas (ingredientes y productos) consumen este valor,
+  // evitando dos temporizadores paralelos por cada keystroke.
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedQuery(query), 150);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  // Búsqueda de ingredientes: reacciona a debouncedQuery + filtros.
+  // Los filtros (categoría, sistema, evidencia, indicación) aplican
+  // instantáneamente — solo el texto libre se debouncea arriba.
   useEffect(() => {
     if (!ready) return;
-    const t = setTimeout(() => {
-      try {
-        const searchResults = ingredientSearchService.searchSync({
-          query: query.length >= 2 ? query : undefined,
-          category: (category || undefined) as IngredientCategory | undefined,
-          system: (system || undefined) as BodySystem | undefined,
-          evidenceLevel: (evidence || undefined) as 'A' | 'B' | 'C' | 'D' | undefined,
-          indication: indication || undefined,
-        });
-        setResults(searchResults);
-        setDebouncedQuery(query);
-        setVisibleCount(RESULTS_PAGE_SIZE);
-      } catch (error) {
-        logger.error('Search error:', error);
-      }
-    }, 150);
-    return () => clearTimeout(t);
-  }, [query, category, indication, system, evidence, ready]);
+    try {
+      const searchResults = ingredientSearchService.searchSync({
+        query: debouncedQuery.length >= 2 ? debouncedQuery : undefined,
+        category: (category || undefined) as IngredientCategory | undefined,
+        system: (system || undefined) as BodySystem | undefined,
+        evidenceLevel: (evidence || undefined) as 'A' | 'B' | 'C' | 'D' | undefined,
+        indication: indication || undefined,
+      });
+      setResults(searchResults);
+      setVisibleCount(RESULTS_PAGE_SIZE);
+    } catch (error) {
+      logger.error('Search error:', error);
+    }
+  }, [debouncedQuery, category, indication, system, evidence, ready]);
 
-  // Búsqueda de productos comerciales (mismo debounce que ingredientes).
+  // Búsqueda de productos comerciales (mismo debouncedQuery).
   // Solo busca por texto libre (los productos no tienen categoría/sistema).
   useEffect(() => {
     if (!productsReady) return;
-    const t = setTimeout(() => {
-      try {
-        const prodResults = productSearchService.searchSync(query.length >= 2 ? query : undefined);
-        setProductResults(prodResults);
-        setVisibleProductCount(RESULTS_PAGE_SIZE);
-      } catch (error) {
-        logger.error('Product search error:', error);
-      }
-    }, 150);
-    return () => clearTimeout(t);
-  }, [query, productsReady]);
+    try {
+      const prodResults = productSearchService.searchSync(debouncedQuery.length >= 2 ? debouncedQuery : undefined);
+      setProductResults(prodResults);
+      setVisibleProductCount(RESULTS_PAGE_SIZE);
+    } catch (error) {
+      logger.error('Product search error:', error);
+    }
+  }, [debouncedQuery, productsReady]);
 
   // Registrar consulta en el historial (tras debounce, solo si hay resultados)
   useEffect(() => {
