@@ -3,7 +3,6 @@
 > **Documentación clave:**
 > - **Metodología de KB:** `docs/KB_DATA_METHODOLOGY.md` — GUÍA OBLIGATORIA
 >   para ampliar la base de conocimiento (schema, fuentes, validación)
-> - **Seguridad:** `security_spec.md`
 
 ## Descripción del Proyecto
 
