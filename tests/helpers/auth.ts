@@ -38,9 +38,9 @@ export async function resetAll(page: Page): Promise<void> {
 export async function authenticate(page: Page): Promise<void> {
   const searchInput = page
     .getByPlaceholder(/buscar/i)
-    .or(page.getByRole('searchbox'));
+    .or(page.getByRole('searchbox'))
+    .first();
   const alreadyIn = await searchInput
-    .first()
     .isVisible({ timeout: 2000 })
     .catch(() => false);
   if (alreadyIn) return;
@@ -56,7 +56,7 @@ export async function authenticate(page: Page): Promise<void> {
 
   await unlockInPlace(page);
 
-  await searchInput.first().waitFor({ state: 'visible', timeout: 15000 });
+  await searchInput.waitFor({ state: 'visible', timeout: 15000 });
 }
 
 /**
@@ -68,9 +68,9 @@ export async function authenticate(page: Page): Promise<void> {
 export async function ensureAuthenticated(page: Page): Promise<void> {
   const searchInput = page
     .getByPlaceholder(/buscar/i)
-    .or(page.getByRole('searchbox'));
+    .or(page.getByRole('searchbox'))
+    .first();
   const alreadyIn = await searchInput
-    .first()
     .isVisible({ timeout: 1500 })
     .catch(() => false);
   if (alreadyIn) return;

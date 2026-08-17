@@ -20,7 +20,7 @@ test.describe('Navegación y UI', () => {
   });
 
   test('debería tener input de búsqueda visible', async ({ page }) => {
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await expect(searchInput).toBeVisible({ timeout: 10000 });
   });
 
@@ -28,7 +28,7 @@ test.describe('Navegación y UI', () => {
     await page.setViewportSize({ width: 375, height: 667 }); // iPhone SE
     await expect(page.locator('body')).toBeVisible();
     
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await expect(searchInput).toBeVisible({ timeout: 10000 });
   });
 

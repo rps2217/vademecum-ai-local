@@ -8,14 +8,7 @@ import './styles/globals.css';
 // Capturador global de errores → IndexedDB (exportable para soporte)
 installGlobalErrorHandlers();
 
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  import('virtual:pwa-register').then(({ registerSW }) => {
-    registerSW({ immediate: true });
-  }).catch(() => {
-    // PWA plugin not available in dev
-  });
-}
+// El Service Worker se registra vía useServiceWorkerUpdate hook en AppShell
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -14,13 +14,15 @@ import { db } from '@/db';
 import type { DbIngredient, DbSynergy } from '@/db/schema';
 import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
+import { Button } from '@/ui/Button';
 import { useClientProfile } from '@/contexts/ClientProfileContext';
 import { ClientProfileSelector } from '@/ui/ClientProfileSelector';
+import { PrintSheet } from '@/ui/PrintSheet';
 import { findInteractions, evaluateWarnings, findUntestedPairs, isBeneficial } from '@/core/analysis';
 import type { SafetyWarning } from '@/core/analysis';
 import {
   Search, Plus, X, AlertTriangle, CheckCircle2, ShieldAlert,
-  FlaskConical, ArrowRight, Layers, Info,
+  FlaskConical, ArrowRight, Layers, Info, Printer,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -186,6 +188,14 @@ export function AnalysisPage() {
       {/* Resultados del análisis */}
       {analysis && (
         <div className="space-y-4">
+          {/* Barra de acciones */}
+          <div className="flex justify-end">
+            <Button variant="secondary" onClick={() => setTimeout(() => window.print(), 100)}>
+              <Printer className="w-4 h-4 mr-2" aria-hidden="true" />
+              Imprimir
+            </Button>
+          </div>
+
           {/* Resumen */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <Card className="p-4 flex items-center gap-3">
@@ -312,6 +322,17 @@ export function AnalysisPage() {
           )}
         </div>
       )}
+
+      {analysis && (
+        <AnalysisPrintSheet
+          ingredients={analysis.ingredients}
+          beneficial={beneficial}
+          risky={risky}
+          warnings={analysis.warnings}
+          untested={analysis.untested}
+          nameMap={ingredientNameMap}
+        />
+      )}
     </div>
   );
 }
@@ -348,3 +369,91 @@ function SynergyCard({ synergy, nameMap, beneficial }: {
     </div>
   );
 }
+
+function AnalysisPrintSheet({
+  ingredients,
+  beneficial,
+  risky,
+  warnings,
+  untested,
+  nameMap,
+}: {
+  ingredients: DbIngredient[];
+  beneficial: DbSynergy[];
+  risky: DbSynergy[];
+  warnings: SafetyWarning[];
+  untested: string[][];
+  nameMap: Map<string, string>;
+}) {
+  return (
+    <PrintSheet
+      title="Análisis de interacciones"
+      subtitle={`Ingredientes: ${ingredients.map((i) => i.nombre).join(', ')}`}
+    >
+      {warnings.length > 0 && (
+        <>
+          <h2>Alertas de seguridad</h2>
+          {warnings.map((w) => (
+            <div
+              key={w.ingredientId}
+              className={w.verdict === 'contraindicado' ? 'print-danger' : 'print-warn'}
+            >
+              <strong>{w.ingredientName}</strong> —{' '}
+              {w.verdict === 'contraindicado' ? 'Contraindicado' : 'Precaución'}
+            </div>
+          ))}
+        </>
+      )}
+
+      {beneficial.length > 0 && (
+        <>
+          <h2>Sinergias beneficiosas ({beneficial.length})</h2>
+          {beneficial.map((syn) => {
+            const nameA = nameMap.get(syn.ingredienteA) ?? syn.ingredienteA;
+            const nameB = nameMap.get(syn.ingredienteB) ?? syn.ingredienteB;
+            return (
+              <div key={syn.id} className="print-success">
+                <strong>{nameA} → {nameB}</strong> ({syn.tipo})
+                {syn.descripcion && <><br />{syn.descripcion}</>}
+              </div>
+            );
+          })}
+        </>
+      )}
+
+      {risky.length > 0 && (
+        <>
+          <h2>Interacciones de riesgo ({risky.length})</h2>
+          {risky.map((syn) => {
+            const nameA = nameMap.get(syn.ingredienteA) ?? syn.ingredienteA;
+            const nameB = nameMap.get(syn.ingredienteB) ?? syn.ingredienteB;
+            return (
+              <div key={syn.id} className="print-danger">
+                <strong>{nameA} → {nameB}</strong> ({syn.tipo})
+                {syn.descripcion && <><br />{syn.descripcion}</>}
+              </div>
+            );
+          })}
+        </>
+      )}
+
+      {untested.length > 0 && (
+        <>
+          <h2>Combinaciones sin datos ({untested.length})</h2>
+          <ul>
+            {untested.map(([a, b], i) => (
+              <li key={i}>
+                {nameMap.get(a) ?? a} — {nameMap.get(b) ?? b}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {beneficial.length === 0 && risky.length === 0 && warnings.length === 0 && untested.length === 0 && (
+        <p>No se encontraron interacciones registradas entre estos ingredientes.</p>
+      )}
+    </PrintSheet>
+  );
+}
+

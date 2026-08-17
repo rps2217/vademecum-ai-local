@@ -1,0 +1,30 @@
+/**
+ * useOnlineStatus - Detecta el estado de conexión del navegador.
+ *
+ * Escucha los eventos `online`/`offline` de `window` y refleja
+ * `navigator.onLine`. Útil para mostrar un indicador en el UI y
+ * deshabilitar acciones que requieren red (sync, etc.).
+ */
+
+import { useEffect, useState } from 'react';
+
+export function useOnlineStatus(): boolean {
+  const [online, setOnline] = useState(
+    typeof navigator !== 'undefined' ? navigator.onLine : true,
+  );
+
+  useEffect(() => {
+    const handleOnline = () => setOnline(true);
+    const handleOffline = () => setOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  return online;
+}

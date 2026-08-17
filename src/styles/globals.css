@@ -409,3 +409,77 @@
     font-feature-settings: "liga" 1, "calt" 1;
   }
 }
+
+/* ============================================
+ * PRINT STYLES
+ * ============================================ */
+
+@media print {
+  /* Ocultar toda la app, mostrar solo la hoja de impresión */
+  body * { visibility: hidden; }
+  .print-sheet, .print-sheet * { visibility: visible; }
+
+  /* Posicionar la hoja al inicio de la página */
+  .print-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: #000;
+    background: #fff;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .print-sheet h1 { font-size: 18pt; margin: 0 0 4pt; }
+  .print-sheet h2 { font-size: 14pt; margin: 16pt 0 6pt; }
+  .print-sheet h3 { font-size: 12pt; margin: 12pt 0 4pt; }
+  .print-sheet p { margin: 0 0 6pt; }
+
+  .print-sheet table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8pt 0;
+  }
+  .print-sheet th, .print-sheet td {
+    border: 1px solid #ccc;
+    padding: 6pt 8pt;
+    text-align: left;
+    font-size: 11pt;
+  }
+  .print-sheet th { background: #f0f0f0; font-weight: 600; }
+
+  .print-sheet .print-warn {
+    border-left: 3px solid #f59e0b;
+    padding: 6pt 10pt;
+    margin: 4pt 0;
+    background: #fffbeb;
+  }
+  .print-sheet .print-danger {
+    border-left: 3px solid #ef4444;
+    padding: 6pt 10pt;
+    margin: 4pt 0;
+    background: #fef2f2;
+  }
+  .print-sheet .print-success {
+    border-left: 3px solid #22c55e;
+    padding: 6pt 10pt;
+    margin: 4pt 0;
+    background: #f0fdf4;
+  }
+
+  .print-sheet .print-header {
+    border-bottom: 2px solid #000;
+    padding-bottom: 8pt;
+    margin-bottom: 12pt;
+  }
+  .print-sheet .print-footer {
+    border-top: 1px solid #ccc;
+    margin-top: 20pt;
+    padding-top: 6pt;
+    font-size: 9pt;
+    color: #666;
+  }
+}
