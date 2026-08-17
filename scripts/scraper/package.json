@@ -1,0 +1,26 @@
+{
+  "name": "vademecum-scraper",
+  "version": "1.0.0",
+  "description": "Scraper de productos de Farmacias Knop + procesamiento IA local (Ollama) + matching KB + upload Supabase",
+  "private": true,
+  "scripts": {
+    "scrape": "npx ts-node --transpile-only scraper_local.ts",
+    "process": "npx ts-node --transpile-only processor_ia.ts",
+    "match": "npx ts-node --transpile-only kb_matcher.ts",
+    "upload": "npx ts-node --transpile-only supabase_uploader.ts",
+    "upload:dry": "npx ts-node --transpile-only supabase_uploader.ts --dry-run",
+    "pipeline": "npx ts-node --transpile-only run_pipeline.ts all",
+    "pipeline:scrape": "npx ts-node --transpile-only run_pipeline.ts scrape",
+    "pipeline:process": "npx ts-node --transpile-only run_pipeline.ts process",
+    "pipeline:match": "npx ts-node --transpile-only run_pipeline.ts match",
+    "pipeline:upload": "npx ts-node --transpile-only run_pipeline.ts upload"
+  },
+  "dependencies": {
+    "playwright": "^1.41.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

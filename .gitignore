@@ -14,6 +14,11 @@ scraper/__pycache__/
 scraper/*.jsonl
 scraper/urls_extraidas.txt
 scraper/*_log.txt
+# Scraper / TS (scripts/scraper)
+scripts/scraper/node_modules/
+scripts/scraper/dist/
+scripts/scraper/knop_*.json
+scripts/scraper/*.log
 # Playwright
 /test-results/
 /playwright-report/
