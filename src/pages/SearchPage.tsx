@@ -31,7 +31,7 @@ import { useConsultationHistory } from '@/hooks/useConsultationHistory';
 import type { DbIngredient, DbPathology, DbProduct, DbProductIngredientAnalysis } from '@/db/schema';
 import type { BodySystem } from '@/types/shared-enums';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db, generateId } from '@/db';
+import { db } from '@/db';
 import { cn } from '@/lib/utils';
 import { humanize, normalize } from '@/lib/text';
 import {
@@ -47,6 +47,7 @@ import {
 } from '@/ui/searchConfig';
 import { usePathologyMatch } from '@/hooks/usePathologyMatch';
 import { useSearchResults } from '@/hooks/useSearchResults';
+import { useFavorites } from '@/hooks/useFavorites';
 
 export function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -86,26 +87,7 @@ export function SearchPage() {
   } = useSearchResults(query, { category, indication, system, evidence });
 
   // Favoritos: ingredientes marcados por el farmacéutico
-  const favorites = useLiveQuery(() => db.favorites.orderBy('createdAt').reverse().toArray(), []);
-  const favoriteIngredients = useLiveQuery(
-    () => favorites && favorites.length > 0
-      ? db.ingredients.bulkGet(favorites.map((f) => f.ingredientId)) as Promise<(DbIngredient | undefined)[]>
-      : Promise.resolve([]),
-    [favorites],
-  );
-
-  const toggleFavorite = useCallback(async (ingredientId: string) => {
-    const existing = await db.favorites.where('ingredientId').equals(ingredientId).first();
-    if (existing) {
-      await db.favorites.delete(existing.id);
-    } else {
-      await db.favorites.add({ id: generateId(), ingredientId, createdAt: Date.now() });
-    }
-  }, []);
-
-  const isFavorite = useCallback((ingredientId: string) => {
-    return favorites?.some((f) => f.ingredientId === ingredientId) ?? false;
-  }, [favorites]);
+  const { favoriteIngredients, isFavorite, toggleFavorite } = useFavorites();
 
   // Patologías: índice invertido + matching por query (extraído a hook)
   const { matchedPathology, allPathologies } = usePathologyMatch(query, indication);
@@ -626,7 +608,7 @@ export function SearchPage() {
             <span className="text-sm text-muted-foreground">— acceso rápido</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {favoriteIngredients.filter((x): x is DbIngredient => x !== undefined).map((ing) => (
+            {favoriteIngredients.map((ing) => (
               <button
                 key={ing.id}
                 onClick={() => setSelectedIngredient(ing)}
@@ -648,6 +630,8 @@ export function SearchPage() {
         <IngredientDetail
           ingredient={selectedIngredient}
           activeIndication={indication || query}
+          isFavorite={isFavorite(selectedIngredient.id)}
+          onToggleFavorite={toggleFavorite}
           onClose={() => setSelectedIngredient(null)}
           onViewSynergies={(id) => {
             setSelectedIngredient(null);

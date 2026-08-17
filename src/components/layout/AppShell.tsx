@@ -17,10 +17,13 @@ import { PageLoader } from '@/ui/PageLoader';
 import { useSearchIndex } from '@/core/search';
 import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
 import { CommandPalette } from '@/ui/CommandPalette';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
 import {
   Search, Plus, Settings, Database, Link2, Sparkles, BarChart3,
   Shield, Menu, X, ChevronLeft, ChevronRight, Sun, Moon, Monitor,
-  Command, ClipboardList, Package,
+  Command, ClipboardList, Package, Home,
+  WifiOff, RefreshCw, CloudDownload,
 } from 'lucide-react';
 
 interface NavItem {
@@ -32,7 +35,8 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 'home', label: 'Buscar', icon: Search, href: '/' },
+  { id: 'home', label: 'Inicio', icon: Home, href: '/' },
+  { id: 'search', label: 'Buscar', icon: Search, href: '/search' },
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
   { id: 'products', label: 'Productos', icon: Package, href: '/products' },
   { id: 'synergies', label: 'Sinergias', icon: Link2, href: '/synergies' },
@@ -90,6 +94,8 @@ function NavContent({ collapsed, onNavigate }: { collapsed: boolean; onNavigate:
 
 export function AppShell() {
   const { theme, setTheme } = useTheme();
+  const isOnline = useOnlineStatus();
+  const { needRefresh, offlineReady, updateSW } = useServiceWorkerUpdate();
   const navigate = useNavigate();
   const location = useLocation();
   const { query, setQuery } = useSearch();
@@ -158,12 +164,12 @@ export function AppShell() {
   const closeSidebar = () => setSidebarOpen(false);
 
   const isSearchPage = (path: string) =>
-    path === '/' || ['/synergies', '/products', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
+    path === '/search' || ['/synergies', '/products', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim() && !isSearchPage(location.pathname)) {
-      navigate(`/?q=${encodeURIComponent(query.trim())}`);
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
     }
   };
 
@@ -322,6 +328,39 @@ export function AppShell() {
         <div className="flex items-center border-b border-border px-4 py-2 md:hidden">
           <SyncStatusBar />
         </div>
+
+        {/* Status banners: offline + SW update */}
+        {(!isOnline || needRefresh || offlineReady) && (
+          <div className="border-b border-border bg-muted/50">
+            {!isOnline && (
+              <div className="flex items-center gap-2 px-4 py-2 text-sm text-amber-700 dark:text-amber-400">
+                <WifiOff className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>Sin conexión — modo offline activo. Los datos locales siguen disponibles.</span>
+              </div>
+            )}
+            {needRefresh && (
+              <div className="flex items-center justify-between gap-2 px-4 py-2 text-sm">
+                <div className="flex items-center gap-2 text-primary">
+                  <RefreshCw className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Hay una nueva versión disponible.</span>
+                </div>
+                <button
+                  onClick={() => updateSW()}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1 text-xs font-medium text-primary-foreground transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <RefreshCw className="h-3 w-3" aria-hidden="true" />
+                  Actualizar
+                </button>
+              </div>
+            )}
+            {offlineReady && (
+              <div className="flex items-center gap-2 px-4 py-2 text-sm text-emerald-700 dark:text-emerald-400">
+                <CloudDownload className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>App lista para uso sin conexión.</span>
+              </div>
+            )}
+          </div>
+        )}
 
         <main className="flex-1 p-4 sm:p-6 lg:p-10">
           <Suspense fallback={<PageLoader />}>

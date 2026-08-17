@@ -15,7 +15,7 @@ test.describe('Validación y Robustez', () => {
   });
 
   test('debería manejar búsqueda vacía gracefully', async ({ page }) => {
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await searchInput.waitFor({ state: 'visible', timeout: 10000 });
     
     // Escribir solo espacios
@@ -26,7 +26,7 @@ test.describe('Validación y Robustez', () => {
   });
 
   test('debería manejar búsqueda con caracteres especiales', async ({ page }) => {
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await searchInput.waitFor({ state: 'visible', timeout: 10000 });
     
     // Escribir caracteres especiales (XSS protection)
@@ -37,7 +37,7 @@ test.describe('Validación y Robustez', () => {
   });
 
   test('debería manejar búsqueda con query muy larga', async ({ page }) => {
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await searchInput.waitFor({ state: 'visible', timeout: 10000 });
     
     const longQuery = 'a'.repeat(500);
@@ -48,7 +48,7 @@ test.describe('Validación y Robustez', () => {
   });
 
   test('debería manejar navegación rápida entre búsquedas', async ({ page }) => {
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await searchInput.waitFor({ state: 'visible', timeout: 10000 });
     
     // Búsquedas rápidas

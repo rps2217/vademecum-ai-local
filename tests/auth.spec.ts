@@ -39,7 +39,7 @@ test.describe('Autenticación', () => {
   test('debería configurar PIN en onboarding y entrar a la app', async ({ page }) => {
     await completeOnboarding(page);
 
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await expect(searchInput).toBeVisible({ timeout: 10000 });
   });
 
@@ -78,7 +78,7 @@ test.describe('Autenticación', () => {
     await page.locator('input[type="password"]').first().fill(TEST_PIN);
     await page.locator('button[type="submit"]').click();
 
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await expect(searchInput).toBeVisible({ timeout: 15000 });
   });
 });

@@ -12,17 +12,17 @@ test.describe('Búsqueda de Medicamentos', () => {
     await resetSession(page);
     await page.reload();
     await authenticate(page);
+    // HomePage es el index; navegar a /search para probar la búsqueda
+    await page.getByRole('link', { name: /^buscar/i }).first().click();
   });
 
   test('debería cargar la página principal', async ({ page }) => {
-    // Ya estamos autenticados del beforeEach
-    // Verificar que la página carga
     await expect(page).toHaveTitle(/Vademecum/i);
   });
 
   test('debería permitir buscar un ingrediente', async ({ page }) => {
     // Esperar a que el input de búsqueda esté visible
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     
     await expect(searchInput).toBeVisible({ timeout: 10000 });
     
@@ -43,7 +43,7 @@ test.describe('Búsqueda de Medicamentos', () => {
   });
 
   test('debería mostrar resultados al buscar homeopatía', async ({ page }) => {
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await searchInput.waitFor({ state: 'visible', timeout: 10000 });
     
     // Buscar un remedio homeopático
@@ -60,7 +60,7 @@ test.describe('Búsqueda de Medicamentos', () => {
   });
 
   test('debería buscar aceites esenciales', async ({ page }) => {
-    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox'));
+    const searchInput = page.getByPlaceholder(/buscar/i).or(page.getByRole('searchbox')).first();
     await searchInput.waitFor({ state: 'visible', timeout: 10000 });
     
     await searchInput.fill('lavanda');

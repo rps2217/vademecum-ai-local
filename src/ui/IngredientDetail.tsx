@@ -19,7 +19,7 @@ import { Button } from '@/ui/Button';
 import { HighlightText } from '@/ui/HighlightText';
 import {
   X, AlertTriangle, Info, Link as LinkIcon, Leaf, Shield,
-  CheckCircle2, XCircle, AlertCircle, BookOpen, FlaskConical,
+  CheckCircle2, XCircle, AlertCircle, BookOpen, FlaskConical, Star,
 } from 'lucide-react';
 import type { DbIngredient, IngredientSafety, SafetyStatus } from '@/db/schema';
 import { humanize } from '@/lib/text';
@@ -34,6 +34,8 @@ interface IngredientDetailProps {
   onViewSynergies?: (id: string) => void;
   /** Indicación o query activa al abrir la ficha — resalta términos relacionados. */
   activeIndication?: string;
+  isFavorite?: boolean;
+  onToggleFavorite?: (ingredientId: string) => void;
 }
 
 const SAFETY_CONFIG: Record<SafetyStatus, { icon: typeof CheckCircle2; color: string; label: string }> = {
@@ -55,7 +57,7 @@ function SafetyRow({ label, status }: { label: string; status: SafetyStatus | un
   );
 }
 
-const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activeIndication }: IngredientDetailProps) => {
+const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activeIndication, isFavorite, onToggleFavorite }: IngredientDetailProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   useFocusTrap(panelRef, true);
 
@@ -114,9 +116,28 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activ
               <p className="text-sm text-muted-foreground truncate">{sinonimosDisplay}</p>
             )}
           </div>
-          <Button variant="ghost" size="icon" onClick={onClose} aria-label="Cerrar">
-            <X className="w-5 h-5" aria-hidden="true" />
-          </Button>
+          <div className="flex items-center gap-1">
+            {onToggleFavorite && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => onToggleFavorite(ingredient.id)}
+                aria-label={isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+                aria-pressed={isFavorite}
+              >
+                <Star
+                  className={cn(
+                    'w-5 h-5',
+                    isFavorite ? 'fill-amber-400 text-amber-400' : 'text-muted-foreground',
+                  )}
+                  aria-hidden="true"
+                />
+              </Button>
+            )}
+            <Button variant="ghost" size="icon" onClick={onClose} aria-label="Cerrar">
+              <X className="w-5 h-5" aria-hidden="true" />
+            </Button>
+          </div>
         </div>
 
         <div className="px-6 py-5 space-y-6">

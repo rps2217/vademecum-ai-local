@@ -15,15 +15,17 @@ import { Button } from '@/ui/Button';
 import { Badge } from '@/ui/Badge';
 import { Modal } from '@/ui/Modal';
 import { Skeleton } from '@/ui/Skeleton';
+import { PrintSheet } from '@/ui/PrintSheet';
 import {
   Plus, Trash2, AlertTriangle, FileText, Search, X,
-  Pill, CalendarDays, Pencil,
+  Pill, CalendarDays, Pencil, Printer,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export function ProtocolsPage() {
   const [showEditor, setShowEditor] = useState(false);
   const [editingProtocol, setEditingProtocol] = useState<DbProtocol | null>(null);
+  const [printProtocol, setPrintProtocol] = useState<DbProtocol | null>(null);
 
   const protocols = useLiveQuery(
     () => db.protocols.where('tombstone').equals(0).reverse().sortBy('updatedAt'),
@@ -47,6 +49,11 @@ export function ProtocolsPage() {
       updatedAt: now(),
     });
     toast.success('Protocolo eliminado');
+  };
+
+  const handlePrint = (protocol: DbProtocol) => {
+    setPrintProtocol(protocol);
+    setTimeout(() => window.print(), 100);
   };
 
   return (
@@ -94,6 +101,7 @@ export function ProtocolsPage() {
               protocol={p}
               onEdit={() => handleEdit(p)}
               onDelete={() => handleDelete(p)}
+              onPrint={() => handlePrint(p)}
             />
           ))}
         </div>
@@ -105,14 +113,19 @@ export function ProtocolsPage() {
           onClose={() => setShowEditor(false)}
         />
       )}
+
+      {printProtocol && (
+        <ProtocolPrintSheet protocol={printProtocol} />
+      )}
     </div>
   );
 }
 
-function ProtocolCard({ protocol, onEdit, onDelete }: {
+function ProtocolCard({ protocol, onEdit, onDelete, onPrint }: {
   protocol: DbProtocol;
   onEdit: () => void;
   onDelete: () => void;
+  onPrint: () => void;
 }) {
   return (
     <Card className="p-4">
@@ -122,6 +135,13 @@ function ProtocolCard({ protocol, onEdit, onDelete }: {
           <p className="text-sm text-muted-foreground">{protocol.objetivo}</p>
         </div>
         <div className="flex gap-1">
+          <button
+            onClick={onPrint}
+            className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground"
+            aria-label="Imprimir protocolo"
+          >
+            <Printer className="w-4 h-4" aria-hidden="true" />
+          </button>
           <button
             onClick={onEdit}
             className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground"
@@ -433,3 +453,59 @@ function ProtocolEditor({ protocol, onClose }: {
     </Modal>
   );
 }
+
+function ProtocolPrintSheet({ protocol }: { protocol: DbProtocol }) {
+  const ingredientNames = useLiveQuery(
+    () => db.ingredients.bulkGet(protocol.ingredientes.map((i) => i.id)) as Promise<(DbIngredient | undefined)[]>,
+    [protocol.ingredientes],
+  );
+
+  const nameOf = (id: string) =>
+    ingredientNames?.find((ing) => ing?.id === id)?.nombre ?? id;
+
+  return (
+    <PrintSheet title={protocol.nombre} subtitle={protocol.objetivo || undefined}>
+      <table>
+        <thead>
+          <tr>
+            <th>Ingrediente</th>
+            <th>Cantidad</th>
+            <th>Momento</th>
+          </tr>
+        </thead>
+        <tbody>
+          {protocol.ingredientes.map((ing) => (
+            <tr key={ing.id}>
+              <td>{nameOf(ing.id)}</td>
+              <td>{ing.cantidad || '—'}</td>
+              <td>{ing.momento || '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <p>
+        <strong>Duración:</strong> {protocol.duracionDias} días
+      </p>
+
+      {protocol.advertencias.length > 0 && (
+        <>
+          <h2>Advertencias</h2>
+          {protocol.advertencias.map((w, i) => (
+            <div key={i} className="print-warn">
+              {w}
+            </div>
+          ))}
+        </>
+      )}
+
+      {protocol.notas && (
+        <>
+          <h2>Notas</h2>
+          <p>{protocol.notas}</p>
+        </>
+      )}
+    </PrintSheet>
+  );
+}
+

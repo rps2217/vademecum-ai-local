@@ -20,3 +20,4 @@ export { ClientProfileSelector } from './ClientProfileSelector';
 export { ProductResultCard } from './ProductResultCard';
 export { ProductDetail } from './ProductDetail';
 export { AdminGate } from './AdminGate';
+export { PrintSheet } from './PrintSheet';

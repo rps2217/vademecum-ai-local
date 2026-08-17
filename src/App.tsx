@@ -12,9 +12,11 @@ import { AdminGate } from '@/ui/AdminGate';
 import { useAppAuth } from '@/app/AppAuthProvider';
 import { useDb } from '@/app/DbProvider';
 
-// SearchPage es la página principal (index) → carga estática para evitar
+// SearchPage es la página de búsqueda → carga estática para evitar
 // flash de Suspense en el primer render del mostrador.
 import { SearchPage } from '@/pages/SearchPage';
+// HomePage es el dashboard inicial → también carga estática.
+import { HomePage } from '@/pages/HomePage';
 
 // Páginas secundarias → lazy-loaded para reducir el bundle inicial.
 const LoginPage = lazy(() => import('@/pages/LoginPage').then((m) => ({ default: m.LoginPage })));
@@ -64,8 +66,8 @@ function AppRoutes() {
       
       {/* Protected routes */}
       <Route path="/" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
-        <Route index element={<SearchPage />} />
-        <Route path="search" element={<Navigate to="/" replace />} />
+        <Route index element={<HomePage />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path="knowledge" element={<KnowledgePage />} />
         <Route path="products" element={<ProductsPage />} />
         <Route path="synergies" element={<SynergiesPage />} />
