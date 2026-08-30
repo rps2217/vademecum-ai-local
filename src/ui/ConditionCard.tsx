@@ -6,12 +6,14 @@
  * Diseñado para consulta de farmacia de ~30 segundos.
  */
 
-import { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import type { DbPathology, DbIngredient } from '@/db/schema';
 import { ingredientSearchService } from '@/core/search';
 import { useClientProfile, safetyVerdictBadge, safetyVerdictStyle, CLIENT_PROFILES } from '@/contexts/ClientProfileContext';
 import { getEvidenceConfig, EVIDENCE_RANK } from '@/ui/searchConfig';
-import { Stethoscope, Leaf, AlertTriangle, ChevronRight, BookOpen } from 'lucide-react';
+import { Stethoscope, Leaf, AlertTriangle, ChevronRight, BookOpen, Sparkles, X } from 'lucide-react';
+import { Button } from '@/ui/Button';
+import { generateClinicalExplanation } from '@/core/analysis/clinicalExplanation';
 import { cn } from '@/lib/utils';
 
 interface ConditionCardProps {
@@ -37,6 +39,12 @@ const SYSTEM_LABELS: Record<string, string> = {
 };
 
 export function ConditionCard({ pathology, onIngredientClick, onExpand }: ConditionCardProps) {
+  const [explainingItem, setExplainingItem] = useState<{
+    title: string;
+    mecanismo?: string;
+    descripcion?: string;
+  } | null>(null);
+  const [isExplainingLoading, setIsExplainingLoading] = useState(false);
   const { evaluateSafety, profile } = useClientProfile();
   const activeProfile = profile !== 'ninguno' ? CLIENT_PROFILES.find(p => p.value === profile) : null;
   // Cargar ingredientes referenciados desde el índice cacheado (sin query Dexie)
@@ -152,7 +160,29 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                       safetyStyle,
                     )}
                   >
-                    <span className="text-[16px] font-medium text-foreground truncate">{ing.nombre}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[16px] font-medium text-foreground truncate">{ing.nombre}</span>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsExplainingLoading(true);
+                            setExplainingItem({
+                              title: ing.nombre,
+                              mecanismo: ing.mecanismoAccion,
+                              descripcion: ing.descripcion,
+                            });
+                            setTimeout(() => setIsExplainingLoading(false), 250);
+                          }}
+                          className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900 text-[10px] font-medium transition-colors"
+                          title="Cómo actúa"
+                        >
+                          <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                          <span>Cómo</span>
+                        </button>
+                      </div>
+                    </div>
                     <div className="flex items-center gap-2 shrink-0">
                       {safetyBadge && (
                         <span className={cn('px-2.5 py-1 rounded-full text-sm font-semibold', safetyBadge.className)}>
@@ -192,6 +222,79 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                 ? pathology.cuandoConsultar.slice(0, 100) + '…'
                 : pathology.cuandoConsultar}
             </p>
+          </div>
+        )}
+        {/* Modal de explicación clínica (LLM local / inteligente) */}
+        {explainingItem && (
+          <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/60 animate-fade-in p-4">
+            <div className="bg-card w-full max-w-lg rounded-2xl shadow-2xl p-6 border border-border animate-scale-in space-y-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-xl bg-primary/10 text-primary">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold">{explainingItem.title}</h3>
+                    <p className="text-xs text-muted-foreground">Contexto clínico: {pathology.nombre}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setExplainingItem(null)}
+                  className="p-1.5 hover:bg-muted rounded-lg transition-colors text-muted-foreground"
+                  aria-label="Cerrar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="p-4 rounded-xl bg-muted/50 border border-border">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1">
+                  <Stethoscope className="w-3.5 h-3.5 text-primary" />
+                  <span>Asistente clínico local (LLM)</span>
+                </p>
+                {isExplainingLoading ? (
+                  <div className="py-6 flex flex-col items-center justify-center space-y-2">
+                    <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                    <p className="text-xs text-muted-foreground animate-pulse">Analizando evidencia clínica...</p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-foreground leading-relaxed">
+                    {generateClinicalExplanation(
+                      explainingItem.title,
+                      'ingredient',
+                      pathology.nombre,
+                      explainingItem.mecanismo,
+                      explainingItem.descripcion
+                    )}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = generateClinicalExplanation(
+                      explainingItem.title,
+                      'ingredient',
+                      pathology.nombre,
+                      explainingItem.mecanismo,
+                      explainingItem.descripcion
+                    );
+                    navigator.clipboard.writeText(text);
+                  }}
+                >
+                  Copiar respuesta
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => setExplainingItem(null)}
+                >
+                  Entendido
+                </Button>
+              </div>
+            </div>
           </div>
         )}
       </div>
