@@ -187,10 +187,22 @@ export function CounterTrayProvider({ children }: { children: ReactNode }) {
   );
 }
 
+const fallbackContextValue: CounterTrayContextValue = {
+  items: [],
+  addItem: () => {},
+  removeItem: () => {},
+  toggleItem: () => {},
+  clearTray: () => {},
+  isInTray: () => false,
+  isOpen: false,
+  setIsOpen: () => {},
+  synergies: [],
+  antagonisms: [],
+  safetyEvaluations: [],
+  totalCount: 0,
+};
+
 export function useCounterTray() {
   const ctx = useContext(CounterTrayContext);
-  if (!ctx) {
-    throw new Error('useCounterTray must be used within CounterTrayProvider');
-  }
-  return ctx;
+  return ctx ?? fallbackContextValue;
 }

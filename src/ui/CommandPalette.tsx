@@ -7,14 +7,14 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ingredientSearchService, useSearchIndex } from '@/core/search';
+import { ingredientSearchService, useSearchIndex, productSearchService, useProductIndex } from '@/core/search';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
 import { normalize, humanize } from '@/lib/text';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
 import {
   Search, Home, Database, Link2, BarChart3, Shield, Settings,
-  CornerDownLeft, Stethoscope,
+  CornerDownLeft, Stethoscope, Package,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -24,7 +24,7 @@ interface PaletteItem {
   hint?: string;
   icon: typeof Search;
   action: () => void;
-  group: 'Navegación' | 'Ingredientes' | 'Patologías';
+  group: 'Navegación' | 'Ingredientes' | 'Productos' | 'Patologías';
 }
 
 interface CommandPaletteProps {
@@ -35,6 +35,7 @@ interface CommandPaletteProps {
 const NAV_ITEMS = [
   { label: 'Inicio / Búsqueda', href: '/', icon: Home },
   { label: 'Base de Conocimiento', href: '/knowledge', icon: Database },
+  { label: 'Productos Comerciales', href: '/products', icon: Package },
   { label: 'Sinergias', href: '/synergies', icon: Link2 },
   { label: 'Análisis', href: '/analysis', icon: BarChart3 },
   { label: 'Admin', href: '/admin', icon: Shield },
@@ -49,12 +50,12 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { ready } = useSearchIndex();
+  const { ready: productsReady } = useProductIndex();
   const pathologies = useLiveQuery(() => db.pathologies.toArray(), []);
 
   useFocusTrap(panelRef, open);
 
   // Reset query/activeIndex when the palette transitions from closed→open.
-  // "Adjust state during render" pattern (avoids set-state-in-effect).
   const [prevOpen, setPrevOpen] = useState(open);
   if (open !== prevOpen) {
     setPrevOpen(open);
@@ -78,7 +79,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
 
     const ingItems: PaletteItem[] = [];
     if (ready) {
-      const results = ingredientSearchService.searchSync({ query }).slice(0, 8);
+      const results = ingredientSearchService.searchSync({ query }).slice(0, 6);
       for (const r of results) {
         ingItems.push({
           id: `ing-${r.ingredient.id}`,
@@ -87,6 +88,21 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
           icon: Search,
           group: 'Ingredientes',
           action: () => { navigate(`/?q=${encodeURIComponent(r.ingredient.nombre)}`); onClose(); },
+        });
+      }
+    }
+
+    const prodItems: PaletteItem[] = [];
+    if (productsReady) {
+      const pResults = productSearchService.searchSync(query).slice(0, 6);
+      for (const r of pResults) {
+        prodItems.push({
+          id: `prod-${r.product.sku}`,
+          label: r.product.nombreComercial,
+          hint: r.product.fabricante || 'Marca comercial',
+          icon: Package,
+          group: 'Productos',
+          action: () => { navigate(`/products?q=${encodeURIComponent(r.product.nombreComercial)}`); onClose(); },
         });
       }
     }
@@ -108,8 +124,8 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
       }
     }
 
-    return [...navItems, ...ingItems, ...pathItems];
-  }, [query, ready, pathologies, navigate, onClose]);
+    return [...navItems, ...ingItems, ...prodItems, ...pathItems];
+  }, [query, ready, productsReady, pathologies, navigate, onClose]);
 
   // Clamp activeIndex when items change (e.g. new search results).
   const safeActiveIndex = items.length === 0 ? 0 : Math.min(activeIndex, items.length - 1);

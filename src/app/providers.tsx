@@ -8,6 +8,7 @@ import { AppAuthProvider } from './AppAuthProvider';
 import { ToastProvider } from './ToastProvider';
 import { SearchProvider } from '@/contexts/SearchContext';
 import { ClientProfileProvider } from '@/contexts/ClientProfileContext';
+import { CounterTrayProvider } from '@/contexts/CounterTrayContext';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -17,7 +18,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <ClientProfileProvider>
             <DbProvider>
               <AppAuthProvider>
-                {children}
+                <CounterTrayProvider>
+                  {children}
+                </CounterTrayProvider>
               </AppAuthProvider>
             </DbProvider>
           </ClientProfileProvider>

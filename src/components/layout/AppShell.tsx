@@ -17,6 +17,7 @@ import { PageLoader } from '@/ui/PageLoader';
 import { useSearchIndex } from '@/core/search';
 import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
 import { CommandPalette } from '@/ui/CommandPalette';
+import { CounterTray } from '@/ui/CounterTray';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
 import {
@@ -389,6 +390,7 @@ export function AppShell() {
       )}
 
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+      <CounterTray />
     </div>
   );
 }
