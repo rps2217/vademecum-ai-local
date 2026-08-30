@@ -4,7 +4,7 @@
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-14",
-    "total": 227,
+    "total": 234,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -13859,6 +13859,419 @@
         "embarazo": "contraindicado",
         "lactancia": "contraindicado",
         "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "serenoa_repens",
+      "nombre": "Serenoa Repens (Saw Palmetto)",
+      "nombresAlternativos": [
+        "Saw Palmetto",
+        "Serenoa serrulata",
+        "Palma enana americana"
+      ],
+      "nombreCientifico": "Serenoa repens",
+      "familia": "Arecaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "urinario",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "hiperplasia_prostatica_benigna",
+        "problemas_urinarios",
+        "caida_cabello",
+        "disuria"
+      ],
+      "descripcion": "Extracto lipoesterólico de los frutos de Saw Palmetto, ampliamente utilizado en salud prostática y control de la alopecia androgénica.",
+      "mecanismoAccion": "Inhibe la enzima 5-alfa-reductasa (tipos I y II) y bloquea los receptores de dihidrotestosterona (DHT), reduciendo la inflamación prostática.",
+      "nivelEvidencia": "A",
+      "parteUsada": "fruto",
+      "formasPresentacion": [
+        "Capsulas",
+        "Extracto liquido",
+        "Perlas"
+      ],
+      "tiempoEfecto": "4-8 semanas",
+      "duracionTratamiento": "Uso continuo bajo supervision",
+      "advertencias": [
+        "Puede causar leves molestias gastrointestinales",
+        "Consultar con urologo antes de iniciar"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticonceptivos hormonales",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "prostata",
+        "saw_palmetto",
+        "alopecia",
+        "urologia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "EMA / ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "rhodiola_rosea",
+      "nombre": "Rhodiola Rosea",
+      "nombresAlternativos": [
+        "Raíz de oro",
+        "Rhodiola",
+        "Arctic root"
+      ],
+      "nombreCientifico": "Rhodiola rosea",
+      "familia": "Crassulaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "estres_adaptogeno",
+        "fatiga_mental",
+        "agotamiento",
+        "ansiedad",
+        "rendimiento_cognitivo"
+      ],
+      "descripcion": "Adaptógeno potente que mejora la resistencia física y mental frente al estrés y la fatiga crónica.",
+      "mecanismoAccion": "Modula los niveles de neurotransmisores (serotonina, dopamina, noradrenalina) y el eje HPA (hipotálamo-hipófisis-adrenal), optimizando la producción de ATP celular.",
+      "nivelEvidencia": "A",
+      "parteUsada": "raiz",
+      "formasPresentacion": [
+        "Extracto estandarizado",
+        "Capsulas",
+        "Comprimidos"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "6-8 semanas con descansos",
+      "advertencias": [
+        "Evitar en trastornos bipolares por posible estimulacion",
+        "Tomar preferentemente por la manana"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidepresivos IMAO",
+        "Estimulantes"
+      ],
+      "tags": [
+        "adaptogeno",
+        "fatiga",
+        "estres",
+        "energia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "EMA / HMPC"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "echinacea_purpurea",
+      "nombre": "Equinácea (Echinacea purpurea)",
+      "nombresAlternativos": [
+        "Echinacea",
+        "Equinacea purpurea",
+        "Purple coneflower"
+      ],
+      "nombreCientifico": "Echinacea purpurea",
+      "familia": "Asteraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "infecciones_respiratorias",
+        "defensas",
+        "resfriado",
+        "gripe",
+        "prevencion_infecciones"
+      ],
+      "descripcion": "Estimulante inmunitario tradicional utilizado para la prevención y el tratamiento sintomático de resfriados comunes y afecciones de las vías respiratorias altas.",
+      "mecanismoAccion": "Estimula la fagocitosis, la actividad de las células NK (natural killer) y la liberación de citoquinas proinflamatorias reguladas, incrementando la respuesta inmune innata.",
+      "nivelEvidencia": "A",
+      "parteUsada": "raiz_y_parte_aerea",
+      "formasPresentacion": [
+        "Comprimidos",
+        "Jarabe",
+        "Tintura",
+        "Capsulas"
+      ],
+      "tiempoEfecto": "Inmediato (al inicio de sintomas)",
+      "duracionTratamiento": "Maximo 8 semanas continuas",
+      "advertencias": [
+        "Precaucion en enfermedades autoinmunes",
+        "Evitar alergicos a asteraceas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Inmunosupresores"
+      ],
+      "tags": [
+        "inmunidad",
+        "resfriado",
+        "equinacea",
+        "defensas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "ESCOP / EMA"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "propolis",
+      "nombre": "Propóleo (Propolis)",
+      "nombresAlternativos": [
+        "Propolis",
+        "Própolis",
+        "Balsamo de abejas"
+      ],
+      "nombreCientifico": "Propolis",
+      "familia": "Apidae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "inmune",
+        "respiratorio",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "infecciones_garganta",
+        "defensas",
+        "cicatrizacion",
+        "faringitis",
+        "antiseptico_bucal"
+      ],
+      "descripcion": "Sustancia resinosa elaborada por las abejas con potentes propiedades antibacterianas, antivirales, antifúngicas y antiinflamatorias.",
+      "mecanismoAccion": "Los flavonoides y ácidos fenólicos inhiben el crecimiento bacteriano y viral, alterando la membrana celular microbiana y estimulando la epitelización.",
+      "nivelEvidencia": "B",
+      "parteUsada": "resina",
+      "formasPresentacion": [
+        "Spray bucal",
+        "Jarabe",
+        "Comprimidos para chupar",
+        "Gotas"
+      ],
+      "tiempoEfecto": "1-3 dias",
+      "duracionTratamiento": "Curas de 2-3 semanas",
+      "advertencias": [
+        "Contraindicado en alergia a productos apicolas o picadura de abeja"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes (a altas dosis)"
+      ],
+      "tags": [
+        "propolis",
+        "garganta",
+        "antibiotico_natural",
+        "inmunidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "Farmacopea Europea"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "castano_de_indias",
+      "nombre": "Castaño de Indias",
+      "nombresAlternativos": [
+        "Aesculus hippocastanum",
+        "Horse chestnut",
+        "Castaño indio"
+      ],
+      "nombreCientifico": "Aesculus hippocastanum",
+      "familia": "Sapindaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "insuficiencia_venosa",
+        "varices",
+        "hemorroides",
+        "piernas_cansadas",
+        "edema"
+      ],
+      "descripcion": "Extracto rico en escina, empleado tradicionalmente para mejorar el tono vascular, reducir la permeabilidad capilar y aliviar los síntomas de insuficiencia venosa crónica.",
+      "mecanismoAccion": "La escina inhibe las enzimas lisosomales (hialuronidasa y elastasa), protegiendo las fibras de colágeno vascular y aumentando la contracción de las venas.",
+      "nivelEvidencia": "A",
+      "parteUsada": "semilla",
+      "formasPresentacion": [
+        "Capsulas",
+        "Comprimidos de liberacion prolongada",
+        "Gel topico"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Uso prolongado bajo control",
+      "advertencias": [
+        "Puede causar molestias gastricas leves",
+        "No aplicar sobre heridas abiertas en uso topico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antiagregantes plaquetarios"
+      ],
+      "tags": [
+        "circulacion",
+        "varices",
+        "venas",
+        "escina"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "EMA / ESCOP"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "boswellia_serrata",
+      "nombre": "Boswellia (Boswellia serrata)",
+      "nombresAlternativos": [
+        "Incienso indio",
+        "Boswellia",
+        "Boswellic acids"
+      ],
+      "nombreCientifico": "Boswellia serrata",
+      "familia": "Burseraceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "artritis",
+        "dolor_articular",
+        "inflamacion",
+        "osteoartritis",
+        "colitis_ulcerosa"
+      ],
+      "descripcion": "Extracto resinoso rico en ácidos boswélicos, potente antiinflamatorio natural con especial afinidad por el tejido articular y la mucosa intestinal.",
+      "mecanismoAccion": "Inhibe de forma específica la enzima 5-lipooxigenasa (5-LOX), bloqueando la síntesis de leucotrienos inflamatorios sin causar los efectos secundarios gástricos típicos de los AINEs.",
+      "nivelEvidencia": "A",
+      "parteUsada": "resina_goma",
+      "formasPresentacion": [
+        "Comprimidos",
+        "Capsulas estandarizadas",
+        "Extracto seco"
+      ],
+      "tiempoEfecto": "1-2 semanas",
+      "duracionTratamiento": "Uso prolongado seguro en patologias cronicas",
+      "advertencias": [
+        "Leves molestias gastrointestinales ocasionales"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antiinflamatorios no esteroideos (AINEs)"
+      ],
+      "tags": [
+        "articulaciones",
+        "boswellia",
+        "antiinflamatorio",
+        "reuma"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "EMA / ESCOP"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "bromelina",
+      "nombre": "Bromelina (Enzima de Piña)",
+      "nombresAlternativos": [
+        "Bromelain",
+        "Extracto de piña",
+        "Bromelaína"
+      ],
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "musculoesqueletico",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "edema",
+        "inflamacion_post_quirurgica",
+        "mala_gestion_proteica",
+        "sinusitis",
+        "contusiones"
+      ],
+      "descripcion": "Complejo de enzimas proteolíticas extraídas del tallo y fruto de la piña, con probada acción antiinflamatoria, antiedematosa y digestiva.",
+      "mecanismoAccion": "Hidroliza proteínas, reduce la formación de kinasas inflamatorias y disminuye la permeabilidad vascular, acelerando la reabsorción de hematomas y edemas.",
+      "nivelEvidencia": "A",
+      "parteUsada": "tallo_y_fruto",
+      "formasPresentacion": [
+        "Capsulas gastrorresistentes",
+        "Comprimidos"
+      ],
+      "tiempoEfecto": "3-5 dias",
+      "duracionTratamiento": "Curas de 2-4 semanas",
+      "advertencias": [
+        "Precaucion en pacientes con trastornos de coagulacion"
+      ],
+      "interaccionesMedicamentosas": [
+        "Anticoagulantes",
+        "Antibioticos (aumenta su absorcion)"
+      ],
+      "tags": [
+        "bromelina",
+        "enzimas",
+        "edema",
+        "inflamacion"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "Clinical Phytomedicine Review"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "apto",
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"

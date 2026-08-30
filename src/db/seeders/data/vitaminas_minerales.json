@@ -4,7 +4,7 @@
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
     "ultimaActualizacion": "2026-08-14",
-    "total": 192,
+    "total": 193,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -4162,70 +4162,6 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (cáncer cutáneo ONTRAC)"
-      },
-      "seguridad": {
-        "embarazo": "apto",
-        "lactancia": "apto",
-        "pediatria": "apto",
-        "hipertension": "apto",
-        "diabetes": "apto",
-        "celiacos": "apto"
-      }
-    },
-    {
-      "id": "bromelina",
-      "nombre": "Bromelina",
-      "nombresAlternativos": [
-        "Bromelaina",
-        "Bromelain",
-        "Extracto de piña",
-        "Ananasa",
-        "Bromelina de tallo/piña"
-      ],
-      "nombreCientifico": "Bromelina (enzima proteolítica)",
-      "familia": "Enzimas proteolíticas",
-      "categoria": "aminoacido",
-      "sistemas": [
-        "musculoesqueletico",
-        "respiratorio",
-        "digestivo"
-      ],
-      "indicaciones": [
-        "dispepsia",
-        "dlm coadyuvante",
-        "inflamación",
-        "sinusitis",
-        "trauma"
-      ],
-      "descripcion": "Mezcla de enzimas proteolíticas del tallo de la piña. Evidencia para edema post-quirúrgico, sinusitis y como digestivo (proteolítico).",
-      "mecanismoAccion": "Hidroliza proteínas (incluidas cininas y fibrina) reduciendo el edema; modula citocinas inflamatorias; debrida tejido necrótico y mucosidades.",
-      "nivelEvidencia": "B",
-      "parteUsada": "tallo de piña",
-      "formasPresentacion": [
-        "Cápsulas (2000-2400 GDU/g)",
-        "Enterocubierta"
-      ],
-      "tiempoEfecto": "1-3 horas",
-      "duracionTratamiento": "5-10 días en agudo",
-      "advertencias": [
-        "Tomar con comidas (digestivo) o sin (sistémico)",
-        "Posible sangrado (efecto antiagregante)",
-        "Reacciones alérgicas"
-      ],
-      "interaccionesMedicamentosas": [
-        "Anticoagulantes (warfarina)",
-        "Tetraciclinas (aumenta absorción)"
-      ],
-      "tags": [
-        "enzima",
-        "antiinflamatorio",
-        "edema",
-        "sinusitis",
-        "digestivo"
-      ],
-      "metadata": {
-        "fechaCreacion": "2024-01-01",
-        "fuente": "Clinical trials (edema/sinusitis)"
       },
       "seguridad": {
         "embarazo": "apto",
@@ -12440,6 +12376,120 @@
         "fechaCreacion": "2026-08-14"
       },
       "interaccionesMedicamentosas": [],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "acido_alfa_lipoico",
+      "nombre": "Ácido Alfa Lipoico (ALA)",
+      "nombresAlternativos": [
+        "ALA",
+        "Thiotic acid",
+        "Ácido tióctico"
+      ],
+      "categoria": "vitaminas_minerales",
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "neuropatia_diabetica",
+        "antioxidante_potente",
+        "metabolismo_glucosa",
+        "resistencia_insulina"
+      ],
+      "descripcion": "Antioxidante universal altamente versátil soluble tanto en agua como en grasa, esencial para la producción de energía mitocondrial y la protección nerviosa.",
+      "mecanismoAccion": "Actúa como cofactor enzimático en el ciclo de Krebs, regenera otros antioxidantes (Vitamina C, E, glutatión) y mejora la captación de glucosa mediada por insulina.",
+      "nivelEvidencia": "A",
+      "formasPresentacion": [
+        "Capsulas",
+        "Comprimidos"
+      ],
+      "tiempoEfecto": "2-4 semanas",
+      "duracionTratamiento": "Continuo en neuropatia o resistencia insulinica",
+      "advertencias": [
+        "Puede reducir la glucemia, monitorizar en diabeticos medicados"
+      ],
+      "interaccionesMedicamentosas": [
+        "Insulina",
+        "Hipoglucemiantes orales",
+        "Antiácidos"
+      ],
+      "tags": [
+        "ala",
+        "antioxidante",
+        "metabolismo",
+        "neuropatia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "Clinical Nutrition Reviews"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "magnesio_bisglicinato",
+      "nombre": "Magnesio Bisglicinato Quelado",
+      "nombresAlternativos": [
+        "Bisglicinato de magnesio",
+        "Magnesio quelado",
+        "Magnesium bisglycinate"
+      ],
+      "categoria": "vitaminas_minerales",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "relajacion_muscular",
+        "insomnio",
+        "estres",
+        "calambres",
+        "fatiga_cronica",
+        "ansiedad"
+      ],
+      "descripcion": "Forma de magnesio unida a dos moléculas de glicina, ofreciendo máxima biodisponibilidad y excelente tolerancia digestiva sin efecto laxante adverso.",
+      "mecanismoAccion": "La glicina actúa como neurotransmisor inhibitorio sinérgico, mientras que el ion magnesio relaja la fibra muscular y modula los receptores NMDA cerebrales.",
+      "nivelEvidencia": "A",
+      "formasPresentacion": [
+        "Polvo soluble",
+        "Capsulas",
+        "Comprimidos"
+      ],
+      "tiempoEfecto": "Inmediato a 7 dias",
+      "duracionTratamiento": "Uso diario continuado",
+      "advertencias": [
+        "Precaucion en insuficiencia renal severa"
+      ],
+      "interaccionesMedicamentosas": [
+        "Tetraciclinas",
+        "Bifosfonatos"
+      ],
+      "tags": [
+        "magnesio",
+        "relajacion",
+        "sueño",
+        "bisglicinato"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-08-30",
+        "fuente": "EFSA Scientific Opinion"
+      },
       "seguridad": {
         "embarazo": "apto",
         "lactancia": "apto",
