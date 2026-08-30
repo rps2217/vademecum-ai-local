@@ -71,7 +71,15 @@
         "Antiácidos con aluminio (vitamina C aumenta absorción de aluminio)",
         "Probenecid (reduce excreción de vitamina C)",
         "Dosis altas pueden acidificar orina (riesgo de litiasis oxálica)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_d3",
@@ -137,7 +145,15 @@
         "Orlistat (reduce absorción de vitaminas liposolubles)",
         "Fenitoína/barbitúricos (aumentan metabolismo de vitamina D)",
         "Colestiramina (reduce absorción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "magnesio",
@@ -207,7 +223,15 @@
         "IECA/ARA-II (riesgo de hipotensión)",
         "Relajantes musculares (efecto aditivo)",
         "Digoxina (hipermagnesemia aumenta toxicidad)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "zinc",
@@ -275,7 +299,15 @@
         "Hierro (>25mg reduce absorción de zinc)",
         "Cobre (zinc crónico >30mg/día causa deficiencia de cobre)",
         "IECA (pueden reducir zinc)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "hierro",
@@ -347,7 +379,15 @@
         "Penicilamina (reduce absorción de ambos)",
         "Levodopa/carbidopa (reduce absorción)",
         "Contraindicado en hemocromatosis y anemias no ferropénicas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "omega_3",
@@ -416,7 +456,15 @@
         "AINE (riesgo aditivo de sangrado gastrointestinal)",
         "Ciclosporina (dosis altas pueden reducir inmunosupresión)",
         "Orlistat (reduce absorción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_b12",
@@ -483,7 +531,15 @@
         "Colchicina (reduce absorción)",
         "Neomicina (reduce absorción)",
         "Óxido nitroso (inactiva B12)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_b6",
@@ -552,7 +608,15 @@
         "Isoniazida (antagoniza B6, suplementar)",
         "Penicilamina (aumenta necesidad de B6)",
         "Ciclosporina (reduce inmunosupresión)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_b_complejo",
@@ -615,7 +679,15 @@
         "Fenitoína/fenobarbital (B6 puede reducir niveles)",
         "Isoniazida (antagoniza B6)",
         "Levodopa sin carbidopa (B6 reduce eficacia)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "coq10",
@@ -678,7 +750,15 @@
         "Estatinas (sinergia: CoQ10 reduce miopatía por estatinas)",
         "Antidiabéticos (puede reducir glucosa)",
         "Doxorrubicina (puede reducir cardiotoxicidad)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "probioticos",
@@ -740,7 +820,15 @@
         "Inmunosupresores (riesgo teórico de infección por microorganismos vivos)",
         "Antibióticos (reducen eficacia del probiótico, separar 2h)",
         "Antifúngicos sistémicos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "curcumina",
@@ -807,7 +895,15 @@
         "Antidiabéticos (puede reducir glucosa)",
         "Inhibidores CYP3A4 (curcumina inhibe)",
         "Tacrolimus (puede aumentar niveles)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "melatonina",
@@ -870,7 +966,15 @@
         "Nifedipino (puede aumentar presión)",
         "Flumazenilo (antagoniza)",
         "Antidepresivos ISRS (interacción variable)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_k2",
@@ -932,7 +1036,15 @@
         "Anticoagulantes orales (warfarina - antagoniza efecto, monitorizar INR estrechamente)",
         "Anticoagulantes de acción directa (puede interferir)",
         "Trombolíticos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "magnesio_glicinato",
@@ -1000,7 +1112,15 @@
         "Diuréticos (desequilibrio electrolítico)",
         "Gabapentina (reduce absorción)",
         "IECA/ARA-II (riesgo de hipotensión)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "boro",
@@ -1060,7 +1180,15 @@
         "Estrógenos y anticonceptivos (sinergia: boro aumenta estrógenos)",
         "Antidiabéticos (puede afectar glucosa)",
         "Dosis altas tóxicas (renal, reproductivo)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "yodo",
@@ -1123,7 +1251,15 @@
         "Warfarina (yodo puede afectar coagulación)",
         "Amiodarona (contiene yodo - riesgo de hipertiroidismo/hipotiroidismo)",
         "Exceso crónico causa tiroiditis de Hashimoto o bocio"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "cromo",
@@ -1185,7 +1321,15 @@
         "Antiácidos (reducen absorción)",
         "Corticosteroides (aumentan excreción)",
         "Beta-bloqueantes (puede potenciar hipoglucemia)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vanadio",
@@ -1245,7 +1389,15 @@
         "Hierro (antagoniza absorción)",
         "Anticoagulantes (posible efecto aditivo)",
         "Dosis altas tóxicas (renal, hepático)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "litio",
@@ -1312,7 +1464,15 @@
         "Bloqueadores de canales de calcio",
         "Metotrexato",
         "Contraindicado en embarazo (cardiopatía fetal Ebstein)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "tirosina",
@@ -1378,7 +1538,15 @@
         "Levodopa (competencia de absorción)",
         "Hormona tiroidea (sinergia)",
         "Antidepresivos ISRS (síndrome serotoninérgico)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "creatina",
@@ -1444,7 +1612,15 @@
         "Cimetidina (reduce eliminación)",
         "Probeneicid (reduce eliminación)",
         "Puede aumentar creatinina sérica (falso positivo de daño renal)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "alfa_lipoico",
@@ -1508,7 +1684,15 @@
         "Quimioterapia (puede interferir con radioterapia/quimioterapia)",
         "Hierro, calcio, magnesio (quelación - separar)",
         "Warfarina (puede afectar coagulación)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "fosfatidilserina",
@@ -1569,7 +1753,15 @@
         "Antihipertensivos (puede potenciar efecto hipotensor)",
         "Colina (sinergia colinérgica)",
         "Inhibidores de acetilcolinesterasa (sinergia)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "selenio",
@@ -1634,7 +1826,15 @@
         "Niacina + estatinas (sinergia: riesgo de toxicidad)",
         "Dosis altas crónicas >400mcg/día causan selenosis (alopecia, uñas frágiles, neuropatía)",
         "Medicamentos radiométricos (puede interferir)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "cobre",
@@ -1701,7 +1901,15 @@
         "Etilendiaminotetracetato (EDTA - quelación)",
         "Antiácidos (reducen absorción)",
         "Contraindicado en enfermedad de Wilson"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "manganeso",
@@ -1765,7 +1973,15 @@
         "Calcio (competencia)",
         "Antipsicóticos atípicos (depleción asociada)",
         "Dosis altas crónicas causan neurotoxicidad (síndrome de manganismo)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "astaxantina",
@@ -1827,7 +2043,15 @@
         "Anticoagulantes (dosis altas pueden tener efecto antiagregante)",
         "Antihipertensivos (puede potenciar efecto hipotensor)",
         "Estatinas (sinergia antioxidante)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "luteina",
@@ -1884,7 +2108,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas",
         "Betacaroteno (competencia de absorción a dosis altas)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "resveratrol",
@@ -1945,7 +2177,15 @@
         "Inhibidores CYP3A4 (resveratrol inhibe, puede aumentar niveles de fármacos)",
         "Antidiabéticos (puede reducir glucosa)",
         "Estrógenos (puede tener actividad estrogénica débil)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "quercetina",
@@ -2009,7 +2249,15 @@
         "Fluoroquinolonas (puede antagonizar)",
         "Digoxina (puede aumentar niveles)",
         "Antidiabéticos (puede reducir glucosa)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "folato",
@@ -2077,7 +2325,15 @@
         "Metformina (reduce absorción)",
         "Trimetoprim (antagoniza)",
         "Puede enmascarar deficiencia de B12"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "niacina",
@@ -2142,7 +2398,15 @@
         "Alcohol (potencia flushing y hepatotoxicidad)",
         "Antihipertensivos (potencia hipotensión)",
         "Hepatotoxicidad con dosis altas sostenidas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "colina",
@@ -2203,7 +2467,15 @@
         "Metotrexato (puede antagonizar)",
         "Antidepresivos tricíclicos (colina alta puede empeorar depresión)",
         "Atropina (antagoniza efectos colinérgicos)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "biotina",
@@ -2260,7 +2532,15 @@
         "Anticonvulsivantes (carbamazepina, fenitoína, primidona - reducen biotina)",
         "Lipoato (competencia)",
         "IBP crónicos (reducen absorción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "acido_pantotenico",
@@ -2317,7 +2597,15 @@
       },
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas a dosis fisiológicas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_e",
@@ -2383,7 +2671,15 @@
         "Estatinas (dosis altas pueden antagonizar efecto hipolipemiante)",
         "Vitamina K (antagoniza a dosis altas)",
         "AINE (riesgo aditivo de sangrado)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "tiamina",
@@ -2447,7 +2743,15 @@
         "Diuréticos (furosemida - depleción de B1)",
         "Alcoholismo crónico (depleción)",
         "Fluorouracilo (depleción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_a",
@@ -2503,6 +2807,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "WHO/FNB RDAs"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2558,6 +2870,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (migraña) + FNB RDAs"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2614,6 +2934,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "WHO EML + Pharmacological guidelines"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2671,6 +2999,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "WHO EML + Clinical guidelines"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2722,6 +3058,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Nutritional biochemistry references"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2772,6 +3116,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials + Japanese research"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2827,6 +3179,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials + pharmacology"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2877,6 +3237,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (artrosis)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2929,6 +3297,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical nutrition guidelines"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2982,6 +3358,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials + EFSA health claims"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3037,6 +3421,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (SOP) + International guidelines"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3092,6 +3484,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Biochemical + clinical references"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3146,6 +3546,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials meta-análisis (glucosa/lípidos)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3194,6 +3602,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "GAIT trial + Cochrane review"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3243,6 +3659,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "GAIT trial + Cochrane review"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3296,6 +3720,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (piel/articular)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3351,6 +3783,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (articular/piel)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3406,6 +3846,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (depresión/artrosis)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3461,6 +3909,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (rendimiento/endotelio)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3515,6 +3971,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (sueño) + bioquímica"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3574,7 +4038,15 @@
       "fuentes": [],
       "sinonimos": [
         "pqq_pyrroloquinoline"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "sulforafano",
@@ -3627,6 +4099,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (Nrf2/detox)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3682,6 +4162,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (cáncer cutáneo ONTRAC)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3738,6 +4226,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (edema/sinusitis)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3786,6 +4282,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + small clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3839,6 +4343,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (herpes recurrente)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3891,6 +4403,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (infecciones/acné)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3941,6 +4461,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Sports nutrition clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3990,6 +4518,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + initial clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4043,6 +4579,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (lípidos/cognitivo)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4092,6 +4636,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical senolytic + Mayo Clinic trials"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4144,6 +4696,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (homocisteína/esteatosis)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4194,6 +4754,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Bioquímica nutricional"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4245,6 +4813,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Nutritional biochemistry"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4297,6 +4873,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (ansiedad/estrés)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4349,6 +4933,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + small clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4397,6 +4989,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (intestino/inflamación)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4445,6 +5045,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "AREDS2 clinical trial"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4497,6 +5105,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (cognitivo/energía)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4550,6 +5166,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (lípidos/articular)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4606,6 +5230,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (endotelio/cicatrización)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4656,6 +5288,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Nutritional biochemistry"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4710,6 +5350,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (esteatosis hepática)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4762,6 +5410,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Nutritional science + coagulation references"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4816,6 +5472,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (SPM/eccema)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4867,6 +5531,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical studies (mucosas/metabolismo)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4918,6 +5590,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + initial clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4970,6 +5650,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (AIM-HIGH, HPS2-THRIVE)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5019,6 +5707,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (neuropatía diabética)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5078,7 +5774,15 @@
       "fuentes": [],
       "sinonimos": [
         "nmn_nicotinamide"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ergotioneina",
@@ -5127,6 +5831,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Pharmacological studies (antioxidante mitocondrial)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5178,6 +5890,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + observational studies"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5229,6 +5949,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EFSA health claim + clinical trials (LDL protección)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5281,6 +6009,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (metabolismo estrogénico)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5331,6 +6067,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (muscular/cognitivo)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5380,6 +6124,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review + IJSNEM meta-analysis"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5431,6 +6183,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (cognitivo/glaucoma)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5482,6 +6242,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (Alzheimer coadyuvante)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5531,6 +6299,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + mechanistic studies"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5583,6 +6359,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (dolor neuropático/crónico)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5635,6 +6419,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (mitocondrial/muscular)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5686,6 +6478,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (NAD+ en humanos)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5738,6 +6538,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (metabolismo estrogénico)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5788,6 +6596,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Preclinical + initial clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5840,6 +6656,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review + clinical trials (diarrea)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5894,6 +6718,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review + >1000 estudios clínicos"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5955,7 +6787,15 @@
       "fuentes": [],
       "sinonimos": [
         "lactobacillus_acidophilus"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "l_plantarum",
@@ -6005,6 +6845,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (SII/eje intestino-cerebro)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6055,6 +6903,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (inmunidad/respiratorio)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6107,6 +6963,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (cólico/vaginal/bucal)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6166,7 +7030,15 @@
       "fuentes": [],
       "sinonimos": [
         "bifidobacterium_longum"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "b_breve",
@@ -6216,6 +7088,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (alergias pediátricas)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6264,6 +7144,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (barrera/inmunidad)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6314,6 +7202,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (ansiedad/calcio)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6362,6 +7258,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (intolerancia lactosa)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6414,6 +7318,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (piel/uñas/huesos)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6467,6 +7379,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (hepático/sueño)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6518,6 +7438,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (rendimiento/cognitivo)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6571,6 +7499,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (microbiota/calcio)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6636,7 +7572,15 @@
       },
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "acerola",
@@ -6702,7 +7646,15 @@
         "Antiácidos con aluminio (vitamina C aumenta absorción de aluminio)",
         "Dosis altas pueden acidificar orina (litiasis oxálica)",
         "Probenecid"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "camu_camu",
@@ -6763,7 +7715,15 @@
       "interaccionesMedicamentosas": [
         "Antiácidos con aluminio (vitamina C aumenta absorción de aluminio)",
         "Dosis altas pueden acidificar orina"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "espirulina",
@@ -6832,7 +7792,15 @@
         "Anticoagulantes (posible efecto aditivo)",
         "Fenilcetonuria (contiene fenilalanina)",
         "Puede contener microcistinas si no está purificada"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "chlorella",
@@ -6897,7 +7865,15 @@
         "Anticoagulantes (contiene vitamina K)",
         "Inmunosupresores (estimulación inmunológica)",
         "Puede contener yodo (precaución en tiroides)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "jalea_real",
@@ -6964,7 +7940,15 @@
         "Anticoagulantes (posible efecto antiagregante)",
         "Asmáticos y alérgicos (riesgo de reacción alérgica severa)",
         "Estrógenos (actividad estrogénica débil)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "polen",
@@ -7030,7 +8014,15 @@
         "Alérgicos (riesgo de anafilaxia en personas sensibles)",
         "Anticoagulantes (posible efecto aditivo)",
         "Inmunosupresores"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "propoleo",
@@ -7099,7 +8091,15 @@
         "Anticoagulantes (posible efecto antiagregante)",
         "Alérgicos (riesgo de dermatitis de contacto y reacción sistémica)",
         "Asma (casos reportados de empeoramiento)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "shilajit",
@@ -7169,7 +8169,15 @@
         "Anticoagulantes (posible efecto aditivo)",
         "Hierro (sinergia: mejora absorción)",
         "Puede contener metales pesados si no purificado"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "lecitina",
@@ -7233,7 +8241,15 @@
       },
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "triptofano",
@@ -7308,7 +8324,15 @@
       "fuentes": [],
       "sinonimos": [
         "l_triptofano"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "d_manosa",
@@ -7359,6 +8383,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Cochrane Review PMC9427198 + PubMed PMC7395894 (Kranjčec 2014)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7408,6 +8440,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed + Nutritional Science"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7464,6 +8504,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EAU Urolithiasis Guidelines + FDA (potassium citrate)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7518,6 +8566,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Phenylalanine depression/pain)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7570,6 +8626,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "FDA OTC Antifungal Drug Products + PubMed"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7625,6 +8689,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Alpha-GPC dementia) + EMA medicamento"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7676,6 +8748,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Bacillus coagulans RCT IBS)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7727,6 +8807,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (L. gasseri adiposity RCT)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7782,6 +8870,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Garcinia mangostana xanthones)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7837,7 +8933,15 @@
       },
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas a dosis fisiológicas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "metilfolato",
@@ -7899,7 +9003,15 @@
         "Sulfasalazina (reduce absorción)",
         "Metformina (reduce absorción)",
         "Puede enmascarar deficiencia de B12"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "metilcobalamina",
@@ -7956,7 +9068,15 @@
         "IBP crónicos (omeprazol - reducen absorción)",
         "Ácido fólico (puede enmascarar deficiencia de B12)",
         "Colchicina (reduce absorción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "pipquinafosfolipidos",
@@ -8011,7 +9131,15 @@
       "interaccionesMedicamentosas": [
         "Anticoagulantes (puede afectar coagulación)",
         "Antihipertensivos (puede potenciar)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "polen_abeja_ext",
@@ -8067,7 +9195,15 @@
         "Alérgicos (riesgo de anafilaxia)",
         "Anticoagulantes (posible efecto aditivo)",
         "Inmunosupresores"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "lactoferrina_bovina",
@@ -8122,7 +9258,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas",
         "Antibióticos (sinergia antimicrobiana teórica)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "colageno_tipo2",
@@ -8173,7 +9317,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas",
         "Inmunosupresores (efecto inmunomodulador teórico)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "astaxantina_haematococcus",
@@ -8229,7 +9381,15 @@
       "interaccionesMedicamentosas": [
         "Anticoagulantes (dosis altas pueden tener efecto antiagregante)",
         "Antihipertensivos (puede potenciar efecto hipotensor)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "lut_max",
@@ -8283,7 +9443,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas",
         "Betacaroteno (competencia de absorción a dosis altas)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "magnesio_treonato",
@@ -8339,7 +9507,15 @@
         "Levotiroxina (reduce absorción, separar 4h)",
         "Diuréticos (desequilibrio electrolítico)",
         "Gabapentina (reduce absorción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "zinc_picolinato",
@@ -8403,7 +9579,15 @@
         "Diuréticos tiazídicos (aumentan excreción urinaria de zinc)",
         "Hierro (>25mg reduce absorción de zinc)",
         "Cobre (zinc crónico >30mg/día causa deficiencia de cobre)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "potasio_citrato_bis",
@@ -8465,7 +9649,15 @@
         "AINE (riesgo de hiperpotasemia)",
         "Tacrolimus y ciclosporina (hiperpotasemia)",
         "Bloqueadores beta"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "hierro_bisglicinato",
@@ -8526,7 +9718,15 @@
         "Antiácidos e IBP (reducen absorción de hierro)",
         "Calcio (>300mg reduce absorción, separar 2h)",
         "Contraindicado en hemocromatosis"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "yoduro_potasio_lugol",
@@ -8585,7 +9785,15 @@
         "IECA/ARA-II (con yodo puede causar hiperpotasemia)",
         "Diuréticos ahorradores de potasio (hiperpotasemia)",
         "Exceso crónico causa tiroiditis"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "silicio_ortosilicico",
@@ -8640,7 +9848,15 @@
       },
       "interaccionesMedicamentosas": [
         "Sin interacciones medicamentosas significativas documentadas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "calcio_microcristalino",
@@ -8701,7 +9917,15 @@
         "Diuréticos tiazídicos (aumentan retención de calcio - hipercalcemia)",
         "Bloqueadores de canales de calcio (puede antagonizar)",
         "Hierro (reduce absorción de hierro)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vanadyl_sulfato",
@@ -8753,7 +9977,15 @@
         "Antidiabéticos e insulina (efecto hipoglicemiante aditivo)",
         "Hierro (antagoniza absorción)",
         "Dosis altas tóxicas (renal, hepático)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "biotina_crinip",
@@ -8807,7 +10039,15 @@
         "Dosis altas interfieren con ensayos de laboratorio (troponina, TSH, T4, T3, prolactina - suspenda 48h antes de análisis)",
         "Anticonvulsivantes (reducen biotina)",
         "IBP crónicos (reducen absorción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "complejo_b_50",
@@ -8869,7 +10109,15 @@
         "Fenitoína/fenobarbital (B6 puede reducir niveles)",
         "Isoniazida (antagoniza B6)",
         "Levodopa sin carbidopa (B6 reduce eficacia)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_d3_k2",
@@ -8929,7 +10177,15 @@
         "Diuréticos tiazídicos (riesgo de hipercalcemia por D3)",
         "Corticosteroides (reducen absorción de D3)",
         "Orlistat (reduce absorción)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "omega3_phospholipid",
@@ -8988,7 +10244,15 @@
         "Anticoagulantes orales (warfarina - aumenta riesgo de sangrado)",
         "Antiagregantes plaquetarios (aspirina, clopidogrel)",
         "AINE (riesgo aditivo de sangrado)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "gaba_pharma",
@@ -9044,7 +10308,15 @@
         "Alcohol (potencia sedación)",
         "Antiepilépticos (efecto aditivo)",
         "Antihipertensivos (puede reducir presión)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "magnesio_glicerofosfato",
@@ -9100,7 +10372,15 @@
         "Tetraciclinas y fluoroquinolonas (reduce absorción, separar 2-4h)",
         "Levotiroxina (reduce absorción, separar 4h)",
         "Diuréticos (desequilibrio electrolítico)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "l_cisteina",
@@ -9153,6 +10433,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed + WHO Monographs"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9214,7 +10502,15 @@
         "Metotrexato (puede antagonizar)",
         "Antidepresivos tricíclicos (colina alta puede empeorar depresión)",
         "Atropina (antagoniza efectos colinérgicos)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "d_ribose",
@@ -9275,7 +10571,15 @@
       "interaccionesMedicamentosas": [
         "Antidiabéticos (puede reducir glucosa)",
         "Antihipertensivos (puede reducir presión)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "indole_3_carbinol",
@@ -9337,7 +10641,15 @@
         "Estrógenos y tamoxifeno (puede alterar metabolismo de estrógenos)",
         "Anticoagulantes (posible efecto aditivo)",
         "Inmunosupresores (efecto inmunomodulador)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "leucina_pura",
@@ -9398,7 +10710,15 @@
         "Antidiabéticos e insulina (puede afectar regulación de glucosa)",
         "Levodopa (competencia de absorción)",
         "Corticosteroides (aumentan catabolismo)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "betacaroteno",
@@ -9465,7 +10785,15 @@
         "Estatinas (puede reducir niveles de carotenoides)",
         "Fumadores con dosis altas: aumentar riesgo de cáncer de pulmón",
         "Sin interacciones medicamentosas significativas a dosis dietéticas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vitamina_b2",
@@ -9532,7 +10860,15 @@
         "Anticonceptivos orales (pueden reducir niveles)",
         "Alcohol (reduce absorción)",
         "Sin interacciones significativas a dosis fisiológicas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "acido_folico",
@@ -9602,7 +10938,15 @@
         "Trimetoprim (antagoniza)",
         "Puede enmascarar deficiencia de B12 (dosis >1000mcg)",
         "Fluorouracilo (sinergia con folínico en quimioterapia)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "paba",
@@ -9659,7 +11003,15 @@
       "interaccionesMedicamentosas": [
         "Sulfonamidas (PABA antagoniza efecto antibacteriano)",
         "Puede interferir con análisis de laboratorio (falsos positivos)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "nadh",
@@ -9720,7 +11072,15 @@
       "interaccionesMedicamentosas": [
         "Levodopa (NADH puede potenciar efecto antiparkinsoniano)",
         "Sin interacciones medicamentosas significativas documentadas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "n_acetilglucosamina",
@@ -9778,6 +11138,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + GAIT trial"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9835,6 +11203,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + Cuban Pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9892,6 +11268,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + European Medicines Agency"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9948,6 +11332,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + Ayurvedic Pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10004,6 +11396,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + European Pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10060,6 +11460,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EFSA health claims + Clinical trials (PubMed meta-análisis)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10116,6 +11524,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + AREDS2-related"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10176,6 +11592,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA (ranelato) + Clinical trials (PubMed meta-análisis)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10233,6 +11657,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed) + Japanese Pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10291,6 +11723,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + EFSA"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10339,6 +11779,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "NIH ODS Fact Sheet + J. Nutr. reviews"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10383,6 +11831,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "AREDS2 trial (NEJM 2014) + CREST trial"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10435,6 +11891,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "J. Urol. + Cochrane reviews"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10488,6 +11952,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Cochrane reviews + Fertil Steril meta-analisis"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10543,6 +12015,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Cochrane reviews + Hepatology"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10592,6 +12072,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Thyroid (ATA) + Cochrane Hashimoto"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10642,6 +12130,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Osteoporosis Int. + Thromb. Res."
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10692,6 +12188,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Calcif. Tissue Int. + Menopause"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10744,6 +12248,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EFSA scientific opinion on L. rhamnosus GG; Clinical trials PubMed meta-analisis sobre diarrea infecciosa"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10791,6 +12303,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EFSA scientific opinion on arabinogalactan; Clinical trials PubMed sobre Larix AG e inmunidad"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10856,7 +12376,15 @@
         "Penicilamina: quelante de cobre (reduce niveles)",
         "Zinc altas dosis: inducen metalotioneína que secuestra cobre (deficiencia)",
         "Antiacidos: reducen absorción"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "queratina",
@@ -10911,7 +12439,15 @@
       "metadata": {
         "fechaCreacion": "2026-08-14"
       },
-      "interaccionesMedicamentosas": []
+      "interaccionesMedicamentosas": [],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     }
   ]
 }

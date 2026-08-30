@@ -1,25 +1,23 @@
 import part1 from './sinergias_1.json';
 import part2 from './sinergias_2.json';
+import part3 from './sinergias_3.json';
 
-export const sinergias = [...part1.sinergias, ...part2.sinergias];
+export const sinergias = [...part1.sinergias, ...part2.sinergias, ...part3.sinergias];
 
 export const metadata = {
-  version: "2.0.0",
+  version: "2.1.0",
   total: sinergias.length,
-  ultimaActualizacion: "2025-02-14",
+  ultimaActualizacion: "2026-08-30",
   fuentes: [
-  "Natural Medicines Comprehensive Database",
-  "ESCOP Monographs",
-  "Commission E Monographs",
-  "EMA/HMPC Community herbal monographs",
-  "Micromedex Drug-Nutrient Interactions",
-  "Memorial Sloan Kettering Cancer Center - About Herbs",
-  "NIH Office of Dietary Supplements",
-  "German Commission E Monographs",
-  "World Health Organization (WHO) Monographs on Selected Medicinal Plants",
-  "Cochrane Systematic Reviews on Botanical and Dietary Supplements",
-  "Clinical studies on probiotic-prebiotic synbiotic combinations (2018-2024)"
-]
+    "EMA HMPC (European Medicines Agency, Herbal Medicinal Products Committee)",
+    "WHO Monographs on Selected Medicinal Plants",
+    "ESCOP Monographs",
+    "German Commission E Monographs",
+    "EFSA Scientific Opinions on Health Claims",
+    "Boericke & Kent Homeopathic Materias Medicas",
+    "Tisserand & Young Essential Oil Safety (Clinical Aromatherapy)",
+    "PubMed Clinical Trials & Meta-analyses (2018-2026)"
+  ]
 };
 
 export default {

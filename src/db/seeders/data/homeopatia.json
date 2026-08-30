@@ -84,7 +84,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "nux_vomica",
@@ -166,6 +174,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -248,7 +264,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "chamomilla",
@@ -326,7 +350,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ignatia",
@@ -407,7 +439,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "gelsemium",
@@ -487,7 +527,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "lycopodium",
@@ -566,7 +614,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "pulsatilla",
@@ -648,7 +704,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "rhus_toxicodendron",
@@ -730,7 +794,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "sepia",
@@ -812,7 +884,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "sulphur",
@@ -897,7 +977,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "mercurius",
@@ -977,7 +1065,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "carbo_veg",
@@ -1058,7 +1154,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "graphites",
@@ -1137,7 +1241,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "calcaria_carbonica",
@@ -1217,7 +1329,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "phosphorus",
@@ -1297,7 +1417,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "natrum_muriaticum",
@@ -1378,7 +1506,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "arsenicum_album",
@@ -1457,7 +1593,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "thuja",
@@ -1535,7 +1679,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "kali_bichromicum",
@@ -1611,7 +1763,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "bryonia",
@@ -1696,7 +1856,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ruta_graveolens",
@@ -1779,7 +1947,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "apis_mellifica",
@@ -1866,7 +2042,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "causticum",
@@ -1951,7 +2135,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ledum_palustre",
@@ -2035,7 +2227,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "aconitum_napellus",
@@ -2127,7 +2327,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "calendula",
@@ -2207,7 +2415,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "hypericum",
@@ -2294,7 +2510,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "symphytum",
@@ -2376,7 +2600,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "colocynthis",
@@ -2463,7 +2695,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "cocculus",
@@ -2546,7 +2786,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "bellis_perennis",
@@ -2631,7 +2879,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "staphysagria",
@@ -2718,7 +2974,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "eupatorium",
@@ -2802,7 +3066,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "china_officinalis",
@@ -2888,7 +3160,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "spigelia",
@@ -2974,7 +3254,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "sanguinaria",
@@ -3063,7 +3351,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "iris_versicolor",
@@ -3145,7 +3441,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "chelidonium",
@@ -3232,7 +3536,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "dulcamara",
@@ -3321,7 +3633,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "tuberculinum",
@@ -3406,7 +3726,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "medorrhinum",
@@ -3495,7 +3823,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "magnesia_phosphorica",
@@ -3584,7 +3920,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "alumina",
@@ -3671,7 +4015,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "dioscorea",
@@ -3756,7 +4108,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "lachesis",
@@ -3807,6 +4167,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas Homeopáticas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3857,6 +4225,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas Homeopáticas (Boericke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3905,6 +4281,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas Homeopáticas (Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3954,6 +4338,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas Homeopáticas (Allen)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4004,6 +4396,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas Homeopáticas (Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4060,6 +4460,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4111,6 +4519,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4162,6 +4578,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4213,6 +4637,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4264,6 +4696,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4315,6 +4755,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4365,6 +4813,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4417,6 +4873,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4466,6 +4930,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4514,6 +4986,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4567,6 +5047,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4619,6 +5107,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4668,6 +5164,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4720,6 +5224,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke) + Schüssler"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4772,6 +5284,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4822,6 +5342,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4871,6 +5399,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4920,6 +5456,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4968,6 +5512,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5018,6 +5570,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5070,6 +5630,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5122,6 +5690,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5173,6 +5749,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5225,6 +5809,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5277,6 +5869,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5330,6 +5930,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5383,6 +5991,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5434,6 +6050,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5485,6 +6109,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5536,6 +6168,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5587,6 +6227,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5639,6 +6287,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5693,6 +6349,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5745,6 +6409,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5798,6 +6470,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5851,6 +6531,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5903,6 +6591,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5956,6 +6652,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6008,6 +6712,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6060,6 +6772,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6112,6 +6832,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6166,6 +6894,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Materias Médicas (Boericke/Clarke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6215,6 +6951,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Materia Medica Homeopática (Clarke, Allen)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6266,6 +7010,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Materia Medica Homeopática (Clarke, Phatak)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6316,6 +7068,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Materia Medica Homeopática (Clarke, Boericke)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6367,6 +7127,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Materia Medica Homeopática (Clarke, Nash)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6418,6 +7186,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Materia Medica Homeopática (Clarke, Farrington)"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6494,7 +7270,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "lycopodium_clavatum_amp",
@@ -6571,7 +7355,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "carcinosinum",
@@ -6643,7 +7435,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "medorrhinum_amp",
@@ -6718,7 +7518,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "staphysagria_amp",
@@ -6792,7 +7600,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "thuja_occidentalis_amp",
@@ -6866,7 +7682,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "nux_vomica_amp",
@@ -6942,7 +7766,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "sepia_officinalis_amp",
@@ -7016,7 +7848,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "silicea_amp",
@@ -7090,7 +7930,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "arnica_montana_amp",
@@ -7164,7 +8012,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "aurum_metallicum",
@@ -7214,7 +8070,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "thyroidinum",
@@ -7264,7 +8128,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "psorinum",
@@ -7316,7 +8188,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "picricum_acidum",
@@ -7364,7 +8244,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "syzygium",
@@ -7413,7 +8301,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "uranium_nitricum",
@@ -7461,7 +8357,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "calcarea_iodata",
@@ -7509,7 +8413,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "crataegus_homeo",
@@ -7556,7 +8468,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "berberis_homeo",
@@ -7605,7 +8525,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "merc_sol",
@@ -7655,7 +8583,15 @@
         "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     }
   ]
 }

@@ -75,7 +75,15 @@
         "Antidepresivos (sinergia)",
         "No usar interno sin supervisión profesional",
         "Precaución en niños (puede causar ginecomastia prepuberal con uso prolongado)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "apto",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "tea_tree",
@@ -140,7 +148,15 @@
         "No ingerir (toxicidad sistémica)",
         "Puede haber sinergia con antifúngicos tópicos",
         "Precaución en gatos (toxicidad)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "apto",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ravintsara",
@@ -203,7 +219,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones sistémicas significativas documentadas",
         "No usar interno sin supervisión profesional"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "eucalipto",
@@ -270,7 +294,15 @@
         "No usar en niños menores de 6 años (riesgo de espasmo laringeo)",
         "Precaución en asma (puede desencadenar broncoespasmo en inhalación directa)",
         "No ingerir (toxicidad: convulsiones, depresión respiratoria)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "menta_aceite",
@@ -339,7 +371,15 @@
         "Ciclosporina (puede aumentar niveles)",
         "No aplicar en rostro de lactantes y niños menores de 6 años (riesgo de espasmo laringeo)",
         "Gastroesofágico: puede relajar esfínter esofágico (empeora reflujo)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "romero_aceite",
@@ -406,7 +446,15 @@
         "Antihipertensivos (puede subir o bajar presión según variedad)",
         "Epilepsia (puede bajar umbral convulsivo en dosis altas)",
         "Embarazo (efecto uterotónico en dosis altas)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "incienso",
@@ -471,7 +519,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones sistémicas significativas documentadas",
         "Anticoagulantes (precaución teórica)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "jengibre_aceite",
@@ -535,7 +591,15 @@
         "Antiagregantes plaquetarios (aspirina)",
         "Antidiabéticos (puede reducir glucosa)",
         "Antihipertensivos (puede potenciar)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "oregano",
@@ -598,7 +662,15 @@
         "Hierro (puede reducir absorción por taninos)",
         "Antibióticos (sinergia antimicrobiana teórica)",
         "No usar en embarazo a dosis terapéuticas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "salvia_esclarea",
@@ -661,7 +733,15 @@
         "Estrógenos y anticonceptivos (actividad estrogénica)",
         "Sedantes (efecto aditivo)",
         "No usar en embarazo (efecto uterotónico)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "canela_aceite",
@@ -730,7 +810,15 @@
         "Hepatotoxicidad con dosis altas (cumarina en Cassia)",
         "Antidiabéticos (puede reducir glucosa)",
         "No usar en embarazo a dosis terapéuticas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "nilo_rosada",
@@ -790,7 +878,15 @@
       "interaccionesMedicamentosas": [
         "Anticoagulantes (posible efecto aditivo)",
         "Sin interacciones sistémicas significativas (uso principalmente tópico)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "palmarosa",
@@ -853,7 +949,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones sistémicas significativas documentadas",
         "No usar interno sin supervisión profesional"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "helichrysum",
@@ -916,7 +1020,15 @@
       "interaccionesMedicamentosas": [
         "Anticoagulantes (posible efecto antiagregante)",
         "No usar interno sin supervisión profesional"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "cedro_atlas",
@@ -980,7 +1092,15 @@
         "Sin interacciones sistémicas significativas documentadas",
         "No usar en embarazo a dosis terapéuticas",
         "No usar interno sin supervisión"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "neroli",
@@ -1045,7 +1165,15 @@
       "interaccionesMedicamentosas": [
         "Sedantes y benzodiacepinas (efecto aditivo sedante)",
         "No usar interno sin supervisión profesional"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "palo_de_rosa",
@@ -1108,7 +1236,15 @@
       "interaccionesMedicamentosas": [
         "Anticoagulantes (posible efecto aditivo)",
         "No usar en embarazo a dosis terapéuticas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "inmale",
@@ -1170,7 +1306,15 @@
       },
       "interaccionesMedicamentosas": [
         "Sin interacciones sistémicas significativas documentadas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "manuka",
@@ -1232,7 +1376,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones sistémicas significativas documentadas",
         "Antibióticos (sinergia antimicrobiana teórica)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "copaiba",
@@ -1294,7 +1446,15 @@
       "interaccionesMedicamentosas": [
         "Anticoagulantes (posible efecto aditivo)",
         "Antiinflamatorios (sinergia)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "pino_silvestre",
@@ -1360,7 +1520,15 @@
         "No usar en niños menores de 6 años (riesgo de espasmo laringeo)",
         "No ingerir (toxicidad)",
         "Asma (precaución en inhalación directa)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "tomillo_quimiotipo",
@@ -1425,7 +1593,15 @@
         "Anticoagulantes (posible efecto antiagregante)",
         "Hormona tiroidea (timol puede interferir)",
         "No usar en embarazo a dosis terapéuticas"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "naranja_dulce",
@@ -1493,7 +1669,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones sistémicas significativas documentadas",
         "Fotosensibilidad (si es exprimido en frío, aplicar diluido)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "apto",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "bergamota",
@@ -1558,7 +1742,15 @@
         "Fotosensibilidad severa (bergapteno - evitar sol 12h después de aplicación tópica)",
         "Usar formato bergaptene-free (FCF) para uso tópico",
         "Sin interacciones sistémicas en aromaterapia"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "citronela",
@@ -1618,7 +1810,15 @@
       "interaccionesMedicamentosas": [
         "Sin interacciones sistémicas significativas documentadas",
         "Puede irritar piel sensible (diluir)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "geranio",
@@ -1672,6 +1872,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1726,6 +1934,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1781,6 +1997,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1833,6 +2057,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy + traditional medicine references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1887,6 +2119,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1939,6 +2179,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1994,6 +2242,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2060,7 +2316,15 @@
       "fuentes": [],
       "sinonimos": [
         "clavo_aceite"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "enebro",
@@ -2116,6 +2380,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy clinical references"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2171,6 +2443,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica + uso tradicional"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2225,6 +2505,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica + estudios ansiolíticos"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2281,6 +2569,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica + bioquímica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2337,6 +2633,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica + farmacología"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2391,6 +2695,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2446,6 +2758,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC + aromaterapia clínica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2500,6 +2820,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2553,6 +2881,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2608,6 +2944,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromaterapia clínica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2664,6 +3008,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Pharmacological studies (metil salicilato)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2718,6 +3070,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Aromatherapy + clinical studies (ansiedad)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2771,6 +3131,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Pharmacological studies (regeneración)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2836,7 +3204,15 @@
         "Epilepsia (puede bajar umbral convulsivo - contraindicado)",
         "No usar en embarazo",
         "No ingerir (toxicidad: convulsiones)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ajo_aceite",
@@ -2902,7 +3278,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ajedrea",
@@ -2968,7 +3352,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "benjuu",
@@ -3037,7 +3429,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "valeriana_aceite",
@@ -3101,7 +3501,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "perejil_aceite",
@@ -3166,7 +3574,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "azahar_aceite",
@@ -3235,7 +3651,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "galbano",
@@ -3301,7 +3725,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "laurel_aceite",
@@ -3354,6 +3786,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Laurus nobilis EO antimicrobial)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3407,6 +3847,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Citrus limon EO anxiolytic)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3458,6 +3906,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Elettaria cardamomum EO)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3510,6 +3966,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Citrus paradisi EO)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3561,6 +4025,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Myrtus communis EO)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3611,6 +4083,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Citrus aurantium petitgrain anxiolytic)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3663,6 +4143,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Ethnobotanical studies + PubMed (Bursera graveolens)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3724,7 +4212,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "neroli_bigarade",
@@ -3786,7 +4282,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "frankincense_boswellia_serrata",
@@ -3849,7 +4353,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "houttuynia_aceite",
@@ -3909,7 +4421,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "raiz_angelica_aceite",
@@ -3969,7 +4489,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "abrojo_aceite",
@@ -4027,7 +4555,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "albahaca_sagrada_aceite",
@@ -4088,7 +4624,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "melissa_true_aceite",
@@ -4148,7 +4692,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "pino_maritimo_aceite",
@@ -4208,7 +4760,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "vetiver_haiti_aceite",
@@ -4268,7 +4828,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "valeriana_jatamansi_aceite",
@@ -4326,7 +4894,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "tomillo_geraniol_aceite",
@@ -4385,7 +4961,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ajedrea_montana_aceite",
@@ -4445,7 +5029,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "leche_eneldo_aceite",
@@ -4504,7 +5096,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "cipres_azul_aceite",
@@ -4563,7 +5163,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "romero_verbenona_aceite",
@@ -4623,7 +5231,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "citronela_java_aceite",
@@ -4682,7 +5298,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "palo_santo_bursera_aceite",
@@ -4741,7 +5365,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "eucalipto_citriodora_aceite",
@@ -4800,7 +5432,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "manuka_leptospermum_aceite",
@@ -4860,7 +5500,15 @@
         "Diluir antes de aplicación tópica",
         "Precaución en embarazo, lactancia y pediatría",
         "Realizar test de tolerancia cutánea"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "nuez_moscada_aceite",
@@ -4912,7 +5560,15 @@
         "Sedantes (efecto aditivo)",
         "Alcohol (potencia toxicidad)",
         "No ingerir (toxicidad hepática y neurológica)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "ilang_ilang",
@@ -4976,7 +5632,15 @@
       "fuentes": [],
       "sinonimos": [
         "ylang_ylang"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     }
   ]
 }

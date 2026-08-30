@@ -59,6 +59,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "OMS Monographs"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -110,6 +118,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -162,6 +178,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -216,6 +240,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -265,6 +297,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -312,6 +352,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -361,6 +409,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -411,6 +467,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -465,6 +529,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -519,6 +591,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -567,6 +647,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -616,6 +704,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -669,6 +765,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -719,6 +823,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -770,6 +882,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -823,6 +943,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -874,6 +1002,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -924,6 +1060,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -976,6 +1120,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1022,6 +1174,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1074,6 +1234,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1131,6 +1299,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1182,6 +1358,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1234,6 +1418,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1282,6 +1474,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1336,6 +1536,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1395,6 +1603,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "evitar",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1447,6 +1663,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1493,6 +1717,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1545,6 +1777,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1597,6 +1837,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1651,6 +1899,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1699,6 +1955,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1752,6 +2016,14 @@
       ],
       "metadata": {
         "fechaCreacion": "2024-01-01"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1809,6 +2081,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/7685/2013; WHO Monographs on Selected Medicinal Plants Vol.1 (1999)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1859,6 +2139,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/573460/2009 Rev.2; ESCOP Monographs (2003)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1911,6 +2199,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/80630/2016"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -1963,6 +2259,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Vitis vinifera L., folium"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2011,6 +2315,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Health Canada NHPD Green Tea Extract monograph; EFSA scientific opinion on EGCG"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2060,6 +2372,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Peumus boldus Molina, folium (2016); ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2109,6 +2429,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/246774/2009; WHO Monographs on Selected Medicinal Plants Vol.1 (1999)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2160,6 +2488,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/114583/2008"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2217,6 +2553,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/199774/2012 (seminis tegmentum, well-established use)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2269,6 +2613,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/437858/2010 Rev.1 (Plantago lanceolata folium)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2327,6 +2679,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Foeniculum vulgare var. dulce, fructus (traditional use); ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2382,6 +2742,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/150218/2009 (Cynara scolymus folium)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2435,6 +2803,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/628242/2018 (Aesculus hippocastanum semen, Rev.1)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2489,6 +2865,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC assessment report EMA/HMPC/325715/2017 (Hedera helix folium, well-established use)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2547,6 +2931,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/277152/2015 Rev.1 (Salvia officinalis folium); ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2601,6 +2993,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/749511/2016 (Malva sylvestris flos)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2654,6 +3054,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/434881/2010 (Filipendula ulmaria herba)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2719,7 +3127,15 @@
       "fuentes": [],
       "sinonimos": [
         "olivo_hoja"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "grosellero_negro",
@@ -2770,6 +3186,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Ribes nigrum L., folium (Rev.1)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2831,6 +3255,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/377675/2014 (Linum usitatissimum semen, well-established use)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2886,6 +3318,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/179591/2018 Rev.1 (Trigonella foenum-graecum semen)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2939,6 +3379,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Ruscus aculeatus rhizoma; ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -2996,7 +3444,15 @@
       },
       "sinonimos": [
         "lúpulo"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "zarzaparrilla",
@@ -3048,6 +3504,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "ESCOP Monographs (Smilacis rhizoma); uso tradicional documentado en farmacopeas europeas"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3103,6 +3567,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/337066/2011 (Tiliae flos, traditional use); ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3159,6 +3631,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Pimpinella anisum fructus (traditional use); ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3214,6 +3694,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/625849/2015 (Sennae folium, well-established use, Rev.1)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3269,6 +3757,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "ESCOP Monographs (Meliloti herba); uso tradicional documentado en farmacopeas europeas"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3335,7 +3831,15 @@
       "fuentes": [],
       "sinonimos": [
         "cola_de_caballo"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "romero",
@@ -3397,6 +3901,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph EMA/HMPC/513940/2021 Rev.1 (Rosmarini folium, traditional use); EMA/HMPC/513893/2021 (aetheroleum, topico)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3454,6 +3966,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Illicium verum fructus (traditional use); ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3508,6 +4028,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph on Rosae pseudofructus; ESCOP Monographs; Cochrane review on rosehip for osteoarthritis"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3562,6 +4090,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "ESCOP Monographs (Eschscholzia californicae herba); German Commission E monograph"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3614,6 +4150,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "ESCOP Monographs + Clinical trials meta-analysis"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3667,6 +4211,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "WHO Monographs + TGA listed"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3721,6 +4273,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (bronquitis aguda)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3769,6 +4329,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (ITU recurrente)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3819,6 +4387,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (síntomas menopáusicos)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3866,6 +4442,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (HPB)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3914,6 +4498,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (vejiga hiperactiva)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -3965,6 +4557,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "ESCOP Monographs + German Commission E"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4019,6 +4619,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (dispepsia leve)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4072,6 +4680,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "ESCOP Monographs + uso tradicional documentado"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4124,6 +4740,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4174,6 +4798,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (migraña) + ESCOP"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4232,6 +4864,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials meta-analyses (asma/rinitis)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4288,6 +4928,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (rendimiento/respiratorio)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4340,6 +4988,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (cognitivo/neuropatía)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4391,6 +5047,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials meta-análisis (depresión)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4447,6 +5111,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (estrés/metabólico)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4507,7 +5179,15 @@
       "fuentes": [],
       "sinonimos": [
         "vara_de_oro"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "agrimonia",
@@ -4561,6 +5241,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4612,6 +5300,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional tos seca)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4665,6 +5361,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional diurético)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4715,6 +5419,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional diurético)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4769,6 +5481,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional menstrual)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4826,6 +5546,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials + TCM pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4877,6 +5605,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (diabetes tipo 2)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4928,6 +5664,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (coadyuvante oncológico)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -4979,6 +5723,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (inmunidad/metabólico)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5032,6 +5784,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (libido, evidencia mixta)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5085,6 +5845,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use + antimicrobial studies"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5139,6 +5907,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5194,6 +5970,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Nutritional studies + clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5247,6 +6031,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use + preclinical studies"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5300,6 +6092,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (colesterol/inmunidad)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5355,6 +6155,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional cutáneo)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5410,6 +6218,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical studies (piel/mucosas)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5466,6 +6282,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (lípidos/glucosa)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5522,6 +6346,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (ansiedad); EMA/ FDA hepatotoxicity warnings"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5575,6 +6407,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (Parkinson coadyuvante)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5630,6 +6470,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Ayurvedic pharmacopoeia + studies"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5694,7 +6542,15 @@
       "fuentes": [],
       "sinonimos": [
         "guggul"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "arjuna",
@@ -5746,6 +6602,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (insuficiencia cardíaca)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5799,6 +6663,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Ayurvedic + clinical studies (lactancia)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5852,6 +6724,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC monograph (uso tradicional ocular)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5904,6 +6784,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review + EMA HMPC monograph (migraña profilaxis)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -5957,6 +6845,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "ESCOP monograph + clinical trials (visión/microcirculación)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6012,6 +6908,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use + pharmacological studies"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6065,6 +6969,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use + pharmacological studies"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6116,6 +7028,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional herbal medicine"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6168,6 +7088,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use + pharmacological studies"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6218,6 +7146,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use (Eclectic medicine)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6271,6 +7207,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Traditional use (Eclectic medicine)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6326,6 +7270,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (rendimiento/antioxidante)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6381,6 +7333,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "TCM pharmacopoeia + clinical studies (ocular/inmunidad)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6437,6 +7397,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "TCM pharmacopoeia + hepatotoxicity reports"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6491,6 +7459,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Clinical trials (angina/microcirculación)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6544,6 +7520,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "TCM pharmacopoeia + pharmacological studies"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6598,6 +7582,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "TCM pharmacopoeia + pharmacological studies"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6651,6 +7643,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6701,6 +7701,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6755,6 +7763,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "Cochrane review"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6809,6 +7825,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6872,7 +7896,15 @@
       "fuentes": [],
       "sinonimos": [
         "diente_de_leon"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "borraja",
@@ -6923,6 +7955,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -6975,6 +8015,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7027,6 +8075,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7077,6 +8133,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7129,6 +8193,14 @@
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "EMA HMPC"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7189,6 +8261,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC monograph Capsici fructus (EMA/HMPC/674139/2013)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7244,6 +8324,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Scientific and Clinical Monograph for Pycnogenol (American Botanical Council, 2019)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7305,7 +8393,15 @@
       "fuentes": [],
       "sinonimos": [
         "damiana_hoja"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "muira_puama",
@@ -7359,6 +8455,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Commission E monographs + Brazilian Pharmacopeia"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7416,6 +8520,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "European Pharmacopoeia monograph Kudzu vine root + PubMed (Keung WM)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7471,6 +8583,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Mesembrine SRI Ki=1.4 nM) + Restorative Medicine Monograph"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7529,6 +8649,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Health Canada NHP Monograph Amla + PubMed PMC9137578"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7585,6 +8713,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "FDA OTC demulcente + Commission E (Ulmus rubra)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7637,6 +8773,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "German Commission E (Potentillae anserinae herba)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7688,6 +8832,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "ESCOP Monographs +传统 uso respitatorio"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7742,6 +8894,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC Violae tricoloris herba + Commission E"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7798,6 +8958,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC Absinthii herba + Commission E"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7856,6 +9024,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EFSA Scientific Opinion on caffeine (2015) + Brazilian Pharmacopeia"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7909,6 +9085,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EFSA Panel on Dietetic Products + PubMed (Pu-erh lipids)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -7962,6 +9146,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "EMA HMPC Aspalathi linearis herba + PubMed"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8020,6 +9212,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed meta-analysis (Epimedium osteoporosis, Frontiers Pharmacol 2022)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8075,6 +9275,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed PMC9415500 (Systematic review testosterone 2022)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8128,6 +9336,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Chinese Pharmacopoeia + PubMed (Cnidium monnieri)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8182,6 +9398,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "WHO Monographs + PubMed (Phyllanthus niruri)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8238,6 +9462,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Annona muricata acetogenins) + EMA traditional use"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8287,6 +9519,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "German Commission E + ESCOP"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8341,6 +9581,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Ethnobotanical studies + PubMed (Maytenus)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8392,6 +9640,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Bauhinia forficata hypoglycemic)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8447,6 +9703,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Opuntia ficus-indica meta-analysis)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8502,6 +9766,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "PubMed (Salvia hispanica RCT)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8556,6 +9828,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-08",
         "fuente": "Chinese Pharmacopoeia + PubMed (Cuscuta)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8606,6 +9886,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Meta-análisis Pharmacol Res 2023"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8653,6 +9941,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Meta-análisis J Integr Med 2023"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8700,6 +9996,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2022"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8748,6 +10052,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Meta-análisis Complement Ther Med 2019"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8796,6 +10108,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Phytomedicine 2021"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8843,6 +10163,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2022"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8893,6 +10221,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Skin Pharmacol Physiol 2022"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8942,6 +10278,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Meta-análisis Arzneimittelforschung 2011"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -8990,6 +10334,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Cochrane Database 2013"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9040,6 +10392,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Cochrane Database 2017"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9085,6 +10445,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Nutrients 2023"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9134,6 +10502,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Front Pharmacol 2021"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9183,6 +10559,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2020"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9228,6 +10612,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Planta Med 2019"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9275,6 +10667,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Int J Immunopharmacol 2021"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9322,6 +10722,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Acta Pharmacol Sin 2019"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9367,6 +10775,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2020"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9414,6 +10830,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Phytomedicine 2020"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9460,6 +10884,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "J Ethnopharmacol 2019"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9510,6 +10942,14 @@
       "metadata": {
         "fechaCreacion": "2024-06-01",
         "fuente": "Adv Pharmacol Sci 2020"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9561,6 +11001,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA HMPC assessment + South African Materia Medica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9612,6 +11060,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "Chinese Pharmacopoeia + clinical trials (PubMed)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9663,6 +11119,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA HMPC + clinical trials (PubMed meta-analysis)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9723,7 +11187,15 @@
       "fuentes": [],
       "sinonimos": [
         "marrubium"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "hierba_luisa",
@@ -9772,6 +11244,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA HMPC monograph"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9825,6 +11305,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "German Commission E + clinical trials"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9878,6 +11366,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA HMPC assessment + ethnobotanical studies"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9930,6 +11426,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "ESCOP monograph + ethnobotany"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -9979,6 +11483,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-09",
         "fuente": "EMA + Cochrane review (venous insufficiency)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10034,6 +11546,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + WHO Monographs + European Pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10090,6 +11610,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "WHO Monographs + Clinical trials (PubMed meta-análisis)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10144,6 +11672,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + German Commission E"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10198,6 +11734,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials (PubMed meta-análisis) + Chilean Pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10254,6 +11798,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Ayurvedic Pharmacopoeia + Clinical trials (PubMed meta-análisis)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10307,6 +11859,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "TCM Pharmacopoeia + Clinical trials (PubMed)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10360,6 +11920,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + German Commission E"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10413,6 +11981,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "TCM Pharmacopoeia + Clinical trials (PubMed)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10468,6 +12044,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + German Commission E"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10521,6 +12105,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "German Commission E + Clinical trials (PubMed)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10576,6 +12168,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "TCM Pharmacopoeia + Clinical trials (PubMed meta-análisis)"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10633,6 +12233,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + German Commission E"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10685,6 +12293,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Cochrane Database + Phytother. Res."
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10735,6 +12351,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph + ESCOP"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10790,6 +12414,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "ESCOP monograph + Phytother. Res."
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10837,6 +12469,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Andrologia + Evid Based Complement Alternat Med"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -10899,7 +12539,15 @@
       "fuentes": [],
       "sinonimos": [
         "picrorhiza"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "regaliz_dgl",
@@ -10951,6 +12599,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Gut + BMJ Evidence-Based Med"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "evitar",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11005,6 +12661,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "J. Ethnopharmacol. + Diabetes Care"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11059,6 +12723,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "WHO/UNICEF yodo + J. Thyroid Res."
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11113,6 +12785,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph EMA/HMPC/502622/2017; ESCOP Monographs on Vaccinium myrtillus"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11165,6 +12845,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials PubMed meta-analisis sobre Aronia melanocarpa (antioxidante, lipidos, presion)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11221,6 +12909,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph EMA/HMPC/49832/2016; ESCOP Monographs on Filipendulae ulmariae herba"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11275,6 +12971,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC traditional use EMA/HMPC/597696/2015; British Herbal Pharmacopoeia"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11327,6 +13031,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "TCM Pharmacopoeia (Gegen); Clinical trials PubMed sobre isoflavonas y menopausia"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11372,6 +13084,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Clinical trials PubMed/PMC sobre Desmodium adscendens hepatoproteccion (estudios africanos)"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11424,6 +13144,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC traditional use Cichorii radix; EFSA scientific opinion on inulin-type fructans"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11480,6 +13208,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "Chinese Pharmacopoeia (Wu wei zi); Clinical trials PubMed sobre Schisandra y funcion hepatica"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11533,6 +13269,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "JECFA ADI steviol glycosides; EFSA scientific opinion on steviol glycosides; Clinical trials PubMed"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11589,6 +13333,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph EMA/HMPC/738254/2016 (Citrus aurantium flos); EMA HMPC on Cortex"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11642,6 +13394,14 @@
       "metadata": {
         "fechaCreacion": "2026-08-10",
         "fuente": "EMA HMPC monograph EMA/HMPC/18425/2015 (Vitis vinifera folium); ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
       }
     },
     {
@@ -11700,7 +13460,15 @@
       "interaccionesMedicamentosas": [
         "Teórica interacción con anticoagulantes por efecto antiagregante de polifenoles",
         "Puede potenciar efecto de estatinas por modulación de colesterol"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "manzana",
@@ -11756,7 +13524,15 @@
       },
       "interaccionesMedicamentosas": [
         "Pectina puede reducir absorción de lovastatina y otros fármacos (separar toma)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "quillay",
@@ -11812,7 +13588,15 @@
       },
       "interaccionesMedicamentosas": [
         "Saponinas pueden potenciar absorción de otros fármacos (efecto permeabilizante)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "calafate",
@@ -11865,7 +13649,15 @@
       },
       "interaccionesMedicamentosas": [
         "Teórica interacción con anticoagulantes por efecto antiagregante"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "capuchina",
@@ -11922,7 +13714,15 @@
       },
       "interaccionesMedicamentosas": [
         "Isotiocianatos pueden inducir CYP y afectar metabolismo de fármacos"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "edelweiss",
@@ -11973,7 +13773,15 @@
       "metadata": {
         "fechaCreacion": "2026-08-14"
       },
-      "interaccionesMedicamentosas": []
+      "interaccionesMedicamentosas": [],
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     },
     {
       "id": "cafeina",
@@ -12046,7 +13854,15 @@
         "Ciprofloxacino y fluvoxamina: inhiben metabolismo de cafeína (aumentan niveles)",
         "Anticonceptivos orales: prolongan semivida de cafeína",
         "Fumadoras: acortan semivida de cafeína (clearance más rápido)"
-      ]
+      ],
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "contraindicado",
+        "pediatria": "evitar",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
     }
   ]
 }
