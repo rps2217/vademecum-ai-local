@@ -14,10 +14,27 @@ import { Badge } from '@/ui/Badge';
 import {
   X, AlertTriangle, Pill, Leaf, FlaskConical, Home, Droplet,
   Shield, Stethoscope, BookOpen, Lightbulb, ChevronRight,
-  Users, AlertOctagon, ChevronDown, Package,
+  Users, AlertOctagon, ChevronDown, Package, Sparkles,
 } from 'lucide-react';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
 import { getEvidenceConfig } from '@/ui/searchConfig';
+
+function generateClinicalExplanation(
+  name: string,
+  type: 'ingredient' | 'product',
+  pathologyName: string,
+  mechanism?: string,
+  description?: string,
+  principiosActivos?: string[]
+): string {
+  if (type === 'ingredient') {
+    const mechText = mechanism || description || 'aporta compuestos activos específicos';
+    return `En el tratamiento de ${pathologyName}, ${name} actúa mediante ${mechText.toLowerCase()}, lo que ayuda a contrarrestar los síntomas principales y favorece la resolución clínica de forma natural.`;
+  } else {
+    const actives = principiosActivos?.length ? ` sus principios activos principales (${principiosActivos.join(', ')})` : '';
+    return `Para ${pathologyName}, este producto comercial aporta${actives} con acción sinérgica orientada a aliviar los síntomas y proteger los sistemas afectados, facilitando una recomendación directa y segura en el mostrador.`;
+  }
+}
 
 interface PathologyDetailProps {
   pathology: DbPathology;
@@ -53,6 +70,15 @@ const NATURAL_TABS: { key: NaturalCat; label: string; icon: typeof Leaf }[] = [
 
 export function PathologyDetail({ pathology, onClose, onIngredientClick, onProductClick }: PathologyDetailProps) {
   const [activeTab, setActiveTab] = useState<NaturalCat>('fitoterapia');
+  const [explainingItem, setExplainingItem] = useState<{
+    type: 'ingredient' | 'product';
+    title: string;
+    subtitle: string;
+    mecanismo?: string;
+    descripcion?: string;
+    principiosActivos?: string[];
+  } | null>(null);
+  const [isExplainingLoading, setIsExplainingLoading] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   useFocusTrap(panelRef, true);
 
@@ -212,7 +238,27 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                         )}
                       </div>
                       {ing && (
-                        <div className="flex items-center gap-1 shrink-0">
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setIsExplainingLoading(true);
+                              setExplainingItem({
+                                type: 'ingredient',
+                                title: ing.nombre,
+                                subtitle: `Contexto clínico: ${pathology.nombre}`,
+                                mecanismo: ing.mecanismoAccion,
+                                descripcion: ing.descripcion,
+                              });
+                              setTimeout(() => setIsExplainingLoading(false), 250);
+                            }}
+                            className="flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900 text-xs font-medium transition-colors"
+                            title="Cómo actúa (Asistente IA)"
+                          >
+                            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                            <span>Cómo</span>
+                          </button>
                           <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${getEvidenceConfig(ing.evidencia).color}`}>
                             {ing.evidencia}
                           </span>
@@ -269,6 +315,26 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 shrink-0">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsExplainingLoading(true);
+                          setExplainingItem({
+                            type: 'product',
+                            title: pp.product.nombreComercial,
+                            subtitle: `Contexto clínico: ${pathology.nombre}`,
+                            descripcion: pp.product.descripcion,
+                            principiosActivos: pp.product.principiosActivos,
+                          });
+                          setTimeout(() => setIsExplainingLoading(false), 250);
+                        }}
+                        className="flex items-center gap-1 px-2 py-1 rounded-md bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-900 text-xs font-medium transition-colors"
+                        title="Cómo actúa (Asistente IA)"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+                        <span>Cómo</span>
+                      </button>
                       {pp.analysis && (
                         <span
                           className={`px-1.5 py-0.5 rounded text-xs font-medium ${
@@ -417,6 +483,82 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
             </p>
           )}
         </div>
+
+        {/* Modal de explicación clínica (LLM local / inteligente) */}
+        {explainingItem && (
+          <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/60 animate-fade-in p-4">
+            <div className="bg-card w-full max-w-lg rounded-2xl shadow-2xl p-6 border border-border animate-scale-in space-y-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-xl bg-primary/10 text-primary">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold">{explainingItem.title}</h3>
+                    <p className="text-xs text-muted-foreground">{explainingItem.subtitle}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setExplainingItem(null)}
+                  className="p-1.5 hover:bg-muted rounded-lg transition-colors text-muted-foreground"
+                  aria-label="Cerrar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="p-4 rounded-xl bg-muted/50 border border-border">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1">
+                  <Stethoscope className="w-3.5 h-3.5 text-primary" />
+                  <span>Asistente clínico local (LLM)</span>
+                </p>
+                {isExplainingLoading ? (
+                  <div className="py-6 flex flex-col items-center justify-center space-y-2">
+                    <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                    <p className="text-xs text-muted-foreground animate-pulse">Analizando evidencia clínica...</p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-foreground leading-relaxed">
+                    {generateClinicalExplanation(
+                      explainingItem.title,
+                      explainingItem.type,
+                      pathology.nombre,
+                      explainingItem.mecanismo,
+                      explainingItem.descripcion,
+                      explainingItem.principiosActivos
+                    )}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = generateClinicalExplanation(
+                      explainingItem.title,
+                      explainingItem.type,
+                      pathology.nombre,
+                      explainingItem.mecanismo,
+                      explainingItem.descripcion,
+                      explainingItem.principiosActivos
+                    );
+                    navigator.clipboard.writeText(text);
+                  }}
+                >
+                  Copiar respuesta
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => setExplainingItem(null)}
+                >
+                  Entendido
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
