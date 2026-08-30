@@ -1,11 +1,21 @@
 {
   "metadata": {
-    "nombre": "Red de Sinergias",
-    "descripcion": "Relaciones sin√©rgicas entre ingredientes curadas por expertos",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-16",
-    "total": 1157,
-    "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Nash)"
+    "total": 657,
+    "ultimaActualizacion": "2025-02-14",
+    "fuentes": [
+      "Natural Medicines Comprehensive Database",
+      "ESCOP Monographs",
+      "Commission E Monographs",
+      "EMA/HMPC Community herbal monographs",
+      "Micromedex Drug-Nutrient Interactions",
+      "Memorial Sloan Kettering Cancer Center - About Herbs",
+      "NIH Office of Dietary Supplements",
+      "German Commission E Monographs",
+      "World Health Organization (WHO) Monographs on Selected Medicinal Plants",
+      "Cochrane Systematic Reviews on Botanical and Dietary Supplements",
+      "Clinical studies on probiotic-prebiotic synbiotic combinations (2018-2024)"
+    ]
   },
   "sinergias": [
     {
@@ -16490,32 +16500,4 @@
       "nivel": "moderada",
       "evidencia": "B",
       "referencia": "Ginseng and damiana in sexual wellness: randomized trials",
-      "mecanismo": "Damiana actua sobre circulacion pelvica; ginseng modula cortisol y NO mejorando vigor.",
-      "categorias": [
-        "fitoterapia"
-      ],
-      "sistemas": [
-        "reproductivo",
-        "endocrino"
-      ]
-    }
-  ],
-  "metadata": {
-    "version": "2.0.0",
-    "total": 1157,
-    "ultimaActualizacion": "2025-02-14",
-    "fuentes": [
-      "Natural Medicines Comprehensive Database",
-      "ESCOP Monographs",
-      "Commission E Monographs",
-      "EMA/HMPC Community herbal monographs",
-      "Micromedex Drug-Nutrient Interactions",
-      "Memorial Sloan Kettering Cancer Center - About Herbs",
-      "NIH Office of Dietary Supplements",
-      "German Commission E Monographs",
-      "World Health Organization (WHO) Monographs on Selected Medicinal Plants",
-      "Cochrane Systematic Reviews on Botanical and Dietary Supplements",
-      "Clinical studies on probiotic-prebiotic synbiotic combinations (2018-2024)"
-    ]
-  }
-}
+      "mecanismo":xú\ç1¬0E˜û‚+3‚ ∞2√ÉqMe‘ƒïìFbË›	U’/∂ﬁ◊˜C∏PTJ‚2≤=]¿Í<èƒj	ìåUôŒ4eI¢ı-õÕ6‚ÉÎQﬁÊîzC’¡¸÷	LEQ ·Ñ˚Fi±"NìRÿËc/eÕE‚≈eÚ&Á¢’vA„“ºÏöl¥Ó•˚]K˜  ˇˇ á4A’

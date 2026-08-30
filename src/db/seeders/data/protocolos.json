@@ -10,10 +10,26 @@
       "nombre": "Ansiedad y estrés",
       "objetivo": "Reducir síntomas de ansiedad y mejorar la respuesta al estrés",
       "ingredientes": [
-        { "id": "ashwagandha", "cantidad": "300mg", "momento": "mañana" },
-        { "id": "magnesio", "cantidad": "300mg", "momento": "noche" },
-        { "id": "valeriana", "cantidad": "300mg", "momento": "noche" },
-        { "id": "pasiflora", "cantidad": "200mg", "momento": "noche" }
+        {
+          "id": "ashwagandha",
+          "cantidad": "300mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "magnesio",
+          "cantidad": "300mg",
+          "momento": "noche"
+        },
+        {
+          "id": "valeriana",
+          "cantidad": "300mg",
+          "momento": "noche"
+        },
+        {
+          "id": "pasiflora",
+          "cantidad": "200mg",
+          "momento": "noche"
+        }
       ],
       "duracionDias": 60,
       "advertencias": [
@@ -28,10 +44,26 @@
       "nombre": "Insomnio y descanso",
       "objetivo": "Favorecer conciliación del sueño y calidad del descanso",
       "ingredientes": [
-        { "id": "valeriana", "cantidad": "400mg", "momento": "noche" },
-        { "id": "pasiflora", "cantidad": "300mg", "momento": "noche" },
-        { "id": "melisa", "cantidad": "300mg", "momento": "noche" },
-        { "id": "magnesio", "cantidad": "300mg", "momento": "noche" }
+        {
+          "id": "valeriana",
+          "cantidad": "400mg",
+          "momento": "noche"
+        },
+        {
+          "id": "pasiflora",
+          "cantidad": "300mg",
+          "momento": "noche"
+        },
+        {
+          "id": "melisa",
+          "cantidad": "300mg",
+          "momento": "noche"
+        },
+        {
+          "id": "magnesio",
+          "cantidad": "300mg",
+          "momento": "noche"
+        }
       ],
       "duracionDias": 30,
       "advertencias": [
@@ -46,11 +78,31 @@
       "nombre": "Inmunidad invernal",
       "objetivo": "Reforzar defensas en época de infecciones respiratorias",
       "ingredientes": [
-        { "id": "vitamina_d3", "cantidad": "1000 UI", "momento": "mañana" },
-        { "id": "zinc", "cantidad": "15mg", "momento": "comidas" },
-        { "id": "vitamina_c", "cantidad": "500mg", "momento": "mañana" },
-        { "id": "equinacea", "cantidad": "300mg", "momento": "mañana" },
-        { "id": "sauco", "cantidad": "300mg", "momento": "tarde" }
+        {
+          "id": "vitamina_d3",
+          "cantidad": "1000 UI",
+          "momento": "mañana"
+        },
+        {
+          "id": "zinc",
+          "cantidad": "15mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "vitamina_c",
+          "cantidad": "500mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "equinacea",
+          "cantidad": "300mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "sauco",
+          "cantidad": "300mg",
+          "momento": "tarde"
+        }
       ],
       "duracionDias": 90,
       "advertencias": [
@@ -66,10 +118,26 @@
       "nombre": "Digestión y dispepsia",
       "objetivo": "Mejorar digestión, reducir gases y molestias gástricas",
       "ingredientes": [
-        { "id": "jengibre", "cantidad": "250mg", "momento": "comidas" },
-        { "id": "curcuma", "cantidad": "500mg", "momento": "comidas" },
-        { "id": "manzanilla", "cantidad": "200mg", "momento": "tarde" },
-        { "id": "menta", "cantidad": "200mg", "momento": "comidas" }
+        {
+          "id": "jengibre",
+          "cantidad": "250mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "curcuma",
+          "cantidad": "500mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "manzanilla",
+          "cantidad": "200mg",
+          "momento": "tarde"
+        },
+        {
+          "id": "menta",
+          "cantidad": "200mg",
+          "momento": "comidas"
+        }
       ],
       "duracionDias": 30,
       "advertencias": [
@@ -84,9 +152,21 @@
       "nombre": "Salud articular e inflamación",
       "objetivo": "Reducir inflamación articular y molestias osteoarticulares",
       "ingredientes": [
-        { "id": "curcuma", "cantidad": "500mg", "momento": "comidas" },
-        { "id": "harpagofito", "cantidad": "400mg", "momento": "comidas" },
-        { "id": "boswelia", "cantidad": "300mg", "momento": "comidas" }
+        {
+          "id": "curcuma",
+          "cantidad": "500mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "harpagofito",
+          "cantidad": "400mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "boswelia",
+          "cantidad": "300mg",
+          "momento": "comidas"
+        }
       ],
       "duracionDias": 60,
       "advertencias": [
@@ -101,10 +181,26 @@
       "nombre": "Colesterol y perfil lipídico",
       "objetivo": "Mejorar perfil lipídico (LDL, triglicéridos) de forma natural",
       "ingredientes": [
-        { "id": "ajo", "cantidad": "600mg", "momento": "mañana" },
-        { "id": "psyllium", "cantidad": "5g", "momento": "ayunas" },
-        { "id": "alcachofa", "cantidad": "300mg", "momento": "comidas" },
-        { "id": "omega_3", "cantidad": "1000mg", "momento": "comidas" }
+        {
+          "id": "ajo",
+          "cantidad": "600mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "psyllium",
+          "cantidad": "5g",
+          "momento": "ayunas"
+        },
+        {
+          "id": "alcachofa",
+          "cantidad": "300mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "omega_3",
+          "cantidad": "1000mg",
+          "momento": "comidas"
+        }
       ],
       "duracionDias": 90,
       "advertencias": [
@@ -120,9 +216,21 @@
       "nombre": "Memoria y función cognitiva",
       "objetivo": "Apoyar concentración, memoria y rendimiento cognitivo",
       "ingredientes": [
-        { "id": "ginkgo", "cantidad": "120mg", "momento": "mañana" },
-        { "id": "omega_3", "cantidad": "1000mg", "momento": "comidas" },
-        { "id": "rodiola", "cantidad": "200mg", "momento": "mañana" }
+        {
+          "id": "ginkgo",
+          "cantidad": "120mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "omega_3",
+          "cantidad": "1000mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "rodiola",
+          "cantidad": "200mg",
+          "momento": "mañana"
+        }
       ],
       "duracionDias": 90,
       "advertencias": [
@@ -137,10 +245,26 @@
       "nombre": "Fatiga y energía",
       "objetivo": "Combatir fatiga física y mental, mejorar vitalidad",
       "ingredientes": [
-        { "id": "maca", "cantidad": "500mg", "momento": "mañana" },
-        { "id": "ashwagandha", "cantidad": "300mg", "momento": "mañana" },
-        { "id": "rodiola", "cantidad": "200mg", "momento": "mañana" },
-        { "id": "ginseng", "cantidad": "200mg", "momento": "mañana" }
+        {
+          "id": "maca",
+          "cantidad": "500mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "ashwagandha",
+          "cantidad": "300mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "rodiola",
+          "cantidad": "200mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "ginseng",
+          "cantidad": "200mg",
+          "momento": "mañana"
+        }
       ],
       "duracionDias": 60,
       "advertencias": [
@@ -156,8 +280,16 @@
       "nombre": "Hepático y detox",
       "objetivo": "Apoyo hepatoprotector y función detoxificante",
       "ingredientes": [
-        { "id": "cardo_mariano", "cantidad": "200mg", "momento": "comidas" },
-        { "id": "curcuma", "cantidad": "500mg", "momento": "comidas" }
+        {
+          "id": "cardo_mariano",
+          "cantidad": "200mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "curcuma",
+          "cantidad": "500mg",
+          "momento": "comidas"
+        }
       ],
       "duracionDias": 90,
       "advertencias": [
@@ -172,9 +304,21 @@
       "nombre": "Salud cardiovascular",
       "objetivo": "Apoyo a circulación, tensión y salud del corazón",
       "ingredientes": [
-        { "id": "espino_blanco", "cantidad": "300mg", "momento": "mañana" },
-        { "id": "omega_3", "cantidad": "1000mg", "momento": "comidas" },
-        { "id": "ajo", "cantidad": "600mg", "momento": "mañana" }
+        {
+          "id": "espino_blanco",
+          "cantidad": "300mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "omega_3",
+          "cantidad": "1000mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "ajo",
+          "cantidad": "600mg",
+          "momento": "mañana"
+        }
       ],
       "duracionDias": 90,
       "advertencias": [
@@ -189,9 +333,21 @@
       "nombre": "Respiratorio y tos",
       "objetivo": "Aliviar tos, expectoración y molestias respiratorias",
       "ingredientes": [
-        { "id": "tomillo", "cantidad": "200mg", "momento": "tarde" },
-        { "id": "regaliz", "cantidad": "300mg", "momento": "comidas" },
-        { "id": "llanten", "cantidad": "200mg", "momento": "tarde" }
+        {
+          "id": "tomillo",
+          "cantidad": "200mg",
+          "momento": "tarde"
+        },
+        {
+          "id": "regaliz",
+          "cantidad": "300mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "llanten",
+          "cantidad": "200mg",
+          "momento": "tarde"
+        }
       ],
       "duracionDias": 14,
       "advertencias": [
@@ -206,9 +362,21 @@
       "nombre": "Piel y cicatrización",
       "objetivo": "Apoyar salud cutánea, cicatrización y regeneración",
       "ingredientes": [
-        { "id": "vitamina_c", "cantidad": "500mg", "momento": "mañana" },
-        { "id": "zinc", "cantidad": "15mg", "momento": "comidas" },
-        { "id": "aloe_vera", "cantidad": "200mg", "momento": "mañana" }
+        {
+          "id": "vitamina_c",
+          "cantidad": "500mg",
+          "momento": "mañana"
+        },
+        {
+          "id": "zinc",
+          "cantidad": "15mg",
+          "momento": "comidas"
+        },
+        {
+          "id": "aloe_vera",
+          "cantidad": "200mg",
+          "momento": "mañana"
+        }
       ],
       "duracionDias": 60,
       "advertencias": [
