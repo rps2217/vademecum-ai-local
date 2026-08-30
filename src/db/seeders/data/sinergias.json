@@ -1,22 +1,4 @@
 {
-  "metadata": {
-    "version": "2.0.0",
-    "total": 657,
-    "ultimaActualizacion": "2025-02-14",
-    "fuentes": [
-      "Natural Medicines Comprehensive Database",
-      "ESCOP Monographs",
-      "Commission E Monographs",
-      "EMA/HMPC Community herbal monographs",
-      "Micromedex Drug-Nutrient Interactions",
-      "Memorial Sloan Kettering Cancer Center - About Herbs",
-      "NIH Office of Dietary Supplements",
-      "German Commission E Monographs",
-      "World Health Organization (WHO) Monographs on Selected Medicinal Plants",
-      "Cochrane Systematic Reviews on Botanical and Dietary Supplements",
-      "Clinical studies on probiotic-prebiotic synbiotic combinations (2018-2024)"
-    ]
-  },
   "sinergias": [
     {
       "id": "sin_valeriana_pasiflora",
@@ -16500,4 +16482,28 @@
       "nivel": "moderada",
       "evidencia": "B",
       "referencia": "Ginseng and damiana in sexual wellness: randomized trials",
-      "mecanismo":xœ\1Â0E÷â+3â °2ÃƒqMeÔÄ•“Fbèİ	UÕ/¶Ş×÷C¸PTJâ2²=]Àê<Äj	“ŒU™Î4eI¢õ-›Í6âƒëQŞæ”zCÕÁüÖ	LEQÊá„ûFi±"N“RØèc/eÍEâÅeò&ç¢ÕvAãÒ¼ìšl´î¥û]K÷  ÿÿ ‡4AÕ
+      "mecanismo": "Damiana actua sobre circulacion pelvica; ginseng modula cortisol y NO mejorando vigor.",
+      "categorias": [
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "2.0.0",
+    "total": 657,
+    "ultimaActualizacion": "2025-02-14",
+    "fuentes": [
+      "Natural Medicines Comprehensive Database",
+      "ESCOP Monographs",
+      "Commission E Monographs",
+      "EMA/HMPC Community herbal monographs",
+      "Micromedex Drug-Nutrient Interactions",
+      "Memorial Sloan Kettering Cancer Center - About Herbs",
+      "NIH Office of Dietary Supplements",
+      "German Commission E Monographs",
+      "World Health OrxœT1‚0…w~Å…	I88«ƒÑÈàäPÚ\R®M[4˜ğß­àâ——Ë½ï½N0½E ÃİÏ—jÃ¦sÂöâ­A2 ‚Ib¡áªŸnX&=Ù;ÁÍä‘%á†OÂ×B8˜#d4
+Vp"ÂMĞŒÖjğŸ¤iıôaT„‹İ:Ó’‰ÌÂ:\ø‰Jš¡¥¾õ=dU¹İUYíòtA>â“9ù   ÿÿ K£
