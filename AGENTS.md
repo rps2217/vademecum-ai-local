@@ -10,10 +10,12 @@
 - Búsqueda de medicamentos e ingredientes con información detallada
 - Base de conocimiento modular (fitoterapia, homeopatía, aceites esenciales, vitaminas)
 - Detección de sinergias y antagonismos entre ingredientes
+- Mostrador de farmacia: bandeja de productos/ingredientes, perfiles de clientes y consulta rápida
+- 12 Protocolos clínicos predefinidos
+- Scraper de productos con IA local (Ollama) + matching KB + upload Supabase
 - Dashboard admin para gestionar la base de conocimiento
 - Visualización de red de relaciones entre ingredientes
-- Búsqueda semántica inteligente con IA local (100% offline)
-- E2EE (End-to-End Encryption) para backups seguros
+- Autenticación por PIN de 4 dígitos (Web Crypto API + PBKDF2)
 
 ## Arquitectura General
 
@@ -21,21 +23,27 @@
 src/
 ├── app/                          # Providers de la app
 │   ├── DbProvider.tsx            # Provider de Dexie (IndexedDB)
-│   ├── E2EEAuthProvider.tsx      # Provider de autenticación E2E
+│   ├── AppAuthProvider.tsx       # Provider de autenticación PIN 4 dígitos (Web Crypto API)
 │   ├── ThemeProvider.tsx         # Provider de tema
 │   ├── ToastProvider.tsx         # Provider de toasts (sonner)
-│   └── providers.tsx             # Composición de providers (Theme→Toast→Db→E2EE)
+│   └── providers.tsx             # Composición de providers (Theme→Toast→Search→ClientProfile→Db→AppAuth)
 ├── components/
 │   ├── admin/                    # Dashboard de administración
 │   │   ├── SynergyGraph.tsx      # Visualización de red SVG (NO usa @xyflow/react)
 │   │   └── IngredientEditor.tsx  # Editor de ingredientes
 │   ├── layout/                   # Layout principal
-│   │   ├── AppShell.tsx          # Shell de la app (nav + outlet)
+│   │   ├── AppShell.tsx          # Shell de la app (nav + outlet + CounterTray + ClientProfileSelector)
 │   │   └── index.ts
 │   └── sync/                     # Componentes de sync
 │       ├── SyncStatusBar.tsx     # Barra de estado de sync
 │       └── SyncConflictModal.tsx # Modal de resolución de conflictos
+├── contexts/
+│   ├── ClientProfileContext.tsx  # Contexto de perfiles de clientes
+│   ├── CounterTrayContext.tsx    # Contexto de la bandeja del mostrador
+│   └── SearchContext.tsx         # Contexto de búsqueda
 ├── core/
+│   ├── analysis/                 # Verificación de interacciones
+│   ├── catalog/                  # Categorización y normalización de productos
 │   ├── search/                   # Motor de búsqueda
 │   │   ├── searchEngine.ts       # Núcleo compartido (índice invertido + TF-IDF + fuzzy)
 │   │   ├── IngredientSearchService.ts  # Servicio de búsqueda de ingredientes
@@ -46,14 +54,13 @@ src/
 │       ├── SyncService.ts        # Servicio de sync (singleton)
 │       ├── ConflictResolver.ts   # Resolución de conflictos
 │       ├── ProductReplicator.ts  # Replica productos + bridge desde Supabase
-│       └── index.ts              # @deprecated: sync Supabase es experimental
-│   (NOTA: core/audit y core/auth fueron ELIMINADOS — eran stubs @deprecated
-│    que re-exportaban tipos DbAuditLog/UserRole inexistentes en el schema)
+│       └── index.ts
 ├── db/                          # Base de datos Dexie (IndexedDB)
 │   ├── schema.ts                # Schema de la DB (versión 4: +bridge productos)
 │   ├── index.ts                 # Exports + seedDatabase/clearDatabase/getSeedStats
 │   └── seeders/                 # Seeders de datos
 │       ├── knowledgeSeeder.ts   # Seeder de KB
+│       ├── protocolSeeder.ts    # Seeder de 12 protocolos predefinidos
 │       ├── index.ts
 │       └── data/                # JSON de la KB
 │           ├── fitoterapia.json
@@ -62,23 +69,14 @@ src/
 │           ├── vitaminas_minerales.json
 │           └── sinergias.json
 ├── lib/
-│   ├── crypto/                  # Criptografía E2E
-│   │   ├── e2ee.ts              # Funciones de cifrado (TweetNaCl + PBKDF2)
-│   │   └── index.ts             # Barrel de crypto
-│   │   (NOTA: KeyManager.ts ELIMINADO — su lógica (deriveKey, generateAndStoreKeyPair,
-│   │    unlockKeyPair, unlockWithRecovery, hasKeyPair, deleteKeyPair) se consolidó
-│   │    en e2ee.ts. FieldEncryption.ts ELIMINADO — API de cifrado por campo sin
-│   │    consumidores. checkConnectivity() ELIMINADA — nunca llamada.)
 │   ├── supabase.ts              # Cliente Supabase
 │   ├── logger.ts                # Logger centralizado
 │   └── utils.ts                 # cn() y utilidades
-│   (NOTA: lib/index.ts barrel ELIMINADO — nadie importaba desde @/lib,
-│    todos usan @/lib/logger, @/lib/utils, @/lib/supabase, @/lib/crypto directo.
-│    FieldEncryption.ts ELIMINADO — API de cifrado por campo sin consumidores.
-│    KeyManager.ts ELIMINADO — consolidado en e2ee.ts. checkConnectivity() ELIMINADA.)
 ├── pages/                       # Páginas de la app
 │   ├── HomePage.tsx
 │   ├── SearchPage.tsx
+│   ├── ProductsPage.tsx
+│   ├── ProtocolsPage.tsx
 │   ├── SynergiesPage.tsx
 │   ├── KnowledgePage.tsx
 │   ├── AnalysisPage.tsx
@@ -91,14 +89,19 @@ src/
 │   ├── Button.tsx, Input.tsx, SearchInput.tsx
 │   ├── Card.tsx, Badge.tsx, Modal.tsx, StatsCard.tsx
 │   ├── PageLoader.tsx, RouteError.tsx, Skeleton.tsx
-│   ├── ErrorBoundary.tsx, IngredientDetail.tsx
+│   ├── ErrorBoundary.tsx, IngredientDetail.tsx, PathologyDetail.tsx
+│   ├── CounterTray.tsx, ClientProfileSelector.tsx, QuickConsultationGrid.tsx
 │   └── index.ts                 # Re-exporta todos los componentes
 ├── types/
 │   ├── shared-enums.ts          # Enums compartidos (categorías, sistemas, etc.)
 │   └── supabase.ts              # Tipos de Supabase
 ├── hooks/                       # Hooks personalizados
+│   ├── useAdminAuth.ts          # Hook de autenticación de admin (PIN 4 dígitos)
 │   ├── useAsync.ts              # Hook async con estado
+│   ├── useConsultationHistory.ts # Historial de consultas
+│   ├── useFavorites.ts          # Favoritos
 │   ├── useIngredients.ts        # Hook de ingredientes
+│   ├── useProductsForPathology.ts
 │   ├── useSync.ts               # Hook de sync
 │   └── index.ts
 ├── styles/
@@ -106,7 +109,8 @@ src/
 │   ├── themes.css               # Temas (light/dark)
 │   └── globals.css              # Estilos globales (Tailwind v4)
 ├── test/setup.ts                # Setup de vitest
-├── __tests__/db.test.ts         # Tests de DB
+├── tests/                       # Pruebas unitarias y E2E
+│   └── unit/                    # 34 archivos de pruebas unitarias (388 tests pasados)
 ├── App.tsx                      # Router (react-router-dom v7)
 ├── main.tsx                     # Entry point
 └── vite-env.d.ts
@@ -128,7 +132,7 @@ src/
 - **Dexie** (IndexedDB wrapper) para almacenamiento local
 - **Supabase** para sincronización (opcional, experimental)
 - **PWA** (vite-plugin-pwa) para uso offline
-- **TweetNaCl** + **tweetnacl-util** para E2EE (cifrado de extremo a extremo)
+- **Web Crypto API** (PBKDF2 210k iteraciones, SHA-256) para hashing de PIN de 4 dígitos
 - **react-router-dom v7** para routing (BrowserRouter + Routes)
 - **sonner** para toasts/notificaciones
 - **lucide-react** para iconos
@@ -136,47 +140,21 @@ src/
 - **clsx** + **tailwind-merge** para variantes UI
 - **vitest** (unit) + **Playwright** (E2E) para tests
 
-> **NOTA:** `zod` y `class-variance-authority` fueron ELIMINADAS del proyecto
-> (sin uso en el código). El AGENTS.md antiguo las listaba incorrectamente.
+> **NOTA:** `zod`, `class-variance-authority`, `tweetnacl` y `tweetnacl-util` fueron ELIMINADAS del proyecto
+> (sin uso en el código).
 
-> **NOTA:** `SynergyGraph.tsx` usa **SVG nativo**, NO `@xyflow/react`
-> (esa dependencia NO está en `package.json`; el AGENTS.md antiguo era incorrecto).
+> **NOTA:** `SynergyGraph.tsx` usa **SVG nativo**, NO `@xyflow/react`.
 > La capa de visualización de red es un componente SVG propio con layout circular.
 
 ## Seguridad
 
-### E2EE (End-to-End Encryption)
+### Autenticación por PIN de 4 dígitos (`AppAuthProvider`)
 
-**Implementación unificada:** Toda la lógica de cifrado y storage del keypair
-vive en `src/lib/crypto/e2ee.ts`. El `E2EEAuthProvider` es un orchestrador
-delgado que delega al módulo crypto.
+Toda la autenticación de la aplicación y el panel de administración utiliza un **PIN de 4 dígitos** respaldado por **Web Crypto API**:
 
-- **`src/lib/crypto/e2ee.ts`** (módulo crypto): todas las funciones de storage
-  (`generateAndStoreKeyPair`, `storeKeyPair`, `unlockKeyPair`, `hasKeyPair`,
-  `deleteKeyPair`) usan **localStorage** con `KEY_STORAGE_KEY='vademecum.keypair'`
-  (punto). El keypair CIFRADO (PBKDF2 600k + AES-GCM/secretbox) se persiste en
-  localStorage; la clave de cifrado se deriva del password y nunca se persiste.
-  `sessionStorage` solo guarda un flag de sesión (`vademecum.session`).
-  Las claves NO se guardan en claro.
-- **`storeKeyPair(secretKey, password)`** (nueva en PR #53): re-cifra un
-  secretKey existente con una nueva contraseña y lo guarda en localStorage
-  (con la key correcta). Usada por `generateAndStoreKeyPair` (nueva cuenta)
-  y `E2EEAuthProvider.recover` (recuperación de contraseña). Centraliza la
-  lógica de storage en un solo lugar.
-- **`src/app/E2EEAuthProvider.tsx`** (provider de la app): `setup`/`unlock`/
-  `recover` delegan a e2ee.ts. `recover` usa `storeKeyPair` para re-cifrar con
-  la nueva contraseña (antes re-implementaba el storage en sessionStorage con
-  keys distintas → bug de inconsistencia, corregido en PR #53).
-
-Sesiones:
-- El flag de sesión y el timer (`_sessionExpiry` en e2ee.ts,
-  `sessionExpiryRef` en E2EEAuthProvider) viven en memoria + sessionStorage.
-- Sesiones expiran después de 30 minutos de inactividad.
-- **Cada recarga de página requiere re-unlock** ("always require unlock at boot"):
-  el `E2EEAuthProvider` no reactiva la sesión en mount, solo marca
-  `isAuthenticated=false` y muestra el login. Navegar dentro de la SPA
-  (sin recarga) mantiene la sesión.
-- Las claves se cifran con PBKDF2 (600k iteraciones, SHA-256).
+- **PBKDF2 SHA-256 (210,000 iteraciones)** para derivar un hash seguro con salt persistido en `localStorage`.
+- **`AppAuthProvider.tsx`**: Proporciona estado de autenticación de la app (`unlock`, `lock`, `hasPinSet`, `setupPin`).
+- **`useAdminAuth.ts`**: Gestiona el PIN de administración con hash independiente en `localStorage`.
 
 ### CSP (Content Security Policy)
 
