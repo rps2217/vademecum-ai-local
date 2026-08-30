@@ -41,8 +41,8 @@ async function computeKbVersion(): Promise<string> {
     import('./data/homeopatia.json'),
     import('./data/aceites.json'),
     import('./data/vitaminas_minerales.json'),
-    import('./data/sinergias.json'),
-    import('./data/patologias.json'),
+    import('./data/sinergias'),
+    import('./data/patologias'),
   ]);
   const patCount = patologias.default?.patologias?.length ?? 0;
   // Incluye patologías con contexto clínico para forzar re-seed al añadir campos clínicos
@@ -398,7 +398,7 @@ function transformPathology(json: JsonPathology): DbPathology {
 
 async function loadPatologias(): Promise<string[]> {
   try {
-    const data = await import('./data/patologias.json');
+    const data = await import('./data/patologias');
     if (!data.default?.patologias || !Array.isArray(data.default.patologias)) {
       logger.error('Patologias: datos inválidos o estructura incorrecta');
       return [];
@@ -483,7 +483,7 @@ async function loadVitaminas(): Promise<string[]> {
 
 async function loadSinergias(): Promise<string[]> {
   try {
-    const data = await import('./data/sinergias.json');
+    const data = await import('./data/sinergias');
     if (!data.default?.sinergias || !Array.isArray(data.default.sinergias)) {
       logger.error('Sinergias: datos inválidos o estructura incorrecta');
       return [];

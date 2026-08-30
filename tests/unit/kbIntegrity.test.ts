@@ -19,8 +19,8 @@ import fitoJson from '@/db/seeders/data/fitoterapia.json';
 import homeoJson from '@/db/seeders/data/homeopatia.json';
 import aceitesJson from '@/db/seeders/data/aceites.json';
 import vitJson from '@/db/seeders/data/vitaminas_minerales.json';
-import sinergiasJson from '@/db/seeders/data/sinergias.json';
-import patologiasJson from '@/db/seeders/data/patologias.json';
+import sinergiasJson from '@/db/seeders/data/sinergias';
+import patologiasJson from '@/db/seeders/data/patologias';
 import { BODY_SYSTEMS } from '@/types/shared-enums';
 
 const BODY = [...BODY_SYSTEMS];
