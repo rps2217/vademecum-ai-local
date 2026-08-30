@@ -31,7 +31,7 @@
       ],
       "descripcion": "Planta sedante y ansiolítica natural. Utilizada traditionally para tratar el insomnio y la ansiedad leve.",
       "mecanismoAccion": "Modula los receptores GABA-A, aumentando la neurotransmisión inhibitoria. Los valepotriatos tienen efectos sedantes.",
-      "nivelEvidencia": "B",
+      "nivelEvidencia": "A",
       "parteUsada": "raiz",
       "formasPresentacion": [
         "Capsulas",
@@ -56,6 +56,7 @@
         "natural",
         "sueno"
       ],
+      "beneficioCliente": "Ayuda a relajar tu mente y cuerpo de forma natural, facilitando un descanso reparador y reduciendo el estrés sin dejarte aturdido.",
       "metadata": {
         "fechaCreacion": "2024-01-01",
         "fuente": "OMS Monographs"

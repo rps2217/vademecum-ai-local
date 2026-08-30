@@ -14,6 +14,7 @@ import { getEvidenceConfig, EVIDENCE_RANK } from '@/ui/searchConfig';
 import { Stethoscope, Leaf, AlertTriangle, ChevronRight, BookOpen, Sparkles, X } from 'lucide-react';
 import { Button } from '@/ui/Button';
 import { generateClinicalExplanation } from '@/core/analysis/clinicalExplanation';
+import { db } from '@/db/schema';
 import { cn } from '@/lib/utils';
 
 interface ConditionCardProps {
@@ -40,10 +41,12 @@ const SYSTEM_LABELS: Record<string, string> = {
 
 export function ConditionCard({ pathology, onIngredientClick, onExpand }: ConditionCardProps) {
   const [explainingItem, setExplainingItem] = useState<{
+    id: string;
     title: string;
     mecanismo?: string;
     descripcion?: string;
   } | null>(null);
+  const [explanation, setExplanation] = useState<string | null>(null);
   const [isExplainingLoading, setIsExplainingLoading] = useState(false);
   const { evaluateSafety, profile } = useClientProfile();
   const activeProfile = profile !== 'ninguno' ? CLIENT_PROFILES.find(p => p.value === profile) : null;
@@ -68,7 +71,7 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
     return ingredients
       .filter((ing): ing is DbIngredient => ing !== undefined)
       .sort((a, b) => (EVIDENCE_RANK[a.evidencia] ?? 3) - (EVIDENCE_RANK[b.evidencia] ?? 3))
-      .slice(0, 5);
+      .slice(0, 8);
   }, [ingredients]);
 
   // Primera alerta farmacéutica (la más relevante)
@@ -150,11 +153,14 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                 const safetyBadge = safetyVerdictBadge(verdict);
                 const safetyStyle = safetyVerdictStyle(verdict);
                 return (
-                  <button
+                  <div
                     key={ing.id}
                     onClick={() => onIngredientClick?.(ing.id)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onIngredientClick?.(ing.id); }}
                     className={cn(
-                      'w-full flex items-center justify-between gap-2 px-4 py-3.5 rounded-lg transition-colors text-left group',
+                      'w-full flex items-center justify-between gap-2 px-4 py-3.5 rounded-lg transition-colors text-left group cursor-pointer',
                       'ring-1 ring-emerald-200/60 dark:ring-white/10',
                       'min-h-[52px] hover:ring-emerald-400/60',
                       safetyStyle,
@@ -165,15 +171,22 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                         <span className="text-[16px] font-medium text-foreground truncate">{ing.nombre}</span>
                         <button
                           type="button"
-                          onClick={(e) => {
+                          onClick={async (e) => {
                             e.stopPropagation();
                             setIsExplainingLoading(true);
                             setExplainingItem({
+                              id: ing.id,
                               title: ing.nombre,
                               mecanismo: ing.mecanismoAccion,
                               descripcion: ing.descripcion,
                             });
-                            setTimeout(() => setIsExplainingLoading(false), 250);
+                            
+                            const explanationRecord = await db.clinicalExplanations
+                              .where({ ingredienteId: ing.id, patologiaId: pathology.id })
+                              .first();
+                              
+                            setExplanation(explanationRecord?.explicacion || null);
+                            setIsExplainingLoading(false);
                           }}
                           className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900 text-[10px] font-medium transition-colors"
                           title="Cómo actúa"
@@ -197,7 +210,7 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                       </span>
                       <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -239,7 +252,10 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                   </div>
                 </div>
                 <button
-                  onClick={() => setExplainingItem(null)}
+                  onClick={() => {
+                    setExplainingItem(null);
+                    setExplanation(null);
+                  }}
                   className="p-1.5 hover:bg-muted rounded-lg transition-colors text-muted-foreground"
                   aria-label="Cerrar"
                 >
@@ -259,9 +275,9 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                   </div>
                 ) : (
                   <p className="text-sm text-foreground leading-relaxed">
-                    {generateClinicalExplanation(
-                      explainingItem.title,
+                    {explanation || ingredientSearchService.getIngredient(explainingItem.title)?.beneficioCliente || generateClinicalExplanation(
                       'ingredient',
+                      explainingItem.title,
                       pathology.nombre,
                       explainingItem.mecanismo,
                       explainingItem.descripcion
@@ -275,7 +291,8 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = generateClinicalExplanation(
+                    const ing = ingredientSearchService.getIngredient(explainingItem.title);
+                    const text = ing?.beneficioCliente || generateClinicalExplanation(
                       explainingItem.title,
                       'ingredient',
                       pathology.nombre,

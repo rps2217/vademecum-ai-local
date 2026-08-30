@@ -1,0 +1,70 @@
+{
+  "explicaciones": [
+    {
+      "id": "exp_valeriana_ansiedad",
+      "ingredienteId": "valeriana",
+      "patologiaId": "ansiedad",
+      "explicacion": "Valeriana es ideal para la ansiedad porque modula los receptores GABA en el cerebro, ayudando a calmar el sistema nervioso de forma natural."
+    },
+    {
+      "id": "exp_pasiflora_ansiedad",
+      "ingredienteId": "pasiflora",
+      "patologiaId": "ansiedad",
+      "explicacion": "Pasiflora ayuda a reducir la ansiedad gracias a sus flavonoides que mejoran la relajación cerebral, siendo un gran aliado para calmar los nervios sin aturdirte."
+    },
+    {
+      "id": "exp_melisa_ansiedad",
+      "ingredienteId": "melisa",
+      "patologiaId": "ansiedad",
+      "explicacion": "Melisa es eficaz para la ansiedad porque contiene aceites esenciales que relajan el sistema nervioso y ayudan a reducir las molestias digestivas asociadas al estrés."
+    },
+    {
+      "id": "exp_lavanda_ansiedad",
+      "ingredienteId": "lavanda_aceite",
+      "patologiaId": "ansiedad",
+      "explicacion": "El aceite de Lavanda es muy eficaz para la ansiedad al inhalarse, ya que sus compuestos (linalool) actúan directamente en el cerebro relajando el sistema nervioso."
+    },
+    {
+      "id": "exp_ashwagandha_estres",
+      "ingredienteId": "ashwagandha",
+      "patologiaId": "estres",
+      "explicacion": "Ashwagandha ayuda a gestionar el estrés porque reduce los niveles de cortisol en el cuerpo, mejorando tu resistencia física y mental ante situaciones de alta presión."
+    },
+    {
+      "id": "exp_equinacea_inmunidad",
+      "ingredienteId": "equinacea",
+      "patologiaId": "inmunidad",
+      "explicacion": "Equinácea es un gran apoyo para tus defensas porque estimula la actividad de los fagocitos, preparando a tu sistema inmune para combatir mejor las infecciones."
+    },
+    {
+      "id": "exp_curcuma_articular",
+      "ingredienteId": "curcuma",
+      "patologiaId": "articular",
+      "explicacion": "Cúrcuma es muy eficaz para el dolor articular porque inhibe de forma natural los mediadores de la inflamación en tus articulaciones, reduciendo la rigidez y las molestias."
+    },
+    {
+      "id": "exp_harpagofito_articular",
+      "ingredienteId": "harpagofito",
+      "patologiaId": "articular",
+      "explicacion": "Harpagofito es altamente recomendado para las articulaciones porque sus harpagósidos actúan como potentes analgésicos y antiinflamatorios naturales para reducir el dolor."
+    },
+    {
+      "id": "exp_jengibre_nauseas",
+      "ingredienteId": "jengibre",
+      "patologiaId": "náuseas",
+      "explicacion": "Jengibre es el estándar para las náuseas porque bloquea los receptores serotoninérgicos en el intestino, calmando la sensación de mareo de manera rápida."
+    },
+    {
+      "id": "exp_tea_tree_acne",
+      "ingredienteId": "tea_tree",
+      "patologiaId": "acné",
+      "explicacion": "El aceite de Tea Tree es perfecto para el acné porque elimina las bacterias que lo provocan y reduce la inflamación de los granitos sin dañar la piel."
+    },
+    {
+      "id": "exp_ravintsara_virus",
+      "ingredienteId": "ravintsara",
+      "patologiaId": "infecciones virales",
+      "explicacion": "Ravintsara es el aceite esencial antiviral por excelencia, ya que ayuda a reforzar tus defensas y previene la propagación de virus respiratorios."
+    }
+  ]
+}

@@ -41,7 +41,7 @@ export type {
 // VERSIÓN DE LA DB
 // ============================================
 
-export const DB_VERSION = 4;
+export const DB_VERSION = 5;
 
 // ============================================
 // INTERFACES DE ENTIDADES
@@ -90,6 +90,7 @@ export interface DbIngredient {
   seguridad: IngredientSafety;
   interacciones: string[];
   fuentes: string[];
+  beneficioCliente?: string; // NUEVO: Frase persuasiva para el cliente
   embedding?: number[];
   // Metadatos de sync
   lamport: number;
@@ -274,6 +275,19 @@ export interface DbFavorite {
   createdAt: number;
 }
 
+/** Explicación clínica para el cliente (concisa y directa). */
+export interface DbClinicalExplanation {
+  id: string; // ingredienteId + '|' + patologiaId
+  ingredienteId: string;
+  patologiaId: string;
+  explicacion: string;
+  // Metadatos de sync
+  lamport: number;
+  deviceId: string;
+  updatedAt: number;
+  tombstone: 0 | 1;
+}
+
 /** Bridge producto ↔ ingrediente de la KB (replica de product_ingredients de
  *  Supabase). Vincula cada principio activo de un producto con el ingrediente
  *  de la KB al que corresponde (o NULL si no hay match = gap de cobertura).
@@ -317,6 +331,7 @@ export class VademecumDB extends Dexie {
   favorites!: EntityTable<DbFavorite, 'id'>;
   productIngredients!: EntityTable<DbProductIngredient, 'id'>;
   productIngredientAnalysis!: EntityTable<DbProductIngredientAnalysis, 'productoSku'>;
+  clinicalExplanations!: EntityTable<DbClinicalExplanation, 'id'>;
 
   constructor() {
     super('VademecumDB');
@@ -364,14 +379,8 @@ export class VademecumDB extends Dexie {
       favorites: 'id, ingredientId, createdAt',
     });
 
-    // v4: añade tablas productIngredients (bridge producto↔ingrediente) y
-    // productIngredientAnalysis (cobertura KB por producto) para la búsqueda
-    // de productos comerciales y el lookup patología→producto transitivo.
-    // NOTA: el PK real del bridge es (productoSku, principioText), pero Dexie
-    // exige un solo keyPath; usamos una clave compuesta serializada como id
-    // (productoSku + '|' + principioText) en el seeder, con productoSku e
-    // ingredientId como índices de consulta.
-    this.version(4).stores({
+    // v5: añade tabla clinicalExplanations
+    this.version(5).stores({
       products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
       ingredients: 'id, nombre, categoria, updatedAt, tombstone',
       synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
@@ -385,6 +394,7 @@ export class VademecumDB extends Dexie {
       favorites: 'id, ingredientId, createdAt',
       productIngredients: 'id, productoSku, ingredientId',
       productIngredientAnalysis: 'productoSku',
+      clinicalExplanations: 'id, ingredienteId, patologiaId',
     });
   }
 }
