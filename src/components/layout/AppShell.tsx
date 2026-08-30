@@ -287,31 +287,37 @@ export function AppShell() {
             <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
 
-          {/* Search bar */}
-          <form onSubmit={handleSearchSubmit} className="flex flex-1 justify-start" role="search">
-            <div className="relative w-full max-w-3xl">
-              <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={searchPlaceholder}
-                aria-label={searchPlaceholder}
-                title="Presiona / para enfocar rápidamente"
-                className="h-12 w-full rounded-xl border border-border bg-muted pl-12 pr-24 text-[16px] text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
-              />
-              <button
-                type="button"
-                onClick={() => setPaletteOpen(true)}
-                className="pointer-events-auto absolute right-3 top-1/2 -translate-y-1/2 flex h-8 items-center gap-1 rounded-md border border-border bg-card px-2 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-primary/50"
-                aria-label="Abrir búsqueda rápida (⌘K)"
-                title="Búsqueda rápida ⌘K"
-              >
-                <Command className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>K</span>
-              </button>
+          {/* Search bar (omnipresent on subpages; hidden on Home page to avoid duplicate input UI) */}
+          {location.pathname !== '/' ? (
+            <form onSubmit={handleSearchSubmit} className="flex flex-1 justify-start" role="search">
+              <div className="relative w-full max-w-3xl">
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={searchPlaceholder}
+                  aria-label={searchPlaceholder}
+                  title="Presiona / para enfocar rápidamente"
+                  className="h-12 w-full rounded-xl border border-border bg-muted pl-12 pr-24 text-[16px] text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+                <button
+                  type="button"
+                  onClick={() => setPaletteOpen(true)}
+                  className="pointer-events-auto absolute right-3 top-1/2 -translate-y-1/2 flex h-8 items-center gap-1 rounded-md border border-border bg-card px-2 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground hover:border-primary/50"
+                  aria-label="Abrir búsqueda rápida (⌘K)"
+                  title="Búsqueda rápida ⌘K"
+                >
+                  <Command className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span>K</span>
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="flex flex-1 items-center gap-2">
+              <span className="text-sm font-medium text-muted-foreground/80">Mostrador Farmacéutico</span>
             </div>
-          </form>
+          )}
 
           {/* Actions */}
           <div className="flex items-center gap-2 sm:gap-3">

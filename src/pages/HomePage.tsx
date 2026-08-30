@@ -19,7 +19,7 @@ import { useFavorites } from '@/hooks/useFavorites';
 import { Card } from '@/ui/Card';
 import {
   Search, BarChart3, ClipboardList, Database, Package, Link2,
-  Pill, Clock, ArrowRight, Sparkles, TrendingUp, Star,
+  Pill, Clock, ArrowRight, Sparkles, TrendingUp, Star, Command,
 } from 'lucide-react';
 
 export function HomePage() {
@@ -81,19 +81,63 @@ export function HomePage() {
           </p>
         </div>
 
-        {/* Search */}
-        <form onSubmit={handleSearch} className="mx-auto max-w-2xl" role="search">
+        {/* Single Unified Hero Search */}
+        <form onSubmit={handleSearch} className="mx-auto max-w-2xl space-y-3" role="search">
           <div className="relative">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
             <input
               type="search"
               value={localQuery}
               onChange={(e) => setLocalQuery(e.target.value)}
-              placeholder="Buscar ingredientes, síntomas o patologías..."
+              placeholder="Buscar ingredientes, marcas, patologías o interacciones..."
               autoFocus
               aria-label="Buscar"
-              className="h-14 w-full rounded-2xl border border-border bg-muted pl-12 pr-4 text-lg text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
+              className="h-14 w-full rounded-2xl border border-border bg-card pl-12 pr-28 text-lg text-foreground shadow-sm placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
             />
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+              <span className="hidden sm:inline-flex items-center gap-1 rounded-md border border-border bg-muted px-2 py-1 font-mono text-xs text-muted-foreground">
+                <Command className="h-3.5 w-3.5" aria-hidden="true" /> K
+              </span>
+              <button
+                type="submit"
+                className="rounded-xl bg-primary px-3.5 py-1.5 text-sm font-semibold text-primary-foreground shadow-xs hover:bg-primary/90 transition-colors"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Scope Shortcuts */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs">
+            <span className="text-muted-foreground font-medium mr-1">Filtros rápidos:</span>
+            <button
+              type="button"
+              onClick={() => { setQuery(''); navigate('/knowledge'); }}
+              className="px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              🌿 Ingredientes (KB)
+            </button>
+            <button
+              type="button"
+              onClick={() => { setQuery(''); navigate('/products'); }}
+              className="px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              📦 Productos comerciales
+            </button>
+            <button
+              type="button"
+              onClick={() => { setQuery(''); navigate('/synergies'); }}
+              className="px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              ⚡ Sinergias y Riesgos
+            </button>
+            <button
+              type="button"
+              onClick={() => { setQuery(''); navigate('/protocols'); }}
+              className="px-2.5 py-1 rounded-full border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              📋 Protocolos clínicos
+            </button>
           </div>
         </form>
       </div>

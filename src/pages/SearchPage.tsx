@@ -11,7 +11,7 @@
  * en vez de toArray+filter. Sólo se renderizan los ingredientes visibles.
  */
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ingredientSearchService, useSearchIndex, useProductIndex } from '@/core/search';
 import { ConditionCard } from '@/ui/ConditionCard';
@@ -21,6 +21,7 @@ import { ProductDetail } from '@/ui/ProductDetail';
 import {
   Search, BookOpen, X, ChevronDown, ChevronRight,
   Loader2, Pill, Clock, Star, Heart, Package,
+  Sparkles, Check, Activity, SlidersHorizontal,
 } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
@@ -41,7 +42,6 @@ import {
   EVIDENCE_RANK,
   EVIDENCE_LEVELS,
   BODY_SYSTEM_CHIPS,
-  CHIPS_COLLAPSED_COUNT,
   indicationIcon,
   type EvidenceLevel,
 } from '@/ui/searchConfig';
@@ -72,9 +72,29 @@ export function SearchPage() {
   const [evidence, setEvidence] = useState<EvidenceLevel | ''>('');
   const [selectedIngredient, setSelectedIngredient] = useState<DbIngredient | null>(null);
   const [selectedPathology, setSelectedPathology] = useState<DbPathology | null>(null);
-  const [showAllChips, setShowAllChips] = useState(false);
+  const [activeFacet, setActiveFacet] = useState<'indication' | 'category' | 'system' | 'evidence' | null>(null);
   const [chipSearch, setChipSearch] = useState('');
   const [ingredientsExpanded, setIngredientsExpanded] = useState(true);
+
+  // Referencia para click outside en la barra de filtros
+  const filterToolbarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (filterToolbarRef.current && !filterToolbarRef.current.contains(e.target as Node)) {
+        setActiveFacet(null);
+      }
+    }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setActiveFacet(null);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   // Productos comerciales (búsqueda unificada)
   const [productsExpanded, setProductsExpanded] = useState(false);
@@ -175,9 +195,8 @@ export function SearchPage() {
     setSystem('');
     setEvidence('');
     setQuery('');
+    setActiveFacet(null);
   }, [setQuery]);
-
-  const visibleChips = showAllChips ? indicationChips : indicationChips.slice(0, CHIPS_COLLAPSED_COUNT);
 
   const filteredChips = useMemo(() => {
     if (!chipSearch.trim()) return indicationChips;
@@ -185,96 +204,298 @@ export function SearchPage() {
     return indicationChips.filter(c => normalize(c.value).includes(q));
   }, [indicationChips, chipSearch]);
 
+  const activeCategoryLabel = category
+    ? (CATEGORIES.find(c => c.value === category)?.label || humanize(category))
+    : null;
+
   return (
     <div className="space-y-5 max-w-[110rem] mx-auto">
       {/* Perfil del cliente (filtro de seguridad para asesoría) */}
       <ClientProfileSelector />
 
-      {/* ===== Barra de filtros compacta (Eje B) — sticky bajo el header ===== */}
-      <div className="sticky top-16 z-20 -mx-4 lg:-mx-8 px-4 lg:px-8 py-3 bg-background/95 backdrop-blur border-b border-border space-y-3">
-        {/* Patología/Indicación — colapsable, top 6 con iconos */}
-        {indicationChips.length > 0 && (
-          <div className="relative">
-            {activeFiltersCount > 0 && (
-              <button
-                onClick={clearAll}
-                className="absolute right-0 top-0 z-10 text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-1.5 py-1"
-              >
-                <X className="w-4 h-4" />
-                Limpiar
-              </button>
-            )}
-            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1.5">
-              <BookOpen className="w-4 h-4" />
-              Patología / Indicación
-            </p>
+      {/* ===== Barra de Filtros Facetada Compacta (UX Profesional) ===== */}
+      <div
+        ref={filterToolbarRef}
+        className="sticky top-16 z-20 -mx-4 lg:-mx-8 px-4 lg:px-8 py-2.5 bg-background/95 backdrop-blur-md border-b border-border shadow-xs space-y-2.5"
+      >
+        {/* Fila principal de selectores facetados */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider mr-1 shrink-0">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-primary" />
+            <span>Filtros</span>
+          </div>
 
-            {/* Chips colapsados (top 6) — siempre visibles */}
-            {!showAllChips && (
-              <div className="flex flex-wrap gap-2">
-                {visibleChips.map((chip) => {
-                  const isActive = indication === chip.value;
-                  const Icon = indicationIcon(chip.value);
-                  return (
-                    <button
-                      key={chip.value}
-                      onClick={() => { setIndication(isActive ? '' : chip.value); }}
-                      className={cn(
-                        'inline-flex items-center gap-2 px-4 py-3 rounded-full text-[15px] font-medium transition-all border',
-                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                        isActive
-                          ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                          : 'bg-card text-foreground border-border hover:bg-muted hover:border-primary/40'
-                      )}
-                      aria-pressed={isActive}
-                    >
-                      <Icon className="w-[18px] h-[18px] shrink-0" aria-hidden="true" />
-                      {humanize(chip.value)}
-                      <span className={cn('text-sm tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
-                        {chip.count}
-                      </span>
-                    </button>
-                  );
-                })}
-                {indicationChips.length > CHIPS_COLLAPSED_COUNT && (
+          {/* 1. Faceta: Sistema corporal */}
+          <div className="relative">
+            <button
+              onClick={() => setActiveFacet(activeFacet === 'system' ? null : 'system')}
+              className={cn(
+                'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all border',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                system
+                  ? 'bg-primary/10 text-primary border-primary/40 font-semibold shadow-xs'
+                  : activeFacet === 'system'
+                  ? 'bg-muted text-foreground border-primary/60'
+                  : 'bg-card text-foreground/80 border-border hover:bg-muted/70 hover:text-foreground'
+              )}
+              aria-expanded={activeFacet === 'system'}
+              aria-haspopup="listbox"
+            >
+              <Activity className="w-4 h-4 text-primary shrink-0" />
+              <span>{system ? humanize(system) : 'Sistema corporal'}</span>
+              <ChevronDown className={cn('w-3.5 h-3.5 transition-transform opacity-70', activeFacet === 'system' && 'rotate-180')} />
+            </button>
+
+            {/* Dropdown flotante Sistema */}
+            <div className={cn(
+              'absolute left-0 mt-1.5 w-72 sm:w-80 p-2 rounded-xl bg-card border border-border shadow-lg z-30 space-y-1',
+              activeFacet === 'system' ? 'block animate-in fade-in-50 zoom-in-95' : 'hidden'
+            )}>
+              <div className="flex items-center justify-between px-2 py-1 text-xs font-semibold text-muted-foreground border-b border-border/60 pb-1.5 mb-1">
+                <span>Sistemas corporales</span>
+                {system && (
                   <button
-                    onClick={() => { setShowAllChips(true); setChipSearch(''); }}
-                    className="inline-flex items-center gap-1 px-4 py-3 rounded-full text-[15px] font-medium border border-dashed border-border-hover text-muted-foreground hover:bg-muted hover:text-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    onClick={() => { setSystem(''); setActiveFacet(null); }}
+                    className="text-primary hover:underline"
                   >
-                    {`+${indicationChips.length - CHIPS_COLLAPSED_COUNT} más`}
-                    <ChevronDown className="w-4 h-4" />
+                    Restablecer
                   </button>
                 )}
               </div>
-            )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 max-h-64 overflow-y-auto pr-1">
+                {BODY_SYSTEM_CHIPS.map(sys => {
+                  const isActive = system === sys.value;
+                  const Icon = sys.icon;
+                  return (
+                    <button
+                      key={sys.value}
+                      onClick={() => {
+                        setSystem(isActive ? '' : sys.value);
+                        setActiveFacet(null);
+                      }}
+                      className={cn(
+                        'flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left w-full',
+                        isActive
+                          ? 'bg-primary text-primary-foreground font-semibold'
+                          : 'hover:bg-muted text-foreground'
+                      )}
+                      aria-pressed={isActive}
+                    >
+                      <Icon className="w-3.5 h-3.5 shrink-0" />
+                      <span className="truncate">{sys.label}</span>
+                      {isActive && <Check className="w-3 h-3 ml-auto shrink-0" />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
 
-            {/* Panel expandido: scrollable con búsqueda interna */}
-            {showAllChips && (
-              <div className="rounded-xl border border-border bg-card p-3 shadow-sm">
-                <div className="flex items-center gap-2 mb-2.5">
-                  <div className="relative flex-1">
-                    <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
-                    <input
-                      type="text"
-                      value={chipSearch}
-                      onChange={(e) => setChipSearch(e.target.value)}
-                      placeholder="Filtrar indicaciones..."
-                      autoFocus
-                      className="h-10 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
-                      aria-label="Filtrar indicaciones"
-                    />
-                  </div>
+          {/* 2. Faceta: Categoría */}
+          <div className="relative">
+            <button
+              onClick={() => setActiveFacet(activeFacet === 'category' ? null : 'category')}
+              className={cn(
+                'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all border',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                category
+                  ? 'bg-primary/10 text-primary border-primary/40 font-semibold shadow-xs'
+                  : activeFacet === 'category'
+                  ? 'bg-muted text-foreground border-primary/60'
+                  : 'bg-card text-foreground/80 border-border hover:bg-muted/70 hover:text-foreground'
+              )}
+              aria-expanded={activeFacet === 'category'}
+              aria-haspopup="listbox"
+            >
+              <Pill className="w-4 h-4 text-primary shrink-0" />
+              <span>{activeCategoryLabel || 'Categoría'}</span>
+              <ChevronDown className={cn('w-3.5 h-3.5 transition-transform opacity-70', activeFacet === 'category' && 'rotate-180')} />
+            </button>
+
+            {/* Dropdown flotante Categoría */}
+            <div className={cn(
+              'absolute left-0 mt-1.5 w-60 p-2 rounded-xl bg-card border border-border shadow-lg z-30 space-y-1',
+              activeFacet === 'category' ? 'block animate-in fade-in-50 zoom-in-95' : 'hidden'
+            )}>
+              <div className="flex items-center justify-between px-2 py-1 text-xs font-semibold text-muted-foreground border-b border-border/60 pb-1.5 mb-1">
+                <span>Categoría terapéutica</span>
+                {category && (
                   <button
-                    onClick={() => { setShowAllChips(false); setChipSearch(''); }}
-                    className="inline-flex items-center gap-1 px-3 h-10 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    onClick={() => { setCategory(''); setActiveFacet(null); }}
+                    className="text-primary hover:underline"
                   >
-                    <X className="w-4 h-4" />
-                    Cerrar
+                    Restablecer
                   </button>
+                )}
+              </div>
+              <div className="space-y-0.5 max-h-60 overflow-y-auto">
+                {CATEGORIES.map(cat => {
+                  const isActive = category === cat.value;
+                  const cfg = cat.value ? getCategoryConfig(cat.value) : null;
+                  const Icon = cfg?.icon ?? Pill;
+                  return (
+                    <button
+                      key={cat.value}
+                      onClick={() => {
+                        setCategory(cat.value);
+                        setActiveFacet(null);
+                      }}
+                      className={cn(
+                        'flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors text-left w-full',
+                        isActive
+                          ? 'bg-primary text-primary-foreground font-semibold'
+                          : 'hover:bg-muted text-foreground'
+                      )}
+                      aria-pressed={isActive}
+                    >
+                      <Icon className="w-4 h-4 shrink-0" />
+                      <span className="flex-1 truncate">{cat.label}</span>
+                      {isActive && <Check className="w-3.5 h-3.5 ml-auto shrink-0" />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Faceta: Evidencia */}
+          <div className="relative">
+            <button
+              onClick={() => setActiveFacet(activeFacet === 'evidence' ? null : 'evidence')}
+              className={cn(
+                'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all border',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                evidence
+                  ? 'bg-primary/10 text-primary border-primary/40 font-semibold shadow-xs'
+                  : activeFacet === 'evidence'
+                  ? 'bg-muted text-foreground border-primary/60'
+                  : 'bg-card text-foreground/80 border-border hover:bg-muted/70 hover:text-foreground'
+              )}
+              aria-expanded={activeFacet === 'evidence'}
+              aria-haspopup="listbox"
+            >
+              <Sparkles className="w-4 h-4 text-primary shrink-0" />
+              <span>{evidence ? `Evidencia ${evidence}` : 'Evidencia'}</span>
+              <ChevronDown className={cn('w-3.5 h-3.5 transition-transform opacity-70', activeFacet === 'evidence' && 'rotate-180')} />
+            </button>
+
+            {/* Dropdown flotante Evidencia */}
+            <div className={cn(
+              'absolute left-0 mt-1.5 w-72 p-2 rounded-xl bg-card border border-border shadow-lg z-30 space-y-1',
+              activeFacet === 'evidence' ? 'block animate-in fade-in-50 zoom-in-95' : 'hidden'
+            )}>
+              <div className="flex items-center justify-between px-2 py-1 text-xs font-semibold text-muted-foreground border-b border-border/60 pb-1.5 mb-1">
+                <span>Nivel de evidencia clínica</span>
+                {evidence && (
+                  <button
+                    onClick={() => { setEvidence(''); setActiveFacet(null); }}
+                    className="text-primary hover:underline"
+                  >
+                    Restablecer
+                  </button>
+                )}
+              </div>
+              <div className="space-y-1">
+                {EVIDENCE_LEVELS.map(lvl => {
+                  const isActive = evidence === lvl;
+                  const cfg = getEvidenceConfig(lvl);
+                  return (
+                    <button
+                      key={lvl}
+                      onClick={() => {
+                        setEvidence(isActive ? '' : lvl);
+                        setActiveFacet(null);
+                      }}
+                      aria-pressed={isActive}
+                      aria-label={`Filtrar por evidencia ${cfg.label}: ${cfg.title}`}
+                      title={cfg.title}
+                      className={cn(
+                        'flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors text-left w-full',
+                        isActive
+                          ? 'bg-primary text-primary-foreground font-semibold'
+                          : 'hover:bg-muted text-foreground'
+                      )}
+                    >
+                      <span className={cn('w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0', isActive ? 'bg-primary-foreground text-primary' : 'bg-primary/15 text-primary')}>
+                        {lvl}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold leading-tight">Nivel {lvl}</div>
+                        <div className={cn('text-[11px] truncate', isActive ? 'text-primary-foreground/80' : 'text-muted-foreground')}>
+                          {cfg.title}
+                        </div>
+                      </div>
+                      {isActive && <Check className="w-3.5 h-3.5 ml-auto shrink-0" />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Faceta: Patología / Indicación */}
+          {indicationChips.length > 0 && (
+            <div className="relative">
+              <button
+                onClick={() => setActiveFacet(activeFacet === 'indication' ? null : 'indication')}
+                className={cn(
+                  'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all border',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  indication
+                    ? 'bg-primary/10 text-primary border-primary/40 font-semibold shadow-xs'
+                    : activeFacet === 'indication'
+                    ? 'bg-muted text-foreground border-primary/60'
+                    : 'bg-card text-foreground/80 border-border hover:bg-muted/70 hover:text-foreground'
+                )}
+                aria-expanded={activeFacet === 'indication'}
+                aria-haspopup="dialog"
+              >
+                <BookOpen className="w-4 h-4 text-primary shrink-0" />
+                <span>{indication ? humanize(indication) : 'Patología / Indicación'}</span>
+                <span className="text-xs bg-muted text-muted-foreground px-1.5 py-0.5 rounded-full font-mono">
+                  {indicationChips.length}
+                </span>
+                <ChevronDown className={cn('w-3.5 h-3.5 transition-transform opacity-70', activeFacet === 'indication' && 'rotate-180')} />
+              </button>
+
+              {/* Popover flotante con buscador interno de Indicaciones */}
+              <div className={cn(
+                'absolute left-0 sm:left-auto right-0 sm:right-auto mt-1.5 w-80 sm:w-96 p-3 rounded-xl bg-card border border-border shadow-xl z-30 space-y-2.5',
+                activeFacet === 'indication' ? 'block animate-in fade-in-50 zoom-in-95' : 'hidden'
+              )}>
+                <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5 text-primary" />
+                    Seleccionar patología o indicación
+                  </span>
+                  {indication && (
+                    <button
+                      onClick={() => { setIndication(''); setActiveFacet(null); setChipSearch(''); }}
+                      className="text-primary hover:underline"
+                    >
+                      Restablecer
+                    </button>
+                  )}
                 </div>
-                <div className="flex flex-wrap gap-2 max-h-56 overflow-y-auto">
+
+                <div className="relative">
+                  <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                  <input
+                    type="text"
+                    value={chipSearch}
+                    onChange={(e) => setChipSearch(e.target.value)}
+                    placeholder="Buscar patología o síntoma..."
+                    autoFocus
+                    className="h-9 w-full rounded-lg border border-border bg-background pl-8 pr-3 text-xs text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-1 focus:ring-ring"
+                    aria-label="Filtrar indicaciones"
+                  />
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 max-h-56 overflow-y-auto pr-1">
                   {filteredChips.length === 0 ? (
-                    <p className="text-sm text-muted-foreground py-2">Sin coincidencias para "{chipSearch}"</p>
+                    <p className="text-xs text-muted-foreground py-3 text-center w-full">
+                      Sin coincidencias para "{chipSearch}"
+                    </p>
                   ) : (
                     filteredChips.map((chip) => {
                       const isActive = indication === chip.value;
@@ -282,19 +503,22 @@ export function SearchPage() {
                       return (
                         <button
                           key={chip.value}
-                          onClick={() => { setIndication(isActive ? '' : chip.value); setShowAllChips(false); setChipSearch(''); }}
+                          onClick={() => {
+                            setIndication(isActive ? '' : chip.value);
+                            setActiveFacet(null);
+                            setChipSearch('');
+                          }}
                           className={cn(
-                            'inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[15px] font-medium transition-all border',
-                            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                            'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all border',
                             isActive
-                              ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                              : 'bg-card text-foreground border-border hover:bg-muted hover:border-primary/40'
+                              ? 'bg-primary text-primary-foreground border-primary shadow-xs'
+                              : 'bg-muted/60 text-foreground border-border/80 hover:bg-muted hover:border-primary/40'
                           )}
                           aria-pressed={isActive}
                         >
-                          <Icon className="w-[18px] h-[18px] shrink-0" aria-hidden="true" />
-                          {humanize(chip.value)}
-                          <span className={cn('text-sm tabular-nums', isActive ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                          <Icon className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                          <span>{humanize(chip.value)}</span>
+                          <span className={cn('text-[10px] tabular-nums', isActive ? 'text-primary-foreground/80' : 'text-muted-foreground')}>
                             {chip.count}
                           </span>
                         </button>
@@ -302,98 +526,87 @@ export function SearchPage() {
                     })
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">
-                  {filteredChips.length} de {indicationChips.length} indicaciones
-                </p>
               </div>
+            </div>
+          )}
+
+          {/* Botón de limpiar todo si hay filtros activos */}
+          {activeFiltersCount > 0 && (
+            <button
+              onClick={clearAll}
+              className="ml-auto text-xs text-muted-foreground hover:text-destructive flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-2 py-1 transition-colors"
+            >
+              <X className="w-3.5 h-3.5" />
+              <span>Limpiar</span>
+              <span className="text-[10px] bg-muted px-1.5 py-0.2 rounded-full font-mono">
+                {activeFiltersCount}
+              </span>
+            </button>
+          )}
+        </div>
+
+        {/* Fila de Filtros Activos (Píldoras de descarte rápido) */}
+        {activeFiltersCount > 0 && (
+          <div className="flex items-center gap-1.5 flex-wrap pt-0.5 border-t border-border/50 text-xs">
+            <span className="text-muted-foreground text-[11px] mr-1">Activos:</span>
+
+            {system && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                <Activity className="w-3 h-3" />
+                <span>{humanize(system)}</span>
+                <button
+                  onClick={() => setSystem('')}
+                  className="hover:bg-primary/20 rounded-full p-0.5 ml-0.5"
+                  aria-label="Quitar filtro de sistema"
+                >
+                  <X className="w-2.5 h-2.5" />
+                </button>
+              </span>
+            )}
+
+            {category && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                <Pill className="w-3 h-3" />
+                <span>{activeCategoryLabel}</span>
+                <button
+                  onClick={() => setCategory('')}
+                  className="hover:bg-primary/20 rounded-full p-0.5 ml-0.5"
+                  aria-label="Quitar filtro de categoría"
+                >
+                  <X className="w-2.5 h-2.5" />
+                </button>
+              </span>
+            )}
+
+            {evidence && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                <Sparkles className="w-3 h-3" />
+                <span>Evidencia {evidence}</span>
+                <button
+                  onClick={() => setEvidence('')}
+                  className="hover:bg-primary/20 rounded-full p-0.5 ml-0.5"
+                  aria-label="Quitar filtro de evidencia"
+                >
+                  <X className="w-2.5 h-2.5" />
+                </button>
+              </span>
+            )}
+
+            {indication && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                <BookOpen className="w-3 h-3" />
+                <span>{humanize(indication)}</span>
+                <button
+                  onClick={() => setIndication('')}
+                  className="hover:bg-primary/20 rounded-full p-0.5 ml-0.5"
+                  aria-label="Quitar filtro de indicación"
+                >
+                  <X className="w-2.5 h-2.5" />
+                </button>
+              </span>
             )}
           </div>
         )}
-
-        {/* Categoría — fila única compacta */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Categoría</span>
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map(cat => {
-              const isActive = category === cat.value;
-              const cfg = cat.value ? getCategoryConfig(cat.value) : null;
-              const Icon = cfg?.icon ?? Pill;
-              return (
-                <button
-                  key={cat.value}
-                  onClick={() => setCategory(cat.value)}
-                  className={cn(
-                    'inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[15px] font-medium transition-colors',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                    isActive
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
-                  )}
-                >
-                  {cat.value && <Icon className="w-[18px] h-[18px]" aria-hidden="true" />}
-                  {cat.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Sistema corporal — fila única compacta */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Sistema</span>
-          <div className="flex flex-wrap gap-2">
-            {BODY_SYSTEM_CHIPS.map(sys => {
-              const isActive = system === sys.value;
-              const Icon = sys.icon;
-              return (
-                <button
-                  key={sys.value}
-                  onClick={() => setSystem(isActive ? '' : sys.value)}
-                  className={cn(
-                    'inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[15px] font-medium transition-colors',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                    isActive
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
-                  )}
-                  aria-pressed={isActive}
-                >
-                  <Icon className="w-[18px] h-[18px]" aria-hidden="true" />
-                  {sys.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Evidencia — fila única compacta */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-muted-foreground shrink-0 uppercase tracking-wide">Evidencia</span>
-          <div className="flex flex-wrap gap-2">
-            {EVIDENCE_LEVELS.map(lvl => {
-              const isActive = evidence === lvl;
-              const cfg = getEvidenceConfig(lvl);
-              return (
-                <button
-                  key={lvl}
-                  onClick={() => setEvidence(isActive ? '' : lvl)}
-                  aria-pressed={isActive}
-                  aria-label={`Filtrar por evidencia ${cfg.label}: ${cfg.title}`}
-                  title={cfg.title}
-                  className={cn(
-                    'inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[15px] font-medium transition-colors',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-                    isActive
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground'
-                  )}
-                >
-                  {lvl}
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </div>
 
       {/* ===== CAPA 1: Ficha de condición (dominante) ===== */}
