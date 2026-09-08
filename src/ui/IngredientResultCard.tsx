@@ -5,7 +5,7 @@
  * badge de seguridad (según perfil del cliente) y score de relevancia.
  */
 
-import { Star, Plus, Check } from 'lucide-react';
+import { Star, Plus, Check, Sparkles } from 'lucide-react';
 import type { SearchResult } from '@/core/search';
 import { cn } from '@/lib/utils';
 import { humanize } from '@/lib/text';
@@ -22,11 +22,19 @@ interface Props {
   result: SearchResult;
   verdict: SafetyVerdict | null;
   onClick: (ingredient: SearchResult['ingredient']) => void;
+  onExplain?: (ingredient: SearchResult['ingredient']) => void;
   isFavorite?: boolean;
   onToggleFavorite?: (ingredientId: string) => void;
 }
 
-export function IngredientResultCard({ result, verdict, onClick, isFavorite, onToggleFavorite }: Props) {
+export function IngredientResultCard({
+  result,
+  verdict,
+  onClick,
+  onExplain,
+  isFavorite,
+  onToggleFavorite,
+}: Props) {
   const catConfig = getCategoryConfig(result.ingredient.categoria);
   const evConfig = getEvidenceConfig(result.ingredient.evidencia);
   const CatIcon = catConfig.icon;
@@ -52,6 +60,21 @@ export function IngredientResultCard({ result, verdict, onClick, isFavorite, onT
       />
       <div>
         <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5">
+          {onExplain && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onExplain(result.ingredient);
+              }}
+              className="px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 bg-amber-500/10 text-amber-700 dark:text-amber-400 hover:bg-amber-500/20 border border-amber-500/20 transition-all shadow-xs"
+              title="¿Cómo actúa este ingrediente en el organismo?"
+              aria-label="Ver mecanismo de acción"
+            >
+              <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>¿Cómo?</span>
+            </button>
+          )}
+
           <button
             onClick={(e) => {
               e.stopPropagation();

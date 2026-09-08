@@ -260,7 +260,7 @@ describe('SearchPage', () => {
     });
     // El input de búsqueda está en el header (fuera de SearchPage),
     // pero podemos verificar que la página renderiza sin crashear
-    expect(screen.getByText(/Patología|Indicación/)).toBeTruthy();
+    expect(screen.getAllByText(/Patología|Indicación/).length).toBeGreaterThan(0);
   });
 
   it('no crashea al cambiar entre indicación y categoría', async () => {

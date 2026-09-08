@@ -13,14 +13,14 @@
  * Memoizado para evitar re-renders innecesarios.
  */
 
-import { memo, useMemo, useRef, useEffect, useState } from 'react';
+import { memo, useMemo, useRef, useEffect } from 'react';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { HighlightText } from '@/ui/HighlightText';
 import {
   X, AlertTriangle, Info, Link as LinkIcon, Leaf, Shield,
   CheckCircle2, XCircle, AlertCircle, BookOpen, FlaskConical, Star,
-  ChevronDown, ChevronUp, Activity
+  Activity
 } from 'lucide-react';
 import type { DbIngredient, IngredientSafety, SafetyStatus } from '@/db/schema';
 import { humanize } from '@/lib/text';
