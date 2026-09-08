@@ -1332,7 +1332,7 @@
           "dong_quai",
           "cimicifuga",
           "regaliz",
-          "lúpulo",
+          "lupulo",
           "trebol_rojo",
           "damiana",
           "cnidium",
@@ -3396,7 +3396,7 @@
         "suplementos": [
           "magnesio_glicinato",
           "l_teanina",
-          "l_triptofano",
+          "triptofano",
           "pea",
           "l_fenilalanina"
         ],
@@ -4465,7 +4465,7 @@
         ],
         "aceites": [
           "neroli",
-          "ylang_ylang"
+          "ilang_ilang"
         ],
         "cuandoPreferir": "Coadyuvante, prevención secundaria, intolerancia estatinas"
       },
@@ -4532,7 +4532,7 @@
           "metilfolato",
           "metilcobalamina",
           "omega3_phospholipid",
-          "l_triptofano",
+          "triptofano",
           "vitamina_d3_k2",
           "5_htp",
           "triptofano"
@@ -4689,7 +4689,7 @@
           "picrorhiza_kurroa",
           "schisandra",
           "reishi",
-          "picrorhiza",
+          "picrorrhiza",
           "bardana"
         ],
         "suplementos": [
@@ -5008,7 +5008,7 @@
         ],
         "suplementos": [
           "coq10",
-          "nmn_nicotinamide",
+          "nmn",
           "d_ribose",
           "magnesio_glicinato",
           "vitamina_d3_k2",

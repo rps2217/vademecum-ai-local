@@ -394,7 +394,7 @@ export class VademecumDB extends Dexie {
       favorites: 'id, ingredientId, createdAt',
       productIngredients: 'id, productoSku, ingredientId',
       productIngredientAnalysis: 'productoSku',
-      clinicalExplanations: 'id, ingredienteId, patologiaId',
+      clinicalExplanations: 'id, ingredienteId, patologiaId, [ingredienteId+patologiaId]',
     });
   }
 }

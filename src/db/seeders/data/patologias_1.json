@@ -48,13 +48,13 @@
           "ashwagandha",
           "manzanilla",
           "lavanda",
-          "lúpulo",
+          "lupulo",
           "amapola_californiana"
         ],
         "suplementos": [
           "magnesio_glicinato",
           "litio",
-          "l_triptofano",
+          "triptofano",
           "l_teanina",
           "gaba"
         ],
@@ -216,7 +216,7 @@
           "manzanilla",
           "lavanda",
           "artemisa",
-          "lúpulo",
+          "lupulo",
           "ashwagandha",
           "rodiola"
         ],
@@ -225,7 +225,7 @@
           "vitamina_b6",
           "melatonina",
           "magnesio_glicinato",
-          "l_triptofano",
+          "triptofano",
           "l_ornitina",
           "teacrina"
         ],
@@ -240,7 +240,7 @@
         "aceites": [
           "lavanda_aceite",
           "neroli",
-          "ylang_ylang",
+          "ilang_ilang",
           "menta_aceite"
         ],
         "cuandoPreferir": "Insomnio crónico leve, conciliación del sueño, o como coadyuvante en deshabituación de hipnóticos. La fitoterapia tiene menor riesgo de dependencia que los Z-fármacos."
@@ -863,7 +863,7 @@
           "tomillo",
           "artemisa",
           "evodia",
-          "diente_de_leon"
+          "diente_leon"
         ],
         "suplementos": [
           "probioticos",
@@ -2500,7 +2500,7 @@
         "suplementos": [
           "vitamina_d3",
           "litio",
-          "l_triptofano",
+          "triptofano",
           "5_htp",
           "triptofano",
           "magnesio"
@@ -2864,7 +2864,7 @@
           "salvia_esclarea",
           "palmarosa",
           "vetiver",
-          "ylang_ylang"
+          "ilang_ilang"
         ],
         "cuandoPreferir": "Estrés crónico, profilaxis de burnout, o antes de recurrir a ansiolíticos. Los adaptógenos (ashwagandha, rodiola) modulan el eje HHA con evidencia B."
       },
@@ -3008,7 +3008,7 @@
           "alcachofa",
           "lino",
           "tulsi",
-          "picrorhiza",
+          "picrorrhiza",
           "astragalus",
           "jiaogulan"
         ],
@@ -3342,7 +3342,7 @@
           "olivo",
           "nigella",
           "arjuna",
-          "olivo_hoja",
+          "olivo",
           "ortiga"
         ],
         "suplementos": [
@@ -3356,7 +3356,7 @@
           "lycopodium"
         ],
         "aceites": [
-          "ylang_ylang",
+          "ilang_ilang",
           "ajo_aceite",
           "neroli"
         ],
@@ -3833,7 +3833,7 @@
           "agrimonia",
           "alchemilla",
           "pycnogenol",
-          "cola_de_caballo"
+          "cola_caballo"
         ],
         "suplementos": [
           "zinc",
@@ -5536,8 +5536,8 @@
       "tratamientoNatural": {
         "fitoterapia": [
           "ortiga",
-          "diente_de_leon",
-          "diente_de_leon",
+          "diente_leon",
+          "diente_leon",
           "nac",
           "milenrama",
           "dong_quai",
@@ -6066,7 +6066,7 @@
           "romero",
           "curcuma",
           "clavo",
-          "clavo_aceite"
+          "clavo"
         ],
         "suplementos": [
           "vitamina_c",
@@ -6438,7 +6438,7 @@
           "creatina",
           "same",
           "5_htp",
-          "l_triptofano",
+          "triptofano",
           "omega_3",
           "triptofano",
           "pea"
@@ -7142,7 +7142,7 @@
           "nac",
           "melatonina",
           "coq10",
-          "l_triptofano"
+          "triptofano"
         ],
         "homeopatia": [
           "sulphur",
@@ -7159,7 +7159,7 @@
           "incienso",
           "helichrysum",
           "neroli",
-          "ylang_ylang"
+          "ilang_ilang"
         ],
         "cuandoPreferir": "Tinnitus crónico no pulsátil, complemento a TRT, insomnio/ansiedad asociada, profilaxis, intolerancia al ruido."
       },
@@ -7301,7 +7301,7 @@
           "salvia",
           "semilla_calabaza",
           "he_shou_wu",
-          "cola_de_caballo"
+          "cola_caballo"
         ],
         "suplementos": [
           "zinc",
@@ -7847,7 +7847,7 @@
           "alcachofa",
           "curcuma",
           "jengibre",
-          "diente_de_leon",
+          "diente_leon",
           "bardana",
           "maca",
           "rodiola"
@@ -8256,7 +8256,7 @@
         ],
         "aceites": [
           "romero_aceite",
-          "ylang_ylang",
+          "ilang_ilang",
           "sandalo",
           "neroli",
           "pachuli",

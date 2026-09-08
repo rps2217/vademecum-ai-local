@@ -71,6 +71,7 @@ const NATURAL_TABS: { key: NaturalCat; label: string; icon: typeof Leaf }[] = [
 export function PathologyDetail({ pathology, onClose, onIngredientClick, onProductClick }: PathologyDetailProps) {
   const [activeTab, setActiveTab] = useState<NaturalCat>('fitoterapia');
   const [explainingItem, setExplainingItem] = useState<{
+    id?: string;
     type: 'ingredient' | 'product';
     title: string;
     subtitle: string;
@@ -78,6 +79,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
     descripcion?: string;
     principiosActivos?: string[];
   } | null>(null);
+  const [explanation, setExplanation] = useState<string | null>(null);
   const [isExplainingLoading, setIsExplainingLoading] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   useFocusTrap(panelRef, true);
@@ -241,20 +243,31 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                         <div className="flex items-center gap-1.5 shrink-0">
                           <button
                             type="button"
-                            onClick={(e) => {
+                            onClick={async (e) => {
                               e.stopPropagation();
                               setIsExplainingLoading(true);
                               setExplainingItem({
+                                id: ing.id,
                                 type: 'ingredient',
                                 title: ing.nombre,
                                 subtitle: `Contexto clínico: ${pathology.nombre}`,
                                 mecanismo: ing.mecanismoAccion,
                                 descripcion: ing.descripcion,
                               });
-                              setTimeout(() => setIsExplainingLoading(false), 250);
+                              try {
+                                const record = await db.clinicalExplanations
+                                  .where({ ingredienteId: ing.id, patologiaId: pathology.id })
+                                  .first();
+                                setExplanation(record?.explicacion || null);
+                              } catch (err) {
+                                console.error('Error fetching clinical explanation:', err);
+                                setExplanation(null);
+                              } finally {
+                                setIsExplainingLoading(false);
+                              }
                             }}
                             className="flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900 text-xs font-medium transition-colors"
-                            title="Cómo actúa (Asistente IA)"
+                            title="Cómo actúa (Explicación clínica)"
                           >
                             <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                             <span>Cómo</span>
@@ -510,16 +523,16 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
               <div className="p-4 rounded-xl bg-muted/50 border border-border">
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1">
                   <Stethoscope className="w-3.5 h-3.5 text-primary" />
-                  <span>Asistente clínico local (LLM)</span>
+                  <span>Explicación clínica de mostrador</span>
                 </p>
                 {isExplainingLoading ? (
                   <div className="py-6 flex flex-col items-center justify-center space-y-2">
                     <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                    <p className="text-xs text-muted-foreground animate-pulse">Analizando evidencia clínica...</p>
+                    <p className="text-xs text-muted-foreground animate-pulse">Consultando base de evidencia clínica...</p>
                   </div>
                 ) : (
                   <p className="text-sm text-foreground leading-relaxed">
-                    {generateClinicalExplanation(
+                    {explanation || (explainingItem.type === 'ingredient' && explainingItem.id && ingredientMap.get(explainingItem.id)?.beneficioCliente) || generateClinicalExplanation(
                       explainingItem.title,
                       explainingItem.type,
                       pathology.nombre,
@@ -536,7 +549,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = generateClinicalExplanation(
+                    const text = explanation || (explainingItem.type === 'ingredient' && explainingItem.id && ingredientMap.get(explainingItem.id)?.beneficioCliente) || generateClinicalExplanation(
                       explainingItem.title,
                       explainingItem.type,
                       pathology.nombre,

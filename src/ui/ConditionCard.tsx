@@ -266,18 +266,18 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
               <div className="p-4 rounded-xl bg-muted/50 border border-border">
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1">
                   <Stethoscope className="w-3.5 h-3.5 text-primary" />
-                  <span>Asistente clínico local (LLM)</span>
+                  <span>Explicación clínica de mostrador</span>
                 </p>
                 {isExplainingLoading ? (
                   <div className="py-6 flex flex-col items-center justify-center space-y-2">
                     <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                    <p className="text-xs text-muted-foreground animate-pulse">Analizando evidencia clínica...</p>
+                    <p className="text-xs text-muted-foreground animate-pulse">Consultando base de evidencia clínica...</p>
                   </div>
                 ) : (
                   <p className="text-sm text-foreground leading-relaxed">
                     {explanation || ingredientSearchService.getIngredient(explainingItem.title)?.beneficioCliente || generateClinicalExplanation(
-                      'ingredient',
                       explainingItem.title,
+                      'ingredient',
                       pathology.nombre,
                       explainingItem.mecanismo,
                       explainingItem.descripcion
@@ -292,7 +292,7 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                   size="sm"
                   onClick={() => {
                     const ing = ingredientSearchService.getIngredient(explainingItem.title);
-                    const text = ing?.beneficioCliente || generateClinicalExplanation(
+                    const text = explanation || ing?.beneficioCliente || generateClinicalExplanation(
                       explainingItem.title,
                       'ingredient',
                       pathology.nombre,

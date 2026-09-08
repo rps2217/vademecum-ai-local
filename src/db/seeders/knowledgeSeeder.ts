@@ -509,16 +509,18 @@ async function loadExplicacionesClinicas(): Promise<string[]> {
       logger.error('Explicaciones: datos inválidos o estructura incorrecta');
       return [];
     }
-    const explicaciones: DbClinicalExplanation[] = data.default.explicaciones.map((e: any) => ({
-      id: e.id,
-      ingredienteId: e.ingredienteId,
-      patologiaId: e.patologiaId,
-      explicacion: e.explicacion,
-      lamport: 0,
-      deviceId: getDeviceId(),
-      updatedAt: now(),
-      tombstone: 0,
-    }));
+    const explicaciones: DbClinicalExplanation[] = data.default.explicaciones.map(
+      (e: { id: string; ingredienteId: string; patologiaId: string; explicacion: string }) => ({
+        id: e.id,
+        ingredienteId: e.ingredienteId,
+        patologiaId: e.patologiaId,
+        explicacion: e.explicacion,
+        lamport: 0,
+        deviceId: getDeviceId(),
+        updatedAt: now(),
+        tombstone: 0,
+      }),
+    );
     await db.clinicalExplanations.bulkPut(explicaciones);
     logger.log(`Explicaciones: ${explicaciones.length} explicaciones cargadas`);
     return explicaciones.map(e => e.id);

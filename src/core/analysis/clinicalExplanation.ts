@@ -4,7 +4,7 @@ export function generateClinicalExplanation(
   pathologyName: string,
   mechanism?: string,
   description?: string,
-  principiosActivos?: string[]
+  _principiosActivos?: string[]
 ): string {
   const info = (mechanism || description || '').trim();
 
