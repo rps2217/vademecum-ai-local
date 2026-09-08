@@ -8,12 +8,14 @@
  */
 
 import type { DbSynergy } from '@/db/schema';
+import type { SynergySearchResult } from '@/core/search';
 import { Card } from '@/ui/Card';
+import { Badge } from '@/ui/Badge';
 import { Sparkles, AlertTriangle, Link2, Network, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SynergyResultCardProps {
-  synergy: DbSynergy;
+  synergy: DbSynergy | SynergySearchResult;
   ingredientAName?: string;
   ingredientBName?: string;
   onClick?: () => void;
@@ -44,17 +46,26 @@ const TYPE_CONFIG = {
 };
 
 export function SynergyResultCard({
-  synergy,
+  synergy: propSynergy,
   ingredientAName,
   ingredientBName,
   onClick,
   className,
 }: SynergyResultCardProps) {
-  const config = TYPE_CONFIG[synergy.tipo] || TYPE_CONFIG.sinergia;
+  // Maneja tanto un DbSynergy directo como un objeto SynergySearchResult ({ synergy, score, ... })
+  const actualSynergy: DbSynergy =
+    propSynergy && 'synergy' in propSynergy && propSynergy.synergy
+      ? (propSynergy as SynergySearchResult).synergy
+      : (propSynergy as DbSynergy);
+
+  const tipo = actualSynergy?.tipo || 'sinergia';
+  const config = TYPE_CONFIG[tipo] || TYPE_CONFIG.sinergia;
   const Icon = config.icon;
 
-  const nameA = ingredientAName || synergy.ingredienteA.replace(/_/g, ' ');
-  const nameB = ingredientBName || synergy.ingredienteB.replace(/_/g, ' ');
+  const rawNameA = actualSynergy?.ingredienteA || '';
+  const rawNameB = actualSynergy?.ingredienteB || '';
+  const nameA = ingredientAName || (rawNameA ? rawNameA.replace(/_/g, ' ') : 'Ingrediente');
+  const nameB = ingredientBName || (rawNameB ? rawNameB.replace(/_/g, ' ') : 'Ingrediente');
 
   return (
     <Card
@@ -78,29 +89,31 @@ export function SynergyResultCard({
             <span>{config.label}</span>
           </div>
 
-          <Badge variant="outline" className="text-[11px] font-mono">
-            Evidencia {synergy.evidencia}
-          </Badge>
+          {actualSynergy?.evidencia && (
+            <Badge variant="outline" className="text-[11px] font-mono">
+              Evidencia {actualSynergy.evidencia}
+            </Badge>
+          )}
         </div>
 
         {/* Ingredientes conectados */}
         <div className="flex items-center gap-2 font-medium text-foreground text-[15px] pt-1">
           <span className="capitalize font-semibold text-primary">{nameA}</span>
-          <ArrowRight className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+          <ArrowRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
           <span className="capitalize font-semibold text-primary">{nameB}</span>
         </div>
 
         {/* Mecanismo o descripción resumida */}
-        {(synergy.mecanismo || synergy.descripcion) && (
+        {(actualSynergy?.mecanismo || actualSynergy?.descripcion) && (
           <p className="mt-2 text-xs text-muted-foreground line-clamp-2 leading-relaxed">
-            {synergy.mecanismo || synergy.descripcion}
+            {actualSynergy.mecanismo || actualSynergy.descripcion}
           </p>
         )}
       </div>
 
-      {synergy.nivel && (
+      {actualSynergy?.nivel && (
         <div className="mt-3 flex items-center justify-between border-t border-border/50 pt-2 text-[11px] text-muted-foreground">
-          <span>Impacto: <strong className="capitalize text-foreground font-medium">{synergy.nivel}</strong></span>
+          <span>Impacto: <strong className="capitalize text-foreground font-medium">{actualSynergy.nivel}</strong></span>
           <span className="text-primary font-medium group-hover:underline">Ver detalles →</span>
         </div>
       )}

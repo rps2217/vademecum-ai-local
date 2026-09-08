@@ -581,9 +581,9 @@ export function SearchPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {synergyResults.slice(0, 4).map((syn) => (
                   <SynergyResultCard
-                    key={syn.id}
-                    synergy={syn}
-                    onClick={() => navigate(`/synergies?ingredient=${syn.ingredienteA}`)}
+                    key={syn.synergy.id}
+                    synergy={syn.synergy}
+                    onClick={() => navigate(`/synergies?ingredient=${syn.synergy.ingredienteA}`)}
                   />
                 ))}
               </div>
@@ -826,9 +826,9 @@ export function SearchPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {synergyResults.slice(0, visibleSynergyCount).map((syn) => (
                   <SynergyResultCard
-                    key={syn.id}
-                    synergy={syn}
-                    onClick={() => navigate(`/synergies?ingredient=${syn.ingredienteA}`)}
+                    key={syn.synergy.id}
+                    synergy={syn.synergy}
+                    onClick={() => navigate(`/synergies?ingredient=${syn.synergy.ingredienteA}`)}
                   />
                 ))}
               </div>
