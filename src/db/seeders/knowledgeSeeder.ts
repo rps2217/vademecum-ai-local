@@ -11,6 +11,7 @@ import type {
   DbIngredient,
   DbSynergy,
   DbPathology,
+  DbProduct,
   IngredientCategory,
   BodySystem,
   EvidenceLevel,
@@ -37,7 +38,7 @@ import { getDeviceId, now } from '../schema';
 const KB_VERSION_KEY = 'kb_seed_version';
 
 async function computeKbVersion(): Promise<string> {
-  const [fito, homeo, aceites, vitaminas, sinergias, patologias, explicaciones] = await Promise.all([
+  const [fito, homeo, aceites, vitaminas, sinergias, patologias, explicaciones, productos] = await Promise.all([
     import('./data/fitoterapia.json'),
     import('./data/homeopatia.json'),
     import('./data/aceites.json'),
@@ -45,6 +46,7 @@ async function computeKbVersion(): Promise<string> {
     import('./data/sinergias'),
     import('./data/patologias'),
     import('./data/explicaciones_clinicas.json'),
+    import('./data/productos_base.json'),
   ]);
   const patCount = patologias.default?.patologias?.length ?? 0;
   // Incluye patologías con contexto clínico para forzar re-seed al añadir campos clínicos
@@ -59,6 +61,7 @@ async function computeKbVersion(): Promise<string> {
     patCount,
     patWithCtx,
     explicaciones.default?.explicaciones?.length ?? 0,
+    productos.default?.productos?.length ?? 0,
   ];
   // Sufijo "n5" = interacciones medicamentosas completadas al 100% (561/561)
   // + nota genérica para homeopatía y aceites sin interacciones específicas
@@ -530,20 +533,95 @@ async function loadExplicacionesClinicas(): Promise<string[]> {
   }
 }
 
+interface JsonBaseProduct {
+  sku: string;
+  nombreComercial: string;
+  fabricante?: string;
+  categoria?: string;
+  principiosActivos: string[];
+  indicaciones: string[];
+  contraindicaciones?: string[];
+  posologia?: string;
+  como_funciona?: string;
+  comoFunciona?: string;
+  embarazo?: string;
+  lactancia?: string;
+  pediatria?: string;
+  hipertension?: string;
+  diabetes?: string;
+  celiacos?: string;
+  source?: string;
+  data?: Record<string, unknown>;
+}
+
+async function loadBaseProducts(): Promise<string[]> {
+  try {
+    const data = await import('./data/productos_base.json');
+    if (!data.default?.productos || !Array.isArray(data.default.productos)) {
+      logger.error('Productos base: formato de datos inválido');
+      return [];
+    }
+    const products: DbProduct[] = data.default.productos.map((p: JsonBaseProduct) => ({
+      sku: p.sku,
+      nombreComercial: p.nombreComercial,
+      fabricante: p.fabricante,
+      principiosActivos: p.principiosActivos || [],
+      categoria: p.categoria || 'farmaceutico',
+      indicaciones: p.indicaciones || [],
+      contraindicaciones: p.contraindicaciones || [],
+      embarazo: (p.embarazo as SafetyStatus) || 'desconocido',
+      lactancia: (p.lactancia as SafetyStatus) || 'desconocido',
+      pediatria: (p.pediatria as SafetyStatus) || 'desconocido',
+      hipertension: (p.hipertension as SafetyStatus) || 'desconocido',
+      diabetes: (p.diabetes as SafetyStatus) || 'desconocido',
+      celiacos: (p.celiacos as SafetyStatus) || 'desconocido',
+      posologia: p.posologia,
+      comoFunciona: p.comoFunciona || p.como_funciona,
+      como_funciona: p.como_funciona || p.comoFunciona,
+      source: 'local' as const,
+      data: p.data || {},
+      lamport: 0,
+      deviceId: getDeviceId(),
+      updatedAt: now(),
+      createdAt: now(),
+      tombstone: 0,
+    }));
+    await db.products.bulkPut(products);
+    logger.log(`Productos base: ${products.length} productos cargados`);
+    return products.map(p => p.sku);
+  } catch (err) {
+    logger.error('Error loading productos base:', err);
+    return [];
+  }
+}
+
 // Limpia registros sembrados obsoletos: elimina de la DB los registros cuyo ID
 // estaba en una siembra anterior pero ya no está en la siembra actual.
 // Preserva los registros creados por el usuario (cuyos IDs no estaban en
 // ninguna siembra previa).
 const KB_SEED_IDS_KEY = 'kb_seed_ids';
 
-async function getStoredSeedIds(): Promise<{ ingredients: string[]; synergies: string[]; pathologies: string[]; explicaciones: string[] }> {
+async function getStoredSeedIds(): Promise<{
+  ingredients: string[];
+  synergies: string[];
+  pathologies: string[];
+  explicaciones: string[];
+  products: string[];
+}> {
   const meta = await db.syncMeta.get(KB_SEED_IDS_KEY);
-  const value = meta?.value as { ingredients: string[]; synergies: string[]; pathologies?: string[]; explicaciones?: string[] } | undefined;
+  const value = meta?.value as {
+    ingredients: string[];
+    synergies: string[];
+    pathologies?: string[];
+    explicaciones?: string[];
+    products?: string[];
+  } | undefined;
   return {
     ingredients: value?.ingredients ?? [],
     synergies: value?.synergies ?? [],
     pathologies: value?.pathologies ?? [],
     explicaciones: value?.explicaciones ?? [],
+    products: value?.products ?? [],
   };
 }
 
@@ -552,6 +630,7 @@ async function cleanupStaleSeedRecords(
   currentSynergyIds: string[],
   currentPathologyIds: string[],
   currentExplicacionIds: string[],
+  currentProductIds: string[],
 ): Promise<void> {
   const stored = await getStoredSeedIds();
 
@@ -560,6 +639,7 @@ async function cleanupStaleSeedRecords(
   const staleSynergyIds = stored.synergies.filter(id => !currentSynergyIds.includes(id));
   const stalePathologyIds = (stored.pathologies || []).filter(id => !currentPathologyIds.includes(id));
   const staleExplicacionIds = (stored.explicaciones || []).filter(id => !currentExplicacionIds.includes(id));
+  const staleProductIds = (stored.products || []).filter(id => !currentProductIds.includes(id));
 
   if (staleIngredientIds.length > 0) {
     await db.ingredients.bulkDelete(staleIngredientIds);
@@ -577,11 +657,21 @@ async function cleanupStaleSeedRecords(
     await db.clinicalExplanations.bulkDelete(staleExplicacionIds);
     logger.log(`Cleaned up ${staleExplicacionIds.length} stale seed explicaciones`);
   }
+  if (staleProductIds.length > 0) {
+    await db.products.bulkDelete(staleProductIds);
+    logger.log(`Cleaned up ${staleProductIds.length} stale seed products`);
+  }
 
   // Guardar la lista actual de IDs sembrados para la próxima limpieza
   await db.syncMeta.put({
     key: KB_SEED_IDS_KEY,
-    value: { ingredients: currentIngredientIds, synergies: currentSynergyIds, pathologies: currentPathologyIds, explicaciones: currentExplicacionIds },
+    value: {
+      ingredients: currentIngredientIds,
+      synergies: currentSynergyIds,
+      pathologies: currentPathologyIds,
+      explicaciones: currentExplicacionIds,
+      products: currentProductIds,
+    },
     updatedAt: now(),
   });
 }
@@ -591,9 +681,10 @@ export async function seedKnowledgeBase(): Promise<{
   synergies: number;
   pathologies: number;
   explicaciones: number;
+  products: number;
 }> {
   logger.log('Seeding knowledge base...');
-  const [fitoIds, homeoIds, aceitesIds, vitaminasIds, synergyIds, pathologyIds, explicacionIds] = await Promise.all([
+  const [fitoIds, homeoIds, aceitesIds, vitaminasIds, synergyIds, pathologyIds, explicacionIds, productIds] = await Promise.all([
     loadFitoterapia(),
     loadHomeopatia(),
     loadAceites(),
@@ -601,16 +692,18 @@ export async function seedKnowledgeBase(): Promise<{
     loadSinergias(),
     loadPatologias(),
     loadExplicacionesClinicas(),
+    loadBaseProducts(),
   ]);
   const ingredientIds = [...fitoIds, ...homeoIds, ...aceitesIds, ...vitaminasIds];
   const totalIngredients = ingredientIds.length;
   const totalSynergies = synergyIds.length;
   const totalPathologies = pathologyIds.length;
   const totalExplicaciones = explicacionIds.length;
-  logger.log(`KB seeded: ${totalIngredients} ingredients, ${totalSynergies} synergies, ${totalPathologies} pathologies, ${totalExplicaciones} explicaciones`);
+  const totalProducts = productIds.length;
+  logger.log(`KB seeded: ${totalIngredients} ingredients, ${totalSynergies} synergies, ${totalPathologies} pathologies, ${totalExplicaciones} explicaciones, ${totalProducts} products`);
 
   // Eliminar registros sembrados que ya no están en el JSON actual
-  await cleanupStaleSeedRecords(ingredientIds, synergyIds, pathologyIds, explicacionIds);
+  await cleanupStaleSeedRecords(ingredientIds, synergyIds, pathologyIds, explicacionIds, productIds);
 
   // Guardar la versión de la KB para detectar futuras actualizaciones
   const version = await computeKbVersion();
@@ -621,7 +714,13 @@ export async function seedKnowledgeBase(): Promise<{
   });
   logger.log(`KB version stored: ${version}`);
 
-  return { ingredients: totalIngredients, synergies: totalSynergies, pathologies: totalPathologies, explicaciones: totalExplicaciones };
+  return {
+    ingredients: totalIngredients,
+    synergies: totalSynergies,
+    pathologies: totalPathologies,
+    explicaciones: totalExplicaciones,
+    products: totalProducts,
+  };
 }
 
 export async function isKnowledgeBaseSeeded(): Promise<boolean> {

@@ -16,8 +16,9 @@ import { memo } from 'react';
 import { Modal } from '@/ui/Modal';
 import { Badge } from '@/ui/Badge';
 import {
-  Package, CheckCircle2, XCircle, AlertCircle, Pill, ExternalLink,
+  Package, CheckCircle2, XCircle, AlertCircle, Pill, ExternalLink, Sparkles, Copy,
 } from 'lucide-react';
+import { toast } from 'sonner';
 import type { DbProduct, DbProductIngredient, DbProductIngredientAnalysis, SafetyStatus } from '@/db/schema';
 import { cn } from '@/lib/utils';
 
@@ -77,6 +78,32 @@ export const ProductDetail = memo(function ProductDetail({
             </div>
           </div>
         </div>
+
+        {/* ¿Cómo funciona? (Explicación para el cliente) */}
+        {(product.comoFunciona || product.como_funciona) && (
+          <div className="p-4 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/60 shadow-xs">
+            <div className="flex items-center justify-between gap-2 mb-1.5">
+              <span className="text-xs font-semibold text-sky-800 dark:text-sky-300 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                ¿Cómo funciona? (Explicación para el cliente)
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  void navigator.clipboard.writeText(product.comoFunciona || product.como_funciona || '');
+                  toast.success('Explicación copiada');
+                }}
+                className="text-xs font-medium text-sky-700 dark:text-sky-400 hover:underline inline-flex items-center gap-1 cursor-pointer"
+              >
+                <Copy className="w-3 h-3" />
+                Copiar frase
+              </button>
+            </div>
+            <p className="text-sm text-foreground/90 leading-relaxed font-normal">
+              {product.comoFunciona || product.como_funciona}
+            </p>
+          </div>
+        )}
 
         {/* Seguridad (semáforo) */}
         <section>

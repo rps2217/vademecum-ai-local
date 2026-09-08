@@ -11,22 +11,54 @@ let supabaseInstance: SupabaseClient | null = null;
 let configError: string | null = null;
 
 /**
- * Placeholder para credenciales de ejemplo
+ * Default de credenciales de producción para Vademecum AI
  */
+const DEFAULT_URL = 'https://lcoweosnhdkzogtmsfml.supabase.co';
+const DEFAULT_KEY = 'sb_publishable_kIQXsVe8mokmityM5GzozA_RLaXcDAo';
 const PLACEHOLDER_URL = 'yourproject.supabase.co';
+
+function isPlaceholder(value: string | undefined | null): boolean {
+  if (!value) return true;
+  const val = value.trim().toLowerCase();
+  return (
+    val === '' ||
+    val.includes('yourproject') ||
+    val.includes('your-anon') ||
+    val.includes('your-publishable') ||
+    val.includes('your-secret') ||
+    val.includes('tu-clave') ||
+    val.includes('tu-proyecto') ||
+    val.includes('example.supabase.co')
+  );
+}
+
+export function getEffectiveSupabaseUrl(): string {
+  const envUrl = import.meta.env.VITE_SUPABASE_URL;
+  if (envUrl && !isPlaceholder(envUrl)) {
+    return envUrl.trim();
+  }
+  return DEFAULT_URL;
+}
+
+export function getEffectiveSupabaseAnonKey(): string {
+  const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  if (envKey && !isPlaceholder(envKey)) {
+    return envKey.trim();
+  }
+  return DEFAULT_KEY;
+}
 
 /**
  * Verifica si Supabase esta configurado con credenciales reales
  */
 export function isSupabaseConfigured(): boolean {
-  const url = import.meta.env.VITE_SUPABASE_URL;
-  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  const url = getEffectiveSupabaseUrl();
+  const key = getEffectiveSupabaseAnonKey();
   
   if (!url || !key) {
     return false;
   }
   
-  // Verificar que no sean los valores placeholder
   if (url.includes(PLACEHOLDER_URL) || url === '') {
     return false;
   }
@@ -38,14 +70,14 @@ export function isSupabaseConfigured(): boolean {
  * Obtiene la URL de Supabase configurada
  */
 export function getSupabaseUrl(): string | null {
-  return import.meta.env.VITE_SUPABASE_URL || null;
+  return getEffectiveSupabaseUrl();
 }
 
 /**
  * Obtiene la clave anon de Supabase
  */
 export function getSupabaseAnonKey(): string | null {
-  return import.meta.env.VITE_SUPABASE_ANON_KEY || null;
+  return getEffectiveSupabaseAnonKey();
 }
 
 /**
@@ -59,8 +91,8 @@ export function getSupabase(): SupabaseClient | null {
     return null;
   }
 
-  const url = import.meta.env.VITE_SUPABASE_URL;
-  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  const url = getEffectiveSupabaseUrl();
+  const key = getEffectiveSupabaseAnonKey();
 
   // Validar credenciales
   if (!url || !key) {
@@ -118,38 +150,39 @@ export async function testConnection(): Promise<{
   }
 
   try {
-    // Verificar tabla ingredients (la que usa el sync para descargar la KB)
-    const { data, error } = await supabase
-      .from('ingredients')
-      .select('id')
-      .limit(1);
+    // Verificar tabla products (catalogo comercial) e ingredients
+    const { count: productCount, error: prodErr } = await supabase
+      .from('products')
+      .select('*', { count: 'exact', head: true });
 
-    if (error) {
-      // 42P01 / PGRST205 = tabla no existe en el schema
-      if (error.code === '42P01' || error.code === 'PGRST205') {
+    if (prodErr) {
+      if (prodErr.code === '42P01' || prodErr.code === 'PGRST205') {
         return {
           success: false,
-          error: error.message,
-          message: 'Conexion OK pero la tabla "ingredients" no existe en Supabase'
+          error: prodErr.message,
+          message: 'Conexión OK pero la tabla "products" no existe en Supabase'
         };
       }
-      // 42501 = RLS bloquea la lectura (la conexion funciona, pero no hay permisos)
-      if (error.code === '42501') {
+      if (prodErr.code === '42501') {
         return {
           success: true,
-          message: 'Conexion exitosa - RLS activo (sin permiso de lectura con anon key)'
+          message: 'Conexión exitosa - RLS activo (sin permiso de lectura con anon key)'
         };
       }
       return {
         success: false,
-        error: error.message,
-        message: 'Error en consulta'
+        error: prodErr.message,
+        message: 'Error en consulta de catálogo'
       };
     }
 
+    const { count: ingCount } = await supabase
+      .from('ingredients')
+      .select('*', { count: 'exact', head: true });
+
     return {
       success: true,
-      message: `Conexion exitosa (${Array.isArray(data) ? data.length : 0} registros legibles)`
+      message: `Conexión activa y verificada: ${productCount ?? 0} productos y ${ingCount ?? 0} ingredientes en Supabase.`
     };
   } catch (err) {
     return { 

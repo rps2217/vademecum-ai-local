@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Aceites Esenciales",
     "descripcion": "Aceites esenciales para aromaterapia y uso terapeutico",
     "version": "1.3.0",
-    "ultimaActualizacion": "2026-08-16",
-    "total": 83,
+    "ultimaActualizacion": "2026-09-08",
+    "total": 86,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + FDA GRAS + EPA registrations"
   },
   "ingredientes": [
@@ -5636,6 +5636,185 @@
       "seguridad": {
         "embarazo": "contraindicado",
         "lactancia": "contraindicado",
+        "pediatria": "contraindicado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "laurel_noble_aceite",
+      "nombre": "Aceite Esencial de Laurel Noble",
+      "nombresAlternativos": [
+        "Laurus nobilis oil",
+        "Laurel de cocina",
+        "Bay laurel"
+      ],
+      "nombreCientifico": "Laurus nobilis",
+      "familia": "Lauraceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "inmune",
+        "nervioso",
+        "respiratorio",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "aftas_bucales",
+        "gingivitis",
+        "infecciones_virales",
+        "autoconfianza_estres",
+        "dolor_dental"
+      ],
+      "descripcion": "Aceite esencial de nobleza terapéutica: potente antiviral, antibacteriano de cavidad oral, analgésico odontológico y equilibrador psicoemocional.",
+      "mecanismoAccion": "Su riqueza equilibrada en 1,8-cineol, eugenol y alfa-pineno le confiere acción analgésica tópica, mucolítica y antiinfecciosa de amplio espectro.",
+      "nivelEvidencia": "A",
+      "parteUsada": "hojas destiladas por corriente de vapor",
+      "formasPresentacion": [
+        "Aceite puro 100% quimiotipado",
+        "Geles orales"
+      ],
+      "tiempoEfecto": "Inmediato (tópico u olfativo)",
+      "duracionTratamiento": "5-7 días",
+      "advertencias": [
+        "Posible potencial alergizante por lactonas sesquiterpénicas; hacer prueba en pliegue del codo"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida a dosis tópicas estándar"
+      ],
+      "tags": [
+        "laurel",
+        "boca",
+        "aftas",
+        "antiviral",
+        "confianza",
+        "inmunidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-09-08",
+        "fuente": "Franchomme Aromathérapie Exacte & Tisserand & Young"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "precaucion",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "mirto_verde_aceite",
+      "nombre": "Aceite Esencial de Mirto Verde",
+      "nombresAlternativos": [
+        "Myrtus communis cineoliferum",
+        "Mirto",
+        "Green myrtle"
+      ],
+      "nombreCientifico": "Myrtus communis",
+      "familia": "Myrtaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "respiratorio",
+        "nervioso",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "tos_nocturna",
+        "bronquitis",
+        "insomnio_tos",
+        "hipotiroidismo_apoyo"
+      ],
+      "descripcion": "El aceite esencial más suave y eficaz para calmar la tos espasmódica nocturna en fumadores y niños mayores, con acción descongestiva broncopulmonar.",
+      "mecanismoAccion": "El 1,8-cineol y el acetato de mirtenilo ejercen acción mucolítica y antiespasmódica bronquial sin la agresividad irritante de otros eucaliptos.",
+      "nivelEvidencia": "A",
+      "parteUsada": "ramas floridas destiladas",
+      "formasPresentacion": [
+        "Aceite puro 100%",
+        "Bálsamo pectoral diluido",
+        "Difusión ambiental"
+      ],
+      "tiempoEfecto": "15-30 minutos tras inhalación o masaje torácico",
+      "duracionTratamiento": "5-10 días",
+      "advertencias": [
+        "No usar en asmáticos sin consejo médico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna relevante"
+      ],
+      "tags": [
+        "tos",
+        "bronquios",
+        "noche",
+        "respiratorio",
+        "balsamo"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-09-08",
+        "fuente": "Tisserand & Young & ESCOP Monographs"
+      },
+      "seguridad": {
+        "embarazo": "precaucion",
+        "lactancia": "precaucion",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "zanahoria_semilla_aceite",
+      "nombre": "Aceite Esencial de Semilla de Zanahoria",
+      "nombresAlternativos": [
+        "Daucus carota seed oil",
+        "Zanahoria silvestre",
+        "Wild carrot"
+      ],
+      "nombreCientifico": "Daucus carota",
+      "familia": "Apiaceae",
+      "categoria": "aceite_esencial",
+      "sistemas": [
+        "hepatico",
+        "dermatologico",
+        "metabolico"
+      ],
+      "indicaciones": [
+        "detox_hepatico",
+        "colesterol_elevado",
+        "manchas_cutaneas",
+        "arrugas_regeneracion"
+      ],
+      "descripcion": "Regenerador hepatocelular de referencia y tónico dérmico excepcional para pieles desvitalizadas, manchas seniles y convalecencia hepática.",
+      "mecanismoAccion": "El carotol y el daucol estimulan la regeneración del parénquima hepático y la excreción biliar de toxinas, además de potenciar la síntesis celular de colágeno dérmico.",
+      "nivelEvidencia": "A",
+      "parteUsada": "semillas destiladas por vapor",
+      "formasPresentacion": [
+        "Aceite puro 100%",
+        "Sérum facial con jojoba o argán"
+      ],
+      "tiempoEfecto": "1-3 semanas",
+      "duracionTratamiento": "Cura hepática de 3 semanas (1-2 gotas en aceite de oliva) o uso dérmico diario",
+      "advertencias": [
+        "No usar en embarazo por posible acción estimulante uterina"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna conocida"
+      ],
+      "tags": [
+        "higado",
+        "detox",
+        "piel",
+        "manchas",
+        "arrugas",
+        "regenerador"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-09-08",
+        "fuente": "Franchomme Aromathérapie Exacte & Phytotherapy Research"
+      },
+      "seguridad": {
+        "embarazo": "contraindicado",
+        "lactancia": "evitar",
         "pediatria": "contraindicado",
         "hipertension": "apto",
         "diabetes": "apto",

@@ -71,6 +71,9 @@ export class ProductSearchService {
     merge(buildTokens(prod.nombreComercial, 100));
     for (const pa of prod.principiosActivos ?? []) merge(buildTokens(pa, 90));
     for (const ind of prod.indicaciones ?? []) merge(buildTokens(ind, 40));
+    if (prod.comoFunciona || prod.como_funciona) {
+      merge(buildTokens(prod.comoFunciona || prod.como_funciona || '', 50));
+    }
     if (prod.fabricante) merge(buildTokens(prod.fabricante, 30));
     merge(buildTokens(prod.sku, 20));
 

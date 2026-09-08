@@ -17,7 +17,7 @@
 
 import { db } from '@/db';
 import type { DbProduct, DbProductIngredient, DbProductIngredientAnalysis } from '@/db/schema';
-import { getSupabase, isSupabaseConfigured } from '@/lib/supabase';
+import { getSupabase, isSupabaseConfigured, getEffectiveSupabaseUrl } from '@/lib/supabase';
 import { logger } from '@/lib/logger';
 import { getDeviceId } from '@/db/schema';
 
@@ -89,9 +89,10 @@ async function clearReplicationDisabled(): Promise<void> {
 
 function getSupabaseUrlSafe(): string | null {
   try {
-    return import.meta.env.VITE_SUPABASE_URL || null;
+    const fromFn = typeof getEffectiveSupabaseUrl === 'function' ? getEffectiveSupabaseUrl() : null;
+    return fromFn || import.meta.env.VITE_SUPABASE_URL || null;
   } catch {
-    return null;
+    return import.meta.env.VITE_SUPABASE_URL || null;
   }
 }
 
@@ -100,7 +101,13 @@ function getSupabaseUrlSafe(): string | null {
  *  los envuelve como TypeError: Failed to fetch. */
 function isNetworkError(error: unknown): boolean {
   if (!error) return false;
-  const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
+  const msg = (
+    error instanceof Error
+      ? error.message
+      : typeof error === 'object'
+        ? JSON.stringify(error)
+        : String(error)
+  ).toLowerCase();
   return msg.includes('failed to fetch') ||
     msg.includes('networkerror') ||
     msg.includes('network request failed') ||
@@ -112,10 +119,16 @@ function isNetworkError(error: unknown): boolean {
  *  que menciona "api key" / "jwt". */
 function isAuthError(error: unknown): boolean {
   if (!error) return false;
-  const code = (error as { code?: string }).code;
-  const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
-  return code === '401' || code === '4251' ||
-    msg.includes('api key') || msg.includes('jwt') || msg.includes('unauthorized');
+  const code = (error as { code?: string })?.code;
+  const msg = (
+    error instanceof Error
+      ? error.message
+      : typeof error === 'object'
+        ? JSON.stringify(error)
+        : String(error)
+  ).toLowerCase();
+  return code === '401' || code === '4251' || code === 'PGRST301' ||
+    msg.includes('api key') || msg.includes('jwt') || msg.includes('unauthorized') || msg.includes('invalid api key');
 }
 
 /**
@@ -312,6 +325,8 @@ function mapRemoteProduct(r: Record<string, unknown>): DbProduct {
     diabetes: (r.diabetes as DbProduct['diabetes']) ?? 'desconocido',
     celiacos: (r.celiacos as DbProduct['celiacos']) ?? 'desconocido',
     posologia: (r.posologia as string) ?? undefined,
+    comoFunciona: (r.como_funciona as string) ?? (r.comoFunciona as string) ?? undefined,
+    como_funciona: (r.como_funciona as string) ?? (r.comoFunciona as string) ?? undefined,
     source: (r.source as DbProduct['source']) ?? 'supabase',
     sourceUrl: (r.source_url as string) ?? undefined,
     embedding: r.embedding as number[] | undefined,

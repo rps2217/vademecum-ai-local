@@ -46,15 +46,18 @@ export function ProductResultCard({ result, analysis, onClick }: Props) {
         </h4>
       </div>
 
-      {principiosPreview.length > 0 && (
+      {(product.comoFunciona || product.como_funciona) ? (
+        <p className="text-xs text-muted-foreground line-clamp-2 mb-2.5 leading-relaxed">
+          {product.comoFunciona || product.como_funciona}
+        </p>
+      ) : principiosPreview.length > 0 ? (
         <p className="text-[15px] text-muted-foreground truncate mb-2.5">
           {principiosPreview.join(', ')}
           {extraPrincipios > 0 && <span className="text-muted-foreground/70"> +{extraPrincipios}</span>}
         </p>
-      )}
-      {!principiosPreview.length && topIndication && (
+      ) : topIndication ? (
         <p className="text-[15px] text-muted-foreground truncate mb-2.5">{humanize(topIndication)}</p>
-      )}
+      ) : null}
 
       <div className="flex items-center justify-between gap-2">
         <span className="text-sm text-muted-foreground/80 truncate">

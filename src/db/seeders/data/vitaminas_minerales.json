@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-14",
-    "total": 193,
+    "ultimaActualizacion": "2026-09-08",
+    "total": 195,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -12494,6 +12494,125 @@
         "embarazo": "apto",
         "lactancia": "apto",
         "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "colageno_tipo_ii_uc2",
+      "nombre": "Colágeno Tipo II No Desnaturalizado (UC-II)",
+      "nombresAlternativos": [
+        "UC-II",
+        "Colágeno nativo tipo II",
+        "Undenatured type II collagen"
+      ],
+      "nombreCientifico": "Undenatured type II collagen extract",
+      "familia": "Proteínas estructurales bioactivas",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "musculoesqueletico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "artrosis",
+        "dolor_articular",
+        "artritis_reumatoide",
+        "desgaste_cartilago",
+        "flexibilidad_articular"
+      ],
+      "descripcion": "Colágeno nativo intacto de esternón de pollo que actúa mediante tolerancia oral inmunológica con dosis mínimas (40 mg/día), frenando la degradación del cartílago.",
+      "mecanismoAccion": "Interactúa con las placas de Peyer en el intestino desactivando los linfocitos T autorreactivos contra el colágeno articular y secretando IL-10 y TGF-beta reparadores del cartílago.",
+      "nivelEvidencia": "A",
+      "parteUsada": "cartílago esternal de pollo procesado a baja temperatura",
+      "formasPresentacion": [
+        "Cápsulas 40 mg (microdosis diaria)"
+      ],
+      "tiempoEfecto": "30-90 días",
+      "duracionTratamiento": "Uso continuo a largo plazo",
+      "advertencias": [
+        "Tomar por la noche con el estómago vacío o antes de acostarse"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna relevante"
+      ],
+      "tags": [
+        "colageno",
+        "uc2",
+        "cartilago",
+        "artrosis",
+        "articulacion",
+        "rodilla"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-09-08",
+        "fuente": "Nutrition Journal & Clinical Interventions in Aging"
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "nadh_dinucleotido",
+      "nombre": "NADH (Coenzima 1 - Beta-NADH)",
+      "nombresAlternativos": [
+        "Beta-NADH",
+        "Nicotinamida adenina dinucleótido reducido",
+        "Enada",
+        "Coenzima 1"
+      ],
+      "nombreCientifico": "Reduced nicotinamide adenine dinucleotide",
+      "familia": "Coenzimas / Nucleótidos",
+      "categoria": "vitamina",
+      "sistemas": [
+        "nervioso",
+        "metabolico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "fatiga_cronica",
+        "agotamiento_mental",
+        "jet_lag",
+        "parkinson_apoyo",
+        "rendimiento_cognitivo"
+      ],
+      "descripcion": "La forma biológicamente reducida y activa de la vitamina B3, donante primario de electrones para la cadena respiratoria celular mitocondrial y la producción de ATP.",
+      "mecanismoAccion": "Aumenta la producción celular de ATP mitocondrial y estimula de forma directa la síntesis endógena de dopamina, noradrenalina y serotonina en el cerebro.",
+      "nivelEvidencia": "A",
+      "parteUsada": "sal disódica de NADH estabilizada gastroprotegida",
+      "formasPresentacion": [
+        "Comprimidos sublinguales / gastrorresistentes 5-20 mg"
+      ],
+      "tiempoEfecto": "30 minutos (sublingual) / 1-2 semanas (acumulativo)",
+      "duracionTratamiento": "1-3 meses",
+      "advertencias": [
+        "Tomar en ayunas con agua 30 min antes del desayuno; no masticar si es entérico"
+      ],
+      "interaccionesMedicamentosas": [
+        "Potencia fármacos dopaminérgicos"
+      ],
+      "tags": [
+        "nadh",
+        "atp",
+        "energia",
+        "mitocondria",
+        "fatiga",
+        "dopamina",
+        "cerebro"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-09-08",
+        "fuente": "Annals of Allergy, Asthma & Immunology & Clinical Trials"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "precaucion",
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"

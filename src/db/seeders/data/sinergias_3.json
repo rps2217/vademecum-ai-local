@@ -5979,6 +5979,900 @@
         "cardiovascular",
         "dermatologico"
       ]
+    },
+    {
+      "id": "sin_boswellia_serrata_curcuma",
+      "ingredienteA": "boswellia_serrata",
+      "ingredienteB": "curcuma",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Inhibición dual de COX-2 y 5-LOX en osteoartritis y dolor articular severo.",
+      "beneficios": [
+        "Alivio rápido de la rigidez articular",
+        "Menor inflamación sin daño gástrico"
+      ],
+      "precauciones": [
+        "Precaución con anticoagulantes orales a dosis altas"
+      ],
+      "mecanismo": "Bloqueo combinado de las dos vías principales de síntesis de eicosanoides proinflamatorios.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_boswellia_serrata_harpagofito",
+      "ingredienteA": "boswellia_serrata",
+      "ingredienteB": "harpagofito",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Potenciación analgésica osteoarticular de extractos estandarizados en artrosis de rodilla.",
+      "beneficios": [
+        "Mejora de la amplitud de movimiento",
+        "Efecto condroprotector"
+      ],
+      "precauciones": [
+        "Tomar con comidas"
+      ],
+      "mecanismo": "Sinergia de ácidos boswélicos (AKBA) con harpagósidos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_boswellia_serrata_colageno_tipo_ii_uc2",
+      "ingredienteA": "boswellia_serrata",
+      "ingredienteB": "colageno_tipo_ii_uc2",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Freno de la degradación autoinmune del cartílago y control del dolor inflamatorio.",
+      "beneficios": [
+        "Mayor elasticidad articular",
+        "Regeneración del cartílago desgastado"
+      ],
+      "precauciones": [
+        "Tomar Colágeno UC-II por la noche y Boswellia con el almuerzo"
+      ],
+      "mecanismo": "Inmunotolerancia oral mediada por placas de Peyer y desinflamación local articular.",
+      "categorias": [
+        "fitoterapia",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_melena_leon_bacopa",
+      "ingredienteA": "melena_leon",
+      "ingredienteB": "bacopa",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia nootrópica y neuroprotectora para la memoria de trabajo y la agilidad mental.",
+      "beneficios": [
+        "Mayor concentración en épocas de estudio o trabajo intenso",
+        "Estimulación de la neuroplasticidad"
+      ],
+      "precauciones": [
+        "Tomar por la mañana con el desayuno"
+      ],
+      "mecanismo": "Estimulación conjunta de la síntesis de Factor de Crecimiento Nervioso (NGF) y de la transmisión colinérgica hipocampal.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melena_leon_probioticos",
+      "ingredienteA": "melena_leon",
+      "ingredienteB": "probioticos",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Regeneración del eje intestino-cerebro y de la mucosa gástrica.",
+      "beneficios": [
+        "Alivio de la niebla mental asociada a problemas digestivos",
+        "Reparación de la barrera intestinal"
+      ],
+      "precauciones": [
+        "Tomar en ayunas"
+      ],
+      "mecanismo": "Efecto prebiótico selectivo de beta-glucanos que nutren bifidobacterias y lactobacilos.",
+      "categorias": [
+        "fitoterapia",
+        "probiotico"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_melena_leon_l_glutamina",
+      "ingredienteA": "melena_leon",
+      "ingredienteB": "l_glutamina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Cura intensiva de gastritis, acidez y permeabilidad intestinal.",
+      "beneficios": [
+        "Regeneración del epitelio digestivo",
+        "Alivio del ardor de estómago"
+      ],
+      "precauciones": [
+        "Tomar 20 minutos antes de las comidas principales"
+      ],
+      "mecanismo": "Suministro de combustible metabólico para enterocitos con el estímulo trófico tisular de Hericium.",
+      "categorias": [
+        "fitoterapia",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_cuprum_metallicum_magnesio",
+      "ingredienteA": "cuprum_metallicum",
+      "ingredienteB": "magnesio",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo integral para calambres nocturnos en gemelos, contracturas y síndrome de piernas inquietas.",
+      "beneficios": [
+        "Desaparición rápida de calambres agudos",
+        "Relajación muscular profunda nocturna"
+      ],
+      "precauciones": [
+        "Tomar magnesio tras la cena y Cuprum sublingual al acostarse"
+      ],
+      "mecanismo": "Aporte de cofactor enzimático de relajación muscular (Mg) junto a la modulación bioenergética homeopática de la placa motora.",
+      "categorias": [
+        "homeopatia",
+        "mineral"
+      ],
+      "sistemas": [
+        "musculoesqueletico",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_cuprum_metallicum_chamomilla",
+      "ingredienteA": "cuprum_metallicum",
+      "ingredienteB": "chamomilla",
+      "tipo": "sinergia",
+      "nivelEvidencia": "B",
+      "descripcion": "Alivio de cólicos abdominales espasmódicos infantiles y en adultos con hipersensibilidad al dolor.",
+      "beneficios": [
+        "Calma inmediata de retortijones y llanto por dolor",
+        "Distensión abdominal reducida"
+      ],
+      "precauciones": [
+        "Tomar 5 gránulos disueltos en agua en bebés o sublingual"
+      ],
+      "mecanismo": "Sinergia antiespasmódica sobre la musculatura lisa intestinal y modulación del umbral nociceptivo.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_laurel_noble_aceite_tea_tree",
+      "ingredienteA": "laurel_noble_aceite",
+      "ingredienteB": "tea_tree",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Tratamiento antiséptico oral intensivo para aftas, úlceras bucales y llagas dolorosas.",
+      "beneficios": [
+        "Desaparición de aftas en 24-48 horas",
+        "Alivio inmediato del dolor al comer"
+      ],
+      "precauciones": [
+        "Aplicar 1 gota diluida con un bastoncillo directamente sobre el afta"
+      ],
+      "mecanismo": "Efecto bactericida y antiviral de amplio espectro más acción analgésica tópica del eugenol y 1,8-cineol.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_laurel_noble_aceite_ravintsara",
+      "ingredienteA": "laurel_noble_aceite",
+      "ingredienteB": "ravintsara",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Escudo antiviral respiratorio e inmunoestimulante en epidemias virales y gripes.",
+      "beneficios": [
+        "Estimulación de las defensas antivirales",
+        "Descongestión torácica"
+      ],
+      "precauciones": [
+        "Aplicar en muñecas e inhalar profundamente"
+      ],
+      "mecanismo": "Potenciación de monoterpenos y óxidos terpénicos estimulantes de la respuesta de inmunoglobulinas.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_mirto_verde_aceite_eucalipto",
+      "ingredienteA": "mirto_verde_aceite",
+      "ingredienteB": "eucalipto",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Bálsamo pectoral respiratorio para despejar el pecho y calmar la tos productiva y seca.",
+      "beneficios": [
+        "Expectoración facilitada sin accesos de tos irritativa",
+        "Descanso nocturno tranquilo"
+      ],
+      "precauciones": [
+        "Masajear 3 gotas en pecho y espalda diluidas en aceite de almendras dulces"
+      ],
+      "mecanismo": "Acción mucolítica del 1,8-cineol combinada con el efecto calmante y antiespasmódico del acetato de mirtenilo.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_mirto_verde_aceite_lavanda_aceite",
+      "ingredienteA": "mirto_verde_aceite",
+      "ingredienteB": "lavanda_aceite",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Difusión ambiental nocturna para niños y adultos con tos nocturna que impide conciliar el sueño.",
+      "beneficios": [
+        "Inducción del sueño y calma del reflejo tusígeno",
+        "Purificación del aire del dormitorio"
+      ],
+      "precauciones": [
+        "Difundir 15 minutos antes de acostarse en el dormitorio"
+      ],
+      "mecanismo": "Sedación del centro de la tos por linalool y relajación del músculo liso bronquial por mirto.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_zanahoria_semilla_aceite_limon_aceite",
+      "ingredienteA": "zanahoria_semilla_aceite",
+      "ingredienteB": "limon_aceite",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Cura de detoxificación hepática primaveral y drenaje de toxinas acumuladas.",
+      "beneficios": [
+        "Mejora de las digestiones pesadas",
+        "Mayor luminosidad en la piel y tono vital"
+      ],
+      "precauciones": [
+        "Tomar 1 gota de cada en una cucharadita de aceite de oliva en ayunas durante 21 días"
+      ],
+      "mecanismo": "Estimulación biliar por d-limoneno junto a la regeneración hepatocelular por carotol.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_zanahoria_semilla_aceite_nilo_rosada",
+      "ingredienteA": "zanahoria_semilla_aceite",
+      "ingredienteB": "nilo_rosada",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Sérum facial regenerador intensivo anti-edad, manchas solares y cicatrices.",
+      "beneficios": [
+        "Atenuación de manchas de pigmentación",
+        "Aumento de la firmeza y elasticidad dérmica"
+      ],
+      "precauciones": [
+        "Aplicar 2-3 gotas por la noche sobre rostro y cuello limpios"
+      ],
+      "mecanismo": "Ácidos grasos poliinsaturados esenciales y ácido trans-retinoico de rosa mosqueta con el carotol regenerador.",
+      "categorias": [
+        "aceite_esencial",
+        "aceite_esencial"
+      ],
+      "sistemas": [
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_colageno_tipo_ii_uc2_acido_hialuronico",
+      "ingredienteA": "colageno_tipo_ii_uc2",
+      "ingredienteB": "acido_hialuronico",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Tratamiento articular 360: tolerancia oral inmunológica más hidratación y viscosuplementación del líquido sinovial.",
+      "beneficios": [
+        "Mayor lubricación de articulaciones que crujen",
+        "Alivio del dolor al caminar o subir escaleras"
+      ],
+      "precauciones": [
+        "Tomar diariamente con un vaso de agua"
+      ],
+      "mecanismo": "Retención de agua en la matriz extracelular por hialuronato y protección de la estructura colágena por UC-II.",
+      "categorias": [
+        "aminoacido",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_colageno_tipo_ii_uc2_vitamina_c",
+      "ingredienteA": "colageno_tipo_ii_uc2",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Optimización de la síntesis endógena de colágeno y protección frente al estrés oxidativo articular.",
+      "beneficios": [
+        "Mayor resistencia biomecánica de tendones y cartílagos",
+        "Protección frente a microtraumatismos deportivos"
+      ],
+      "precauciones": [
+        "Tomar juntos por la mañana o noche"
+      ],
+      "mecanismo": "La vitamina C actúa como cofactor indispensable de las enzimas lisil y prolil hidroxilasas para el ensamblaje de fibras de colágeno.",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_nadh_dinucleotido_coq10",
+      "ingredienteA": "nadh_dinucleotido",
+      "ingredienteB": "coq10",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia reina de producción de energía mitocondrial (ATP) en fatiga crónica, burnout y rendimiento deportivo.",
+      "beneficios": [
+        "Recuperación de la energía vital en 1-2 semanas",
+        "Desaparición de la sensación de pesadez y cansancio extremo"
+      ],
+      "precauciones": [
+        "Tomar NADH en ayunas al despertar y CoQ10 con el desayuno"
+      ],
+      "mecanismo": "El NADH suministra los electrones al complejo I de la cadena respiratoria y la CoQ10 los transfiere al complejo III para la síntesis de ATP.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "metabolico",
+        "nervioso",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_nadh_dinucleotido_tirosina",
+      "ingredienteA": "nadh_dinucleotido",
+      "ingredienteB": "tirosina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Potenciación de la síntesis de dopamina y noradrenalina para la motivación, agilidad mental y alerta matutina.",
+      "beneficios": [
+        "Mayor empuje y motivación diaria",
+        "Claridad de pensamiento sin taquicardias ni nerviosismo"
+      ],
+      "precauciones": [
+        "Tomar en ayunas 30 minutos antes del desayuno"
+      ],
+      "mecanismo": "La L-Tirosina aporta el sustrato aminoácido mientras el NADH activa la enzima tirosina hidroxilasa limitante de la síntesis de dopamina.",
+      "categorias": [
+        "vitamina",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_bacillus_coagulans_l_glutamina",
+      "ingredienteA": "bacillus_coagulans",
+      "ingredienteB": "l_glutamina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Reparación intensiva de la barrera intestinal en síndrome de intestino irritable y permeabilidad intestinal.",
+      "beneficios": [
+        "Disminución de gases, hinchazón postprandial y cólicos",
+        "Normalización del tránsito intestinal (diarrea/estreñimiento)"
+      ],
+      "precauciones": [
+        "Tomar juntos en un vaso de agua 20 minutos antes de la comida principal"
+      ],
+      "mecanismo": "Colonización probiótica y producción de butirato con el aporte de glutamina como combustible celular de los enterocitos.",
+      "categorias": [
+        "probiotico",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_bacillus_coagulans_inulina",
+      "ingredienteA": "bacillus_coagulans",
+      "ingredienteB": "inulina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Fórmula simbiótica de alta eficacia para nutrir y multiplicar la microbiota protectora del colon.",
+      "beneficios": [
+        "Aumento de bacterias beneficiosas productoras de ácidos grasos de cadena corta",
+        "Regularidad intestinal óptima"
+      ],
+      "precauciones": [
+        "Iniciar con dosis bajas de inulina para evitar gases iniciales"
+      ],
+      "mecanismo": "Fermentación prebiótica selectiva de fructooligosacáridos que potencia la actividad metabólica de Bacillus coagulans.",
+      "categorias": [
+        "probiotico",
+        "probiotico"
+      ],
+      "sistemas": [
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_lavanda_pasiflora",
+      "ingredienteA": "lavanda",
+      "ingredienteB": "pasiflora",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Relajación del sistema nervioso central y mejora del descanso nocturno.",
+      "beneficios": [
+        "Inducción del sueño",
+        "Menos despertares"
+      ],
+      "precauciones": [
+        "Ninguna"
+      ],
+      "mecanismo": "Modulación gabaérgica combinada de flavonoides y ésteres.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_lavanda_melisa",
+      "ingredienteA": "lavanda",
+      "ingredienteB": "melisa",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Calma de la ansiedad somatizada en el estómago (nervios en el estómago).",
+      "beneficios": [
+        "Alivio de espasmos digestivos por estrés",
+        "Tranquilidad"
+      ],
+      "precauciones": [
+        "Ninguna"
+      ],
+      "mecanismo": "Sinergia antiespasmódica y sedante suave.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_amapola_californiana_pasiflora",
+      "ingredienteA": "amapola_californiana",
+      "ingredienteB": "pasiflora",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Control de la ansiedad diurna y del nerviosismo con tensión muscular.",
+      "beneficios": [
+        "Relajación corporal sin pérdida de lucidez mental"
+      ],
+      "precauciones": [
+        "Ninguna"
+      ],
+      "mecanismo": "Efecto miorrelajante y ansiolítico sinérgico.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_orthosiphon_cola_caballo",
+      "ingredienteA": "orthosiphon",
+      "ingredienteB": "cola_caballo",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Drenaje renal y eliminación de líquidos retenidos sin pérdida de electrolitos.",
+      "beneficios": [
+        "Deshinchazón de piernas y tobillos",
+        "Depuración de ácido úrico"
+      ],
+      "precauciones": [
+        "Beber abundante agua durante el día"
+      ],
+      "mecanismo": "Diuresis acuarética de sales potásicas y flavonoides unida al aporte mineral remineralizante de sílice.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario"
+      ]
+    },
+    {
+      "id": "sin_orthosiphon_diente_leon",
+      "ingredienteA": "orthosiphon",
+      "ingredienteB": "diente_leon",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Drenaje renal y hepático simultáneo para depuración de toxinas y control de peso.",
+      "beneficios": [
+        "Pérdida de volumen corporal",
+        "Alivio de la pesadez"
+      ],
+      "precauciones": [
+        "No usar en insuficiencia cardíaca o renal descompensada"
+      ],
+      "mecanismo": "Aumento del filtrado glomerular por flavonoides sinotensina y taraxacina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "urinario",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_tulsi_jengibre",
+      "ingredienteA": "tulsi",
+      "ingredienteB": "jengibre",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Bebida inmunoestimulante y protectora de vías respiratorias frente al frío.",
+      "beneficios": [
+        "Calor corporal interno",
+        "Prevención de catarros"
+      ],
+      "precauciones": [
+        "Tomar en infusión"
+      ],
+      "mecanismo": "Bioactivos fenólicos antioxidantes y eugenol con acción termogénica y antiviral.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_maitake_reishi",
+      "ingredienteA": "maitake",
+      "ingredienteB": "reishi",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Trío de micoterapia integrativa para el refuerzo inmunológico y el equilibrio metabólico.",
+      "beneficios": [
+        "Modulación del sistema inmune celular (NK y macrófagos)",
+        "Control de la glucosa y lípidos"
+      ],
+      "precauciones": [
+        "Tomar con vitamina C para aumentar su absorción"
+      ],
+      "mecanismo": "Sinergia de fracciones de beta-D-glucanos 1,3-1,6 de alto peso molecular.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_shiitake_vitamina_c",
+      "ingredienteA": "shiitake",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Aumento de la biodisponibilidad y absorción intestinal de beta-glucanos fúngicos (lentinan).",
+      "beneficios": [
+        "Refuerzo de las defensas humorales",
+        "Menor incidencia de infecciones estacionales"
+      ],
+      "precauciones": [
+        "Tomar preferentemente en ayunas"
+      ],
+      "mecanismo": "La vitamina C hidroliza parcialmente los polisacáridos fúngicos facilitando su paso a través de los enterocitos.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_tribulus_zinc",
+      "ingredienteA": "tribulus",
+      "ingredienteB": "zinc",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Optimización de los niveles fisiológicos de testosterona y fertilidad.",
+      "beneficios": [
+        "Mantenimiento de niveles hormonales masculinos saludables",
+        "Recuperación muscular"
+      ],
+      "precauciones": [
+        "Tomar con comida"
+      ],
+      "mecanismo": "Aporte de zinc cofactor de la espermatogénesis junto a saponinas esteroideas tróficas.",
+      "categorias": [
+        "fitoterapia",
+        "mineral"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_alchemilla_vitex",
+      "ingredienteA": "alchemilla",
+      "ingredienteB": "vitex",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Regulación hormonal femenina en síndrome premenstrual, dolor mamario y reglas abundantes.",
+      "beneficios": [
+        "Alivio de la hinchazón premenstrual y mastodinia",
+        "Ciclos menstruales regulares"
+      ],
+      "precauciones": [
+        "Tomar de forma continuada durante al menos 3 ciclos"
+      ],
+      "mecanismo": "Efecto progesterónico-like de Alchemilla y modulación dopaminérgica de la prolactina por Sauzgatillo (Vitex).",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "endocrino"
+      ]
+    },
+    {
+      "id": "sin_alchemilla_salvia",
+      "ingredienteA": "alchemilla",
+      "ingredienteB": "salvia",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Control de los sofocos y sudoración nocturna en perimenopausia.",
+      "beneficios": [
+        "Reducción de la frecuencia e intensidad de los sofocos",
+        "Menor transpiración excesiva"
+      ],
+      "precauciones": [
+        "Evitar en antecedentes de cáncer hormono-dependiente"
+      ],
+      "mecanismo": "Acción astringente y moduladora estrogénica vegetal de taninos y flavonoides.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "endocrino",
+        "reproductivo"
+      ]
+    },
+    {
+      "id": "sin_uncaria_echinacea_purpurea",
+      "ingredienteA": "uncaria",
+      "ingredienteB": "echinacea_purpurea",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Inmunoestimulación profunda frente a infecciones recurrentes y convalecencias prolongadas.",
+      "beneficios": [
+        "Activación de macrófagos y fagocitosis",
+        "Menor tasa de recaídas infecciosas"
+      ],
+      "precauciones": [
+        "No tomar más de 8 semanas seguidas"
+      ],
+      "mecanismo": "Sinergia de alcaloides oxindólicos de uña de gato con alcamidas y polisacáridos de equinácea.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_petasites_feverfew",
+      "ingredienteA": "petasites",
+      "ingredienteB": "feverfew",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Profilaxis natural de migrañas y cefaleas tensionales recurrentes.",
+      "beneficios": [
+        "Reducción del número de crisis migrañosas al mes",
+        "Menor intensidad del dolor de cabeza"
+      ],
+      "precauciones": [
+        "Usar extractos de Petasites libres de alcaloides pirrolizidínicos (PA-free)"
+      ],
+      "mecanismo": "Inhibición de la síntesis de leucotrienos y partenólido estabilizador del tono vascular cerebral.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_fumaria_cardo_mariano",
+      "ingredienteA": "fumaria",
+      "ingredienteB": "cardo_mariano",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Regulación anfocolerética biliar y regeneración hepática en digestiones lentas.",
+      "beneficios": [
+        "Alivio del dolor en hipocondrio derecho y pesadez tras grasas",
+        "Protección del hepatocito"
+      ],
+      "precauciones": [
+        "Tomar antes de las comidas"
+      ],
+      "mecanismo": "Regulación del flujo biliar por protopina unida a la acción antioxidante estabilizadora de membrana de la silimarina.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "hepatico",
+        "digestivo"
+      ]
+    },
+    {
+      "id": "sin_escaramujo_vitamina_c",
+      "ingredienteA": "escaramujo",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Aporte de vitamina C natural tamponada con bioflavonoides para máxima absorción y tolerancia gástrica.",
+      "beneficios": [
+        "Mayor absorción celular de ácido ascórbico",
+        "Protección de vasos sanguíneos y colágeno"
+      ],
+      "precauciones": [
+        "Ninguna"
+      ],
+      "mecanismo": "Los bioflavonoides y antocianinas del fruto de rosa silvestre impiden la oxidación precoz de la vitamina C.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "inmune",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_zarzaparrilla_bardana",
+      "ingredienteA": "zarzaparrilla",
+      "ingredienteB": "bardana",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Dúo depurativo dérmico y drenador de toxinas para acné, eccemas y forúnculos.",
+      "beneficios": [
+        "Piel limpia y libre de impurezas",
+        "Drenaje linfático y sebáceo equilibrado"
+      ],
+      "precauciones": [
+        "Tomar en ayunas durante 1 mes"
+      ],
+      "mecanismo": "Acción diaforética y depurativa de saponinas esteroideas y poliacetilenos antimicrobianos.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "dermatologico",
+        "hepatico"
+      ]
+    },
+    {
+      "id": "sin_moringa_espirulina",
+      "ingredienteA": "moringa",
+      "ingredienteB": "espirulina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Superalimento vegetal remineralizante, antioxidante y antianémico de máxima densidad nutricional.",
+      "beneficios": [
+        "Aporte completo de aminoácidos, hierro vegetal, clorofila y vitaminas",
+        "Mayor vitalidad y tono físico"
+      ],
+      "precauciones": [
+        "Tomar por la mañana con zumo o batido"
+      ],
+      "mecanismo": "Combinación de fitonutrientes hidrosolubles y liposolubles altamente asimilables.",
+      "categorias": [
+        "fitoterapia",
+        "vitamina"
+      ],
+      "sistemas": [
+        "metabolico",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_musgo_islandia_llanten",
+      "ingredienteA": "musgo_islandia",
+      "ingredienteB": "llanten",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Protección emoliente de la mucosa faríngea y alivio de la tos seca irritativa y carraspeo.",
+      "beneficios": [
+        "Creación de una película protectora sobre la garganta",
+        "Calma del dolor al tragar"
+      ],
+      "precauciones": [
+        "Chupar lentamente comprimidos o tomar en jarabe"
+      ],
+      "mecanismo": "Los mucílagos de líquen de Islandia y aucubina de llantén desinflaman el epitelio respiratorio.",
+      "categorias": [
+        "fitoterapia",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio"
+      ]
     }
   ]
 }

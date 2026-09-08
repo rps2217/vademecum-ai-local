@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
     "version": "1.8.0",
-    "ultimaActualizacion": "2026-08-10",
-    "total": 117,
+    "ultimaActualizacion": "2026-09-08",
+    "total": 118,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -8584,6 +8584,63 @@
         "Los efectos pueden verse atenuados por cafeína, menta fuerte y alcanfor",
         "Separar de otros medicamentos 15-30 minutos"
       ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "cuprum_metallicum",
+      "nombre": "Cuprum Metallicum (Cobre homeopático)",
+      "nombresAlternativos": [
+        "Cuprum",
+        "Cobre metálico homeopático"
+      ],
+      "nombreCientifico": "Cuprum metallicum",
+      "familia": "Minerales / Metales",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "calambres_musculares",
+        "espasmos_digestivos",
+        "tos_espasmotica",
+        "hipo"
+      ],
+      "descripcion": "El gran antiespasmódico homeopático para calambres violentos en pantorrillas y plantas de los pies, cólicos abdominales paroxísticos y accesos de tos sofocante.",
+      "mecanismoAccion": "Regula la excitabilidad de la placa motora neuromuscular y los canales iónicos dependientes de voltaje en la musculatura lisa y estriada.",
+      "nivelEvidencia": "B",
+      "parteUsada": "trituración de cobre metálico purificado",
+      "formasPresentacion": [
+        "Gránulos 7CH / 9CH / 15CH",
+        "Gotas"
+      ],
+      "tiempoEfecto": "Minutos a horas en crisis agudas",
+      "duracionTratamiento": "3-7 días en agudo o 1 mes en calambres nocturnos recurrentes",
+      "advertencias": [
+        "Separar de comidas y sustancias mentoladas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Ninguna relevante"
+      ],
+      "tags": [
+        "calambres",
+        "espasmos",
+        "tos",
+        "muscular",
+        "homeopatia"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-09-08",
+        "fuente": "Boericke Materia Medica & Lathoud"
+      },
       "seguridad": {
         "embarazo": "apto",
         "lactancia": "apto",

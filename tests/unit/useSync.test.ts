@@ -1,6 +1,15 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useSync } from '@/hooks/useSync';
+
+vi.mock('@/lib/supabase', () => ({
+  isSupabaseConfigured: () => false,
+  getSupabase: () => null,
+  getSupabaseUrl: () => null,
+  getSupabaseAnonKey: () => null,
+  getEffectiveSupabaseUrl: () => '',
+  getEffectiveSupabaseAnonKey: () => '',
+}));
 
 describe('useSync — sin Supabase configurado (entorno de test)', () => {
   beforeEach(() => {

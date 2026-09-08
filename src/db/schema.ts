@@ -63,6 +63,8 @@ export interface DbProduct {
   diabetes: SafetyStatus;
   celiacos: SafetyStatus;
   posologia?: string;
+  comoFunciona?: string;
+  como_funciona?: string;
   source: ProductSource;
   sourceUrl?: string;
   embedding?: number[];

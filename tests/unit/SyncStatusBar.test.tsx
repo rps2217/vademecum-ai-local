@@ -1,6 +1,15 @@
-import { describe, it, expect, afterEach } from 'vitest';
+import { describe, it, expect, afterEach, vi } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import { SyncStatusBar } from '@/components/sync/SyncStatusBar';
+
+vi.mock('@/lib/supabase', () => ({
+  isSupabaseConfigured: () => false,
+  getSupabase: () => null,
+  getSupabaseUrl: () => null,
+  getSupabaseAnonKey: () => null,
+  getEffectiveSupabaseUrl: () => '',
+  getEffectiveSupabaseAnonKey: () => '',
+}));
 
 // En entorno de test, isSupabaseConfigured() es false → !isConfigured
 // Este es el caso que arreglamos: el badge Online/Offline debe mostrarse.

@@ -3,8 +3,8 @@
     "nombre": "Base de Datos de Fitoterapia",
     "descripcion": "Plantas medicinales para uso terapéutico",
     "version": "2.0.0",
-    "ultimaActualizacion": "2026-08-14",
-    "total": 234,
+    "ultimaActualizacion": "2026-09-08",
+    "total": 235,
     "fuente": "Vademecum AI Knowledge Base + EMA HMPC monographs + WHO Monographs + ESCOP Monographs + German Commission E"
   },
   "ingredientes": [
@@ -14268,6 +14268,68 @@
       "metadata": {
         "fechaCreacion": "2026-08-30",
         "fuente": "Clinical Phytomedicine Review"
+      },
+      "seguridad": {
+        "embarazo": "evitar",
+        "lactancia": "evitar",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      }
+    },
+    {
+      "id": "melena_leon",
+      "nombre": "Melena de León (Hericium erinaceus)",
+      "nombresAlternativos": [
+        "Lion's Mane",
+        "Hericium erinaceus",
+        "Yamabushitake",
+        "Hongo melena de león"
+      ],
+      "nombreCientifico": "Hericium erinaceus",
+      "familia": "Hericiaceae",
+      "categoria": "fitoterapia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "memoria_cognicion",
+        "neuroproteccion",
+        "gastritis",
+        "ansiedad",
+        "permeabilidad_intestinal"
+      ],
+      "descripcion": "Hongo medicinal nootrópico y protector de mucosas que estimula la síntesis endógena de Factor de Crecimiento Nervioso (NGF) y regenera el epitelio gástrico.",
+      "mecanismoAccion": "Las hericenonas y erinacinas atraviesan la barrera hematoencefálica promoviendo la neurogénesis hipocampal y la mielinización, mientras sus beta-glucanos modulan la microbiota intestinal.",
+      "nivelEvidencia": "A",
+      "parteUsada": "cuerpo fructífero y micelio",
+      "formasPresentacion": [
+        "Extracto estandarizado (30% polisacáridos)",
+        "Cápsulas",
+        "Polvo"
+      ],
+      "tiempoEfecto": "2-6 semanas",
+      "duracionTratamiento": "2-3 meses",
+      "advertencias": [
+        "Precaución en personas alérgicas a los hongos o setas"
+      ],
+      "interaccionesMedicamentosas": [
+        "Antidiabéticos",
+        "Anticoagulantes"
+      ],
+      "tags": [
+        "hongo",
+        "nootropico",
+        "ngf",
+        "memoria",
+        "estomago",
+        "mucosas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-09-08",
+        "fuente": "International Journal of Molecular Sciences & PubMed Trials"
       },
       "seguridad": {
         "embarazo": "evitar",
