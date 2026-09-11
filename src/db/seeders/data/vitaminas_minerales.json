@@ -79,7 +79,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de absorcion hierro, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_d3",
@@ -153,7 +155,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de depresión, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "magnesio",
@@ -231,7 +235,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cardiovascular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "zinc",
@@ -307,7 +313,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de acné, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "hierro",
@@ -387,7 +395,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "omega_3",
@@ -464,7 +474,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de articular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_b12",
@@ -539,7 +551,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_b6",
@@ -616,7 +630,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de energía, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_b_complejo",
@@ -687,7 +703,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cansancio, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "coq10",
@@ -758,7 +776,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "probioticos",
@@ -828,7 +848,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a antibioticos.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "curcumina",
@@ -903,7 +925,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "melatonina",
@@ -974,7 +998,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_k2",
@@ -1044,7 +1070,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de calcificacion arterial, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "magnesio_glicinato",
@@ -1120,7 +1148,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ansiedad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "boro",
@@ -1188,7 +1218,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de articular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "yodo",
@@ -1259,7 +1291,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de bocio, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "cromo",
@@ -1329,7 +1363,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vanadio",
@@ -1397,7 +1433,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "litio",
@@ -1472,7 +1510,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de agresividad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "tirosina",
@@ -1546,7 +1586,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cognitivo, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "creatina",
@@ -1620,7 +1662,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cerebro, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "alfa_lipoico",
@@ -1692,7 +1736,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "fosfatidilserina",
@@ -1761,7 +1807,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognicion, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "selenio",
@@ -1834,7 +1882,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "cobre",
@@ -1909,7 +1959,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "manganeso",
@@ -1981,7 +2033,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "astaxantina",
@@ -2051,7 +2105,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "luteina",
@@ -2116,7 +2172,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "resveratrol",
@@ -2185,7 +2243,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "quercetina",
@@ -2257,7 +2317,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de alergias, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "folato",
@@ -2333,7 +2395,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "niacina",
@@ -2406,7 +2470,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "colina",
@@ -2475,7 +2541,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "biotina",
@@ -2540,7 +2608,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cabello, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "acido_pantotenico",
@@ -2605,7 +2675,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de energía, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_e",
@@ -2679,7 +2751,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "tiamina",
@@ -2751,7 +2825,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de alcoholismo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_a",
@@ -2815,7 +2891,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de deficiencia vitamina a, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "riboflavina",
@@ -2878,7 +2956,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de deficiencia b2, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "nac",
@@ -2942,7 +3022,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en antioxidante, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_carnitina",
@@ -3007,7 +3089,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cardiovascular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "taurina",
@@ -3066,7 +3150,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cardiovascular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_teanina",
@@ -3124,7 +3210,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en ansiedad, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "5_htp",
@@ -3187,7 +3275,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en ansiedad, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "msm",
@@ -3245,7 +3335,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en alergias, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_glutamina",
@@ -3305,7 +3397,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en inmunidad, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "beta_glucanos",
@@ -3366,7 +3460,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a cicatrización.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "inositol",
@@ -3429,7 +3525,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ansiedad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "glutation",
@@ -3492,7 +3590,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en antioxidante, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "berberina",
@@ -3554,7 +3654,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en colesterol, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "glucosamina",
@@ -3610,7 +3712,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en articular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "condroitina",
@@ -3667,7 +3771,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en articular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "colageno",
@@ -3728,7 +3834,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en articular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "acido_hialuronico",
@@ -3791,7 +3899,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en articular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "same",
@@ -3854,7 +3964,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en articular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_citrulina",
@@ -3917,7 +4029,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cardiovascular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_glicina",
@@ -3979,7 +4093,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en ansiedad, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pqq",
@@ -4046,7 +4162,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en biogénesis mitocondrial, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "sulforafano",
@@ -4107,7 +4225,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en antioxidante, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "niacinamida",
@@ -4170,7 +4290,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de acné, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "apigenina",
@@ -4226,7 +4348,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ansiedad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "l_lisina",
@@ -4287,7 +4411,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en herpes, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "lactoferrina",
@@ -4347,7 +4473,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a acné.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "bcaa",
@@ -4405,7 +4533,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en catabolismo, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "luteolina",
@@ -4462,7 +4592,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de alergias, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "pterostilbeno",
@@ -4523,7 +4655,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "fisetina",
@@ -4580,7 +4714,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "betaina",
@@ -4640,7 +4776,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en hepático, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_metionina",
@@ -4698,7 +4836,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cabello, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_treonina",
@@ -4757,7 +4897,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cognitivo, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "gaba",
@@ -4817,7 +4959,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en ansiedad, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "honokiol",
@@ -4877,7 +5021,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ansiedad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "postbioticos",
@@ -4933,7 +5079,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a intestinal.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "zeaxantina",
@@ -4989,7 +5137,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ocular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "mct",
@@ -5049,7 +5199,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "krill_oil",
@@ -5110,7 +5262,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de articular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "l_arginina",
@@ -5174,7 +5328,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cardiovascular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "molibdeno",
@@ -5232,7 +5388,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de detox, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "fosfatidilcolina",
@@ -5294,7 +5452,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_k1",
@@ -5354,7 +5514,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de coagulación, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "aceite_onagra",
@@ -5416,7 +5578,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de articular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "omega_7",
@@ -5475,7 +5639,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de glucosa, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "pectina_modificada",
@@ -5534,7 +5700,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cardiovascular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "niacin",
@@ -5594,7 +5762,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "benfotiamina",
@@ -5651,7 +5821,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de glucosa, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "nmn",
@@ -5718,7 +5890,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "ergotioneina",
@@ -5775,7 +5949,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en antioxidante, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "espermidina",
@@ -5834,7 +6010,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en antioxidante, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hidroxitirosol",
@@ -5893,7 +6071,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "dim",
@@ -5953,7 +6133,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en metabolismo estrogénico, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "l_carnosina",
@@ -6011,7 +6193,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en antiglicación, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "beta_alanina",
@@ -6068,7 +6252,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en fatiga muscular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "citicolina",
@@ -6127,7 +6313,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "huperzina_a",
@@ -6186,7 +6374,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de Alzheimer (coadyuvante investigacional), reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "d_glucarato",
@@ -6243,7 +6433,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en coadyuvante oncológico, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pea",
@@ -6303,7 +6495,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en ciática, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "urolithin_a",
@@ -6363,7 +6557,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de autofagia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "nr",
@@ -6422,7 +6618,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "i3c",
@@ -6482,7 +6680,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en metabolismo estrogénico, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "akg",
@@ -6540,7 +6740,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en detox amoníaco, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "s_boulardii",
@@ -6600,7 +6802,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a candidiasis (coadyuvante).",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "l_rhamnosus_gg",
@@ -6662,7 +6866,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a alergias.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "l_acidophilus",
@@ -6731,7 +6937,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a colesterol.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "l_plantarum",
@@ -6789,7 +6997,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a ansiedad.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "l_casei",
@@ -6847,7 +7057,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a gripe.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "l_reuteri",
@@ -6907,7 +7119,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a cólico infantil.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "b_longum",
@@ -6974,7 +7188,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a ansiedad.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "b_breve",
@@ -7032,7 +7248,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a alergias.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "b_bifidum",
@@ -7088,7 +7306,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a barrera intestinal.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "l_helveticus",
@@ -7146,7 +7366,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a ansiedad.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "s_thermophilus",
@@ -7202,7 +7424,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a diarrea.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "silicio",
@@ -7262,7 +7486,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cabello, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "l_ornitina",
@@ -7323,7 +7549,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en detox amoníaco, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "teacrina",
@@ -7382,7 +7610,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de concentración, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "inulina",
@@ -7443,7 +7673,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a calcio.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "colageno_hidrolizado",
@@ -7516,7 +7748,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en articulaciones, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "acerola",
@@ -7590,7 +7824,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "camu_camu",
@@ -7659,7 +7895,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "espirulina",
@@ -7736,7 +7974,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "chlorella",
@@ -7809,7 +8049,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "jalea_real",
@@ -7884,7 +8126,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "polen",
@@ -7958,7 +8202,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de alergias, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "propoleo",
@@ -8035,7 +8281,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antibiótico, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "shilajit",
@@ -8113,7 +8361,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "lecitina",
@@ -8185,7 +8435,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de colesterol, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "triptofano",
@@ -8268,7 +8520,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en ansiedad, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "d_manosa",
@@ -8327,7 +8581,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de candidiasis vaginal, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "l_prolina",
@@ -8384,7 +8640,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en artrosis, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "citrato_potasio",
@@ -8448,7 +8706,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de alcalinización urinaria, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "l_fenilalanina",
@@ -8510,7 +8770,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en depresion, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "acido_undecilenico",
@@ -8570,7 +8832,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de candidiasis vaginal, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "alpha_gpc",
@@ -8633,7 +8897,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de alzheimer, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "bacillus_coagulans",
@@ -8692,7 +8958,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a dispepsia.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "lactobacillus_gasseri",
@@ -8751,7 +9019,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a glucosa.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "mangosteen",
@@ -8814,7 +9084,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de acne, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_b5_pantotenato",
@@ -8877,7 +9149,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cabello, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "metilfolato",
@@ -8947,7 +9221,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "metilcobalamina",
@@ -9012,7 +9288,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "pipquinafosfolipidos",
@@ -9075,7 +9353,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "polen_abeja_ext",
@@ -9139,7 +9419,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de energia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "lactoferrina_bovina",
@@ -9202,7 +9484,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de acne, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "colageno_tipo2",
@@ -9261,7 +9545,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de articular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "astaxantina_haematococcus",
@@ -9325,7 +9611,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cardiovascular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "lut_max",
@@ -9387,7 +9675,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "magnesio_treonato",
@@ -9451,7 +9741,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ansiedad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "zinc_picolinato",
@@ -9523,7 +9815,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de acne, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "potasio_citrato_bis",
@@ -9593,7 +9887,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de calambres, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "hierro_bisglicinato",
@@ -9662,7 +9958,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "yoduro_potasio_lugol",
@@ -9729,7 +10027,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de inmunidad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "silicio_ortosilicico",
@@ -9792,7 +10092,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cabello, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "calcio_microcristalino",
@@ -9861,7 +10163,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de huesos, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vanadyl_sulfato",
@@ -9921,7 +10225,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de diabetes, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "biotina_crinip",
@@ -9983,7 +10289,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cabello, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "complejo_b_50",
@@ -10053,7 +10361,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_d3_k2",
@@ -10121,7 +10431,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cardiovascular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "omega3_phospholipid",
@@ -10188,7 +10500,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de articular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "gaba_pharma",
@@ -10252,7 +10566,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ansiedad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "magnesio_glicerofosfato",
@@ -10316,7 +10632,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de calambres, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "l_cisteina",
@@ -10377,7 +10695,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en antioxidante, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "colina_estandar",
@@ -10446,7 +10766,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "d_ribose",
@@ -10515,7 +10837,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cardiovascular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "indole_3_carbinol",
@@ -10585,7 +10909,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en detox, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "leucina_pura",
@@ -10654,7 +10980,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en glucosa, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "betacaroteno",
@@ -10729,7 +11057,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_b2",
@@ -10804,7 +11134,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de boca, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "acido_folico",
@@ -10882,7 +11214,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de anemia, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "paba",
@@ -10947,7 +11281,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de canas, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "nadh",
@@ -11016,7 +11352,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cognitivo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "n_acetilglucosamina",
@@ -11082,7 +11420,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en articular, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "policosanol",
@@ -11147,7 +11487,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cardiovascular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vinpocetina",
@@ -11212,7 +11554,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de circulación, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "coleus_forskohlii",
@@ -11276,7 +11620,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Coleus forskohlii con eficacia probada para calmar y mejorar los síntomas de glaucoma de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "silimarina",
@@ -11340,7 +11686,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "beta_sitosterol",
@@ -11404,7 +11752,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de cardiovascular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "crocetina",
@@ -11468,7 +11818,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "estroncio",
@@ -11536,7 +11888,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de articular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "germanio",
@@ -11601,7 +11955,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "b_infantis",
@@ -11667,7 +12023,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a alergia.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "criptoxantina",
@@ -11723,7 +12081,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de antioxidante, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "meso_zeaxantina",
@@ -11775,7 +12135,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de ocular, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "quercetina_urinario",
@@ -11835,7 +12197,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de inflamacion urinaria, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "coq10_fertilidad",
@@ -11896,7 +12260,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de fertilidad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "n_acetilcisteina_hepatico",
@@ -11959,7 +12325,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en higado graso, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "selenio_tiroideo",
@@ -12016,7 +12384,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de hipotiroidismo, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "vitamina_k2_mk7",
@@ -12074,7 +12444,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de osteoporosis, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "ipriflavona",
@@ -12132,7 +12504,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de osteoporosis, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "lactobacillus_rhamnosus",
@@ -12192,7 +12566,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a intestinal.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "arabinogalactano",
@@ -12247,7 +12623,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Cepa probiótica que favorece el equilibrio de la microbiota intestinal y refuerza las defensas naturales frente a inmunidad.",
+      "posologia": "1 cáp/sobre al día por la mañana en ayunas o antes de la comida principal con agua del tiempo."
     },
     {
       "id": "nanocobre",
@@ -12320,7 +12698,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de inmunidad, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     },
     {
       "id": "queratina",
@@ -12383,7 +12763,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en cabello, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "acido_alfa_lipoico",
@@ -12439,7 +12821,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ácido Alfa Lipoico (ALA) con eficacia probada para calmar y mejorar los síntomas de neuropatia_diabetica de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "magnesio_bisglicinato",
@@ -12497,7 +12881,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Magnesio Bisglicinato Quelado con eficacia probada para calmar y mejorar los síntomas de relajacion_muscular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "colageno_tipo_ii_uc2",
@@ -12555,7 +12941,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aminoácido clave para el apoyo metabólico en artrosis, optimizando la función celular y el rendimiento físico/mental.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "nadh_dinucleotido",
@@ -12616,7 +13004,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de fatiga_cronica, reforzando la vitalidad y la salud del organismo.",
+      "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
     }
   ]
 }

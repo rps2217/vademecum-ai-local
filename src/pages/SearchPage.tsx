@@ -26,7 +26,7 @@ import {
   Search, BookOpen, X, ChevronDown,
   Pill, Clock, Star, Heart, Package,
   Sparkles, Activity, SlidersHorizontal, ArrowRight,
-  Stethoscope, Network, ClipboardList,
+  Stethoscope, Network, ClipboardList, Info, WifiOff, Shield,
 } from 'lucide-react';
 import { IngredientDetail } from '@/ui/IngredientDetail';
 import { PathologyDetail } from '@/ui/PathologyDetail';
@@ -73,6 +73,7 @@ export function SearchPage() {
   }, [searchParams]);
 
   const [activeTab, setActiveTab] = useState<SearchTab>('all');
+  const [showInfoDetails, setShowInfoDetails] = useState(false);
   const [category, setCategory] = useState('');
   const [indication, setIndication] = useState('');
   const [system, setSystem] = useState<BodySystem | ''>('');
@@ -191,6 +192,110 @@ export function SearchPage() {
     <div className="space-y-6 max-w-[110rem] mx-auto pb-12">
       {/* Perfil del cliente (filtro de seguridad para asesoría) */}
       <ClientProfileSelector />
+
+      {/* ===== INFORMACIÓN DE LA APLICACIÓN & GUÍA DE MOSTRADOR ===== */}
+      <section className="rounded-2xl border border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 p-5 sm:p-6 shadow-xs space-y-4" aria-label="Información de la aplicación">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/60 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm shrink-0">
+              <Info className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="font-heading text-xl sm:text-2xl font-bold text-foreground">
+                  Información de la Aplicación
+                </h1>
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  Vademecum AI v2.1
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+                Centro de Información Clínica, Base de Conocimiento Interactiva y Motor de Búsqueda de Mostrador.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowInfoDetails((v) => !v)}
+            className="inline-flex items-center gap-1.5 self-start sm:self-center px-3.5 py-1.5 rounded-xl border border-border bg-background text-xs font-medium text-foreground hover:bg-muted transition-colors cursor-pointer shadow-2xs"
+          >
+            <BookOpen className="h-3.5 w-3.5 text-primary" />
+            <span>{showInfoDetails ? 'Ocultar guía del sistema' : 'Ver guía e info del sistema'}</span>
+            <ChevronDown className={cn('h-3.5 w-3.5 transition-transform duration-200', showInfoDetails && 'rotate-180')} />
+          </button>
+        </div>
+
+        {/* Resumen de la base de conocimiento y capacidades */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="p-3 rounded-xl bg-background/80 border border-border/80 space-y-1">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              <Pill className="h-4 w-4" />
+              <span>634 Ingredientes</span>
+            </div>
+            <p className="text-xs text-muted-foreground">Fitoterapia, Homeopatía, Aceites y Vitaminas con posología y beneficio cliente.</p>
+          </div>
+
+          <div className="p-3 rounded-xl bg-background/80 border border-border/80 space-y-1">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-purple-600 dark:text-purple-400">
+              <Stethoscope className="h-4 w-4" />
+              <span>146 Patologías</span>
+            </div>
+            <p className="text-xs text-muted-foreground">Contexto 100% completo con escalas validadas, criterios y derivación.</p>
+          </div>
+
+          <div className="p-3 rounded-xl bg-background/80 border border-border/80 space-y-1">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400">
+              <Network className="h-4 w-4" />
+              <span>805 Sinergias</span>
+            </div>
+            <p className="text-xs text-muted-foreground">Red de relaciones, interacciones y compatibilidades en tiempo real.</p>
+          </div>
+
+          <div className="p-3 rounded-xl bg-background/80 border border-border/80 space-y-1">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400">
+              <Shield className="h-4 w-4" />
+              <span>Perfil de Cliente</span>
+            </div>
+            <p className="text-xs text-muted-foreground">Evaluación de contraindicaciones (embarazo, pediatría, polimedicados).</p>
+          </div>
+        </div>
+
+        {/* Panel expandible con detalles de la aplicación */}
+        {showInfoDetails && (
+          <div className="pt-3 border-t border-border/60 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
+            <div className="space-y-1.5">
+              <h2 className="font-semibold text-foreground flex items-center gap-1.5 text-xs">
+                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                Motor de Búsqueda Omnipresente
+              </h2>
+              <p>
+                Búsqueda local indexada por tokens y TF-IDF sobre ingredientes, patologías, productos comerciales y protocolos sin latencia de red.
+              </p>
+            </div>
+
+            <div className="space-y-1.5">
+              <h2 className="font-semibold text-foreground flex items-center gap-1.5 text-xs">
+                <ClipboardList className="h-3.5 w-3.5 text-emerald-500" />
+                Asesoría Directa al Cliente
+              </h2>
+              <p>
+                Cada ficha ofrece frases preparadas de recomendación comercial y pautas claras de administración para el equipo farmacéutico.
+              </p>
+            </div>
+
+            <div className="space-y-1.5">
+              <h2 className="font-semibold text-foreground flex items-center gap-1.5 text-xs">
+                <WifiOff className="h-3.5 w-3.5 text-sky-500" />
+                Funcionamiento 100% Offline
+              </h2>
+              <p>
+                Base de datos IndexedDB local sincronizable (Dexie). Toda la información se mantiene disponible sin conexión.
+              </p>
+            </div>
+          </div>
+        )}
+      </section>
 
       {/* ===== 1. BUSCADOR GENERAL OMNIPRESENTE (Estilo Google Local) ===== */}
       <div className="space-y-3">

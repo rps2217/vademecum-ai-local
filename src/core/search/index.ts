@@ -21,3 +21,15 @@ export {
   type SynergySearchFilters,
   type SynergySearchResult,
 } from './SynergySearchService';
+export {
+  OmniSearchService,
+  omniSearchService,
+  useOmniSearchIndex,
+  type OmniCategory,
+  type OmniSearchResult,
+  type OmniProductResult,
+  type OmniExplanationResult,
+  type OmniIngredientResult,
+  type OmniPathologyResult,
+  type OmniSearchOptions,
+} from './OmniSearchService';

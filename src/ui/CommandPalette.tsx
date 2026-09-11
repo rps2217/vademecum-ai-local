@@ -14,7 +14,7 @@ import { normalize, humanize } from '@/lib/text';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
 import {
   Search, Home, Database, Link2, BarChart3, Shield, Settings,
-  CornerDownLeft, Stethoscope, Package,
+  CornerDownLeft, Stethoscope, Package, Info,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -33,7 +33,8 @@ interface CommandPaletteProps {
 }
 
 const NAV_ITEMS = [
-  { label: 'Inicio / Búsqueda', href: '/', icon: Home },
+  { label: 'Inicio', href: '/', icon: Home },
+  { label: 'Información y Búsqueda App', href: '/info', icon: Info },
   { label: 'Base de Conocimiento', href: '/knowledge', icon: Database },
   { label: 'Productos Comerciales', href: '/products', icon: Package },
   { label: 'Sinergias', href: '/synergies', icon: Link2 },

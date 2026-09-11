@@ -23,8 +23,8 @@ import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
 import {
   Search, Plus, Settings, Database, Link2, Sparkles, BarChart3,
   Shield, Menu, X, ChevronLeft, ChevronRight, Sun, Moon, Monitor,
-  Command, ClipboardList, Package, Home,
-  WifiOff, RefreshCw, CloudDownload,
+  Command, ClipboardList, Package, Home, FlaskConical,
+  WifiOff, RefreshCw, CloudDownload, Info,
 } from 'lucide-react';
 
 interface NavItem {
@@ -37,7 +37,8 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Inicio', icon: Home, href: '/' },
-  { id: 'search', label: 'Buscar', icon: Search, href: '/search' },
+  { id: 'info', label: 'Información App', icon: Info, href: '/info' },
+  { id: 'homeopathy', label: 'Homeopatía', icon: FlaskConical, href: '/homeopathy' },
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
   { id: 'products', label: 'Productos', icon: Package, href: '/products' },
   { id: 'synergies', label: 'Sinergias', icon: Link2, href: '/synergies' },
@@ -165,12 +166,12 @@ export function AppShell() {
   const closeSidebar = () => setSidebarOpen(false);
 
   const isSearchPage = (path: string) =>
-    path === '/search' || ['/synergies', '/products', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
+    path === '/search' || path === '/info' || ['/synergies', '/products', '/knowledge', '/admin', '/analysis'].some(p => path.startsWith(p));
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim() && !isSearchPage(location.pathname)) {
-      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+      navigate(`/info?q=${encodeURIComponent(query.trim())}`);
     }
   };
 

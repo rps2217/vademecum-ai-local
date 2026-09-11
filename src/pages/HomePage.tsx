@@ -12,9 +12,9 @@ import { db } from '@/db';
 import { useSearch } from '@/contexts/SearchContext';
 import { useConsultationHistory } from '@/hooks/useConsultationHistory';
 import { useFavorites } from '@/hooks/useFavorites';
+import { OmnipresentSearch } from '@/components/search/OmnipresentSearch';
 import { Card } from '@/ui/Card';
 import {
-  Search,
   BarChart3,
   ClipboardList,
   Database,
@@ -24,9 +24,9 @@ import {
   ArrowRight,
   ArrowUpRight,
   Star,
-  Command,
   Activity,
   BookOpen,
+  FlaskConical,
 } from 'lucide-react';
 
 export function HomePage() {
@@ -34,7 +34,7 @@ export function HomePage() {
   const { setQuery } = useSearch();
   const { history } = useConsultationHistory();
   const { favoriteIngredients } = useFavorites();
-  const [localQuery, setLocalQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const protocols = useLiveQuery(
     () => db.protocols.where('tombstone').equals(0).limit(4).toArray(),
@@ -42,26 +42,19 @@ export function HomePage() {
   );
 
   const stats = useLiveQuery(async () => {
-    const [ingredients, synergies, products, pathologies] = await Promise.all([
+    const [ingredients, synergies, products, pathologies, explanations] = await Promise.all([
       db.ingredients.where('tombstone').equals(0).count(),
       db.synergies.where('tombstone').equals(0).count(),
       db.products.count(),
       db.pathologies.count(),
+      db.clinicalExplanations.count(),
     ]);
-    return { ingredients, synergies, products, pathologies };
+    return { ingredients, synergies, products, pathologies, explanations };
   }, []);
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (localQuery.trim()) {
-      setQuery(localQuery.trim());
-      navigate('/search');
-    }
-  };
-
   const handleQuickSearch = (term: string) => {
+    setSearchQuery(term);
     setQuery(term);
-    navigate('/search');
   };
 
   const quickSymptoms = [
@@ -76,6 +69,15 @@ export function HomePage() {
 
   const mainModules = [
     {
+      id: 'homeopathy-module',
+      title: 'Dashboard de Homeopatía',
+      subtitle: 'Materia Médica, potencias CH y repertorio',
+      badge: '118 remedios · CH',
+      icon: FlaskConical,
+      href: '/homeopathy',
+      accentColor: 'text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border-indigo-200/60 dark:border-indigo-900/50',
+    },
+    {
       id: 'analysis-module',
       title: 'Interacciones y Sinergias',
       subtitle: 'Comprobador de compatibilidad y alertas',
@@ -86,9 +88,9 @@ export function HomePage() {
     },
     {
       id: 'knowledge-module',
-      title: 'Base de Conocimiento',
-      subtitle: 'Fitoterapia, aceites, vitaminas y homeopatía',
-      badge: stats ? `${stats.ingredients.toLocaleString('es-ES')} ingredientes` : 'Explorar',
+      title: 'Base de Conocimiento y Mecanismos',
+      subtitle: 'Fitoterapia, vitaminas, "¿Cómo funciona?" y homeopatía',
+      badge: stats ? `${stats.ingredients.toLocaleString('es-ES')} activos · ${stats.explanations ? stats.explanations.toLocaleString('es-ES') + ' mecanismos' : 'explicaciones'}` : 'Explorar',
       icon: Database,
       href: '/knowledge',
       accentColor: 'text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-200/60 dark:border-purple-900/50',
@@ -132,34 +134,17 @@ export function HomePage() {
             </p>
           </div>
 
-          {/* Omnibox Search */}
-          <form onSubmit={handleSearch} className="pt-2" role="search">
-            <div className="relative group">
-              <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" aria-hidden="true" />
-              <input
-                id="dashboard-search-input"
-                type="search"
-                value={localQuery}
-                onChange={(e) => setLocalQuery(e.target.value)}
-                placeholder="Busca por síntoma, ingrediente, marca o patología..."
-                autoFocus
-                aria-label="Buscar en la base de datos local"
-                className="h-13 w-full rounded-xl border-2 border-border/80 bg-background/90 pl-11 pr-28 text-sm sm:text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-xs"
-              />
-              <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
-                <span className="hidden sm:inline-flex items-center gap-1 rounded-md border border-border bg-muted/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
-                  <Command className="h-3 w-3" aria-hidden="true" /> K
-                </span>
-                <button
-                  type="submit"
-                  id="dashboard-search-submit"
-                  className="rounded-lg bg-primary px-3 py-1.5 text-xs sm:text-sm font-semibold text-primary-foreground shadow-xs hover:bg-primary/90 transition-colors cursor-pointer"
-                >
-                  Buscar
-                </button>
-              </div>
-            </div>
-          </form>
+          {/* Omnipresent Unified Search */}
+          <div className="pt-2">
+            <OmnipresentSearch
+              initialQuery={searchQuery}
+              onQueryChange={(q) => {
+                setSearchQuery(q);
+                setQuery(q);
+              }}
+              autoFocus
+            />
+          </div>
 
           {/* Quick Symptoms Chips */}
           <div className="flex flex-wrap items-center justify-center gap-1.5 pt-1">
@@ -231,7 +216,7 @@ export function HomePage() {
               {history.length > 0 && (
                 <button
                   type="button"
-                  onClick={() => navigate('/search')}
+                  onClick={() => navigate('/info')}
                   className="text-xs font-medium text-primary hover:underline cursor-pointer"
                 >
                   Ver todas

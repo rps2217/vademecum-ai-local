@@ -63,9 +63,8 @@ async function computeKbVersion(): Promise<string> {
     explicaciones.default?.explicaciones?.length ?? 0,
     productos.default?.productos?.length ?? 0,
   ];
-  // Sufijo "n5" = interacciones medicamentosas completadas al 100% (561/561)
-  // + nota genérica para homeopatía y aceites sin interacciones específicas
-  return `v${counts.join('-')}-n5`;
+  // Sufijo "n6" = beneficioCliente + posologia 100% + 146/146 patologias con contexto clinico completo + sinergias avanzadas
+  return `v${counts.join('-')}-n6`;
 }
 
 export async function getStoredKbVersion(): Promise<string | null> {

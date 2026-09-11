@@ -6873,6 +6873,106 @@
       "sistemas": [
         "respiratorio"
       ]
+    },
+    {
+      "id": "sin_magnesio_vitamina_b6_sinergia",
+      "ingredienteA": "magnesio_glicinato",
+      "ingredienteB": "vitamina_b6",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Co-factor esencial: La Vitamina B6 actúa como ligando para la penetración intracelular del magnesio en neuronas y miocardiocitos.",
+      "beneficios": [
+        "Relajación muscular",
+        "Reducción de ansiedad",
+        "Alivio del síndrome premenstrual"
+      ],
+      "precauciones": [
+        "No superar 25 mg/día de B6 en tratamientos crónicos"
+      ],
+      "mecanismo": "La B6 facilita el transporte activo de magnesio a través de membranas celulares y potencia la síntesis de GABA.",
+      "categorias": [
+        "mineral",
+        "vitamina"
+      ],
+      "sistemas": [
+        "nervioso",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_probiotico_inulina_simbiotico",
+      "ingredienteA": "l_acidophilus",
+      "ingredienteB": "inulina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Efecto simbiótico perfecto: La inulina actúa como sustrato prebiótico selectivo estimulando la colonización de cepas probióticas.",
+      "beneficios": [
+        "Producción de AGCC (butirato)",
+        "Tránsito intestinal",
+        "Inmunidad mucosa"
+      ],
+      "precauciones": [
+        "Introducir gradualmente en SII para evitar meteorismo inicial"
+      ],
+      "mecanismo": "Fermentación colónica de inulina por Lactobacillus generando acetato, propionato y butirato.",
+      "categorias": [
+        "probiotico",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_nac_selenio_glutation",
+      "ingredienteA": "nac",
+      "ingredienteB": "selenio",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia precursora del Glutatión: NAC aporta L-cisteína y el Selenio es el cofactor catalítico de la Glutatión Peroxidasa (GPx).",
+      "beneficios": [
+        "Detoxificación hepática",
+        "Mucolítico pulmonar",
+        "Protección mitocondrial"
+      ],
+      "precauciones": [
+        "Asegurar hidratación adecuada"
+      ],
+      "mecanismo": "NAC dona el grupo sulfhidrilo limiting step para GSH; Selenio integra el sitio activo de la enzima selenoproteína GPx.",
+      "categorias": [
+        "aminoacido",
+        "mineral"
+      ],
+      "sistemas": [
+        "hepatico",
+        "respiratorio"
+      ]
+    },
+    {
+      "id": "sin_coq10_omega_3_cardio",
+      "ingredienteA": "coq10",
+      "ingredienteB": "omega_3",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Protección cardiovascular y biodisponibilidad: La matriz lipídica de los ácidos grasos Omega-3 optimiza la absorción de CoQ10.",
+      "beneficios": [
+        "Función endotelial",
+        "Energía miocárdica",
+        "Reducción de triglicéridos"
+      ],
+      "precauciones": [
+        "Controlar INR si toma antivitaminas K"
+      ],
+      "mecanismo": "CoQ10 sostiene la fosforilación oxidativa mitocondrial; EPA/DHA reducen la síntesis hepática de VLDL.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
     }
   ]
 }

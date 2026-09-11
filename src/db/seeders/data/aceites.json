@@ -83,7 +83,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-3% para piel, 100% para aromaterapia"
     },
     {
       "id": "tea_tree",
@@ -156,7 +158,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acné, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "5-10% para piel, 100% en casos agudos puntuales"
     },
     {
       "id": "ravintsara",
@@ -227,7 +231,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para fatiga, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "eucalipto",
@@ -302,7 +308,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel, 100% en difusion"
     },
     {
       "id": "menta_aceite",
@@ -379,7 +387,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dispepsia, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-3% para piel, 100% en difusion corta"
     },
     {
       "id": "romero_aceite",
@@ -454,7 +464,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "incienso",
@@ -527,7 +539,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "jengibre_aceite",
@@ -599,7 +613,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-3% para piel"
     },
     {
       "id": "oregano",
@@ -670,7 +686,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para infecciones fungicas, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1% maximo (MUY IRRITANTE)"
     },
     {
       "id": "salvia_esclarea",
@@ -741,7 +759,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "canela_aceite",
@@ -818,7 +838,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antioxidante, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "0.5-1% para piel (MUY IRRITANTE)"
     },
     {
       "id": "nilo_rosada",
@@ -886,7 +908,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para arrugas, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "100% (ya listo para uso)"
     },
     {
       "id": "palmarosa",
@@ -957,7 +981,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acné, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "helichrysum",
@@ -1028,7 +1054,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "cedro_atlas",
@@ -1100,7 +1128,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "neroli",
@@ -1173,7 +1203,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-3% para piel"
     },
     {
       "id": "palo_de_rosa",
@@ -1244,7 +1276,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "inmale",
@@ -1314,7 +1348,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para bronquitis, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "3-5% para piel"
     },
     {
       "id": "manuka",
@@ -1384,7 +1420,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acné, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "copaiba",
@@ -1454,7 +1492,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "5-10% para piel"
     },
     {
       "id": "pino_silvestre",
@@ -1528,7 +1568,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para bronquitis, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Inhalacion en difusion; topico 1-2% diluido en aceite portador"
     },
     {
       "id": "tomillo_quimiotipo",
@@ -1601,7 +1643,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antisptico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Topico 0.5-1% maximo (muy irritante puro); inhalacion en difusion corta"
     },
     {
       "id": "naranja_dulce",
@@ -1677,7 +1721,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusion libre; topico 2-5% diluido"
     },
     {
       "id": "bergamota",
@@ -1750,7 +1796,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusion libre; topico max 0.5% si contiene bergapteno, o usar variedad bergaptene-free (FCF) al 2%"
     },
     {
       "id": "citronela",
@@ -1818,7 +1866,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para tos, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Topico 5-10% diluido en aceite portador; velas y difusion para ambiente"
     },
     {
       "id": "geranio",
@@ -1880,7 +1930,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antifúngico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "lemongrass",
@@ -1942,7 +1994,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antifúngico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "pimienta_negra_aceite",
@@ -2005,7 +2059,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "mirra",
@@ -2065,7 +2121,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para bucal, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "sandalo",
@@ -2127,7 +2185,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "cipres",
@@ -2187,7 +2247,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para celulitis, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "mejorana",
@@ -2250,7 +2312,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dispepsia, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "clavo",
@@ -2324,7 +2388,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antifúngico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "enebro",
@@ -2388,7 +2454,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para celulitis, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "manzanilla_romana",
@@ -2451,7 +2519,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "vetiver",
@@ -2513,7 +2583,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "albahaca_aceite",
@@ -2577,7 +2649,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dispepsia, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "niaouli",
@@ -2641,7 +2715,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antifúngico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "pachuli",
@@ -2703,7 +2779,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "hinojo_aceite",
@@ -2766,7 +2844,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dispepsia, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "abeto_balsamico",
@@ -2828,7 +2908,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para aromaterapia, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "cilantro_aceite",
@@ -2889,7 +2971,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "lavandin",
@@ -2952,7 +3036,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para estrés, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "gaulteria",
@@ -3016,7 +3102,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dolor articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "rosa",
@@ -3078,7 +3166,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "helicriso",
@@ -3139,7 +3229,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para cicatrización, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "hisopo",
@@ -3212,7 +3304,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para bronquitis, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "0.5-1% para piel (máximo)"
     },
     {
       "id": "ajo_aceite",
@@ -3286,7 +3380,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antibiótico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "0.5% para piel (máximo, irritante)"
     },
     {
       "id": "ajedrea",
@@ -3360,7 +3456,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para antibiótico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-2% para piel (máximo, irritante)"
     },
     {
       "id": "benjuu",
@@ -3437,7 +3535,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "valeriana_aceite",
@@ -3509,7 +3609,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-3% para piel"
     },
     {
       "id": "perejil_aceite",
@@ -3582,7 +3684,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para digestión, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "0.5-1% para piel (máximo)"
     },
     {
       "id": "azahar_aceite",
@@ -3659,7 +3763,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% para piel"
     },
     {
       "id": "galbano",
@@ -3733,7 +3839,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para bronquitis, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-3% para piel"
     },
     {
       "id": "laurel_aceite",
@@ -3794,7 +3902,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dolor muscular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "limon_aceite",
@@ -3855,7 +3965,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "cardamomo_aceite",
@@ -3914,7 +4026,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dispepsia, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "pomelo_aceite",
@@ -3974,7 +4088,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "mirto_aceite",
@@ -4033,7 +4149,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "petitgrain_aceite",
@@ -4091,7 +4209,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "palo_santo_aceite",
@@ -4151,7 +4271,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "magnolia_aceite",
@@ -4220,7 +4342,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-2% topico, difusion"
     },
     {
       "id": "neroli_bigarade",
@@ -4290,7 +4414,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-3% piel, difusion"
     },
     {
       "id": "frankincense_boswellia_serrata",
@@ -4361,7 +4487,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% topico, difusion"
     },
     {
       "id": "houttuynia_aceite",
@@ -4429,7 +4557,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para inmunidad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "0.5-1% (potente)"
     },
     {
       "id": "raiz_angelica_aceite",
@@ -4497,7 +4627,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-2% piel"
     },
     {
       "id": "abrojo_aceite",
@@ -4563,7 +4695,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para cicatrizacion, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "5-20% en aceite carrier"
     },
     {
       "id": "albahaca_sagrada_aceite",
@@ -4632,7 +4766,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-2% topico"
     },
     {
       "id": "melissa_true_aceite",
@@ -4700,7 +4836,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1% topico"
     },
     {
       "id": "pino_maritimo_aceite",
@@ -4768,7 +4906,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para cardiovascular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% topico, difusion"
     },
     {
       "id": "vetiver_haiti_aceite",
@@ -4836,7 +4976,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-3% topico"
     },
     {
       "id": "valeriana_jatamansi_aceite",
@@ -4902,7 +5044,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-2% topico"
     },
     {
       "id": "tomillo_geraniol_aceite",
@@ -4969,7 +5113,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% topico"
     },
     {
       "id": "ajedrea_montana_aceite",
@@ -5037,7 +5183,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para dispepsia, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1% topico, max 5 dias"
     },
     {
       "id": "leche_eneldo_aceite",
@@ -5104,7 +5252,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para cólico del lactante, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "1-2% topico"
     },
     {
       "id": "cipres_azul_aceite",
@@ -5171,7 +5321,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para piel, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% topico"
     },
     {
       "id": "romero_verbenona_aceite",
@@ -5239,7 +5391,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para cabello, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% topico"
     },
     {
       "id": "citronela_java_aceite",
@@ -5306,7 +5460,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "5-10% topico (repelente)"
     },
     {
       "id": "palo_santo_bursera_aceite",
@@ -5373,7 +5529,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% topico"
     },
     {
       "id": "eucalipto_citriodora_aceite",
@@ -5440,7 +5598,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para articular, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "30-50% repelente (PMD sintético)"
     },
     {
       "id": "manuka_leptospermum_aceite",
@@ -5508,7 +5668,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para acne, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "2-5% topico"
     },
     {
       "id": "nuez_moscada_aceite",
@@ -5568,7 +5730,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para circulación, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "0.5-1% máxima"
     },
     {
       "id": "ilang_ilang",
@@ -5640,7 +5804,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para ansiedad, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "0.5-1% (aroma intenso)"
     },
     {
       "id": "laurel_noble_aceite",
@@ -5701,7 +5867,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para aftas_bucales, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "mirto_verde_aceite",
@@ -5760,7 +5928,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para tos_nocturna, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     },
     {
       "id": "zanahoria_semilla_aceite",
@@ -5819,7 +5989,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Aceite esencial puro con propiedades para detox_hepatico, adecuado para difusor de aromas o aplicación tópica diluida en aceite vehicular.",
+      "posologia": "Difusión ambiental: 3-5 gotas en difusor. Tópico: 2-3 gotas diluidas en 10 ml de aceite vegetal portador (almendras/jojoba)."
     }
   ]
 }

@@ -68,7 +68,8 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pasiflora",
@@ -127,7 +128,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pasiflora con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "melisa",
@@ -187,7 +190,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Melisa con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hiperico",
@@ -249,7 +254,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hipérico con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ginkgo",
@@ -306,7 +313,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ginkgo con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "equinacea",
@@ -361,7 +370,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Equinacea con eficacia probada para calmar y mejorar los síntomas de gripe de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "sauco",
@@ -418,7 +429,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Sauco con eficacia probada para calmar y mejorar los síntomas de gripe de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "espino_blanco",
@@ -476,7 +489,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Espino Blanco con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "curcuma",
@@ -538,7 +553,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Curcuma con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "jengibre",
@@ -600,7 +617,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Jengibre con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "harpagofito",
@@ -656,7 +675,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Harpagofito con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "maca",
@@ -713,7 +734,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Maca con eficacia probada para calmar y mejorar los síntomas de energía de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ashwagandha",
@@ -774,7 +797,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ashwagandha con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "rodiola",
@@ -832,7 +857,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Rodiola con eficacia probada para calmar y mejorar los síntomas de cognitivo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "manzanilla",
@@ -891,7 +918,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Manzanilla con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "aloe_vera",
@@ -952,7 +981,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Aloe Vera con eficacia probada para calmar y mejorar los síntomas de cicatrización de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "menta",
@@ -1011,7 +1042,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Menta con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "tomillo",
@@ -1069,7 +1102,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Tomillo con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "lavanda",
@@ -1129,7 +1164,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Lavanda con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cardo_mariano",
@@ -1183,7 +1220,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cardo Mariano con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "reishi",
@@ -1243,7 +1282,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Reishi con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ginseng",
@@ -1308,7 +1349,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ginseng con eficacia probada para calmar y mejorar los síntomas de cognitivo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "eleuterococo",
@@ -1367,7 +1410,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Eleuterococo con eficacia probada para calmar y mejorar los síntomas de energía de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "schisandra",
@@ -1427,7 +1472,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Schisandra con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "saw_palmetto",
@@ -1483,7 +1530,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Saw Palmetto con eficacia probada para calmar y mejorar los síntomas de cabello de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ortiga",
@@ -1545,7 +1594,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ortiga con eficacia probada para calmar y mejorar los síntomas de alergias de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "regaliz",
@@ -1612,7 +1663,9 @@
         "hipertension": "evitar",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Regaliz con eficacia probada para calmar y mejorar los síntomas de faringitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "dong_quai",
@@ -1672,7 +1725,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Dong Quai con eficacia probada para calmar y mejorar los síntomas de anemia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cimicifuga",
@@ -1726,7 +1781,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cimicífuga con eficacia probada para calmar y mejorar los síntomas de menopausia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "vitex",
@@ -1786,7 +1843,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Vitex con eficacia probada para calmar y mejorar los síntomas de femenino de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "artemisa",
@@ -1846,7 +1905,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Artemisa con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "centella",
@@ -1908,7 +1969,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Centella Asiática con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "boswelia",
@@ -1964,7 +2027,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Boswellia con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "uncaria",
@@ -2025,7 +2090,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Uncaria con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ajo",
@@ -2090,7 +2157,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ajo con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "uva_ursi",
@@ -2148,7 +2217,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Uva Ursi con eficacia probada para calmar y mejorar los síntomas de urinario de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "sauce",
@@ -2208,7 +2279,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Sauce con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "vid_roja",
@@ -2268,7 +2341,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hoja de Vid con eficacia probada para calmar y mejorar los síntomas de fragilidad capilar de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "te_verde",
@@ -2324,7 +2399,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Te Verde con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "boldo",
@@ -2381,7 +2458,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Boldo con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "canela",
@@ -2438,7 +2517,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Canela con eficacia probada para calmar y mejorar los síntomas de gases de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hamamelis",
@@ -2497,7 +2578,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hamamelis con eficacia probada para calmar y mejorar los síntomas de fragilidad capilar de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "psyllium",
@@ -2562,7 +2645,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Psyllium (Ispaghula) con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "llanten",
@@ -2622,7 +2707,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Llanten con eficacia probada para calmar y mejorar los síntomas de bucal de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hinojo",
@@ -2688,7 +2775,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hinojo Dulce con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "alcachofa",
@@ -2751,7 +2840,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Alcachofa con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "castano_indias",
@@ -2812,7 +2903,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Castano de Indias con eficacia probada para calmar y mejorar los síntomas de hemorroides de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hiedra",
@@ -2874,7 +2967,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hiedra Comun con eficacia probada para calmar y mejorar los síntomas de bronquitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "salvia",
@@ -2940,7 +3035,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Salvia con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "malva",
@@ -3002,7 +3099,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Malva con eficacia probada para calmar y mejorar los síntomas de faringitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ulmaria",
@@ -3063,7 +3162,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ulmaria (Reina de los Prados) con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "olivo",
@@ -3136,7 +3237,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hoja de Olivo con eficacia probada para calmar y mejorar los síntomas de diurético de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "grosellero_negro",
@@ -3195,7 +3298,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Grosellero Negro con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "lino",
@@ -3264,7 +3369,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Lino (Linaza) con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "fenogreco",
@@ -3327,7 +3434,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Fenogreco con eficacia probada para calmar y mejorar los síntomas de apetito de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "rusco",
@@ -3388,7 +3497,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Rusco (Bruco) con eficacia probada para calmar y mejorar los síntomas de fragilidad capilar de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "lupulo",
@@ -3453,7 +3564,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Lupulo con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "zarzaparrilla",
@@ -3513,7 +3626,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Zarzaparrilla con eficacia probada para calmar y mejorar los síntomas de diurético de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "tilo",
@@ -3576,7 +3691,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Tilo con eficacia probada para calmar y mejorar los síntomas de estrés de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "anis_verde",
@@ -3640,7 +3757,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Anis Verde con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "sen",
@@ -3703,7 +3822,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Sen con eficacia probada para calmar y mejorar los síntomas de estreñimiento de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "meliloto",
@@ -3766,7 +3887,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Meliloto con eficacia probada para calmar y mejorar los síntomas de edema leve de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cola_caballo",
@@ -3840,7 +3963,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cola de Caballo con eficacia probada para calmar y mejorar los síntomas de cabello de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "romero",
@@ -3910,7 +4035,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Romero con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "anis_estrellado",
@@ -3975,7 +4102,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Anis Estrellado con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "escaramujo",
@@ -4037,7 +4166,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Escaramujo (Rosa silvestre) con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "amapola_californiana",
@@ -4099,7 +4230,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Amapola de California con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "bacopa",
@@ -4159,7 +4292,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Bacopa con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "andrographis",
@@ -4220,7 +4355,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Andrographis con eficacia probada para calmar y mejorar los síntomas de amigdalitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pelargonium",
@@ -4282,7 +4419,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pelargonium con eficacia probada para calmar y mejorar los síntomas de amigdalitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "arandano_rojo",
@@ -4338,7 +4477,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Arándano Rojo con eficacia probada para calmar y mejorar los síntomas de urinario de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "trebol_rojo",
@@ -4396,7 +4537,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Trébol Rojo con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pygeum",
@@ -4451,7 +4594,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pygeum con eficacia probada para calmar y mejorar los síntomas de prostata de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "semilla_calabaza",
@@ -4507,7 +4652,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Semilla de Calabaza con eficacia probada para calmar y mejorar los síntomas de prostata de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cascara_sagrada",
@@ -4566,7 +4713,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cáscara Sagrada con eficacia probada para calmar y mejorar los síntomas de constipación de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "milenrama",
@@ -4628,7 +4777,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Milenrama con eficacia probada para calmar y mejorar los síntomas de apetito de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "gordolobo",
@@ -4689,7 +4840,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Gordolobo con eficacia probada para calmar y mejorar los síntomas de bronquitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "fumaria",
@@ -4749,7 +4902,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Fumaria con eficacia probada para calmar y mejorar los síntomas de eccema de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "petasites",
@@ -4807,7 +4962,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Petasites con eficacia probada para calmar y mejorar los síntomas de alergias de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "nigella",
@@ -4873,7 +5030,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Comino Negro con eficacia probada para calmar y mejorar los síntomas de alergias de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cordyceps",
@@ -4937,7 +5096,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cordyceps con eficacia probada para calmar y mejorar los síntomas de asma de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hericium",
@@ -4997,7 +5158,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hericium (Cola de León) con eficacia probada para calmar y mejorar los síntomas de cognitivo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "azafran",
@@ -5056,7 +5219,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Azafrán (Extracto) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "tulsi",
@@ -5120,7 +5285,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Albahaca Santa (Tulsi) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "solidago",
@@ -5188,7 +5355,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Vara de Oro con eficacia probada para calmar y mejorar los síntomas de cálculos de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "agrimonia",
@@ -5250,7 +5419,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Agrimonia con eficacia probada para calmar y mejorar los síntomas de bucal de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "drosera",
@@ -5309,7 +5480,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Rocío del Sol con eficacia probada para calmar y mejorar los síntomas de espasmos de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "abedul",
@@ -5370,7 +5543,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hoja de Abedul con eficacia probada para calmar y mejorar los síntomas de cálculos de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "orthosiphon",
@@ -5428,7 +5603,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Té de Java con eficacia probada para calmar y mejorar los síntomas de cálculos de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "alchemilla",
@@ -5490,7 +5667,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pie de León con eficacia probada para calmar y mejorar los síntomas de cicatrización de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "astragalus",
@@ -5555,7 +5734,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Astrágalo con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "gymnema",
@@ -5614,7 +5795,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Gymnema con eficacia probada para calmar y mejorar los síntomas de glucosa de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "trametes",
@@ -5673,7 +5856,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Trametes (Cola de Pavo) con eficacia probada para calmar y mejorar los síntomas de inmunidad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "maitake",
@@ -5732,7 +5917,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Maitake con eficacia probada para calmar y mejorar los síntomas de glucosa de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "tribulus",
@@ -5793,7 +5980,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Tribulus con eficacia probada para calmar y mejorar los síntomas de energía de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pau_d_arco",
@@ -5854,7 +6043,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pau d'Arco con eficacia probada para calmar y mejorar los síntomas de antifúngico de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "musgo_islandia",
@@ -5916,7 +6107,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Musgo de Islandia con eficacia probada para calmar y mejorar los síntomas de apetito de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "moringa",
@@ -5979,7 +6172,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Moringa con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "chaga",
@@ -6040,7 +6235,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Chaga con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "shiitake",
@@ -6101,7 +6298,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Shiitake con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "bardana",
@@ -6164,7 +6363,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Bardana con eficacia probada para calmar y mejorar los síntomas de acné de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "sea_buckthorn",
@@ -6227,7 +6428,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Espino Amarillo con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "jiaogulan",
@@ -6291,7 +6494,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Jiaogulan con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "kava",
@@ -6355,7 +6560,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Kava con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "mucuna",
@@ -6416,7 +6623,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Mucuna con eficacia probada para calmar y mejorar los síntomas de depresión de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "triphala",
@@ -6479,7 +6688,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Triphala con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "guggulu",
@@ -6551,7 +6762,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Guggul con eficacia probada para calmar y mejorar los síntomas de acné de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "arjuna",
@@ -6611,7 +6824,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Arjuna con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "shatavari",
@@ -6672,7 +6887,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Shatavari con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "euphrasia_fito",
@@ -6733,7 +6950,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Eufrasia con eficacia probada para calmar y mejorar los síntomas de conjuntivitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "feverfew",
@@ -6793,7 +7012,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Matricaria (Feverfew) con eficacia probada para calmar y mejorar los síntomas de cefalea de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "bilberry",
@@ -6854,7 +7075,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Arándano Negro (Mirtilo) con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ammi_visnaga",
@@ -6917,7 +7140,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Biznaga (Visnaga) con eficacia probada para calmar y mejorar los síntomas de angina (tradicional) de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "viburnum_opulus",
@@ -6978,7 +7203,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cáscara Sagrada Menor (Cramp Bark) con eficacia probada para calmar y mejorar los síntomas de cólicos menstruales de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "collinsonia",
@@ -7037,7 +7264,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Collinsonia (Raíz de Piedra) con eficacia probada para calmar y mejorar los síntomas de estreñimiento de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "skullcap",
@@ -7097,7 +7326,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Escutelaria (Skullcap) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "baptisia",
@@ -7155,7 +7386,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Baptisia (Índigo Silvestre) con eficacia probada para calmar y mejorar los síntomas de faringitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "grindelia",
@@ -7216,7 +7449,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Grindelia (Goma de Fenal) con eficacia probada para calmar y mejorar los síntomas de asma de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "yerba_mate",
@@ -7279,7 +7514,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Yerba Mate con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "goji",
@@ -7342,7 +7579,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Goji con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "he_shou_wu",
@@ -7406,7 +7645,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de He Shou Wu con eficacia probada para calmar y mejorar los síntomas de cabello de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "danshen",
@@ -7468,7 +7709,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Danshen (Salvia Miltiorrhiza) con eficacia probada para calmar y mejorar los síntomas de angina (coadyuvante) de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "white_peony",
@@ -7529,7 +7772,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Peonía Blanca con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "jujube",
@@ -7591,7 +7836,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Jujube (Dátiles Rojos) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pasionaria",
@@ -7652,7 +7899,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pasiflora (Pasiónaria) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "genciana",
@@ -7710,7 +7959,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Genciana con eficacia probada para calmar y mejorar los síntomas de digestión lenta de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "zaragatona",
@@ -7772,7 +8023,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Zaragatona con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "malvavisco",
@@ -7834,7 +8087,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Malvavisco con eficacia probada para calmar y mejorar los síntomas de cicatrización de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "diente_leon",
@@ -7905,7 +8160,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Diente de León con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "borraja",
@@ -7964,7 +8221,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Borraja con eficacia probada para calmar y mejorar los síntomas de eccema de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "nogal",
@@ -8024,7 +8283,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Nogal con eficacia probada para calmar y mejorar los síntomas de antifúngico de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "fresno",
@@ -8084,7 +8345,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Fresno con eficacia probada para calmar y mejorar los síntomas de articulaciones de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "verbasco",
@@ -8142,7 +8405,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Verbasco (Gordolobo) con eficacia probada para calmar y mejorar los síntomas de bronquitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "liquen_islandia",
@@ -8202,7 +8467,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Líquen de Islandia con eficacia probada para calmar y mejorar los síntomas de apetito de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pimienta_cayena",
@@ -8270,7 +8537,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pimienta de Cayena (Capsicum) con eficacia probada para calmar y mejorar los síntomas de artrosis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pycnogenol",
@@ -8333,7 +8602,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pycnogenol (Corteza de Pino Marítimo) con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "damiana",
@@ -8402,7 +8673,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Damiana con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "muira_puama",
@@ -8464,7 +8737,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Muira Puama (Madera de la Potencia) con eficacia probada para calmar y mejorar los síntomas de depresion de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "kudzu",
@@ -8529,7 +8804,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Kudzu con eficacia probada para calmar y mejorar los síntomas de alcoholismo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "kanna",
@@ -8592,7 +8869,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Kanna (Sceletium) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "amla",
@@ -8658,7 +8937,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Amla (Grosellero Indio) con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "olmo_america",
@@ -8722,7 +9003,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Olmo Americano (Slippery Elm) con eficacia probada para calmar y mejorar los síntomas de diarrea de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pimpinela",
@@ -8782,7 +9065,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pimpinela (Hierba de las Llagas) con eficacia probada para calmar y mejorar los síntomas de cicatrizacion de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pulmonaria",
@@ -8841,7 +9126,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pulmonaria con eficacia probada para calmar y mejorar los síntomas de asma de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pensamiento",
@@ -8903,7 +9190,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pensamiento Silvestre con eficacia probada para calmar y mejorar los síntomas de acne de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ajenjo",
@@ -8967,7 +9256,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ajenjo (Absintio) con eficacia probada para calmar y mejorar los síntomas de anorexia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "guarana",
@@ -9033,7 +9324,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Guaraná con eficacia probada para calmar y mejorar los síntomas de astenia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "te_rojo",
@@ -9094,7 +9387,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Té Rojo (Pu-erh) con eficacia probada para calmar y mejorar los síntomas de colesterol alto de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "rooibos",
@@ -9155,7 +9450,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Rooibos (Té Rojo Africano) con eficacia probada para calmar y mejorar los síntomas de alergias de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "epimedium",
@@ -9221,7 +9518,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Epimedium (Horny Goat Weed) con eficacia probada para calmar y mejorar los síntomas de disfunción eréctil de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "tongkat_ali",
@@ -9284,7 +9583,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Tongkat Ali con eficacia probada para calmar y mejorar los síntomas de disfunción eréctil de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cnidium",
@@ -9345,7 +9646,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cnidium con eficacia probada para calmar y mejorar los síntomas de candidiasis vaginal de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "chanca_piedra",
@@ -9407,7 +9710,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Chanca Piedra con eficacia probada para calmar y mejorar los síntomas de calculos biliares de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "graviola",
@@ -9471,7 +9776,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Graviola con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "condurango",
@@ -9528,7 +9835,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Condurango con eficacia probada para calmar y mejorar los síntomas de dispepsia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "chuchuhuasi",
@@ -9590,7 +9899,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Chuchuhuasi con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pata_de_vaca",
@@ -9649,7 +9960,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pata de Vaca con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "nopal",
@@ -9712,7 +10025,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Nopal (Cladodio) con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "chia",
@@ -9775,7 +10090,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Chía (Semilla) con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cuscuta",
@@ -9837,7 +10154,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cúscuta (Semilla) con eficacia probada para calmar y mejorar los síntomas de disfunción eréctil de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pomegranate",
@@ -9895,7 +10214,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Granada con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "saffron_crocin",
@@ -9950,7 +10271,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Azafrán (Extracto estandarizado) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "maral_root",
@@ -10005,7 +10328,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Rallar (Rhaponticum) con eficacia probada para calmar y mejorar los síntomas de fatiga de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "elderberry_ext",
@@ -10061,7 +10386,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Saúco (Extracto estandarizado) con eficacia probada para calmar y mejorar los síntomas de gripe de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "picrorhiza_kurroa",
@@ -10117,7 +10444,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Picrorhiza (Kutki) con eficacia probada para calmar y mejorar los síntomas de hepatico de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "tinospora",
@@ -10172,7 +10501,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Tinospora (Guduchi) con eficacia probada para calmar y mejorar los síntomas de alergias de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "centella_asiatica_ext",
@@ -10230,7 +10561,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Centella Asiática (Extracto titulado) con eficacia probada para calmar y mejorar los síntomas de cicatrizacion de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ivy_leaf_ext",
@@ -10287,7 +10620,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hiedra (Extracto estandarizado) con eficacia probada para calmar y mejorar los síntomas de bronquitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pelargonium_ext",
@@ -10343,7 +10678,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pelargonium (Extracto EPs 7630) con eficacia probada para calmar y mejorar los síntomas de bronquitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ginseng_panax_red",
@@ -10401,7 +10738,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ginseng Rojo Coreano con eficacia probada para calmar y mejorar los síntomas de cognitivo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "polygonum_cuspidatum",
@@ -10454,7 +10793,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Polygonum (Cuspidatum) con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cistanche",
@@ -10511,7 +10852,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cistanche con eficacia probada para calmar y mejorar los síntomas de cognitivo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "morinda_officinalis",
@@ -10568,7 +10911,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Morinda (Ba Ji Tian) con eficacia probada para calmar y mejorar los síntomas de depresion de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "evodia",
@@ -10621,7 +10966,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Evodia con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "uncaria_tomentosa_ext",
@@ -10676,7 +11023,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Uña de Gato (Extracto) con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "salvia_miltiorrhiza_bge",
@@ -10731,7 +11080,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Salvia (Danshen) con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "prunella_vulgaris",
@@ -10784,7 +11135,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Prunela con eficacia probada para calmar y mejorar los síntomas de inmunidad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "scutellaria_baicalensis",
@@ -10839,7 +11192,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Escutelaria Baicalensis con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "rehmannia",
@@ -10893,7 +11248,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Rehmannia con eficacia probada para calmar y mejorar los síntomas de anemia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ganoderma_lucidum",
@@ -10951,7 +11308,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Reishi (Ganoderma) con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "buchu",
@@ -11010,7 +11369,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Buchu con eficacia probada para calmar y mejorar los síntomas de cistitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "bupleurum",
@@ -11069,7 +11430,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Bupleurum con eficacia probada para calmar y mejorar los síntomas de depresión de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "antocianinas_arandano",
@@ -11128,7 +11491,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Antocianinas de Arándano Negro con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "marrubio",
@@ -11196,7 +11561,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Marrubio con eficacia probada para calmar y mejorar los síntomas de apetito de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hierba_luisa",
@@ -11253,7 +11620,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hierba Luisa con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "vinca",
@@ -11314,7 +11683,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Vincapervinca con eficacia probada para calmar y mejorar los síntomas de circulación de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "estigma_maiz",
@@ -11375,7 +11746,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Estigma de Maíz con eficacia probada para calmar y mejorar los síntomas de cistitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "brezo",
@@ -11435,7 +11808,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Brezo con eficacia probada para calmar y mejorar los síntomas de cistitis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "diosmina",
@@ -11492,7 +11867,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Diosmina (Smilax/Dioscorea) con eficacia probada para calmar y mejorar los síntomas de hemorroides de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "fucus",
@@ -11555,7 +11932,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Fucus con eficacia probada para calmar y mejorar los síntomas de energía de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "phyllanthus_niruri",
@@ -11619,7 +11998,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Phyllanthus niruri con eficacia probada para calmar y mejorar los síntomas de antiviral de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "grama",
@@ -11681,7 +12062,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Grama con eficacia probada para calmar y mejorar los síntomas de cálculos de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "maqui",
@@ -11743,7 +12126,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Maqui con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "guduchi",
@@ -11807,7 +12192,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Guduchi con eficacia probada para calmar y mejorar los síntomas de estrés de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "artemisia_capilaris",
@@ -11868,7 +12255,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Artemisia Capilaris con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "rubus_idaeus",
@@ -11929,7 +12318,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Frambuesa Roja con eficacia probada para calmar y mejorar los síntomas de embarazo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "polygala",
@@ -11990,7 +12381,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Polygala con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "lycopus",
@@ -12053,7 +12446,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Lycopus con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "hydrangea",
@@ -12114,7 +12509,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Hydrangea con eficacia probada para calmar y mejorar los síntomas de articular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "notoginseng",
@@ -12177,7 +12574,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Notoginseng con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "avena_sativa",
@@ -12242,7 +12641,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Avena Sativa con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "ginkgo_biloba_ocular",
@@ -12302,7 +12703,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Ginkgo Biloba Extracto (Ocular) con eficacia probada para calmar y mejorar los síntomas de ocular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "goldenrod",
@@ -12360,7 +12763,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Solidago (Vara de Oro) con eficacia probada para calmar y mejorar los síntomas de infeccion urinaria de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "diente_leon_raiz",
@@ -12423,7 +12828,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Diente de Leon (Raiz) con eficacia probada para calmar y mejorar los síntomas de detox de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "maca_negra",
@@ -12478,7 +12885,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Maca Negra con eficacia probada para calmar y mejorar los síntomas de libido de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "picrorrhiza",
@@ -12548,7 +12957,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Picrorhiza con eficacia probada para calmar y mejorar los síntomas de higado graso de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "regaliz_dgl",
@@ -12608,7 +13019,9 @@
         "hipertension": "evitar",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Regaliz DGL (Deglicirrizado) con eficacia probada para calmar y mejorar los síntomas de ulceras de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "gymnema_sylvestre",
@@ -12670,7 +13083,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Gymnema Sylvestre con eficacia probada para calmar y mejorar los síntomas de diabetes de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "kelp_yodo",
@@ -12732,7 +13147,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Kelp (Yodo) con eficacia probada para calmar y mejorar los síntomas de hipotiroidismo de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "mirtilo",
@@ -12794,7 +13211,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Mirtilo con eficacia probada para calmar y mejorar los síntomas de ocular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "aronia",
@@ -12854,7 +13273,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Aronia con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "olmaria",
@@ -12918,7 +13339,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Olmaria con eficacia probada para calmar y mejorar los síntomas de dolor de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "verbeno",
@@ -12980,7 +13403,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Verbeno con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "pueraria",
@@ -13040,7 +13465,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Pueraria con eficacia probada para calmar y mejorar los síntomas de menopausia de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "desmodium",
@@ -13093,7 +13520,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Desmodium con eficacia probada para calmar y mejorar los síntomas de hepatico de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "achicoria",
@@ -13153,7 +13582,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Achicoria con eficacia probada para calmar y mejorar los síntomas de hepatico de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "esquizandra",
@@ -13217,7 +13648,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Esquizandra con eficacia probada para calmar y mejorar los síntomas de hepatico de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "estevia",
@@ -13278,7 +13711,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Estevia con eficacia probada para calmar y mejorar los síntomas de glucosa de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "naranjo_amargo",
@@ -13342,7 +13777,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Naranjo Amargo con eficacia probada para calmar y mejorar los síntomas de ansiedad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "sarmiento",
@@ -13403,7 +13840,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Sarmiento con eficacia probada para calmar y mejorar los síntomas de cardiovascular de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "acai",
@@ -13469,7 +13908,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Açaí con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "manzana",
@@ -13533,7 +13974,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Manzana con eficacia probada para calmar y mejorar los síntomas de colesterol de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "quillay",
@@ -13597,7 +14040,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Quillay con eficacia probada para calmar y mejorar los síntomas de inmunidad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "calafate",
@@ -13658,7 +14103,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Calafate con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "capuchina",
@@ -13723,7 +14170,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Capuchina con eficacia probada para calmar y mejorar los síntomas de inmunidad de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "edelweiss",
@@ -13782,7 +14231,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Edelweiss con eficacia probada para calmar y mejorar los síntomas de antioxidante de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "cafeina",
@@ -13863,7 +14314,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Cafeína con eficacia probada para calmar y mejorar los síntomas de concentracion de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "serenoa_repens",
@@ -13922,7 +14375,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Serenoa Repens (Saw Palmetto) con eficacia probada para calmar y mejorar los síntomas de hiperplasia_prostatica_benigna de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "rhodiola_rosea",
@@ -13982,7 +14437,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Rhodiola Rosea con eficacia probada para calmar y mejorar los síntomas de estres_adaptogeno de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "echinacea_purpurea",
@@ -14042,7 +14499,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Equinácea (Echinacea purpurea) con eficacia probada para calmar y mejorar los síntomas de infecciones_respiratorias de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "propolis",
@@ -14102,7 +14561,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Propóleo (Propolis) con eficacia probada para calmar y mejorar los síntomas de infecciones_garganta de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "castano_de_indias",
@@ -14162,7 +14623,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Castaño de Indias con eficacia probada para calmar y mejorar los síntomas de insuficiencia_venosa de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "boswellia_serrata",
@@ -14220,7 +14683,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Boswellia (Boswellia serrata) con eficacia probada para calmar y mejorar los síntomas de artritis de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "bromelina",
@@ -14276,7 +14741,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Bromelina (Enzima de Piña) con eficacia probada para calmar y mejorar los síntomas de edema de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     },
     {
       "id": "melena_leon",
@@ -14338,7 +14805,9 @@
         "hipertension": "apto",
         "diabetes": "apto",
         "celiacos": "apto"
-      }
+      },
+      "beneficioCliente": "Extracto natural de Melena de León (Hericium erinaceus) con eficacia probada para calmar y mejorar los síntomas de memoria_cognicion de forma respetuosa con el organismo.",
+      "posologia": "1 a 2 cápsulas o comprimidos al día (o 20-30 gotas de extracto fluido) repartidos antes de las principales comidas."
     }
   ]
 }

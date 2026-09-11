@@ -99,7 +99,8 @@ describe('CommandPalette', () => {
   it('muestra los items de navegación cuando no hay query', async () => {
     renderPalette(true);
     await waitFor(() => {
-      expect(screen.getByText('Inicio / Búsqueda')).toBeTruthy();
+      expect(screen.getByText('Inicio')).toBeTruthy();
+      expect(screen.getByText('Información y Búsqueda App')).toBeTruthy();
       expect(screen.getByText('Base de Conocimiento')).toBeTruthy();
       expect(screen.getByText('Sinergias')).toBeTruthy();
       expect(screen.getByText('Configuración')).toBeTruthy();
@@ -167,7 +168,7 @@ describe('CommandPalette', () => {
     fireEvent.change(input, { target: { value: 'zzzzzzz_no_existe' } });
     await waitFor(() => {
       // Los nav items siempre están presentes
-      expect(screen.getByText('Inicio / Búsqueda')).toBeTruthy();
+      expect(screen.getByText('Inicio')).toBeTruthy();
       expect(screen.getByText('Configuración')).toBeTruthy();
     });
   });
@@ -184,7 +185,7 @@ describe('CommandPalette', () => {
   it('navega con ArrowDown cambiando el item activo', async () => {
     renderPalette(true);
     await waitFor(() => {
-      expect(screen.getByText('Inicio / Búsqueda')).toBeTruthy();
+      expect(screen.getByText('Inicio')).toBeTruthy();
     });
     // El primer item debería estar activo (CornerDownLeft visible)
     // Disparar ArrowDown no debe lanzar errores
@@ -192,7 +193,7 @@ describe('CommandPalette', () => {
     fireEvent.keyDown(window, { key: 'ArrowDown' });
     // No hay forma fácil de verificar el item activo sin clases CSS,
     // pero verificar que no crashea
-    expect(screen.getByText('Inicio / Búsqueda')).toBeTruthy();
+    expect(screen.getByText('Inicio')).toBeTruthy();
   });
 
   it('no crashea al re-abrir (regresión: el bug de crypto.randomUUID)', async () => {

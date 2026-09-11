@@ -41,7 +41,7 @@ export type {
 // VERSIÓN DE LA DB
 // ============================================
 
-export const DB_VERSION = 5;
+export const DB_VERSION = 6;
 
 // ============================================
 // INTERFACES DE ENTIDADES
@@ -396,7 +396,25 @@ export class VademecumDB extends Dexie {
       favorites: 'id, ingredientId, createdAt',
       productIngredients: 'id, productoSku, ingredientId',
       productIngredientAnalysis: 'productoSku',
-      clinicalExplanations: 'id, ingredienteId, patologiaId, [ingredienteId+patologiaId]',
+      clinicalExplanations: 'id, ingredienteId, patologiaId, [ingredienteId+patologiaId], tombstone',
+    });
+
+    // v6: añade índice tombstone a clinicalExplanations para soporte de soft delete y queries de búsqueda
+    this.version(6).stores({
+      products: 'sku, nombreComercial, categoria, source, updatedAt, tombstone',
+      ingredients: 'id, nombre, categoria, updatedAt, tombstone',
+      synergies: 'id, ingredienteA, ingredienteB, tipo, nivel, tombstone',
+      protocols: 'id, updatedAt, tombstone',
+      pathologies: 'id, nombre, updatedAt, tombstone',
+      outbox: 'id, status, createdAt, table, idempotencyKey',
+      conflicts: 'id, table, recordId, detectedAt, resolution',
+      snapshots: 'id, type, timestamp',
+      syncMeta: 'key, updatedAt',
+      errorLog: 'id, timestamp, level',
+      favorites: 'id, ingredientId, createdAt',
+      productIngredients: 'id, productoSku, ingredientId',
+      productIngredientAnalysis: 'productoSku',
+      clinicalExplanations: 'id, ingredienteId, patologiaId, [ingredienteId+patologiaId], tombstone',
     });
   }
 }
