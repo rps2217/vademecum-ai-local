@@ -16,6 +16,7 @@ import { useAdminAuth } from '@/hooks/useAdminAuth';
 import { useAppAuth } from '@/app/AppAuthProvider';
 import { Input } from '@/ui/Input';
 import { toast } from 'sonner';
+import { exportErrorLogs } from '@/lib/errorLog';
 
 type Tab = 'appearance' | 'sync' | 'ai' | 'data' | 'account';
 
@@ -145,7 +146,6 @@ export function SettingsPage() {
                     <p className="text-sm text-muted-foreground">Descarga el registro de errores para soporte</p>
                   </div>
                   <Button variant="outline" onClick={async () => {
-                    const { exportErrorLogs } = await import('@/lib/errorLog');
                     const logs = await exportErrorLogs();
                     const blob = new Blob([logs || 'Sin errores registrados.'], { type: 'text/plain' });
                     const url = URL.createObjectURL(blob);
