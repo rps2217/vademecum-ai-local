@@ -14,4 +14,5 @@ export { AdminPage } from './AdminPage';
 export { SettingsPage } from './SettingsPage';
 export { ProtocolsPage } from './ProtocolsPage';
 export { HomeopathyPage } from './HomeopathyPage';
+export { PathologyGuidePage } from './PathologyGuidePage';
 export { SinglePageWorkspace } from './SinglePageWorkspace';

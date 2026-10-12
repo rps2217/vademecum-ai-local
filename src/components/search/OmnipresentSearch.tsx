@@ -71,6 +71,34 @@ const SUGGESTIONS = [
   { label: 'Magnesio y relajación muscular', query: 'magnesio', category: 'all' as OmniCategory },
 ];
 
+function createFallbackIngredient(name: string, type: 'ingredient' | 'product', id: string): DbIngredient {
+  return {
+    id: `${type}-${id}`,
+    nombre: name,
+    sinonimos: [],
+    categoria: 'fitoterapia',
+    sistemas: [],
+    indicaciones: [],
+    evidencia: 'B',
+    propiedades: [type === 'product' ? 'Producto recomendado' : 'Ingrediente activo'],
+    seguridad: {
+      embarazo: 'evitar',
+      lactancia: 'evitar',
+      pediatria: 'evitar',
+      hipertension: 'apto',
+      diabetes: 'apto',
+      celiacos: 'apto',
+    },
+    interacciones: [],
+    fuentes: [],
+    lamport: 0,
+    deviceId: 'local',
+    updatedAt: 0,
+    createdAt: 0,
+    tombstone: 0,
+  };
+}
+
 export function OmnipresentSearch({
   className,
   initialQuery = '',
@@ -207,15 +235,15 @@ export function OmnipresentSearch({
     name: string,
     type: 'ingredient' | 'product',
     id: string,
-    e: React.MouseEvent
+    e: React.MouseEvent,
+    ingredientObj?: DbIngredient
   ) => {
     e.stopPropagation();
-    addToTray({
-      id: `${type}-${id}`,
-      type,
-      name,
-      notes: type === 'product' ? 'Producto recomendado' : 'Ingrediente activo',
-    });
+    if (ingredientObj) {
+      addToTray(ingredientObj);
+    } else {
+      addToTray(createFallbackIngredient(name, type, id));
+    }
     toast.success(`Añadido a la bandeja del mostrador: ${name}`);
   };
 
@@ -386,9 +414,9 @@ export function OmnipresentSearch({
                       onCopy={(e) => handleCopyExplanation(item, e)}
                       onAddToCounter={(e) =>
                         item.ingredient &&
-                        handleAddToCounter(item.ingredient.nombre, 'ingredient', item.ingredient.id, e)
+                        handleAddToCounter(item.ingredient.nombre, 'ingredient', item.ingredient.id, e, item.ingredient)
                       }
-                      isInTray={item.ingredient ? isInTray(`ingredient-${item.ingredient.id}`) : false}
+                      isInTray={item.ingredient ? (isInTray(item.ingredient.id) || isInTray(`ingredient-${item.ingredient.id}`)) : false}
                     />
                   );
                 }
@@ -401,9 +429,9 @@ export function OmnipresentSearch({
                       isSelected={isSelected}
                       onSelect={() => handleSelectResult(item)}
                       onAddToCounter={(e) =>
-                        handleAddToCounter(item.ingredient.nombre, 'ingredient', item.ingredient.id, e)
+                        handleAddToCounter(item.ingredient.nombre, 'ingredient', item.ingredient.id, e, item.ingredient)
                       }
-                      isInTray={isInTray(`ingredient-${item.ingredient.id}`)}
+                      isInTray={isInTray(item.ingredient.id) || isInTray(`ingredient-${item.ingredient.id}`)}
                     />
                   );
                 }

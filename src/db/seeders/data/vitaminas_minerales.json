@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Vitaminas y Minerales",
     "descripcion": "Suplementos nutricionales esenciales",
-    "version": "2.0.0",
-    "ultimaActualizacion": "2026-09-08",
-    "total": 195,
+    "version": "2.1.0",
+    "ultimaActualizacion": "2026-10-12",
+    "total": 200,
     "fuente": "Vademecum AI Knowledge Base + NIH ODS Fact Sheets"
   },
   "ingredientes": [
@@ -13007,6 +13007,335 @@
       },
       "beneficioCliente": "Nutriente esencial que ayuda a mantener el equilibrio en caso de fatiga_cronica, reforzando la vitalidad y la salud del organismo.",
       "posologia": "1 cápsula o comprimido al día preferentemente con las comidas junto con un vaso de agua."
+    },
+    {
+      "id": "rutina",
+      "nombre": "Rutina",
+      "nombresAlternativos": [
+        "Rutosido",
+        "Rutin",
+        "Sophrin",
+        "Quercetina-3-rutinósido"
+      ],
+      "nombreCientifico": "Rutoside",
+      "familia": "Flavonoide",
+      "categoria": "vitamina",
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "circulacion",
+        "antioxidante",
+        "inflamacion"
+      ],
+      "descripcion": "Bioflavonoide cítrico glucósido de quercetina con marcada acción venotónica, protectora capilar y antioxidante.",
+      "mecanismoAccion": "Disminuye la permeabilidad capilar patológica y aumenta la resistencia vascular inhibiendo la enzima hialuronidasa y la oxidación lipídica.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "200-500mg/día",
+      "dosisMaxima": "1000mg/día",
+      "formaQuimica": [
+        "Rutosido trihidrato",
+        "Troxerutina"
+      ],
+      "biodisponibilidad": "Metabolizado por microbiota colónica a quercetina bioactiva",
+      "momentoToma": [
+        "Con las comidas"
+      ],
+      "tomarCon": [
+        "Vitamina C",
+        "Hesperidina"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Precaución si se toman anticoagulantes orales a dosis altas"
+      ],
+      "tags": [
+        "varices",
+        "piernas-pesadas",
+        "circulacion",
+        "capilares"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-10-12"
+      },
+      "interaccionesMedicamentosas": [
+        "Puede potenciar levemente el efecto de antiagregantes plaquetarios"
+      ],
+      "seguridad": {
+        "embarazo": "precaucion",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Refuerza las paredes capilares y alivia rápidamente la pesadez y molestias en piernas cansadas y varices.",
+      "posologia": "1 comprimido de 500mg al día junto a una comida principal."
+    },
+    {
+      "id": "nattokinasa",
+      "nombre": "Nattokinasa",
+      "nombresAlternativos": [
+        "Nattokinase",
+        "Fermented natto extract",
+        "Subtilisina NAT"
+      ],
+      "nombreCientifico": "Bacillus subtilis var. natto protease",
+      "familia": "Enzima fibrinolítica",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "cardiovascular",
+        "circulacion",
+        "colesterol"
+      ],
+      "descripcion": "Enzima serina-proteasa obtenida de la fermentación de soja por Bacillus subtilis con potente actividad fibrinolítica natural.",
+      "mecanismoAccion": "Degrada directamente la fibrina, aumenta el activador tisular del plasminógeno (t-PA) y descompone el inhibidor PAI-1, optimizando el flujo sanguíneo.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "2000 FU/día (aprox. 100mg)",
+      "dosisMaxima": "4000 FU/día",
+      "formaQuimica": [
+        "Extracto purificado de natto sin vitamina K2"
+      ],
+      "biodisponibilidad": "Absorbida intacta por la mucosa intestinal",
+      "momentoToma": [
+        "En ayunas o con el estómago vacío antes de acostarse"
+      ],
+      "tomarCon": [
+        "Coenzima Q10",
+        "Omega-3"
+      ],
+      "evitarCon": [
+        "Anticoagulantes orales farmacológicos (sintrom, warfarina) sin control médico"
+      ],
+      "advertencias": [
+        "Contraindicado en pacientes con trastornos de coagulación o cirugías programadas (suspender 2 semanas antes)"
+      ],
+      "tags": [
+        "trombosis",
+        "circulacion",
+        "fibrina",
+        "cardiovascular"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-10-12"
+      },
+      "interaccionesMedicamentosas": [
+        "Antiagregantes y anticoagulantes (riesgo de sangrado aumentado)"
+      ],
+      "seguridad": {
+        "embarazo": "no_recomendado",
+        "lactancia": "no_recomendado",
+        "pediatria": "no_recomendado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Favorece una circulación sanguínea fluida y saludable protegiendo las arterias de la acumulación de fibrina.",
+      "posologia": "1 cápsula (2000 FU) por la noche con el estómago vacío junto a un vaso de agua."
+    },
+    {
+      "id": "serrapeptasa",
+      "nombre": "Serrapeptasa",
+      "nombresAlternativos": [
+        "Serrapeptase",
+        "Serratiopeptidasa",
+        "Serratia peptidase"
+      ],
+      "nombreCientifico": "Serratia marcescens E-15 metalloprotease",
+      "familia": "Enzima proteolítica",
+      "categoria": "aminoacido",
+      "sistemas": [
+        "respiratorio",
+        "musculoesqueletico",
+        "inmune"
+      ],
+      "indicaciones": [
+        "inflamacion",
+        "dolor",
+        "respiratorio",
+        "articular"
+      ],
+      "descripcion": "Enzima proteolítica sistémica con propiedades antiinflamatorias, mucolíticas y analgésicas comprobadas en inflamaciones agudas y crónicas.",
+      "mecanismoAccion": "Hidroliza la bradicinina y restos celulares necróticos, fluidifica secreciones bronquiales y degrada microtrombos inflamatorios sin dañar tejido vivo.",
+      "nivelEvidencia": "B",
+      "dosisDiaria": "10-30mg/día (20.000 - 60.000 UI)",
+      "dosisMaxima": "120.000 UI/día",
+      "formaQuimica": [
+        "Cápsula con recubrimiento entérico (resistente al ácido gástrico)"
+      ],
+      "biodisponibilidad": "Requiere liberación entérica para evitar desnaturalización gástrica",
+      "momentoToma": [
+        "Al menos 30 minutos antes de las comidas o 2 horas después"
+      ],
+      "tomarCon": [
+        "Bromelina",
+        "Quercetina"
+      ],
+      "evitarCon": [
+        "Comidas copiosas simultáneas"
+      ],
+      "advertencias": [
+        "Suspender 2 semanas antes de intervenciones quirúrgicas"
+      ],
+      "tags": [
+        "inflamacion",
+        "edema",
+        "mucosidad",
+        "sinusitis",
+        "articulaciones"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-10-12"
+      },
+      "interaccionesMedicamentosas": [
+        "Puede potenciar la biodisponibilidad tisular de antibióticos",
+        "Precaución con anticoagulantes"
+      ],
+      "seguridad": {
+        "embarazo": "no_recomendado",
+        "lactancia": "precaucion",
+        "pediatria": "precaucion",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Alivia la inflamación, acelera la resolución de edemas y facilita la limpieza de vías respiratorias congestionadas.",
+      "posologia": "1 cápsula entérica (40.000 UI) con el estómago vacío 1 o 2 veces al día."
+    },
+    {
+      "id": "calostro_bovino",
+      "nombre": "Calostro Bovino",
+      "nombresAlternativos": [
+        "Bovine colostrum",
+        "Calostro enriquecido",
+        "First milk"
+      ],
+      "nombreCientifico": "Bovine pre-milk",
+      "familia": "Derivado bioactivo lácteo",
+      "categoria": "probiotico",
+      "sistemas": [
+        "inmune",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "inmunidad",
+        "intestinal",
+        "gripe",
+        "rendimiento"
+      ],
+      "descripcion": "Primer fluido mamario producido tras el parto, excepcionalmente rico en inmunoglobulinas IgG, factores de crecimiento (IGF-1), lactoferrina y péptidos antimicrobianos.",
+      "mecanismoAccion": "Sella las uniones estrechas del epitelio intestinal (claudinas/ocludinas), neutraliza patógenos luminales mediante IgG y modula la respuesta inmune mucosal.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "1000-3000mg/día",
+      "dosisMaxima": "10000mg/día",
+      "formaQuimica": [
+        "Polvo de calostro desgrasado pasteurizado a baja temperatura"
+      ],
+      "biodisponibilidad": "Resistente a enzimas digestivas para acción tópica intestinal",
+      "momentoToma": [
+        "Por la mañana en ayunas disuelto en agua o bebida tibia"
+      ],
+      "tomarCon": [
+        "L-Glutamina",
+        "Probióticos"
+      ],
+      "evitarCon": [
+        "Líquidos hirviendo (desnaturaliza las inmunoglobulinas)"
+      ],
+      "advertencias": [
+        "Evitar en alergia confirmada a proteínas lácteas bovinas"
+      ],
+      "tags": [
+        "permeabilidad-intestinal",
+        "leaky-gut",
+        "defensas",
+        "inmunoglobulinas"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-10-12"
+      },
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas conocidas"
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Restaura la barrera intestinal frente al intestino permeable y potencia las defensas naturales del organismo.",
+      "posologia": "1 a 2 cucharadas dosificadoras (1500-3000mg) en ayunas con agua fría o templada."
+    },
+    {
+      "id": "dihidroberberina",
+      "nombre": "Dihidroberberina",
+      "nombresAlternativos": [
+        "Dihydroberberine",
+        "DHB",
+        "Glucovantage"
+      ],
+      "nombreCientifico": "7,8-Dihydroberberine",
+      "familia": "Alcaloide isoquinolínico reducido",
+      "categoria": "vitamina",
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ],
+      "indicaciones": [
+        "glucosa",
+        "colesterol",
+        "metabolico",
+        "energia"
+      ],
+      "descripcion": "Forma hidrogenada y reducida de la berberina con hasta 5 veces mayor absorción intestinal y excelente tolerancia gastrointestinal.",
+      "mecanismoAccion": "Se absorbe pasivamente en el enterocito y se oxida enzimáticamente a berberina activa en sangre, fosforilando potentemente la proteína quinasa AMPK.",
+      "nivelEvidencia": "A",
+      "dosisDiaria": "100-200mg/día",
+      "dosisMaxima": "400mg/día",
+      "formaQuimica": [
+        "Dihidroberberina hidrocloruro (DHB)"
+      ],
+      "biodisponibilidad": "5x superior a la berberina estándar, sin diarreas ni molestias gástricas",
+      "momentoToma": [
+        "15-30 minutos antes de las comidas principales ricas en carbohidratos"
+      ],
+      "tomarCon": [
+        "Picolinato de cromo",
+        "Ácido alfa lipoico"
+      ],
+      "evitarCon": [],
+      "advertencias": [
+        "Monitorizar glucemia si se combina con fármacos antidiabéticos orales"
+      ],
+      "tags": [
+        "glucosa",
+        "resistencia-insulina",
+        "sensibilidad-insulina",
+        "longevidad"
+      ],
+      "metadata": {
+        "fechaCreacion": "2026-10-12"
+      },
+      "interaccionesMedicamentosas": [
+        "Metformina e insulina (efecto sinérgico hipoglucemiante)"
+      ],
+      "seguridad": {
+        "embarazo": "no_recomendado",
+        "lactancia": "no_recomendado",
+        "pediatria": "no_recomendado",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Optimiza el metabolismo de la glucosa y los carbohidratos con máxima absorción y sin molestias estomacales.",
+      "posologia": "1 cápsula de 100mg antes de la comida y otra antes de la cena."
     }
   ]
 }

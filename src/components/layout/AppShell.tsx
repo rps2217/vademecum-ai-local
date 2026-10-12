@@ -24,7 +24,7 @@ import {
   Search, Plus, Settings, Database, Link2, Sparkles, BarChart3,
   Shield, Menu, X, ChevronLeft, ChevronRight, Sun, Moon, Monitor,
   Command, ClipboardList, Package, Home, FlaskConical,
-  WifiOff, RefreshCw, CloudDownload, Info,
+  WifiOff, RefreshCw, CloudDownload, Info, Stethoscope,
 } from 'lucide-react';
 
 interface NavItem {
@@ -36,8 +36,9 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
+  { id: 'pathologies', label: 'Patologías & Síntomas', icon: Stethoscope, href: '/pathologies', badge: '146' },
   { id: 'home', label: 'Inicio', icon: Home, href: '/' },
-  { id: 'info', label: 'Información App', icon: Info, href: '/info' },
+  { id: 'info', label: 'Buscador General', icon: Info, href: '/info' },
   { id: 'homeopathy', label: 'Homeopatía', icon: FlaskConical, href: '/homeopathy' },
   { id: 'knowledge', label: 'Base de Conocimiento', icon: Database, href: '/knowledge' },
   { id: 'products', label: 'Productos', icon: Package, href: '/products' },

@@ -5,9 +5,9 @@ import part3 from './sinergias_3.json';
 export const sinergias = [...part1.sinergias, ...part2.sinergias, ...part3.sinergias];
 
 export const metadata = {
-  version: "2.1.0",
+  version: "2.3.0",
   total: sinergias.length,
-  ultimaActualizacion: "2026-08-30",
+  ultimaActualizacion: "2026-10-12",
   fuentes: [
     "EMA HMPC (European Medicines Agency, Herbal Medicinal Products Committee)",
     "WHO Monographs on Selected Medicinal Plants",

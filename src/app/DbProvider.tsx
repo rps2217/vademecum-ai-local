@@ -30,6 +30,19 @@ export function DbProvider({ children }: { children: React.ReactNode }) {
         await db.open();
         // Hidratar Lamport clock desde la DB (para sync correcto entre recargas)
         await initLamportFromDb();
+
+        // Solicitar almacenamiento persistente al navegador (evita que el SO purgue IndexedDB)
+        if (typeof navigator !== 'undefined' && navigator.storage && typeof navigator.storage.persist === 'function') {
+          try {
+            const isPersisted = await navigator.storage.persisted();
+            if (!isPersisted) {
+              const granted = await navigator.storage.persist();
+              logger.info(`[Storage] Almacenamiento persistente solicitado: ${granted ? 'concedido' : 'denegado'}`);
+            }
+          } catch (storageErr) {
+            logger.warn('[Storage] Error al verificar persistencia de almacenamiento:', storageErr);
+          }
+        }
         
         // Check if we need to seed
         const seeded = await isKnowledgeBaseSeeded();

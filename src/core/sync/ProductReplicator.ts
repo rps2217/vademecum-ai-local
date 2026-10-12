@@ -132,6 +132,56 @@ function isAuthError(error: unknown): boolean {
 }
 
 /**
+ * Replica (o re-replica) los productos y el bridge desde Google Sheets si está configurado.
+ */
+export async function replicateProductsFromGoogleSheets(url: string): Promise<ReplicationResult> {
+  try {
+    logger.log('[ProductReplicator] Iniciando replicación de catálogo desde Google Sheets...');
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const data = await res.json();
+    
+    let productCount = 0;
+    let bridgeCount = 0;
+    let analysisCount = 0;
+
+    // 1. Productos
+    if (data.products && Array.isArray(data.products)) {
+      const rows: DbProduct[] = data.products.map((r: Record<string, unknown>) => mapRemoteProduct(r));
+      await db.products.bulkPut(rows);
+      productCount = rows.length;
+    }
+
+    // 2. Bridge product_ingredients
+    if (data.product_ingredients && Array.isArray(data.product_ingredients)) {
+      const rows: DbProductIngredient[] = data.product_ingredients.map((r: Record<string, unknown>) => mapRemoteBridge(r));
+      await db.productIngredients.bulkPut(rows);
+      bridgeCount = rows.length;
+    }
+
+    // 3. Análisis de cobertura
+    if (data.product_ingredient_analysis && Array.isArray(data.product_ingredient_analysis)) {
+      const rows: DbProductIngredientAnalysis[] = data.product_ingredient_analysis.map((r: Record<string, unknown>) => mapRemoteAnalysis(r));
+      await db.productIngredientAnalysis.bulkPut(rows);
+      analysisCount = rows.length;
+    }
+
+    const nowIso = new Date().toISOString();
+    await db.syncMeta.put({ key: SYNC_META_KEY, value: nowIso, updatedAt: Date.now() });
+    await clearReplicationDisabled();
+
+    logger.log(`[ProductReplicator] Replicación de Google Sheets completada exitosamente: ${productCount} productos, ${bridgeCount} bridge, ${analysisCount} análisis.`);
+    return { products: productCount, bridge: bridgeCount, analysis: analysisCount, skipped: false };
+  } catch (err) {
+    logger.error('[ProductReplicator] Error replicando desde Google Sheets:', err);
+    await recordFailure();
+    return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: `Error Google Sheets: ${err instanceof Error ? err.message : String(err)}` };
+  }
+}
+
+/**
  * Replica (o re-replica) los productos y el bridge desde Supabase.
  *
  * Primera llamada: descarga todo. Llamadas posteriores: solo los cambios
@@ -140,6 +190,11 @@ function isAuthError(error: unknown): boolean {
  * devuelve skipped=true (la app sigue funcionando sin productos).
  */
 export async function replicateProducts(): Promise<ReplicationResult> {
+  const sheetsUrl = import.meta.env.VITE_GOOGLE_SHEETS_SCRIPT_URL;
+  if (sheetsUrl && sheetsUrl.trim() !== '') {
+    return replicateProductsFromGoogleSheets(sheetsUrl.trim());
+  }
+
   if (!isSupabaseConfigured()) {
     return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Supabase no configurado' };
   }
@@ -177,6 +232,11 @@ export async function replicateProducts(): Promise<ReplicationResult> {
         .range(offset, offset + PAGE_SIZE - 1);
 
       if (error) {
+        if (isNetworkError(error)) {
+          logger.warn('[ProductReplicator] Error de red al descargar productos. Saltando replicación.');
+          await recordFailure();
+          return { products: 0, bridge: 0, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
+        }
         // Si la tabla no existe, no es un error fatal: la app funciona sin productos.
         if (isMissingTableError(error)) {
           logger.warn('[ProductReplicator] Tabla "products" no existe en Supabase. Saltando replicación de productos.');
@@ -217,6 +277,11 @@ export async function replicateProducts(): Promise<ReplicationResult> {
         .range(offset, offset + PAGE_SIZE - 1);
 
       if (error) {
+        if (isNetworkError(error)) {
+          logger.warn('[ProductReplicator] Error de red al descargar bridge. Saltando replicación.');
+          await recordFailure();
+          return { products: productCount, bridge: 0, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
+        }
         if (isMissingTableError(error)) {
           logger.warn('[ProductReplicator] Tabla "product_ingredients" no existe. Bridge omitido.');
           break;
@@ -256,6 +321,11 @@ export async function replicateProducts(): Promise<ReplicationResult> {
         .range(offset, offset + PAGE_SIZE - 1);
 
       if (error) {
+        if (isNetworkError(error)) {
+          logger.warn('[ProductReplicator] Error de red al descargar análisis. Saltando replicación.');
+          await recordFailure();
+          return { products: productCount, bridge: bridgeCount, analysis: 0, skipped: true, reason: 'Fallo de red (host Supabase inalcanzable)' };
+        }
         if (isMissingTableError(error)) {
           logger.warn('[ProductReplicator] Tabla "product_ingredient_analysis" no existe. Análisis omitido.');
           break;

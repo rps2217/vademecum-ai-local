@@ -237,7 +237,9 @@ export class SyncService {
   }
 
   private async performFullSync(): Promise<SyncResult> {
-    if (this.syncDisabled) {
+    const sheetsUrl = import.meta.env.VITE_GOOGLE_SHEETS_SCRIPT_URL;
+
+    if (!sheetsUrl && this.syncDisabled) {
       return { success: false, uploaded: 0, downloaded: 0, conflicts: 0, error: 'Sync desactivado (tablas remotas inexistentes)' };
     }
     if (this.syncInProgress) {
@@ -247,13 +249,19 @@ export class SyncService {
     this.lastError = null;
     let uploaded = 0, downloaded = 0, conflicts = 0;
     try {
-      const uploadResult = await this.uploadPendingOps();
-      uploaded = uploadResult.count;
-      conflicts += uploadResult.conflicts;
-      // Purgar ops synced/failed antiguos para que el outbox no crezca indefinidamente.
-      await this.cleanupStaleOutboxOps();
-      const downloadResult = await this.downloadRemoteChanges();
-      downloaded = downloadResult.count;
+      if (sheetsUrl && sheetsUrl.trim() !== '') {
+        logger.log('[SyncService] Sincronización en modo Google Sheets (Lectura de catálogo maestro). Carga omitida.');
+        const downloadResult = await this.downloadRemoteChangesFromGoogleSheets(sheetsUrl.trim());
+        downloaded = downloadResult.count;
+      } else {
+        const uploadResult = await this.uploadPendingOps();
+        uploaded = uploadResult.count;
+        conflicts += uploadResult.conflicts;
+        // Purgar ops synced/failed antiguos para que el outbox no crezca indefinidamente.
+        await this.cleanupStaleOutboxOps();
+        const downloadResult = await this.downloadRemoteChanges();
+        downloaded = downloadResult.count;
+      }
       await db.syncMeta.put({ key: 'lastSyncAt', value: now(), updatedAt: now() });
       this.consecutiveNetworkFailures = 0;
       return { success: true, uploaded, downloaded, conflicts };
@@ -280,7 +288,13 @@ export class SyncService {
    */
   private isNetworkError(error: unknown): boolean {
     if (!error) return false;
-    const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
+    const msg = (
+      error instanceof Error
+        ? error.message
+        : typeof error === 'object'
+          ? JSON.stringify(error)
+          : String(error)
+    ).toLowerCase();
     return msg.includes('failed to fetch') ||
       msg.includes('networkerror') ||
       msg.includes('network request failed') ||
@@ -323,6 +337,11 @@ export class SyncService {
         // contador de fallos 401 para reactivar el fail-fast limpio.
         this.consecutiveUpload401s = 0;
       } catch (error) {
+        if (this.isNetworkError(error)) {
+          op.status = 'pending';
+          await db.outbox.put(op);
+          throw error;
+        }
         if (error instanceof ConflictError) {
           conflicts++;
           op.status = 'conflict';
@@ -498,6 +517,48 @@ export class SyncService {
     }
   }
 
+  private async downloadRemoteChangesFromGoogleSheets(url: string): Promise<{ count: number }> {
+    try {
+      logger.log('[SyncService] Descargando catálogo maestro desde Google Sheets...');
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json();
+      let downloaded = 0;
+
+      // 1. Ingredientes
+      if (data.ingredients && Array.isArray(data.ingredients)) {
+        for (const ing of data.ingredients) {
+          const conflict = await this.mergeRemoteIngredient(ing);
+          if (!conflict) downloaded++;
+        }
+      }
+
+      // 2. Sinergias
+      if (data.synergies && Array.isArray(data.synergies)) {
+        for (const syn of data.synergies) {
+          const conflict = await this.mergeRemoteSynergy(syn);
+          if (!conflict) downloaded++;
+        }
+      }
+
+      // 3. Patologías
+      if (data.pathologies && Array.isArray(data.pathologies)) {
+        for (const path of data.pathologies) {
+          const conflict = await this.mergeRemotePathology(path);
+          if (!conflict) downloaded++;
+        }
+      }
+
+      logger.log(`[SyncService] Sincronización desde Google Sheets completada: procesados ${downloaded} elementos.`);
+      return { count: downloaded };
+    } catch (err) {
+      logger.error('[SyncService] Error descargando desde Google Sheets:', err);
+      throw err;
+    }
+  }
+
   private async downloadRemoteChanges(): Promise<{ count: number }> {
     const supabase = getSupabase();
     if (!supabase) return { count: 0 };
@@ -513,6 +574,9 @@ export class SyncService {
     // cambio, un ingrediente borrado en Supabase seguiría visible localmente.
     const { data: ingredients, error: ingError } = await supabase.from('ingredients').select('*').gte('updated_at', lastSyncDate);
     if (ingError) {
+      if (this.isNetworkError(ingError)) {
+        throw new Error(ingError.message || 'Failed to fetch');
+      }
       if (this.isMissingTableError(ingError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
       } else if (ingError.code === '401' || ingError.message?.toLowerCase().includes('jwt') || ingError.message?.toLowerCase().includes('api key')) {
@@ -535,6 +599,9 @@ export class SyncService {
     // Download synergies (incluye tombstoned para propagar deletes remotos).
     const { data: synergies, error: synError } = await supabase.from('synergies').select('*').gte('updated_at', lastSyncDate);
     if (synError) {
+      if (this.isNetworkError(synError)) {
+        throw new Error(synError.message || 'Failed to fetch');
+      }
       if (this.isMissingTableError(synError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies) no existen en Supabase. Sync desactivado.');
       } else if (synError.code === '401' || synError.message?.toLowerCase().includes('jwt') || synError.message?.toLowerCase().includes('api key')) {
@@ -557,6 +624,9 @@ export class SyncService {
     // Download pathologies (incluye tombstoned para propagar deletes remotos).
     const { data: pathologies, error: pathError } = await supabase.from('pathologies').select('*').gte('updated_at', lastSyncDate);
     if (pathError) {
+      if (this.isNetworkError(pathError)) {
+        throw new Error(pathError.message || 'Failed to fetch');
+      }
       if (this.isMissingTableError(pathError)) {
         this.disableSync('Las tablas remotas (ingredients/synergies/pathologies) no existen en Supabase. Sync desactivado.');
       } else if (pathError.code === '401' || pathError.message?.toLowerCase().includes('jwt') || pathError.message?.toLowerCase().includes('api key')) {

@@ -75,7 +75,7 @@ export function ClinicalExplanationModal({
             'ingredient',
             pathology?.nombre || 'su indicación terapéutica',
             ingredient.propiedades?.join(', '),
-            ingredient.descripcion
+            ingredient.propiedades?.[0]
           );
           setExplanation(generated);
           setLoading(false);
@@ -109,7 +109,7 @@ export function ClinicalExplanationModal({
 
   return (
     <Modal
-      isOpen={isOpen}
+      open={isOpen}
       onClose={onClose}
       title="¿Cómo actúa en el organismo?"
       description={`Mecanismo simplificado para explicar al cliente en mostrador.`}

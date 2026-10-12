@@ -21,6 +21,7 @@ import {
   ClipboardList,
   Shield,
   Settings,
+  Stethoscope,
 } from 'lucide-react';
 
 import { HomePage } from './HomePage';
@@ -33,8 +34,10 @@ import { AnalysisPage } from './AnalysisPage';
 import { ProtocolsPage } from './ProtocolsPage';
 import { AdminPage } from './AdminPage';
 import { SettingsPage } from './SettingsPage';
+import { PathologyGuidePage } from './PathologyGuidePage';
 
 export type WorkspaceTab =
+  | 'pathologies'
   | 'info'
   | 'home'
   | 'homeopathy'
@@ -58,11 +61,19 @@ interface TabDefinition {
 
 const WORKSPACE_TABS: TabDefinition[] = [
   {
+    id: 'pathologies',
+    label: 'Patologías & Motivos de Consulta',
+    shortLabel: 'Patologías & Síntomas',
+    icon: Stethoscope,
+    badge: '146',
+    description: 'Enfoque centrado en lo que busca el cliente: síntomas y protocolos directos',
+  },
+  {
     id: 'info',
     label: 'Información & Buscador',
     shortLabel: 'Info & Buscador',
     icon: Info,
-    badge: 'v2.1',
+    badge: 'v2.2',
     description: 'Buscador omnipresente e información del sistema',
   },
   {
@@ -77,7 +88,7 @@ const WORKSPACE_TABS: TabDefinition[] = [
     label: 'Homeopatía CH',
     shortLabel: 'Homeopatía',
     icon: FlaskConical,
-    badge: '118 CH',
+    badge: '123 CH',
     description: 'Materia médica homeopática y potencias centesimales',
   },
   {
@@ -85,7 +96,7 @@ const WORKSPACE_TABS: TabDefinition[] = [
     label: 'Base de Conocimiento',
     shortLabel: 'Base Conocimiento',
     icon: Database,
-    badge: '634 KB',
+    badge: '644 KB',
     description: 'Fichas de activos, fitoterapia, vitaminas y minerales',
   },
   {
@@ -100,7 +111,7 @@ const WORKSPACE_TABS: TabDefinition[] = [
     label: 'Red de Sinergias',
     shortLabel: 'Sinergias',
     icon: Link2,
-    badge: '805',
+    badge: '815',
     description: 'Interacciones positivas y potenciamiento de activos',
   },
   {
@@ -143,8 +154,10 @@ export function SinglePageWorkspace() {
   // Determinar la pestaña activa según la URL actual o searchParams
   const getTabFromPath = (path: string): WorkspaceTab => {
     const cleanPath = path.replace(/^\//, '');
-    if (!cleanPath) return 'info';
+    if (!cleanPath) return 'pathologies';
+    if (cleanPath === 'pathologies' || cleanPath === 'patologias') return 'pathologies';
     if (cleanPath === 'search' || cleanPath === 'info') return 'info';
+    if (cleanPath === 'home') return 'home';
     if (cleanPath === 'homeopathy' || cleanPath === 'homeopatia') return 'homeopathy';
     if (cleanPath === 'knowledge') return 'knowledge';
     if (cleanPath === 'products') return 'products';
@@ -154,7 +167,7 @@ export function SinglePageWorkspace() {
     if (cleanPath === 'admin') return 'admin';
     if (cleanPath === 'settings') return 'settings';
     if (cleanPath === 'all') return 'all';
-    return 'info';
+    return 'pathologies';
   };
 
   const currentTab = useMemo(() => {
@@ -216,6 +229,7 @@ export function SinglePageWorkspace() {
       {/* CONTENIDO PRINCIPAL */}
       <main className="min-h-[60vh] transition-all">
         <Suspense fallback={<PageLoader message="Cargando módulo..." />}>
+          {currentTab === 'pathologies' && <PathologyGuidePage />}
           {currentTab === 'info' && <SearchPage />}
           {currentTab === 'home' && <HomePage />}
           {currentTab === 'homeopathy' && <HomeopathyPage />}

@@ -20,8 +20,9 @@ import { HighlightText } from '@/ui/HighlightText';
 import {
   X, AlertTriangle, Info, Link as LinkIcon, Leaf, Shield,
   CheckCircle2, XCircle, AlertCircle, BookOpen, FlaskConical, Star,
-  Activity
+  Activity, ShoppingBag
 } from 'lucide-react';
+import { useCounterTray } from '@/contexts/CounterTrayContext';
 import type { DbIngredient, IngredientSafety, SafetyStatus } from '@/db/schema';
 import { humanize } from '@/lib/text';
 import { buildHighlightTerms } from '@/lib/highlightTerms';
@@ -97,6 +98,8 @@ function SafetyRow({ label, status }: { label: string; status: SafetyStatus | un
 const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activeIndication, isFavorite, onToggleFavorite }: IngredientDetailProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   useFocusTrap(panelRef, true);
+  const { isInTray, toggleItem } = useCounterTray();
+  const inTray = isInTray(ingredient.id);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -347,10 +350,18 @@ const IngredientDetailComponent = ({ ingredient, onClose, onViewSynergies, activ
           )}
 
           {/* Acciones */}
-          <div className="flex gap-3 pt-2 border-t border-border">
+          <div className="flex flex-col sm:flex-row gap-3 pt-3 border-t border-border">
+            <Button
+              variant={inTray ? "secondary" : "default"}
+              className="flex-1 font-semibold"
+              onClick={() => toggleItem(ingredient)}
+            >
+              <ShoppingBag className="w-4 h-4 mr-2" aria-hidden="true" />
+              {inTray ? 'En Bandeja de Mostrador' : 'Añadir a Bandeja de Mostrador'}
+            </Button>
             <Button variant="outline" className="flex-1" onClick={() => onViewSynergies?.(ingredient.id)}>
               <LinkIcon className="w-4 h-4 mr-2" aria-hidden="true" />
-              Ver sinergias
+              Ver sinergias ({ingredient.nombre})
             </Button>
           </div>
         </div>

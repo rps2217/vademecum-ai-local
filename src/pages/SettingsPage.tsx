@@ -2,21 +2,22 @@
  * SettingsPage - Configuración
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card } from '@/ui/Card';
 import { Button } from '@/ui/Button';
 import { Badge } from '@/ui/Badge';
 import { useTheme } from '@/app/ThemeProvider';
-import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2, XCircle, AlertTriangle, Loader2, Download, Shield } from 'lucide-react';
+import { Sun, Moon, Monitor, Database, Cloud, Key, User, RefreshCw, CheckCircle2, XCircle, AlertTriangle, Loader2, Download, Shield, FileSpreadsheet } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useSync } from '@/hooks/useSync';
 import { isSupabaseConfigured, testConnection } from '@/lib/supabase';
-import { forceReplicateProducts } from '@/core/sync';
+import { forceReplicateProducts, googleSheetSyncService } from '@/core/sync';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
 import { useAppAuth } from '@/app/AppAuthProvider';
 import { Input } from '@/ui/Input';
 import { toast } from 'sonner';
 import { exportErrorLogs } from '@/lib/errorLog';
+import { downloadUserDataBackup, importUserData } from '@/lib/dataBackup';
 
 type Tab = 'appearance' | 'sync' | 'ai' | 'data' | 'account';
 
@@ -126,17 +127,57 @@ export function SettingsPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-4 border rounded-lg">
                   <div>
-                    <p className="font-medium">Exportar datos</p>
-                    <p className="text-sm text-muted-foreground">Descarga una copia de tus datos</p>
+                    <p className="font-medium">Exportar datos locales</p>
+                    <p className="text-sm text-muted-foreground">Descarga una copia de seguridad en JSON (favoritos, protocolos y notas)</p>
                   </div>
-                  <Button variant="outline">Exportar</Button>
+                  <Button
+                    variant="outline"
+                    onClick={async () => {
+                      try {
+                        await downloadUserDataBackup();
+                        toast.success('Copia de seguridad descargada');
+                      } catch (err) {
+                        toast.error(err instanceof Error ? err.message : 'Error al exportar');
+                      }
+                    }}
+                  >
+                    <Download className="w-4 h-4 mr-2" aria-hidden="true" />
+                    Exportar
+                  </Button>
                 </div>
                 <div className="flex items-center justify-between p-4 border rounded-lg">
                   <div>
-                    <p className="font-medium">Importar datos</p>
-                    <p className="text-sm text-muted-foreground">Restaura desde un archivo</p>
+                    <p className="font-medium">Importar datos locales</p>
+                    <p className="text-sm text-muted-foreground">Restaura favoritos y protocolos desde un archivo .json</p>
                   </div>
-                  <Button variant="outline">Importar</Button>
+                  <div>
+                    <input
+                      type="file"
+                      id="backup-file-input"
+                      accept=".json"
+                      className="hidden"
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        try {
+                          const text = await file.text();
+                          const data = JSON.parse(text);
+                          const res = await importUserData(data);
+                          toast.success(`Restaurados ${res.favoritesCount} favoritos y ${res.protocolsCount} protocolos`);
+                        } catch (err) {
+                          toast.error(err instanceof Error ? err.message : 'Error al importar archivo');
+                        } finally {
+                          e.target.value = '';
+                        }
+                      }}
+                    />
+                    <Button
+                      variant="outline"
+                      onClick={() => document.getElementById('backup-file-input')?.click()}
+                    >
+                      Importar
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Logs técnicos para soporte */}
@@ -190,8 +231,62 @@ function SyncTab() {
   const [syncResult, setSyncResult] = useState<{ success: boolean; message: string } | null>(null);
   const [testResult, setTestResult] = useState<{ success: boolean; message: string } | null>(null);
 
+  // Estado para Google Sheets Sync
+  const [gasUrl, setGasUrl] = useState('');
+  const [gasLastSync, setGasLastSync] = useState<number | null>(null);
+  const [isGasSyncing, setIsGasSyncing] = useState(false);
+  const [gasTesting, setGasTesting] = useState(false);
+
+  useEffect(() => {
+    async function loadGasConfig() {
+      const url = await googleSheetSyncService.getWebAppUrl();
+      const last = await googleSheetSyncService.getLastSyncTime();
+      setGasUrl(url);
+      setGasLastSync(last);
+    }
+    loadGasConfig();
+  }, []);
+
   const configured = isSupabaseConfigured();
   const isSyncing = syncState === 'syncing';
+
+  async function handleSaveGasUrl() {
+    await googleSheetSyncService.setWebAppUrl(gasUrl);
+    toast.success('URL de Google Apps Script guardada');
+  }
+
+  async function handleTestGasConnection() {
+    setGasTesting(true);
+    const loading = toast.loading('Probando conexión con Google Apps Script...');
+    try {
+      const res = await googleSheetSyncService.testConnection(gasUrl);
+      toast.dismiss(loading);
+      if (res.success) {
+        toast.success(res.message);
+      } else {
+        toast.error(res.message);
+      }
+    } finally {
+      setGasTesting(false);
+    }
+  }
+
+  async function handleGasSync() {
+    setIsGasSyncing(true);
+    const loading = toast.loading('Descargando catálogo desde Google Sheets...');
+    try {
+      const res = await googleSheetSyncService.syncCatalog(gasUrl);
+      toast.dismiss(loading);
+      if (res.success) {
+        toast.success(res.message);
+        setGasLastSync(res.timestamp);
+      } else {
+        toast.error(res.message);
+      }
+    } finally {
+      setIsGasSyncing(false);
+    }
+  }
 
   async function handleSync() {
     setSyncResult(null);
@@ -339,10 +434,79 @@ function SyncTab() {
         </Button>
       </div>
 
-      {/* Instrucciones */}
+      {/* Google Sheets Sync (Alternativa estable a Supabase) */}
+      <Card className="p-6 border-emerald-500/20 bg-emerald-500/5 space-y-4">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-emerald-600/10 text-emerald-600 dark:text-emerald-400">
+              <FileSpreadsheet className="w-6 h-6" aria-hidden="true" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground">Sincronización con Google Sheets</h3>
+              <p className="text-sm text-muted-foreground">
+                Replicador ligero de catálogo sin pausa por inactividad. Sincroniza productos y sinergias desde una hoja de cálculo.
+              </p>
+            </div>
+          </div>
+          {gasLastSync && (
+            <Badge variant="outline" className="text-xs">
+              Última sync: {new Date(gasLastSync).toLocaleDateString('es-ES')} {new Date(gasLastSync).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
+            </Badge>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="gas-url-input" className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+            URL de la Aplicación Web (Google Apps Script)
+          </label>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <Input
+              id="gas-url-input"
+              value={gasUrl}
+              onChange={(e) => setGasUrl(e.target.value)}
+              placeholder="https://script.google.com/macros/s/.../exec"
+              className="flex-1 font-mono text-xs"
+            />
+            <Button variant="outline" size="sm" onClick={handleSaveGasUrl}>
+              Guardar URL
+            </Button>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3 pt-2">
+          <Button
+            size="sm"
+            onClick={handleGasSync}
+            disabled={!gasUrl.trim() || isGasSyncing}
+            isLoading={isGasSyncing}
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium"
+          >
+            <RefreshCw className="w-4 h-4 mr-2" aria-hidden="true" />
+            Sincronizar Catálogo desde Sheets
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleTestGasConnection}
+            disabled={!gasUrl.trim() || gasTesting}
+            isLoading={gasTesting}
+          >
+            Probar Conexión
+          </Button>
+        </div>
+
+        <div className="p-3 bg-muted/60 rounded-lg text-xs text-muted-foreground space-y-1">
+          <p className="font-medium text-foreground">¿Cómo configurar tu propia hoja de Google?</p>
+          <p>
+            El script listo para desplegar se encuentra documentado en <code className="bg-muted px-1 rounded font-mono">scripts/gas-vademecum.js</code>. No requiere servidores ni credenciales de pago.
+          </p>
+        </div>
+      </Card>
+
+      {/* Instrucciones Supabase */}
       {!configured && (
         <Card className="p-4 bg-muted/50">
-          <h3 className="font-medium mb-2">Para configurar Supabase:</h3>
+          <h3 className="font-medium mb-2">Para configurar Supabase (Opcional):</h3>
           <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside">
             <li>Crea una cuenta en <a href="https://supabase.com" className="text-primary hover:underline" target="_blank">supabase.com</a></li>
             <li>Crea un nuevo proyecto</li>

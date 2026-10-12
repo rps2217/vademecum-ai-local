@@ -1,6 +1,6 @@
 export function generateClinicalExplanation(
   name: string,
-  type: 'ingredient' | 'product',
+  _type: 'ingredient' | 'product',
   pathologyName: string,
   mechanism?: string,
   description?: string,

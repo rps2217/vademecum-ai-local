@@ -2,9 +2,9 @@
   "metadata": {
     "nombre": "Base de Datos de Homeopatia",
     "descripcion": "Remedios homeopaticos organizados por sistema y sindrome",
-    "version": "1.8.0",
-    "ultimaActualizacion": "2026-09-08",
-    "total": 118,
+    "version": "2.0.0",
+    "ultimaActualizacion": "2026-10-12",
+    "total": 128,
     "fuente": "Vademecum AI Knowledge Base + Materias Medicas Homeopaticas (Boericke/Clarke/Kent/Allen/Hering/Vithoulkas)"
   },
   "ingredientes": [
@@ -8885,6 +8885,733 @@
       },
       "beneficioCliente": "Remedio homeopático tradicional para aliviar los síntomas de calambres_musculares, ideal como tratamiento de apoyo sin efectos secundarios conocidos (7CH - 9CH).",
       "posologia": "5 gránulos 3 veces al día vía sublingual, espaciando las tomas según mejoría (4CH-9CH para síntomas locales/generales)."
+    },
+    {
+      "id": "cantharis",
+      "nombre": "Cantharis Vesicatoria",
+      "nombresAlternativos": [
+        "Cantharis",
+        "Spanish fly",
+        "Cantárida"
+      ],
+      "nombreCientifico": "Lytta vesicatoria",
+      "familia": "Meloidae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "urinario",
+        "dermatologico"
+      ],
+      "indicaciones": [
+        "cistitis",
+        "quemaduras",
+        "eritema",
+        "urinario"
+      ],
+      "descripcion": "Remedio de acción rápida para inflamaciones agudas de las mucosas y la piel, caracterizado por dolores ardientes e intensos.",
+      "mecanismoAccion": "En homeopatía: actúa sobre el epitelio urinario y de la piel para modular el dolor ardiente y la inflamación de las mucosas.",
+      "nivelEvidencia": "C",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolor ardiente como fuego",
+        "Tenesmo vesical constante",
+        "Deseo intolerable de orinar",
+        "Mejora con frío local"
+      ],
+      "modalidades": {
+        "empeora": [
+          "orinar",
+          "tacto",
+          "beber agua fría"
+        ],
+        "mejora": [
+          "frio local",
+          "frotamiento suave"
+        ]
+      },
+      "afinidad": [
+        "vejiga",
+        "uretra",
+        "piel",
+        "mucosas"
+      ],
+      "constelaciones": [
+        "Cistitis aguda",
+        "Quemaduras de segundo grado"
+      ],
+      "advertencias": [
+        "Evitar tintura madre o diluciones muy bajas por toxicidad del insecto original",
+        "Separar de comidas o sustancias fuertes"
+      ],
+      "tags": [
+        "cistitis",
+        "quemadura",
+        "ardor",
+        "orina"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones medicamentosas conocidas a dosis homeopáticas estándar",
+        "Los efectos pueden verse atenuados por cafeína, menta y alcanfor"
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Remedio tradicional para aliviar rápidamente la sensación de ardor intenso en la piel por quemaduras solares o molestias urinarias de forma natural.",
+      "posologia": "5 gránulos cada 1 o 2 horas en fase aguda (9CH), espaciando las tomas según la mejoría.",
+      "metadata": {
+        "fechaCreacion": "2026-10-01"
+      }
+    },
+    {
+      "id": "sabina",
+      "nombre": "Sabina",
+      "nombresAlternativos": [
+        "Juniperus sabina",
+        "Savin",
+        "Sabina rastrera"
+      ],
+      "nombreCientifico": "Juniperus sabina",
+      "familia": "Cupressaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "reproductivo"
+      ],
+      "indicaciones": [
+        "menorragia",
+        "reproductivo",
+        "dolor"
+      ],
+      "descripcion": "Remedio homeopático con una fuerte afinidad por el útero, utilizado tradicionalmente para trastornos menstruales y hemorragias activas.",
+      "mecanismoAccion": "En homeopatía: modula la congestión pélvica y regula el tono muscular uterino mediante el principio de similitud.",
+      "nivelEvidencia": "C",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolores de parto que irradian desde el sacro al pubis",
+        "Hemorragia de sangre roja brillante mezclada con coágulos",
+        "Peor por el menor movimiento",
+        "Deseo de aire fresco"
+      ],
+      "modalidades": {
+        "empeora": [
+          "movimiento",
+          "calor",
+          "aire caliente"
+        ],
+        "mejora": [
+          "aire libre",
+          "frio"
+        ]
+      },
+      "afinidad": [
+        "útero",
+        "ovarios",
+        "articulaciones"
+      ],
+      "constelaciones": [
+        "Metrorragia",
+        "Menorragia dolorosa"
+      ],
+      "advertencias": [
+        "Usar solo bajo supervisión en el embarazo debido al tropismo uterino del material original",
+        "Separar de menta o café"
+      ],
+      "tags": [
+        "menstruacion",
+        "hemorragia",
+        "utero",
+        "ovarios"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones conocidas",
+        "Los efectos pueden verse atenuados por café, menta fuerte y alcanfor"
+      ],
+      "seguridad": {
+        "embarazo": "precaucion",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Tratamiento de apoyo homeopático tradicional para ayudar a regular el flujo menstrual excesivo y aliviar los espasmos uterinos dolorosos.",
+      "posologia": "5 gránulos de Sabina 9CH cada 3 o 4 horas durante los días de mayor flujo menstrual.",
+      "metadata": {
+        "fechaCreacion": "2026-10-01"
+      }
+    },
+    {
+      "id": "anacardium",
+      "nombre": "Anacardium Orientale",
+      "nombresAlternativos": [
+        "Anacardium",
+        "Marking nut",
+        "Anacardo oriental"
+      ],
+      "nombreCientifico": "Semecarpus anacardium",
+      "familia": "Anacardiaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "dispepsia",
+        "estrés",
+        "fatiga",
+        "cognitivo"
+      ],
+      "descripcion": "Remedio constitucional caracterizado por una marcada dualidad mental y síntomas digestivos que mejoran temporalmente al comer.",
+      "mecanismoAccion": "En homeopatía: actúa sobre el sistema nervioso entérico y central para modular la dispepsia nerviosa y la irritabilidad psíquica.",
+      "nivelEvidencia": "C",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Sensación de tener un tapón en cualquier órgano",
+        "Dispepsia que se alivia por completo al comer (por 1 o 2 horas)",
+        "Inseguridad extrema y falta de confianza en sí mismo",
+        "Sensación de tener dos voluntades opuestas"
+      ],
+      "modalidades": {
+        "empeora": [
+          "estomago vacio",
+          "esfuerzo mental",
+          "frio"
+        ],
+        "mejora": [
+          "comer",
+          "calor local"
+        ]
+      },
+      "afinidad": [
+        "estómago",
+        "mente",
+        "sistema nervioso",
+        "piel"
+      ],
+      "constelaciones": [
+        "Dispepsia nerviosa",
+        "Estrés por exámenes o agotamiento intelectual"
+      ],
+      "advertencias": [
+        "Diluciones medias a altas son preferidas para síntomas conductuales/psíquicos",
+        "Separar de la ingesta de comidas"
+      ],
+      "tags": [
+        "digestion",
+        "estres",
+        "memoria",
+        "ansiedad"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones conocidas",
+        "Los efectos se atenúan con menta y café"
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Ayuda a calmar los espasmos digestivos nerviosos y promueve la claridad mental y concentración en épocas de sobreesfuerzo intelectual.",
+      "posologia": "5 gránulos de Anacardium 9CH unos 30 minutos antes de las comidas o al presentarse los síntomas digestivos.",
+      "metadata": {
+        "fechaCreacion": "2026-10-01"
+      }
+    },
+    {
+      "id": "hyoscyamus",
+      "nombre": "Hyoscyamus Niger",
+      "nombresAlternativos": [
+        "Hyoscyamus",
+        "Henbane",
+        "Beleno negro"
+      ],
+      "nombreCientifico": "Hyoscyamus niger",
+      "familia": "Solanaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "respiratorio"
+      ],
+      "indicaciones": [
+        "insomnio",
+        "tos",
+        "ansiedad"
+      ],
+      "descripcion": "Remedio homeopático para estados de excitación nerviosa extrema, agitación motora, delirio o tos espasmódica nocturna.",
+      "mecanismoAccion": "En homeopatía: actúa sobre la excitabilidad del sistema nervioso y espasmos musculares bronquiales.",
+      "nivelEvidencia": "C",
+      "dilucionesCH": [
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Espasmos musculares y tics",
+        "Tos seca espasmódica que empeora al acostarse y mejora al sentarse",
+        "Excitación nerviosa, risa tonta, locuacidad",
+        "Insomnio en niños inquietos o asustados"
+      ],
+      "modalidades": {
+        "empeora": [
+          "acostarse",
+          "noche",
+          "tocar el cuerpo"
+        ],
+        "mejora": [
+          "sentarse",
+          "calor"
+        ]
+      },
+      "afinidad": [
+        "sistema nervioso",
+        "músculos",
+        "aparato respiratorio"
+      ],
+      "constelaciones": [
+        "Insomnio infantil por excitación",
+        "Tos espasmódica nocturna"
+      ],
+      "advertencias": [
+        "Mantener fuera del alcance de los niños",
+        "No sustituye terapias neurológicas en casos graves"
+      ],
+      "tags": [
+        "nerviosismo",
+        "tos-seca",
+        "insomnio-infantil",
+        "espasmos"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones conocidas",
+        "Los efectos se atenúan con menta y café"
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Ayuda a calmar la tos espasmódica nocturna y favorece un descanso tranquilo en niños y adultos hiperactivos o con agitación nerviosa.",
+      "posologia": "5 gránulos de Hyoscyamus 9CH al acostarse para la tos o el insomnio, repitiendo si es necesario.",
+      "metadata": {
+        "fechaCreacion": "2026-10-01"
+      }
+    },
+    {
+      "id": "agraphis_nutans",
+      "nombre": "Agraphis Nutans",
+      "nombresAlternativos": [
+        "Agraphis",
+        "Bluebell",
+        "Jacinto de los bosques"
+      ],
+      "nombreCientifico": "Hyacinthoides non-scripta",
+      "familia": "Asparagaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "gripe",
+        "respiratorio",
+        "inmunidad"
+      ],
+      "descripcion": "Remedio enfocado en la esfera otorrinolaringológica infantil, ideal para la hipertrofia de adenoides y amígdalas con tendencia a la sordera catarral.",
+      "mecanismoAccion": "En homeopatía: actúa sobre el tejido linfático faríngeo para regular la congestión y reducir la inflamación crónica glandular.",
+      "nivelEvidencia": "C",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15
+      ],
+      "sintomasClave": [
+        "Hipertrofia de adenoides (vegetaciones) en niños",
+        "Sordera por congestión u obstrucción de la trompa de Eustaquio",
+        "Mucosidad faríngea abundante y espesa",
+        "Tendencia a resfriarse con el menor cambio de temperatura"
+      ],
+      "modalidades": {
+        "empeora": [
+          "frio humedo",
+          "cambios de clima",
+          "viento"
+        ],
+        "mejora": [
+          "clima seco y calido"
+        ]
+      },
+      "afinidad": [
+        "tejido linfático de la faringe",
+        "trompa de Eustaquio",
+        "amígdalas"
+      ],
+      "constelaciones": [
+        "Hipertrofia de adenoides",
+        "Sordera catarral infantil"
+      ],
+      "advertencias": [
+        "Consultar al pediatra si hay dificultad respiratoria grave",
+        "Separar de las tomas de leche"
+      ],
+      "tags": [
+        "adenoides",
+        "oido",
+        "resfriado",
+        "garganta"
+      ],
+      "interaccionesMedicamentosas": [
+        "Sin interacciones conocidas",
+        "Los efectos se atenúan con menta y café"
+      ],
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "beneficioCliente": "Ayuda a reducir la congestión mucosa en la garganta y oídos en niños con tendencia a vegetaciones inflamadas o resfriados recurrentes.",
+      "posologia": "5 gránulos de Agraphis nutans 5CH o 9CH por la mañana y por la noche de forma prolongada (1 a 2 meses).",
+      "metadata": {
+        "fechaCreacion": "2026-10-01"
+      }
+    },
+    {
+      "id": "cocculus_indicus",
+      "nombre": "Cocculus Indicus",
+      "nombresAlternativos": [
+        "Cocculus",
+        "Anamirta cocculus",
+        "Indian berry"
+      ],
+      "nombreCientifico": "Anamirta cocculus",
+      "familia": "Menispermaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "nervioso",
+        "digestivo"
+      ],
+      "indicaciones": [
+        "cinetosis",
+        "vertigo",
+        "insomnio",
+        "nauseas",
+        "agotamiento"
+      ],
+      "descripcion": "Remedio capital para mareo por movimiento (cinetosis en coche/barco/tren), náuseas con aversión a la comida o su olor, y agotamiento nervioso severo por trasnochar o cuidar a personas enfermas.",
+      "mecanismoAccion": "En homeopatia: actúa sobre el centro vestibular cerebeloso y la motilidad gástrica refleja. Modula la sobreexcitabilidad sensorial y el agotamiento del eje neurovegetativo.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Mareo y vértigo intenso al viajar en coche, barco o mirar objetos en movimiento",
+        "Náuseas profundas con el simple olor o vista de los alimentos",
+        "Agotamiento y cefalea occipital tras vigilias prolongadas o cuidar enfermos",
+        "Sensación de vacío o pesadez en cabeza y abdomen"
+      ],
+      "modalidades": {
+        "empeora": [
+          "movimiento pasivo",
+          "viaje en coche o barco",
+          "trasnochar",
+          "olor a comida",
+          "perdida de sueno"
+        ],
+        "mejora": [
+          "calor",
+          "habitacion tibia",
+          "acostado quieto",
+          "cerrar los ojos"
+        ]
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "interaccionesMedicamentosas": []
+    },
+    {
+      "id": "spongia_tosta",
+      "nombre": "Spongia Tosta",
+      "nombresAlternativos": [
+        "Spongia",
+        "Esponja marina tostada",
+        "Euspongia officinalis"
+      ],
+      "nombreCientifico": "Euspongia officinalis",
+      "familia": "Spongiidae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "endocrino"
+      ],
+      "indicaciones": [
+        "tos",
+        "laringitis",
+        "crup",
+        "ronquera",
+        "disfonia"
+      ],
+      "descripcion": "Gran remedio para la laringitis aguda sofocante, crup infantil, ronquera y tos seca crupal metálica (comparada con serrar madera de pino), con sequedad extrema de vías aéreas.",
+      "mecanismoAccion": "En homeopatia: afinidad por la mucosa laríngea, cuerdas vocales y tejido glandular tiroideo. Alivia el espasmo laríngeo y la hiperreactividad tusígena seca.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Tos muy seca, ruidosa, metálica y aserrada (como sierra en tabla)",
+        "Despertar brusco antes de medianoche con sofocación y angustia respiratoria",
+        "Ronquera dolorosa con sensación de tapón en la laringe",
+        "Mejora inmediata y característica al ingerir bebidas o alimentos calientes"
+      ],
+      "modalidades": {
+        "empeora": [
+          "aire frio y seco",
+          "hablar",
+          "antes de medianoche",
+          "acostado plano con cabeza baja"
+        ],
+        "mejora": [
+          "bebidas calientes",
+          "comer o tragar caliente",
+          "posicion semisentada",
+          "ambiente humedo y templado"
+        ]
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "interaccionesMedicamentosas": []
+    },
+    {
+      "id": "baptisia_tinctoria",
+      "nombre": "Baptisia Tinctoria",
+      "nombresAlternativos": [
+        "Baptisia",
+        "Wild indigo",
+        "Índigo silvestre"
+      ],
+      "nombreCientifico": "Baptisia tinctoria",
+      "familia": "Fabaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "inmune",
+        "digestivo",
+        "nervioso"
+      ],
+      "indicaciones": [
+        "fiebre",
+        "gripe",
+        "infeccion",
+        "postracion",
+        "gastroenteritis"
+      ],
+      "descripcion": "Remedio de estados infecciosos febriles agudos adinámicos (síndrome gripal severo o tifoideo), caracterizado por postración rápida, confusión mental, dolor muscular generalizado y fetidez de secreciones.",
+      "mecanismoAccion": "En homeopatia: actúa sobre el endotelio vascular y la respuesta inmunoinflamatoria sistémica febril, aliviando la sensación de magulladura corporal y el estupor tóxico.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Estupor febril con cara roja oscura abotagada y confusión mental",
+        "Sensación de que el cuerpo está dividido en pedazos en la cama y lucha por juntarlos",
+        "Dolor magullado en todos los músculos y la cama se siente intolerablemente dura",
+        "Fetidez extrema de aliento, sudor y heces diarreicas"
+      ],
+      "modalidades": {
+        "empeora": [
+          "calor sofocante",
+          "movimiento",
+          "presion",
+          "niebla o humedad"
+        ],
+        "mejora": [
+          "reposo absoluto",
+          "aire fresco",
+          "bebidas frias en pequenos sorbos"
+        ]
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "interaccionesMedicamentosas": []
+    },
+    {
+      "id": "ranunculus_bulbosus",
+      "nombre": "Ranunculus Bulbosus",
+      "nombresAlternativos": [
+        "Ranunculus",
+        "Buttercup",
+        "Botón de oro"
+      ],
+      "nombreCientifico": "Ranunculus bulbosus",
+      "familia": "Ranunculaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "dermatologico",
+        "nervioso",
+        "musculoesqueletico"
+      ],
+      "indicaciones": [
+        "herpes_zoster",
+        "neuralgia_intercostal",
+        "pleurodinia",
+        "dolor_neuropatico"
+      ],
+      "descripcion": "Remedio de referencia para herpes zóster torácico y neuralgias intercostales severas, punzantes o ardientes, con vesículas azuladas dolorosas que empeoran con cualquier cambio meteorológico o movimiento respiratorio.",
+      "mecanismoAccion": "En homeopatia: selectividad por raíces nerviosas intercostales, terminaciones periféricas sensitivas y epitelio cutáneo afectado por reactivación viral o neuralgia aguda.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Dolor punzante, lancinante o quemante entre las costillas que corta la respiración",
+        "Erupciones vesiculares herpéticas dolorosas agrupadas con base cianótica o azulada",
+        "Extrema sensibilidad al tacto de la pared torácica",
+        "Agravación inmediata al cambio de tiempo a húmedo o frío y con el menor movimiento"
+      ],
+      "modalidades": {
+        "empeora": [
+          "cambio de clima",
+          "frio humedo",
+          "menor movimiento",
+          "respiracion profunda",
+          "tacto de la ropa"
+        ],
+        "mejora": [
+          "calor local seco",
+          "estar sentado quieto inclinado ligeramente hacia adelante"
+        ]
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "interaccionesMedicamentosas": []
+    },
+    {
+      "id": "sambucus_nigra_homeo",
+      "nombre": "Sambucus Nigra (Homeo)",
+      "nombresAlternativos": [
+        "Sambucus",
+        "Elder",
+        "Saúco homeopático"
+      ],
+      "nombreCientifico": "Sambucus nigra",
+      "familia": "Adoxaceae",
+      "categoria": "homeopatia",
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ],
+      "indicaciones": [
+        "obstruccion_nasal",
+        "coriza",
+        "laringitis",
+        "sudoracion_profusa",
+        "tos"
+      ],
+      "descripcion": "Remedio excelente para la nariz tapada seca en lactantes y niños (no pueden mamar ni dormir por obstrucción nasal completa), accesos de tos sofocante nocturna y sudoración profusa al despertar.",
+      "mecanismoAccion": "En homeopatia: descongestiona la mucosa nasofaríngea y bronquial espasmódica. Modula los episodios vasomotores y la diaforesis reactiva.",
+      "nivelEvidencia": "B",
+      "dilucionesCH": [
+        5,
+        7,
+        9,
+        15,
+        30
+      ],
+      "sintomasClave": [
+        "Nariz completamente obstruida y seca en lactantes durante el sueño y la lactancia",
+        "Despertar súbito a medianoche con asfixia y cianosis leve por espasmo laríngeo",
+        "Sudoración profusa generalizada inmediatamente al despertar, mientras que durante el sueño la piel está seca y caliente",
+        "Tos espasmódica ronca sofocante nocturna"
+      ],
+      "modalidades": {
+        "empeora": [
+          "medianoche",
+          "acostado con cabeza baja",
+          "durante el sueno",
+          "aire frio y seco"
+        ],
+        "mejora": [
+          "sentarse erguido en la cama",
+          "movimiento suave",
+          "abrigarse bien",
+          "respirar aire templado"
+        ]
+      },
+      "seguridad": {
+        "embarazo": "apto",
+        "lactancia": "apto",
+        "pediatria": "apto",
+        "hipertension": "apto",
+        "diabetes": "apto",
+        "celiacos": "apto"
+      },
+      "interaccionesMedicamentosas": []
     }
   ]
 }

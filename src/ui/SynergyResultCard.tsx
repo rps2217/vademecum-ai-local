@@ -22,14 +22,39 @@ interface SynergyResultCardProps {
   className?: string;
 }
 
-const TYPE_CONFIG = {
+const TYPE_CONFIG: Record<string, { label: string; badgeClass: string; icon: typeof Sparkles }> = {
   sinergia: {
     label: 'Sinergia',
     badgeClass: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-300/40',
     icon: Sparkles,
   },
+  potenciador: {
+    label: 'Potenciador',
+    badgeClass: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-300/40',
+    icon: Sparkles,
+  },
+  bioactivador: {
+    label: 'Bioactivador',
+    badgeClass: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-300/40',
+    icon: Sparkles,
+  },
   complemento: {
     label: 'Complemento',
+    badgeClass: 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-300/40',
+    icon: Link2,
+  },
+  complementario: {
+    label: 'Complementario',
+    badgeClass: 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-300/40',
+    icon: Link2,
+  },
+  cofactor: {
+    label: 'Cofactor',
+    badgeClass: 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-300/40',
+    icon: Link2,
+  },
+  secuencial: {
+    label: 'Secuencial',
     badgeClass: 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-300/40',
     icon: Link2,
   },

@@ -8,6 +8,7 @@ import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { HOMEOPATHIC_PROTOCOLS } from '@/data/homeopathyProtocols';
 import { useCounterTray } from '@/contexts/CounterTrayContext';
+import type { DbIngredient } from '@/db/schema';
 import { toast } from 'sonner';
 import {
   ClipboardList,
@@ -41,6 +42,34 @@ const ICON_MAP: Record<string, typeof Activity> = {
   ShieldAlert,
 };
 
+function createDbIngredientFromRemedy(r: { id: string; nombre: string; dilucion?: string }): DbIngredient {
+  return {
+    id: r.id,
+    nombre: `${r.nombre}${r.dilucion ? ' ' + r.dilucion : ''}`,
+    sinonimos: [],
+    categoria: 'homeopatia',
+    sistemas: [],
+    indicaciones: [],
+    evidencia: 'B',
+    propiedades: ['Remedio homeopático'],
+    seguridad: {
+      embarazo: 'apto',
+      lactancia: 'apto',
+      pediatria: 'apto',
+      hipertension: 'apto',
+      diabetes: 'apto',
+      celiacos: 'apto',
+    },
+    interacciones: [],
+    fuentes: [],
+    lamport: 0,
+    deviceId: 'local',
+    updatedAt: Date.now(),
+    createdAt: Date.now(),
+    tombstone: 0,
+  };
+}
+
 export function HomeopathyProtocols({
   onSelectRemedy,
 }: {
@@ -69,12 +98,7 @@ export function HomeopathyProtocols({
     let addedCount = 0;
     protocol.remedios.forEach((r) => {
       if (!isInTray(r.id)) {
-        addItem({
-          id: r.id,
-          name: `${r.nombre} ${r.dilucion}`,
-          category: 'homeopatia',
-          evidence: 'B',
-        });
+        addItem(createDbIngredientFromRemedy(r));
         addedCount++;
       }
     });
@@ -169,7 +193,7 @@ export function HomeopathyProtocols({
                 <div className="flex items-center gap-2">
                   <Button
                     size="sm"
-                    variant={allInTray ? 'outline' : 'primary'}
+                    variant={allInTray ? 'outline' : 'default'}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddAllToTray(protocol);
@@ -243,12 +267,7 @@ export function HomeopathyProtocols({
                                 if (inTray) {
                                   toast.info(`${r.nombre} ya está en la bandeja`);
                                 } else {
-                                  addItem({
-                                    id: r.id,
-                                    name: `${r.nombre} ${r.dilucion}`,
-                                    category: 'homeopatia',
-                                    evidence: 'B',
-                                  });
+                                  addItem(createDbIngredientFromRemedy(r));
                                   toast.success(`Añadido ${r.nombre} a la bandeja`);
                                 }
                               }}

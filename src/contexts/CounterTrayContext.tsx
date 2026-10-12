@@ -6,6 +6,7 @@
  *   - Sinergias cruzadas (potenciación, complemento)
  *   - Antagonismos o incompatibilidades
  *   - Seguridad frente al perfil del cliente activo
+ *   - Interacciones cruzadas con medicación alopática del paciente
  *   - Posología conjunta sugerida y resumen para el cliente (1 clic para copiar)
  */
 
@@ -14,6 +15,7 @@ import type { DbIngredient, DbSynergy } from '@/db/schema';
 import { db } from '@/db';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useClientProfile, type SafetyVerdict } from './ClientProfileContext';
+import { DRUG_NUTRIENT_INTERACTIONS, type DrugNutrientInteraction } from '@/core/analysis/drugNutrientInteractions';
 
 export interface EvaluatedSynergy {
   synergy: DbSynergy;
@@ -24,6 +26,12 @@ export interface EvaluatedSynergy {
 export interface TraySafetyItem {
   ingredient: DbIngredient;
   verdict: SafetyVerdict | null;
+}
+
+export interface DetectedDrugInteraction {
+  interaction: DrugNutrientInteraction;
+  matchedIngredient: DbIngredient;
+  matchedTerm: string;
 }
 
 interface CounterTrayContextValue {
@@ -40,6 +48,10 @@ interface CounterTrayContextValue {
   safetyEvaluations: TraySafetyItem[];
   hasSafetyWarnings: boolean;
   totalCount: number;
+  // Módulo de medicación de prescripción
+  patientMedication: string;
+  setPatientMedication: (med: string) => void;
+  detectedDrugInteractions: DetectedDrugInteraction[];
 }
 
 const CounterTrayContext = createContext<CounterTrayContextValue | null>(null);
@@ -54,6 +66,14 @@ export function CounterTrayProvider({ children }: { children: ReactNode }) {
     }
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [patientMedication, setPatientMedicationState] = useState(() => {
+    try {
+      return sessionStorage.getItem('vademecum_patient_medication') || '';
+    } catch {
+      return '';
+    }
+  });
+
   const { evaluateSafety } = useClientProfile();
 
   // Persistir en sessionStorage
@@ -64,6 +84,15 @@ export function CounterTrayProvider({ children }: { children: ReactNode }) {
       // Ignorar errores de quota
     }
   }, [items]);
+
+  const setPatientMedication = useCallback((med: string) => {
+    setPatientMedicationState(med);
+    try {
+      sessionStorage.setItem('vademecum_patient_medication', med);
+    } catch {
+      // Ignorar
+    }
+  }, []);
 
   // Si se añade un primer elemento, abrir la bandeja automáticamente
   const addItem = useCallback((ingredient: DbIngredient) => {
@@ -152,7 +181,7 @@ export function CounterTrayProvider({ children }: { children: ReactNode }) {
     return { evaluatedSynergies: syns, evaluatedAntagonisms: antags };
   }, [rawSynergies, itemIds, itemMap]);
 
-  // Evaluaciones de seguridad
+  // Evaluaciones de seguridad de cliente
   const safetyEvaluations: TraySafetyItem[] = useMemo(() => {
     return items.map((ing) => ({
       ingredient: ing,
@@ -160,9 +189,41 @@ export function CounterTrayProvider({ children }: { children: ReactNode }) {
     }));
   }, [items, evaluateSafety]);
 
-  const hasSafetyWarnings = safetyEvaluations.some(
-    (s) => s.verdict === 'contraindicado' || s.verdict === 'precaucion'
-  );
+  // Detección en tiempo real de interacciones con medicación de prescripción
+  const detectedDrugInteractions: DetectedDrugInteraction[] = useMemo(() => {
+    if (!patientMedication.trim() || items.length === 0) return [];
+    const queryNorm = patientMedication.toLowerCase().trim();
+    const results: DetectedDrugInteraction[] = [];
+
+    for (const inter of DRUG_NUTRIENT_INTERACTIONS) {
+      const matchesDrug =
+        inter.commonBrands.some((b) => queryNorm.includes(b.toLowerCase()) || b.toLowerCase().includes(queryNorm)) ||
+        inter.activeSubstances.some((s) => queryNorm.includes(s.toLowerCase()) || s.toLowerCase().includes(queryNorm));
+
+      if (matchesDrug) {
+        for (const ing of items) {
+          const matchesNutrientId = inter.interactingNutrientIds.includes(ing.id);
+          const matchesNutrientName = inter.interactingKeywords.some(
+            (k) => ing.nombre.toLowerCase().includes(k) || ing.sinonimos?.some((s) => s.toLowerCase().includes(k))
+          );
+
+          if (matchesNutrientId || matchesNutrientName) {
+            results.push({
+              interaction: inter,
+              matchedIngredient: ing,
+              matchedTerm: patientMedication,
+            });
+          }
+        }
+      }
+    }
+
+    return results;
+  }, [patientMedication, items]);
+
+  const hasSafetyWarnings =
+    safetyEvaluations.some((s) => s.verdict === 'contraindicado' || s.verdict === 'precaucion') ||
+    detectedDrugInteractions.length > 0;
 
   return (
     <CounterTrayContext.Provider
@@ -180,6 +241,9 @@ export function CounterTrayProvider({ children }: { children: ReactNode }) {
         safetyEvaluations,
         hasSafetyWarnings,
         totalCount: items.length,
+        patientMedication,
+        setPatientMedication,
+        detectedDrugInteractions,
       }}
     >
       {children}
@@ -199,7 +263,11 @@ const fallbackContextValue: CounterTrayContextValue = {
   synergies: [],
   antagonisms: [],
   safetyEvaluations: [],
+  hasSafetyWarnings: false,
   totalCount: 0,
+  patientMedication: '',
+  setPatientMedication: () => {},
+  detectedDrugInteractions: [],
 };
 
 export function useCounterTray() {

@@ -2,7 +2,8 @@
  * CounterTray - Bandeja de Orientación de Mostrador en Tiempo Real.
  *
  * Permite al farmacéutico validar combinaciones de suplementos frente al cliente
- * en 1 mirada sin tener que teclear ni salir de la pantalla de búsqueda.
+ * en 1 mirada sin tener que teclear ni salir de la pantalla de búsqueda,
+ * con verificación en vivo de compatibilidad con medicamentos habituales (Sintrom, Estatinas, etc.).
  */
 
 import { useState } from 'react';
@@ -10,12 +11,14 @@ import { useCounterTray } from '@/contexts/CounterTrayContext';
 import { useClientProfile, CLIENT_PROFILES } from '@/contexts/ClientProfileContext';
 import {
   Sparkles, AlertTriangle, CheckCircle2, X, ChevronUp, ChevronDown,
-  Copy, Trash2, ArrowRight, Check
+  Copy, Trash2, ArrowRight, Check, Pill, ShieldAlert
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { humanize } from '@/lib/text';
 import { toast } from 'sonner';
 import { getCategoryConfig } from '@/ui/searchConfig';
+
+const QUICK_MEDICATION_CHIPS = ['Sintrom', 'Atorvastatina', 'Prozac', 'Enalapril', 'Metformina', 'Eutirox'];
 
 export function CounterTray() {
   const {
@@ -28,6 +31,9 @@ export function CounterTray() {
     antagonisms,
     safetyEvaluations,
     totalCount,
+    patientMedication,
+    setPatientMedication,
+    detectedDrugInteractions,
   } = useCounterTray();
 
   const { profile } = useClientProfile();
@@ -46,6 +52,9 @@ export function CounterTray() {
     lines.push('📋 PAUTA DE SUPLEMENTACIÓN / ORIENTACIÓN:');
     if (activeProfileObj && activeProfileObj.value !== 'ninguno') {
       lines.push(`👤 Perfil del consultante: ${activeProfileObj.label}`);
+    }
+    if (patientMedication) {
+      lines.push(`💊 Medicación crónica declarada: ${patientMedication}`);
     }
     lines.push('');
     lines.push('🌿 Ingredientes recomendados:');
@@ -67,9 +76,17 @@ export function CounterTray() {
       });
     }
 
+    if (detectedDrugInteractions.length > 0) {
+      lines.push('');
+      lines.push('🚨 Alerta Fármaco-Nutriente con Medicación habitual:');
+      detectedDrugInteractions.forEach((d) => {
+        lines.push(` • ${d.interaction.drugClass} ↔ ${d.matchedIngredient.nombre}: ${d.interaction.effectTitle}. ${d.interaction.counterAdvice}`);
+      });
+    }
+
     if (antagonisms.length > 0) {
       lines.push('');
-      lines.push('⚠️ Advertencias / Precauciones:');
+      lines.push('⚠️ Advertencias / Precauciones entre activos:');
       antagonisms.forEach((a) => {
         lines.push(` • ${a.ingredientA.nombre} con ${a.ingredientB.nombre}: ${a.synergy.descripcion || 'Posible interacción antagónica'}`);
       });
@@ -84,6 +101,7 @@ export function CounterTray() {
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const hasDrugWarning = detectedDrugInteractions.length > 0;
   const hasAntagonism = antagonisms.length > 0;
   const hasSynergy = synergies.length > 0;
 
@@ -100,17 +118,22 @@ export function CounterTray() {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2.5 min-w-0 flex-1 text-left hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+            className="flex items-center gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg py-0.5"
           >
-            <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-primary text-primary-foreground font-bold text-xs shrink-0">
-              {totalCount}
-            </div>
-            <span className="font-heading font-semibold text-sm text-foreground truncate">
-              Bandeja de Orientación
+            <span className="font-heading font-bold text-sm text-foreground flex items-center gap-1.5">
+              <span>Bandeja de Mostrador</span>
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                {totalCount}
+              </span>
             </span>
 
             {/* Badges de estado rápido */}
-            {hasAntagonism ? (
+            {hasDrugWarning ? (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-600 text-white animate-pulse">
+                <ShieldAlert className="w-3 h-3" />
+                Alerta Fármaco-Nutriente
+              </span>
+            ) : hasAntagonism ? (
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-500/15 text-red-700 dark:text-red-300 ring-1 ring-red-500/30">
                 <AlertTriangle className="w-3 h-3" />
                 Interacción
@@ -162,6 +185,81 @@ export function CounterTray() {
         {/* Panel expandible */}
         {isOpen && (
           <div className="p-4 space-y-4 max-h-[60vh] overflow-y-auto">
+            {/* Verificador de medicación de prescripción */}
+            <div className="p-3 rounded-xl bg-card border border-border/80 space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <label htmlFor="patient-medication-input" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                  <Pill className="w-3.5 h-3.5 text-primary" />
+                  <span>Comprobar medicación habitual del cliente (receta):</span>
+                </label>
+                <div className="flex items-center gap-1 overflow-x-auto text-[11px]">
+                  {QUICK_MEDICATION_CHIPS.map((med) => (
+                    <button
+                      key={med}
+                      type="button"
+                      onClick={() => setPatientMedication(patientMedication === med ? '' : med)}
+                      className={cn(
+                        'px-2 py-0.5 rounded-md border transition-colors whitespace-nowrap',
+                        patientMedication.toLowerCase() === med.toLowerCase()
+                          ? 'bg-primary text-primary-foreground border-primary font-bold'
+                          : 'bg-muted/50 border-border/60 text-muted-foreground hover:text-foreground'
+                      )}
+                    >
+                      {med}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative">
+                <input
+                  id="patient-medication-input"
+                  type="text"
+                  placeholder="Ej: Sintrom, Atorvastatina, Prozac, Enalapril, Metformina, Eutirox..."
+                  value={patientMedication}
+                  onChange={(e) => setPatientMedication(e.target.value)}
+                  className="w-full h-8 px-3 text-xs bg-muted/40 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+                {patientMedication && (
+                  <button
+                    type="button"
+                    onClick={() => setPatientMedication('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground text-xs"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Alerta de interacción con Medicación */}
+            {detectedDrugInteractions.length > 0 && (
+              <div className="rounded-xl bg-red-600 text-white p-3 space-y-2 shadow-md">
+                <div className="flex items-center gap-1.5 font-bold text-xs">
+                  <ShieldAlert className="w-4 h-4 text-white" />
+                  <span>ALERTA DE SEGURIDAD: Fármaco de prescripción ↔ Suplemento ({detectedDrugInteractions.length})</span>
+                </div>
+                <div className="space-y-1.5">
+                  {detectedDrugInteractions.map((d, idx) => (
+                    <div key={idx} className="bg-red-700/80 rounded-lg p-2 text-xs border border-red-500/50">
+                      <div className="font-semibold flex items-center justify-between">
+                        <span>{d.matchedIngredient.nombre} con {d.interaction.drugClass}</span>
+                        <span className="uppercase text-[9px] px-1.5 py-0.2 bg-red-900 rounded font-bold">
+                          {d.interaction.severity}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-red-100 text-[11px] leading-snug">
+                        <strong>Efecto:</strong> {d.interaction.clinicalDescription}
+                      </p>
+                      <p className="mt-1 text-yellow-200 text-[11px] font-medium leading-snug">
+                        <strong>Consejo en mostrador:</strong> {d.interaction.counterAdvice}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Lista de ingredientes seleccionados */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
               {safetyEvaluations.map(({ ingredient, verdict }) => {

@@ -133,7 +133,7 @@ export function HomeopathyRepertory({
 
         {/* Botón Filtros Avanzados */}
         <Button
-          variant={showAdvancedFilters ? 'primary' : 'outline'}
+          variant={showAdvancedFilters ? 'default' : 'outline'}
           onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
           className="text-xs h-10 gap-1.5 shrink-0"
         >

@@ -27,6 +27,7 @@ import {
   Activity,
   BookOpen,
   FlaskConical,
+  Stethoscope,
 } from 'lucide-react';
 
 export function HomePage() {
@@ -58,21 +59,51 @@ export function HomePage() {
   };
 
   const quickSymptoms = [
-    { label: 'Insomnio', query: 'insomnio', icon: '💤' },
-    { label: 'Estrés', query: 'ansiedad', icon: '🧠' },
-    { label: 'Digestión', query: 'digestivo', icon: '🩺' },
-    { label: 'Inmunidad', query: 'inmune', icon: '🛡️' },
-    { label: 'Articulaciones', query: 'articulaciones', icon: '🦴' },
-    { label: 'Fatiga', query: 'fatiga', icon: '⚡' },
-    { label: 'Circulación', query: 'circulacion', icon: '🫀' },
+    { label: 'Insomnio', reasonId: 'insomnio_sueno', query: 'insomnio', icon: '💤' },
+    { label: 'Estrés & Ansiedad', reasonId: 'estres_ansiedad', query: 'estres', icon: '🧠' },
+    { label: 'Ardor & Reflujo', reasonId: 'ardor_reflujo', query: 'ardor', icon: '🔥' },
+    { label: 'Gases & Digestión', reasonId: 'gases_dispepsia', query: 'gases', icon: '🩺' },
+    { label: 'Dolor Articular', reasonId: 'dolor_articular', query: 'artrosis', icon: '🦴' },
+    { label: 'Dolor Muscular', reasonId: 'dolor_muscular', query: 'lumbalgia', icon: '⚡' },
+    { label: 'Resfriado & Gripe', reasonId: 'resfriado_gripe', query: 'gripe', icon: '🤒' },
+    { label: 'Tos & Pulmón', reasonId: 'tos_respiratorio', query: 'tos', icon: '💨' },
+    { label: 'Garganta & Llagas', reasonId: 'bucal_garganta', query: 'garganta', icon: '👄' },
+    { label: 'Defensas Bajas', reasonId: 'inmunidad_defensas', query: 'inmunidad', icon: '🛡️' },
+    { label: 'Eccemas & Piel', reasonId: 'dermatitis_eccema', query: 'dermatitis', icon: '🧴' },
+    { label: 'Acné & Rosácea', reasonId: 'acne_psoriasis', query: 'acne', icon: '✨' },
+    { label: 'Caída de Cabello', reasonId: 'cabello_unas', query: 'alopecia', icon: '💇' },
+    { label: 'Ojo Seco', reasonId: 'ojos_vision', query: 'ojo seco', icon: '👁️' },
+    { label: 'Cistitis & Urinario', reasonId: 'urinario_cistitis', query: 'cistitis', icon: '💧' },
+    { label: 'Menopausia & Regla', reasonId: 'mujer_hormonal', query: 'menopausia', icon: '🌸' },
+    { label: 'Próstata & Masculino', reasonId: 'hombre_prostata', query: 'prostata', icon: '🚹' },
+    { label: 'Piernas Cansadas', reasonId: 'piernas_varices', query: 'varices', icon: '🦵' },
+    { label: 'Hemorroides', reasonId: 'hemorroides_fisuras', query: 'hemorroides', icon: '🔴' },
+    { label: 'Colesterol & Tensión', reasonId: 'cardio_tension', query: 'colesterol', icon: '🫀' },
+    { label: 'Peso & Glucosa', reasonId: 'peso_glucosa', query: 'peso', icon: '⚖️' },
+    { label: 'Cansancio & Fatiga', reasonId: 'fatiga_astenia', query: 'fatiga', icon: '🔋' },
+    { label: 'Mareos & Vértigo', reasonId: 'oidos_vertigo', query: 'vertigo', icon: '🌀' },
+    { label: 'Dejar de Fumar', reasonId: 'tabaquismo', query: 'tabaquismo', icon: '🚭' },
   ];
 
+  const handleReasonClick = (reasonId: string, term: string) => {
+    navigate(`/pathologies?reason=${reasonId}&q=${encodeURIComponent(term)}`);
+  };
+
   const mainModules = [
+    {
+      id: 'pathologies-module',
+      title: 'Patologías & Motivos de Consulta',
+      subtitle: 'Abordaje clínico de lo que busca el cliente (síntomas y protocolos)',
+      badge: stats ? `${stats.pathologies} patologías clínicas` : '146 patologías',
+      icon: Stethoscope,
+      href: '/pathologies',
+      accentColor: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-200/60 dark:border-emerald-900/50',
+    },
     {
       id: 'homeopathy-module',
       title: 'Dashboard de Homeopatía',
       subtitle: 'Materia Médica, potencias CH y repertorio',
-      badge: '118 remedios · CH',
+      badge: '128 remedios · CH',
       icon: FlaskConical,
       href: '/homeopathy',
       accentColor: 'text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border-indigo-200/60 dark:border-indigo-900/50',
@@ -120,9 +151,12 @@ export function HomePage() {
       {/* Search & Hero Card */}
       <section className="relative overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-b from-card to-card/60 p-6 sm:p-8 shadow-xs" aria-label="Búsqueda central">
         <div className="mx-auto max-w-2xl text-center space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1 text-xs font-medium text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Vademecum AI · Mostrador local offline
+          <div className="inline-flex items-center gap-2 text-xs font-medium text-muted-foreground">
+            <span className="font-semibold text-primary">Vademecum AI</span>
+            <span aria-hidden="true">·</span>
+            <span>Mostrador Clínico Offline</span>
+            <span aria-hidden="true">·</span>
+            <span className="tabular-nums font-medium text-foreground">{stats ? `${stats.ingredients} Activos` : '644 Activos'}</span>
           </div>
 
           <div>
@@ -153,7 +187,7 @@ export function HomePage() {
               <button
                 key={s.label}
                 type="button"
-                onClick={() => handleQuickSearch(s.query)}
+                onClick={() => handleReasonClick(s.reasonId, s.query)}
                 className="inline-flex items-center gap-1 rounded-lg border border-border/70 bg-background px-2.5 py-1 text-xs font-medium text-muted-foreground hover:border-primary/40 hover:bg-primary/5 hover:text-foreground transition-all cursor-pointer"
               >
                 <span>{s.icon}</span>

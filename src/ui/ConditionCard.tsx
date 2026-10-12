@@ -177,8 +177,8 @@ export function ConditionCard({ pathology, onIngredientClick, onExpand }: Condit
                             setExplainingItem({
                               id: ing.id,
                               title: ing.nombre,
-                              mecanismo: ing.mecanismoAccion,
-                              descripcion: ing.descripcion,
+                              mecanismo: ing.propiedades?.[1] || ing.propiedades?.[0],
+                              descripcion: ing.propiedades?.[0],
                             });
                             
                             const explanationRecord = await db.clinicalExplanations

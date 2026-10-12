@@ -6973,6 +6973,378 @@
         "cardiovascular",
         "metabolico"
       ]
+    },
+    {
+      "id": "sin_cantharis_apis_mellifica",
+      "ingredienteA": "cantharis",
+      "ingredienteB": "apis_mellifica",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Asociación tradicional en homeopatía para el alivio rápido del dolor ardiente e inflamación en cistitis agudas o eritemas cutáneos urticantes.",
+      "beneficios": [
+        "Acción sinérgica sobre el dolor ardiente",
+        "Reduce el tenesmo urinario rápidamente"
+      ],
+      "precauciones": [
+        "Tomar espaciado de los alimentos"
+      ],
+      "mecanismo": "Ambos modulan las vías nociceptivas cutáneas y uroteliales mediante similitud sintomática.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "urinario",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_sabina_china_officinalis",
+      "ingredienteA": "sabina",
+      "ingredienteB": "china_officinalis",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Asociación recomendada para regular hemorragias uterinas abundantes (Sabina) y compensar el agotamiento o debilidad física por pérdida de fluidos (China).",
+      "beneficios": [
+        "Acción hemostática y tonificante conjunta",
+        "Mejora la fatiga post-menstrual"
+      ],
+      "precauciones": [
+        "No sustituye el tratamiento médico si hay shock hemorrágico"
+      ],
+      "mecanismo": "Sabina reduce la congestión activa uterina y China restablece la homeostasis hídrica y mineral.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "reproductivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_anacardium_nux_vomica",
+      "ingredienteA": "anacardium",
+      "ingredienteB": "nux_vomica",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Excelente combinación para la dispepsia de origen puramente nervioso o inducida por estrés intelectual y sedentarismo.",
+      "beneficios": [
+        "Alivio espasmódico digestivo",
+        "Regula la acidez y el reflujo por estrés"
+      ],
+      "precauciones": [
+        "Tomar 30 minutos antes de las comidas"
+      ],
+      "mecanismo": "Anacardium alivia el dolor gástrico con sensación de tapón que mejora comiendo, mientras que Nux Vomica modula la hipersensibilidad y espasmos.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "digestivo",
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_hyoscyamus_chamomilla",
+      "ingredienteA": "hyoscyamus",
+      "ingredienteB": "chamomilla",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Combinación clásica de apoyo homeopático para calmar la agitación, irritabilidad y dificultad para conciliar el sueño en niños inquietos.",
+      "beneficios": [
+        "Favorece un sueño reparador sin somnolencia diurna",
+        "Calma los tics y espasmos nerviosos"
+      ],
+      "precauciones": [
+        "Mantener fuera del alcance de los niños"
+      ],
+      "mecanismo": "Ambos regulan la hiperexcitabilidad del sistema somatosensorial y motor infantil.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "nervioso"
+      ]
+    },
+    {
+      "id": "sin_agraphis_nutans_baryta_carbonica",
+      "ingredienteA": "agraphis_nutans",
+      "ingredienteB": "baryta_carbonica",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia homeopática clásica para niños con propensión a la hipertrofia del tejido linfático (amígdalas y adenoides) y resfriados frecuentes con afectación de oídos.",
+      "beneficios": [
+        "Disminuye la frecuencia de infecciones respiratorias",
+        "Mejora la ventilación del oído medio"
+      ],
+      "precauciones": [
+        "Consultar al especialista si persiste la sordera"
+      ],
+      "mecanismo": "Agraphis nutans reduce el catarro mucoso de la trompa de Eustaquio mientras que Baryta carbonica ayuda a descongestionar la amígdala hipertrófica.",
+      "categorias": [
+        "homeopatia",
+        "homeopatia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_rutina_vitamina_c",
+      "ingredienteA": "rutina",
+      "ingredienteB": "vitamina_c",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Sinergia clásica de bioflavonoides: la rutina previene la oxidación del ácido ascórbico mientras que la vitamina C actúa como cofactor en la biosíntesis de colágeno vascular.",
+      "beneficios": [
+        "Máxima resistencia y elasticidad de la pared vascular",
+        "Reducción de edemas y hematomas"
+      ],
+      "precauciones": [
+        "Tomar con las comidas"
+      ],
+      "mecanismo": "Protección antioxidante dual de la membrana endotelial y síntesis acelerada de pro-colágeno.",
+      "categorias": [
+        "vitamina",
+        "vitamina"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "dermatologico"
+      ]
+    },
+    {
+      "id": "sin_nattokinasa_coq10",
+      "ingredienteA": "nattokinasa",
+      "ingredienteB": "coq10",
+      "tipo": "complementario",
+      "nivelEvidencia": "A",
+      "descripcion": "Asociación cardiovascular avanzada: la nattokinasa asegura la fluidez sanguínea y microvascular mientras la coenzima Q10 optimiza la bioenergética mitocondrial miocárdica.",
+      "beneficios": [
+        "Optimización del gasto cardíaco y perfusión tisular",
+        "Protección endotelial frente al estrés oxidativo"
+      ],
+      "precauciones": [
+        "Controlar en pacientes bajo terapia anticoagulante"
+      ],
+      "mecanismo": "Lisis de microdepósitos de fibrina combinada con fosforilación oxidativa mitocondrial en cardiomiocitos.",
+      "categorias": [
+        "aminoacido",
+        "vitamina"
+      ],
+      "sistemas": [
+        "cardiovascular",
+        "metabolico"
+      ]
+    },
+    {
+      "id": "sin_serrapeptasa_bromelina",
+      "ingredienteA": "serrapeptasa",
+      "ingredienteB": "bromelina",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Doble complejo proteolítico sistémico para la resolución rápida de la inflamación exudativa, dolor y retención de líquidos tisulares.",
+      "beneficios": [
+        "Potente acción antiedematosa",
+        "Fluidificación eficaz de flemas y mucosidad"
+      ],
+      "precauciones": [
+        "Tomar con el estómago vacío para garantizar paso a circulación sistémica"
+      ],
+      "mecanismo": "Escisión enzimática sinérgica de proteínas plasmáticas retenidas en el espacio intersticial y bradicinina.",
+      "categorias": [
+        "aminoacido",
+        "fitoterapia"
+      ],
+      "sistemas": [
+        "respiratorio",
+        "musculoesqueletico"
+      ]
+    },
+    {
+      "id": "sin_calostro_bovino_l_glutamina",
+      "ingredienteA": "calostro_bovino",
+      "ingredienteB": "l_glutamina",
+      "tipo": "sinergia",
+      "nivelEvidencia": "A",
+      "descripcion": "Protocolo de referencia clínica para la reparación de la hiperpermeabilidad intestinal (leaky gut) y regeneración de la mucosa digestiva.",
+      "beneficios": [
+        "Sellado de las uniones estrechas intestinales",
+        "Soporte inmunitario mucosal inmediato (IgA/IgG)"
+      ],
+      "precauciones": [
+        "Tomar en ayunas con agua fría"
+      ],
+      "mecanismo": "La L-Glutamina suministra el combustible metabólico al enterocito mientras los factores IGF y PRPs del calostro estimulan la proliferación epitelial.",
+      "categorias": [
+        "probiotico",
+        "aminoacido"
+      ],
+      "sistemas": [
+        "digestivo",
+        "inmune"
+      ]
+    },
+    {
+      "id": "sin_dihidroberberina_cromo",
+      "ingredienteA": "dihidroberberina",
+      "ingredienteB": "cromo",
+      "tipo": "potenciador",
+      "nivelEvidencia": "A",
+      "descripcion": "Potenciación metabólica para la regulación glucémica: la DHB activa AMPK mientras el picolinato de cromo optimiza el receptor tirosina-quinasa de insulina.",
+      "beneficios": [
+        "Control eficaz de los picos glucémicos postprandiales",
+        "Mayor sensibilidad periférica a la insulina"
+      ],
+      "precauciones": [
+        "Ajustar dosis en caso de hipoglucemias leves"
+      ],
+      "mecanismo": "Translocación acelerada del transportador GLUT4 hacia la membrana celular vía señalización AMPK y cromomodulina.",
+      "categorias": [
+        "vitamina",
+        "mineral"
+      ],
+      "sistemas": [
+        "metabolico",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "sin_cocculus_tabacum_cinetosis",
+      "ingredienteA": "cocculus_indicus",
+      "ingredienteB": "tabacum",
+      "tipo": "sinergia",
+      "nivel": "fuerte",
+      "descripcion": "Combinación sinérgica de referencia para cinetosis, náuseas del viajero y mareo vestibular en transportes marítimos o terrestres.",
+      "mecanismo": "Cocculus estabiliza los centros reflejos del equilibrio ante el movimiento y la fatiga por trasnochar, mientras que Tabacum alivia la palidez gélida y las náuseas de origen neurovegetativo.",
+      "indicaciones": [
+        "cinetosis",
+        "vertigo",
+        "nauseas"
+      ],
+      "evidencia": "B",
+      "fuentes": [
+        "Materia Médica Homeopática Boiron",
+        "Repertorio de Boericke"
+      ]
+    },
+    {
+      "id": "sin_cocculus_nux_vomica_fatiga",
+      "ingredienteA": "cocculus_indicus",
+      "ingredienteB": "nux_vomica",
+      "tipo": "sinergia",
+      "nivel": "moderada",
+      "descripcion": "Acción complementaria en cefalea por sobrecarga laboral, insomnio por vigilias continuadas y trastornos digestivos asociados al estrés nervioso.",
+      "mecanismo": "Nux vomica modula la irritabilidad gástrica y hepática tras excesos o estrés, mientras Cocculus repara el agotamiento neuromuscular y la pesadez occipital por pérdida de descanso.",
+      "indicaciones": [
+        "agotamiento",
+        "insomnio",
+        "nauseas"
+      ],
+      "evidencia": "B",
+      "fuentes": [
+        "Materia Médica Clínica Kent",
+        "Guía Terapéutica Homeopática"
+      ]
+    },
+    {
+      "id": "sin_spongia_aconitum_crup",
+      "ingredienteA": "spongia_tosta",
+      "ingredienteB": "aconitum_napellus",
+      "tipo": "sinergia",
+      "nivel": "fuerte",
+      "descripcion": "Fórmula clásica del trío de crup (Aconitum - Spongia - Hepar sulphur) para laringitis estridente y tos crupal tras exposición a viento frío.",
+      "mecanismo": "Aconitum aborta la fase inflamatoria hiperaguda inicial con fiebre y agitación, y Spongia actúa a continuación desinflamando la mucosa laríngea y resolviendo el espasmo de la tos seca áspera.",
+      "indicaciones": [
+        "laringitis",
+        "tos",
+        "crup"
+      ],
+      "evidencia": "B",
+      "fuentes": [
+        "Trío del Crup de Hahnemann",
+        "Pediatría Homeopática Boiron"
+      ]
+    },
+    {
+      "id": "sin_spongia_hepar_sulphuris_tos",
+      "ingredienteA": "spongia_tosta",
+      "ingredienteB": "hepar_sulphuris",
+      "tipo": "sinergia",
+      "nivel": "fuerte",
+      "descripcion": "Continuidad sinérgica en la resolución de laringotraqueítis aguda espasmódica con sensibilidad exquisita a corrientes de aire.",
+      "mecanismo": "Spongia modula la tos seca áspera y el estridor laríngeo que mejora con líquidos calientes, permitiendo que Hepar sulphur complete la maduración mucosa evitando sobreinfecciones.",
+      "indicaciones": [
+        "tos",
+        "laringitis",
+        "ronquera"
+      ],
+      "evidencia": "B",
+      "fuentes": [
+        "Materia Médica Boericke",
+        "Clínica Homeopática Nash"
+      ]
+    },
+    {
+      "id": "sin_baptisia_gelsemium_gripe",
+      "ingredienteA": "baptisia_tinctoria",
+      "ingredienteB": "gelsemium",
+      "tipo": "sinergia",
+      "nivel": "fuerte",
+      "descripcion": "Asociación de choque para estados gripales y febriles infecciosos con postración intensa, pesadez corporal y cefalea congestiva.",
+      "mecanismo": "Gelsemium combate la paresia muscular, escalofríos y abatimiento motor, mientras Baptisia combate la fetidez, el dolor sordo de magulladura generalizada y el embotamiento sensorial.",
+      "indicaciones": [
+        "gripe",
+        "fiebre",
+        "infeccion"
+      ],
+      "evidencia": "B",
+      "fuentes": [
+        "Materia Médica Kent",
+        "Protocolos de Gripe Boiron"
+      ]
+    },
+    {
+      "id": "sin_ranunculus_mezereum_herpes",
+      "ingredienteA": "ranunculus_bulbosus",
+      "ingredienteB": "mezereum",
+      "tipo": "sinergia",
+      "nivel": "fuerte",
+      "descripcion": "Dúo sinérgico fundamental para neuralgia postherpética y brotes agudos de herpes zóster torácico o facial con vesículas hiperálgicas.",
+      "mecanismo": "Ranunculus reduce el dolor punzante intercostal agravado por el movimiento y contacto, y Mezereum alivia el dolor urente ardiente neuropático bajo las costras cutáneas.",
+      "indicaciones": [
+        "herpes_zoster",
+        "neuralgia_intercostal",
+        "dolor_neuropatico"
+      ],
+      "evidencia": "B",
+      "fuentes": [
+        "Dermatología Homeopática Jouanny",
+        "Repertorio Boericke"
+      ]
+    },
+    {
+      "id": "sin_sambucus_belladonna_obstruccion",
+      "ingredienteA": "sambucus_nigra_homeo",
+      "ingredienteB": "belladonna",
+      "tipo": "sinergia",
+      "nivel": "moderada",
+      "descripcion": "Manejo coordinado de congestión nasofaríngea aguda febril infantil con espasmos nocturnos y sudoración de rápida aparición.",
+      "mecanismo": "Belladonna reduce la congestión vascular cefálica y sequedad febril súbita, y Sambucus destapa la vía aérea nasofaríngea resolviendo el cuadro de asfixia al mamar o dormir.",
+      "indicaciones": [
+        "obstruccion_nasal",
+        "laringitis",
+        "tos"
+      ],
+      "evidencia": "B",
+      "fuentes": [
+        "Pediatría Homeopática Boiron",
+        "Materia Médica Boericke"
+      ]
     }
   ]
 }

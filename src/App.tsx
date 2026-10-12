@@ -56,6 +56,8 @@ function AppRoutes() {
       {/* Protected routes - Página Única Unificada */}
       <Route path="/" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
         <Route index element={<SinglePageWorkspace />} />
+        <Route path="pathologies" element={<SinglePageWorkspace />} />
+        <Route path="patologias" element={<SinglePageWorkspace />} />
         <Route path="info" element={<SinglePageWorkspace />} />
         <Route path="search" element={<SinglePageWorkspace />} />
         <Route path="knowledge" element={<SinglePageWorkspace />} />

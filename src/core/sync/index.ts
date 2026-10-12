@@ -28,3 +28,10 @@ export {
   isProductCatalogReplicated,
   type ReplicationResult,
 } from './ProductReplicator';
+
+export {
+  GoogleSheetSyncService,
+  googleSheetSyncService,
+  type GasSyncResponse,
+  type GasSyncResult,
+} from './GoogleSheetSyncService';

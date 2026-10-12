@@ -7,6 +7,7 @@ import { Card } from '@/ui/Card';
 import { Badge } from '@/ui/Badge';
 import { Button } from '@/ui/Button';
 import { useCounterTray } from '@/contexts/CounterTrayContext';
+import type { DbIngredient } from '@/db/schema';
 import { toast } from 'sonner';
 import {
   Sparkles,
@@ -42,12 +43,33 @@ export function MateriaMedicaCard({
       return;
     }
 
-    addItem({
+    const item: DbIngredient = {
       id: remedy.id,
-      name: `${remedy.nombre} ${selectedDilution}CH`,
-      category: 'homeopatia',
-      evidence: remedy.nivelEvidencia,
-    });
+      nombre: `${remedy.nombre} ${selectedDilution}CH`,
+      sinonimos: remedy.nombresAlternativos || [],
+      categoria: 'homeopatia',
+      sistemas: (remedy.sistemas as DbIngredient['sistemas']) || [],
+      indicaciones: remedy.indicaciones || [],
+      evidencia: remedy.nivelEvidencia || 'B',
+      propiedades: remedy.sintomasClave || ['Remedio homeopático'],
+      seguridad: remedy.seguridad || {
+        embarazo: 'apto',
+        lactancia: 'apto',
+        pediatria: 'apto',
+        hipertension: 'apto',
+        diabetes: 'apto',
+        celiacos: 'apto',
+      },
+      interacciones: remedy.interaccionesMedicamentosas || [],
+      fuentes: [],
+      lamport: 0,
+      deviceId: 'local',
+      updatedAt: 0,
+      createdAt: 0,
+      tombstone: 0,
+    };
+
+    addItem(item);
     toast.success(`Añadido ${remedy.nombre} ${selectedDilution}CH a la bandeja`);
   };
 
@@ -187,7 +209,7 @@ export function MateriaMedicaCard({
         {/* Botón Bandeja del Mostrador */}
         <Button
           size="sm"
-          variant={inTray ? 'outline' : 'primary'}
+          variant={inTray ? 'outline' : 'default'}
           onClick={handleAddToTray}
           className="text-xs h-8 shrink-0"
         >

@@ -11,6 +11,7 @@ import { db } from '@/db/schema';
 import type { DbPathology, DbIngredient, DbProduct } from '@/db/schema';
 import { useProductsForPathology } from '@/hooks/useProductsForPathology';
 import { Badge } from '@/ui/Badge';
+import { Button } from '@/ui/Button';
 import {
   X, AlertTriangle, Pill, Leaf, FlaskConical, Home, Droplet,
   Shield, Stethoscope, BookOpen, Lightbulb, ChevronRight,
@@ -251,8 +252,8 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                                 type: 'ingredient',
                                 title: ing.nombre,
                                 subtitle: `Contexto clínico: ${pathology.nombre}`,
-                                mecanismo: ing.mecanismoAccion,
-                                descripcion: ing.descripcion,
+                                mecanismo: ing.propiedades?.[1] || ing.propiedades?.[0],
+                                descripcion: ing.propiedades?.[0],
                               });
                               try {
                                 const record = await db.clinicalExplanations
@@ -337,7 +338,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                             type: 'product',
                             title: pp.product.nombreComercial,
                             subtitle: `Contexto clínico: ${pathology.nombre}`,
-                            descripcion: pp.product.descripcion,
+                            descripcion: pp.product.comoFunciona || pp.product.como_funciona,
                             principiosActivos: pp.product.principiosActivos,
                           });
                           setTimeout(() => setIsExplainingLoading(false), 250);

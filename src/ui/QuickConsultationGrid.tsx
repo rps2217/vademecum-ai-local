@@ -7,7 +7,8 @@
 
 import { memo } from 'react';
 import {
-  Moon, Brain, Utensils, Shield, Bone, Wind, Zap, HeartPulse, ShieldCheck, Sparkles, Check
+  Moon, Brain, Utensils, Shield, Bone, Wind, Zap, HeartPulse, ShieldCheck, Sparkles, Check,
+  Flame, Droplet, Smile, Heart, Eye
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -122,6 +123,66 @@ export const FREQUENT_CONSULTATION_REASONS: QuickReason[] = [
     accentColor: 'text-blue-600 dark:text-blue-400 bg-blue-500/10 border-blue-200 dark:border-blue-800/60 hover:bg-blue-500/15',
     activeColor: 'bg-blue-600 text-white border-blue-600 shadow-md',
     examples: 'Ginkgo Biloba, Bacopa, Omega-3',
+  },
+  {
+    id: 'ardor',
+    tag: 'ardor',
+    title: 'Ardor y Reflujo',
+    subtitle: 'Acidez, gastritis, quemazón',
+    icon: Flame,
+    accentColor: 'text-orange-600 dark:text-orange-400 bg-orange-500/10 border-orange-200 dark:border-orange-800/60 hover:bg-orange-500/15',
+    activeColor: 'bg-orange-600 text-white border-orange-600 shadow-md',
+    examples: 'Alginato, Regaliz DGL, Manzanilla',
+  },
+  {
+    id: 'cistitis',
+    tag: 'cistitis',
+    title: 'Cistitis y Urinario',
+    subtitle: 'Escozor, molestia al orinar',
+    icon: Droplet,
+    accentColor: 'text-pink-600 dark:text-pink-400 bg-pink-500/10 border-pink-200 dark:border-pink-800/60 hover:bg-pink-500/15',
+    activeColor: 'bg-pink-600 text-white border-pink-600 shadow-md',
+    examples: 'Arándano Rojo, D-Manosa, Gayuba',
+  },
+  {
+    id: 'garganta',
+    tag: 'garganta',
+    title: 'Garganta y Aftas',
+    subtitle: 'Dolor al tragar, irritación, llagas',
+    icon: Smile,
+    accentColor: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-500/15',
+    activeColor: 'bg-emerald-600 text-white border-emerald-600 shadow-md',
+    examples: 'Própolis, Erísimo, Malvavisco',
+  },
+  {
+    id: 'mujer',
+    tag: 'mujer',
+    title: 'Salud Femenina',
+    subtitle: 'Sofocos menopausia, dolor de regla',
+    icon: Heart,
+    accentColor: 'text-fuchsia-600 dark:text-fuchsia-400 bg-fuchsia-500/10 border-fuchsia-200 dark:border-fuchsia-800/60 hover:bg-fuchsia-500/15',
+    activeColor: 'bg-fuchsia-600 text-white border-fuchsia-600 shadow-md',
+    examples: 'Cimicífuga, Aceite de Onagra, Salvia',
+  },
+  {
+    id: 'ojos',
+    tag: 'ojos',
+    title: 'Ojos y Visión',
+    subtitle: 'Ojo seco, arenilla, pantallas',
+    icon: Eye,
+    accentColor: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-200 dark:border-sky-800/60 hover:bg-sky-500/15',
+    activeColor: 'bg-sky-600 text-white border-sky-600 shadow-md',
+    examples: 'Ácido Hialurónico, Eufrasia, Luteína',
+  },
+  {
+    id: 'cardio',
+    tag: 'cardio',
+    title: 'Colesterol y Tensión',
+    subtitle: 'Perfil lipídico, tensión arterial',
+    icon: HeartPulse,
+    accentColor: 'text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-200 dark:border-rose-800/60 hover:bg-rose-500/15',
+    activeColor: 'bg-rose-600 text-white border-rose-600 shadow-md',
+    examples: 'Levadura de Arroz Rojo, Omega-3, Olivo',
   },
 ];
 

@@ -101,6 +101,7 @@ interface JsonIngredient {
   dosisDiaria?: string;
   dosisMaxima?: string;
   precaucionesTopico?: string[];
+  beneficioCliente?: string;
 }
 
 interface JsonSynergy {
@@ -333,7 +334,7 @@ function transformIngredient(json: JsonIngredient): DbIngredient {
     seguridad: inferSafety(json.advertencias),
     interacciones: json.interaccionesMedicamentosas || [],
     fuentes: json.tags || [],
-    beneficioCliente: (json as any).beneficioCliente,
+    beneficioCliente: json.beneficioCliente,
     lamport: 0,
     deviceId: getDeviceId(),
     updatedAt: now(),

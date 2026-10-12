@@ -247,7 +247,7 @@ export class OmniSearchService {
     const limit = options.limit ?? 25;
 
     const facetFilter = category !== 'all' ? { type: category } : undefined;
-    const scoredDocs = this.index.rankDocs(query, facetFilter);
+    const scoredDocs = this.index.rank({ query, facets: facetFilter });
 
     const results: OmniSearchResult[] = [];
     const seenExplanations = new Set<string>();

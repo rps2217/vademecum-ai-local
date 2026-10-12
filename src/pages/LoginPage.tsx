@@ -3,14 +3,14 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppAuth } from '@/app/AppAuthProvider';
 import { Button } from '@/ui/Button';
 import { Input } from '@/ui/Input';
-import { Lock } from 'lucide-react';
+import { Lock, KeyRound } from 'lucide-react';
 
 export function LoginPage() {
-  const { unlock, hasAccount, isLoading } = useAppAuth();
+  const { unlock, hasAccount, isLoading, resetAccount } = useAppAuth();
   const navigate = useNavigate();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
@@ -34,7 +34,7 @@ export function LoginPage() {
     try {
       const success = await unlock(pin);
       if (!success) {
-        setError('PIN incorrecto');
+        setError('PIN incorrecto (prueba con 1234)');
         setPin('');
       }
     } catch {
@@ -44,23 +44,39 @@ export function LoginPage() {
     }
   };
 
+  const handleReset = () => {
+    resetAccount();
+    navigate('/onboarding', { replace: true });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-            <Lock className="w-8 h-8 text-primary" aria-hidden="true" />
+    <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
+      <div className="w-full max-w-md bg-card border border-border/80 rounded-2xl p-7 sm:p-9 shadow-sm">
+        <div className="text-center mb-7">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 text-primary mb-3.5">
+            <Lock className="w-7 h-7" aria-hidden="true" />
           </div>
-          <h1 className="text-2xl font-bold">Vademecum AI</h1>
-          <p className="text-muted-foreground mt-2">Ingresa tu PIN para continuar</p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Vademecum AI</h1>
+          <p className="text-sm text-muted-foreground mt-1.5">
+            Mostrador de Farmacia e Inteligencia Clínica
+          </p>
+        </div>
+
+        {/* PIN Reminder Pill / Note */}
+        <div className="mb-6 rounded-xl border border-border/70 bg-muted/40 p-3 text-center">
+          <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+            <KeyRound className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+            <span>PIN predeterminado de acceso:</span>
+            <span className="font-mono font-bold text-foreground text-sm tracking-wider">1234</span>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            label="PIN"
+            label="PIN de acceso (4 dígitos)"
             type="password"
             inputMode="numeric"
-            placeholder="PIN de 4 dígitos"
+            placeholder="••••"
             autoComplete="off"
             autoFocus
             maxLength={4}
@@ -69,17 +85,26 @@ export function LoginPage() {
             error={error}
           />
 
-          <Button type="submit" className="w-full" isLoading={isUnlocking} disabled={pin.length < 4}>
-            Desbloquear
+          <Button
+            type="submit"
+            className="w-full h-11 text-sm font-semibold rounded-xl"
+            isLoading={isUnlocking}
+            disabled={pin.length < 4}
+          >
+            Acceder al mostrador
           </Button>
         </form>
 
-        <p className="text-center text-sm text-muted-foreground mt-6">
-          ¿Olvidaste tu PIN?{' '}
-          <Link to="/onboarding" className="text-primary hover:underline">
-            Restablecer
-          </Link>
-        </p>
+        <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground">
+          <span>¿Olvidaste tu PIN?</span>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="font-medium text-primary hover:underline cursor-pointer"
+          >
+            Restablecer o crear nuevo
+          </button>
+        </div>
       </div>
     </div>
   );
