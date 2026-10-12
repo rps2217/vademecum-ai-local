@@ -143,7 +143,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
         role="dialog"
         aria-modal="true"
         aria-label={`Ficha de ${pathology.nombre}`}
-        className="relative bg-card w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
+        className="relative bg-card w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
       >
         {/* Header */}
         <div className="sticky top-0 bg-card border-b px-6 py-4 flex items-start justify-between gap-4 z-10">
@@ -187,199 +187,203 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
             )}
           </section>
 
-          {/* Tratamiento Natural — sección hero (protagonista) */}
-          <section className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60">
-            <div className="flex items-center gap-2 mb-3">
-              <Leaf className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              <h3 className="font-bold text-sm uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
-                Tratamiento Natural
-              </h3>
-            </div>
-
-            {/* Tabs */}
-            <div className="flex flex-wrap gap-1 mb-3 border-b border-emerald-200 dark:border-emerald-800/60">
-              {NATURAL_TABS.map(tab => {
-                const count = pathology.tratamientoNatural[tab.key]?.length || 0;
-                if (count === 0) return null;
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.key;
-                return (
-                  <button
-                    key={tab.key}
-                    onClick={() => setActiveTab(tab.key)}
-                    className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
-                      isActive
-                        ? 'border-emerald-600 text-emerald-700 dark:text-emerald-300'
-                        : 'border-transparent text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    {tab.label}
-                    <span className="text-xs opacity-60">({count})</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Ingredient list for active tab */}
-            {currentTabIds.length > 0 ? (
-              <div className="space-y-2">
-                {currentTabIds.map(id => {
-                  const ing = ingredientMap.get(id);
-                  return (
-                    <button
-                      key={id}
-                      onClick={() => onIngredientClick?.(id)}
-                      className="w-full text-left flex items-center justify-between gap-2 p-3 rounded-lg bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors group ring-1 ring-emerald-200/60 dark:ring-white/10"
-                    >
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-sm truncate text-foreground">{ing?.nombre || id}</p>
-                        {ing && (
-                          <p className="text-xs text-muted-foreground truncate">
-                            {ing.sinonimos?.slice(0, 2).join(', ')}
-                          </p>
-                        )}
-                      </div>
-                      {ing && (
-                        <div className="flex items-center gap-1.5 shrink-0">
-                          <button
-                            type="button"
-                            onClick={async (e) => {
-                              e.stopPropagation();
-                              setIsExplainingLoading(true);
-                              setExplainingItem({
-                                id: ing.id,
-                                type: 'ingredient',
-                                title: ing.nombre,
-                                subtitle: `Contexto clínico: ${pathology.nombre}`,
-                                mecanismo: ing.propiedades?.[1] || ing.propiedades?.[0],
-                                descripcion: ing.propiedades?.[0],
-                              });
-                              try {
-                                const record = await db.clinicalExplanations
-                                  .where({ ingredienteId: ing.id, patologiaId: pathology.id })
-                                  .first();
-                                setExplanation(record?.explicacion || null);
-                              } catch (err) {
-                                console.error('Error fetching clinical explanation:', err);
-                                setExplanation(null);
-                              } finally {
-                                setIsExplainingLoading(false);
-                              }
-                            }}
-                            className="flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900 text-xs font-medium transition-colors"
-                            title="Cómo actúa (Explicación clínica)"
-                          >
-                            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                            <span>Cómo</span>
-                          </button>
-                          <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${getEvidenceConfig(ing.evidencia).color}`}>
-                            {ing.evidencia}
-                          </span>
-                          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            ) : (
-              <p className="text-sm text-muted-foreground italic">No hay ingredientes en esta categoría.</p>
-            )}
-
-            {/* Cuándo preferir natural */}
-            {pathology.tratamientoNatural.cuandoPreferir && (
-              <div className="mt-3 p-3 rounded-lg bg-emerald-100/70 dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800/60">
-                <div className="flex items-start gap-2">
-                  <Lightbulb className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" />
-                  <p className="text-sm text-foreground">
-                    <span className="font-medium">¿Cuándo preferir lo natural? </span>
-                    {pathology.tratamientoNatural.cuandoPreferir}
-                  </p>
-                </div>
-              </div>
-            )}
-          </section>
-
-          {/* Productos comerciales indicados — Fase 2 (lookup transitivo) */}
-          {pathologyProducts && pathologyProducts.length > 0 && (
+          {/* Grid de Productos Comerciales (1º) y Tratamiento Natural (2º) lado a lado en lg */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
+            {/* 1. Productos comerciales indicados */}
             <section className="p-4 rounded-xl bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800/60">
               <div className="flex items-center gap-2 mb-3">
                 <Package className="w-5 h-5 text-sky-600 dark:text-sky-400" />
                 <h3 className="font-bold text-sm uppercase tracking-wide text-sky-800 dark:text-sky-300">
                   Productos comerciales indicados
                 </h3>
-                <span className="text-xs text-sky-700 dark:text-sky-400 opacity-70">
-                  {pathologyProducts.length}
-                </span>
-              </div>
-              <div className="space-y-1.5 max-h-72 overflow-y-auto pr-1">
-                {pathologyProducts.slice(0, 12).map((pp) => (
-                  <button
-                    key={pp.product.sku}
-                    onClick={() => onProductClick?.(pp.product)}
-                    className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
-                        {pp.product.nombreComercial}
-                      </p>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {(pp.product.principiosActivos ?? []).slice(0, 3).join(', ')}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsExplainingLoading(true);
-                          setExplainingItem({
-                            type: 'product',
-                            title: pp.product.nombreComercial,
-                            subtitle: `Contexto clínico: ${pathology.nombre}`,
-                            descripcion: pp.product.comoFunciona || pp.product.como_funciona,
-                            principiosActivos: pp.product.principiosActivos,
-                          });
-                          setTimeout(() => setIsExplainingLoading(false), 250);
-                        }}
-                        className="flex items-center gap-1 px-2 py-1 rounded-md bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-900 text-xs font-medium transition-colors"
-                        title="Cómo actúa (Asistente IA)"
-                      >
-                        <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-                        <span>Cómo</span>
-                      </button>
-                      {pp.analysis && (
-                        <span
-                          className={`px-1.5 py-0.5 rounded text-xs font-medium ${
-                            pp.analysis.coberturaKb >= 100
-                              ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
-                              : pp.analysis.coberturaKb >= 50
-                                ? 'bg-amber-500/15 text-amber-700 dark:text-amber-300'
-                                : 'bg-red-500/15 text-red-700 dark:text-red-300'
-                          }`}
-                          title={`${pp.matchedCount} ingrediente(s) de esta patología`}
-                        >
-                          {pp.matchedCount} en KB
-                        </span>
-                      )}
-                      {!pp.analysis && pp.matchedCount > 0 && (
-                        <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-sky-500/15 text-sky-700 dark:text-sky-300">
-                          {pp.matchedCount} en KB
-                        </span>
-                      )}
-                      <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" />
-                    </div>
-                  </button>
-                ))}
-                {pathologyProducts.length > 12 && (
-                  <p className="text-xs text-muted-foreground text-center pt-1">
-                    +{pathologyProducts.length - 12} productos más
-                  </p>
+                {pathologyProducts && pathologyProducts.length > 0 && (
+                  <span className="text-xs text-sky-700 dark:text-sky-400 opacity-70">
+                    {pathologyProducts.length}
+                  </span>
                 )}
               </div>
+              {pathologyProducts && pathologyProducts.length > 0 ? (
+                <div className="space-y-1.5 max-h-[420px] overflow-y-auto pr-1">
+                  {pathologyProducts.map((pp) => (
+                    <button
+                      key={pp.product.sku}
+                      onClick={() => onProductClick?.(pp.product)}
+                      className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                          {pp.product.nombreComercial}
+                        </p>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {(pp.product.principiosActivos ?? []).slice(0, 3).join(', ')}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsExplainingLoading(true);
+                            setExplainingItem({
+                              type: 'product',
+                              title: pp.product.nombreComercial,
+                              subtitle: `Contexto clínico: ${pathology.nombre}`,
+                              descripcion: pp.product.comoFunciona || pp.product.como_funciona,
+                              principiosActivos: pp.product.principiosActivos,
+                            });
+                            setTimeout(() => setIsExplainingLoading(false), 250);
+                          }}
+                          className="flex items-center gap-1 px-2 py-1 rounded-md bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 hover:bg-sky-200 dark:hover:bg-sky-900 text-xs font-medium transition-colors"
+                          title="Cómo actúa (Asistente IA)"
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+                          <span>Cómo</span>
+                        </button>
+                        {pp.analysis && (
+                          <span
+                            className={`px-1.5 py-0.5 rounded text-xs font-medium ${
+                              pp.analysis.coberturaKb >= 100
+                                ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300'
+                                : pp.analysis.coberturaKb >= 50
+                                  ? 'bg-amber-500/15 text-amber-700 dark:text-amber-300'
+                                  : 'bg-red-500/15 text-red-700 dark:text-red-300'
+                            }`}
+                            title={`${pp.matchedCount} ingrediente(s) de esta patología`}
+                          >
+                            {pp.matchedCount} en KB
+                          </span>
+                        )}
+                        {!pp.analysis && pp.matchedCount > 0 && (
+                          <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-sky-500/15 text-sky-700 dark:text-sky-300">
+                            {pp.matchedCount} en KB
+                          </span>
+                        )}
+                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" />
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-6 text-center text-muted-foreground text-sm italic">
+                  No hay productos comerciales asociados en el catálogo actual para esta patología.
+                </div>
+              )}
             </section>
-          )}
+
+            {/* 2. Tratamiento Natural */}
+            <section className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60">
+              <div className="flex items-center gap-2 mb-3">
+                <Leaf className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                <h3 className="font-bold text-sm uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
+                  Tratamiento Natural
+                </h3>
+              </div>
+
+              {/* Tabs */}
+              <div className="flex flex-wrap gap-1 mb-3 border-b border-emerald-200 dark:border-emerald-800/60">
+                {NATURAL_TABS.map(tab => {
+                  const count = pathology.tratamientoNatural[tab.key]?.length || 0;
+                  if (count === 0) return null;
+                  const Icon = tab.icon;
+                  const isActive = activeTab === tab.key;
+                  return (
+                    <button
+                      key={tab.key}
+                      onClick={() => setActiveTab(tab.key)}
+                      className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs sm:text-sm font-medium border-b-2 transition-colors ${
+                        isActive
+                          ? 'border-emerald-600 text-emerald-700 dark:text-emerald-300'
+                          : 'border-transparent text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {tab.label}
+                      <span className="text-xs opacity-60">({count})</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Ingredient list for active tab */}
+              {currentTabIds.length > 0 ? (
+                <div className="space-y-2 max-h-[360px] overflow-y-auto pr-1">
+                  {currentTabIds.map(id => {
+                    const ing = ingredientMap.get(id);
+                    return (
+                      <button
+                        key={id}
+                        onClick={() => onIngredientClick?.(id)}
+                        className="w-full text-left flex items-center justify-between gap-2 p-2.5 rounded-lg bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors group ring-1 ring-emerald-200/60 dark:ring-white/10"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-sm truncate text-foreground">{ing?.nombre || id}</p>
+                          {ing && (
+                            <p className="text-xs text-muted-foreground truncate">
+                              {ing.sinonimos?.slice(0, 2).join(', ')}
+                            </p>
+                          )}
+                        </div>
+                        {ing && (
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <button
+                              type="button"
+                              onClick={async (e) => {
+                                e.stopPropagation();
+                                setIsExplainingLoading(true);
+                                setExplainingItem({
+                                  id: ing.id,
+                                  type: 'ingredient',
+                                  title: ing.nombre,
+                                  subtitle: `Contexto clínico: ${pathology.nombre}`,
+                                  mecanismo: ing.propiedades?.[1] || ing.propiedades?.[0],
+                                  descripcion: ing.propiedades?.[0],
+                                });
+                                try {
+                                  const record = await db.clinicalExplanations
+                                    .where({ ingredienteId: ing.id, patologiaId: pathology.id })
+                                    .first();
+                                  setExplanation(record?.explicacion || null);
+                                } catch (err) {
+                                  console.error('Error fetching clinical explanation:', err);
+                                  setExplanation(null);
+                                } finally {
+                                  setIsExplainingLoading(false);
+                                }
+                              }}
+                              className="flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900 text-xs font-medium transition-colors"
+                              title="Cómo actúa (Explicación clínica)"
+                            >
+                              <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                              <span>Cómo</span>
+                            </button>
+                            <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${getEvidenceConfig(ing.evidencia).color}`}>
+                              {ing.evidencia}
+                            </span>
+                            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground italic">No hay ingredientes en esta categoría.</p>
+              )}
+
+              {/* Cuándo preferir natural */}
+              {pathology.tratamientoNatural.cuandoPreferir && (
+                <div className="mt-3 p-3 rounded-lg bg-emerald-100/70 dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-800/60">
+                  <div className="flex items-start gap-2">
+                    <Lightbulb className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" />
+                    <p className="text-xs sm:text-sm text-foreground">
+                      <span className="font-medium">¿Cuándo preferir lo natural? </span>
+                      {pathology.tratamientoNatural.cuandoPreferir}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </section>
+          </div>
 
           {/* Alertas farmacéuticas — visible (safety) */}
           {pathology.alertasFarmaceuticas && pathology.alertasFarmaceuticas.length > 0 && (
