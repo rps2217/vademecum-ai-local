@@ -143,7 +143,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
         role="dialog"
         aria-modal="true"
         aria-label={`Ficha de ${pathology.nombre}`}
-        className="relative bg-card w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
+        className="relative bg-card w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
       >
         {/* Header */}
         <div className="sticky top-0 bg-card border-b px-6 py-4 flex items-start justify-between gap-4 z-10">
@@ -207,25 +207,20 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                   {pathologyProducts.map((pp) => (
                     <div
                       key={pp.product.sku}
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => onProductClick?.(pp.product)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          onProductClick?.(pp.product);
-                        }
-                      }}
-                      className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
+                      className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group"
                     >
-                      <div className="flex-1 min-w-0">
+                      <button
+                        type="button"
+                        onClick={() => onProductClick?.(pp.product)}
+                        className="flex-1 min-w-0 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                      >
                         <p className="text-sm font-medium truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
                           {pp.product.nombreComercial}
                         </p>
                         <p className="text-xs text-muted-foreground truncate">
                           {(pp.product.principiosActivos ?? []).slice(0, 3).join(', ')}
                         </p>
-                      </div>
+                      </button>
                       <div className="flex items-center gap-1.5 shrink-0">
                         <button
                           type="button"
@@ -266,7 +261,14 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                             {pp.matchedCount} en KB
                           </span>
                         )}
-                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" />
+                        <button
+                          type="button"
+                          onClick={() => onProductClick?.(pp.product)}
+                          className="p-1 hover:text-sky-600 transition-colors cursor-pointer"
+                          aria-label="Ver producto"
+                        >
+                          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" />
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -320,25 +322,20 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                     return (
                       <div
                         key={id}
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => onIngredientClick?.(id)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            onIngredientClick?.(id);
-                          }
-                        }}
-                        className="w-full text-left flex items-center justify-between gap-2 p-2.5 rounded-lg bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors group ring-1 ring-emerald-200/60 dark:ring-white/10 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        className="w-full text-left flex items-center justify-between gap-2 p-2.5 rounded-lg bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors group ring-1 ring-emerald-200/60 dark:ring-white/10"
                       >
-                        <div className="flex-1 min-w-0">
+                        <button
+                          type="button"
+                          onClick={() => onIngredientClick?.(id)}
+                          className="flex-1 min-w-0 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                        >
                           <p className="font-medium text-sm truncate text-foreground">{ing?.nombre || id}</p>
                           {ing && (
                             <p className="text-xs text-muted-foreground truncate">
                               {ing.sinonimos?.slice(0, 2).join(', ')}
                             </p>
                           )}
-                        </div>
+                        </button>
                         {ing && (
                           <div className="flex items-center gap-1.5 shrink-0">
                             <button
@@ -375,7 +372,14 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                             <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${getEvidenceConfig(ing.evidencia).color}`}>
                               {ing.evidencia}
                             </span>
-                            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+                            <button
+                              type="button"
+                              onClick={() => onIngredientClick?.(id)}
+                              className="p-1 hover:text-emerald-600 transition-colors cursor-pointer"
+                              aria-label="Ver ingrediente"
+                            >
+                              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+                            </button>
                           </div>
                         )}
                       </div>
