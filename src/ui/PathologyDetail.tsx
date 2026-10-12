@@ -143,7 +143,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
         role="dialog"
         aria-modal="true"
         aria-label={`Ficha de ${pathology.nombre}`}
-        className="relative bg-card w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
+        className="relative bg-card w-full max-w-[96vw] lg:max-w-[1550px] max-h-[92vh] overflow-y-auto rounded-xl shadow-xl animate-scale-in"
       >
         {/* Header */}
         <div className="sticky top-0 bg-card border-b px-6 py-4 flex items-start justify-between gap-4 z-10">

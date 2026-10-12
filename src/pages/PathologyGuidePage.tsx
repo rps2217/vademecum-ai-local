@@ -848,10 +848,12 @@ export function PathologyGuidePage() {
               const hasAlerts = (pathology.alertasFarmaceuticas?.length || 0) > 0;
 
               return (
-                <button
+                <div
                   key={pathology.id}
-                  type="button"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => setActivePathology(pathology)}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setActivePathology(pathology); }}
                   className="p-4 rounded-xl border border-border/80 bg-card hover:border-primary/50 hover:shadow-xs transition-all cursor-pointer flex flex-col justify-between group text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <div className="space-y-2 w-full">
@@ -879,7 +881,7 @@ export function PathologyGuidePage() {
                         <span className="text-[11px] text-muted-foreground font-medium">Síntomas:</span>
                         {pathology.sintomas.slice(0, 3).map((s, idx) => (
                           <span
-                            key={idx}
+                            key={`${pathology.id}-${idx}-${s}`}
                             className="text-[11px] bg-muted px-1.5 py-0.5 rounded text-foreground capitalize"
                           >
                             {s}
@@ -918,7 +920,7 @@ export function PathologyGuidePage() {
                       </span>
                     )}
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
