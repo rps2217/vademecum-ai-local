@@ -205,10 +205,18 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
               {pathologyProducts && pathologyProducts.length > 0 ? (
                 <div className="space-y-1.5 max-h-[420px] overflow-y-auto pr-1">
                   {pathologyProducts.map((pp) => (
-                    <button
+                    <div
                       key={pp.product.sku}
+                      role="button"
+                      tabIndex={0}
                       onClick={() => onProductClick?.(pp.product)}
-                      className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          onProductClick?.(pp.product);
+                        }
+                      }}
+                      className="w-full flex items-center gap-2 p-2.5 rounded-lg bg-card border border-border hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 transition-all text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
                     >
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
@@ -260,7 +268,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                         )}
                         <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" />
                       </div>
-                    </button>
+                    </div>
                   ))}
                 </div>
               ) : (
@@ -310,10 +318,18 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                   {currentTabIds.map(id => {
                     const ing = ingredientMap.get(id);
                     return (
-                      <button
+                      <div
                         key={id}
+                        role="button"
+                        tabIndex={0}
                         onClick={() => onIngredientClick?.(id)}
-                        className="w-full text-left flex items-center justify-between gap-2 p-2.5 rounded-lg bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors group ring-1 ring-emerald-200/60 dark:ring-white/10"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            onIngredientClick?.(id);
+                          }
+                        }}
+                        className="w-full text-left flex items-center justify-between gap-2 p-2.5 rounded-lg bg-white/60 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors group ring-1 ring-emerald-200/60 dark:ring-white/10 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                       >
                         <div className="flex-1 min-w-0">
                           <p className="font-medium text-sm truncate text-foreground">{ing?.nombre || id}</p>
@@ -362,7 +378,7 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                             <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
                           </div>
                         )}
-                      </button>
+                      </div>
                     );
                   })}
                 </div>
