@@ -84,7 +84,38 @@ export class GoogleSheetSyncService {
   }
 
   /**
-   * Prueba la conectividad con el Web App de Google Apps Script vía proxy backend
+   * Helper para conectar con Google Apps Script (directo con fallback a proxy local)
+   */
+  private async fetchGas(targetUrl: string, action: string): Promise<Response> {
+    const parsedUrl = new URL(targetUrl);
+    parsedUrl.searchParams.set('action', action);
+
+    // Intentar fetch directo (compatible con despliegues estáticos / Vercel gracias a CSP)
+    try {
+      const directRes = await fetch(parsedUrl.toString(), {
+        method: 'GET',
+        headers: { Accept: 'application/json' },
+      });
+      if (directRes.ok) {
+        return directRes;
+      }
+    } catch (err) {
+      logger.warn('Direct fetch to Google Apps Script failed, trying proxy...', err);
+    }
+
+    // Fallback a proxy backend (entorno de desarrollo local)
+    const proxyUrl = new URL('/api/google-sheets/proxy', window.location.origin);
+    proxyUrl.searchParams.set('url', targetUrl);
+    proxyUrl.searchParams.set('action', action);
+
+    return fetch(proxyUrl.toString(), {
+      method: 'GET',
+      headers: { Accept: 'application/json' },
+    });
+  }
+
+  /**
+   * Prueba la conectividad con el Web App de Google Apps Script
    */
   async testConnection(targetUrl?: string): Promise<{ success: boolean; message: string; version?: string }> {
     const url = targetUrl || (await this.getWebAppUrl());
@@ -93,14 +124,7 @@ export class GoogleSheetSyncService {
     }
 
     try {
-      const proxyUrl = new URL('/api/google-sheets/proxy', window.location.origin);
-      proxyUrl.searchParams.set('url', url);
-      proxyUrl.searchParams.set('action', 'ping');
-
-      const response = await fetch(proxyUrl.toString(), {
-        method: 'GET',
-        headers: { Accept: 'application/json' },
-      });
+      const response = await this.fetchGas(url, 'ping');
 
       if (!response.ok) {
         return { success: false, message: `Error HTTP ${response.status}: ${response.statusText}` };
@@ -125,7 +149,7 @@ export class GoogleSheetSyncService {
   }
 
   /**
-   * Sincroniza el catálogo desde Google Sheets a IndexedDB vía proxy backend
+   * Sincroniza el catálogo desde Google Sheets a IndexedDB
    */
   async syncCatalog(customUrl?: string): Promise<GasSyncResult> {
     const url = customUrl || (await this.getWebAppUrl());
@@ -144,14 +168,7 @@ export class GoogleSheetSyncService {
 
     try {
       logger.info('Iniciando sincronización desde Google Sheets...');
-      const proxyUrl = new URL('/api/google-sheets/proxy', window.location.origin);
-      proxyUrl.searchParams.set('url', url);
-      proxyUrl.searchParams.set('action', 'getCatalog');
-
-      const response = await fetch(proxyUrl.toString(), {
-        method: 'GET',
-        headers: { Accept: 'application/json' },
-      });
+      const response = await this.fetchGas(url, 'getCatalog');
 
       if (!response.ok) {
         throw new Error(`Error en Google Apps Script (${response.status}): ${response.statusText}`);
