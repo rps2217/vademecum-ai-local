@@ -9,7 +9,7 @@
  *   señales de alarma (red flags con criterio de derivación médica) y alertas farmacológicas.
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
