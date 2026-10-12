@@ -81,9 +81,25 @@ export function useProductsForPathology(ingredientIds: string[]): PathologyProdu
       });
     }
 
-    // Más ingredientes cubiertos primero; desempate alfabético por nombre.
+    // Ordenamiento clínico jerárquico de más recomendado a menos recomendado:
+    // 1. Mayor número de ingredientes activos de la patología cubiertos (matchedCount desc).
+    // 2. Mayor porcentaje de cobertura KB del producto (analysis.coberturaKb desc).
+    // 3. Menor cantidad de ingredientes sin match / mayor pureza formulativa (sinMatchCount asc).
+    // 4. Desempate alfabético por nombre comercial.
     result.sort((a, b) => {
-      if (b.matchedCount !== a.matchedCount) return b.matchedCount - a.matchedCount;
+      if (b.matchedCount !== a.matchedCount) {
+        return b.matchedCount - a.matchedCount;
+      }
+      const cobA = a.analysis?.coberturaKb ?? 0;
+      const cobB = b.analysis?.coberturaKb ?? 0;
+      if (cobB !== cobA) {
+        return cobB - cobA;
+      }
+      const sinA = a.analysis?.sinMatchCount ?? 0;
+      const sinB = b.analysis?.sinMatchCount ?? 0;
+      if (sinA !== sinB) {
+        return sinA - sinB;
+      }
       return a.product.nombreComercial.localeCompare(b.product.nombreComercial, 'es');
     });
 
