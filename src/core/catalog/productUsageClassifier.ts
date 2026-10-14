@@ -1,16 +1,8 @@
 /**
  * productUsageClassifier.ts
  *
- * Clasificador inteligente de vía de administración, formato y rol clínico
+ * Clasificador riguroso de vía de administración, formato y rol clínico
  * para productos comerciales en el mostrador de farmacia.
- *
- * Permite segmentar el catálogo en:
- * - Vía Oral (Sistémico / Tratamiento de fondo)
- * - Vía Tópica (Local / Cutáneo / Alivio inmediato)
- * - Vía Respiratoria / Nasal (Descongestión y vías altas)
- * - Vía Bucofaríngea (Garganta y mucosa oral)
- * - Vía Ocular / Ótica (Ojos y oídos)
- * - Otras vías
  */
 
 import type { DbProduct, DbPathology } from '@/db/schema';
@@ -79,8 +71,8 @@ export const USAGE_ROUTES: Record<ProductUsageRoute, RouteInfo> = {
 };
 
 /**
- * Determina la vía de administración preferente de un producto a partir de su
- * nombre, presentación, forma farmacéutica y posología.
+ * Determina la vía de administración estricta y correcta de un producto comercial
+ * evitando falsos positivos de palabras genéricas.
  */
 export function classifyProductRoute(product: DbProduct): ProductUsageRoute {
   const presentacion = String(product.data?.presentacion ?? '').toLowerCase();
@@ -100,7 +92,9 @@ export function classifyProductRoute(product: DbProduct): ProductUsageRoute {
     fullText.includes('lagrima artificial') ||
     fullText.includes('baño ocular') ||
     fullText.includes('gotas oculares') ||
-    fullText.includes('higiene periocular')
+    fullText.includes('higiene periocular') ||
+    fullText.includes('oftálmica') ||
+    fullText.includes('oftalmica')
   ) {
     return 'ocular';
   }
@@ -117,37 +111,38 @@ export function classifyProductRoute(product: DbProduct): ProductUsageRoute {
     return 'otico';
   }
 
-  // 3. Bucofaríngeo (Garganta, mucosa oral, colutorios)
-  if (
-    fullText.includes('garganta') ||
-    fullText.includes('spray garganta') ||
-    fullText.includes('spray bucal') ||
-    fullText.includes('colutorio') ||
-    fullText.includes('enjuague bucal') ||
-    fullText.includes('pastillas para chupar') ||
-    fullText.includes('comprimidos para chupar') ||
-    fullText.includes('chupar') ||
-    fullText.includes('gingival') ||
-    fullText.includes('bucofaríngeo') ||
-    fullText.includes('bucofaringeo') ||
-    fullText.includes('aftas')
-  ) {
-    return 'bucal';
-  }
-
-  // 4. Nasal / Respiratorio
+  // 3. Nasal / Respiratorio
   if (
     fullText.includes('nasal') ||
     fullText.includes('spray nasal') ||
     fullText.includes('agua de mar') ||
     fullText.includes('descongestionante nasal') ||
-    fullText.includes('nebulizador') ||
-    fullText.includes('nebulización') ||
+    fullText.includes('nebulizador nasal') ||
     fullText.includes('inhalador') ||
     fullText.includes('inhalación') ||
-    fullText.includes('lavado nasal')
+    fullText.includes('lavado nasal') ||
+    fullText.includes('fosas nasales')
   ) {
     return 'respiratorio';
+  }
+
+  // 4. Bucofaríngea (Garganta, sprays bucofaríngeos, colutorios)
+  if (
+    fullText.includes('garganta') ||
+    fullText.includes('spray garganta') ||
+    fullText.includes('spray bucofaríngeo') ||
+    fullText.includes('spray bucofaringeo') ||
+    fullText.includes('colutorio') ||
+    fullText.includes('enjuague bucal') ||
+    fullText.includes('pastillas para chupar') ||
+    fullText.includes('comprimidos para chupar') ||
+    fullText.includes('bucofaríngeo') ||
+    fullText.includes('bucofaringeo') ||
+    fullText.includes('nebulizaciones bucofaríngeas') ||
+    fullText.includes('nebulizaciones bucofaringeas') ||
+    fullText.includes('aftas')
+  ) {
+    return 'bucal';
   }
 
   // 5. Tópico / Cutáneo
@@ -175,12 +170,14 @@ export function classifyProductRoute(product: DbProduct): ProductUsageRoute {
     fullText.includes('fricción') ||
     fullText.includes('shampoo') ||
     fullText.includes('jabón') ||
-    fullText.includes('jabon')
+    fullText.includes('jabon') ||
+    fullText.includes('dérmico') ||
+    fullText.includes('dermico')
   ) {
     return 'topico';
   }
 
-  // 6. Oral (la mayoría de comprimidos, cápsulas, jarabes, perlas, sobres)
+  // 6. Oral (Cápsulas, comprimidos, jarabes, sobres, gotas orales, perlas, gránulos homeopáticos, ampollas bebibles)
   if (
     fullText.includes('comprimido') ||
     fullText.includes('cápsula') ||
@@ -202,23 +199,19 @@ export function classifyProductRoute(product: DbProduct): ProductUsageRoute {
     fullText.includes('infusion') ||
     fullText.includes('polvo') ||
     fullText.includes('bebible') ||
-    fullText.includes('ingerir') ||
-    fullText.includes('tomar') ||
+    fullText.includes('comidas') ||
     fullText.includes('desayuno') ||
     fullText.includes('almuerzo') ||
     fullText.includes('cena') ||
-    fullText.includes('ayunas')
+    fullText.includes('ayunas') ||
+    fullText.includes('sublingual')
   ) {
     return 'oral';
   }
 
-  // Por defecto en vademécum de farmacia
   return 'oral';
 }
 
-/**
- * Rol clínico recomendado para la tarjeta destacada en mostrador
- */
 export type StrategicRole = 'principal' | 'alivio_local' | 'alternativa_natural';
 
 export interface StrategicRecommendation {
@@ -240,7 +233,7 @@ export interface ClientProfileFilter {
 }
 
 /**
- * Calcula el score de recomendación para un producto en el contexto de una patología y perfil de cliente.
+ * Calcula el score clínico de recomendación con ponderación estricta por vía y perfil.
  */
 export function scoreProductForPathology(
   pp: PathologyProduct,
@@ -249,53 +242,51 @@ export function scoreProductForPathology(
 ): number {
   let score = 0;
 
-  // 1. Ingredientes de la patología que cubre (fuerza terapéutica)
-  score += pp.matchedCount * 30;
+  // 1. Coincidencia de ingredientes activos de la patología
+  score += pp.matchedCount * 40;
 
-  // 2. Cobertura de la fórmula según análisis KB
+  // 2. Cobertura de la fórmula KB
   if (pp.analysis) {
-    if (pp.analysis.coberturaKb >= 100) score += 20;
-    else if (pp.analysis.coberturaKb >= 50) score += 10;
-    score -= pp.analysis.sinMatchCount * 2;
+    if (pp.analysis.coberturaKb >= 100) score += 25;
+    else if (pp.analysis.coberturaKb >= 50) score += 15;
+    score -= pp.analysis.sinMatchCount * 3;
   }
 
-  // 3. Indicación directa en el producto
+  // 3. Indicación directa o nombre coincidente
   const normPathName = pathology.nombre.toLowerCase();
   const normProdName = pp.product.nombreComercial.toLowerCase();
   const indications = (pp.product.indicaciones ?? []).map((i) => i.toLowerCase());
 
   if (normProdName.includes(normPathName)) {
-    score += 25;
-  }
-  if (indications.some((ind) => normPathName.includes(ind) || ind.includes(normPathName))) {
     score += 30;
   }
-
-  // 4. Si es categoría fitoterapia / homeopatía
-  if (pp.product.categoria === 'fitoterapia' || pp.product.categoria === 'homeopatia') {
-    score += 5;
+  if (indications.some((ind) => normPathName.includes(ind) || ind.includes(normPathName))) {
+    score += 35;
   }
 
-  // 5. Verificación de perfil de seguridad del cliente (Hard filter / boost)
-  if (clientProfile) {
-    if (clientProfile.hipertension && pp.product.hipertension === 'evitar') score -= 200;
-    if (clientProfile.embarazo && (pp.product.embarazo === 'contraindicado' || pp.product.embarazo === 'evitar')) score -= 300;
-    if (clientProfile.lactancia && (pp.product.lactancia === 'contraindicado' || pp.product.lactancia === 'evitar')) score -= 200;
-    if (clientProfile.diabetes && pp.product.diabetes === 'evitar') score -= 200;
-    if (clientProfile.celiacos && pp.product.celiacos === 'evitar') score -= 200;
+  // 4. Categoría fitoterapia o homeopatía
+  if (pp.product.categoria === 'fitoterapia' || pp.product.categoria === 'homeopatia') {
+    score += 10;
+  }
 
-    // Bonificación si es explícitamente apto ante perfil restringido
-    if (clientProfile.hipertension && pp.product.hipertension === 'apto') score += 10;
-    if (clientProfile.embarazo && pp.product.embarazo === 'apto') score += 15;
-    if (clientProfile.celiacos && pp.product.celiacos === 'apto') score += 10;
+  // 5. Restricciones del perfil de seguridad del cliente
+  if (clientProfile) {
+    if (clientProfile.hipertension && pp.product.hipertension === 'evitar') score -= 300;
+    if (clientProfile.embarazo && (pp.product.embarazo === 'contraindicado' || pp.product.embarazo === 'evitar')) score -= 500;
+    if (clientProfile.lactancia && (pp.product.lactancia === 'contraindicado' || pp.product.lactancia === 'evitar')) score -= 300;
+    if (clientProfile.diabetes && pp.product.diabetes === 'evitar') score -= 300;
+    if (clientProfile.celiacos && pp.product.celiacos === 'evitar') score -= 300;
+
+    if (clientProfile.hipertension && pp.product.hipertension === 'apto') score += 15;
+    if (clientProfile.embarazo && pp.product.embarazo === 'apto') score += 20;
+    if (clientProfile.celiacos && pp.product.celiacos === 'apto') score += 15;
   }
 
   return score;
 }
 
 /**
- * Selecciona la Estrategia de Mostrador (Top 2 o 3 recomendaciones estructuradas)
- * combinando vía de fondo (oral), vía de rescate local (tópica/nasal/bucal) y alternativa natural.
+ * Selecciona la Estrategia de Mostrador (Top jerárquico equilibrado por vía oral, tópica y natural).
  */
 export function selectCounterRecommendations(
   products: PathologyProduct[],
@@ -304,29 +295,25 @@ export function selectCounterRecommendations(
 ): StrategicRecommendation[] {
   if (!products || products.length === 0) return [];
 
-  // Mapear con vía y puntaje
   const scored = products.map((pp) => {
     const route = classifyProductRoute(pp.product);
     const score = scoreProductForPathology(pp, pathology, clientProfile);
     return { pp, route, score };
   });
 
-  // Filtrar los que no estén severamente contraindicados
-  const safe = scored.filter((s) => s.score > -100);
+  const safe = scored.filter((s) => s.score > -200);
   const pool = safe.length > 0 ? safe : scored;
 
-  // Ordenar de mayor a menor score
   pool.sort((a, b) => b.score - a.score);
 
   const usedSkus = new Set<string>();
   const recommendations: StrategicRecommendation[] = [];
 
   const isDerm = pathology.sistemas.includes('dermatologico');
-  const isResp = pathology.sistemas.includes('respiratorio');
   const isMusc = pathology.sistemas.includes('musculoesqueletico');
+  const isResp = pathology.sistemas.includes('respiratorio');
 
-  // --- SELECCIÓN 1: TRATAMIENTO PRINCIPAL DE FONDO ---
-  // Si es dermatológico puro, el tratamiento principal suele ser tópico; en el resto suele ser oral.
+  // --- 1. TRATAMIENTO PRINCIPAL DE FONDO ---
   const primaryCandidate = isDerm
     ? pool.find((item) => item.route === 'topico') ?? pool[0]
     : pool.find((item) => item.route === 'oral') ?? pool[0];
@@ -345,8 +332,7 @@ export function selectCounterRecommendations(
     });
   }
 
-  // --- SELECCIÓN 2: ALIVIO LOCAL / COMPLEMENTO INMEDIATO ---
-  // Si ya tenemos oral, buscamos tópico (en músculo/articulación), o nasal/bucal (en respiratorio), o un coadyuvante.
+  // --- 2. ALIVIO LOCAL / COMPLEMENTO INMEDIATO ---
   let secondaryCandidate: (typeof pool)[number] | undefined;
 
   if (isMusc) {
@@ -359,7 +345,9 @@ export function selectCounterRecommendations(
     secondaryCandidate = pool.find((item) => !usedSkus.has(item.pp.product.sku) && item.route === 'oral');
   }
 
-  // Si no hay específico de la vía sinérgica, tomar el siguiente mejor producto no usado
+  if (!secondaryCandidate) {
+    secondaryCandidate = pool.find((item) => !usedSkus.has(item.pp.product.sku) && item.route !== primaryCandidate?.route);
+  }
   if (!secondaryCandidate) {
     secondaryCandidate = pool.find((item) => !usedSkus.has(item.pp.product.sku));
   }
@@ -390,7 +378,7 @@ export function selectCounterRecommendations(
     });
   }
 
-  // --- SELECCIÓN 3: ALTERNATIVA NATURAL / SIN RECETA ---
+  // --- 3. ALTERNATIVA NATURAL / FITOTERAPIA ---
   const naturalCandidate = pool.find(
     (item) =>
       !usedSkus.has(item.pp.product.sku) &&
