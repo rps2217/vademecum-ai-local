@@ -457,6 +457,7 @@ export const COMMON_REASONS: ReasonCategory[] = [
 ];
 
 export function PathologyGuidePage() {
+  const pathologiesSectionRef = useRef<HTMLDivElement>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('q') || '';
   const activeReasonId = searchParams.get('reason') || null;
@@ -554,6 +555,10 @@ export function PathologyGuidePage() {
       return next;
     }, { replace: true });
     setSelectedSystem('');
+    // Desplazamiento automático e inmediato hacia las fichas clínicas filtradas
+    setTimeout(() => {
+      pathologiesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
   };
 
   const handleClearFilters = () => {
@@ -777,12 +782,12 @@ export function PathologyGuidePage() {
             Todos los sistemas
           </button>
           {BODY_SYSTEM_CHIPS.map((chip) => {
-            const isChipSelected = selectedSystem === chip.id;
+            const isChipSelected = selectedSystem === chip.value;
             return (
               <button
-                key={chip.id}
+                key={chip.value}
                 type="button"
-                onClick={() => setSelectedSystem(isChipSelected ? '' : (chip.id as BodySystem))}
+                onClick={() => setSelectedSystem(isChipSelected ? '' : (chip.value as BodySystem))}
                 className={cn(
                   'px-2.5 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition-colors border shrink-0',
                   isChipSelected
@@ -798,7 +803,7 @@ export function PathologyGuidePage() {
       </div>
 
       {/* LISTADO DE PATOLOGÍAS CLÍNICAS COINCIDENTES */}
-      <div className="space-y-3 pt-2">
+      <div ref={pathologiesSectionRef} className="space-y-3 pt-2 scroll-mt-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
