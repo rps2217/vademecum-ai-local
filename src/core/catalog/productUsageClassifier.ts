@@ -10,12 +10,45 @@ import type { PathologyProduct } from '@/hooks/useProductsForPathology';
 
 export type ProductUsageRoute = 'oral' | 'topico' | 'respiratorio' | 'bucal' | 'ocular' | 'otico' | 'otro';
 
+export type ProductTarget = 'humano' | 'mascota';
+
 export interface RouteInfo {
   id: ProductUsageRoute;
   label: string;
   shortLabel: string;
   description: string;
   badgeClass: string;
+}
+
+export const TARGET_INFO: Record<ProductTarget, { label: string; badge: string }> = {
+  humano: { label: 'Uso Humano', badge: 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/60' },
+  mascota: { label: 'Uso Veterinario / Mascotas', badge: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60' },
+};
+
+/**
+ * Determina si el producto es de Uso Humano o Veterinario (Mascotas).
+ */
+export function classifyProductTarget(product: DbProduct): ProductTarget {
+  const nombre = (product.nombreComercial ?? '').toLowerCase();
+  const cat = String(product.categoria ?? '').toLowerCase();
+  const presentacion = String(product.data?.presentacion ?? '').toLowerCase();
+  const comoFunciona = String(product.comoFunciona ?? product.como_funciona ?? '').toLowerCase();
+
+  const fullText = `${nombre} ${cat} ${presentacion} ${comoFunciona}`;
+
+  if (
+    fullText.includes('mascota') ||
+    fullText.includes('perro') ||
+    fullText.includes('gato') ||
+    fullText.includes('veterinario') ||
+    fullText.includes('canino') ||
+    fullText.includes('felino') ||
+    cat === 'mascotas'
+  ) {
+    return 'mascota';
+  }
+
+  return 'humano';
 }
 
 export const USAGE_ROUTES: Record<ProductUsageRoute, RouteInfo> = {

@@ -22,9 +22,11 @@ import { useFocusTrap } from '@/hooks/useFocusTrap';
 import { getEvidenceConfig } from '@/ui/searchConfig';
 import {
   classifyProductRoute,
+  classifyProductTarget,
   selectCounterRecommendations,
   calculateSynergisticPacks,
   USAGE_ROUTES,
+  TARGET_INFO,
   type ProductUsageRoute,
 } from '@/core/catalog/productUsageClassifier';
 import { useClientProfile } from '@/contexts/ClientProfileContext';
@@ -554,6 +556,8 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                   {filteredCommercialProducts.map((pp) => {
                     const route = classifyProductRoute(pp.product);
                     const routeInfo = USAGE_ROUTES[route];
+                    const target = classifyProductTarget(pp.product);
+                    const targetInfo = TARGET_INFO[target];
                     return (
                       <div
                         key={pp.product.sku}
@@ -564,9 +568,12 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                           onClick={() => onProductClick?.(pp.product)}
                           className="flex-1 min-w-0 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
                         >
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-1.5 flex-wrap">
                             <span className={`text-[9px] font-semibold px-1.5 py-0.2 rounded border ${routeInfo.badgeClass}`}>
                               {routeInfo.shortLabel}
+                            </span>
+                            <span className={`text-[9px] font-semibold px-1.5 py-0.2 rounded border ${targetInfo.badge}`}>
+                              {targetInfo.label}
                             </span>
                             <p className="text-xs sm:text-sm font-semibold truncate group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
                               {pp.product.nombreComercial}
