@@ -16,13 +16,14 @@ import {
   X, AlertTriangle, Pill, Leaf, FlaskConical, Home, Droplet,
   Shield, Stethoscope, BookOpen, Lightbulb, ChevronRight,
   Users, AlertOctagon, ChevronDown, Package, Sparkles,
-  Award, Search,
+  Award, Search, CheckSquare, Square, CheckCircle2,
 } from 'lucide-react';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
 import { getEvidenceConfig } from '@/ui/searchConfig';
 import {
   classifyProductRoute,
   selectCounterRecommendations,
+  calculateSynergisticPacks,
   USAGE_ROUTES,
   type ProductUsageRoute,
 } from '@/core/catalog/productUsageClassifier';
@@ -153,6 +154,22 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
   const counterStrategy = useMemo(() => {
     return selectCounterRecommendations(pathologyProducts || [], pathology, clientProfileFilter);
   }, [pathologyProducts, pathology, clientProfileFilter]);
+
+  // Packs sinérgicos de mostrador
+  const synergisticPacks = useMemo(() => {
+    return calculateSynergisticPacks(pathologyProducts || [], pathology, clientProfileFilter);
+  }, [pathologyProducts, pathology, clientProfileFilter]);
+
+  // Checklist clínico interactivo de mostrador (estado de preguntas clave)
+  const [checklistState, setChecklistState] = useState<Record<string, boolean>>({
+    embarazoLactanciaChecked: false,
+    hipertensionChecked: false,
+    cronicoChecked: false,
+  });
+
+  const toggleChecklist = (key: string) => {
+    setChecklistState((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   // Vías de administración disponibles para esta patología
   const availableRoutes = useMemo(() => {
@@ -353,6 +370,127 @@ export function PathologyDetail({ pathology, onClose, onIngredientClick, onProdu
                         </div>
                       );
                     })}
+                  </div>
+                </div>
+              )}
+
+              {/* CHECKLIST CLÍNICO INTERACTIVO DE MOSTRADOR */}
+              <div className="rounded-xl border border-emerald-300 dark:border-emerald-700/80 bg-emerald-50/60 dark:bg-emerald-950/20 p-3 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wide">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <span>Checklist Clínico de Seguridad (Mostrador)</span>
+                  </div>
+                  <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">
+                    Validación rápida
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => toggleChecklist('embarazoLactanciaChecked')}
+                    className={`flex items-center gap-2 p-2 rounded-lg border text-left text-xs font-medium transition-all cursor-pointer ${
+                      checklistState.embarazoLactanciaChecked
+                        ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs'
+                        : 'bg-card text-foreground border-border hover:border-emerald-400'
+                    }`}
+                  >
+                    {checklistState.embarazoLactanciaChecked ? <CheckSquare className="w-4 h-4 shrink-0" /> : <Square className="w-4 h-4 shrink-0" />}
+                    <span className="truncate">Descartar Embarazo / Lactancia</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => toggleChecklist('hipertensionChecked')}
+                    className={`flex items-center gap-2 p-2 rounded-lg border text-left text-xs font-medium transition-all cursor-pointer ${
+                      checklistState.hipertensionChecked
+                        ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs'
+                        : 'bg-card text-foreground border-border hover:border-emerald-400'
+                    }`}
+                  >
+                    {checklistState.hipertensionChecked ? <CheckSquare className="w-4 h-4 shrink-0" /> : <Square className="w-4 h-4 shrink-0" />}
+                    <span className="truncate">Sin Hipertensión (HTA controlada)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => toggleChecklist('cronicoChecked')}
+                    className={`flex items-center gap-2 p-2 rounded-lg border text-left text-xs font-medium transition-all cursor-pointer ${
+                      checklistState.cronicoChecked
+                        ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs'
+                        : 'bg-card text-foreground border-border hover:border-emerald-400'
+                    }`}
+                  >
+                    {checklistState.cronicoChecked ? <CheckSquare className="w-4 h-4 shrink-0" /> : <Square className="w-4 h-4 shrink-0" />}
+                    <span className="truncate">Revisar Medicación Crónica</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* PACKS SINÉRGICOS DE MOSTRADOR */}
+              {synergisticPacks.length > 0 && (
+                <div className="rounded-xl border border-indigo-300 dark:border-indigo-700/80 bg-indigo-50/60 dark:bg-indigo-950/20 p-3 space-y-2">
+                  <div className="flex items-center justify-between border-b border-indigo-200 dark:border-indigo-800 pb-1.5">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-900 dark:text-indigo-200 uppercase tracking-wider">
+                      <Sparkles className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                      <span>Packs Sinergéticos Recomendados para el Paciente</span>
+                    </div>
+                    <span className="text-[10px] text-indigo-700 dark:text-indigo-300 font-semibold">
+                      Dispensación combinada
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                    {synergisticPacks.map((pack, pIdx) => (
+                      <div
+                        key={`pack-${pIdx}`}
+                        className="p-3 rounded-lg border border-indigo-200 dark:border-indigo-800 bg-card space-y-2 shadow-2xs"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-indigo-900 dark:text-indigo-200">
+                            {pack.packTitle}
+                          </span>
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300">
+                            {pack.badge}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-muted-foreground leading-relaxed">
+                          {pack.packDescription}
+                        </p>
+                        <div className="space-y-1.5 pt-1 border-t border-border/60">
+                          {pack.items.map((pi, itemIdx) => {
+                            const rInfo = USAGE_ROUTES[pi.route];
+                            return (
+                              <div
+                                key={`pi-${itemIdx}`}
+                                className="flex items-center justify-between gap-2 p-1.5 rounded bg-muted/30 hover:bg-muted/60 transition-colors"
+                              >
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-[9px] font-bold text-primary">{pi.roleLabel}:</span>
+                                    <span className={`text-[9px] px-1 rounded ${rInfo.badgeClass}`}>{rInfo.shortLabel}</span>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={() => onProductClick?.(pi.item.product)}
+                                    className="text-xs font-semibold text-foreground truncate block text-left hover:text-primary transition-colors w-full"
+                                  >
+                                    {pi.item.product.nombreComercial}
+                                  </button>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => onProductClick?.(pi.item.product)}
+                                  className="px-2 py-0.5 rounded border border-border text-[11px] font-medium hover:bg-card shrink-0 cursor-pointer"
+                                >
+                                  Ver
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}

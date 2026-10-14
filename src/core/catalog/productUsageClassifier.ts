@@ -399,3 +399,62 @@ export function selectCounterRecommendations(
 
   return recommendations;
 }
+
+export interface SynergisticPack {
+  packTitle: string;
+  packDescription: string;
+  badge: string;
+  items: {
+    roleLabel: string;
+    item: PathologyProduct;
+    route: ProductUsageRoute;
+  }[];
+}
+
+/**
+ * Genera packs sinérgicos de mostrador (duplas / tríos recomendados)
+ * combinando vía sistémica, local y natural para dispensación conjunta.
+ */
+export function calculateSynergisticPacks(
+  products: PathologyProduct[],
+  pathology: DbPathology,
+  clientProfile?: ClientProfileFilter | null,
+): SynergisticPack[] {
+  const strategy = selectCounterRecommendations(products, pathology, clientProfile);
+  if (strategy.length < 2) return [];
+
+  const packs: SynergisticPack[] = [];
+
+  const primary = strategy.find((s) => s.role === 'principal');
+  const relief = strategy.find((s) => s.role === 'alivio_local');
+  const natural = strategy.find((s) => s.role === 'alternativa_natural');
+
+  // Pack Principal Sinergético (si hay fondo + alivio local)
+  if (primary && relief) {
+    packs.push({
+      packTitle: 'Pack Sinergético Integral Mostrador',
+      packDescription: 'Combina el tratamiento de fondo sistémico con el alivio local inmediato para una resolución clínica óptima y rápida.',
+      badge: 'Alta Sinergia',
+      items: [
+        { roleLabel: 'Fondo / Sistémico', item: primary.item, route: primary.route },
+        { roleLabel: 'Alivio Local', item: relief.item, route: relief.route },
+      ],
+    });
+  }
+
+  // Pack Fitoterapia / Integrativo (si hay natural y otro)
+  if (natural && primary && natural.item.product.sku !== primary.item.product.sku) {
+    packs.push({
+      packTitle: 'Pack Fitoterápico Integrativo',
+      packDescription: 'Alternativa basada en fitoterapia estandarizada para pacientes que prefieren abordaje botánico sinérgico.',
+      badge: '100% Natural',
+      items: [
+        { roleLabel: 'Fitoterapia Principal', item: natural.item, route: natural.route },
+        { roleLabel: 'Soporte Complementario', item: primary.item, route: primary.route },
+      ],
+    });
+  }
+
+  return packs;
+}
+
